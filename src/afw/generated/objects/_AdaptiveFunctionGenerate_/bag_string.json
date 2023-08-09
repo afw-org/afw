@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagString",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Takes any number of string values and returns a list of list.",
+    "description": "Takes any number of string values and returns an array of array.",
     "functionId": "bag<string>",
     "functionLabel": "bag_string",
     "parameters": [

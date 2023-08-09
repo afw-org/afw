@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwSubsetX500Name",
-    "brief": "Determines if the first list is a subset of second list",
+    "brief": "Determines if the first array is a subset of second array",
     "camelCaseFunctionLabel": "subsetX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
@@ -11,13 +11,13 @@
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

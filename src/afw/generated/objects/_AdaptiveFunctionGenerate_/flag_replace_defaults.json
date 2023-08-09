@@ -1,16 +1,16 @@
 {
     "afwCamelCaseFunctionLabel": "afwFlagReplaceDefaults",
-    "brief": "Replace the list of flags used to determine the default active flags",
+    "brief": "Replace the array of flags used to determine the default active flags",
     "camelCaseFunctionLabel": "flagReplaceDefaults",
     "category": "administrative",
-    "description": "Completely replace the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.\n\nThis change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config.",
+    "description": "Completely replace the array of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This array can contain the flagId of flags that have not yet been registered. These flags and the flags they include are set as the active default flags.\n\nThis change only lasts for the life of the current adaptive environment (e.g. until the adaptive server or afw command ends). If you want the change to persist, change the defaultFlags property in the application config.",
     "functionId": "flag_replace_defaults",
     "functionLabel": "flag_replace_defaults",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "The list of the flagId of flags used to determine the default active flags.",
+            "description": "The array of the flagId of flags used to determine the default active flags.",
             "name": "flagId"
         }
     ],

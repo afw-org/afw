@@ -73,9 +73,9 @@ def at_least_one_member_of_double(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -99,9 +99,9 @@ def at_least_one_member_of_double(session, list1, list2):
 
 def bag_double(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of double values and returns a list of list.
+    Takes any number of double values and returns an array of array.
 
     Parameters:
 
@@ -132,7 +132,7 @@ def bag_size_double(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -417,14 +417,14 @@ def intersection_double(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of double with the values that are common to both list of
-    double list1 and list2.
+    Returns an array of double with the values that are common to both array
+    of double list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -536,9 +536,9 @@ def is_finite(session, number):
 
 def is_in_double(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether double value is in list of double list and returns the
+    Checks whether double value is in array of double array and returns the
     boolean result.
 
     Parameters:
@@ -820,10 +820,10 @@ def nex_double(session, arg1, arg2):
 
 def one_and_only_double(session, array):
     '''
-    Converts a one value list to a double value
+    Converts a one value array to a double value
 
-    This converts a list of double values that contains one value to a single
-    double value.
+    This converts an array of double values that contains one value to a
+    single double value.
 
     Parameters:
 
@@ -947,16 +947,16 @@ def set_equals_double(session, list1, list2):
 
 def subset_double(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in double list1 are all in
     double list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -1043,7 +1043,7 @@ def to_string_double(session, value):
     '''
     Converts value to string
 
-    Converts double value to string. For list values, the to_string() value
+    Converts double value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
     Parameters:
@@ -1073,8 +1073,8 @@ def union_double(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of double contains all of the unique values in two or more
-    list of double values.
+    Returns an array of double contains all of the unique values in two or
+    more array of double values.
 
     Parameters:
 

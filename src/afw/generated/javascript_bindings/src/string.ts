@@ -36,9 +36,9 @@ export function afwAddString(client : any, string : string, values : any) : any 
  * Returns boolean true if at least one value in string list1 is in string
  * list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -54,7 +54,7 @@ export function afwAtLeastOneMemberOfString(client : any, list1 : any[], list2 :
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -71,7 +71,7 @@ export function afwBagSizeString(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of string values and returns a list of list.
+ * Takes any number of string values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -329,12 +329,12 @@ export function afwIndexOfString(client : any, value : string, subString : strin
 }
 
 /**
- * Returns a list of string with the values that are common to both list of
- * string list1 and list2.
+ * Returns an array of string with the values that are common to both array
+ * of string list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -350,7 +350,7 @@ export function afwIntersectionString(client : any, list1 : any[], list2 : any[]
 }
 
 /**
- * Checks whether string value is in list of string list and returns the
+ * Checks whether string value is in array of string array and returns the
  * boolean result.
  * 
  * @param {string} value -
@@ -437,10 +437,10 @@ export function afwLeString(client : any, arg1 : string, arg2 : any) : any {
 
 /**
  * This is a polymorphic function where string can be any of the supported
- * data types. Return the integer number of entries in datatype list or
+ * data types. Return the integer number of entries in datatype array or
  * codepoints in others.
  * 
- * @param {string} value - Returns the number of entries in a list or code
+ * @param {string} value - Returns the number of entries in an array or code
  *     points in others.
  * 
  * @returns {integer}
@@ -590,8 +590,8 @@ export function afwNormalizeToLowerCaseString(client : any, string : string) : a
 }
 
 /**
- * This converts a list of string values that contains one value to a single
- * string value.
+ * This converts an array of string values that contains one value to a
+ * single string value.
  * 
  * @param {array} array -
  * 
@@ -749,7 +749,7 @@ export function afwSetEqualsString(client : any, list1 : any[], list2 : any[]) :
 }
 
 /**
- * Split string value into an list of strings using a separator.
+ * Split string value into an array of strings using a separator.
  * 
  * @param {string} value - The string value to split.
  * 
@@ -760,7 +760,7 @@ export function afwSetEqualsString(client : any, list1 : any[], list2 : any[]) :
  * @param {integer} limit - This is the maximum number of splits. Any
  *     remaining part of value is ignored.
  * 
- * @returns {array} An list of strings.
+ * @returns {array} An array of strings.
  */
 export function afwSplitString(client : any, value : string, separator? : string, limit? : number) : any {
 
@@ -822,9 +822,9 @@ export function afwString(client : any, values : any) : any {
  * Returns boolean true if the unique values in string list1 are all in
  * string list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -1037,7 +1037,7 @@ export function afwToRfc822NameString(client : any, value : string) : any {
 }
 
 /**
- * Converts string value to string. For list values, the to_string() value
+ * Converts string value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 
  * @param {string} value - A string value.
@@ -1106,8 +1106,8 @@ export function afwToYearMonthDurationString(client : any, value : string) : any
 }
 
 /**
- * Returns a list of string contains all of the unique values in two or more
- * list of string values.
+ * Returns an array of string contains all of the unique values in two or
+ * more array of string values.
  * 
  * @param {array} lists - Two or more lists.
  * 

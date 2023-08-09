@@ -77,16 +77,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_dateTime
 
-Takes any number of dateTime values and returns a list of list.
-Makes a list from values
+Takes any number of dateTime values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -95,7 +95,7 @@ Makes a list from values
 
 =head3 bag_size_dateTime
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -180,7 +180,7 @@ Checks for greater than
 
 =head3 intersection_dateTime
 
-Returns a list of dateTime with the values that are common to both list of
+Returns an array of dateTime with the values that are common to both array of
 dateTime list1 and list2.
 Returns intersection of two lists
 
@@ -188,11 +188,11 @@ Returns intersection of two lists
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_dateTime
 
@@ -207,9 +207,9 @@ Value to check
 
 =head3 is_in_dateTime
 
-Checks whether dateTime value is in list of dateTime list and returns the
+Checks whether dateTime value is in array of dateTime array and returns the
 boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -311,9 +311,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_dateTime
 
-This converts a list of dateTime values that contains one value to a single
+This converts an array of dateTime values that contains one value to a single
 dateTime value.
-Converts a one value list to a dateTime value
+Converts a one value array to a dateTime value
 
 =head4 Parameters
 
@@ -338,17 +338,17 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in dateTime list1 are all in
 dateTime list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 subtract_dayTimeDuration_dateTime
 
@@ -380,8 +380,8 @@ Subtract numbers
 
 =head3 to_string_dateTime
 
-Converts dateTime value to string. For list values, the to_string() value for
-each entry is returned separated with commas.
+Converts dateTime value to string. For array values, the to_string() value
+for each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters
@@ -392,8 +392,8 @@ A dateTime value.
 
 =head3 union_dateTime
 
-Returns a list of dateTime contains all of the unique values in two or more
-list of dateTime values.
+Returns an array of dateTime contains all of the unique values in two or more
+array of dateTime values.
 Returns union of two or more string lists
 
 =head4 Parameters

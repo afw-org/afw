@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Converts time value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts time value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<time>",
     "functionLabel": "to_string_time",
     "parameters": [

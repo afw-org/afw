@@ -125,7 +125,7 @@
             "brief": "List of keywords associated with this object type",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+            "description": "This is an array of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
             "label": "Tags"
         }
     }

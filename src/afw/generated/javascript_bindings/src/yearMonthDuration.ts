@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in yearMonthDuration list1 is
  * in yearMonthDuration list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -33,7 +33,7 @@ export function afwAtLeastOneMemberOfYearMonthDuration(client : any, list1 : any
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -50,7 +50,8 @@ export function afwBagSizeYearMonthDuration(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of yearMonthDuration values and returns a list of list.
+ * Takes any number of yearMonthDuration values and returns an array of
+ * array.
  * 
  * @param {array} values -
  * 
@@ -156,12 +157,12 @@ export function afwGtYearMonthDuration(client : any, arg1 : any, arg2 : any) : a
 }
 
 /**
- * Returns a list of yearMonthDuration with the values that are common to
- * both list of yearMonthDuration list1 and list2.
+ * Returns an array of yearMonthDuration with the values that are common to
+ * both array of yearMonthDuration list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -177,8 +178,8 @@ export function afwIntersectionYearMonthDuration(client : any, list1 : any[], li
 }
 
 /**
- * Checks whether yearMonthDuration value is in list of yearMonthDuration
- * list and returns the boolean result.
+ * Checks whether yearMonthDuration value is in array of yearMonthDuration
+ * array and returns the boolean result.
  * 
  * @param {yearMonthDuration} value -
  * 
@@ -303,7 +304,7 @@ export function afwNexYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
 }
 
 /**
- * This converts a list of yearMonthDuration values that contains one value
+ * This converts an array of yearMonthDuration values that contains one value
  * to a single yearMonthDuration value.
  * 
  * @param {array} array -
@@ -345,9 +346,9 @@ export function afwSetEqualsYearMonthDuration(client : any, list1 : any[], list2
  * Returns boolean true if the unique values in yearMonthDuration list1 are
  * all in yearMonthDuration list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -363,7 +364,7 @@ export function afwSubsetYearMonthDuration(client : any, list1 : any[], list2 : 
 }
 
 /**
- * Converts yearMonthDuration value to string. For list values, the
+ * Converts yearMonthDuration value to string. For array values, the
  * to_string() value for each entry is returned separated with commas.
  * 
  * @param {yearMonthDuration} value - A yearMonthDuration value.
@@ -381,8 +382,8 @@ export function afwToStringYearMonthDuration(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of yearMonthDuration contains all of the unique values in
- * two or more list of yearMonthDuration values.
+ * Returns an array of yearMonthDuration contains all of the unique values in
+ * two or more array of yearMonthDuration values.
  * 
  * @param {array} lists - Two or more lists.
  * 

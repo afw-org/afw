@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInDate",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Checks whether date value is in list of date list and returns the boolean result.",
+    "description": "Checks whether date value is in array of date array and returns the boolean result.",
     "functionId": "is_in<date>",
     "functionLabel": "is_in_date",
     "parameters": [

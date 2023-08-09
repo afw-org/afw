@@ -808,7 +808,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return array This is the list of objects retrieved.
+     * @return array This is the array of objects retrieved.
      */
     public function retrieve_objects(, $objectType, $adaptorId = null, $queryCriteria = null, $options = null, $adaptorTypeSpecific = null)
     {
@@ -852,7 +852,7 @@ class adaptor
      * @param function $objectCallback If this is specified, this function is
      *                                 called once for each object retrieved
      *                                 instead of adding the object to the
-     *                                 return list. Parameter object will be
+     *                                 return array. Parameter object will be
      *                                 an object retrieved or undefined if
      *                                 there are no more objects. This
      *                                 function should return true if it
@@ -1082,7 +1082,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return array This is the list of objects retrieved.
+     * @return array This is the array of objects retrieved.
      */
     public function retrieve_objects_with_uri(, $uri, $options = null, $adaptorTypeSpecific = null)
     {
@@ -1119,7 +1119,7 @@ class adaptor
      * @param function $objectCallback If this is specified, this function is
      *                                 called once for each object retrieved
      *                                 instead of adding the object to the
-     *                                 return list. Parameter object will be
+     *                                 return array. Parameter object will be
      *                                 an object retrieved or undefined if
      *                                 there are no more objects. This
      *                                 function should return true if it

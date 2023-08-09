@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagExpression",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagExpression",
     "category": "expression",
     "dataTypeMethod": true,
-    "description": "Takes any number of expression values and returns a list of list.",
+    "description": "Takes any number of expression values and returns an array of array.",
     "functionId": "bag<expression>",
     "functionLabel": "bag_expression",
     "parameters": [

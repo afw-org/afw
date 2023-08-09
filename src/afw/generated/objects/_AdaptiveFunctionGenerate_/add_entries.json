@@ -9,12 +9,12 @@
     "parameters": [
         {
             "dataType": "array",
-            "description": "Target list. This list must not be immutable.",
+            "description": "Target array. This array must not be immutable.",
             "name": "target"
         },
         {
             "dataType": "array",
-            "description": "Source list(s).",
+            "description": "Source array(s).",
             "minArgs": 1,
             "name": "source"
         }
@@ -22,9 +22,9 @@
     "pure": false,
     "returns": {
         "dataType": "array",
-        "description": "The modified target list."
+        "description": "The modified target array."
     },
     "sideEffects": [
-        "Target list is modified."
+        "Target array is modified."
     ]
 }

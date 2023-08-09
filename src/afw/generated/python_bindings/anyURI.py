@@ -43,9 +43,9 @@ def at_least_one_member_of_anyURI(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -69,9 +69,9 @@ def at_least_one_member_of_anyURI(session, list1, list2):
 
 def bag_anyURI(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of anyURI values and returns a list of list.
+    Takes any number of anyURI values and returns an array of array.
 
     Parameters:
 
@@ -102,7 +102,7 @@ def bag_size_anyURI(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -377,14 +377,14 @@ def intersection_anyURI(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of anyURI with the values that are common to both list of
-    anyURI list1 and list2.
+    Returns an array of anyURI with the values that are common to both array
+    of anyURI list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -437,9 +437,9 @@ def is_anyURI(session, value):
 
 def is_in_anyURI(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether anyURI value is in list of anyURI list and returns the
+    Checks whether anyURI value is in array of anyURI array and returns the
     boolean result.
 
     Parameters:
@@ -545,12 +545,12 @@ def length_anyURI(session, value):
     Returns number of codepoints or entries in value
 
     This is a polymorphic function where anyURI can be any of the supported
-    data types. Return the integer number of entries in datatype list or
+    data types. Return the integer number of entries in datatype array or
     codepoints in others.
 
     Parameters:
 
-        value (anyURI): Returns the number of entries in a list or code
+        value (anyURI): Returns the number of entries in an array or code
         points in others.
 
     Returns:
@@ -676,10 +676,10 @@ def nex_anyURI(session, arg1, arg2):
 
 def one_and_only_anyURI(session, array):
     '''
-    Converts a one value list to a anyURI value
+    Converts a one value array to a anyURI value
 
-    This converts a list of anyURI values that contains one value to a single
-    anyURI value.
+    This converts an array of anyURI values that contains one value to a
+    single anyURI value.
 
     Parameters:
 
@@ -921,7 +921,7 @@ def split_anyURI(session, value, separator=None, limit=None):
     '''
     Split at a separator
 
-    Split anyURI value into an list of strings using a separator.
+    Split anyURI value into an array of strings using a separator.
 
     Parameters:
 
@@ -934,7 +934,7 @@ def split_anyURI(session, value, separator=None, limit=None):
         part of value is ignored.
 
     Returns:
-    array: An list of strings.
+    array: An array of strings.
     '''
 
     request = session.Request()
@@ -993,16 +993,16 @@ def starts_with_anyURI(session, value, subString):
 
 def subset_anyURI(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in anyURI list1 are all in
     anyURI list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -1067,7 +1067,7 @@ def to_string_anyURI(session, value):
     '''
     Converts value to string
 
-    Converts anyURI value to string. For list values, the to_string() value
+    Converts anyURI value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
     Parameters:
@@ -1097,8 +1097,8 @@ def union_anyURI(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of anyURI contains all of the unique values in two or more
-    list of anyURI values.
+    Returns an array of anyURI contains all of the unique values in two or
+    more array of anyURI values.
 
     Parameters:
 

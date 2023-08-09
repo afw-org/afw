@@ -45,16 +45,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_dayTimeDuration
 
-Takes any number of dayTimeDuration values and returns a list of list.
-Makes a list from values
+Takes any number of dayTimeDuration values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -63,7 +63,7 @@ Makes a list from values
 
 =head3 bag_size_dayTimeDuration
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -143,19 +143,19 @@ Checks for greater than
 
 =head3 intersection_dayTimeDuration
 
-Returns a list of dayTimeDuration with the values that are common to both
-list of dayTimeDuration list1 and list2.
+Returns an array of dayTimeDuration with the values that are common to both
+array of dayTimeDuration list1 and list2.
 Returns intersection of two lists
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_dayTimeDuration
 
@@ -171,9 +171,9 @@ Value to check
 
 =head3 is_in_dayTimeDuration
 
-Checks whether dayTimeDuration value is in list of dayTimeDuration list and
+Checks whether dayTimeDuration value is in array of dayTimeDuration array and
 returns the boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -244,9 +244,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_dayTimeDuration
 
-This converts a list of dayTimeDuration values that contains one value to a
+This converts an array of dayTimeDuration values that contains one value to a
 single dayTimeDuration value.
-Converts a one value list to a dayTimeDuration value
+Converts a one value array to a dayTimeDuration value
 
 =head4 Parameters
 
@@ -271,21 +271,21 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in dayTimeDuration list1 are all in
 dayTimeDuration list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 to_string_dayTimeDuration
 
-Converts dayTimeDuration value to string. For list values, the to_string()
+Converts dayTimeDuration value to string. For array values, the to_string()
 value for each entry is returned separated with commas.
 Converts value to string
 
@@ -297,8 +297,8 @@ A dayTimeDuration value.
 
 =head3 union_dayTimeDuration
 
-Returns a list of dayTimeDuration contains all of the unique values in two or
-more list of dayTimeDuration values.
+Returns an array of dayTimeDuration contains all of the unique values in two
+or more array of dayTimeDuration values.
 Returns union of two or more string lists
 
 =head4 Parameters

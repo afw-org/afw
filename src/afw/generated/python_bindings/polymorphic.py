@@ -139,9 +139,9 @@ def at_least_one_member_of(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -165,9 +165,9 @@ def at_least_one_member_of(session, list1, list2):
 
 def bag(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of `<dataType>` values and returns a list of list.
+    Takes any number of `<dataType>` values and returns an array of array.
 
     Parameters:
 
@@ -198,7 +198,7 @@ def bag_size(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -839,14 +839,14 @@ def intersection(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of `<dataType>` with the values that are common to both
-    list of `<dataType>` list1 and list2.
+    Returns an array of `<dataType>` with the values that are common to both
+    array of `<dataType>` list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -900,9 +900,9 @@ def is_(session, value):
 
 def is_in(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether `<dataType>` value is in list of `<dataType>` list and
+    Checks whether `<dataType>` value is in array of `<dataType>` array and
     returns the boolean result.
 
     Parameters:
@@ -1009,11 +1009,11 @@ def length(session, value):
 
     This is a polymorphic function where `<dataType>` can be any of the
     supported data types. Return the integer number of entries in datatype
-    list or codepoints in others.
+    array or codepoints in others.
 
     Parameters:
 
-        value (): Returns the number of entries in a list or code points in
+        value (): Returns the number of entries in an array or code points in
         others.
 
     Returns:
@@ -1382,10 +1382,10 @@ def normalize_to_lower_case(session, string):
 
 def one_and_only(session, array):
     '''
-    Converts a one value list to a <dataType> value
+    Converts a one value array to a <dataType> value
 
-    This converts a list of `<dataType>` values that contains one value to a
-    single `<dataType>` value.
+    This converts an array of `<dataType>` values that contains one value to
+    a single `<dataType>` value.
 
     Parameters:
 
@@ -1691,7 +1691,7 @@ def split(session, value, separator=None, limit=None):
     '''
     Split at a separator
 
-    Split `<dataType>` value into an list of strings using a separator.
+    Split `<dataType>` value into an array of strings using a separator.
 
     Parameters:
 
@@ -1704,7 +1704,7 @@ def split(session, value, separator=None, limit=None):
         part of value is ignored.
 
     Returns:
-    array: An list of strings.
+    array: An array of strings.
     '''
 
     request = session.Request()
@@ -1763,16 +1763,16 @@ def starts_with(session, value, subString):
 
 def subset(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in `<dataType>` list1 are all
     in `<dataType>` list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -2227,7 +2227,7 @@ def to_string(session, value):
     '''
     Converts value to string
 
-    Converts `<dataType>` value to string. For list values, the to_string()
+    Converts `<dataType>` value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
     Parameters:
@@ -2344,8 +2344,8 @@ def union(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of `<dataType>` contains all of the unique values in two
-    or more list of `<dataType>` values.
+    Returns an array of `<dataType>` contains all of the unique values in two
+    or more array of `<dataType>` values.
 
     Parameters:
 

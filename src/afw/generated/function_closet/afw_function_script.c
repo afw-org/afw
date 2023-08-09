@@ -24,7 +24,7 @@
  *
  * Assign a value to the innermost structured block definition of a variable.
  * If the variable is not defined, the variable is defined in the innermost
- * structured block. An error is thrown if not called from a list of values
+ * structured block. An error is thrown if not called from an array of values
  * (statements) in a structured function.
  *
  * This function is not pure, so it may return a different result
@@ -243,7 +243,7 @@ afw_function_execute_continue(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) at least once
+ * This function will evaluate an array of values (statements) at least once
  * while a condition is true. See the related functions 'break', 'continue',
  * 'return' and 'throw'.
  *
@@ -264,9 +264,9 @@ afw_function_execute_continue(
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (array) This is a list of values (statements) that are evaluated
+ *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
- *       order until the end of the list or until a 'break', 'continue',
+ *       order until the end of the array or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
  *
  * Returns:
@@ -359,20 +359,20 @@ afw_function_execute_evaluate_script(
  *
  * Parameters:
  *
- *   initial - (optional array) This is a list of values (statements) to
+ *   initial - (optional array) This is an array of values (statements) to
  *       evaluate before the loop starts. The values will normally be a call to
  *       the 'assign' function.
  *
  *   condition - (optional boolean) While this condition is true, the loop will
  *       continue.
  *
- *   increment - (optional array) This is a list of values (statements) to
+ *   increment - (optional array) This is an array of values (statements) to
  *       evaluate after each iteration of the loop. The values will normally be
  *       a call to the 'assign' function.
  *
- *   body - (optional array) This is a list of values (statements) that are
+ *   body - (optional array) This is an array of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the list or until a 'break',
+ *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
  * Returns:
@@ -399,10 +399,10 @@ afw_function_execute_for(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) while a condition
- * is true with initial and increment values. The condition is tested at the
- * beginning of the loop. If the condition is false for the first iteration,
- * the loop returns a null value.
+ * This function will evaluate an array of values (statements) while a
+ * condition is true with initial and increment values. The condition is tested
+ * at the beginning of the loop. If the condition is false for the first
+ * iteration, the loop returns a null value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -421,11 +421,11 @@ afw_function_execute_for(
  *
  *   name - (array string) Variable name(s).
  *
- *   value - (any dataType) Any list, object or single value.
+ *   value - (any dataType) Any array, object or single value.
  *
- *   body - (optional array) This is a list of values (statements) that are
+ *   body - (optional array) This is an array of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the list or until a 'break',
+ *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
  * Returns:
@@ -760,18 +760,18 @@ afw_function_execute_throw(
  *
  * Parameters:
  *
- *   body - (array) This is a list of values (statements) that are evaluated.
+ *   body - (array) This is an array of values (statements) that are evaluated.
  *       Each value in body is evaluated in order until the end of the list or
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   finally - (optional array) This is a list of values (statements) that are
- *       evaluated after the try and catch statements even if an error occurs.
- *       Each value in body is evaluated in order until the end of the list or
- *       until a 'break', 'continue', 'return' or 'throw' function is
+ *   finally - (optional array) This is an array of values (statements) that
+ *       are evaluated after the try and catch statements even if an error
+ *       occurs. Each value in body is evaluated in order until the end of the
+ *       list or until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   catch - (optional array) This is a list of values (statements) that are
+ *   catch - (optional array) This is an array of values (statements) that are
  *       evaluated when an error is thrown while evaluating the body. Each
  *       value in body is evaluated in order until the end of the list or until
  *       a 'break', 'continue', 'return' or 'throw' function is encountered.
@@ -803,10 +803,10 @@ afw_function_execute_try(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) while a condition
- * is true. The condition is tested at the beginning of the loop. If the
- * condition is false for the first iteration, the loop returns a null value.
- * See the related functions 'break', 'continue', 'return' and 'throw'.
+ * This function will evaluate an array of values (statements) while a
+ * condition is true. The condition is tested at the beginning of the loop. If
+ * the condition is false for the first iteration, the loop returns a null
+ * value. See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -825,7 +825,7 @@ afw_function_execute_try(
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (array) This is a list of values (statements) that are evaluated
+ *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
  *       order until the end of the list or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.

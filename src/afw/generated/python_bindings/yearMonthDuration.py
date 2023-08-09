@@ -14,9 +14,9 @@ def at_least_one_member_of_yearMonthDuration(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -42,7 +42,7 @@ def bag_size_yearMonthDuration(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -69,9 +69,10 @@ def bag_size_yearMonthDuration(session, value):
 
 def bag_yearMonthDuration(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of yearMonthDuration values and returns a list of list.
+    Takes any number of yearMonthDuration values and returns an array of
+    array.
 
     Parameters:
 
@@ -237,14 +238,14 @@ def intersection_yearMonthDuration(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of yearMonthDuration with the values that are common to
-    both list of yearMonthDuration list1 and list2.
+    Returns an array of yearMonthDuration with the values that are common to
+    both array of yearMonthDuration list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -268,10 +269,10 @@ def intersection_yearMonthDuration(session, list1, list2):
 
 def is_in_yearMonthDuration(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether yearMonthDuration value is in list of yearMonthDuration
-    list and returns the boolean result.
+    Checks whether yearMonthDuration value is in array of yearMonthDuration
+    array and returns the boolean result.
 
     Parameters:
 
@@ -466,10 +467,10 @@ def nex_yearMonthDuration(session, arg1, arg2):
 
 def one_and_only_yearMonthDuration(session, array):
     '''
-    Converts a one value list to a yearMonthDuration value
+    Converts a one value array to a yearMonthDuration value
 
-    This converts a list of yearMonthDuration values that contains one value
-    to a single yearMonthDuration value.
+    This converts an array of yearMonthDuration values that contains one
+    value to a single yearMonthDuration value.
 
     Parameters:
 
@@ -529,16 +530,16 @@ def set_equals_yearMonthDuration(session, list1, list2):
 
 def subset_yearMonthDuration(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in yearMonthDuration list1 are
     all in yearMonthDuration list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -564,7 +565,7 @@ def to_string_yearMonthDuration(session, value):
     '''
     Converts value to string
 
-    Converts yearMonthDuration value to string. For list values, the
+    Converts yearMonthDuration value to string. For array values, the
     to_string() value for each entry is returned separated with commas.
 
     Parameters:
@@ -594,8 +595,8 @@ def union_yearMonthDuration(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of yearMonthDuration contains all of the unique values in
-    two or more list of yearMonthDuration values.
+    Returns an array of yearMonthDuration contains all of the unique values
+    in two or more array of yearMonthDuration values.
 
     Parameters:
 

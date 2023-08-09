@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringXpathExpression",
     "category": "xpathExpression",
     "dataTypeMethod": true,
-    "description": "Converts xpathExpression value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts xpathExpression value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<xpathExpression>",
     "functionLabel": "to_string_xpathExpression",
     "parameters": [

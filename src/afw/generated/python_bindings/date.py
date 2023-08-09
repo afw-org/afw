@@ -46,9 +46,9 @@ def at_least_one_member_of_date(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -72,9 +72,9 @@ def at_least_one_member_of_date(session, list1, list2):
 
 def bag_date(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of date values and returns a list of list.
+    Takes any number of date values and returns an array of array.
 
     Parameters:
 
@@ -105,7 +105,7 @@ def bag_size_date(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -304,14 +304,14 @@ def intersection_date(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of date with the values that are common to both list of
+    Returns an array of date with the values that are common to both array of
     date list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -364,10 +364,10 @@ def is_date(session, value):
 
 def is_in_date(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether date value is in list of date list and returns the boolean
-    result.
+    Checks whether date value is in array of date array and returns the
+    boolean result.
 
     Parameters:
 
@@ -602,9 +602,9 @@ def nex_date(session, arg1, arg2):
 
 def one_and_only_date(session, array):
     '''
-    Converts a one value list to a date value
+    Converts a one value array to a date value
 
-    This converts a list of date values that contains one value to a single
+    This converts an array of date values that contains one value to a single
     date value.
 
     Parameters:
@@ -665,16 +665,16 @@ def set_equals_date(session, list1, list2):
 
 def subset_date(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in date list1 are all in date
     list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -733,8 +733,8 @@ def to_string_date(session, value):
     '''
     Converts value to string
 
-    Converts date value to string. For list values, the to_string() value for
-    each entry is returned separated with commas.
+    Converts date value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Parameters:
 
@@ -763,8 +763,8 @@ def union_date(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of date contains all of the unique values in two or more
-    list of date values.
+    Returns an array of date contains all of the unique values in two or more
+    array of date values.
 
     Parameters:
 

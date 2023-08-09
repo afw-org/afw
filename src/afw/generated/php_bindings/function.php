@@ -26,7 +26,7 @@ class function
     /**
      * bag_function()
      *
-     * Takes any number of function values and returns a list of list.
+     * Takes any number of function values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class function
     /**
      * bag_size_function()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *

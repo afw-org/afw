@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -29,7 +29,7 @@ export function afwBagSizeXpathExpression(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of xpathExpression values and returns a list of list.
+ * Takes any number of xpathExpression values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -297,8 +297,8 @@ export function afwNexXpathExpression(client : any, arg1 : any, arg2 : any) : an
 }
 
 /**
- * Converts xpathExpression value to string. For list values, the to_string()
- * value for each entry is returned separated with commas.
+ * Converts xpathExpression value to string. For array values, the
+ * to_string() value for each entry is returned separated with commas.
  * 
  * @param {xpathExpression} value - A xpathExpression value.
  * 

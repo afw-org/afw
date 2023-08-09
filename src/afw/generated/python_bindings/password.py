@@ -7,9 +7,9 @@ import json
 
 def bag_password(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of password values and returns a list of list.
+    Takes any number of password values and returns an array of array.
 
     Parameters:
 
@@ -40,7 +40,7 @@ def bag_size_password(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -397,8 +397,8 @@ def to_string_password(session, value):
     '''
     Converts value to string
 
-    Converts password value to string. For list values, the to_string() value
-    for each entry is returned separated with commas.
+    Converts password value to string. For array values, the to_string()
+    value for each entry is returned separated with commas.
 
     Parameters:
 

@@ -14,9 +14,9 @@ def at_least_one_member_of_boolean(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -40,9 +40,9 @@ def at_least_one_member_of_boolean(session, list1, list2):
 
 def bag_boolean(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of boolean values and returns a list of list.
+    Takes any number of boolean values and returns an array of array.
 
     Parameters:
 
@@ -73,7 +73,7 @@ def bag_size_boolean(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -266,14 +266,14 @@ def intersection_boolean(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of boolean with the values that are common to both list of
-    boolean list1 and list2.
+    Returns an array of boolean with the values that are common to both array
+    of boolean list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -326,9 +326,9 @@ def is_boolean(session, value):
 
 def is_in_boolean(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether boolean value is in list of boolean list and returns the
+    Checks whether boolean value is in array of boolean array and returns the
     boolean result.
 
     Parameters:
@@ -494,9 +494,9 @@ def nex_boolean(session, arg1, arg2):
 
 def one_and_only_boolean(session, array):
     '''
-    Converts a one value list to a boolean value
+    Converts a one value array to a boolean value
 
-    This converts a list of boolean values that contains one value to a
+    This converts an array of boolean values that contains one value to a
     single boolean value.
 
     Parameters:
@@ -557,16 +557,16 @@ def set_equals_boolean(session, list1, list2):
 
 def subset_boolean(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in boolean list1 are all in
     boolean list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -592,7 +592,7 @@ def to_string_boolean(session, value):
     '''
     Converts value to string
 
-    Converts boolean value to string. For list values, the to_string() value
+    Converts boolean value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
     Parameters:
@@ -622,8 +622,8 @@ def union_boolean(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of boolean contains all of the unique values in two or
-    more list of boolean values.
+    Returns an array of boolean contains all of the unique values in two or
+    more array of boolean values.
 
     Parameters:
 

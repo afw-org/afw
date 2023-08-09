@@ -29,7 +29,7 @@ class script
      * Assign a value to the innermost structured block definition of a
      * variable. If the variable is not defined, the variable is defined in
      * the innermost structured block. An error is thrown if not called from
-     * a list of values (statements) in a structured function.
+     * an array of values (statements) in a structured function.
      *
      * @param string $name Variable name
      * @param  $value This is the value to assign to the variable.
@@ -53,7 +53,7 @@ class script
     /**
      * bag_script()
      *
-     * Takes any number of script values and returns a list of list.
+     * Takes any number of script values and returns an array of array.
      *
      * @param array $values
      *
@@ -77,7 +77,7 @@ class script
     /**
      * bag_size_script()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -217,17 +217,17 @@ class script
      *
      * This creates a new structured block with a new nested variable scope.
      * 
-     * This function will evaluate a list of values (statements) at least
+     * This function will evaluate an array of values (statements) at least
      * once while a condition is true. See the related functions 'break',
      * 'continue', 'return' and 'throw'.
      *
      * @param boolean $condition While this condition is true, the loop will
      *                           continue. This is evaluated in the loop's
      *                           scope.
-     * @param array $body This is a list of values (statements) that are
+     * @param array $body This is an array of values (statements) that are
      *                    evaluated for each iteration of the loop. Each
      *                    value in body is evaluated in order until the end
-     *                    of the list or until a 'break', 'continue',
+     *                    of the array or until a 'break', 'continue',
      *                    'return' or 'throw' function is encountered.
      *
      * @return  The last value evaluated in body or null if the body is
@@ -358,19 +358,19 @@ class script
      * This function loops while condition is true. If the condition is false
      * for the first iteration, the loop returns a null value.
      *
-     * @param array $initial This is a list of values (statements) to
+     * @param array $initial This is an array of values (statements) to
      *                       evaluate before the loop starts. The values will
      *                       normally be a call to the 'assign' function.
      * @param boolean $condition While this condition is true, the loop will
      *                           continue.
-     * @param array $increment This is a list of values (statements) to
+     * @param array $increment This is an array of values (statements) to
      *                         evaluate after each iteration of the loop. The
      *                         values will normally be a call to the 'assign'
      *                         function.
-     * @param array $body This is a list of values (statements) that are
+     * @param array $body This is an array of values (statements) that are
      *                    evaluated for each iteration of the loop. Each
      *                    value in body is evaluated in order until the end
-     *                    of the list or until a 'break', 'continue',
+     *                    of the array or until a 'break', 'continue',
      *                    'return' or 'throw' function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
@@ -405,17 +405,17 @@ class script
      *
      * This creates a new structured block with a new nested variable scope.
      * 
-     * This function will evaluate a list of values (statements) while a
+     * This function will evaluate an array of values (statements) while a
      * condition is true with initial and increment values. The condition is
      * tested at the beginning of the loop. If the condition is false for the
      * first iteration, the loop returns a null value.
      *
      * @param array $name Variable name(s).
-     * @param  $value Any list, object or single value.
-     * @param array $body This is a list of values (statements) that are
+     * @param  $value Any array, object or single value.
+     * @param array $body This is an array of values (statements) that are
      *                    evaluated for each iteration of the loop. Each
      *                    value in body is evaluated in order until the end
-     *                    of the list or until a 'break', 'continue',
+     *                    of the array or until a 'break', 'continue',
      *                    'return' or 'throw' function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
@@ -847,18 +847,18 @@ class script
      * statements are always evaluated after the body and catch statements.
      * See the related functions 'break', 'continue', 'return' and 'throw'.
      *
-     * @param array $body This is a list of values (statements) that are
+     * @param array $body This is an array of values (statements) that are
      *                    evaluated. Each value in body is evaluated in order
      *                    until the end of the list or until a 'break',
      *                    'continue', 'return' or 'throw' function is
      *                    encountered.
-     * @param array $finally This is a list of values (statements) that are
+     * @param array $finally This is an array of values (statements) that are
      *                       evaluated after the try and catch statements
      *                       even if an error occurs. Each value in body is
      *                       evaluated in order until the end of the list or
      *                       until a 'break', 'continue', 'return' or 'throw'
      *                       function is encountered.
-     * @param array $catch This is a list of values (statements) that are
+     * @param array $catch This is an array of values (statements) that are
      *                     evaluated when an error is thrown while evaluating
      *                     the body. Each value in body is evaluated in order
      *                     until the end of the list or until a 'break',
@@ -897,7 +897,7 @@ class script
      *
      * This creates a new structured block with a new nested variable scope.
      * 
-     * This function will evaluate a list of values (statements) while a
+     * This function will evaluate an array of values (statements) while a
      * condition is true. The condition is tested at the beginning of the
      * loop. If the condition is false for the first iteration, the loop
      * returns a null value. See the related functions 'break', 'continue',
@@ -906,7 +906,7 @@ class script
      * @param boolean $condition While this condition is true, the loop will
      *                           continue. This is evaluated in the loop's
      *                           scope.
-     * @param array $body This is a list of values (statements) that are
+     * @param array $body This is an array of values (statements) that are
      *                    evaluated for each iteration of the loop. Each
      *                    value in body is evaluated in order until the end
      *                    of the list or until a 'break', 'continue',

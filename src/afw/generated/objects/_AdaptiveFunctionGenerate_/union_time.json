@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Returns a list of time contains all of the unique values in two or more list of time values.",
+    "description": "Returns an array of time contains all of the unique values in two or more array of time values.",
     "functionId": "union<time>",
     "functionLabel": "union_time",
     "parameters": [

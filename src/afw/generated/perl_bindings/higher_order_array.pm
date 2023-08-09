@@ -28,20 +28,20 @@ The following functions are exported by default
 
 =head3 all_of
 
-Returns true if all values in a list pass the predicate test.
+Returns true if all values in an array pass the predicate test.
 All values pass a test
 
 =head4 Parameters
 
     $predicate
 
-This function is called for each value in the first list in values or until
+This function is called for each value in the first array in values or until
 false is returned. If no calls return false, the result is true.
 
     $values
 
 These are the parameters passed to predicate with the exception that the
-first list is passed one value at a time. At least one list is required.
+first array is passed one value at a time. At least one array is required.
 
 =head3 all_of_all
 
@@ -83,20 +83,20 @@ the second is a value from list2.
 
 =head3 any_of
 
-Returns true if any value in a list pass the predicate test.
+Returns true if any value in an array pass the predicate test.
 Any values pass a test
 
 =head4 Parameters
 
     $predicate
 
-This function is called for each value in the first list in values or until
+This function is called for each value in the first array in values or until
 true is returned. If no calls return true, the result is false.
 
     $values
 
 These are the parameters passed to predicate with the exception that the
-first list is passed one value at a time. At least one list is required.
+first array is passed one value at a time. At least one array is required.
 
 =head3 any_of_all
 
@@ -138,47 +138,47 @@ the second is a value from list2.
 
 =head3 filter
 
-This produces a list containing only values from another list that pass a
+This produces an array containing only values from another array that pass a
 predicate test.
-Filter a list
+Filter an array
 
 =head4 Parameters
 
     $predicate
 
-This is a boolean function that is called to determine if a list entry should
-be included in the returned list.
+This is a boolean function that is called to determine if an array entry
+should be included in the returned array.
 
     $values
 
 These are the values passed to the predicate with the exception that the
-first list is passed as the single current value from the list. At least one
-list is required.
+first array is passed as the single current value from the array. At least
+one array is required.
 
 =head3 find
 
-The predicate is called for each value in the first list in values until true
-is returned, then that value is returned.
-Returns the first value in a list that passes a test
+The predicate is called for each value in the first array in values until
+true is returned, then that value is returned.
+Returns the first value in an array that passes a test
 
 =head4 Parameters
 
     $predicate
 
-This is a boolean function that is called to determine if a list entry passes
-the test.
+This is a boolean function that is called to determine if an array entry
+passes the test.
 
     $values
 
 These are the values passed to the predicate with the exception that the
-first list is passed as the single current value from the list. At least one
-list is required.
+first array is passed as the single current value from the array. At least
+one array is required.
 
 =head3 map
 
-This function creates a list of the results of calling functor with each
-value of the first list in values
-Maps values of a list
+This function creates an array of the results of calling functor with each
+value of the first array in values
+Maps values of an array
 
 =head4 Parameters
 
@@ -188,22 +188,22 @@ Maps values of a list
     $values
 
 These are the parameters passed to functor with the exception that the first
-list is passed one value at a time. At least one list is required.
+array is passed one value at a time. At least one array is required.
 
 =head3 reduce
 
-Reduce calls functor for each value in list with two parameters, accumulator
+Reduce calls functor for each value in array with two parameters, accumulator
 and value, and must return a value of any dataType. Parameter accumulator is
 the reduce() accumulator parameter value on first call and the return value
 of previous functor() call on subsequent calls. The dataType of the return
 value should normally be the same as accumulator, but this is not required.
-Reduce values of a list to a single value
+Reduce values of an array to a single value
 
 =head4 Parameters
 
     $functor
 
-This function is called for each value in a list. The returned value is
+This function is called for each value in an array. The returned value is
 passed as the accumulator parameter on the next call to functor().
 
     $accumulator
@@ -214,26 +214,26 @@ but this is not required.
 
     $array
 
-This is a list to be reduced.
+This is an array to be reduced.
 
 =head3 sort
 
-This produces a list with values sorted based on result of compareFunction.
-The compareFunction is passed two values from the list and must return an
+This produces an array with values sorted based on result of compareFunction.
+The compareFunction is passed two values from the array and must return an
 integer less than 0 if the first value is less than the second value, 0 if
 they are equal, and a integer greater than 0 if the first value is greater
 than the second value.
-Sort values in a list
+Sort values in an array
 
 =head4 Parameters
 
     $compareFunction
 
-This function is called with two value from list.
+This function is called with two value from array.
 
     $array
 
-This is the list to sort.
+This is the array to sort.
 
 =cut
 

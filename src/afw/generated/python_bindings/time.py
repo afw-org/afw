@@ -14,9 +14,9 @@ def at_least_one_member_of_time(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -42,7 +42,7 @@ def bag_size_time(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -69,9 +69,9 @@ def bag_size_time(session, value):
 
 def bag_time(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of time values and returns a list of list.
+    Takes any number of time values and returns an array of array.
 
     Parameters:
 
@@ -284,14 +284,14 @@ def intersection_time(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of time with the values that are common to both list of
+    Returns an array of time with the values that are common to both array of
     time list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -315,10 +315,10 @@ def intersection_time(session, list1, list2):
 
 def is_in_time(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether time value is in list of time list and returns the boolean
-    result.
+    Checks whether time value is in array of time array and returns the
+    boolean result.
 
     Parameters:
 
@@ -586,9 +586,9 @@ def nex_time(session, arg1, arg2):
 
 def one_and_only_time(session, array):
     '''
-    Converts a one value list to a time value
+    Converts a one value array to a time value
 
-    This converts a list of time values that contains one value to a single
+    This converts an array of time values that contains one value to a single
     time value.
 
     Parameters:
@@ -649,16 +649,16 @@ def set_equals_time(session, list1, list2):
 
 def subset_time(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in time list1 are all in time
     list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -713,8 +713,8 @@ def to_string_time(session, value):
     '''
     Converts value to string
 
-    Converts time value to string. For list values, the to_string() value for
-    each entry is returned separated with commas.
+    Converts time value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Parameters:
 
@@ -743,8 +743,8 @@ def union_time(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of time contains all of the unique values in two or more
-    list of time values.
+    Returns an array of time contains all of the unique values in two or more
+    array of time values.
 
     Parameters:
 

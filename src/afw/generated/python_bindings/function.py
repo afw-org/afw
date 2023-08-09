@@ -7,9 +7,9 @@ import json
 
 def bag_function(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of function values and returns a list of list.
+    Takes any number of function values and returns an array of array.
 
     Parameters:
 
@@ -40,7 +40,7 @@ def bag_size_function(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 

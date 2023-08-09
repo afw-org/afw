@@ -81,11 +81,11 @@ class administrative
     /**
      * flag_get_active()
      *
-     * Get a list of of the flagId of flags that are set in the current
+     * Get an array of of the flagId of flags that are set in the current
      * execution context (xctx).
      *
      *
-     * @return array This is a list of the flagId of flags that are set in
+     * @return array This is an array of the flagId of flags that are set in
      *               the current execution context (xctx).
      */
     public function flag_get_active()
@@ -103,11 +103,11 @@ class administrative
     /**
      * flag_get_active_defaults()
      *
-     * Get a list of the flagId of flags that are set by default when a new
+     * Get an array of the flagId of flags that are set by default when a new
      * execution context (xctx) is created.
      *
      *
-     * @return array This is a list of the flagId of flags that are set by
+     * @return array This is an array of the flagId of flags that are set by
      *               default when a new execution context (xctx) is created.
      */
     public function flag_get_active_defaults()
@@ -125,15 +125,15 @@ class administrative
     /**
      * flag_get_defaults()
      *
-     * Get the list of the flagId of flags that are used to determine the
+     * Get the array of the flagId of flags that are used to determine the
      * default active flags when an execution context (xctx) is created. This
-     * list can contain the flagId of flags that have not yet been
+     * array can contain the flagId of flags that have not yet been
      * registered. Each of these flags and the flags they include are set as
      * the active default flags.
      *
      *
-     * @return array This is a list of the flagId of flags used to determine
-     *               the default active flags.
+     * @return array This is an array of the flagId of flags used to
+     *               determine the default active flags.
      */
     public function flag_get_defaults()
     {
@@ -150,11 +150,11 @@ class administrative
     /**
      * flag_modify_defaults()
      *
-     * Add or remove flags from the list of the flagId of flags that are used
-     * to determine the default active flags when an execution context (xctx)
-     * is created. This list can contain the flagId of flags that have not
-     * yet been registered. These flags and the flags they include are set as
-     * the active default flags.
+     * Add or remove flags from the array of the flagId of flags that are
+     * used to determine the default active flags when an execution context
+     * (xctx) is created. This array can contain the flagId of flags that
+     * have not yet been registered. These flags and the flags they include
+     * are set as the active default flags.
      * 
      * This change only lasts for the life of the current adaptive
      * environment (e.g. until the adaptive server or afw command ends). If
@@ -186,9 +186,9 @@ class administrative
     /**
      * flag_replace_defaults()
      *
-     * Completely replace the list of the flagId of flags that are used to
+     * Completely replace the array of the flagId of flags that are used to
      * determine the default active flags when an execution context (xctx) is
-     * created. This list can contain the flagId of flags that have not yet
+     * created. This array can contain the flagId of flags that have not yet
      * been registered. These flags and the flags they include are set as the
      * active default flags.
      * 
@@ -197,8 +197,8 @@ class administrative
      * you want the change to persist, change the defaultFlags property in
      * the application config.
      *
-     * @param array $flagId The list of the flagId of flags used to determine
-     *                      the default active flags.
+     * @param array $flagId The array of the flagId of flags used to
+     *                      determine the default active flags.
      *
      * @return null
      */

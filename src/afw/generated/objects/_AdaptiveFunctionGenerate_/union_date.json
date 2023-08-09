@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Returns a list of date contains all of the unique values in two or more list of date values.",
+    "description": "Returns an array of date contains all of the unique values in two or more array of date values.",
     "functionId": "union<date>",
     "functionLabel": "union_date",
     "parameters": [

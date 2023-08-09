@@ -69,7 +69,7 @@
             "brief": "All of the flags that include this flag",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "All of the flags that include this flag. When setting flags in this list, this flag will also be set.",
+            "description": "All of the flags that include this flag. When setting flags in this array, this flag will also be set.",
             "label": "Included By",
             "runtime": {
                 "memberName": "included_by_value",
@@ -81,7 +81,7 @@
             "brief": "All other flags that this flag includes",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "All other flags that this flag includes. When setting this flat, all of the flags in this list will also be set",
+            "description": "All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set",
             "label": "Includes",
             "runtime": {
                 "memberName": "includes_value",

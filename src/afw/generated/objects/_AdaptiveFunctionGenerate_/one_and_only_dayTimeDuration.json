@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyDayTimeDuration",
-    "brief": "Converts a one value list to a dayTimeDuration value",
+    "brief": "Converts a one value array to a dayTimeDuration value",
     "camelCaseFunctionLabel": "oneAndOnlyDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "This converts a list of dayTimeDuration values that contains one value to a single dayTimeDuration value.",
+    "description": "This converts an array of dayTimeDuration values that contains one value to a single dayTimeDuration value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<dayTimeDuration>",

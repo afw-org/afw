@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "An object entry of _AdaptiveFunction_ errorsThrown list.",
+    "description": "An object entry of _AdaptiveFunction_ errorsThrown array.",
     "objectType": "_AdaptiveFunctionErrorThrown_",
     "propertyTypes": {
         "error": {

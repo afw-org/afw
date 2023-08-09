@@ -26,7 +26,7 @@ class expression
     /**
      * bag_expression()
      *
-     * Takes any number of expression values and returns a list of list.
+     * Takes any number of expression values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class expression
     /**
      * bag_size_expression()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -408,7 +408,7 @@ class expression
     /**
      * to_string_expression()
      *
-     * Converts expression value to string. For list values, the to_string()
+     * Converts expression value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param expression $value A expression value.

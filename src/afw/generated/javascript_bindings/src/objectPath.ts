@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of objectPath values and returns a list of list.
+ * Takes any number of objectPath values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -31,7 +31,7 @@ export function afwBagObjectPath(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -256,7 +256,7 @@ export function afwObjectPath(client : any, value : any) : any {
 }
 
 /**
- * Converts objectPath value to string. For list values, the to_string()
+ * Converts objectPath value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  * 
  * @param {objectPath} value - A objectPath value.

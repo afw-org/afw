@@ -1,8 +1,8 @@
 {
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Checks whether <dataType> value is in list of <dataType> list and returns the boolean result.",
+    "description": "Checks whether <dataType> value is in array of <dataType> array and returns the boolean result.",
     "functionId": "is_in",
     "functionLabel": "is_in",
     "pure": true,

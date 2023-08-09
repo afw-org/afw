@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagTime",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Takes any number of time values and returns a list of list.",
+    "description": "Takes any number of time values and returns an array of array.",
     "functionId": "bag<time>",
     "functionLabel": "bag_time",
     "parameters": [

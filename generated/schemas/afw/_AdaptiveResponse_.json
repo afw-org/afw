@@ -172,10 +172,10 @@
         "_AdaptiveResponse_.propertyTypes": {
             "properties": {
                 "actions": {
-                    "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
+                    "description": "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects.",
                     "items": {
                         "$ref": "#/$defs/_AdaptiveResponseAction_",
-                        "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
+                        "description": "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects.",
                         "title": "List of _AdaptiveResponseAction_ objects",
                         "type": "object"
                     },

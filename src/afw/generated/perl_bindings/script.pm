@@ -48,7 +48,7 @@ The following functions are exported by default
 
 Assign a value to the innermost structured block definition of a variable. If
 the variable is not defined, the variable is defined in the innermost
-structured block. An error is thrown if not called from a list of values
+structured block. An error is thrown if not called from an array of values
 (statements) in a structured function.
 Assign a value to a defined variable
 
@@ -64,8 +64,8 @@ This is the value to assign to the variable.
 
 =head3 bag_script
 
-Takes any number of script values and returns a list of list.
-Makes a list from values
+Takes any number of script values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -74,7 +74,7 @@ Makes a list from values
 
 =head3 bag_size_script
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -150,10 +150,10 @@ Continue at beginning of a loop
 
 This creates a new structured block with a new nested variable scope.
 
-This function will evaluate a list of values (statements) at least once while
-a condition is true. See the related functions 'break', 'continue', 'return'
-and 'throw'.
-Evaluate a list of values (statements) at least once while a condition is true
+This function will evaluate an array of values (statements) at least once
+while a condition is true. See the related functions 'break', 'continue',
+'return' and 'throw'.
+Evaluate an array of values (statements) at least once while a condition is true
 
 =head4 Parameters
 
@@ -164,9 +164,9 @@ the loop's scope.
 
     $body
 
-This is a list of values (statements) that are evaluated for each iteration
+This is an array of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a 'break', 'continue', 'return' or 'throw' function is
+array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =head3 eq_script
@@ -224,14 +224,14 @@ This creates a new structured block with a new nested variable scope.
 
 This function loops while condition is true. If the condition is false for
 the first iteration, the loop returns a null value.
-Evaluate a list of values (statements) while a condition is true with a list of initial and increment values
+Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
 =head4 Parameters
 
     $initial
 
-This is a list of values (statements) to evaluate before the loop starts. The
-values will normally be a call to the 'assign' function.
+This is an array of values (statements) to evaluate before the loop starts.
+The values will normally be a call to the 'assign' function.
 
     $condition
 
@@ -239,25 +239,25 @@ While this condition is true, the loop will continue.
 
     $increment
 
-This is a list of values (statements) to evaluate after each iteration of the
-loop. The values will normally be a call to the 'assign' function.
+This is an array of values (statements) to evaluate after each iteration of
+the loop. The values will normally be a call to the 'assign' function.
 
     $body
 
-This is a list of values (statements) that are evaluated for each iteration
+This is an array of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a 'break', 'continue', 'return' or 'throw' function is
+array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =head3 foreach
 
 This creates a new structured block with a new nested variable scope.
 
-This function will evaluate a list of values (statements) while a condition
+This function will evaluate an array of values (statements) while a condition
 is true with initial and increment values. The condition is tested at the
 beginning of the loop. If the condition is false for the first iteration, the
 loop returns a null value.
-Evaluate a list of values (statements) while a condition is true with a list of initial and increment values
+Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
 =head4 Parameters
 
@@ -267,13 +267,13 @@ Variable name(s).
 
     $value
 
-Any list, object or single value.
+Any array, object or single value.
 
     $body
 
-This is a list of values (statements) that are evaluated for each iteration
+This is an array of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
-list or until a 'break', 'continue', 'return' or 'throw' function is
+array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
 =head3 ge_script
@@ -513,26 +513,26 @@ there is an optional catch, the error will be 'caught' and the associated
 statements will be evaluated. The optional finally statements are always
 evaluated after the body and catch statements. See the related functions
 'break', 'continue', 'return' and 'throw'.
-Evaluate a list of values (statements) as a try block with optional catch and finally statements
+Evaluate an array of values (statements) as a try block with optional catch and finally statements
 
 =head4 Parameters
 
     $body
 
-This is a list of values (statements) that are evaluated. Each value in body
-is evaluated in order until the end of the list or until a 'break',
+This is an array of values (statements) that are evaluated. Each value in
+body is evaluated in order until the end of the list or until a 'break',
 'continue', 'return' or 'throw' function is encountered.
 
     $finally
 
-This is a list of values (statements) that are evaluated after the try and
+This is an array of values (statements) that are evaluated after the try and
 catch statements even if an error occurs. Each value in body is evaluated in
 order until the end of the list or until a 'break', 'continue', 'return' or
 'throw' function is encountered.
 
     $catch
 
-This is a list of values (statements) that are evaluated when an error is
+This is an array of values (statements) that are evaluated when an error is
 thrown while evaluating the body. Each value in body is evaluated in order
 until the end of the list or until a 'break', 'continue', 'return' or 'throw'
 function is encountered.
@@ -546,11 +546,11 @@ adaptive object type _AdaptiveObjectType_ for details.
 
 This creates a new structured block with a new nested variable scope.
 
-This function will evaluate a list of values (statements) while a condition
+This function will evaluate an array of values (statements) while a condition
 is true. The condition is tested at the beginning of the loop. If the
 condition is false for the first iteration, the loop returns a null value.
 See the related functions 'break', 'continue', 'return' and 'throw'.
-Evaluate a list of values (statements) while a condition is true
+Evaluate an array of values (statements) while a condition is true
 
 =head4 Parameters
 
@@ -561,7 +561,7 @@ the loop's scope.
 
     $body
 
-This is a list of values (statements) that are evaluated for each iteration
+This is an array of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
 list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.

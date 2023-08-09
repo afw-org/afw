@@ -43,7 +43,7 @@
             "brief": "List of tests",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionTestCase_",
-            "description": "This is the list of test cases for this function test.",
+            "description": "This is the array of test cases for this function test.",
             "label": "Tests",
             "required": true
         }

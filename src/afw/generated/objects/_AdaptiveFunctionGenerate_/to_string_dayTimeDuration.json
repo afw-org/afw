@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Converts dayTimeDuration value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts dayTimeDuration value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<dayTimeDuration>",
     "functionLabel": "to_string_dayTimeDuration",
     "parameters": [

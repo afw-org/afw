@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagHexBinary",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Takes any number of hexBinary values and returns a list of list.",
+    "description": "Takes any number of hexBinary values and returns an array of array.",
     "functionId": "bag<hexBinary>",
     "functionLabel": "bag_hexBinary",
     "parameters": [

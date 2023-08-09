@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagIpAddress",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagIpAddress",
     "category": "ipAddress",
     "dataTypeMethod": true,
-    "description": "Takes any number of ipAddress values and returns a list of list.",
+    "description": "Takes any number of ipAddress values and returns an array of array.",
     "functionId": "bag<ipAddress>",
     "functionLabel": "bag_ipAddress",
     "parameters": [

@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagNull",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagNull",
     "category": "null",
     "dataTypeMethod": true,
-    "description": "Takes any number of null values and returns a list of list.",
+    "description": "Takes any number of null values and returns an array of array.",
     "functionId": "bag<null>",
     "functionLabel": "bag_null",
     "parameters": [

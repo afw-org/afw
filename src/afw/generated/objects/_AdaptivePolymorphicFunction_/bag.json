@@ -1,8 +1,8 @@
 {
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Takes any number of <dataType> values and returns a list of list.",
+    "description": "Takes any number of <dataType> values and returns an array of array.",
     "functionId": "bag",
     "functionLabel": "bag",
     "pure": true,

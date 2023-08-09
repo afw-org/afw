@@ -157,7 +157,7 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
         custom::objectId can be used to access this value in model
         expressions.
 
-        entries (array): This is a list of modifications. Variable
+        entries (array): This is an array of modifications. Variable
         custom::actions can be used to access this value in model
         expressions. Entries are of the form:
         

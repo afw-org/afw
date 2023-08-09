@@ -135,7 +135,7 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  *     Variable custom::objectId can be used to access this value in model
  *     expressions.
  * 
- * @param {array} entries - This is a list of modifications. Variable
+ * @param {array} entries - This is an array of modifications. Variable
  *     custom::actions can be used to access this value in model expressions.
  *     Entries are of the form:
  *     

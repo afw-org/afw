@@ -86,9 +86,9 @@
                     "type": "string"
                 },
                 "defaultFlags": {
-                    "description": "This is a list of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this list that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                    "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                     "items": {
-                        "description": "This is a list of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this list that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                        "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                         "title": "List of default flags to be set when an execution context (xctx) is created.",
                         "type": "string"
                     },
@@ -107,9 +107,9 @@
                     "type": "string"
                 },
                 "extensionModulePaths": {
-                    "description": "This is a list of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                    "description": "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
                     "items": {
-                        "description": "This is a list of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                        "description": "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
                         "title": "List of modulePaths of extensions to load at startup",
                         "type": "string"
                     },
@@ -117,9 +117,9 @@
                     "type": "array"
                 },
                 "extensions": {
-                    "description": "This is a list of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                    "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                     "items": {
-                        "description": "This is a list of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                        "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "title": "List of extensionIds to load at startup",
                         "type": "string"
                     },

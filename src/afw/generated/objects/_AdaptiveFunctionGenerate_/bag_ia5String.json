@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagIa5String",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagIa5String",
     "category": "ia5String",
     "dataTypeMethod": true,
-    "description": "Takes any number of ia5String values and returns a list of list.",
+    "description": "Takes any number of ia5String values and returns an array of array.",
     "functionId": "bag<ia5String>",
     "functionLabel": "bag_ia5String",
     "parameters": [

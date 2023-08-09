@@ -28,10 +28,10 @@ class array
      *
      * Add the entries of one or more lists to another.
      *
-     * @param array $target Target list. This list must not be immutable.
-     * @param array $source Source list(s).
+     * @param array $target Target array. This array must not be immutable.
+     * @param array $source Source array(s).
      *
-     * @return array The modified target list.
+     * @return array The modified target array.
      */
     public function add_entries(, $target, $source)
     {
@@ -77,7 +77,7 @@ class array
     /**
      * bag_array()
      *
-     * Takes any number of array values and returns a list of list.
+     * Takes any number of array values and returns an array of array.
      *
      * @param array $values
      *
@@ -101,7 +101,7 @@ class array
     /**
      * bag_size_array()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -248,13 +248,13 @@ class array
     /**
      * includes_array()
      *
-     * Checks whether or not a list contains any value.
+     * Checks whether or not an array contains any value.
      *
-     * @param array $array The list to search.
+     * @param array $array The array to search.
      * @param  $searchElement Element to find.
-     * @param integer $fromIndex Index in the list to start search.
+     * @param integer $fromIndex Index in the array to start search.
      *
-     * @return boolean Indicates if the element is found in list.
+     * @return boolean Indicates if the element is found in array.
      */
     public function includes_array(, $array, $searchElement, $fromIndex = null)
     {
@@ -298,14 +298,14 @@ class array
     /**
      * join()
      *
-     * Concatenate the string values of the elements of a list with a
+     * Concatenate the string values of the elements of an array with a
      * separator.
      *
-     * @param array $value A list of values (statements) of any data type.
+     * @param array $value An array of values (statements) of any data type.
      * @param string $separator The separator to use. If not specified, a
      *                          comma (,) is used.
      *
-     * @return string Joined list values.
+     * @return string Joined array values.
      */
     public function join(, $value, $separator = null)
     {
@@ -352,10 +352,10 @@ class array
      * length_array()
      *
      * This is a polymorphic function where array can be any of the supported
-     * data types. Return the integer number of entries in datatype list or
+     * data types. Return the integer number of entries in datatype array or
      * codepoints in others.
      *
-     * @param array $value Returns the number of entries in a list or code
+     * @param array $value Returns the number of entries in an array or code
      *                     points in others.
      *
      * @return integer
@@ -454,12 +454,12 @@ class array
     /**
      * reverse()
      *
-     * Reverse the order of the elements in a list. If the list is typed, the
-     * resulting list will be the same type.
+     * Reverse the order of the elements in an array. If the array is typed,
+     * the resulting array will be the same type.
      *
-     * @param array $array A list to reverse.
+     * @param array $array An array to reverse.
      *
-     * @return array A list with elements reversed.
+     * @return array An array with elements reversed.
      */
     public function reverse(, $array)
     {
@@ -477,24 +477,24 @@ class array
     /**
      * slice()
      *
-     * This function extracts a consecutive slice of values from a list.
+     * This function extracts a consecutive slice of values from an array.
      *
-     * @param array $array The list to slice.
+     * @param array $array The array to slice.
      * @param integer $startIndex This is the zero based starting index. Use
      *                            negative number to index from the end of
-     *                            the list. If not specified, an index of 0
+     *                            the array. If not specified, an index of 0
      *                            is assumed.
      * @param integer $endIndex This is the zero based ending index. If
      *                          positive, this is one more than the index of
-     *                          the last value to include in the list. If
+     *                          the last value to include in the array. If
      *                          negative, the index is from the end of the
-     *                          list. If not specified, the slice is from
+     *                          array. If not specified, the slice is from
      *                          startIndex up to and including the end of the
-     *                          list.
+     *                          array.
      *
-     * @return array A list containing the selected values. If all of the
-     *               values are the same data type, the list will be a list
-     *               of that data type.
+     * @return array An array containing the selected values. If all of the
+     *               values are the same data type, the array will be an
+     *               array of that data type.
      */
     public function slice(, $array, $startIndex = null, $endIndex = null)
     {
@@ -518,8 +518,8 @@ class array
     /**
      * to_string_array()
      *
-     * Converts array value to string. For list values, the to_string() value
-     * for each entry is returned separated with commas.
+     * Converts array value to string. For array values, the to_string()
+     * value for each entry is returned separated with commas.
      *
      * @param array $value A array value.
      *

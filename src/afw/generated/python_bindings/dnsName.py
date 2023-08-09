@@ -7,9 +7,9 @@ import json
 
 def bag_dnsName(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of dnsName values and returns a list of list.
+    Takes any number of dnsName values and returns an array of array.
 
     Parameters:
 
@@ -40,7 +40,7 @@ def bag_size_dnsName(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -260,9 +260,9 @@ def is_dnsName(session, value):
 
 def is_in_dnsName(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether dnsName value is in list of dnsName list and returns the
+    Checks whether dnsName value is in array of dnsName array and returns the
     boolean result.
 
     Parameters:
@@ -428,9 +428,9 @@ def nex_dnsName(session, arg1, arg2):
 
 def one_and_only_dnsName(session, array):
     '''
-    Converts a one value list to a dnsName value
+    Converts a one value array to a dnsName value
 
-    This converts a list of dnsName values that contains one value to a
+    This converts an array of dnsName values that contains one value to a
     single dnsName value.
 
     Parameters:
@@ -493,7 +493,7 @@ def to_string_dnsName(session, value):
     '''
     Converts value to string
 
-    Converts dnsName value to string. For list values, the to_string() value
+    Converts dnsName value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
     Parameters:

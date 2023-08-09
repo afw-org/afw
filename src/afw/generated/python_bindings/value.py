@@ -38,17 +38,17 @@ def meta(session, value):
 
 def metas(session, value):
     '''
-    Return a list of the result of calling meta() for each value in a list or object adaptive value
+    Return an array of the result of calling meta() for each value in an array or object adaptive value
 
-    This function returns a list of the result of calling meta() for each
-    value in a list or object adaptive value.
+    This function returns an array of the result of calling meta() for each
+    value in an array or object adaptive value.
 
     Parameters:
 
-        value (): This is an adaptive list or object.
+        value (): This is an adaptive array or object.
 
     Returns:
-    object: An list containing the result of calling meta() of each value in list or object adaptive value.
+    object: An array containing the result of calling meta() of each value in array or object adaptive value.
     '''
 
     request = session.Request()

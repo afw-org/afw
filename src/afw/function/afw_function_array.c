@@ -39,13 +39,13 @@
  *
  * Parameters:
  *
- *   target - (array) Target list. This list must not be immutable.
+ *   target - (array) Target array. This array must not be immutable.
  *
- *   source - (1 or more array) Source list(s).
+ *   source - (1 or more array) Source array(s).
  *
  * Returns:
  *
- *   (array) The modified target list.
+ *   (array) The modified target array.
  */
 const afw_value_t *
 afw_function_execute_add_entries(
@@ -241,7 +241,7 @@ afw_function_execute_includes_array(
  *
  * See afw_function_bindings.h for more information.
  *
- * Concatenate the string values of the elements of a list with a separator.
+ * Concatenate the string values of the elements of an array with a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -257,14 +257,14 @@ afw_function_execute_includes_array(
  *
  * Parameters:
  *
- *   value - (array) A list of values (statements) of any data type.
+ *   value - (array) An array of values (statements) of any data type.
  *
  *   separator - (optional string) The separator to use. If not specified, a
  *       comma (,) is used.
  *
  * Returns:
  *
- *   (string) Joined list values.
+ *   (string) Joined array values.
  */
 const afw_value_t *
 afw_function_execute_join(
@@ -341,8 +341,8 @@ afw_function_execute_join(
  *
  * See afw_function_bindings.h for more information.
  *
- * Reverse the order of the elements in a list. If the list is typed, the
- * resulting list will be the same type.
+ * Reverse the order of the elements in an array. If the array is typed, the
+ * resulting array will be the same type.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -357,11 +357,11 @@ afw_function_execute_join(
  *
  * Parameters:
  *
- *   array - (array) A list to reverse.
+ *   array - (array) An array to reverse.
  *
  * Returns:
  *
- *   (array) A list with elements reversed.
+ *   (array) An array with elements reversed.
  */
 const afw_value_t *
 afw_function_execute_reverse(
@@ -397,7 +397,7 @@ afw_function_execute_reverse(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function extracts a consecutive slice of values from a list.
+ * This function extracts a consecutive slice of values from an array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -414,22 +414,22 @@ afw_function_execute_reverse(
  *
  * Parameters:
  *
- *   array - (array) The list to slice.
+ *   array - (array) The array to slice.
  *
  *   startIndex - (optional integer) This is the zero based starting index. Use
- *       negative number to index from the end of the list. If not specified,
+ *       negative number to index from the end of the array. If not specified,
  *       an index of 0 is assumed.
  *
  *   endIndex - (optional integer) This is the zero based ending index. If
  *       positive, this is one more than the index of the last value to include
- *       in the list. If negative, the index is from the end of the list. If
+ *       in the array. If negative, the index is from the end of the array. If
  *       not specified, the slice is from startIndex up to and including the
- *       end of the list.
+ *       end of the array.
  *
  * Returns:
  *
- *   (array) A list containing the selected values. If all of the values are
- *       the same data type, the list will be a list of that data type.
+ *   (array) An array containing the selected values. If all of the values are
+ *       the same data type, the array will be an array of that data type.
  */
 const afw_value_t *
 afw_function_execute_slice(

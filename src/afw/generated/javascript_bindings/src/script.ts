@@ -14,7 +14,7 @@ interface IAnyObject {
 /**
  * Assign a value to the innermost structured block definition of a variable.
  * If the variable is not defined, the variable is defined in the innermost
- * structured block. An error is thrown if not called from a list of values
+ * structured block. An error is thrown if not called from an array of values
  * (statements) in a structured function.
  * 
  * @param {string} name - Variable name
@@ -35,7 +35,7 @@ export function afwAssign(client : any, name : string, value : any) : any {
 }
 
 /**
- * Takes any number of script values and returns a list of list.
+ * Takes any number of script values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -54,7 +54,7 @@ export function afwBagScript(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -169,16 +169,16 @@ export function afwContinue(client : any) : any {
 /**
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) at least once
+ * This function will evaluate an array of values (statements) at least once
  * while a condition is true. See the related functions 'break', 'continue',
  * 'return' and 'throw'.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue. This is evaluated in the loop's scope.
  * 
- * @param {array} body - This is a list of values (statements) that are
+ * @param {array} body - This is an array of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a 'break',
+ *     evaluated in order until the end of the array or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if the body is empty.
@@ -272,20 +272,20 @@ export function afwEvaluateScript(client : any, source : any, additionalUntruste
  * This function loops while condition is true. If the condition is false for
  * the first iteration, the loop returns a null value.
  * 
- * @param {array} initial - This is a list of values (statements) to evaluate
- *     before the loop starts. The values will normally be a call to the
- *     'assign' function.
+ * @param {array} initial - This is an array of values (statements) to
+ *     evaluate before the loop starts. The values will normally be a call to
+ *     the 'assign' function.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue.
  * 
- * @param {array} increment - This is a list of values (statements) to
+ * @param {array} increment - This is an array of values (statements) to
  *     evaluate after each iteration of the loop. The values will normally be
  *     a call to the 'assign' function.
  * 
- * @param {array} body - This is a list of values (statements) that are
+ * @param {array} body - This is an array of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a 'break',
+ *     evaluated in order until the end of the array or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if condition
@@ -315,18 +315,18 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
 /**
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) while a
+ * This function will evaluate an array of values (statements) while a
  * condition is true with initial and increment values. The condition is
  * tested at the beginning of the loop. If the condition is false for the
  * first iteration, the loop returns a null value.
  * 
  * @param {array} name - Variable name(s).
  * 
- * @param {} value - Any list, object or single value.
+ * @param {} value - Any array, object or single value.
  * 
- * @param {array} body - This is a list of values (statements) that are
+ * @param {array} body - This is an array of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
- *     evaluated in order until the end of the list or until a 'break',
+ *     evaluated in order until the end of the array or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.
  * 
  * @returns {} The last value evaluated in body or null if condition
@@ -684,18 +684,18 @@ export function afwThrow(client : any, message : string, additional? : any) : an
  * evaluated after the body and catch statements. See the related functions
  * 'break', 'continue', 'return' and 'throw'.
  * 
- * @param {array} body - This is a list of values (statements) that are
+ * @param {array} body - This is an array of values (statements) that are
  *     evaluated. Each value in body is evaluated in order until the end of
  *     the list or until a 'break', 'continue', 'return' or 'throw' function
  *     is encountered.
  * 
- * @param {array} _finally - This is a list of values (statements) that are
+ * @param {array} _finally - This is an array of values (statements) that are
  *     evaluated after the try and catch statements even if an error occurs.
  *     Each value in body is evaluated in order until the end of the list or
  *     until a 'break', 'continue', 'return' or 'throw' function is
  *     encountered.
  * 
- * @param {array} _catch - This is a list of values (statements) that are
+ * @param {array} _catch - This is an array of values (statements) that are
  *     evaluated when an error is thrown while evaluating the body. Each
  *     value in body is evaluated in order until the end of the list or until
  *     a 'break', 'continue', 'return' or 'throw' function is encountered.
@@ -728,7 +728,7 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
 /**
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) while a
+ * This function will evaluate an array of values (statements) while a
  * condition is true. The condition is tested at the beginning of the loop.
  * If the condition is false for the first iteration, the loop returns a null
  * value. See the related functions 'break', 'continue', 'return' and
@@ -737,7 +737,7 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue. This is evaluated in the loop's scope.
  * 
- * @param {array} body - This is a list of values (statements) that are
+ * @param {array} body - This is an array of values (statements) that are
  *     evaluated for each iteration of the loop. Each value in body is
  *     evaluated in order until the end of the list or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.

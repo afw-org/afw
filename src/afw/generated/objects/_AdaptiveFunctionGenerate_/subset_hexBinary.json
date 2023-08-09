@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwSubsetHexBinary",
-    "brief": "Determines if the first list is a subset of second list",
+    "brief": "Determines if the first array is a subset of second array",
     "camelCaseFunctionLabel": "subsetHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
@@ -11,13 +11,13 @@
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

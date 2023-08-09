@@ -29,8 +29,8 @@ class hexBinary
      * Returns boolean true if at least one value in hexBinary list1 is in
      * hexBinary list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,7 @@ class hexBinary
     /**
      * bag_hexBinary()
      *
-     * Takes any number of hexBinary values and returns a list of list.
+     * Takes any number of hexBinary values and returns an array of array.
      *
      * @param array $values
      *
@@ -75,7 +75,7 @@ class hexBinary
     /**
      * bag_size_hexBinary()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -245,11 +245,11 @@ class hexBinary
     /**
      * intersection_hexBinary()
      *
-     * Returns a list of hexBinary with the values that are common to both
-     * list of hexBinary list1 and list2.
+     * Returns an array of hexBinary with the values that are common to both
+     * array of hexBinary list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -293,7 +293,7 @@ class hexBinary
     /**
      * is_in_hexBinary()
      *
-     * Checks whether hexBinary value is in list of hexBinary list and
+     * Checks whether hexBinary value is in array of hexBinary array and
      * returns the boolean result.
      *
      * @param hexBinary $value
@@ -421,8 +421,8 @@ class hexBinary
     /**
      * one_and_only_hexBinary()
      *
-     * This converts a list of hexBinary values that contains one value to a
-     * single hexBinary value.
+     * This converts an array of hexBinary values that contains one value to
+     * a single hexBinary value.
      *
      * @param array $array
      *
@@ -472,8 +472,8 @@ class hexBinary
      * Returns boolean true if the unique values in hexBinary list1 are all
      * in hexBinary list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -494,7 +494,7 @@ class hexBinary
     /**
      * to_string_hexBinary()
      *
-     * Converts hexBinary value to string. For list values, the to_string()
+     * Converts hexBinary value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param hexBinary $value A hexBinary value.
@@ -517,8 +517,8 @@ class hexBinary
     /**
      * union_hexBinary()
      *
-     * Returns a list of hexBinary contains all of the unique values in two
-     * or more list of hexBinary values.
+     * Returns an array of hexBinary contains all of the unique values in two
+     * or more array of hexBinary values.
      *
      * @param array $lists Two or more lists.
      *

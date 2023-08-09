@@ -20,7 +20,7 @@
             "brief": "List of ids of matching policies",
             "dataType": "array",
             "dataTypeParameter": "anyURI",
-            "description": "This is a list of ids of all policies whose target and condition matched during this check.",
+            "description": "This is an array of ids of all policies whose target and condition matched during this check.",
             "label": "Applicable Policies"
         },
         "decision": {

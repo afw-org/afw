@@ -32,8 +32,8 @@ The following functions are exported by default
 
 =head3 bag_hybrid
 
-Takes any number of hybrid values and returns a list of list.
-Makes a list from values
+Takes any number of hybrid values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -42,7 +42,7 @@ Makes a list from values
 
 =head3 bag_size_hybrid
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -230,7 +230,7 @@ Checks for not equal value or type
 
 =head3 to_string_hybrid
 
-Converts hybrid value to string. For list values, the to_string() value for
+Converts hybrid value to string. For array values, the to_string() value for
 each entry is returned separated with commas.
 Converts value to string
 

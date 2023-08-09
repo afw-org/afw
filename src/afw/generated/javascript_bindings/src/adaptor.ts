@@ -676,7 +676,7 @@ export function afwReplaceObjectWithUri(client : any, uri : any, object : object
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {array} This is the list of objects retrieved.
+ * @returns {array} This is the array of objects retrieved.
  */
 export function afwRetrieveObjects(client : any, objectType : string, adaptorId? : string, queryCriteria? : object, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -714,7 +714,7 @@ export function afwRetrieveObjects(client : any, objectType : string, adaptorId?
  * 
  * @param {function} objectCallback - If this is specified, this function is
  *     called once for each object retrieved instead of adding the object to
- *     the return list. Parameter object will be an object retrieved or
+ *     the return array. Parameter object will be an object retrieved or
  *     undefined if there are no more objects. This function should return
  *     true if it wants to abort the retrieve request.
  * 
@@ -917,7 +917,7 @@ export function afwRetrieveObjectsToStream(client : any, streamNumber : number, 
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {array} This is the list of objects retrieved.
+ * @returns {array} This is the array of objects retrieved.
  */
 export function afwRetrieveObjectsWithUri(client : any, uri : any, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -948,7 +948,7 @@ export function afwRetrieveObjectsWithUri(client : any, uri : any, options? : ob
  * 
  * @param {function} objectCallback - If this is specified, this function is
  *     called once for each object retrieved instead of adding the object to
- *     the return list. Parameter object will be an object retrieved or
+ *     the return array. Parameter object will be an object retrieved or
  *     undefined if there are no more objects. This function should return
  *     true if it wants to abort the retrieve request.
  * 

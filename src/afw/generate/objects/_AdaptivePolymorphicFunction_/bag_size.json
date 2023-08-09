@@ -2,7 +2,7 @@
     "brief": "Returns the number of values in a bag",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "This returns the integer number of values in list.",
+    "description": "This returns the integer number of values in array.",
     "functionId": "bag_size",
     "functionLabel": "bag_size",
     "pure": true,

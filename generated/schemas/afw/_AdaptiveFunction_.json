@@ -6,7 +6,7 @@
                     "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_.propertyTypes"
                 }
             ],
-            "description": "An object entry of _AdaptiveFunction_ errorsThrown list.",
+            "description": "An object entry of _AdaptiveFunction_ errorsThrown array.",
             "type": "object",
             "unevaluatedProperties": false
         },

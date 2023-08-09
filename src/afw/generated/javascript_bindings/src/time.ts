@@ -14,9 +14,9 @@ interface IAnyObject {
 /**
  * Returns boolean true if at least one value in time list1 is in time list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -32,7 +32,7 @@ export function afwAtLeastOneMemberOfTime(client : any, list1 : any[], list2 : a
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -49,7 +49,7 @@ export function afwBagSizeTime(client : any, value : any[]) : any {
 }
 
 /**
- * Takes any number of time values and returns a list of list.
+ * Takes any number of time values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -189,12 +189,12 @@ export function afwInRangeTime(client : any, time : any, startTime : any, endTim
 }
 
 /**
- * Returns a list of time with the values that are common to both list of
+ * Returns an array of time with the values that are common to both array of
  * time list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -210,8 +210,8 @@ export function afwIntersectionTime(client : any, list1 : any[], list2 : any[]) 
 }
 
 /**
- * Checks whether time value is in list of time list and returns the boolean
- * result.
+ * Checks whether time value is in array of time array and returns the
+ * boolean result.
  * 
  * @param {time} value -
  * 
@@ -384,7 +384,7 @@ export function afwNexTime(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This converts a list of time values that contains one value to a single
+ * This converts an array of time values that contains one value to a single
  * time value.
  * 
  * @param {array} array -
@@ -426,9 +426,9 @@ export function afwSetEqualsTime(client : any, list1 : any[], list2 : any[]) : a
  * Returns boolean true if the unique values in time list1 are all in time
  * list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -461,7 +461,7 @@ export function afwTime(client : any, value : any) : any {
 }
 
 /**
- * Converts time value to string. For list values, the to_string() value for
+ * Converts time value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  * 
  * @param {time} value - A time value.
@@ -479,8 +479,8 @@ export function afwToStringTime(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of time contains all of the unique values in two or more
- * list of time values.
+ * Returns an array of time contains all of the unique values in two or more
+ * array of time values.
  * 
  * @param {array} lists - Two or more lists.
  * 

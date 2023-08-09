@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of dnsName values and returns a list of list.
+ * Takes any number of dnsName values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -31,7 +31,7 @@ export function afwBagDnsName(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -169,7 +169,7 @@ export function afwIsDnsName(client : any, value : any) : any {
 }
 
 /**
- * Checks whether dnsName value is in list of dnsName list and returns the
+ * Checks whether dnsName value is in array of dnsName array and returns the
  * boolean result.
  * 
  * @param {dnsName} value -
@@ -277,8 +277,8 @@ export function afwNexDnsName(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This converts a list of dnsName values that contains one value to a single
- * dnsName value.
+ * This converts an array of dnsName values that contains one value to a
+ * single dnsName value.
  * 
  * @param {array} array -
  * 
@@ -316,7 +316,7 @@ export function afwRegexpMatchDnsName(client : any, value : any, regexp : string
 }
 
 /**
- * Converts dnsName value to string. For list values, the to_string() value
+ * Converts dnsName value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 
  * @param {dnsName} value - A dnsName value.

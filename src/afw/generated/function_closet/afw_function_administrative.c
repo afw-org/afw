@@ -107,7 +107,7 @@ afw_function_execute_extension_load_by_module_path(
  *
  * See afw_function_bindings.h for more information.
  *
- * Get a list of of the flagId of flags that are set in the current execution
+ * Get an array of of the flagId of flags that are set in the current execution
  * context (xctx).
  *
  * This function is not pure, so it may return a different result
@@ -125,7 +125,7 @@ afw_function_execute_extension_load_by_module_path(
  *
  * Returns:
  *
- *   (array string) This is a list of the flagId of flags that are set in the
+ *   (array string) This is an array of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -145,7 +145,7 @@ afw_function_execute_flag_get_active(
  *
  * See afw_function_bindings.h for more information.
  *
- * Get a list of the flagId of flags that are set by default when a new
+ * Get an array of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
  *
  * This function is not pure, so it may return a different result
@@ -163,7 +163,7 @@ afw_function_execute_flag_get_active(
  *
  * Returns:
  *
- *   (array string) This is a list of the flagId of flags that are set by
+ *   (array string) This is an array of the flagId of flags that are set by
  *       default when a new execution context (xctx) is created.
  */
 const afw_value_t *
@@ -183,8 +183,8 @@ afw_function_execute_flag_get_active_defaults(
  *
  * See afw_function_bindings.h for more information.
  *
- * Get the list of the flagId of flags that are used to determine the default
- * active flags when an execution context (xctx) is created. This list can
+ * Get the array of the flagId of flags that are used to determine the default
+ * active flags when an execution context (xctx) is created. This array can
  * contain the flagId of flags that have not yet been registered. Each of these
  * flags and the flags they include are set as the active default flags.
  *
@@ -203,8 +203,8 @@ afw_function_execute_flag_get_active_defaults(
  *
  * Returns:
  *
- *   (array string) This is a list of the flagId of flags used to determine the
- *       default active flags.
+ *   (array string) This is an array of the flagId of flags used to determine
+ *       the default active flags.
  */
 const afw_value_t *
 afw_function_execute_flag_get_defaults(
@@ -223,9 +223,9 @@ afw_function_execute_flag_get_defaults(
  *
  * See afw_function_bindings.h for more information.
  *
- * Add or remove flags from the list of the flagId of flags that are used to
+ * Add or remove flags from the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
- * created. This list can contain the flagId of flags that have not yet been
+ * created. This array can contain the flagId of flags that have not yet been
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
@@ -273,9 +273,9 @@ afw_function_execute_flag_modify_defaults(
  *
  * See afw_function_bindings.h for more information.
  *
- * Completely replace the list of the flagId of flags that are used to
+ * Completely replace the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
- * created. This list can contain the flagId of flags that have not yet been
+ * created. This array can contain the flagId of flags that have not yet been
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
@@ -296,7 +296,7 @@ afw_function_execute_flag_modify_defaults(
  *
  * Parameters:
  *
- *   flagId - (array string) The list of the flagId of flags used to determine
+ *   flagId - (array string) The array of the flagId of flags used to determine
  *       the default active flags.
  *
  * Returns:

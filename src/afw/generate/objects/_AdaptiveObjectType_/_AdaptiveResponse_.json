@@ -13,7 +13,7 @@
             "brief": "List of _AdaptiveResponseAction_ objects",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveResponseAction_",
-            "description": "If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.",
+            "description": "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects.",
             "label": "Actions"
         },
         "console": {

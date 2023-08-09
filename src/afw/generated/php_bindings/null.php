@@ -26,7 +26,7 @@ class null
     /**
      * bag_null()
      *
-     * Takes any number of null values and returns a list of list.
+     * Takes any number of null values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class null
     /**
      * bag_size_null()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -116,7 +116,7 @@ class null
     /**
      * to_string_null()
      *
-     * Converts null value to string. For list values, the to_string() value
+     * Converts null value to string. For array values, the to_string() value
      * for each entry is returned separated with commas.
      *
      * @param null $value A null value.

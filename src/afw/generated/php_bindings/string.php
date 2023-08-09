@@ -54,8 +54,8 @@ class string
      * Returns boolean true if at least one value in string list1 is in
      * string list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -76,7 +76,7 @@ class string
     /**
      * bag_size_string()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -98,7 +98,7 @@ class string
     /**
      * bag_string()
      *
-     * Takes any number of string values and returns a list of list.
+     * Takes any number of string values and returns an array of array.
      *
      * @param array $values
      *
@@ -406,11 +406,11 @@ class string
     /**
      * intersection_string()
      *
-     * Returns a list of string with the values that are common to both list
-     * of string list1 and list2.
+     * Returns an array of string with the values that are common to both
+     * array of string list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -431,8 +431,8 @@ class string
     /**
      * is_in_string()
      *
-     * Checks whether string value is in list of string list and returns the
-     * boolean result.
+     * Checks whether string value is in array of string array and returns
+     * the boolean result.
      *
      * @param string $value
      * @param array $array
@@ -535,9 +535,9 @@ class string
      *
      * This is a polymorphic function where string can be any of the
      * supported data types. Return the integer number of entries in datatype
-     * list or codepoints in others.
+     * array or codepoints in others.
      *
-     * @param string $value Returns the number of entries in a list or code
+     * @param string $value Returns the number of entries in an array or code
      *                      points in others.
      *
      * @return integer
@@ -724,7 +724,7 @@ class string
     /**
      * one_and_only_string()
      *
-     * This converts a list of string values that contains one value to a
+     * This converts an array of string values that contains one value to a
      * single string value.
      *
      * @param array $array
@@ -910,7 +910,7 @@ class string
     /**
      * split_string()
      *
-     * Split string value into an list of strings using a separator.
+     * Split string value into an array of strings using a separator.
      *
      * @param string $value The string value to split.
      * @param string $separator The separator to use. If this is an empty
@@ -919,7 +919,7 @@ class string
      * @param integer $limit This is the maximum number of splits. Any
      *                       remaining part of value is ignored.
      *
-     * @return array An list of strings.
+     * @return array An array of strings.
      */
     public function split_string(, $value, $separator = null, $limit = null)
     {
@@ -995,8 +995,8 @@ class string
      * Returns boolean true if the unique values in string list1 are all in
      * string list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -1267,7 +1267,7 @@ class string
     /**
      * to_string_string()
      *
-     * Converts string value to string. For list values, the to_string()
+     * Converts string value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param string $value A string value.
@@ -1356,8 +1356,8 @@ class string
     /**
      * union_string()
      *
-     * Returns a list of string contains all of the unique values in two or
-     * more list of string values.
+     * Returns an array of string contains all of the unique values in two or
+     * more array of string values.
      *
      * @param array $lists Two or more lists.
      *

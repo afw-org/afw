@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of function values and returns a list of list.
+ * Takes any number of function values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -31,7 +31,7 @@ export function afwBagFunction(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 

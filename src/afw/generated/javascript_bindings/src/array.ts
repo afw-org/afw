@@ -14,11 +14,11 @@ interface IAnyObject {
 /**
  * Add the entries of one or more lists to another.
  * 
- * @param {array} target - Target list. This list must not be immutable.
+ * @param {array} target - Target array. This array must not be immutable.
  * 
- * @param {array} source - Source list(s).
+ * @param {array} source - Source array(s).
  * 
- * @returns {array} The modified target list.
+ * @returns {array} The modified target array.
  */
 export function afwAddEntries(client : any, target : any[], source : any[]) : any {
 
@@ -53,7 +53,7 @@ export function afwArray(client : any, values : any) : any {
 }
 
 /**
- * Takes any number of array values and returns a list of list.
+ * Takes any number of array values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -72,7 +72,7 @@ export function afwBagArray(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -193,15 +193,15 @@ export function afwGtArray(client : any, arg1 : any[], arg2 : any[]) : any {
 }
 
 /**
- * Checks whether or not a list contains any value.
+ * Checks whether or not an array contains any value.
  * 
- * @param {array} array - The list to search.
+ * @param {array} array - The array to search.
  * 
  * @param {} searchElement - Element to find.
  * 
- * @param {integer} fromIndex - Index in the list to start search.
+ * @param {integer} fromIndex - Index in the array to start search.
  * 
- * @returns {boolean} Indicates if the element is found in list.
+ * @returns {boolean} Indicates if the element is found in array.
  */
 export function afwIncludesArray(client : any, array : any[], searchElement : any, fromIndex? : number) : any {
 
@@ -235,14 +235,15 @@ export function afwIsArray(client : any, value : any) : any {
 }
 
 /**
- * Concatenate the string values of the elements of a list with a separator.
+ * Concatenate the string values of the elements of an array with a
+ * separator.
  * 
- * @param {array} value - A list of values (statements) of any data type.
+ * @param {array} value - An array of values (statements) of any data type.
  * 
  * @param {string} separator - The separator to use. If not specified, a
  *     comma (,) is used.
  * 
- * @returns {string} Joined list values.
+ * @returns {string} Joined array values.
  */
 export function afwJoin(client : any, value : any[], separator? : string) : any {
 
@@ -280,10 +281,10 @@ export function afwLeArray(client : any, arg1 : any[], arg2 : any) : any {
 
 /**
  * This is a polymorphic function where array can be any of the supported
- * data types. Return the integer number of entries in datatype list or
+ * data types. Return the integer number of entries in datatype array or
  * codepoints in others.
  * 
- * @param {array} value - Returns the number of entries in a list or code
+ * @param {array} value - Returns the number of entries in an array or code
  *     points in others.
  * 
  * @returns {integer}
@@ -365,12 +366,12 @@ export function afwNexArray(client : any, arg1 : any[], arg2 : any) : any {
 }
 
 /**
- * Reverse the order of the elements in a list. If the list is typed, the
- * resulting list will be the same type.
+ * Reverse the order of the elements in an array. If the array is typed, the
+ * resulting array will be the same type.
  * 
- * @param {array} array - A list to reverse.
+ * @param {array} array - An array to reverse.
  * 
- * @returns {array} A list with elements reversed.
+ * @returns {array} An array with elements reversed.
  */
 export function afwReverse(client : any, array : any[]) : any {
 
@@ -383,22 +384,22 @@ export function afwReverse(client : any, array : any[]) : any {
 }
 
 /**
- * This function extracts a consecutive slice of values from a list.
+ * This function extracts a consecutive slice of values from an array.
  * 
- * @param {array} array - The list to slice.
+ * @param {array} array - The array to slice.
  * 
  * @param {integer} startIndex - This is the zero based starting index. Use
- *     negative number to index from the end of the list. If not specified,
+ *     negative number to index from the end of the array. If not specified,
  *     an index of 0 is assumed.
  * 
  * @param {integer} endIndex - This is the zero based ending index. If
  *     positive, this is one more than the index of the last value to include
- *     in the list. If negative, the index is from the end of the list. If
+ *     in the array. If negative, the index is from the end of the array. If
  *     not specified, the slice is from startIndex up to and including the
- *     end of the list.
+ *     end of the array.
  * 
- * @returns {array} A list containing the selected values. If all of the
- *     values are the same data type, the list will be a list of that data
+ * @returns {array} An array containing the selected values. If all of the
+ *     values are the same data type, the array will be an array of that data
  *     type.
  */
 export function afwSlice(client : any, array : any[], startIndex? : number, endIndex? : number) : any {
@@ -418,8 +419,8 @@ export function afwSlice(client : any, array : any[], startIndex? : number, endI
 }
 
 /**
- * Converts array value to string. For list values, the to_string() value for
- * each entry is returned separated with commas.
+ * Converts array value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  * 
  * @param {array} value - A array value.
  * 

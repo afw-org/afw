@@ -1589,7 +1589,7 @@ afw_function_execute_replace_object_with_uri(
  *
  * Returns:
  *
- *   (array) This is the list of objects retrieved.
+ *   (array) This is the array of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -1688,7 +1688,7 @@ afw_function_execute_retrieve_objects(
  *
  *   objectCallback - (function (object: object, userData: any): boolean) If
  *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return list. Parameter
+ *       retrieved instead of adding the object to the return array. Parameter
  *       object will be an object retrieved or undefined if there are no more
  *       objects. This function should return true if it wants to abort the
  *       retrieve request.
@@ -2128,7 +2128,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *
  * Returns:
  *
- *   (array) This is the list of objects retrieved.
+ *   (array) This is the array of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -2232,7 +2232,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  *   objectCallback - (function (object: object, userData: any): boolean) If
  *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return list. Parameter
+ *       retrieved instead of adding the object to the return array. Parameter
  *       object will be an object retrieved or undefined if there are no more
  *       objects. This function should return true if it wants to abort the
  *       retrieve request.

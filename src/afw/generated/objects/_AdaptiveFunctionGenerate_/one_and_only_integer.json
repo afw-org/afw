@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyInteger",
-    "brief": "Converts a one value list to a integer value",
+    "brief": "Converts a one value array to a integer value",
     "camelCaseFunctionLabel": "oneAndOnlyInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "This converts a list of integer values that contains one value to a single integer value.",
+    "description": "This converts an array of integer values that contains one value to a single integer value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<integer>",

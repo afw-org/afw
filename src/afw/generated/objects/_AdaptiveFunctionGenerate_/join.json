@@ -1,16 +1,16 @@
 {
     "afwCamelCaseFunctionLabel": "afwJoin",
-    "brief": "Join the string values of list elements",
+    "brief": "Join the string values of array elements",
     "camelCaseFunctionLabel": "join",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Concatenate the string values of the elements of a list with a separator.",
+    "description": "Concatenate the string values of the elements of an array with a separator.",
     "functionId": "join",
     "functionLabel": "join",
     "parameters": [
         {
             "dataType": "array",
-            "description": "A list of values (statements) of any data type.",
+            "description": "An array of values (statements) of any data type.",
             "name": "value"
         },
         {
@@ -23,6 +23,6 @@
     "pure": true,
     "returns": {
         "dataType": "string",
-        "description": "Joined list values."
+        "description": "Joined array values."
     }
 }

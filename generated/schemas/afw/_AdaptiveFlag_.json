@@ -44,9 +44,9 @@
                     "type": "integer"
                 },
                 "includedByFlags": {
-                    "description": "All of the flags that include this flag. When setting flags in this list, this flag will also be set.",
+                    "description": "All of the flags that include this flag. When setting flags in this array, this flag will also be set.",
                     "items": {
-                        "description": "All of the flags that include this flag. When setting flags in this list, this flag will also be set.",
+                        "description": "All of the flags that include this flag. When setting flags in this array, this flag will also be set.",
                         "title": "All of the flags that include this flag",
                         "type": "string"
                     },
@@ -54,9 +54,9 @@
                     "type": "array"
                 },
                 "includesFlags": {
-                    "description": "All other flags that this flag includes. When setting this flat, all of the flags in this list will also be set",
+                    "description": "All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set",
                     "items": {
-                        "description": "All other flags that this flag includes. When setting this flat, all of the flags in this list will also be set",
+                        "description": "All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set",
                         "title": "All other flags that this flag includes",
                         "type": "string"
                     },

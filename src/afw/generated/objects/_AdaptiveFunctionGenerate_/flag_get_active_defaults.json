@@ -1,15 +1,15 @@
 {
     "afwCamelCaseFunctionLabel": "afwFlagGetActiveDefaults",
-    "brief": "Get a list of default active flags",
+    "brief": "Get an array of default active flags",
     "camelCaseFunctionLabel": "flagGetActiveDefaults",
     "category": "administrative",
-    "description": "Get a list of the flagId of flags that are set by default when a new execution context (xctx) is created.",
+    "description": "Get an array of the flagId of flags that are set by default when a new execution context (xctx) is created.",
     "functionId": "flag_get_active_defaults",
     "functionLabel": "flag_get_active_defaults",
     "parameters": [],
     "returns": {
         "dataType": "array",
         "dataTypeParameter": "string",
-        "description": "This is a list of the flagId of flags that are set by default when a new execution context (xctx) is created."
+        "description": "This is an array of the flagId of flags that are set by default when a new execution context (xctx) is created."
     }
 }

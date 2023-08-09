@@ -26,7 +26,7 @@ class template
     /**
      * bag_size_template()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -48,7 +48,7 @@ class template
     /**
      * bag_template()
      *
-     * Takes any number of template values and returns a list of list.
+     * Takes any number of template values and returns an array of array.
      *
      * @param array $values
      *
@@ -407,7 +407,7 @@ class template
     /**
      * to_string_template()
      *
-     * Converts template value to string. For list values, the to_string()
+     * Converts template value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param template $value A template value.

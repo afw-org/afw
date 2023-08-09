@@ -26,7 +26,7 @@ class objectId
     /**
      * bag_objectId()
      *
-     * Takes any number of objectId values and returns a list of list.
+     * Takes any number of objectId values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class objectId
     /**
      * bag_size_objectId()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -323,7 +323,7 @@ class objectId
     /**
      * to_string_objectId()
      *
-     * Converts objectId value to string. For list values, the to_string()
+     * Converts objectId value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param objectId $value A objectId value.

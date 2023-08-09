@@ -26,7 +26,7 @@ class password
     /**
      * bag_password()
      *
-     * Takes any number of password values and returns a list of list.
+     * Takes any number of password values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class password
     /**
      * bag_size_password()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -323,7 +323,7 @@ class password
     /**
      * to_string_password()
      *
-     * Converts password value to string. For list values, the to_string()
+     * Converts password value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param password $value A password value.

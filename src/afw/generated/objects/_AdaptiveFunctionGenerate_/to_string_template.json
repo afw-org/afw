@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringTemplate",
     "category": "template",
     "dataTypeMethod": true,
-    "description": "Converts template value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts template value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<template>",
     "functionLabel": "to_string_template",
     "parameters": [

@@ -14,9 +14,9 @@ def at_least_one_member_of_dayTimeDuration(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -40,9 +40,9 @@ def at_least_one_member_of_dayTimeDuration(session, list1, list2):
 
 def bag_dayTimeDuration(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of dayTimeDuration values and returns a list of list.
+    Takes any number of dayTimeDuration values and returns an array of array.
 
     Parameters:
 
@@ -73,7 +73,7 @@ def bag_size_dayTimeDuration(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -267,14 +267,14 @@ def intersection_dayTimeDuration(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of dayTimeDuration with the values that are common to both
-    list of dayTimeDuration list1 and list2.
+    Returns an array of dayTimeDuration with the values that are common to
+    both array of dayTimeDuration list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -328,9 +328,9 @@ def is_dayTimeDuration(session, value):
 
 def is_in_dayTimeDuration(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether dayTimeDuration value is in list of dayTimeDuration list
+    Checks whether dayTimeDuration value is in array of dayTimeDuration array
     and returns the boolean result.
 
     Parameters:
@@ -496,10 +496,10 @@ def nex_dayTimeDuration(session, arg1, arg2):
 
 def one_and_only_dayTimeDuration(session, array):
     '''
-    Converts a one value list to a dayTimeDuration value
+    Converts a one value array to a dayTimeDuration value
 
-    This converts a list of dayTimeDuration values that contains one value to
-    a single dayTimeDuration value.
+    This converts an array of dayTimeDuration values that contains one value
+    to a single dayTimeDuration value.
 
     Parameters:
 
@@ -559,16 +559,16 @@ def set_equals_dayTimeDuration(session, list1, list2):
 
 def subset_dayTimeDuration(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in dayTimeDuration list1 are
     all in dayTimeDuration list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -594,7 +594,7 @@ def to_string_dayTimeDuration(session, value):
     '''
     Converts value to string
 
-    Converts dayTimeDuration value to string. For list values, the
+    Converts dayTimeDuration value to string. For array values, the
     to_string() value for each entry is returned separated with commas.
 
     Parameters:
@@ -624,8 +624,8 @@ def union_dayTimeDuration(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of dayTimeDuration contains all of the unique values in
-    two or more list of dayTimeDuration values.
+    Returns an array of dayTimeDuration contains all of the unique values in
+    two or more array of dayTimeDuration values.
 
     Parameters:
 

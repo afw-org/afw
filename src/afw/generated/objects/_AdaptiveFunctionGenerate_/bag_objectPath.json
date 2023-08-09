@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagObjectPath",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagObjectPath",
     "category": "objectPath",
     "dataTypeMethod": true,
-    "description": "Takes any number of objectPath values and returns a list of list.",
+    "description": "Takes any number of objectPath values and returns an array of array.",
     "functionId": "bag<objectPath>",
     "functionLabel": "bag_objectPath",
     "parameters": [

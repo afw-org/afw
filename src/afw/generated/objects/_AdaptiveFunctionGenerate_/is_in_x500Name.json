@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInX500Name",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Checks whether x500Name value is in list of x500Name list and returns the boolean result.",
+    "description": "Checks whether x500Name value is in array of x500Name array and returns the boolean result.",
     "functionId": "is_in<x500Name>",
     "functionLabel": "is_in_x500Name",
     "parameters": [

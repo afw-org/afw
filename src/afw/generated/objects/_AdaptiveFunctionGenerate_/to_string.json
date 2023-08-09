@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toString",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Converts <dataType> value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts <dataType> value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string",
     "functionLabel": "to_string",
     "parameters": [

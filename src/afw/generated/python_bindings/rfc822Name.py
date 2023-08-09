@@ -14,9 +14,9 @@ def at_least_one_member_of_rfc822Name(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -40,9 +40,9 @@ def at_least_one_member_of_rfc822Name(session, list1, list2):
 
 def bag_rfc822Name(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of rfc822Name values and returns a list of list.
+    Takes any number of rfc822Name values and returns an array of array.
 
     Parameters:
 
@@ -73,7 +73,7 @@ def bag_size_rfc822Name(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -237,14 +237,14 @@ def intersection_rfc822Name(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of rfc822Name with the values that are common to both list
-    of rfc822Name list1 and list2.
+    Returns an array of rfc822Name with the values that are common to both
+    array of rfc822Name list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -268,10 +268,10 @@ def intersection_rfc822Name(session, list1, list2):
 
 def is_in_rfc822Name(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether rfc822Name value is in list of rfc822Name list and returns
-    the boolean result.
+    Checks whether rfc822Name value is in array of rfc822Name array and
+    returns the boolean result.
 
     Parameters:
 
@@ -499,9 +499,9 @@ def nex_rfc822Name(session, arg1, arg2):
 
 def one_and_only_rfc822Name(session, array):
     '''
-    Converts a one value list to a rfc822Name value
+    Converts a one value array to a rfc822Name value
 
-    This converts a list of rfc822Name values that contains one value to a
+    This converts an array of rfc822Name values that contains one value to a
     single rfc822Name value.
 
     Parameters:
@@ -624,16 +624,16 @@ def set_equals_rfc822Name(session, list1, list2):
 
 def subset_rfc822Name(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in rfc822Name list1 are all in
     rfc822Name list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -659,7 +659,7 @@ def to_string_rfc822Name(session, value):
     '''
     Converts value to string
 
-    Converts rfc822Name value to string. For list values, the to_string()
+    Converts rfc822Name value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
     Parameters:
@@ -689,8 +689,8 @@ def union_rfc822Name(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of rfc822Name contains all of the unique values in two or
-    more list of rfc822Name values.
+    Returns an array of rfc822Name contains all of the unique values in two
+    or more array of rfc822Name values.
 
     Parameters:
 

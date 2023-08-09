@@ -1,7 +1,7 @@
 {
-    "brief": "Get the list of flags used to determine the default active flags",
+    "brief": "Get the array of flags used to determine the default active flags",
     "category": "administrative",
-    "description": "Get the list of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This list can contain the flagId of flags that have not yet been registered. Each of these flags and the flags they include are set as the active default flags.",
+    "description": "Get the array of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This array can contain the flagId of flags that have not yet been registered. Each of these flags and the flags they include are set as the active default flags.",
     "functionId": "flag_get_defaults",
     "functionLabel": "flag_get_defaults",
     "parameters": [
@@ -9,6 +9,6 @@
     "returns": {
         "dataType": "array",
         "dataTypeParameter": "string",
-        "description": "This is a list of the flagId of flags used to determine the default active flags."
+        "description": "This is an array of the flagId of flags used to determine the default active flags."
     }
 }

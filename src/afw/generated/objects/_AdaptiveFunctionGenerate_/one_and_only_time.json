@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyTime",
-    "brief": "Converts a one value list to a time value",
+    "brief": "Converts a one value array to a time value",
     "camelCaseFunctionLabel": "oneAndOnlyTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "This converts a list of time values that contains one value to a single time value.",
+    "description": "This converts an array of time values that contains one value to a single time value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<time>",

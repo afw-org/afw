@@ -29,8 +29,8 @@ class rfc822Name
      * Returns boolean true if at least one value in rfc822Name list1 is in
      * rfc822Name list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,7 @@ class rfc822Name
     /**
      * bag_rfc822Name()
      *
-     * Takes any number of rfc822Name values and returns a list of list.
+     * Takes any number of rfc822Name values and returns an array of array.
      *
      * @param array $values
      *
@@ -75,7 +75,7 @@ class rfc822Name
     /**
      * bag_size_rfc822Name()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -200,11 +200,11 @@ class rfc822Name
     /**
      * intersection_rfc822Name()
      *
-     * Returns a list of rfc822Name with the values that are common to both
-     * list of rfc822Name list1 and list2.
+     * Returns an array of rfc822Name with the values that are common to both
+     * array of rfc822Name list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -225,7 +225,7 @@ class rfc822Name
     /**
      * is_in_rfc822Name()
      *
-     * Checks whether rfc822Name value is in list of rfc822Name list and
+     * Checks whether rfc822Name value is in array of rfc822Name array and
      * returns the boolean result.
      *
      * @param rfc822Name $value
@@ -402,8 +402,8 @@ class rfc822Name
     /**
      * one_and_only_rfc822Name()
      *
-     * This converts a list of rfc822Name values that contains one value to a
-     * single rfc822Name value.
+     * This converts an array of rfc822Name values that contains one value to
+     * a single rfc822Name value.
      *
      * @param array $array
      *
@@ -500,8 +500,8 @@ class rfc822Name
      * Returns boolean true if the unique values in rfc822Name list1 are all
      * in rfc822Name list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -522,7 +522,7 @@ class rfc822Name
     /**
      * to_string_rfc822Name()
      *
-     * Converts rfc822Name value to string. For list values, the to_string()
+     * Converts rfc822Name value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param rfc822Name $value A rfc822Name value.
@@ -545,8 +545,8 @@ class rfc822Name
     /**
      * union_rfc822Name()
      *
-     * Returns a list of rfc822Name contains all of the unique values in two
-     * or more list of rfc822Name values.
+     * Returns an array of rfc822Name contains all of the unique values in
+     * two or more array of rfc822Name values.
      *
      * @param array $lists Two or more lists.
      *

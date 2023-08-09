@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Returns a list of dayTimeDuration contains all of the unique values in two or more list of dayTimeDuration values.",
+    "description": "Returns an array of dayTimeDuration contains all of the unique values in two or more array of dayTimeDuration values.",
     "functionId": "union<dayTimeDuration>",
     "functionLabel": "union_dayTimeDuration",
     "parameters": [

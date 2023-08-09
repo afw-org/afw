@@ -33,8 +33,8 @@ The following functions are exported by default
 
 =head3 bag_dnsName
 
-Takes any number of dnsName values and returns a list of list.
-Makes a list from values
+Takes any number of dnsName values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -43,7 +43,7 @@ Makes a list from values
 
 =head3 bag_size_dnsName
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -133,9 +133,9 @@ Value to check
 
 =head3 is_in_dnsName
 
-Checks whether dnsName value is in list of dnsName list and returns the
+Checks whether dnsName value is in array of dnsName array and returns the
 boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -205,9 +205,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_dnsName
 
-This converts a list of dnsName values that contains one value to a single
+This converts an array of dnsName values that contains one value to a single
 dnsName value.
-Converts a one value list to a dnsName value
+Converts a one value array to a dnsName value
 
 =head4 Parameters
 
@@ -230,7 +230,7 @@ Search for a match using a regular expression
 
 =head3 to_string_dnsName
 
-Converts dnsName value to string. For list values, the to_string() value for
+Converts dnsName value to string. For array values, the to_string() value for
 each entry is returned separated with commas.
 Converts value to string
 

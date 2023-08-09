@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of ia5String values and returns a list of list.
+ * Takes any number of ia5String values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -31,7 +31,7 @@ export function afwBagIa5String(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -256,8 +256,8 @@ export function afwNexIa5String(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts ia5String value to string. For list values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts ia5String value to string. For array values, the to_string()
+ * value for each entry is returned separated with commas.
  * 
  * @param {ia5String} value - A ia5String value.
  * 

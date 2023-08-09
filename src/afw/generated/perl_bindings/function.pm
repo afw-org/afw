@@ -29,8 +29,8 @@ The following functions are exported by default
 
 =head3 bag_function
 
-Takes any number of function values and returns a list of list.
-Makes a list from values
+Takes any number of function values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -39,7 +39,7 @@ Makes a list from values
 
 =head3 bag_size_function
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters

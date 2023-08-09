@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Returns a list of hexBinary contains all of the unique values in two or more list of hexBinary values.",
+    "description": "Returns an array of hexBinary contains all of the unique values in two or more array of hexBinary values.",
     "functionId": "union<hexBinary>",
     "functionLabel": "union_hexBinary",
     "parameters": [

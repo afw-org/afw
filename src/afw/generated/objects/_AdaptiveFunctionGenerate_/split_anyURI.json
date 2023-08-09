@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "splitAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Split anyURI value into an list of strings using a separator.",
+    "description": "Split anyURI value into an array of strings using a separator.",
     "functionId": "split<anyURI>",
     "functionLabel": "split_anyURI",
     "parameters": [
@@ -29,7 +29,7 @@
     "pure": true,
     "returns": {
         "dataType": "array",
-        "description": "An list of strings."
+        "description": "An array of strings."
     },
     "useExecuteFunction": "afw_function_execute_split"
 }

@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagRfc822Name",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Takes any number of rfc822Name values and returns a list of list.",
+    "description": "Takes any number of rfc822Name values and returns an array of array.",
     "functionId": "bag<rfc822Name>",
     "functionLabel": "bag_rfc822Name",
     "parameters": [

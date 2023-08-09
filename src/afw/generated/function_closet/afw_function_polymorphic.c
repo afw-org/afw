@@ -44,9 +44,9 @@
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -69,7 +69,7 @@ afw_function_execute_at_least_one_member_of(
  *
  * See afw_function_bindings.h for more information.
  *
- * Takes any number of `<dataType>` values and returns a list of list.
+ * Takes any number of `<dataType>` values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -115,7 +115,7 @@ afw_function_execute_bag(
  *
  * See afw_function_bindings.h for more information.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -642,8 +642,8 @@ afw_function_execute_index_of(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns a list of `<dataType>` with the values that are common to both list
- * of `<dataType>` list1 and list2.
+ * Returns an array of `<dataType>` with the values that are common to both
+ * array of `<dataType>` list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -664,9 +664,9 @@ afw_function_execute_index_of(
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -735,7 +735,7 @@ afw_function_execute_is(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks whether `<dataType>` value is in list of `<dataType>` list and
+ * Checks whether `<dataType>` value is in array of `<dataType>` array and
  * returns the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -884,7 +884,7 @@ afw_function_execute_le(
  * See afw_function_bindings.h for more information.
  *
  * This is a polymorphic function where `<dataType>` can be any of the
- * supported data types. Return the integer number of entries in datatype list
+ * supported data types. Return the integer number of entries in datatype array
  * or codepoints in others.
  *
  * This function is pure, so it will always return the same result
@@ -904,7 +904,7 @@ afw_function_execute_le(
  *
  * Parameters:
  *
- *   value - (``<Type>``) Returns the number of entries in a list or code
+ *   value - (``<Type>``) Returns the number of entries in an array or code
  *       points in others.
  *
  * Returns:
@@ -1171,7 +1171,7 @@ afw_function_execute_nex(
  *
  * See afw_function_bindings.h for more information.
  *
- * This converts a list of `<dataType>` values that contains one value to a
+ * This converts an array of `<dataType>` values that contains one value to a
  * single `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
@@ -1201,7 +1201,7 @@ afw_function_execute_nex(
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  */
 const afw_value_t *
 afw_function_execute_one_and_only(
@@ -1508,7 +1508,7 @@ afw_function_execute_set_equals(
  *
  * See afw_function_bindings.h for more information.
  *
- * Split `<dataType>` value into an list of strings using a separator.
+ * Split `<dataType>` value into an array of strings using a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1540,7 +1540,7 @@ afw_function_execute_set_equals(
  *
  * Returns:
  *
- *   (array) An list of strings.
+ *   (array) An array of strings.
  */
 const afw_value_t *
 afw_function_execute_split(
@@ -1627,9 +1627,9 @@ afw_function_execute_starts_with(
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -1706,8 +1706,8 @@ afw_function_execute_substring(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns a list of `<dataType>` contains all of the unique values in two or
- * more list of `<dataType>` values.
+ * Returns an array of `<dataType>` contains all of the unique values in two or
+ * more array of `<dataType>` values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

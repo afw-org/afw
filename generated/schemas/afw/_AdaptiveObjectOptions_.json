@@ -98,7 +98,7 @@
                     "type": "boolean"
                 },
                 "resolvedParentPaths": {
-                    "description": "Indicates that meta resolvedParentPaths should be included with a list of parent paths that have been resolved by the composite option.",
+                    "description": "Indicates that meta resolvedParentPaths should be included with an array of parent paths that have been resolved by the composite option.",
                     "title": "Parent Paths",
                     "type": "boolean"
                 },

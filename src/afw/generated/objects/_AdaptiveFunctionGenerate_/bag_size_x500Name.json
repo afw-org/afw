@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagSizeX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "This returns the integer number of values in list.",
+    "description": "This returns the integer number of values in array.",
     "functionId": "bag_size<x500Name>",
     "functionLabel": "bag_size_x500Name",
     "parameters": [

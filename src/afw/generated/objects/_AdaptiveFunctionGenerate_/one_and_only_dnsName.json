@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyDnsName",
-    "brief": "Converts a one value list to a dnsName value",
+    "brief": "Converts a one value array to a dnsName value",
     "camelCaseFunctionLabel": "oneAndOnlyDnsName",
     "category": "dnsName",
     "dataTypeMethod": true,
-    "description": "This converts a list of dnsName values that contains one value to a single dnsName value.",
+    "description": "This converts an array of dnsName values that contains one value to a single dnsName value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<dnsName>",

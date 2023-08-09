@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in base64Binary list1 is in
  * base64Binary list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -33,7 +33,7 @@ export function afwAtLeastOneMemberOfBase64Binary(client : any, list1 : any[], l
 }
 
 /**
- * Takes any number of base64Binary values and returns a list of list.
+ * Takes any number of base64Binary values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -52,7 +52,7 @@ export function afwBagBase64Binary(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -191,12 +191,12 @@ export function afwGtBase64Binary(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Returns a list of base64Binary with the values that are common to both
- * list of base64Binary list1 and list2.
+ * Returns an array of base64Binary with the values that are common to both
+ * array of base64Binary list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -230,7 +230,7 @@ export function afwIsBase64Binary(client : any, value : any) : any {
 }
 
 /**
- * Checks whether base64Binary value is in list of base64Binary list and
+ * Checks whether base64Binary value is in array of base64Binary array and
  * returns the boolean result.
  * 
  * @param {base64Binary} value -
@@ -338,7 +338,7 @@ export function afwNexBase64Binary(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This converts a list of base64Binary values that contains one value to a
+ * This converts an array of base64Binary values that contains one value to a
  * single base64Binary value.
  * 
  * @param {array} array -
@@ -380,9 +380,9 @@ export function afwSetEqualsBase64Binary(client : any, list1 : any[], list2 : an
  * Returns boolean true if the unique values in base64Binary list1 are all in
  * base64Binary list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -398,7 +398,7 @@ export function afwSubsetBase64Binary(client : any, list1 : any[], list2 : any[]
 }
 
 /**
- * Converts base64Binary value to string. For list values, the to_string()
+ * Converts base64Binary value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  * 
  * @param {base64Binary} value - A base64Binary value.
@@ -416,8 +416,8 @@ export function afwToStringBase64Binary(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of base64Binary contains all of the unique values in two or
- * more list of base64Binary values.
+ * Returns an array of base64Binary contains all of the unique values in two
+ * or more array of base64Binary values.
  * 
  * @param {array} lists - Two or more lists.
  * 

@@ -1,12 +1,12 @@
 {
-    "brief": "Converts a one value list to a <dataType> value",
+    "brief": "Converts a one value array to a <dataType> value",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "This converts a list of <dataType> values that contains one value to a single <dataType> value.",
+    "description": "This converts an array of <dataType> values that contains one value to a single <dataType> value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only",

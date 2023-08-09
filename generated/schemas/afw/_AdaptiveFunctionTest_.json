@@ -149,10 +149,10 @@
                     "type": "boolean"
                 },
                 "tests": {
-                    "description": "This is the list of test cases for this function test.",
+                    "description": "This is the array of test cases for this function test.",
                     "items": {
                         "$ref": "#/$defs/_AdaptiveFunctionTestCase_",
-                        "description": "This is the list of test cases for this function test.",
+                        "description": "This is the array of test cases for this function test.",
                         "title": "List of tests",
                         "type": "object"
                     },

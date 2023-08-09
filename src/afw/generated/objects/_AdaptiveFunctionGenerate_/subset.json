@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwSubset",
-    "brief": "Determines if the first list is a subset of second list",
+    "brief": "Determines if the first array is a subset of second array",
     "camelCaseFunctionLabel": "subset",
     "category": "polymorphic",
     "dataTypeMethod": true,
@@ -10,13 +10,13 @@
     "parameters": [
         {
             "dataType": "array",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1",
             "polymorphicDataTypeParameter": true
         },
         {
             "dataType": "array",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2",
             "polymorphicDataTypeParameter": true
         }

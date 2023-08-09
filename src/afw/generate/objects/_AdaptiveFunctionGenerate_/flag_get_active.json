@@ -1,7 +1,7 @@
 {
-    "brief": "Get a list of active flags",
+    "brief": "Get an array of active flags",
     "category": "administrative",
-    "description": "Get a list of of the flagId of flags that are set in the current execution context (xctx).",
+    "description": "Get an array of of the flagId of flags that are set in the current execution context (xctx).",
     "functionId": "flag_get_active",
     "functionLabel": "flag_get_active",
     "parameters": [
@@ -9,6 +9,6 @@
     "returns": {
         "dataType": "array",
         "dataTypeParameter": "string",
-        "description": "This is a list of the flagId of flags that are set in the current execution context (xctx)."
+        "description": "This is an array of the flagId of flags that are set in the current execution context (xctx)."
     }
 }

@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInBoolean",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInBoolean",
     "category": "boolean",
     "dataTypeMethod": true,
-    "description": "Checks whether boolean value is in list of boolean list and returns the boolean result.",
+    "description": "Checks whether boolean value is in array of boolean array and returns the boolean result.",
     "functionId": "is_in<boolean>",
     "functionLabel": "is_in_boolean",
     "parameters": [

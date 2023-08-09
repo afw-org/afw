@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwSubsetRfc822Name",
-    "brief": "Determines if the first list is a subset of second list",
+    "brief": "Determines if the first array is a subset of second array",
     "camelCaseFunctionLabel": "subsetRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
@@ -11,13 +11,13 @@
         {
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

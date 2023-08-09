@@ -36,13 +36,13 @@
     "polymorphicExecuteFunction": "afw_function_execute_includes",
     "polymorphicOverrides": {
         "array": {
-            "brief": "Checks whether or not a list contains any value",
-            "description": "Checks whether or not a list contains any value.",
+            "brief": "Checks whether or not an array contains any value",
+            "description": "Checks whether or not an array contains any value.",
             "useExecuteFunction": "afw_function_execute_includes_array",
             "parameters": [
                 {
-                    "brief": "The list to search",
-                    "description": "The list to search.",
+                    "brief": "The array to search",
+                    "description": "The array to search.",
                     "name": "array",
                     "dataType": "array",
                     "polymorphicDataType": true
@@ -53,9 +53,9 @@
                     "name": "searchElement"
                 },
                 {
-                    "brief": "Index in the list to start",
+                    "brief": "Index in the array to start",
                     "dataType": "integer",
-                    "description": "Index in the list to start search.",
+                    "description": "Index in the array to start search.",
                     "name": "fromIndex",
                     "optional": true
                 }
@@ -63,7 +63,7 @@
             "returns": {
                 "brief": "Indicates if the element is found",
                 "dataType": "boolean",
-                "description": "Indicates if the element is found in list."
+                "description": "Indicates if the element is found in array."
             }
         }
     },

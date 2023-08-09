@@ -79,8 +79,8 @@ class dateTime
      * Returns boolean true if at least one value in dateTime list1 is in
      * dateTime list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -101,7 +101,7 @@ class dateTime
     /**
      * bag_dateTime()
      *
-     * Takes any number of dateTime values and returns a list of list.
+     * Takes any number of dateTime values and returns an array of array.
      *
      * @param array $values
      *
@@ -125,7 +125,7 @@ class dateTime
     /**
      * bag_size_dateTime()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -278,11 +278,11 @@ class dateTime
     /**
      * intersection_dateTime()
      *
-     * Returns a list of dateTime with the values that are common to both
-     * list of dateTime list1 and list2.
+     * Returns an array of dateTime with the values that are common to both
+     * array of dateTime list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -326,8 +326,8 @@ class dateTime
     /**
      * is_in_dateTime()
      *
-     * Checks whether dateTime value is in list of dateTime list and returns
-     * the boolean result.
+     * Checks whether dateTime value is in array of dateTime array and
+     * returns the boolean result.
      *
      * @param dateTime $value
      * @param array $array
@@ -510,7 +510,7 @@ class dateTime
     /**
      * one_and_only_dateTime()
      *
-     * This converts a list of dateTime values that contains one value to a
+     * This converts an array of dateTime values that contains one value to a
      * single dateTime value.
      *
      * @param array $array
@@ -561,8 +561,8 @@ class dateTime
      * Returns boolean true if the unique values in dateTime list1 are all in
      * dateTime list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -633,7 +633,7 @@ class dateTime
     /**
      * to_string_dateTime()
      *
-     * Converts dateTime value to string. For list values, the to_string()
+     * Converts dateTime value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param dateTime $value A dateTime value.
@@ -656,8 +656,8 @@ class dateTime
     /**
      * union_dateTime()
      *
-     * Returns a list of dateTime contains all of the unique values in two or
-     * more list of dateTime values.
+     * Returns an array of dateTime contains all of the unique values in two
+     * or more array of dateTime values.
      *
      * @param array $lists Two or more lists.
      *

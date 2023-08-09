@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyYearMonthDuration",
-    "brief": "Converts a one value list to a yearMonthDuration value",
+    "brief": "Converts a one value array to a yearMonthDuration value",
     "camelCaseFunctionLabel": "oneAndOnlyYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "This converts a list of yearMonthDuration values that contains one value to a single yearMonthDuration value.",
+    "description": "This converts an array of yearMonthDuration values that contains one value to a single yearMonthDuration value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<yearMonthDuration>",

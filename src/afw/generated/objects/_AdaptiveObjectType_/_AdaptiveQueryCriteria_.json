@@ -21,14 +21,14 @@
             "brief": "Properties to include",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "This is a list of the names of properties to include in result. If not specified, all properties are returned.",
+            "description": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
             "label": "Include Properties"
         },
         "sort": {
             "brief": "Sort order",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "This is a list of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+            "description": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
             "label": "Sort Order"
         },
         "urlEncodedRQLString": {

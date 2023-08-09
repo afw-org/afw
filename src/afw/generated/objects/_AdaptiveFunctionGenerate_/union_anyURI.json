@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Returns a list of anyURI contains all of the unique values in two or more list of anyURI values.",
+    "description": "Returns an array of anyURI contains all of the unique values in two or more array of anyURI values.",
     "functionId": "union<anyURI>",
     "functionLabel": "union_anyURI",
     "parameters": [

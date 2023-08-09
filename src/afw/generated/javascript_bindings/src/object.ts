@@ -57,7 +57,7 @@ export function afwApplyObjectOptions(client : any, object : object, options? : 
 }
 
 /**
- * Takes any number of object values and returns a list of list.
+ * Takes any number of object values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -76,7 +76,7 @@ export function afwBagObject(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -452,7 +452,7 @@ export function afwPropertyIsNotNull(client : any, object : object, name : strin
 }
 
 /**
- * Converts object value to string. For list values, the to_string() value
+ * Converts object value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 
  * @param {object} value - A object value.

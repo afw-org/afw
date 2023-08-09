@@ -50,9 +50,9 @@ export function afwAddInteger(client : any, values : number) : any {
  * Returns boolean true if at least one value in integer list1 is in integer
  * list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -68,7 +68,7 @@ export function afwAtLeastOneMemberOfInteger(client : any, list1 : any[], list2 
 }
 
 /**
- * Takes any number of integer values and returns a list of list.
+ * Takes any number of integer values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -87,7 +87,7 @@ export function afwBagInteger(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -229,12 +229,12 @@ export function afwInteger(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of integer with the values that are common to both list of
- * integer list1 and list2.
+ * Returns an array of integer with the values that are common to both array
+ * of integer list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -250,7 +250,7 @@ export function afwIntersectionInteger(client : any, list1 : any[], list2 : any[
 }
 
 /**
- * Checks whether integer value is in list of integer list and returns the
+ * Checks whether integer value is in array of integer array and returns the
  * boolean result.
  * 
  * @param {integer} value -
@@ -464,8 +464,8 @@ export function afwNexInteger(client : any, arg1 : number, arg2 : any) : any {
 }
 
 /**
- * This converts a list of integer values that contains one value to a single
- * integer value.
+ * This converts an array of integer values that contains one value to a
+ * single integer value.
  * 
  * @param {array} array -
  * 
@@ -506,9 +506,9 @@ export function afwSetEqualsInteger(client : any, list1 : any[], list2 : any[]) 
  * Returns boolean true if the unique values in integer list1 are all in
  * integer list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -561,7 +561,7 @@ export function afwToDoubleInteger(client : any, value : number) : any {
 }
 
 /**
- * Converts integer value to string. For list values, the to_string() value
+ * Converts integer value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 
  * @param {integer} value - A integer value.
@@ -579,8 +579,8 @@ export function afwToStringInteger(client : any, value : number) : any {
 }
 
 /**
- * Returns a list of integer contains all of the unique values in two or more
- * list of integer values.
+ * Returns an array of integer contains all of the unique values in two or
+ * more array of integer values.
  * 
  * @param {array} lists - Two or more lists.
  * 

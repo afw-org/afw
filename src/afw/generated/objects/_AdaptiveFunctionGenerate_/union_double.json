@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Returns a list of double contains all of the unique values in two or more list of double values.",
+    "description": "Returns an array of double contains all of the unique values in two or more array of double values.",
     "functionId": "union<double>",
     "functionLabel": "union_double",
     "parameters": [

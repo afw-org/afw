@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Returns a list of base64Binary with the values that are common to both list of base64Binary list1 and list2.",
+    "description": "Returns an array of base64Binary with the values that are common to both array of base64Binary list1 and list2.",
     "functionId": "intersection<base64Binary>",
     "functionLabel": "intersection_base64Binary",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "base64Binary",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "base64Binary",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

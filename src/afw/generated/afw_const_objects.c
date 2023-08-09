@@ -132,7 +132,7 @@ impl_4_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_4_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.")
+    AFW_UTF8_LITERAL("This is an array of flagId of flags to set in the execution context (xctx) while the function is being executed. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.")
 };
 
 static const afw_runtime_property_t
@@ -623,7 +623,7 @@ impl_9_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_9_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.")
+    AFW_UTF8_LITERAL("This is an array of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set.")
 };
 
 static const afw_runtime_property_t
@@ -742,7 +742,7 @@ impl_10_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_10_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of actions to perform. Either the actions or function property must be specified.")
+    AFW_UTF8_LITERAL("This is an array of actions to perform. Either the actions or function property must be specified.")
 };
 
 static const afw_runtime_property_t
@@ -10769,7 +10769,7 @@ impl_110_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_110_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of ids of all policies whose target and condition matched during this check.")
+    AFW_UTF8_LITERAL("This is an array of ids of all policies whose target and condition matched during this check.")
 };
 
 static const afw_runtime_property_t
@@ -18162,7 +18162,7 @@ impl_179_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_179_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this list that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.")
+    AFW_UTF8_LITERAL("This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.")
 };
 
 static const afw_runtime_property_t
@@ -18532,7 +18532,7 @@ impl_182_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_182_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.")
+    AFW_UTF8_LITERAL("This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.")
 };
 
 static const afw_runtime_property_t
@@ -18651,7 +18651,7 @@ impl_183_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_183_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.")
+    AFW_UTF8_LITERAL("This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.")
 };
 
 static const afw_runtime_property_t
@@ -30785,7 +30785,7 @@ impl_288_property_dataType = {
 static const afw_value_string_t
 impl_288_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter list.\n\nArrayOf - Zero or more 'of list' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.")
+    AFW_UTF8_LITERAL("This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.")
 };
 
 static const afw_runtime_property_t
@@ -39370,7 +39370,7 @@ impl_373_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_373_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("All of the flags that include this flag. When setting flags in this list, this flag will also be set.")
+    AFW_UTF8_LITERAL("All of the flags that include this flag. When setting flags in this array, this flag will also be set.")
 };
 
 static const afw_runtime_property_t
@@ -39569,7 +39569,7 @@ impl_375_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_375_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("All other flags that this flag includes. When setting this flat, all of the flags in this list will also be set")
+    AFW_UTF8_LITERAL("All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set")
 };
 
 static const afw_runtime_property_t
@@ -42384,7 +42384,7 @@ impl_396_property_collectionURIs = {
 static const afw_value_string_t
 impl_396_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("An object entry of _AdaptiveFunction_ errorsThrown list.")
+    AFW_UTF8_LITERAL("An object entry of _AdaptiveFunction_ errorsThrown array.")
 };
 
 static const afw_runtime_property_t
@@ -50243,7 +50243,7 @@ impl_467_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_467_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is the list of test cases for this function test.")
+    AFW_UTF8_LITERAL("This is the array of test cases for this function test.")
 };
 
 static const afw_runtime_property_t
@@ -90429,7 +90429,7 @@ impl_892_property_dataType = {
 static const afw_value_string_t
 impl_892_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Indicates that meta resolvedParentPaths should be included with a list of parent paths that have been resolved by the composite option.")
+    AFW_UTF8_LITERAL("Indicates that meta resolvedParentPaths should be included with an array of parent paths that have been resolved by the composite option.")
 };
 
 static const afw_runtime_property_t
@@ -92861,7 +92861,7 @@ impl_912_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_912_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.")
+    AFW_UTF8_LITERAL("This is an array of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.")
 };
 
 static const afw_runtime_property_t
@@ -95763,7 +95763,7 @@ impl_939_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_939_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.")
+    AFW_UTF8_LITERAL("This is an array of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is an array of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.")
 };
 
 static const afw_runtime_property_t
@@ -101635,7 +101635,7 @@ impl_993_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_993_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.")
+    AFW_UTF8_LITERAL("This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.")
 };
 
 static const afw_runtime_property_t
@@ -102440,7 +102440,7 @@ impl_1000_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_1000_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of the names of properties to include in result. If not specified, all properties are returned.")
+    AFW_UTF8_LITERAL("This is an array of the names of properties to include in result. If not specified, all properties are returned.")
 };
 
 static const afw_runtime_property_t
@@ -102546,7 +102546,7 @@ impl_1001_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_1001_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.")
+    AFW_UTF8_LITERAL("This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.")
 };
 
 static const afw_runtime_property_t
@@ -109475,7 +109475,7 @@ impl_1076_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_1076_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("If the request has multiple actions, this property is a list of _AdaptiveResponseAction_ objects.")
+    AFW_UTF8_LITERAL("If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects.")
 };
 
 static const afw_runtime_property_t
@@ -122092,7 +122092,7 @@ impl_1202_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_1202_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of the test results.")
+    AFW_UTF8_LITERAL("This is an array of the test results.")
 };
 
 static const afw_runtime_property_t
@@ -126243,7 +126243,7 @@ impl_1242_property_allowQuery = {
 static const afw_value_string_t
 impl_1242_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("A list of allowed values for this adaptive value")
+    AFW_UTF8_LITERAL("An array of allowed values for this adaptive value")
 };
 
 static const afw_runtime_property_t
@@ -126267,7 +126267,7 @@ impl_1242_property_dataType = {
 static const afw_value_string_t
 impl_1242_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.")
+    AFW_UTF8_LITERAL("This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.")
 };
 
 static const afw_runtime_property_t
@@ -128612,7 +128612,7 @@ impl_1264_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_1264_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.")
+    AFW_UTF8_LITERAL("This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.")
 };
 
 static const afw_runtime_property_t

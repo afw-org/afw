@@ -53,8 +53,8 @@ class date
      * Returns boolean true if at least one value in date list1 is in date
      * list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -75,7 +75,7 @@ class date
     /**
      * bag_date()
      *
-     * Takes any number of date values and returns a list of list.
+     * Takes any number of date values and returns an array of array.
      *
      * @param array $values
      *
@@ -99,7 +99,7 @@ class date
     /**
      * bag_size_date()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -252,11 +252,11 @@ class date
     /**
      * intersection_date()
      *
-     * Returns a list of date with the values that are common to both list of
-     * date list1 and list2.
+     * Returns an array of date with the values that are common to both array
+     * of date list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -299,7 +299,7 @@ class date
     /**
      * is_in_date()
      *
-     * Checks whether date value is in list of date list and returns the
+     * Checks whether date value is in array of date array and returns the
      * boolean result.
      *
      * @param date $value
@@ -483,7 +483,7 @@ class date
     /**
      * one_and_only_date()
      *
-     * This converts a list of date values that contains one value to a
+     * This converts an array of date values that contains one value to a
      * single date value.
      *
      * @param array $array
@@ -534,8 +534,8 @@ class date
      * Returns boolean true if the unique values in date list1 are all in
      * date list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -581,7 +581,7 @@ class date
     /**
      * to_string_date()
      *
-     * Converts date value to string. For list values, the to_string() value
+     * Converts date value to string. For array values, the to_string() value
      * for each entry is returned separated with commas.
      *
      * @param date $value A date value.
@@ -604,8 +604,8 @@ class date
     /**
      * union_date()
      *
-     * Returns a list of date contains all of the unique values in two or
-     * more list of date values.
+     * Returns an array of date contains all of the unique values in two or
+     * more array of date values.
      *
      * @param array $lists Two or more lists.
      *

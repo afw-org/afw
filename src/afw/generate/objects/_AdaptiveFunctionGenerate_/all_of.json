@@ -2,7 +2,7 @@
     "additionalArgCheck": true,
     "brief": "All values pass a test",
     "category": "higher_order_array",
-    "description": "Returns true if all values in a list pass the predicate test.",
+    "description": "Returns true if all values in an array pass the predicate test.",
     "functionId": "all_of",
     "functionLabel": "all_of",
     "pure": true,
@@ -10,12 +10,12 @@
         {
             "dataType": "function",
             "dataTypeParameter": "(... values: any): boolean",
-            "description": "This function is called for each value in the first list in values or until false is returned. If no calls return false, the result is true.",
+            "description": "This function is called for each value in the first array in values or until false is returned. If no calls return false, the result is true.",
             "name": "predicate"
         },
         {
             "minArgs": 1,
-            "description": "These are the parameters passed to predicate with the exception that the first list is passed one value at a time. At least one list is required.",
+            "description": "These are the parameters passed to predicate with the exception that the first array is passed one value at a time. At least one array is required.",
             "name": "values"
         }
     ],

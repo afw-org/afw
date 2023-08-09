@@ -47,16 +47,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_rfc822Name
 
-Takes any number of rfc822Name values and returns a list of list.
-Makes a list from values
+Takes any number of rfc822Name values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -65,7 +65,7 @@ Makes a list from values
 
 =head3 bag_size_rfc822Name
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -133,25 +133,25 @@ Checks for greater than
 
 =head3 intersection_rfc822Name
 
-Returns a list of rfc822Name with the values that are common to both list of
-rfc822Name list1 and list2.
+Returns an array of rfc822Name with the values that are common to both array
+of rfc822Name list1 and list2.
 Returns intersection of two lists
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_in_rfc822Name
 
-Checks whether rfc822Name value is in list of rfc822Name list and returns the
-boolean result.
-Checks whether a value is in a list
+Checks whether rfc822Name value is in array of rfc822Name array and returns
+the boolean result.
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -247,9 +247,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_rfc822Name
 
-This converts a list of rfc822Name values that contains one value to a single
-rfc822Name value.
-Converts a one value list to a rfc822Name value
+This converts an array of rfc822Name values that contains one value to a
+single rfc822Name value.
+Converts a one value array to a rfc822Name value
 
 =head4 Parameters
 
@@ -299,21 +299,21 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in rfc822Name list1 are all in
 rfc822Name list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 to_string_rfc822Name
 
-Converts rfc822Name value to string. For list values, the to_string() value
+Converts rfc822Name value to string. For array values, the to_string() value
 for each entry is returned separated with commas.
 Converts value to string
 
@@ -325,8 +325,8 @@ A rfc822Name value.
 
 =head3 union_rfc822Name
 
-Returns a list of rfc822Name contains all of the unique values in two or more
-list of rfc822Name values.
+Returns an array of rfc822Name contains all of the unique values in two or
+more array of rfc822Name values.
 Returns union of two or more string lists
 
 =head4 Parameters

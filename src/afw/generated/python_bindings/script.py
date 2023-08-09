@@ -11,8 +11,8 @@ def assign(session, name, value):
 
     Assign a value to the innermost structured block definition of a
     variable. If the variable is not defined, the variable is defined in the
-    innermost structured block. An error is thrown if not called from a list
-    of values (statements) in a structured function.
+    innermost structured block. An error is thrown if not called from an
+    array of values (statements) in a structured function.
 
     Parameters:
 
@@ -42,9 +42,9 @@ def assign(session, name, value):
 
 def bag_script(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of script values and returns a list of list.
+    Takes any number of script values and returns an array of array.
 
     Parameters:
 
@@ -75,7 +75,7 @@ def bag_size_script(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -246,11 +246,11 @@ def continue_(session):
 
 def do_while(session, condition, body):
     '''
-    Evaluate a list of values (statements) at least once while a condition is true
+    Evaluate an array of values (statements) at least once while a condition is true
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate a list of values (statements) at least once
+    This function will evaluate an array of values (statements) at least once
     while a condition is true. See the related functions 'break', 'continue',
     'return' and 'throw'.
 
@@ -259,9 +259,9 @@ def do_while(session, condition, body):
         condition (boolean): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (array): This is a list of values (statements) that are
+        body (array): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the list or until a 'break',
+        evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
@@ -395,7 +395,7 @@ def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None)
 
 def for_(session, initial=None, condition=None, increment=None, body=None):
     '''
-    Evaluate a list of values (statements) while a condition is true with a list of initial and increment values
+    Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
     This creates a new structured block with a new nested variable scope.
     
@@ -404,20 +404,20 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
     Parameters:
 
-        initial (array): This is a list of values (statements) to evaluate
+        initial (array): This is an array of values (statements) to evaluate
         before the loop starts. The values will normally be a call to the
         'assign' function.
 
         condition (boolean): While this condition is true, the loop will
         continue.
 
-        increment (array): This is a list of values (statements) to evaluate
-        after each iteration of the loop. The values will normally be a call
-        to the 'assign' function.
+        increment (array): This is an array of values (statements) to
+        evaluate after each iteration of the loop. The values will normally
+        be a call to the 'assign' function.
 
-        body (array): This is a list of values (statements) that are
+        body (array): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the list or until a 'break',
+        evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
@@ -452,11 +452,11 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
 def foreach(session, name, value, body=None):
     '''
-    Evaluate a list of values (statements) while a condition is true with a list of initial and increment values
+    Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate a list of values (statements) while a
+    This function will evaluate an array of values (statements) while a
     condition is true with initial and increment values. The condition is
     tested at the beginning of the loop. If the condition is false for the
     first iteration, the loop returns a null value.
@@ -465,11 +465,11 @@ def foreach(session, name, value, body=None):
 
         name (array): Variable name(s).
 
-        value (): Any list, object or single value.
+        value (): Any array, object or single value.
 
-        body (array): This is a list of values (statements) that are
+        body (array): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
-        evaluated in order until the end of the list or until a 'break',
+        evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
@@ -993,7 +993,7 @@ def throw(session, message, additional=None):
 
 def try_(session, body, _finally=None, catch=None, error=None):
     '''
-    Evaluate a list of values (statements) as a try block with optional catch and finally statements
+    Evaluate an array of values (statements) as a try block with optional catch and finally statements
 
     This creates a new structured block with a new nested variable scope.
     
@@ -1005,18 +1005,18 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
     Parameters:
 
-        body (array): This is a list of values (statements) that are
+        body (array): This is an array of values (statements) that are
         evaluated. Each value in body is evaluated in order until the end of
         the list or until a 'break', 'continue', 'return' or 'throw' function
         is encountered.
 
-        finally (array): This is a list of values (statements) that are
+        finally (array): This is an array of values (statements) that are
         evaluated after the try and catch statements even if an error occurs.
         Each value in body is evaluated in order until the end of the list or
         until a 'break', 'continue', 'return' or 'throw' function is
         encountered.
 
-        catch (array): This is a list of values (statements) that are
+        catch (array): This is an array of values (statements) that are
         evaluated when an error is thrown while evaluating the body. Each
         value in body is evaluated in order until the end of the list or
         until a 'break', 'continue', 'return' or 'throw' function is
@@ -1056,11 +1056,11 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
 def while_(session, condition, body):
     '''
-    Evaluate a list of values (statements) while a condition is true
+    Evaluate an array of values (statements) while a condition is true
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate a list of values (statements) while a
+    This function will evaluate an array of values (statements) while a
     condition is true. The condition is tested at the beginning of the loop.
     If the condition is false for the first iteration, the loop returns a
     null value. See the related functions 'break', 'continue', 'return' and
@@ -1071,7 +1071,7 @@ def while_(session, condition, body):
         condition (boolean): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (array): This is a list of values (statements) that are
+        body (array): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
         evaluated in order until the end of the list or until a 'break',
         'continue', 'return' or 'throw' function is encountered.

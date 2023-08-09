@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInIpAddress",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInIpAddress",
     "category": "ipAddress",
     "dataTypeMethod": true,
-    "description": "Checks whether ipAddress value is in list of ipAddress list and returns the boolean result.",
+    "description": "Checks whether ipAddress value is in array of ipAddress array and returns the boolean result.",
     "functionId": "is_in<ipAddress>",
     "functionLabel": "is_in_ipAddress",
     "parameters": [

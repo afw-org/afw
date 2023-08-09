@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Converts base64Binary value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts base64Binary value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<base64Binary>",
     "functionLabel": "to_string_base64Binary",
     "parameters": [

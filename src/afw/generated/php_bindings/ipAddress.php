@@ -26,7 +26,7 @@ class ipAddress
     /**
      * bag_ipAddress()
      *
-     * Takes any number of ipAddress values and returns a list of list.
+     * Takes any number of ipAddress values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class ipAddress
     /**
      * bag_size_ipAddress()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -197,7 +197,7 @@ class ipAddress
     /**
      * is_in_ipAddress()
      *
-     * Checks whether ipAddress value is in list of ipAddress list and
+     * Checks whether ipAddress value is in array of ipAddress array and
      * returns the boolean result.
      *
      * @param ipAddress $value
@@ -348,8 +348,8 @@ class ipAddress
     /**
      * one_and_only_ipAddress()
      *
-     * This converts a list of ipAddress values that contains one value to a
-     * single ipAddress value.
+     * This converts an array of ipAddress values that contains one value to
+     * a single ipAddress value.
      *
      * @param array $array
      *
@@ -396,7 +396,7 @@ class ipAddress
     /**
      * to_string_ipAddress()
      *
-     * Converts ipAddress value to string. For list values, the to_string()
+     * Converts ipAddress value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param ipAddress $value A ipAddress value.

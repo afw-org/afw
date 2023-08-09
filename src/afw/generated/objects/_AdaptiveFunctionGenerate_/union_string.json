@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Returns a list of string contains all of the unique values in two or more list of string values.",
+    "description": "Returns an array of string contains all of the unique values in two or more array of string values.",
     "functionId": "union<string>",
     "functionLabel": "union_string",
     "parameters": [

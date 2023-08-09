@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInDnsName",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInDnsName",
     "category": "dnsName",
     "dataTypeMethod": true,
-    "description": "Checks whether dnsName value is in list of dnsName list and returns the boolean result.",
+    "description": "Checks whether dnsName value is in array of dnsName array and returns the boolean result.",
     "functionId": "is_in<dnsName>",
     "functionLabel": "is_in_dnsName",
     "parameters": [

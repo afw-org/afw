@@ -46,16 +46,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_base64Binary
 
-Takes any number of base64Binary values and returns a list of list.
-Makes a list from values
+Takes any number of base64Binary values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -64,7 +64,7 @@ Makes a list from values
 
 =head3 bag_size_base64Binary
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -155,19 +155,19 @@ Checks for greater than
 
 =head3 intersection_base64Binary
 
-Returns a list of base64Binary with the values that are common to both list
-of base64Binary list1 and list2.
+Returns an array of base64Binary with the values that are common to both
+array of base64Binary list1 and list2.
 Returns intersection of two lists
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_base64Binary
 
@@ -182,9 +182,9 @@ Value to check
 
 =head3 is_in_base64Binary
 
-Checks whether base64Binary value is in list of base64Binary list and returns
-the boolean result.
-Checks whether a value is in a list
+Checks whether base64Binary value is in array of base64Binary array and
+returns the boolean result.
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -255,9 +255,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_base64Binary
 
-This converts a list of base64Binary values that contains one value to a
+This converts an array of base64Binary values that contains one value to a
 single base64Binary value.
-Converts a one value list to a base64Binary value
+Converts a one value array to a base64Binary value
 
 =head4 Parameters
 
@@ -282,22 +282,22 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in base64Binary list1 are all in
 base64Binary list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 to_string_base64Binary
 
-Converts base64Binary value to string. For list values, the to_string() value
-for each entry is returned separated with commas.
+Converts base64Binary value to string. For array values, the to_string()
+value for each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters
@@ -308,8 +308,8 @@ A base64Binary value.
 
 =head3 union_base64Binary
 
-Returns a list of base64Binary contains all of the unique values in two or
-more list of base64Binary values.
+Returns an array of base64Binary contains all of the unique values in two or
+more array of base64Binary values.
 Returns union of two or more string lists
 
 =head4 Parameters

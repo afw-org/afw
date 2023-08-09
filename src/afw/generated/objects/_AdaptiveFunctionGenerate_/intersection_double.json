@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Returns a list of double with the values that are common to both list of double list1 and list2.",
+    "description": "Returns an array of double with the values that are common to both array of double list1 and list2.",
     "functionId": "intersection<double>",
     "functionLabel": "intersection_double",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "double",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "double",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

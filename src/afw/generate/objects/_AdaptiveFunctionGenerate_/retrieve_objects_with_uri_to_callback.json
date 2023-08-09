@@ -9,7 +9,7 @@
             "brief": "Object Callback",
             "dataType": "function",
             "dataTypeParameter": "(object: object, userData: any): boolean",
-            "description": "If this is specified, this function is called once for each object retrieved instead of adding the object to the return list. Parameter object will be an object retrieved or undefined if there are no more objects. This function should return true if it wants to abort the retrieve request.",
+            "description": "If this is specified, this function is called once for each object retrieved instead of adding the object to the return array. Parameter object will be an object retrieved or undefined if there are no more objects. This function should return true if it wants to abort the retrieve request.",
             "name": "objectCallback"
         },
         {

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Converts double value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts double value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<double>",
     "functionLabel": "to_string_double",
     "parameters": [

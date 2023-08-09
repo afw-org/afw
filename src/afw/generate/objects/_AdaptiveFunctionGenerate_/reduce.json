@@ -1,7 +1,7 @@
 {
-    "brief": "Reduce values of a list to a single value",
+    "brief": "Reduce values of an array to a single value",
     "category": "higher_order_array",
-    "description": "Reduce calls functor for each value in list with two parameters, accumulator and value, and must return a value of any dataType. Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls. The dataType of the return value should normally be the same as accumulator, but this is not required.",
+    "description": "Reduce calls functor for each value in array with two parameters, accumulator and value, and must return a value of any dataType. Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls. The dataType of the return value should normally be the same as accumulator, but this is not required.",
     "functionId": "reduce",
     "functionLabel": "reduce",
     "pure": true,
@@ -9,7 +9,7 @@
         {
             "dataType": "function",
             "dataTypeParameter": "(accumulator: any, value: any): any",
-            "description": "This function is called for each value in a list. The returned value is passed as the accumulator parameter on the next call to functor().",
+            "description": "This function is called for each value in an array. The returned value is passed as the accumulator parameter on the next call to functor().",
             "name": "functor"
         },
         {
@@ -18,11 +18,11 @@
         },
         {
             "dataType": "array",
-            "description": "This is a list to be reduced.",
+            "description": "This is an array to be reduced.",
             "name": "array"
         }
     ],
     "returns": {
-        "description": "This is the final return value from functor() or the accumulator parameter value if list is empty."
+        "description": "This is the final return value from functor() or the accumulator parameter value if array is empty."
     }
 }

@@ -51,8 +51,8 @@ class anyURI
      * Returns boolean true if at least one value in anyURI list1 is in
      * anyURI list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -73,7 +73,7 @@ class anyURI
     /**
      * bag_anyURI()
      *
-     * Takes any number of anyURI values and returns a list of list.
+     * Takes any number of anyURI values and returns an array of array.
      *
      * @param array $values
      *
@@ -97,7 +97,7 @@ class anyURI
     /**
      * bag_size_anyURI()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -308,11 +308,11 @@ class anyURI
     /**
      * intersection_anyURI()
      *
-     * Returns a list of anyURI with the values that are common to both list
-     * of anyURI list1 and list2.
+     * Returns an array of anyURI with the values that are common to both
+     * array of anyURI list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -355,8 +355,8 @@ class anyURI
     /**
      * is_in_anyURI()
      *
-     * Checks whether anyURI value is in list of anyURI list and returns the
-     * boolean result.
+     * Checks whether anyURI value is in array of anyURI array and returns
+     * the boolean result.
      *
      * @param anyURI $value
      * @param array $array
@@ -437,9 +437,9 @@ class anyURI
      *
      * This is a polymorphic function where anyURI can be any of the
      * supported data types. Return the integer number of entries in datatype
-     * list or codepoints in others.
+     * array or codepoints in others.
      *
-     * @param anyURI $value Returns the number of entries in a list or code
+     * @param anyURI $value Returns the number of entries in an array or code
      *                      points in others.
      *
      * @return integer
@@ -538,7 +538,7 @@ class anyURI
     /**
      * one_and_only_anyURI()
      *
-     * This converts a list of anyURI values that contains one value to a
+     * This converts an array of anyURI values that contains one value to a
      * single anyURI value.
      *
      * @param array $array
@@ -724,7 +724,7 @@ class anyURI
     /**
      * split_anyURI()
      *
-     * Split anyURI value into an list of strings using a separator.
+     * Split anyURI value into an array of strings using a separator.
      *
      * @param anyURI $value The anyURI value to split.
      * @param string $separator The separator to use. If this is an empty
@@ -733,7 +733,7 @@ class anyURI
      * @param integer $limit This is the maximum number of splits. Any
      *                       remaining part of value is ignored.
      *
-     * @return array An list of strings.
+     * @return array An array of strings.
      */
     public function split_anyURI(, $value, $separator = null, $limit = null)
     {
@@ -785,8 +785,8 @@ class anyURI
      * Returns boolean true if the unique values in anyURI list1 are all in
      * anyURI list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -837,7 +837,7 @@ class anyURI
     /**
      * to_string_anyURI()
      *
-     * Converts anyURI value to string. For list values, the to_string()
+     * Converts anyURI value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param anyURI $value A anyURI value.
@@ -860,8 +860,8 @@ class anyURI
     /**
      * union_anyURI()
      *
-     * Returns a list of anyURI contains all of the unique values in two or
-     * more list of anyURI values.
+     * Returns an array of anyURI contains all of the unique values in two or
+     * more array of anyURI values.
      *
      * @param array $lists Two or more lists.
      *

@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyX500Name",
-    "brief": "Converts a one value list to a x500Name value",
+    "brief": "Converts a one value array to a x500Name value",
     "camelCaseFunctionLabel": "oneAndOnlyX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "This converts a list of x500Name values that contains one value to a single x500Name value.",
+    "description": "This converts an array of x500Name values that contains one value to a single x500Name value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<x500Name>",

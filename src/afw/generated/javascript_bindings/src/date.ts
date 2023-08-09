@@ -34,9 +34,9 @@ export function afwAddYearMonthDurationDate(client : any, arg1 : any, arg2 : any
 /**
  * Returns boolean true if at least one value in date list1 is in date list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -52,7 +52,7 @@ export function afwAtLeastOneMemberOfDate(client : any, list1 : any[], list2 : a
 }
 
 /**
- * Takes any number of date values and returns a list of list.
+ * Takes any number of date values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -71,7 +71,7 @@ export function afwBagDate(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -197,12 +197,12 @@ export function afwGtDate(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Returns a list of date with the values that are common to both list of
+ * Returns an array of date with the values that are common to both array of
  * date list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -235,8 +235,8 @@ export function afwIsDate(client : any, value : any) : any {
 }
 
 /**
- * Checks whether date value is in list of date list and returns the boolean
- * result.
+ * Checks whether date value is in array of date array and returns the
+ * boolean result.
  * 
  * @param {date} value -
  * 
@@ -388,7 +388,7 @@ export function afwNexDate(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This converts a list of date values that contains one value to a single
+ * This converts an array of date values that contains one value to a single
  * date value.
  * 
  * @param {array} array -
@@ -430,9 +430,9 @@ export function afwSetEqualsDate(client : any, list1 : any[], list2 : any[]) : a
  * Returns boolean true if the unique values in date list1 are all in date
  * list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -468,7 +468,7 @@ export function afwSubtractYearMonthDurationDate(client : any, arg1 : any, arg2 
 }
 
 /**
- * Converts date value to string. For list values, the to_string() value for
+ * Converts date value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  * 
  * @param {date} value - A date value.
@@ -486,8 +486,8 @@ export function afwToStringDate(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of date contains all of the unique values in two or more
- * list of date values.
+ * Returns an array of date contains all of the unique values in two or more
+ * array of date values.
  * 
  * @param {array} lists - Two or more lists.
  * 

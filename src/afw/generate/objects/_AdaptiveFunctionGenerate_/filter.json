@@ -1,7 +1,7 @@
 {
-    "brief": "Filter a list",
+    "brief": "Filter an array",
     "category": "higher_order_array",
-    "description": "This produces a list containing only values from another list that pass a predicate test.",
+    "description": "This produces an array containing only values from another array that pass a predicate test.",
     "functionId": "filter",
     "functionLabel": "filter",
     "pure": true,
@@ -9,17 +9,17 @@
         {
             "dataType": "function",
             "dataTypeParameter": "(... values: any): boolean",
-            "description": "This is a boolean function that is called to determine if a list entry should be included in the returned list.",
+            "description": "This is a boolean function that is called to determine if an array entry should be included in the returned array.",
             "name": "predicate"
         },
         {
             "minArgs": 1,
-            "description": "These are the values passed to the predicate with the exception that the first list is passed as the single current value from the list. At least one list is required.",
+            "description": "These are the values passed to the predicate with the exception that the first array is passed as the single current value from the array. At least one array is required.",
             "name": "values"
         }
     ],
     "returns": {
         "dataType": "array",
-        "description": "This is the resulting filtered list."
+        "description": "This is the resulting filtered array."
     }
 }

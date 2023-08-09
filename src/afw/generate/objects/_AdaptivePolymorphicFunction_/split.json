@@ -2,7 +2,7 @@
     "brief": "Split at a separator",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Split <dataType> value into an list of strings using a separator.",
+    "description": "Split <dataType> value into an array of strings using a separator.",
     "functionId": "split",
     "functionLabel": "split",
     "pure": true,
@@ -33,6 +33,6 @@
     "polymorphicExecuteFunction": "afw_function_execute_split",
     "returns": {
         "dataType": "array",
-        "description": "An list of strings."
+        "description": "An array of strings."
     }
 }

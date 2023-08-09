@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "splitString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Split string value into an list of strings using a separator.",
+    "description": "Split string value into an array of strings using a separator.",
     "functionId": "split<string>",
     "functionLabel": "split_string",
     "parameters": [
@@ -29,7 +29,7 @@
     "pure": true,
     "returns": {
         "dataType": "array",
-        "description": "An list of strings."
+        "description": "An array of strings."
     },
     "useExecuteFunction": "afw_function_execute_split"
 }

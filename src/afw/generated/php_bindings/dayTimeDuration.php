@@ -29,8 +29,8 @@ class dayTimeDuration
      * Returns boolean true if at least one value in dayTimeDuration list1 is
      * in dayTimeDuration list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,8 @@ class dayTimeDuration
     /**
      * bag_dayTimeDuration()
      *
-     * Takes any number of dayTimeDuration values and returns a list of list.
+     * Takes any number of dayTimeDuration values and returns an array of
+     * array.
      *
      * @param array $values
      *
@@ -75,7 +76,7 @@ class dayTimeDuration
     /**
      * bag_size_dayTimeDuration()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -224,11 +225,11 @@ class dayTimeDuration
     /**
      * intersection_dayTimeDuration()
      *
-     * Returns a list of dayTimeDuration with the values that are common to
-     * both list of dayTimeDuration list1 and list2.
+     * Returns an array of dayTimeDuration with the values that are common to
+     * both array of dayTimeDuration list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -272,8 +273,8 @@ class dayTimeDuration
     /**
      * is_in_dayTimeDuration()
      *
-     * Checks whether dayTimeDuration value is in list of dayTimeDuration
-     * list and returns the boolean result.
+     * Checks whether dayTimeDuration value is in array of dayTimeDuration
+     * array and returns the boolean result.
      *
      * @param dayTimeDuration $value
      * @param array $array
@@ -401,8 +402,8 @@ class dayTimeDuration
     /**
      * one_and_only_dayTimeDuration()
      *
-     * This converts a list of dayTimeDuration values that contains one value
-     * to a single dayTimeDuration value.
+     * This converts an array of dayTimeDuration values that contains one
+     * value to a single dayTimeDuration value.
      *
      * @param array $array
      *
@@ -452,8 +453,8 @@ class dayTimeDuration
      * Returns boolean true if the unique values in dayTimeDuration list1 are
      * all in dayTimeDuration list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -474,7 +475,7 @@ class dayTimeDuration
     /**
      * to_string_dayTimeDuration()
      *
-     * Converts dayTimeDuration value to string. For list values, the
+     * Converts dayTimeDuration value to string. For array values, the
      * to_string() value for each entry is returned separated with commas.
      *
      * @param dayTimeDuration $value A dayTimeDuration value.
@@ -497,8 +498,8 @@ class dayTimeDuration
     /**
      * union_dayTimeDuration()
      *
-     * Returns a list of dayTimeDuration contains all of the unique values in
-     * two or more list of dayTimeDuration values.
+     * Returns an array of dayTimeDuration contains all of the unique values
+     * in two or more array of dayTimeDuration values.
      *
      * @param array $lists Two or more lists.
      *

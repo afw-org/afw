@@ -837,7 +837,7 @@ def retrieve_objects(session, objectType, adaptorId=None, queryCriteria=None, op
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    array: This is the list of objects retrieved.
+    array: This is the array of objects retrieved.
     '''
 
     request = session.Request()
@@ -886,7 +886,7 @@ def retrieve_objects_to_callback(session, objectCallback, userData, objectType, 
 
         objectCallback (function): If this is specified, this function is
         called once for each object retrieved instead of adding the object to
-        the return list. Parameter object will be an object retrieved or
+        the return array. Parameter object will be an object retrieved or
         undefined if there are no more objects. This function should return
         true if it wants to abort the retrieve request.
 
@@ -1126,7 +1126,7 @@ def retrieve_objects_with_uri(session, uri, options=None, adaptorTypeSpecific=No
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    array: This is the list of objects retrieved.
+    array: This is the array of objects retrieved.
     '''
 
     request = session.Request()
@@ -1168,7 +1168,7 @@ def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri
 
         objectCallback (function): If this is specified, this function is
         called once for each object retrieved instead of adding the object to
-        the return list. Parameter object will be an object retrieved or
+        the return array. Parameter object will be an object retrieved or
         undefined if there are no more objects. This function should return
         true if it wants to abort the retrieve request.
 

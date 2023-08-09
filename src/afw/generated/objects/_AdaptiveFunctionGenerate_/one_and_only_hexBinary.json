@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyHexBinary",
-    "brief": "Converts a one value list to a hexBinary value",
+    "brief": "Converts a one value array to a hexBinary value",
     "camelCaseFunctionLabel": "oneAndOnlyHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "This converts a list of hexBinary values that contains one value to a single hexBinary value.",
+    "description": "This converts an array of hexBinary values that contains one value to a single hexBinary value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<hexBinary>",

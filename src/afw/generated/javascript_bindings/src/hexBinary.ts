@@ -15,9 +15,9 @@ interface IAnyObject {
  * Returns boolean true if at least one value in hexBinary list1 is in
  * hexBinary list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -33,7 +33,7 @@ export function afwAtLeastOneMemberOfHexBinary(client : any, list1 : any[], list
 }
 
 /**
- * Takes any number of hexBinary values and returns a list of list.
+ * Takes any number of hexBinary values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -52,7 +52,7 @@ export function afwBagHexBinary(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -191,12 +191,12 @@ export function afwHexBinary(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of hexBinary with the values that are common to both list
- * of hexBinary list1 and list2.
+ * Returns an array of hexBinary with the values that are common to both
+ * array of hexBinary list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -229,7 +229,7 @@ export function afwIsHexBinary(client : any, value : any) : any {
 }
 
 /**
- * Checks whether hexBinary value is in list of hexBinary list and returns
+ * Checks whether hexBinary value is in array of hexBinary array and returns
  * the boolean result.
  * 
  * @param {hexBinary} value -
@@ -337,7 +337,7 @@ export function afwNexHexBinary(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This converts a list of hexBinary values that contains one value to a
+ * This converts an array of hexBinary values that contains one value to a
  * single hexBinary value.
  * 
  * @param {array} array -
@@ -379,9 +379,9 @@ export function afwSetEqualsHexBinary(client : any, list1 : any[], list2 : any[]
  * Returns boolean true if the unique values in hexBinary list1 are all in
  * hexBinary list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -397,8 +397,8 @@ export function afwSubsetHexBinary(client : any, list1 : any[], list2 : any[]) :
 }
 
 /**
- * Converts hexBinary value to string. For list values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts hexBinary value to string. For array values, the to_string()
+ * value for each entry is returned separated with commas.
  * 
  * @param {hexBinary} value - A hexBinary value.
  * 
@@ -415,8 +415,8 @@ export function afwToStringHexBinary(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of hexBinary contains all of the unique values in two or
- * more list of hexBinary values.
+ * Returns an array of hexBinary contains all of the unique values in two or
+ * more array of hexBinary values.
  * 
  * @param {array} lists - Two or more lists.
  * 

@@ -904,7 +904,7 @@ afw_function_definition_retrieve_objects;
  *
  * Returns:
  *
- *   (array) This is the list of objects retrieved.
+ *   (array) This is the array of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -949,7 +949,7 @@ afw_function_definition_retrieve_objects_to_callback;
  *
  *   objectCallback - (function (object: object, userData: any): boolean) If
  *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return list. Parameter
+ *       retrieved instead of adding the object to the return array. Parameter
  *       object will be an object retrieved or undefined if there are no more
  *       objects. This function should return true if it wants to abort the
  *       retrieve request.
@@ -1176,7 +1176,7 @@ afw_function_definition_retrieve_objects_with_uri;
  *
  * Returns:
  *
- *   (array) This is the list of objects retrieved.
+ *   (array) This is the array of objects retrieved.
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -1218,7 +1218,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *
  *   objectCallback - (function (object: object, userData: any): boolean) If
  *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return list. Parameter
+ *       retrieved instead of adding the object to the return array. Parameter
  *       object will be an object retrieved or undefined if there are no more
  *       objects. This function should return true if it wants to abort the
  *       retrieve request.
@@ -1588,7 +1588,7 @@ afw_function_definition_flag_get_active;
  * @brief Adaptive Function `flag_get_active`
  * @param x function execute parameter.
  *
- * Get a list of of the flagId of flags that are set in the current execution
+ * Get an array of of the flagId of flags that are set in the current execution
  * context (xctx).
  *
  * This function is not pure, so it may return a different result
@@ -1606,7 +1606,7 @@ afw_function_definition_flag_get_active;
  *
  * Returns:
  *
- *   (array string) This is a list of the flagId of flags that are set in the
+ *   (array string) This is an array of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -1621,7 +1621,7 @@ afw_function_definition_flag_get_active_defaults;
  * @brief Adaptive Function `flag_get_active_defaults`
  * @param x function execute parameter.
  *
- * Get a list of the flagId of flags that are set by default when a new
+ * Get an array of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
  *
  * This function is not pure, so it may return a different result
@@ -1639,7 +1639,7 @@ afw_function_definition_flag_get_active_defaults;
  *
  * Returns:
  *
- *   (array string) This is a list of the flagId of flags that are set by
+ *   (array string) This is an array of the flagId of flags that are set by
  *       default when a new execution context (xctx) is created.
  */
 const afw_value_t *
@@ -1654,8 +1654,8 @@ afw_function_definition_flag_get_defaults;
  * @brief Adaptive Function `flag_get_defaults`
  * @param x function execute parameter.
  *
- * Get the list of the flagId of flags that are used to determine the default
- * active flags when an execution context (xctx) is created. This list can
+ * Get the array of the flagId of flags that are used to determine the default
+ * active flags when an execution context (xctx) is created. This array can
  * contain the flagId of flags that have not yet been registered. Each of these
  * flags and the flags they include are set as the active default flags.
  *
@@ -1674,8 +1674,8 @@ afw_function_definition_flag_get_defaults;
  *
  * Returns:
  *
- *   (array string) This is a list of the flagId of flags used to determine the
- *       default active flags.
+ *   (array string) This is an array of the flagId of flags used to determine
+ *       the default active flags.
  */
 const afw_value_t *
 afw_function_execute_flag_get_defaults(
@@ -1689,9 +1689,9 @@ afw_function_definition_flag_modify_defaults;
  * @brief Adaptive Function `flag_modify_defaults`
  * @param x function execute parameter.
  *
- * Add or remove flags from the list of the flagId of flags that are used to
+ * Add or remove flags from the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
- * created. This list can contain the flagId of flags that have not yet been
+ * created. This array can contain the flagId of flags that have not yet been
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
@@ -1734,9 +1734,9 @@ afw_function_definition_flag_replace_defaults;
  * @brief Adaptive Function `flag_replace_defaults`
  * @param x function execute parameter.
  *
- * Completely replace the list of the flagId of flags that are used to
+ * Completely replace the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
- * created. This list can contain the flagId of flags that have not yet been
+ * created. This array can contain the flagId of flags that have not yet been
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
@@ -1757,7 +1757,7 @@ afw_function_definition_flag_replace_defaults;
  *
  * Parameters:
  *
- *   flagId - (array string) The list of the flagId of flags used to determine
+ *   flagId - (array string) The array of the flagId of flags used to determine
  *       the default active flags.
  *
  * Returns:
@@ -2068,9 +2068,9 @@ afw_function_definition_at_least_one_member_of_anyURI;
  *
  * Parameters:
  *
- *   list1 - (array anyURI) The first list.
+ *   list1 - (array anyURI) The first array.
  *
- *   list2 - (array anyURI) The second list.
+ *   list2 - (array anyURI) The second array.
  *
  * Returns:
  *
@@ -2089,7 +2089,7 @@ afw_function_definition_bag_anyURI;
  * @brief Adaptive Function `bag<anyURI>`
  * @param x function execute parameter.
  *
- * Takes any number of anyURI values and returns a list of list.
+ * Takes any number of anyURI values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2123,7 +2123,7 @@ afw_function_definition_bag_size_anyURI;
  * @brief Adaptive Function `bag_size<anyURI>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2437,7 +2437,7 @@ afw_function_definition_intersection_anyURI;
  * @brief Adaptive Function `intersection<anyURI>`
  * @param x function execute parameter.
  *
- * Returns a list of anyURI with the values that are common to both list of
+ * Returns an array of anyURI with the values that are common to both array of
  * anyURI list1 and list2.
  *
  * This function is pure, so it will always return the same result
@@ -2454,9 +2454,9 @@ afw_function_definition_intersection_anyURI;
  *
  * Parameters:
  *
- *   list1 - (array anyURI) The first list.
+ *   list1 - (array anyURI) The first array.
  *
- *   list2 - (array anyURI) The second list.
+ *   list2 - (array anyURI) The second array.
  *
  * Returns:
  *
@@ -2509,7 +2509,7 @@ afw_function_definition_is_in_anyURI;
  * @brief Adaptive Function `is_in<anyURI>`
  * @param x function execute parameter.
  *
- * Checks whether anyURI value is in list of anyURI list and returns the
+ * Checks whether anyURI value is in array of anyURI array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -2628,7 +2628,7 @@ afw_function_definition_length_anyURI;
  * @param x function execute parameter.
  *
  * This is a polymorphic function where anyURI can be any of the supported data
- * types. Return the integer number of entries in datatype list or codepoints
+ * types. Return the integer number of entries in datatype array or codepoints
  * in others.
  *
  * This function is pure, so it will always return the same result
@@ -2644,8 +2644,8 @@ afw_function_definition_length_anyURI;
  *
  * Parameters:
  *
- *   value - (anyURI) Returns the number of entries in a list or code points in
- *       others.
+ *   value - (anyURI) Returns the number of entries in an array or code points
+ *       in others.
  *
  * Returns:
  *
@@ -2784,7 +2784,7 @@ afw_function_definition_one_and_only_anyURI;
  * @brief Adaptive Function `one_and_only<anyURI>`
  * @param x function execute parameter.
  *
- * This converts a list of anyURI values that contains one value to a single
+ * This converts an array of anyURI values that contains one value to a single
  * anyURI value.
  *
  * This function is pure, so it will always return the same result
@@ -2808,7 +2808,7 @@ afw_function_definition_one_and_only_anyURI;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -3062,7 +3062,7 @@ afw_function_definition_split_anyURI;
  * @brief Adaptive Function `split<anyURI>`
  * @param x function execute parameter.
  *
- * Split anyURI value into an list of strings using a separator.
+ * Split anyURI value into an array of strings using a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3090,7 +3090,7 @@ afw_function_definition_split_anyURI;
  *
  * Returns:
  *
- *   (array) An list of strings.
+ *   (array) An array of strings.
  *
  * Implemented by afw_function_execute_split()
  *
@@ -3160,9 +3160,9 @@ afw_function_definition_subset_anyURI;
  *
  * Parameters:
  *
- *   list1 - (array anyURI) The first list.
+ *   list1 - (array anyURI) The first array.
  *
- *   list2 - (array anyURI) The second list.
+ *   list2 - (array anyURI) The second array.
  *
  * Returns:
  *
@@ -3227,7 +3227,7 @@ afw_function_definition_to_string_anyURI;
  * @brief Adaptive Function `to_string<anyURI>`
  * @param x function execute parameter.
  *
- * Converts anyURI value to string. For list values, the to_string() value for
+ * Converts anyURI value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -3262,8 +3262,8 @@ afw_function_definition_union_anyURI;
  * @brief Adaptive Function `union<anyURI>`
  * @param x function execute parameter.
  *
- * Returns a list of anyURI contains all of the unique values in two or more
- * list of anyURI values.
+ * Returns an array of anyURI contains all of the unique values in two or more
+ * array of anyURI values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3361,13 +3361,13 @@ afw_function_definition_add_entries;
  *
  * Parameters:
  *
- *   target - (array) Target list. This list must not be immutable.
+ *   target - (array) Target array. This array must not be immutable.
  *
- *   source - (1 or more array) Source list(s).
+ *   source - (1 or more array) Source array(s).
  *
  * Returns:
  *
- *   (array) The modified target list.
+ *   (array) The modified target array.
  */
 const afw_value_t *
 afw_function_execute_add_entries(
@@ -3422,7 +3422,7 @@ afw_function_definition_bag_array;
  * @brief Adaptive Function `bag<array>`
  * @param x function execute parameter.
  *
- * Takes any number of array values and returns a list of list.
+ * Takes any number of array values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3456,7 +3456,7 @@ afw_function_definition_bag_size_array;
  * @brief Adaptive Function `bag_size<array>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3682,7 +3682,7 @@ afw_function_definition_includes_array;
  * @brief Adaptive Function `includes<array>`
  * @param x function execute parameter.
  *
- * Checks whether or not a list contains any value.
+ * Checks whether or not an array contains any value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3699,15 +3699,15 @@ afw_function_definition_includes_array;
  *
  * Parameters:
  *
- *   array - (``<Type>``) The list to search.
+ *   array - (``<Type>``) The array to search.
  *
  *   searchElement - (any dataType) Element to find.
  *
- *   fromIndex - (optional integer) Index in the list to start search.
+ *   fromIndex - (optional integer) Index in the array to start search.
  *
  * Returns:
  *
- *   (boolean) Indicates if the element is found in list.
+ *   (boolean) Indicates if the element is found in array.
  *
  * Implemented by afw_function_execute_includes_array()
  *
@@ -3756,7 +3756,7 @@ afw_function_definition_join;
  * @brief Adaptive Function `join`
  * @param x function execute parameter.
  *
- * Concatenate the string values of the elements of a list with a separator.
+ * Concatenate the string values of the elements of an array with a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3772,14 +3772,14 @@ afw_function_definition_join;
  *
  * Parameters:
  *
- *   value - (array) A list of values (statements) of any data type.
+ *   value - (array) An array of values (statements) of any data type.
  *
  *   separator - (optional string) The separator to use. If not specified, a
  *       comma (,) is used.
  *
  * Returns:
  *
- *   (string) Joined list values.
+ *   (string) Joined array values.
  */
 const afw_value_t *
 afw_function_execute_join(
@@ -3832,7 +3832,7 @@ afw_function_definition_length_array;
  * @param x function execute parameter.
  *
  * This is a polymorphic function where array can be any of the supported data
- * types. Return the integer number of entries in datatype list or codepoints
+ * types. Return the integer number of entries in datatype array or codepoints
  * in others.
  *
  * This function is pure, so it will always return the same result
@@ -3848,8 +3848,8 @@ afw_function_definition_length_array;
  *
  * Parameters:
  *
- *   value - (array) Returns the number of entries in a list or code points in
- *       others.
+ *   value - (array) Returns the number of entries in an array or code points
+ *       in others.
  *
  * Returns:
  *
@@ -3987,8 +3987,8 @@ afw_function_definition_reverse;
  * @brief Adaptive Function `reverse`
  * @param x function execute parameter.
  *
- * Reverse the order of the elements in a list. If the list is typed, the
- * resulting list will be the same type.
+ * Reverse the order of the elements in an array. If the array is typed, the
+ * resulting array will be the same type.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4003,11 +4003,11 @@ afw_function_definition_reverse;
  *
  * Parameters:
  *
- *   array - (array) A list to reverse.
+ *   array - (array) An array to reverse.
  *
  * Returns:
  *
- *   (array) A list with elements reversed.
+ *   (array) An array with elements reversed.
  */
 const afw_value_t *
 afw_function_execute_reverse(
@@ -4021,7 +4021,7 @@ afw_function_definition_slice;
  * @brief Adaptive Function `slice`
  * @param x function execute parameter.
  *
- * This function extracts a consecutive slice of values from a list.
+ * This function extracts a consecutive slice of values from an array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4038,22 +4038,22 @@ afw_function_definition_slice;
  *
  * Parameters:
  *
- *   array - (array) The list to slice.
+ *   array - (array) The array to slice.
  *
  *   startIndex - (optional integer) This is the zero based starting index. Use
- *       negative number to index from the end of the list. If not specified,
+ *       negative number to index from the end of the array. If not specified,
  *       an index of 0 is assumed.
  *
  *   endIndex - (optional integer) This is the zero based ending index. If
  *       positive, this is one more than the index of the last value to include
- *       in the list. If negative, the index is from the end of the list. If
+ *       in the array. If negative, the index is from the end of the array. If
  *       not specified, the slice is from startIndex up to and including the
- *       end of the list.
+ *       end of the array.
  *
  * Returns:
  *
- *   (array) A list containing the selected values. If all of the values are
- *       the same data type, the list will be a list of that data type.
+ *   (array) An array containing the selected values. If all of the values are
+ *       the same data type, the array will be an array of that data type.
  */
 const afw_value_t *
 afw_function_execute_slice(
@@ -4067,7 +4067,7 @@ afw_function_definition_to_string_array;
  * @brief Adaptive Function `to_string<array>`
  * @param x function execute parameter.
  *
- * Converts array value to string. For list values, the to_string() value for
+ * Converts array value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -4129,9 +4129,9 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  *
  * Parameters:
  *
- *   list1 - (array base64Binary) The first list.
+ *   list1 - (array base64Binary) The first array.
  *
- *   list2 - (array base64Binary) The second list.
+ *   list2 - (array base64Binary) The second array.
  *
  * Returns:
  *
@@ -4150,7 +4150,7 @@ afw_function_definition_bag_base64Binary;
  * @brief Adaptive Function `bag<base64Binary>`
  * @param x function execute parameter.
  *
- * Takes any number of base64Binary values and returns a list of list.
+ * Takes any number of base64Binary values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4184,7 +4184,7 @@ afw_function_definition_bag_size_base64Binary;
  * @brief Adaptive Function `bag_size<base64Binary>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4449,8 +4449,8 @@ afw_function_definition_intersection_base64Binary;
  * @brief Adaptive Function `intersection<base64Binary>`
  * @param x function execute parameter.
  *
- * Returns a list of base64Binary with the values that are common to both list
- * of base64Binary list1 and list2.
+ * Returns an array of base64Binary with the values that are common to both
+ * array of base64Binary list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4466,9 +4466,9 @@ afw_function_definition_intersection_base64Binary;
  *
  * Parameters:
  *
- *   list1 - (array base64Binary) The first list.
+ *   list1 - (array base64Binary) The first array.
  *
- *   list2 - (array base64Binary) The second list.
+ *   list2 - (array base64Binary) The second array.
  *
  * Returns:
  *
@@ -4521,7 +4521,7 @@ afw_function_definition_is_in_base64Binary;
  * @brief Adaptive Function `is_in<base64Binary>`
  * @param x function execute parameter.
  *
- * Checks whether base64Binary value is in list of base64Binary list and
+ * Checks whether base64Binary value is in array of base64Binary array and
  * returns the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -4718,7 +4718,7 @@ afw_function_definition_one_and_only_base64Binary;
  * @brief Adaptive Function `one_and_only<base64Binary>`
  * @param x function execute parameter.
  *
- * This converts a list of base64Binary values that contains one value to a
+ * This converts an array of base64Binary values that contains one value to a
  * single base64Binary value.
  *
  * This function is pure, so it will always return the same result
@@ -4742,7 +4742,7 @@ afw_function_definition_one_and_only_base64Binary;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -4812,9 +4812,9 @@ afw_function_definition_subset_base64Binary;
  *
  * Parameters:
  *
- *   list1 - (array base64Binary) The first list.
+ *   list1 - (array base64Binary) The first array.
  *
- *   list2 - (array base64Binary) The second list.
+ *   list2 - (array base64Binary) The second array.
  *
  * Returns:
  *
@@ -4833,7 +4833,7 @@ afw_function_definition_to_string_base64Binary;
  * @brief Adaptive Function `to_string<base64Binary>`
  * @param x function execute parameter.
  *
- * Converts base64Binary value to string. For list values, the to_string()
+ * Converts base64Binary value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -4868,8 +4868,8 @@ afw_function_definition_union_base64Binary;
  * @brief Adaptive Function `union<base64Binary>`
  * @param x function execute parameter.
  *
- * Returns a list of base64Binary contains all of the unique values in two or
- * more list of base64Binary values.
+ * Returns an array of base64Binary contains all of the unique values in two or
+ * more array of base64Binary values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4932,9 +4932,9 @@ afw_function_definition_at_least_one_member_of_boolean;
  *
  * Parameters:
  *
- *   list1 - (array boolean) The first list.
+ *   list1 - (array boolean) The first array.
  *
- *   list2 - (array boolean) The second list.
+ *   list2 - (array boolean) The second array.
  *
  * Returns:
  *
@@ -4953,7 +4953,7 @@ afw_function_definition_bag_boolean;
  * @brief Adaptive Function `bag<boolean>`
  * @param x function execute parameter.
  *
- * Takes any number of boolean values and returns a list of list.
+ * Takes any number of boolean values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4987,7 +4987,7 @@ afw_function_definition_bag_size_boolean;
  * @brief Adaptive Function `bag_size<boolean>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5217,7 +5217,7 @@ afw_function_definition_intersection_boolean;
  * @brief Adaptive Function `intersection<boolean>`
  * @param x function execute parameter.
  *
- * Returns a list of boolean with the values that are common to both list of
+ * Returns an array of boolean with the values that are common to both array of
  * boolean list1 and list2.
  *
  * This function is pure, so it will always return the same result
@@ -5234,9 +5234,9 @@ afw_function_definition_intersection_boolean;
  *
  * Parameters:
  *
- *   list1 - (array boolean) The first list.
+ *   list1 - (array boolean) The first array.
  *
- *   list2 - (array boolean) The second list.
+ *   list2 - (array boolean) The second array.
  *
  * Returns:
  *
@@ -5289,7 +5289,7 @@ afw_function_definition_is_in_boolean;
  * @brief Adaptive Function `is_in<boolean>`
  * @param x function execute parameter.
  *
- * Checks whether boolean value is in list of boolean list and returns the
+ * Checks whether boolean value is in array of boolean array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -5485,7 +5485,7 @@ afw_function_definition_one_and_only_boolean;
  * @brief Adaptive Function `one_and_only<boolean>`
  * @param x function execute parameter.
  *
- * This converts a list of boolean values that contains one value to a single
+ * This converts an array of boolean values that contains one value to a single
  * boolean value.
  *
  * This function is pure, so it will always return the same result
@@ -5509,7 +5509,7 @@ afw_function_definition_one_and_only_boolean;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -5579,9 +5579,9 @@ afw_function_definition_subset_boolean;
  *
  * Parameters:
  *
- *   list1 - (array boolean) The first list.
+ *   list1 - (array boolean) The first array.
  *
- *   list2 - (array boolean) The second list.
+ *   list2 - (array boolean) The second array.
  *
  * Returns:
  *
@@ -5600,8 +5600,8 @@ afw_function_definition_to_string_boolean;
  * @brief Adaptive Function `to_string<boolean>`
  * @param x function execute parameter.
  *
- * Converts boolean value to string. For list values, the to_string() value for
- * each entry is returned separated with commas.
+ * Converts boolean value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5635,8 +5635,8 @@ afw_function_definition_union_boolean;
  * @brief Adaptive Function `union<boolean>`
  * @param x function execute parameter.
  *
- * Returns a list of boolean contains all of the unique values in two or more
- * list of boolean values.
+ * Returns an array of boolean contains all of the unique values in two or more
+ * array of boolean values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6668,9 +6668,9 @@ afw_function_definition_at_least_one_member_of_dateTime;
  *
  * Parameters:
  *
- *   list1 - (array dateTime) The first list.
+ *   list1 - (array dateTime) The first array.
  *
- *   list2 - (array dateTime) The second list.
+ *   list2 - (array dateTime) The second array.
  *
  * Returns:
  *
@@ -6689,7 +6689,7 @@ afw_function_definition_bag_dateTime;
  * @brief Adaptive Function `bag<dateTime>`
  * @param x function execute parameter.
  *
- * Takes any number of dateTime values and returns a list of list.
+ * Takes any number of dateTime values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6723,7 +6723,7 @@ afw_function_definition_bag_size_dateTime;
  * @brief Adaptive Function `bag_size<dateTime>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6959,8 +6959,8 @@ afw_function_definition_intersection_dateTime;
  * @brief Adaptive Function `intersection<dateTime>`
  * @param x function execute parameter.
  *
- * Returns a list of dateTime with the values that are common to both list of
- * dateTime list1 and list2.
+ * Returns an array of dateTime with the values that are common to both array
+ * of dateTime list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6976,9 +6976,9 @@ afw_function_definition_intersection_dateTime;
  *
  * Parameters:
  *
- *   list1 - (array dateTime) The first list.
+ *   list1 - (array dateTime) The first array.
  *
- *   list2 - (array dateTime) The second list.
+ *   list2 - (array dateTime) The second array.
  *
  * Returns:
  *
@@ -7031,7 +7031,7 @@ afw_function_definition_is_in_dateTime;
  * @brief Adaptive Function `is_in<dateTime>`
  * @param x function execute parameter.
  *
- * Checks whether dateTime value is in list of dateTime list and returns the
+ * Checks whether dateTime value is in array of dateTime array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -7310,8 +7310,8 @@ afw_function_definition_one_and_only_dateTime;
  * @brief Adaptive Function `one_and_only<dateTime>`
  * @param x function execute parameter.
  *
- * This converts a list of dateTime values that contains one value to a single
- * dateTime value.
+ * This converts an array of dateTime values that contains one value to a
+ * single dateTime value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7334,7 +7334,7 @@ afw_function_definition_one_and_only_dateTime;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -7404,9 +7404,9 @@ afw_function_definition_subset_dateTime;
  *
  * Parameters:
  *
- *   list1 - (array dateTime) The first list.
+ *   list1 - (array dateTime) The first array.
  *
- *   list2 - (array dateTime) The second list.
+ *   list2 - (array dateTime) The second array.
  *
  * Returns:
  *
@@ -7499,7 +7499,7 @@ afw_function_definition_to_string_dateTime;
  * @brief Adaptive Function `to_string<dateTime>`
  * @param x function execute parameter.
  *
- * Converts dateTime value to string. For list values, the to_string() value
+ * Converts dateTime value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -7534,8 +7534,8 @@ afw_function_definition_union_dateTime;
  * @brief Adaptive Function `union<dateTime>`
  * @param x function execute parameter.
  *
- * Returns a list of dateTime contains all of the unique values in two or more
- * list of dateTime values.
+ * Returns an array of dateTime contains all of the unique values in two or
+ * more array of dateTime values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7633,9 +7633,9 @@ afw_function_definition_at_least_one_member_of_date;
  *
  * Parameters:
  *
- *   list1 - (array date) The first list.
+ *   list1 - (array date) The first array.
  *
- *   list2 - (array date) The second list.
+ *   list2 - (array date) The second array.
  *
  * Returns:
  *
@@ -7654,7 +7654,7 @@ afw_function_definition_bag_date;
  * @brief Adaptive Function `bag<date>`
  * @param x function execute parameter.
  *
- * Takes any number of date values and returns a list of list.
+ * Takes any number of date values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7688,7 +7688,7 @@ afw_function_definition_bag_size_date;
  * @brief Adaptive Function `bag_size<date>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7924,8 +7924,8 @@ afw_function_definition_intersection_date;
  * @brief Adaptive Function `intersection<date>`
  * @param x function execute parameter.
  *
- * Returns a list of date with the values that are common to both list of date
- * list1 and list2.
+ * Returns an array of date with the values that are common to both array of
+ * date list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7941,9 +7941,9 @@ afw_function_definition_intersection_date;
  *
  * Parameters:
  *
- *   list1 - (array date) The first list.
+ *   list1 - (array date) The first array.
  *
- *   list2 - (array date) The second list.
+ *   list2 - (array date) The second array.
  *
  * Returns:
  *
@@ -7996,7 +7996,7 @@ afw_function_definition_is_in_date;
  * @brief Adaptive Function `is_in<date>`
  * @param x function execute parameter.
  *
- * Checks whether date value is in list of date list and returns the boolean
+ * Checks whether date value is in array of date array and returns the boolean
  * result.
  *
  * This function is pure, so it will always return the same result
@@ -8273,8 +8273,8 @@ afw_function_definition_one_and_only_date;
  * @brief Adaptive Function `one_and_only<date>`
  * @param x function execute parameter.
  *
- * This converts a list of date values that contains one value to a single date
- * value.
+ * This converts an array of date values that contains one value to a single
+ * date value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8297,7 +8297,7 @@ afw_function_definition_one_and_only_date;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -8367,9 +8367,9 @@ afw_function_definition_subset_date;
  *
  * Parameters:
  *
- *   list1 - (array date) The first list.
+ *   list1 - (array date) The first array.
  *
- *   list2 - (array date) The second list.
+ *   list2 - (array date) The second array.
  *
  * Returns:
  *
@@ -8424,7 +8424,7 @@ afw_function_definition_to_string_date;
  * @brief Adaptive Function `to_string<date>`
  * @param x function execute parameter.
  *
- * Converts date value to string. For list values, the to_string() value for
+ * Converts date value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -8459,8 +8459,8 @@ afw_function_definition_union_date;
  * @brief Adaptive Function `union<date>`
  * @param x function execute parameter.
  *
- * Returns a list of date contains all of the unique values in two or more list
- * of date values.
+ * Returns an array of date contains all of the unique values in two or more
+ * array of date values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8523,9 +8523,9 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration) The first list.
+ *   list1 - (array dayTimeDuration) The first array.
  *
- *   list2 - (array dayTimeDuration) The second list.
+ *   list2 - (array dayTimeDuration) The second array.
  *
  * Returns:
  *
@@ -8544,7 +8544,7 @@ afw_function_definition_bag_dayTimeDuration;
  * @brief Adaptive Function `bag<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Takes any number of dayTimeDuration values and returns a list of list.
+ * Takes any number of dayTimeDuration values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8578,7 +8578,7 @@ afw_function_definition_bag_size_dayTimeDuration;
  * @brief Adaptive Function `bag_size<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8810,8 +8810,8 @@ afw_function_definition_intersection_dayTimeDuration;
  * @brief Adaptive Function `intersection<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Returns a list of dayTimeDuration with the values that are common to both
- * list of dayTimeDuration list1 and list2.
+ * Returns an array of dayTimeDuration with the values that are common to both
+ * array of dayTimeDuration list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8827,9 +8827,9 @@ afw_function_definition_intersection_dayTimeDuration;
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration) The first list.
+ *   list1 - (array dayTimeDuration) The first array.
  *
- *   list2 - (array dayTimeDuration) The second list.
+ *   list2 - (array dayTimeDuration) The second array.
  *
  * Returns:
  *
@@ -8883,8 +8883,8 @@ afw_function_definition_is_in_dayTimeDuration;
  * @brief Adaptive Function `is_in<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Checks whether dayTimeDuration value is in list of dayTimeDuration list and
- * returns the boolean result.
+ * Checks whether dayTimeDuration value is in array of dayTimeDuration array
+ * and returns the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9080,8 +9080,8 @@ afw_function_definition_one_and_only_dayTimeDuration;
  * @brief Adaptive Function `one_and_only<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * This converts a list of dayTimeDuration values that contains one value to a
- * single dayTimeDuration value.
+ * This converts an array of dayTimeDuration values that contains one value to
+ * a single dayTimeDuration value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9104,7 +9104,7 @@ afw_function_definition_one_and_only_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -9174,9 +9174,9 @@ afw_function_definition_subset_dayTimeDuration;
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration) The first list.
+ *   list1 - (array dayTimeDuration) The first array.
  *
- *   list2 - (array dayTimeDuration) The second list.
+ *   list2 - (array dayTimeDuration) The second array.
  *
  * Returns:
  *
@@ -9195,7 +9195,7 @@ afw_function_definition_to_string_dayTimeDuration;
  * @brief Adaptive Function `to_string<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Converts dayTimeDuration value to string. For list values, the to_string()
+ * Converts dayTimeDuration value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -9230,8 +9230,8 @@ afw_function_definition_union_dayTimeDuration;
  * @brief Adaptive Function `union<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Returns a list of dayTimeDuration contains all of the unique values in two
- * or more list of dayTimeDuration values.
+ * Returns an array of dayTimeDuration contains all of the unique values in two
+ * or more array of dayTimeDuration values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9277,7 +9277,7 @@ afw_function_definition_bag_dnsName;
  * @brief Adaptive Function `bag<dnsName>`
  * @param x function execute parameter.
  *
- * Takes any number of dnsName values and returns a list of list.
+ * Takes any number of dnsName values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9311,7 +9311,7 @@ afw_function_definition_bag_size_dnsName;
  * @brief Adaptive Function `bag_size<dnsName>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9575,7 +9575,7 @@ afw_function_definition_is_in_dnsName;
  * @brief Adaptive Function `is_in<dnsName>`
  * @param x function execute parameter.
  *
- * Checks whether dnsName value is in list of dnsName list and returns the
+ * Checks whether dnsName value is in array of dnsName array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -9771,7 +9771,7 @@ afw_function_definition_one_and_only_dnsName;
  * @brief Adaptive Function `one_and_only<dnsName>`
  * @param x function execute parameter.
  *
- * This converts a list of dnsName values that contains one value to a single
+ * This converts an array of dnsName values that contains one value to a single
  * dnsName value.
  *
  * This function is pure, so it will always return the same result
@@ -9795,7 +9795,7 @@ afw_function_definition_one_and_only_dnsName;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -9848,8 +9848,8 @@ afw_function_definition_to_string_dnsName;
  * @brief Adaptive Function `to_string<dnsName>`
  * @param x function execute parameter.
  *
- * Converts dnsName value to string. For list values, the to_string() value for
- * each entry is returned separated with commas.
+ * Converts dnsName value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9978,9 +9978,9 @@ afw_function_definition_at_least_one_member_of_double;
  *
  * Parameters:
  *
- *   list1 - (array double) The first list.
+ *   list1 - (array double) The first array.
  *
- *   list2 - (array double) The second list.
+ *   list2 - (array double) The second array.
  *
  * Returns:
  *
@@ -9999,7 +9999,7 @@ afw_function_definition_bag_double;
  * @brief Adaptive Function `bag<double>`
  * @param x function execute parameter.
  *
- * Takes any number of double values and returns a list of list.
+ * Takes any number of double values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10033,7 +10033,7 @@ afw_function_definition_bag_size_double;
  * @brief Adaptive Function `bag_size<double>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10367,7 +10367,7 @@ afw_function_definition_intersection_double;
  * @brief Adaptive Function `intersection<double>`
  * @param x function execute parameter.
  *
- * Returns a list of double with the values that are common to both list of
+ * Returns an array of double with the values that are common to both array of
  * double list1 and list2.
  *
  * This function is pure, so it will always return the same result
@@ -10384,9 +10384,9 @@ afw_function_definition_intersection_double;
  *
  * Parameters:
  *
- *   list1 - (array double) The first list.
+ *   list1 - (array double) The first array.
  *
- *   list2 - (array double) The second list.
+ *   list2 - (array double) The second array.
  *
  * Returns:
  *
@@ -10506,7 +10506,7 @@ afw_function_definition_is_in_double;
  * @brief Adaptive Function `is_in<double>`
  * @param x function execute parameter.
  *
- * Checks whether double value is in list of double list and returns the
+ * Checks whether double value is in array of double array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -10840,7 +10840,7 @@ afw_function_definition_one_and_only_double;
  * @brief Adaptive Function `one_and_only<double>`
  * @param x function execute parameter.
  *
- * This converts a list of double values that contains one value to a single
+ * This converts an array of double values that contains one value to a single
  * double value.
  *
  * This function is pure, so it will always return the same result
@@ -10864,7 +10864,7 @@ afw_function_definition_one_and_only_double;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -11006,9 +11006,9 @@ afw_function_definition_subset_double;
  *
  * Parameters:
  *
- *   list1 - (array double) The first list.
+ *   list1 - (array double) The first array.
  *
- *   list2 - (array double) The second list.
+ *   list2 - (array double) The second array.
  *
  * Returns:
  *
@@ -11097,7 +11097,7 @@ afw_function_definition_to_string_double;
  * @brief Adaptive Function `to_string<double>`
  * @param x function execute parameter.
  *
- * Converts double value to string. For list values, the to_string() value for
+ * Converts double value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -11132,8 +11132,8 @@ afw_function_definition_union_double;
  * @brief Adaptive Function `union<double>`
  * @param x function execute parameter.
  *
- * Returns a list of double contains all of the unique values in two or more
- * list of double values.
+ * Returns an array of double contains all of the unique values in two or more
+ * array of double values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11179,7 +11179,7 @@ afw_function_definition_bag_expression;
  * @brief Adaptive Function `bag<expression>`
  * @param x function execute parameter.
  *
- * Takes any number of expression values and returns a list of list.
+ * Takes any number of expression values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11213,7 +11213,7 @@ afw_function_definition_bag_size_expression;
  * @brief Adaptive Function `bag_size<expression>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11721,7 +11721,7 @@ afw_function_definition_to_string_expression;
  * @brief Adaptive Function `to_string<expression>`
  * @param x function execute parameter.
  *
- * Converts expression value to string. For list values, the to_string() value
+ * Converts expression value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -11766,7 +11766,7 @@ afw_function_definition_bag_function;
  * @brief Adaptive Function `bag<function>`
  * @param x function execute parameter.
  *
- * Takes any number of function values and returns a list of list.
+ * Takes any number of function values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11800,7 +11800,7 @@ afw_function_definition_bag_size_function;
  * @brief Adaptive Function `bag_size<function>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12250,9 +12250,9 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  *
  * Parameters:
  *
- *   list1 - (array hexBinary) The first list.
+ *   list1 - (array hexBinary) The first array.
  *
- *   list2 - (array hexBinary) The second list.
+ *   list2 - (array hexBinary) The second array.
  *
  * Returns:
  *
@@ -12271,7 +12271,7 @@ afw_function_definition_bag_hexBinary;
  * @brief Adaptive Function `bag<hexBinary>`
  * @param x function execute parameter.
  *
- * Takes any number of hexBinary values and returns a list of list.
+ * Takes any number of hexBinary values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12305,7 +12305,7 @@ afw_function_definition_bag_size_hexBinary;
  * @brief Adaptive Function `bag_size<hexBinary>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12569,8 +12569,8 @@ afw_function_definition_intersection_hexBinary;
  * @brief Adaptive Function `intersection<hexBinary>`
  * @param x function execute parameter.
  *
- * Returns a list of hexBinary with the values that are common to both list of
- * hexBinary list1 and list2.
+ * Returns an array of hexBinary with the values that are common to both array
+ * of hexBinary list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12586,9 +12586,9 @@ afw_function_definition_intersection_hexBinary;
  *
  * Parameters:
  *
- *   list1 - (array hexBinary) The first list.
+ *   list1 - (array hexBinary) The first array.
  *
- *   list2 - (array hexBinary) The second list.
+ *   list2 - (array hexBinary) The second array.
  *
  * Returns:
  *
@@ -12641,8 +12641,8 @@ afw_function_definition_is_in_hexBinary;
  * @brief Adaptive Function `is_in<hexBinary>`
  * @param x function execute parameter.
  *
- * Checks whether hexBinary value is in list of hexBinary list and returns the
- * boolean result.
+ * Checks whether hexBinary value is in array of hexBinary array and returns
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12838,8 +12838,8 @@ afw_function_definition_one_and_only_hexBinary;
  * @brief Adaptive Function `one_and_only<hexBinary>`
  * @param x function execute parameter.
  *
- * This converts a list of hexBinary values that contains one value to a single
- * hexBinary value.
+ * This converts an array of hexBinary values that contains one value to a
+ * single hexBinary value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12862,7 +12862,7 @@ afw_function_definition_one_and_only_hexBinary;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -12932,9 +12932,9 @@ afw_function_definition_subset_hexBinary;
  *
  * Parameters:
  *
- *   list1 - (array hexBinary) The first list.
+ *   list1 - (array hexBinary) The first array.
  *
- *   list2 - (array hexBinary) The second list.
+ *   list2 - (array hexBinary) The second array.
  *
  * Returns:
  *
@@ -12953,7 +12953,7 @@ afw_function_definition_to_string_hexBinary;
  * @brief Adaptive Function `to_string<hexBinary>`
  * @param x function execute parameter.
  *
- * Converts hexBinary value to string. For list values, the to_string() value
+ * Converts hexBinary value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -12988,8 +12988,8 @@ afw_function_definition_union_hexBinary;
  * @brief Adaptive Function `union<hexBinary>`
  * @param x function execute parameter.
  *
- * Returns a list of hexBinary contains all of the unique values in two or more
- * list of hexBinary values.
+ * Returns an array of hexBinary contains all of the unique values in two or
+ * more array of hexBinary values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13035,7 +13035,7 @@ afw_function_definition_all_of;
  * @brief Adaptive Function `all_of`
  * @param x function execute parameter.
  *
- * Returns true if all values in a list pass the predicate test.
+ * Returns true if all values in an array pass the predicate test.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13053,12 +13053,12 @@ afw_function_definition_all_of;
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first list in values or until false is returned.
- *       If no calls return false, the result is true.
+ *       for each value in the first array in values or until false is
+ *       returned. If no calls return false, the result is true.
  *
  *   values - (1 or more any dataType) These are the parameters passed to
- *       predicate with the exception that the first list is passed one value
- *       at a time. At least one list is required.
+ *       predicate with the exception that the first array is passed one value
+ *       at a time. At least one array is required.
  *
  * Returns:
  *
@@ -13161,7 +13161,7 @@ afw_function_definition_any_of;
  * @brief Adaptive Function `any_of`
  * @param x function execute parameter.
  *
- * Returns true if any value in a list pass the predicate test.
+ * Returns true if any value in an array pass the predicate test.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13179,12 +13179,12 @@ afw_function_definition_any_of;
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first list in values or until true is returned.
+ *       for each value in the first array in values or until true is returned.
  *       If no calls return true, the result is false.
  *
  *   values - (1 or more any dataType) These are the parameters passed to
- *       predicate with the exception that the first list is passed one value
- *       at a time. At least one list is required.
+ *       predicate with the exception that the first array is passed one value
+ *       at a time. At least one array is required.
  *
  * Returns:
  *
@@ -13286,7 +13286,7 @@ afw_function_definition_filter;
  * @brief Adaptive Function `filter`
  * @param x function execute parameter.
  *
- * This produces a list containing only values from another list that pass a
+ * This produces an array containing only values from another array that pass a
  * predicate test.
  *
  * This function is pure, so it will always return the same result
@@ -13305,16 +13305,16 @@ afw_function_definition_filter;
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if a list entry should be
- *       included in the returned list.
+ *       function that is called to determine if an array entry should be
+ *       included in the returned array.
  *
  *   values - (1 or more any dataType) These are the values passed to the
- *       predicate with the exception that the first list is passed as the
- *       single current value from the list. At least one list is required.
+ *       predicate with the exception that the first array is passed as the
+ *       single current value from the array. At least one array is required.
  *
  * Returns:
  *
- *   (array) This is the resulting filtered list.
+ *   (array) This is the resulting filtered array.
  */
 const afw_value_t *
 afw_function_execute_filter(
@@ -13328,7 +13328,7 @@ afw_function_definition_find;
  * @brief Adaptive Function `find`
  * @param x function execute parameter.
  *
- * The predicate is called for each value in the first list in values until
+ * The predicate is called for each value in the first array in values until
  * true is returned, then that value is returned.
  *
  * This function is pure, so it will always return the same result
@@ -13347,11 +13347,12 @@ afw_function_definition_find;
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if a list entry passes the test.
+ *       function that is called to determine if an array entry passes the
+ *       test.
  *
  *   values - (1 or more any dataType) These are the values passed to the
- *       predicate with the exception that the first list is passed as the
- *       single current value from the list. At least one list is required.
+ *       predicate with the exception that the first array is passed as the
+ *       single current value from the array. At least one array is required.
  *
  * Returns:
  *
@@ -13369,8 +13370,8 @@ afw_function_definition_map;
  * @brief Adaptive Function `map`
  * @param x function execute parameter.
  *
- * This function creates a list of the results of calling functor with each
- * value of the first list in values
+ * This function creates an array of the results of calling functor with each
+ * value of the first array in values
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13390,8 +13391,8 @@ afw_function_definition_map;
  *   functor - (function (... values: any): any)
  *
  *   values - (1 or more any dataType) These are the parameters passed to
- *       functor with the exception that the first list is passed one value at
- *       a time. At least one list is required.
+ *       functor with the exception that the first array is passed one value at
+ *       a time. At least one array is required.
  *
  * Returns:
  *
@@ -13409,11 +13410,12 @@ afw_function_definition_reduce;
  * @brief Adaptive Function `reduce`
  * @param x function execute parameter.
  *
- * Reduce calls functor for each value in list with two parameters, accumulator
- * and value, and must return a value of any dataType. Parameter accumulator is
- * the reduce() accumulator parameter value on first call and the return value
- * of previous functor() call on subsequent calls. The dataType of the return
- * value should normally be the same as accumulator, but this is not required.
+ * Reduce calls functor for each value in array with two parameters,
+ * accumulator and value, and must return a value of any dataType. Parameter
+ * accumulator is the reduce() accumulator parameter value on first call and
+ * the return value of previous functor() call on subsequent calls. The
+ * dataType of the return value should normally be the same as accumulator, but
+ * this is not required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13431,19 +13433,19 @@ afw_function_definition_reduce;
  * Parameters:
  *
  *   functor - (function (accumulator: any, value: any): any) This function is
- *       called for each value in a list. The returned value is passed as the
+ *       called for each value in an array. The returned value is passed as the
  *       accumulator parameter on the next call to functor().
  *
  *   accumulator - (any dataType) This is an initial accumulator value passed
  *       to functor(). Normally, the dataType of accumulator will be the
  *       dataTape for the reduce() return value, but this is not required.
  *
- *   array - (array) This is a list to be reduced.
+ *   array - (array) This is an array to be reduced.
  *
  * Returns:
  *
  *   (any dataType) This is the final return value from functor() or the
- *       accumulator parameter value if list is empty.
+ *       accumulator parameter value if array is empty.
  */
 const afw_value_t *
 afw_function_execute_reduce(
@@ -13457,11 +13459,11 @@ afw_function_definition_sort;
  * @brief Adaptive Function `sort`
  * @param x function execute parameter.
  *
- * This produces a list with values sorted based on result of compareFunction.
- * The compareFunction is passed two values from the list and must return an
- * integer less than 0 if the first value is less than the second value, 0 if
- * they are equal, and a integer greater than 0 if the first value is greater
- * than the second value.
+ * This produces an array with values sorted based on result of
+ * compareFunction. The compareFunction is passed two values from the array and
+ * must return an integer less than 0 if the first value is less than the
+ * second value, 0 if they are equal, and a integer greater than 0 if the first
+ * value is greater than the second value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13478,13 +13480,13 @@ afw_function_definition_sort;
  * Parameters:
  *
  *   compareFunction - (function (value1: any, value2: any): integer) This
- *       function is called with two value from list.
+ *       function is called with two value from array.
  *
- *   array - (array) This is the list to sort.
+ *   array - (array) This is the array to sort.
  *
  * Returns:
  *
- *   (array) This the the resulting sorted list.
+ *   (array) This the the resulting sorted array.
  */
 const afw_value_t *
 afw_function_execute_sort(
@@ -13508,7 +13510,7 @@ afw_function_definition_bag_hybrid;
  * @brief Adaptive Function `bag<hybrid>`
  * @param x function execute parameter.
  *
- * Takes any number of hybrid values and returns a list of list.
+ * Takes any number of hybrid values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13542,7 +13544,7 @@ afw_function_definition_bag_size_hybrid;
  * @brief Adaptive Function `bag_size<hybrid>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14049,7 +14051,7 @@ afw_function_definition_to_string_hybrid;
  * @brief Adaptive Function `to_string<hybrid>`
  * @param x function execute parameter.
  *
- * Converts hybrid value to string. For list values, the to_string() value for
+ * Converts hybrid value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -14094,7 +14096,7 @@ afw_function_definition_bag_ia5String;
  * @brief Adaptive Function `bag<ia5String>`
  * @param x function execute parameter.
  *
- * Takes any number of ia5String values and returns a list of list.
+ * Takes any number of ia5String values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14128,7 +14130,7 @@ afw_function_definition_bag_size_ia5String;
  * @brief Adaptive Function `bag_size<ia5String>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14551,7 +14553,7 @@ afw_function_definition_to_string_ia5String;
  * @brief Adaptive Function `to_string<ia5String>`
  * @param x function execute parameter.
  *
- * Converts ia5String value to string. For list values, the to_string() value
+ * Converts ia5String value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -14820,9 +14822,9 @@ afw_function_definition_at_least_one_member_of_integer;
  *
  * Parameters:
  *
- *   list1 - (array integer) The first list.
+ *   list1 - (array integer) The first array.
  *
- *   list2 - (array integer) The second list.
+ *   list2 - (array integer) The second array.
  *
  * Returns:
  *
@@ -14841,7 +14843,7 @@ afw_function_definition_bag_integer;
  * @brief Adaptive Function `bag<integer>`
  * @param x function execute parameter.
  *
- * Takes any number of integer values and returns a list of list.
+ * Takes any number of integer values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14875,7 +14877,7 @@ afw_function_definition_bag_size_integer;
  * @brief Adaptive Function `bag_size<integer>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15141,7 +15143,7 @@ afw_function_definition_intersection_integer;
  * @brief Adaptive Function `intersection<integer>`
  * @param x function execute parameter.
  *
- * Returns a list of integer with the values that are common to both list of
+ * Returns an array of integer with the values that are common to both array of
  * integer list1 and list2.
  *
  * This function is pure, so it will always return the same result
@@ -15158,9 +15160,9 @@ afw_function_definition_intersection_integer;
  *
  * Parameters:
  *
- *   list1 - (array integer) The first list.
+ *   list1 - (array integer) The first array.
  *
- *   list2 - (array integer) The second list.
+ *   list2 - (array integer) The second array.
  *
  * Returns:
  *
@@ -15179,7 +15181,7 @@ afw_function_definition_is_in_integer;
  * @brief Adaptive Function `is_in<integer>`
  * @param x function execute parameter.
  *
- * Checks whether integer value is in list of integer list and returns the
+ * Checks whether integer value is in array of integer array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -15583,7 +15585,7 @@ afw_function_definition_one_and_only_integer;
  * @brief Adaptive Function `one_and_only<integer>`
  * @param x function execute parameter.
  *
- * This converts a list of integer values that contains one value to a single
+ * This converts an array of integer values that contains one value to a single
  * integer value.
  *
  * This function is pure, so it will always return the same result
@@ -15607,7 +15609,7 @@ afw_function_definition_one_and_only_integer;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -15677,9 +15679,9 @@ afw_function_definition_subset_integer;
  *
  * Parameters:
  *
- *   list1 - (array integer) The first list.
+ *   list1 - (array integer) The first array.
  *
- *   list2 - (array integer) The second list.
+ *   list2 - (array integer) The second array.
  *
  * Returns:
  *
@@ -15772,8 +15774,8 @@ afw_function_definition_to_string_integer;
  * @brief Adaptive Function `to_string<integer>`
  * @param x function execute parameter.
  *
- * Converts integer value to string. For list values, the to_string() value for
- * each entry is returned separated with commas.
+ * Converts integer value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15807,8 +15809,8 @@ afw_function_definition_union_integer;
  * @brief Adaptive Function `union<integer>`
  * @param x function execute parameter.
  *
- * Returns a list of integer contains all of the unique values in two or more
- * list of integer values.
+ * Returns an array of integer contains all of the unique values in two or more
+ * array of integer values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15854,7 +15856,7 @@ afw_function_definition_bag_ipAddress;
  * @brief Adaptive Function `bag<ipAddress>`
  * @param x function execute parameter.
  *
- * Takes any number of ipAddress values and returns a list of list.
+ * Takes any number of ipAddress values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15888,7 +15890,7 @@ afw_function_definition_bag_size_ipAddress;
  * @brief Adaptive Function `bag_size<ipAddress>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16118,8 +16120,8 @@ afw_function_definition_is_in_ipAddress;
  * @brief Adaptive Function `is_in<ipAddress>`
  * @param x function execute parameter.
  *
- * Checks whether ipAddress value is in list of ipAddress list and returns the
- * boolean result.
+ * Checks whether ipAddress value is in array of ipAddress array and returns
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16349,8 +16351,8 @@ afw_function_definition_one_and_only_ipAddress;
  * @brief Adaptive Function `one_and_only<ipAddress>`
  * @param x function execute parameter.
  *
- * This converts a list of ipAddress values that contains one value to a single
- * ipAddress value.
+ * This converts an array of ipAddress values that contains one value to a
+ * single ipAddress value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16373,7 +16375,7 @@ afw_function_definition_one_and_only_ipAddress;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -16426,7 +16428,7 @@ afw_function_definition_to_string_ipAddress;
  * @brief Adaptive Function `to_string<ipAddress>`
  * @param x function execute parameter.
  *
- * Converts ipAddress value to string. For list values, the to_string() value
+ * Converts ipAddress value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -17874,7 +17876,7 @@ afw_function_definition_model_default_modify_object_action;
  *       custom::objectId can be used to access this value in model
  *       expressions.
  *
- *   entries - (array) This is a list of modifications. Variable
+ *   entries - (array) This is an array of modifications. Variable
  *       custom::actions can be used to access this value in model expressions.
  *       Entries are of the form:
  *       
@@ -18109,7 +18111,7 @@ afw_function_definition_bag_null;
  * @brief Adaptive Function `bag<null>`
  * @param x function execute parameter.
  *
- * Takes any number of null values and returns a list of list.
+ * Takes any number of null values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18143,7 +18145,7 @@ afw_function_definition_bag_size_null;
  * @brief Adaptive Function `bag_size<null>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18249,7 +18251,7 @@ afw_function_definition_to_string_null;
  * @brief Adaptive Function `to_string<null>`
  * @param x function execute parameter.
  *
- * Converts null value to string. For list values, the to_string() value for
+ * Converts null value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -18294,7 +18296,7 @@ afw_function_definition_bag_objectId;
  * @brief Adaptive Function `bag<objectId>`
  * @param x function execute parameter.
  *
- * Takes any number of objectId values and returns a list of list.
+ * Takes any number of objectId values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18328,7 +18330,7 @@ afw_function_definition_bag_size_objectId;
  * @brief Adaptive Function `bag_size<objectId>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18751,7 +18753,7 @@ afw_function_definition_to_string_objectId;
  * @brief Adaptive Function `to_string<objectId>`
  * @param x function execute parameter.
  *
- * Converts objectId value to string. For list values, the to_string() value
+ * Converts objectId value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -18796,7 +18798,7 @@ afw_function_definition_bag_objectPath;
  * @brief Adaptive Function `bag<objectPath>`
  * @param x function execute parameter.
  *
- * Takes any number of objectPath values and returns a list of list.
+ * Takes any number of objectPath values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18830,7 +18832,7 @@ afw_function_definition_bag_size_objectPath;
  * @brief Adaptive Function `bag_size<objectPath>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19253,7 +19255,7 @@ afw_function_definition_to_string_objectPath;
  * @brief Adaptive Function `to_string<objectPath>`
  * @param x function execute parameter.
  *
- * Converts objectPath value to string. For list values, the to_string() value
+ * Converts objectPath value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -19374,7 +19376,7 @@ afw_function_definition_bag_object;
  * @brief Adaptive Function `bag<object>`
  * @param x function execute parameter.
  *
- * Takes any number of object values and returns a list of list.
+ * Takes any number of object values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19408,7 +19410,7 @@ afw_function_definition_bag_size_object;
  * @brief Adaptive Function `bag_size<object>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20090,7 +20092,7 @@ afw_function_definition_to_string_object;
  * @brief Adaptive Function `to_string<object>`
  * @param x function execute parameter.
  *
- * Converts object value to string. For list values, the to_string() value for
+ * Converts object value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -20135,7 +20137,7 @@ afw_function_definition_bag_password;
  * @brief Adaptive Function `bag<password>`
  * @param x function execute parameter.
  *
- * Takes any number of password values and returns a list of list.
+ * Takes any number of password values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20169,7 +20171,7 @@ afw_function_definition_bag_size_password;
  * @brief Adaptive Function `bag_size<password>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20592,7 +20594,7 @@ afw_function_definition_to_string_password;
  * @brief Adaptive Function `to_string<password>`
  * @param x function execute parameter.
  *
- * Converts password value to string. For list values, the to_string() value
+ * Converts password value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -20822,9 +20824,9 @@ afw_function_definition_at_least_one_member_of;
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -20843,7 +20845,7 @@ afw_function_definition_bag;
  * @brief Adaptive Function `bag`
  * @param x function execute parameter.
  *
- * Takes any number of `<dataType>` values and returns a list of list.
+ * Takes any number of `<dataType>` values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20885,7 +20887,7 @@ afw_function_definition_bag_size;
  * @brief Adaptive Function `bag_size`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21713,8 +21715,8 @@ afw_function_definition_intersection;
  * @brief Adaptive Function `intersection`
  * @param x function execute parameter.
  *
- * Returns a list of `<dataType>` with the values that are common to both list
- * of `<dataType>` list1 and list2.
+ * Returns an array of `<dataType>` with the values that are common to both
+ * array of `<dataType>` list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21735,9 +21737,9 @@ afw_function_definition_intersection;
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -21798,7 +21800,7 @@ afw_function_definition_is_in;
  * @brief Adaptive Function `is_in`
  * @param x function execute parameter.
  *
- * Checks whether `<dataType>` value is in list of `<dataType>` list and
+ * Checks whether `<dataType>` value is in array of `<dataType>` array and
  * returns the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -21935,7 +21937,7 @@ afw_function_definition_length;
  * @param x function execute parameter.
  *
  * This is a polymorphic function where `<dataType>` can be any of the
- * supported data types. Return the integer number of entries in datatype list
+ * supported data types. Return the integer number of entries in datatype array
  * or codepoints in others.
  *
  * This function is pure, so it will always return the same result
@@ -21955,7 +21957,7 @@ afw_function_definition_length;
  *
  * Parameters:
  *
- *   value - (``<Type>``) Returns the number of entries in a list or code
+ *   value - (``<Type>``) Returns the number of entries in an array or code
  *       points in others.
  *
  * Returns:
@@ -22436,7 +22438,7 @@ afw_function_definition_one_and_only;
  * @brief Adaptive Function `one_and_only`
  * @param x function execute parameter.
  *
- * This converts a list of `<dataType>` values that contains one value to a
+ * This converts an array of `<dataType>` values that contains one value to a
  * single `<dataType>` value.
  *
  * This function is pure, so it will always return the same result
@@ -22466,7 +22468,7 @@ afw_function_definition_one_and_only;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22828,7 +22830,7 @@ afw_function_definition_split;
  * @brief Adaptive Function `split`
  * @param x function execute parameter.
  *
- * Split `<dataType>` value into an list of strings using a separator.
+ * Split `<dataType>` value into an array of strings using a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22860,7 +22862,7 @@ afw_function_definition_split;
  *
  * Returns:
  *
- *   (array) An list of strings.
+ *   (array) An array of strings.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22939,9 +22941,9 @@ afw_function_definition_subset;
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first list.
+ *   list1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second list.
+ *   list2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -23552,7 +23554,7 @@ afw_function_definition_to_string;
  * @brief Adaptive Function `to_string`
  * @param x function execute parameter.
  *
- * Converts `<dataType>` value to string. For list values, the to_string()
+ * Converts `<dataType>` value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -23720,8 +23722,8 @@ afw_function_definition_union;
  * @brief Adaptive Function `union`
  * @param x function execute parameter.
  *
- * Returns a list of `<dataType>` contains all of the unique values in two or
- * more list of `<dataType>` values.
+ * Returns an array of `<dataType>` contains all of the unique values in two or
+ * more array of `<dataType>` values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24416,9 +24418,9 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name) The first list.
+ *   list1 - (array rfc822Name) The first array.
  *
- *   list2 - (array rfc822Name) The second list.
+ *   list2 - (array rfc822Name) The second array.
  *
  * Returns:
  *
@@ -24437,7 +24439,7 @@ afw_function_definition_bag_rfc822Name;
  * @brief Adaptive Function `bag<rfc822Name>`
  * @param x function execute parameter.
  *
- * Takes any number of rfc822Name values and returns a list of list.
+ * Takes any number of rfc822Name values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24471,7 +24473,7 @@ afw_function_definition_bag_size_rfc822Name;
  * @brief Adaptive Function `bag_size<rfc822Name>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24663,8 +24665,8 @@ afw_function_definition_intersection_rfc822Name;
  * @brief Adaptive Function `intersection<rfc822Name>`
  * @param x function execute parameter.
  *
- * Returns a list of rfc822Name with the values that are common to both list of
- * rfc822Name list1 and list2.
+ * Returns an array of rfc822Name with the values that are common to both array
+ * of rfc822Name list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24680,9 +24682,9 @@ afw_function_definition_intersection_rfc822Name;
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name) The first list.
+ *   list1 - (array rfc822Name) The first array.
  *
- *   list2 - (array rfc822Name) The second list.
+ *   list2 - (array rfc822Name) The second array.
  *
  * Returns:
  *
@@ -24701,7 +24703,7 @@ afw_function_definition_is_in_rfc822Name;
  * @brief Adaptive Function `is_in<rfc822Name>`
  * @param x function execute parameter.
  *
- * Checks whether rfc822Name value is in list of rfc822Name list and returns
+ * Checks whether rfc822Name value is in array of rfc822Name array and returns
  * the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -24969,7 +24971,7 @@ afw_function_definition_one_and_only_rfc822Name;
  * @brief Adaptive Function `one_and_only<rfc822Name>`
  * @param x function execute parameter.
  *
- * This converts a list of rfc822Name values that contains one value to a
+ * This converts an array of rfc822Name values that contains one value to a
  * single rfc822Name value.
  *
  * This function is pure, so it will always return the same result
@@ -24993,7 +24995,7 @@ afw_function_definition_one_and_only_rfc822Name;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -25139,9 +25141,9 @@ afw_function_definition_subset_rfc822Name;
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name) The first list.
+ *   list1 - (array rfc822Name) The first array.
  *
- *   list2 - (array rfc822Name) The second list.
+ *   list2 - (array rfc822Name) The second array.
  *
  * Returns:
  *
@@ -25160,7 +25162,7 @@ afw_function_definition_to_string_rfc822Name;
  * @brief Adaptive Function `to_string<rfc822Name>`
  * @param x function execute parameter.
  *
- * Converts rfc822Name value to string. For list values, the to_string() value
+ * Converts rfc822Name value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -25195,8 +25197,8 @@ afw_function_definition_union_rfc822Name;
  * @brief Adaptive Function `union<rfc822Name>`
  * @param x function execute parameter.
  *
- * Returns a list of rfc822Name contains all of the unique values in two or
- * more list of rfc822Name values.
+ * Returns an array of rfc822Name contains all of the unique values in two or
+ * more array of rfc822Name values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25244,7 +25246,7 @@ afw_function_definition_assign;
  *
  * Assign a value to the innermost structured block definition of a variable.
  * If the variable is not defined, the variable is defined in the innermost
- * structured block. An error is thrown if not called from a list of values
+ * structured block. An error is thrown if not called from an array of values
  * (statements) in a structured function.
  *
  * This function is not pure, so it may return a different result
@@ -25281,7 +25283,7 @@ afw_function_definition_bag_script;
  * @brief Adaptive Function `bag<script>`
  * @param x function execute parameter.
  *
- * Takes any number of script values and returns a list of list.
+ * Takes any number of script values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25315,7 +25317,7 @@ afw_function_definition_bag_size_script;
  * @brief Adaptive Function `bag_size<script>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25506,7 +25508,7 @@ afw_function_definition_do_while;
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) at least once
+ * This function will evaluate an array of values (statements) at least once
  * while a condition is true. See the related functions 'break', 'continue',
  * 'return' and 'throw'.
  *
@@ -25527,9 +25529,9 @@ afw_function_definition_do_while;
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (array) This is a list of values (statements) that are evaluated
+ *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
- *       order until the end of the list or until a 'break', 'continue',
+ *       order until the end of the array or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
  *
  * Returns:
@@ -25694,20 +25696,20 @@ afw_function_definition_for;
  *
  * Parameters:
  *
- *   initial - (optional array) This is a list of values (statements) to
+ *   initial - (optional array) This is an array of values (statements) to
  *       evaluate before the loop starts. The values will normally be a call to
  *       the 'assign' function.
  *
  *   condition - (optional boolean) While this condition is true, the loop will
  *       continue.
  *
- *   increment - (optional array) This is a list of values (statements) to
+ *   increment - (optional array) This is an array of values (statements) to
  *       evaluate after each iteration of the loop. The values will normally be
  *       a call to the 'assign' function.
  *
- *   body - (optional array) This is a list of values (statements) that are
+ *   body - (optional array) This is an array of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the list or until a 'break',
+ *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
  * Returns:
@@ -25729,10 +25731,10 @@ afw_function_definition_foreach;
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) while a condition
- * is true with initial and increment values. The condition is tested at the
- * beginning of the loop. If the condition is false for the first iteration,
- * the loop returns a null value.
+ * This function will evaluate an array of values (statements) while a
+ * condition is true with initial and increment values. The condition is tested
+ * at the beginning of the loop. If the condition is false for the first
+ * iteration, the loop returns a null value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25751,11 +25753,11 @@ afw_function_definition_foreach;
  *
  *   name - (array string) Variable name(s).
  *
- *   value - (any dataType) Any list, object or single value.
+ *   value - (any dataType) Any array, object or single value.
  *
- *   body - (optional array) This is a list of values (statements) that are
+ *   body - (optional array) This is an array of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the list or until a 'break',
+ *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
  * Returns:
@@ -26361,18 +26363,18 @@ afw_function_definition_try;
  *
  * Parameters:
  *
- *   body - (array) This is a list of values (statements) that are evaluated.
+ *   body - (array) This is an array of values (statements) that are evaluated.
  *       Each value in body is evaluated in order until the end of the list or
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   finally - (optional array) This is a list of values (statements) that are
- *       evaluated after the try and catch statements even if an error occurs.
- *       Each value in body is evaluated in order until the end of the list or
- *       until a 'break', 'continue', 'return' or 'throw' function is
+ *   finally - (optional array) This is an array of values (statements) that
+ *       are evaluated after the try and catch statements even if an error
+ *       occurs. Each value in body is evaluated in order until the end of the
+ *       list or until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   catch - (optional array) This is a list of values (statements) that are
+ *   catch - (optional array) This is an array of values (statements) that are
  *       evaluated when an error is thrown while evaluating the body. Each
  *       value in body is evaluated in order until the end of the list or until
  *       a 'break', 'continue', 'return' or 'throw' function is encountered.
@@ -26399,10 +26401,10 @@ afw_function_definition_while;
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate a list of values (statements) while a condition
- * is true. The condition is tested at the beginning of the loop. If the
- * condition is false for the first iteration, the loop returns a null value.
- * See the related functions 'break', 'continue', 'return' and 'throw'.
+ * This function will evaluate an array of values (statements) while a
+ * condition is true. The condition is tested at the beginning of the loop. If
+ * the condition is false for the first iteration, the loop returns a null
+ * value. See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26421,7 +26423,7 @@ afw_function_definition_while;
  *   condition - (boolean) While this condition is true, the loop will
  *       continue. This is evaluated in the loop's scope.
  *
- *   body - (array) This is a list of values (statements) that are evaluated
+ *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
  *       order until the end of the list or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
@@ -27128,9 +27130,9 @@ afw_function_definition_at_least_one_member_of_string;
  *
  * Parameters:
  *
- *   list1 - (array string) The first list.
+ *   list1 - (array string) The first array.
  *
- *   list2 - (array string) The second list.
+ *   list2 - (array string) The second array.
  *
  * Returns:
  *
@@ -27149,7 +27151,7 @@ afw_function_definition_bag_size_string;
  * @brief Adaptive Function `bag_size<string>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27183,7 +27185,7 @@ afw_function_definition_bag_string;
  * @brief Adaptive Function `bag<string>`
  * @param x function execute parameter.
  *
- * Takes any number of string values and returns a list of list.
+ * Takes any number of string values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27644,7 +27646,7 @@ afw_function_definition_intersection_string;
  * @brief Adaptive Function `intersection<string>`
  * @param x function execute parameter.
  *
- * Returns a list of string with the values that are common to both list of
+ * Returns an array of string with the values that are common to both array of
  * string list1 and list2.
  *
  * This function is pure, so it will always return the same result
@@ -27661,9 +27663,9 @@ afw_function_definition_intersection_string;
  *
  * Parameters:
  *
- *   list1 - (array string) The first list.
+ *   list1 - (array string) The first array.
  *
- *   list2 - (array string) The second list.
+ *   list2 - (array string) The second array.
  *
  * Returns:
  *
@@ -27682,7 +27684,7 @@ afw_function_definition_is_in_string;
  * @brief Adaptive Function `is_in<string>`
  * @param x function execute parameter.
  *
- * Checks whether string value is in list of string list and returns the
+ * Checks whether string value is in array of string array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -27835,7 +27837,7 @@ afw_function_definition_length_string;
  * @param x function execute parameter.
  *
  * This is a polymorphic function where string can be any of the supported data
- * types. Return the integer number of entries in datatype list or codepoints
+ * types. Return the integer number of entries in datatype array or codepoints
  * in others.
  *
  * This function is pure, so it will always return the same result
@@ -27851,8 +27853,8 @@ afw_function_definition_length_string;
  *
  * Parameters:
  *
- *   value - (string) Returns the number of entries in a list or code points in
- *       others.
+ *   value - (string) Returns the number of entries in an array or code points
+ *       in others.
  *
  * Returns:
  *
@@ -28127,7 +28129,7 @@ afw_function_definition_one_and_only_string;
  * @brief Adaptive Function `one_and_only<string>`
  * @param x function execute parameter.
  *
- * This converts a list of string values that contains one value to a single
+ * This converts an array of string values that contains one value to a single
  * string value.
  *
  * This function is pure, so it will always return the same result
@@ -28151,7 +28153,7 @@ afw_function_definition_one_and_only_string;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -28405,7 +28407,7 @@ afw_function_definition_split_string;
  * @brief Adaptive Function `split<string>`
  * @param x function execute parameter.
  *
- * Split string value into an list of strings using a separator.
+ * Split string value into an array of strings using a separator.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28433,7 +28435,7 @@ afw_function_definition_split_string;
  *
  * Returns:
  *
- *   (array) An list of strings.
+ *   (array) An array of strings.
  *
  * Implemented by afw_function_execute_split()
  *
@@ -28543,9 +28545,9 @@ afw_function_definition_subset_string;
  *
  * Parameters:
  *
- *   list1 - (array string) The first list.
+ *   list1 - (array string) The first array.
  *
- *   list2 - (array string) The second list.
+ *   list2 - (array string) The second array.
  *
  * Returns:
  *
@@ -28986,7 +28988,7 @@ afw_function_definition_to_string_string;
  * @brief Adaptive Function `to_string<string>`
  * @param x function execute parameter.
  *
- * Converts string value to string. For list values, the to_string() value for
+ * Converts string value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -29135,8 +29137,8 @@ afw_function_definition_union_string;
  * @brief Adaptive Function `union<string>`
  * @param x function execute parameter.
  *
- * Returns a list of string contains all of the unique values in two or more
- * list of string values.
+ * Returns an array of string contains all of the unique values in two or more
+ * array of string values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29250,7 +29252,7 @@ afw_function_definition_bag_size_template;
  * @brief Adaptive Function `bag_size<template>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29284,7 +29286,7 @@ afw_function_definition_bag_template;
  * @brief Adaptive Function `bag<template>`
  * @param x function execute parameter.
  *
- * Takes any number of template values and returns a list of list.
+ * Takes any number of template values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29792,7 +29794,7 @@ afw_function_definition_to_string_template;
  * @brief Adaptive Function `to_string<template>`
  * @param x function execute parameter.
  *
- * Converts template value to string. For list values, the to_string() value
+ * Converts template value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -29853,9 +29855,9 @@ afw_function_definition_at_least_one_member_of_time;
  *
  * Parameters:
  *
- *   list1 - (array time) The first list.
+ *   list1 - (array time) The first array.
  *
- *   list2 - (array time) The second list.
+ *   list2 - (array time) The second array.
  *
  * Returns:
  *
@@ -29874,7 +29876,7 @@ afw_function_definition_bag_size_time;
  * @brief Adaptive Function `bag_size<time>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29908,7 +29910,7 @@ afw_function_definition_bag_time;
  * @brief Adaptive Function `bag<time>`
  * @param x function execute parameter.
  *
- * Takes any number of time values and returns a list of list.
+ * Takes any number of time values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30149,8 +30151,8 @@ afw_function_definition_intersection_time;
  * @brief Adaptive Function `intersection<time>`
  * @param x function execute parameter.
  *
- * Returns a list of time with the values that are common to both list of time
- * list1 and list2.
+ * Returns an array of time with the values that are common to both array of
+ * time list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30166,9 +30168,9 @@ afw_function_definition_intersection_time;
  *
  * Parameters:
  *
- *   list1 - (array time) The first list.
+ *   list1 - (array time) The first array.
  *
- *   list2 - (array time) The second list.
+ *   list2 - (array time) The second array.
  *
  * Returns:
  *
@@ -30187,7 +30189,7 @@ afw_function_definition_is_in_time;
  * @brief Adaptive Function `is_in<time>`
  * @param x function execute parameter.
  *
- * Checks whether time value is in list of time list and returns the boolean
+ * Checks whether time value is in array of time array and returns the boolean
  * result.
  *
  * This function is pure, so it will always return the same result
@@ -30498,8 +30500,8 @@ afw_function_definition_one_and_only_time;
  * @brief Adaptive Function `one_and_only<time>`
  * @param x function execute parameter.
  *
- * This converts a list of time values that contains one value to a single time
- * value.
+ * This converts an array of time values that contains one value to a single
+ * time value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30522,7 +30524,7 @@ afw_function_definition_one_and_only_time;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -30592,9 +30594,9 @@ afw_function_definition_subset_time;
  *
  * Parameters:
  *
- *   list1 - (array time) The first list.
+ *   list1 - (array time) The first array.
  *
- *   list2 - (array time) The second list.
+ *   list2 - (array time) The second array.
  *
  * Returns:
  *
@@ -30651,7 +30653,7 @@ afw_function_definition_to_string_time;
  * @brief Adaptive Function `to_string<time>`
  * @param x function execute parameter.
  *
- * Converts time value to string. For list values, the to_string() value for
+ * Converts time value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -30686,8 +30688,8 @@ afw_function_definition_union_time;
  * @brief Adaptive Function `union<time>`
  * @param x function execute parameter.
  *
- * Returns a list of time contains all of the unique values in two or more list
- * of time values.
+ * Returns an array of time contains all of the unique values in two or more
+ * array of time values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30814,8 +30816,8 @@ afw_function_definition_metas;
  * @brief Adaptive Function `metas`
  * @param x function execute parameter.
  *
- * This function returns a list of the result of calling meta() for each value
- * in a list or object adaptive value.
+ * This function returns an array of the result of calling meta() for each
+ * value in an array or object adaptive value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30830,12 +30832,12 @@ afw_function_definition_metas;
  *
  * Parameters:
  *
- *   value - (any dataType) This is an adaptive list or object.
+ *   value - (any dataType) This is an adaptive array or object.
  *
  * Returns:
  *
- *   (object) An list containing the result of calling meta() of each value in
- *       list or object adaptive value.
+ *   (object) An array containing the result of calling meta() of each value in
+ *       array or object adaptive value.
  */
 const afw_value_t *
 afw_function_execute_metas(
@@ -30876,9 +30878,9 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *
  * Parameters:
  *
- *   list1 - (array x500Name) The first list.
+ *   list1 - (array x500Name) The first array.
  *
- *   list2 - (array x500Name) The second list.
+ *   list2 - (array x500Name) The second array.
  *
  * Returns:
  *
@@ -30897,7 +30899,7 @@ afw_function_definition_bag_size_x500Name;
  * @brief Adaptive Function `bag_size<x500Name>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30931,7 +30933,7 @@ afw_function_definition_bag_x500Name;
  * @brief Adaptive Function `bag<x500Name>`
  * @param x function execute parameter.
  *
- * Takes any number of x500Name values and returns a list of list.
+ * Takes any number of x500Name values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31123,8 +31125,8 @@ afw_function_definition_intersection_x500Name;
  * @brief Adaptive Function `intersection<x500Name>`
  * @param x function execute parameter.
  *
- * Returns a list of x500Name with the values that are common to both list of
- * x500Name list1 and list2.
+ * Returns an array of x500Name with the values that are common to both array
+ * of x500Name list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31140,9 +31142,9 @@ afw_function_definition_intersection_x500Name;
  *
  * Parameters:
  *
- *   list1 - (array x500Name) The first list.
+ *   list1 - (array x500Name) The first array.
  *
- *   list2 - (array x500Name) The second list.
+ *   list2 - (array x500Name) The second array.
  *
  * Returns:
  *
@@ -31161,7 +31163,7 @@ afw_function_definition_is_in_x500Name;
  * @brief Adaptive Function `is_in<x500Name>`
  * @param x function execute parameter.
  *
- * Checks whether x500Name value is in list of x500Name list and returns the
+ * Checks whether x500Name value is in array of x500Name array and returns the
  * boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -31429,8 +31431,8 @@ afw_function_definition_one_and_only_x500Name;
  * @brief Adaptive Function `one_and_only<x500Name>`
  * @param x function execute parameter.
  *
- * This converts a list of x500Name values that contains one value to a single
- * x500Name value.
+ * This converts an array of x500Name values that contains one value to a
+ * single x500Name value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31453,7 +31455,7 @@ afw_function_definition_one_and_only_x500Name;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -31561,9 +31563,9 @@ afw_function_definition_subset_x500Name;
  *
  * Parameters:
  *
- *   list1 - (array x500Name) The first list.
+ *   list1 - (array x500Name) The first array.
  *
- *   list2 - (array x500Name) The second list.
+ *   list2 - (array x500Name) The second array.
  *
  * Returns:
  *
@@ -31582,7 +31584,7 @@ afw_function_definition_to_string_x500Name;
  * @brief Adaptive Function `to_string<x500Name>`
  * @param x function execute parameter.
  *
- * Converts x500Name value to string. For list values, the to_string() value
+ * Converts x500Name value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -31617,8 +31619,8 @@ afw_function_definition_union_x500Name;
  * @brief Adaptive Function `union<x500Name>`
  * @param x function execute parameter.
  *
- * Returns a list of x500Name contains all of the unique values in two or more
- * list of x500Name values.
+ * Returns an array of x500Name contains all of the unique values in two or
+ * more array of x500Name values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31702,7 +31704,7 @@ afw_function_definition_bag_size_xpathExpression;
  * @brief Adaptive Function `bag_size<xpathExpression>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31736,7 +31738,7 @@ afw_function_definition_bag_xpathExpression;
  * @brief Adaptive Function `bag<xpathExpression>`
  * @param x function execute parameter.
  *
- * Takes any number of xpathExpression values and returns a list of list.
+ * Takes any number of xpathExpression values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32208,7 +32210,7 @@ afw_function_definition_to_string_xpathExpression;
  * @brief Adaptive Function `to_string<xpathExpression>`
  * @param x function execute parameter.
  *
- * Converts xpathExpression value to string. For list values, the to_string()
+ * Converts xpathExpression value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
@@ -32416,9 +32418,9 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration) The first list.
+ *   list1 - (array yearMonthDuration) The first array.
  *
- *   list2 - (array yearMonthDuration) The second list.
+ *   list2 - (array yearMonthDuration) The second array.
  *
  * Returns:
  *
@@ -32437,7 +32439,7 @@ afw_function_definition_bag_size_yearMonthDuration;
  * @brief Adaptive Function `bag_size<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32471,7 +32473,7 @@ afw_function_definition_bag_yearMonthDuration;
  * @brief Adaptive Function `bag<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Takes any number of yearMonthDuration values and returns a list of list.
+ * Takes any number of yearMonthDuration values and returns an array of array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32664,8 +32666,8 @@ afw_function_definition_intersection_yearMonthDuration;
  * @brief Adaptive Function `intersection<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns a list of yearMonthDuration with the values that are common to both
- * list of yearMonthDuration list1 and list2.
+ * Returns an array of yearMonthDuration with the values that are common to
+ * both array of yearMonthDuration list1 and list2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32681,9 +32683,9 @@ afw_function_definition_intersection_yearMonthDuration;
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration) The first list.
+ *   list1 - (array yearMonthDuration) The first array.
  *
- *   list2 - (array yearMonthDuration) The second list.
+ *   list2 - (array yearMonthDuration) The second array.
  *
  * Returns:
  *
@@ -32702,8 +32704,8 @@ afw_function_definition_is_in_yearMonthDuration;
  * @brief Adaptive Function `is_in<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Checks whether yearMonthDuration value is in list of yearMonthDuration list
- * and returns the boolean result.
+ * Checks whether yearMonthDuration value is in array of yearMonthDuration
+ * array and returns the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32934,8 +32936,8 @@ afw_function_definition_one_and_only_yearMonthDuration;
  * @brief Adaptive Function `one_and_only<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * This converts a list of yearMonthDuration values that contains one value to
- * a single yearMonthDuration value.
+ * This converts an array of yearMonthDuration values that contains one value
+ * to a single yearMonthDuration value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32958,7 +32960,7 @@ afw_function_definition_one_and_only_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   arg_error - list does not contain exactly one value
+ *   arg_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -33028,9 +33030,9 @@ afw_function_definition_subset_yearMonthDuration;
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration) The first list.
+ *   list1 - (array yearMonthDuration) The first array.
  *
- *   list2 - (array yearMonthDuration) The second list.
+ *   list2 - (array yearMonthDuration) The second array.
  *
  * Returns:
  *
@@ -33049,8 +33051,8 @@ afw_function_definition_to_string_yearMonthDuration;
  * @brief Adaptive Function `to_string<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Converts yearMonthDuration value to string. For list values, the to_string()
- * value for each entry is returned separated with commas.
+ * Converts yearMonthDuration value to string. For array values, the
+ * to_string() value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -33084,8 +33086,8 @@ afw_function_definition_union_yearMonthDuration;
  * @brief Adaptive Function `union<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns a list of yearMonthDuration contains all of the unique values in two
- * or more list of yearMonthDuration values.
+ * Returns an array of yearMonthDuration contains all of the unique values in
+ * two or more array of yearMonthDuration values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

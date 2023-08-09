@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagBase64Binary",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Takes any number of base64Binary values and returns a list of list.",
+    "description": "Takes any number of base64Binary values and returns an array of array.",
     "functionId": "bag<base64Binary>",
     "functionLabel": "bag_base64Binary",
     "parameters": [

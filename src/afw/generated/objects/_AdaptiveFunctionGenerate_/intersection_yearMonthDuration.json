@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Returns a list of yearMonthDuration with the values that are common to both list of yearMonthDuration list1 and list2.",
+    "description": "Returns an array of yearMonthDuration with the values that are common to both array of yearMonthDuration list1 and list2.",
     "functionId": "intersection<yearMonthDuration>",
     "functionLabel": "intersection_yearMonthDuration",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

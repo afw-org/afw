@@ -29,9 +29,9 @@
         },
         "allowedValues": {
             "allowQuery": true,
-            "brief": "A list of allowed values for this adaptive value",
+            "brief": "An array of allowed values for this adaptive value",
             "dataType": "array",
-            "description": "This is a list of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+            "description": "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
             "label": "Allowed Values"
         },
         "brief": {
@@ -186,7 +186,7 @@
             "brief": "List of keywords and terms associated with values with this meta",
             "dataType": "array",
             "dataTypeParameter": "string",
-            "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+            "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
             "label": "Tags"
         },
         "testDataParameter": {

@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Returns a list of dayTimeDuration with the values that are common to both list of dayTimeDuration list1 and list2.",
+    "description": "Returns an array of dayTimeDuration with the values that are common to both array of dayTimeDuration list1 and list2.",
     "functionId": "intersection<dayTimeDuration>",
     "functionLabel": "intersection_dayTimeDuration",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

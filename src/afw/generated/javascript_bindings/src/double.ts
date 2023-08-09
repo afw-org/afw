@@ -50,9 +50,9 @@ export function afwAddDouble(client : any, values : number) : any {
  * Returns boolean true if at least one value in double list1 is in double
  * list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -68,7 +68,7 @@ export function afwAtLeastOneMemberOfDouble(client : any, list1 : any[], list2 :
 }
 
 /**
- * Takes any number of double values and returns a list of list.
+ * Takes any number of double values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -87,7 +87,7 @@ export function afwBagDouble(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -264,12 +264,12 @@ export function afwGtDouble(client : any, arg1 : number, arg2 : number) : any {
 }
 
 /**
- * Returns a list of double with the values that are common to both list of
- * double list1 and list2.
+ * Returns an array of double with the values that are common to both array
+ * of double list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -337,7 +337,7 @@ export function afwIsFinite(client : any, number : number) : any {
 }
 
 /**
- * Checks whether double value is in list of double list and returns the
+ * Checks whether double value is in array of double array and returns the
  * boolean result.
  * 
  * @param {double} value -
@@ -513,8 +513,8 @@ export function afwNexDouble(client : any, arg1 : number, arg2 : any) : any {
 }
 
 /**
- * This converts a list of double values that contains one value to a single
- * double value.
+ * This converts an array of double values that contains one value to a
+ * single double value.
  * 
  * @param {array} array -
  * 
@@ -595,9 +595,9 @@ export function afwSetEqualsDouble(client : any, list1 : any[], list2 : any[]) :
  * Returns boolean true if the unique values in double list1 are all in
  * double list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -650,7 +650,7 @@ export function afwToIntegerDouble(client : any, value : number) : any {
 }
 
 /**
- * Converts double value to string. For list values, the to_string() value
+ * Converts double value to string. For array values, the to_string() value
  * for each entry is returned separated with commas.
  * 
  * @param {double} value - A double value.
@@ -668,8 +668,8 @@ export function afwToStringDouble(client : any, value : number) : any {
 }
 
 /**
- * Returns a list of double contains all of the unique values in two or more
- * list of double values.
+ * Returns an array of double contains all of the unique values in two or
+ * more array of double values.
  * 
  * @param {array} lists - Two or more lists.
  * 

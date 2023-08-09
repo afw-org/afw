@@ -96,15 +96,15 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_size_string
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -114,8 +114,8 @@ Returns the number of values in a bag
 
 =head3 bag_string
 
-Takes any number of string values and returns a list of list.
-Makes a list from values
+Takes any number of string values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -286,7 +286,7 @@ Optional start index for search if different than start of string.
 
 =head3 intersection_string
 
-Returns a list of string with the values that are common to both list of
+Returns an array of string with the values that are common to both array of
 string list1 and list2.
 Returns intersection of two lists
 
@@ -294,17 +294,17 @@ Returns intersection of two lists
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_in_string
 
-Checks whether string value is in list of string list and returns the boolean
-result.
-Checks whether a value is in a list
+Checks whether string value is in array of string array and returns the
+boolean result.
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -362,15 +362,15 @@ Checks for less than or equal
 =head3 length_string
 
 This is a polymorphic function where string can be any of the supported data
-types. Return the integer number of entries in datatype list or codepoints in
-others.
+types. Return the integer number of entries in datatype array or codepoints
+in others.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
 
     $value
 
-Returns the number of entries in a list or code points in others.
+Returns the number of entries in an array or code points in others.
 
 =head3 lt_string
 
@@ -458,9 +458,9 @@ Converts to lower case
 
 =head3 one_and_only_string
 
-This converts a list of string values that contains one value to a single
+This converts an array of string values that contains one value to a single
 string value.
-Converts a one value list to a string value
+Converts a one value array to a string value
 
 =head4 Parameters
 
@@ -576,7 +576,7 @@ Checks whether two lists are subsets of each other
 
 =head3 split_string
 
-Split string value into an list of strings using a separator.
+Split string value into an array of strings using a separator.
 Split at a separator
 
 =head4 Parameters
@@ -625,17 +625,17 @@ Value to convert
 
 Returns boolean true if the unique values in string list1 are all in string
 list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 substring_string
 
@@ -757,7 +757,7 @@ Converts string to rfc822Name
 
 =head3 to_string_string
 
-Converts string value to string. For list values, the to_string() value for
+Converts string value to string. For array values, the to_string() value for
 each entry is returned separated with commas.
 Converts value to string
 
@@ -799,8 +799,8 @@ Converts string to yearMonthDuration
 
 =head3 union_string
 
-Returns a list of string contains all of the unique values in two or more
-list of string values.
+Returns an array of string contains all of the unique values in two or more
+array of string values.
 Returns union of two or more string lists
 
 =head4 Parameters

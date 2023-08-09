@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "union",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Returns a list of <dataType> contains all of the unique values in two or more list of <dataType> values.",
+    "description": "Returns an array of <dataType> contains all of the unique values in two or more array of <dataType> values.",
     "functionId": "union",
     "functionLabel": "union",
     "parameters": [

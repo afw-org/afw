@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInAnyURI",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Checks whether anyURI value is in list of anyURI list and returns the boolean result.",
+    "description": "Checks whether anyURI value is in array of anyURI array and returns the boolean result.",
     "functionId": "is_in<anyURI>",
     "functionLabel": "is_in_anyURI",
     "parameters": [

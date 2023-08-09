@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInYearMonthDuration",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Checks whether yearMonthDuration value is in list of yearMonthDuration list and returns the boolean result.",
+    "description": "Checks whether yearMonthDuration value is in array of yearMonthDuration array and returns the boolean result.",
     "functionId": "is_in<yearMonthDuration>",
     "functionLabel": "is_in_yearMonthDuration",
     "parameters": [

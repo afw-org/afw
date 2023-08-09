@@ -29,8 +29,8 @@ class yearMonthDuration
      * Returns boolean true if at least one value in yearMonthDuration list1
      * is in yearMonthDuration list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,7 @@ class yearMonthDuration
     /**
      * bag_size_yearMonthDuration()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -73,8 +73,8 @@ class yearMonthDuration
     /**
      * bag_yearMonthDuration()
      *
-     * Takes any number of yearMonthDuration values and returns a list of
-     * list.
+     * Takes any number of yearMonthDuration values and returns an array of
+     * array.
      *
      * @param array $values
      *
@@ -202,11 +202,11 @@ class yearMonthDuration
     /**
      * intersection_yearMonthDuration()
      *
-     * Returns a list of yearMonthDuration with the values that are common to
-     * both list of yearMonthDuration list1 and list2.
+     * Returns an array of yearMonthDuration with the values that are common
+     * to both array of yearMonthDuration list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -227,8 +227,8 @@ class yearMonthDuration
     /**
      * is_in_yearMonthDuration()
      *
-     * Checks whether yearMonthDuration value is in list of yearMonthDuration
-     * list and returns the boolean result.
+     * Checks whether yearMonthDuration value is in array of
+     * yearMonthDuration array and returns the boolean result.
      *
      * @param yearMonthDuration $value
      * @param array $array
@@ -379,7 +379,7 @@ class yearMonthDuration
     /**
      * one_and_only_yearMonthDuration()
      *
-     * This converts a list of yearMonthDuration values that contains one
+     * This converts an array of yearMonthDuration values that contains one
      * value to a single yearMonthDuration value.
      *
      * @param array $array
@@ -430,8 +430,8 @@ class yearMonthDuration
      * Returns boolean true if the unique values in yearMonthDuration list1
      * are all in yearMonthDuration list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -452,7 +452,7 @@ class yearMonthDuration
     /**
      * to_string_yearMonthDuration()
      *
-     * Converts yearMonthDuration value to string. For list values, the
+     * Converts yearMonthDuration value to string. For array values, the
      * to_string() value for each entry is returned separated with commas.
      *
      * @param yearMonthDuration $value A yearMonthDuration value.
@@ -475,8 +475,8 @@ class yearMonthDuration
     /**
      * union_yearMonthDuration()
      *
-     * Returns a list of yearMonthDuration contains all of the unique values
-     * in two or more list of yearMonthDuration values.
+     * Returns an array of yearMonthDuration contains all of the unique
+     * values in two or more array of yearMonthDuration values.
      *
      * @param array $lists Two or more lists.
      *

@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Returns a list of hexBinary with the values that are common to both list of hexBinary list1 and list2.",
+    "description": "Returns an array of hexBinary with the values that are common to both array of hexBinary list1 and list2.",
     "functionId": "intersection<hexBinary>",
     "functionLabel": "intersection_hexBinary",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

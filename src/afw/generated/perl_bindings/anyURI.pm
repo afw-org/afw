@@ -70,16 +70,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_anyURI
 
-Takes any number of anyURI values and returns a list of list.
-Makes a list from values
+Takes any number of anyURI values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -88,7 +88,7 @@ Makes a list from values
 
 =head3 bag_size_anyURI
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -209,7 +209,7 @@ Optional start index for search if different than start of string.
 
 =head3 intersection_anyURI
 
-Returns a list of anyURI with the values that are common to both list of
+Returns an array of anyURI with the values that are common to both array of
 anyURI list1 and list2.
 Returns intersection of two lists
 
@@ -217,11 +217,11 @@ Returns intersection of two lists
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_anyURI
 
@@ -236,9 +236,9 @@ Value to check
 
 =head3 is_in_anyURI
 
-Checks whether anyURI value is in list of anyURI list and returns the boolean
-result.
-Checks whether a value is in a list
+Checks whether anyURI value is in array of anyURI array and returns the
+boolean result.
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -285,15 +285,15 @@ Checks for less than or equal
 =head3 length_anyURI
 
 This is a polymorphic function where anyURI can be any of the supported data
-types. Return the integer number of entries in datatype list or codepoints in
-others.
+types. Return the integer number of entries in datatype array or codepoints
+in others.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
 
     $value
 
-Returns the number of entries in a list or code points in others.
+Returns the number of entries in an array or code points in others.
 
 =head3 lt_anyURI
 
@@ -341,9 +341,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_anyURI
 
-This converts a list of anyURI values that contains one value to a single
+This converts an array of anyURI values that contains one value to a single
 anyURI value.
-Converts a one value list to a anyURI value
+Converts a one value array to a anyURI value
 
 =head4 Parameters
 
@@ -459,7 +459,7 @@ Checks whether two lists are subsets of each other
 
 =head3 split_anyURI
 
-Split anyURI value into an list of strings using a separator.
+Split anyURI value into an array of strings using a separator.
 Split at a separator
 
 =head4 Parameters
@@ -495,17 +495,17 @@ Checks whether value starts with a string
 
 Returns boolean true if the unique values in anyURI list1 are all in anyURI
 list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 substring_anyURI
 
@@ -527,7 +527,7 @@ Extract a substring
 
 =head3 to_string_anyURI
 
-Converts anyURI value to string. For list values, the to_string() value for
+Converts anyURI value to string. For array values, the to_string() value for
 each entry is returned separated with commas.
 Converts value to string
 
@@ -539,8 +539,8 @@ A anyURI value.
 
 =head3 union_anyURI
 
-Returns a list of anyURI contains all of the unique values in two or more
-list of anyURI values.
+Returns an array of anyURI contains all of the unique values in two or more
+array of anyURI values.
 Returns union of two or more string lists
 
 =head4 Parameters

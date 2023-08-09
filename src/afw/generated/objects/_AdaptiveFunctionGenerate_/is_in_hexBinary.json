@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInHexBinary",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Checks whether hexBinary value is in list of hexBinary list and returns the boolean result.",
+    "description": "Checks whether hexBinary value is in array of hexBinary array and returns the boolean result.",
     "functionId": "is_in<hexBinary>",
     "functionLabel": "is_in_hexBinary",
     "parameters": [

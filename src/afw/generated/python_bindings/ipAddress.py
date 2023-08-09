@@ -7,9 +7,9 @@ import json
 
 def bag_ipAddress(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of ipAddress values and returns a list of list.
+    Takes any number of ipAddress values and returns an array of array.
 
     Parameters:
 
@@ -40,7 +40,7 @@ def bag_size_ipAddress(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -231,9 +231,9 @@ def ipAddress(session, value):
 
 def is_in_ipAddress(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether ipAddress value is in list of ipAddress list and returns
+    Checks whether ipAddress value is in array of ipAddress array and returns
     the boolean result.
 
     Parameters:
@@ -428,9 +428,9 @@ def nex_ipAddress(session, arg1, arg2):
 
 def one_and_only_ipAddress(session, array):
     '''
-    Converts a one value list to a ipAddress value
+    Converts a one value array to a ipAddress value
 
-    This converts a list of ipAddress values that contains one value to a
+    This converts an array of ipAddress values that contains one value to a
     single ipAddress value.
 
     Parameters:
@@ -493,7 +493,7 @@ def to_string_ipAddress(session, value):
     '''
     Converts value to string
 
-    Converts ipAddress value to string. For list values, the to_string()
+    Converts ipAddress value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
     Parameters:

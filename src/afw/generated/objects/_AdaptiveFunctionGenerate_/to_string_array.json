@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringArray",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Converts array value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts array value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<array>",
     "functionLabel": "to_string_array",
     "parameters": [

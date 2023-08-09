@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Returns a list of yearMonthDuration contains all of the unique values in two or more list of yearMonthDuration values.",
+    "description": "Returns an array of yearMonthDuration contains all of the unique values in two or more array of yearMonthDuration values.",
     "functionId": "union<yearMonthDuration>",
     "functionLabel": "union_yearMonthDuration",
     "parameters": [

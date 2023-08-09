@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagSizeDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "This returns the integer number of values in list.",
+    "description": "This returns the integer number of values in array.",
     "functionId": "bag_size<dayTimeDuration>",
     "functionLabel": "bag_size_dayTimeDuration",
     "parameters": [

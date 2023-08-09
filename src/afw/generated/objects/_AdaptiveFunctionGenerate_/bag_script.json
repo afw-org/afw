@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagScript",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagScript",
     "category": "script",
     "dataTypeMethod": true,
-    "description": "Takes any number of script values and returns a list of list.",
+    "description": "Takes any number of script values and returns an array of array.",
     "functionId": "bag<script>",
     "functionLabel": "bag_script",
     "parameters": [

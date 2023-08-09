@@ -7,9 +7,9 @@ import json
 
 def bag_expression(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of expression values and returns a list of list.
+    Takes any number of expression values and returns an array of array.
 
     Parameters:
 
@@ -40,7 +40,7 @@ def bag_size_expression(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -479,7 +479,7 @@ def to_string_expression(session, value):
     '''
     Converts value to string
 
-    Converts expression value to string. For list values, the to_string()
+    Converts expression value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
     Parameters:

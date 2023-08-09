@@ -14,9 +14,9 @@ def at_least_one_member_of_base64Binary(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -40,9 +40,9 @@ def at_least_one_member_of_base64Binary(session, list1, list2):
 
 def bag_base64Binary(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of base64Binary values and returns a list of list.
+    Takes any number of base64Binary values and returns an array of array.
 
     Parameters:
 
@@ -73,7 +73,7 @@ def bag_size_base64Binary(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -296,14 +296,14 @@ def intersection_base64Binary(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of base64Binary with the values that are common to both
-    list of base64Binary list1 and list2.
+    Returns an array of base64Binary with the values that are common to both
+    array of base64Binary list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -357,9 +357,9 @@ def is_base64Binary(session, value):
 
 def is_in_base64Binary(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether base64Binary value is in list of base64Binary list and
+    Checks whether base64Binary value is in array of base64Binary array and
     returns the boolean result.
 
     Parameters:
@@ -525,10 +525,10 @@ def nex_base64Binary(session, arg1, arg2):
 
 def one_and_only_base64Binary(session, array):
     '''
-    Converts a one value list to a base64Binary value
+    Converts a one value array to a base64Binary value
 
-    This converts a list of base64Binary values that contains one value to a
-    single base64Binary value.
+    This converts an array of base64Binary values that contains one value to
+    a single base64Binary value.
 
     Parameters:
 
@@ -588,16 +588,16 @@ def set_equals_base64Binary(session, list1, list2):
 
 def subset_base64Binary(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in base64Binary list1 are all
     in base64Binary list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -623,7 +623,7 @@ def to_string_base64Binary(session, value):
     '''
     Converts value to string
 
-    Converts base64Binary value to string. For list values, the to_string()
+    Converts base64Binary value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
     Parameters:
@@ -653,8 +653,8 @@ def union_base64Binary(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of base64Binary contains all of the unique values in two
-    or more list of base64Binary values.
+    Returns an array of base64Binary contains all of the unique values in two
+    or more array of base64Binary values.
 
     Parameters:
 

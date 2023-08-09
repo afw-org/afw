@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyBoolean",
-    "brief": "Converts a one value list to a boolean value",
+    "brief": "Converts a one value array to a boolean value",
     "camelCaseFunctionLabel": "oneAndOnlyBoolean",
     "category": "boolean",
     "dataTypeMethod": true,
-    "description": "This converts a list of boolean values that contains one value to a single boolean value.",
+    "description": "This converts an array of boolean values that contains one value to a single boolean value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<boolean>",

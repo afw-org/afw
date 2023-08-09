@@ -595,7 +595,7 @@ Retrieve adaptive objects
     $objectCallback
 
 If this is specified, this function is called once for each object retrieved
-instead of adding the object to the return list. Parameter object will be an
+instead of adding the object to the return array. Parameter object will be an
 object retrieved or undefined if there are no more objects. This function
 should return true if it wants to abort the retrieve request.
 
@@ -779,7 +779,7 @@ Retrieve adaptive object with URI
     $objectCallback
 
 If this is specified, this function is called once for each object retrieved
-instead of adding the object to the return list. Parameter object will be an
+instead of adding the object to the return array. Parameter object will be an
 object retrieved or undefined if there are no more objects. This function
 should return true if it wants to abort the retrieve request.
 

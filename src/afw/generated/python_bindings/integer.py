@@ -73,9 +73,9 @@ def at_least_one_member_of_integer(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -99,9 +99,9 @@ def at_least_one_member_of_integer(session, list1, list2):
 
 def bag_integer(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of integer values and returns a list of list.
+    Takes any number of integer values and returns an array of array.
 
     Parameters:
 
@@ -132,7 +132,7 @@ def bag_size_integer(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -358,14 +358,14 @@ def intersection_integer(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of integer with the values that are common to both list of
-    integer list1 and list2.
+    Returns an array of integer with the values that are common to both array
+    of integer list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -389,9 +389,9 @@ def intersection_integer(session, list1, list2):
 
 def is_in_integer(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether integer value is in list of integer list and returns the
+    Checks whether integer value is in array of integer array and returns the
     boolean result.
 
     Parameters:
@@ -735,9 +735,9 @@ def nex_integer(session, arg1, arg2):
 
 def one_and_only_integer(session, array):
     '''
-    Converts a one value list to a integer value
+    Converts a one value array to a integer value
 
-    This converts a list of integer values that contains one value to a
+    This converts an array of integer values that contains one value to a
     single integer value.
 
     Parameters:
@@ -798,16 +798,16 @@ def set_equals_integer(session, list1, list2):
 
 def subset_integer(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in integer list1 are all in
     integer list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -894,7 +894,7 @@ def to_string_integer(session, value):
     '''
     Converts value to string
 
-    Converts integer value to string. For list values, the to_string() value
+    Converts integer value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
     Parameters:
@@ -924,8 +924,8 @@ def union_integer(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of integer contains all of the unique values in two or
-    more list of integer values.
+    Returns an array of integer contains all of the unique values in two or
+    more array of integer values.
 
     Parameters:
 

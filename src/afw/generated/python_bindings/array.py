@@ -13,12 +13,12 @@ def add_entries(session, target, source):
 
     Parameters:
 
-        target (array): Target list. This list must not be immutable.
+        target (array): Target array. This array must not be immutable.
 
-        source (array): Source list(s).
+        source (array): Source array(s).
 
     Returns:
-    array: The modified target list.
+    array: The modified target array.
     '''
 
     request = session.Request()
@@ -72,9 +72,9 @@ def array(session, values):
 
 def bag_array(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of array values and returns a list of list.
+    Takes any number of array values and returns an array of array.
 
     Parameters:
 
@@ -105,7 +105,7 @@ def bag_size_array(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -296,20 +296,20 @@ def gt_array(session, arg1, arg2):
 
 def includes_array(session, array, searchElement, fromIndex=None):
     '''
-    Checks whether or not a list contains any value
+    Checks whether or not an array contains any value
 
-    Checks whether or not a list contains any value.
+    Checks whether or not an array contains any value.
 
     Parameters:
 
-        array (array): The list to search.
+        array (array): The array to search.
 
         searchElement (): Element to find.
 
-        fromIndex (integer): Index in the list to start search.
+        fromIndex (integer): Index in the array to start search.
 
     Returns:
-    boolean: Indicates if the element is found in list.
+    boolean: Indicates if the element is found in array.
     '''
 
     request = session.Request()
@@ -362,19 +362,20 @@ def is_array(session, value):
 
 def join(session, value, separator=None):
     '''
-    Join the string values of list elements
+    Join the string values of array elements
 
-    Concatenate the string values of the elements of a list with a separator.
+    Concatenate the string values of the elements of an array with a
+    separator.
 
     Parameters:
 
-        value (array): A list of values (statements) of any data type.
+        value (array): An array of values (statements) of any data type.
 
         separator (string): The separator to use. If not specified, a comma
         (,) is used.
 
     Returns:
-    string: Joined list values.
+    string: Joined array values.
     '''
 
     request = session.Request()
@@ -433,13 +434,13 @@ def length_array(session, value):
     Returns number of codepoints or entries in value
 
     This is a polymorphic function where array can be any of the supported
-    data types. Return the integer number of entries in datatype list or
+    data types. Return the integer number of entries in datatype array or
     codepoints in others.
 
     Parameters:
 
-        value (array): Returns the number of entries in a list or code points
-        in others.
+        value (array): Returns the number of entries in an array or code
+        points in others.
 
     Returns:
     integer: 
@@ -564,17 +565,17 @@ def nex_array(session, arg1, arg2):
 
 def reverse(session, array):
     '''
-    Return list with elements reversed
+    Return array with elements reversed
 
-    Reverse the order of the elements in a list. If the list is typed, the
-    resulting list will be the same type.
+    Reverse the order of the elements in an array. If the array is typed, the
+    resulting array will be the same type.
 
     Parameters:
 
-        array (array): A list to reverse.
+        array (array): An array to reverse.
 
     Returns:
-    array: A list with elements reversed.
+    array: An array with elements reversed.
     '''
 
     request = session.Request()
@@ -594,26 +595,26 @@ def reverse(session, array):
 
 def slice(session, array, startIndex=None, endIndex=None):
     '''
-    Return a consecutive slice of values from a list
+    Return a consecutive slice of values from an array
 
-    This function extracts a consecutive slice of values from a list.
+    This function extracts a consecutive slice of values from an array.
 
     Parameters:
 
-        array (array): The list to slice.
+        array (array): The array to slice.
 
         startIndex (integer): This is the zero based starting index. Use
-        negative number to index from the end of the list. If not specified,
+        negative number to index from the end of the array. If not specified,
         an index of 0 is assumed.
 
         endIndex (integer): This is the zero based ending index. If positive,
         this is one more than the index of the last value to include in the
-        list. If negative, the index is from the end of the list. If not
+        array. If negative, the index is from the end of the array. If not
         specified, the slice is from startIndex up to and including the end
-        of the list.
+        of the array.
 
     Returns:
-    array: A list containing the selected values. If all of the values are the same data type, the list will be a list of that data type.
+    array: An array containing the selected values. If all of the values are the same data type, the array will be an array of that data type.
     '''
 
     request = session.Request()
@@ -641,7 +642,7 @@ def to_string_array(session, value):
     '''
     Converts value to string
 
-    Converts array value to string. For list values, the to_string() value
+    Converts array value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
     Parameters:

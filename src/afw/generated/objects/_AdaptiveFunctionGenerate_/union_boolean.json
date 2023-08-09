@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionBoolean",
     "category": "boolean",
     "dataTypeMethod": true,
-    "description": "Returns a list of boolean contains all of the unique values in two or more list of boolean values.",
+    "description": "Returns an array of boolean contains all of the unique values in two or more array of boolean values.",
     "functionId": "union<boolean>",
     "functionLabel": "union_boolean",
     "parameters": [

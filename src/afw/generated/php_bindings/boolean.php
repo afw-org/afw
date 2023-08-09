@@ -29,8 +29,8 @@ class boolean
      * Returns boolean true if at least one value in boolean list1 is in
      * boolean list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,7 @@ class boolean
     /**
      * bag_boolean()
      *
-     * Takes any number of boolean values and returns a list of list.
+     * Takes any number of boolean values and returns an array of array.
      *
      * @param array $values
      *
@@ -75,7 +75,7 @@ class boolean
     /**
      * bag_size_boolean()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -222,11 +222,11 @@ class boolean
     /**
      * intersection_boolean()
      *
-     * Returns a list of boolean with the values that are common to both list
-     * of boolean list1 and list2.
+     * Returns an array of boolean with the values that are common to both
+     * array of boolean list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -270,7 +270,7 @@ class boolean
     /**
      * is_in_boolean()
      *
-     * Checks whether boolean value is in list of boolean list and returns
+     * Checks whether boolean value is in array of boolean array and returns
      * the boolean result.
      *
      * @param boolean $value
@@ -398,7 +398,7 @@ class boolean
     /**
      * one_and_only_boolean()
      *
-     * This converts a list of boolean values that contains one value to a
+     * This converts an array of boolean values that contains one value to a
      * single boolean value.
      *
      * @param array $array
@@ -449,8 +449,8 @@ class boolean
      * Returns boolean true if the unique values in boolean list1 are all in
      * boolean list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -471,7 +471,7 @@ class boolean
     /**
      * to_string_boolean()
      *
-     * Converts boolean value to string. For list values, the to_string()
+     * Converts boolean value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param boolean $value A boolean value.
@@ -494,8 +494,8 @@ class boolean
     /**
      * union_boolean()
      *
-     * Returns a list of boolean contains all of the unique values in two or
-     * more list of boolean values.
+     * Returns an array of boolean contains all of the unique values in two
+     * or more array of boolean values.
      *
      * @param array $lists Two or more lists.
      *

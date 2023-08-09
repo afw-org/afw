@@ -41,7 +41,7 @@
             "brief": "List of test results",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveTestScriptTestResult_",
-            "description": "This is a list of the test results.",
+            "description": "This is an array of the test results.",
             "label": "Tests",
             "required": true
         }

@@ -124,8 +124,8 @@ class polymorphic
      * Returns boolean true if at least one value in `<dataType>` list1 is in
      * `<dataType>` list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -146,7 +146,7 @@ class polymorphic
     /**
      * bag()
      *
-     * Takes any number of `<dataType>` values and returns a list of list.
+     * Takes any number of `<dataType>` values and returns an array of array.
      *
      * @param array $values
      *
@@ -170,7 +170,7 @@ class polymorphic
     /**
      * bag_size()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -683,11 +683,11 @@ class polymorphic
     /**
      * intersection()
      *
-     * Returns a list of `<dataType>` with the values that are common to both
-     * list of `<dataType>` list1 and list2.
+     * Returns an array of `<dataType>` with the values that are common to
+     * both array of `<dataType>` list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -731,8 +731,8 @@ class polymorphic
     /**
      * is_in()
      *
-     * Checks whether `<dataType>` value is in list of `<dataType>` list and
-     * returns the boolean result.
+     * Checks whether `<dataType>` value is in array of `<dataType>` array
+     * and returns the boolean result.
      *
      * @param  $value
      * @param array $array
@@ -813,10 +813,10 @@ class polymorphic
      *
      * This is a polymorphic function where `<dataType>` can be any of the
      * supported data types. Return the integer number of entries in datatype
-     * list or codepoints in others.
+     * array or codepoints in others.
      *
-     * @param  $value Returns the number of entries in a list or code points
-     *                in others.
+     * @param  $value Returns the number of entries in an array or code
+     *                points in others.
      *
      * @return integer
      */
@@ -1101,8 +1101,8 @@ class polymorphic
     /**
      * one_and_only()
      *
-     * This converts a list of `<dataType>` values that contains one value to
-     * a single `<dataType>` value.
+     * This converts an array of `<dataType>` values that contains one value
+     * to a single `<dataType>` value.
      *
      * @param array $array
      *
@@ -1337,7 +1337,7 @@ class polymorphic
     /**
      * split()
      *
-     * Split `<dataType>` value into an list of strings using a separator.
+     * Split `<dataType>` value into an array of strings using a separator.
      *
      * @param  $value The `<dataType>` value to split.
      * @param string $separator The separator to use. If this is an empty
@@ -1346,7 +1346,7 @@ class polymorphic
      * @param integer $limit This is the maximum number of splits. Any
      *                       remaining part of value is ignored.
      *
-     * @return array An list of strings.
+     * @return array An array of strings.
      */
     public function split(, $value, $separator = null, $limit = null)
     {
@@ -1398,8 +1398,8 @@ class polymorphic
      * Returns boolean true if the unique values in `<dataType>` list1 are
      * all in `<dataType>` list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -1747,7 +1747,7 @@ class polymorphic
     /**
      * to_string()
      *
-     * Converts `<dataType>` value to string. For list values, the
+     * Converts `<dataType>` value to string. For array values, the
      * to_string() value for each entry is returned separated with commas.
      *
      * @param  $value A `<dataType>` value.
@@ -1836,8 +1836,8 @@ class polymorphic
     /**
      * union()
      *
-     * Returns a list of `<dataType>` contains all of the unique values in
-     * two or more list of `<dataType>` values.
+     * Returns an array of `<dataType>` contains all of the unique values in
+     * two or more array of `<dataType>` values.
      *
      * @param array $lists Two or more lists.
      *

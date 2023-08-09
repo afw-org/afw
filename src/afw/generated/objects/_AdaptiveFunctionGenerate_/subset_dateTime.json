@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwSubsetDateTime",
-    "brief": "Determines if the first list is a subset of second list",
+    "brief": "Determines if the first array is a subset of second array",
     "camelCaseFunctionLabel": "subsetDateTime",
     "category": "dateTime",
     "dataTypeMethod": true,
@@ -11,13 +11,13 @@
         {
             "dataType": "array",
             "dataTypeParameter": "dateTime",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dateTime",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

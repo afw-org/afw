@@ -11,13 +11,13 @@
         {
             "dataType": "array",
             "dataTypeParameter": "double",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "double",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

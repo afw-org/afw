@@ -44,11 +44,11 @@ Add entries of one or more lists to another
 
     $target
 
-Target list. This list must not be immutable.
+Target array. This array must not be immutable.
 
     $source
 
-Source list(s).
+Source array(s).
 
 =head3 array
 
@@ -66,8 +66,8 @@ array is included in the newly created array.
 
 =head3 bag_array
 
-Takes any number of array values and returns a list of list.
-Makes a list from values
+Takes any number of array values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -76,7 +76,7 @@ Makes a list from values
 
 =head3 bag_size_array
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -155,14 +155,14 @@ Checks for greater than
 
 =head3 includes_array
 
-Checks whether or not a list contains any value.
-Checks whether or not a list contains any value
+Checks whether or not an array contains any value.
+Checks whether or not an array contains any value
 
 =head4 Parameters
 
     $array
 
-The list to search.
+The array to search.
 
     $searchElement
 
@@ -170,7 +170,7 @@ Element to find.
 
     $fromIndex
 
-Index in the list to start search.
+Index in the array to start search.
 
 =head3 is_array
 
@@ -185,14 +185,14 @@ Value to check
 
 =head3 join
 
-Concatenate the string values of the elements of a list with a separator.
-Join the string values of list elements
+Concatenate the string values of the elements of an array with a separator.
+Join the string values of array elements
 
 =head4 Parameters
 
     $value
 
-A list of values (statements) of any data type.
+An array of values (statements) of any data type.
 
     $separator
 
@@ -215,15 +215,15 @@ Checks for less than or equal
 =head3 length_array
 
 This is a polymorphic function where array can be any of the supported data
-types. Return the integer number of entries in datatype list or codepoints in
-others.
+types. Return the integer number of entries in datatype array or codepoints
+in others.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
 
     $value
 
-Returns the number of entries in a list or code points in others.
+Returns the number of entries in an array or code points in others.
 
 =head3 lt_array
 
@@ -270,42 +270,42 @@ Checks for not equal value or type
 
 =head3 reverse
 
-Reverse the order of the elements in a list. If the list is typed, the
-resulting list will be the same type.
-Return list with elements reversed
+Reverse the order of the elements in an array. If the array is typed, the
+resulting array will be the same type.
+Return array with elements reversed
 
 =head4 Parameters
 
     $array
 
-A list to reverse.
+An array to reverse.
 
 =head3 slice
 
-This function extracts a consecutive slice of values from a list.
-Return a consecutive slice of values from a list
+This function extracts a consecutive slice of values from an array.
+Return a consecutive slice of values from an array
 
 =head4 Parameters
 
     $array
 
-The list to slice.
+The array to slice.
 
     $startIndex
 
 This is the zero based starting index. Use negative number to index from the
-end of the list. If not specified, an index of 0 is assumed.
+end of the array. If not specified, an index of 0 is assumed.
 
     $endIndex
 
 This is the zero based ending index. If positive, this is one more than the
-index of the last value to include in the list. If negative, the index is
-from the end of the list. If not specified, the slice is from startIndex up
-to and including the end of the list.
+index of the last value to include in the array. If negative, the index is
+from the end of the array. If not specified, the slice is from startIndex up
+to and including the end of the array.
 
 =head3 to_string_array
 
-Converts array value to string. For list values, the to_string() value for
+Converts array value to string. For array values, the to_string() value for
 each entry is returned separated with commas.
 Converts value to string
 

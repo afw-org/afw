@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Returns a list of anyURI with the values that are common to both list of anyURI list1 and list2.",
+    "description": "Returns an array of anyURI with the values that are common to both array of anyURI list1 and list2.",
     "functionId": "intersection<anyURI>",
     "functionLabel": "intersection_anyURI",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "anyURI",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "anyURI",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

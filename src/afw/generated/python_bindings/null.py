@@ -7,9 +7,9 @@ import json
 
 def bag_null(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of null values and returns a list of list.
+    Takes any number of null values and returns an array of array.
 
     Parameters:
 
@@ -40,7 +40,7 @@ def bag_size_null(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -127,8 +127,8 @@ def to_string_null(session, value):
     '''
     Converts value to string
 
-    Converts null value to string. For list values, the to_string() value for
-    each entry is returned separated with commas.
+    Converts null value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Parameters:
 

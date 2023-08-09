@@ -148,16 +148,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag
 
-Takes any number of `<dataType>` values and returns a list of list.
-Makes a list from values
+Takes any number of `<dataType>` values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -166,7 +166,7 @@ Makes a list from values
 
 =head3 bag_size
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -446,19 +446,19 @@ Optional start index for search if different than start of string.
 
 =head3 intersection
 
-Returns a list of `<dataType>` with the values that are common to both list
-of `<dataType>` list1 and list2.
+Returns an array of `<dataType>` with the values that are common to both
+array of `<dataType>` list1 and list2.
 Returns intersection of two lists
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is
 
@@ -473,9 +473,9 @@ Value to check
 
 =head3 is_in
 
-Checks whether `<dataType>` value is in list of `<dataType>` list and returns
-the boolean result.
-Checks whether a value is in a list
+Checks whether `<dataType>` value is in array of `<dataType>` array and
+returns the boolean result.
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -522,7 +522,7 @@ Checks for less than or equal
 =head3 length
 
 This is a polymorphic function where `<dataType>` can be any of the supported
-data types. Return the integer number of entries in datatype list or
+data types. Return the integer number of entries in datatype array or
 codepoints in others.
 Returns number of codepoints or entries in value
 
@@ -530,7 +530,7 @@ Returns number of codepoints or entries in value
 
     $value
 
-Returns the number of entries in a list or code points in others.
+Returns the number of entries in an array or code points in others.
 
 =head3 lt
 
@@ -667,9 +667,9 @@ Converts to lower case
 
 =head3 one_and_only
 
-This converts a list of `<dataType>` values that contains one value to a
+This converts an array of `<dataType>` values that contains one value to a
 single `<dataType>` value.
-Converts a one value list to a <dataType> value
+Converts a one value array to a <dataType> value
 
 =head4 Parameters
 
@@ -812,7 +812,7 @@ Checks whether two lists are subsets of each other
 
 =head3 split
 
-Split `<dataType>` value into an list of strings using a separator.
+Split `<dataType>` value into an array of strings using a separator.
 Split at a separator
 
 =head4 Parameters
@@ -848,17 +848,17 @@ Checks whether value starts with a string
 
 Returns boolean true if the unique values in `<dataType>` list1 are all in
 `<dataType>` list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 substring
 
@@ -1022,8 +1022,8 @@ Converts string to rfc822Name
 
 =head3 to_string
 
-Converts `<dataType>` value to string. For list values, the to_string() value
-for each entry is returned separated with commas.
+Converts `<dataType>` value to string. For array values, the to_string()
+value for each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters
@@ -1064,8 +1064,8 @@ Converts string to yearMonthDuration
 
 =head3 union
 
-Returns a list of `<dataType>` contains all of the unique values in two or
-more list of `<dataType>` values.
+Returns an array of `<dataType>` contains all of the unique values in two or
+more array of `<dataType>` values.
 Returns union of two or more string lists
 
 =head4 Parameters

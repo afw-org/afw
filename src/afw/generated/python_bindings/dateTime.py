@@ -79,9 +79,9 @@ def at_least_one_member_of_dateTime(session, list1, list2):
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -105,9 +105,9 @@ def at_least_one_member_of_dateTime(session, list1, list2):
 
 def bag_dateTime(session, values=None):
     '''
-    Makes a list from values
+    Makes an array from values
 
-    Takes any number of dateTime values and returns a list of list.
+    Takes any number of dateTime values and returns an array of array.
 
     Parameters:
 
@@ -138,7 +138,7 @@ def bag_size_dateTime(session, value):
     '''
     Returns the number of values in a bag
 
-    This returns the integer number of values in list.
+    This returns the integer number of values in array.
 
     Parameters:
 
@@ -337,14 +337,14 @@ def intersection_dateTime(session, list1, list2):
     '''
     Returns intersection of two lists
 
-    Returns a list of dateTime with the values that are common to both list
-    of dateTime list1 and list2.
+    Returns an array of dateTime with the values that are common to both
+    array of dateTime list1 and list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     array: 
@@ -397,10 +397,10 @@ def is_dateTime(session, value):
 
 def is_in_dateTime(session, value, array):
     '''
-    Checks whether a value is in a list
+    Checks whether a value is in an array
 
-    Checks whether dateTime value is in list of dateTime list and returns the
-    boolean result.
+    Checks whether dateTime value is in array of dateTime array and returns
+    the boolean result.
 
     Parameters:
 
@@ -635,9 +635,9 @@ def nex_dateTime(session, arg1, arg2):
 
 def one_and_only_dateTime(session, array):
     '''
-    Converts a one value list to a dateTime value
+    Converts a one value array to a dateTime value
 
-    This converts a list of dateTime values that contains one value to a
+    This converts an array of dateTime values that contains one value to a
     single dateTime value.
 
     Parameters:
@@ -698,16 +698,16 @@ def set_equals_dateTime(session, list1, list2):
 
 def subset_dateTime(session, list1, list2):
     '''
-    Determines if the first list is a subset of second list
+    Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in dateTime list1 are all in
     dateTime list2.
 
     Parameters:
 
-        list1 (array): The first list.
+        list1 (array): The first array.
 
-        list2 (array): The second list.
+        list2 (array): The second array.
 
     Returns:
     boolean: 
@@ -799,8 +799,8 @@ def to_string_dateTime(session, value):
     '''
     Converts value to string
 
-    Converts dateTime value to string. For list values, the to_string() value
-    for each entry is returned separated with commas.
+    Converts dateTime value to string. For array values, the to_string()
+    value for each entry is returned separated with commas.
 
     Parameters:
 
@@ -829,8 +829,8 @@ def union_dateTime(session, lists):
     '''
     Returns union of two or more string lists
 
-    Returns a list of dateTime contains all of the unique values in two or
-    more list of dateTime values.
+    Returns an array of dateTime contains all of the unique values in two or
+    more array of dateTime values.
 
     Parameters:
 

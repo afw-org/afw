@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringObject",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Converts object value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts object value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<object>",
     "functionLabel": "to_string_object",
     "parameters": [

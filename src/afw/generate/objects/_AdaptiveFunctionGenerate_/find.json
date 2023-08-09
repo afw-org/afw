@@ -1,7 +1,7 @@
 {
-    "brief": "Returns the first value in a list that passes a test",
+    "brief": "Returns the first value in an array that passes a test",
     "category": "higher_order_array",
-    "description": "The predicate is called for each value in the first list in values until true is returned, then that value is returned.",
+    "description": "The predicate is called for each value in the first array in values until true is returned, then that value is returned.",
     "functionId": "find",
     "functionLabel": "find",
     "pure": true,
@@ -9,12 +9,12 @@
         {
             "dataType": "function",
             "dataTypeParameter": "(... values: any): boolean",
-            "description": "This is a boolean function that is called to determine if a list entry passes the test.",
+            "description": "This is a boolean function that is called to determine if an array entry passes the test.",
             "name": "predicate"
         },
         {
             "minArgs": 1,
-            "description": "These are the values passed to the predicate with the exception that the first list is passed as the single current value from the list. At least one list is required.",
+            "description": "These are the values passed to the predicate with the exception that the first array is passed as the single current value from the array. At least one array is required.",
             "name": "values"
         }
     ],

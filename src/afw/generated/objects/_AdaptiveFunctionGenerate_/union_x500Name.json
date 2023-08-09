@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Returns a list of x500Name contains all of the unique values in two or more list of x500Name values.",
+    "description": "Returns an array of x500Name contains all of the unique values in two or more array of x500Name values.",
     "functionId": "union<x500Name>",
     "functionLabel": "union_x500Name",
     "parameters": [

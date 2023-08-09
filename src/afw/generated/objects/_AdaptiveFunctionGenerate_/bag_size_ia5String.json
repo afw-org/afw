@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagSizeIa5String",
     "category": "ia5String",
     "dataTypeMethod": true,
-    "description": "This returns the integer number of values in list.",
+    "description": "This returns the integer number of values in array.",
     "functionId": "bag_size<ia5String>",
     "functionLabel": "bag_size_ia5String",
     "parameters": [

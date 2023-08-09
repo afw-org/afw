@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagInteger",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Takes any number of integer values and returns a list of list.",
+    "description": "Takes any number of integer values and returns an array of array.",
     "functionId": "bag<integer>",
     "functionLabel": "bag_integer",
     "parameters": [

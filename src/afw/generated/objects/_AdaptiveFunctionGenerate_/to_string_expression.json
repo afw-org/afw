@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "toStringExpression",
     "category": "expression",
     "dataTypeMethod": true,
-    "description": "Converts expression value to string. For list values, the to_string() value for each entry is returned separated with commas.",
+    "description": "Converts expression value to string. For array values, the to_string() value for each entry is returned separated with commas.",
     "functionId": "to_string<expression>",
     "functionLabel": "to_string_expression",
     "parameters": [

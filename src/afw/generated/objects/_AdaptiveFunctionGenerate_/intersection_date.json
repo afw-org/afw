@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Returns a list of date with the values that are common to both list of date list1 and list2.",
+    "description": "Returns an array of date with the values that are common to both array of date list1 and list2.",
     "functionId": "intersection<date>",
     "functionLabel": "intersection_date",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "date",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "date",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

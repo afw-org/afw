@@ -36,7 +36,7 @@
         "compileOptions": {
             "dataType": "object",
             "dataTypeParameter": "_AdaptivePackageCompileOptions_",
-            "description": "This is a list of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is a list of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
+            "description": "This is an array of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is an array of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
             "label": "Compile Options",
             "required": false
         },

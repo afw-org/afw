@@ -162,7 +162,7 @@
                     "type": "boolean"
                 },
                 "allowedValues": {
-                    "description": "This is a list of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                    "description": "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
                     "title": "Allowed Values",
                     "type": "array"
                 },
@@ -279,9 +279,9 @@
                     "title": "Skeleton"
                 },
                 "tags": {
-                    "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                    "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                     "items": {
-                        "description": "This is a list of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                        "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
                         "title": "List of keywords and terms associated with values with this meta",
                         "type": "string"
                     },

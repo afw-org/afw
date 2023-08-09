@@ -92,9 +92,9 @@ export function afwAddYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
  * Returns boolean true if at least one value in `<dataType>` list1 is in
  * `<dataType>` list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -110,7 +110,7 @@ export function afwAtLeastOneMemberOf(client : any, list1 : any[], list2 : any[]
 }
 
 /**
- * Takes any number of `<dataType>` values and returns a list of list.
+ * Takes any number of `<dataType>` values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -129,7 +129,7 @@ export function afwBag(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -542,12 +542,12 @@ export function afwIndexOf(client : any, value : any, subString : string, startI
 }
 
 /**
- * Returns a list of `<dataType>` with the values that are common to both
- * list of `<dataType>` list1 and list2.
+ * Returns an array of `<dataType>` with the values that are common to both
+ * array of `<dataType>` list1 and list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {array}
  */
@@ -581,7 +581,7 @@ export function afwIs(client : any, value : any) : any {
 }
 
 /**
- * Checks whether `<dataType>` value is in list of `<dataType>` list and
+ * Checks whether `<dataType>` value is in array of `<dataType>` array and
  * returns the boolean result.
  * 
  * @param {} value -
@@ -652,9 +652,9 @@ export function afwLe(client : any, arg1 : any, arg2 : any) : any {
 /**
  * This is a polymorphic function where `<dataType>` can be any of the
  * supported data types. Return the integer number of entries in datatype
- * list or codepoints in others.
+ * array or codepoints in others.
  * 
- * @param {} value - Returns the number of entries in a list or code points
+ * @param {} value - Returns the number of entries in an array or code points
  *     in others.
  * 
  * @returns {integer}
@@ -881,7 +881,7 @@ export function afwNormalizeToLowerCase(client : any, string : any) : any {
 }
 
 /**
- * This converts a list of `<dataType>` values that contains one value to a
+ * This converts an array of `<dataType>` values that contains one value to a
  * single `<dataType>` value.
  * 
  * @param {array} array -
@@ -1080,7 +1080,7 @@ export function afwSetEquals(client : any, list1 : any[], list2 : any[]) : any {
 }
 
 /**
- * Split `<dataType>` value into an list of strings using a separator.
+ * Split `<dataType>` value into an array of strings using a separator.
  * 
  * @param {} value - The `<dataType>` value to split.
  * 
@@ -1091,7 +1091,7 @@ export function afwSetEquals(client : any, list1 : any[], list2 : any[]) : any {
  * @param {integer} limit - This is the maximum number of splits. Any
  *     remaining part of value is ignored.
  * 
- * @returns {array} An list of strings.
+ * @returns {array} An array of strings.
  */
 export function afwSplit(client : any, value : any, separator? : string, limit? : number) : any {
 
@@ -1134,9 +1134,9 @@ export function afwStartsWith(client : any, value : any, subString : string) : a
  * Returns boolean true if the unique values in `<dataType>` list1 are all in
  * `<dataType>` list2.
  * 
- * @param {array} list1 - The first list.
+ * @param {array} list1 - The first array.
  * 
- * @param {array} list2 - The second list.
+ * @param {array} list2 - The second array.
  * 
  * @returns {boolean}
  */
@@ -1413,7 +1413,7 @@ export function afwToRfc822Name(client : any, value : any) : any {
 }
 
 /**
- * Converts `<dataType>` value to string. For list values, the to_string()
+ * Converts `<dataType>` value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  * 
  * @param {} value - A `<dataType>` value.
@@ -1482,8 +1482,8 @@ export function afwToYearMonthDuration(client : any, value : any) : any {
 }
 
 /**
- * Returns a list of `<dataType>` contains all of the unique values in two or
- * more list of `<dataType>` values.
+ * Returns an array of `<dataType>` contains all of the unique values in two
+ * or more array of `<dataType>` values.
  * 
  * @param {array} lists - Two or more lists.
  * 

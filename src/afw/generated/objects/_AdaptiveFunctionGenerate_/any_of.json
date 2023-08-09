@@ -4,18 +4,18 @@
     "brief": "Any values pass a test",
     "camelCaseFunctionLabel": "anyOf",
     "category": "higher_order_array",
-    "description": "Returns true if any value in a list pass the predicate test.",
+    "description": "Returns true if any value in an array pass the predicate test.",
     "functionId": "any_of",
     "functionLabel": "any_of",
     "parameters": [
         {
             "dataType": "function",
             "dataTypeParameter": "(... values: any): boolean",
-            "description": "This function is called for each value in the first list in values or until true is returned. If no calls return true, the result is false.",
+            "description": "This function is called for each value in the first array in values or until true is returned. If no calls return true, the result is false.",
             "name": "predicate"
         },
         {
-            "description": "These are the parameters passed to predicate with the exception that the first list is passed one value at a time. At least one list is required.",
+            "description": "These are the parameters passed to predicate with the exception that the first array is passed one value at a time. At least one array is required.",
             "minArgs": 1,
             "name": "values"
         }

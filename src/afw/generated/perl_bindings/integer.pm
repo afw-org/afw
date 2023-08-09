@@ -76,16 +76,16 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_integer
 
-Takes any number of integer values and returns a list of list.
-Makes a list from values
+Takes any number of integer values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -94,7 +94,7 @@ Makes a list from values
 
 =head3 bag_size_integer
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -186,7 +186,7 @@ Value to convert
 
 =head3 intersection_integer
 
-Returns a list of integer with the values that are common to both list of
+Returns an array of integer with the values that are common to both array of
 integer list1 and list2.
 Returns intersection of two lists
 
@@ -194,17 +194,17 @@ Returns intersection of two lists
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_in_integer
 
-Checks whether integer value is in list of integer list and returns the
+Checks whether integer value is in array of integer array and returns the
 boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -338,9 +338,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_integer
 
-This converts a list of integer values that contains one value to a single
+This converts an array of integer values that contains one value to a single
 integer value.
-Converts a one value list to a integer value
+Converts a one value array to a integer value
 
 =head4 Parameters
 
@@ -365,17 +365,17 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in integer list1 are all in integer
 list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 subtract_integer
 
@@ -402,7 +402,7 @@ Converts to double
 
 =head3 to_string_integer
 
-Converts integer value to string. For list values, the to_string() value for
+Converts integer value to string. For array values, the to_string() value for
 each entry is returned separated with commas.
 Converts value to string
 
@@ -414,8 +414,8 @@ A integer value.
 
 =head3 union_integer
 
-Returns a list of integer contains all of the unique values in two or more
-list of integer values.
+Returns an array of integer contains all of the unique values in two or more
+array of integer values.
 Returns union of two or more string lists
 
 =head4 Parameters

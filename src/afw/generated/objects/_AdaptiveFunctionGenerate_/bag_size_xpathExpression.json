@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "bagSizeXpathExpression",
     "category": "xpathExpression",
     "dataTypeMethod": true,
-    "description": "This returns the integer number of values in list.",
+    "description": "This returns the integer number of values in array.",
     "functionId": "bag_size<xpathExpression>",
     "functionLabel": "bag_size_xpathExpression",
     "parameters": [

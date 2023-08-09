@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Returns a list of x500Name with the values that are common to both list of x500Name list1 and list2.",
+    "description": "Returns an array of x500Name with the values that are common to both array of x500Name list1 and list2.",
     "functionId": "intersection<x500Name>",
     "functionLabel": "intersection_x500Name",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

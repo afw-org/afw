@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Returns a list of integer contains all of the unique values in two or more list of integer values.",
+    "description": "Returns an array of integer contains all of the unique values in two or more array of integer values.",
     "functionId": "union<integer>",
     "functionLabel": "union_integer",
     "parameters": [

@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Returns a list of rfc822Name with the values that are common to both list of rfc822Name list1 and list2.",
+    "description": "Returns an array of rfc822Name with the values that are common to both array of rfc822Name list1 and list2.",
     "functionId": "intersection<rfc822Name>",
     "functionLabel": "intersection_rfc822Name",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

@@ -26,7 +26,7 @@ class ia5String
     /**
      * bag_ia5String()
      *
-     * Takes any number of ia5String values and returns a list of list.
+     * Takes any number of ia5String values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class ia5String
     /**
      * bag_size_ia5String()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -323,7 +323,7 @@ class ia5String
     /**
      * to_string_ia5String()
      *
-     * Converts ia5String value to string. For list values, the to_string()
+     * Converts ia5String value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param ia5String $value A ia5String value.

@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagDouble",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Takes any number of double values and returns a list of list.",
+    "description": "Takes any number of double values and returns an array of array.",
     "functionId": "bag<double>",
     "functionLabel": "bag_double",
     "parameters": [

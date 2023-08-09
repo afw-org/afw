@@ -80,7 +80,7 @@ class object
     /**
      * bag_object()
      *
-     * Takes any number of object values and returns a list of list.
+     * Takes any number of object values and returns an array of array.
      *
      * @param array $values
      *
@@ -104,7 +104,7 @@ class object
     /**
      * bag_size_object()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -555,7 +555,7 @@ class object
     /**
      * to_string_object()
      *
-     * Converts object value to string. For list values, the to_string()
+     * Converts object value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param object $value A object value.

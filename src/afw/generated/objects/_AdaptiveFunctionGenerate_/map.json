@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwMap",
-    "brief": "Maps values of a list",
+    "brief": "Maps values of an array",
     "camelCaseFunctionLabel": "map",
     "category": "higher_order_array",
-    "description": "This function creates a list of the results of calling functor with each value of the first list in values",
+    "description": "This function creates an array of the results of calling functor with each value of the first array in values",
     "functionId": "map",
     "functionLabel": "map",
     "parameters": [
@@ -13,7 +13,7 @@
             "name": "functor"
         },
         {
-            "description": "These are the parameters passed to functor with the exception that the first list is passed one value at a time. At least one list is required.",
+            "description": "These are the parameters passed to functor with the exception that the first array is passed one value at a time. At least one array is required.",
             "minArgs": 1,
             "name": "values"
         }

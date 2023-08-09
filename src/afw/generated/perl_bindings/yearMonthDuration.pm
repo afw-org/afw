@@ -45,15 +45,15 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_size_yearMonthDuration
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -63,8 +63,8 @@ Returns the number of values in a bag
 
 =head3 bag_yearMonthDuration
 
-Takes any number of yearMonthDuration values and returns a list of list.
-Makes a list from values
+Takes any number of yearMonthDuration values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -132,25 +132,25 @@ Checks for greater than
 
 =head3 intersection_yearMonthDuration
 
-Returns a list of yearMonthDuration with the values that are common to both
-list of yearMonthDuration list1 and list2.
+Returns an array of yearMonthDuration with the values that are common to both
+array of yearMonthDuration list1 and list2.
 Returns intersection of two lists
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_in_yearMonthDuration
 
-Checks whether yearMonthDuration value is in list of yearMonthDuration list
+Checks whether yearMonthDuration value is in array of yearMonthDuration array
 and returns the boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -233,9 +233,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_yearMonthDuration
 
-This converts a list of yearMonthDuration values that contains one value to a
-single yearMonthDuration value.
-Converts a one value list to a yearMonthDuration value
+This converts an array of yearMonthDuration values that contains one value to
+a single yearMonthDuration value.
+Converts a one value array to a yearMonthDuration value
 
 =head4 Parameters
 
@@ -260,21 +260,21 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in yearMonthDuration list1 are all
 in yearMonthDuration list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 to_string_yearMonthDuration
 
-Converts yearMonthDuration value to string. For list values, the to_string()
+Converts yearMonthDuration value to string. For array values, the to_string()
 value for each entry is returned separated with commas.
 Converts value to string
 
@@ -286,8 +286,8 @@ A yearMonthDuration value.
 
 =head3 union_yearMonthDuration
 
-Returns a list of yearMonthDuration contains all of the unique values in two
-or more list of yearMonthDuration values.
+Returns an array of yearMonthDuration contains all of the unique values in
+two or more array of yearMonthDuration values.
 Returns union of two or more string lists
 
 =head4 Parameters

@@ -52,13 +52,13 @@ class value
     /**
      * metas()
      *
-     * This function returns a list of the result of calling meta() for each
-     * value in a list or object adaptive value.
+     * This function returns an array of the result of calling meta() for
+     * each value in an array or object adaptive value.
      *
-     * @param  $value This is an adaptive list or object.
+     * @param  $value This is an adaptive array or object.
      *
-     * @return object An list containing the result of calling meta() of each
-     *                value in list or object adaptive value.
+     * @return object An array containing the result of calling meta() of
+     *                each value in array or object adaptive value.
      */
     public function metas(, $value)
     {

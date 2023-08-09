@@ -2,20 +2,20 @@
     "brief": "Returns intersection of two lists",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Returns a list of <dataType> with the values that are common to both list of <dataType> list1 and list2.",
+    "description": "Returns an array of <dataType> with the values that are common to both array of <dataType> list1 and list2.",
     "functionId": "intersection",
     "functionLabel": "intersection",
     "pure": true,
     "parameters": [
         {
             "dataType": "array",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1",
             "polymorphicDataTypeParameter": true
         },
         {
             "dataType": "array",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2",
             "polymorphicDataTypeParameter": true
         }

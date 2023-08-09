@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagXpathExpression",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagXpathExpression",
     "category": "xpathExpression",
     "dataTypeMethod": true,
-    "description": "Takes any number of xpathExpression values and returns a list of list.",
+    "description": "Takes any number of xpathExpression values and returns an array of array.",
     "functionId": "bag<xpathExpression>",
     "functionLabel": "bag_xpathExpression",
     "parameters": [

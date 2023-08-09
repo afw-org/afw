@@ -33,8 +33,8 @@ The following functions are exported by default
 
 =head3 bag_ipAddress
 
-Takes any number of ipAddress values and returns a list of list.
-Makes a list from values
+Takes any number of ipAddress values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -43,7 +43,7 @@ Makes a list from values
 
 =head3 bag_size_ipAddress
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -122,9 +122,9 @@ Value to convert
 
 =head3 is_in_ipAddress
 
-Checks whether ipAddress value is in list of ipAddress list and returns the
+Checks whether ipAddress value is in array of ipAddress array and returns the
 boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -206,9 +206,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_ipAddress
 
-This converts a list of ipAddress values that contains one value to a single
-ipAddress value.
-Converts a one value list to a ipAddress value
+This converts an array of ipAddress values that contains one value to a
+single ipAddress value.
+Converts a one value array to a ipAddress value
 
 =head4 Parameters
 
@@ -231,7 +231,7 @@ Search for a match using a regular expression
 
 =head3 to_string_ipAddress
 
-Converts ipAddress value to string. For list values, the to_string() value
+Converts ipAddress value to string. For array values, the to_string() value
 for each entry is returned separated with commas.
 Converts value to string
 

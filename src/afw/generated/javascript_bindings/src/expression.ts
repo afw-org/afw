@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Takes any number of expression values and returns a list of list.
+ * Takes any number of expression values and returns an array of array.
  * 
  * @param {array} values -
  * 
@@ -31,7 +31,7 @@ export function afwBagExpression(client : any, values? : any[]) : any {
 }
 
 /**
- * This returns the integer number of values in list.
+ * This returns the integer number of values in array.
  * 
  * @param {array} value -
  * 
@@ -312,7 +312,7 @@ export function afwNexExpression(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts expression value to string. For list values, the to_string()
+ * Converts expression value to string. For array values, the to_string()
  * value for each entry is returned separated with commas.
  * 
  * @param {expression} value - A expression value.

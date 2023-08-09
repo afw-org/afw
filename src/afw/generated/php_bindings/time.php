@@ -29,8 +29,8 @@ class time
      * Returns boolean true if at least one value in time list1 is in time
      * list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,7 @@ class time
     /**
      * bag_size_time()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -73,7 +73,7 @@ class time
     /**
      * bag_time()
      *
-     * Takes any number of time values and returns a list of list.
+     * Takes any number of time values and returns an array of array.
      *
      * @param array $values
      *
@@ -238,11 +238,11 @@ class time
     /**
      * intersection_time()
      *
-     * Returns a list of time with the values that are common to both list of
-     * time list1 and list2.
+     * Returns an array of time with the values that are common to both array
+     * of time list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -263,7 +263,7 @@ class time
     /**
      * is_in_time()
      *
-     * Checks whether time value is in list of time list and returns the
+     * Checks whether time value is in array of time array and returns the
      * boolean result.
      *
      * @param time $value
@@ -473,7 +473,7 @@ class time
     /**
      * one_and_only_time()
      *
-     * This converts a list of time values that contains one value to a
+     * This converts an array of time values that contains one value to a
      * single time value.
      *
      * @param array $array
@@ -524,8 +524,8 @@ class time
      * Returns boolean true if the unique values in time list1 are all in
      * time list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -568,7 +568,7 @@ class time
     /**
      * to_string_time()
      *
-     * Converts time value to string. For list values, the to_string() value
+     * Converts time value to string. For array values, the to_string() value
      * for each entry is returned separated with commas.
      *
      * @param time $value A time value.
@@ -591,8 +591,8 @@ class time
     /**
      * union_time()
      *
-     * Returns a list of time contains all of the unique values in two or
-     * more list of time values.
+     * Returns an array of time contains all of the unique values in two or
+     * more array of time values.
      *
      * @param array $lists Two or more lists.
      *

@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwReverse",
-    "brief": "Return list with elements reversed",
+    "brief": "Return array with elements reversed",
     "camelCaseFunctionLabel": "reverse",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Reverse the order of the elements in a list. If the list is typed, the resulting list will be the same type.",
+    "description": "Reverse the order of the elements in an array. If the array is typed, the resulting array will be the same type.",
     "functionId": "reverse",
     "functionLabel": "reverse",
     "parameters": [
         {
             "dataType": "array",
-            "description": "A list to reverse.",
+            "description": "An array to reverse.",
             "name": "array"
         }
     ],
     "pure": true,
     "returns": {
         "dataType": "array",
-        "description": "A list with elements reversed."
+        "description": "An array with elements reversed."
     }
 }

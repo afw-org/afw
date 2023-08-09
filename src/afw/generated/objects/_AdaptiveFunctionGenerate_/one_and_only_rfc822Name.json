@@ -1,14 +1,14 @@
 {
     "afwCamelCaseFunctionLabel": "afwOneAndOnlyRfc822Name",
-    "brief": "Converts a one value list to a rfc822Name value",
+    "brief": "Converts a one value array to a rfc822Name value",
     "camelCaseFunctionLabel": "oneAndOnlyRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "This converts a list of rfc822Name values that contains one value to a single rfc822Name value.",
+    "description": "This converts an array of rfc822Name values that contains one value to a single rfc822Name value.",
     "errorsThrown": [
         {
             "error": "arg_error",
-            "reason": "list does not contain exactly one value"
+            "reason": "array does not contain exactly one value"
         }
     ],
     "functionId": "one_and_only<rfc822Name>",

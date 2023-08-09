@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwBagArray",
-    "brief": "Makes a list from values",
+    "brief": "Makes an array from values",
     "camelCaseFunctionLabel": "bagArray",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Takes any number of array values and returns a list of list.",
+    "description": "Takes any number of array values and returns an array of array.",
     "functionId": "bag<array>",
     "functionLabel": "bag_array",
     "parameters": [

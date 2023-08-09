@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInRfc822Name",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Checks whether rfc822Name value is in list of rfc822Name list and returns the boolean result.",
+    "description": "Checks whether rfc822Name value is in array of rfc822Name array and returns the boolean result.",
     "functionId": "is_in<rfc822Name>",
     "functionLabel": "is_in_rfc822Name",
     "parameters": [

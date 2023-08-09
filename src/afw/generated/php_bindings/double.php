@@ -74,8 +74,8 @@ class double
      * Returns boolean true if at least one value in double list1 is in
      * double list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -96,7 +96,7 @@ class double
     /**
      * bag_double()
      *
-     * Takes any number of double values and returns a list of list.
+     * Takes any number of double values and returns an array of array.
      *
      * @param array $values
      *
@@ -120,7 +120,7 @@ class double
     /**
      * bag_size_double()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -338,11 +338,11 @@ class double
     /**
      * intersection_double()
      *
-     * Returns a list of double with the values that are common to both list
-     * of double list1 and list2.
+     * Returns an array of double with the values that are common to both
+     * array of double list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -431,8 +431,8 @@ class double
     /**
      * is_in_double()
      *
-     * Checks whether double value is in list of double list and returns the
-     * boolean result.
+     * Checks whether double value is in array of double array and returns
+     * the boolean result.
      *
      * @param double $value
      * @param array $array
@@ -647,7 +647,7 @@ class double
     /**
      * one_and_only_double()
      *
-     * This converts a list of double values that contains one value to a
+     * This converts an array of double values that contains one value to a
      * single double value.
      *
      * @param array $array
@@ -747,8 +747,8 @@ class double
      * Returns boolean true if the unique values in double list1 are all in
      * double list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -815,7 +815,7 @@ class double
     /**
      * to_string_double()
      *
-     * Converts double value to string. For list values, the to_string()
+     * Converts double value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param double $value A double value.
@@ -838,8 +838,8 @@ class double
     /**
      * union_double()
      *
-     * Returns a list of double contains all of the unique values in two or
-     * more list of double values.
+     * Returns an array of double contains all of the unique values in two or
+     * more array of double values.
      *
      * @param array $lists Two or more lists.
      *

@@ -190,7 +190,7 @@ afw_function_execute_model_default_delete_object_action(
  *       custom::objectId can be used to access this value in model
  *       expressions.
  *
- *   entries - (array) This is a list of modifications. Variable
+ *   entries - (array) This is an array of modifications. Variable
  *       custom::actions can be used to access this value in model expressions.
  *       Entries are of the form:
  *       

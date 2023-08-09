@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "intersectionInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Returns a list of integer with the values that are common to both list of integer list1 and list2.",
+    "description": "Returns an array of integer with the values that are common to both array of integer list1 and list2.",
     "functionId": "intersection<integer>",
     "functionLabel": "intersection_integer",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "integer",
-            "description": "The first list.",
+            "description": "The first array.",
             "name": "list1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "integer",
-            "description": "The second list.",
+            "description": "The second array.",
             "name": "list2"
         }
     ],

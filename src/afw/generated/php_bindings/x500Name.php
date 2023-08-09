@@ -29,8 +29,8 @@ class x500Name
      * Returns boolean true if at least one value in x500Name list1 is in
      * x500Name list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -51,7 +51,7 @@ class x500Name
     /**
      * bag_size_x500Name()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -73,7 +73,7 @@ class x500Name
     /**
      * bag_x500Name()
      *
-     * Takes any number of x500Name values and returns a list of list.
+     * Takes any number of x500Name values and returns an array of array.
      *
      * @param array $values
      *
@@ -200,11 +200,11 @@ class x500Name
     /**
      * intersection_x500Name()
      *
-     * Returns a list of x500Name with the values that are common to both
-     * list of x500Name list1 and list2.
+     * Returns an array of x500Name with the values that are common to both
+     * array of x500Name list1 and list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return array
      */
@@ -225,8 +225,8 @@ class x500Name
     /**
      * is_in_x500Name()
      *
-     * Checks whether x500Name value is in list of x500Name list and returns
-     * the boolean result.
+     * Checks whether x500Name value is in array of x500Name array and
+     * returns the boolean result.
      *
      * @param x500Name $value
      * @param array $array
@@ -401,7 +401,7 @@ class x500Name
     /**
      * one_and_only_x500Name()
      *
-     * This converts a list of x500Name values that contains one value to a
+     * This converts an array of x500Name values that contains one value to a
      * single x500Name value.
      *
      * @param array $array
@@ -477,8 +477,8 @@ class x500Name
      * Returns boolean true if the unique values in x500Name list1 are all in
      * x500Name list2.
      *
-     * @param array $list1 The first list.
-     * @param array $list2 The second list.
+     * @param array $list1 The first array.
+     * @param array $list2 The second array.
      *
      * @return boolean
      */
@@ -499,7 +499,7 @@ class x500Name
     /**
      * to_string_x500Name()
      *
-     * Converts x500Name value to string. For list values, the to_string()
+     * Converts x500Name value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param x500Name $value A x500Name value.
@@ -522,8 +522,8 @@ class x500Name
     /**
      * union_x500Name()
      *
-     * Returns a list of x500Name contains all of the unique values in two or
-     * more list of x500Name values.
+     * Returns an array of x500Name contains all of the unique values in two
+     * or more array of x500Name values.
      *
      * @param array $lists Two or more lists.
      *

@@ -31,15 +31,15 @@ This is the adaptive value whose meta object is to be returned.
 
 =head3 metas
 
-This function returns a list of the result of calling meta() for each value
-in a list or object adaptive value.
-Return a list of the result of calling meta() for each value in a list or object adaptive value
+This function returns an array of the result of calling meta() for each value
+in an array or object adaptive value.
+Return an array of the result of calling meta() for each value in an array or object adaptive value
 
 =head4 Parameters
 
     $value
 
-This is an adaptive list or object.
+This is an adaptive array or object.
 
 =cut
 

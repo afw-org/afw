@@ -6,7 +6,7 @@
 //? sourceType: expression
 //?
 //? test: add<double>-1
-//? description: Add a list
+//? description: Add an array
 //? expect: double(5.05)
 //? source: ...
 
@@ -20,7 +20,7 @@ add<double>(
 
 //?
 //? test: add<double>-2
-//? description: Add a list
+//? description: Add an array
 //? expect: double(555555.5)
 //? source: ...
 

@@ -2,7 +2,7 @@
     "brief": "Returns union of two or more string lists",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Returns a list of <dataType> contains all of the unique values in two or more list of <dataType> values.",
+    "description": "Returns an array of <dataType> contains all of the unique values in two or more array of <dataType> values.",
     "functionId": "union",
     "functionLabel": "union",
     "pure": true,

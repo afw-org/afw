@@ -71,15 +71,15 @@ def extension_load_by_module_path(session, module_path):
 
 def flag_get_active(session):
     '''
-    Get a list of active flags
+    Get an array of active flags
 
-    Get a list of of the flagId of flags that are set in the current
+    Get an array of of the flagId of flags that are set in the current
     execution context (xctx).
 
     Parameters:
 
     Returns:
-    array: This is a list of the flagId of flags that are set in the current execution context (xctx).
+    array: This is an array of the flagId of flags that are set in the current execution context (xctx).
     '''
 
     request = session.Request()
@@ -98,15 +98,15 @@ def flag_get_active(session):
 
 def flag_get_active_defaults(session):
     '''
-    Get a list of default active flags
+    Get an array of default active flags
 
-    Get a list of the flagId of flags that are set by default when a new
+    Get an array of the flagId of flags that are set by default when a new
     execution context (xctx) is created.
 
     Parameters:
 
     Returns:
-    array: This is a list of the flagId of flags that are set by default when a new execution context (xctx) is created.
+    array: This is an array of the flagId of flags that are set by default when a new execution context (xctx) is created.
     '''
 
     request = session.Request()
@@ -125,18 +125,18 @@ def flag_get_active_defaults(session):
 
 def flag_get_defaults(session):
     '''
-    Get the list of flags used to determine the default active flags
+    Get the array of flags used to determine the default active flags
 
-    Get the list of the flagId of flags that are used to determine the
+    Get the array of the flagId of flags that are used to determine the
     default active flags when an execution context (xctx) is created. This
-    list can contain the flagId of flags that have not yet been registered.
+    array can contain the flagId of flags that have not yet been registered.
     Each of these flags and the flags they include are set as the active
     default flags.
 
     Parameters:
 
     Returns:
-    array: This is a list of the flagId of flags used to determine the default active flags.
+    array: This is an array of the flagId of flags used to determine the default active flags.
     '''
 
     request = session.Request()
@@ -157,11 +157,11 @@ def flag_modify_defaults(session, flagId, add=None):
     '''
     Add or remove flags used to determine the default active flags
 
-    Add or remove flags from the list of the flagId of flags that are used to
-    determine the default active flags when an execution context (xctx) is
-    created. This list can contain the flagId of flags that have not yet been
-    registered. These flags and the flags they include are set as the active
-    default flags.
+    Add or remove flags from the array of the flagId of flags that are used
+    to determine the default active flags when an execution context (xctx) is
+    created. This array can contain the flagId of flags that have not yet
+    been registered. These flags and the flags they include are set as the
+    active default flags.
     
     This change only lasts for the life of the current adaptive environment
     (e.g. until the adaptive server or afw command ends). If you want the
@@ -199,13 +199,13 @@ def flag_modify_defaults(session, flagId, add=None):
 
 def flag_replace_defaults(session, flagId):
     '''
-    Replace the list of flags used to determine the default active flags
+    Replace the array of flags used to determine the default active flags
 
-    Completely replace the list of the flagId of flags that are used to
+    Completely replace the array of the flagId of flags that are used to
     determine the default active flags when an execution context (xctx) is
-    created. This list can contain the flagId of flags that have not yet been
-    registered. These flags and the flags they include are set as the active
-    default flags.
+    created. This array can contain the flagId of flags that have not yet
+    been registered. These flags and the flags they include are set as the
+    active default flags.
     
     This change only lasts for the life of the current adaptive environment
     (e.g. until the adaptive server or afw command ends). If you want the
@@ -214,8 +214,8 @@ def flag_replace_defaults(session, flagId):
 
     Parameters:
 
-        flagId (array): The list of the flagId of flags used to determine the
-        default active flags.
+        flagId (array): The array of the flagId of flags used to determine
+        the default active flags.
 
     Returns:
     null: 

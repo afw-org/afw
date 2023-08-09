@@ -47,15 +47,15 @@ Checks for at least one value in common
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 bag_size_x500Name
 
-This returns the integer number of values in list.
+This returns the integer number of values in array.
 Returns the number of values in a bag
 
 =head4 Parameters
@@ -65,8 +65,8 @@ Returns the number of values in a bag
 
 =head3 bag_x500Name
 
-Takes any number of x500Name values and returns a list of list.
-Makes a list from values
+Takes any number of x500Name values and returns an array of array.
+Makes an array from values
 
 =head4 Parameters
 
@@ -133,7 +133,7 @@ Checks for greater than
 
 =head3 intersection_x500Name
 
-Returns a list of x500Name with the values that are common to both list of
+Returns an array of x500Name with the values that are common to both array of
 x500Name list1 and list2.
 Returns intersection of two lists
 
@@ -141,17 +141,17 @@ Returns intersection of two lists
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 is_in_x500Name
 
-Checks whether x500Name value is in list of x500Name list and returns the
+Checks whether x500Name value is in array of x500Name array and returns the
 boolean result.
-Checks whether a value is in a list
+Checks whether a value is in an array
 
 =head4 Parameters
 
@@ -246,9 +246,9 @@ Checks for not equal value or type
 
 =head3 one_and_only_x500Name
 
-This converts a list of x500Name values that contains one value to a single
+This converts an array of x500Name values that contains one value to a single
 x500Name value.
-Converts a one value list to a x500Name value
+Converts a one value array to a x500Name value
 
 =head4 Parameters
 
@@ -287,22 +287,22 @@ Checks whether two lists are subsets of each other
 
 Returns boolean true if the unique values in x500Name list1 are all in
 x500Name list2.
-Determines if the first list is a subset of second list
+Determines if the first array is a subset of second array
 
 =head4 Parameters
 
     $list1
 
-The first list.
+The first array.
 
     $list2
 
-The second list.
+The second array.
 
 =head3 to_string_x500Name
 
-Converts x500Name value to string. For list values, the to_string() value for
-each entry is returned separated with commas.
+Converts x500Name value to string. For array values, the to_string() value
+for each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters
@@ -313,8 +313,8 @@ A x500Name value.
 
 =head3 union_x500Name
 
-Returns a list of x500Name contains all of the unique values in two or more
-list of x500Name values.
+Returns an array of x500Name contains all of the unique values in two or more
+array of x500Name values.
 Returns union of two or more string lists
 
 =head4 Parameters

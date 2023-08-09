@@ -26,7 +26,7 @@ class xpathExpression
     /**
      * bag_size_xpathExpression()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -48,7 +48,8 @@ class xpathExpression
     /**
      * bag_xpathExpression()
      *
-     * Takes any number of xpathExpression values and returns a list of list.
+     * Takes any number of xpathExpression values and returns an array of
+     * array.
      *
      * @param array $values
      *
@@ -388,7 +389,7 @@ class xpathExpression
     /**
      * to_string_xpathExpression()
      *
-     * Converts xpathExpression value to string. For list values, the
+     * Converts xpathExpression value to string. For array values, the
      * to_string() value for each entry is returned separated with commas.
      *
      * @param xpathExpression $value A xpathExpression value.

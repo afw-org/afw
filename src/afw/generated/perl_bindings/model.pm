@@ -129,7 +129,7 @@ used to access this value in model expressions.
 
     $entries
 
-This is a list of modifications. Variable custom::actions can be used to
+This is an array of modifications. Variable custom::actions can be used to
 access this value in model expressions. Entries are of the form:
 
     [

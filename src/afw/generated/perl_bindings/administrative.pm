@@ -57,35 +57,35 @@ installed in the normal place, the library name without a file extension
 
 =head3 flag_get_active
 
-Get a list of of the flagId of flags that are set in the current execution
+Get an array of of the flagId of flags that are set in the current execution
 context (xctx).
-Get a list of active flags
+Get an array of active flags
 
 =head4 Parameters
 
 =head3 flag_get_active_defaults
 
-Get a list of the flagId of flags that are set by default when a new
+Get an array of the flagId of flags that are set by default when a new
 execution context (xctx) is created.
-Get a list of default active flags
+Get an array of default active flags
 
 =head4 Parameters
 
 =head3 flag_get_defaults
 
-Get the list of the flagId of flags that are used to determine the default
-active flags when an execution context (xctx) is created. This list can
+Get the array of the flagId of flags that are used to determine the default
+active flags when an execution context (xctx) is created. This array can
 contain the flagId of flags that have not yet been registered. Each of these
 flags and the flags they include are set as the active default flags.
-Get the list of flags used to determine the default active flags
+Get the array of flags used to determine the default active flags
 
 =head4 Parameters
 
 =head3 flag_modify_defaults
 
-Add or remove flags from the list of the flagId of flags that are used to
+Add or remove flags from the array of the flagId of flags that are used to
 determine the default active flags when an execution context (xctx) is
-created. This list can contain the flagId of flags that have not yet been
+created. This array can contain the flagId of flags that have not yet been
 registered. These flags and the flags they include are set as the active
 default flags.
 
@@ -107,21 +107,22 @@ added.
 
 =head3 flag_replace_defaults
 
-Completely replace the list of the flagId of flags that are used to determine
-the default active flags when an execution context (xctx) is created. This
-list can contain the flagId of flags that have not yet been registered. These
-flags and the flags they include are set as the active default flags.
+Completely replace the array of the flagId of flags that are used to
+determine the default active flags when an execution context (xctx) is
+created. This array can contain the flagId of flags that have not yet been
+registered. These flags and the flags they include are set as the active
+default flags.
 
 This change only lasts for the life of the current adaptive environment (e.g.
 until the adaptive server or afw command ends). If you want the change to
 persist, change the defaultFlags property in the application config.
-Replace the list of flags used to determine the default active flags
+Replace the array of flags used to determine the default active flags
 
 =head4 Parameters
 
     $flagId
 
-The list of the flagId of flags used to determine the default active flags.
+The array of the flagId of flags used to determine the default active flags.
 
 =head3 flag_set
 

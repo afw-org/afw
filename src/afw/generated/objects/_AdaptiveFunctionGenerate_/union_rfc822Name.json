@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "unionRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Returns a list of rfc822Name contains all of the unique values in two or more list of rfc822Name values.",
+    "description": "Returns an array of rfc822Name contains all of the unique values in two or more array of rfc822Name values.",
     "functionId": "union<rfc822Name>",
     "functionLabel": "union_rfc822Name",
     "parameters": [

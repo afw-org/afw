@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsInString",
-    "brief": "Checks whether a value is in a list",
+    "brief": "Checks whether a value is in an array",
     "camelCaseFunctionLabel": "isInString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Checks whether string value is in list of string list and returns the boolean result.",
+    "description": "Checks whether string value is in array of string array and returns the boolean result.",
     "functionId": "is_in<string>",
     "functionLabel": "is_in_string",
     "parameters": [

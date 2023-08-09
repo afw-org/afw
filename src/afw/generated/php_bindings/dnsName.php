@@ -26,7 +26,7 @@ class dnsName
     /**
      * bag_dnsName()
      *
-     * Takes any number of dnsName values and returns a list of list.
+     * Takes any number of dnsName values and returns an array of array.
      *
      * @param array $values
      *
@@ -50,7 +50,7 @@ class dnsName
     /**
      * bag_size_dnsName()
      *
-     * This returns the integer number of values in list.
+     * This returns the integer number of values in array.
      *
      * @param array $value
      *
@@ -220,7 +220,7 @@ class dnsName
     /**
      * is_in_dnsName()
      *
-     * Checks whether dnsName value is in list of dnsName list and returns
+     * Checks whether dnsName value is in array of dnsName array and returns
      * the boolean result.
      *
      * @param dnsName $value
@@ -348,7 +348,7 @@ class dnsName
     /**
      * one_and_only_dnsName()
      *
-     * This converts a list of dnsName values that contains one value to a
+     * This converts an array of dnsName values that contains one value to a
      * single dnsName value.
      *
      * @param array $array
@@ -396,7 +396,7 @@ class dnsName
     /**
      * to_string_dnsName()
      *
-     * Converts dnsName value to string. For list values, the to_string()
+     * Converts dnsName value to string. For array values, the to_string()
      * value for each entry is returned separated with commas.
      *
      * @param dnsName $value A dnsName value.

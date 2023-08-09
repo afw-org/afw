@@ -55,11 +55,11 @@ export function afwExtensionLoadByModulePath(client : any, module_path : string)
 }
 
 /**
- * Get a list of of the flagId of flags that are set in the current execution
- * context (xctx).
+ * Get an array of of the flagId of flags that are set in the current
+ * execution context (xctx).
  * 
- * @returns {array} This is a list of the flagId of flags that are set in the
- *     current execution context (xctx).
+ * @returns {array} This is an array of the flagId of flags that are set in
+ *     the current execution context (xctx).
  */
 export function afwFlagGetActive(client : any) : any {
 
@@ -71,10 +71,10 @@ export function afwFlagGetActive(client : any) : any {
 }
 
 /**
- * Get a list of the flagId of flags that are set by default when a new
+ * Get an array of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
  * 
- * @returns {array} This is a list of the flagId of flags that are set by
+ * @returns {array} This is an array of the flagId of flags that are set by
  *     default when a new execution context (xctx) is created.
  */
 export function afwFlagGetActiveDefaults(client : any) : any {
@@ -87,13 +87,13 @@ export function afwFlagGetActiveDefaults(client : any) : any {
 }
 
 /**
- * Get the list of the flagId of flags that are used to determine the default
- * active flags when an execution context (xctx) is created. This list can
- * contain the flagId of flags that have not yet been registered. Each of
- * these flags and the flags they include are set as the active default
- * flags.
+ * Get the array of the flagId of flags that are used to determine the
+ * default active flags when an execution context (xctx) is created. This
+ * array can contain the flagId of flags that have not yet been registered.
+ * Each of these flags and the flags they include are set as the active
+ * default flags.
  * 
- * @returns {array} This is a list of the flagId of flags used to determine
+ * @returns {array} This is an array of the flagId of flags used to determine
  *     the default active flags.
  */
 export function afwFlagGetDefaults(client : any) : any {
@@ -106,9 +106,9 @@ export function afwFlagGetDefaults(client : any) : any {
 }
 
 /**
- * Add or remove flags from the list of the flagId of flags that are used to
+ * Add or remove flags from the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
- * created. This list can contain the flagId of flags that have not yet been
+ * created. This array can contain the flagId of flags that have not yet been
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
@@ -138,9 +138,9 @@ export function afwFlagModifyDefaults(client : any, flagId : any[], add? : boole
 }
 
 /**
- * Completely replace the list of the flagId of flags that are used to
+ * Completely replace the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
- * created. This list can contain the flagId of flags that have not yet been
+ * created. This array can contain the flagId of flags that have not yet been
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
@@ -149,7 +149,7 @@ export function afwFlagModifyDefaults(client : any, flagId : any[], add? : boole
  * change to persist, change the defaultFlags property in the application
  * config.
  * 
- * @param {array} flagId - The list of the flagId of flags used to determine
+ * @param {array} flagId - The array of the flagId of flags used to determine
  *     the default active flags.
  * 
  * @returns {null}
