@@ -29,22 +29,22 @@ export function afwAnyURI(client : any, value : any) : any {
 }
 
 /**
- * Returns boolean true if at least one value in anyURI list1 is in anyURI
- * list2.
+ * Returns boolean true if at least one value in anyURI array1 is in anyURI
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfAnyURI(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfAnyURI(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<anyURI>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -250,21 +250,21 @@ export function afwIndexOfAnyURI(client : any, value : any, subString : string, 
 
 /**
  * Returns an array of anyURI with the values that are common to both array
- * of anyURI list1 and list2.
+ * of anyURI array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionAnyURI(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionAnyURI(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<anyURI>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -580,22 +580,22 @@ export function afwReplaceAnyURI(client : any, value : any, match : string, repl
 }
 
 /**
- * Returns boolean true if anyURI list1 and anyURI list2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if anyURI array1 and anyURI array2 are subsets of
+ * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsAnyURI(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsAnyURI(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<anyURI>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -652,22 +652,22 @@ export function afwStartsWithAnyURI(client : any, value : any, subString : strin
 }
 
 /**
- * Returns boolean true if the unique values in anyURI list1 are all in
- * anyURI list2.
+ * Returns boolean true if the unique values in anyURI array1 are all in
+ * anyURI array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetAnyURI(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetAnyURI(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<anyURI>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -721,16 +721,16 @@ export function afwToStringAnyURI(client : any, value : any) : any {
  * Returns an array of anyURI contains all of the unique values in two or
  * more array of anyURI values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionAnyURI(client : any, lists : any[]) : any {
+export function afwUnionAnyURI(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<anyURI>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

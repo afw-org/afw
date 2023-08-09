@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in date list1 are all in date list2.",
+    "description": "Returns boolean true if the unique values in date array1 are all in date array2.",
     "functionId": "subset<date>",
     "functionLabel": "subset_date",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "date",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "date",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

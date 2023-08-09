@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwUnionDouble",
-    "brief": "Returns union of two or more string lists",
+    "brief": "Returns union of two or more string arrays",
     "camelCaseFunctionLabel": "unionDouble",
     "category": "double",
     "dataTypeMethod": true,
@@ -11,9 +11,9 @@
         {
             "dataType": "array",
             "dataTypeParameter": "double",
-            "description": "Two or more lists.",
+            "description": "Two or more arrays.",
             "minArgs": 2,
-            "name": "lists"
+            "name": "arrays"
         }
     ],
     "pure": true,

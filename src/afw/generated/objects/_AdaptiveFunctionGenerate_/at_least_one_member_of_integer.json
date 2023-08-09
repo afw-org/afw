@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in integer list1 is in integer list2.",
+    "description": "Returns boolean true if at least one value in integer array1 is in integer array2.",
     "functionId": "at_least_one_member_of<integer>",
     "functionLabel": "at_least_one_member_of_integer",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "integer",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "integer",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

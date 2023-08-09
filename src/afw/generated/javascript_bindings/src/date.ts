@@ -32,21 +32,22 @@ export function afwAddYearMonthDurationDate(client : any, arg1 : any, arg2 : any
 }
 
 /**
- * Returns boolean true if at least one value in date list1 is in date list2.
+ * Returns boolean true if at least one value in date array1 is in date
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfDate(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfDate(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<date>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -198,21 +199,21 @@ export function afwGtDate(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Returns an array of date with the values that are common to both array of
- * date list1 and list2.
+ * date array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionDate(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionDate(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<date>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -406,43 +407,43 @@ export function afwOneAndOnlyDate(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if date list1 and date list2 are subsets of each
+ * Returns boolean true if date array1 and date array2 are subsets of each
  * other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsDate(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsDate(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<date>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in date list1 are all in date
- * list2.
+ * Returns boolean true if the unique values in date array1 are all in date
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetDate(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetDate(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<date>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -489,16 +490,16 @@ export function afwToStringDate(client : any, value : any) : any {
  * Returns an array of date contains all of the unique values in two or more
  * array of date values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionDate(client : any, lists : any[]) : any {
+export function afwUnionDate(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<date>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIntersectionInteger",
-    "brief": "Returns intersection of two lists",
+    "brief": "Returns intersection of two arrays",
     "camelCaseFunctionLabel": "intersectionInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Returns an array of integer with the values that are common to both array of integer list1 and list2.",
+    "description": "Returns an array of integer with the values that are common to both array of integer array1 and array2.",
     "functionId": "intersection<integer>",
     "functionLabel": "intersection_integer",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "integer",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "integer",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

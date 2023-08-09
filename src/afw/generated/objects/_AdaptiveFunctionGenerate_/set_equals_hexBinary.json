@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsHexBinary",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if hexBinary array1 and hexBinary array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<hexBinary>",
     "functionLabel": "set_equals_hexBinary",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in dayTimeDuration list1 is in dayTimeDuration list2.",
+    "description": "Returns boolean true if at least one value in dayTimeDuration array1 is in dayTimeDuration array2.",
     "functionId": "at_least_one_member_of<dayTimeDuration>",
     "functionLabel": "at_least_one_member_of_dayTimeDuration",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

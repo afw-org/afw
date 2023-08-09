@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in double list1 are all in double list2.",
+    "description": "Returns boolean true if the unique values in double array1 are all in double array2.",
     "functionId": "subset<double>",
     "functionLabel": "subset_double",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "double",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "double",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

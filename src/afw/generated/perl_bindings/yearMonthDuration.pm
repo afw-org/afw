@@ -37,17 +37,17 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_yearMonthDuration
 
-Returns boolean true if at least one value in yearMonthDuration list1 is in
-yearMonthDuration list2.
+Returns boolean true if at least one value in yearMonthDuration array1 is in
+yearMonthDuration array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -133,16 +133,16 @@ Checks for greater than
 =head3 intersection_yearMonthDuration
 
 Returns an array of yearMonthDuration with the values that are common to both
-array of yearMonthDuration list1 and list2.
-Returns intersection of two lists
+array of yearMonthDuration array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -244,31 +244,31 @@ Converts a one value array to a yearMonthDuration value
 
 =head3 set_equals_yearMonthDuration
 
-Returns boolean true if yearMonthDuration list1 and yearMonthDuration list2
+Returns boolean true if yearMonthDuration array1 and yearMonthDuration array2
 are subsets of each other and return the boolean result.
-Checks whether two lists are subsets of each other
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_yearMonthDuration
 
-Returns boolean true if the unique values in yearMonthDuration list1 are all
-in yearMonthDuration list2.
+Returns boolean true if the unique values in yearMonthDuration array1 are all
+in yearMonthDuration array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -288,13 +288,13 @@ A yearMonthDuration value.
 
 Returns an array of yearMonthDuration contains all of the unique values in
 two or more array of yearMonthDuration values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =head3 yearMonthDuration
 
@@ -311,13 +311,13 @@ Value to convert
 =cut
 
 sub at_least_one_member_of_yearMonthDuration {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<yearMonthDuration>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -395,13 +395,13 @@ sub gt_yearMonthDuration {
 }
 
 sub intersection_yearMonthDuration {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<yearMonthDuration>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -489,25 +489,25 @@ sub one_and_only_yearMonthDuration {
 }
 
 sub set_equals_yearMonthDuration {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<yearMonthDuration>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_yearMonthDuration {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<yearMonthDuration>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -524,12 +524,12 @@ sub to_string_yearMonthDuration {
 }
 
 sub union_yearMonthDuration {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<yearMonthDuration>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

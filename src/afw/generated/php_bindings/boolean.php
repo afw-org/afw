@@ -26,23 +26,23 @@ class boolean
     /**
      * at_least_one_member_of_boolean()
      *
-     * Returns boolean true if at least one value in boolean list1 is in
-     * boolean list2.
+     * Returns boolean true if at least one value in boolean array1 is in
+     * boolean array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_boolean(, $list1, $list2)
+    public function at_least_one_member_of_boolean(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<boolean>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -223,22 +223,22 @@ class boolean
      * intersection_boolean()
      *
      * Returns an array of boolean with the values that are common to both
-     * array of boolean list1 and list2.
+     * array of boolean array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_boolean(, $list1, $list2)
+    public function intersection_boolean(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<boolean>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -421,23 +421,23 @@ class boolean
     /**
      * set_equals_boolean()
      *
-     * Returns boolean true if boolean list1 and boolean list2 are subsets of
-     * each other and return the boolean result.
+     * Returns boolean true if boolean array1 and boolean array2 are subsets
+     * of each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_boolean(, $list1, $list2)
+    public function set_equals_boolean(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<boolean>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -446,23 +446,23 @@ class boolean
     /**
      * subset_boolean()
      *
-     * Returns boolean true if the unique values in boolean list1 are all in
-     * boolean list2.
+     * Returns boolean true if the unique values in boolean array1 are all in
+     * boolean array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_boolean(, $list1, $list2)
+    public function subset_boolean(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<boolean>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -497,18 +497,18 @@ class boolean
      * Returns an array of boolean contains all of the unique values in two
      * or more array of boolean values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_boolean(, $lists)
+    public function union_boolean(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<boolean>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

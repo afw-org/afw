@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in base64Binary list1 is in
- * base64Binary list2.
+ * Returns boolean true if at least one value in base64Binary array1 is in
+ * base64Binary array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfBase64Binary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfBase64Binary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<base64Binary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -192,21 +192,21 @@ export function afwGtBase64Binary(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Returns an array of base64Binary with the values that are common to both
- * array of base64Binary list1 and list2.
+ * array of base64Binary array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionBase64Binary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionBase64Binary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<base64Binary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -356,43 +356,43 @@ export function afwOneAndOnlyBase64Binary(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if base64Binary list1 and base64Binary list2 are
+ * Returns boolean true if base64Binary array1 and base64Binary array2 are
  * subsets of each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsBase64Binary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsBase64Binary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<base64Binary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in base64Binary list1 are all in
- * base64Binary list2.
+ * Returns boolean true if the unique values in base64Binary array1 are all
+ * in base64Binary array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetBase64Binary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetBase64Binary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<base64Binary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -419,16 +419,16 @@ export function afwToStringBase64Binary(client : any, value : any) : any {
  * Returns an array of base64Binary contains all of the unique values in two
  * or more array of base64Binary values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionBase64Binary(client : any, lists : any[]) : any {
+export function afwUnionBase64Binary(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<base64Binary>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

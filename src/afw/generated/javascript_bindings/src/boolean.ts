@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in boolean list1 is in boolean
- * list2.
+ * Returns boolean true if at least one value in boolean array1 is in boolean
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfBoolean(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfBoolean(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<boolean>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -174,21 +174,21 @@ export function afwGtBoolean(client : any, arg1 : boolean, arg2 : boolean) : any
 
 /**
  * Returns an array of boolean with the values that are common to both array
- * of boolean list1 and list2.
+ * of boolean array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionBoolean(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionBoolean(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<boolean>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -337,43 +337,43 @@ export function afwOneAndOnlyBoolean(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if boolean list1 and boolean list2 are subsets of
+ * Returns boolean true if boolean array1 and boolean array2 are subsets of
  * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsBoolean(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsBoolean(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<boolean>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in boolean list1 are all in
- * boolean list2.
+ * Returns boolean true if the unique values in boolean array1 are all in
+ * boolean array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetBoolean(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetBoolean(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<boolean>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -400,16 +400,16 @@ export function afwToStringBoolean(client : any, value : boolean) : any {
  * Returns an array of boolean contains all of the unique values in two or
  * more array of boolean values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionBoolean(client : any, lists : any[]) : any {
+export function afwUnionBoolean(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<boolean>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

@@ -5,18 +5,18 @@
 import requests
 import json
 
-def at_least_one_member_of_yearMonthDuration(session, list1, list2):
+def at_least_one_member_of_yearMonthDuration(session, array1, array2):
     '''
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in yearMonthDuration list1 is
-    in yearMonthDuration list2.
+    Returns boolean true if at least one value in yearMonthDuration array1 is
+    in yearMonthDuration array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -26,8 +26,8 @@ def at_least_one_member_of_yearMonthDuration(session, list1, list2):
 
     action = {
         "function": "at_least_one_member_of<yearMonthDuration>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -234,18 +234,18 @@ def gt_yearMonthDuration(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def intersection_yearMonthDuration(session, list1, list2):
+def intersection_yearMonthDuration(session, array1, array2):
     '''
-    Returns intersection of two lists
+    Returns intersection of two arrays
 
     Returns an array of yearMonthDuration with the values that are common to
-    both array of yearMonthDuration list1 and list2.
+    both array of yearMonthDuration array1 and array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     array: 
@@ -255,8 +255,8 @@ def intersection_yearMonthDuration(session, list1, list2):
 
     action = {
         "function": "intersection<yearMonthDuration>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -495,18 +495,18 @@ def one_and_only_yearMonthDuration(session, array):
 
     return response['actions'][0]['result']
 
-def set_equals_yearMonthDuration(session, list1, list2):
+def set_equals_yearMonthDuration(session, array1, array2):
     '''
-    Checks whether two lists are subsets of each other
+    Checks whether two arrays are subsets of each other
 
-    Returns boolean true if yearMonthDuration list1 and yearMonthDuration
-    list2 are subsets of each other and return the boolean result.
+    Returns boolean true if yearMonthDuration array1 and yearMonthDuration
+    array2 are subsets of each other and return the boolean result.
 
     Parameters:
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -516,8 +516,8 @@ def set_equals_yearMonthDuration(session, list1, list2):
 
     action = {
         "function": "set_equals<yearMonthDuration>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -528,18 +528,18 @@ def set_equals_yearMonthDuration(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def subset_yearMonthDuration(session, list1, list2):
+def subset_yearMonthDuration(session, array1, array2):
     '''
     Determines if the first array is a subset of second array
 
-    Returns boolean true if the unique values in yearMonthDuration list1 are
-    all in yearMonthDuration list2.
+    Returns boolean true if the unique values in yearMonthDuration array1 are
+    all in yearMonthDuration array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -549,8 +549,8 @@ def subset_yearMonthDuration(session, list1, list2):
 
     action = {
         "function": "subset<yearMonthDuration>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -591,16 +591,16 @@ def to_string_yearMonthDuration(session, value):
 
     return response['actions'][0]['result']
 
-def union_yearMonthDuration(session, lists):
+def union_yearMonthDuration(session, arrays):
     '''
-    Returns union of two or more string lists
+    Returns union of two or more string arrays
 
     Returns an array of yearMonthDuration contains all of the unique values
     in two or more array of yearMonthDuration values.
 
     Parameters:
 
-        lists (array): Two or more lists.
+        arrays (array): Two or more arrays.
 
     Returns:
     array: 
@@ -610,7 +610,7 @@ def union_yearMonthDuration(session, lists):
 
     action = {
         "function": "union<yearMonthDuration>",
-        "lists": lists
+        "arrays": arrays
     }
 
     request.add_action(action)

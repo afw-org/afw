@@ -40,16 +40,16 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_time
 
-Returns boolean true if at least one value in time list1 is in time list2.
+Returns boolean true if at least one value in time array1 is in time array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -159,16 +159,16 @@ Checks if time in range
 =head3 intersection_time
 
 Returns an array of time with the values that are common to both array of
-time list1 and list2.
-Returns intersection of two lists
+time array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -299,31 +299,31 @@ Converts a one value array to a time value
 
 =head3 set_equals_time
 
-Returns boolean true if time list1 and time list2 are subsets of each other
+Returns boolean true if time array1 and time array2 are subsets of each other
 and return the boolean result.
-Checks whether two lists are subsets of each other
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_time
 
-Returns boolean true if the unique values in time list1 are all in time
-list2.
+Returns boolean true if the unique values in time array1 are all in time
+array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -354,24 +354,24 @@ A time value.
 
 Returns an array of time contains all of the unique values in two or more
 array of time values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =cut
 
 sub at_least_one_member_of_time {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<time>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -462,13 +462,13 @@ sub in_range_time {
 }
 
 sub intersection_time {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<time>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -578,25 +578,25 @@ sub one_and_only_time {
 }
 
 sub set_equals_time {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<time>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_time {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<time>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -624,12 +624,12 @@ sub to_string_time {
 }
 
 sub union_time {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<time>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

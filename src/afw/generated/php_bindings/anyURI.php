@@ -48,23 +48,23 @@ class anyURI
     /**
      * at_least_one_member_of_anyURI()
      *
-     * Returns boolean true if at least one value in anyURI list1 is in
-     * anyURI list2.
+     * Returns boolean true if at least one value in anyURI array1 is in
+     * anyURI array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_anyURI(, $list1, $list2)
+    public function at_least_one_member_of_anyURI(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<anyURI>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -309,22 +309,22 @@ class anyURI
      * intersection_anyURI()
      *
      * Returns an array of anyURI with the values that are common to both
-     * array of anyURI list1 and list2.
+     * array of anyURI array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_anyURI(, $list1, $list2)
+    public function intersection_anyURI(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<anyURI>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -699,23 +699,23 @@ class anyURI
     /**
      * set_equals_anyURI()
      *
-     * Returns boolean true if anyURI list1 and anyURI list2 are subsets of
+     * Returns boolean true if anyURI array1 and anyURI array2 are subsets of
      * each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_anyURI(, $list1, $list2)
+    public function set_equals_anyURI(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<anyURI>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -782,23 +782,23 @@ class anyURI
     /**
      * subset_anyURI()
      *
-     * Returns boolean true if the unique values in anyURI list1 are all in
-     * anyURI list2.
+     * Returns boolean true if the unique values in anyURI array1 are all in
+     * anyURI array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_anyURI(, $list1, $list2)
+    public function subset_anyURI(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<anyURI>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -863,18 +863,18 @@ class anyURI
      * Returns an array of anyURI contains all of the unique values in two or
      * more array of anyURI values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_anyURI(, $lists)
+    public function union_anyURI(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<anyURI>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

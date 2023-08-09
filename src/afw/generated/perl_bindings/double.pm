@@ -72,17 +72,17 @@ Add
 
 =head3 at_least_one_member_of_double
 
-Returns boolean true if at least one value in double list1 is in double
-list2.
+Returns boolean true if at least one value in double array1 is in double
+array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -213,16 +213,16 @@ Checks for greater than
 =head3 intersection_double
 
 Returns an array of double with the values that are common to both array of
-double list1 and list2.
-Returns intersection of two lists
+double array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -411,31 +411,31 @@ Round to nearest integer
 
 =head3 set_equals_double
 
-Returns boolean true if double list1 and double list2 are subsets of each
+Returns boolean true if double array1 and double array2 are subsets of each
 other and return the boolean result.
-Checks whether two lists are subsets of each other
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_double
 
-Returns boolean true if the unique values in double list1 are all in double
-list2.
+Returns boolean true if the unique values in double array1 are all in double
+array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -478,13 +478,13 @@ A double value.
 
 Returns an array of double contains all of the unique values in two or more
 array of double values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =cut
 
@@ -511,13 +511,13 @@ sub add_double {
 }
 
 sub at_least_one_member_of_double {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<double>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -640,13 +640,13 @@ sub gt_double {
 }
 
 sub intersection_double {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<double>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -823,25 +823,25 @@ sub round_double {
 }
 
 sub set_equals_double {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<double>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_double {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<double>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -881,12 +881,12 @@ sub to_string_double {
 }
 
 sub union_double {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<double>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

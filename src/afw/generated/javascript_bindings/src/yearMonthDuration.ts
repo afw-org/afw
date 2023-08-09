@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in yearMonthDuration list1 is
- * in yearMonthDuration list2.
+ * Returns boolean true if at least one value in yearMonthDuration array1 is
+ * in yearMonthDuration array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfYearMonthDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfYearMonthDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<yearMonthDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -158,21 +158,21 @@ export function afwGtYearMonthDuration(client : any, arg1 : any, arg2 : any) : a
 
 /**
  * Returns an array of yearMonthDuration with the values that are common to
- * both array of yearMonthDuration list1 and list2.
+ * both array of yearMonthDuration array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionYearMonthDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionYearMonthDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<yearMonthDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -322,43 +322,43 @@ export function afwOneAndOnlyYearMonthDuration(client : any, array : any[]) : an
 }
 
 /**
- * Returns boolean true if yearMonthDuration list1 and yearMonthDuration
- * list2 are subsets of each other and return the boolean result.
+ * Returns boolean true if yearMonthDuration array1 and yearMonthDuration
+ * array2 are subsets of each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsYearMonthDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsYearMonthDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<yearMonthDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in yearMonthDuration list1 are
- * all in yearMonthDuration list2.
+ * Returns boolean true if the unique values in yearMonthDuration array1 are
+ * all in yearMonthDuration array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetYearMonthDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetYearMonthDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<yearMonthDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -385,16 +385,16 @@ export function afwToStringYearMonthDuration(client : any, value : any) : any {
  * Returns an array of yearMonthDuration contains all of the unique values in
  * two or more array of yearMonthDuration values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionYearMonthDuration(client : any, lists : any[]) : any {
+export function afwUnionYearMonthDuration(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<yearMonthDuration>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

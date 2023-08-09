@@ -140,17 +140,17 @@ Add duration
 
 =head3 at_least_one_member_of
 
-Returns boolean true if at least one value in `<dataType>` list1 is in
-`<dataType>` list2.
+Returns boolean true if at least one value in `<dataType>` array1 is in
+`<dataType>` array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -447,16 +447,16 @@ Optional start index for search if different than start of string.
 =head3 intersection
 
 Returns an array of `<dataType>` with the values that are common to both
-array of `<dataType>` list1 and list2.
-Returns intersection of two lists
+array of `<dataType>` array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -798,16 +798,16 @@ Round to nearest integer
 
 =head3 set_equals
 
-Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are subsets
-of each other and return the boolean result.
-Checks whether two lists are subsets of each other
+Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
+subsets of each other and return the boolean result.
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 split
@@ -846,17 +846,17 @@ Checks whether value starts with a string
 
 =head3 subset
 
-Returns boolean true if the unique values in `<dataType>` list1 are all in
-`<dataType>` list2.
+Returns boolean true if the unique values in `<dataType>` array1 are all in
+`<dataType>` array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -1066,13 +1066,13 @@ Converts string to yearMonthDuration
 
 Returns an array of `<dataType>` contains all of the unique values in two or
 more array of `<dataType>` values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =head3 url_encode
 
@@ -1135,13 +1135,13 @@ sub add_yearMonthDuration {
 }
 
 sub at_least_one_member_of {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1392,13 +1392,13 @@ sub index_of {
 }
 
 sub intersection {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1693,13 +1693,13 @@ sub round {
 }
 
 sub set_equals {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1734,13 +1734,13 @@ sub starts_with {
 }
 
 sub subset {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1951,12 +1951,12 @@ sub to_yearMonthDuration {
 }
 
 sub union {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

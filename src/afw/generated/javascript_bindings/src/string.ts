@@ -33,22 +33,22 @@ export function afwAddString(client : any, string : string, values : any) : any 
 }
 
 /**
- * Returns boolean true if at least one value in string list1 is in string
- * list2.
+ * Returns boolean true if at least one value in string array1 is in string
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfString(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfString(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<string>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -330,21 +330,21 @@ export function afwIndexOfString(client : any, value : string, subString : strin
 
 /**
  * Returns an array of string with the values that are common to both array
- * of string list1 and list2.
+ * of string array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionString(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionString(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<string>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -728,22 +728,22 @@ export function afwReplaceString(client : any, value : string, match : string, r
 }
 
 /**
- * Returns boolean true if string list1 and string list2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if string array1 and string array2 are subsets of
+ * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsString(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsString(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<string>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -819,22 +819,22 @@ export function afwString(client : any, values : any) : any {
 }
 
 /**
- * Returns boolean true if the unique values in string list1 are all in
- * string list2.
+ * Returns boolean true if the unique values in string array1 are all in
+ * string array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetString(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetString(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<string>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -1109,16 +1109,16 @@ export function afwToYearMonthDurationString(client : any, value : string) : any
  * Returns an array of string contains all of the unique values in two or
  * more array of string values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionString(client : any, lists : any[]) : any {
+export function afwUnionString(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<string>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

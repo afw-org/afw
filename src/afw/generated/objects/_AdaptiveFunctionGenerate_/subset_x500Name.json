@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in x500Name list1 are all in x500Name list2.",
+    "description": "Returns boolean true if the unique values in x500Name array1 are all in x500Name array2.",
     "functionId": "subset<x500Name>",
     "functionLabel": "subset_x500Name",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "x500Name",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

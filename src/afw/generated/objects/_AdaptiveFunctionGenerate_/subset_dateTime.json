@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetDateTime",
     "category": "dateTime",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in dateTime list1 are all in dateTime list2.",
+    "description": "Returns boolean true if the unique values in dateTime array1 are all in dateTime array2.",
     "functionId": "subset<dateTime>",
     "functionLabel": "subset_dateTime",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "dateTime",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dateTime",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

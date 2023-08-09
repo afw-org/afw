@@ -39,17 +39,17 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_x500Name
 
-Returns boolean true if at least one value in x500Name list1 is in x500Name
-list2.
+Returns boolean true if at least one value in x500Name array1 is in x500Name
+array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -134,16 +134,16 @@ Checks for greater than
 =head3 intersection_x500Name
 
 Returns an array of x500Name with the values that are common to both array of
-x500Name list1 and list2.
-Returns intersection of two lists
+x500Name array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -271,31 +271,31 @@ Search for a match using a regular expression
 
 =head3 set_equals_x500Name
 
-Returns boolean true if x500Name list1 and x500Name list2 are subsets of each
-other and return the boolean result.
-Checks whether two lists are subsets of each other
+Returns boolean true if x500Name array1 and x500Name array2 are subsets of
+each other and return the boolean result.
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_x500Name
 
-Returns boolean true if the unique values in x500Name list1 are all in
-x500Name list2.
+Returns boolean true if the unique values in x500Name array1 are all in
+x500Name array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -315,13 +315,13 @@ A x500Name value.
 
 Returns an array of x500Name contains all of the unique values in two or more
 array of x500Name values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =head3 x500Name
 
@@ -337,13 +337,13 @@ Value to convert
 =cut
 
 sub at_least_one_member_of_x500Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<x500Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -421,13 +421,13 @@ sub gt_x500Name {
 }
 
 sub intersection_x500Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<x500Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -539,25 +539,25 @@ sub regexp_match_x500Name {
 }
 
 sub set_equals_x500Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<x500Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_x500Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<x500Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -574,12 +574,12 @@ sub to_string_x500Name {
 }
 
 sub union_x500Name {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<x500Name>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

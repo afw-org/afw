@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsX500Name",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsX500Name",
     "category": "x500Name",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if x500Name list1 and x500Name list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if x500Name array1 and x500Name array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<x500Name>",
     "functionLabel": "set_equals_x500Name",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "x500Name",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

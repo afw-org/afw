@@ -38,17 +38,17 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_hexBinary
 
-Returns boolean true if at least one value in hexBinary list1 is in hexBinary
-list2.
+Returns boolean true if at least one value in hexBinary array1 is in
+hexBinary array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -156,16 +156,16 @@ Value to convert
 =head3 intersection_hexBinary
 
 Returns an array of hexBinary with the values that are common to both array
-of hexBinary list1 and list2.
-Returns intersection of two lists
+of hexBinary array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -266,31 +266,31 @@ Converts a one value array to a hexBinary value
 
 =head3 set_equals_hexBinary
 
-Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of
+Returns boolean true if hexBinary array1 and hexBinary array2 are subsets of
 each other and return the boolean result.
-Checks whether two lists are subsets of each other
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_hexBinary
 
-Returns boolean true if the unique values in hexBinary list1 are all in
-hexBinary list2.
+Returns boolean true if the unique values in hexBinary array1 are all in
+hexBinary array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -310,24 +310,24 @@ A hexBinary value.
 
 Returns an array of hexBinary contains all of the unique values in two or
 more array of hexBinary values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =cut
 
 sub at_least_one_member_of_hexBinary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<hexBinary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -427,13 +427,13 @@ sub hexBinary {
 }
 
 sub intersection_hexBinary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<hexBinary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -521,25 +521,25 @@ sub one_and_only_hexBinary {
 }
 
 sub set_equals_hexBinary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<hexBinary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_hexBinary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<hexBinary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -556,12 +556,12 @@ sub to_string_hexBinary {
 }
 
 sub union_hexBinary {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<hexBinary>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

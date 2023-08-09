@@ -70,18 +70,18 @@ def add_yearMonthDuration_dateTime(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def at_least_one_member_of_dateTime(session, list1, list2):
+def at_least_one_member_of_dateTime(session, array1, array2):
     '''
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in dateTime list1 is in
-    dateTime list2.
+    Returns boolean true if at least one value in dateTime array1 is in
+    dateTime array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -91,8 +91,8 @@ def at_least_one_member_of_dateTime(session, list1, list2):
 
     action = {
         "function": "at_least_one_member_of<dateTime>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -333,18 +333,18 @@ def gt_dateTime(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def intersection_dateTime(session, list1, list2):
+def intersection_dateTime(session, array1, array2):
     '''
-    Returns intersection of two lists
+    Returns intersection of two arrays
 
     Returns an array of dateTime with the values that are common to both
-    array of dateTime list1 and list2.
+    array of dateTime array1 and array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     array: 
@@ -354,8 +354,8 @@ def intersection_dateTime(session, list1, list2):
 
     action = {
         "function": "intersection<dateTime>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -663,18 +663,18 @@ def one_and_only_dateTime(session, array):
 
     return response['actions'][0]['result']
 
-def set_equals_dateTime(session, list1, list2):
+def set_equals_dateTime(session, array1, array2):
     '''
-    Checks whether two lists are subsets of each other
+    Checks whether two arrays are subsets of each other
 
-    Returns boolean true if dateTime list1 and dateTime list2 are subsets of
-    each other and return the boolean result.
+    Returns boolean true if dateTime array1 and dateTime array2 are subsets
+    of each other and return the boolean result.
 
     Parameters:
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -684,8 +684,8 @@ def set_equals_dateTime(session, list1, list2):
 
     action = {
         "function": "set_equals<dateTime>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -696,18 +696,18 @@ def set_equals_dateTime(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def subset_dateTime(session, list1, list2):
+def subset_dateTime(session, array1, array2):
     '''
     Determines if the first array is a subset of second array
 
-    Returns boolean true if the unique values in dateTime list1 are all in
-    dateTime list2.
+    Returns boolean true if the unique values in dateTime array1 are all in
+    dateTime array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -717,8 +717,8 @@ def subset_dateTime(session, list1, list2):
 
     action = {
         "function": "subset<dateTime>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -825,16 +825,16 @@ def to_string_dateTime(session, value):
 
     return response['actions'][0]['result']
 
-def union_dateTime(session, lists):
+def union_dateTime(session, arrays):
     '''
-    Returns union of two or more string lists
+    Returns union of two or more string arrays
 
     Returns an array of dateTime contains all of the unique values in two or
     more array of dateTime values.
 
     Parameters:
 
-        lists (array): Two or more lists.
+        arrays (array): Two or more arrays.
 
     Returns:
     array: 
@@ -844,7 +844,7 @@ def union_dateTime(session, lists):
 
     action = {
         "function": "union<dateTime>",
-        "lists": lists
+        "arrays": arrays
     }
 
     request.add_action(action)

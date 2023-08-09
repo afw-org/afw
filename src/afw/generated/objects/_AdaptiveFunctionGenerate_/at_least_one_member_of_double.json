@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfDouble",
     "category": "double",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in double list1 is in double list2.",
+    "description": "Returns boolean true if at least one value in double array1 is in double array2.",
     "functionId": "at_least_one_member_of<double>",
     "functionLabel": "at_least_one_member_of_double",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "double",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "double",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

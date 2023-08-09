@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in dayTimeDuration list1 is in
- * dayTimeDuration list2.
+ * Returns boolean true if at least one value in dayTimeDuration array1 is in
+ * dayTimeDuration array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfDayTimeDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfDayTimeDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<dayTimeDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -175,21 +175,21 @@ export function afwGtDayTimeDuration(client : any, arg1 : any, arg2 : any) : any
 
 /**
  * Returns an array of dayTimeDuration with the values that are common to
- * both array of dayTimeDuration list1 and list2.
+ * both array of dayTimeDuration array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionDayTimeDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionDayTimeDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<dayTimeDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -339,43 +339,43 @@ export function afwOneAndOnlyDayTimeDuration(client : any, array : any[]) : any 
 }
 
 /**
- * Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2
+ * Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2
  * are subsets of each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsDayTimeDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsDayTimeDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<dayTimeDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in dayTimeDuration list1 are all
- * in dayTimeDuration list2.
+ * Returns boolean true if the unique values in dayTimeDuration array1 are
+ * all in dayTimeDuration array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetDayTimeDuration(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetDayTimeDuration(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<dayTimeDuration>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -402,16 +402,16 @@ export function afwToStringDayTimeDuration(client : any, value : any) : any {
  * Returns an array of dayTimeDuration contains all of the unique values in
  * two or more array of dayTimeDuration values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionDayTimeDuration(client : any, lists : any[]) : any {
+export function afwUnionDayTimeDuration(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<dayTimeDuration>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

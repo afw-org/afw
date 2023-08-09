@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfTime",
     "category": "time",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in time list1 is in time list2.",
+    "description": "Returns boolean true if at least one value in time array1 is in time array2.",
     "functionId": "at_least_one_member_of<time>",
     "functionLabel": "at_least_one_member_of_time",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "time",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "time",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

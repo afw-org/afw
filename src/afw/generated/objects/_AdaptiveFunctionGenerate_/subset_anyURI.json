@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in anyURI list1 are all in anyURI list2.",
+    "description": "Returns boolean true if the unique values in anyURI array1 are all in anyURI array2.",
     "functionId": "subset<anyURI>",
     "functionLabel": "subset_anyURI",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

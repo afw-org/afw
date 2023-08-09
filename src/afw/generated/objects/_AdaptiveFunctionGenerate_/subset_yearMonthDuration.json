@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in yearMonthDuration list1 are all in yearMonthDuration list2.",
+    "description": "Returns boolean true if the unique values in yearMonthDuration array1 are all in yearMonthDuration array2.",
     "functionId": "subset<yearMonthDuration>",
     "functionLabel": "subset_yearMonthDuration",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

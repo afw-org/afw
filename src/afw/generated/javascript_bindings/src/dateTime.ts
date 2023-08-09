@@ -53,22 +53,22 @@ export function afwAddYearMonthDurationDateTime(client : any, arg1 : any, arg2 :
 }
 
 /**
- * Returns boolean true if at least one value in dateTime list1 is in
- * dateTime list2.
+ * Returns boolean true if at least one value in dateTime array1 is in
+ * dateTime array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfDateTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfDateTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<dateTime>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -221,21 +221,21 @@ export function afwGtDateTime(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Returns an array of dateTime with the values that are common to both array
- * of dateTime list1 and list2.
+ * of dateTime array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionDateTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionDateTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<dateTime>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -430,43 +430,43 @@ export function afwOneAndOnlyDateTime(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if dateTime list1 and dateTime list2 are subsets of
+ * Returns boolean true if dateTime array1 and dateTime array2 are subsets of
  * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsDateTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsDateTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<dateTime>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in dateTime list1 are all in
- * dateTime list2.
+ * Returns boolean true if the unique values in dateTime array1 are all in
+ * dateTime array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetDateTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetDateTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<dateTime>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -535,16 +535,16 @@ export function afwToStringDateTime(client : any, value : any) : any {
  * Returns an array of dateTime contains all of the unique values in two or
  * more array of dateTime values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionDateTime(client : any, lists : any[]) : any {
+export function afwUnionDateTime(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<dateTime>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

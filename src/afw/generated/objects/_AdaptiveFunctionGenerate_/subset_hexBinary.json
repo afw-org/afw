@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in hexBinary list1 are all in hexBinary list2.",
+    "description": "Returns boolean true if the unique values in hexBinary array1 are all in hexBinary array2.",
     "functionId": "subset<hexBinary>",
     "functionLabel": "subset_hexBinary",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

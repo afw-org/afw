@@ -89,22 +89,22 @@ export function afwAddYearMonthDuration(client : any, arg1 : any, arg2 : any) : 
 }
 
 /**
- * Returns boolean true if at least one value in `<dataType>` list1 is in
- * `<dataType>` list2.
+ * Returns boolean true if at least one value in `<dataType>` array1 is in
+ * `<dataType>` array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOf(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOf(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -543,21 +543,21 @@ export function afwIndexOf(client : any, value : any, subString : string, startI
 
 /**
  * Returns an array of `<dataType>` with the values that are common to both
- * array of `<dataType>` list1 and list2.
+ * array of `<dataType>` array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersection(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersection(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -1059,22 +1059,22 @@ export function afwRound(client : any, number : any) : any {
 }
 
 /**
- * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
  * subsets of each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEquals(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEquals(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -1131,22 +1131,22 @@ export function afwStartsWith(client : any, value : any, subString : string) : a
 }
 
 /**
- * Returns boolean true if the unique values in `<dataType>` list1 are all in
- * `<dataType>` list2.
+ * Returns boolean true if the unique values in `<dataType>` array1 are all
+ * in `<dataType>` array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubset(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -1485,16 +1485,16 @@ export function afwToYearMonthDuration(client : any, value : any) : any {
  * Returns an array of `<dataType>` contains all of the unique values in two
  * or more array of `<dataType>` values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnion(client : any, lists : any[]) : any {
+export function afwUnion(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

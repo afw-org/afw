@@ -34,18 +34,18 @@ def anyURI(session, value):
 
     return response['actions'][0]['result']
 
-def at_least_one_member_of_anyURI(session, list1, list2):
+def at_least_one_member_of_anyURI(session, array1, array2):
     '''
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in anyURI list1 is in anyURI
-    list2.
+    Returns boolean true if at least one value in anyURI array1 is in anyURI
+    array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -55,8 +55,8 @@ def at_least_one_member_of_anyURI(session, list1, list2):
 
     action = {
         "function": "at_least_one_member_of<anyURI>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -373,18 +373,18 @@ def index_of_anyURI(session, value, subString, startIndex=None):
 
     return response['actions'][0]['result']
 
-def intersection_anyURI(session, list1, list2):
+def intersection_anyURI(session, array1, array2):
     '''
-    Returns intersection of two lists
+    Returns intersection of two arrays
 
     Returns an array of anyURI with the values that are common to both array
-    of anyURI list1 and list2.
+    of anyURI array1 and array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     array: 
@@ -394,8 +394,8 @@ def intersection_anyURI(session, list1, list2):
 
     action = {
         "function": "intersection<anyURI>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -884,18 +884,18 @@ def replace_anyURI(session, value, match, replacement, limit=None):
 
     return response['actions'][0]['result']
 
-def set_equals_anyURI(session, list1, list2):
+def set_equals_anyURI(session, array1, array2):
     '''
-    Checks whether two lists are subsets of each other
+    Checks whether two arrays are subsets of each other
 
-    Returns boolean true if anyURI list1 and anyURI list2 are subsets of each
-    other and return the boolean result.
+    Returns boolean true if anyURI array1 and anyURI array2 are subsets of
+    each other and return the boolean result.
 
     Parameters:
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -905,8 +905,8 @@ def set_equals_anyURI(session, list1, list2):
 
     action = {
         "function": "set_equals<anyURI>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -991,18 +991,18 @@ def starts_with_anyURI(session, value, subString):
 
     return response['actions'][0]['result']
 
-def subset_anyURI(session, list1, list2):
+def subset_anyURI(session, array1, array2):
     '''
     Determines if the first array is a subset of second array
 
-    Returns boolean true if the unique values in anyURI list1 are all in
-    anyURI list2.
+    Returns boolean true if the unique values in anyURI array1 are all in
+    anyURI array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -1012,8 +1012,8 @@ def subset_anyURI(session, list1, list2):
 
     action = {
         "function": "subset<anyURI>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -1093,16 +1093,16 @@ def to_string_anyURI(session, value):
 
     return response['actions'][0]['result']
 
-def union_anyURI(session, lists):
+def union_anyURI(session, arrays):
     '''
-    Returns union of two or more string lists
+    Returns union of two or more string arrays
 
     Returns an array of anyURI contains all of the unique values in two or
     more array of anyURI values.
 
     Parameters:
 
-        lists (array): Two or more lists.
+        arrays (array): Two or more arrays.
 
     Returns:
     array: 
@@ -1112,7 +1112,7 @@ def union_anyURI(session, lists):
 
     action = {
         "function": "union<anyURI>",
-        "lists": lists
+        "arrays": arrays
     }
 
     request.add_action(action)

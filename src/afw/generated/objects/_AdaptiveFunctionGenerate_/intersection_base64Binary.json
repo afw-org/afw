@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIntersectionBase64Binary",
-    "brief": "Returns intersection of two lists",
+    "brief": "Returns intersection of two arrays",
     "camelCaseFunctionLabel": "intersectionBase64Binary",
     "category": "base64Binary",
     "dataTypeMethod": true,
-    "description": "Returns an array of base64Binary with the values that are common to both array of base64Binary list1 and list2.",
+    "description": "Returns an array of base64Binary with the values that are common to both array of base64Binary array1 and array2.",
     "functionId": "intersection<base64Binary>",
     "functionLabel": "intersection_base64Binary",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "base64Binary",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

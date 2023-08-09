@@ -50,23 +50,23 @@ class date
     /**
      * at_least_one_member_of_date()
      *
-     * Returns boolean true if at least one value in date list1 is in date
-     * list2.
+     * Returns boolean true if at least one value in date array1 is in date
+     * array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_date(, $list1, $list2)
+    public function at_least_one_member_of_date(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<date>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -253,22 +253,22 @@ class date
      * intersection_date()
      *
      * Returns an array of date with the values that are common to both array
-     * of date list1 and list2.
+     * of date array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_date(, $list1, $list2)
+    public function intersection_date(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<date>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -506,23 +506,23 @@ class date
     /**
      * set_equals_date()
      *
-     * Returns boolean true if date list1 and date list2 are subsets of each
-     * other and return the boolean result.
+     * Returns boolean true if date array1 and date array2 are subsets of
+     * each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_date(, $list1, $list2)
+    public function set_equals_date(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<date>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -531,23 +531,23 @@ class date
     /**
      * subset_date()
      *
-     * Returns boolean true if the unique values in date list1 are all in
-     * date list2.
+     * Returns boolean true if the unique values in date array1 are all in
+     * date array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_date(, $list1, $list2)
+    public function subset_date(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<date>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -607,18 +607,18 @@ class date
      * Returns an array of date contains all of the unique values in two or
      * more array of date values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_date(, $lists)
+    public function union_date(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<date>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

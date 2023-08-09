@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsDayTimeDuration",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<dayTimeDuration>",
     "functionLabel": "set_equals_dayTimeDuration",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

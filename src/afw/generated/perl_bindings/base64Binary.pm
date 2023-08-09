@@ -38,17 +38,17 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_base64Binary
 
-Returns boolean true if at least one value in base64Binary list1 is in
-base64Binary list2.
+Returns boolean true if at least one value in base64Binary array1 is in
+base64Binary array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -156,16 +156,16 @@ Checks for greater than
 =head3 intersection_base64Binary
 
 Returns an array of base64Binary with the values that are common to both
-array of base64Binary list1 and list2.
-Returns intersection of two lists
+array of base64Binary array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -266,31 +266,31 @@ Converts a one value array to a base64Binary value
 
 =head3 set_equals_base64Binary
 
-Returns boolean true if base64Binary list1 and base64Binary list2 are subsets
-of each other and return the boolean result.
-Checks whether two lists are subsets of each other
+Returns boolean true if base64Binary array1 and base64Binary array2 are
+subsets of each other and return the boolean result.
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_base64Binary
 
-Returns boolean true if the unique values in base64Binary list1 are all in
-base64Binary list2.
+Returns boolean true if the unique values in base64Binary array1 are all in
+base64Binary array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -310,24 +310,24 @@ A base64Binary value.
 
 Returns an array of base64Binary contains all of the unique values in two or
 more array of base64Binary values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =cut
 
 sub at_least_one_member_of_base64Binary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<base64Binary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -427,13 +427,13 @@ sub gt_base64Binary {
 }
 
 sub intersection_base64Binary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<base64Binary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -521,25 +521,25 @@ sub one_and_only_base64Binary {
 }
 
 sub set_equals_base64Binary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<base64Binary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_base64Binary {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<base64Binary>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -556,12 +556,12 @@ sub to_string_base64Binary {
 }
 
 sub union_base64Binary {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<base64Binary>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

@@ -26,23 +26,23 @@ class hexBinary
     /**
      * at_least_one_member_of_hexBinary()
      *
-     * Returns boolean true if at least one value in hexBinary list1 is in
-     * hexBinary list2.
+     * Returns boolean true if at least one value in hexBinary array1 is in
+     * hexBinary array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_hexBinary(, $list1, $list2)
+    public function at_least_one_member_of_hexBinary(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<hexBinary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -246,22 +246,22 @@ class hexBinary
      * intersection_hexBinary()
      *
      * Returns an array of hexBinary with the values that are common to both
-     * array of hexBinary list1 and list2.
+     * array of hexBinary array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_hexBinary(, $list1, $list2)
+    public function intersection_hexBinary(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<hexBinary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -444,23 +444,23 @@ class hexBinary
     /**
      * set_equals_hexBinary()
      *
-     * Returns boolean true if hexBinary list1 and hexBinary list2 are
+     * Returns boolean true if hexBinary array1 and hexBinary array2 are
      * subsets of each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_hexBinary(, $list1, $list2)
+    public function set_equals_hexBinary(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<hexBinary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -469,23 +469,23 @@ class hexBinary
     /**
      * subset_hexBinary()
      *
-     * Returns boolean true if the unique values in hexBinary list1 are all
-     * in hexBinary list2.
+     * Returns boolean true if the unique values in hexBinary array1 are all
+     * in hexBinary array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_hexBinary(, $list1, $list2)
+    public function subset_hexBinary(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<hexBinary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -520,18 +520,18 @@ class hexBinary
      * Returns an array of hexBinary contains all of the unique values in two
      * or more array of hexBinary values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_hexBinary(, $lists)
+    public function union_hexBinary(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<hexBinary>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

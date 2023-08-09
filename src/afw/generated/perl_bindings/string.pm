@@ -88,17 +88,17 @@ Add (concatenate) strings
 
 =head3 at_least_one_member_of_string
 
-Returns boolean true if at least one value in string list1 is in string
-list2.
+Returns boolean true if at least one value in string array1 is in string
+array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -287,16 +287,16 @@ Optional start index for search if different than start of string.
 =head3 intersection_string
 
 Returns an array of string with the values that are common to both array of
-string list1 and list2.
-Returns intersection of two lists
+string array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -562,16 +562,16 @@ all occurrences.
 
 =head3 set_equals_string
 
-Returns boolean true if string list1 and string list2 are subsets of each
+Returns boolean true if string array1 and string array2 are subsets of each
 other and return the boolean result.
-Checks whether two lists are subsets of each other
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 split_string
@@ -623,17 +623,17 @@ Value to convert
 
 =head3 subset_string
 
-Returns boolean true if the unique values in string list1 are all in string
-list2.
+Returns boolean true if the unique values in string array1 are all in string
+array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -801,13 +801,13 @@ Converts string to yearMonthDuration
 
 Returns an array of string contains all of the unique values in two or more
 array of string values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =head3 url_decode
 
@@ -847,13 +847,13 @@ sub add_string {
 }
 
 sub at_least_one_member_of_string {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<string>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1018,13 +1018,13 @@ sub index_of_string {
 }
 
 sub intersection_string {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<string>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1250,13 +1250,13 @@ sub replace_string {
 }
 
 sub set_equals_string {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<string>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1302,13 +1302,13 @@ sub string {
 }
 
 sub subset_string {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<string>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -1483,12 +1483,12 @@ sub to_yearMonthDuration_string {
 }
 
 sub union_string {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<string>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

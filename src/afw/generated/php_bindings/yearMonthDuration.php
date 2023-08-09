@@ -26,23 +26,23 @@ class yearMonthDuration
     /**
      * at_least_one_member_of_yearMonthDuration()
      *
-     * Returns boolean true if at least one value in yearMonthDuration list1
-     * is in yearMonthDuration list2.
+     * Returns boolean true if at least one value in yearMonthDuration array1
+     * is in yearMonthDuration array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_yearMonthDuration(, $list1, $list2)
+    public function at_least_one_member_of_yearMonthDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<yearMonthDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -203,22 +203,22 @@ class yearMonthDuration
      * intersection_yearMonthDuration()
      *
      * Returns an array of yearMonthDuration with the values that are common
-     * to both array of yearMonthDuration list1 and list2.
+     * to both array of yearMonthDuration array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_yearMonthDuration(, $list1, $list2)
+    public function intersection_yearMonthDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<yearMonthDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -402,23 +402,23 @@ class yearMonthDuration
     /**
      * set_equals_yearMonthDuration()
      *
-     * Returns boolean true if yearMonthDuration list1 and yearMonthDuration
-     * list2 are subsets of each other and return the boolean result.
+     * Returns boolean true if yearMonthDuration array1 and yearMonthDuration
+     * array2 are subsets of each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_yearMonthDuration(, $list1, $list2)
+    public function set_equals_yearMonthDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<yearMonthDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -427,23 +427,23 @@ class yearMonthDuration
     /**
      * subset_yearMonthDuration()
      *
-     * Returns boolean true if the unique values in yearMonthDuration list1
-     * are all in yearMonthDuration list2.
+     * Returns boolean true if the unique values in yearMonthDuration array1
+     * are all in yearMonthDuration array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_yearMonthDuration(, $list1, $list2)
+    public function subset_yearMonthDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<yearMonthDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -478,18 +478,18 @@ class yearMonthDuration
      * Returns an array of yearMonthDuration contains all of the unique
      * values in two or more array of yearMonthDuration values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_yearMonthDuration(, $lists)
+    public function union_yearMonthDuration(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<yearMonthDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

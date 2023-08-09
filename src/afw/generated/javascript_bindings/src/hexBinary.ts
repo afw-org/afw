@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in hexBinary list1 is in
- * hexBinary list2.
+ * Returns boolean true if at least one value in hexBinary array1 is in
+ * hexBinary array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfHexBinary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfHexBinary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<hexBinary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -192,21 +192,21 @@ export function afwHexBinary(client : any, value : any) : any {
 
 /**
  * Returns an array of hexBinary with the values that are common to both
- * array of hexBinary list1 and list2.
+ * array of hexBinary array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionHexBinary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionHexBinary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<hexBinary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -355,43 +355,43 @@ export function afwOneAndOnlyHexBinary(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if hexBinary array1 and hexBinary array2 are subsets
+ * of each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsHexBinary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsHexBinary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<hexBinary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in hexBinary list1 are all in
- * hexBinary list2.
+ * Returns boolean true if the unique values in hexBinary array1 are all in
+ * hexBinary array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetHexBinary(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetHexBinary(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<hexBinary>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -418,16 +418,16 @@ export function afwToStringHexBinary(client : any, value : any) : any {
  * Returns an array of hexBinary contains all of the unique values in two or
  * more array of hexBinary values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionHexBinary(client : any, lists : any[]) : any {
+export function afwUnionHexBinary(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<hexBinary>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

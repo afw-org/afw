@@ -47,22 +47,22 @@ export function afwAddDouble(client : any, values : number) : any {
 }
 
 /**
- * Returns boolean true if at least one value in double list1 is in double
- * list2.
+ * Returns boolean true if at least one value in double array1 is in double
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfDouble(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfDouble(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<double>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -265,21 +265,21 @@ export function afwGtDouble(client : any, arg1 : number, arg2 : number) : any {
 
 /**
  * Returns an array of double with the values that are common to both array
- * of double list1 and list2.
+ * of double array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionDouble(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionDouble(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<double>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -571,43 +571,43 @@ export function afwRoundDouble(client : any, number : number) : any {
 }
 
 /**
- * Returns boolean true if double list1 and double list2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if double array1 and double array2 are subsets of
+ * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsDouble(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsDouble(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<double>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in double list1 are all in
- * double list2.
+ * Returns boolean true if the unique values in double array1 are all in
+ * double array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetDouble(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetDouble(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<double>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -671,16 +671,16 @@ export function afwToStringDouble(client : any, value : number) : any {
  * Returns an array of double contains all of the unique values in two or
  * more array of double values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionDouble(client : any, lists : any[]) : any {
+export function afwUnionDouble(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<double>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

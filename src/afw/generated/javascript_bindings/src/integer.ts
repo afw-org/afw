@@ -47,22 +47,22 @@ export function afwAddInteger(client : any, values : number) : any {
 }
 
 /**
- * Returns boolean true if at least one value in integer list1 is in integer
- * list2.
+ * Returns boolean true if at least one value in integer array1 is in integer
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfInteger(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfInteger(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<integer>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -230,21 +230,21 @@ export function afwInteger(client : any, value : any) : any {
 
 /**
  * Returns an array of integer with the values that are common to both array
- * of integer list1 and list2.
+ * of integer array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionInteger(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionInteger(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<integer>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -482,43 +482,43 @@ export function afwOneAndOnlyInteger(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if integer list1 and integer list2 are subsets of
+ * Returns boolean true if integer array1 and integer array2 are subsets of
  * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsInteger(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsInteger(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<integer>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in integer list1 are all in
- * integer list2.
+ * Returns boolean true if the unique values in integer array1 are all in
+ * integer array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetInteger(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetInteger(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<integer>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -582,16 +582,16 @@ export function afwToStringInteger(client : any, value : number) : any {
  * Returns an array of integer contains all of the unique values in two or
  * more array of integer values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionInteger(client : any, lists : any[]) : any {
+export function afwUnionInteger(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<integer>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

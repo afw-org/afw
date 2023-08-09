@@ -71,23 +71,23 @@ class integer
     /**
      * at_least_one_member_of_integer()
      *
-     * Returns boolean true if at least one value in integer list1 is in
-     * integer list2.
+     * Returns boolean true if at least one value in integer array1 is in
+     * integer array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_integer(, $list1, $list2)
+    public function at_least_one_member_of_integer(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<integer>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -293,22 +293,22 @@ class integer
      * intersection_integer()
      *
      * Returns an array of integer with the values that are common to both
-     * array of integer list1 and list2.
+     * array of integer array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_integer(, $list1, $list2)
+    public function intersection_integer(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<integer>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -604,23 +604,23 @@ class integer
     /**
      * set_equals_integer()
      *
-     * Returns boolean true if integer list1 and integer list2 are subsets of
-     * each other and return the boolean result.
+     * Returns boolean true if integer array1 and integer array2 are subsets
+     * of each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_integer(, $list1, $list2)
+    public function set_equals_integer(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<integer>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -629,23 +629,23 @@ class integer
     /**
      * subset_integer()
      *
-     * Returns boolean true if the unique values in integer list1 are all in
-     * integer list2.
+     * Returns boolean true if the unique values in integer array1 are all in
+     * integer array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_integer(, $list1, $list2)
+    public function subset_integer(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<integer>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -726,18 +726,18 @@ class integer
      * Returns an array of integer contains all of the unique values in two
      * or more array of integer values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_integer(, $lists)
+    public function union_integer(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<integer>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

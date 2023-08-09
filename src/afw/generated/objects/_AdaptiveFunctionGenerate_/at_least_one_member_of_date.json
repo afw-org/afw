@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in date list1 is in date list2.",
+    "description": "Returns boolean true if at least one value in date array1 is in date array2.",
     "functionId": "at_least_one_member_of<date>",
     "functionLabel": "at_least_one_member_of_date",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "date",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "date",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

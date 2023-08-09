@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIntersectionAnyURI",
-    "brief": "Returns intersection of two lists",
+    "brief": "Returns intersection of two arrays",
     "camelCaseFunctionLabel": "intersectionAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Returns an array of anyURI with the values that are common to both array of anyURI list1 and list2.",
+    "description": "Returns an array of anyURI with the values that are common to both array of anyURI array1 and array2.",
     "functionId": "intersection<anyURI>",
     "functionLabel": "intersection_anyURI",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "anyURI",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

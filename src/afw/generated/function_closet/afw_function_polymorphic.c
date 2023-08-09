@@ -22,8 +22,8 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if at least one value in `<dataType>` list1 is in
- * `<dataType>` list2.
+ * Returns boolean true if at least one value in `<dataType>` array1 is in
+ * `<dataType>` array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -37,16 +37,16 @@
  *
  * ```
  *   function at_least_one_member_of <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -76,9 +76,9 @@ afw_function_execute_at_least_one_member_of(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -122,9 +122,9 @@ afw_function_execute_bag(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -345,9 +345,9 @@ afw_function_execute_ends_with(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -400,9 +400,9 @@ afw_function_execute_eq(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -450,9 +450,9 @@ afw_function_execute_eqx(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -500,9 +500,9 @@ afw_function_execute_ge(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -643,7 +643,7 @@ afw_function_execute_index_of(
  * See afw_function_bindings.h for more information.
  *
  * Returns an array of `<dataType>` with the values that are common to both
- * array of `<dataType>` list1 and list2.
+ * array of `<dataType>` array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -657,16 +657,16 @@ afw_function_execute_index_of(
  *
  * ```
  *   function intersection <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -696,9 +696,9 @@ afw_function_execute_intersection(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration, unevaluated.
  *
@@ -841,9 +841,9 @@ afw_function_execute_last_index_of(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -936,9 +936,9 @@ afw_function_execute_length(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1074,9 +1074,9 @@ afw_function_execute_min(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1129,9 +1129,9 @@ afw_function_execute_ne(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, rfc822Name,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, rfc822Name,
  *   regexp, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1461,7 +1461,7 @@ afw_function_execute_replace(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
  * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -1476,16 +1476,16 @@ afw_function_execute_replace(
  *
  * ```
  *   function set_equals <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``)
+ *   array1 - (array ``<Type>``)
  *
- *   list2 - (array ``<Type>``)
+ *   array2 - (array ``<Type>``)
  *
  * Returns:
  *
@@ -1605,8 +1605,8 @@ afw_function_execute_starts_with(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if the unique values in `<dataType>` list1 are all in
- * `<dataType>` list2.
+ * Returns boolean true if the unique values in `<dataType>` array1 are all in
+ * `<dataType>` array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1620,16 +1620,16 @@ afw_function_execute_starts_with(
  *
  * ```
  *   function subset <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -1721,15 +1721,15 @@ afw_function_execute_substring(
  *
  * ```
  *   function union <dataType>(
- *       lists_1: array,
- *       lists_2: array,
- *       ...lists_rest: (array of array)
+ *       arrays_1: array,
+ *       arrays_2: array,
+ *       ...arrays_rest: (array of array)
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array ``<Type>``) Two or more lists.
+ *   arrays - (2 or more array ``<Type>``) Two or more arrays.
  *
  * Returns:
  *

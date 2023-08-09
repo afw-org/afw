@@ -1,5 +1,5 @@
 {
-    "brief": "Returns union of two or more string lists",
+    "brief": "Returns union of two or more string arrays",
     "category": "polymorphic",
     "dataTypeMethod": true,
     "description": "Returns an array of <dataType> contains all of the unique values in two or more array of <dataType> values.",
@@ -9,9 +9,9 @@
     "parameters": [
         {
             "dataType": "array",
-            "description": "Two or more lists.",
+            "description": "Two or more arrays.",
             "minArgs": 2,
-            "name": "lists",
+            "name": "arrays",
             "polymorphicDataTypeParameter": true
         }
     ],

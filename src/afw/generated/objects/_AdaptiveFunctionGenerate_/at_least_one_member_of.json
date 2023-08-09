@@ -4,20 +4,20 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOf",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in <dataType> list1 is in <dataType> list2.",
+    "description": "Returns boolean true if at least one value in <dataType> array1 is in <dataType> array2.",
     "functionId": "at_least_one_member_of",
     "functionLabel": "at_least_one_member_of",
     "parameters": [
         {
             "dataType": "array",
             "description": "The first array.",
-            "name": "list1",
+            "name": "array1",
             "polymorphicDataTypeParameter": true
         },
         {
             "dataType": "array",
             "description": "The second array.",
-            "name": "list2",
+            "name": "array2",
             "polymorphicDataTypeParameter": true
         }
     ],

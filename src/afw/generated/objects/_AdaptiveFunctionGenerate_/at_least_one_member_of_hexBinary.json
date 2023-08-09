@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in hexBinary list1 is in hexBinary list2.",
+    "description": "Returns boolean true if at least one value in hexBinary array1 is in hexBinary array2.",
     "functionId": "at_least_one_member_of<hexBinary>",
     "functionLabel": "at_least_one_member_of_hexBinary",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

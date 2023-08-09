@@ -69,17 +69,17 @@ Add duration
 
 =head3 at_least_one_member_of_dateTime
 
-Returns boolean true if at least one value in dateTime list1 is in dateTime
-list2.
+Returns boolean true if at least one value in dateTime array1 is in dateTime
+array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -181,16 +181,16 @@ Checks for greater than
 =head3 intersection_dateTime
 
 Returns an array of dateTime with the values that are common to both array of
-dateTime list1 and list2.
-Returns intersection of two lists
+dateTime array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -322,31 +322,31 @@ Converts a one value array to a dateTime value
 
 =head3 set_equals_dateTime
 
-Returns boolean true if dateTime list1 and dateTime list2 are subsets of each
-other and return the boolean result.
-Checks whether two lists are subsets of each other
+Returns boolean true if dateTime array1 and dateTime array2 are subsets of
+each other and return the boolean result.
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_dateTime
 
-Returns boolean true if the unique values in dateTime list1 are all in
-dateTime list2.
+Returns boolean true if the unique values in dateTime array1 are all in
+dateTime array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -394,13 +394,13 @@ A dateTime value.
 
 Returns an array of dateTime contains all of the unique values in two or more
 array of dateTime values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =cut
 
@@ -429,13 +429,13 @@ sub add_yearMonthDuration_dateTime {
 }
 
 sub at_least_one_member_of_dateTime {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<dateTime>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -524,13 +524,13 @@ sub gt_dateTime {
 }
 
 sub intersection_dateTime {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<dateTime>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -640,25 +640,25 @@ sub one_and_only_dateTime {
 }
 
 sub set_equals_dateTime {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<dateTime>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_dateTime {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<dateTime>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -699,12 +699,12 @@ sub to_string_dateTime {
 }
 
 sub union_dateTime {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<dateTime>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

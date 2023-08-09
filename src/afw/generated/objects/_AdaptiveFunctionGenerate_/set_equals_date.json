@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsDate",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsDate",
     "category": "date",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if date list1 and date list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if date array1 and date array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<date>",
     "functionLabel": "set_equals_date",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "date",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "date",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwUnionRfc822Name",
-    "brief": "Returns union of two or more string lists",
+    "brief": "Returns union of two or more string arrays",
     "camelCaseFunctionLabel": "unionRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
@@ -11,9 +11,9 @@
         {
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
-            "description": "Two or more lists.",
+            "description": "Two or more arrays.",
             "minArgs": 2,
-            "name": "lists"
+            "name": "arrays"
         }
     ],
     "pure": true,

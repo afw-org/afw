@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetString",
     "category": "string",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in string list1 are all in string list2.",
+    "description": "Returns boolean true if the unique values in string array1 are all in string array2.",
     "functionId": "subset<string>",
     "functionLabel": "subset_string",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "string",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

@@ -39,17 +39,17 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_rfc822Name
 
-Returns boolean true if at least one value in rfc822Name list1 is in
-rfc822Name list2.
+Returns boolean true if at least one value in rfc822Name array1 is in
+rfc822Name array2.
 Checks for at least one value in common
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -134,16 +134,16 @@ Checks for greater than
 =head3 intersection_rfc822Name
 
 Returns an array of rfc822Name with the values that are common to both array
-of rfc822Name list1 and list2.
-Returns intersection of two lists
+of rfc822Name array1 and array2.
+Returns intersection of two arrays
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -283,31 +283,31 @@ Value to convert
 
 =head3 set_equals_rfc822Name
 
-Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets of
-each other and return the boolean result.
-Checks whether two lists are subsets of each other
+Returns boolean true if rfc822Name array1 and rfc822Name array2 are subsets
+of each other and return the boolean result.
+Checks whether two arrays are subsets of each other
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 subset_rfc822Name
 
-Returns boolean true if the unique values in rfc822Name list1 are all in
-rfc822Name list2.
+Returns boolean true if the unique values in rfc822Name array1 are all in
+rfc822Name array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters
 
-    $list1
+    $array1
 
 The first array.
 
-    $list2
+    $array2
 
 The second array.
 
@@ -327,24 +327,24 @@ A rfc822Name value.
 
 Returns an array of rfc822Name contains all of the unique values in two or
 more array of rfc822Name values.
-Returns union of two or more string lists
+Returns union of two or more string arrays
 
 =head4 Parameters
 
-    $lists
+    $arrays
 
-Two or more lists.
+Two or more arrays.
 
 =cut
 
 sub at_least_one_member_of_rfc822Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "at_least_one_member_of<rfc822Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -422,13 +422,13 @@ sub gt_rfc822Name {
 }
 
 sub intersection_rfc822Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "intersection<rfc822Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -551,25 +551,25 @@ sub rfc822Name {
 }
 
 sub set_equals_rfc822Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "set_equals<rfc822Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub subset_rfc822Name {
-    my ($list1, $list2) = @_;
+    my ($array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "subset<rfc822Name>");
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -586,12 +586,12 @@ sub to_string_rfc822Name {
 }
 
 sub union_rfc822Name {
-    my ($lists) = @_;
+    my ($arrays) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "union<rfc822Name>");
-    $request->set("lists", $lists);
+    $request->set("arrays", $arrays);
 
     return $request->getResult();
 }

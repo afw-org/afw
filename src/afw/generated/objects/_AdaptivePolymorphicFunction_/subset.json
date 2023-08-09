@@ -2,7 +2,7 @@
     "brief": "Determines if the first array is a subset of second array",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in <dataType> list1 are all in <dataType> list2.",
+    "description": "Returns boolean true if the unique values in <dataType> array1 are all in <dataType> array2.",
     "functionId": "subset",
     "functionLabel": "subset",
     "pure": true,
@@ -10,13 +10,13 @@
         {
             "dataType": "array",
             "description": "The first array.",
-            "name": "list1",
+            "name": "array1",
             "polymorphicDataTypeParameter": true
         },
         {
             "dataType": "array",
             "description": "The second array.",
-            "name": "list2",
+            "name": "array2",
             "polymorphicDataTypeParameter": true
         }
     ],

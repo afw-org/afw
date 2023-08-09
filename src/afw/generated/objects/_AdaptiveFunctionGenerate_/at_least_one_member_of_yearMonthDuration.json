@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "atLeastOneMemberOfYearMonthDuration",
     "category": "yearMonthDuration",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if at least one value in yearMonthDuration list1 is in yearMonthDuration list2.",
+    "description": "Returns boolean true if at least one value in yearMonthDuration array1 is in yearMonthDuration array2.",
     "functionId": "at_least_one_member_of<yearMonthDuration>",
     "functionLabel": "at_least_one_member_of_yearMonthDuration",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "yearMonthDuration",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

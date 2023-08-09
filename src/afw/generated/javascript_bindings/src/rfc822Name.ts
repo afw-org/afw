@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in rfc822Name list1 is in
- * rfc822Name list2.
+ * Returns boolean true if at least one value in rfc822Name array1 is in
+ * rfc822Name array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfRfc822Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfRfc822Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<rfc822Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -157,21 +157,21 @@ export function afwGtRfc822Name(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Returns an array of rfc822Name with the values that are common to both
- * array of rfc822Name list1 and list2.
+ * array of rfc822Name array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionRfc822Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionRfc822Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<rfc822Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -379,43 +379,43 @@ export function afwRfc822Name(client : any, value : any) : any {
 }
 
 /**
- * Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets
- * of each other and return the boolean result.
+ * Returns boolean true if rfc822Name array1 and rfc822Name array2 are
+ * subsets of each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsRfc822Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsRfc822Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<rfc822Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in rfc822Name list1 are all in
- * rfc822Name list2.
+ * Returns boolean true if the unique values in rfc822Name array1 are all in
+ * rfc822Name array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetRfc822Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetRfc822Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<rfc822Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -442,16 +442,16 @@ export function afwToStringRfc822Name(client : any, value : any) : any {
  * Returns an array of rfc822Name contains all of the unique values in two or
  * more array of rfc822Name values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionRfc822Name(client : any, lists : any[]) : any {
+export function afwUnionRfc822Name(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<rfc822Name>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

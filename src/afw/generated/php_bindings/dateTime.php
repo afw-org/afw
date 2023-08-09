@@ -76,23 +76,23 @@ class dateTime
     /**
      * at_least_one_member_of_dateTime()
      *
-     * Returns boolean true if at least one value in dateTime list1 is in
-     * dateTime list2.
+     * Returns boolean true if at least one value in dateTime array1 is in
+     * dateTime array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_dateTime(, $list1, $list2)
+    public function at_least_one_member_of_dateTime(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<dateTime>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -279,22 +279,22 @@ class dateTime
      * intersection_dateTime()
      *
      * Returns an array of dateTime with the values that are common to both
-     * array of dateTime list1 and list2.
+     * array of dateTime array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_dateTime(, $list1, $list2)
+    public function intersection_dateTime(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<dateTime>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -533,23 +533,23 @@ class dateTime
     /**
      * set_equals_dateTime()
      *
-     * Returns boolean true if dateTime list1 and dateTime list2 are subsets
-     * of each other and return the boolean result.
+     * Returns boolean true if dateTime array1 and dateTime array2 are
+     * subsets of each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_dateTime(, $list1, $list2)
+    public function set_equals_dateTime(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<dateTime>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -558,23 +558,23 @@ class dateTime
     /**
      * subset_dateTime()
      *
-     * Returns boolean true if the unique values in dateTime list1 are all in
-     * dateTime list2.
+     * Returns boolean true if the unique values in dateTime array1 are all
+     * in dateTime array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_dateTime(, $list1, $list2)
+    public function subset_dateTime(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<dateTime>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -659,18 +659,18 @@ class dateTime
      * Returns an array of dateTime contains all of the unique values in two
      * or more array of dateTime values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_dateTime(, $lists)
+    public function union_dateTime(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<dateTime>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

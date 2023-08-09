@@ -16,10 +16,10 @@
 
 
 static afw_boolean_t
-impl_is_in_list(
+impl_is_in_array(
     const afw_data_type_t *data_type,
     const void *internal,
-    const afw_array_t *list,
+    const afw_array_t *array,
     afw_xctx_t *xctx)
 {
     const afw_iterator_t *iterator;
@@ -28,12 +28,12 @@ impl_is_in_list(
 
     if (!data_type) {
         AFW_THROW_ERROR_Z(arg_error,
-            "impl_is_in_list() called with NULL data_type",
+            "impl_is_in_array() called with NULL data_type",
             xctx);
     }
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(list, &iterator,
+        afw_array_get_next_internal(array, &iterator,
             &entry_data_type, &entry_internal, xctx);
         if (!entry_internal) {
             return false;
@@ -52,9 +52,9 @@ impl_is_in_list(
 
 
 static afw_boolean_t
-impl_is_subset_list(
-    const afw_array_t *list1,
-    const afw_array_t *list2,
+impl_is_subset_array(
+    const afw_array_t *array1,
+    const afw_array_t *array2,
     afw_xctx_t *xctx)
 {
     const afw_iterator_t *iterator;
@@ -62,12 +62,12 @@ impl_is_subset_list(
     const afw_data_type_t *data_type;
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(list1, &iterator,
+        afw_array_get_next_internal(array1, &iterator,
             &data_type, &internal, xctx);
         if (!internal) {
             return true;
         }
-        if (!impl_is_in_list(data_type, internal, list2, xctx)) {
+        if (!impl_is_in_array(data_type, internal, array2, xctx)) {
             return false;
         }
     }
@@ -76,7 +76,7 @@ impl_is_subset_list(
 
 /* Add non-duplicates. */
 static void
-impl_add_nondups_to_list(
+impl_add_nondups_to_array(
     const afw_data_type_t *data_type,
     const afw_array_t *from,
     const afw_array_t *to,
@@ -91,7 +91,7 @@ impl_add_nondups_to_list(
         if (!internal) {
             break;
         }
-        if (!impl_is_in_list(data_type, internal, to, xctx)) {
+        if (!impl_is_in_array(data_type, internal, to, xctx)) {
             afw_array_add_internal(to, data_type, internal, xctx);
         }
     }
@@ -106,8 +106,8 @@ impl_add_nondups_to_list(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if at least one value in `<dataType>` list1 is in
- * `<dataType>` list2.
+ * Returns boolean true if at least one value in `<dataType>` array1 is in
+ * `<dataType>` array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -121,16 +121,16 @@ impl_add_nondups_to_list(
  *
  * ```
  *   function at_least_one_member_of <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -140,22 +140,22 @@ const afw_value_t *
 afw_function_execute_at_least_one_member_of(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list1;
-    const afw_value_array_t *list2;
+    const afw_value_array_t *array1;
+    const afw_value_array_t *array2;
     const afw_iterator_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list1, 1, array);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list2, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(list1->internal, &iterator,
+        afw_array_get_next_internal(array1->internal, &iterator,
             &data_type, &internal, x->xctx);
         if (!internal) {
             return afw_value_false;
         }
-        if (impl_is_in_list(data_type, internal, list2->internal, x->xctx)) {
+        if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
             return afw_value_true;
         }
     }
@@ -177,9 +177,9 @@ afw_function_execute_at_least_one_member_of(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -203,7 +203,7 @@ const afw_value_t *
 afw_function_execute_bag(
     afw_function_execute_t *x)
 {
-    const afw_array_t *list;
+    const afw_array_t *array;
     const afw_value_t *value;
     afw_size_t i;
 
@@ -211,15 +211,15 @@ afw_function_execute_bag(
         return x->data_type->empty_array_value;
     }
 
-    list = afw_array_of_create(x->data_type, x->p, x->xctx);
+    array = afw_array_of_create(x->data_type, x->p, x->xctx);
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_add_internal(list, x->data_type,
+        afw_array_add_internal(array, x->data_type,
             AFW_VALUE_INTERNAL(value), x->xctx);
     }
 
-    return afw_value_create_array(list, x->p, x->xctx);
+    return afw_value_create_array(array, x->p, x->xctx);
 }
 
 
@@ -238,9 +238,9 @@ afw_function_execute_bag(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -462,9 +462,9 @@ afw_function_execute_ends_with(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -555,9 +555,9 @@ afw_function_execute_eq(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -647,9 +647,9 @@ afw_function_execute_eqx(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -726,9 +726,9 @@ afw_function_execute_ge(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -986,7 +986,7 @@ return_result:
  * See afw_function_bindings.h for more information.
  *
  * Returns an array of `<dataType>` with the values that are common to both
- * array of `<dataType>` list1 and list2.
+ * array of `<dataType>` array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1000,16 +1000,16 @@ return_result:
  *
  * ```
  *   function intersection <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -1019,40 +1019,40 @@ const afw_value_t *
 afw_function_execute_intersection(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list1;
-    const afw_value_array_t *list2;
+    const afw_value_array_t *array1;
+    const afw_value_array_t *array2;
     const afw_iterator_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
-    const afw_array_t *list;
+    const afw_array_t *array;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list1, 1, array);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list2, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
-    data_type = afw_array_get_data_type(list1->internal, x->xctx);
+    data_type = afw_array_get_data_type(array1->internal, x->xctx);
     if (!data_type ||
-        data_type != afw_array_get_data_type(list2->internal, x->xctx))
+        data_type != afw_array_get_data_type(array2->internal, x->xctx))
     {
         AFW_THROW_ERROR_Z(arg_error,
-            "list1 and list2 must have a data type of the same type",
+            "array1 and array2 must have a data type of the same type",
             x->xctx);
     }
-    list = afw_array_of_create(data_type, x->p, x->xctx);
+    array = afw_array_of_create(data_type, x->p, x->xctx);
 
     for (iterator = NULL;;) {
-        afw_array_get_next_internal(list1->internal, &iterator, NULL,
+        afw_array_get_next_internal(array1->internal, &iterator, NULL,
             &internal, x->xctx);
         if (!internal) {
             break;
         }
-        if (impl_is_in_list(data_type, internal, list2->internal, x->xctx)) {
-            if (!impl_is_in_list(data_type, internal, list, x->xctx)) {
-                afw_array_add_internal(list, data_type, internal, x->xctx);
+        if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
+            if (!impl_is_in_array(data_type, internal, array, x->xctx)) {
+                afw_array_add_internal(array, data_type, internal, x->xctx);
             }
         }
     }
 
-    return afw_value_create_array(list, x->p, x->xctx);
+    return afw_value_create_array(array, x->p, x->xctx);
 }
 
 
@@ -1100,21 +1100,21 @@ afw_function_execute_is_in(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;
-    const afw_value_array_t *list;
+    const afw_value_array_t *array;
     const afw_data_type_t *data_type;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 1);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 
-    data_type = afw_array_get_data_type(list->internal, x->xctx);
+    data_type = afw_array_get_data_type(array->internal, x->xctx);
     if (!data_type || afw_value_get_data_type(value, x->xctx) != data_type) {
         AFW_THROW_ERROR_Z(arg_error,
-            "list must be list of value's data type",
+            "array must be array of value's data type",
             x->xctx);
     }
 
-    return impl_is_in_list(data_type, AFW_VALUE_INTERNAL(value),
-        list->internal, x->xctx)
+    return impl_is_in_array(data_type, AFW_VALUE_INTERNAL(value),
+        array->internal, x->xctx)
         ? afw_value_true
         : afw_value_false;
 }
@@ -1136,9 +1136,9 @@ afw_function_execute_is_in(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1281,9 +1281,9 @@ afw_function_execute_length(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1483,9 +1483,9 @@ afw_function_execute_min(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1578,9 +1578,9 @@ afw_function_execute_ne(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, rfc822Name,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, rfc822Name,
  *   regexp, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -1698,19 +1698,19 @@ const afw_value_t *
 afw_function_execute_one_and_only(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list;
+    const afw_value_array_t *array;
     const afw_data_type_t *data_type;
     const void *internal;
     const afw_iterator_t *iterator;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 1, array);
-    if (afw_array_get_count(list->internal, x->xctx) != 1) {
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    if (afw_array_get_count(array->internal, x->xctx) != 1) {
         AFW_THROW_ERROR_Z(arg_error,
             "arg must have exactly one value", x->xctx);
     }
 
     iterator = NULL;
-    afw_array_get_next_internal(list->internal,
+    afw_array_get_next_internal(array->internal,
         &iterator, &data_type, &internal, x->xctx);
 
     return afw_value_evaluated_create(internal, data_type, x->p, x->xctx);
@@ -2015,7 +2015,7 @@ afw_function_execute_replace(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
  * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -2030,16 +2030,16 @@ afw_function_execute_replace(
  *
  * ```
  *   function set_equals <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``)
+ *   array1 - (array ``<Type>``)
  *
- *   list2 - (array ``<Type>``)
+ *   array2 - (array ``<Type>``)
  *
  * Returns:
  *
@@ -2049,23 +2049,23 @@ const afw_value_t *
 afw_function_execute_set_equals(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list1;
-    const afw_value_array_t *list2;
+    const afw_value_array_t *array1;
+    const afw_value_array_t *array2;
     const afw_data_type_t *data_type_1;
     const afw_data_type_t *data_type_2;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list1, 1, array);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list2, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
-    data_type_1 = afw_array_get_data_type(list1->internal, x->xctx);
-    data_type_2 = afw_array_get_data_type(list2->internal, x->xctx);
+    data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
+    data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || data_type_1 != data_type_2) {
         AFW_THROW_ERROR_Z(arg_error,
-            "list1 and list2 must have a data type that matches", x->xctx);
+            "array1 and array2 must have a data type that matches", x->xctx);
     }
 
-    return (impl_is_subset_list(list1->internal, list2->internal, x->xctx) &&
-        impl_is_subset_list(list2->internal, list1->internal, x->xctx))
+    return (impl_is_subset_array(array1->internal, array2->internal, x->xctx) &&
+        impl_is_subset_array(array2->internal, array1->internal, x->xctx))
         ? afw_value_true
         : afw_value_false;
 }
@@ -2120,7 +2120,7 @@ afw_function_execute_split(
     const afw_value_t *value;
     const afw_value_string_t *separator_value;
     const afw_value_integer_t *limit_value;
-    const afw_array_t *list;
+    const afw_array_t *array;
     const afw_value_t *result;
     const afw_utf8_t *separator;
     afw_integer_t count;
@@ -2148,9 +2148,9 @@ afw_function_execute_split(
         limit = limit_value->internal;
     }
 
-    list = afw_array_create_with_options(0, afw_data_type_string,
+    array = afw_array_create_with_options(0, afw_data_type_string,
         x->p, x->xctx);
-    result = afw_value_create_array(list, x->p, x->xctx);
+    result = afw_value_create_array(array, x->p, x->xctx);
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
@@ -2170,7 +2170,7 @@ afw_function_execute_split(
                     break;
                 }
             }            
-            afw_array_add_internal(list, afw_data_type_string,
+            afw_array_add_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
@@ -2181,7 +2181,7 @@ afw_function_execute_split(
             split.len = 1;
             remaining.s++;
             remaining.len--;
-            afw_array_add_internal(list, afw_data_type_string,
+            afw_array_add_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
@@ -2262,8 +2262,8 @@ afw_function_execute_starts_with(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns boolean true if the unique values in `<dataType>` list1 are all in
- * `<dataType>` list2.
+ * Returns boolean true if the unique values in `<dataType>` array1 are all in
+ * `<dataType>` array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2277,16 +2277,16 @@ afw_function_execute_starts_with(
  *
  * ```
  *   function subset <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -2296,22 +2296,22 @@ const afw_value_t *
 afw_function_execute_subset(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list1;
-    const afw_value_array_t *list2;
+    const afw_value_array_t *array1;
+    const afw_value_array_t *array2;
     const afw_data_type_t *data_type_1;
     const afw_data_type_t *data_type_2;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list1, 1, array);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list2, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 2, array);
 
-    data_type_1 = afw_array_get_data_type(list1->internal, x->xctx);
-    data_type_2 = afw_array_get_data_type(list2->internal, x->xctx);
+    data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
+    data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || data_type_1 != data_type_2) {
         AFW_THROW_ERROR_Z(arg_error,
-            "list1 and list2 must have a data type that matches", x->xctx);
+            "array1 and array2 must have a data type that matches", x->xctx);
     }
 
-    return impl_is_subset_list(list1->internal, list2->internal, x->xctx)
+    return impl_is_subset_array(array1->internal, array2->internal, x->xctx)
         ? afw_value_true
         : afw_value_false;
 }
@@ -2457,15 +2457,15 @@ afw_function_execute_substring(
  *
  * ```
  *   function union <dataType>(
- *       lists_1: array,
- *       lists_2: array,
- *       ...lists_rest: (array of array)
+ *       arrays_1: array,
+ *       arrays_2: array,
+ *       ...arrays_rest: (array of array)
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array ``<Type>``) Two or more lists.
+ *   arrays - (2 or more array ``<Type>``) Two or more arrays.
  *
  * Returns:
  *
@@ -2475,35 +2475,35 @@ const afw_value_t *
 afw_function_execute_union(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list1;
-    const afw_value_array_t *listn;
+    const afw_value_array_t *array1;
+    const afw_value_array_t *arrayn;
     const afw_data_type_t *data_type;
-    const afw_array_t *list;
+    const afw_array_t *array;
     afw_size_t i;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list1, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 1, array);
 
-    data_type = afw_array_get_data_type(list1->internal, x->xctx);
+    data_type = afw_array_get_data_type(array1->internal, x->xctx);
     if (!data_type)
     {
         AFW_THROW_ERROR_Z(arg_error,
-            "all lists must have the same data type",
+            "all arrays must have the same data type",
             x->xctx);
     }
 
-    list = afw_array_of_create(data_type, x->p, x->xctx);
-    impl_add_nondups_to_list(data_type, list1->internal, list, x->xctx);
+    array = afw_array_of_create(data_type, x->p, x->xctx);
+    impl_add_nondups_to_array(data_type, array1->internal, array, x->xctx);
     for (i = 2; i <= x->argc; i++) {
-        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(listn, i, array);
-        if (afw_array_get_data_type(listn->internal, x->xctx) != data_type) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);
+        if (afw_array_get_data_type(arrayn->internal, x->xctx) != data_type) {
             AFW_THROW_ERROR_Z(arg_error,
-                "all lists must have the same data type",
+                "all arrays must have the same data type",
                 x->xctx);
         }
-        impl_add_nondups_to_list(data_type, listn->internal, list, x->xctx);
+        impl_add_nondups_to_array(data_type, arrayn->internal, array, x->xctx);
     }
 
-    return afw_value_create_array(list, x->p, x->xctx);
+    return afw_value_create_array(array, x->p, x->xctx);
 }
 
 
@@ -2876,9 +2876,9 @@ afw_function_execute_encode_as_hexBinary(
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration, unevaluated.
  *

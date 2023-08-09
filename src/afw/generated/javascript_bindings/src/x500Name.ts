@@ -12,22 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in x500Name list1 is in
- * x500Name list2.
+ * Returns boolean true if at least one value in x500Name array1 is in
+ * x500Name array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfX500Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfX500Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<x500Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -157,21 +157,21 @@ export function afwGtX500Name(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Returns an array of x500Name with the values that are common to both array
- * of x500Name list1 and list2.
+ * of x500Name array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionX500Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionX500Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<x500Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -362,43 +362,43 @@ export function afwRegexpMatchX500Name(client : any, value : any, regexp : strin
 }
 
 /**
- * Returns boolean true if x500Name list1 and x500Name list2 are subsets of
+ * Returns boolean true if x500Name array1 and x500Name array2 are subsets of
  * each other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsX500Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsX500Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<x500Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in x500Name list1 are all in
- * x500Name list2.
+ * Returns boolean true if the unique values in x500Name array1 are all in
+ * x500Name array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetX500Name(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetX500Name(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<x500Name>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -425,16 +425,16 @@ export function afwToStringX500Name(client : any, value : any) : any {
  * Returns an array of x500Name contains all of the unique values in two or
  * more array of x500Name values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionX500Name(client : any, lists : any[]) : any {
+export function afwUnionX500Name(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<x500Name>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

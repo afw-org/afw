@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in dayTimeDuration list1 are all in dayTimeDuration list2.",
+    "description": "Returns boolean true if the unique values in dayTimeDuration array1 are all in dayTimeDuration array2.",
     "functionId": "subset<dayTimeDuration>",
     "functionLabel": "subset_dayTimeDuration",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

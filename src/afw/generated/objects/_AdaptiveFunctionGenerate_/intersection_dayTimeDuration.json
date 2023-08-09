@@ -1,10 +1,10 @@
 {
     "afwCamelCaseFunctionLabel": "afwIntersectionDayTimeDuration",
-    "brief": "Returns intersection of two lists",
+    "brief": "Returns intersection of two arrays",
     "camelCaseFunctionLabel": "intersectionDayTimeDuration",
     "category": "dayTimeDuration",
     "dataTypeMethod": true,
-    "description": "Returns an array of dayTimeDuration with the values that are common to both array of dayTimeDuration list1 and list2.",
+    "description": "Returns an array of dayTimeDuration with the values that are common to both array of dayTimeDuration array1 and array2.",
     "functionId": "intersection<dayTimeDuration>",
     "functionLabel": "intersection_dayTimeDuration",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dayTimeDuration",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwUnionHexBinary",
-    "brief": "Returns union of two or more string lists",
+    "brief": "Returns union of two or more string arrays",
     "camelCaseFunctionLabel": "unionHexBinary",
     "category": "hexBinary",
     "dataTypeMethod": true,
@@ -11,9 +11,9 @@
         {
             "dataType": "array",
             "dataTypeParameter": "hexBinary",
-            "description": "Two or more lists.",
+            "description": "Two or more arrays.",
             "minArgs": 2,
-            "name": "lists"
+            "name": "arrays"
         }
     ],
     "pure": true,

@@ -2051,8 +2051,8 @@ afw_function_definition_at_least_one_member_of_anyURI;
  * @brief Adaptive Function `at_least_one_member_of<anyURI>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in anyURI list1 is in anyURI
- * list2.
+ * Returns boolean true if at least one value in anyURI array1 is in anyURI
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2061,16 +2061,16 @@ afw_function_definition_at_least_one_member_of_anyURI;
  *
  * ```
  *   function at_least_one_member_of<anyURI>(
- *       list1: (array anyURI),
- *       list2: (array anyURI)
+ *       array1: (array anyURI),
+ *       array2: (array anyURI)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array anyURI) The first array.
+ *   array1 - (array anyURI) The first array.
  *
- *   list2 - (array anyURI) The second array.
+ *   array2 - (array anyURI) The second array.
  *
  * Returns:
  *
@@ -2438,7 +2438,7 @@ afw_function_definition_intersection_anyURI;
  * @param x function execute parameter.
  *
  * Returns an array of anyURI with the values that are common to both array of
- * anyURI list1 and list2.
+ * anyURI array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2447,16 +2447,16 @@ afw_function_definition_intersection_anyURI;
  *
  * ```
  *   function intersection<anyURI>(
- *       list1: (array anyURI),
- *       list2: (array anyURI)
+ *       array1: (array anyURI),
+ *       array2: (array anyURI)
  *   ): (array anyURI);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array anyURI) The first array.
+ *   array1 - (array anyURI) The first array.
  *
- *   list2 - (array anyURI) The second array.
+ *   array2 - (array anyURI) The second array.
  *
  * Returns:
  *
@@ -3024,7 +3024,7 @@ afw_function_definition_set_equals_anyURI;
  * @brief Adaptive Function `set_equals<anyURI>`
  * @param x function execute parameter.
  *
- * Returns boolean true if anyURI list1 and anyURI list2 are subsets of each
+ * Returns boolean true if anyURI array1 and anyURI array2 are subsets of each
  * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -3034,16 +3034,16 @@ afw_function_definition_set_equals_anyURI;
  *
  * ```
  *   function set_equals<anyURI>(
- *       list1: (array anyURI),
- *       list2: (array anyURI)
+ *       array1: (array anyURI),
+ *       array2: (array anyURI)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array anyURI)
+ *   array1 - (array anyURI)
  *
- *   list2 - (array anyURI)
+ *   array2 - (array anyURI)
  *
  * Returns:
  *
@@ -3143,8 +3143,8 @@ afw_function_definition_subset_anyURI;
  * @brief Adaptive Function `subset<anyURI>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in anyURI list1 are all in anyURI
- * list2.
+ * Returns boolean true if the unique values in anyURI array1 are all in anyURI
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3153,16 +3153,16 @@ afw_function_definition_subset_anyURI;
  *
  * ```
  *   function subset<anyURI>(
- *       list1: (array anyURI),
- *       list2: (array anyURI)
+ *       array1: (array anyURI),
+ *       array2: (array anyURI)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array anyURI) The first array.
+ *   array1 - (array anyURI) The first array.
  *
- *   list2 - (array anyURI) The second array.
+ *   array2 - (array anyURI) The second array.
  *
  * Returns:
  *
@@ -3272,15 +3272,15 @@ afw_function_definition_union_anyURI;
  *
  * ```
  *   function union<anyURI>(
- *       lists_1: (array anyURI),
- *       lists_2: (array anyURI),
- *       ...lists_rest: (array of (array anyURI))
+ *       arrays_1: (array anyURI),
+ *       arrays_2: (array anyURI),
+ *       ...arrays_rest: (array of (array anyURI))
  *   ): (array anyURI);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array anyURI) Two or more lists.
+ *   arrays - (2 or more array anyURI) Two or more arrays.
  *
  * Returns:
  *
@@ -4112,8 +4112,8 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  * @brief Adaptive Function `at_least_one_member_of<base64Binary>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in base64Binary list1 is in
- * base64Binary list2.
+ * Returns boolean true if at least one value in base64Binary array1 is in
+ * base64Binary array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4122,16 +4122,16 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  *
  * ```
  *   function at_least_one_member_of<base64Binary>(
- *       list1: (array base64Binary),
- *       list2: (array base64Binary)
+ *       array1: (array base64Binary),
+ *       array2: (array base64Binary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array base64Binary) The first array.
+ *   array1 - (array base64Binary) The first array.
  *
- *   list2 - (array base64Binary) The second array.
+ *   array2 - (array base64Binary) The second array.
  *
  * Returns:
  *
@@ -4450,7 +4450,7 @@ afw_function_definition_intersection_base64Binary;
  * @param x function execute parameter.
  *
  * Returns an array of base64Binary with the values that are common to both
- * array of base64Binary list1 and list2.
+ * array of base64Binary array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4459,16 +4459,16 @@ afw_function_definition_intersection_base64Binary;
  *
  * ```
  *   function intersection<base64Binary>(
- *       list1: (array base64Binary),
- *       list2: (array base64Binary)
+ *       array1: (array base64Binary),
+ *       array2: (array base64Binary)
  *   ): (array base64Binary);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array base64Binary) The first array.
+ *   array1 - (array base64Binary) The first array.
  *
- *   list2 - (array base64Binary) The second array.
+ *   array2 - (array base64Binary) The second array.
  *
  * Returns:
  *
@@ -4757,7 +4757,7 @@ afw_function_definition_set_equals_base64Binary;
  * @brief Adaptive Function `set_equals<base64Binary>`
  * @param x function execute parameter.
  *
- * Returns boolean true if base64Binary list1 and base64Binary list2 are
+ * Returns boolean true if base64Binary array1 and base64Binary array2 are
  * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -4767,16 +4767,16 @@ afw_function_definition_set_equals_base64Binary;
  *
  * ```
  *   function set_equals<base64Binary>(
- *       list1: (array base64Binary),
- *       list2: (array base64Binary)
+ *       array1: (array base64Binary),
+ *       array2: (array base64Binary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array base64Binary)
+ *   array1 - (array base64Binary)
  *
- *   list2 - (array base64Binary)
+ *   array2 - (array base64Binary)
  *
  * Returns:
  *
@@ -4795,8 +4795,8 @@ afw_function_definition_subset_base64Binary;
  * @brief Adaptive Function `subset<base64Binary>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in base64Binary list1 are all in
- * base64Binary list2.
+ * Returns boolean true if the unique values in base64Binary array1 are all in
+ * base64Binary array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4805,16 +4805,16 @@ afw_function_definition_subset_base64Binary;
  *
  * ```
  *   function subset<base64Binary>(
- *       list1: (array base64Binary),
- *       list2: (array base64Binary)
+ *       array1: (array base64Binary),
+ *       array2: (array base64Binary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array base64Binary) The first array.
+ *   array1 - (array base64Binary) The first array.
  *
- *   list2 - (array base64Binary) The second array.
+ *   array2 - (array base64Binary) The second array.
  *
  * Returns:
  *
@@ -4878,15 +4878,15 @@ afw_function_definition_union_base64Binary;
  *
  * ```
  *   function union<base64Binary>(
- *       lists_1: (array base64Binary),
- *       lists_2: (array base64Binary),
- *       ...lists_rest: (array of (array base64Binary))
+ *       arrays_1: (array base64Binary),
+ *       arrays_2: (array base64Binary),
+ *       ...arrays_rest: (array of (array base64Binary))
  *   ): (array base64Binary);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array base64Binary) Two or more lists.
+ *   arrays - (2 or more array base64Binary) Two or more arrays.
  *
  * Returns:
  *
@@ -4915,8 +4915,8 @@ afw_function_definition_at_least_one_member_of_boolean;
  * @brief Adaptive Function `at_least_one_member_of<boolean>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in boolean list1 is in boolean
- * list2.
+ * Returns boolean true if at least one value in boolean array1 is in boolean
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4925,16 +4925,16 @@ afw_function_definition_at_least_one_member_of_boolean;
  *
  * ```
  *   function at_least_one_member_of<boolean>(
- *       list1: (array boolean),
- *       list2: (array boolean)
+ *       array1: (array boolean),
+ *       array2: (array boolean)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array boolean) The first array.
+ *   array1 - (array boolean) The first array.
  *
- *   list2 - (array boolean) The second array.
+ *   array2 - (array boolean) The second array.
  *
  * Returns:
  *
@@ -5218,7 +5218,7 @@ afw_function_definition_intersection_boolean;
  * @param x function execute parameter.
  *
  * Returns an array of boolean with the values that are common to both array of
- * boolean list1 and list2.
+ * boolean array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5227,16 +5227,16 @@ afw_function_definition_intersection_boolean;
  *
  * ```
  *   function intersection<boolean>(
- *       list1: (array boolean),
- *       list2: (array boolean)
+ *       array1: (array boolean),
+ *       array2: (array boolean)
  *   ): (array boolean);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array boolean) The first array.
+ *   array1 - (array boolean) The first array.
  *
- *   list2 - (array boolean) The second array.
+ *   array2 - (array boolean) The second array.
  *
  * Returns:
  *
@@ -5524,8 +5524,8 @@ afw_function_definition_set_equals_boolean;
  * @brief Adaptive Function `set_equals<boolean>`
  * @param x function execute parameter.
  *
- * Returns boolean true if boolean list1 and boolean list2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if boolean array1 and boolean array2 are subsets of
+ * each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5534,16 +5534,16 @@ afw_function_definition_set_equals_boolean;
  *
  * ```
  *   function set_equals<boolean>(
- *       list1: (array boolean),
- *       list2: (array boolean)
+ *       array1: (array boolean),
+ *       array2: (array boolean)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array boolean)
+ *   array1 - (array boolean)
  *
- *   list2 - (array boolean)
+ *   array2 - (array boolean)
  *
  * Returns:
  *
@@ -5562,8 +5562,8 @@ afw_function_definition_subset_boolean;
  * @brief Adaptive Function `subset<boolean>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in boolean list1 are all in
- * boolean list2.
+ * Returns boolean true if the unique values in boolean array1 are all in
+ * boolean array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5572,16 +5572,16 @@ afw_function_definition_subset_boolean;
  *
  * ```
  *   function subset<boolean>(
- *       list1: (array boolean),
- *       list2: (array boolean)
+ *       array1: (array boolean),
+ *       array2: (array boolean)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array boolean) The first array.
+ *   array1 - (array boolean) The first array.
  *
- *   list2 - (array boolean) The second array.
+ *   array2 - (array boolean) The second array.
  *
  * Returns:
  *
@@ -5645,15 +5645,15 @@ afw_function_definition_union_boolean;
  *
  * ```
  *   function union<boolean>(
- *       lists_1: (array boolean),
- *       lists_2: (array boolean),
- *       ...lists_rest: (array of (array boolean))
+ *       arrays_1: (array boolean),
+ *       arrays_2: (array boolean),
+ *       ...arrays_rest: (array of (array boolean))
  *   ): (array boolean);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array boolean) Two or more lists.
+ *   arrays - (2 or more array boolean) Two or more arrays.
  *
  * Returns:
  *
@@ -6651,8 +6651,8 @@ afw_function_definition_at_least_one_member_of_dateTime;
  * @brief Adaptive Function `at_least_one_member_of<dateTime>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in dateTime list1 is in dateTime
- * list2.
+ * Returns boolean true if at least one value in dateTime array1 is in dateTime
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6661,16 +6661,16 @@ afw_function_definition_at_least_one_member_of_dateTime;
  *
  * ```
  *   function at_least_one_member_of<dateTime>(
- *       list1: (array dateTime),
- *       list2: (array dateTime)
+ *       array1: (array dateTime),
+ *       array2: (array dateTime)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dateTime) The first array.
+ *   array1 - (array dateTime) The first array.
  *
- *   list2 - (array dateTime) The second array.
+ *   array2 - (array dateTime) The second array.
  *
  * Returns:
  *
@@ -6960,7 +6960,7 @@ afw_function_definition_intersection_dateTime;
  * @param x function execute parameter.
  *
  * Returns an array of dateTime with the values that are common to both array
- * of dateTime list1 and list2.
+ * of dateTime array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6969,16 +6969,16 @@ afw_function_definition_intersection_dateTime;
  *
  * ```
  *   function intersection<dateTime>(
- *       list1: (array dateTime),
- *       list2: (array dateTime)
+ *       array1: (array dateTime),
+ *       array2: (array dateTime)
  *   ): (array dateTime);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dateTime) The first array.
+ *   array1 - (array dateTime) The first array.
  *
- *   list2 - (array dateTime) The second array.
+ *   array2 - (array dateTime) The second array.
  *
  * Returns:
  *
@@ -7349,7 +7349,7 @@ afw_function_definition_set_equals_dateTime;
  * @brief Adaptive Function `set_equals<dateTime>`
  * @param x function execute parameter.
  *
- * Returns boolean true if dateTime list1 and dateTime list2 are subsets of
+ * Returns boolean true if dateTime array1 and dateTime array2 are subsets of
  * each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -7359,16 +7359,16 @@ afw_function_definition_set_equals_dateTime;
  *
  * ```
  *   function set_equals<dateTime>(
- *       list1: (array dateTime),
- *       list2: (array dateTime)
+ *       array1: (array dateTime),
+ *       array2: (array dateTime)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dateTime)
+ *   array1 - (array dateTime)
  *
- *   list2 - (array dateTime)
+ *   array2 - (array dateTime)
  *
  * Returns:
  *
@@ -7387,8 +7387,8 @@ afw_function_definition_subset_dateTime;
  * @brief Adaptive Function `subset<dateTime>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in dateTime list1 are all in
- * dateTime list2.
+ * Returns boolean true if the unique values in dateTime array1 are all in
+ * dateTime array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7397,16 +7397,16 @@ afw_function_definition_subset_dateTime;
  *
  * ```
  *   function subset<dateTime>(
- *       list1: (array dateTime),
- *       list2: (array dateTime)
+ *       array1: (array dateTime),
+ *       array2: (array dateTime)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dateTime) The first array.
+ *   array1 - (array dateTime) The first array.
  *
- *   list2 - (array dateTime) The second array.
+ *   array2 - (array dateTime) The second array.
  *
  * Returns:
  *
@@ -7544,15 +7544,15 @@ afw_function_definition_union_dateTime;
  *
  * ```
  *   function union<dateTime>(
- *       lists_1: (array dateTime),
- *       lists_2: (array dateTime),
- *       ...lists_rest: (array of (array dateTime))
+ *       arrays_1: (array dateTime),
+ *       arrays_2: (array dateTime),
+ *       ...arrays_rest: (array of (array dateTime))
  *   ): (array dateTime);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array dateTime) Two or more lists.
+ *   arrays - (2 or more array dateTime) Two or more arrays.
  *
  * Returns:
  *
@@ -7617,7 +7617,7 @@ afw_function_definition_at_least_one_member_of_date;
  * @brief Adaptive Function `at_least_one_member_of<date>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in date list1 is in date list2.
+ * Returns boolean true if at least one value in date array1 is in date array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7626,16 +7626,16 @@ afw_function_definition_at_least_one_member_of_date;
  *
  * ```
  *   function at_least_one_member_of<date>(
- *       list1: (array date),
- *       list2: (array date)
+ *       array1: (array date),
+ *       array2: (array date)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array date) The first array.
+ *   array1 - (array date) The first array.
  *
- *   list2 - (array date) The second array.
+ *   array2 - (array date) The second array.
  *
  * Returns:
  *
@@ -7925,7 +7925,7 @@ afw_function_definition_intersection_date;
  * @param x function execute parameter.
  *
  * Returns an array of date with the values that are common to both array of
- * date list1 and list2.
+ * date array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7934,16 +7934,16 @@ afw_function_definition_intersection_date;
  *
  * ```
  *   function intersection<date>(
- *       list1: (array date),
- *       list2: (array date)
+ *       array1: (array date),
+ *       array2: (array date)
  *   ): (array date);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array date) The first array.
+ *   array1 - (array date) The first array.
  *
- *   list2 - (array date) The second array.
+ *   array2 - (array date) The second array.
  *
  * Returns:
  *
@@ -8312,8 +8312,8 @@ afw_function_definition_set_equals_date;
  * @brief Adaptive Function `set_equals<date>`
  * @param x function execute parameter.
  *
- * Returns boolean true if date list1 and date list2 are subsets of each other
- * and return the boolean result.
+ * Returns boolean true if date array1 and date array2 are subsets of each
+ * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8322,16 +8322,16 @@ afw_function_definition_set_equals_date;
  *
  * ```
  *   function set_equals<date>(
- *       list1: (array date),
- *       list2: (array date)
+ *       array1: (array date),
+ *       array2: (array date)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array date)
+ *   array1 - (array date)
  *
- *   list2 - (array date)
+ *   array2 - (array date)
  *
  * Returns:
  *
@@ -8350,8 +8350,8 @@ afw_function_definition_subset_date;
  * @brief Adaptive Function `subset<date>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in date list1 are all in date
- * list2.
+ * Returns boolean true if the unique values in date array1 are all in date
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8360,16 +8360,16 @@ afw_function_definition_subset_date;
  *
  * ```
  *   function subset<date>(
- *       list1: (array date),
- *       list2: (array date)
+ *       array1: (array date),
+ *       array2: (array date)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array date) The first array.
+ *   array1 - (array date) The first array.
  *
- *   list2 - (array date) The second array.
+ *   array2 - (array date) The second array.
  *
  * Returns:
  *
@@ -8469,15 +8469,15 @@ afw_function_definition_union_date;
  *
  * ```
  *   function union<date>(
- *       lists_1: (array date),
- *       lists_2: (array date),
- *       ...lists_rest: (array of (array date))
+ *       arrays_1: (array date),
+ *       arrays_2: (array date),
+ *       ...arrays_rest: (array of (array date))
  *   ): (array date);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array date) Two or more lists.
+ *   arrays - (2 or more array date) Two or more arrays.
  *
  * Returns:
  *
@@ -8506,8 +8506,8 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  * @brief Adaptive Function `at_least_one_member_of<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in dayTimeDuration list1 is in
- * dayTimeDuration list2.
+ * Returns boolean true if at least one value in dayTimeDuration array1 is in
+ * dayTimeDuration array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8516,16 +8516,16 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *
  * ```
  *   function at_least_one_member_of<dayTimeDuration>(
- *       list1: (array dayTimeDuration),
- *       list2: (array dayTimeDuration)
+ *       array1: (array dayTimeDuration),
+ *       array2: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration) The first array.
+ *   array1 - (array dayTimeDuration) The first array.
  *
- *   list2 - (array dayTimeDuration) The second array.
+ *   array2 - (array dayTimeDuration) The second array.
  *
  * Returns:
  *
@@ -8811,7 +8811,7 @@ afw_function_definition_intersection_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Returns an array of dayTimeDuration with the values that are common to both
- * array of dayTimeDuration list1 and list2.
+ * array of dayTimeDuration array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8820,16 +8820,16 @@ afw_function_definition_intersection_dayTimeDuration;
  *
  * ```
  *   function intersection<dayTimeDuration>(
- *       list1: (array dayTimeDuration),
- *       list2: (array dayTimeDuration)
+ *       array1: (array dayTimeDuration),
+ *       array2: (array dayTimeDuration)
  *   ): (array dayTimeDuration);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration) The first array.
+ *   array1 - (array dayTimeDuration) The first array.
  *
- *   list2 - (array dayTimeDuration) The second array.
+ *   array2 - (array dayTimeDuration) The second array.
  *
  * Returns:
  *
@@ -9119,8 +9119,8 @@ afw_function_definition_set_equals_dayTimeDuration;
  * @brief Adaptive Function `set_equals<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if dayTimeDuration list1 and dayTimeDuration list2 are
- * subsets of each other and return the boolean result.
+ * Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2
+ * are subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9129,16 +9129,16 @@ afw_function_definition_set_equals_dayTimeDuration;
  *
  * ```
  *   function set_equals<dayTimeDuration>(
- *       list1: (array dayTimeDuration),
- *       list2: (array dayTimeDuration)
+ *       array1: (array dayTimeDuration),
+ *       array2: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration)
+ *   array1 - (array dayTimeDuration)
  *
- *   list2 - (array dayTimeDuration)
+ *   array2 - (array dayTimeDuration)
  *
  * Returns:
  *
@@ -9157,8 +9157,8 @@ afw_function_definition_subset_dayTimeDuration;
  * @brief Adaptive Function `subset<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in dayTimeDuration list1 are all
- * in dayTimeDuration list2.
+ * Returns boolean true if the unique values in dayTimeDuration array1 are all
+ * in dayTimeDuration array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9167,16 +9167,16 @@ afw_function_definition_subset_dayTimeDuration;
  *
  * ```
  *   function subset<dayTimeDuration>(
- *       list1: (array dayTimeDuration),
- *       list2: (array dayTimeDuration)
+ *       array1: (array dayTimeDuration),
+ *       array2: (array dayTimeDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array dayTimeDuration) The first array.
+ *   array1 - (array dayTimeDuration) The first array.
  *
- *   list2 - (array dayTimeDuration) The second array.
+ *   array2 - (array dayTimeDuration) The second array.
  *
  * Returns:
  *
@@ -9240,15 +9240,15 @@ afw_function_definition_union_dayTimeDuration;
  *
  * ```
  *   function union<dayTimeDuration>(
- *       lists_1: (array dayTimeDuration),
- *       lists_2: (array dayTimeDuration),
- *       ...lists_rest: (array of (array dayTimeDuration))
+ *       arrays_1: (array dayTimeDuration),
+ *       arrays_2: (array dayTimeDuration),
+ *       ...arrays_rest: (array of (array dayTimeDuration))
  *   ): (array dayTimeDuration);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array dayTimeDuration) Two or more lists.
+ *   arrays - (2 or more array dayTimeDuration) Two or more arrays.
  *
  * Returns:
  *
@@ -9961,8 +9961,8 @@ afw_function_definition_at_least_one_member_of_double;
  * @brief Adaptive Function `at_least_one_member_of<double>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in double list1 is in double
- * list2.
+ * Returns boolean true if at least one value in double array1 is in double
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9971,16 +9971,16 @@ afw_function_definition_at_least_one_member_of_double;
  *
  * ```
  *   function at_least_one_member_of<double>(
- *       list1: (array double),
- *       list2: (array double)
+ *       array1: (array double),
+ *       array2: (array double)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array double) The first array.
+ *   array1 - (array double) The first array.
  *
- *   list2 - (array double) The second array.
+ *   array2 - (array double) The second array.
  *
  * Returns:
  *
@@ -10368,7 +10368,7 @@ afw_function_definition_intersection_double;
  * @param x function execute parameter.
  *
  * Returns an array of double with the values that are common to both array of
- * double list1 and list2.
+ * double array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10377,16 +10377,16 @@ afw_function_definition_intersection_double;
  *
  * ```
  *   function intersection<double>(
- *       list1: (array double),
- *       list2: (array double)
+ *       array1: (array double),
+ *       array2: (array double)
  *   ): (array double);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array double) The first array.
+ *   array1 - (array double) The first array.
  *
- *   list2 - (array double) The second array.
+ *   array2 - (array double) The second array.
  *
  * Returns:
  *
@@ -10951,7 +10951,7 @@ afw_function_definition_set_equals_double;
  * @brief Adaptive Function `set_equals<double>`
  * @param x function execute parameter.
  *
- * Returns boolean true if double list1 and double list2 are subsets of each
+ * Returns boolean true if double array1 and double array2 are subsets of each
  * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -10961,16 +10961,16 @@ afw_function_definition_set_equals_double;
  *
  * ```
  *   function set_equals<double>(
- *       list1: (array double),
- *       list2: (array double)
+ *       array1: (array double),
+ *       array2: (array double)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array double)
+ *   array1 - (array double)
  *
- *   list2 - (array double)
+ *   array2 - (array double)
  *
  * Returns:
  *
@@ -10989,8 +10989,8 @@ afw_function_definition_subset_double;
  * @brief Adaptive Function `subset<double>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in double list1 are all in double
- * list2.
+ * Returns boolean true if the unique values in double array1 are all in double
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10999,16 +10999,16 @@ afw_function_definition_subset_double;
  *
  * ```
  *   function subset<double>(
- *       list1: (array double),
- *       list2: (array double)
+ *       array1: (array double),
+ *       array2: (array double)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array double) The first array.
+ *   array1 - (array double) The first array.
  *
- *   list2 - (array double) The second array.
+ *   array2 - (array double) The second array.
  *
  * Returns:
  *
@@ -11142,15 +11142,15 @@ afw_function_definition_union_double;
  *
  * ```
  *   function union<double>(
- *       lists_1: (array double),
- *       lists_2: (array double),
- *       ...lists_rest: (array of (array double))
+ *       arrays_1: (array double),
+ *       arrays_2: (array double),
+ *       ...arrays_rest: (array of (array double))
  *   ): (array double);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array double) Two or more lists.
+ *   arrays - (2 or more array double) Two or more arrays.
  *
  * Returns:
  *
@@ -12233,8 +12233,8 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  * @brief Adaptive Function `at_least_one_member_of<hexBinary>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in hexBinary list1 is in
- * hexBinary list2.
+ * Returns boolean true if at least one value in hexBinary array1 is in
+ * hexBinary array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12243,16 +12243,16 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  *
  * ```
  *   function at_least_one_member_of<hexBinary>(
- *       list1: (array hexBinary),
- *       list2: (array hexBinary)
+ *       array1: (array hexBinary),
+ *       array2: (array hexBinary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array hexBinary) The first array.
+ *   array1 - (array hexBinary) The first array.
  *
- *   list2 - (array hexBinary) The second array.
+ *   array2 - (array hexBinary) The second array.
  *
  * Returns:
  *
@@ -12570,7 +12570,7 @@ afw_function_definition_intersection_hexBinary;
  * @param x function execute parameter.
  *
  * Returns an array of hexBinary with the values that are common to both array
- * of hexBinary list1 and list2.
+ * of hexBinary array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12579,16 +12579,16 @@ afw_function_definition_intersection_hexBinary;
  *
  * ```
  *   function intersection<hexBinary>(
- *       list1: (array hexBinary),
- *       list2: (array hexBinary)
+ *       array1: (array hexBinary),
+ *       array2: (array hexBinary)
  *   ): (array hexBinary);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array hexBinary) The first array.
+ *   array1 - (array hexBinary) The first array.
  *
- *   list2 - (array hexBinary) The second array.
+ *   array2 - (array hexBinary) The second array.
  *
  * Returns:
  *
@@ -12877,7 +12877,7 @@ afw_function_definition_set_equals_hexBinary;
  * @brief Adaptive Function `set_equals<hexBinary>`
  * @param x function execute parameter.
  *
- * Returns boolean true if hexBinary list1 and hexBinary list2 are subsets of
+ * Returns boolean true if hexBinary array1 and hexBinary array2 are subsets of
  * each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -12887,16 +12887,16 @@ afw_function_definition_set_equals_hexBinary;
  *
  * ```
  *   function set_equals<hexBinary>(
- *       list1: (array hexBinary),
- *       list2: (array hexBinary)
+ *       array1: (array hexBinary),
+ *       array2: (array hexBinary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array hexBinary)
+ *   array1 - (array hexBinary)
  *
- *   list2 - (array hexBinary)
+ *   array2 - (array hexBinary)
  *
  * Returns:
  *
@@ -12915,8 +12915,8 @@ afw_function_definition_subset_hexBinary;
  * @brief Adaptive Function `subset<hexBinary>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in hexBinary list1 are all in
- * hexBinary list2.
+ * Returns boolean true if the unique values in hexBinary array1 are all in
+ * hexBinary array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12925,16 +12925,16 @@ afw_function_definition_subset_hexBinary;
  *
  * ```
  *   function subset<hexBinary>(
- *       list1: (array hexBinary),
- *       list2: (array hexBinary)
+ *       array1: (array hexBinary),
+ *       array2: (array hexBinary)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array hexBinary) The first array.
+ *   array1 - (array hexBinary) The first array.
  *
- *   list2 - (array hexBinary) The second array.
+ *   array2 - (array hexBinary) The second array.
  *
  * Returns:
  *
@@ -12998,15 +12998,15 @@ afw_function_definition_union_hexBinary;
  *
  * ```
  *   function union<hexBinary>(
- *       lists_1: (array hexBinary),
- *       lists_2: (array hexBinary),
- *       ...lists_rest: (array of (array hexBinary))
+ *       arrays_1: (array hexBinary),
+ *       arrays_2: (array hexBinary),
+ *       ...arrays_rest: (array of (array hexBinary))
  *   ): (array hexBinary);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array hexBinary) Two or more lists.
+ *   arrays - (2 or more array hexBinary) Two or more arrays.
  *
  * Returns:
  *
@@ -14805,8 +14805,8 @@ afw_function_definition_at_least_one_member_of_integer;
  * @brief Adaptive Function `at_least_one_member_of<integer>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in integer list1 is in integer
- * list2.
+ * Returns boolean true if at least one value in integer array1 is in integer
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14815,16 +14815,16 @@ afw_function_definition_at_least_one_member_of_integer;
  *
  * ```
  *   function at_least_one_member_of<integer>(
- *       list1: (array integer),
- *       list2: (array integer)
+ *       array1: (array integer),
+ *       array2: (array integer)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array integer) The first array.
+ *   array1 - (array integer) The first array.
  *
- *   list2 - (array integer) The second array.
+ *   array2 - (array integer) The second array.
  *
  * Returns:
  *
@@ -15144,7 +15144,7 @@ afw_function_definition_intersection_integer;
  * @param x function execute parameter.
  *
  * Returns an array of integer with the values that are common to both array of
- * integer list1 and list2.
+ * integer array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15153,16 +15153,16 @@ afw_function_definition_intersection_integer;
  *
  * ```
  *   function intersection<integer>(
- *       list1: (array integer),
- *       list2: (array integer)
+ *       array1: (array integer),
+ *       array2: (array integer)
  *   ): (array integer);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array integer) The first array.
+ *   array1 - (array integer) The first array.
  *
- *   list2 - (array integer) The second array.
+ *   array2 - (array integer) The second array.
  *
  * Returns:
  *
@@ -15624,8 +15624,8 @@ afw_function_definition_set_equals_integer;
  * @brief Adaptive Function `set_equals<integer>`
  * @param x function execute parameter.
  *
- * Returns boolean true if integer list1 and integer list2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if integer array1 and integer array2 are subsets of
+ * each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15634,16 +15634,16 @@ afw_function_definition_set_equals_integer;
  *
  * ```
  *   function set_equals<integer>(
- *       list1: (array integer),
- *       list2: (array integer)
+ *       array1: (array integer),
+ *       array2: (array integer)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array integer)
+ *   array1 - (array integer)
  *
- *   list2 - (array integer)
+ *   array2 - (array integer)
  *
  * Returns:
  *
@@ -15662,8 +15662,8 @@ afw_function_definition_subset_integer;
  * @brief Adaptive Function `subset<integer>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in integer list1 are all in
- * integer list2.
+ * Returns boolean true if the unique values in integer array1 are all in
+ * integer array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15672,16 +15672,16 @@ afw_function_definition_subset_integer;
  *
  * ```
  *   function subset<integer>(
- *       list1: (array integer),
- *       list2: (array integer)
+ *       array1: (array integer),
+ *       array2: (array integer)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array integer) The first array.
+ *   array1 - (array integer) The first array.
  *
- *   list2 - (array integer) The second array.
+ *   array2 - (array integer) The second array.
  *
  * Returns:
  *
@@ -15819,15 +15819,15 @@ afw_function_definition_union_integer;
  *
  * ```
  *   function union<integer>(
- *       lists_1: (array integer),
- *       lists_2: (array integer),
- *       ...lists_rest: (array of (array integer))
+ *       arrays_1: (array integer),
+ *       arrays_2: (array integer),
+ *       ...arrays_rest: (array of (array integer))
  *   ): (array integer);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array integer) Two or more lists.
+ *   arrays - (2 or more array integer) Two or more arrays.
  *
  * Returns:
  *
@@ -20802,8 +20802,8 @@ afw_function_definition_at_least_one_member_of;
  * @brief Adaptive Function `at_least_one_member_of`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in `<dataType>` list1 is in
- * `<dataType>` list2.
+ * Returns boolean true if at least one value in `<dataType>` array1 is in
+ * `<dataType>` array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20817,16 +20817,16 @@ afw_function_definition_at_least_one_member_of;
  *
  * ```
  *   function at_least_one_member_of <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -20852,9 +20852,9 @@ afw_function_definition_bag;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -20894,9 +20894,9 @@ afw_function_definition_bag_size;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21265,9 +21265,9 @@ afw_function_definition_eq;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21358,9 +21358,9 @@ afw_function_definition_eqx;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21490,9 +21490,9 @@ afw_function_definition_ge;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21536,9 +21536,9 @@ afw_function_definition_gt;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21716,7 +21716,7 @@ afw_function_definition_intersection;
  * @param x function execute parameter.
  *
  * Returns an array of `<dataType>` with the values that are common to both
- * array of `<dataType>` list1 and list2.
+ * array of `<dataType>` array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21730,16 +21730,16 @@ afw_function_definition_intersection;
  *
  * ```
  *   function intersection <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -21765,9 +21765,9 @@ afw_function_definition_is;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, null, object, objectId, objectPath, password,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, null, object, objectId, objectPath, password,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration, unevaluated.
  *
@@ -21898,9 +21898,9 @@ afw_function_definition_le;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -21985,9 +21985,9 @@ afw_function_definition_lt;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -22235,9 +22235,9 @@ afw_function_definition_ne;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, regexp,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, regexp,
  *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -22324,9 +22324,9 @@ afw_function_definition_nex;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, function, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, array, object, objectId, objectPath, password, rfc822Name,
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
+ *   integer, ipAddress, object, objectId, objectPath, password, rfc822Name,
  *   regexp, script, string, template, time, x500Name, xpathExpression,
  *   yearMonthDuration.
  *
@@ -22787,7 +22787,7 @@ afw_function_definition_set_equals;
  * @brief Adaptive Function `set_equals`
  * @param x function execute parameter.
  *
- * Returns boolean true if `<dataType>` list1 and `<dataType>` list2 are
+ * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
  * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -22802,16 +22802,16 @@ afw_function_definition_set_equals;
  *
  * ```
  *   function set_equals <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``)
+ *   array1 - (array ``<Type>``)
  *
- *   list2 - (array ``<Type>``)
+ *   array2 - (array ``<Type>``)
  *
  * Returns:
  *
@@ -22919,8 +22919,8 @@ afw_function_definition_subset;
  * @brief Adaptive Function `subset`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in `<dataType>` list1 are all in
- * `<dataType>` list2.
+ * Returns boolean true if the unique values in `<dataType>` array1 are all in
+ * `<dataType>` array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22934,16 +22934,16 @@ afw_function_definition_subset;
  *
  * ```
  *   function subset <dataType>(
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array ``<Type>``) The first array.
+ *   array1 - (array ``<Type>``) The first array.
  *
- *   list2 - (array ``<Type>``) The second array.
+ *   array2 - (array ``<Type>``) The second array.
  *
  * Returns:
  *
@@ -23562,10 +23562,10 @@ afw_function_definition_to_string;
  *
  * Supported `<dataType>`:
  *
- *   anyURI, base64Binary, boolean, date, dateTime, dayTimeDuration, dnsName,
- *   double, expression, hexBinary, hybrid, ia5String, integer, ipAddress,
- *   array, null, object, objectId, objectPath, password, rfc822Name, string,
- *   template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
+ *   dnsName, double, expression, hexBinary, hybrid, ia5String, integer,
+ *   ipAddress, null, object, objectId, objectPath, password, rfc822Name,
+ *   string, template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -23737,15 +23737,15 @@ afw_function_definition_union;
  *
  * ```
  *   function union <dataType>(
- *       lists_1: array,
- *       lists_2: array,
- *       ...lists_rest: (array of array)
+ *       arrays_1: array,
+ *       arrays_2: array,
+ *       ...arrays_rest: (array of array)
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array ``<Type>``) Two or more lists.
+ *   arrays - (2 or more array ``<Type>``) Two or more arrays.
  *
  * Returns:
  *
@@ -24401,8 +24401,8 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  * @brief Adaptive Function `at_least_one_member_of<rfc822Name>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in rfc822Name list1 is in
- * rfc822Name list2.
+ * Returns boolean true if at least one value in rfc822Name array1 is in
+ * rfc822Name array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24411,16 +24411,16 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  *
  * ```
  *   function at_least_one_member_of<rfc822Name>(
- *       list1: (array rfc822Name),
- *       list2: (array rfc822Name)
+ *       array1: (array rfc822Name),
+ *       array2: (array rfc822Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name) The first array.
+ *   array1 - (array rfc822Name) The first array.
  *
- *   list2 - (array rfc822Name) The second array.
+ *   array2 - (array rfc822Name) The second array.
  *
  * Returns:
  *
@@ -24666,7 +24666,7 @@ afw_function_definition_intersection_rfc822Name;
  * @param x function execute parameter.
  *
  * Returns an array of rfc822Name with the values that are common to both array
- * of rfc822Name list1 and list2.
+ * of rfc822Name array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24675,16 +24675,16 @@ afw_function_definition_intersection_rfc822Name;
  *
  * ```
  *   function intersection<rfc822Name>(
- *       list1: (array rfc822Name),
- *       list2: (array rfc822Name)
+ *       array1: (array rfc822Name),
+ *       array2: (array rfc822Name)
  *   ): (array rfc822Name);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name) The first array.
+ *   array1 - (array rfc822Name) The first array.
  *
- *   list2 - (array rfc822Name) The second array.
+ *   array2 - (array rfc822Name) The second array.
  *
  * Returns:
  *
@@ -25086,8 +25086,8 @@ afw_function_definition_set_equals_rfc822Name;
  * @brief Adaptive Function `set_equals<rfc822Name>`
  * @param x function execute parameter.
  *
- * Returns boolean true if rfc822Name list1 and rfc822Name list2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if rfc822Name array1 and rfc822Name array2 are subsets
+ * of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25096,16 +25096,16 @@ afw_function_definition_set_equals_rfc822Name;
  *
  * ```
  *   function set_equals<rfc822Name>(
- *       list1: (array rfc822Name),
- *       list2: (array rfc822Name)
+ *       array1: (array rfc822Name),
+ *       array2: (array rfc822Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name)
+ *   array1 - (array rfc822Name)
  *
- *   list2 - (array rfc822Name)
+ *   array2 - (array rfc822Name)
  *
  * Returns:
  *
@@ -25124,8 +25124,8 @@ afw_function_definition_subset_rfc822Name;
  * @brief Adaptive Function `subset<rfc822Name>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in rfc822Name list1 are all in
- * rfc822Name list2.
+ * Returns boolean true if the unique values in rfc822Name array1 are all in
+ * rfc822Name array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25134,16 +25134,16 @@ afw_function_definition_subset_rfc822Name;
  *
  * ```
  *   function subset<rfc822Name>(
- *       list1: (array rfc822Name),
- *       list2: (array rfc822Name)
+ *       array1: (array rfc822Name),
+ *       array2: (array rfc822Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array rfc822Name) The first array.
+ *   array1 - (array rfc822Name) The first array.
  *
- *   list2 - (array rfc822Name) The second array.
+ *   array2 - (array rfc822Name) The second array.
  *
  * Returns:
  *
@@ -25207,15 +25207,15 @@ afw_function_definition_union_rfc822Name;
  *
  * ```
  *   function union<rfc822Name>(
- *       lists_1: (array rfc822Name),
- *       lists_2: (array rfc822Name),
- *       ...lists_rest: (array of (array rfc822Name))
+ *       arrays_1: (array rfc822Name),
+ *       arrays_2: (array rfc822Name),
+ *       ...arrays_rest: (array of (array rfc822Name))
  *   ): (array rfc822Name);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array rfc822Name) Two or more lists.
+ *   arrays - (2 or more array rfc822Name) Two or more arrays.
  *
  * Returns:
  *
@@ -27113,8 +27113,8 @@ afw_function_definition_at_least_one_member_of_string;
  * @brief Adaptive Function `at_least_one_member_of<string>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in string list1 is in string
- * list2.
+ * Returns boolean true if at least one value in string array1 is in string
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27123,16 +27123,16 @@ afw_function_definition_at_least_one_member_of_string;
  *
  * ```
  *   function at_least_one_member_of<string>(
- *       list1: (array string),
- *       list2: (array string)
+ *       array1: (array string),
+ *       array2: (array string)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array string) The first array.
+ *   array1 - (array string) The first array.
  *
- *   list2 - (array string) The second array.
+ *   array2 - (array string) The second array.
  *
  * Returns:
  *
@@ -27647,7 +27647,7 @@ afw_function_definition_intersection_string;
  * @param x function execute parameter.
  *
  * Returns an array of string with the values that are common to both array of
- * string list1 and list2.
+ * string array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27656,16 +27656,16 @@ afw_function_definition_intersection_string;
  *
  * ```
  *   function intersection<string>(
- *       list1: (array string),
- *       list2: (array string)
+ *       array1: (array string),
+ *       array2: (array string)
  *   ): (array string);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array string) The first array.
+ *   array1 - (array string) The first array.
  *
- *   list2 - (array string) The second array.
+ *   array2 - (array string) The second array.
  *
  * Returns:
  *
@@ -28369,7 +28369,7 @@ afw_function_definition_set_equals_string;
  * @brief Adaptive Function `set_equals<string>`
  * @param x function execute parameter.
  *
- * Returns boolean true if string list1 and string list2 are subsets of each
+ * Returns boolean true if string array1 and string array2 are subsets of each
  * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -28379,16 +28379,16 @@ afw_function_definition_set_equals_string;
  *
  * ```
  *   function set_equals<string>(
- *       list1: (array string),
- *       list2: (array string)
+ *       array1: (array string),
+ *       array2: (array string)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array string)
+ *   array1 - (array string)
  *
- *   list2 - (array string)
+ *   array2 - (array string)
  *
  * Returns:
  *
@@ -28528,8 +28528,8 @@ afw_function_definition_subset_string;
  * @brief Adaptive Function `subset<string>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in string list1 are all in string
- * list2.
+ * Returns boolean true if the unique values in string array1 are all in string
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28538,16 +28538,16 @@ afw_function_definition_subset_string;
  *
  * ```
  *   function subset<string>(
- *       list1: (array string),
- *       list2: (array string)
+ *       array1: (array string),
+ *       array2: (array string)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array string) The first array.
+ *   array1 - (array string) The first array.
  *
- *   list2 - (array string) The second array.
+ *   array2 - (array string) The second array.
  *
  * Returns:
  *
@@ -29147,15 +29147,15 @@ afw_function_definition_union_string;
  *
  * ```
  *   function union<string>(
- *       lists_1: (array string),
- *       lists_2: (array string),
- *       ...lists_rest: (array of (array string))
+ *       arrays_1: (array string),
+ *       arrays_2: (array string),
+ *       ...arrays_rest: (array of (array string))
  *   ): (array string);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array string) Two or more lists.
+ *   arrays - (2 or more array string) Two or more arrays.
  *
  * Returns:
  *
@@ -29839,7 +29839,7 @@ afw_function_definition_at_least_one_member_of_time;
  * @brief Adaptive Function `at_least_one_member_of<time>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in time list1 is in time list2.
+ * Returns boolean true if at least one value in time array1 is in time array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29848,16 +29848,16 @@ afw_function_definition_at_least_one_member_of_time;
  *
  * ```
  *   function at_least_one_member_of<time>(
- *       list1: (array time),
- *       list2: (array time)
+ *       array1: (array time),
+ *       array2: (array time)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array time) The first array.
+ *   array1 - (array time) The first array.
  *
- *   list2 - (array time) The second array.
+ *   array2 - (array time) The second array.
  *
  * Returns:
  *
@@ -30152,7 +30152,7 @@ afw_function_definition_intersection_time;
  * @param x function execute parameter.
  *
  * Returns an array of time with the values that are common to both array of
- * time list1 and list2.
+ * time array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30161,16 +30161,16 @@ afw_function_definition_intersection_time;
  *
  * ```
  *   function intersection<time>(
- *       list1: (array time),
- *       list2: (array time)
+ *       array1: (array time),
+ *       array2: (array time)
  *   ): (array time);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array time) The first array.
+ *   array1 - (array time) The first array.
  *
- *   list2 - (array time) The second array.
+ *   array2 - (array time) The second array.
  *
  * Returns:
  *
@@ -30539,8 +30539,8 @@ afw_function_definition_set_equals_time;
  * @brief Adaptive Function `set_equals<time>`
  * @param x function execute parameter.
  *
- * Returns boolean true if time list1 and time list2 are subsets of each other
- * and return the boolean result.
+ * Returns boolean true if time array1 and time array2 are subsets of each
+ * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30549,16 +30549,16 @@ afw_function_definition_set_equals_time;
  *
  * ```
  *   function set_equals<time>(
- *       list1: (array time),
- *       list2: (array time)
+ *       array1: (array time),
+ *       array2: (array time)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array time)
+ *   array1 - (array time)
  *
- *   list2 - (array time)
+ *   array2 - (array time)
  *
  * Returns:
  *
@@ -30577,8 +30577,8 @@ afw_function_definition_subset_time;
  * @brief Adaptive Function `subset<time>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in time list1 are all in time
- * list2.
+ * Returns boolean true if the unique values in time array1 are all in time
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30587,16 +30587,16 @@ afw_function_definition_subset_time;
  *
  * ```
  *   function subset<time>(
- *       list1: (array time),
- *       list2: (array time)
+ *       array1: (array time),
+ *       array2: (array time)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array time) The first array.
+ *   array1 - (array time) The first array.
  *
- *   list2 - (array time) The second array.
+ *   array2 - (array time) The second array.
  *
  * Returns:
  *
@@ -30698,15 +30698,15 @@ afw_function_definition_union_time;
  *
  * ```
  *   function union<time>(
- *       lists_1: (array time),
- *       lists_2: (array time),
- *       ...lists_rest: (array of (array time))
+ *       arrays_1: (array time),
+ *       arrays_2: (array time),
+ *       ...arrays_rest: (array of (array time))
  *   ): (array time);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array time) Two or more lists.
+ *   arrays - (2 or more array time) Two or more arrays.
  *
  * Returns:
  *
@@ -30861,8 +30861,8 @@ afw_function_definition_at_least_one_member_of_x500Name;
  * @brief Adaptive Function `at_least_one_member_of<x500Name>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in x500Name list1 is in x500Name
- * list2.
+ * Returns boolean true if at least one value in x500Name array1 is in x500Name
+ * array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30871,16 +30871,16 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *
  * ```
  *   function at_least_one_member_of<x500Name>(
- *       list1: (array x500Name),
- *       list2: (array x500Name)
+ *       array1: (array x500Name),
+ *       array2: (array x500Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array x500Name) The first array.
+ *   array1 - (array x500Name) The first array.
  *
- *   list2 - (array x500Name) The second array.
+ *   array2 - (array x500Name) The second array.
  *
  * Returns:
  *
@@ -31126,7 +31126,7 @@ afw_function_definition_intersection_x500Name;
  * @param x function execute parameter.
  *
  * Returns an array of x500Name with the values that are common to both array
- * of x500Name list1 and list2.
+ * of x500Name array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31135,16 +31135,16 @@ afw_function_definition_intersection_x500Name;
  *
  * ```
  *   function intersection<x500Name>(
- *       list1: (array x500Name),
- *       list2: (array x500Name)
+ *       array1: (array x500Name),
+ *       array2: (array x500Name)
  *   ): (array x500Name);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array x500Name) The first array.
+ *   array1 - (array x500Name) The first array.
  *
- *   list2 - (array x500Name) The second array.
+ *   array2 - (array x500Name) The second array.
  *
  * Returns:
  *
@@ -31508,7 +31508,7 @@ afw_function_definition_set_equals_x500Name;
  * @brief Adaptive Function `set_equals<x500Name>`
  * @param x function execute parameter.
  *
- * Returns boolean true if x500Name list1 and x500Name list2 are subsets of
+ * Returns boolean true if x500Name array1 and x500Name array2 are subsets of
  * each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
@@ -31518,16 +31518,16 @@ afw_function_definition_set_equals_x500Name;
  *
  * ```
  *   function set_equals<x500Name>(
- *       list1: (array x500Name),
- *       list2: (array x500Name)
+ *       array1: (array x500Name),
+ *       array2: (array x500Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array x500Name)
+ *   array1 - (array x500Name)
  *
- *   list2 - (array x500Name)
+ *   array2 - (array x500Name)
  *
  * Returns:
  *
@@ -31546,8 +31546,8 @@ afw_function_definition_subset_x500Name;
  * @brief Adaptive Function `subset<x500Name>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in x500Name list1 are all in
- * x500Name list2.
+ * Returns boolean true if the unique values in x500Name array1 are all in
+ * x500Name array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31556,16 +31556,16 @@ afw_function_definition_subset_x500Name;
  *
  * ```
  *   function subset<x500Name>(
- *       list1: (array x500Name),
- *       list2: (array x500Name)
+ *       array1: (array x500Name),
+ *       array2: (array x500Name)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array x500Name) The first array.
+ *   array1 - (array x500Name) The first array.
  *
- *   list2 - (array x500Name) The second array.
+ *   array2 - (array x500Name) The second array.
  *
  * Returns:
  *
@@ -31629,15 +31629,15 @@ afw_function_definition_union_x500Name;
  *
  * ```
  *   function union<x500Name>(
- *       lists_1: (array x500Name),
- *       lists_2: (array x500Name),
- *       ...lists_rest: (array of (array x500Name))
+ *       arrays_1: (array x500Name),
+ *       arrays_2: (array x500Name),
+ *       ...arrays_rest: (array of (array x500Name))
  *   ): (array x500Name);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array x500Name) Two or more lists.
+ *   arrays - (2 or more array x500Name) Two or more arrays.
  *
  * Returns:
  *
@@ -32401,8 +32401,8 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  * @brief Adaptive Function `at_least_one_member_of<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if at least one value in yearMonthDuration list1 is in
- * yearMonthDuration list2.
+ * Returns boolean true if at least one value in yearMonthDuration array1 is in
+ * yearMonthDuration array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32411,16 +32411,16 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  *
  * ```
  *   function at_least_one_member_of<yearMonthDuration>(
- *       list1: (array yearMonthDuration),
- *       list2: (array yearMonthDuration)
+ *       array1: (array yearMonthDuration),
+ *       array2: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration) The first array.
+ *   array1 - (array yearMonthDuration) The first array.
  *
- *   list2 - (array yearMonthDuration) The second array.
+ *   array2 - (array yearMonthDuration) The second array.
  *
  * Returns:
  *
@@ -32667,7 +32667,7 @@ afw_function_definition_intersection_yearMonthDuration;
  * @param x function execute parameter.
  *
  * Returns an array of yearMonthDuration with the values that are common to
- * both array of yearMonthDuration list1 and list2.
+ * both array of yearMonthDuration array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32676,16 +32676,16 @@ afw_function_definition_intersection_yearMonthDuration;
  *
  * ```
  *   function intersection<yearMonthDuration>(
- *       list1: (array yearMonthDuration),
- *       list2: (array yearMonthDuration)
+ *       array1: (array yearMonthDuration),
+ *       array2: (array yearMonthDuration)
  *   ): (array yearMonthDuration);
  * ```
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration) The first array.
+ *   array1 - (array yearMonthDuration) The first array.
  *
- *   list2 - (array yearMonthDuration) The second array.
+ *   array2 - (array yearMonthDuration) The second array.
  *
  * Returns:
  *
@@ -32975,8 +32975,8 @@ afw_function_definition_set_equals_yearMonthDuration;
  * @brief Adaptive Function `set_equals<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if yearMonthDuration list1 and yearMonthDuration list2
- * are subsets of each other and return the boolean result.
+ * Returns boolean true if yearMonthDuration array1 and yearMonthDuration
+ * array2 are subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32985,16 +32985,16 @@ afw_function_definition_set_equals_yearMonthDuration;
  *
  * ```
  *   function set_equals<yearMonthDuration>(
- *       list1: (array yearMonthDuration),
- *       list2: (array yearMonthDuration)
+ *       array1: (array yearMonthDuration),
+ *       array2: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration)
+ *   array1 - (array yearMonthDuration)
  *
- *   list2 - (array yearMonthDuration)
+ *   array2 - (array yearMonthDuration)
  *
  * Returns:
  *
@@ -33013,8 +33013,8 @@ afw_function_definition_subset_yearMonthDuration;
  * @brief Adaptive Function `subset<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in yearMonthDuration list1 are all
- * in yearMonthDuration list2.
+ * Returns boolean true if the unique values in yearMonthDuration array1 are
+ * all in yearMonthDuration array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -33023,16 +33023,16 @@ afw_function_definition_subset_yearMonthDuration;
  *
  * ```
  *   function subset<yearMonthDuration>(
- *       list1: (array yearMonthDuration),
- *       list2: (array yearMonthDuration)
+ *       array1: (array yearMonthDuration),
+ *       array2: (array yearMonthDuration)
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   list1 - (array yearMonthDuration) The first array.
+ *   array1 - (array yearMonthDuration) The first array.
  *
- *   list2 - (array yearMonthDuration) The second array.
+ *   array2 - (array yearMonthDuration) The second array.
  *
  * Returns:
  *
@@ -33096,15 +33096,15 @@ afw_function_definition_union_yearMonthDuration;
  *
  * ```
  *   function union<yearMonthDuration>(
- *       lists_1: (array yearMonthDuration),
- *       lists_2: (array yearMonthDuration),
- *       ...lists_rest: (array of (array yearMonthDuration))
+ *       arrays_1: (array yearMonthDuration),
+ *       arrays_2: (array yearMonthDuration),
+ *       ...arrays_rest: (array of (array yearMonthDuration))
  *   ): (array yearMonthDuration);
  * ```
  *
  * Parameters:
  *
- *   lists - (2 or more array yearMonthDuration) Two or more lists.
+ *   arrays - (2 or more array yearMonthDuration) Two or more arrays.
  *
  * Returns:
  *

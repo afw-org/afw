@@ -18,6 +18,7 @@
     "polymorphic": true,
     "polymorphicDataTypes": [
         "anyURI",
+        "array",
         "base64Binary",
         "boolean",
         "date",
@@ -32,7 +33,6 @@
         "ia5String",
         "integer",
         "ipAddress",
-        "array",
         "null",
         "object",
         "objectId",

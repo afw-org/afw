@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "subsetRfc822Name",
     "category": "rfc822Name",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if the unique values in rfc822Name list1 are all in rfc822Name list2.",
+    "description": "Returns boolean true if the unique values in rfc822Name array1 are all in rfc822Name array2.",
     "functionId": "subset<rfc822Name>",
     "functionLabel": "subset_rfc822Name",
     "parameters": [
@@ -12,13 +12,13 @@
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "description": "The first array.",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "rfc822Name",
             "description": "The second array.",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

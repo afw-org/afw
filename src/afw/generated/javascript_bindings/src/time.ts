@@ -12,21 +12,22 @@ interface IAnyObject {
 }
 
 /**
- * Returns boolean true if at least one value in time list1 is in time list2.
+ * Returns boolean true if at least one value in time array1 is in time
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwAtLeastOneMemberOfTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwAtLeastOneMemberOfTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "at_least_one_member_of<time>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -190,21 +191,21 @@ export function afwInRangeTime(client : any, time : any, startTime : any, endTim
 
 /**
  * Returns an array of time with the values that are common to both array of
- * time list1 and list2.
+ * time array1 and array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {array}
  */
-export function afwIntersectionTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwIntersectionTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "intersection<time>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -402,43 +403,43 @@ export function afwOneAndOnlyTime(client : any, array : any[]) : any {
 }
 
 /**
- * Returns boolean true if time list1 and time list2 are subsets of each
+ * Returns boolean true if time array1 and time array2 are subsets of each
  * other and return the boolean result.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwSetEqualsTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSetEqualsTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "set_equals<time>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
- * Returns boolean true if the unique values in time list1 are all in time
- * list2.
+ * Returns boolean true if the unique values in time array1 are all in time
+ * array2.
  * 
- * @param {array} list1 - The first array.
+ * @param {array} array1 - The first array.
  * 
- * @param {array} list2 - The second array.
+ * @param {array} array2 - The second array.
  * 
  * @returns {boolean}
  */
-export function afwSubsetTime(client : any, list1 : any[], list2 : any[]) : any {
+export function afwSubsetTime(client : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "subset<time>";
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -482,16 +483,16 @@ export function afwToStringTime(client : any, value : any) : any {
  * Returns an array of time contains all of the unique values in two or more
  * array of time values.
  * 
- * @param {array} lists - Two or more lists.
+ * @param {array} arrays - Two or more arrays.
  * 
  * @returns {array}
  */
-export function afwUnionTime(client : any, lists : any[]) : any {
+export function afwUnionTime(client : any, arrays : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "union<time>";
-    _action["lists"] = lists;
+    _action["arrays"] = arrays;
 
     return client.perform(_action);
 }

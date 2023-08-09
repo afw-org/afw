@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsDateTime",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsDateTime",
     "category": "dateTime",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if dateTime list1 and dateTime list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if dateTime array1 and dateTime array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<dateTime>",
     "functionLabel": "set_equals_dateTime",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "dateTime",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "dateTime",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

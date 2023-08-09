@@ -5,18 +5,18 @@
 import requests
 import json
 
-def at_least_one_member_of_boolean(session, list1, list2):
+def at_least_one_member_of_boolean(session, array1, array2):
     '''
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in boolean list1 is in boolean
-    list2.
+    Returns boolean true if at least one value in boolean array1 is in
+    boolean array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -26,8 +26,8 @@ def at_least_one_member_of_boolean(session, list1, list2):
 
     action = {
         "function": "at_least_one_member_of<boolean>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -262,18 +262,18 @@ def gt_boolean(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def intersection_boolean(session, list1, list2):
+def intersection_boolean(session, array1, array2):
     '''
-    Returns intersection of two lists
+    Returns intersection of two arrays
 
     Returns an array of boolean with the values that are common to both array
-    of boolean list1 and list2.
+    of boolean array1 and array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     array: 
@@ -283,8 +283,8 @@ def intersection_boolean(session, list1, list2):
 
     action = {
         "function": "intersection<boolean>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -522,18 +522,18 @@ def one_and_only_boolean(session, array):
 
     return response['actions'][0]['result']
 
-def set_equals_boolean(session, list1, list2):
+def set_equals_boolean(session, array1, array2):
     '''
-    Checks whether two lists are subsets of each other
+    Checks whether two arrays are subsets of each other
 
-    Returns boolean true if boolean list1 and boolean list2 are subsets of
+    Returns boolean true if boolean array1 and boolean array2 are subsets of
     each other and return the boolean result.
 
     Parameters:
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -543,8 +543,8 @@ def set_equals_boolean(session, list1, list2):
 
     action = {
         "function": "set_equals<boolean>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -555,18 +555,18 @@ def set_equals_boolean(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def subset_boolean(session, list1, list2):
+def subset_boolean(session, array1, array2):
     '''
     Determines if the first array is a subset of second array
 
-    Returns boolean true if the unique values in boolean list1 are all in
-    boolean list2.
+    Returns boolean true if the unique values in boolean array1 are all in
+    boolean array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -576,8 +576,8 @@ def subset_boolean(session, list1, list2):
 
     action = {
         "function": "subset<boolean>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -618,16 +618,16 @@ def to_string_boolean(session, value):
 
     return response['actions'][0]['result']
 
-def union_boolean(session, lists):
+def union_boolean(session, arrays):
     '''
-    Returns union of two or more string lists
+    Returns union of two or more string arrays
 
     Returns an array of boolean contains all of the unique values in two or
     more array of boolean values.
 
     Parameters:
 
-        lists (array): Two or more lists.
+        arrays (array): Two or more arrays.
 
     Returns:
     array: 
@@ -637,7 +637,7 @@ def union_boolean(session, lists):
 
     action = {
         "function": "union<boolean>",
-        "lists": lists
+        "arrays": arrays
     }
 
     request.add_action(action)

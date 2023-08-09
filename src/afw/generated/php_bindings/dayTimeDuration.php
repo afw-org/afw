@@ -26,23 +26,23 @@ class dayTimeDuration
     /**
      * at_least_one_member_of_dayTimeDuration()
      *
-     * Returns boolean true if at least one value in dayTimeDuration list1 is
-     * in dayTimeDuration list2.
+     * Returns boolean true if at least one value in dayTimeDuration array1
+     * is in dayTimeDuration array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_dayTimeDuration(, $list1, $list2)
+    public function at_least_one_member_of_dayTimeDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<dayTimeDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -226,22 +226,22 @@ class dayTimeDuration
      * intersection_dayTimeDuration()
      *
      * Returns an array of dayTimeDuration with the values that are common to
-     * both array of dayTimeDuration list1 and list2.
+     * both array of dayTimeDuration array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_dayTimeDuration(, $list1, $list2)
+    public function intersection_dayTimeDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<dayTimeDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -425,23 +425,23 @@ class dayTimeDuration
     /**
      * set_equals_dayTimeDuration()
      *
-     * Returns boolean true if dayTimeDuration list1 and dayTimeDuration
-     * list2 are subsets of each other and return the boolean result.
+     * Returns boolean true if dayTimeDuration array1 and dayTimeDuration
+     * array2 are subsets of each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_dayTimeDuration(, $list1, $list2)
+    public function set_equals_dayTimeDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<dayTimeDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -450,23 +450,23 @@ class dayTimeDuration
     /**
      * subset_dayTimeDuration()
      *
-     * Returns boolean true if the unique values in dayTimeDuration list1 are
-     * all in dayTimeDuration list2.
+     * Returns boolean true if the unique values in dayTimeDuration array1
+     * are all in dayTimeDuration array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_dayTimeDuration(, $list1, $list2)
+    public function subset_dayTimeDuration(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<dayTimeDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -501,18 +501,18 @@ class dayTimeDuration
      * Returns an array of dayTimeDuration contains all of the unique values
      * in two or more array of dayTimeDuration values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_dayTimeDuration(, $lists)
+    public function union_dayTimeDuration(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<dayTimeDuration>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

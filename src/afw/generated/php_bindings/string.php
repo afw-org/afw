@@ -51,23 +51,23 @@ class string
     /**
      * at_least_one_member_of_string()
      *
-     * Returns boolean true if at least one value in string list1 is in
-     * string list2.
+     * Returns boolean true if at least one value in string array1 is in
+     * string array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function at_least_one_member_of_string(, $list1, $list2)
+    public function at_least_one_member_of_string(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "at_least_one_member_of<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -407,22 +407,22 @@ class string
      * intersection_string()
      *
      * Returns an array of string with the values that are common to both
-     * array of string list1 and list2.
+     * array of string array1 and array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return array
      */
-    public function intersection_string(, $list1, $list2)
+    public function intersection_string(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "intersection<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -885,23 +885,23 @@ class string
     /**
      * set_equals_string()
      *
-     * Returns boolean true if string list1 and string list2 are subsets of
+     * Returns boolean true if string array1 and string array2 are subsets of
      * each other and return the boolean result.
      *
-     * @param array $list1
-     * @param array $list2
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function set_equals_string(, $list1, $list2)
+    public function set_equals_string(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "set_equals<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -992,23 +992,23 @@ class string
     /**
      * subset_string()
      *
-     * Returns boolean true if the unique values in string list1 are all in
-     * string list2.
+     * Returns boolean true if the unique values in string array1 are all in
+     * string array2.
      *
-     * @param array $list1 The first array.
-     * @param array $list2 The second array.
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
      *
      * @return boolean
      */
-    public function subset_string(, $list1, $list2)
+    public function subset_string(, $array1, $array2)
     {
         $request = $this->$session->request();
 
         $request->set("function", "subset<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -1359,18 +1359,18 @@ class string
      * Returns an array of string contains all of the unique values in two or
      * more array of string values.
      *
-     * @param array $lists Two or more lists.
+     * @param array $arrays Two or more arrays.
      *
      * @return array
      */
-    public function union_string(, $lists)
+    public function union_string(, $arrays)
     {
         $request = $this->$session->request();
 
         $request->set("function", "union<string>");
 
         /* pass along required parameters to the request payload */
-        $request->set("lists", $lists);
+        $request->set("arrays", $arrays);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

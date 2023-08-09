@@ -64,18 +64,18 @@ def add_double(session, values):
 
     return response['actions'][0]['result']
 
-def at_least_one_member_of_double(session, list1, list2):
+def at_least_one_member_of_double(session, array1, array2):
     '''
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in double list1 is in double
-    list2.
+    Returns boolean true if at least one value in double array1 is in double
+    array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -85,8 +85,8 @@ def at_least_one_member_of_double(session, list1, list2):
 
     action = {
         "function": "at_least_one_member_of<double>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -413,18 +413,18 @@ def gt_double(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def intersection_double(session, list1, list2):
+def intersection_double(session, array1, array2):
     '''
-    Returns intersection of two lists
+    Returns intersection of two arrays
 
     Returns an array of double with the values that are common to both array
-    of double list1 and list2.
+    of double array1 and array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     array: 
@@ -434,8 +434,8 @@ def intersection_double(session, list1, list2):
 
     action = {
         "function": "intersection<double>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -912,18 +912,18 @@ def round_double(session, number):
 
     return response['actions'][0]['result']
 
-def set_equals_double(session, list1, list2):
+def set_equals_double(session, array1, array2):
     '''
-    Checks whether two lists are subsets of each other
+    Checks whether two arrays are subsets of each other
 
-    Returns boolean true if double list1 and double list2 are subsets of each
-    other and return the boolean result.
+    Returns boolean true if double array1 and double array2 are subsets of
+    each other and return the boolean result.
 
     Parameters:
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -933,8 +933,8 @@ def set_equals_double(session, list1, list2):
 
     action = {
         "function": "set_equals<double>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -945,18 +945,18 @@ def set_equals_double(session, list1, list2):
 
     return response['actions'][0]['result']
 
-def subset_double(session, list1, list2):
+def subset_double(session, array1, array2):
     '''
     Determines if the first array is a subset of second array
 
-    Returns boolean true if the unique values in double list1 are all in
-    double list2.
+    Returns boolean true if the unique values in double array1 are all in
+    double array2.
 
     Parameters:
 
-        list1 (array): The first array.
+        array1 (array): The first array.
 
-        list2 (array): The second array.
+        array2 (array): The second array.
 
     Returns:
     boolean: 
@@ -966,8 +966,8 @@ def subset_double(session, list1, list2):
 
     action = {
         "function": "subset<double>",
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -1069,16 +1069,16 @@ def to_string_double(session, value):
 
     return response['actions'][0]['result']
 
-def union_double(session, lists):
+def union_double(session, arrays):
     '''
-    Returns union of two or more string lists
+    Returns union of two or more string arrays
 
     Returns an array of double contains all of the unique values in two or
     more array of double values.
 
     Parameters:
 
-        lists (array): Two or more lists.
+        arrays (array): Two or more arrays.
 
     Returns:
     array: 
@@ -1088,7 +1088,7 @@ def union_double(session, lists):
 
     action = {
         "function": "union<double>",
-        "lists": lists
+        "arrays": arrays
     }
 
     request.add_action(action)

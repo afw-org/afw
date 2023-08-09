@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsInteger",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsInteger",
     "category": "integer",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if integer list1 and integer list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if integer array1 and integer array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<integer>",
     "functionLabel": "set_equals_integer",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "integer",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "integer",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,

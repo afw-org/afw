@@ -1,22 +1,22 @@
 {
     "afwCamelCaseFunctionLabel": "afwSetEqualsAnyURI",
-    "brief": "Checks whether two lists are subsets of each other",
+    "brief": "Checks whether two arrays are subsets of each other",
     "camelCaseFunctionLabel": "setEqualsAnyURI",
     "category": "anyURI",
     "dataTypeMethod": true,
-    "description": "Returns boolean true if anyURI list1 and anyURI list2 are subsets of each other and return the boolean result.",
+    "description": "Returns boolean true if anyURI array1 and anyURI array2 are subsets of each other and return the boolean result.",
     "functionId": "set_equals<anyURI>",
     "functionLabel": "set_equals_anyURI",
     "parameters": [
         {
             "dataType": "array",
             "dataTypeParameter": "anyURI",
-            "name": "list1"
+            "name": "array1"
         },
         {
             "dataType": "array",
             "dataTypeParameter": "anyURI",
-            "name": "list2"
+            "name": "array2"
         }
     ],
     "pure": true,
