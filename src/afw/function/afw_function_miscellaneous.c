@@ -786,7 +786,7 @@ afw_function_execute_is_defined(
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): any;
  * ```
  *

@@ -37,8 +37,8 @@ The following functions are exported by default
 
 =head3 add_entries
 
-Add the entries of one or more lists to another.
-Add entries of one or more lists to another
+Add the entries of one or more arrays to another.
+Add entries of one or more arrays to another
 
 =head4 Parameters
 

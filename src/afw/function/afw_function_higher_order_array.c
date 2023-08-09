@@ -16,7 +16,7 @@
 typedef struct {
     const afw_value_function_definition_t *function;
     const afw_value_t *functor;
-    const afw_array_t *list;
+    const afw_array_t *array;
     afw_size_t n;
     const afw_data_type_t *data_type;
     const afw_value_t * *entry_arg_ptr;
@@ -25,22 +25,22 @@ typedef struct {
     void *data;
     const afw_pool_t *p;
     afw_xctx_t *xctx;
-} impl_call_over_list_cb_e_t;
+} impl_call_over_array_cb_e_t;
 
 typedef afw_boolean_t
-(*impl_call_over_list_cb_t)(impl_call_over_list_cb_e_t *e);
+(*impl_call_over_array_cb_t)(impl_call_over_array_cb_e_t *e);
 
 static const afw_data_type_t *
-impl_over_list(
+impl_over_array(
     afw_function_execute_t *x,
-    impl_call_over_list_cb_t callback,
+    impl_call_over_array_cb_t callback,
     void *data)
 {
 
     afw_size_t functor_argc;
     const afw_value_t * (*functor_argv);
     const afw_iterator_t *iterator;
-    impl_call_over_list_cb_e_t e;
+    impl_call_over_array_cb_e_t e;
 
     /* Initialize param. */
     afw_memory_clear(&e);
@@ -59,16 +59,16 @@ impl_over_list(
         e.p, e.xctx);
 
     /*
-     * Evaluate argv[n+1] to the new argv[n]. Replace first typed list with
+     * Evaluate argv[n+1] to the new argv[n]. Replace first typed array with
      * pointer to an allocated value of the same data type.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
         functor_argv[e.n] = afw_value_evaluate(x->argv[e.n + 1], e.p, e.xctx);
         if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
             e.entry_arg_ptr = &functor_argv[e.n];
-            e.list = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
+            e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
             *e.entry_arg_ptr = NULL;
-            e.data_type = afw_array_get_data_type(e.list, e.xctx);
+            e.data_type = afw_array_get_data_type(e.array, e.xctx);
             if (e.data_type) {
                 *e.entry_arg_ptr = (const afw_value_t *)
                     afw_value_evaluated_allocate(e.data_type, e.p, e.xctx);
@@ -76,15 +76,15 @@ impl_over_list(
         }
     }
 
-    /* There must be a typed list in parameter list. */
+    /* There must be a typed array in parameter array. */
     if (!e.entry_arg_ptr) {
-        AFW_THROW_ERROR_Z(arg_error, "Missing typed list arg", e.xctx);
+        AFW_THROW_ERROR_Z(arg_error, "Missing typed array arg", e.xctx);
     }
 
-    /* Call function with each entry in typed list as a single value. */
+    /* Call function with each entry in typed array as a single value. */
     if (e.data_type) {
         for (iterator = NULL;;) {
-            afw_array_get_next_internal(e.list, &iterator, NULL,
+            afw_array_get_next_internal(e.array, &iterator, NULL,
                 &e.entry_internal, e.xctx);
             if (!e.entry_internal) {
                 break;
@@ -100,11 +100,11 @@ impl_over_list(
         }
     }
 
-    /* Call function with each entry in untyped list as a single value. */
+    /* Call function with each entry in untyped array as a single value. */
     else {
         for (iterator = NULL;;) {
             *e.entry_arg_ptr = afw_array_get_next_value(
-                e.list, &iterator, NULL, e.xctx);
+                e.array, &iterator, NULL, e.xctx);
             if (!*e.entry_arg_ptr) {
                 break;
             }
@@ -129,7 +129,7 @@ typedef struct {
 } impl_of_data_t;
 
 static afw_boolean_t
-impl_of_cb(impl_call_over_list_cb_e_t *e)
+impl_of_cb(impl_call_over_array_cb_e_t *e)
 {
     impl_of_data_t *data = (impl_of_data_t *)e->data;
 
@@ -155,7 +155,7 @@ impl_of(
 
     data.stop_on = stop_on;
     data.result = !stop_on; /* Assume will not be found. */
-    impl_over_list(x, impl_of_cb, (void *)&data);
+    impl_over_array(x, impl_of_cb, (void *)&data);
 
     /* Return true or false based on result. */
     return data.result ? afw_value_true : afw_value_false;
@@ -166,7 +166,7 @@ impl_bag_of_bag(
     afw_function_execute_t *x,
     afw_boolean_t all_1, afw_boolean_t all_2)
 {
-    const afw_value_array_t *list1, *list2, *listx;
+    const afw_value_array_t *array1, *array2, *arrayx;
     const afw_data_type_t *data_type_1, *data_type_2;
     const afw_iterator_t *iterator1, *iterator2;
     const void *internal1, *internal2;
@@ -176,13 +176,13 @@ impl_bag_of_bag(
     const afw_value_t *call;
     afw_boolean_t is_true, any_1, any_2;
 
-    /* The first arg is the function to call, and other 2 are typed lists. */
+    /* The first arg is the function to call, and other 2 are typed arrays. */
     f_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], x->p, x->xctx);
     call = afw_value_call_create(NULL, 2, &f_argv[0], false, x->p, x->xctx);
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list1, 2, array);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list2, 3, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array2, 3, array);
 
     /* Work off of any* variables. */
     any_1 = !all_1;
@@ -190,19 +190,19 @@ impl_bag_of_bag(
 
     /* If any_of_all, reverse bags and any* values. */
     if (!all_1 && all_2) {
-        listx = list1;
-        list1 = list2;
-        list2 = listx;
+        arrayx = array1;
+        array1 = array2;
+        array2 = arrayx;
         any_1 = !all_2;
         any_2 = !all_1;
     }
 
-    /* Get required data type from each list. */
-    data_type_1 = afw_array_get_data_type(list1->internal, x->xctx);
-    data_type_2 = afw_array_get_data_type(list2->internal, x->xctx);
+    /* Get required data type from each array. */
+    data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
+    data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || !data_type_2) {
         AFW_THROW_ERROR_Z(general,
-            "list1 and list2 must both be typed",
+            "array1 and array2 must both be typed",
             x->xctx);
     }
 
@@ -220,14 +220,14 @@ impl_bag_of_bag(
     is_true = true;
 
     for (iterator1 = NULL;;) {
-        afw_array_get_next_internal(list1->internal,
+        afw_array_get_next_internal(array1->internal,
             &iterator1, NULL, &internal1, x->xctx);
         if (!internal1) {
             break;
         }
         is_true = true;
         for (iterator2 = NULL;;) {
-            afw_array_get_next_internal(list2->internal,
+            afw_array_get_next_internal(array2->internal,
                 &iterator2, NULL, &internal2, x->xctx);
             if (!internal2) {
                 break;
@@ -284,7 +284,7 @@ impl_bag_of_bag(
  *   function all_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): boolean;
  * ```
  *
@@ -319,7 +319,7 @@ afw_function_execute_all_of(
  * See afw_function_bindings.h for more information.
  *
  * Returns true if the result of calling predicate with all of the combination
- * of values from list1 and list2 returns true.
+ * of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -329,20 +329,20 @@ afw_function_execute_all_of(
  * ```
  *   function all_of_all(
  *       predicate: (function (any value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters, the first is a value from list1
- *       and the second is a value from list2.
+ *       predicate is passed two parameters, the first is a value from array1
+ *       and the second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -364,8 +364,8 @@ afw_function_execute_all_of_all(
  * See afw_function_bindings.h for more information.
  *
  * This function returns true if the result of calling predicate with all of
- * the combination of values from list1 and any of the values of list2 returns
- * true.
+ * the combination of values from array1 and any of the values of array2
+ * returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -375,20 +375,20 @@ afw_function_execute_all_of_all(
  * ```
  *   function all_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from list1 and the
- *       second is a value from list2.
+ *       is passed two parameters, the first is a value from array1 and the
+ *       second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -421,7 +421,7 @@ afw_function_execute_all_of_any(
  *   function any_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): boolean;
  * ```
  *
@@ -456,7 +456,7 @@ afw_function_execute_any_of(
  * See afw_function_bindings.h for more information.
  *
  * Returns true if the result of calling predicate with all of the combination
- * of values from list2 and any of the values of list1 returns true.
+ * of values from array2 and any of the values of array1 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -466,20 +466,20 @@ afw_function_execute_any_of(
  * ```
  *   function any_of_all(
  *       predicate: (function (value1: any, value2: any):boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any):boolean) The predicate is
- *       passed two parameters, the first is a value from list1 and the second
- *       is a value from list2.
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -502,7 +502,7 @@ afw_function_execute_any_of_all(
  * See afw_function_bindings.h for more information.
  *
  * This function returns true if the result of calling predicate with any of
- * the combination of values from list1 and list2 returns true.
+ * the combination of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -512,20 +512,20 @@ afw_function_execute_any_of_all(
  * ```
  *   function any_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from list1 and the
- *       second is a value from list2.
+ *       is passed two parameters, the first is a value from array1 and the
+ *       second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -541,18 +541,18 @@ afw_function_execute_any_of_any(
 
 
 typedef struct {
-    const afw_array_t *filtered_list;
+    const afw_array_t *filtered_array;
 } impl_filter_data_t;
 
 static afw_boolean_t
-impl_filter_cb(impl_call_over_list_cb_e_t *e)
+impl_filter_cb(impl_call_over_array_cb_e_t *e)
 {
     impl_filter_data_t * data = (impl_filter_data_t *)e->data;
 
     AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
 
     if (((const afw_value_boolean_t *)e->entry_result)->internal) {
-        afw_array_add_internal(data->filtered_list,
+        afw_array_add_internal(data->filtered_array,
             e->data_type, e->entry_internal, e->xctx);
     }
 
@@ -578,7 +578,7 @@ impl_filter_cb(impl_call_over_list_cb_e_t *e)
  *   function filter(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): array;
  * ```
  *
@@ -602,10 +602,10 @@ afw_function_execute_filter(
 {
     impl_filter_data_t data;
 
-    data.filtered_list = afw_array_create_with_options(0, NULL, x->p, x->xctx);
-    impl_over_list(x, impl_filter_cb, (void *)&data);
+    data.filtered_array = afw_array_create_with_options(0, NULL, x->p, x->xctx);
+    impl_over_array(x, impl_filter_cb, (void *)&data);
 
-    return afw_value_create_array(data.filtered_list, x->p, x->xctx);
+    return afw_value_create_array(data.filtered_array, x->p, x->xctx);
 }
 
 
@@ -615,7 +615,7 @@ typedef struct {
 } impl_find_data_t;
 
 static afw_boolean_t
-impl_find_cb(impl_call_over_list_cb_e_t *e)
+impl_find_cb(impl_call_over_array_cb_e_t *e)
 {
     impl_find_data_t * data = (impl_find_data_t *)e->data;
 
@@ -649,7 +649,7 @@ impl_find_cb(impl_call_over_list_cb_e_t *e)
  *   function find(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): any;
  * ```
  *
@@ -674,7 +674,7 @@ afw_function_execute_find(
     impl_find_data_t data;
 
     afw_memory_clear(&data);
-    impl_over_list(x, impl_find_cb, (void *)&data);
+    impl_over_array(x, impl_find_cb, (void *)&data);
 
     return (data.found_value) ? data.found_value : afw_value_null;
 }
@@ -682,19 +682,19 @@ afw_function_execute_find(
 
 
 typedef struct {
-    const afw_array_t *mapped_list;
+    const afw_array_t *mapped_array;
 } impl_map_data_t;
 
 static afw_boolean_t
-impl_map_cb(impl_call_over_list_cb_e_t *e)
+impl_map_cb(impl_call_over_array_cb_e_t *e)
 {
     impl_map_data_t * data = (impl_map_data_t *)e->data;
 
-    if (!data->mapped_list) {
-        data->mapped_list = afw_array_create_generic(e->p, e->xctx);
+    if (!data->mapped_array) {
+        data->mapped_array = afw_array_create_generic(e->p, e->xctx);
     }
 
-    afw_array_add_value(data->mapped_list, e->entry_result, e->xctx);
+    afw_array_add_value(data->mapped_array, e->entry_result, e->xctx);
 
     return true;
 }
@@ -718,7 +718,7 @@ impl_map_cb(impl_call_over_list_cb_e_t *e)
  *   function map(
  *       functor: (function (... values: any): any),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): array;
  * ```
  *
@@ -742,9 +742,9 @@ afw_function_execute_map(
     const afw_data_type_t *data_type;
 
     afw_memory_clear(&data);
-    data_type = impl_over_list(x, impl_map_cb, (void *)&data);
+    data_type = impl_over_array(x, impl_map_cb, (void *)&data);
 
-    if (!data.mapped_list) {
+    if (!data.mapped_array) {
         if (data_type)
         {
             return data_type->empty_array_value;
@@ -754,9 +754,9 @@ afw_function_execute_map(
         }
     }
 
-    afw_array_determine_data_type_and_set_immutable(data.mapped_list, x->xctx);
+    afw_array_determine_data_type_and_set_immutable(data.mapped_array, x->xctx);
     
-    return afw_value_create_array(data.mapped_list, x->p, x->xctx);
+    return afw_value_create_array(data.mapped_array, x->p, x->xctx);
 }
 
 
@@ -809,7 +809,7 @@ const afw_value_t *
 afw_function_execute_reduce(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list;
+    const afw_value_array_t *array;
     const afw_value_t *accumulator;
     const afw_iterator_t *iterator;
     const afw_value_t * f_argv[3];
@@ -819,10 +819,10 @@ afw_function_execute_reduce(
         x->argv[1], x->p, x->xctx);
     call = afw_value_call_create(NULL, 2, &f_argv[0], false, x->p, x->xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(accumulator, 2);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 3, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 3, array);
 
     for (iterator = NULL;;) {
-        f_argv[2] = afw_array_get_next_value(list->internal, &iterator,
+        f_argv[2] = afw_array_get_next_value(array->internal, &iterator,
             x->p, x->xctx);
         if (!f_argv[2]) {
             break;
@@ -950,8 +950,8 @@ const afw_value_t *
 afw_function_execute_sort(
     afw_function_execute_t *x)
 {
-    const afw_value_array_t *list;
-    const afw_array_t *result_list;
+    const afw_value_array_t *array;
+    const afw_array_t *result_array;
     const afw_data_type_t *data_type;
     const afw_iterator_t *iterator;
     const void **value;
@@ -962,21 +962,21 @@ afw_function_execute_sort(
     ctx.p = x->p;
     ctx.xctx = x->xctx;
 
-    /* The first arg is the function to call, and other 2 are typed lists. */
+    /* The first arg is the function to call, and other 2 are typed arrays. */
     ctx.args[0] = (afw_value_evaluated_t *)
         afw_function_evaluate_function_parameter(x->argv[1], ctx.p, ctx.xctx);
     ctx.compareFunction = afw_value_call_create(NULL,
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(list, 2, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 
     /* Get the data type and count.  If count is 0, return empty array. */
-    data_type = afw_array_get_data_type(list->internal, ctx.xctx);
+    data_type = afw_array_get_data_type(array->internal, ctx.xctx);
     if (!data_type) {
         AFW_THROW_ERROR_Z(general,
-            "sort() requires list to be typed", ctx.xctx);
+            "sort() requires array to be typed", ctx.xctx);
     }
     ctx.c_type_size = data_type->c_type_size;
-    ctx.count = afw_array_get_count(list->internal, ctx.xctx);
+    ctx.count = afw_array_get_count(array->internal, ctx.xctx);
     if (ctx.count == 0) {
         return data_type->empty_array_value;
     }
@@ -988,7 +988,7 @@ afw_function_execute_sort(
     /* Make array of pointers to internal values. */
     ctx.values = afw_pool_malloc(ctx.p, sizeof(void *) * ctx.count, ctx.xctx);
     for (iterator = NULL, value = ctx.values;
-        afw_array_get_next_internal(list->internal, &iterator,
+        afw_array_get_next_internal(array->internal, &iterator,
             NULL, value, ctx.xctx);
         value++);
 
@@ -997,8 +997,8 @@ afw_function_execute_sort(
         impl_quick_sort(&ctx, 0, ctx.count - 1);
     }
 
-    /* Return sorted list. */
-    result_list = afw_array_create_wrapper_for_array(
+    /* Return sorted array. */
+    result_array = afw_array_create_wrapper_for_array(
         ctx.values, true, data_type, ctx.count, ctx.p, ctx.xctx);
-    return afw_value_create_array(result_list, ctx.p, ctx.xctx);
+    return afw_value_create_array(result_array, ctx.p, ctx.xctx);
 }

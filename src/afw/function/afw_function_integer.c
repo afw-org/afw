@@ -77,7 +77,7 @@ afw_function_execute_abs_integer(
  *   function add<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (list of integer)
+ *       ...values_rest: (array of integer)
  *   ): integer;
  * ```
  *
@@ -234,7 +234,7 @@ afw_function_execute_mod_integer(
  *   function multiply<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (list of integer)
+ *       ...values_rest: (array of integer)
  *   ): integer;
  * ```
  *

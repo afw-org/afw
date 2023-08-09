@@ -22,7 +22,7 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Add the entries of one or more lists to another.
+ * Add the entries of one or more arrays to another.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -33,7 +33,7 @@
  *   function add_entries(
  *       target: array,
  *       source_1: array,
- *       ...source_rest: (list of array)
+ *       ...source_rest: (array of array)
  *   ): array;
  * ```
  *
@@ -73,7 +73,7 @@ afw_function_execute_add_entries(
  *
  * ```
  *   function array(
- *       ...values: (list of any)
+ *       ...values: (array of any)
  *   ): array;
  * ```
  *

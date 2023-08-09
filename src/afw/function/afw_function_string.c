@@ -34,7 +34,7 @@
  *   function add<string>(
  *       string: string,
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): string;
  * ```
  *
@@ -108,7 +108,7 @@ afw_function_execute_add_string(
  * ```
  *   function concat(
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): string;
  * ```
  *
@@ -325,7 +325,7 @@ afw_function_execute_normalize_to_lower_case_string(
  * ```
  *   function string(
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): string;
  * ```
  *

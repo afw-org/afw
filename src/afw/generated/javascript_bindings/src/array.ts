@@ -12,7 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Add the entries of one or more lists to another.
+ * Add the entries of one or more arrays to another.
  * 
  * @param {array} target - Target array. This array must not be immutable.
  * 

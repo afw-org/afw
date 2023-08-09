@@ -1,7 +1,7 @@
 {
-    "brief": "Add entries of one or more lists to another",
+    "brief": "Add entries of one or more arrays to another",
     "category": "array",
-    "description": "Add the entries of one or more lists to another.",
+    "description": "Add the entries of one or more arrays to another.",
     "functionId": "add_entries",
     "functionLabel": "add_entries",
     "pure": false,

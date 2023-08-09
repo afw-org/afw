@@ -46,39 +46,40 @@ first array is passed one value at a time. At least one array is required.
 =head3 all_of_all
 
 Returns true if the result of calling predicate with all of the combination
-of values from list1 and list2 returns true.
+of values from array1 and array2 returns true.
 All combinations true
 
 =head4 Parameters
 
     $predicate
 
-The predicate is passed two parameters, the first is a value from list1 and
-the second is a value from list2.
+The predicate is passed two parameters, the first is a value from array1 and
+the second is a value from array2.
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 all_of_any
 
 This function returns true if the result of calling predicate with all of the
-combination of values from list1 and any of the values of list2 returns true.
-Combinations of all in list1 and any in list2 true
+combination of values from array1 and any of the values of array2 returns
+true.
+Combinations of all in array1 and any in array2 true
 
 =head4 Parameters
 
     $predicate
 
-The predicate is passed two parameters, the first is a value from list1 and
-the second is a value from list2.
+The predicate is passed two parameters, the first is a value from array1 and
+the second is a value from array2.
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 any_of
@@ -101,39 +102,39 @@ first array is passed one value at a time. At least one array is required.
 =head3 any_of_all
 
 Returns true if the result of calling predicate with all of the combination
-of values from list2 and any of the values of list1 returns true.
-Combinations of any in list1 and all in list2 true
+of values from array2 and any of the values of array1 returns true.
+Combinations of any in array1 and all in array2 true
 
 =head4 Parameters
 
     $predicate
 
-The predicate is passed two parameters, the first is a value from list1 and
-the second is a value from list2.
+The predicate is passed two parameters, the first is a value from array1 and
+the second is a value from array2.
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 any_of_any
 
 This function returns true if the result of calling predicate with any of the
-combination of values from list1 and list2 returns true.
+combination of values from array1 and array2 returns true.
 Any combinations true
 
 =head4 Parameters
 
     $predicate
 
-The predicate is passed two parameters, the first is a value from list1 and
-the second is a value from list2.
+The predicate is passed two parameters, the first is a value from array1 and
+the second is a value from array2.
 
-    $list1
+    $array1
 
 
-    $list2
+    $array2
 
 
 =head3 filter
@@ -250,27 +251,27 @@ sub all_of {
 }
 
 sub all_of_all {
-    my ($predicate, $list1, $list2) = @_;
+    my ($predicate, $array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "all_of_all");
     $request->set("predicate", $predicate);
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub all_of_any {
-    my ($predicate, $list1, $list2) = @_;
+    my ($predicate, $array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "all_of_any");
     $request->set("predicate", $predicate);
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
@@ -288,27 +289,27 @@ sub any_of {
 }
 
 sub any_of_all {
-    my ($predicate, $list1, $list2) = @_;
+    my ($predicate, $array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "any_of_all");
     $request->set("predicate", $predicate);
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }
 
 sub any_of_any {
-    my ($predicate, $list1, $list2) = @_;
+    my ($predicate, $array1, $array2) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "any_of_any");
     $request->set("predicate", $predicate);
-    $request->set("list1", $list1);
-    $request->set("list2", $list2);
+    $request->set("array1", $array1);
+    $request->set("array2", $array2);
 
     return $request->getResult();
 }

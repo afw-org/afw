@@ -33,7 +33,7 @@
  *   function all_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): boolean;
  * ```
  *
@@ -69,7 +69,7 @@ afw_function_execute_all_of(
  * See afw_function_bindings.h for more information.
  *
  * Returns true if the result of calling predicate with all of the combination
- * of values from list1 and list2 returns true.
+ * of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -79,20 +79,20 @@ afw_function_execute_all_of(
  * ```
  *   function all_of_all(
  *       predicate: (function (any value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters, the first is a value from list1
- *       and the second is a value from list2.
+ *       predicate is passed two parameters, the first is a value from array1
+ *       and the second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -116,8 +116,8 @@ afw_function_execute_all_of_all(
  * See afw_function_bindings.h for more information.
  *
  * This function returns true if the result of calling predicate with all of
- * the combination of values from list1 and any of the values of list2 returns
- * true.
+ * the combination of values from array1 and any of the values of array2
+ * returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -127,20 +127,20 @@ afw_function_execute_all_of_all(
  * ```
  *   function all_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from list1 and the
- *       second is a value from list2.
+ *       is passed two parameters, the first is a value from array1 and the
+ *       second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -174,7 +174,7 @@ afw_function_execute_all_of_any(
  *   function any_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): boolean;
  * ```
  *
@@ -210,7 +210,7 @@ afw_function_execute_any_of(
  * See afw_function_bindings.h for more information.
  *
  * Returns true if the result of calling predicate with all of the combination
- * of values from list2 and any of the values of list1 returns true.
+ * of values from array2 and any of the values of array1 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -220,20 +220,20 @@ afw_function_execute_any_of(
  * ```
  *   function any_of_all(
  *       predicate: (function (value1: any, value2: any):boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any):boolean) The predicate is
- *       passed two parameters, the first is a value from list1 and the second
- *       is a value from list2.
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -257,7 +257,7 @@ afw_function_execute_any_of_all(
  * See afw_function_bindings.h for more information.
  *
  * This function returns true if the result of calling predicate with any of
- * the combination of values from list1 and list2 returns true.
+ * the combination of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -267,20 +267,20 @@ afw_function_execute_any_of_all(
  * ```
  *   function any_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from list1 and the
- *       second is a value from list2.
+ *       is passed two parameters, the first is a value from array1 and the
+ *       second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -315,7 +315,7 @@ afw_function_execute_any_of_any(
  *   function filter(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): array;
  * ```
  *
@@ -362,7 +362,7 @@ afw_function_execute_filter(
  *   function find(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): any;
  * ```
  *
@@ -409,7 +409,7 @@ afw_function_execute_find(
  *   function map(
  *       functor: (function (... values: any): any),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): array;
  * ```
  *

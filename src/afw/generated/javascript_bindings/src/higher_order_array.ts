@@ -37,51 +37,51 @@ export function afwAllOf(client : any, predicate : any, values : any) : any {
 
 /**
  * Returns true if the result of calling predicate with all of the
- * combination of values from list1 and list2 returns true.
+ * combination of values from array1 and array2 returns true.
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
- *     first is a value from list1 and the second is a value from list2.
+ *     first is a value from array1 and the second is a value from array2.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwAllOfAll(client : any, predicate : any, list1 : any[], list2 : any[]) : any {
+export function afwAllOfAll(client : any, predicate : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "all_of_all";
     _action["predicate"] = predicate;
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
  * This function returns true if the result of calling predicate with all of
- * the combination of values from list1 and any of the values of list2
+ * the combination of values from array1 and any of the values of array2
  * returns true.
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
- *     first is a value from list1 and the second is a value from list2.
+ *     first is a value from array1 and the second is a value from array2.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwAllOfAny(client : any, predicate : any, list1 : any[], list2 : any[]) : any {
+export function afwAllOfAny(client : any, predicate : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "all_of_any";
     _action["predicate"] = predicate;
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
@@ -112,51 +112,51 @@ export function afwAnyOf(client : any, predicate : any, values : any) : any {
 
 /**
  * Returns true if the result of calling predicate with all of the
- * combination of values from list2 and any of the values of list1 returns
+ * combination of values from array2 and any of the values of array1 returns
  * true.
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
- *     first is a value from list1 and the second is a value from list2.
+ *     first is a value from array1 and the second is a value from array2.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwAnyOfAll(client : any, predicate : any, list1 : any[], list2 : any[]) : any {
+export function afwAnyOfAll(client : any, predicate : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "any_of_all";
     _action["predicate"] = predicate;
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }
 
 /**
  * This function returns true if the result of calling predicate with any of
- * the combination of values from list1 and list2 returns true.
+ * the combination of values from array1 and array2 returns true.
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
- *     first is a value from list1 and the second is a value from list2.
+ *     first is a value from array1 and the second is a value from array2.
  * 
- * @param {array} list1 -
+ * @param {array} array1 -
  * 
- * @param {array} list2 -
+ * @param {array} array2 -
  * 
  * @returns {boolean}
  */
-export function afwAnyOfAny(client : any, predicate : any, list1 : any[], list2 : any[]) : any {
+export function afwAnyOfAny(client : any, predicate : any, array1 : any[], array2 : any[]) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "any_of_any";
     _action["predicate"] = predicate;
-    _action["list1"] = list1;
-    _action["list2"] = list2;
+    _action["array1"] = array1;
+    _action["array2"] = array2;
 
     return client.perform(_action);
 }

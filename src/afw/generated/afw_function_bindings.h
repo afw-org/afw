@@ -2098,7 +2098,7 @@ afw_function_definition_bag_anyURI;
  *
  * ```
  *   function bag<anyURI>(
- *       ...values: (list of (array anyURI))
+ *       ...values: (array of (array anyURI))
  *   ): (array anyURI);
  * ```
  *
@@ -3274,7 +3274,7 @@ afw_function_definition_union_anyURI;
  *   function union<anyURI>(
  *       lists_1: (array anyURI),
  *       lists_2: (array anyURI),
- *       ...lists_rest: (list of (array anyURI))
+ *       ...lists_rest: (array of (array anyURI))
  *   ): (array anyURI);
  * ```
  *
@@ -3344,7 +3344,7 @@ afw_function_definition_add_entries;
  * @brief Adaptive Function `add_entries`
  * @param x function execute parameter.
  *
- * Add the entries of one or more lists to another.
+ * Add the entries of one or more arrays to another.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -3355,7 +3355,7 @@ afw_function_definition_add_entries;
  *   function add_entries(
  *       target: array,
  *       source_1: array,
- *       ...source_rest: (list of array)
+ *       ...source_rest: (array of array)
  *   ): array;
  * ```
  *
@@ -3390,7 +3390,7 @@ afw_function_definition_array;
  *
  * ```
  *   function array(
- *       ...values: (list of any)
+ *       ...values: (array of any)
  *   ): array;
  * ```
  *
@@ -3431,7 +3431,7 @@ afw_function_definition_bag_array;
  *
  * ```
  *   function bag<array>(
- *       ...values: (list of (array array))
+ *       ...values: (array of (array array))
  *   ): (array array);
  * ```
  *
@@ -4159,7 +4159,7 @@ afw_function_definition_bag_base64Binary;
  *
  * ```
  *   function bag<base64Binary>(
- *       ...values: (list of (array base64Binary))
+ *       ...values: (array of (array base64Binary))
  *   ): (array base64Binary);
  * ```
  *
@@ -4880,7 +4880,7 @@ afw_function_definition_union_base64Binary;
  *   function union<base64Binary>(
  *       lists_1: (array base64Binary),
  *       lists_2: (array base64Binary),
- *       ...lists_rest: (list of (array base64Binary))
+ *       ...lists_rest: (array of (array base64Binary))
  *   ): (array base64Binary);
  * ```
  *
@@ -4962,7 +4962,7 @@ afw_function_definition_bag_boolean;
  *
  * ```
  *   function bag<boolean>(
- *       ...values: (list of (array boolean))
+ *       ...values: (array of (array boolean))
  *   ): (array boolean);
  * ```
  *
@@ -5647,7 +5647,7 @@ afw_function_definition_union_boolean;
  *   function union<boolean>(
  *       lists_1: (array boolean),
  *       lists_2: (array boolean),
- *       ...lists_rest: (list of (array boolean))
+ *       ...lists_rest: (array of (array boolean))
  *   ): (array boolean);
  * ```
  *
@@ -6698,7 +6698,7 @@ afw_function_definition_bag_dateTime;
  *
  * ```
  *   function bag<dateTime>(
- *       ...values: (list of (array dateTime))
+ *       ...values: (array of (array dateTime))
  *   ): (array dateTime);
  * ```
  *
@@ -7164,7 +7164,7 @@ afw_function_definition_max_dateTime;
  * ```
  *   function max<dateTime>(
  *       values_1: dateTime,
- *       ...values_rest: (list of dateTime)
+ *       ...values_rest: (array of dateTime)
  *   ): dateTime;
  * ```
  *
@@ -7202,7 +7202,7 @@ afw_function_definition_min_dateTime;
  * ```
  *   function min<dateTime>(
  *       values_1: dateTime,
- *       ...values_rest: (list of dateTime)
+ *       ...values_rest: (array of dateTime)
  *   ): dateTime;
  * ```
  *
@@ -7546,7 +7546,7 @@ afw_function_definition_union_dateTime;
  *   function union<dateTime>(
  *       lists_1: (array dateTime),
  *       lists_2: (array dateTime),
- *       ...lists_rest: (list of (array dateTime))
+ *       ...lists_rest: (array of (array dateTime))
  *   ): (array dateTime);
  * ```
  *
@@ -7663,7 +7663,7 @@ afw_function_definition_bag_date;
  *
  * ```
  *   function bag<date>(
- *       ...values: (list of (array date))
+ *       ...values: (array of (array date))
  *   ): (array date);
  * ```
  *
@@ -8128,7 +8128,7 @@ afw_function_definition_max_date;
  * ```
  *   function max<date>(
  *       values_1: date,
- *       ...values_rest: (list of date)
+ *       ...values_rest: (array of date)
  *   ): date;
  * ```
  *
@@ -8166,7 +8166,7 @@ afw_function_definition_min_date;
  * ```
  *   function min<date>(
  *       values_1: date,
- *       ...values_rest: (list of date)
+ *       ...values_rest: (array of date)
  *   ): date;
  * ```
  *
@@ -8471,7 +8471,7 @@ afw_function_definition_union_date;
  *   function union<date>(
  *       lists_1: (array date),
  *       lists_2: (array date),
- *       ...lists_rest: (list of (array date))
+ *       ...lists_rest: (array of (array date))
  *   ): (array date);
  * ```
  *
@@ -8553,7 +8553,7 @@ afw_function_definition_bag_dayTimeDuration;
  *
  * ```
  *   function bag<dayTimeDuration>(
- *       ...values: (list of (array dayTimeDuration))
+ *       ...values: (array of (array dayTimeDuration))
  *   ): (array dayTimeDuration);
  * ```
  *
@@ -9242,7 +9242,7 @@ afw_function_definition_union_dayTimeDuration;
  *   function union<dayTimeDuration>(
  *       lists_1: (array dayTimeDuration),
  *       lists_2: (array dayTimeDuration),
- *       ...lists_rest: (list of (array dayTimeDuration))
+ *       ...lists_rest: (array of (array dayTimeDuration))
  *   ): (array dayTimeDuration);
  * ```
  *
@@ -9286,7 +9286,7 @@ afw_function_definition_bag_dnsName;
  *
  * ```
  *   function bag<dnsName>(
- *       ...values: (list of (array dnsName))
+ *       ...values: (array of (array dnsName))
  *   ): (array dnsName);
  * ```
  *
@@ -9937,7 +9937,7 @@ afw_function_definition_add_double;
  *   function add<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (list of double)
+ *       ...values_rest: (array of double)
  *   ): double;
  * ```
  *
@@ -10008,7 +10008,7 @@ afw_function_definition_bag_double;
  *
  * ```
  *   function bag<double>(
- *       ...values: (list of (array double))
+ *       ...values: (array of (array double))
  *   ): (array double);
  * ```
  *
@@ -10630,7 +10630,7 @@ afw_function_definition_max_double;
  * ```
  *   function max<double>(
  *       values_1: double,
- *       ...values_rest: (list of double)
+ *       ...values_rest: (array of double)
  *   ): double;
  * ```
  *
@@ -10665,7 +10665,7 @@ afw_function_definition_min_double;
  * ```
  *   function min<double>(
  *       values_1: double,
- *       ...values_rest: (list of double)
+ *       ...values_rest: (array of double)
  *   ): double;
  * ```
  *
@@ -10701,7 +10701,7 @@ afw_function_definition_multiply_double;
  *   function multiply<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (list of double)
+ *       ...values_rest: (array of double)
  *   ): double;
  * ```
  *
@@ -10892,7 +10892,7 @@ afw_function_definition_pow_double;
  *   function pow<double>(
  *       base: double,
  *       exponent_1: double,
- *       ...exponent_rest: (list of double)
+ *       ...exponent_rest: (array of double)
  *   ): double;
  * ```
  *
@@ -11144,7 +11144,7 @@ afw_function_definition_union_double;
  *   function union<double>(
  *       lists_1: (array double),
  *       lists_2: (array double),
- *       ...lists_rest: (list of (array double))
+ *       ...lists_rest: (array of (array double))
  *   ): (array double);
  * ```
  *
@@ -11188,7 +11188,7 @@ afw_function_definition_bag_expression;
  *
  * ```
  *   function bag<expression>(
- *       ...values: (list of (array expression))
+ *       ...values: (array of (array expression))
  *   ): (array expression);
  * ```
  *
@@ -11775,7 +11775,7 @@ afw_function_definition_bag_function;
  *
  * ```
  *   function bag<function>(
- *       ...values: (list of (array function))
+ *       ...values: (array of (array function))
  *   ): (array function);
  * ```
  *
@@ -12280,7 +12280,7 @@ afw_function_definition_bag_hexBinary;
  *
  * ```
  *   function bag<hexBinary>(
- *       ...values: (list of (array hexBinary))
+ *       ...values: (array of (array hexBinary))
  *   ): (array hexBinary);
  * ```
  *
@@ -13000,7 +13000,7 @@ afw_function_definition_union_hexBinary;
  *   function union<hexBinary>(
  *       lists_1: (array hexBinary),
  *       lists_2: (array hexBinary),
- *       ...lists_rest: (list of (array hexBinary))
+ *       ...lists_rest: (array of (array hexBinary))
  *   ): (array hexBinary);
  * ```
  *
@@ -13046,7 +13046,7 @@ afw_function_definition_all_of;
  *   function all_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): boolean;
  * ```
  *
@@ -13077,7 +13077,7 @@ afw_function_definition_all_of_all;
  * @param x function execute parameter.
  *
  * Returns true if the result of calling predicate with all of the combination
- * of values from list1 and list2 returns true.
+ * of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13087,20 +13087,20 @@ afw_function_definition_all_of_all;
  * ```
  *   function all_of_all(
  *       predicate: (function (any value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters, the first is a value from list1
- *       and the second is a value from list2.
+ *       predicate is passed two parameters, the first is a value from array1
+ *       and the second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -13119,8 +13119,8 @@ afw_function_definition_all_of_any;
  * @param x function execute parameter.
  *
  * This function returns true if the result of calling predicate with all of
- * the combination of values from list1 and any of the values of list2 returns
- * true.
+ * the combination of values from array1 and any of the values of array2
+ * returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13130,20 +13130,20 @@ afw_function_definition_all_of_any;
  * ```
  *   function all_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from list1 and the
- *       second is a value from list2.
+ *       is passed two parameters, the first is a value from array1 and the
+ *       second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -13172,7 +13172,7 @@ afw_function_definition_any_of;
  *   function any_of(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): boolean;
  * ```
  *
@@ -13203,7 +13203,7 @@ afw_function_definition_any_of_all;
  * @param x function execute parameter.
  *
  * Returns true if the result of calling predicate with all of the combination
- * of values from list2 and any of the values of list1 returns true.
+ * of values from array2 and any of the values of array1 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13213,20 +13213,20 @@ afw_function_definition_any_of_all;
  * ```
  *   function any_of_all(
  *       predicate: (function (value1: any, value2: any):boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any):boolean) The predicate is
- *       passed two parameters, the first is a value from list1 and the second
- *       is a value from list2.
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -13245,7 +13245,7 @@ afw_function_definition_any_of_any;
  * @param x function execute parameter.
  *
  * This function returns true if the result of calling predicate with any of
- * the combination of values from list1 and list2 returns true.
+ * the combination of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13255,20 +13255,20 @@ afw_function_definition_any_of_any;
  * ```
  *   function any_of_any(
  *       predicate: (function (value1: any, value2: any): boolean),
- *       list1: array,
- *       list2: array
+ *       array1: array,
+ *       array2: array
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
  *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from list1 and the
- *       second is a value from list2.
+ *       is passed two parameters, the first is a value from array1 and the
+ *       second is a value from array2.
  *
- *   list1 - (array)
+ *   array1 - (array)
  *
- *   list2 - (array)
+ *   array2 - (array)
  *
  * Returns:
  *
@@ -13298,7 +13298,7 @@ afw_function_definition_filter;
  *   function filter(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): array;
  * ```
  *
@@ -13340,7 +13340,7 @@ afw_function_definition_find;
  *   function find(
  *       predicate: (function (... values: any): boolean),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): any;
  * ```
  *
@@ -13382,7 +13382,7 @@ afw_function_definition_map;
  *   function map(
  *       functor: (function (... values: any): any),
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): array;
  * ```
  *
@@ -13519,7 +13519,7 @@ afw_function_definition_bag_hybrid;
  *
  * ```
  *   function bag<hybrid>(
- *       ...values: (list of (array hybrid))
+ *       ...values: (array of (array hybrid))
  *   ): (array hybrid);
  * ```
  *
@@ -14105,7 +14105,7 @@ afw_function_definition_bag_ia5String;
  *
  * ```
  *   function bag<ia5String>(
- *       ...values: (list of (array ia5String))
+ *       ...values: (array of (array ia5String))
  *   ): (array ia5String);
  * ```
  *
@@ -14781,7 +14781,7 @@ afw_function_definition_add_integer;
  *   function add<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (list of integer)
+ *       ...values_rest: (array of integer)
  *   ): integer;
  * ```
  *
@@ -14852,7 +14852,7 @@ afw_function_definition_bag_integer;
  *
  * ```
  *   function bag<integer>(
- *       ...values: (list of (array integer))
+ *       ...values: (array of (array integer))
  *   ): (array integer);
  * ```
  *
@@ -15339,7 +15339,7 @@ afw_function_definition_max_integer;
  * ```
  *   function max<integer>(
  *       values_1: integer,
- *       ...values_rest: (list of integer)
+ *       ...values_rest: (array of integer)
  *   ): integer;
  * ```
  *
@@ -15374,7 +15374,7 @@ afw_function_definition_min_integer;
  * ```
  *   function min<integer>(
  *       values_1: integer,
- *       ...values_rest: (list of integer)
+ *       ...values_rest: (array of integer)
  *   ): integer;
  * ```
  *
@@ -15446,7 +15446,7 @@ afw_function_definition_multiply_integer;
  *   function multiply<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (list of integer)
+ *       ...values_rest: (array of integer)
  *   ): integer;
  * ```
  *
@@ -15821,7 +15821,7 @@ afw_function_definition_union_integer;
  *   function union<integer>(
  *       lists_1: (array integer),
  *       lists_2: (array integer),
- *       ...lists_rest: (list of (array integer))
+ *       ...lists_rest: (array of (array integer))
  *   ): (array integer);
  * ```
  *
@@ -15865,7 +15865,7 @@ afw_function_definition_bag_ipAddress;
  *
  * ```
  *   function bag<ipAddress>(
- *       ...values: (list of (array ipAddress))
+ *       ...values: (array of (array ipAddress))
  *   ): (array ipAddress);
  * ```
  *
@@ -16841,7 +16841,7 @@ afw_function_definition_and;
  *
  * ```
  *   function and(
- *       ...conditions: (list of boolean)
+ *       ...conditions: (array of boolean)
  *   ): boolean;
  * ```
  *
@@ -16878,7 +16878,7 @@ afw_function_definition_n_of;
  * ```
  *   function n_of(
  *       n: integer,
- *       ...conditions: (list of boolean)
+ *       ...conditions: (array of boolean)
  *   ): boolean;
  * ```
  *
@@ -16953,7 +16953,7 @@ afw_function_definition_or;
  *
  * ```
  *   function or(
- *       ...conditions: (list of boolean)
+ *       ...conditions: (array of boolean)
  *   ): boolean;
  * ```
  *
@@ -17383,7 +17383,7 @@ afw_function_definition_nullish_coalescing;
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): any;
  * ```
  *
@@ -18120,7 +18120,7 @@ afw_function_definition_bag_null;
  *
  * ```
  *   function bag<null>(
- *       ...values: (list of (array null))
+ *       ...values: (array of (array null))
  *   ): (array null);
  * ```
  *
@@ -18305,7 +18305,7 @@ afw_function_definition_bag_objectId;
  *
  * ```
  *   function bag<objectId>(
- *       ...values: (list of (array objectId))
+ *       ...values: (array of (array objectId))
  *   ): (array objectId);
  * ```
  *
@@ -18807,7 +18807,7 @@ afw_function_definition_bag_objectPath;
  *
  * ```
  *   function bag<objectPath>(
- *       ...values: (list of (array objectPath))
+ *       ...values: (array of (array objectPath))
  *   ): (array objectPath);
  * ```
  *
@@ -19312,7 +19312,7 @@ afw_function_definition_add_properties;
  *   function add_properties(
  *       target: object,
  *       source_1: object,
- *       ...source_rest: (list of object)
+ *       ...source_rest: (array of object)
  *   ): object;
  * ```
  *
@@ -19385,7 +19385,7 @@ afw_function_definition_bag_object;
  *
  * ```
  *   function bag<object>(
- *       ...values: (list of (array object))
+ *       ...values: (array of (array object))
  *   ): (array object);
  * ```
  *
@@ -20146,7 +20146,7 @@ afw_function_definition_bag_password;
  *
  * ```
  *   function bag<password>(
- *       ...values: (list of (array password))
+ *       ...values: (array of (array password))
  *   ): (array password);
  * ```
  *
@@ -20693,7 +20693,7 @@ afw_function_definition_add;
  *   function add <dataType>(
  *       values_1: dataType,
  *       values_2: dataType,
- *       ...values_rest: (list of dataType)
+ *       ...values_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -20862,7 +20862,7 @@ afw_function_definition_bag;
  *
  * ```
  *   function bag <dataType>(
- *       ...values: (list of array)
+ *       ...values: (array of array)
  *   ): array;
  * ```
  *
@@ -22079,7 +22079,7 @@ afw_function_definition_max;
  * ```
  *   function max <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (list of dataType)
+ *       ...values_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -22118,7 +22118,7 @@ afw_function_definition_min;
  * ```
  *   function min <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (list of dataType)
+ *       ...values_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -22200,7 +22200,7 @@ afw_function_definition_multiply;
  *   function multiply <dataType>(
  *       values_1: dataType,
  *       values_2: dataType,
- *       ...values_rest: (list of dataType)
+ *       ...values_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -22500,7 +22500,7 @@ afw_function_definition_pow;
  *   function pow <dataType>(
  *       base: dataType,
  *       exponent_1: dataType,
- *       ...exponent_rest: (list of dataType)
+ *       ...exponent_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -23739,7 +23739,7 @@ afw_function_definition_union;
  *   function union <dataType>(
  *       lists_1: array,
  *       lists_2: array,
- *       ...lists_rest: (list of array)
+ *       ...lists_rest: (array of array)
  *   ): array;
  * ```
  *
@@ -24448,7 +24448,7 @@ afw_function_definition_bag_rfc822Name;
  *
  * ```
  *   function bag<rfc822Name>(
- *       ...values: (list of (array rfc822Name))
+ *       ...values: (array of (array rfc822Name))
  *   ): (array rfc822Name);
  * ```
  *
@@ -25209,7 +25209,7 @@ afw_function_definition_union_rfc822Name;
  *   function union<rfc822Name>(
  *       lists_1: (array rfc822Name),
  *       lists_2: (array rfc822Name),
- *       ...lists_rest: (list of (array rfc822Name))
+ *       ...lists_rest: (array of (array rfc822Name))
  *   ): (array rfc822Name);
  * ```
  *
@@ -25292,7 +25292,7 @@ afw_function_definition_bag_script;
  *
  * ```
  *   function bag<script>(
- *       ...values: (list of (array script))
+ *       ...values: (array of (array script))
  *   ): (array script);
  * ```
  *
@@ -26256,7 +26256,7 @@ afw_function_definition_switch;
  *       value1: any,
  *       case_clause_1: any,
  *       case_clause_2: any,
- *       ...case_clause_rest: (list of any)
+ *       ...case_clause_rest: (array of any)
  *   ): any;
  * ```
  *
@@ -26710,7 +26710,7 @@ afw_function_definition_print;
  *
  * ```
  *   function print(
- *       ...values: (list of any)
+ *       ...values: (array of any)
  *   ): null;
  * ```
  *
@@ -26745,7 +26745,7 @@ afw_function_definition_println;
  *
  * ```
  *   function println(
- *       ...value: (list of any)
+ *       ...value: (array of any)
  *   ): null;
  * ```
  *
@@ -26964,7 +26964,7 @@ afw_function_definition_write;
  * ```
  *   function write(
  *       streamNumber: integer,
- *       ...value: (list of any)
+ *       ...value: (array of any)
  *   ): null;
  * ```
  *
@@ -27039,7 +27039,7 @@ afw_function_definition_writeln;
  * ```
  *   function writeln(
  *       streamNumber: integer,
- *       ...value: (list of any)
+ *       ...value: (array of any)
  *   ): null;
  * ```
  *
@@ -27087,7 +27087,7 @@ afw_function_definition_add_string;
  *   function add<string>(
  *       string: string,
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): string;
  * ```
  *
@@ -27194,7 +27194,7 @@ afw_function_definition_bag_string;
  *
  * ```
  *   function bag<string>(
- *       ...values: (list of (array string))
+ *       ...values: (array of (array string))
  *   ): (array string);
  * ```
  *
@@ -27231,7 +27231,7 @@ afw_function_definition_concat;
  * ```
  *   function concat(
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): string;
  * ```
  *
@@ -27921,7 +27921,7 @@ afw_function_definition_max_string;
  * ```
  *   function max<string>(
  *       values_1: string,
- *       ...values_rest: (list of string)
+ *       ...values_rest: (array of string)
  *   ): string;
  * ```
  *
@@ -27956,7 +27956,7 @@ afw_function_definition_min_string;
  * ```
  *   function min<string>(
  *       values_1: string,
- *       ...values_rest: (list of string)
+ *       ...values_rest: (array of string)
  *   ): string;
  * ```
  *
@@ -28500,7 +28500,7 @@ afw_function_definition_string;
  * ```
  *   function string(
  *       values_1: any,
- *       ...values_rest: (list of any)
+ *       ...values_rest: (array of any)
  *   ): string;
  * ```
  *
@@ -29149,7 +29149,7 @@ afw_function_definition_union_string;
  *   function union<string>(
  *       lists_1: (array string),
  *       lists_2: (array string),
- *       ...lists_rest: (list of (array string))
+ *       ...lists_rest: (array of (array string))
  *   ): (array string);
  * ```
  *
@@ -29295,7 +29295,7 @@ afw_function_definition_bag_template;
  *
  * ```
  *   function bag<template>(
- *       ...values: (list of (array template))
+ *       ...values: (array of (array template))
  *   ): (array template);
  * ```
  *
@@ -29919,7 +29919,7 @@ afw_function_definition_bag_time;
  *
  * ```
  *   function bag<time>(
- *       ...values: (list of (array time))
+ *       ...values: (array of (array time))
  *   ): (array time);
  * ```
  *
@@ -30355,7 +30355,7 @@ afw_function_definition_max_time;
  * ```
  *   function max<time>(
  *       values_1: time,
- *       ...values_rest: (list of time)
+ *       ...values_rest: (array of time)
  *   ): time;
  * ```
  *
@@ -30393,7 +30393,7 @@ afw_function_definition_min_time;
  * ```
  *   function min<time>(
  *       values_1: time,
- *       ...values_rest: (list of time)
+ *       ...values_rest: (array of time)
  *   ): time;
  * ```
  *
@@ -30700,7 +30700,7 @@ afw_function_definition_union_time;
  *   function union<time>(
  *       lists_1: (array time),
  *       lists_2: (array time),
- *       ...lists_rest: (list of (array time))
+ *       ...lists_rest: (array of (array time))
  *   ): (array time);
  * ```
  *
@@ -30942,7 +30942,7 @@ afw_function_definition_bag_x500Name;
  *
  * ```
  *   function bag<x500Name>(
- *       ...values: (list of (array x500Name))
+ *       ...values: (array of (array x500Name))
  *   ): (array x500Name);
  * ```
  *
@@ -31631,7 +31631,7 @@ afw_function_definition_union_x500Name;
  *   function union<x500Name>(
  *       lists_1: (array x500Name),
  *       lists_2: (array x500Name),
- *       ...lists_rest: (list of (array x500Name))
+ *       ...lists_rest: (array of (array x500Name))
  *   ): (array x500Name);
  * ```
  *
@@ -31747,7 +31747,7 @@ afw_function_definition_bag_xpathExpression;
  *
  * ```
  *   function bag<xpathExpression>(
- *       ...values: (list of (array xpathExpression))
+ *       ...values: (array of (array xpathExpression))
  *   ): (array xpathExpression);
  * ```
  *
@@ -32482,7 +32482,7 @@ afw_function_definition_bag_yearMonthDuration;
  *
  * ```
  *   function bag<yearMonthDuration>(
- *       ...values: (list of (array yearMonthDuration))
+ *       ...values: (array of (array yearMonthDuration))
  *   ): (array yearMonthDuration);
  * ```
  *
@@ -33098,7 +33098,7 @@ afw_function_definition_union_yearMonthDuration;
  *   function union<yearMonthDuration>(
  *       lists_1: (array yearMonthDuration),
  *       lists_2: (array yearMonthDuration),
- *       ...lists_rest: (list of (array yearMonthDuration))
+ *       ...lists_rest: (array of (array yearMonthDuration))
  *   ): (array yearMonthDuration);
  * ```
  *

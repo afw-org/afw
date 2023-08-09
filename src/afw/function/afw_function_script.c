@@ -711,7 +711,7 @@ afw_function_execute_return(
  *       value1: any,
  *       case_clause_1: any,
  *       case_clause_2: any,
- *       ...case_clause_rest: (list of any)
+ *       ...case_clause_rest: (array of any)
  *   ): any;
  * ```
  *

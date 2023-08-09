@@ -41,21 +41,21 @@ def all_of(session, predicate, values):
 
     return response['actions'][0]['result']
 
-def all_of_all(session, predicate, list1, list2):
+def all_of_all(session, predicate, array1, array2):
     '''
     All combinations true
 
     Returns true if the result of calling predicate with all of the
-    combination of values from list1 and list2 returns true.
+    combination of values from array1 and array2 returns true.
 
     Parameters:
 
         predicate (function): The predicate is passed two parameters, the
-        first is a value from list1 and the second is a value from list2.
+        first is a value from array1 and the second is a value from array2.
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -66,8 +66,8 @@ def all_of_all(session, predicate, list1, list2):
     action = {
         "function": "all_of_all",
         "predicate": predicate,
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -78,22 +78,22 @@ def all_of_all(session, predicate, list1, list2):
 
     return response['actions'][0]['result']
 
-def all_of_any(session, predicate, list1, list2):
+def all_of_any(session, predicate, array1, array2):
     '''
-    Combinations of all in list1 and any in list2 true
+    Combinations of all in array1 and any in array2 true
 
     This function returns true if the result of calling predicate with all of
-    the combination of values from list1 and any of the values of list2
+    the combination of values from array1 and any of the values of array2
     returns true.
 
     Parameters:
 
         predicate (function): The predicate is passed two parameters, the
-        first is a value from list1 and the second is a value from list2.
+        first is a value from array1 and the second is a value from array2.
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -104,8 +104,8 @@ def all_of_any(session, predicate, list1, list2):
     action = {
         "function": "all_of_any",
         "predicate": predicate,
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -152,22 +152,22 @@ def any_of(session, predicate, values):
 
     return response['actions'][0]['result']
 
-def any_of_all(session, predicate, list1, list2):
+def any_of_all(session, predicate, array1, array2):
     '''
-    Combinations of any in list1 and all in list2 true
+    Combinations of any in array1 and all in array2 true
 
     Returns true if the result of calling predicate with all of the
-    combination of values from list2 and any of the values of list1 returns
+    combination of values from array2 and any of the values of array1 returns
     true.
 
     Parameters:
 
         predicate (function): The predicate is passed two parameters, the
-        first is a value from list1 and the second is a value from list2.
+        first is a value from array1 and the second is a value from array2.
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -178,8 +178,8 @@ def any_of_all(session, predicate, list1, list2):
     action = {
         "function": "any_of_all",
         "predicate": predicate,
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)
@@ -190,21 +190,21 @@ def any_of_all(session, predicate, list1, list2):
 
     return response['actions'][0]['result']
 
-def any_of_any(session, predicate, list1, list2):
+def any_of_any(session, predicate, array1, array2):
     '''
     Any combinations true
 
     This function returns true if the result of calling predicate with any of
-    the combination of values from list1 and list2 returns true.
+    the combination of values from array1 and array2 returns true.
 
     Parameters:
 
         predicate (function): The predicate is passed two parameters, the
-        first is a value from list1 and the second is a value from list2.
+        first is a value from array1 and the second is a value from array2.
 
-        list1 (array):
+        array1 (array):
 
-        list2 (array):
+        array2 (array):
 
     Returns:
     boolean: 
@@ -215,8 +215,8 @@ def any_of_any(session, predicate, list1, list2):
     action = {
         "function": "any_of_any",
         "predicate": predicate,
-        "list1": list1,
-        "list2": list2
+        "array1": array1,
+        "array2": array2
     }
 
     request.add_action(action)

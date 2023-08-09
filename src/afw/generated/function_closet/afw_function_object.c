@@ -34,7 +34,7 @@
  *   function add_properties(
  *       target: object,
  *       source_1: object,
- *       ...source_rest: (list of object)
+ *       ...source_rest: (array of object)
  *   ): object;
  * ```
  *

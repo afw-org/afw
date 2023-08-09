@@ -199,9 +199,9 @@ def function_comment(fd, obj):
                 i += 1
             fd.write('...')
             if n == 0:
-                fd.write(p.get('name') + ': (list of ' + make_Type(p) + ')')
+                fd.write(p.get('name') + ': (array of ' + make_Type(p) + ')')
             else:
-                fd.write(p.get('name') + '_rest: (list of ' + make_Type(p) + ')')
+                fd.write(p.get('name') + '_rest: (array of ' + make_Type(p) + ')')
         else:
             fd.write(p.get('name'))
             if p.get('optional', False):
@@ -578,9 +578,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         i += 1
                     functionSignature += '...'
                     if n == 0:
-                        functionSignature += p.get('name') + ': (list of ' + make_Type(p) + ')'
+                        functionSignature += p.get('name') + ': (array of ' + make_Type(p) + ')'
                     else:
-                        functionSignature += p.get('name') + '_rest: (list of ' + make_Type(p) + ')'
+                        functionSignature += p.get('name') + '_rest: (array of ' + make_Type(p) + ')'
                 else:
                     functionSignature += p.get('name')
                     if p.get('optional', False):
@@ -634,9 +634,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         i += 1
                     functionDeclaration += '...'
                     if n == 0:
-                        functionDeclaration += p.get('name') + ': (list of ' + make_Type(p) + ')'
+                        functionDeclaration += p.get('name') + ': (array of ' + make_Type(p) + ')'
                     else:
-                        functionDeclaration += p.get('name') + '_rest: (list of ' + make_Type(p) + ')'
+                        functionDeclaration += p.get('name') + '_rest: (array of ' + make_Type(p) + ')'
                 else:
                     maximumNumberOfParameters += 1
                     functionDeclaration += p.get('name')

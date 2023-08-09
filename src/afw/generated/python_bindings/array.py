@@ -7,9 +7,9 @@ import json
 
 def add_entries(session, target, source):
     '''
-    Add entries of one or more lists to another
+    Add entries of one or more arrays to another
 
-    Add the entries of one or more lists to another.
+    Add the entries of one or more arrays to another.
 
     Parameters:
 

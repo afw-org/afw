@@ -56,17 +56,17 @@ class higher_order_array
      * all_of_all()
      *
      * Returns true if the result of calling predicate with all of the
-     * combination of values from list1 and list2 returns true.
+     * combination of values from array1 and array2 returns true.
      *
      * @param function $predicate The predicate is passed two parameters, the
-     *                            first is a value from list1 and the second
-     *                            is a value from list2.
-     * @param array $list1
-     * @param array $list2
+     *                            first is a value from array1 and the second
+     *                            is a value from array2.
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function all_of_all(, $predicate, $list1, $list2)
+    public function all_of_all(, $predicate, $array1, $array2)
     {
         $request = $this->$session->request();
 
@@ -74,8 +74,8 @@ class higher_order_array
 
         /* pass along required parameters to the request payload */
         $request->set("predicate", $predicate);
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -85,18 +85,18 @@ class higher_order_array
      * all_of_any()
      *
      * This function returns true if the result of calling predicate with all
-     * of the combination of values from list1 and any of the values of list2
-     * returns true.
+     * of the combination of values from array1 and any of the values of
+     * array2 returns true.
      *
      * @param function $predicate The predicate is passed two parameters, the
-     *                            first is a value from list1 and the second
-     *                            is a value from list2.
-     * @param array $list1
-     * @param array $list2
+     *                            first is a value from array1 and the second
+     *                            is a value from array2.
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function all_of_any(, $predicate, $list1, $list2)
+    public function all_of_any(, $predicate, $array1, $array2)
     {
         $request = $this->$session->request();
 
@@ -104,8 +104,8 @@ class higher_order_array
 
         /* pass along required parameters to the request payload */
         $request->set("predicate", $predicate);
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -144,18 +144,18 @@ class higher_order_array
      * any_of_all()
      *
      * Returns true if the result of calling predicate with all of the
-     * combination of values from list2 and any of the values of list1
+     * combination of values from array2 and any of the values of array1
      * returns true.
      *
      * @param function $predicate The predicate is passed two parameters, the
-     *                            first is a value from list1 and the second
-     *                            is a value from list2.
-     * @param array $list1
-     * @param array $list2
+     *                            first is a value from array1 and the second
+     *                            is a value from array2.
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function any_of_all(, $predicate, $list1, $list2)
+    public function any_of_all(, $predicate, $array1, $array2)
     {
         $request = $this->$session->request();
 
@@ -163,8 +163,8 @@ class higher_order_array
 
         /* pass along required parameters to the request payload */
         $request->set("predicate", $predicate);
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -174,17 +174,17 @@ class higher_order_array
      * any_of_any()
      *
      * This function returns true if the result of calling predicate with any
-     * of the combination of values from list1 and list2 returns true.
+     * of the combination of values from array1 and array2 returns true.
      *
      * @param function $predicate The predicate is passed two parameters, the
-     *                            first is a value from list1 and the second
-     *                            is a value from list2.
-     * @param array $list1
-     * @param array $list2
+     *                            first is a value from array1 and the second
+     *                            is a value from array2.
+     * @param array $array1
+     * @param array $array2
      *
      * @return boolean
      */
-    public function any_of_any(, $predicate, $list1, $list2)
+    public function any_of_any(, $predicate, $array1, $array2)
     {
         $request = $this->$session->request();
 
@@ -192,8 +192,8 @@ class higher_order_array
 
         /* pass along required parameters to the request payload */
         $request->set("predicate", $predicate);
-        $request->set("list1", $list1);
-        $request->set("list2", $list2);
+        $request->set("array1", $array1);
+        $request->set("array2", $array2);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

@@ -82,7 +82,7 @@ afw_function_execute_flush(
  *
  * ```
  *   function print(
- *       ...values: (list of any)
+ *       ...values: (array of any)
  *   ): null;
  * ```
  *
@@ -141,7 +141,7 @@ afw_function_execute_print(
  *
  * ```
  *   function println(
- *       ...value: (list of any)
+ *       ...value: (array of any)
  *   ): null;
  * ```
  *
@@ -201,7 +201,7 @@ afw_function_execute_println(
  * ```
  *   function write(
  *       streamNumber: integer,
- *       ...value: (list of any)
+ *       ...value: (array of any)
  *   ): null;
  * ```
  *
@@ -271,7 +271,7 @@ afw_function_execute_write(
  * ```
  *   function writeln(
  *       streamNumber: integer,
- *       ...value: (list of any)
+ *       ...value: (array of any)
  *   ): null;
  * ```
  *

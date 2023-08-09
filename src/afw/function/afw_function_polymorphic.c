@@ -187,7 +187,7 @@ afw_function_execute_at_least_one_member_of(
  *
  * ```
  *   function bag <dataType>(
- *       ...values: (list of array)
+ *       ...values: (array of array)
  *   ): array;
  * ```
  *
@@ -1365,7 +1365,7 @@ afw_function_execute_lt(
  * ```
  *   function max <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (list of dataType)
+ *       ...values_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -1426,7 +1426,7 @@ afw_function_execute_max(
  * ```
  *   function min <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (list of dataType)
+ *       ...values_rest: (array of dataType)
  *   ): dataType;
  * ```
  *
@@ -2459,7 +2459,7 @@ afw_function_execute_substring(
  *   function union <dataType>(
  *       lists_1: array,
  *       lists_2: array,
- *       ...lists_rest: (list of array)
+ *       ...lists_rest: (array of array)
  *   ): array;
  * ```
  *
