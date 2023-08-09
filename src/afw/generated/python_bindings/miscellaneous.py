@@ -5,38 +5,6 @@
 import requests
 import json
 
-def annotate(session, annotation, value):
-    '''
-    Annotate a value
-
-    Create an annotated value.
-
-    Parameters:
-
-        annotation (object): Annotation for value.
-
-        value (): Any value. This value will not be evaluated.
-
-    Returns:
-    None: Unevaluated annotated value ready for use by function evaluate().
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "annotate",
-        "annotation": annotation,
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def compare_uri(session, uri1, uri2, isValuePath=None, currentPath=None):
     '''
     Compare URIs
@@ -345,69 +313,6 @@ def now_utc(session):
 
     return response['actions'][0]['result']
 
-def nullish_coalescing(session, values):
-    '''
-    Nullish coalescing
-
-    Returns the first value of values that is not null or undefined leaving
-    the remaining values unevaluated.
-
-    Parameters:
-
-        values ():
-
-    Returns:
-    None: The first value of values that is not null or undefined.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "nullish_coalescing",
-        "values": values
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def optional_chaining(session, arg1, arg2):
-    '''
-    Optional chaining
-
-    Returns undefined if arg1 is null or undefined without evaluating arg2,
-    but otherwise returns evaluated value of arg2.
-
-    Parameters:
-
-        arg1 ():
-
-        arg2 ():
-
-    Returns:
-    None: Undefined value if arg1 is null or undefined but otherwise evaluated arg2.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "optional_chaining",
-        "arg1": arg1,
-        "arg2": arg2
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def parse_uri(session, uri, isValuePath=None, currentPath=None):
     '''
     Parse URI
@@ -611,36 +516,6 @@ def variable_is_not_null(session, name):
     action = {
         "function": "variable_is_not_null",
         "name": name
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def void_operator(session, value):
-    '''
-    Support for the void operator
-
-    This is the support function for the void operator which evaluates value
-    and returns undefined.
-
-    Parameters:
-
-        value (): This is the value to evaluate.
-
-    Returns:
-    None: This always returns undefined.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "void_operator",
-        "value": value
     }
 
     request.add_action(action)

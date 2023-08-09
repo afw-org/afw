@@ -5667,6 +5667,879 @@ afw_function_definition_union_boolean;
 /** @} */
 
 
+/** @addtogroup afw_functions_compiler_expression compiler_expression functions
+ *
+ * compiler_expression adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition annotate */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_annotate;
+
+/**
+ * @brief Adaptive Function `annotate`
+ * @param x function execute parameter.
+ *
+ * Create an annotated value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function annotate(
+ *       annotation: (object _AdaptiveAnnotation_),
+ *       value: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   annotation - (object _AdaptiveAnnotation_) Annotation for value.
+ *
+ *   value - (any dataType) Any value. This value will not be evaluated.
+ *
+ * Returns:
+ *
+ *   (any dataType) Unevaluated annotated value ready for use by function
+ *       evaluate().
+ */
+const afw_value_t *
+afw_function_execute_annotate(
+    afw_function_execute_t *x);
+
+/** @brief Function definition nullish_coalescing */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_nullish_coalescing;
+
+/**
+ * @brief Adaptive Function `nullish_coalescing`
+ * @param x function execute parameter.
+ *
+ * Returns the first value of values that is not null or undefined leaving the
+ * remaining values unevaluated.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function nullish_coalescing(
+ *       values_1: any,
+ *       values_2: any,
+ *       ...values_rest: (array of any)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   values - (2 or more any dataType)
+ *
+ * Returns:
+ *
+ *   (any dataType) The first value of values that is not null or undefined.
+ */
+const afw_value_t *
+afw_function_execute_nullish_coalescing(
+    afw_function_execute_t *x);
+
+/** @brief Function definition optional_chaining */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_optional_chaining;
+
+/**
+ * @brief Adaptive Function `optional_chaining`
+ * @param x function execute parameter.
+ *
+ * Returns undefined if arg1 is null or undefined without evaluating arg2, but
+ * otherwise returns evaluated value of arg2.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function optional_chaining(
+ *       arg1: any,
+ *       arg2: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   arg1 - (any dataType)
+ *
+ *   arg2 - (any dataType)
+ *
+ * Returns:
+ *
+ *   (any dataType) Undefined value if arg1 is null or undefined but otherwise
+ *       evaluated arg2.
+ */
+const afw_value_t *
+afw_function_execute_optional_chaining(
+    afw_function_execute_t *x);
+
+/** @brief Function definition void_operator */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_void_operator;
+
+/**
+ * @brief Adaptive Function `void_operator`
+ * @param x function execute parameter.
+ *
+ * This is the support function for the void operator which evaluates value and
+ * returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function void_operator(
+ *       value: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) This is the value to evaluate.
+ *
+ * Returns:
+ *
+ *   (any dataType) This always returns undefined.
+ */
+const afw_value_t *
+afw_function_execute_void_operator(
+    afw_function_execute_t *x);
+
+/** @} */
+
+
+/** @addtogroup afw_functions_compiler_script compiler_script functions
+ *
+ * compiler_script adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition assign */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_assign;
+
+/**
+ * @brief Adaptive Function `assign`
+ * @param x function execute parameter.
+ *
+ * Assign a value to the innermost structured block definition of a variable.
+ * If the variable is not defined, the variable is defined in the innermost
+ * structured block. An error is thrown if not called from an array of values
+ * (statements) in a structured function.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function assign(
+ *       name: string,
+ *       value: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   name - (string) Variable name.
+ *
+ *   value - (any dataType) This is the value to assign to the variable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The value assigned.
+ */
+const afw_value_t *
+afw_function_execute_assign(
+    afw_function_execute_t *x);
+
+/** @brief Function definition break */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_break;
+
+/**
+ * @brief Adaptive Function `break`
+ * @param x function execute parameter.
+ *
+ * This is a special function that can be called to break out of the body of a
+ * loop. If called outside of a loop body, an error is thrown.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function break(
+ *       value?: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (optional any dataType) The value to evaluate that the enclosing
+ *       loop will return. If not specified, the last evaluated value or a null
+ *       value will be returned.
+ *
+ * Returns:
+ *
+ *   (any dataType) This function returns from the body of a loop with the last
+ *       evaluated value.
+ */
+const afw_value_t *
+afw_function_execute_break(
+    afw_function_execute_t *x);
+
+/** @brief Function definition const */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_const;
+
+/**
+ * @brief Adaptive Function `const`
+ * @param x function execute parameter.
+ *
+ * Define one or more statically scoped constants local to the current script
+ * block with a permanent value. These constants can be accessed from the
+ * current block and inner blocks, but can not be assigned a different value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function const(
+ *       name: (array string),
+ *       value: any,
+ *       type?: (object _AdaptiveValueMeta_)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   name - (array string) The name of one or more constants to defined in the
+ *       current block.
+ *
+ *   value - (any dataType) This is the value of the constant(s).
+ *
+ *   type - (optional object _AdaptiveValueMeta_) The type of the constant(s).
+ *
+ * Returns:
+ *
+ *   (any dataType) The value assigned.
+ */
+const afw_value_t *
+afw_function_execute_const(
+    afw_function_execute_t *x);
+
+/** @brief Function definition continue */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_continue;
+
+/**
+ * @brief Adaptive Function `continue`
+ * @param x function execute parameter.
+ *
+ * This is a special function that can be called in the body of a loop function
+ * to test the condition and, if true, start evaluating the body again. If
+ * called outside of a loop body, an error is thrown.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function continue(
+ *   
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (any dataType) This function does not return.
+ */
+const afw_value_t *
+afw_function_execute_continue(
+    afw_function_execute_t *x);
+
+/** @brief Function definition do_while */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_do_while;
+
+/**
+ * @brief Adaptive Function `do_while`
+ * @param x function execute parameter.
+ *
+ * This creates a new structured block with a new nested variable scope.
+ * 
+ * This function will evaluate an array of values (statements) at least once
+ * while a condition is true. See the related functions 'break', 'continue',
+ * 'return' and 'throw'.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function do_while(
+ *       condition: boolean,
+ *       body: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   condition - (boolean) While this condition is true, the loop will
+ *       continue. This is evaluated in the loop's scope.
+ *
+ *   body - (array) This is an array of values (statements) that are evaluated
+ *       for each iteration of the loop. Each value in body is evaluated in
+ *       order until the end of the array or until a 'break', 'continue',
+ *       'return' or 'throw' function is encountered.
+ *
+ * Returns:
+ *
+ *   (any dataType) The last value evaluated in body or null if the body is
+ *       empty.
+ */
+const afw_value_t *
+afw_function_execute_do_while(
+    afw_function_execute_t *x);
+
+/** @brief Function definition for */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_for;
+
+/**
+ * @brief Adaptive Function `for`
+ * @param x function execute parameter.
+ *
+ * This creates a new structured block with a new nested variable scope.
+ * 
+ * This function loops while condition is true. If the condition is false for
+ * the first iteration, the loop returns a null value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function for(
+ *       initial?: array,
+ *       condition?: boolean,
+ *       increment?: array,
+ *       body?: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   initial - (optional array) This is an array of values (statements) to
+ *       evaluate before the loop starts. The values will normally be a call to
+ *       the 'assign' function.
+ *
+ *   condition - (optional boolean) While this condition is true, the loop will
+ *       continue.
+ *
+ *   increment - (optional array) This is an array of values (statements) to
+ *       evaluate after each iteration of the loop. The values will normally be
+ *       a call to the 'assign' function.
+ *
+ *   body - (optional array) This is an array of values (statements) that are
+ *       evaluated for each iteration of the loop. Each value in body is
+ *       evaluated in order until the end of the array or until a 'break',
+ *       'continue', 'return' or 'throw' function is encountered.
+ *
+ * Returns:
+ *
+ *   (any dataType) The last value evaluated in body or null if condition
+ *       evaluates to false the first time.
+ */
+const afw_value_t *
+afw_function_execute_for(
+    afw_function_execute_t *x);
+
+/** @brief Function definition foreach */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_foreach;
+
+/**
+ * @brief Adaptive Function `foreach`
+ * @param x function execute parameter.
+ *
+ * This creates a new structured block with a new nested variable scope.
+ * 
+ * This function will evaluate an array of values (statements) while a
+ * condition is true with initial and increment values. The condition is tested
+ * at the beginning of the loop. If the condition is false for the first
+ * iteration, the loop returns a null value.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function foreach(
+ *       name: (array string),
+ *       value: any,
+ *       body?: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   name - (array string) Variable name(s).
+ *
+ *   value - (any dataType) Any array, object or single value.
+ *
+ *   body - (optional array) This is an array of values (statements) that are
+ *       evaluated for each iteration of the loop. Each value in body is
+ *       evaluated in order until the end of the array or until a 'break',
+ *       'continue', 'return' or 'throw' function is encountered.
+ *
+ * Returns:
+ *
+ *   (any dataType) The last value evaluated in body or null if condition
+ *       evaluates to false the first time.
+ */
+const afw_value_t *
+afw_function_execute_foreach(
+    afw_function_execute_t *x);
+
+/** @brief Function definition if */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_if;
+
+/**
+ * @brief Adaptive Function `if`
+ * @param x function execute parameter.
+ *
+ * Evaluate one of two different values depending on test condition.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function if(
+ *       condition: boolean,
+ *       then: array,
+ *       else?: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   condition - (boolean) If true, parameter 'then' is evaluated for result.
+ *       If false, parameter 'else' is evaluated.
+ *
+ *   then - (array) This is the body of a structured block that is evaluated if
+ *       'condition' is true. See the 'body' parameter of the 'block' function
+ *       for information on how the body is processed.
+ *
+ *   else - (optional array) This is the body of a structured block that is
+ *       evaluated if 'condition' is false. If not specified and condition is
+ *       false, a null value is returned. See the 'body' parameter of the
+ *       'block' function for information on how the body is processed.
+ *
+ * Returns:
+ *
+ *   (any dataType) The result of evaluating 'then' or 'else'.
+ */
+const afw_value_t *
+afw_function_execute_if(
+    afw_function_execute_t *x);
+
+/** @brief Function definition let */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_let;
+
+/**
+ * @brief Adaptive Function `let`
+ * @param x function execute parameter.
+ *
+ * Declare one or more statically scoped variable locations local to the
+ * current script block and optionally assign them an initial value. These
+ * variables can be accessed and assigned different values from the current
+ * block and inner blocks.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function let(
+ *       name: (array string),
+ *       value?: any,
+ *       type?: (object _AdaptiveValueMeta_)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   name - (array string) The name of one or more variables to declared in the
+ *       current block.
+ *
+ *   value - (optional any dataType) This is the initial value of the
+ *       variable(s). If not specified, the variable will have a value of
+ *       undefined.
+ *
+ *   type - (optional object _AdaptiveValueMeta_) The type of the variable(s).
+ *
+ * Returns:
+ *
+ *   (any dataType) The value assigned.
+ */
+const afw_value_t *
+afw_function_execute_let(
+    afw_function_execute_t *x);
+
+/** @brief Function definition rethrow */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_rethrow;
+
+/**
+ * @brief Adaptive Function `rethrow`
+ * @param x function execute parameter.
+ *
+ * This is a special function that can be called to rethrow an error inside of
+ * a catch block. If called outside of a catch body, an error is thrown.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function rethrow(
+ *   
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (any dataType) This function rethrows the current error in a catch block.
+ */
+const afw_value_t *
+afw_function_execute_rethrow(
+    afw_function_execute_t *x);
+
+/** @brief Function definition return */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_return;
+
+/**
+ * @brief Adaptive Function `return`
+ * @param x function execute parameter.
+ *
+ * Return from the outermost structured block. If the expression of a lambda
+ * function is a block function, this will effectively return from the lambda
+ * function. If called outside of a structured block, an error is thrown.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function return(
+ *       value?: any
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (optional any dataType) The value to evaluate that the outermost
+ *       block will return. If not specified, the last evaluated value or a
+ *       null value will be returned.
+ *
+ * Returns:
+ *
+ *   (any dataType) This function returns from the outermost structured block
+ *       with the last evaluated value.
+ */
+const afw_value_t *
+afw_function_execute_return(
+    afw_function_execute_t *x);
+
+/** @brief Function definition switch */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_switch;
+
+/**
+ * @brief Adaptive Function `switch`
+ * @param x function execute parameter.
+ *
+ * Support for switch statement.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function switch(
+ *       predicate: (function (any value1: any, value2: any): boolean),
+ *       value1: any,
+ *       case_clause_1: any,
+ *       case_clause_2: any,
+ *       ...case_clause_rest: (array of any)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   predicate - (function (any value1: any, value2: any): boolean) The
+ *       predicate is passed two parameters and must return a boolean. The
+ *       first parameter passed is the evaluated value of the value1 parameter
+ *       and the second is the value2 from a case clause. This predicate will
+ *       often be 'eqx' to use the exactly equal function but can also be any
+ *       other function such as 'regexp_match' or a lambda function.
+ *
+ *   value1 - (any dataType) The first parameter passed to the predicate.
+ *
+ *   case_clause - (2 or more any dataType) This is one or more case clauses
+ *       which are pairs of a value2 parameter followed by a statement list or
+ *       undefined parameter. One value2 can be undefined to indicate the
+ *       default case clause.
+ *       
+ *       For the first value2 that is undefined or calling the predicate
+ *       returns true, the statement list followed by any statement lists of
+ *       subsequent case clauses are executed until a break or return is
+ *       encountered. The predicate is called with value1 and the case clause's
+ *       value2.
+ *
+ * Returns:
+ *
+ *   (any dataType)
+ */
+const afw_value_t *
+afw_function_execute_switch(
+    afw_function_execute_t *x);
+
+/** @brief Function definition throw */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_throw;
+
+/**
+ * @brief Adaptive Function `throw`
+ * @param x function execute parameter.
+ *
+ * This throws an error that can be caught by a try/catch block. An error
+ * object of object type _AdaptiveError_ will be available in the catch block.
+ * Its 'id' property will be set to 'throw'. The other properties set based on
+ * the parameters specified and where this function is called.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function throw(
+ *       message: string,
+ *       additional?: any
+ *   ): null;
+ * ```
+ *
+ * Parameters:
+ *
+ *   message - (string) This is the message that will be included in the
+ *       _AdaptiveError_ error object available in the catch block.
+ *
+ *   additional - (optional any dataType) Optional additional information that
+ *       will be available as a 'additional' property in the error object.
+ *
+ * Returns:
+ *
+ *   (null)
+ */
+const afw_value_t *
+afw_function_execute_throw(
+    afw_function_execute_t *x);
+
+/** @brief Function definition try */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_try;
+
+/**
+ * @brief Adaptive Function `try`
+ * @param x function execute parameter.
+ *
+ * This creates a new structured block with a new nested variable scope.
+ * 
+ * This function will evaluate the body statements. If an error is thrown and
+ * there is an optional catch, the error will be 'caught' and the associated
+ * statements will be evaluated. The optional finally statements are always
+ * evaluated after the body and catch statements. See the related functions
+ * 'break', 'continue', 'return' and 'throw'.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function try(
+ *       body: array,
+ *       finally?: array,
+ *       catch?: array,
+ *       error?: (object _AdaptiveObjectType_)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   body - (array) This is an array of values (statements) that are evaluated.
+ *       Each value in body is evaluated in order until the end of the list or
+ *       until a 'break', 'continue', 'return' or 'throw' function is
+ *       encountered.
+ *
+ *   finally - (optional array) This is an array of values (statements) that
+ *       are evaluated after the try and catch statements even if an error
+ *       occurs. Each value in body is evaluated in order until the end of the
+ *       list or until a 'break', 'continue', 'return' or 'throw' function is
+ *       encountered.
+ *
+ *   catch - (optional array) This is an array of values (statements) that are
+ *       evaluated when an error is thrown while evaluating the body. Each
+ *       value in body is evaluated in order until the end of the list or until
+ *       a 'break', 'continue', 'return' or 'throw' function is encountered.
+ *
+ *   error - (optional object _AdaptiveObjectType_) The error object thrown.
+ *       This is only available in the catch block. See adaptive object type
+ *       _AdaptiveObjectType_ for details.
+ *
+ * Returns:
+ *
+ *   (any dataType) The last value evaluated in body.
+ */
+const afw_value_t *
+afw_function_execute_try(
+    afw_function_execute_t *x);
+
+/** @brief Function definition while */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_while;
+
+/**
+ * @brief Adaptive Function `while`
+ * @param x function execute parameter.
+ *
+ * This creates a new structured block with a new nested variable scope.
+ * 
+ * This function will evaluate an array of values (statements) while a
+ * condition is true. The condition is tested at the beginning of the loop. If
+ * the condition is false for the first iteration, the loop returns a null
+ * value. See the related functions 'break', 'continue', 'return' and 'throw'.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function while(
+ *       condition: boolean,
+ *       body: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   condition - (boolean) While this condition is true, the loop will
+ *       continue. This is evaluated in the loop's scope.
+ *
+ *   body - (array) This is an array of values (statements) that are evaluated
+ *       for each iteration of the loop. Each value in body is evaluated in
+ *       order until the end of the list or until a 'break', 'continue',
+ *       'return' or 'throw' function is encountered.
+ *
+ * Returns:
+ *
+ *   (any dataType) The last value evaluated in body or null if condition
+ *       evaluates to false the first time.
+ */
+const afw_value_t *
+afw_function_execute_while(
+    afw_function_execute_t *x);
+
+/** @} */
+
+
+/** @addtogroup afw_functions_compiler_test_script compiler_test_script functions
+ *
+ * compiler_test_script adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition test_script_runtime_support */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_test_script_runtime_support;
+
+/**
+ * @brief Adaptive Function `test_script_runtime_support`
+ * @param x function execute parameter.
+ *
+ * This is a function called internally as the result of a test_script compile.
+ * This function is not intended to be called directly.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function test_script_runtime_support(
+ *       testScriptObject: (object _AdaptiveTestScriptResult_)
+ *   ): (object _AdaptiveTestScriptResult_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   testScriptObject - (object _AdaptiveTestScriptResult_) A test script
+ *       results object with the required evaluation result properties missing.
+ *       The sources will be evaluated and the corresponding test result
+ *       properties will be set.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveTestScriptResult_) The testScriptObject object with test
+ *       result properties set.
+ */
+const afw_value_t *
+afw_function_execute_test_script_runtime_support(
+    afw_function_execute_t *x);
+
+/** @} */
+
+
 /** @addtogroup afw_functions_compiler compiler functions
  *
  * compiler adaptive functions.
@@ -6417,44 +7290,6 @@ afw_function_definition_test_script;
  */
 const afw_value_t *
 afw_function_execute_test_script(
-    afw_function_execute_t *x);
-
-/** @brief Function definition test_script_runtime_support */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_test_script_runtime_support;
-
-/**
- * @brief Adaptive Function `test_script_runtime_support`
- * @param x function execute parameter.
- *
- * This is a function called internally as the result of a test_script compile.
- * This function is not intended to be called directly.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * Declaration:
- *
- * ```
- *   function test_script_runtime_support(
- *       testScriptObject: (object _AdaptiveTestScriptResult_)
- *   ): (object _AdaptiveTestScriptResult_);
- * ```
- *
- * Parameters:
- *
- *   testScriptObject - (object _AdaptiveTestScriptResult_) A test script
- *       results object with the required evaluation result properties missing.
- *       The sources will be evaluated and the corresponding test result
- *       properties will be set.
- *
- * Returns:
- *
- *   (object _AdaptiveTestScriptResult_) The testScriptObject object with test
- *       result properties set.
- */
-const afw_value_t *
-afw_function_execute_test_script_runtime_support(
     afw_function_execute_t *x);
 
 /** @brief Function definition test_template */
@@ -16979,43 +17814,6 @@ afw_function_execute_or(
  * @{
  */
 
-/** @brief Function definition annotate */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_annotate;
-
-/**
- * @brief Adaptive Function `annotate`
- * @param x function execute parameter.
- *
- * Create an annotated value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function annotate(
- *       annotation: (object _AdaptiveAnnotation_),
- *       value: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   annotation - (object _AdaptiveAnnotation_) Annotation for value.
- *
- *   value - (any dataType) Any value. This value will not be evaluated.
- *
- * Returns:
- *
- *   (any dataType) Unevaluated annotated value ready for use by function
- *       evaluate().
- */
-const afw_value_t *
-afw_function_execute_annotate(
-    afw_function_execute_t *x);
-
 /** @brief Function definition compare_uri */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compare_uri;
@@ -17363,80 +18161,6 @@ const afw_value_t *
 afw_function_execute_now_utc(
     afw_function_execute_t *x);
 
-/** @brief Function definition nullish_coalescing */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_nullish_coalescing;
-
-/**
- * @brief Adaptive Function `nullish_coalescing`
- * @param x function execute parameter.
- *
- * Returns the first value of values that is not null or undefined leaving the
- * remaining values unevaluated.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function nullish_coalescing(
- *       values_1: any,
- *       values_2: any,
- *       ...values_rest: (array of any)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   values - (2 or more any dataType)
- *
- * Returns:
- *
- *   (any dataType) The first value of values that is not null or undefined.
- */
-const afw_value_t *
-afw_function_execute_nullish_coalescing(
-    afw_function_execute_t *x);
-
-/** @brief Function definition optional_chaining */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_optional_chaining;
-
-/**
- * @brief Adaptive Function `optional_chaining`
- * @param x function execute parameter.
- *
- * Returns undefined if arg1 is null or undefined without evaluating arg2, but
- * otherwise returns evaluated value of arg2.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function optional_chaining(
- *       arg1: any,
- *       arg2: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (any dataType)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (any dataType) Undefined value if arg1 is null or undefined but otherwise
- *       evaluated arg2.
- */
-const afw_value_t *
-afw_function_execute_optional_chaining(
-    afw_function_execute_t *x);
-
 /** @brief Function definition parse_uri */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_parse_uri;
@@ -17664,40 +18388,6 @@ afw_function_definition_variable_is_not_null;
  */
 const afw_value_t *
 afw_function_execute_variable_is_not_null(
-    afw_function_execute_t *x);
-
-/** @brief Function definition void_operator */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_void_operator;
-
-/**
- * @brief Adaptive Function `void_operator`
- * @param x function execute parameter.
- *
- * This is the support function for the void operator which evaluates value and
- * returns undefined.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function void_operator(
- *       value: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   value - (any dataType) This is the value to evaluate.
- *
- * Returns:
- *
- *   (any dataType) This always returns undefined.
- */
-const afw_value_t *
-afw_function_execute_void_operator(
     afw_function_execute_t *x);
 
 /** @} */
@@ -25238,45 +25928,6 @@ afw_function_definition_union_rfc822Name;
  * @{
  */
 
-/** @brief Function definition assign */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_assign;
-
-/**
- * @brief Adaptive Function `assign`
- * @param x function execute parameter.
- *
- * Assign a value to the innermost structured block definition of a variable.
- * If the variable is not defined, the variable is defined in the innermost
- * structured block. An error is thrown if not called from an array of values
- * (statements) in a structured function.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * Declaration:
- *
- * ```
- *   function assign(
- *       name: string,
- *       value: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   name - (string) Variable name.
- *
- *   value - (any dataType) This is the value to assign to the variable.
- *
- * Returns:
- *
- *   (any dataType) The value assigned.
- */
-const afw_value_t *
-afw_function_execute_assign(
-    afw_function_execute_t *x);
-
 /** @brief Function definition bag<script> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_script;
@@ -25345,43 +25996,6 @@ afw_function_definition_bag_size_script;
  * __________
  */
 
-/** @brief Function definition break */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_break;
-
-/**
- * @brief Adaptive Function `break`
- * @param x function execute parameter.
- *
- * This is a special function that can be called to break out of the body of a
- * loop. If called outside of a loop body, an error is thrown.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function break(
- *       value?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   value - (optional any dataType) The value to evaluate that the enclosing
- *       loop will return. If not specified, the last evaluated value or a null
- *       value will be returned.
- *
- * Returns:
- *
- *   (any dataType) This function returns from the body of a loop with the last
- *       evaluated value.
- */
-const afw_value_t *
-afw_function_execute_break(
-    afw_function_execute_t *x);
-
 /** @brief Function definition compile<script> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_script;
@@ -25423,126 +26037,6 @@ afw_function_definition_compile_script;
  */
 const afw_value_t *
 afw_function_execute_compile_script(
-    afw_function_execute_t *x);
-
-/** @brief Function definition const */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_const;
-
-/**
- * @brief Adaptive Function `const`
- * @param x function execute parameter.
- *
- * Define one or more statically scoped constants local to the current script
- * block with a permanent value. These constants can be accessed from the
- * current block and inner blocks, but can not be assigned a different value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function const(
- *       name: (array string),
- *       value: any,
- *       type?: (object _AdaptiveValueMeta_)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   name - (array string) The name of one or more constants to defined in the
- *       current block.
- *
- *   value - (any dataType) This is the value of the constant(s).
- *
- *   type - (optional object _AdaptiveValueMeta_) The type of the constant(s).
- *
- * Returns:
- *
- *   (any dataType) The value assigned.
- */
-const afw_value_t *
-afw_function_execute_const(
-    afw_function_execute_t *x);
-
-/** @brief Function definition continue */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_continue;
-
-/**
- * @brief Adaptive Function `continue`
- * @param x function execute parameter.
- *
- * This is a special function that can be called in the body of a loop function
- * to test the condition and, if true, start evaluating the body again. If
- * called outside of a loop body, an error is thrown.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function continue(
- *   
- *   ): any;
- * ```
- *
- * Parameters:
- *
- * Returns:
- *
- *   (any dataType) This function does not return.
- */
-const afw_value_t *
-afw_function_execute_continue(
-    afw_function_execute_t *x);
-
-/** @brief Function definition do_while */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_do_while;
-
-/**
- * @brief Adaptive Function `do_while`
- * @param x function execute parameter.
- *
- * This creates a new structured block with a new nested variable scope.
- * 
- * This function will evaluate an array of values (statements) at least once
- * while a condition is true. See the related functions 'break', 'continue',
- * 'return' and 'throw'.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function do_while(
- *       condition: boolean,
- *       body: array
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   condition - (boolean) While this condition is true, the loop will
- *       continue. This is evaluated in the loop's scope.
- *
- *   body - (array) This is an array of values (statements) that are evaluated
- *       for each iteration of the loop. Each value in body is evaluated in
- *       order until the end of the array or until a 'break', 'continue',
- *       'return' or 'throw' function is encountered.
- *
- * Returns:
- *
- *   (any dataType) The last value evaluated in body or null if the body is
- *       empty.
- */
-const afw_value_t *
-afw_function_execute_do_while(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<script> */
@@ -25669,108 +26163,6 @@ const afw_value_t *
 afw_function_execute_evaluate_script(
     afw_function_execute_t *x);
 
-/** @brief Function definition for */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_for;
-
-/**
- * @brief Adaptive Function `for`
- * @param x function execute parameter.
- *
- * This creates a new structured block with a new nested variable scope.
- * 
- * This function loops while condition is true. If the condition is false for
- * the first iteration, the loop returns a null value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function for(
- *       initial?: array,
- *       condition?: boolean,
- *       increment?: array,
- *       body?: array
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   initial - (optional array) This is an array of values (statements) to
- *       evaluate before the loop starts. The values will normally be a call to
- *       the 'assign' function.
- *
- *   condition - (optional boolean) While this condition is true, the loop will
- *       continue.
- *
- *   increment - (optional array) This is an array of values (statements) to
- *       evaluate after each iteration of the loop. The values will normally be
- *       a call to the 'assign' function.
- *
- *   body - (optional array) This is an array of values (statements) that are
- *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the array or until a 'break',
- *       'continue', 'return' or 'throw' function is encountered.
- *
- * Returns:
- *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
- */
-const afw_value_t *
-afw_function_execute_for(
-    afw_function_execute_t *x);
-
-/** @brief Function definition foreach */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_foreach;
-
-/**
- * @brief Adaptive Function `foreach`
- * @param x function execute parameter.
- *
- * This creates a new structured block with a new nested variable scope.
- * 
- * This function will evaluate an array of values (statements) while a
- * condition is true with initial and increment values. The condition is tested
- * at the beginning of the loop. If the condition is false for the first
- * iteration, the loop returns a null value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function foreach(
- *       name: (array string),
- *       value: any,
- *       body?: array
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   name - (array string) Variable name(s).
- *
- *   value - (any dataType) Any array, object or single value.
- *
- *   body - (optional array) This is an array of values (statements) that are
- *       evaluated for each iteration of the loop. Each value in body is
- *       evaluated in order until the end of the array or until a 'break',
- *       'continue', 'return' or 'throw' function is encountered.
- *
- * Returns:
- *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
- */
-const afw_value_t *
-afw_function_execute_foreach(
-    afw_function_execute_t *x);
-
 /** @brief Function definition ge<script> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_script;
@@ -25847,51 +26239,6 @@ afw_function_definition_gt_script;
  * __________
  */
 
-/** @brief Function definition if */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_if;
-
-/**
- * @brief Adaptive Function `if`
- * @param x function execute parameter.
- *
- * Evaluate one of two different values depending on test condition.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function if(
- *       condition: boolean,
- *       then: array,
- *       else?: array
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   condition - (boolean) If true, parameter 'then' is evaluated for result.
- *       If false, parameter 'else' is evaluated.
- *
- *   then - (array) This is the body of a structured block that is evaluated if
- *       'condition' is true. See the 'body' parameter of the 'block' function
- *       for information on how the body is processed.
- *
- *   else - (optional array) This is the body of a structured block that is
- *       evaluated if 'condition' is false. If not specified and condition is
- *       false, a null value is returned. See the 'body' parameter of the
- *       'block' function for information on how the body is processed.
- *
- * Returns:
- *
- *   (any dataType) The result of evaluating 'then' or 'else'.
- */
-const afw_value_t *
-afw_function_execute_if(
-    afw_function_execute_t *x);
-
 /** @brief Function definition is<script> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_is_script;
@@ -25963,51 +26310,6 @@ afw_function_definition_le_script;
  *
  * __________
  */
-
-/** @brief Function definition let */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_let;
-
-/**
- * @brief Adaptive Function `let`
- * @param x function execute parameter.
- *
- * Declare one or more statically scoped variable locations local to the
- * current script block and optionally assign them an initial value. These
- * variables can be accessed and assigned different values from the current
- * block and inner blocks.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function let(
- *       name: (array string),
- *       value?: any,
- *       type?: (object _AdaptiveValueMeta_)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   name - (array string) The name of one or more variables to declared in the
- *       current block.
- *
- *   value - (optional any dataType) This is the initial value of the
- *       variable(s). If not specified, the variable will have a value of
- *       undefined.
- *
- *   type - (optional object _AdaptiveValueMeta_) The type of the variable(s).
- *
- * Returns:
- *
- *   (any dataType) The value assigned.
- */
-const afw_value_t *
-afw_function_execute_let(
-    afw_function_execute_t *x);
 
 /** @brief Function definition lt<script> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
@@ -26129,76 +26431,6 @@ afw_function_definition_nex_script;
  * __________
  */
 
-/** @brief Function definition rethrow */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_rethrow;
-
-/**
- * @brief Adaptive Function `rethrow`
- * @param x function execute parameter.
- *
- * This is a special function that can be called to rethrow an error inside of
- * a catch block. If called outside of a catch body, an error is thrown.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function rethrow(
- *   
- *   ): any;
- * ```
- *
- * Parameters:
- *
- * Returns:
- *
- *   (any dataType) This function rethrows the current error in a catch block.
- */
-const afw_value_t *
-afw_function_execute_rethrow(
-    afw_function_execute_t *x);
-
-/** @brief Function definition return */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_return;
-
-/**
- * @brief Adaptive Function `return`
- * @param x function execute parameter.
- *
- * Return from the outermost structured block. If the expression of a lambda
- * function is a block function, this will effectively return from the lambda
- * function. If called outside of a structured block, an error is thrown.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function return(
- *       value?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   value - (optional any dataType) The value to evaluate that the outermost
- *       block will return. If not specified, the last evaluated value or a
- *       null value will be returned.
- *
- * Returns:
- *
- *   (any dataType) This function returns from the outermost structured block
- *       with the last evaluated value.
- */
-const afw_value_t *
-afw_function_execute_return(
-    afw_function_execute_t *x);
-
 /** @brief Function definition script */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_script;
@@ -26236,208 +26468,6 @@ afw_function_definition_script;
  *
  * __________
  */
-
-/** @brief Function definition switch */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_switch;
-
-/**
- * @brief Adaptive Function `switch`
- * @param x function execute parameter.
- *
- * Support for switch statement.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function switch(
- *       predicate: (function (any value1: any, value2: any): boolean),
- *       value1: any,
- *       case_clause_1: any,
- *       case_clause_2: any,
- *       ...case_clause_rest: (array of any)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters and must return a boolean. The
- *       first parameter passed is the evaluated value of the value1 parameter
- *       and the second is the value2 from a case clause. This predicate will
- *       often be 'eqx' to use the exactly equal function but can also be any
- *       other function such as 'regexp_match' or a lambda function.
- *
- *   value1 - (any dataType) The first parameter passed to the predicate.
- *
- *   case_clause - (2 or more any dataType) This is one or more case clauses
- *       which are pairs of a value2 parameter followed by a statement list or
- *       undefined parameter. One value2 can be undefined to indicate the
- *       default case clause.
- *       
- *       For the first value2 that is undefined or calling the predicate
- *       returns true, the statement list followed by any statement lists of
- *       subsequent case clauses are executed until a break or return is
- *       encountered. The predicate is called with value1 and the case clause's
- *       value2.
- *
- * Returns:
- *
- *   (any dataType)
- */
-const afw_value_t *
-afw_function_execute_switch(
-    afw_function_execute_t *x);
-
-/** @brief Function definition throw */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_throw;
-
-/**
- * @brief Adaptive Function `throw`
- * @param x function execute parameter.
- *
- * This throws an error that can be caught by a try/catch block. An error
- * object of object type _AdaptiveError_ will be available in the catch block.
- * Its 'id' property will be set to 'throw'. The other properties set based on
- * the parameters specified and where this function is called.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function throw(
- *       message: string,
- *       additional?: any
- *   ): null;
- * ```
- *
- * Parameters:
- *
- *   message - (string) This is the message that will be included in the
- *       _AdaptiveError_ error object available in the catch block.
- *
- *   additional - (optional any dataType) Optional additional information that
- *       will be available as a 'additional' property in the error object.
- *
- * Returns:
- *
- *   (null)
- */
-const afw_value_t *
-afw_function_execute_throw(
-    afw_function_execute_t *x);
-
-/** @brief Function definition try */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_try;
-
-/**
- * @brief Adaptive Function `try`
- * @param x function execute parameter.
- *
- * This creates a new structured block with a new nested variable scope.
- * 
- * This function will evaluate the body statements. If an error is thrown and
- * there is an optional catch, the error will be 'caught' and the associated
- * statements will be evaluated. The optional finally statements are always
- * evaluated after the body and catch statements. See the related functions
- * 'break', 'continue', 'return' and 'throw'.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function try(
- *       body: array,
- *       finally?: array,
- *       catch?: array,
- *       error?: (object _AdaptiveObjectType_)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   body - (array) This is an array of values (statements) that are evaluated.
- *       Each value in body is evaluated in order until the end of the list or
- *       until a 'break', 'continue', 'return' or 'throw' function is
- *       encountered.
- *
- *   finally - (optional array) This is an array of values (statements) that
- *       are evaluated after the try and catch statements even if an error
- *       occurs. Each value in body is evaluated in order until the end of the
- *       list or until a 'break', 'continue', 'return' or 'throw' function is
- *       encountered.
- *
- *   catch - (optional array) This is an array of values (statements) that are
- *       evaluated when an error is thrown while evaluating the body. Each
- *       value in body is evaluated in order until the end of the list or until
- *       a 'break', 'continue', 'return' or 'throw' function is encountered.
- *
- *   error - (optional object _AdaptiveObjectType_) The error object thrown.
- *       This is only available in the catch block. See adaptive object type
- *       _AdaptiveObjectType_ for details.
- *
- * Returns:
- *
- *   (any dataType) The last value evaluated in body.
- */
-const afw_value_t *
-afw_function_execute_try(
-    afw_function_execute_t *x);
-
-/** @brief Function definition while */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_while;
-
-/**
- * @brief Adaptive Function `while`
- * @param x function execute parameter.
- *
- * This creates a new structured block with a new nested variable scope.
- * 
- * This function will evaluate an array of values (statements) while a
- * condition is true. The condition is tested at the beginning of the loop. If
- * the condition is false for the first iteration, the loop returns a null
- * value. See the related functions 'break', 'continue', 'return' and 'throw'.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function while(
- *       condition: boolean,
- *       body: array
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   condition - (boolean) While this condition is true, the loop will
- *       continue. This is evaluated in the loop's scope.
- *
- *   body - (array) This is an array of values (statements) that are evaluated
- *       for each iteration of the loop. Each value in body is evaluated in
- *       order until the end of the list or until a 'break', 'continue',
- *       'return' or 'throw' function is encountered.
- *
- * Returns:
- *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
- */
-const afw_value_t *
-afw_function_execute_while(
-    afw_function_execute_t *x);
 
 /** @} */
 

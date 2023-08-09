@@ -1,0 +1,5 @@
+{
+    "brief": "Adaptive compiler runtime support for expression",
+    "category": "compiler_expression",
+    "description": "These are functions that support compiled expressions at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+}

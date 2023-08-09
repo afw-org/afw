@@ -1,6 +1,6 @@
 {
     "brief": "Annotate a value",
-    "category": "miscellaneous",
+    "category": "compiler_expression",
     "description": "Create an annotated value.",
     "functionId": "annotate",
     "functionLabel": "annotate",

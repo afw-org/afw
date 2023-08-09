@@ -5,7 +5,6 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
-    annotate 
     compare_uri 
     debug 
     execution_start_time_local 
@@ -16,15 +15,12 @@ our @EXPORT_OK = qw(
     log 
     now_local 
     now_utc 
-    nullish_coalescing 
-    optional_chaining 
     parse_uri 
     perform 
     trace 
     variable_exists 
     variable_get 
     variable_is_not_null 
-    void_operator 
 );
 
 =head1 NAME
@@ -34,21 +30,6 @@ afw::miscellaneous - Perl module for miscellaneous functions
 =head2 Functions
 
 The following functions are exported by default
-
-=head3 annotate
-
-Create an annotated value.
-Annotate a value
-
-=head4 Parameters
-
-    $annotation
-
-Annotation for value.
-
-    $value
-
-Any value. This value will not be evaluated.
 
 =head3 compare_uri
 
@@ -167,31 +148,6 @@ UTC dataTime
 
 =head4 Parameters
 
-=head3 nullish_coalescing
-
-Returns the first value of values that is not null or undefined leaving the
-remaining values unevaluated.
-Nullish coalescing
-
-=head4 Parameters
-
-    $values
-
-
-=head3 optional_chaining
-
-Returns undefined if arg1 is null or undefined without evaluating arg2, but
-otherwise returns evaluated value of arg2.
-Optional chaining
-
-=head4 Parameters
-
-    $arg1
-
-
-    $arg2
-
-
 =head3 parse_uri
 
 Parse a URI.
@@ -289,31 +245,7 @@ Determine if a variable exists and is not null
 Name of variable to check. The name can optionally be preceded with a
 qualifier followed by '::'.
 
-=head3 void_operator
-
-This is the support function for the void operator which evaluates value and
-returns undefined.
-Support for the void operator
-
-=head4 Parameters
-
-    $value
-
-This is the value to evaluate.
-
 =cut
-
-sub annotate {
-    my ($annotation, $value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "annotate");
-    $request->set("annotation", $annotation);
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
 
 sub compare_uri {
     my ($uri1, $uri2, $isValuePath, $currentPath) = @_;
@@ -430,29 +362,6 @@ sub now_utc {
     return $request->getResult();
 }
 
-sub nullish_coalescing {
-    my ($values) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "nullish_coalescing");
-    $request->set("values", $values);
-
-    return $request->getResult();
-}
-
-sub optional_chaining {
-    my ($arg1, $arg2) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "optional_chaining");
-    $request->set("arg1", $arg1);
-    $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
 sub parse_uri {
     my ($uri, $isValuePath, $currentPath) = @_;
 
@@ -530,17 +439,6 @@ sub variable_is_not_null {
 
     $request->set("function" => "variable_is_not_null");
     $request->set("name", $name);
-
-    return $request->getResult();
-}
-
-sub void_operator {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "void_operator");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

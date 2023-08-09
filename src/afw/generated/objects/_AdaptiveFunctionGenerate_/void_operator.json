@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwVoidOperator",
     "brief": "Support for the void operator",
     "camelCaseFunctionLabel": "voidOperator",
-    "category": "miscellaneous",
+    "category": "compiler_expression",
     "description": "This is the support function for the void operator which evaluates value and returns undefined.",
     "functionId": "void_operator",
     "functionLabel": "void_operator",

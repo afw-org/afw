@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwConst",
     "brief": "Define one or more constants in the current block",
     "camelCaseFunctionLabel": "const",
-    "category": "script",
+    "category": "compiler_script",
     "description": "Define one or more statically scoped constants local to the current script block with a permanent value. These constants can be accessed from the current block and inner blocks, but can not be assigned a different value.",
     "functionId": "const",
     "functionLabel": "const",

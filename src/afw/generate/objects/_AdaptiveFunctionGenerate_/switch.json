@@ -1,6 +1,6 @@
 {
     "brief": "All combinations true",
-    "category": "script",
+    "category": "compiler_script",
     "description": "Support for switch statement.",
     "functionId": "switch",
     "functionLabel": "switch",

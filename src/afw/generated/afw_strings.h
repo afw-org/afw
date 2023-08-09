@@ -4673,6 +4673,24 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compiler;
 /** @brief afw_utf8_t for string compiler_assert */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compiler_assert;
 
+/** @brief define for quoted string compiler_expression */
+#define AFW_Q_compiler_expression "compiler_expression"
+
+/** @brief afw_utf8_t for string compiler_expression */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compiler_expression;
+
+/** @brief define for quoted string compiler_script */
+#define AFW_Q_compiler_script "compiler_script"
+
+/** @brief afw_utf8_t for string compiler_script */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compiler_script;
+
+/** @brief define for quoted string compiler_test_script */
+#define AFW_Q_compiler_test_script "compiler_test_script"
+
+/** @brief afw_utf8_t for string compiler_test_script */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compiler_test_script;
+
 /** @brief define for quoted string componentType */
 #define AFW_Q_componentType "componentType"
 

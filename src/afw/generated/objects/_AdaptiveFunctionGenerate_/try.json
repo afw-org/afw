@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwTry",
     "brief": "Evaluate an array of values (statements) as a try block with optional catch and finally statements",
     "camelCaseFunctionLabel": "try",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be 'caught' and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions 'break', 'continue', 'return' and 'throw'.",
     "functionId": "try",
     "functionLabel": "try",

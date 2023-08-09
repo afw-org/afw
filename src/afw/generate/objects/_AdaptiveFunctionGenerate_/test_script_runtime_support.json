@@ -1,6 +1,6 @@
 {
     "brief": "Internal test script runtime support",
-    "category": "compiler",
+    "category": "compiler_test_script",
     "description": "This is a function called internally as the result of a test_script compile. This function is not intended to be called directly.",
     "functionId": "test_script_runtime_support",
     "functionLabel": "test_script_runtime_support",

@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwBreak",
     "brief": "Break out of a block",
     "camelCaseFunctionLabel": "break",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This is a special function that can be called to break out of the body of a loop. If called outside of a loop body, an error is thrown.",
     "functionId": "break",
     "functionLabel": "break",

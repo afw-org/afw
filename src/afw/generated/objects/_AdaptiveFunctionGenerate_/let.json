@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwLet",
     "brief": "Declare one or more variables in the current block",
     "camelCaseFunctionLabel": "let",
-    "category": "script",
+    "category": "compiler_script",
     "description": "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks.",
     "functionId": "let",
     "functionLabel": "let",

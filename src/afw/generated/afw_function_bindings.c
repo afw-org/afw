@@ -19789,6 +19789,2878 @@ afw_function_definition_union_boolean = {
     false
 };
 
+/* ---------- annotate ---------- */
+
+static const afw_utf8_t
+impl_object_path__annotate =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/annotate");
+
+static const afw_runtime_object_indirect_t
+impl_object__annotate = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_annotate,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__annotate
+        }
+    },
+    (void *)&afw_function_definition_annotate
+};
+
+static const afw_value_function_parameter_t
+impl_annotate_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Unevaluated annotated value ready for use by function evaluate()."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_annotate_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveAnnotation_"),
+    AFW_UTF8_LITERAL("annotation"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Annotation for value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_annotate_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Any value. This value will not be evaluated."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_annotate_parameters[] = {
+    &impl_annotate_parameter_1,
+    &impl_annotate_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_annotate = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__annotate,
+    AFW_UTF8_LITERAL("compiler_expression"),
+    AFW_UTF8_LITERAL("annotate"),
+    AFW_UTF8_LITERAL("annotate"),
+    AFW_UTF8_LITERAL("annotate"),
+    AFW_UTF8_LITERAL("annotate"),
+    AFW_UTF8_LITERAL("afwAnnotate"),
+    AFW_UTF8_LITERAL("Annotate a value"),
+    AFW_UTF8_LITERAL("Create an annotated value."),
+    AFW_UTF8_LITERAL("(annotation: (object _AdaptiveAnnotation_), value: any): any"),
+    AFW_UTF8_LITERAL("/* Annotate a value */\nfunction annotate (\n    annotation: (object _AdaptiveAnnotation_),\n    value: any\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_annotate,
+    NULL,
+    2,
+    2,
+    &impl_annotate_parameters[0],
+    2,
+    &impl_annotate_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- nullish_coalescing ---------- */
+
+static const afw_utf8_t
+impl_object_path__nullish_coalescing =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/nullish_coalescing");
+
+static const afw_runtime_object_indirect_t
+impl_object__nullish_coalescing = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_nullish_coalescing,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__nullish_coalescing
+        }
+    },
+    (void *)&afw_function_definition_nullish_coalescing
+};
+
+static const afw_value_function_parameter_t
+impl_nullish_coalescing_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The first value of values that is not null or undefined."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_nullish_coalescing_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("values"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    2,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_nullish_coalescing_parameters[] = {
+    &impl_nullish_coalescing_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_nullish_coalescing = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__nullish_coalescing,
+    AFW_UTF8_LITERAL("compiler_expression"),
+    AFW_UTF8_LITERAL("nullish_coalescing"),
+    AFW_UTF8_LITERAL("nullish_coalescing"),
+    AFW_UTF8_LITERAL("nullish_coalescing"),
+    AFW_UTF8_LITERAL("nullishCoalescing"),
+    AFW_UTF8_LITERAL("afwNullishCoalescing"),
+    AFW_UTF8_LITERAL("Nullish coalescing"),
+    AFW_UTF8_LITERAL("Returns the first value of values that is not null or undefined leaving the remaining values unevaluated."),
+    AFW_UTF8_LITERAL("(values_1: any, values_2: any, ...values_rest: (array of any)): any"),
+    AFW_UTF8_LITERAL("/* Nullish coalescing */\nfunction nullish_coalescing (\n    values_1: any,\n    values_2: any,\n    ...values_rest: (array of any)\n): any;\n"),
+    AFW_UTF8_LITERAL("??"),
+    afw_function_execute_nullish_coalescing,
+    NULL,
+    2,
+    -1,
+    &impl_nullish_coalescing_parameters[0],
+    1,
+    &impl_nullish_coalescing_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- optional_chaining ---------- */
+
+static const afw_utf8_t
+impl_object_path__optional_chaining =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/optional_chaining");
+
+static const afw_runtime_object_indirect_t
+impl_object__optional_chaining = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_optional_chaining,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__optional_chaining
+        }
+    },
+    (void *)&afw_function_definition_optional_chaining
+};
+
+static const afw_value_function_parameter_t
+impl_optional_chaining_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Undefined value if arg1 is null or undefined but otherwise evaluated arg2."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_optional_chaining_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg1"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_optional_chaining_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("arg2"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_optional_chaining_parameters[] = {
+    &impl_optional_chaining_parameter_1,
+    &impl_optional_chaining_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_optional_chaining = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__optional_chaining,
+    AFW_UTF8_LITERAL("compiler_expression"),
+    AFW_UTF8_LITERAL("optional_chaining"),
+    AFW_UTF8_LITERAL("optional_chaining"),
+    AFW_UTF8_LITERAL("optional_chaining"),
+    AFW_UTF8_LITERAL("optionalChaining"),
+    AFW_UTF8_LITERAL("afwOptionalChaining"),
+    AFW_UTF8_LITERAL("Optional chaining"),
+    AFW_UTF8_LITERAL("Returns undefined if arg1 is null or undefined without evaluating arg2, but otherwise returns evaluated value of arg2."),
+    AFW_UTF8_LITERAL("(arg1: any, arg2: any): any"),
+    AFW_UTF8_LITERAL("/* Optional chaining */\nfunction optional_chaining (\n    arg1: any,\n    arg2: any\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_optional_chaining,
+    NULL,
+    2,
+    2,
+    &impl_optional_chaining_parameters[0],
+    2,
+    &impl_optional_chaining_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- void_operator ---------- */
+
+static const afw_utf8_t
+impl_object_path__void_operator =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/void_operator");
+
+static const afw_runtime_object_indirect_t
+impl_object__void_operator = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_void_operator,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__void_operator
+        }
+    },
+    (void *)&afw_function_definition_void_operator
+};
+
+static const afw_value_function_parameter_t
+impl_void_operator_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("undefined"),
+    AFW_UTF8_LITERAL("This always returns undefined."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_void_operator_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL("Value"),
+    AFW_UTF8_LITERAL("This is the value to evaluate."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_void_operator_parameters[] = {
+    &impl_void_operator_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_void_operator = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__void_operator,
+    AFW_UTF8_LITERAL("compiler_expression"),
+    AFW_UTF8_LITERAL("void_operator"),
+    AFW_UTF8_LITERAL("void_operator"),
+    AFW_UTF8_LITERAL("void_operator"),
+    AFW_UTF8_LITERAL("voidOperator"),
+    AFW_UTF8_LITERAL("afwVoidOperator"),
+    AFW_UTF8_LITERAL("Support for the void operator"),
+    AFW_UTF8_LITERAL("This is the support function for the void operator which evaluates value and returns undefined."),
+    AFW_UTF8_LITERAL("(value: any): any"),
+    AFW_UTF8_LITERAL("/* Support for the void operator */\nfunction void_operator (\n    value: any /* Value */\n): any; /* undefined */\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_void_operator,
+    NULL,
+    1,
+    1,
+    &impl_void_operator_parameters[0],
+    1,
+    &impl_void_operator_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
+/* ---------- assign ---------- */
+
+static const afw_utf8_t
+impl_object_path__assign =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/assign");
+
+static const afw_runtime_object_indirect_t
+impl_object__assign = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_assign,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__assign
+        }
+    },
+    (void *)&afw_function_definition_assign
+};
+
+static const afw_value_function_parameter_t
+impl_assign_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The value assigned."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_assign_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("name"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Variable name"),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_assign_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the value to assign to the variable."),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_assign_parameters[] = {
+    &impl_assign_parameter_1,
+    &impl_assign_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_assign_sideEffects[] = {
+    AFW_UTF8_LITERAL("Value assigned"),
+    { NULL }
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_assign = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__assign,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("assign"),
+    AFW_UTF8_LITERAL("assign"),
+    AFW_UTF8_LITERAL("assign"),
+    AFW_UTF8_LITERAL("assign"),
+    AFW_UTF8_LITERAL("afwAssign"),
+    AFW_UTF8_LITERAL("Assign a value to a defined variable"),
+    AFW_UTF8_LITERAL("Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from an array of values (statements) in a structured function."),
+    AFW_UTF8_LITERAL("(name: string, value: any): any"),
+    AFW_UTF8_LITERAL("/* Assign a value to a defined variable */\nfunction assign (\n    name: string,\n    value: any\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_assign,
+    NULL,
+    2,
+    2,
+    &impl_assign_parameters[0],
+    2,
+    &impl_assign_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    &impl_assign_sideEffects[0],
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_ASSIGN,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
+/* ---------- break ---------- */
+
+static const afw_utf8_t
+impl_object_path__break =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/break");
+
+static const afw_runtime_object_indirect_t
+impl_object__break = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_break,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__break
+        }
+    },
+    (void *)&afw_function_definition_break
+};
+
+static const afw_value_function_parameter_t
+impl_break_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This function returns from the body of a loop with the last evaluated value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_break_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The value to evaluate that the enclosing loop will return. If not specified, the last evaluated value or a null value will be returned."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_break_parameters[] = {
+    &impl_break_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_break = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__break,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("break"),
+    AFW_UTF8_LITERAL("break"),
+    AFW_UTF8_LITERAL("break"),
+    AFW_UTF8_LITERAL("break"),
+    AFW_UTF8_LITERAL("afwBreak"),
+    AFW_UTF8_LITERAL("Break out of a block"),
+    AFW_UTF8_LITERAL("This is a special function that can be called to break out of the body of a loop. If called outside of a loop body, an error is thrown."),
+    AFW_UTF8_LITERAL("(value?: any): any"),
+    AFW_UTF8_LITERAL("/* Break out of a block */\nfunction break (\n    value?: any\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_break,
+    NULL,
+    0,
+    1,
+    &impl_break_parameters[0],
+    1,
+    &impl_break_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_BREAK,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- const ---------- */
+
+static const afw_utf8_t
+impl_object_path__const =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/const");
+
+static const afw_runtime_object_indirect_t
+impl_object__const = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_const,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__const
+        }
+    },
+    (void *)&afw_function_definition_const
+};
+
+static const afw_value_function_parameter_t
+impl_const_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The value assigned."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_const_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL("name"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The name of one or more constants to defined in the current block."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_const_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the value of the constant(s)."),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_const_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveValueMeta_"),
+    AFW_UTF8_LITERAL("type"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The type of the constant(s)."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_const_parameters[] = {
+    &impl_const_parameter_1,
+    &impl_const_parameter_2,
+    &impl_const_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_const = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__const,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("const"),
+    AFW_UTF8_LITERAL("const"),
+    AFW_UTF8_LITERAL("const"),
+    AFW_UTF8_LITERAL("const"),
+    AFW_UTF8_LITERAL("afwConst"),
+    AFW_UTF8_LITERAL("Define one or more constants in the current block"),
+    AFW_UTF8_LITERAL("Define one or more statically scoped constants local to the current script block with a permanent value. These constants can be accessed from the current block and inner blocks, but can not be assigned a different value."),
+    AFW_UTF8_LITERAL("(name: (array string), value: any, type?: (object _AdaptiveValueMeta_)): any"),
+    AFW_UTF8_LITERAL("/* Define one or more constants in the current block */\nfunction const (\n    name: (array string),\n    value: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_const,
+    NULL,
+    2,
+    3,
+    &impl_const_parameters[0],
+    3,
+    &impl_const_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONST,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- continue ---------- */
+
+static const afw_utf8_t
+impl_object_path__continue =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/continue");
+
+static const afw_runtime_object_indirect_t
+impl_object__continue = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_continue,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__continue
+        }
+    },
+    (void *)&afw_function_definition_continue
+};
+
+static const afw_value_function_parameter_t
+impl_continue_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This function does not return."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_continue_parameters[] = {
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_continue = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__continue,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("continue"),
+    AFW_UTF8_LITERAL("continue"),
+    AFW_UTF8_LITERAL("continue"),
+    AFW_UTF8_LITERAL("continue"),
+    AFW_UTF8_LITERAL("afwContinue"),
+    AFW_UTF8_LITERAL("Continue at beginning of a loop"),
+    AFW_UTF8_LITERAL("This is a special function that can be called in the body of a loop function to test the condition and, if true, start evaluating the body again. If called outside of a loop body, an error is thrown."),
+    AFW_UTF8_LITERAL("(): any"),
+    AFW_UTF8_LITERAL("/* Continue at beginning of a loop */\nfunction continue (\n\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_continue,
+    NULL,
+    0,
+    0,
+    &impl_continue_parameters[0],
+    0,
+    &impl_continue_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONTINUE,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- do_while ---------- */
+
+static const afw_utf8_t
+impl_object_path__do_while =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/do_while");
+
+static const afw_runtime_object_indirect_t
+impl_object__do_while = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_do_while,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__do_while
+        }
+    },
+    (void *)&afw_function_definition_do_while
+};
+
+static const afw_value_function_parameter_t
+impl_do_while_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The last value evaluated in body or null if the body is empty."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_do_while_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("condition"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("While this condition is true, the loop will continue. This is evaluated in the loop's scope."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_do_while_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("body"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_do_while_parameters[] = {
+    &impl_do_while_parameter_1,
+    &impl_do_while_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_do_while = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__do_while,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("do_while"),
+    AFW_UTF8_LITERAL("do_while"),
+    AFW_UTF8_LITERAL("do_while"),
+    AFW_UTF8_LITERAL("doWhile"),
+    AFW_UTF8_LITERAL("afwDoWhile"),
+    AFW_UTF8_LITERAL("Evaluate an array of values (statements) at least once while a condition is true"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) at least once while a condition is true. See the related functions 'break', 'continue', 'return' and 'throw'."),
+    AFW_UTF8_LITERAL("(condition: boolean, body: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) at least once while a condition is true */\nfunction do_while (\n    condition: boolean,\n    body: array\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_do_while,
+    NULL,
+    2,
+    2,
+    &impl_do_while_parameters[0],
+    2,
+    &impl_do_while_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_DO_WHILE,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- for ---------- */
+
+static const afw_utf8_t
+impl_object_path__for =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/for");
+
+static const afw_runtime_object_indirect_t
+impl_object__for = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_for,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__for
+        }
+    },
+    (void *)&afw_function_definition_for
+};
+
+static const afw_value_function_parameter_t
+impl_for_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The last value evaluated in body or null if condition evaluates to false the first time."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_for_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("initial"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) to evaluate before the loop starts. The values will normally be a call to the 'assign' function."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_for_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("condition"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("While this condition is true, the loop will continue."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_for_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("increment"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) to evaluate after each iteration of the loop. The values will normally be a call to the 'assign' function."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_for_parameter_4 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("body"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_for_parameters[] = {
+    &impl_for_parameter_1,
+    &impl_for_parameter_2,
+    &impl_for_parameter_3,
+    &impl_for_parameter_4,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_for = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__for,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("for"),
+    AFW_UTF8_LITERAL("for"),
+    AFW_UTF8_LITERAL("for"),
+    AFW_UTF8_LITERAL("for"),
+    AFW_UTF8_LITERAL("afwFor"),
+    AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true with an array of initial and increment values"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop returns a null value."),
+    AFW_UTF8_LITERAL("(initial?: array, condition?: boolean, increment?: array, body?: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true with an array of initial and increment values */\nfunction for (\n    initial?: array,\n    condition?: boolean,\n    increment?: array,\n    body?: array\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_for,
+    NULL,
+    0,
+    4,
+    &impl_for_parameters[0],
+    4,
+    &impl_for_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- foreach ---------- */
+
+static const afw_utf8_t
+impl_object_path__foreach =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/foreach");
+
+static const afw_runtime_object_indirect_t
+impl_object__foreach = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_foreach,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__foreach
+        }
+    },
+    (void *)&afw_function_definition_foreach
+};
+
+static const afw_value_function_parameter_t
+impl_foreach_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The last value evaluated in body or null if condition evaluates to false the first time."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_foreach_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL("name"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Variable name(s)."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_foreach_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Any array, object or single value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_foreach_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("body"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_foreach_parameters[] = {
+    &impl_foreach_parameter_1,
+    &impl_foreach_parameter_2,
+    &impl_foreach_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_foreach = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__foreach,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("foreach"),
+    AFW_UTF8_LITERAL("foreach"),
+    AFW_UTF8_LITERAL("foreach"),
+    AFW_UTF8_LITERAL("foreach"),
+    AFW_UTF8_LITERAL("afwForeach"),
+    AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true with an array of initial and increment values"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value."),
+    AFW_UTF8_LITERAL("(name: (array string), value: any, body?: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true with an array of initial and increment values */\nfunction foreach (\n    name: (array string),\n    value: any,\n    body?: array\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_foreach,
+    NULL,
+    2,
+    3,
+    &impl_foreach_parameters[0],
+    3,
+    &impl_foreach_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOREACH,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- if ---------- */
+
+static const afw_utf8_t
+impl_object_path__if =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/if");
+
+static const afw_runtime_object_indirect_t
+impl_object__if = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_if,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__if
+        }
+    },
+    (void *)&afw_function_definition_if
+};
+
+static const afw_value_function_parameter_t
+impl_if_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The result of evaluating 'then' or 'else'"),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_if_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("condition"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("If true, parameter 'then' is evaluated for result. If false, parameter 'else' is evaluated."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_if_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("then"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the body of a structured block that is evaluated if 'condition' is true. See the 'body' parameter of the 'block' function for information on how the body is processed."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_if_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("else"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, a null value is returned. See the 'body' parameter of the 'block' function for information on how the body is processed."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_if_parameters[] = {
+    &impl_if_parameter_1,
+    &impl_if_parameter_2,
+    &impl_if_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_if = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__if,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("if"),
+    AFW_UTF8_LITERAL("if"),
+    AFW_UTF8_LITERAL("if"),
+    AFW_UTF8_LITERAL("if"),
+    AFW_UTF8_LITERAL("afwIf"),
+    AFW_UTF8_LITERAL("If/then/else function"),
+    AFW_UTF8_LITERAL("Evaluate one of two different values depending on test condition."),
+    AFW_UTF8_LITERAL("(condition: boolean, then: array, else?: array): any"),
+    AFW_UTF8_LITERAL("/* If/then/else function */\nfunction if (\n    condition: boolean,\n    then: array,\n    else?: array\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_if,
+    NULL,
+    2,
+    3,
+    &impl_if_parameters[0],
+    3,
+    &impl_if_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_IF,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- let ---------- */
+
+static const afw_utf8_t
+impl_object_path__let =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/let");
+
+static const afw_runtime_object_indirect_t
+impl_object__let = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_let,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__let
+        }
+    },
+    (void *)&afw_function_definition_let
+};
+
+static const afw_value_function_parameter_t
+impl_let_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The value assigned."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_let_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL("name"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The name of one or more variables to declared in the current block."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_let_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the initial value of the variable(s). If not specified, the variable will have a value of undefined."),
+    -1,
+    true,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_let_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveValueMeta_"),
+    AFW_UTF8_LITERAL("type"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The type of the variable(s)."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_let_parameters[] = {
+    &impl_let_parameter_1,
+    &impl_let_parameter_2,
+    &impl_let_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_let = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__let,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("let"),
+    AFW_UTF8_LITERAL("afwLet"),
+    AFW_UTF8_LITERAL("Declare one or more variables in the current block"),
+    AFW_UTF8_LITERAL("Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks."),
+    AFW_UTF8_LITERAL("(name: (array string), value?: any, type?: (object _AdaptiveValueMeta_)): any"),
+    AFW_UTF8_LITERAL("/* Declare one or more variables in the current block */\nfunction let (\n    name: (array string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_let,
+    NULL,
+    1,
+    3,
+    &impl_let_parameters[0],
+    3,
+    &impl_let_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LET,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- rethrow ---------- */
+
+static const afw_utf8_t
+impl_object_path__rethrow =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/rethrow");
+
+static const afw_runtime_object_indirect_t
+impl_object__rethrow = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_rethrow,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__rethrow
+        }
+    },
+    (void *)&afw_function_definition_rethrow
+};
+
+static const afw_value_function_parameter_t
+impl_rethrow_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This function rethrows the current error in a catch block."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_rethrow_parameters[] = {
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_rethrow = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__rethrow,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("rethrow"),
+    AFW_UTF8_LITERAL("afwRethrow"),
+    AFW_UTF8_LITERAL("rethrow error from inside case block"),
+    AFW_UTF8_LITERAL("This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown."),
+    AFW_UTF8_LITERAL("(): any"),
+    AFW_UTF8_LITERAL("/* rethrow error from inside case block */\nfunction rethrow (\n\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_rethrow,
+    NULL,
+    0,
+    0,
+    &impl_rethrow_parameters[0],
+    0,
+    &impl_rethrow_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- return ---------- */
+
+static const afw_utf8_t
+impl_object_path__return =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/return");
+
+static const afw_runtime_object_indirect_t
+impl_object__return = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_return,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__return
+        }
+    },
+    (void *)&afw_function_definition_return
+};
+
+static const afw_value_function_parameter_t
+impl_return_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This function returns from the outermost structured block with the last evaluated value."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_return_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The value to evaluate that the outermost block will return. If not specified, the last evaluated value or a null value will be returned."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_return_parameters[] = {
+    &impl_return_parameter_1,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_return = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__return,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("return"),
+    AFW_UTF8_LITERAL("return"),
+    AFW_UTF8_LITERAL("return"),
+    AFW_UTF8_LITERAL("return"),
+    AFW_UTF8_LITERAL("afwReturn"),
+    AFW_UTF8_LITERAL("Return from the outermost structured block"),
+    AFW_UTF8_LITERAL("Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown."),
+    AFW_UTF8_LITERAL("(value?: any): any"),
+    AFW_UTF8_LITERAL("/* Return from the outermost structured block */\nfunction return (\n    value?: any\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_return,
+    NULL,
+    0,
+    1,
+    &impl_return_parameters[0],
+    1,
+    &impl_return_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- switch ---------- */
+
+static const afw_utf8_t
+impl_object_path__switch =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/switch");
+
+static const afw_runtime_object_indirect_t
+impl_object__switch = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_switch,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__switch
+        }
+    },
+    (void *)&afw_function_definition_switch
+};
+
+static const afw_value_function_parameter_t
+impl_switch_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_switch_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_function_direct,
+    AFW_UTF8_LITERAL("function"),
+    AFW_UTF8_LITERAL("(any value1: any, value2: any): boolean"),
+    AFW_UTF8_LITERAL("predicate"),
+    AFW_UTF8_LITERAL("Predicate function"),
+    AFW_UTF8_LITERAL("The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be 'eqx' to use the exactly equal function but can also be any other function such as 'regexp_match' or a lambda function."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_switch_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("value1"),
+    AFW_UTF8_LITERAL("First predicate parameter"),
+    AFW_UTF8_LITERAL("The first parameter passed to the predicate."),
+    -1,
+    false,
+    true,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_switch_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("case_clause"),
+    AFW_UTF8_LITERAL("One or more value2 and statement list pairs"),
+    AFW_UTF8_LITERAL("This is one or more case clauses which are pairs of a value2 parameter followed by a statement list or undefined parameter. One value2 can be undefined to indicate the default case clause.\n\nFor the first value2 that is undefined or calling the predicate returns true, the statement list followed by any statement lists of subsequent case clauses are executed until a break or return is encountered. The predicate is called with value1 and the case clause's value2."),
+    2,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_switch_parameters[] = {
+    &impl_switch_parameter_1,
+    &impl_switch_parameter_2,
+    &impl_switch_parameter_3,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_switch = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__switch,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("switch"),
+    AFW_UTF8_LITERAL("afwSwitch"),
+    AFW_UTF8_LITERAL("All combinations true"),
+    AFW_UTF8_LITERAL("Support for switch statement."),
+    AFW_UTF8_LITERAL("(predicate: (function (any value1: any, value2: any): boolean), value1: any, case_clause_1: any, case_clause_2: any, ...case_clause_rest: (array of any)): any"),
+    AFW_UTF8_LITERAL("/* All combinations true */\nfunction switch (\n    predicate: (function (any value1: any, value2: any): boolean) /* Predicate function */,\n    value1: any                                                   /* First predicate parameter */,\n    case_clause_1: any,\n    case_clause_2: any,\n    ...case_clause_rest: (array of any) /* One or more value2 and statement list pairs */\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_switch,
+    NULL,
+    4,
+    -1,
+    &impl_switch_parameters[0],
+    3,
+    &impl_switch_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_SWITCH,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- throw ---------- */
+
+static const afw_utf8_t
+impl_object_path__throw =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/throw");
+
+static const afw_runtime_object_indirect_t
+impl_object__throw = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_throw,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__throw
+        }
+    },
+    (void *)&afw_function_definition_throw
+};
+
+static const afw_value_function_parameter_t
+impl_throw_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_null_direct,
+    AFW_UTF8_LITERAL("null"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_throw_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("message"),
+    AFW_UTF8_LITERAL("Error message"),
+    AFW_UTF8_LITERAL("This is the message that will be included in the _AdaptiveError_ error object available in the catch block."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_throw_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("additional"),
+    AFW_UTF8_LITERAL("Optional additional information"),
+    AFW_UTF8_LITERAL("Optional additional information that will be available as a 'additional' property in the error object."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_throw_parameters[] = {
+    &impl_throw_parameter_1,
+    &impl_throw_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_throw = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__throw,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("throw"),
+    AFW_UTF8_LITERAL("afwThrow"),
+    AFW_UTF8_LITERAL("Throws an error"),
+    AFW_UTF8_LITERAL("This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property will be set to 'throw'. The other properties set based on the parameters specified and where this function is called."),
+    AFW_UTF8_LITERAL("(message: string, additional?: any): null"),
+    AFW_UTF8_LITERAL("/* Throws an error */\nfunction throw (\n    message: string  /* Error message */,\n    additional?: any /* Optional additional information */\n): null;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_throw,
+    NULL,
+    1,
+    2,
+    &impl_throw_parameters[0],
+    2,
+    &impl_throw_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- try ---------- */
+
+static const afw_utf8_t
+impl_object_path__try =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/try");
+
+static const afw_runtime_object_indirect_t
+impl_object__try = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_try,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__try
+        }
+    },
+    (void *)&afw_function_definition_try
+};
+
+static const afw_value_function_parameter_t
+impl_try_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The last value evaluated in body."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("body"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("finally"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated after the try and catch statements even if an error occurs. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("catch"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated when an error is thrown while evaluating the body. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_try_parameter_4 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_"),
+    AFW_UTF8_LITERAL("error"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The error object thrown. This is only available in the catch block. See adaptive object type _AdaptiveObjectType_ for details."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_try_parameters[] = {
+    &impl_try_parameter_1,
+    &impl_try_parameter_2,
+    &impl_try_parameter_3,
+    &impl_try_parameter_4,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_try = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__try,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("try"),
+    AFW_UTF8_LITERAL("afwTry"),
+    AFW_UTF8_LITERAL("Evaluate an array of values (statements) as a try block with optional catch and finally statements"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be 'caught' and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions 'break', 'continue', 'return' and 'throw'."),
+    AFW_UTF8_LITERAL("(body: array, finally?: array, catch?: array, error?: (object _AdaptiveObjectType_)): any"),
+    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: array,\n    finally?: array,\n    catch?: array,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_try,
+    NULL,
+    1,
+    4,
+    &impl_try_parameters[0],
+    4,
+    &impl_try_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- while ---------- */
+
+static const afw_utf8_t
+impl_object_path__while =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/while");
+
+static const afw_runtime_object_indirect_t
+impl_object__while = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_while,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__while
+        }
+    },
+    (void *)&afw_function_definition_while
+};
+
+static const afw_value_function_parameter_t
+impl_while_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The last value evaluated in body or null if condition evaluates to false the first time."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_while_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("condition"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("While this condition is true, the loop will continue. This is evaluated in the loop's scope."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_while_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_array_direct,
+    AFW_UTF8_LITERAL("array"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("body"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_while_parameters[] = {
+    &impl_while_parameter_1,
+    &impl_while_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_while = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__while,
+    AFW_UTF8_LITERAL("compiler_script"),
+    AFW_UTF8_LITERAL("while"),
+    AFW_UTF8_LITERAL("while"),
+    AFW_UTF8_LITERAL("while"),
+    AFW_UTF8_LITERAL("while"),
+    AFW_UTF8_LITERAL("afwWhile"),
+    AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true"),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'."),
+    AFW_UTF8_LITERAL("(condition: boolean, body: array): any"),
+    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: array\n): any;\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_while,
+    NULL,
+    2,
+    2,
+    &impl_while_parameters[0],
+    2,
+    &impl_while_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE,
+    false,
+    false,
+    false,
+    true,
+    false
+};
+
+/* ---------- test_script_runtime_support ---------- */
+
+static const afw_utf8_t
+impl_object_path__test_script_runtime_support =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/test_script_runtime_support");
+
+static const afw_runtime_object_indirect_t
+impl_object__test_script_runtime_support = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_test_script_runtime_support,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__test_script_runtime_support
+        }
+    },
+    (void *)&afw_function_definition_test_script_runtime_support
+};
+
+static const afw_value_function_parameter_t
+impl_test_script_runtime_support_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Completed test_script object"),
+    AFW_UTF8_LITERAL("The testScriptObject object with test result properties set."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_test_script_runtime_support_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_"),
+    AFW_UTF8_LITERAL("testScriptObject"),
+    AFW_UTF8_LITERAL("test_script object"),
+    AFW_UTF8_LITERAL("A test script results object with the required evaluation result properties missing. The sources will be evaluated and the corresponding test result properties will be set."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_test_script_runtime_support_parameters[] = {
+    &impl_test_script_runtime_support_parameter_1,
+    NULL
+};
+
+static const afw_utf8_t
+impl_test_script_runtime_support_sideEffects[] = {
+    AFW_UTF8_LITERAL("testScriptObject object modified."),
+    { NULL }
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_test_script_runtime_support = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__test_script_runtime_support,
+    AFW_UTF8_LITERAL("compiler_test_script"),
+    AFW_UTF8_LITERAL("test_script_runtime_support"),
+    AFW_UTF8_LITERAL("test_script_runtime_support"),
+    AFW_UTF8_LITERAL("test_script_runtime_support"),
+    AFW_UTF8_LITERAL("testScriptRuntimeSupport"),
+    AFW_UTF8_LITERAL("afwTestScriptRuntimeSupport"),
+    AFW_UTF8_LITERAL("Internal test script runtime support"),
+    AFW_UTF8_LITERAL("This is a function called internally as the result of a test_script compile. This function is not intended to be called directly."),
+    AFW_UTF8_LITERAL("(testScriptObject: (object _AdaptiveTestScriptResult_)): (object _AdaptiveTestScriptResult_)"),
+    AFW_UTF8_LITERAL("/* Internal test script runtime support */\nfunction test_script_runtime_support (\n    testScriptObject: (object _AdaptiveTestScriptResult_) /* test_script object */\n): (object _AdaptiveTestScriptResult_); /* Completed test_script object */\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_test_script_runtime_support,
+    NULL,
+    1,
+    1,
+    &impl_test_script_runtime_support_parameters[0],
+    1,
+    &impl_test_script_runtime_support_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    &impl_test_script_runtime_support_sideEffects[0],
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
 /* ---------- assert ---------- */
 
 static const afw_utf8_t
@@ -22535,128 +25407,6 @@ afw_function_definition_test_script = {
     AFW_UTF8_LITERAL(""),
     NULL,
     NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    false,
-    false
-};
-
-/* ---------- test_script_runtime_support ---------- */
-
-static const afw_utf8_t
-impl_object_path__test_script_runtime_support =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/test_script_runtime_support");
-
-static const afw_runtime_object_indirect_t
-impl_object__test_script_runtime_support = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_test_script_runtime_support,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__test_script_runtime_support
-        }
-    },
-    (void *)&afw_function_definition_test_script_runtime_support
-};
-
-static const afw_value_function_parameter_t
-impl_test_script_runtime_support_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Completed test_script object"),
-    AFW_UTF8_LITERAL("The testScriptObject object with test result properties set."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_test_script_runtime_support_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_"),
-    AFW_UTF8_LITERAL("testScriptObject"),
-    AFW_UTF8_LITERAL("test_script object"),
-    AFW_UTF8_LITERAL("A test script results object with the required evaluation result properties missing. The sources will be evaluated and the corresponding test result properties will be set."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_test_script_runtime_support_parameters[] = {
-    &impl_test_script_runtime_support_parameter_1,
-    NULL
-};
-
-static const afw_utf8_t
-impl_test_script_runtime_support_sideEffects[] = {
-    AFW_UTF8_LITERAL("testScriptObject object modified."),
-    { NULL }
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_test_script_runtime_support = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__test_script_runtime_support,
-    AFW_UTF8_LITERAL("compiler"),
-    AFW_UTF8_LITERAL("test_script_runtime_support"),
-    AFW_UTF8_LITERAL("test_script_runtime_support"),
-    AFW_UTF8_LITERAL("test_script_runtime_support"),
-    AFW_UTF8_LITERAL("testScriptRuntimeSupport"),
-    AFW_UTF8_LITERAL("afwTestScriptRuntimeSupport"),
-    AFW_UTF8_LITERAL("Internal test script runtime support"),
-    AFW_UTF8_LITERAL("This is a function called internally as the result of a test_script compile. This function is not intended to be called directly."),
-    AFW_UTF8_LITERAL("(testScriptObject: (object _AdaptiveTestScriptResult_)): (object _AdaptiveTestScriptResult_)"),
-    AFW_UTF8_LITERAL("/* Internal test script runtime support */\nfunction test_script_runtime_support (\n    testScriptObject: (object _AdaptiveTestScriptResult_) /* test_script object */\n): (object _AdaptiveTestScriptResult_); /* Completed test_script object */\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_test_script_runtime_support,
-    NULL,
-    1,
-    1,
-    &impl_test_script_runtime_support_parameters[0],
-    1,
-    &impl_test_script_runtime_support_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    &impl_test_script_runtime_support_sideEffects[0],
     0, /* Not a data type method. */
     0,
     false,
@@ -59535,149 +62285,6 @@ afw_function_definition_or = {
     false
 };
 
-/* ---------- annotate ---------- */
-
-static const afw_utf8_t
-impl_object_path__annotate =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/annotate");
-
-static const afw_runtime_object_indirect_t
-impl_object__annotate = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_annotate,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__annotate
-        }
-    },
-    (void *)&afw_function_definition_annotate
-};
-
-static const afw_value_function_parameter_t
-impl_annotate_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Unevaluated annotated value ready for use by function evaluate()."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_annotate_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveAnnotation_"),
-    AFW_UTF8_LITERAL("annotation"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Annotation for value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_annotate_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Any value. This value will not be evaluated."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_annotate_parameters[] = {
-    &impl_annotate_parameter_1,
-    &impl_annotate_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_annotate = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__annotate,
-    AFW_UTF8_LITERAL("miscellaneous"),
-    AFW_UTF8_LITERAL("annotate"),
-    AFW_UTF8_LITERAL("annotate"),
-    AFW_UTF8_LITERAL("annotate"),
-    AFW_UTF8_LITERAL("annotate"),
-    AFW_UTF8_LITERAL("afwAnnotate"),
-    AFW_UTF8_LITERAL("Annotate a value"),
-    AFW_UTF8_LITERAL("Create an annotated value."),
-    AFW_UTF8_LITERAL("(annotation: (object _AdaptiveAnnotation_), value: any): any"),
-    AFW_UTF8_LITERAL("/* Annotate a value */\nfunction annotate (\n    annotation: (object _AdaptiveAnnotation_),\n    value: any\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_annotate,
-    NULL,
-    2,
-    2,
-    &impl_annotate_parameters[0],
-    2,
-    &impl_annotate_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
 /* ---------- compare_uri ---------- */
 
 static const afw_utf8_t
@@ -60823,265 +63430,6 @@ afw_function_definition_now_utc = {
     false
 };
 
-/* ---------- nullish_coalescing ---------- */
-
-static const afw_utf8_t
-impl_object_path__nullish_coalescing =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/nullish_coalescing");
-
-static const afw_runtime_object_indirect_t
-impl_object__nullish_coalescing = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_nullish_coalescing,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__nullish_coalescing
-        }
-    },
-    (void *)&afw_function_definition_nullish_coalescing
-};
-
-static const afw_value_function_parameter_t
-impl_nullish_coalescing_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The first value of values that is not null or undefined."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_nullish_coalescing_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("values"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    2,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_nullish_coalescing_parameters[] = {
-    &impl_nullish_coalescing_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_nullish_coalescing = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__nullish_coalescing,
-    AFW_UTF8_LITERAL("miscellaneous"),
-    AFW_UTF8_LITERAL("nullish_coalescing"),
-    AFW_UTF8_LITERAL("nullish_coalescing"),
-    AFW_UTF8_LITERAL("nullish_coalescing"),
-    AFW_UTF8_LITERAL("nullishCoalescing"),
-    AFW_UTF8_LITERAL("afwNullishCoalescing"),
-    AFW_UTF8_LITERAL("Nullish coalescing"),
-    AFW_UTF8_LITERAL("Returns the first value of values that is not null or undefined leaving the remaining values unevaluated."),
-    AFW_UTF8_LITERAL("(values_1: any, values_2: any, ...values_rest: (array of any)): any"),
-    AFW_UTF8_LITERAL("/* Nullish coalescing */\nfunction nullish_coalescing (\n    values_1: any,\n    values_2: any,\n    ...values_rest: (array of any)\n): any;\n"),
-    AFW_UTF8_LITERAL("??"),
-    afw_function_execute_nullish_coalescing,
-    NULL,
-    2,
-    -1,
-    &impl_nullish_coalescing_parameters[0],
-    1,
-    &impl_nullish_coalescing_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- optional_chaining ---------- */
-
-static const afw_utf8_t
-impl_object_path__optional_chaining =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/optional_chaining");
-
-static const afw_runtime_object_indirect_t
-impl_object__optional_chaining = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_optional_chaining,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__optional_chaining
-        }
-    },
-    (void *)&afw_function_definition_optional_chaining
-};
-
-static const afw_value_function_parameter_t
-impl_optional_chaining_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Undefined value if arg1 is null or undefined but otherwise evaluated arg2."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_optional_chaining_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg1"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_optional_chaining_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("arg2"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_optional_chaining_parameters[] = {
-    &impl_optional_chaining_parameter_1,
-    &impl_optional_chaining_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_optional_chaining = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__optional_chaining,
-    AFW_UTF8_LITERAL("miscellaneous"),
-    AFW_UTF8_LITERAL("optional_chaining"),
-    AFW_UTF8_LITERAL("optional_chaining"),
-    AFW_UTF8_LITERAL("optional_chaining"),
-    AFW_UTF8_LITERAL("optionalChaining"),
-    AFW_UTF8_LITERAL("afwOptionalChaining"),
-    AFW_UTF8_LITERAL("Optional chaining"),
-    AFW_UTF8_LITERAL("Returns undefined if arg1 is null or undefined without evaluating arg2, but otherwise returns evaluated value of arg2."),
-    AFW_UTF8_LITERAL("(arg1: any, arg2: any): any"),
-    AFW_UTF8_LITERAL("/* Optional chaining */\nfunction optional_chaining (\n    arg1: any,\n    arg2: any\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_optional_chaining,
-    NULL,
-    2,
-    2,
-    &impl_optional_chaining_parameters[0],
-    2,
-    &impl_optional_chaining_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
 /* ---------- parse_uri ---------- */
 
 static const afw_utf8_t
@@ -61905,122 +64253,6 @@ afw_function_definition_variable_is_not_null = {
     &impl_variable_is_not_null_parameters[0],
     1,
     &impl_variable_is_not_null_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    false,
-    false
-};
-
-/* ---------- void_operator ---------- */
-
-static const afw_utf8_t
-impl_object_path__void_operator =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/void_operator");
-
-static const afw_runtime_object_indirect_t
-impl_object__void_operator = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_void_operator,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__void_operator
-        }
-    },
-    (void *)&afw_function_definition_void_operator
-};
-
-static const afw_value_function_parameter_t
-impl_void_operator_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("undefined"),
-    AFW_UTF8_LITERAL("This always returns undefined."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_void_operator_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL("Value"),
-    AFW_UTF8_LITERAL("This is the value to evaluate."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_void_operator_parameters[] = {
-    &impl_void_operator_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_void_operator = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__void_operator,
-    AFW_UTF8_LITERAL("miscellaneous"),
-    AFW_UTF8_LITERAL("void_operator"),
-    AFW_UTF8_LITERAL("void_operator"),
-    AFW_UTF8_LITERAL("void_operator"),
-    AFW_UTF8_LITERAL("voidOperator"),
-    AFW_UTF8_LITERAL("afwVoidOperator"),
-    AFW_UTF8_LITERAL("Support for the void operator"),
-    AFW_UTF8_LITERAL("This is the support function for the void operator which evaluates value and returns undefined."),
-    AFW_UTF8_LITERAL("(value: any): any"),
-    AFW_UTF8_LITERAL("/* Support for the void operator */\nfunction void_operator (\n    value: any /* Value */\n): any; /* undefined */\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_void_operator,
-    NULL,
-    1,
-    1,
-    &impl_void_operator_parameters[0],
-    1,
-    &impl_void_operator_returns,
     NULL,
     NULL,
     AFW_UTF8_LITERAL(""),
@@ -88278,155 +90510,6 @@ afw_function_definition_union_rfc822Name = {
     false
 };
 
-/* ---------- assign ---------- */
-
-static const afw_utf8_t
-impl_object_path__assign =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/assign");
-
-static const afw_runtime_object_indirect_t
-impl_object__assign = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_assign,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__assign
-        }
-    },
-    (void *)&afw_function_definition_assign
-};
-
-static const afw_value_function_parameter_t
-impl_assign_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The value assigned."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_assign_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("name"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Variable name"),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_assign_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the value to assign to the variable."),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_assign_parameters[] = {
-    &impl_assign_parameter_1,
-    &impl_assign_parameter_2,
-    NULL
-};
-
-static const afw_utf8_t
-impl_assign_sideEffects[] = {
-    AFW_UTF8_LITERAL("Value assigned"),
-    { NULL }
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_assign = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__assign,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("assign"),
-    AFW_UTF8_LITERAL("assign"),
-    AFW_UTF8_LITERAL("assign"),
-    AFW_UTF8_LITERAL("assign"),
-    AFW_UTF8_LITERAL("afwAssign"),
-    AFW_UTF8_LITERAL("Assign a value to a defined variable"),
-    AFW_UTF8_LITERAL("Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from an array of values (statements) in a structured function."),
-    AFW_UTF8_LITERAL("(name: string, value: any): any"),
-    AFW_UTF8_LITERAL("/* Assign a value to a defined variable */\nfunction assign (\n    name: string,\n    value: any\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_assign,
-    NULL,
-    2,
-    2,
-    &impl_assign_parameters[0],
-    2,
-    &impl_assign_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    &impl_assign_sideEffects[0],
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_ASSIGN,
-    false,
-    false,
-    false,
-    false,
-    false
-};
-
 /* ---------- bag<script> ---------- */
 
 static const afw_utf8_t
@@ -88659,122 +90742,6 @@ afw_function_definition_bag_size_script = {
     false
 };
 
-/* ---------- break ---------- */
-
-static const afw_utf8_t
-impl_object_path__break =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/break");
-
-static const afw_runtime_object_indirect_t
-impl_object__break = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_break,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__break
-        }
-    },
-    (void *)&afw_function_definition_break
-};
-
-static const afw_value_function_parameter_t
-impl_break_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This function returns from the body of a loop with the last evaluated value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_break_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The value to evaluate that the enclosing loop will return. If not specified, the last evaluated value or a null value will be returned."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_break_parameters[] = {
-    &impl_break_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_break = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__break,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("break"),
-    AFW_UTF8_LITERAL("break"),
-    AFW_UTF8_LITERAL("break"),
-    AFW_UTF8_LITERAL("break"),
-    AFW_UTF8_LITERAL("afwBreak"),
-    AFW_UTF8_LITERAL("Break out of a block"),
-    AFW_UTF8_LITERAL("This is a special function that can be called to break out of the body of a loop. If called outside of a loop body, an error is thrown."),
-    AFW_UTF8_LITERAL("(value?: any): any"),
-    AFW_UTF8_LITERAL("/* Break out of a block */\nfunction break (\n    value?: any\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_break,
-    NULL,
-    0,
-    1,
-    &impl_break_parameters[0],
-    1,
-    &impl_break_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_BREAK,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
 /* ---------- compile<script> ---------- */
 
 static const afw_utf8_t
@@ -88911,408 +90878,6 @@ afw_function_definition_compile_script = {
     NULL,
     afw_data_type_method_number_compile,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- const ---------- */
-
-static const afw_utf8_t
-impl_object_path__const =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/const");
-
-static const afw_runtime_object_indirect_t
-impl_object__const = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_const,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__const
-        }
-    },
-    (void *)&afw_function_definition_const
-};
-
-static const afw_value_function_parameter_t
-impl_const_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The value assigned."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_const_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("name"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The name of one or more constants to defined in the current block."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_const_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the value of the constant(s)."),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_const_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveValueMeta_"),
-    AFW_UTF8_LITERAL("type"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The type of the constant(s)."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_const_parameters[] = {
-    &impl_const_parameter_1,
-    &impl_const_parameter_2,
-    &impl_const_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_const = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__const,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("const"),
-    AFW_UTF8_LITERAL("const"),
-    AFW_UTF8_LITERAL("const"),
-    AFW_UTF8_LITERAL("const"),
-    AFW_UTF8_LITERAL("afwConst"),
-    AFW_UTF8_LITERAL("Define one or more constants in the current block"),
-    AFW_UTF8_LITERAL("Define one or more statically scoped constants local to the current script block with a permanent value. These constants can be accessed from the current block and inner blocks, but can not be assigned a different value."),
-    AFW_UTF8_LITERAL("(name: (array string), value: any, type?: (object _AdaptiveValueMeta_)): any"),
-    AFW_UTF8_LITERAL("/* Define one or more constants in the current block */\nfunction const (\n    name: (array string),\n    value: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_const,
-    NULL,
-    2,
-    3,
-    &impl_const_parameters[0],
-    3,
-    &impl_const_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONST,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- continue ---------- */
-
-static const afw_utf8_t
-impl_object_path__continue =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/continue");
-
-static const afw_runtime_object_indirect_t
-impl_object__continue = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_continue,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__continue
-        }
-    },
-    (void *)&afw_function_definition_continue
-};
-
-static const afw_value_function_parameter_t
-impl_continue_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This function does not return."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_continue_parameters[] = {
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_continue = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__continue,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("continue"),
-    AFW_UTF8_LITERAL("continue"),
-    AFW_UTF8_LITERAL("continue"),
-    AFW_UTF8_LITERAL("continue"),
-    AFW_UTF8_LITERAL("afwContinue"),
-    AFW_UTF8_LITERAL("Continue at beginning of a loop"),
-    AFW_UTF8_LITERAL("This is a special function that can be called in the body of a loop function to test the condition and, if true, start evaluating the body again. If called outside of a loop body, an error is thrown."),
-    AFW_UTF8_LITERAL("(): any"),
-    AFW_UTF8_LITERAL("/* Continue at beginning of a loop */\nfunction continue (\n\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_continue,
-    NULL,
-    0,
-    0,
-    &impl_continue_parameters[0],
-    0,
-    &impl_continue_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONTINUE,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- do_while ---------- */
-
-static const afw_utf8_t
-impl_object_path__do_while =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/do_while");
-
-static const afw_runtime_object_indirect_t
-impl_object__do_while = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_do_while,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__do_while
-        }
-    },
-    (void *)&afw_function_definition_do_while
-};
-
-static const afw_value_function_parameter_t
-impl_do_while_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The last value evaluated in body or null if the body is empty."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_do_while_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("condition"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("While this condition is true, the loop will continue. This is evaluated in the loop's scope."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_do_while_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("body"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_do_while_parameters[] = {
-    &impl_do_while_parameter_1,
-    &impl_do_while_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_do_while = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__do_while,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("do_while"),
-    AFW_UTF8_LITERAL("do_while"),
-    AFW_UTF8_LITERAL("do_while"),
-    AFW_UTF8_LITERAL("doWhile"),
-    AFW_UTF8_LITERAL("afwDoWhile"),
-    AFW_UTF8_LITERAL("Evaluate an array of values (statements) at least once while a condition is true"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) at least once while a condition is true. See the related functions 'break', 'continue', 'return' and 'throw'."),
-    AFW_UTF8_LITERAL("(condition: boolean, body: array): any"),
-    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) at least once while a condition is true */\nfunction do_while (\n    condition: boolean,\n    body: array\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_do_while,
-    NULL,
-    2,
-    2,
-    &impl_do_while_parameters[0],
-    2,
-    &impl_do_while_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_DO_WHILE,
     false,
     false,
     false,
@@ -89757,373 +91322,6 @@ afw_function_definition_evaluate_script = {
     false
 };
 
-/* ---------- for ---------- */
-
-static const afw_utf8_t
-impl_object_path__for =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/for");
-
-static const afw_runtime_object_indirect_t
-impl_object__for = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_for,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__for
-        }
-    },
-    (void *)&afw_function_definition_for
-};
-
-static const afw_value_function_parameter_t
-impl_for_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The last value evaluated in body or null if condition evaluates to false the first time."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_for_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("initial"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) to evaluate before the loop starts. The values will normally be a call to the 'assign' function."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_for_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("condition"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("While this condition is true, the loop will continue."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_for_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("increment"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) to evaluate after each iteration of the loop. The values will normally be a call to the 'assign' function."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_for_parameter_4 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("body"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_for_parameters[] = {
-    &impl_for_parameter_1,
-    &impl_for_parameter_2,
-    &impl_for_parameter_3,
-    &impl_for_parameter_4,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_for = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__for,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("for"),
-    AFW_UTF8_LITERAL("for"),
-    AFW_UTF8_LITERAL("for"),
-    AFW_UTF8_LITERAL("for"),
-    AFW_UTF8_LITERAL("afwFor"),
-    AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true with an array of initial and increment values"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop returns a null value."),
-    AFW_UTF8_LITERAL("(initial?: array, condition?: boolean, increment?: array, body?: array): any"),
-    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true with an array of initial and increment values */\nfunction for (\n    initial?: array,\n    condition?: boolean,\n    increment?: array,\n    body?: array\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_for,
-    NULL,
-    0,
-    4,
-    &impl_for_parameters[0],
-    4,
-    &impl_for_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- foreach ---------- */
-
-static const afw_utf8_t
-impl_object_path__foreach =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/foreach");
-
-static const afw_runtime_object_indirect_t
-impl_object__foreach = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_foreach,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__foreach
-        }
-    },
-    (void *)&afw_function_definition_foreach
-};
-
-static const afw_value_function_parameter_t
-impl_foreach_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The last value evaluated in body or null if condition evaluates to false the first time."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_foreach_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("name"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Variable name(s)."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_foreach_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Any array, object or single value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_foreach_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("body"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_foreach_parameters[] = {
-    &impl_foreach_parameter_1,
-    &impl_foreach_parameter_2,
-    &impl_foreach_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_foreach = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__foreach,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("afwForeach"),
-    AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true with an array of initial and increment values"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value."),
-    AFW_UTF8_LITERAL("(name: (array string), value: any, body?: array): any"),
-    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true with an array of initial and increment values */\nfunction foreach (\n    name: (array string),\n    value: any,\n    body?: array\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_foreach,
-    NULL,
-    2,
-    3,
-    &impl_foreach_parameters[0],
-    3,
-    &impl_foreach_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOREACH,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
 /* ---------- ge<script> ---------- */
 
 static const afw_utf8_t
@@ -90410,176 +91608,6 @@ afw_function_definition_gt_script = {
     false
 };
 
-/* ---------- if ---------- */
-
-static const afw_utf8_t
-impl_object_path__if =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/if");
-
-static const afw_runtime_object_indirect_t
-impl_object__if = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_if,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__if
-        }
-    },
-    (void *)&afw_function_definition_if
-};
-
-static const afw_value_function_parameter_t
-impl_if_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The result of evaluating 'then' or 'else'"),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_if_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("condition"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("If true, parameter 'then' is evaluated for result. If false, parameter 'else' is evaluated."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_if_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("then"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the body of a structured block that is evaluated if 'condition' is true. See the 'body' parameter of the 'block' function for information on how the body is processed."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_if_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("else"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the body of a structured block that is evaluated if 'condition' is false. If not specified and condition is false, a null value is returned. See the 'body' parameter of the 'block' function for information on how the body is processed."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_if_parameters[] = {
-    &impl_if_parameter_1,
-    &impl_if_parameter_2,
-    &impl_if_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_if = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__if,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("if"),
-    AFW_UTF8_LITERAL("if"),
-    AFW_UTF8_LITERAL("if"),
-    AFW_UTF8_LITERAL("if"),
-    AFW_UTF8_LITERAL("afwIf"),
-    AFW_UTF8_LITERAL("If/then/else function"),
-    AFW_UTF8_LITERAL("Evaluate one of two different values depending on test condition."),
-    AFW_UTF8_LITERAL("(condition: boolean, then: array, else?: array): any"),
-    AFW_UTF8_LITERAL("/* If/then/else function */\nfunction if (\n    condition: boolean,\n    then: array,\n    else?: array\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_if,
-    NULL,
-    2,
-    3,
-    &impl_if_parameters[0],
-    3,
-    &impl_if_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_IF,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
 /* ---------- is<script> ---------- */
 
 static const afw_utf8_t
@@ -90832,176 +91860,6 @@ afw_function_definition_le_script = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- let ---------- */
-
-static const afw_utf8_t
-impl_object_path__let =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/let");
-
-static const afw_runtime_object_indirect_t
-impl_object__let = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_let,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__let
-        }
-    },
-    (void *)&afw_function_definition_let
-};
-
-static const afw_value_function_parameter_t
-impl_let_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The value assigned."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_let_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL("name"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The name of one or more variables to declared in the current block."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_let_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is the initial value of the variable(s). If not specified, the variable will have a value of undefined."),
-    -1,
-    true,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_let_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveValueMeta_"),
-    AFW_UTF8_LITERAL("type"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The type of the variable(s)."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_let_parameters[] = {
-    &impl_let_parameter_1,
-    &impl_let_parameter_2,
-    &impl_let_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_let = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__let,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("let"),
-    AFW_UTF8_LITERAL("let"),
-    AFW_UTF8_LITERAL("let"),
-    AFW_UTF8_LITERAL("let"),
-    AFW_UTF8_LITERAL("afwLet"),
-    AFW_UTF8_LITERAL("Declare one or more variables in the current block"),
-    AFW_UTF8_LITERAL("Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks."),
-    AFW_UTF8_LITERAL("(name: (array string), value?: any, type?: (object _AdaptiveValueMeta_)): any"),
-    AFW_UTF8_LITERAL("/* Declare one or more variables in the current block */\nfunction let (\n    name: (array string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_let,
-    NULL,
-    1,
-    3,
-    &impl_let_parameters[0],
-    3,
-    &impl_let_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LET,
     false,
     false,
     false,
@@ -91446,211 +92304,6 @@ afw_function_definition_nex_script = {
     false
 };
 
-/* ---------- rethrow ---------- */
-
-static const afw_utf8_t
-impl_object_path__rethrow =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/rethrow");
-
-static const afw_runtime_object_indirect_t
-impl_object__rethrow = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_rethrow,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__rethrow
-        }
-    },
-    (void *)&afw_function_definition_rethrow
-};
-
-static const afw_value_function_parameter_t
-impl_rethrow_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This function rethrows the current error in a catch block."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_rethrow_parameters[] = {
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_rethrow = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__rethrow,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("rethrow"),
-    AFW_UTF8_LITERAL("rethrow"),
-    AFW_UTF8_LITERAL("rethrow"),
-    AFW_UTF8_LITERAL("rethrow"),
-    AFW_UTF8_LITERAL("afwRethrow"),
-    AFW_UTF8_LITERAL("rethrow error from inside case block"),
-    AFW_UTF8_LITERAL("This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown."),
-    AFW_UTF8_LITERAL("(): any"),
-    AFW_UTF8_LITERAL("/* rethrow error from inside case block */\nfunction rethrow (\n\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_rethrow,
-    NULL,
-    0,
-    0,
-    &impl_rethrow_parameters[0],
-    0,
-    &impl_rethrow_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- return ---------- */
-
-static const afw_utf8_t
-impl_object_path__return =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/return");
-
-static const afw_runtime_object_indirect_t
-impl_object__return = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_return,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__return
-        }
-    },
-    (void *)&afw_function_definition_return
-};
-
-static const afw_value_function_parameter_t
-impl_return_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This function returns from the outermost structured block with the last evaluated value."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_return_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The value to evaluate that the outermost block will return. If not specified, the last evaluated value or a null value will be returned."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_return_parameters[] = {
-    &impl_return_parameter_1,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_return = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__return,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("return"),
-    AFW_UTF8_LITERAL("return"),
-    AFW_UTF8_LITERAL("return"),
-    AFW_UTF8_LITERAL("return"),
-    AFW_UTF8_LITERAL("afwReturn"),
-    AFW_UTF8_LITERAL("Return from the outermost structured block"),
-    AFW_UTF8_LITERAL("Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown."),
-    AFW_UTF8_LITERAL("(value?: any): any"),
-    AFW_UTF8_LITERAL("/* Return from the outermost structured block */\nfunction return (\n    value?: any\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_return,
-    NULL,
-    0,
-    1,
-    &impl_return_parameters[0],
-    1,
-    &impl_return_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
 /* ---------- script ---------- */
 
 static const afw_utf8_t
@@ -91768,659 +92421,6 @@ afw_function_definition_script = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- switch ---------- */
-
-static const afw_utf8_t
-impl_object_path__switch =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/switch");
-
-static const afw_runtime_object_indirect_t
-impl_object__switch = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_switch,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__switch
-        }
-    },
-    (void *)&afw_function_definition_switch
-};
-
-static const afw_value_function_parameter_t
-impl_switch_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_switch_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_function_direct,
-    AFW_UTF8_LITERAL("function"),
-    AFW_UTF8_LITERAL("(any value1: any, value2: any): boolean"),
-    AFW_UTF8_LITERAL("predicate"),
-    AFW_UTF8_LITERAL("Predicate function"),
-    AFW_UTF8_LITERAL("The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be 'eqx' to use the exactly equal function but can also be any other function such as 'regexp_match' or a lambda function."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_switch_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("value1"),
-    AFW_UTF8_LITERAL("First predicate parameter"),
-    AFW_UTF8_LITERAL("The first parameter passed to the predicate."),
-    -1,
-    false,
-    true,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_switch_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("case_clause"),
-    AFW_UTF8_LITERAL("One or more value2 and statement list pairs"),
-    AFW_UTF8_LITERAL("This is one or more case clauses which are pairs of a value2 parameter followed by a statement list or undefined parameter. One value2 can be undefined to indicate the default case clause.\n\nFor the first value2 that is undefined or calling the predicate returns true, the statement list followed by any statement lists of subsequent case clauses are executed until a break or return is encountered. The predicate is called with value1 and the case clause's value2."),
-    2,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_switch_parameters[] = {
-    &impl_switch_parameter_1,
-    &impl_switch_parameter_2,
-    &impl_switch_parameter_3,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_switch = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__switch,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("switch"),
-    AFW_UTF8_LITERAL("switch"),
-    AFW_UTF8_LITERAL("switch"),
-    AFW_UTF8_LITERAL("switch"),
-    AFW_UTF8_LITERAL("afwSwitch"),
-    AFW_UTF8_LITERAL("All combinations true"),
-    AFW_UTF8_LITERAL("Support for switch statement."),
-    AFW_UTF8_LITERAL("(predicate: (function (any value1: any, value2: any): boolean), value1: any, case_clause_1: any, case_clause_2: any, ...case_clause_rest: (array of any)): any"),
-    AFW_UTF8_LITERAL("/* All combinations true */\nfunction switch (\n    predicate: (function (any value1: any, value2: any): boolean) /* Predicate function */,\n    value1: any                                                   /* First predicate parameter */,\n    case_clause_1: any,\n    case_clause_2: any,\n    ...case_clause_rest: (array of any) /* One or more value2 and statement list pairs */\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_switch,
-    NULL,
-    4,
-    -1,
-    &impl_switch_parameters[0],
-    3,
-    &impl_switch_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_SWITCH,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- throw ---------- */
-
-static const afw_utf8_t
-impl_object_path__throw =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/throw");
-
-static const afw_runtime_object_indirect_t
-impl_object__throw = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_throw,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__throw
-        }
-    },
-    (void *)&afw_function_definition_throw
-};
-
-static const afw_value_function_parameter_t
-impl_throw_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_null_direct,
-    AFW_UTF8_LITERAL("null"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_throw_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    AFW_UTF8_LITERAL("string"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("message"),
-    AFW_UTF8_LITERAL("Error message"),
-    AFW_UTF8_LITERAL("This is the message that will be included in the _AdaptiveError_ error object available in the catch block."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_throw_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("additional"),
-    AFW_UTF8_LITERAL("Optional additional information"),
-    AFW_UTF8_LITERAL("Optional additional information that will be available as a 'additional' property in the error object."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_throw_parameters[] = {
-    &impl_throw_parameter_1,
-    &impl_throw_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_throw = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__throw,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("throw"),
-    AFW_UTF8_LITERAL("throw"),
-    AFW_UTF8_LITERAL("throw"),
-    AFW_UTF8_LITERAL("throw"),
-    AFW_UTF8_LITERAL("afwThrow"),
-    AFW_UTF8_LITERAL("Throws an error"),
-    AFW_UTF8_LITERAL("This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property will be set to 'throw'. The other properties set based on the parameters specified and where this function is called."),
-    AFW_UTF8_LITERAL("(message: string, additional?: any): null"),
-    AFW_UTF8_LITERAL("/* Throws an error */\nfunction throw (\n    message: string  /* Error message */,\n    additional?: any /* Optional additional information */\n): null;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_throw,
-    NULL,
-    1,
-    2,
-    &impl_throw_parameters[0],
-    2,
-    &impl_throw_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- try ---------- */
-
-static const afw_utf8_t
-impl_object_path__try =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/try");
-
-static const afw_runtime_object_indirect_t
-impl_object__try = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_try,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__try
-        }
-    },
-    (void *)&afw_function_definition_try
-};
-
-static const afw_value_function_parameter_t
-impl_try_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The last value evaluated in body."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_try_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("body"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_try_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("finally"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated after the try and catch statements even if an error occurs. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_try_parameter_3 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("catch"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated when an error is thrown while evaluating the body. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_try_parameter_4 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveObjectType_"),
-    AFW_UTF8_LITERAL("error"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The error object thrown. This is only available in the catch block. See adaptive object type _AdaptiveObjectType_ for details."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_try_parameters[] = {
-    &impl_try_parameter_1,
-    &impl_try_parameter_2,
-    &impl_try_parameter_3,
-    &impl_try_parameter_4,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_try = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__try,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("try"),
-    AFW_UTF8_LITERAL("try"),
-    AFW_UTF8_LITERAL("try"),
-    AFW_UTF8_LITERAL("try"),
-    AFW_UTF8_LITERAL("afwTry"),
-    AFW_UTF8_LITERAL("Evaluate an array of values (statements) as a try block with optional catch and finally statements"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be 'caught' and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions 'break', 'continue', 'return' and 'throw'."),
-    AFW_UTF8_LITERAL("(body: array, finally?: array, catch?: array, error?: (object _AdaptiveObjectType_)): any"),
-    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: array,\n    finally?: array,\n    catch?: array,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_try,
-    NULL,
-    1,
-    4,
-    &impl_try_parameters[0],
-    4,
-    &impl_try_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY,
-    false,
-    false,
-    false,
-    true,
-    false
-};
-
-/* ---------- while ---------- */
-
-static const afw_utf8_t
-impl_object_path__while =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/while");
-
-static const afw_runtime_object_indirect_t
-impl_object__while = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_while,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__while
-        }
-    },
-    (void *)&afw_function_definition_while
-};
-
-static const afw_value_function_parameter_t
-impl_while_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("The last value evaluated in body or null if condition evaluates to false the first time."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_while_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_boolean_direct,
-    AFW_UTF8_LITERAL("boolean"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("condition"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("While this condition is true, the loop will continue. This is evaluated in the loop's scope."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_while_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_array_direct,
-    AFW_UTF8_LITERAL("array"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("body"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_while_parameters[] = {
-    &impl_while_parameter_1,
-    &impl_while_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_while = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__while,
-    AFW_UTF8_LITERAL("script"),
-    AFW_UTF8_LITERAL("while"),
-    AFW_UTF8_LITERAL("while"),
-    AFW_UTF8_LITERAL("while"),
-    AFW_UTF8_LITERAL("while"),
-    AFW_UTF8_LITERAL("afwWhile"),
-    AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'."),
-    AFW_UTF8_LITERAL("(condition: boolean, body: array): any"),
-    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: array\n): any;\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_while,
-    NULL,
-    2,
-    2,
-    &impl_while_parameters[0],
-    2,
-    &impl_while_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE,
     false,
     false,
     false,
@@ -116169,6 +116169,26 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_boolean,
     &afw_function_definition_to_string_boolean,
     &afw_function_definition_union_boolean,
+    &afw_function_definition_annotate,
+    &afw_function_definition_nullish_coalescing,
+    &afw_function_definition_optional_chaining,
+    &afw_function_definition_void_operator,
+    &afw_function_definition_assign,
+    &afw_function_definition_break,
+    &afw_function_definition_const,
+    &afw_function_definition_continue,
+    &afw_function_definition_do_while,
+    &afw_function_definition_for,
+    &afw_function_definition_foreach,
+    &afw_function_definition_if,
+    &afw_function_definition_let,
+    &afw_function_definition_rethrow,
+    &afw_function_definition_return,
+    &afw_function_definition_switch,
+    &afw_function_definition_throw,
+    &afw_function_definition_try,
+    &afw_function_definition_while,
+    &afw_function_definition_test_script_runtime_support,
     &afw_function_definition_assert,
     &afw_function_definition_compile_expression_tuple,
     &afw_function_definition_compile_json,
@@ -116186,7 +116206,6 @@ impl_function_bindings[] = {
     &afw_function_definition_test_expression_tuple,
     &afw_function_definition_test_hybrid,
     &afw_function_definition_test_script,
-    &afw_function_definition_test_script_runtime_support,
     &afw_function_definition_test_template,
     &afw_function_definition_test_value,
     &afw_function_definition_add_dayTimeDuration_dateTime,
@@ -116457,7 +116476,6 @@ impl_function_bindings[] = {
     &afw_function_definition_n_of,
     &afw_function_definition_not,
     &afw_function_definition_or,
-    &afw_function_definition_annotate,
     &afw_function_definition_compare_uri,
     &afw_function_definition_debug,
     &afw_function_definition_execution_start_time_local,
@@ -116468,15 +116486,12 @@ impl_function_bindings[] = {
     &afw_function_definition_log,
     &afw_function_definition_now_local,
     &afw_function_definition_now_utc,
-    &afw_function_definition_nullish_coalescing,
-    &afw_function_definition_optional_chaining,
     &afw_function_definition_parse_uri,
     &afw_function_definition_perform,
     &afw_function_definition_trace,
     &afw_function_definition_variable_exists,
     &afw_function_definition_variable_get,
     &afw_function_definition_variable_is_not_null,
-    &afw_function_definition_void_operator,
     &afw_function_definition_model_default_add_object_action,
     &afw_function_definition_model_default_delete_object_action,
     &afw_function_definition_model_default_modify_object_action,
@@ -116661,35 +116676,20 @@ impl_function_bindings[] = {
     &afw_function_definition_subset_rfc822Name,
     &afw_function_definition_to_string_rfc822Name,
     &afw_function_definition_union_rfc822Name,
-    &afw_function_definition_assign,
     &afw_function_definition_bag_script,
     &afw_function_definition_bag_size_script,
-    &afw_function_definition_break,
     &afw_function_definition_compile_script,
-    &afw_function_definition_const,
-    &afw_function_definition_continue,
-    &afw_function_definition_do_while,
     &afw_function_definition_eq_script,
     &afw_function_definition_eqx_script,
     &afw_function_definition_evaluate_script,
-    &afw_function_definition_for,
-    &afw_function_definition_foreach,
     &afw_function_definition_ge_script,
     &afw_function_definition_gt_script,
-    &afw_function_definition_if,
     &afw_function_definition_is_script,
     &afw_function_definition_le_script,
-    &afw_function_definition_let,
     &afw_function_definition_lt_script,
     &afw_function_definition_ne_script,
     &afw_function_definition_nex_script,
-    &afw_function_definition_rethrow,
-    &afw_function_definition_return,
     &afw_function_definition_script,
-    &afw_function_definition_switch,
-    &afw_function_definition_throw,
-    &afw_function_definition_try,
-    &afw_function_definition_while,
     &afw_function_definition_close,
     &afw_function_definition_flush,
     &afw_function_definition_get_stream_error,

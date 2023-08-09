@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwDoWhile",
     "brief": "Evaluate an array of values (statements) at least once while a condition is true",
     "camelCaseFunctionLabel": "doWhile",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) at least once while a condition is true. See the related functions 'break', 'continue', 'return' and 'throw'.",
     "functionId": "do_while",
     "functionLabel": "do_while",

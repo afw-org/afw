@@ -1,6 +1,6 @@
 {
     "brief": "rethrow error from inside case block",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown.",
     "functionId": "rethrow",
     "functionLabel": "rethrow",

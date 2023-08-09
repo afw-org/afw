@@ -711,38 +711,6 @@ def test_script(session, id, description, script, expected, additionalUntrustedQ
 
     return response['actions'][0]['result']
 
-def test_script_runtime_support(session, testScriptObject):
-    '''
-    Internal test script runtime support
-
-    This is a function called internally as the result of a test_script
-    compile. This function is not intended to be called directly.
-
-    Parameters:
-
-        testScriptObject (object): A test script results object with the
-        required evaluation result properties missing. The sources will be
-        evaluated and the corresponding test result properties will be set.
-
-    Returns:
-    object: The testScriptObject object with test result properties set.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "test_script_runtime_support",
-        "testScriptObject": testScriptObject
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def test_template(session, id, description, template, expected, additionalUntrustedQualifiedVariables=None):
     '''
     Test template

@@ -1,6 +1,6 @@
 {
     "brief": "Continue at beginning of a loop",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This is a special function that can be called in the body of a loop function to test the condition and, if true, start evaluating the body again. If called outside of a loop body, an error is thrown.",
     "functionId": "continue",
     "functionLabel": "continue",

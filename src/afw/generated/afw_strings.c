@@ -2347,6 +2347,15 @@ AFW_UTF8_LITERAL("compiler");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_assert =
 AFW_UTF8_LITERAL("compiler_assert");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_expression =
+AFW_UTF8_LITERAL("compiler_expression");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_script =
+AFW_UTF8_LITERAL("compiler_script");
+
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_test_script =
+AFW_UTF8_LITERAL("compiler_test_script");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_componentType =
 AFW_UTF8_LITERAL("componentType");
 

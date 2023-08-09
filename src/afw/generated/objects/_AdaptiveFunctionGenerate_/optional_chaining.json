@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwOptionalChaining",
     "brief": "Optional chaining",
     "camelCaseFunctionLabel": "optionalChaining",
-    "category": "miscellaneous",
+    "category": "compiler_expression",
     "description": "Returns undefined if arg1 is null or undefined without evaluating arg2, but otherwise returns evaluated value of arg2.",
     "functionId": "optional_chaining",
     "functionLabel": "optional_chaining",

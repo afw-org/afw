@@ -22,7 +22,6 @@ our @EXPORT_OK = qw(
     test_expression_tuple 
     test_hybrid 
     test_script 
-    test_script_runtime_support 
     test_template 
     test_value 
 );
@@ -407,20 +406,6 @@ ensure its qualified variables must come from a trusted source, such as
 authorization. This parameter is intended to be used for testing only and
 should not be used for anything running in production.
 
-=head3 test_script_runtime_support
-
-This is a function called internally as the result of a test_script compile.
-This function is not intended to be called directly.
-Internal test script runtime support
-
-=head4 Parameters
-
-    $testScriptObject
-
-A test script results object with the required evaluation result properties
-missing. The sources will be evaluated and the corresponding test result
-properties will be set.
-
 =head3 test_template
 
 Compile and evaluate an adaptive template and compare the results to an
@@ -731,17 +716,6 @@ sub test_script {
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
-
-    return $request->getResult();
-}
-
-sub test_script_runtime_support {
-    my ($testScriptObject) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "test_script_runtime_support");
-    $request->set("testScriptObject", $testScriptObject);
 
     return $request->getResult();
 }

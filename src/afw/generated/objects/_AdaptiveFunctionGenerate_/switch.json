@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwSwitch",
     "brief": "All combinations true",
     "camelCaseFunctionLabel": "switch",
-    "category": "script",
+    "category": "compiler_script",
     "description": "Support for switch statement.",
     "functionId": "switch",
     "functionLabel": "switch",

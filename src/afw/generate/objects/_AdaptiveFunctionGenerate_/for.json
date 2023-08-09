@@ -1,6 +1,6 @@
 {
     "brief": "Evaluate an array of values (statements) while a condition is true with an array of initial and increment values",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This creates a new structured block with a new nested variable scope.\n\nThis function loops while condition is true. If the condition is false for the first iteration, the loop returns a null value.",
     "functionId": "for",
     "functionLabel": "for",

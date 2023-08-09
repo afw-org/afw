@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwAssign",
     "brief": "Assign a value to a defined variable",
     "camelCaseFunctionLabel": "assign",
-    "category": "script",
+    "category": "compiler_script",
     "description": "Assign a value to the innermost structured block definition of a variable. If the variable is not defined, the variable is defined in the innermost structured block. An error is thrown if not called from an array of values (statements) in a structured function.",
     "functionId": "assign",
     "functionLabel": "assign",

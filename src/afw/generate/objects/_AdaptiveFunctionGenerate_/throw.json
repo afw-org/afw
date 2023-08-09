@@ -1,6 +1,6 @@
 {
     "brief": "Throws an error",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property will be set to 'throw'. The other properties set based on the parameters specified and where this function is called.",
     "functionId": "throw",
     "functionLabel": "throw",

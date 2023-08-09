@@ -1,6 +1,6 @@
 {
     "brief": "Return from the outermost structured block",
-    "category": "script",
+    "category": "compiler_script",
     "description": "Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown.",
     "functionId": "return",
     "functionLabel": "return",

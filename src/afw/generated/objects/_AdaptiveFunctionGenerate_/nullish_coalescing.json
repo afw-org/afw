@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwNullishCoalescing",
     "brief": "Nullish coalescing",
     "camelCaseFunctionLabel": "nullishCoalescing",
-    "category": "miscellaneous",
+    "category": "compiler_expression",
     "description": "Returns the first value of values that is not null or undefined leaving the remaining values unevaluated.",
     "functionId": "nullish_coalescing",
     "functionLabel": "nullish_coalescing",

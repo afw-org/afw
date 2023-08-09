@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwWhile",
     "brief": "Evaluate an array of values (statements) while a condition is true",
     "camelCaseFunctionLabel": "while",
-    "category": "script",
+    "category": "compiler_script",
     "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'.",
     "functionId": "while",
     "functionLabel": "while",
