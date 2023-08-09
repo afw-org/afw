@@ -35,7 +35,7 @@ export const Undefined = (props) => {
     const onSetDataType = (dataType) => {
         property.setDataType( dataType );
 
-        if (dataType === "list") {
+        if (dataType === "array") {
             property.setDataTypeParameter();
             setDataTypeParameter([ undefined ]);
         }

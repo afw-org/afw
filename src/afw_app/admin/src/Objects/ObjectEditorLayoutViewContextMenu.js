@@ -240,7 +240,7 @@ export const LayoutViewContextMenu = (props) => {
                     }
                 }
 
-                else if (property.getDataType() === "list")
+                else if (property.getDataType() === "array")
                 {
                     let subItems = [];
 

@@ -514,7 +514,7 @@ const Test = (wrapper) => {
 
             // skip some dataTypes for now, as they're not well defined in non-editable mode 
             const skipDataTypes = [ 
-                "list", "object", "time", "base64Binary", "date", "dateTime", "hybrid", "password"
+                "array", "object", "time", "base64Binary", "date", "dateTime", "hybrid", "password"
             ];
 
             for (const [dataType, propertyType] of Object.entries(objectTypeObject.propertyTypes)) {

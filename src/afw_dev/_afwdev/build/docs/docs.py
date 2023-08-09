@@ -403,7 +403,7 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
         else:                
             content += docsHtml.code(docsHtml.escape(get_text(element)))
 
-    elif tag == 'array':        
+    elif tag == 'list':        
         listitems = ""
         for node in element.iterchildren():
             listitems += generate_doc_html_content(

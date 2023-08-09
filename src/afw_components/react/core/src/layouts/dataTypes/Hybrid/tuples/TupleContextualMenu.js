@@ -30,7 +30,7 @@ const staticMenuOptions = {
         key: "ListBuilder",
         type: "ListBuilder",
         label: "Build List",
-        operation: "list"
+        operation: "array"
     },
     
     "ObjectBuilder": {
@@ -248,7 +248,7 @@ export const TupleContextualMenu = (props) => {
         if (!dataType || dataType === "object")
             contextualMenu.push(Object.assign({}, staticMenuOptions.ObjectBuilder)); 
 
-        if (!dataType || dataType === "list")
+        if (!dataType || dataType === "array")
             contextualMenu.push(Object.assign({}, staticMenuOptions.ListBuilder));
 
         /* Call, Call Adaptive, Call Method, Call Lambda */

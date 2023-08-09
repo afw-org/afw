@@ -60,7 +60,7 @@ const afwDataTypeToJSONSchemaType : {
     "ia5String":            "string",
     "integer":              "number",
     "ipAddress":            "string",
-    "list":                 "array",
+    "array":                "array",
     "null":                 "null",
     "object":               "object",
     "objectId":             "objectId",
@@ -1060,10 +1060,10 @@ export class AfwObject extends AfwEvent {
                 if (dataType)
                     jsonSchema.properties[name].type = afwDataTypeToJSONSchemaType[dataType];                  
 
-                if (dataType === "list" && dataTypeParameter) {
+                if (dataType === "array" && dataTypeParameter) {
                     const dataTypeParameters = dataTypeParameter.split(" ");
                     if (dataTypeParameters.length > 1) {
-                        /* may have a list of objects, or a list of list of... */
+                        /* may have an array of objects, or an array of array of... */
                         if (dataTypeParameters[0] === "object") {
                             const embeddedObjectTypeObject = model.getObjectTypeObject({ adaptorId: this.getAdaptorId(), objectTypeId: dataTypeParameters[1] });
                             if (embeddedObjectTypeObject) {

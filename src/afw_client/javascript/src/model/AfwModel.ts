@@ -338,7 +338,7 @@ export class AfwModel {
                     }             
                 }
 
-                else if (dataType === "list" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
+                else if (dataType === "array" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
                     const parts = dataTypeParameter.split(" ");
                     const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                    
                     if (!dependencies.includes(objectTypePath))                
@@ -363,7 +363,7 @@ export class AfwModel {
                     dependencies.push(objectTypePath);
             }
 
-            else if (dataType === "list" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
+            else if (dataType === "array" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
                 const parts = dataTypeParameter.split(" ");
                 const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                
                 if (!dependencies.includes(objectTypePath))                

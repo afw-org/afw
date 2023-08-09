@@ -54,7 +54,7 @@ export const defaultLayoutParameters = (editMode, addMode, isMobile) => ({
                 }
             },      
             {
-                dataType: "list",
+                dataType: "array",
                 componentProps: {
                     breakpoints: {
                         small: 12,                                

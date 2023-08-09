@@ -134,7 +134,7 @@ describe("AfwObject Tests", () => {
                     dataType: "object"
                 },
                 prop5: {
-                    dataType: "list"
+                    dataType: "array"
                 }
             }
         };
@@ -154,7 +154,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getProperty("prop4").getDataType()).toBe("object");
 
         expect(obj.getProperty("prop5")).toBeInstanceOf(AfwProperty);
-        expect(obj.getProperty("prop5").getDataType()).toBe("list");
+        expect(obj.getProperty("prop5").getDataType()).toBe("array");
 
         expect(obj.getProperty("prop6")).toBeUndefined();
 
@@ -652,7 +652,7 @@ describe("AfwObject Tests", () => {
                     dataType: "object"
                 },
                 prop5: {
-                    dataType: "list"
+                    dataType: "array"
                 },
             }
         };
@@ -845,7 +845,7 @@ describe("AfwObject Tests", () => {
         for (const p of obj.getProperties()) {  
             if (p.getDataType() === "object")
                 expect(JSON.stringify(object[p.getName()], null, 4)).toBe(obj.getPropertyValue(p.getName()).stringify());
-            else if (p.getDataType() === "list")                  
+            else if (p.getDataType() === "array")                  
                 expect(JSON.stringify(object[p.getName()], null, 4)).toBe(obj.getPropertyValue(p.getName()).stringify());                
             else
                 expect(object[p.getName()]).toBe(obj.getPropertyValue(p.getName()));
@@ -998,7 +998,7 @@ describe("AfwObject Tests", () => {
                     dataType: "object"
                 },
                 prop5: {
-                    dataType: "list"
+                    dataType: "array"
                 },
             }
         };
@@ -1044,7 +1044,7 @@ describe("AfwObject Tests", () => {
                     dataType: "object"
                 },
                 prop5: {
-                    dataType: "list"
+                    dataType: "array"
                 }
             }
         };

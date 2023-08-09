@@ -60,7 +60,7 @@ const TestObject = (wrapper) => {
 };
 
 /*
- * Tests for dataType=list
+ * Tests for dataType=arrat
  */
 const TestList = (wrapper) => {    
 
@@ -70,14 +70,14 @@ const TestList = (wrapper) => {
         const property = new AfwProperty({ 
             propertyName: "myprop",             
             propertyType: {
-                dataType: "list"
+                dataType: "array"
             } 
         });
                         
         const {container} = render(                
             <PropertyResponsiveWithProfiler       
                 property={property}
-                data-testid="PropertyResponsive.list"
+                data-testid="PropertyResponsive.array"
             />,
             { wrapper }
         );            
@@ -91,7 +91,7 @@ const TestList = (wrapper) => {
         const property = new AfwProperty({ 
             propertyName: "myprop", 
             propertyType: {
-                dataType: "list"
+                dataType: "array"
             },
             value: [ "This is a list entry" ] 
         });
@@ -113,7 +113,7 @@ const TestList = (wrapper) => {
     Object.entries(objectTypeObject.propertyTypes).forEach(([dataType, propertyType]) => {
 
         // \fixme skip these for now
-        if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
+        if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
             return;
 
         const {testValues, testEditable, expectedTestValues, expectedReadonlyTestValues} = propertyType;
@@ -126,7 +126,7 @@ const TestList = (wrapper) => {
                 const property = new AfwProperty({ 
                     propertyName: "myprop", 
                     propertyType: {
-                        dataType: "list",
+                        dataType: "array",
                         dataTypeParameter: dataType
                     },
                 });
@@ -142,13 +142,13 @@ const TestList = (wrapper) => {
                 await waitFor(() => expect(container.firstChild).not.toBeNull()); 
             });
 
-            test("Renders list of one", async () => {
+            test("Renders array of one", async () => {
 
                 const PropertyResponsiveWithProfiler = withProfiler(PropertyResponsive);
                 const property = new AfwProperty({ 
                     propertyName: "myprop", 
                     propertyType: {
-                        dataType: "list",
+                        dataType: "array",
                         dataTypeParameter: dataType
                     },
                     value: [ testValues[0] ]
@@ -157,7 +157,7 @@ const TestList = (wrapper) => {
                 render(
                     <PropertyResponsiveWithProfiler       
                         property={property}
-                        data-testid={"PropertyResponsive.list." + dataType}
+                        data-testid={"PropertyResponsive.array." + dataType}
                     />,
                     { wrapper }
                 );    
@@ -174,7 +174,7 @@ const TestList = (wrapper) => {
                 const property = new AfwProperty({ 
                     propertyName: "myprop", 
                     propertyType: {
-                        dataType: "list",
+                        dataType: "array",
                         dataTypeParameter: dataType
                     },
                     value: [ testValues[0], testValues[1] ]
@@ -205,7 +205,7 @@ const TestList = (wrapper) => {
                 const property = new AfwProperty({ 
                     propertyName: "myprop",                     
                     propertyType: {
-                        dataType: "list",
+                        dataType: "array",
                         dataTypeParameter: dataType,
                         label: "My Prop",
                     },
@@ -260,7 +260,7 @@ const TestList = (wrapper) => {
                 const property = new AfwProperty({ 
                     propertyName: "myprop", 
                     propertyType: {
-                        dataType: "list",
+                        dataType: "array",
                         dataTypeParameter: dataType,
                         label: "My Prop"
                     },
@@ -423,7 +423,7 @@ const Test = (wrapper) => {
     Object.entries(objectTypeObject.propertyTypes).forEach(([dataType, propertyType]) => {
 
         // \fixme skip these for now
-        if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
+        if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
             return;
 
         const {testValues, label, brief, expectedTestValues} = propertyType;
@@ -795,7 +795,7 @@ const Test = (wrapper) => {
     /**
      * List Tests
      */
-    describe("dataType=list tests", () => {
+    describe("dataType=array tests", () => {
         TestList(wrapper);
     });
     

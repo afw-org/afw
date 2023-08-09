@@ -193,7 +193,7 @@ const ObjectType = (props) => {
                                         let dataTypeParameter = item.getValue().getPropertyValue("dataTypeParameter");
                                         
                                         if (dataTypeParameter) {
-                                            if (dataType === "list") {
+                                            if (dataType === "array") {
                                                 let uri = dataTypeParameter;
                                                 if (dataTypeParameter.indexOf(" ") > 0)
                                                     uri = dataTypeParameter.split(" ")[1];

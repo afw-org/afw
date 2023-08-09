@@ -203,7 +203,7 @@ const Test = (wrapper) => {
                 const {expectedTestValues, label} = propertyType;
 
                 // skip some dataTypes for now, as they're not well defined in non-editable mode 
-                if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
+                if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
                     dataType === "date" || dataType === "dateTime" || dataType === "hybrid" || dataType === "password" )
                     continue;
 
@@ -246,7 +246,7 @@ const Test = (wrapper) => {
                 const {expectedTestValues, label} = propertyType;
 
                 // skip some dataTypes for now, as they're not well defined in non-editable mode 
-                if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
+                if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
                     dataType === "date" || dataType === "dateTime" || dataType === "hybrid" || dataType === "password" )
                     continue;
 
@@ -294,7 +294,7 @@ const Test = (wrapper) => {
                 const {label, brief, testValues, expectedTestValues} = propertyType;
 
                 // skip certain dataTypes for now 
-                if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date")
+                if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date")
                     continue;
                 
                 const input = screen.getByLabelText(label);                                             
@@ -345,7 +345,7 @@ const Test = (wrapper) => {
                 const {label, testValues, expectedTestValues} = propertyType;
 
                 // skip certain dataTypes for now 
-                if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date")
+                if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date")
                     continue;
                 
                 const input = screen.getByLabelText(label);                                             
@@ -371,7 +371,7 @@ const Test = (wrapper) => {
                     const {label, expectedTestValues} = propertyType;
 
                     // skip certain dataTypes for now 
-                    if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date")
+                    if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date")
                         continue;
                     
                     const input = screen.getByLabelText(label);                                             
@@ -902,7 +902,7 @@ const Test = (wrapper) => {
         Object.entries(objectTypeObject.propertyTypes).forEach(([dataType, propertyType]) => {
 
             // skip these for now
-            if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date")
+            if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date")
                 return;
 
             test("Editing property of dataType=" + dataType, async () => {

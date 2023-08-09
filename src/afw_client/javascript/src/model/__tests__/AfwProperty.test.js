@@ -206,7 +206,7 @@ describe("AfwProperty Tests", () => {
         const property = new AfwProperty({ 
             propertyName: "mylist", 
             propertyType: {
-                dataType: "list",
+                dataType: "array",
                 dataTypeParameter: "string",
                 label: "My List"
             },                

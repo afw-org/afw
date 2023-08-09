@@ -98,7 +98,7 @@ export const ObjectResponsivePropertyOther = (props) => {
                         )
                     }      
                     {
-                        (dataType === "list") && (
+                        (dataType === "array") && (
                             <DataTypeDropdown 
                                 id="NewPropertyListDataType"
                                 label="Data Type"

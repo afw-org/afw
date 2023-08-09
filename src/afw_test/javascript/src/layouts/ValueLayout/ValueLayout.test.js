@@ -100,7 +100,7 @@ const Test = (wrapper) => {
         describe("Editable", () => {
             
             const skipDataTypes = [
-                "object", "list", "time", "date", "dateTime"
+                "object", "array", "time", "date", "dateTime"
             ];
 
             Object.entries(objectTypeObject.propertyTypes).forEach(([dataType, propertyType]) => {

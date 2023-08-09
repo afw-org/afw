@@ -19,7 +19,7 @@ const buildProperty = (property, prefix, showLabels) => {
     if (property.getDataType() === "object")
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         return buildTree(property.getValue(), prefix, showLabels);
-    else if (property.getDataType() === "list") { 
+    else if (property.getDataType() === "array") { 
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         return buildList(property, prefix, showLabels);
     } else {

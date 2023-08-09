@@ -88,7 +88,7 @@ export const layoutByDataType = {
     ia5String:                  Ia5String,
     integer:                    Integer,  
     ipAddress:                  IpAddress,      
-    list:                       List,
+    array:                      List,
     null:                       Null,
     object:                     _Object,
     password:                   Password,    

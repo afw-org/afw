@@ -82,7 +82,7 @@ export class AfwListEntry extends AfwValue {
                     propertyName,      
                     objectTypeObject,       
                 });
-            } else if (dataType === "list" || isArray(value)) {
+            } else if (dataType === "array" || isArray(value)) {
                 this.adaptiveValue = new AfwList({
                     value,
                     parent: this,

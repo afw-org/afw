@@ -46,7 +46,7 @@ const ExpressionTupleOperationList = (props) => {
     const onRenderParameters = () => {
         let rows = [];
 
-        /* The tuple should look like [annotation, "list", "item1", "item2", ...] */
+        /* The tuple should look like [annotation, "array", "item1", "item2", ...] */
         let tupleParams = tuple.slice(2);       
 
         for (let i = 0; i < tupleParams.length; i ++) {

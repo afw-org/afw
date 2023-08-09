@@ -123,11 +123,11 @@ export class AfwValue extends AfwEvent {
 
         /* try to interpret the dataType from the value */
         if (value instanceof AfwList)
-            return "list";
+            return "array";
         else if (value instanceof AfwObject)
             return "object";
         else if (isArray(value))
-            return "list";
+            return "array";
         else if (isObject(value))
             return "object";
         else if (isInteger(value))
@@ -256,7 +256,7 @@ export class AfwValue extends AfwEvent {
                 });
             } 
             
-            else if ((dataType === "list") && (value !== undefined)) 
+            else if ((dataType === "array") && (value !== undefined)) 
             {           
                 this.adaptiveValue = new AfwList({ 
                     value, 
@@ -392,7 +392,7 @@ export class AfwValue extends AfwEvent {
 
         if (this.getDataType() === "object") {  
             return value.toJSON(meta);
-        } else if (this.getDataType() === "list") {
+        } else if (this.getDataType() === "array") {
             return value.toJSON(meta);
         } else return value;
     }

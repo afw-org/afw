@@ -107,7 +107,7 @@ export const monarchLanguage = {
     typeKeywords: [
         "anyUri", "base64Binary", "boolean", "date", "dateTime", "dayTimeDuration", 
         "dnsName", "double", "expression", "hexBinary", "hybrid", 
-        "ia5String", "integer", "ipAddress", "list", "null", "object", "objectId",
+        "ia5String", "integer", "ipAddress", "array", "null", "object", "objectId",
         "objectPath", "password", "rfc822Name", "string", "template", "time", "x500Name",
         "xPathExpression", "yearMonthDuration",
     ],

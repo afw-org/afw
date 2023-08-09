@@ -345,7 +345,7 @@ const ObjectsTable = ({ onSelectObject }) => {
 
     let sortableProperties = [];
     if (objectTypeObject) {
-        sortableProperties = objectTypeObject.getProperties().filter(p => (p.getDataType() !== "object" && p.getDataType() !== "list"));
+        sortableProperties = objectTypeObject.getProperties().filter(p => (p.getDataType() !== "object" && p.getDataType() !== "array"));
     }
 
 
@@ -681,7 +681,7 @@ const ObjectsTable = ({ onSelectObject }) => {
                                         minWidth: 100,
                                         maxWidth: 200,
                                         isResizable: true,
-                                        isMultiline: (p.getValue().getPropertyValue("dataType") === "list"),
+                                        isMultiline: (p.getValue().getPropertyValue("dataType") === "array"),
                                         getValue: (object) => String(object.getPropertyValue(name)),
                                         onRender: (object) => onRenderProperty(object, name)
                                     }];

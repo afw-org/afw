@@ -78,9 +78,9 @@ export const ExpressionTupleOperations = {
         component: ExpressionTupleOperationObject,        
     },
 
-    "list": {
-        label: "Build List()",
-        description: "This component allows you to build a list programmatically, by defining each item.",
+    "array": {
+        label: "Build Array()",
+        description: "This component allows you to build an array programmatically, by defining each item.",
         component: ExpressionTupleOperationList,
     },
 

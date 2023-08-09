@@ -84,7 +84,7 @@ const RemoveValue = ({ mod, objectTypeObject, onChanged, index }) => {
                             onFilter={propertyType => {
                                 if (propertyType) {
                                     const dataType = propertyType.getPropertyValue("dataType");
-                                    if (dataType === "list" || dataType === "object")
+                                    if (dataType === "array" || dataType === "object")
                                         return false;
                                 }
                                 return true;
@@ -187,7 +187,7 @@ const AddValue = ({ mod, objectTypeObject, onChanged, index }) => {
                             onFilter={propertyType => {
                                 if (propertyType) {
                                     const dataType = propertyType.getPropertyValue("dataType");
-                                    if (dataType === "list" || dataType === "object")
+                                    if (dataType === "array" || dataType === "object")
                                         return false;
                                 }
                                 return true;
@@ -289,7 +289,7 @@ const SetProperty = ({ objectTypeObject, onChanged, mod, index }) => {
                             onFilter={propertyType => {
                                 if (propertyType) {
                                     const dataType = propertyType.getPropertyValue("dataType");
-                                    if (dataType === "list" || dataType === "object")
+                                    if (dataType === "array" || dataType === "object")
                                         return false;
                                 }
                                 return true;
@@ -380,7 +380,7 @@ const RemoveProperty = ({ objectTypeObject, onChanged, mod, index }) => {
                             onFilter={propertyType => {
                                 if (propertyType) {
                                     const dataType = propertyType.getPropertyValue("dataType");
-                                    if (dataType === "list" || dataType === "object")
+                                    if (dataType === "array" || dataType === "object")
                                         return false;
                                 }
                                 return true;

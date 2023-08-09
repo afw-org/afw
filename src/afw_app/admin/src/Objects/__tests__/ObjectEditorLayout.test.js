@@ -59,7 +59,7 @@ describe("ObjectsEditorLayout Tests", () => {
                 fireEvent.click(propertyButton);
             }
 
-            else if (value && dataType === "list") {
+            else if (value && dataType === "array") {
                 let list;
                 await waitFor(() => expect(list = screen.getByRole("list", { name: label })).toBeInTheDocument());
 
@@ -154,7 +154,7 @@ describe("ObjectsEditorLayout Tests", () => {
                 fireEvent.click(propertyButton);
             }
 
-            else if (value && dataType === "list") {
+            else if (value && dataType === "array") {
                 /*
                 fixme
                 await waitFor(() => expect(screen.getByRole("list", { name: label })).toBeInTheDocument());

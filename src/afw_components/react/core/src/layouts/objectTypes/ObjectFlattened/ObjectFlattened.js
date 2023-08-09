@@ -20,7 +20,7 @@ const flatten = (flattened, property, indent, index) => {
         });
     }
 
-    else if (property.getDataType() === "list") {
+    else if (property.getDataType() === "array") {
         flattened.push({ name, indent, property });
 
         let i = 0;
@@ -43,7 +43,7 @@ const ObjectFlattenedValue = ({ property }) => {
     const dataType = property.getDataType();
     const value = property.getValue();
 
-    if (dataType === "object" || dataType === "list")
+    if (dataType === "object" || dataType === "array")
         return null;
 
     if (editable) {

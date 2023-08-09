@@ -143,7 +143,7 @@ export const TestRemoveProperties = (wrapper) => {
 export const TestEditProperties = (wrapper) => {
 
     const filteredPropertyTypes = Object.entries(objectTypeObject.propertyTypes).filter(([dataType]) => 
-        !["list", "object", "time", "date", "dateTime"].includes(dataType)
+        !["array", "object", "time", "date", "dateTime"].includes(dataType)
     );
         
     test.each(filteredPropertyTypes)(
@@ -405,7 +405,7 @@ export const TestBasic = (wrapper) => {
             const {label, expectedTestValues} = propertyType;
 
             // skip some dataTypes for now, as they're not well defined in non-editable mode 
-            if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
+            if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
                     dataType === "date" || dataType === "dateTime" || dataType === "hybrid" || dataType === "password" )
                 continue;
                 
@@ -421,7 +421,7 @@ export const TestBasic = (wrapper) => {
         let model = result.current;        
 
         const skipDataTypes = [
-            "list", "object", "time", "date", "dateTime"
+            "array", "object", "time", "date", "dateTime"
         ];
 
         const ObjectResponsiveWithProfiler = withProfiler(ObjectResponsive);
@@ -468,7 +468,7 @@ export const TestBasic = (wrapper) => {
         let model = result.current;        
 
         const skipDataTypes = [
-            "list", "object", "time", "date", "dateTime"
+            "array", "object", "time", "date", "dateTime"
         ];
 
         const ObjectResponsiveWithProfiler = withProfiler(ObjectResponsive);
@@ -527,7 +527,7 @@ export const TestBasic = (wrapper) => {
     test("Discarding changes to object causes all property values to be reset", async () => {
 
         const skipDataTypes = [
-            "list", "object", "time", "date", "dateTime"
+            "array", "object", "time", "date", "dateTime"
         ];
 
         let { result } = renderHook(() => useModel(), { wrapper });
@@ -588,7 +588,7 @@ export const TestBasic = (wrapper) => {
                 const {label, expectedTestValues} = propertyType;
 
                 // skip certain dataTypes for now 
-                if (dataType === "list" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
+                if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "date" || dataType === "dateTime")
                     continue;
                     
                 const input = screen.getByLabelText(label);                                             

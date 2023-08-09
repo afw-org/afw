@@ -43,7 +43,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
                 value: [ "This is a value!" ]
@@ -63,7 +63,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
                 value: [ "This is a value!" ]
@@ -81,7 +81,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
             });
@@ -100,7 +100,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
             });
@@ -121,7 +121,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
                 value: [ "This is a value!" ]
@@ -143,7 +143,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
                 value: [ "This is a value!" ]
@@ -167,7 +167,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
                 value: [ "This is a value!", "This is value2" ]
@@ -190,7 +190,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 },
                 value: [ "This is a value!", "This is value2" ]
@@ -215,7 +215,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 }
             });
@@ -245,7 +245,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string"
                 }
             });
@@ -280,7 +280,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },
@@ -304,7 +304,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },
@@ -332,7 +332,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },
@@ -357,7 +357,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },
@@ -386,7 +386,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },                
@@ -411,7 +411,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },                
@@ -441,7 +441,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },                
@@ -470,7 +470,7 @@ const Test = (wrapper) => {
             const property = new AfwProperty({ 
                 propertyName: "mylist", 
                 propertyType: {
-                    dataType: "list",
+                    dataType: "array",
                     dataTypeParameter: "string",
                     label: "My List"
                 },                
