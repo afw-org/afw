@@ -1359,8 +1359,8 @@ def update_object(session, objectType, objectId, object, adaptorId=None, journal
 
         object (object): Object containing properties to replace in existing
         object. You can use object_modify instead to update properties of
-        embedded objects and lists, as well as to modify individual values of
-        the object.
+        embedded objects and arrays, as well as to modify individual values
+        of the object.
 
         journal (object): The properties of this object will be added to the
         associated journal entry. Refer to
@@ -1419,8 +1419,8 @@ def update_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecif
 
         object (object): Object containing properties to replace in existing
         object. You can use object_modify instead to update properties of
-        embedded objects and lists, as well as to modify individual values of
-        the object.
+        embedded objects and arrays, as well as to modify individual values
+        of the object.
 
         journal (object): The properties of this object will be added to the
         associated journal entry. Refer to

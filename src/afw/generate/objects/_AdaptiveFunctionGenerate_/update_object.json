@@ -22,7 +22,7 @@
         },
         {
             "dataType": "object",
-            "description": "Object containing properties to replace in existing object. You can use object_modify instead to update properties of embedded objects and lists, as well as to modify individual values of the object.",
+            "description": "Object containing properties to replace in existing object. You can use object_modify instead to update properties of embedded objects and arrays, as well as to modify individual values of the object.",
             "name": "object"
         },
         {

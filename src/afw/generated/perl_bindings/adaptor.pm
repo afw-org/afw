@@ -909,7 +909,7 @@ Id of object to update.
     $object
 
 Object containing properties to replace in existing object. You can use
-object_modify instead to update properties of embedded objects and lists, as
+object_modify instead to update properties of embedded objects and arrays, as
 well as to modify individual values of the object.
 
     $journal
@@ -944,7 +944,7 @@ local object path.
     $object
 
 Object containing properties to replace in existing object. You can use
-object_modify instead to update properties of embedded objects and lists, as
+object_modify instead to update properties of embedded objects and arrays, as
 well as to modify individual values of the object.
 
     $journal

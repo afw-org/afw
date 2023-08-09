@@ -1412,7 +1412,7 @@ afw_function_definition_update_object;
  *
  *   object - (object) Object containing properties to replace in existing
  *       object. You can use object_modify instead to update properties of
- *       embedded objects and lists, as well as to modify individual values of
+ *       embedded objects and arrays, as well as to modify individual values of
  *       the object.
  *
  *   journal - (optional object) The properties of this object will be added to
@@ -1469,7 +1469,7 @@ afw_function_definition_update_object_with_uri;
  *
  *   object - (object) Object containing properties to replace in existing
  *       object. You can use object_modify instead to update properties of
- *       embedded objects and lists, as well as to modify individual values of
+ *       embedded objects and arrays, as well as to modify individual values of
  *       the object.
  *
  *   journal - (optional object) The properties of this object will be added to

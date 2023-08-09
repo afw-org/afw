@@ -1104,7 +1104,7 @@ export function afwRetrieveObjectsWithUriToStream(client : any, streamNumber : n
  * 
  * @param {object} object - Object containing properties to replace in
  *     existing object. You can use object_modify instead to update
- *     properties of embedded objects and lists, as well as to modify
+ *     properties of embedded objects and arrays, as well as to modify
  *     individual values of the object.
  * 
  * @param {object} journal - The properties of this object will be added to
@@ -1152,7 +1152,7 @@ export function afwUpdateObject(client : any, objectType : string, objectId : st
  * 
  * @param {object} object - Object containing properties to replace in
  *     existing object. You can use object_modify instead to update
- *     properties of embedded objects and lists, as well as to modify
+ *     properties of embedded objects and arrays, as well as to modify
  *     individual values of the object.
  * 
  * @param {object} journal - The properties of this object will be added to

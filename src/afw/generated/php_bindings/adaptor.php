@@ -1299,7 +1299,7 @@ class adaptor
      * @param object $object Object containing properties to replace in
      *                       existing object. You can use object_modify
      *                       instead to update properties of embedded objects
-     *                       and lists, as well as to modify individual
+     *                       and arrays, as well as to modify individual
      *                       values of the object.
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
@@ -1357,7 +1357,7 @@ class adaptor
      * @param object $object Object containing properties to replace in
      *                       existing object. You can use object_modify
      *                       instead to update properties of embedded objects
-     *                       and lists, as well as to modify individual
+     *                       and arrays, as well as to modify individual
      *                       values of the object.
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to

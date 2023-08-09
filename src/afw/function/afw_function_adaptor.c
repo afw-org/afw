@@ -39,7 +39,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
 /* Used by retrieve_objects*() */
 typedef struct impl_retrieve_cb_ctx_s {
     const afw_pool_t *p;
-    const afw_array_t *list;
+    const afw_array_t *array;
     const afw_value_t *objectCallback;
     const afw_value_t *userData;
     const afw_object_options_t *object_options;
@@ -60,9 +60,9 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
     if (object) {
         p = (object->p) ? object->p : ctx->p;
         /** @fixme Need corresponding releases. */
-        if (ctx->list) {
+        if (ctx->array) {
             afw_object_add_reference(object, xctx);
-            afw_array_add_value(ctx->list,
+            afw_array_add_value(ctx->array,
                 afw_value_create_object(object, ctx->p, xctx), xctx);
         }
         else {
@@ -1607,7 +1607,7 @@ afw_function_execute_retrieve_objects(
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.list = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
+    ctx.array = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
     criteria = NULL;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId,
@@ -1645,7 +1645,7 @@ afw_function_execute_retrieve_objects(
         (adaptorTypeSpecific) ? adaptorTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    return afw_value_create_array(ctx.list, x->p, x->xctx);
+    return afw_value_create_array(ctx.array, x->p, x->xctx);
 }
 
 
@@ -2144,7 +2144,7 @@ afw_function_execute_retrieve_objects_with_uri(
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.list = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
+    ctx.array = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
     criteria = NULL;
     journal_entry = afw_object_create_managed(x->p, x->xctx);
 
@@ -2191,8 +2191,8 @@ afw_function_execute_retrieve_objects_with_uri(
         (adaptorTypeSpecific) ? adaptorTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    /* Return retrieved objects as a list. */
-    return afw_value_create_array(ctx.list, x->p, x->xctx);
+    /* Return retrieved objects as a array. */
+    return afw_value_create_array(ctx.array, x->p, x->xctx);
 }
 
 
@@ -2327,8 +2327,8 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
         (adaptorTypeSpecific) ? adaptorTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    /* Return retrieved objects as a list. */
-    return afw_value_create_array(ctx.list, x->p, x->xctx);
+    /* Return retrieved objects as a array. */
+    return afw_value_create_array(ctx.array, x->p, x->xctx);
 }
 
 
@@ -2641,7 +2641,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *
  *   object - (object) Object containing properties to replace in existing
  *       object. You can use object_modify instead to update properties of
- *       embedded objects and lists, as well as to modify individual values of
+ *       embedded objects and arrays, as well as to modify individual values of
  *       the object.
  *
  *   journal - (optional object) The properties of this object will be added to
@@ -2739,7 +2739,7 @@ afw_function_execute_update_object(
  *
  *   object - (object) Object containing properties to replace in existing
  *       object. You can use object_modify instead to update properties of
- *       embedded objects and lists, as well as to modify individual values of
+ *       embedded objects and arrays, as well as to modify individual values of
  *       the object.
  *
  *   journal - (optional object) The properties of this object will be added to
