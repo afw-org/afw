@@ -818,9 +818,7 @@ afw_value_block_evaluate_throw(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(message, 1, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(data, 2);
 
-    xctx->error->data = data;
-
-    AFW_THROW_ERROR_FZ(throw, xctx, AFW_UTF8_FMT,
+    AFW_THROW_ERROR_WITH_DATA_FZ(throw, data, xctx, AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&message->internal));
 
     return afw_value_null;

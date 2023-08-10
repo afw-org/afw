@@ -79,7 +79,7 @@ struct afw_error_s {
     /** @brief Message */
     const afw_utf8_z_t *message_z;
 
-    /** @brief Set before throw to supply a error object "data" property. */
+    /** @brief Set by one of the AFW_THROW_ERROR_WITH_DATA* macros.. */
     const afw_value_t *data;
 
     /** @brief Contextual information or NULL. */
@@ -286,6 +286,24 @@ do { \
 
 
 /**
+ * @brief Macro used to set error with data and 0 rv in xctx and throw it.
+ * @param code to be appended to afw_error_code_
+ * @param _data is any adaptive value to be included in error object.
+ * @param message_z error message.
+ * @param xctx of caller.
+ *
+ * Always follow with a semicolon;
+ */
+#define AFW_THROW_ERROR_WITH_DATA_Z(code, _data, message_z, xctx) \
+do { \
+    xctx->error->data = _data; \
+    afw_error_set_z(afw_error_code_ ## code, \
+        AFW__FILE_LINE__, message_z, xctx); \
+    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+} while (0)
+
+
+/**
  * @brief Macro used to set error and rv in xctx and throw it.
  * @param code to be appended to afw_error_code_
  * @param rv_source_id to append to AFW_ERROR_RV_SOURCE_ID_Z_
@@ -297,6 +315,28 @@ do { \
  */
 #define AFW_THROW_ERROR_RV_Z(code, rv_source_id, rv, message_z, xctx) \
 do { \
+    afw_error_rv_set_z(afw_error_code_ ## code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
+        AFW__FILE_LINE__, message_z, xctx); \
+    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+} while (0)
+
+
+/**
+ * @brief Macro used to set error with data and rv in xctx and throw it.
+ * @param code to be appended to afw_error_code_
+ * @param _data is any adaptive value to be included in error object.
+ * @param rv_source_id to append to AFW_ERROR_RV_SOURCE_ID_Z_
+ * @param rv associated with rv_source_id_z
+ * @param message_z error message.
+ * @param xctx of caller.
+ *
+ * Always follow with a semicolon;
+ */
+#define AFW_THROW_ERROR_WITH_DATA_RV_Z(code, _data, \
+        rv_source_id, rv, message_z, xctx) \
+do { \
+    xctx->error->data = _data; \
     afw_error_rv_set_z(afw_error_code_ ## code, \
         AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
         AFW__FILE_LINE__, message_z, xctx); \
@@ -322,6 +362,25 @@ do { \
 
 
 /**
+ * @brief Macro used to set error with data and 0 rv in xctx and throw it.
+ * @param code to be appended to afw_error_code_
+ * @param _data is any adaptive value to be included in error object.
+ * @param xctx of caller.
+ * @param format_z format for error message
+ * @param ... for format_z
+ *
+ * Always follow with a semicolon;
+ */
+#define AFW_THROW_ERROR_WITH_DATA_FZ(code, _data, xctx, format_z, ...) \
+do { \
+    xctx->error->data = _data; \
+    afw_error_set_fz(afw_error_code_ ## code, \
+        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
+    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+} while (0)
+
+
+/**
  * @brief Macro used to set error and rv in xctx and throw it.
  * @param code to be appended to afw_error_code_
  * @param rv_source_id to append to AFW_ERROR_RV_SOURCE_ID_Z_
@@ -340,6 +399,30 @@ do { \
     longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
 } while (0)
 
+
+/**
+ * @brief Macro used to set error with data and rv in xctx and throw it.
+ * @param code to be appended to afw_error_code_
+ * @param _data is any adaptive value to be included in error object.
+ * @param rv_source_id to append to AFW_ERROR_RV_SOURCE_ID_Z_
+ * @param rv associated with rv_source_id
+ * @param xctx of caller.
+ * @param format_z format for error message
+ * @param ... for format_z
+ *
+ * Always follow with a semicolon;
+ */
+#define AFW_THROW_ERROR_WITH_DATA_RV_FZ(code, _data, \
+        rv_source_id, rv, xctx, format_z, ...) \
+do { \
+    xctx->error->data = _data; \
+    afw_error_rv_set_fz(afw_error_code_ ## code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
+        AFW__FILE_LINE__, xctx, format_z, __VA_ARGS__); \
+    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+} while (0)
+
+
 /**
  * @brief Macro used to set error and 0 rv in xctx and throw it.
  * @param code to be appended to afw_error_code_
@@ -355,6 +438,26 @@ do { \
         AFW__FILE_LINE__, format_z, ap, xctx); \
     longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
 } while (0)
+
+
+/**
+ * @brief Macro used to set error with data and 0 rv in xctx and throw it.
+ * @param code to be appended to afw_error_code_
+ * @param _data is any adaptive value to be included in error object.
+ * @param format_z format for error message
+ * @param ap arguments for format_z
+ * @param xctx of caller.
+ *
+ * Always follow with a semicolon;
+ */
+#define AFW_THROW_ERROR_WITH_DATA_VZ(code, _data, format_z, ap, xctx) \
+do { \
+    xctx->error->data = _data; \
+    afw_error_set_vz(afw_error_code_ ## code, \
+        AFW__FILE_LINE__, format_z, ap, xctx); \
+    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+} while (0)
+
 
 /**
  * @brief Macro used to set error and rv in xctx and throw it.
@@ -372,6 +475,28 @@ do { \
         AFW__FILE_LINE__, format_z, ap, xctx); \
     longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
 } while (0)
+
+
+/**
+ * @brief Macro used to set error with data and rv in xctx and throw it.
+ * @param code to be appended to afw_error_code_
+ * @param _data is any adaptive value to be included in error object.
+ * @param rv_source_id to append to AFW_ERROR_RV_SOURCE_ID_Z_
+ * @param rv associated with rv_source_id
+ * @param format_z format for error message
+ * @param ap arguments for format_z
+ * @param xctx of caller.
+ */
+#define AFW_THROW_ERROR_WITH_DATA_RV_VZ(code, _data, \
+        rv_source_id, rv, format_z, ap, xctx) \
+do { \
+    xctx->error->data = _data; \
+    afw_error_rv_set_vz(afw_error_code_ ## code, \
+        AFW_ERROR_RV_SOURCE_ID_Z_ ## rv_source_id, rv, \
+        AFW__FILE_LINE__, format_z, ap, xctx); \
+    longjmp(((xctx)->current_try->throw_jmp_buf), (afw_error_code_ ## code)); \
+} while (0)
+
 
 /**
  * @brief Macro used to set error and 0 rv in xctx using line number in
