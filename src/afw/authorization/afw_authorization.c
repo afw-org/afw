@@ -426,6 +426,7 @@ afw_authorization_check(
     const afw_utf8_t *decision_id2;
     const afw_authorization_control_t *ctl;
     const afw_utf8_t *s;
+    const afw_utf8_t *s2;
     const afw_object_t *obj;
     const afw_value_t *check;
     afw_authorization_internal_authorizationCheck_context_t ctx;
@@ -753,10 +754,20 @@ afw_authorization_check(
 
     if (enforce) {
         if (!afw_utf8_equal(decision_id, &afw_s_permit)) {
-            s = afw_value_as_string(resource_id_value, xctx);
-            AFW_THROW_ERROR_FZ(denied, xctx,
-                "Access to " AFW_UTF8_FMT_Q " is not permitted",
-                AFW_UTF8_FMT_ARG(s));
+            obj = afw_object_create(p, xctx);
+            afw_object_set_property(obj, &afw_s_actionId,
+                action_id_value, xctx);
+            afw_object_set_property(obj, &afw_s_resourceId,
+                request_id_value, xctx);
+            result = afw_value_create_object(obj, p, xctx);
+
+            s = afw_value_as_string(action_id_value, xctx);
+            s2 = afw_value_as_string(resource_id_value, xctx);
+            AFW_THROW_ERROR_WITH_DATA_FZ(denied, result, xctx,
+                "Access " AFW_UTF8_FMT_Q
+                " to " AFW_UTF8_FMT_Q
+                " is not permitted",
+                AFW_UTF8_FMT_ARG(s), AFW_UTF8_FMT_ARG(s2));
         }
     }
 
