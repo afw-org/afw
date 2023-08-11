@@ -7,7 +7,7 @@
 //?
 //? test: order-of-evaluation
 //? description: Type coercion order of operations for subtraction operator
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -142,7 +142,7 @@ assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
 
 //? test: S11.6.2_A1
 //? description: Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -200,7 +200,7 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029-\u0
 
 //? test: S11.6.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -251,7 +251,7 @@ x - 1;
 
 //? test: S11.6.2_A2.3_T1
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -277,7 +277,7 @@ try {
 
 //? test: S11.6.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -303,7 +303,7 @@ try {
 
 //? test: S11.6.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -316,7 +316,7 @@ if (1 - 1 !== 0) {
 
 //? test: S11.6.2_A4_T1
 //? description: If either operand is NaN, the result is NaN
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -356,7 +356,7 @@ if (is_NaN(-Infinity - NaN) !== true ) {
 //? description:...
     The difference of two infinities of opposite sign is the infinity
     of minuend sign
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -375,7 +375,7 @@ if (-Infinity - Infinity !== -Infinity ) {
 //? test: S11.6.2_A4_T3
 //? description: The difference of two infinities of the same sign is NaN
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -396,7 +396,7 @@ if (is_NaN(-Infinity - -Infinity) !== true ) {
     The difference of an infinity and a finite value is equal to
     infinity of appropriate sign
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -494,7 +494,7 @@ if (0 - 0 !== 0 ) {
     Using the rule of sum of a zero and a nonzero finite value and the
     fact that a - b = a + (-b)
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -545,7 +545,7 @@ if (0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
     The mathematical difference of two nonzero finite values of the
     same magnitude and same sign is +0
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -583,7 +583,7 @@ if (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE !== +0) {
     If the magnitude is too large to represent, the operation
     overflows and the result is then an infinity of appropriate sign
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

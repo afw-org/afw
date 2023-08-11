@@ -472,5 +472,5 @@ afw_function_execute_journal_mark_consumed(
     afw_adaptor_journal_mark_consumed(
         &adaptorId->internal, &consumerId->internal, &cursor->internal,
         x->p, x->xctx);
-    return afw_value_null;
+    return afw_value_undefined;
 }

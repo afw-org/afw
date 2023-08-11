@@ -7,7 +7,7 @@
 //?
 //? test: 7.3-15
 //? description: 7.3 - ES5 recognize <BOM> (\uFFFF) as a whitespace character
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -23,7 +23,7 @@ assert(prop !== "aa", 'prop');
 //? description:...
     7.3 - ES5 recognizes the character <LS> (\u2028) as terminating
     string literal
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -39,7 +39,7 @@ assert(length(prop) === 6, 'prop.length');
 //? description:...
     7.3 - ES5 recognizes the character <PS> (\u2029) as terminating
     string literal
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -53,7 +53,7 @@ assert(length(prop) === 6,  'prop.length');
 
 //? test: between-tokens-cr
 //? description: Insert real CARRIAGE RETURN between tokens of let x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -70,7 +70,7 @@ if (x !== 1) {
 
 //? test: between-tokens-lf
 //? description: Insert real LINE FEED between tokens of let x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -85,7 +85,7 @@ assert(x ===  1);
 
 //? test: between-tokens-ls
 //? description: Insert LINE SEPARATOR (\u2028) between tokens of let x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -97,7 +97,7 @@ assert(x ===  1);
 
 //? test: between-tokens-ps
 //? description: Insert PARAGRAPH SEPARATOR (\u2029) between tokens of let x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -109,7 +109,7 @@ assert(x === 1);
 
 //? test: comment-multi-cr
 //? description: Insert real CARRIAGE RETURN into multi line comment
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -457,7 +457,7 @@ ing
 
 //? test: S7.3_A5.4
 //? description: Insert PARAGRAPH SEPARATOR (U+2029) into multi line comment
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -520,7 +520,7 @@ let\u2029x;
 
 //? test: S7.3_A7_T1
 //? description: Insert Line Terminator in let x=y+z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -556,7 +556,7 @@ if (x !== 5) {
 
 //? test: S7.3_A7_T2
 //? description: Insert Line Terminator in let x=y-z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -592,7 +592,7 @@ if (x !== 1) {
 
 //? test: S7.3_A7_T3
 //? description: Insert Line Terminator in let x=y*z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -628,7 +628,7 @@ if (x !== 6) {
 
 //? test: S7.3_A7_T4
 //? description: Insert Line Terminator in let x=y/z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -664,7 +664,7 @@ if (x !== 6) {
 
 //? test: S7.3_A7_T5
 //? description: Insert Line Terminator in let x=y%z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -702,7 +702,7 @@ if (x !== 6) {
 
 //? test: S7.3_A7_T8
 //? description: Insert Line Terminator in let x=y<z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

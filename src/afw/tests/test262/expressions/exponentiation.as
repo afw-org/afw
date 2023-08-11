@@ -7,7 +7,7 @@
 //?
 //? test: applying-the-exp-operator_A10
 //? description:If abs(base) < 1 and exponent is −∞, the result is +∞.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -31,7 +31,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A11
 //? description:If base is +∞ and exponent > 0, the result is +∞.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -54,7 +54,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A12
 //? description:If base is +∞ and exponent < 0, the result is +0.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -77,7 +77,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A13
 //? description:If base is −∞ and exponent > 0 and exponent is an odd integer, the result is −∞.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -99,7 +99,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A14
 //? description:If base is −∞ and exponent > 0 and exponent is not an odd integer, the result is +∞.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -124,7 +124,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A15
 //? description:If base is −∞ and exponent < 0 and exponent is an odd integer, the result is −0.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -144,7 +144,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A16
 //? description:If base is −∞ and exponent < 0 and exponent is not an odd integer, the result is +0.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -169,7 +169,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A17
 //? description:If base is +0 and exponent > 0, the result is +0.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -192,7 +192,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A18
 //? description:If base is +0 and exponent < 0, the result is +∞.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -215,7 +215,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A19
 //? description:If base is −0 and exponent > 0 and exponent is an odd integer, the result is −0.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -235,7 +235,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A1
 //? description:If exponent is NaN, the result is NaN.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -263,7 +263,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A20
 //? description:If base is −0 and exponent > 0 and exponent is not an odd integer, the result is +0.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -288,7 +288,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A21
 //? description:If base is −0 and exponent < 0 and exponent is an odd integer, the result is −∞.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -310,7 +310,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A22
 //? description:If base is −0 and exponent < 0 and exponent is not an odd integer, the result is +∞.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -335,7 +335,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A23
 //? description:If base < 0 and base is finite and exponent is finite and exponent is not an integer, the result is NaN.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -373,7 +373,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A2
 //? description: If exponent is +0, the result is 1, even if base is NaN. throw new Test262Error("(" + bases[i] + " **  " + exponent + ") !== 1");
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -401,7 +401,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A3
 //? description: If exponent is −0, the result is 1, even if base is NaN. throw new Test262Error("(" + bases[i] + " ** -0) !== 1");
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -429,7 +429,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A4
 //? description:If base is NaN and exponent is nonzero, the result is NaN.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -454,7 +454,7 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 
 //? test: applying-the-exp-operator_A5
 //? description:If abs(base) > 1 and exponent is +∞, the result is +∞.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -479,7 +479,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A6
 //? description:If abs(base) > 1 and exponent is −∞, the result is +0.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -504,7 +504,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A7
 //? description:If abs(base) is 1 and exponent is +∞, the result is NaN.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -524,7 +524,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A8
 //? description:If abs(base) is 1 and exponent is −∞, the result is NaN.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -544,7 +544,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: applying-the-exp-operator_A9
 //? description:If abs(base) < 1 and exponent is +∞, the result is +0.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -568,7 +568,7 @@ for (let i = 0; i < length(bases); i = i + 1) {
 
 //? test: exp-operator-evaluation-order
 //? description:Exponentiation Operator expression order of evaluation
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -590,7 +590,7 @@ assert(capture[3] ===  "rightValue", "Expected the 4th element captured to be 'r
 
 //? test: exp-operator
 //? description: Performs exponential calculation on operands. Same algorithm as %MathPow%(base, exponent)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -609,7 +609,7 @@ assert(16.0 / 2.0 ** 2.0 ===  4.0, "(16 / 2 ** 2) === 4");
 
 //? test: exp-operator-precedence-unary-expression-semantics
 //? description:Exponentiation Operator expression precedence of unary operators
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -680,7 +680,7 @@ typeof 1 ** 2;
 
 //? test: int32_min-exponent
 //? description: Using -(2**31) as exponent with the exponentiation operator should behave as expected. "2**-(gonzo huge exponent > 1074) should be +0 because " + "2**-1074 is the smallest positive IEEE-754 number"); "1**-(gonzo huge exponent > 1074) should be 1");
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -697,7 +697,7 @@ assert(1.0**INT32_MIN === 1.0,
 
 //? test: order-of-evaluation
 //? description:Type coercion order of operations for exponentiation operator
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

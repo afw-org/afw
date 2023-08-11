@@ -7,7 +7,7 @@
 //?
 //? test: finally-block-let-declaration-only-shadows-outer-parameter-value-1
 //? description: finally block let declaration only shadows outer parameter value 1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -26,7 +26,7 @@ try {
 //?
 //? test: finally-block-let-declaration-only-shadows-outer-parameter-value-2
 //? description: finally block let declaration only shadows outer parameter value 2
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -49,7 +49,7 @@ try {
 //?
 //? test: for-loop-block-let-declaration-only-shadows-outer-parameter-value-1
 //? description: for loop block let declaration only shadows outer parameter value 1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -96,7 +96,7 @@ assert(caught);
 //?
 //? test: try-block-let-declaration-only-shadows-outer-parameter-value-1
 //? description: try block let declaration only shadows outer parameter value 1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -112,7 +112,7 @@ assert(caught);
 //?
 //? test: try-block-let-declaration-only-shadows-outer-parameter-value-2
 //? description: try block let declaration only shadows outer parameter value 2
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -132,7 +132,7 @@ assert(caught);
 //?
 //? test: verify-context-in-finally-block
 //? description: verify context in finally block 1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -153,7 +153,7 @@ function f() {}
 //?
 //? test: verify-context-in-for-loop-block
 //? description: verify context in for loop block 2
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -171,7 +171,7 @@ function(x) {
 //?
 //? test: verify-context-in-for-loop-block
 //? description: verify context in try block 1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -191,7 +191,7 @@ function f() {}
 //?
 //? test: x-before-continue
 //? description: x before continue
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

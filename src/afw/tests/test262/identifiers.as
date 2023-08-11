@@ -7,7 +7,7 @@
 //?
 //? test: start-underscore
 //? description: "IdentifierStart :: _"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -27,7 +27,7 @@ assert(__ === 4);
 
 //? test: start-unicode-ltr
 //? description: "IdentifierStart :: UnicodeLetter"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -187,7 +187,7 @@ let return = 123;
 
 //? test: vals-eng-alpha-lower
 //? description: Check ENGLISH SMALL ALPHABET
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -301,7 +301,7 @@ if (z !== 1) {
 
 //? test: vals-eng-alpha-upper
 //? description: Check ENGLISH CAPITAL ALPHABET
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -389,7 +389,7 @@ assert(Z === 1);
 
 //? test: vals-rus-alpha-lower
 //? description: Check RUSSIAN SMALL ALPHABET
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -529,7 +529,7 @@ let try = 123;
 
 //? test: val-underscore
 //? description: Create variable _
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

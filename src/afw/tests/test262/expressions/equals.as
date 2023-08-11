@@ -7,7 +7,7 @@
 //?
 //? test: 11.9.1_A2.1_T1
 //? description: Operator x == y
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -70,7 +70,7 @@ if ((x == (x = 1)) !== false) {
 
 //? test: 11.9.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression: checking with assert()
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -99,7 +99,7 @@ assert(
 
 //? test: 11.9.1_A3.1
 //? description: Return true, if x and y are both true or both false; otherwise, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -123,7 +123,7 @@ if ((false == true) !== false) {
 
 //? test: 11.9.1_A3.2
 //? description: x is primitive boolean, y is primitive number
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -141,7 +141,7 @@ if ((false == "0") !== true) {
 
 //? test: equals-6
 //? description: x is primitive integer, y is primitive boolean
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -159,7 +159,7 @@ if (("1" == true) !== true) {
 
 //? test: 11.9.1_A4.1_T1
 //? description: If x or y is NaN, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -194,7 +194,7 @@ if (("string" == NaN) !== false) {
 
 //? test: 11.9.1_A4.2
 //? description: If x is +0(-0) and y is -0(+0), return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -210,7 +210,7 @@ if ((-0 == +0) !== true) {
 
 //? test: 11.9.1_A4.3
 //? description: Return true, if x is the same number value as y; otherwise, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -236,7 +236,7 @@ if ((1.0 == double(1)) !== true) {
 
 //? test: 11.9.1_A5.1
 //? description: Return true, if x and y are exactly the same sequence of characters; otherwise, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -268,7 +268,7 @@ if (("0xff" == "255") !== false) {
 
 //? test: 11.9.1_A5.2
 //? description: x is primitive number, y is primitive string
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -300,7 +300,7 @@ if ((0 == "") !== true) {
 
 //? test: 11.9.1_A5.3
 //? description: x is primitive string, y is primitive number
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -328,7 +328,7 @@ if (("5e-324" == 5e-234) !== true) {
 
 //? test: 11.9.1_A6.1
 //? description: combinations of undefined and null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -348,7 +348,7 @@ if ((null == null) !== true) {
 
 //? test: 11.9.1_A6.2_T1
 //? description: x is undefined or null, y is not
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -388,7 +388,7 @@ if ((null == {}) !== false) {
 
 //? test: 11.9.1_A6.2_T2
 //? description: y is null or undefined, x is not
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -676,7 +676,7 @@ afw_function_execute_find(
     afw_memory_clear(&data);
     impl_over_array(x, impl_find_cb, (void *)&data);
 
-    return (data.found_value) ? data.found_value : afw_value_null;
+    return (data.found_value) ? data.found_value : afw_value_undefined;
 }
 
 

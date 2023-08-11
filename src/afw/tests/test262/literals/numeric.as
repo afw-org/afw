@@ -80,7 +80,7 @@ evaluate(script("let a = 0x1;a = 01;"));
 
 //? test: binary
 //? description: Mathematical value of valid binary integer literals
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -407,7 +407,7 @@ assert(0799 === 799, '0799');
 
 //? test: octal
 //? description: Mathematical value of valid octal integer literals
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -445,7 +445,7 @@ assert(0O077 === 63, 'upper-case head with leading zeros');
 
 //? test: S7.8.3_A1.1_T1
 //? description: "DecimalIntegerLiteral :: 0, NoNZeroDigit"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -503,7 +503,7 @@ if (9 !== 9) {
 
 //? test: S7.8.3_A1.1_T2
 //? description: "DecimalIntegerLiteral :: NoNZeroDigit DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -556,7 +556,7 @@ if (99 !== 99) {
 
 //? test: S7.8.3_A1.2_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -614,7 +614,7 @@ if (9e1 !== 90.0) {
 
 //? test: S7.8.3_A1.2_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -672,7 +672,7 @@ if (9E1 !== 90.0) {
 
 //? test: S7.8.3_A1.2_T3
 //? description: "ExponentPart :: e -DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -730,7 +730,7 @@ if (9e-1 !== 0.9) {
 
 //? test: S7.8.3_A1.2_T4
 //? description: "ExponentPart :: E -DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -788,7 +788,7 @@ if (9E-1 !== 0.9) {
 
 //? test: S7.8.3_A1.2_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -846,7 +846,7 @@ if (9e+1 !== 90.0) {
 
 //? test: S7.8.3_A1.2_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -904,7 +904,7 @@ if (9E+1 !== 90.0) {
 
 //? test: S7.8.3_A1.2_T7
 //? description: "ExponentPart :: e 0"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -962,7 +962,7 @@ if (9e0 !== 9.0) {
 
 //? test: S7.8.3_A1.2_T8
 //? description: "ExponentPart :: E 0"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1197,7 +1197,7 @@ if (.90 !== 0.9) {
 
 //? test: S7.8.3_A2.2_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1257,7 +1257,7 @@ if (.9e1 !== 9.0) {
 
 //? test: S7.8.3_A2.2_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1317,7 +1317,7 @@ if (.9E1 !== 9.0) {
 
 //? test: S7.8.3_A2.2_T3
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1377,7 +1377,7 @@ if (.9e-1 !== 0.09) {
 
 //? test: S7.8.3_A2.2_T4
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1437,7 +1437,7 @@ if (.9E-1 !== 0.09) {
 
 //? test: S7.8.3_A2.2_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1497,7 +1497,7 @@ if (.9e+1 !== 9.0) {
 
 //? test: S7.8.3_A2.2_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1557,7 +1557,7 @@ if (.9E+1 !== 9.0) {
 
 //? test: S7.8.3_A2.2_T7
 //? description: "ExponentPart :: e 0"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1617,7 +1617,7 @@ if (.9e0 !== 0.9) {
 
 //? test: S7.8.3_A2.2_T8
 //? description: "ExponentPart :: E 0"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1677,7 +1677,7 @@ if (.9E0 !== 0.9) {
 
 //? test: S7.8.3_A3.1_T1
 //? description: "DecimalIntegerLiteral :: 0, NoNZeroDigit"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1737,7 +1737,7 @@ if (9. !== 9.0) {
 
 //? test: S7.8.3_A3.1_T2
 //? description: "DecimalIntegerLiteral :: NoNZeroDigit DecimalDigigts"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1792,7 +1792,7 @@ if (99. !== 99.0) {
 
 //? test: S7.8.3_A3.2_T1
 //? description: After DecimalIntegerLiteral. used ZeroDigit
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1850,7 +1850,7 @@ if (9.0 !== 9.0) {
 
 //? test: S7.8.3_A3.2_T2
 //? description: After DecimalIntegerLiteral. used ZeroDigits
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1908,7 +1908,7 @@ if (9.00 !== 9.0) {
 
 //? test: S7.8.3_A3.2_T3
 //? description: After DecimalIntegerLiteral. used NoNZeroDigit
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1966,7 +1966,7 @@ if (9.9 !== 9.9) {
 
 //? test: S7.8.3_A3.3_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2026,7 +2026,7 @@ if (9.e1 !== 90.0) {
 
 //? test: S7.8.3_A3.3_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2086,7 +2086,7 @@ if (9.E1 !== 90.0) {
 
 //? test: S7.8.3_A3.3_T3
 //? description: "ExponentPart :: e -DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2146,7 +2146,7 @@ if (9.e-1 !== 0.9) {
 
 //? test: S7.8.3_A3.3_T4
 //? description: "ExponentPart :: E -DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2206,7 +2206,7 @@ if (9.E-1 !== 0.9) {
 
 //? test: S7.8.3_A3.3_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2266,7 +2266,7 @@ if (9.e+1 !== 90.0) {
 
 //? test: S7.8.3_A3.3_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2326,7 +2326,7 @@ if (9.E+1 !== 90.0) {
 
 //? test: S7.8.3_A3.3_T7
 //? description: "ExponentPart :: e 0"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2386,7 +2386,7 @@ if (9.e0 !== 9.0) {
 
 //? test: S7.8.3_A3.3_T8
 //? description: "ExponentPart :: E 0"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -2446,7 +2446,7 @@ if (9.E0 !== 9.0) {
 
 //? test: S7.8.3_A3.4_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2504,7 +2504,7 @@ if (9.9e1 !== 99.0) {
 
 //? test: S7.8.3_A3.4_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2562,7 +2562,7 @@ if (9.9E1 !== 99.0) {
 
 //? test: S7.8.3_A3.4_T3
 //? description: "ExponentPart :: e -DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2620,7 +2620,7 @@ if (9.9e-1 !== 0.99) {
 
 //? test: S7.8.3_A3.4_T4
 //? description: "ExponentPart :: E -DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2678,7 +2678,7 @@ if (9.9E-1 !== 0.99) {
 
 //? test: S7.8.3_A3.4_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2736,7 +2736,7 @@ if (9.9e+1 !== 99.0) {
 
 //? test: S7.8.3_A3.4_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2794,7 +2794,7 @@ if (9.9E+1 !== 99.0) {
 
 //? test: S7.8.3_A3.4_T7
 //? description: "ExponentPart :: e 0"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2852,7 +2852,7 @@ if (9.9e0 !== 9.9) {
 
 //? test: S7.8.3_A3.4_T8
 //? description: "ExponentPart :: E 0"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2982,7 +2982,7 @@ E0
 
 //? test: S7.8.3_A4.2_T1
 //? description: "ExponentIndicator :: e"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3040,7 +3040,7 @@ if (9e01 !== 90.0) {
 
 //? test: S7.8.3_A4.2_T2
 //? description: "ExponentIndicator :: E"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3098,7 +3098,7 @@ if (9E01 !== 90.0) {
 
 //? test: S7.8.3_A4.2_T3
 //? description: "ExponentIndicator :: e"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3156,7 +3156,7 @@ if (9e-01 !== 0.9) {
 
 //? test: S7.8.3_A4.2_T4
 //? description: "ExponentIndicator :: E"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3214,7 +3214,7 @@ if (9E-01 !== 0.9) {
 
 //? test: S7.8.3_A4.2_T5
 //? description: "ExponentIndicator :: e"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3272,7 +3272,7 @@ if (9e+01 !== 90.0) {
 
 //? test: S7.8.3_A4.2_T6
 //? description: "ExponentIndicator :: E"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3330,7 +3330,7 @@ if (9E+01 !== 90.0) {
 
 //? test: S7.8.3_A4.2_T7
 //? description: "ExponentIndicator :: e"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3388,7 +3388,7 @@ if (9e00 !== 9.0) {
 
 //? test: S7.8.3_A4.2_T8
 //? description: "ExponentIndicator :: E"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3446,7 +3446,7 @@ if (9E00 !== 9.0) {
 
 //? test: S7.8.3_A5.1_T1
 //? description: "HexIntegerLiteral :: 0x Digit"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3534,7 +3534,7 @@ if (0xF !== 15) {
 
 //? test: S7.8.3_A5.1_T2
 //? description: "HexIntegerLiteral :: 0X Digit"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3622,7 +3622,7 @@ if (0XF !== 15) {
 
 //? test: S7.8.3_A5.1_T3
 //? description: "HexIntegerLiteral :: 0x NonZeroDigit Digits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3675,7 +3675,7 @@ if (0x10000000 !== 268435456) {
 
 //? test: S7.8.3_A5.1_T4
 //? description: "HexIntegerLiteral :: 0X NonZeroDigit Digits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3728,7 +3728,7 @@ if (0X10000000 !== 268435456) {
 
 //? test: S7.8.3_A5.1_T5
 //? description: "HexIntegerLiteral :: 0x0 Digits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3781,7 +3781,7 @@ if (0x010000000 !== 268435456) {
 
 //? test: S7.8.3_A5.1_T6
 //? description: "HexIntegerLiteral :: 0X0 Digits"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3834,7 +3834,7 @@ if (0X010000000 !== 268435456) {
 
 //? test: S7.8.3_A5.1_T7
 //? description: "HexIntegerLiteral :: 0x one of a, b, c, d, e, f"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3872,7 +3872,7 @@ if (0xf !== 15) {
 
 //? test: S7.8.3_A5.1_T8
 //? description: "HexIntegerLiteral :: 0X one of a, b, c, d, e, f"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

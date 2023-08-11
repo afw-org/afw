@@ -7,7 +7,7 @@
 //?
 //? test: S11.4.6_A1
 //? description: Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -65,7 +65,7 @@ if (evaluate(script("+\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291"))
 
 //? test: S11.4.6_A2.1_T1
 //? description: Either Type(x) is not Reference or GetBase(x) is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -105,7 +105,7 @@ if (+(+x) !== 1) {
 
 //? test: S11.4.6_A3_T1
 //? description: Type(x) is boolean primitive or Boolean object
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -121,7 +121,7 @@ if (+false !== 0) {
 
 //? test: S11.4.6_A3_T2
 //? description: Type(x) is number primitive or Number object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -226,7 +226,7 @@ if (is_NaN(+(evaluate(script("let x;")))) !== true) {
 
 //? test: S9.3_A2_T2
 //? description: null convert to Number by implicit transformation
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -245,7 +245,7 @@ if (+(null) !== 0) {
 
 //? test: S9.3_A3_T2
 //? description: False and true convert to Number by implicit transformation
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -271,7 +271,7 @@ if (+(true) !== 1) {
 //? description:...
     Some numbers including Number.MAX_VALUE and Number.MIN_VALUE are
     converted to Number with implicit transformation
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -302,7 +302,7 @@ if (+(-1.3) !== -1.3) {
     Number.NaN, +0, -0, Number.POSITIVE_INFINITY,
     Number.NEGATIVE_INFINITY,  Number.MAX_VALUE and Number.MIN_VALUE
     convert to Number by implicit transformation
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

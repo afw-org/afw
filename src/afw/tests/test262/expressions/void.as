@@ -7,7 +7,7 @@
 //?
 //? test: S11.4.2_A1
 //? description: Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -64,7 +64,7 @@ if (evaluate(script("void\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20290
 
 //? test: S11.4.2_A2_T1
 //? description: Either Type(x) is not Reference or GetBase(x) is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -99,7 +99,7 @@ void x;
 
 //? test: S11.4.2_A4_T1
 //? description: Type(x) is boolean primitive or Boolean object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -120,7 +120,7 @@ if (void x !== undefined) {
 
 //? test: S11.4.2_A4_T2
 //? description: Type(x) is number primitive or Number object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -142,7 +142,7 @@ if (void x !== undefined) {
 //? test: S11.4.2_A4_T3
 //? description: Type(x) is string primitive of String object
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -170,7 +170,7 @@ if (void x !== undefined) {
 //? test: S11.4.2_A4_T4
 //? description: Type(x) is undefined or null
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -190,7 +190,7 @@ if (void x !== undefined) {
 //? test: S11.4.2_A4_T5
 //? description: Type(x) is Object object or Function object
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

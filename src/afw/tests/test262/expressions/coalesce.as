@@ -7,7 +7,7 @@
 //?
 //? test: abrupt-is-a-short-circuit
 //? description: Abrupt completions are also a Short circuit and prevent evaluation of the right-side expressions
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -77,7 +77,7 @@ assert.throws(Test262Error, function() {
 
 //? test: follows-null
 //? description: If the CoalesceExpressionHead is null, follow return the right-side eval.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -98,7 +98,7 @@ assert(x === false, 'null ?? false');
 
 //? test: follows-undefined
 //? description: If the CoalesceExpressionHead is undefined, follow return the right-side eval.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -119,7 +119,7 @@ assert(x === false, 'undefined ?? false');
 
 //? test: short-circuit-number-0
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (0)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -168,7 +168,7 @@ assert(x === 0, 'undefined ?? 0 ?? undefined');
 
 //? test: short-circuit-number-42
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (42)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -221,7 +221,7 @@ assert(x === 42, 'undefined ?? 42 ?? undefined');
 
 //? test: short-circuit-empty-string
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (the empty string)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -276,7 +276,7 @@ assert(x === str, 'undefined ?? str ?? undefined');
 
 //? test: short-circuit-number-false
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (false)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -329,7 +329,7 @@ assert(x === false, 'undefined ?? false ?? undefined');
 
 //? test: short-circuit-number-true
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (true)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -382,7 +382,7 @@ assert(x === true, 'undefined ?? true ?? undefined');
 
 //? test: short-circuit-prevents-evaluation
 //? description: Short circuit can prevent evaluation of the right-side expressions
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -406,7 +406,7 @@ assert(x === 42);
 
 //? test: tco-pos-null
 //? description: Expression is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -427,7 +427,7 @@ assert(callCount === 1);
 
 //? test: tco-pos-undefined
 //? description: Expression is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

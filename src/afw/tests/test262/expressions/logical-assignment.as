@@ -74,7 +74,7 @@ eval &&= 20;
 
 //? test: lgcl-nullish-assignment-operator
 //? description: Logical Nullish Assignment Operator
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -193,7 +193,7 @@ eval ??= 20;
 
 //? test: lgcl-nullish-whitespace
 //? description: Checking by evaluating expression "x[...]??=[...]y"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

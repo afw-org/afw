@@ -7,7 +7,7 @@
 //?
 //? test: get_object
 //? description: Test get_object
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -26,7 +26,7 @@ assert(caught);
 
 //? test: retrieve_objects
 //? description: Test retrieve_objects
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

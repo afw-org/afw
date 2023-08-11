@@ -7,7 +7,7 @@
 //?
 //? test: 11.8.2_A1
 //? description: White Space and Line Terminator between relational expression and ">" are allowed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -55,7 +55,7 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>=\u
 
 //? test: 11.8.2_A2.1_T1
 //? description: Operator x > y
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -99,7 +99,7 @@ x > 1;
 
 //? test: 11.8.2_A2.4_T1
 //? description: first expression is evaluated first, then second expression: checking with "="
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -118,7 +118,7 @@ if (x > (x = 0) !== true) {
 
 //? test: 11.8.2_A2.4_T2
 //? description: first expression is evaluated first, then second expression: checking with assert
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -147,7 +147,7 @@ assert(y1 === 0, "y1 !== 0");
 
 //? test: 11.8.2_A3.1_T1.1
 //? description: compare booleans
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -159,7 +159,7 @@ if (true > true !== false) {
 
 //? test: 11.8.2_A3.1_T1.2
 //? description: compare integers
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -213,7 +213,7 @@ if (1 > "x" !== false) {
 
 //? test: 11.8.2_A3.2_T1.1
 //? description: compare strings
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ("1" > "1" !== false) {
@@ -232,7 +232,7 @@ if ("1" > "x" !== false) {
 
 //? test: 11.8.2_A4.1
 //? description: If x is NaN, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((NaN > 0.0) !== false) {
@@ -263,7 +263,7 @@ if ((NaN > -Infinity) !== false) {
 
 //? test: 11.8.2_A4.10
 //? description: If x is a prefix of y, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if (("x" > "x") !== false) {
@@ -295,7 +295,7 @@ if ((x > (x + "y")) !== false) {
 
 //? test: 11.8.2_A4.11
 //? description: If y is a prefix of x and x !== y, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if (("x " > "x") !== true) {
@@ -335,7 +335,7 @@ if ((" x" > "x") !== false) {
 
 //? test: 11.8.2_A4.12_T1
 //? description: If neither x, nor y is a prefix of each other, returned result of strings comparison applies a simple lexicographic ordering to the sequence of code point value values
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if (("xy" > "xx") !== true) {
@@ -370,7 +370,7 @@ if (("aa" > "aB") !== true) {
 
 //? test: 11.8.2_A4.12_T2
 //? description: If neither x, nor y is a prefix of each other, returned result of strings comparison applies a simple lexicographic ordering to the sequence of code point value values
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if (("x" > "0") !== true) {
@@ -401,7 +401,7 @@ if (("1e-10" > "1") !== true) {
 
 //? test: 11.8.2_A4.2
 //? description: If y is NaN, return false (if result in 11.8.5 is undefined, return false)
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((double(0) > NaN) !== false) {
@@ -432,7 +432,7 @@ if ((-Infinity > NaN) !== false) {
 
 //? test: 11.8.2_A4.3
 //? description: info: If x and y are the same number value, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((1 > 1) !== false) {
@@ -459,7 +459,7 @@ if ((+Infinity > +Infinity) !== false) {
 
 //? test: 11.8.2_A4.4
 //? description: If either variable x or y is +0 and the other is -0, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((0 > 0) !== false) {
@@ -483,7 +483,7 @@ if ((-0 > +0) !== false) {
 
 //? test: 11.8.2_A4.5
 //? description: If x is +Infinity and x !== y, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((+Infinity > double(0)) !== true) {
@@ -506,7 +506,7 @@ if ((+Infinity > -Infinity) !== true) {
 
 //? test: 11.8.2_A4.6
 //? description: If y is +Infinity, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((double(0) > +Infinity) !== false) {
@@ -529,7 +529,7 @@ if ((-Infinity > +Infinity) !== false) {
 
 //? test: 11.8.2_A4.7
 //? description: If x is -Infinity, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((-Infinity > 0.0) !== false) {
@@ -552,7 +552,7 @@ if ((-Infinity > +Infinity) !== false) {
 
 //? test: 11.8.2_A4.8
 //? description: If y is -Infinity and x !== y, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((0.0 > -Infinity) !== true) {
@@ -575,7 +575,7 @@ if ((+Infinity > -Infinity) !== true) {
 
 //? test: 11.8.2_A4.9
 //? description: If is x greater than y and these values are both finite non-zero, return true; otherwise, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 
 if ((double(1) > 1.1) !== false) {

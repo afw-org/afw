@@ -7,7 +7,7 @@
 //?
 //? test: return-1
 //? description: a return statement without an expression may have a newline before semi-colon
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

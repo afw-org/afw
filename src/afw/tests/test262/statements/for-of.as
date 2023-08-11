@@ -458,7 +458,7 @@ assert(callCount === 1 === 'Iterator is closed');
 
 //? test: body-dstr-assign
 //? description:...
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1697,7 +1697,7 @@ for (x of [], []) {}
 //? description:...
     The value of the expression in a for-of statement's head must have an
     `@@iterator` method.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1712,7 +1712,7 @@ for (x of {}) {}
 //? description:...
     The value of the expression in a for-of statement's head must have an
     `@@iterator` method.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1727,7 +1727,7 @@ for (x of false) {}
 //? description:...
     The value of the expression in a for-of statement's head must have an
     `@@iterator` method.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1742,7 +1742,7 @@ for (x of 37) {}
 //? description:...
     The value of the expression in a for-of statement's head is subject to the
     semantics of the ToObject abstract operation.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1781,7 +1781,7 @@ for (let [x, x] of []) {}
 //? test: head-let-bound-names-fordecl-tdz
 //? description:...
     ForIn/Of: Bound names of ForDeclaration are in TDZ (for-of)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1990,7 +1990,7 @@ for ( let of [] ) ;
 //? test: head-lhs-member
 //? description:...
     Head's AssignmentExpression may be a MemberExpression
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -3836,7 +3836,7 @@ assert(iterationCount === 8);
 
 //? test: string-astral
 //? description: String traversal using for..of (astral symbols)
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -3892,7 +3892,7 @@ assert(iterationCount === 4);
 
 //? test: string-bmp
 //? description: String traversal using for..of
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

@@ -7,7 +7,7 @@
 //?
 //? test: S9.8_A1_T2
 //? description: result of string conversion from undefined value is "<undefined>"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -23,7 +23,7 @@ if (concat(string(undefined) + "") !== "<undefined>") {
 
 //? test: S9.8_A2_T2
 //? description: result of string conversion from null value is "null"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -35,7 +35,7 @@ if (concat(null, "") !== "null") {
 
 //? test: S9.8_A3_T2
 //? description: result of string conversion from boolean value is "true" if the argument is "true", else is "false"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -51,7 +51,7 @@ if (concat(true, "") !== "true") {
 
 //? test: S9.8_A4_T2
 //? description: result of string conversion from string value is input argument (no conversion)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -265,7 +265,7 @@ afw_function_execute_flag_modify_defaults(
         afw_flag_set_default(flag_id, add, x->xctx);
     }
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -317,7 +317,7 @@ afw_function_execute_flag_replace_defaults(
 
     afw_flag_set_default_flag_ids(array_value->internal, x->xctx);
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -397,7 +397,7 @@ afw_function_execute_flag_set(
         afw_flag_set(flag_id, set_to, x->xctx);
     }
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 

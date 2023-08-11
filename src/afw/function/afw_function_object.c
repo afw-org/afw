@@ -198,7 +198,7 @@ afw_function_execute_local_object_meta_set_ids(
         &adaptorId->internal, &objectType->internal, &objectId->internal,
         x->xctx);
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -438,7 +438,7 @@ afw_function_execute_property_get(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
 
-    the_default = afw_value_null;
+    the_default = afw_value_undefined;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
         the_default = afw_value_evaluate(x->argv[3], x->p, x->xctx);
     }

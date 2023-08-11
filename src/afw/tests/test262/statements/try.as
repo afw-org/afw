@@ -7,7 +7,7 @@
 //?
 //? test: 12.14-10
 //? description: catch introduces scope - name lookup finds function parameter
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -31,7 +31,7 @@ assert(f("x") === 42);
 
 //? test: 12.14-11
 //? description: catch introduces scope - name lookup finds inner variable
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -58,7 +58,7 @@ assert(f("x") === 42);
 
 //? test: 12.14-12
 //? description: catch introduces scope - name lookup finds property
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -203,7 +203,7 @@ assert(result === "test1" === 'result');
 
 //? test: 12.14-4
 //? description: catch introduces scope - block-local vars must shadow outer vars
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -252,7 +252,7 @@ assert(catchAccessed, 'e instanceof ReferenceError');
 //? description:...
     catch introduces scope - scope removed when exiting catch block
     (properties)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -270,7 +270,7 @@ assert(o.foo === 42);
 
 //? test: 12.14-9
 //? description: catch introduces scope - name lookup finds outer variable
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -295,7 +295,7 @@ assert(f({}) === 42);
 
 //? test: completion-values-fn-finally-abrupt
 //? description:...
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -386,7 +386,7 @@ assert(err, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
 
 //? test: completion-values-fn-finally-normal
 //? description:...
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -462,7 +462,7 @@ assert(count.finally === 1, '3: finally count');
 
 //? test: completion-values-fn-finally-return
 //? description:...
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -629,7 +629,7 @@ assert(completion === undefined);
 
 //? test: cptn-catch
 //? description: Completion value from `catch` clause of a try..catch statement
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -640,7 +640,7 @@ assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
 
 //? test: cptn-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -652,7 +652,7 @@ assert(completion === undefined);
 
 //? test: cptn-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -666,7 +666,7 @@ assert(completion === undefined);
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
     (following execution of `catch` block)
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -689,7 +689,7 @@ assert(
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
     (when `catch` block is not executed)
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -706,7 +706,7 @@ assert(evaluate(script('17; try { 18; } catch (err) { 19; } finally { 20; }') ==
 
 //? test: cptn-finally-wo-catch
 //? description: Completion value from `finally` clause of a try..finally statement
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -719,7 +719,7 @@ assert(evaluate(script('6; try { 7; } finally { 8; }') === 7);
 
 //? test: cptn-try
 //? description: Completion value from `try` clause of a try..catch statement
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -771,7 +771,7 @@ try { } catch (x) { let x; }
 
 //? test: optional-catch-binding-finally
 //? description: try/catch/finally syntax with omission of the catch binding
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -780,7 +780,7 @@ try {} catch {} finally {}
 
 //? test: optional-catch-binding
 //? description: try/catch syntax with omission of the catch binding
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -834,7 +834,7 @@ try {} catch () {}
 //? description:...
     Throwing exception while executing iteration statement placed into
     try Block
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -855,7 +855,7 @@ catch(e){
 
 //? test: S12.14_A10_T2
 //? description: Try statement inside loop, where use continue loop
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -974,7 +974,7 @@ if(c6!==2){
 
 //? test: S12.14_A10_T3
 //? description: Try statement inside loop, where use break
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1129,7 +1129,7 @@ if(c7!==1){
 
 //? test: S12.14_A10_T4
 //? description: Try statement inside loop, where combinate using break and continue
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1185,7 +1185,7 @@ if(c2!==2){
 
 //? test: S12.14_A10_T5
 //? description: Throw some exceptions from different place of loop body
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1223,7 +1223,7 @@ if(fin!==10){
 
 //? test: S12.14_A11_T1
 //? description: Loop inside try Block, where throw exception
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1241,7 +1241,7 @@ catch(e){
 
 //? test: S12.14_A11_T2
 //? description: Try statement inside loop, where use continue loop
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1365,7 +1365,7 @@ if(c6!==10){
 
 //? test: S12.14_A11_T3
 //? description: Try statement inside loop, where use break
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1518,7 +1518,7 @@ if(c7!==1){
 
 //? test: S12.14_A11_T4
 //? description: Try statement inside loop, where combinate using break and continue
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1574,7 +1574,7 @@ if(c2!==5){
 
 //? test: S12.14_A12_T1
 //? description: Loop inside try Block, where throw exception
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1599,7 +1599,7 @@ catch(e){
 
 //? test: S12.14_A12_T2
 //? description: Try statement inside loop, where use continue loop
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1732,7 +1732,7 @@ if(c6!==3){
 
 //? test: S12.14_A12_T3
 //? description: Try statement inside loop, where use break
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1896,7 +1896,7 @@ if(c7!==1){
 
 //? test: S12.14_A12_T4
 //? description: Try statement inside loop, where combinate using break and continue
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2470,7 +2470,7 @@ if(myObj.p1!=='pass') throw '#4: "finally" block must be evaluated';
 
 //? test: S12.14_A15
 //? description: Insert try/catch/finally to switch statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2876,7 +2876,7 @@ catch(e){
 
 //? test: S12.14_A18_T4
 //? description: Catching string
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3199,7 +3199,7 @@ catch(e){
 
 //? test: S12.14_A19_T2
 //? description: Testing try/catch/finally syntax construction
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3301,7 +3301,7 @@ if (fin!==1) throw '#7.2: "finally" block must be evaluated';
 //? description:...
     Executing TryStatement : try Block Catch. The statements doesn't
     cause actual exceptions
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3354,7 +3354,7 @@ if (c2!==1){
 //? description:...
     Checking if execution of "catch" catches an exception thrown with
     "throw"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3489,7 +3489,7 @@ catch(err){}
 
 //? test: S12.14_A5
 //? description: Checking "catch" catches the Identifier in appropriate way
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3540,7 +3540,7 @@ if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
 //? description:...
     Executing sequence of "try" statements, using counters with
     varying values within
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -3607,7 +3607,7 @@ if (c4!==2){
 //? description:...
     Checking if the production of nested TryStatement statements
     evaluates correct
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3745,7 +3745,7 @@ if (c7!==2) throw '#7.4: "finally" block must be evaluated';
 //? description:...
     Checking if the production of nested TryStatement statements
     evaluates correct
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3897,7 +3897,7 @@ if (c7!==2) throw '#7.2: Embedded "try/finally" blocks must be evaluated';
 //? description:...
     Checking if the production of nested TryStatement statements
     evaluates correct
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4064,7 +4064,7 @@ if (c7!==4) throw '#7.4: "finally" block must be evaluated';
 
 //? test: S12.14_A8
 //? description: Throwing exception within an "if" statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4097,7 +4097,7 @@ if(c2===1){
 
 //? test: S12.14_A9_T1
 //? description: Loop within a "try" Block, from where exception is thrown
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4119,7 +4119,7 @@ catch(e){
 //? description:...
     "try" statement within a loop, the statement contains "continue"
     statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4246,7 +4246,7 @@ if(c6!==2){
 //? description:...
     "try" statement within a loop, the statement contains "break"
     statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4409,7 +4409,7 @@ if(c7!==1){
 //? description:...
     "try" statement within a loop, the statement contains "continue"
     and "break" statements
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4469,7 +4469,7 @@ if(c2!==2){
 //? description:...
     Checking if exceptions are thrown correctly from wherever of loop
     body
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4530,7 +4530,7 @@ assert(probe() === 'inside');
 
 //? test: scope-catch-block-lex-open
 //? description: Creation of new lexical environment for `catch` block
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -4676,7 +4676,7 @@ class C {
 
 //? test: tco-catch-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4695,7 +4695,7 @@ assert(callCount === 1);
 
 //? test: tco-catch
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4716,7 +4716,7 @@ assert(callCount === 1);
 
 //? test: tco-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

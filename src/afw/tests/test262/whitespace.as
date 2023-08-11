@@ -7,7 +7,7 @@
 //?
 //? test: between-form-feed
 //? description: Insert real FORM FEED between tokens of var x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -19,7 +19,7 @@ assert(x === 1);
 
 //? test: between-horizontal-tab
 //? description: Insert real HORIZONTAL TAB between tokens of var x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -31,7 +31,7 @@ assert(x === 1);
 
 //? test: between-nbsp
 //? description: Insert real NO-BREAK SPACE between tokens of var x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -43,7 +43,7 @@ assert(x === 2);
 
 //? test: between-space
 //? description: Insert real SPACE between tokens of var x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -55,7 +55,7 @@ assert(x === 2);
 
 //? test: between-vertical-tab
 //? description: Insert real VERTICAL TAB between tokens of var x=1
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -67,7 +67,7 @@ assert(x === 1);
 
 //? test: comment-multi-form-feed
 //? description: Use FORM FEED(\u000C)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -85,7 +85,7 @@ if (x !== 0) {
 
 //? test: comment-multi-horizontal-tab
 //? description: Use HORIZONTAL TAB(\u0009)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -103,7 +103,7 @@ if (x !== 0) {
 
 //? test: comment-multi-nbsp
 //? description: Use NO-BREAK SPACE(\u00A0)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -121,7 +121,7 @@ if (x !== 0) {
 
 //? test: comment-multi-space
 //? description: Use SPACE(\u0020)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -139,7 +139,7 @@ if (x !== 0) {
 
 //? test: comment-multi-vertical-tab
 //? description: Use VERTICAL TAB(\u000B)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -157,7 +157,7 @@ if (x !== 0) {
 
 //? test: comment-single-form-feed
 //? description: Use FORM FEED(\u000C)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -175,7 +175,7 @@ if (x !== 0) {
 
 //? test: comment-single-horizontal-tab
 //? description: Use HORIZONTAL TAB(\u0009)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -193,7 +193,7 @@ if (x !== 0) {
 
 //? test: comment-single-nbsp
 //? description: Use NO-BREAK SPACE(\u00A0)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -211,7 +211,7 @@ if (x !== 0) {
 
 //? test: comment-single-space
 //? description: Use SPACE(\u0020)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -229,7 +229,7 @@ if (x !== 0) {
 
 //? test: comment-single-vertical-tab
 //? description: Use VERTICAL TAB(\u000B)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -258,7 +258,7 @@ let᠎foo;
 
 //? test: S7.2_A2.1_T2
 //? description: Use real HORIZONTAL TAB
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -271,7 +271,7 @@ if ("	str	ing	" !== "\u0009str\u0009ing\u0009") {
 
 //? test: S7.2_A2.2_T2
 //? description: Use real VERTICAL TAB
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -284,7 +284,7 @@ if ("string" !== "\u000Bstr\u000Bing\u000B") {
 
 //? test: S7.2_A2.3_T2
 //? description: Use real FORM FEED
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -297,7 +297,7 @@ if ("string" !== "\u000Cstr\u000Cing\u000C") {
 
 //? test: S7.2_A2.4_T2
 //? description: Use real SPACE
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -310,7 +310,7 @@ if (" str ing " !== "\u0020str\u0020ing\u0020") {
 
 //? test: S7.2_A2.5_T2
 //? description: Use real NO-BREAK SPACE
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -323,7 +323,7 @@ if (" str ing " !== "\u00A0str\u00A0ing\u00A0") {
 
 //? test: S7.2_A3.1_T2
 //? description: Use real HORIZONTAL TAB
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -338,7 +338,7 @@ if (x !== 0) {
 
 //? test: S7.2_A3.2_T2
 //? description: Use real VERTICAL TAB
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -353,7 +353,7 @@ if (x !== 0) {
 
 //? test: S7.2_A3.3_T2
 //? description: Use real FORM FEED
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -368,7 +368,7 @@ if (x !== 0) {
 
 //? test: S7.2_A3.4_T2
 //? description: Use real SPACE
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -383,7 +383,7 @@ if (x !== 0) {
 
 //? test: S7.2_A3.5_T2
 //? description: Use real NO-BREAK SPACE
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -398,7 +398,7 @@ if (x !== 0) {
 
 //? test: S7.2_A4.1_T2
 //? description: Use real HORIZONTAL TAB
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -413,7 +413,7 @@ if (x !== 0) {
 
 //? test: S7.2_A4.2_T2
 //? description: Use real VERTICAL TAB
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -428,7 +428,7 @@ if (x !== 0) {
 
 //? test: S7.2_A4.3_T2
 //? description: Use real FORM FEED
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -443,7 +443,7 @@ if (x !== 0) {
 
 //? test: S7.2_A4.4_T2
 //? description: Use real SPACE
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -458,7 +458,7 @@ if (x !== 0) {
 
 //? test: S7.2_A4.5_T2
 //? description: Use real NO-BREAK SPACE
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -533,7 +533,7 @@ let\u00A0x;
 
 //? test: string-form-feed
 //? description: Use FORM FEED(\u000C and \f)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -551,7 +551,7 @@ if (evaluate(script("'\fstr\fing\f'")) !== "\fstr\fing\f") {
 
 //? test: string-horizontal-tab
 //? description: Use HORIZONTAL TAB(\u0009 and \t)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -569,7 +569,7 @@ if (evaluate(script("'\tstr\ting\t'")) !== "\tstr\ting\t") {
 
 //? test: string-nbsp
 //? description: Use NO-BREAK SPACE(\u00A0)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -582,7 +582,7 @@ if (evaluate(script("'\u00A0str\u00A0ing\u00A0'")) !== "\u00A0str\u00A0ing\u00A0
 
 //? test: string-space
 //? description: Use SPACE(\u0020)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -600,7 +600,7 @@ if (evaluate(script("' str ing '")) !== " str ing ") {
 
 //? test: string-vertical-tab
 //? description: Use VERTICAL TAB(\u000B and \v)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

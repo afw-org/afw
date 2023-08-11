@@ -115,7 +115,7 @@ if skip:
 if expectError:
     print("//? expect: error")
 else:
-    print("//? expect: null")
+    print("//? expect: undefined")
 
 print("//? source: ...")
 print("#!/usr/bin/env afw")

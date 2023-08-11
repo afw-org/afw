@@ -7,7 +7,7 @@
 //?
 //? test: catch-parameter-shadowing-catch-parameter
 //? description: catch parameter shadowing catch parameter
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -33,7 +33,7 @@ fn(1);
 
 //? test: catch-parameter-shadowing-function-parameter-name
 //? description: catch parameter shadowing function parameter name
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -52,7 +52,7 @@ fn(1);
 
 //? test: catch-parameter-shadowing-let-declaration
 //? description: catch parameter shadowing let declaration
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -72,7 +72,7 @@ fn(1);
 
 //? test: catch-parameter-shadowing-var-variable
 //? description: catch parameter shadowing var variable
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -91,7 +91,7 @@ fn();
 
 //? test: const-declaration-shadowing-catch-parameter
 //? description: const declaration shadowing catch parameter
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -114,7 +114,7 @@ fn();
 
 //? test: const-declarations-shadowing-parameter-name-let-const-and-var-variables
 //? description: const declarations shadowing parameter name, let, const and var variables
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -142,7 +142,7 @@ fn(1);
 
 //? test: dynamic-lookup-from-closure
 //? description: dynamic lookup from closure
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -169,7 +169,7 @@ fn(1);
 
 //? test: dynamic-lookup-in-and-through-block-contexts
 //? description: dynamic lookup in and through block contexts
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -193,7 +193,7 @@ fn(1);
 
 //? test: let-declaration-shadowing-catch-parameter
 //? description: let declaration shadowing catch parameter
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -210,7 +210,7 @@ try {
 
 //? test: let-declarations-shadowing-parameter-name-let-const-and-var
 //? description: let declarations shadowing parameter name, let, const and var
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -234,7 +234,7 @@ fn(1);
 
 //? test: lookup-from-closure
 //? description: lookup from closure
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -261,7 +261,7 @@ f5(1);
 
 //? test: lookup-in-and-through-block-contexts
 //? description: lookup in and through block contexts
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -285,7 +285,7 @@ fn(1);
 
 //? test: parameter-name-shadowing-catch-parameter
 //? description: parameter name shadowing catch parameter
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -308,7 +308,7 @@ fn();
 
 //? test: parameter-name-shadowing-parameter-name-let-const-and-var
 //? description: parameter name shadowing parameter name, let, const and var
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

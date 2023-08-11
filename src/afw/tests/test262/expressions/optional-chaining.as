@@ -7,7 +7,7 @@
 //?
 //? test: iteration-statement-do
 //? description: optional chain in test portion of do while statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -23,7 +23,7 @@ assert(count == 1, "count == 1");
 
 //? test: iteration-statement-for
 //? description: optional chain in init/test/update of for statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -38,7 +38,7 @@ assert(count == 1, "count == 1");
 
 //? test: iteration-statement-while
 //? description: optional chain in test portion of while statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -54,7 +54,7 @@ assert(count == 1, "count == 1");
 
 //? test: member-expression
 //? description: optional chain on member expression
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -77,7 +77,7 @@ assert(undefined === obj.c?.b, "undefined === obj.c?.b");
 
 //? test: optional-chain-expression-optional-expression
 //? description: optional chain bracket notation containing optional expresion
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -95,7 +95,7 @@ assert(22 === d?.[b?.e], "22 === d?.[b?.e]");
 
 //? test: optional-chain
 //? description: various optional chain expansions
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -127,7 +127,7 @@ assert(20 === obj?.c(10), "20 === obj?.c(10)");
 
 //? test: optional-expression
 //? description: optional chain on recursive optional expression
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -148,7 +148,7 @@ assert(undefined === fn()?.a?.b, "undefined === fn()?.a?.b");
 
 //? test: runtime-semantics-evaluation
 //? description: accessing optional value on undefined or null returns undefined.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -555,7 +555,7 @@ assert(
 
 //? test: S12.11_A1_T1
 //? description: Simple test using switch statement
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -628,7 +628,7 @@ if(!(SwitchTest('0') === 32)){
 
 //? test: S12.11_A1_T2
 //? description: Switch with different types of variables
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -798,7 +798,7 @@ if(!(SwitchTest(Infinity) === 768)){
 //? test: S12.11_A1_T4
 //? description: Using case with isNaN and isNaN(value)
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1022,7 +1022,7 @@ let x = SwitchTest(0);
 
 //? test: S12.11_A4_T1
 //? description: Nesting one "switch" statement into StatementList of the other's
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1268,7 +1268,7 @@ assert(x === 2 === 'reference following statement');
 
 //? test: tco-case-body-dflt
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1285,7 +1285,7 @@ assert(callCount === 1);
 
 //? test: tco-case-body
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1303,7 +1303,7 @@ assert(callCount === 1);
 
 //? test: tco-dftl-body
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

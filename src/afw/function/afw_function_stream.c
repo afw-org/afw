@@ -60,7 +60,7 @@ afw_function_execute_flush(
     }
     stream = NULL;
  
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -118,7 +118,7 @@ afw_function_execute_print(
     }
     afw_stream_flush(stream, x->xctx);
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -178,7 +178,7 @@ afw_function_execute_println(
     afw_stream_write_eol(stream, x->xctx);
     afw_stream_flush(stream, x->xctx);
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -231,7 +231,7 @@ afw_function_execute_write(
     stream = afw_stream_get_by_streamNumber(streamNumber->internal, x->xctx);
     /*! \fixme Haven't decided what to do about bad number. */
     if (!stream) {
-        return afw_value_null;
+        return afw_value_undefined;
     }
 
     for (i = 2; i <= x->argc; i++) {
@@ -247,7 +247,7 @@ afw_function_execute_write(
         }
     }
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -301,7 +301,7 @@ afw_function_execute_writeln(
     stream = afw_stream_get_by_streamNumber(streamNumber->internal, x->xctx);
     /*! \fixme Haven't decided what to do about bad number. */
     if (!stream) {
-        return afw_value_null;
+        return afw_value_undefined;
     }
 
     for (i = 2; i <= x->argc; i++) {
@@ -317,7 +317,7 @@ afw_function_execute_writeln(
     }
     afw_stream_write_eol(stream, x->xctx);
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -366,7 +366,7 @@ afw_function_execute_close(
         afw_stream_release(stream, x->xctx);
     }
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 

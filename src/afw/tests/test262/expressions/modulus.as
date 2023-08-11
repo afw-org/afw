@@ -7,7 +7,7 @@
 //?
 //? test: line-terminator
 //? description: Line terminator between the operands of a modulus operator
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -28,7 +28,7 @@ assert(x === 1);
 
 //? test: order-of-evaluation
 //? description: Type coercion order of operations for modulus operator
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -163,7 +163,7 @@ assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
 
 //? test: S11.5.3_A1
 //? description: Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -221,7 +221,7 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029%\u0
 
 //? test: S11.5.3_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -272,7 +272,7 @@ x % 1;
 
 //? test: S11.5.3_A2.3_T1
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -297,7 +297,7 @@ try {
 
 //? test: S11.5.3_A2.4_T2
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -331,7 +331,7 @@ x % (x = 1);
 
 //? test: S11.5.3_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -345,7 +345,7 @@ if (1 % 1 !== 0) {
 //? test: S11.5.3_A3_T1.3
 //? description: Type(x) and Type(y) vary between primitive string and String object
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -384,7 +384,7 @@ if (is_NaN("1" % "x") !== true) {
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -413,7 +413,7 @@ if (is_NaN(null % null) !== true) {
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -443,7 +443,7 @@ if (is_NaN({} % {}) !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and String (primitive and object)
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -474,7 +474,7 @@ if (is_NaN(1 % "x") !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Null
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -495,7 +495,7 @@ if (null % 1 !== 0) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Undefined
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -516,7 +516,7 @@ if (is_NaN(undefined % 1) !== true) {
     Type(x) is different from Type(y) and both types vary between
     String (primitive or object) and Undefined
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -547,7 +547,7 @@ if (is_NaN(undefined % new String("1")) !== true) {
     Type(x) is different from Type(y) and both types vary between
     String (primitive or object) and Null
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -576,7 +576,7 @@ if (null % new String("1") !== 0) {
 //? test: S11.5.3_A4_T1.1
 //? description: If either operand is NaN, the result is NaN
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -625,7 +625,7 @@ if (is_NaN(NaN % 1) !== true) {
 //? test: S11.5.3_A4_T1.2
 //? description: If either operand is NaN, the result is NaN
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -741,7 +741,7 @@ if (-101 % -51 !== -50) {
 //? test: S11.5.3_A4_T3
 //? description: If the dividend is an infinity results is NaN
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -809,7 +809,7 @@ if (is_NaN(Infinity % -Number.MAX_VALUE) !== true) {
 
 //? test: S11.5.3_A4_T4
 //? description: If the divisor is zero results is NaN
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -902,7 +902,7 @@ if (is_NaN(Number.MAX_VALUE % -0) !== true) {
     If dividend is finite and the divisor is an infinity, the result
     equals the dividend
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1007,7 +1007,7 @@ if (-Number.MIN_VALUE % -Infinity !== -Number.MIN_VALUE) {
     If dividend is a zero and the divisor is nonzero finite, the
     result equals the dividend
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1090,7 +1090,7 @@ if (-0 % Number.MIN_VALUE !== -0) {
     If operands neither an infinity, nor a zero, nor NaN, return x -
     truncate(x / y) * y
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -7,7 +7,7 @@
 //?
 //? test: S11.8.1_A1
 //? description: Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -65,7 +65,7 @@ if (evaluate(script("0\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029<\u0
 
 //? test: S11.8.1_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -117,7 +117,7 @@ x < 1;
 
 //? test: S11.8.1_A2.3_T1
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -142,7 +142,7 @@ try {
 
 //? test: S11.8.1_A2.4_T2
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -165,7 +165,7 @@ try {
 
 //? test: S11.8.1_A3.1_T1.1
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive boolean and Boolean object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -178,7 +178,7 @@ if (true < true !== false) {
 
 //? test: S11.8.1_A3.1_T1.2
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive number and Number object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -192,7 +192,7 @@ if (1 < 1 !== false) {
 
 //? test: S11.8.1_A3.2_T1.1
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive string and String object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -216,7 +216,7 @@ if ("1" < "x" !== true) {
 
 //? test: S11.8.1_A4.10
 //? description: x and y are string primitives
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -255,7 +255,7 @@ if ((x + "y" < x) !== false) {
 
 //? test: S11.8.1_A4.11
 //? description: x and y are string primitives
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -304,7 +304,7 @@ if (("x" < " x") !== false) {
 
 //? test: S11.8.1_A4.12_T1
 //? description: x and y are string primitives
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -347,7 +347,7 @@ if (("aB" < "aa") !== true) {
 
 //? test: S11.8.1_A4.12_T2
 //? description: x and y are string primitives
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -441,7 +441,7 @@ if ((NaN < Number.MIN_VALUE) !== false) {
 //? test: S11.8.1_A4.2
 //? description: x is number primitive
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -489,7 +489,7 @@ if ((Number.MIN_VALUE < NaN) !== false) {
 
 //? test: S11.8.1_A4.3
 //? description: x and y are number primitives
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -533,7 +533,7 @@ if ((Number.MIN_VALUE < Number.MIN_VALUE) !== false) {
 
 //? test: S11.8.1_A4.4
 //? description: Checking all combinations
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -602,7 +602,7 @@ if ((Infinity < Number.MIN_VALUE) !== false) {
 //? test: S11.8.1_A4.6
 //? description: x is number primitive
 //? skip: true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -1000,7 +1000,7 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2, parser->xctx);
     argv[0] = (const afw_value_t *)&afw_function_definition_return;
-    argv[1] = afw_value_null;
+    argv[1] = afw_value_undefined;
 
     afw_compile_get_token();
     if (!afw_compile_token_is(semicolon)) {

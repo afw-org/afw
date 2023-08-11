@@ -7,7 +7,7 @@
 //?
 //? test: S7.8.1_A1_T1
 //? description: Check null === null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -6,7 +6,7 @@
 //? sourceType: script
 //? test: S11.9.2_A1
 //? description:Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -64,7 +64,7 @@ if (evaluate(script("true\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029=
 
 //? test: S11.9.2_A2.1_T1
 //? description:Either Type is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -116,7 +116,7 @@ x != 1;
 
 //? test: S11.9.2_A2.4_T2
 //? description:Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -139,7 +139,7 @@ try {
 
 //? test: S11.9.2_A3.1
 //? description:x and y are boolean primitives
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -167,7 +167,7 @@ if ((false != true) !== true) {
 
 //? test: S11.9.2_A4.1_T1
 //? description:x is NaN
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -230,7 +230,7 @@ if ((NaN != {}) !== true) {
 
 //? test: S11.9.2_A4.1_T2
 //? description:y is NaN
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -287,7 +287,7 @@ if (("string" != NaN) !== true) {
 
 //? test: S11.9.2_A4.2
 //? description:Checking all combinations
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -305,7 +305,7 @@ if ((-0 != +0) !== false) {
 
 //? test: S11.9.2_A4.3
 //? description:x and y are primitive numbers
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -324,7 +324,7 @@ if ((-Infinity != -Infinity) !== false) {
 
 //? test: S11.9.2_A5.1
 //? description:x and y are primitive strings
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -368,7 +368,7 @@ if (("0xff" != "255") !== true) {
 
 //? test: S11.9.2_A6.1
 //? description: Checking all combinations
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -7,7 +7,7 @@
 //?
 //? test: 11.4.9_A1
 //? description: White Space and Line Terminator between "!" and unary expression are allowed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -55,7 +55,7 @@ if (evaluate(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true
 
 //? test: 11.4.9_A2.1_T1
 //? description: Operator !x
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -81,7 +81,7 @@ if (!(!x) !== true) {
 
 //? test: 11.4.9_A3_T1
 //? description: x is boolean primitive
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

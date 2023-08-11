@@ -7,7 +7,7 @@
 //?
 //? test: S11.11.2_A1
 //? description: Checking by using eval
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -66,7 +66,7 @@ if ((evaluate(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u202
 
 //? test: S11.11.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -116,7 +116,7 @@ if ((true || x) !== true) {
 
 //? test: S11.11.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -164,7 +164,7 @@ if (((y = true) || y) !== true) {
 
 //? test: S11.11.2_A3_T1
 //? description:  Type(x) and Type(y) vary between primitive boolean and Boolean object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -182,7 +182,7 @@ if ((false || false) !== false) {
 
 //? test: S11.11.2_A4_T1
 //? description:  Type(x) and Type(y) vary between primitive boolean and Boolean object
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -200,7 +200,7 @@ if ((true || false) !== true) {
 
 //? test: S11.11.2_A4_T4
 //? description: Type(x) or Type(y) vary between Null and Undefined
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

@@ -7,7 +7,7 @@
 //?
 //? test: S7.8.2_A1_T1
 //? description: "BooleanLiteral :: true"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -20,7 +20,7 @@ if (true !== true) {
 
 //? test: S7.8.2_A1_T2
 //? description: "BooleanLiteral :: false"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

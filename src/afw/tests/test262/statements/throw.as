@@ -7,7 +7,7 @@
 //?
 //? test: S12.13_A1
 //? description: Trying to throw exception with "throw"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -26,7 +26,7 @@ assert(inCatch === true);
 
 //? test: S12.13_A2_T4
 //? description: Throwing string
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -52,7 +52,7 @@ catch(e){
 
 //? test: S12.13_A3_T2
 //? description: Evaluating string expression
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -81,7 +81,7 @@ catch(e){
 
 //? test: S12.13_A3_T5
 //? description: Evaluating equation expression
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -100,7 +100,7 @@ catch(e){
 
 //? test: S12.13_A3_T6
 //? description: Evaluating functions
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

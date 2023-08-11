@@ -7,7 +7,7 @@
 //?
 //? test: S11.13.1_A2.1_T1
 //? description: Either AssigmentExpression is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -51,7 +51,7 @@ let x = y;
 
 //? test: 11.13.1_A3.1
 //? description: Checking Expression and Variable statements
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -81,7 +81,7 @@ let x = x;
 
 //? test: S8.12.5_A2
 //? description: When the [[Put]] method of O is called with property P and value V, then set the value of the property to V. The attributes of the property are not changed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -127,7 +127,7 @@ if (_map.two !== "duo") {
 
 //? test: line-terminator
 //? description: White Space between LeftHandSideExpression and "=" or between "=" and AssignmentExpression is allowed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -145,7 +145,7 @@ if (x !== true) {
 //? test: member-expr-ident-name-break-escaped
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
 //? skip: true 
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -159,7 +159,7 @@ assert(property_exists(obj, "break"));
 
 //? test: member-expr-ident-name-default
 //? description: default is a valid identifier name (MemberExpression IdentifierName)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -212,7 +212,7 @@ true = 42;
 
 //? test: target-cover-id
 //? description: It is an early Reference Error if LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral and IsValidSimpleAssignmentTarget of LeftHandSideExpression is false.
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -302,7 +302,7 @@ null = 42;
 
 //? test: whitespace
 //? description:  White Space between LeftHandSideExpression and "=" or between "=" and AssignmentExpression is allowed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

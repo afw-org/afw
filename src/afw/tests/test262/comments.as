@@ -7,7 +7,7 @@
 //?
 //? test: S7.4_A1_T1
 //? description: Create comments with any code
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -35,7 +35,7 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 
 //? test: S7.4_A1_T2
 //? description: Simple test, create empty comment: ///
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -45,7 +45,7 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 
 //? test: S7.4_A2_T1
 //? description: Create comments with any code
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -136,7 +136,7 @@ x*/
 
 //? test: S7.4_A4_T2
 //? description: Fist Multi line comment, then Single line comment
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -148,7 +148,7 @@ x*/
 
 //? test: S7.4_A4_T3
 //? description: Insert Single line comment into Multi line comment
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -173,7 +173,7 @@ x*/
 
 //? test: S7.4_A4_T5
 //? description: Insert Multi line comment into Single line comment
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -184,7 +184,7 @@ x*/
 
 //? test: S7.4_A4_T6
 //? description: Insert Multi line comment with two closed tags into Single line comment
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -194,7 +194,7 @@ x*/
 
 //? test: S7.4_A4_T7
 //? description: Insert Multi line comment into Single line comments
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -207,7 +207,7 @@ x*/
 
 //? test: S7.4_A5
 //? description: //var " + xx + "yy = -1", insert instead of xx all Unicode characters
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -235,7 +235,7 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
 
 //? test: S7.4_A6
 //? description: "\"var\"+ yy+ \"xx = 1\", insert instead of yy all Unicode characters"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -248,8 +248,8 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
                 let xx = evaluate<expression>(expression("\"\\u" + uu + "\""));
 
                 let y = evaluate(script("/*let " + xx + "y = 1*/"));
-                if (y !== null) {
-                    throw "Expected y to be null";
+                if (y !== undefined) {
+                    throw "Expected y to be undefined";
                 }
             }
         }

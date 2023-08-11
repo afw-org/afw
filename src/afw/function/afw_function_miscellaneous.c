@@ -155,7 +155,7 @@ afw_function_execute_debug(
 
     afw_debug(flag_index, NULL, s, x->xctx);
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -552,7 +552,7 @@ afw_function_execute_trace(
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(filter, 2, boolean);
         if (!filter->internal) {
-            return afw_value_null;
+            return afw_value_undefined;
         }
     }
 
@@ -579,7 +579,7 @@ afw_function_execute_trace(
     afw_trace_write(priority, NULL, AFW__FILE_LINE__, s, x->xctx);
 
     /* Return null. */
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -819,7 +819,7 @@ afw_function_execute_variable_get(
     value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
 
     if (!value) {
-        value = afw_value_null;
+        value = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
             value = afw_value_evaluate(x->argv[2], x->p, x->xctx);
         }

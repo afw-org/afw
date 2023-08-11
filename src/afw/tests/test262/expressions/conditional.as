@@ -7,7 +7,7 @@
 //?
 //? test: 11.12_A2.1_T1
 //? description: checking boolean conditions
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -75,7 +75,7 @@ if (false ? true : z) {
 
 //? test: 11.12_A3_T1
 //? description: If x is false, return z (booleans)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -91,7 +91,7 @@ if ((false ? true : z) !== z) {
 
 //? test: 11.12_A3_T4
 //? description: If boolean(x) is false, return z
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -106,7 +106,7 @@ if ((false ? true : null) !== null) {
 
 //? test: 11.12_A4_T1
 //? description: If x is true, return y (boolean)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -122,7 +122,7 @@ if ((true ? y : false) !== y) {
 
 //? test: 11.12_A4_T4
 //? description: If x is true, return y (null/undefined)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -137,7 +137,7 @@ if ((true ? null : true) !== null) {
 
 //? test: coalesce-expr-ternary
 //? description: short-circut expression in the conditional expression (? :)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

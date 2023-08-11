@@ -7,7 +7,7 @@
 //?
 //? test: S10.2.2_A1_T1
 //? description: Checking scope chain containing function declarations
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -29,7 +29,7 @@ if(!(f1() === 1)){
 
 //? test: S10.2.2_A1_T2
 //? description: Checking scope chain containing function declarations
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -50,7 +50,7 @@ if(!(f1() === 0)){
 
 //? test: S10.2.2_A1_T4
 //? description: Checking scope chain containing function declarations
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

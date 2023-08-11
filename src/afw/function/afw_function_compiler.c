@@ -74,7 +74,7 @@ afw_function_execute_assert(
         }
     }
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 

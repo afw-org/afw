@@ -7,7 +7,7 @@
 //?
 //? test: 11.1.6_A1
 //? description: White Space and Line Terminator inside "grouping" operator are allowed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -55,7 +55,7 @@ if (evaluate(script("(\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291\u0
 
 //? test:  11.1.6_A3_T1
 //? description: Applying grouping operator to boolean
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -67,7 +67,7 @@ if ((true) !== true) {
 
 //? test:  11.1.6_A3_T2
 //? description: Applying grouping operator to integer
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -79,7 +79,7 @@ if ((1) !== 1) {
 
 //? test:  11.1.6_A3_T3
 //? description: Applying grouping operator to string
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -95,7 +95,7 @@ if (("x") !== "x") {
 
 //? test:  11.1.6_A3_T4
 //? description: Applying grouping operator to undefined/null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

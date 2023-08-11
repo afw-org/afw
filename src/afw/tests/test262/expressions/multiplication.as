@@ -7,7 +7,7 @@
 //?
 //? test: 11.5.1_A1
 //? description: White Space and Line Terminator between multiplicative expression and "*"
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -55,7 +55,7 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029*\u0
 
 //? test: 11.5.1_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -102,7 +102,7 @@ if (x * (x = 1) !== 0) {
 
 //? test: 11.5.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression - checking with assert()
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -131,7 +131,7 @@ assert(y1 === 0, "y1 === 0");
 
 //? test: 11.5.1_A4_T2
 //? description: The sign of the result is positive if both operands have the same sign, negative if the operands have different signs
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -173,7 +173,7 @@ if (-0 * -0 !== 0) {
 
 //? test: 11.5.1_A4_T4
 //? description: Multiplication of an infinity by an infinity results in an infinity of appropriate sign
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -197,7 +197,7 @@ if (+Infinity * -Infinity !== -Infinity) {
 
 //? test: 11.5.1_A4_T5
 //? description: Multiplication of an infinity by a finite non-zero value results in a signed infinity
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -221,7 +221,7 @@ if (-1.0 * +Infinity !== -Infinity) {
 
 //? test: line-terminator
 //? description: Line terminator between the operands of a multiplication operator
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

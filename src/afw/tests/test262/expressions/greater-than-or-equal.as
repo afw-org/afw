@@ -7,7 +7,7 @@
 //?
 //? test: 11.8.4_A2.1_T1
 //? description: Operator x >= y
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -51,7 +51,7 @@ x >= 1;
 
 //? test: 11.8.4_A2.4_T1
 //? description: First expression is evaluated first, and then the second epxression
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -80,7 +80,7 @@ if ((y = 1) >= y !== true) {
 
 //? test: 11.8.4_A3.1_T1.1
 //? description: Compare x >= y (boolean)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -92,7 +92,7 @@ if (true >= true !== true) {
 
 //? test: 11.8.4_A3.1_T1.2
 //? description: Compare x >= y (integer)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -164,7 +164,7 @@ if (null >= "1" !== false) {
 
 //? test: 11.8.4_A3.2_T1.1
 //? description: Compare x >= y (string, string)
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -176,7 +176,7 @@ if ("1" >= "1" !== true) {
 
 //? test: 11.8.4_A4.1
 //? description: If x is NaN, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -209,7 +209,7 @@ if ((NaN >= -Infinity) !== false) {
 
 //? test: 11.8.4_A4.10
 //? description: If x is a prefix of y and x !== y, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -242,7 +242,7 @@ if ((x >= (x + "y")) !== false) {
 
 //? test: 11.8.4_A4.11
 //? description: If y is a prefix of x, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -283,7 +283,7 @@ if ((" x" >= "x") !== false) {
 
 //? test: 11.8.4_A4.12_T1
 //? description: If neither x, nor y is a prefix of each other, return result of strings comparison applies a simple lexicographic ordering to the sequences of code point value values
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -319,7 +319,7 @@ if (("aa" >= "aB") !== true) {
 
 //? test: 11.8.4_A4.12_T2
 //? description: If neither x, nor y is a prefix of each other, return result of strings comparison applies a simple lexicographic ordering to the sequences of code point value values
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -355,7 +355,7 @@ if (("1e-10" >= "1") !== true) {
 
 //? test: 11.8.4_A4.2
 //? description: If y is NaN, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -387,7 +387,7 @@ if ((-Infinity >= NaN) !== false) {
 
 //? test: 11.8.4_A4.3
 //? description: If x and y are the same number value, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -415,7 +415,7 @@ if ((+Infinity >= +Infinity) !== true) {
 
 //? test: 11.8.4_A4.4
 //? description: If either x or y is +0 and the other is -0, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -439,7 +439,7 @@ if ((-0 >= +0) !== true) {
 
 //? test: 11.8.4_A4.5
 //? description: If x is +Infinity, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -463,7 +463,7 @@ if ((+Infinity >= -Infinity) !== true) {
 
 //? test: 11.8.4_A4.6
 //? description: If y is +Infinity and x !== y, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -487,7 +487,7 @@ if ((-Infinity >= +Infinity) !== false) {
 
 //? test: 11.8.4_A4.7
 //? description: If x is -Infinity and x !== y, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -511,7 +511,7 @@ if ((-Infinity >= +Infinity) !== false) {
 
 //? test: 11.8.4_A4.8
 //? description: If y is -Infinity, return true
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -535,7 +535,7 @@ if ((+Infinity >= -Infinity) !== true) {
 
 //? test: 11.8.4_A4.9
 //? description: If x is greater or equal than y and these values are both finite non-zero, return true; otherwise, return false
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

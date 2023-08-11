@@ -6,7 +6,7 @@
 //?
 //? test: switch-eqx-1
 //? description: eqx match
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -21,7 +21,7 @@ switch (1) using eqx {
 //?
 //? test: switch-eqx-2
 //? description: eqx not match
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -36,7 +36,7 @@ switch (1) using eqx {
 //?
 //? test: switch-regexp-match
 //? description: regex match
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -51,7 +51,7 @@ switch ("abc") using regexp_match {
 //?
 //? test: switch-regexp-not-match
 //? description: regex not match
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -67,7 +67,7 @@ switch ("def") using regexp_match {
 //?
 //? test: switch-fn-match
 //? description: fn match
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -86,7 +86,7 @@ switch ("abc") using fn {
 //?
 //? test: switch-fn-no-match
 //? description: fn no match
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -105,7 +105,7 @@ switch ("abc") using fn {
 //?
 //? test: switch-return-fn
 //? description: return from switch within function
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -124,7 +124,7 @@ assert(f(1) === true);
 //?
 //? test: switch-throw-fn
 //? description: return from switch within function
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

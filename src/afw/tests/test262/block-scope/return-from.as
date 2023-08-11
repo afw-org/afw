@@ -7,7 +7,7 @@
 //?
 //? test: block-const
 //? description: return from block
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -22,7 +22,7 @@ assert(fn() === 9);
 
 //? test: block-let
 //? description: return from block
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

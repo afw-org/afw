@@ -7,7 +7,7 @@
 //?
 //? test: 10.1.1_A1_T2
 //? description: creating function dynamically
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -147,7 +147,7 @@ assert(callCount === 1, "function invoked exactly once");
 
 //? test: named-no-strict-reassign-fn-name-in-body
 //? description: Reassignment of function name is silently ignored.
-//? expect: null
+//? expect: undefined
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw

@@ -7,7 +7,7 @@
 //?
 //? test: 11.6.1_A1
 //? description: White Space and Line Terminator between AdditiveExpression and "+" or between "+" and MultiplicativeExpression are allowed
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -64,7 +64,7 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029+\u0
 
 //? test: 11.6.1_A2.1_T1
 //? description: Operator x + y
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -127,7 +127,7 @@ if (x = (x = 1) !== 1) {
 
 //? test: 11.6.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression: checking with assert errors
-//? expect: null
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

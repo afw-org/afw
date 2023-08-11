@@ -476,7 +476,7 @@ afw_value_block_evaluate_block(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    result = afw_value_null;
+    result = afw_value_undefined;
 
     local_top = afw_xctx_begin_stack_frame(xctx);
     AFW_TRY{
@@ -538,7 +538,7 @@ afw_value_block_evaluate_for(
             body = argv[4];
         }
 
-        for (result= afw_value_null;;) {
+        for (result= afw_value_undefined;;) {
 
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
                 AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition,
@@ -589,7 +589,7 @@ afw_value_block_evaluate_foreach(
     afw_xctx_t *xctx)
 {
     IMPL_TEMP_FIX(foreach);
-    const afw_value_t *result = afw_value_null;
+    const afw_value_t *result = afw_value_undefined;
     const afw_value_array_t *list;
     const afw_iterator_t *iterator;
     const afw_value_t *value;
@@ -695,7 +695,7 @@ afw_value_block_evaluate_if(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
-    result = afw_value_null;
+    result = afw_value_undefined;
     if (condition->internal) {
         result = afw_value_block_evaluate_statement(x, type,
             true, is_loop, argv[2], p, xctx);
@@ -730,7 +730,7 @@ afw_value_block_evaluate_switch(
     const afw_value_t * const *default_pair;     
     const afw_value_t *result;
 
-    result = afw_value_null;
+    result = afw_value_undefined;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(4);
     if ((x->argc & 1) != 0) {
@@ -821,7 +821,7 @@ afw_value_block_evaluate_throw(
     AFW_THROW_ERROR_WITH_DATA_FZ(throw, data, xctx, AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&message->internal));
 
-    return afw_value_null;
+    return afw_value_undefined;
 }
 
 
@@ -845,7 +845,7 @@ afw_value_block_evaluate_try(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
 
-    result = afw_value_null;
+    result = afw_value_undefined;
     use_type = *type;
 
     local_top = afw_xctx_begin_stack_frame(xctx);  
@@ -933,7 +933,7 @@ afw_value_block_evaluate_while(
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
 
-    for (result = afw_value_null;;) {
+    for (result = afw_value_undefined;;) {
         AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
         if (!condition->internal) {
             break;
@@ -983,7 +983,7 @@ afw_value_block_evaluate_statement(
     x = &modified_x;
 
 
-    result = afw_value_null;
+    result = afw_value_undefined;
     *type = afw_value_block_statement_type_sequential;
 
     /* If statement is block, handle special. */

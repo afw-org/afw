@@ -1,7 +1,7 @@
 {
     "description": "Tests for assert.",
     "functionId": "assert",
-    "implemented": true,
+    "implemented": false,
     "tests": [
         {
             "arguments": [
