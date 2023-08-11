@@ -942,7 +942,7 @@ afw_function_definition_retrieve_objects_to_callback;
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -982,7 +982,7 @@ afw_function_definition_retrieve_objects_to_callback;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_callback(
@@ -1022,7 +1022,7 @@ afw_function_definition_retrieve_objects_to_response;
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1051,7 +1051,7 @@ afw_function_definition_retrieve_objects_to_response;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_response(
@@ -1088,7 +1088,7 @@ afw_function_definition_retrieve_objects_to_stream;
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1120,7 +1120,7 @@ afw_function_definition_retrieve_objects_to_stream;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_stream(
@@ -1211,7 +1211,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1246,7 +1246,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_callback(
@@ -1283,7 +1283,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1308,7 +1308,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_response(
@@ -1342,7 +1342,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1370,7 +1370,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_stream(
@@ -1708,7 +1708,7 @@ afw_function_definition_flag_modify_defaults;
  *   function flag_modify_defaults(
  *       flagId: (array string),
  *       add?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1720,7 +1720,7 @@ afw_function_definition_flag_modify_defaults;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_modify_defaults(
@@ -1752,7 +1752,7 @@ afw_function_definition_flag_replace_defaults;
  * ```
  *   function flag_replace_defaults(
  *       flagId: (array string)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1762,7 +1762,7 @@ afw_function_definition_flag_replace_defaults;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_replace_defaults(
@@ -1787,7 +1787,7 @@ afw_function_definition_flag_set;
  *   function flag_set(
  *       flagId: (array string),
  *       setTo?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1799,7 +1799,7 @@ afw_function_definition_flag_set;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_set(
@@ -6429,7 +6429,7 @@ afw_function_definition_throw;
  *   function throw(
  *       message: string,
  *       additional?: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -6442,7 +6442,7 @@ afw_function_definition_throw;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_throw(
@@ -6631,7 +6631,7 @@ afw_function_definition_assert;
  *   function assert(
  *       assertion: boolean,
  *       reason?: string
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -6644,7 +6644,7 @@ afw_function_definition_assert;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_assert(
@@ -17692,7 +17692,7 @@ afw_function_definition_journal_mark_consumed;
  *       adaptorId: string,
  *       consumerId: string,
  *       cursor: string
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -17706,7 +17706,7 @@ afw_function_definition_journal_mark_consumed;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_journal_mark_consumed(
@@ -17949,7 +17949,7 @@ afw_function_definition_debug;
  *   function debug(
  *       value: any,
  *       detail?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -17964,7 +17964,7 @@ afw_function_definition_debug;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_debug(
@@ -18149,7 +18149,7 @@ afw_function_definition_log;
  * ```
  *   function log(
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -18158,7 +18158,7 @@ afw_function_definition_log;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_log(
@@ -18324,7 +18324,7 @@ afw_function_definition_trace;
  *       value: any,
  *       filter?: boolean,
  *       number?: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -18342,7 +18342,7 @@ afw_function_definition_trace;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_trace(
@@ -18978,7 +18978,7 @@ afw_function_definition_null;
  * ```
  *   function null(
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -18987,7 +18987,7 @@ afw_function_definition_null;
  *
  * Returns:
  *
- *   (null) Converted value.
+ *   (void) Converted value.
  *
  * Errors thrown:
  *
@@ -20479,7 +20479,7 @@ afw_function_definition_local_object_meta_set_ids;
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -20494,7 +20494,7 @@ afw_function_definition_local_object_meta_set_ids;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_local_object_meta_set_ids(
@@ -26562,7 +26562,7 @@ afw_function_definition_close;
  * ```
  *   function close(
  *       streamNumber: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -26571,7 +26571,7 @@ afw_function_definition_close;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_close(
@@ -26595,7 +26595,7 @@ afw_function_definition_flush;
  * ```
  *   function flush(
  *       streamNumber: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -26604,7 +26604,7 @@ afw_function_definition_flush;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flush(
@@ -26808,7 +26808,7 @@ afw_function_definition_print;
  * ```
  *   function print(
  *       ...values: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -26817,7 +26817,7 @@ afw_function_definition_print;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_print(
@@ -26843,7 +26843,7 @@ afw_function_definition_println;
  * ```
  *   function println(
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -26852,7 +26852,7 @@ afw_function_definition_println;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_println(
@@ -27062,7 +27062,7 @@ afw_function_definition_write;
  *   function write(
  *       streamNumber: integer,
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -27073,7 +27073,7 @@ afw_function_definition_write;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_write(
@@ -27099,7 +27099,7 @@ afw_function_definition_write_internal;
  *   function write_internal(
  *       streamNumber: integer,
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -27110,7 +27110,7 @@ afw_function_definition_write_internal;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_write_internal(
@@ -27137,7 +27137,7 @@ afw_function_definition_writeln;
  *   function writeln(
  *       streamNumber: integer,
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -27148,7 +27148,7 @@ afw_function_definition_writeln;
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_writeln(

@@ -176,7 +176,7 @@ def flag_modify_defaults(session, flagId, add=None):
         specified, flags are added.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -218,7 +218,7 @@ def flag_replace_defaults(session, flagId):
         the default active flags.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -250,7 +250,7 @@ def flag_set(session, flagId, setTo=None):
         specified, flags are set.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

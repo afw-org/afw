@@ -18,7 +18,7 @@
         }
     ],
     "returns": {
-        "dataType": "null",
+        "dataType": "void",
         "description": "Converted value"
     },
     "useExecuteFunction": "afw_function_execute_convert"

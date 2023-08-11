@@ -380,7 +380,7 @@ def local_object_meta_set_ids(session, object, objectType, objectId, adaptorId=N
         objectId (string): Object id for object.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

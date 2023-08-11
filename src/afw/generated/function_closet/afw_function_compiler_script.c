@@ -609,7 +609,7 @@ afw_function_execute_switch(
  *   function throw(
  *       message: string,
  *       additional?: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -622,7 +622,7 @@ afw_function_execute_switch(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_throw(

@@ -163,7 +163,7 @@ afw_function_execute_apply_object_options(
  *       adaptorId: string,
  *       objectType: string,
  *       objectId: string
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -178,7 +178,7 @@ afw_function_execute_apply_object_options(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_local_object_meta_set_ids(
@@ -198,6 +198,7 @@ afw_function_execute_local_object_meta_set_ids(
         &adaptorId->internal, &objectType->internal, &objectId->internal,
         x->xctx);
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 

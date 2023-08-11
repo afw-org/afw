@@ -293,7 +293,7 @@ class journal
      *                           object.
      * @param string $cursor Journal entry cursor.
      *
-     * @return null
+     * @return void
      */
     public function journal_mark_consumed(, $consumerId, $cursor, $adaptorId = null)
     {

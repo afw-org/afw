@@ -81,7 +81,7 @@ class miscellaneous
      *                        written if the debug:function_active flag is
      *                        on.
      *
-     * @return null
+     * @return void
      */
     public function debug(, $value, $detail = null)
     {
@@ -212,7 +212,7 @@ class miscellaneous
      *
      * @param  $value Value to log.
      *
-     * @return null
+     * @return void
      */
     public function log(, $value)
     {
@@ -343,7 +343,7 @@ class miscellaneous
      *                        is appended to 'trace' to identify the trace
      *                        log. The default is 1.
      *
-     * @return null
+     * @return void
      */
     public function trace(, $value, $filter = null, $number = null)
     {

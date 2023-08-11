@@ -34,7 +34,7 @@ class compiler
      * @param string $reason This is an optional reason to include in the
      *                       assertion_failed message.
      *
-     * @return null
+     * @return void
      */
     public function assert(, $assertion, $reason = null)
     {

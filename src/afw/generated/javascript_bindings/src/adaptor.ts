@@ -743,7 +743,7 @@ export function afwRetrieveObjects(client : any, objectType : string, adaptorId?
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwRetrieveObjectsToCallback(client : any, objectCallback : any, userData : any, objectType : string, adaptorId? : string, queryCriteria? : object, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -806,7 +806,7 @@ export function afwRetrieveObjectsToCallback(client : any, objectCallback : any,
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwRetrieveObjectsToResponse(client : any, objectType : string, adaptorId? : string, queryCriteria? : object, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -866,7 +866,7 @@ export function afwRetrieveObjectsToResponse(client : any, objectType : string, 
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwRetrieveObjectsToStream(client : any, streamNumber : number, objectType : string, adaptorId? : string, queryCriteria? : object, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -972,7 +972,7 @@ export function afwRetrieveObjectsWithUri(client : any, uri : any, options? : ob
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwRetrieveObjectsWithUriToCallback(client : any, objectCallback : any, userData : any, uri : any, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -1024,7 +1024,7 @@ export function afwRetrieveObjectsWithUriToCallback(client : any, objectCallback
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwRetrieveObjectsWithUriToResponse(client : any, uri : any, options? : object, adaptorTypeSpecific? : object) : any {
 
@@ -1073,7 +1073,7 @@ export function afwRetrieveObjectsWithUriToResponse(client : any, uri : any, opt
  *     
  *     Where ${adaptorType} is the adaptor type id.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwRetrieveObjectsWithUriToStream(client : any, streamNumber : number, uri : any, options? : object, adaptorTypeSpecific? : object) : any {
 

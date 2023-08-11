@@ -322,7 +322,7 @@ def journal_mark_consumed(session, consumerId, cursor, adaptorId=None):
         cursor (string): Journal entry cursor.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

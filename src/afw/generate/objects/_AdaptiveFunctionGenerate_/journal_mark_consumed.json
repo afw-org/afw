@@ -22,7 +22,7 @@
         }
     ],
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     },
     "sideEffects": [
         "Journal cursor consumed"

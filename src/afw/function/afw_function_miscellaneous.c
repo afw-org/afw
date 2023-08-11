@@ -114,7 +114,7 @@ afw_function_execute_compare_uri(
  *   function debug(
  *       value: any,
  *       detail?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -129,7 +129,7 @@ afw_function_execute_compare_uri(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_debug(
@@ -155,6 +155,7 @@ afw_function_execute_debug(
 
     afw_debug(flag_index, NULL, s, x->xctx);
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -216,7 +217,7 @@ afw_function_execute_generate_uuid(
  * ```
  *   function log(
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -225,7 +226,7 @@ afw_function_execute_generate_uuid(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_log(
@@ -518,7 +519,7 @@ afw_function_execute_execution_start_time_utc(
  *       value: any,
  *       filter?: boolean,
  *       number?: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -536,7 +537,7 @@ afw_function_execute_execution_start_time_utc(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_trace(
@@ -578,7 +579,7 @@ afw_function_execute_trace(
     /* Write string to trace log. */
     afw_trace_write(priority, NULL, AFW__FILE_LINE__, s, x->xctx);
 
-    /* Return null. */
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 

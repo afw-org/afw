@@ -20,7 +20,7 @@ interface IAnyObject {
  * @param {string} reason - This is an optional reason to include in the
  *     assertion_failed message.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwAssert(client : any, assertion : boolean, reason? : string) : any {
 

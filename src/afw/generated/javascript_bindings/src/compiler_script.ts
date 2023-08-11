@@ -360,7 +360,7 @@ export function afwSwitch(client : any, predicate : any, value1 : any, case_clau
  * @param {} additional - Optional additional information that will be
  *     available as a 'additional' property in the error object.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwThrow(client : any, message : string, additional? : any) : any {
 

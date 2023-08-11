@@ -242,7 +242,7 @@ afw_function_execute_flag_get_defaults(
  *   function flag_modify_defaults(
  *       flagId: (array string),
  *       add?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -254,7 +254,7 @@ afw_function_execute_flag_get_defaults(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_modify_defaults(
@@ -291,7 +291,7 @@ afw_function_execute_flag_modify_defaults(
  * ```
  *   function flag_replace_defaults(
  *       flagId: (array string)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -301,7 +301,7 @@ afw_function_execute_flag_modify_defaults(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_replace_defaults(
@@ -331,7 +331,7 @@ afw_function_execute_flag_replace_defaults(
  *   function flag_set(
  *       flagId: (array string),
  *       setTo?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -343,7 +343,7 @@ afw_function_execute_flag_replace_defaults(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_set(

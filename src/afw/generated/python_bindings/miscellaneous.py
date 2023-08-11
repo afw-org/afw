@@ -73,7 +73,7 @@ def debug(session, value, detail=None):
         the string will only written if the debug:function_active flag is on.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -243,7 +243,7 @@ def log(session, value):
         value (): Value to log.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -405,7 +405,7 @@ def trace(session, value, filter=None, number=None):
         appended to 'trace' to identify the trace log. The default is 1.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

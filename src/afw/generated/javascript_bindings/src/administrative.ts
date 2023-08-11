@@ -122,7 +122,7 @@ export function afwFlagGetDefaults(client : any) : any {
  * @param {boolean} add - Specify true to add and false to remove flags. If
  *     not specified, flags are added.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwFlagModifyDefaults(client : any, flagId : any[], add? : boolean) : any {
 
@@ -152,7 +152,7 @@ export function afwFlagModifyDefaults(client : any, flagId : any[], add? : boole
  * @param {array} flagId - The array of the flagId of flags used to determine
  *     the default active flags.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwFlagReplaceDefaults(client : any, flagId : any[]) : any {
 
@@ -172,7 +172,7 @@ export function afwFlagReplaceDefaults(client : any, flagId : any[]) : any {
  * @param {boolean} setTo - Specify true to set and false to unset. If not
  *     specified, flags are set.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwFlagSet(client : any, flagId : any[], setTo? : boolean) : any {
 

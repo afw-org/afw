@@ -15,7 +15,7 @@
         }
     ],
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     },
     "sideEffects": [
         "Buffers written and stream closed"

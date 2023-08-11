@@ -33,6 +33,6 @@
         }
     ],
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     }
 }

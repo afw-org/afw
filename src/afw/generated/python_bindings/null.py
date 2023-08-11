@@ -105,7 +105,7 @@ def null(session, value):
         value (): Value to convert
 
     Returns:
-    null: Converted value
+    void: Converted value
     '''
 
     request = session.Request()

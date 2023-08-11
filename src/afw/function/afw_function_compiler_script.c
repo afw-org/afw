@@ -647,7 +647,7 @@ afw_function_execute_switch(
  *   function throw(
  *       message: string,
  *       additional?: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -660,21 +660,21 @@ afw_function_execute_switch(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_throw(
     afw_function_execute_t *x)
 {
-    const afw_value_t *result;
     afw_value_block_statement_type_t type;
 
     type = afw_value_block_statement_type_sequential;
 
-    result = afw_value_block_evaluate_throw(x,
+    afw_value_block_evaluate_throw(x,
         &type, x->argc, x->argv, x->p, x->xctx);
 
-    return result;
+    /* Return undefined for void. */
+    return afw_value_undefined;
 }
 
 

@@ -916,7 +916,7 @@ def retrieve_objects_to_callback(session, objectCallback, userData, objectType, 
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -991,7 +991,7 @@ def retrieve_objects_to_response(session, objectType, adaptorId=None, queryCrite
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -1063,7 +1063,7 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adaptorId=None
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -1193,7 +1193,7 @@ def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -1257,7 +1257,7 @@ def retrieve_objects_with_uri_to_response(session, uri, options=None, adaptorTyp
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -1318,7 +1318,7 @@ def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

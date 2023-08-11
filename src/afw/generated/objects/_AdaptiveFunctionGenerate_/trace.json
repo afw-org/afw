@@ -25,7 +25,7 @@
         }
     ],
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     },
     "sideEffects": [
         "Value written to log"

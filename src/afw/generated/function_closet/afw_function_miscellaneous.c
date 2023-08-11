@@ -89,7 +89,7 @@ afw_function_execute_compare_uri(
  *   function debug(
  *       value: any,
  *       detail?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -104,7 +104,7 @@ afw_function_execute_compare_uri(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_debug(
@@ -319,7 +319,7 @@ afw_function_execute_is_nullish(
  * ```
  *   function log(
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -328,7 +328,7 @@ afw_function_execute_is_nullish(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_log(
@@ -519,7 +519,7 @@ afw_function_execute_perform(
  *       value: any,
  *       filter?: boolean,
  *       number?: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -537,7 +537,7 @@ afw_function_execute_perform(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_trace(

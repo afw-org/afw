@@ -250,7 +250,7 @@ export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId
  * 
  * @param {string} cursor - Journal entry cursor.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwJournalMarkConsumed(client : any, consumerId : string, cursor : string, adaptorId? : string) : any {
 

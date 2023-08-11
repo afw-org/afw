@@ -20,7 +20,7 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     },
     "scriptSupport": true
 }

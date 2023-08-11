@@ -165,7 +165,7 @@ class administrative
      * @param boolean $add Specify true to add and false to remove flags. If
      *                     not specified, flags are added.
      *
-     * @return null
+     * @return void
      */
     public function flag_modify_defaults(, $flagId, $add = null)
     {
@@ -200,7 +200,7 @@ class administrative
      * @param array $flagId The array of the flagId of flags used to
      *                      determine the default active flags.
      *
-     * @return null
+     * @return void
      */
     public function flag_replace_defaults(, $flagId)
     {
@@ -224,7 +224,7 @@ class administrative
      * @param boolean $setTo Specify true to set and false to unset. If not
      *                       specified, flags are set.
      *
-     * @return null
+     * @return void
      */
     public function flag_set(, $flagId, $setTo = null)
     {

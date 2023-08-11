@@ -371,7 +371,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *       adaptorId: string,
  *       consumerId: string,
  *       cursor: string
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -385,7 +385,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_journal_mark_consumed(

@@ -438,7 +438,7 @@ class compiler_script
      *                     available as a 'additional' property in the error
      *                     object.
      *
-     * @return null
+     * @return void
      */
     public function throw(, $message, $additional = null)
     {

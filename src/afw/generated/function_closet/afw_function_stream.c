@@ -32,7 +32,7 @@
  * ```
  *   function close(
  *       streamNumber: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -41,7 +41,7 @@
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_close(
@@ -70,7 +70,7 @@ afw_function_execute_close(
  * ```
  *   function flush(
  *       streamNumber: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -79,7 +79,7 @@ afw_function_execute_close(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flush(
@@ -308,7 +308,7 @@ afw_function_execute_open_uri(
  * ```
  *   function print(
  *       ...values: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -317,7 +317,7 @@ afw_function_execute_open_uri(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_print(
@@ -348,7 +348,7 @@ afw_function_execute_print(
  * ```
  *   function println(
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -357,7 +357,7 @@ afw_function_execute_print(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_println(
@@ -597,7 +597,7 @@ afw_function_execute_stream(
  *   function write(
  *       streamNumber: integer,
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -608,7 +608,7 @@ afw_function_execute_stream(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_write(
@@ -639,7 +639,7 @@ afw_function_execute_write(
  *   function write_internal(
  *       streamNumber: integer,
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -650,7 +650,7 @@ afw_function_execute_write(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_write_internal(
@@ -682,7 +682,7 @@ afw_function_execute_write_internal(
  *   function writeln(
  *       streamNumber: integer,
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -693,7 +693,7 @@ afw_function_execute_write_internal(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_writeln(

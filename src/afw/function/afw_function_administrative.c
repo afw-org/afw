@@ -208,7 +208,7 @@ afw_function_execute_flag_get_defaults(
  *   function flag_modify_defaults(
  *       flagId: (array string),
  *       add?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -220,7 +220,7 @@ afw_function_execute_flag_get_defaults(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_modify_defaults(
@@ -265,6 +265,7 @@ afw_function_execute_flag_modify_defaults(
         afw_flag_set_default(flag_id, add, x->xctx);
     }
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -295,7 +296,7 @@ afw_function_execute_flag_modify_defaults(
  * ```
  *   function flag_replace_defaults(
  *       flagId: (array string)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -305,7 +306,7 @@ afw_function_execute_flag_modify_defaults(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_replace_defaults(
@@ -317,6 +318,7 @@ afw_function_execute_flag_replace_defaults(
 
     afw_flag_set_default_flag_ids(array_value->internal, x->xctx);
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -340,7 +342,7 @@ afw_function_execute_flag_replace_defaults(
  *   function flag_set(
  *       flagId: (array string),
  *       setTo?: boolean
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -352,7 +354,7 @@ afw_function_execute_flag_replace_defaults(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flag_set(
@@ -397,6 +399,7 @@ afw_function_execute_flag_set(
         afw_flag_set(flag_id, set_to, x->xctx);
     }
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 

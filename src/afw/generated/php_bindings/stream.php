@@ -30,7 +30,7 @@ class stream
      *
      * @param integer $streamNumber The streamNumber for the stream to close.
      *
-     * @return null
+     * @return void
      */
     public function close(, $streamNumber)
     {
@@ -52,7 +52,7 @@ class stream
      *
      * @param integer $streamNumber The streamNumber for the stream to flush.
      *
-     * @return null
+     * @return void
      */
     public function flush(, $streamNumber)
     {
@@ -221,7 +221,7 @@ class stream
      *
      * @param  $values Values to print.
      *
-     * @return null
+     * @return void
      */
     public function print(, $values)
     {
@@ -245,7 +245,7 @@ class stream
      *
      * @param  $value Values to print.
      *
-     * @return null
+     * @return void
      */
     public function println(, $value)
     {
@@ -398,7 +398,7 @@ class stream
      * @param integer $streamNumber The streamNumber for the stream to write.
      * @param any $value Values to write as their string value.
      *
-     * @return null
+     * @return void
      */
     public function write(, $streamNumber, $value)
     {
@@ -423,7 +423,7 @@ class stream
      * @param integer $streamNumber The streamNumber for the stream to write.
      * @param any $value The internal memory of this value is written.
      *
-     * @return null
+     * @return void
      */
     public function write_internal(, $streamNumber, $value)
     {
@@ -449,7 +449,7 @@ class stream
      * @param integer $streamNumber The streamNumber for the stream to write.
      * @param  $value Values to write.
      *
-     * @return null
+     * @return void
      */
     public function writeln(, $streamNumber, $value)
     {

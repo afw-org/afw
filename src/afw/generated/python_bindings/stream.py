@@ -16,7 +16,7 @@ def close(session, streamNumber):
         streamNumber (integer): The streamNumber for the stream to close.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -45,7 +45,7 @@ def flush(session, streamNumber):
         streamNumber (integer): The streamNumber for the stream to flush.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -241,7 +241,7 @@ def print(session, values):
         values (): Values to print.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -272,7 +272,7 @@ def println(session, value):
         value (): Values to print.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -465,7 +465,7 @@ def write(session, streamNumber, value):
         value (any): Values to write as their string value.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -498,7 +498,7 @@ def write_internal(session, streamNumber, value):
         value (any): The internal memory of this value is written.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()
@@ -532,7 +532,7 @@ def writeln(session, streamNumber, value):
         value (): Values to write.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

@@ -501,7 +501,7 @@ def throw(session, message, additional=None):
         as a 'additional' property in the error object.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

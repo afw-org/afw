@@ -20,7 +20,7 @@ def assert_(session, assertion, reason=None):
         assertion_failed message.
 
     Returns:
-    null: 
+    void: 
     '''
 
     request = session.Request()

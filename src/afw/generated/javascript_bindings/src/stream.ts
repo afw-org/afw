@@ -16,7 +16,7 @@ interface IAnyObject {
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to close.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwClose(client : any, streamNumber : number) : any {
 
@@ -33,7 +33,7 @@ export function afwClose(client : any, streamNumber : number) : any {
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to flush.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwFlush(client : any, streamNumber : number) : any {
 
@@ -171,7 +171,7 @@ export function afwOpenUri(client : any, streamId : string, uri : string, mode :
  * 
  * @param {} values - Values to print.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwPrint(client : any, values : any) : any {
 
@@ -190,7 +190,7 @@ export function afwPrint(client : any, values : any) : any {
  * 
  * @param {} value - Values to print.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwPrintln(client : any, value : any) : any {
 
@@ -315,7 +315,7 @@ export function afwStream(client : any, streamId : string) : any {
  * 
  * @param {any} value - Values to write as their string value.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwWrite(client : any, streamNumber : number, value : any) : any {
 
@@ -336,7 +336,7 @@ export function afwWrite(client : any, streamNumber : number, value : any) : any
  * 
  * @param {any} value - The internal memory of this value is written.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwWriteInternal(client : any, streamNumber : number, value : any) : any {
 
@@ -358,7 +358,7 @@ export function afwWriteInternal(client : any, streamNumber : number, value : an
  * 
  * @param {} value - Values to write.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwWriteln(client : any, streamNumber : number, value : any) : any {
 

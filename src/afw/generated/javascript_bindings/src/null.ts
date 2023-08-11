@@ -69,7 +69,7 @@ export function afwIsNull(client : any, value : any) : any {
  * 
  * @param {} value - Value to convert
  * 
- * @returns {null} Converted value
+ * @returns {void} Converted value
  */
 export function afwNull(client : any, value : any) : any {
 

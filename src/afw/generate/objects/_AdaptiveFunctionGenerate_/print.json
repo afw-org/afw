@@ -12,7 +12,7 @@
         }
     ],
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     },
     "sideEffects": [
         "Values written"

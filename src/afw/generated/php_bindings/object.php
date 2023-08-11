@@ -307,7 +307,7 @@ class object
      * @param string $objectType Object type id for object.
      * @param string $objectId Object id for object.
      *
-     * @return null
+     * @return void
      */
     public function local_object_meta_set_ids(, $object, $objectType, $objectId, $adaptorId = null)
     {

@@ -61,7 +61,7 @@ export function afwCompareUri(client : any, uri1 : string, uri2 : string, isValu
  *     debug:function_active:detail flag is on. If false or not specified,
  *     the string will only written if the debug:function_active flag is on.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwDebug(client : any, value : any, detail? : boolean) : any {
 
@@ -159,7 +159,7 @@ export function afwIsNullish(client : any, value : any) : any {
  * 
  * @param {} value - Value to log.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwLog(client : any, value : any) : any {
 
@@ -262,7 +262,7 @@ export function afwPerform(client : any, request : object) : any {
  * @param {integer} number - This is an optional number between 1 and 8 that
  *     is appended to 'trace' to identify the trace log. The default is 1.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwTrace(client : any, value : any, filter? : boolean, number? : number) : any {
 

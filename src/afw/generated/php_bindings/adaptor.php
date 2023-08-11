@@ -884,7 +884,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return null
+     * @return void
      */
     public function retrieve_objects_to_callback(, $objectCallback, $userData, $objectType, $adaptorId = null, $queryCriteria = null, $options = null, $adaptorTypeSpecific = null)
     {
@@ -955,7 +955,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return null
+     * @return void
      */
     public function retrieve_objects_to_response(, $objectType, $adaptorId = null, $queryCriteria = null, $options = null, $adaptorTypeSpecific = null)
     {
@@ -1022,7 +1022,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return null
+     * @return void
      */
     public function retrieve_objects_to_stream(, $streamNumber, $objectType, $adaptorId = null, $queryCriteria = null, $options = null, $adaptorTypeSpecific = null)
     {
@@ -1147,7 +1147,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return null
+     * @return void
      */
     public function retrieve_objects_with_uri_to_callback(, $objectCallback, $userData, $uri, $options = null, $adaptorTypeSpecific = null)
     {
@@ -1208,7 +1208,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return null
+     * @return void
      */
     public function retrieve_objects_with_uri_to_response(, $uri, $options = null, $adaptorTypeSpecific = null)
     {
@@ -1265,7 +1265,7 @@ class adaptor
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
-     * @return null
+     * @return void
      */
     public function retrieve_objects_with_uri_to_stream(, $streamNumber, $uri, $options = null, $adaptorTypeSpecific = null)
     {

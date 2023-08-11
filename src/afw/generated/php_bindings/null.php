@@ -98,7 +98,7 @@ class null
      *
      * @param  $value Value to convert
      *
-     * @return null Converted value
+     * @return void Converted value
      */
     public function null(, $value)
     {

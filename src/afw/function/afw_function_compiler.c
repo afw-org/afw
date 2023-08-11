@@ -35,7 +35,7 @@
  *   function assert(
  *       assertion: boolean,
  *       reason?: string
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -48,7 +48,7 @@
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_assert(
@@ -74,6 +74,7 @@ afw_function_execute_assert(
         }
     }
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 

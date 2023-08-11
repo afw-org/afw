@@ -248,7 +248,7 @@ export function afwLeObject(client : any, arg1 : object, arg2 : any) : any {
  * 
  * @param {string} objectId - Object id for object.
  * 
- * @returns {null}
+ * @returns {void}
  */
 export function afwLocalObjectMetaSetIds(client : any, object : object, objectType : string, objectId : string, adaptorId? : string) : any {
 

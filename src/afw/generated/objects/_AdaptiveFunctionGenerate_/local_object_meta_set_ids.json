@@ -29,7 +29,7 @@
         }
     ],
     "returns": {
-        "dataType": "null"
+        "dataType": "void"
     },
     "sideEffects": [
         "Object ids set"

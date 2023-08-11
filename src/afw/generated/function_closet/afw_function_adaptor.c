@@ -977,7 +977,7 @@ afw_function_execute_retrieve_objects(
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1017,7 +1017,7 @@ afw_function_execute_retrieve_objects(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_callback(
@@ -1062,7 +1062,7 @@ afw_function_execute_retrieve_objects_to_callback(
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1091,7 +1091,7 @@ afw_function_execute_retrieve_objects_to_callback(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_response(
@@ -1133,7 +1133,7 @@ afw_function_execute_retrieve_objects_to_response(
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1165,7 +1165,7 @@ afw_function_execute_retrieve_objects_to_response(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_stream(
@@ -1266,7 +1266,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1301,7 +1301,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_callback(
@@ -1343,7 +1343,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1368,7 +1368,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_response(
@@ -1407,7 +1407,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
  *       adaptorTypeSpecific?: object
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1435,7 +1435,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_stream(

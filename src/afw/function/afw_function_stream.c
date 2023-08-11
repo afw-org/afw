@@ -32,7 +32,7 @@
  * ```
  *   function flush(
  *       streamNumber: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -41,7 +41,7 @@
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_flush(
@@ -60,6 +60,7 @@ afw_function_execute_flush(
     }
     stream = NULL;
  
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -83,7 +84,7 @@ afw_function_execute_flush(
  * ```
  *   function print(
  *       ...values: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -92,7 +93,7 @@ afw_function_execute_flush(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_print(
@@ -118,6 +119,7 @@ afw_function_execute_print(
     }
     afw_stream_flush(stream, x->xctx);
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -142,7 +144,7 @@ afw_function_execute_print(
  * ```
  *   function println(
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -151,7 +153,7 @@ afw_function_execute_print(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_println(
@@ -178,6 +180,7 @@ afw_function_execute_println(
     afw_stream_write_eol(stream, x->xctx);
     afw_stream_flush(stream, x->xctx);
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -202,7 +205,7 @@ afw_function_execute_println(
  *   function write(
  *       streamNumber: integer,
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -213,7 +216,7 @@ afw_function_execute_println(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_write(
@@ -247,6 +250,7 @@ afw_function_execute_write(
         }
     }
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -272,7 +276,7 @@ afw_function_execute_write(
  *   function writeln(
  *       streamNumber: integer,
  *       ...value: (array of any)
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -283,7 +287,7 @@ afw_function_execute_write(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_writeln(
@@ -317,6 +321,7 @@ afw_function_execute_writeln(
     }
     afw_stream_write_eol(stream, x->xctx);
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -339,7 +344,7 @@ afw_function_execute_writeln(
  * ```
  *   function close(
  *       streamNumber: integer
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -348,7 +353,7 @@ afw_function_execute_writeln(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_close(
@@ -366,6 +371,7 @@ afw_function_execute_close(
         afw_stream_release(stream, x->xctx);
     }
 
+    /* Return undefined for void. */
     return afw_value_undefined;
 }
 
@@ -407,7 +413,7 @@ afw_function_execute_get_stream_error(
             x->xctx->stream_anchor->last_stream_error,
             x->p, x->xctx);
     }
-    return NULL;
+    return afw_value_undefined;
 }
 
 
@@ -872,7 +878,7 @@ afw_function_execute_stream(
  *   function write_internal(
  *       streamNumber: integer,
  *       value: any
- *   ): null;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -883,7 +889,7 @@ afw_function_execute_stream(
  *
  * Returns:
  *
- *   (null)
+ *   (void)
  */
 const afw_value_t *
 afw_function_execute_write_internal(
