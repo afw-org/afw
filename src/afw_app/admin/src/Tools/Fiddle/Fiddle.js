@@ -1173,7 +1173,7 @@ export const Fiddle = () => {
                                         additionalActionMenuOptions={[
                                             {
                                                 id: "copy_action",
-                                                label: "Copy Action",
+                                                label: "Copy Action Request",
                                                 contextMenuGroupId: "copy",
                                                 contextMenuOrder: 1.1,
                                                 run: onCopyAction

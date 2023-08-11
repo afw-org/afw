@@ -1,7 +1,7 @@
 #!/usr/bin/env -S afw --syntax test_script
 //? testScript: switch.as
 //? customPurpose: Part of language/script tests
-//? description: Additional switch tests, using the functor parameter
+//? description: Additional switch tests
 //? sourceType: script
 //?
 //? test: switch-eqx-1
@@ -109,8 +109,6 @@ switch ("abc") using fn {
 //? source: ...
 #!/usr/bin/env afw
 
-#!/usr/bin/env afw
-
 function f(x) {
 
     switch (x) {
@@ -122,3 +120,31 @@ function f(x) {
 }
 
 assert(f(1) === true);
+
+//?
+//? test: switch-throw-fn
+//? description: return from switch within function
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+function f(x) {
+
+    switch (x) {
+        case 1:
+            throw "fail";
+    }
+
+    return false;
+}
+
+let thrown = false;
+
+try {
+    f(1);
+} catch (e) {
+    thrown = true;
+    assert(e.message === "fail");
+}
+
+assert(thrown === true);

@@ -1,6 +1,6 @@
 #!/usr/bin/env -S afw --syntax test_script --conf ./afw.conf
 //?
-//? testScript: authroization_check_function.as
+//? testScript: authorization_check_function.as
 //? customPurpose: Part of authorization tests
 //? description: ...
 Test authorization_check built-in function. The associated afw.conf has a
