@@ -3,7 +3,7 @@
     "brief": "Perform authorization check",
     "camelCaseFunctionLabel": "authorizationCheck",
     "category": "authorization",
-    "description": "This function can be used to check if the current subject has a given access to the specified resource in the current environment. The returned object is object type '_AdaptiveAuthorizationResult_'.",
+    "description": "This function can be used to check if the current subject has a given access to the specified resource in the current environment.",
     "functionId": "authorization_check",
     "functionLabel": "authorization_check",
     "parameters": [

@@ -13,8 +13,7 @@ interface IAnyObject {
 
 /**
  * This function can be used to check if the current subject has a given
- * access to the specified resource in the current environment. The returned
- * object is object type '_AdaptiveAuthorizationResult_'.
+ * access to the specified resource in the current environment.
  * 
  * @param {string} requestId - This is a request id to associate with the
  *     authorization request. Variable current::requestId can be used to

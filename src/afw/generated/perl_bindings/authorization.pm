@@ -19,8 +19,7 @@ The following functions are exported by default
 =head3 authorization_check
 
 This function can be used to check if the current subject has a given access
-to the specified resource in the current environment. The returned object is
-object type '_AdaptiveAuthorizationResult_'.
+to the specified resource in the current environment.
 Perform authorization check
 
 =head4 Parameters

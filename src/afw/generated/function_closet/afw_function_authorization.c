@@ -23,8 +23,7 @@
  * See afw_function_bindings.h for more information.
  *
  * This function can be used to check if the current subject has a given access
- * to the specified resource in the current environment. The returned object is
- * object type '_AdaptiveAuthorizationResult_'.
+ * to the specified resource in the current environment.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

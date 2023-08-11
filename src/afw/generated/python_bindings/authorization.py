@@ -10,8 +10,7 @@ def authorization_check(session, requestId, resourceId, actionId, object=None, e
     Perform authorization check
 
     This function can be used to check if the current subject has a given
-    access to the specified resource in the current environment. The returned
-    object is object type '_AdaptiveAuthorizationResult_'.
+    access to the specified resource in the current environment.
 
     Parameters:
 

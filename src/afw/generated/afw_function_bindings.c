@@ -14466,7 +14466,7 @@ afw_function_definition_authorization_check = {
     AFW_UTF8_LITERAL("authorizationCheck"),
     AFW_UTF8_LITERAL("afwAuthorizationCheck"),
     AFW_UTF8_LITERAL("Perform authorization check"),
-    AFW_UTF8_LITERAL("This function can be used to check if the current subject has a given access to the specified resource in the current environment. The returned object is object type '_AdaptiveAuthorizationResult_'."),
+    AFW_UTF8_LITERAL("This function can be used to check if the current subject has a given access to the specified resource in the current environment."),
     AFW_UTF8_LITERAL("(requestId: string, resourceId: string, actionId: string, object?: object, enforce?: boolean): (object _AdaptiveAuthorizationResult_)"),
     AFW_UTF8_LITERAL("/* Perform authorization check */\nfunction authorization_check (\n    requestId: string,\n    resourceId: string,\n    actionId: string,\n    object?: object,\n    enforce?: boolean\n): (object _AdaptiveAuthorizationResult_);\n"),
     AFW_UTF8_LITERAL(""),
