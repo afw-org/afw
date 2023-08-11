@@ -100,3 +100,25 @@ switch ("abc") using fn {
     default:
         break;
 }
+
+
+//?
+//? test: switch-return-fn
+//? description: return from switch within function
+//? expect: null
+//? source: ...
+#!/usr/bin/env afw
+
+#!/usr/bin/env afw
+
+function f(x) {
+
+    switch (x) {
+        case 1:
+            return true;
+    }
+
+    return false;
+}
+
+assert(f(1) === true);
