@@ -4114,10 +4114,7 @@ afw_function_definition_authorization_check;
  *
  * This function can be used to check if the current subject has a given access
  * to the specified resource in the current environment. The returned object is
- * object type '_AdaptiveAuthorizationResult_'. The context parameter can be
- * used to provide additional contest that will be available to the
- * authorization policies as qualified variables. This additional context can
- * override any context including subject for testing purposes.
+ * object type '_AdaptiveAuthorizationResult_'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -4130,8 +4127,7 @@ afw_function_definition_authorization_check;
  *       resourceId: string,
  *       actionId: string,
  *       object?: object,
- *       enforce?: boolean,
- *       context?: (object _AdaptiveContextType_)
+ *       enforce?: boolean
  *   ): (object _AdaptiveAuthorizationResult_);
  * ```
  *
@@ -4155,10 +4151,6 @@ afw_function_definition_authorization_check;
  *   enforce - (optional boolean) This specifies whether an error is thrown if
  *       access is denied. If false or not specified, an error is not thrown
  *       and the decision can be checked in the returned object.
- *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to the authorization policies
- *       via qualified variables.
  *
  * Returns:
  *

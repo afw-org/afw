@@ -14445,32 +14445,6 @@ impl_authorization_check_parameter_5 = {
     false,
 };
 
-static const afw_value_function_parameter_t
-impl_authorization_check_parameter_6 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveContextType_"),
-    AFW_UTF8_LITERAL("context"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("This specifies additional context information available to the authorization policies via qualified variables."),
-    -1,
-    true,
-    false,
-    false,
-    false,
-};
-
 static const afw_value_function_parameter_t *
 impl_authorization_check_parameters[] = {
     &impl_authorization_check_parameter_1,
@@ -14478,7 +14452,6 @@ impl_authorization_check_parameters[] = {
     &impl_authorization_check_parameter_3,
     &impl_authorization_check_parameter_4,
     &impl_authorization_check_parameter_5,
-    &impl_authorization_check_parameter_6,
     NULL
 };
 
@@ -14493,16 +14466,16 @@ afw_function_definition_authorization_check = {
     AFW_UTF8_LITERAL("authorizationCheck"),
     AFW_UTF8_LITERAL("afwAuthorizationCheck"),
     AFW_UTF8_LITERAL("Perform authorization check"),
-    AFW_UTF8_LITERAL("This function can be used to check if the current subject has a given access to the specified resource in the current environment. The returned object is object type '_AdaptiveAuthorizationResult_'. The context parameter can be used to provide additional contest that will be available to the authorization policies as qualified variables. This additional context can override any context including subject for testing purposes."),
-    AFW_UTF8_LITERAL("(requestId: string, resourceId: string, actionId: string, object?: object, enforce?: boolean, context?: (object _AdaptiveContextType_)): (object _AdaptiveAuthorizationResult_)"),
-    AFW_UTF8_LITERAL("/* Perform authorization check */\nfunction authorization_check (\n    requestId: string,\n    resourceId: string,\n    actionId: string,\n    object?: object,\n    enforce?: boolean,\n    context?: (object _AdaptiveContextType_)\n): (object _AdaptiveAuthorizationResult_);\n"),
+    AFW_UTF8_LITERAL("This function can be used to check if the current subject has a given access to the specified resource in the current environment. The returned object is object type '_AdaptiveAuthorizationResult_'."),
+    AFW_UTF8_LITERAL("(requestId: string, resourceId: string, actionId: string, object?: object, enforce?: boolean): (object _AdaptiveAuthorizationResult_)"),
+    AFW_UTF8_LITERAL("/* Perform authorization check */\nfunction authorization_check (\n    requestId: string,\n    resourceId: string,\n    actionId: string,\n    object?: object,\n    enforce?: boolean\n): (object _AdaptiveAuthorizationResult_);\n"),
     AFW_UTF8_LITERAL(""),
     afw_function_execute_authorization_check,
     NULL,
     3,
-    6,
+    5,
     &impl_authorization_check_parameters[0],
-    6,
+    5,
     &impl_authorization_check_returns,
     NULL,
     NULL,

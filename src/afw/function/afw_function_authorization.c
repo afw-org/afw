@@ -24,10 +24,7 @@
  *
  * This function can be used to check if the current subject has a given access
  * to the specified resource in the current environment. The returned object is
- * object type '_AdaptiveAuthorizationResult_'. The context parameter can be
- * used to provide additional contest that will be available to the
- * authorization policies as qualified variables. This additional context can
- * override any context including subject for testing purposes.
+ * object type '_AdaptiveAuthorizationResult_'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -40,8 +37,7 @@
  *       resourceId: string,
  *       actionId: string,
  *       object?: object,
- *       enforce?: boolean,
- *       context?: (object _AdaptiveContextType_)
+ *       enforce?: boolean
  *   ): (object _AdaptiveAuthorizationResult_);
  * ```
  *
@@ -66,10 +62,6 @@
  *       access is denied. If false or not specified, an error is not thrown
  *       and the decision can be checked in the returned object.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to the authorization policies
- *       via qualified variables.
- *
  * Returns:
  *
  *   (object _AdaptiveAuthorizationResult_) The authorization result.
@@ -83,7 +75,6 @@ afw_function_execute_authorization_check(
     const afw_value_t *actionId;
     const afw_value_t *object;
     const afw_value_boolean_t *enforce;
-    const afw_value_object_t *context;
     const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(requestId, 1);
@@ -91,12 +82,6 @@ afw_function_execute_authorization_check(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(actionId, 3);
     AFW_FUNCTION_EVALUATE_PARAMETER(object, 4);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(enforce, 5, boolean);
-    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(context, 6, object);
-
-    /** @fixme Add in support for context. */
-    if (context) {
-        AFW_THROW_ERROR_Z(general, "context not implemented yet", x->xctx);
-    }
 
     result = afw_authorization_check(
         enforce ? enforce->internal : false,

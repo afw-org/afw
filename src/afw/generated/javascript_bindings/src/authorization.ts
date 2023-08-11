@@ -14,10 +14,7 @@ interface IAnyObject {
 /**
  * This function can be used to check if the current subject has a given
  * access to the specified resource in the current environment. The returned
- * object is object type '_AdaptiveAuthorizationResult_'. The context
- * parameter can be used to provide additional contest that will be available
- * to the authorization policies as qualified variables. This additional
- * context can override any context including subject for testing purposes.
+ * object is object type '_AdaptiveAuthorizationResult_'.
  * 
  * @param {string} requestId - This is a request id to associate with the
  *     authorization request. Variable current::requestId can be used to
@@ -38,12 +35,9 @@ interface IAnyObject {
  *     access is denied. If false or not specified, an error is not thrown
  *     and the decision can be checked in the returned object.
  * 
- * @param {object} context - This specifies additional context information
- *     available to the authorization policies via qualified variables.
- * 
  * @returns {object} The authorization result.
  */
-export function afwAuthorizationCheck(client : any, requestId : string, resourceId : string, actionId : string, object? : object, enforce? : boolean, context? : object) : any {
+export function afwAuthorizationCheck(client : any, requestId : string, resourceId : string, actionId : string, object? : object, enforce? : boolean) : any {
 
     let _action : IAnyObject = {};
 
@@ -57,9 +51,6 @@ export function afwAuthorizationCheck(client : any, requestId : string, resource
 
     if (enforce !== undefined)
         _action["enforce"] = enforce;
-
-    if (context !== undefined)
-        _action["context"] = context;
 
     return client.perform(_action);
 }

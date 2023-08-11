@@ -20,10 +20,7 @@ The following functions are exported by default
 
 This function can be used to check if the current subject has a given access
 to the specified resource in the current environment. The returned object is
-object type '_AdaptiveAuthorizationResult_'. The context parameter can be
-used to provide additional contest that will be available to the
-authorization policies as qualified variables. This additional context can
-override any context including subject for testing purposes.
+object type '_AdaptiveAuthorizationResult_'.
 Perform authorization check
 
 =head4 Parameters
@@ -55,15 +52,10 @@ This specifies whether an error is thrown if access is denied. If false or
 not specified, an error is not thrown and the decision can be checked in the
 returned object.
 
-    $context
-
-This specifies additional context information available to the authorization
-policies via qualified variables.
-
 =cut
 
 sub authorization_check {
-    my ($requestId, $resourceId, $actionId, $object, $enforce, $context) = @_;
+    my ($requestId, $resourceId, $actionId, $object, $enforce) = @_;
 
     my $request = $session->request()
 
@@ -77,9 +69,6 @@ sub authorization_check {
 
     if (defined $enforce)
         $request->set("enforce", $enforce);
-
-    if (defined $context)
-        $request->set("context", $context);
 
     return $request->getResult();
 }

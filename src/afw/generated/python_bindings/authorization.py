@@ -5,17 +5,13 @@
 import requests
 import json
 
-def authorization_check(session, requestId, resourceId, actionId, object=None, enforce=None, context=None):
+def authorization_check(session, requestId, resourceId, actionId, object=None, enforce=None):
     '''
     Perform authorization check
 
     This function can be used to check if the current subject has a given
     access to the specified resource in the current environment. The returned
-    object is object type '_AdaptiveAuthorizationResult_'. The context
-    parameter can be used to provide additional contest that will be
-    available to the authorization policies as qualified variables. This
-    additional context can override any context including subject for testing
-    purposes.
+    object is object type '_AdaptiveAuthorizationResult_'.
 
     Parameters:
 
@@ -38,9 +34,6 @@ def authorization_check(session, requestId, resourceId, actionId, object=None, e
         access is denied. If false or not specified, an error is not thrown
         and the decision can be checked in the returned object.
 
-        context (object): This specifies additional context information
-        available to the authorization policies via qualified variables.
-
     Returns:
     object: The authorization result.
     '''
@@ -59,9 +52,6 @@ def authorization_check(session, requestId, resourceId, actionId, object=None, e
 
     if enforce != None:
         action['enforce'] = enforce
-
-    if context != None:
-        action['context'] = context
 
     request.add_action(action)
 

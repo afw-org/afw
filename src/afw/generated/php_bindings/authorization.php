@@ -28,11 +28,7 @@ class authorization
      *
      * This function can be used to check if the current subject has a given
      * access to the specified resource in the current environment. The
-     * returned object is object type '_AdaptiveAuthorizationResult_'. The
-     * context parameter can be used to provide additional contest that will
-     * be available to the authorization policies as qualified variables.
-     * This additional context can override any context including subject for
-     * testing purposes.
+     * returned object is object type '_AdaptiveAuthorizationResult_'.
      *
      * @param string $requestId This is a request id to associate with the
      *                          authorization request. Variable
@@ -52,13 +48,10 @@ class authorization
      *                         access is denied. If false or not specified,
      *                         an error is not thrown and the decision can be
      *                         checked in the returned object.
-     * @param object $context This specifies additional context information
-     *                        available to the authorization policies via
-     *                        qualified variables.
      *
      * @return object The authorization result.
      */
-    public function authorization_check(, $requestId, $resourceId, $actionId, $object = null, $enforce = null, $context = null)
+    public function authorization_check(, $requestId, $resourceId, $actionId, $object = null, $enforce = null)
     {
         $request = $this->$session->request();
 
@@ -75,9 +68,6 @@ class authorization
 
         if ($enforce != null)
             $request->set('enforce', $enforce);
-
-        if ($context != null)
-            $request->set('context', $context);
 
         return $request->get_result();
     }
