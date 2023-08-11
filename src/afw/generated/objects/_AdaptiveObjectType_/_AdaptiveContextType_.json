@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Runtime log information.",
+    "description": "Context information.",
     "objectIdPropertyName": "contextTypeId",
     "objectType": "_AdaptiveContextType_",
     "propertyTypes": {

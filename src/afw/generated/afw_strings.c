@@ -1927,6 +1927,9 @@ AFW_UTF8_LITERAL("authorizationHandlerType");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationResults =
 AFW_UTF8_LITERAL("authorizationResults");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_check =
+AFW_UTF8_LITERAL("authorization_check");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_handler =
 AFW_UTF8_LITERAL("authorization_handler");
 

@@ -27965,7 +27965,7 @@ impl_257_property_collectionURIs = {
 static const afw_value_string_t
 impl_257_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Runtime log information.")
+    AFW_UTF8_LITERAL("Context information.")
 };
 
 static const afw_runtime_property_t

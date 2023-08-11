@@ -1,0 +1,50 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAuthorizationCheck",
+    "brief": "Perform authorization check",
+    "camelCaseFunctionLabel": "authorizationCheck",
+    "category": "authorization",
+    "description": "This function can be used to check if the current subject has a given access to the specified resource in the current environment. The returned object is object type '_AdaptiveAuthorizationResult_'. The context parameter can be used to provide additional contest that will be available to the authorization policies as qualified variables. This additional context can override any context including subject for testing purposes.",
+    "functionId": "authorization_check",
+    "functionLabel": "authorization_check",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "This is a request id to associate with the authorization request. Variable current::requestId can be used to access this value in authorization policies.",
+            "name": "requestId"
+        },
+        {
+            "dataType": "string",
+            "description": "This is the URI of the resource being checked. Variable current::resourceId can be used to access this value in authorization policies.",
+            "name": "resourceId"
+        },
+        {
+            "dataType": "string",
+            "description": "This is the action that on the resource that's being checked.  Variable current::actionId can be used to access this value in authorization policies.",
+            "name": "actionId"
+        },
+        {
+            "dataType": "object",
+            "description": "Variable current::object can be used to access this value in authorization policies.",
+            "name": "object",
+            "optional": true
+        },
+        {
+            "dataType": "boolean",
+            "description": "This specifies whether an error is thrown if access is denied. If false or not specified, an error is not thrown and the decision can be checked in the returned object.",
+            "name": "enforce",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveContextType_",
+            "description": "This specifies additional context information available to the authorization policies via qualified variables.",
+            "name": "context",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveAuthorizationResult_",
+        "description": "The authorization result."
+    }
+}

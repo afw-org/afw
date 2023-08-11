@@ -3833,6 +3833,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_authorizationHandlerType;
 /** @brief afw_utf8_t for string authorizationResults */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_authorizationResults;
 
+/** @brief define for quoted string authorization_check */
+#define AFW_Q_authorization_check "authorization_check"
+
+/** @brief afw_utf8_t for string authorization_check */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_authorization_check;
+
 /** @brief define for quoted string authorization_handler */
 #define AFW_Q_authorization_handler "authorization_handler"
 

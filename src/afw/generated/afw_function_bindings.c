@@ -14267,6 +14267,257 @@ afw_function_definition_to_string_array = {
     false
 };
 
+/* ---------- authorization_check ---------- */
+
+static const afw_utf8_t
+impl_object_path__authorization_check =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/authorization_check");
+
+static const afw_runtime_object_indirect_t
+impl_object__authorization_check = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            &afw_s_authorization_check,
+            &afw_s__AdaptiveFunction_,
+            &impl_object_path__authorization_check
+        }
+    },
+    (void *)&afw_function_definition_authorization_check
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationResult_"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("The authorization result."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("requestId"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is a request id to associate with the authorization request. Variable current::requestId can be used to access this value in authorization policies."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("resourceId"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the URI of the resource being checked. Variable current::resourceId can be used to access this value in authorization policies."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_parameter_3 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    AFW_UTF8_LITERAL("string"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("actionId"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This is the action that on the resource that's being checked.  Variable current::actionId can be used to access this value in authorization policies."),
+    -1,
+    false,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_parameter_4 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("Variable current::object can be used to access this value in authorization policies."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_parameter_5 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_boolean_direct,
+    AFW_UTF8_LITERAL("boolean"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("enforce"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This specifies whether an error is thrown if access is denied. If false or not specified, an error is not thrown and the decision can be checked in the returned object."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t
+impl_authorization_check_parameter_6 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    AFW_UTF8_LITERAL("object"),
+    AFW_UTF8_LITERAL("_AdaptiveContextType_"),
+    AFW_UTF8_LITERAL("context"),
+    AFW_UTF8_LITERAL(""),
+    AFW_UTF8_LITERAL("This specifies additional context information available to the authorization policies via qualified variables."),
+    -1,
+    true,
+    false,
+    false,
+    false,
+};
+
+static const afw_value_function_parameter_t *
+impl_authorization_check_parameters[] = {
+    &impl_authorization_check_parameter_1,
+    &impl_authorization_check_parameter_2,
+    &impl_authorization_check_parameter_3,
+    &impl_authorization_check_parameter_4,
+    &impl_authorization_check_parameter_5,
+    &impl_authorization_check_parameter_6,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_authorization_check = {
+    &afw_value_function_definition_inf,
+    (const afw_object_t *)&impl_object__authorization_check,
+    AFW_UTF8_LITERAL("authorization"),
+    AFW_UTF8_LITERAL("authorization_check"),
+    AFW_UTF8_LITERAL("authorization_check"),
+    AFW_UTF8_LITERAL("authorization_check"),
+    AFW_UTF8_LITERAL("authorizationCheck"),
+    AFW_UTF8_LITERAL("afwAuthorizationCheck"),
+    AFW_UTF8_LITERAL("Perform authorization check"),
+    AFW_UTF8_LITERAL("This function can be used to check if the current subject has a given access to the specified resource in the current environment. The returned object is object type '_AdaptiveAuthorizationResult_'. The context parameter can be used to provide additional contest that will be available to the authorization policies as qualified variables. This additional context can override any context including subject for testing purposes."),
+    AFW_UTF8_LITERAL("(requestId: string, resourceId: string, actionId: string, object?: object, enforce?: boolean, context?: (object _AdaptiveContextType_)): (object _AdaptiveAuthorizationResult_)"),
+    AFW_UTF8_LITERAL("/* Perform authorization check */\nfunction authorization_check (\n    requestId: string,\n    resourceId: string,\n    actionId: string,\n    object?: object,\n    enforce?: boolean,\n    context?: (object _AdaptiveContextType_)\n): (object _AdaptiveAuthorizationResult_);\n"),
+    AFW_UTF8_LITERAL(""),
+    afw_function_execute_authorization_check,
+    NULL,
+    3,
+    6,
+    &impl_authorization_check_parameters[0],
+    6,
+    &impl_authorization_check_returns,
+    NULL,
+    NULL,
+    AFW_UTF8_LITERAL(""),
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    0,
+    false,
+    false,
+    false,
+    false,
+    false
+};
+
 /* ---------- at_least_one_member_of<base64Binary> ---------- */
 
 static const afw_utf8_t
@@ -116128,6 +116379,7 @@ impl_function_bindings[] = {
     &afw_function_definition_reverse,
     &afw_function_definition_slice,
     &afw_function_definition_to_string_array,
+    &afw_function_definition_authorization_check,
     &afw_function_definition_at_least_one_member_of_base64Binary,
     &afw_function_definition_bag_base64Binary,
     &afw_function_definition_bag_size_base64Binary,

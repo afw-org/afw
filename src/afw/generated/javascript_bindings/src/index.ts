@@ -2,6 +2,7 @@ export * from "./adaptor";
 export * from "./administrative";
 export * from "./anyURI";
 export * from "./array";
+export * from "./authorization";
 export * from "./base64Binary";
 export * from "./boolean";
 export * from "./compiler_expression";

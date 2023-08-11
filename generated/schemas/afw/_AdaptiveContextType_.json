@@ -6,7 +6,7 @@
                     "$ref": "#/$defs/_AdaptiveContextType_.propertyTypes"
                 }
             ],
-            "description": "Runtime log information.",
+            "description": "Context information.",
             "type": "object",
             "unevaluatedProperties": false
         },
