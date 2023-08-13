@@ -17,6 +17,7 @@
 /* Declares and rti/inf defines for interface afw_adaptor */
 #define AFW_IMPLEMENTATION_ID "adaptor_impl"
 #include "afw_adaptor_impl_declares.h"
+#define AFW_ADAPTOR_SESSION_SELF_T afw_adaptor_impl_session_t
 #include "afw_adaptor_session_impl_declares.h"
 #include "afw_adaptor_journal_impl_declares.h"
 
@@ -737,24 +738,24 @@ impl_afw_adaptor_create_adaptor_session(
     afw_xctx_t *xctx)
 {
     afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->impl;
-    afw_adaptor_impl_session_t *result;
+    AFW_ADAPTOR_SESSION_SELF_T *self;
 
     /* Create session self. */
-    result = afw_xctx_calloc_type(afw_adaptor_impl_session_t, xctx);
-    result->pub.adaptor = instance;
-    result->pub.inf = &impl_afw_adaptor_session_inf;
-    result->pub.p = xctx->p;
+    self = afw_xctx_calloc_type(AFW_ADAPTOR_SESSION_SELF_T, xctx);
+    self->pub.adaptor = instance;
+    self->pub.inf = &impl_afw_adaptor_session_inf;
+    self->pub.p = xctx->p;
 
     /** @fixme Add common prologue code. */
 
     /* Call wrapped instance method. */
-    result->wrapped_session =
+    self->wrapped_session =
         impl->wrapped_inf->create_adaptor_session(instance, xctx);
 
     /** @fixme Add common epilogue code. */
 
     /* Return result. */
-    return (const afw_adaptor_session_t *)result;
+    return &self->pub;
 }
 
 
@@ -789,12 +790,9 @@ impl_afw_adaptor_get_additional_metrics(
  */
 void
 impl_afw_adaptor_session_destroy(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    // afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-
     /** @fixme Add common prologue code. */
 
     /* Call wrapped instance method. */
@@ -976,7 +974,7 @@ impl_limit_returned_objects_cb(
  */
 void
 impl_afw_adaptor_session_retrieve_objects(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
@@ -986,9 +984,8 @@ impl_afw_adaptor_session_retrieve_objects(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-    const afw_adaptor_t *adaptor = instance->adaptor;
+    const afw_adaptor_t *adaptor = self->pub.adaptor;
+    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)adaptor->impl;
     apr_hash_t *ht;
     apr_hash_index_t *hi;
     afw_adaptor_impl_core_object_type_t *e;
@@ -1008,7 +1005,7 @@ impl_afw_adaptor_session_retrieve_objects(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id));
     }
     ctx.action_id_value = afw_authorization_action_id_query;
@@ -1034,7 +1031,7 @@ impl_afw_adaptor_session_retrieve_objects(
      */
     if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_))
     {
-        ht = instance->adaptor->impl->supported_core_object_types;
+        ht = self->pub.adaptor->impl->supported_core_object_types;
         for (hi = apr_hash_first(afw_pool_get_apr_pool(p), ht);
             hi;
             hi = apr_hash_next(hi))
@@ -1098,7 +1095,7 @@ impl_afw_adaptor_session_retrieve_objects(
  */
 void
 impl_afw_adaptor_session_get_object(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -1108,9 +1105,8 @@ impl_afw_adaptor_session_get_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-    const afw_adaptor_t *adaptor = instance->adaptor;
+    const afw_adaptor_t *adaptor = self->pub.adaptor;
+    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)adaptor->impl;
     const afw_object_t *object_type_object;
     afw_adaptor_impl_core_object_type_t *e;
     impl_request_context_t ctx;
@@ -1128,7 +1124,7 @@ impl_afw_adaptor_session_get_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
     }
@@ -1151,7 +1147,7 @@ impl_afw_adaptor_session_get_object(
         afw_utf8_starts_with(object_id, &afw_s__Adaptive))
     {
         /* If object type might have different allows, return it. */
-        e = apr_hash_get(instance->adaptor->impl->supported_core_object_types,
+        e = apr_hash_get(self->pub.adaptor->impl->supported_core_object_types,
             object_id->s, object_id->len);
         if (e) {
             ctx.impl_callback_context = context;
@@ -1223,7 +1219,7 @@ end_trace:
  */
 const afw_utf8_t *
 impl_afw_adaptor_session_add_object(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
@@ -1231,15 +1227,14 @@ impl_afw_adaptor_session_add_object(
     const afw_object_t *adaptor_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-    const afw_adaptor_t *adaptor = instance->adaptor;
+    const afw_adaptor_t *adaptor = self->pub.adaptor;
+    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)adaptor->impl;
     const afw_utf8_t *result;
     impl_request_context_t ctx;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = instance->p;
+    ctx.p = self->pub.p;
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
@@ -1248,7 +1243,7 @@ impl_afw_adaptor_session_add_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
     }
@@ -1291,7 +1286,7 @@ impl_afw_adaptor_session_add_object(
  */
 void
 impl_afw_adaptor_session_modify_object(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -1299,14 +1294,13 @@ impl_afw_adaptor_session_modify_object(
     const afw_object_t *adaptor_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-    const afw_adaptor_t *adaptor = instance->adaptor;
+    const afw_adaptor_t *adaptor = self->pub.adaptor;
+    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)adaptor->impl;
     impl_request_context_t ctx;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = instance->p;
+    ctx.p = self->pub.p;
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
@@ -1315,7 +1309,7 @@ impl_afw_adaptor_session_modify_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
     }
@@ -1355,7 +1349,7 @@ impl_afw_adaptor_session_modify_object(
  */
 void
 impl_afw_adaptor_session_replace_object(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -1363,14 +1357,13 @@ impl_afw_adaptor_session_replace_object(
     const afw_object_t *adaptor_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-    const afw_adaptor_t *adaptor = instance->adaptor;
+    const afw_adaptor_t *adaptor = self->pub.adaptor;
+    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)adaptor->impl;
     impl_request_context_t ctx;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = instance->p;
+    ctx.p = self->pub.p;
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
@@ -1379,7 +1372,7 @@ impl_afw_adaptor_session_replace_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
     }
@@ -1419,21 +1412,20 @@ impl_afw_adaptor_session_replace_object(
  */
 void
 impl_afw_adaptor_session_delete_object(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *adaptor_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-    const afw_adaptor_t *adaptor = instance->adaptor;
+    const afw_adaptor_t *adaptor = self->pub.adaptor;
+    afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)adaptor->impl;
     impl_request_context_t ctx;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
-    ctx.p = instance->p;
+    ctx.p = self->pub.p;
     ctx.impl_request = impl_request;
     ctx.resource_id = NULL;
     if (impl_request) {
@@ -1442,7 +1434,7 @@ impl_afw_adaptor_session_delete_object(
     if (!ctx.resource_id) {
         ctx.resource_id = afw_utf8_printf(xctx->p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&instance->adaptor->adaptor_id),
+            AFW_UTF8_FMT_ARG(&adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id));
     }
@@ -1481,11 +1473,9 @@ impl_afw_adaptor_session_delete_object(
  */
 const afw_adaptor_transaction_t *
 impl_afw_adaptor_session_begin_transaction(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    // afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_transaction_t *result;
 
     /** @fixme Add common prologue code. */
@@ -1508,18 +1498,16 @@ impl_afw_adaptor_session_begin_transaction(
  */
 const afw_adaptor_journal_t *
 impl_afw_adaptor_session_get_journal_interface(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
-
     /* Call wrapped instance method. */
     if (!self->wrapped_journal) {
         self->wrapped_journal = afw_adaptor_session_get_journal_interface(
             self->wrapped_session, xctx);
         if (self->wrapped_journal) {
             self->journal_pub.inf = &impl_afw_adaptor_journal_inf;
-            self->journal_pub.session = instance;
+            self->journal_pub.session = &self->pub;
         }
     }
 
@@ -1536,11 +1524,9 @@ impl_afw_adaptor_session_get_journal_interface(
  */
 const afw_adaptor_key_value_t *
 impl_afw_adaptor_session_get_key_value_interface(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    // afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_key_value_t *result;
 
     /** @fixme Add common prologue code. */
@@ -1562,11 +1548,9 @@ impl_afw_adaptor_session_get_key_value_interface(
  */
 const afw_adaptor_impl_index_t *
 impl_afw_adaptor_session_get_index_interface(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    // afw_adaptor_impl_t *impl = (afw_adaptor_impl_t *)instance->adaptor->impl;
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_impl_index_t *result;
 
     /** @fixme Add common prologue code. */
@@ -1588,10 +1572,9 @@ impl_afw_adaptor_session_get_index_interface(
  */
 const afw_adaptor_object_type_cache_t *
 impl_afw_adaptor_session_get_object_type_cache_interface(
-    const afw_adaptor_session_t *instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_impl_session_t *self = (afw_adaptor_impl_session_t *)instance;
     const afw_adaptor_object_type_cache_t *result;
 
     result = afw_adaptor_session_get_object_type_cache_interface(
