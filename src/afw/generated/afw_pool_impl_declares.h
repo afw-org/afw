@@ -163,47 +163,6 @@ impl_afw_pool_free(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_pool_get_symbol_value
-/* Declare method get_symbol_value */
-AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_pool_get_symbol_value(
-    AFW_POOL_SELF_T *self,
-    const afw_value_block_symbol_t * symbol,
-    const afw_boolean_t * found,
-    afw_xctx_t * xctx);
-#endif
-
-#ifndef impl_afw_pool_get_named_value
-/* Declare method get_named_value */
-AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_pool_get_named_value(
-    AFW_POOL_SELF_T *self,
-    const afw_utf8_t * name,
-    const afw_boolean_t * found,
-    afw_xctx_t * xctx);
-#endif
-
-#ifndef impl_afw_pool_set_symbol_value
-/* Declare method set_symbol_value */
-AFW_DECLARE_STATIC(void)
-impl_afw_pool_set_symbol_value(
-    AFW_POOL_SELF_T *self,
-    const afw_value_block_symbol_t * symbol,
-    const afw_value_t * value,
-    afw_xctx_t * xctx);
-#endif
-
-#ifndef impl_afw_pool_set_local_variable
-/* Declare method set_local_variable */
-AFW_DECLARE_STATIC(afw_boolean_t)
-impl_afw_pool_set_local_variable(
-    AFW_POOL_SELF_T *self,
-    const afw_value_block_symbol_t * name,
-    const afw_value_t * value,
-    afw_boolean_t replace,
-    afw_xctx_t * xctx);
-#endif
-
 #ifndef impl_afw_pool_register_cleanup_before
 /* Declare method register_cleanup_before */
 AFW_DECLARE_STATIC(void)
@@ -345,14 +304,6 @@ impl_afw_pool_inf = {
     impl_afw_pool_malloc,
     (afw_pool_free_t)
     impl_afw_pool_free,
-    (afw_pool_get_symbol_value_t)
-    impl_afw_pool_get_symbol_value,
-    (afw_pool_get_named_value_t)
-    impl_afw_pool_get_named_value,
-    (afw_pool_set_symbol_value_t)
-    impl_afw_pool_set_symbol_value,
-    (afw_pool_set_local_variable_t)
-    impl_afw_pool_set_local_variable,
     (afw_pool_register_cleanup_before_t)
     impl_afw_pool_register_cleanup_before,
     (afw_pool_deregister_cleanup_t)

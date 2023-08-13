@@ -415,67 +415,6 @@ impl_afw_pool_free(
 }
 
 /*
- * Implementation of method get_symbol_value for interface afw_pool.
- */
-const afw_value_t *
-impl_afw_pool_get_symbol_value(
-    AFW_POOL_SELF_T *self,
-    const afw_value_block_symbol_t * symbol,
-    const afw_boolean_t * found,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
- * Implementation of method get_named_value for interface afw_pool.
- */
-const afw_value_t *
-impl_afw_pool_get_named_value(
-    AFW_POOL_SELF_T *self,
-    const afw_utf8_t * name,
-    const afw_boolean_t * found,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
- * Implementation of method set_symbol_value for interface afw_pool.
- */
-void
-impl_afw_pool_set_symbol_value(
-    AFW_POOL_SELF_T *self,
-    const afw_value_block_symbol_t * symbol,
-    const afw_value_t * value,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
- * Implementation of method set_local_variable for interface afw_pool.
- */
-afw_boolean_t
-impl_afw_pool_set_local_variable(
-    AFW_POOL_SELF_T *self,
-    const afw_value_block_symbol_t * name,
-    const afw_value_t * value,
-    afw_boolean_t replace,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
-}
-
-/*
  * Implementation of method register_cleanup_before for interface afw_pool.
  */
 void

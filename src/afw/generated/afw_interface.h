@@ -4590,39 +4590,6 @@ typedef void
     afw_size_t size,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_get_symbol_value() */
-typedef const afw_value_t *
-(*afw_pool_get_symbol_value_t)(
-    const afw_pool_t * instance,
-    const afw_value_block_symbol_t * symbol,
-    const afw_boolean_t * found,
-    afw_xctx_t * xctx);
-
-/** @sa afw_pool_get_named_value() */
-typedef const afw_value_t *
-(*afw_pool_get_named_value_t)(
-    const afw_pool_t * instance,
-    const afw_utf8_t * name,
-    const afw_boolean_t * found,
-    afw_xctx_t * xctx);
-
-/** @sa afw_pool_set_symbol_value() */
-typedef void
-(*afw_pool_set_symbol_value_t)(
-    const afw_pool_t * instance,
-    const afw_value_block_symbol_t * symbol,
-    const afw_value_t * value,
-    afw_xctx_t * xctx);
-
-/** @sa afw_pool_set_local_variable() */
-typedef afw_boolean_t
-(*afw_pool_set_local_variable_t)(
-    const afw_pool_t * instance,
-    const afw_value_block_symbol_t * name,
-    const afw_value_t * value,
-    afw_boolean_t replace,
-    afw_xctx_t * xctx);
-
 /** @sa afw_pool_register_cleanup_before() */
 typedef void
 (*afw_pool_register_cleanup_before_t)(
@@ -4717,10 +4684,6 @@ struct afw_pool_inf_s {
     afw_pool_calloc_t calloc;
     afw_pool_malloc_t malloc;
     afw_pool_free_t free;
-    afw_pool_get_symbol_value_t get_symbol_value;
-    afw_pool_get_named_value_t get_named_value;
-    afw_pool_set_symbol_value_t set_symbol_value;
-    afw_pool_set_local_variable_t set_local_variable;
     afw_pool_register_cleanup_before_t register_cleanup_before;
     afw_pool_deregister_cleanup_t deregister_cleanup;
     afw_pool_release_debug_t release_debug;
@@ -4837,95 +4800,6 @@ struct afw_pool_inf_s {
     (instance), \
     (address), \
     (size), \
-    (xctx) \
-)
-
-/**
- * @brief Call method get_symbol_value of interface afw_pool
- * @param instance Pointer to this pool instance.
- * @param symbol This symbol is the one whose value will be returned
- * @param found This is a place to store a boolean value that indicates whether
- *     or not          the value was found.
- * @param xctx This is the caller's xctx.
- */
-#define afw_pool_get_symbol_value( \
-    instance, \
-    symbol, \
-    found, \
-    xctx \
-) \
-(instance)->inf->get_symbol_value( \
-    (instance), \
-    (symbol), \
-    (found), \
-    (xctx) \
-)
-
-/**
- * @brief Call method get_named_value of interface afw_pool
- * @param instance Pointer to this pool instance.
- * @param name This is the name of the symbol or dynamic variable whose value
- *     will          be returned.
- * @param found This is a place to store a boolean value that indicates whether
- *     or not          the value was found.
- * @param xctx This is the caller's xctx.
- */
-#define afw_pool_get_named_value( \
-    instance, \
-    name, \
-    found, \
-    xctx \
-) \
-(instance)->inf->get_named_value( \
-    (instance), \
-    (name), \
-    (found), \
-    (xctx) \
-)
-
-/**
- * @brief Call method set_symbol_value of interface afw_pool
- * @param instance Pointer to this pool instance.
- * @param symbol This symbol is the one whose value will be set.
- * @param value The value to assign to the symbol in its appropriate frame.
- * @param xctx This is the caller's xctx.
- */
-#define afw_pool_set_symbol_value( \
-    instance, \
-    symbol, \
-    value, \
-    xctx \
-) \
-(instance)->inf->set_symbol_value( \
-    (instance), \
-    (symbol), \
-    (value), \
-    (xctx) \
-)
-
-/**
- * @brief Call method set_local_variable of interface afw_pool
- * @param instance Pointer to this pool instance.
- * @param name This is the name of local variable to set. This name can not
- *     conflict          with the name of a symbol in the current pool.
- * @param value Value to set the local variable to.
- * @param replace If true and the variable already exists, the value will be
- *     replaced.          If false and the variable exists, an false is
- *     returned.
- * @param xctx This is the caller's xctx.
- */
-#define afw_pool_set_local_variable( \
-    instance, \
-    name, \
-    value, \
-    replace, \
-    xctx \
-) \
-(instance)->inf->set_local_variable( \
-    (instance), \
-    (name), \
-    (value), \
-    (replace), \
     (xctx) \
 )
 
