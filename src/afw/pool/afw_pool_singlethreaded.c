@@ -177,7 +177,7 @@ afw_pool_create(
     }
 
     /* Return new pool. */
-    return (const afw_pool_t *)self;
+    return &self->pub;
 }
 
 
@@ -193,7 +193,7 @@ afw_pool_create_debug(
         "afw_pool_create " AFW_INTEGER_FMT,
         ((const AFW_POOL_SELF_T *)parent)->pool_number);
 
-    return (const afw_pool_t *)self;
+    return &self->pub;
 }
 
 
@@ -250,7 +250,9 @@ impl_afw_pool_release(
 {
     /* If instance is NULL, just return. */
     /** @fixme This should probably go away. */
-    if (!self) return;
+    if (!self) {
+        return;
+    }
 
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
@@ -267,7 +269,9 @@ impl_afw_pool_add_reference(
     afw_xctx_t *xctx)
 {
     /* If instance is NULL, just return. */
-    if (!self) return;
+    if (!self) {
+        return;
+    }
 
     /* Decrement reference count. */
     self->reference_count++;
@@ -285,7 +289,9 @@ impl_afw_pool_destroy(
     afw_pool_cleanup_t *e;
 
     /* If instance is NULL, just return. */
-    if (!self) return;
+    if (!self) {
+        return;
+    }
 
     /*
      * Call all of the cleanup routines for this pool before destroying
@@ -304,7 +310,7 @@ impl_afw_pool_destroy(
         child;
         child = self->first_child)
     {
-        afw_pool_destroy((const afw_pool_t *)child, xctx);
+        afw_pool_destroy(&child->pub, xctx);
     }
 
     /* If parent, removed self as child. */

@@ -21,6 +21,7 @@
 
 
 #define AFW_IMPLEMENTATION_ID "afw_pool_multithreaded"
+#define AFW_POOL_SELF_T afw_pool_internal_multithreaded_self_t
 #include "afw_pool_impl_declares.h"
 
 /* multithreaded pool lock begin */
@@ -92,8 +93,8 @@ do { \
 
 
 static void
-impl_add_child(afw_pool_internal_multithreaded_self_t *parent,
-    afw_pool_internal_multithreaded_self_t *child, afw_xctx_t *xctx)
+impl_add_child(AFW_POOL_SELF_T *parent,
+    AFW_POOL_SELF_T *child, afw_xctx_t *xctx)
 {
     afw_pool_add_reference(&parent->pub, xctx);
 
@@ -103,11 +104,11 @@ impl_add_child(afw_pool_internal_multithreaded_self_t *parent,
 
 
 static void
-impl_remove_child(afw_pool_internal_multithreaded_self_t *parent,
-    afw_pool_internal_multithreaded_self_t *child, afw_xctx_t *xctx)
+impl_remove_child(AFW_POOL_SELF_T *parent,
+    AFW_POOL_SELF_T *child, afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *prev;
-    afw_pool_internal_multithreaded_self_t *sibling;
+    AFW_POOL_SELF_T *prev;
+    AFW_POOL_SELF_T *sibling;
 
     for (prev = NULL, sibling = parent->first_child;
         sibling;
@@ -133,17 +134,17 @@ impl_remove_child(afw_pool_internal_multithreaded_self_t *parent,
 
 
 /* Create skeleton pool struct. */
-static afw_pool_internal_multithreaded_self_t *
-impl_pool_create(afw_pool_internal_multithreaded_self_t *parent, afw_xctx_t *xctx)
+static AFW_POOL_SELF_T *
+impl_pool_create(AFW_POOL_SELF_T *parent, afw_xctx_t *xctx)
 {
     apr_pool_t *apr_p;
-    afw_pool_internal_multithreaded_self_t *self;
+    AFW_POOL_SELF_T *self;
 
     apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
     if (!apr_p) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    self = apr_pcalloc(apr_p, sizeof(afw_pool_internal_multithreaded_self_t));
+    self = apr_pcalloc(apr_p, sizeof(AFW_POOL_SELF_T));
     if (!self) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
@@ -168,7 +169,7 @@ AFW_DEFINE(const afw_pool_t *)
 afw_pool_internal_create_base_pool()
 {
     apr_pool_t *apr_p;
-    afw_pool_internal_multithreaded_self_t *self;
+    AFW_POOL_SELF_T *self;
 
     /* Create new pool for environment and initial xctx. */
     apr_pool_create(&apr_p, NULL);
@@ -178,7 +179,7 @@ afw_pool_internal_create_base_pool()
 
     /* Allocate self. */
     self = apr_pcalloc(apr_p,
-        sizeof(afw_pool_internal_multithreaded_self_t));
+        sizeof(AFW_POOL_SELF_T));
     if (!self) {
         return NULL;
     }
@@ -188,7 +189,7 @@ afw_pool_internal_create_base_pool()
     self->pool_number = 1;
     self->reference_count = 1;
 
-    return (const afw_pool_t *)self;
+    return &self->pub;
 }
 
 
@@ -197,7 +198,7 @@ AFW_DEFINE(const afw_pool_t *)
 afw_pool_create_multithreaded(
     const afw_pool_t *parent, afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self;
+    AFW_POOL_SELF_T *self;
 
     if (parent) {
         if (parent != xctx->env->p &&
@@ -211,9 +212,9 @@ afw_pool_create_multithreaded(
         parent = xctx->env->p;
     }
 
-    self = impl_pool_create((afw_pool_internal_multithreaded_self_t *)parent, xctx);
+    self = impl_pool_create((AFW_POOL_SELF_T *)parent, xctx);
 
-    return (const afw_pool_t *)self;
+    return &self->pub;
 }
 
 
@@ -223,15 +224,15 @@ afw_pool_create_multithreaded_debug(
     const afw_pool_t *parent,
     afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)
+    AFW_POOL_SELF_T *self =
+        (AFW_POOL_SELF_T *)
         afw_pool_create_multithreaded(parent, xctx);
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create_multithreaded " AFW_INTEGER_FMT,
         (self->parent) ? self->parent->pool_number : 0);
 
-    return (const afw_pool_t *)self;
+    return &self->pub;
 }
 
 
@@ -240,19 +241,18 @@ afw_pool_create_multithreaded_debug(
  */
 void
 impl_afw_pool_release(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     /* If instance is NULL, just return. */
     /** @fixme This should probably go away. */
-    if (!instance) return;
+    if (!self) {
+        return;
+    }
 
     /* Decrement reference count and release pools resources if zero. */
     if (afw_atomic_integer_decrement(&self->reference_count) == 0) {
-        afw_pool_destroy(instance, xctx);
+        afw_pool_destroy(&self->pub, xctx);
     }
 }
 
@@ -261,16 +261,15 @@ impl_afw_pool_release(
  */
 void
 impl_afw_pool_add_reference(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self;
-
     /* If instance is NULL, just return. */
-    if (!instance) return;
+    if (!self) {
+        return;
+    }
 
     /* Decrement reference count. */
-    self = (afw_pool_internal_multithreaded_self_t *)instance;
     afw_atomic_integer_increment(&self->reference_count);
 }
 
@@ -279,23 +278,23 @@ impl_afw_pool_add_reference(
  */
 void
 impl_afw_pool_destroy(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-    afw_pool_internal_multithreaded_self_t *child;
+    AFW_POOL_SELF_T *child;
     afw_pool_cleanup_t *e;
 
     /* If instance is NULL, just return. */
-    if (!instance) return;
+    if (!self) {
+        return;
+    }
 
     /*
      * Call all of the cleanup routines for this pool before destroying
      * children.
      */
     for (e = self->first_cleanup; e; e = e->next_cleanup) {
-        e->cleanup(e->data, e->data2, instance, xctx);
+        e->cleanup(e->data, e->data2, &self->pub, xctx);
     }
 
     /*
@@ -307,7 +306,7 @@ impl_afw_pool_destroy(
         child;
         child = self->first_child)
     {
-        afw_pool_destroy((const afw_pool_t *)child, xctx);
+        afw_pool_destroy(&child->pub, xctx);
     }
 
     /* If parent, removed self as child. */
@@ -324,10 +323,8 @@ impl_afw_pool_destroy(
  */
 apr_pool_t *
 impl_afw_pool_get_apr_pool(
-    const afw_pool_t * instance)
+    AFW_POOL_SELF_T *self)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
     int rv;
 
     if (!self->apr_p) {
@@ -347,12 +344,10 @@ impl_afw_pool_get_apr_pool(
  */
 void *
 impl_afw_pool_calloc(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
     void *result;
 
     /* Don't allow allocate for a size of 0. */
@@ -380,12 +375,10 @@ impl_afw_pool_calloc(
  */
 void *
 impl_afw_pool_malloc(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
     void *result;
 
     /* Don't allow allocate for a size of 0. */
@@ -413,14 +406,13 @@ impl_afw_pool_malloc(
  */
 void
 impl_afw_pool_free(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -428,17 +420,13 @@ impl_afw_pool_free(
  */
 const afw_value_t *
 impl_afw_pool_get_symbol_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * symbol,
     const afw_boolean_t * found,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -446,17 +434,13 @@ impl_afw_pool_get_symbol_value(
  */
 const afw_value_t *
 impl_afw_pool_get_named_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_utf8_t * name,
     const afw_boolean_t * found,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -464,17 +448,13 @@ impl_afw_pool_get_named_value(
  */
 void
 impl_afw_pool_set_symbol_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * symbol,
     const afw_value_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -482,18 +462,14 @@ impl_afw_pool_set_symbol_value(
  */
 afw_boolean_t
 impl_afw_pool_set_local_variable(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * name,
     const afw_value_t * value,
     afw_boolean_t replace,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -501,18 +477,16 @@ impl_afw_pool_set_local_variable(
  */
 void
 impl_afw_pool_register_cleanup_before(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
     afw_pool_cleanup_t *e;
 
     /* Allocate entry which will also make sure its ok to use pool. */
-    e = afw_pool_calloc_type(instance, afw_pool_cleanup_t, xctx);
+    e = afw_pool_calloc_type(&self->pub, afw_pool_cleanup_t, xctx);
 
     /* Add entry to front of list of cleanup functions. */
     e->data = data;
@@ -527,13 +501,12 @@ impl_afw_pool_register_cleanup_before(
  */
 void
 impl_afw_pool_deregister_cleanup(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_multithreaded_self_t *self = (afw_pool_internal_multithreaded_self_t *)instance;
     afw_pool_cleanup_t *e, *prev;
 
     /* Search for entry and remove. */
@@ -553,16 +526,13 @@ impl_afw_pool_deregister_cleanup(
  */
 void
 impl_afw_pool_release_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
 
-    impl_afw_pool_release(instance, xctx);
+    impl_afw_pool_release(self, xctx);
 }
 
 /*
@@ -570,16 +540,13 @@ impl_afw_pool_release_debug(
  */
 void
 impl_afw_pool_add_reference_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_add_reference");
 
-    impl_afw_pool_add_reference(instance, xctx);
+    impl_afw_pool_add_reference(self, xctx);
 }
 
 /*
@@ -587,16 +554,13 @@ impl_afw_pool_add_reference_debug(
  */
 void
 impl_afw_pool_destroy_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
 
-    impl_afw_pool_destroy(instance, xctx);
+    impl_afw_pool_destroy(self, xctx);
 }
 
 
@@ -605,19 +569,16 @@ impl_afw_pool_destroy_debug(
  */
 void *
 impl_afw_pool_calloc_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_calloc " AFW_SIZE_T_FMT,
         size);
 
-    return impl_afw_pool_calloc(instance, size, xctx);
+    return impl_afw_pool_calloc(self, size, xctx);
 }
 
 /*
@@ -625,19 +586,16 @@ impl_afw_pool_calloc_debug(
  */
 void *
 impl_afw_pool_malloc_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_malloc " AFW_SIZE_T_FMT,
         size);
 
-    return impl_afw_pool_malloc(instance, size, xctx);
+    return impl_afw_pool_malloc(self, size, xctx);
 }
 
 /*
@@ -645,20 +603,17 @@ impl_afw_pool_malloc_debug(
  */
 void
 impl_afw_pool_free_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_free " AFW_SIZE_T_FMT,
         size);
 
-    impl_afw_pool_free(instance, address, size, xctx);
+    impl_afw_pool_free(self, address, size, xctx);
 }
 
 /*
@@ -667,21 +622,18 @@ impl_afw_pool_free_debug(
  */
 void
 impl_afw_pool_register_cleanup_before_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_register_cleanup_before %p %p",
         data, cleanup);
 
-    impl_afw_pool_register_cleanup_before(instance, data, data2, cleanup, xctx);
+    impl_afw_pool_register_cleanup_before(self, data, data2, cleanup, xctx);
 }
 
 /*
@@ -689,19 +641,16 @@ impl_afw_pool_register_cleanup_before_debug(
  */
 void
 impl_afw_pool_deregister_cleanup_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    const afw_pool_internal_multithreaded_self_t *self =
-        (afw_pool_internal_multithreaded_self_t *)instance;
-
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_deregister_cleanup_debug %p %p",
         data, cleanup);
 
-    impl_afw_pool_deregister_cleanup(instance, data, data2, cleanup, xctx);
+    impl_afw_pool_deregister_cleanup(self, data, data2, cleanup, xctx);
 }
