@@ -432,7 +432,7 @@ afw_xctx_push_qualifier_object(
  */
 void
 impl_afw_xctx_release(
-    afw_xctx_t * instance,
+    const afw_xctx_t * instance,
     afw_xctx_t *xctx)
 {  
     /* Release streams. */

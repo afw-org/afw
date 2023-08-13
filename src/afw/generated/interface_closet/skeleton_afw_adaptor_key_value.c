@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_adaptor_key_value */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_ADAPTOR_KEY_VALUE_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_adaptor_key_value_impl_declares.h"
 
 /*
@@ -20,18 +22,14 @@
  */
 void
 impl_afw_adaptor_key_value_add(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -39,19 +37,15 @@ impl_afw_adaptor_key_value_add(
  */
 void
 impl_afw_adaptor_key_value_delete(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_boolean_t must_exist,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -59,19 +53,15 @@ impl_afw_adaptor_key_value_delete(
  */
 void
 impl_afw_adaptor_key_value_replace(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_boolean_t must_exist,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -79,15 +69,11 @@ impl_afw_adaptor_key_value_replace(
  */
 const afw_memory_t *
 impl_afw_adaptor_key_value_get(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

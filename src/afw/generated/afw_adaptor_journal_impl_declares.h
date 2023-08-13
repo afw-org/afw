@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_journal_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_journal_inf'.
+ *
+ *   AFW_ADAPTOR_JOURNAL_SELF_T - (optional) defaults to 'const afw_adaptor_journal_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_JOURNAL_SELF_T
+#define AFW_ADAPTOR_JOURNAL_SELF_T const afw_adaptor_journal_t
+#endif
+
 #ifndef AFW_ADAPTOR_JOURNAL_INF_ONLY
 
 #ifndef impl_afw_adaptor_journal_add_entry
 /* Declare method add_entry */
 AFW_DECLARE_STATIC(const afw_utf8_t *)
 impl_afw_adaptor_journal_add_entry(
-    const afw_adaptor_journal_t * instance,
+    AFW_ADAPTOR_JOURNAL_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t * xctx);
@@ -110,7 +119,7 @@ impl_afw_adaptor_journal_add_entry(
 /* Declare method get_entry */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_journal_get_entry(
-    const afw_adaptor_journal_t * instance,
+    AFW_ADAPTOR_JOURNAL_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     afw_adaptor_journal_option_t option,
     const afw_utf8_t * consumer_id,
@@ -124,7 +133,7 @@ impl_afw_adaptor_journal_get_entry(
 /* Declare method mark_entry_consumed */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_journal_mark_entry_consumed(
-    const afw_adaptor_journal_t * instance,
+    AFW_ADAPTOR_JOURNAL_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
@@ -154,8 +163,11 @@ impl_afw_adaptor_journal_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_journal_add_entry_t)
     impl_afw_adaptor_journal_add_entry,
+    (afw_adaptor_journal_get_entry_t)
     impl_afw_adaptor_journal_get_entry,
+    (afw_adaptor_journal_mark_entry_consumed_t)
     impl_afw_adaptor_journal_mark_entry_consumed
 };
 

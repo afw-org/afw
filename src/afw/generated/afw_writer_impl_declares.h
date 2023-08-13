@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_writer_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_writer_inf'.
+ *
+ *   AFW_WRITER_SELF_T - (optional) defaults to 'const afw_writer_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_WRITER_SELF_T
+#define AFW_WRITER_SELF_T const afw_writer_t
+#endif
+
 #ifndef AFW_WRITER_INF_ONLY
 
 #ifndef impl_afw_writer_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_writer_release(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_writer_release(
 /* Declare method flush */
 AFW_DECLARE_STATIC(void)
 impl_afw_writer_flush(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -115,7 +124,7 @@ impl_afw_writer_flush(
 /* Declare method write */
 AFW_DECLARE_STATIC(void)
 impl_afw_writer_write(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx);
@@ -125,7 +134,7 @@ impl_afw_writer_write(
 /* Declare method write_eol */
 AFW_DECLARE_STATIC(void)
 impl_afw_writer_write_eol(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -133,7 +142,7 @@ impl_afw_writer_write_eol(
 /* Declare method increment_indent */
 AFW_DECLARE_STATIC(void)
 impl_afw_writer_increment_indent(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -141,7 +150,7 @@ impl_afw_writer_increment_indent(
 /* Declare method decrement_indent */
 AFW_DECLARE_STATIC(void)
 impl_afw_writer_decrement_indent(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 #endif
@@ -168,11 +177,17 @@ impl_afw_writer_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_writer_release_t)
     impl_afw_writer_release,
+    (afw_writer_flush_t)
     impl_afw_writer_flush,
+    (afw_writer_write_t)
     impl_afw_writer_write,
+    (afw_writer_write_eol_t)
     impl_afw_writer_write_eol,
+    (afw_writer_increment_indent_t)
     impl_afw_writer_increment_indent,
+    (afw_writer_decrement_indent_t)
     impl_afw_writer_decrement_indent
 };
 

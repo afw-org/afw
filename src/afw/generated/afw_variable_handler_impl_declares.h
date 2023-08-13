@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_variable_handler_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_variable_handler_inf'.
+ *
+ *   AFW_VARIABLE_HANDLER_SELF_T - (optional) defaults to 'const afw_variable_handler_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_VARIABLE_HANDLER_SELF_T
+#define AFW_VARIABLE_HANDLER_SELF_T const afw_variable_handler_t
+#endif
+
 #ifndef AFW_VARIABLE_HANDLER_INF_ONLY
 
 #ifndef impl_afw_variable_handler_get_variable
 /* Declare method get_variable */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_variable_handler_get_variable(
-    const afw_variable_handler_t * instance,
+    AFW_VARIABLE_HANDLER_SELF_T *self,
     const afw_utf8_t * qualifier,
     const afw_utf8_t * name,
     afw_xctx_t * xctx);
@@ -110,7 +119,7 @@ impl_afw_variable_handler_get_variable(
 /* Declare method set_variable */
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_variable_handler_set_variable(
-    const afw_variable_handler_t * instance,
+    AFW_VARIABLE_HANDLER_SELF_T *self,
     const afw_utf8_t * qualifier,
     const afw_utf8_t * name,
     const afw_value_t * value,
@@ -140,7 +149,9 @@ impl_afw_variable_handler_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_variable_handler_get_variable_t)
     impl_afw_variable_handler_get_variable,
+    (afw_variable_handler_set_variable_t)
     impl_afw_variable_handler_set_variable
 };
 

@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_value_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_value_inf'.
+ *
+ *   AFW_VALUE_SELF_T - (optional) defaults to 'const afw_value_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * - AFW_IMPLEMENTATION_INF_VARIABLES - (optional) this will be added at the end of
  *       the inf initializer and should represent the inf_variable
@@ -97,13 +101,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_VALUE_SELF_T
+#define AFW_VALUE_SELF_T const afw_value_t
+#endif
+
 #ifndef AFW_VALUE_INF_ONLY
 
 #ifndef impl_afw_value_optional_release
 /* Declare method optional_release */
 AFW_DECLARE_STATIC(void)
 impl_afw_value_optional_release(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -111,7 +120,7 @@ impl_afw_value_optional_release(
 /* Declare method get_reference */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
@@ -120,7 +129,7 @@ impl_afw_value_get_reference(
 /* Declare method optional_evaluate */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
@@ -129,7 +138,7 @@ impl_afw_value_optional_evaluate(
 /* Declare method get_data_type */
 AFW_DECLARE_STATIC(const afw_data_type_t *)
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -137,7 +146,7 @@ impl_afw_value_get_data_type(
 /* Declare method get_evaluated_meta */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_evaluated_meta(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
@@ -146,7 +155,7 @@ impl_afw_value_get_evaluated_meta(
 /* Declare method get_evaluated_metas */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_evaluated_metas(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
@@ -155,7 +164,7 @@ impl_afw_value_get_evaluated_metas(
 /* Declare method produce_compiler_listing */
 AFW_DECLARE_STATIC(void)
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t * xctx);
 #endif
@@ -164,7 +173,7 @@ impl_afw_value_produce_compiler_listing(
 /* Declare method decompile */
 AFW_DECLARE_STATIC(void)
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t * xctx);
 #endif
@@ -173,7 +182,7 @@ impl_afw_value_decompile(
 /* Declare method get_info */
 AFW_DECLARE_STATIC(void)
 impl_afw_value_get_info(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t * info,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -202,14 +211,23 @@ impl_afw_value_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_value_optional_release_t)
     impl_afw_value_optional_release,
+    (afw_value_get_reference_t)
     impl_afw_value_get_reference,
+    (afw_value_optional_evaluate_t)
     impl_afw_value_optional_evaluate,
+    (afw_value_get_data_type_t)
     impl_afw_value_get_data_type,
+    (afw_value_get_evaluated_meta_t)
     impl_afw_value_get_evaluated_meta,
+    (afw_value_get_evaluated_metas_t)
     impl_afw_value_get_evaluated_metas,
+    (afw_value_produce_compiler_listing_t)
     impl_afw_value_produce_compiler_listing,
+    (afw_value_decompile_t)
     impl_afw_value_decompile,
+    (afw_value_get_info_t)
     impl_afw_value_get_info
 #ifdef AFW_IMPLEMENTATION_INF_VARIABLES
     ,AFW_IMPLEMENTATION_INF_VARIABLES

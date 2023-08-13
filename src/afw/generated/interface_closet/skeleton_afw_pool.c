@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_pool */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_POOL_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_pool_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_pool_release(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,15 +34,11 @@ impl_afw_pool_release(
  */
 void
 impl_afw_pool_add_reference(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -52,15 +46,11 @@ impl_afw_pool_add_reference(
  */
 void
 impl_afw_pool_destroy(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -68,14 +58,10 @@ impl_afw_pool_destroy(
  */
 apr_pool_t *
 impl_afw_pool_get_apr_pool(
-    const afw_pool_t * instance)
+    AFW_POOL_SELF_T *self)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -83,16 +69,12 @@ impl_afw_pool_get_apr_pool(
  */
 void *
 impl_afw_pool_calloc(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -100,16 +82,12 @@ impl_afw_pool_calloc(
  */
 void *
 impl_afw_pool_malloc(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -117,17 +95,13 @@ impl_afw_pool_malloc(
  */
 void
 impl_afw_pool_free(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -135,17 +109,13 @@ impl_afw_pool_free(
  */
 const afw_value_t *
 impl_afw_pool_get_symbol_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * symbol,
     const afw_boolean_t * found,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -153,17 +123,13 @@ impl_afw_pool_get_symbol_value(
  */
 const afw_value_t *
 impl_afw_pool_get_named_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_utf8_t * name,
     const afw_boolean_t * found,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -171,17 +137,13 @@ impl_afw_pool_get_named_value(
  */
 void
 impl_afw_pool_set_symbol_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * symbol,
     const afw_value_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -189,18 +151,14 @@ impl_afw_pool_set_symbol_value(
  */
 afw_boolean_t
 impl_afw_pool_set_local_variable(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * name,
     const afw_value_t * value,
     afw_boolean_t replace,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -208,18 +166,14 @@ impl_afw_pool_set_local_variable(
  */
 void
 impl_afw_pool_register_cleanup_before(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -227,18 +181,14 @@ impl_afw_pool_register_cleanup_before(
  */
 void
 impl_afw_pool_deregister_cleanup(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -246,16 +196,12 @@ impl_afw_pool_deregister_cleanup(
  */
 void
 impl_afw_pool_release_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -263,16 +209,12 @@ impl_afw_pool_release_debug(
  */
 void
 impl_afw_pool_add_reference_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -280,16 +222,12 @@ impl_afw_pool_add_reference_debug(
  */
 void
 impl_afw_pool_destroy_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -297,17 +235,13 @@ impl_afw_pool_destroy_debug(
  */
 void *
 impl_afw_pool_calloc_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -315,17 +249,13 @@ impl_afw_pool_calloc_debug(
  */
 void *
 impl_afw_pool_malloc_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -333,18 +263,14 @@ impl_afw_pool_malloc_debug(
  */
 void
 impl_afw_pool_free_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -353,19 +279,15 @@ impl_afw_pool_free_debug(
  */
 void
 impl_afw_pool_register_cleanup_before_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -373,17 +295,13 @@ impl_afw_pool_register_cleanup_before_debug(
  */
 void
 impl_afw_pool_deregister_cleanup_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

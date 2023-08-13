@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_ARRAY_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_array_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_array_release(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,15 +34,11 @@ impl_afw_array_release(
  */
 afw_size_t
 impl_afw_array_get_count(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -52,15 +46,11 @@ impl_afw_array_get_count(
  */
 const afw_data_type_t *
 impl_afw_array_get_data_type(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -68,17 +58,13 @@ impl_afw_array_get_data_type(
  */
 const afw_value_t *
 impl_afw_array_get_entry_meta(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -86,18 +72,14 @@ impl_afw_array_get_entry_meta(
  */
 afw_boolean_t
 impl_afw_array_get_entry_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -105,17 +87,13 @@ impl_afw_array_get_entry_internal(
  */
 const afw_value_t *
 impl_afw_array_get_entry_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -123,17 +101,13 @@ impl_afw_array_get_entry_value(
  */
 const afw_value_t *
 impl_afw_array_get_next_entry_meta(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -141,18 +115,14 @@ impl_afw_array_get_next_entry_meta(
  */
 afw_boolean_t
 impl_afw_array_get_next_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -160,17 +130,13 @@ impl_afw_array_get_next_internal(
  */
 const afw_value_t *
 impl_afw_array_get_next_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -178,13 +144,9 @@ impl_afw_array_get_next_value(
  */
 const afw_array_setter_t *
 impl_afw_array_get_setter(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

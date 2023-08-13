@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_adaptor_transaction */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_ADAPTOR_TRANSACTION_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_adaptor_transaction_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_adaptor_transaction_release(
-    const afw_adaptor_transaction_t * instance,
+    AFW_ADAPTOR_TRANSACTION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,13 +34,9 @@ impl_afw_adaptor_transaction_release(
  */
 void
 impl_afw_adaptor_transaction_commit(
-    const afw_adaptor_transaction_t * instance,
+    AFW_ADAPTOR_TRANSACTION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

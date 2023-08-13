@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_value */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_VALUE_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_value_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_value_optional_release(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,16 +34,12 @@ impl_afw_value_optional_release(
  */
 const afw_value_t *
 impl_afw_value_get_reference(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -53,16 +47,12 @@ impl_afw_value_get_reference(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -70,15 +60,11 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -86,16 +72,12 @@ impl_afw_value_get_data_type(
  */
 const afw_value_t *
 impl_afw_value_get_evaluated_meta(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -103,16 +85,12 @@ impl_afw_value_get_evaluated_meta(
  */
 const afw_value_t *
 impl_afw_value_get_evaluated_metas(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -120,16 +98,12 @@ impl_afw_value_get_evaluated_metas(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -137,16 +111,12 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -154,15 +124,11 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t * info,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

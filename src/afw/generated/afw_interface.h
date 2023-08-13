@@ -4370,7 +4370,7 @@ struct afw_xctx_s {
 /** @sa afw_xctx_release() */
 typedef void
 (*afw_xctx_release_t)(
-    afw_xctx_t * instance,
+    const afw_xctx_t * instance,
     afw_xctx_t * xctx);
 
 /** @brief Interface afw_xctx_inf_s struct. */

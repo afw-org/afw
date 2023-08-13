@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_writer */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_WRITER_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_writer_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_writer_release(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,15 +34,11 @@ impl_afw_writer_release(
  */
 void
 impl_afw_writer_flush(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -52,17 +46,13 @@ impl_afw_writer_flush(
  */
 void
 impl_afw_writer_write(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -70,15 +60,11 @@ impl_afw_writer_write(
  */
 void
 impl_afw_writer_write_eol(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -86,15 +72,11 @@ impl_afw_writer_write_eol(
  */
 void
 impl_afw_writer_increment_indent(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -102,13 +84,9 @@ impl_afw_writer_increment_indent(
  */
 void
 impl_afw_writer_decrement_indent(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

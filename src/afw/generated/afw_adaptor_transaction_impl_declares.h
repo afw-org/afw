@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_transaction_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_transaction_inf'.
+ *
+ *   AFW_ADAPTOR_TRANSACTION_SELF_T - (optional) defaults to 'const afw_adaptor_transaction_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_TRANSACTION_SELF_T
+#define AFW_ADAPTOR_TRANSACTION_SELF_T const afw_adaptor_transaction_t
+#endif
+
 #ifndef AFW_ADAPTOR_TRANSACTION_INF_ONLY
 
 #ifndef impl_afw_adaptor_transaction_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_transaction_release(
-    const afw_adaptor_transaction_t * instance,
+    AFW_ADAPTOR_TRANSACTION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_adaptor_transaction_release(
 /* Declare method commit */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_transaction_commit(
-    const afw_adaptor_transaction_t * instance,
+    AFW_ADAPTOR_TRANSACTION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 #endif
@@ -135,7 +144,9 @@ impl_afw_adaptor_transaction_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_transaction_release_t)
     impl_afw_adaptor_transaction_release,
+    (afw_adaptor_transaction_commit_t)
     impl_afw_adaptor_transaction_commit
 };
 

@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_object_setter */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_OBJECT_SETTER_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_object_setter_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_object_setter_set_immutable(
-    const afw_object_setter_t * instance,
+    AFW_OBJECT_SETTER_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,15 +34,11 @@ impl_afw_object_setter_set_immutable(
  */
 void
 impl_afw_object_setter_set_property(
-    const afw_object_setter_t * instance,
+    AFW_OBJECT_SETTER_SELF_T *self,
     const afw_utf8_t * property_name,
     const afw_value_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

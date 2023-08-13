@@ -46,11 +46,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_impl_index_cursor_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_impl_index_cursor_inf'.
+ *
+ *   AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T - (optional) defaults to 'const afw_adaptor_impl_index_cursor_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -96,13 +100,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T
+#define AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T const afw_adaptor_impl_index_cursor_t
+#endif
+
 #ifndef AFW_ADAPTOR_IMPL_INDEX_CURSOR_INF_ONLY
 
 #ifndef impl_afw_adaptor_impl_index_cursor_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_impl_index_cursor_release(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -110,7 +119,7 @@ impl_afw_adaptor_impl_index_cursor_release(
 /* Declare method get_next_object */
 AFW_DECLARE_STATIC(const afw_object_t *)
 impl_afw_adaptor_impl_index_cursor_get_next_object(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 #endif
@@ -119,7 +128,7 @@ impl_afw_adaptor_impl_index_cursor_get_next_object(
 /* Declare method contains_object */
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_adaptor_impl_index_cursor_contains_object(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_object_t * object,
     afw_xctx_t * xctx);
 #endif
@@ -128,7 +137,7 @@ impl_afw_adaptor_impl_index_cursor_contains_object(
 /* Declare method inner_join */
 AFW_DECLARE_STATIC(const afw_adaptor_impl_index_cursor_t *)
 impl_afw_adaptor_impl_index_cursor_inner_join(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_adaptor_impl_index_cursor_t * cursor,
     afw_xctx_t * xctx);
 #endif
@@ -137,7 +146,7 @@ impl_afw_adaptor_impl_index_cursor_inner_join(
 /* Declare method get_count */
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_adaptor_impl_index_cursor_get_count(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     size_t * count,
     afw_xctx_t * xctx);
 #endif
@@ -165,10 +174,15 @@ impl_afw_adaptor_impl_index_cursor_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_impl_index_cursor_release_t)
     impl_afw_adaptor_impl_index_cursor_release,
+    (afw_adaptor_impl_index_cursor_get_next_object_t)
     impl_afw_adaptor_impl_index_cursor_get_next_object,
+    (afw_adaptor_impl_index_cursor_contains_object_t)
     impl_afw_adaptor_impl_index_cursor_contains_object,
+    (afw_adaptor_impl_index_cursor_inner_join_t)
     impl_afw_adaptor_impl_index_cursor_inner_join,
+    (afw_adaptor_impl_index_cursor_get_count_t)
     impl_afw_adaptor_impl_index_cursor_get_count
 };
 

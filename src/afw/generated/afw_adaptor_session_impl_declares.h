@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_session_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_session_inf'.
+ *
+ *   AFW_ADAPTOR_SESSION_SELF_T - (optional) defaults to 'const afw_adaptor_session_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_SESSION_SELF_T
+#define AFW_ADAPTOR_SESSION_SELF_T const afw_adaptor_session_t
+#endif
+
 #ifndef AFW_ADAPTOR_SESSION_INF_ONLY
 
 #ifndef impl_afw_adaptor_session_destroy
 /* Declare method destroy */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_session_destroy(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_adaptor_session_destroy(
 /* Declare method retrieve_objects */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_session_retrieve_objects(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
@@ -123,7 +132,7 @@ impl_afw_adaptor_session_retrieve_objects(
 /* Declare method get_object */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_session_get_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -138,7 +147,7 @@ impl_afw_adaptor_session_get_object(
 /* Declare method add_object */
 AFW_DECLARE_STATIC(const afw_utf8_t *)
 impl_afw_adaptor_session_add_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * suggested_object_id,
@@ -151,7 +160,7 @@ impl_afw_adaptor_session_add_object(
 /* Declare method modify_object */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_session_modify_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -164,7 +173,7 @@ impl_afw_adaptor_session_modify_object(
 /* Declare method replace_object */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_session_replace_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -177,7 +186,7 @@ impl_afw_adaptor_session_replace_object(
 /* Declare method delete_object */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_session_delete_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -189,7 +198,7 @@ impl_afw_adaptor_session_delete_object(
 /* Declare method begin_transaction */
 AFW_DECLARE_STATIC(const afw_adaptor_transaction_t *)
 impl_afw_adaptor_session_begin_transaction(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -197,7 +206,7 @@ impl_afw_adaptor_session_begin_transaction(
 /* Declare method get_journal_interface */
 AFW_DECLARE_STATIC(const afw_adaptor_journal_t *)
 impl_afw_adaptor_session_get_journal_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -205,7 +214,7 @@ impl_afw_adaptor_session_get_journal_interface(
 /* Declare method get_key_value_interface */
 AFW_DECLARE_STATIC(const afw_adaptor_key_value_t *)
 impl_afw_adaptor_session_get_key_value_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -213,7 +222,7 @@ impl_afw_adaptor_session_get_key_value_interface(
 /* Declare method get_index_interface */
 AFW_DECLARE_STATIC(const afw_adaptor_impl_index_t *)
 impl_afw_adaptor_session_get_index_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -221,7 +230,7 @@ impl_afw_adaptor_session_get_index_interface(
 /* Declare method get_object_type_cache_interface */
 AFW_DECLARE_STATIC(const afw_adaptor_object_type_cache_t *)
 impl_afw_adaptor_session_get_object_type_cache_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 #endif
@@ -248,17 +257,29 @@ impl_afw_adaptor_session_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_session_destroy_t)
     impl_afw_adaptor_session_destroy,
+    (afw_adaptor_session_retrieve_objects_t)
     impl_afw_adaptor_session_retrieve_objects,
+    (afw_adaptor_session_get_object_t)
     impl_afw_adaptor_session_get_object,
+    (afw_adaptor_session_add_object_t)
     impl_afw_adaptor_session_add_object,
+    (afw_adaptor_session_modify_object_t)
     impl_afw_adaptor_session_modify_object,
+    (afw_adaptor_session_replace_object_t)
     impl_afw_adaptor_session_replace_object,
+    (afw_adaptor_session_delete_object_t)
     impl_afw_adaptor_session_delete_object,
+    (afw_adaptor_session_begin_transaction_t)
     impl_afw_adaptor_session_begin_transaction,
+    (afw_adaptor_session_get_journal_interface_t)
     impl_afw_adaptor_session_get_journal_interface,
+    (afw_adaptor_session_get_key_value_interface_t)
     impl_afw_adaptor_session_get_key_value_interface,
+    (afw_adaptor_session_get_index_interface_t)
     impl_afw_adaptor_session_get_index_interface,
+    (afw_adaptor_session_get_object_type_cache_interface_t)
     impl_afw_adaptor_session_get_object_type_cache_interface
 };
 

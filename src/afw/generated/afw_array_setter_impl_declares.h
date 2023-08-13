@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_array_setter_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_array_setter_inf'.
+ *
+ *   AFW_ARRAY_SETTER_SELF_T - (optional) defaults to 'const afw_array_setter_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ARRAY_SETTER_SELF_T
+#define AFW_ARRAY_SETTER_SELF_T const afw_array_setter_t
+#endif
+
 #ifndef AFW_ARRAY_SETTER_INF_ONLY
 
 #ifndef impl_afw_array_setter_set_immutable
 /* Declare method set_immutable */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_set_immutable(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_array_setter_set_immutable(
 /* Declare method determine_data_type_and_set_immutable */
 AFW_DECLARE_STATIC(const afw_data_type_t *)
 impl_afw_array_setter_determine_data_type_and_set_immutable(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -116,7 +125,7 @@ impl_afw_array_setter_determine_data_type_and_set_immutable(
 /* Declare method add_internal */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_add_internal(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_xctx_t * xctx);
@@ -126,7 +135,7 @@ impl_afw_array_setter_add_internal(
 /* Declare method add_value */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_add_value(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 #endif
@@ -135,7 +144,7 @@ impl_afw_array_setter_add_value(
 /* Declare method insert_internal */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_insert_internal(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_size_t index,
@@ -146,7 +155,7 @@ impl_afw_array_setter_insert_internal(
 /* Declare method insert_value */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_insert_value(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     const afw_value_t * value,
     afw_size_t index,
     afw_xctx_t * xctx);
@@ -156,7 +165,7 @@ impl_afw_array_setter_insert_value(
 /* Declare method remove_all_values */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_remove_all_values(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -164,7 +173,7 @@ impl_afw_array_setter_remove_all_values(
 /* Declare method remove_internal */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_remove_internal(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_xctx_t * xctx);
@@ -174,7 +183,7 @@ impl_afw_array_setter_remove_internal(
 /* Declare method remove_value */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_remove_value(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 #endif
@@ -183,7 +192,7 @@ impl_afw_array_setter_remove_value(
 /* Declare method set_value_by_index */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_setter_set_value_by_index(
-    const afw_array_setter_t * instance,
+    AFW_ARRAY_SETTER_SELF_T *self,
     afw_size_t index,
     const afw_value_t * value,
     afw_xctx_t * xctx);
@@ -212,15 +221,25 @@ impl_afw_array_setter_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_array_setter_set_immutable_t)
     impl_afw_array_setter_set_immutable,
+    (afw_array_setter_determine_data_type_and_set_immutable_t)
     impl_afw_array_setter_determine_data_type_and_set_immutable,
+    (afw_array_setter_add_internal_t)
     impl_afw_array_setter_add_internal,
+    (afw_array_setter_add_value_t)
     impl_afw_array_setter_add_value,
+    (afw_array_setter_insert_internal_t)
     impl_afw_array_setter_insert_internal,
+    (afw_array_setter_insert_value_t)
     impl_afw_array_setter_insert_value,
+    (afw_array_setter_remove_all_values_t)
     impl_afw_array_setter_remove_all_values,
+    (afw_array_setter_remove_internal_t)
     impl_afw_array_setter_remove_internal,
+    (afw_array_setter_remove_value_t)
     impl_afw_array_setter_remove_value,
+    (afw_array_setter_set_value_by_index_t)
     impl_afw_array_setter_set_value_by_index
 };
 

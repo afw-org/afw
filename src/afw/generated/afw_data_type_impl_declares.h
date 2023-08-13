@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_data_type_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_data_type_inf'.
+ *
+ *   AFW_DATA_TYPE_SELF_T - (optional) defaults to 'const afw_data_type_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_DATA_TYPE_SELF_T
+#define AFW_DATA_TYPE_SELF_T const afw_data_type_t
+#endif
+
 #ifndef AFW_DATA_TYPE_INF_ONLY
 
 #ifndef impl_afw_data_type_internal_to_utf8
 /* Declare method internal_to_utf8 */
 AFW_DECLARE_STATIC(const afw_utf8_t *)
 impl_afw_data_type_internal_to_utf8(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const void * from_internal,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -110,7 +119,7 @@ impl_afw_data_type_internal_to_utf8(
 /* Declare method utf8_to_internal */
 AFW_DECLARE_STATIC(void)
 impl_afw_data_type_utf8_to_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     void * to_internal,
     const afw_utf8_t * from_utf8,
     const afw_pool_t * p,
@@ -121,7 +130,7 @@ impl_afw_data_type_utf8_to_internal(
 /* Declare method compare_internal */
 AFW_DECLARE_STATIC(int)
 impl_afw_data_type_compare_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const void * internal1,
     const void * internal2,
     afw_xctx_t * xctx);
@@ -131,7 +140,7 @@ impl_afw_data_type_compare_internal(
 /* Declare method convert_internal */
 AFW_DECLARE_STATIC(void)
 impl_afw_data_type_convert_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     void * to_internal,
     const void * from_internal,
     const afw_data_type_t * to_data_type,
@@ -143,7 +152,7 @@ impl_afw_data_type_convert_internal(
 /* Declare method clone_internal */
 AFW_DECLARE_STATIC(void)
 impl_afw_data_type_clone_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     void * to_internal,
     const void * from_internal,
     const afw_pool_t * p,
@@ -154,7 +163,7 @@ impl_afw_data_type_clone_internal(
 /* Declare method value_compiler_listing */
 AFW_DECLARE_STATIC(void)
 impl_afw_data_type_value_compiler_listing(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const afw_writer_t * writer,
     const afw_value_t * value,
     afw_xctx_t * xctx);
@@ -164,7 +173,7 @@ impl_afw_data_type_value_compiler_listing(
 /* Declare method write_as_expression */
 AFW_DECLARE_STATIC(void)
 impl_afw_data_type_write_as_expression(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const afw_writer_t * writer,
     const void * from_internal,
     afw_xctx_t * xctx);
@@ -193,12 +202,19 @@ impl_afw_data_type_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_data_type_internal_to_utf8_t)
     impl_afw_data_type_internal_to_utf8,
+    (afw_data_type_utf8_to_internal_t)
     impl_afw_data_type_utf8_to_internal,
+    (afw_data_type_compare_internal_t)
     impl_afw_data_type_compare_internal,
+    (afw_data_type_convert_internal_t)
     impl_afw_data_type_convert_internal,
+    (afw_data_type_clone_internal_t)
     impl_afw_data_type_clone_internal,
+    (afw_data_type_value_compiler_listing_t)
     impl_afw_data_type_value_compiler_listing,
+    (afw_data_type_write_as_expression_t)
     impl_afw_data_type_write_as_expression
 };
 

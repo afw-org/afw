@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_adaptor_object_type_cache */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_adaptor_object_type_cache_impl_declares.h"
 
 /*
@@ -20,17 +22,13 @@
  */
 const afw_object_type_t *
 impl_afw_adaptor_object_type_cache_get(
-    const afw_adaptor_object_type_cache_t * instance,
+    AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T *self,
     const afw_utf8_t * object_type_id,
     afw_boolean_t * final_result,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -38,14 +36,10 @@ impl_afw_adaptor_object_type_cache_get(
  */
 void
 impl_afw_adaptor_object_type_cache_set(
-    const afw_adaptor_object_type_cache_t * instance,
+    AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T *self,
     const afw_object_type_t * object_type,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

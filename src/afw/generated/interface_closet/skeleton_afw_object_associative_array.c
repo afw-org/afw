@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_object_associative_array */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_object_associative_array_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_object_associative_array_release(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -37,15 +35,11 @@ impl_afw_object_associative_array_release(
  */
 void
 impl_afw_object_associative_array_add_reference(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -53,16 +47,12 @@ impl_afw_object_associative_array_add_reference(
  */
 const afw_object_t *
 impl_afw_object_associative_array_get(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -71,16 +61,12 @@ impl_afw_object_associative_array_get(
  */
 const afw_object_t *
 impl_afw_object_associative_array_get_reference(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -89,17 +75,13 @@ impl_afw_object_associative_array_get_reference(
  */
 void
 impl_afw_object_associative_array_for_each(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     void * context,
     afw_object_cb_t cb,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -107,15 +89,11 @@ impl_afw_object_associative_array_for_each(
  */
 void
 impl_afw_object_associative_array_set(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     const afw_object_t * object,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

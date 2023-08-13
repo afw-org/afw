@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_service_type */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_SERVICE_TYPE_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_service_type_impl_declares.h"
 
 /*
@@ -21,16 +23,12 @@
  */
 afw_integer_t
 impl_afw_service_type_related_instance_count(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_utf8_t * id,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -38,17 +36,13 @@ impl_afw_service_type_related_instance_count(
  */
 void
 impl_afw_service_type_start_cede_p(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -56,16 +50,12 @@ impl_afw_service_type_start_cede_p(
  */
 void
 impl_afw_service_type_stop(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_utf8_t * id,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -73,15 +63,11 @@ impl_afw_service_type_stop(
  */
 void
 impl_afw_service_type_restart_cede_p(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

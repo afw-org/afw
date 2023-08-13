@@ -286,15 +286,15 @@ AFW_DEFINE(const afw_adaptor_t *)
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    <afwdev {prefixed_interface_name}>_self_t *self;
+    AFW_ADAPTOR_SELF_T *self;
     afw_adaptor_t *adaptor;
     
     /* Create adaptor and process common properties. */
     adaptor = afw_adaptor_impl_create_cede_p(
             &impl_afw_adaptor_inf,
-            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            sizeof(AFW_ADAPTOR_SELF_T),
             properties, p, xctx);
-    self = (<afwdev {prefixed_interface_name}>_self_t *)adaptor;
+    self = (AFW_ADAPTOR_SELF_T *)adaptor;
 
     /** @todo Handle implementation specific configuration parameters, etc. */
        
@@ -1806,15 +1806,15 @@ AFW_DEFINE(const afw_authorization_handler_t *)
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    <afwdev {prefixed_interface_name}>_self_t *self;
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self;
     afw_authorization_handler_t *authorization_handler;
     
     /* Create adaptor and process common properties. */
     authorization_handler = afw_authorization_handler_impl_create_cede_p(
             &impl_afw_authorization_handler_inf,
-            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            sizeof(AFW_AUTHORIZATION_HANDLER_SELF_T),
             properties, p, xctx);
-    self = (<afwdev {prefixed_interface_name}>_self_t *)authorization_handler;
+    self = (AFW_AUTHORIZATION_HANDLER_SELF_T *)authorization_handler;
 
     /** @todo Handle implementation specific configuration parameters, etc. */
        
@@ -2143,47 +2143,46 @@ impl_afw_content_type =
 
       <model_c_code label="method_body">
         <![CDATA[
-/* Raw begin object list used by object_list_writer. */
-/** @todo Replace "[\n" with appropriate value or remove here and use NULL in call. */
-static const afw_memory_t
-impl_raw_begin_object_list = {
-    (const afw_octet_t *)"[\n",
-    sizeof("[\n") - 1 /* "- 1" for string. */
-};
+    /* Raw begin object list used by object_list_writer. */
+    /** @todo Replace "[\n" with appropriate value or remove here and use NULL in call. */
+    static const afw_memory_t
+    impl_raw_begin_object_list = {
+        (const afw_octet_t *)"[\n",
+        sizeof("[\n") - 1 /* "- 1" for string. */
+    };
 
-/* Raw object separator used by object_list_writer. */
-/** @todo Replace ",\n" with appropriate value or remove here and use NULL in call. */
-static const afw_memory_t
-impl_raw_object_separator = {
-    (const afw_octet_t *)",\n",
-    sizeof(",\n") - 1 /* "- 1" for string. */
-};
+    /* Raw object separator used by object_list_writer. */
+    /** @todo Replace ",\n" with appropriate value or remove here and use NULL in call. */
+    static const afw_memory_t
+    impl_raw_object_separator = {
+        (const afw_octet_t *)",\n",
+        sizeof(",\n") - 1 /* "- 1" for string. */
+    };
 
-/* Raw last object separator used by object_list_writer. */
-/** @todo Replace "\n" with appropriate value or remove here and use NULL in call. */
-static const afw_memory_t
-impl_raw_last_object_separator = {
-    (const afw_octet_t *)"\n",
-    sizeof("\n") - 1  /* "- 1" for string. */
-};
+    /* Raw last object separator used by object_list_writer. */
+    /** @todo Replace "\n" with appropriate value or remove here and use NULL in call. */
+    static const afw_memory_t
+    impl_raw_last_object_separator = {
+        (const afw_octet_t *)"\n",
+        sizeof("\n") - 1  /* "- 1" for string. */
+    };
 
-/* Raw end object list used by object_list_writer. */
-/** @todo Replace "]\n" with appropriate value or remove here and use NULL in call. */
-static const afw_memory_t
-impl_raw_end_object_list = {
-    (const afw_octet_t *)"]\n",
-    sizeof("]\n") - 1 /* "- 1" for string. */
-};
+    /* Raw end object list used by object_list_writer. */
+    /** @todo Replace "]\n" with appropriate value or remove here and use NULL in call. */
+    static const afw_memory_t
+    impl_raw_end_object_list = {
+        (const afw_octet_t *)"]\n",
+        sizeof("]\n") - 1 /* "- 1" for string. */
+    };
 
     /* Create object_list_writer instance. */
     return afw_content_type_impl_create_object_list_writer(
-        instance, options, context, callback,
+        &self->pub, options, context, callback,
         &impl_raw_begin_object_list,
         &impl_raw_object_separator,
         &impl_raw_last_object_separator,
         &impl_raw_end_object_list,
-        p, xctx);
-]]>
+        p, xctx);]]>
       </model_c_code>
 
     </method>
@@ -3346,15 +3345,15 @@ AFW_DEFINE(const afw_log_t *)
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    <afwdev {prefixed_interface_name}>_self_t *self;
+    AFW_LOG_SELF_T *self;
     afw_log_t *log;
     
     /* Create log and process common properties. */
     log = afw_log_impl_create_cede_p(
             &impl_afw_log_inf,
-            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            sizeof(AFW_LOG_SELF_T),
             properties, p, xctx);
-    self = (<afwdev {prefixed_interface_name}>_self_t *)log;
+    self = (AFW_LOG_SELF_T *)log;
 
     /** @todo Handle implementation specific configuration parameters, etc. */
        
@@ -4360,15 +4359,15 @@ AFW_DEFINE(const afw_request_handler_t *)
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    <afwdev {prefixed_interface_name}>_self_t *self;
+    AFW_REQUEST_HANDLER_SELF_T *self;
     afw_request_handler_t *request_handler;
     
     /* Create request_handler and process common properties. */
     request_handler = afw_request_handler_impl_create_cede_p(
             &impl_afw_request_handler_inf,
-            sizeof(<afwdev {prefixed_interface_name}>_self_t),
+            sizeof(AFW_REQUEST_HANDLER_SELF_T),
             properties, p, xctx);
-    self = (<afwdev {prefixed_interface_name}>_self_t *)request_handler;
+    self = (AFW_REQUEST_HANDLER_SELF_T *)request_handler;
 
     /** @todo Handle implementation specific configuration parameters, etc. */
        
@@ -4936,7 +4935,7 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <description>Release resources associated with a request.</description>
 
-      <parameter name="instance" type="afw_xctx_t *">
+      <parameter name="instance" type="const afw_xctx_t *">
         <description>Pointer to this adaptive request instance.</description>
       </parameter>
 

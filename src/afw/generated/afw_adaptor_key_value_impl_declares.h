@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_key_value_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_key_value_inf'.
+ *
+ *   AFW_ADAPTOR_KEY_VALUE_SELF_T - (optional) defaults to 'const afw_adaptor_key_value_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_KEY_VALUE_SELF_T
+#define AFW_ADAPTOR_KEY_VALUE_SELF_T const afw_adaptor_key_value_t
+#endif
+
 #ifndef AFW_ADAPTOR_KEY_VALUE_INF_ONLY
 
 #ifndef impl_afw_adaptor_key_value_add
 /* Declare method add */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_key_value_add(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
@@ -111,7 +120,7 @@ impl_afw_adaptor_key_value_add(
 /* Declare method delete */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_key_value_delete(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
@@ -123,7 +132,7 @@ impl_afw_adaptor_key_value_delete(
 /* Declare method replace */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_key_value_replace(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
@@ -135,7 +144,7 @@ impl_afw_adaptor_key_value_replace(
 /* Declare method get */
 AFW_DECLARE_STATIC(const afw_memory_t *)
 impl_afw_adaptor_key_value_get(
-    const afw_adaptor_key_value_t * instance,
+    AFW_ADAPTOR_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     afw_xctx_t * xctx);
@@ -164,9 +173,13 @@ impl_afw_adaptor_key_value_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_key_value_add_t)
     impl_afw_adaptor_key_value_add,
+    (afw_adaptor_key_value_delete_t)
     impl_afw_adaptor_key_value_delete,
+    (afw_adaptor_key_value_replace_t)
     impl_afw_adaptor_key_value_replace,
+    (afw_adaptor_key_value_get_t)
     impl_afw_adaptor_key_value_get
 };
 

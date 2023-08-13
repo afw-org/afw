@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_adaptor_impl_index_cursor */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_adaptor_impl_index_cursor_impl_declares.h"
 
 /*
@@ -21,15 +23,11 @@
  */
 void
 impl_afw_adaptor_impl_index_cursor_release(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -38,16 +36,12 @@ impl_afw_adaptor_impl_index_cursor_release(
  */
 const afw_object_t *
 impl_afw_adaptor_impl_index_cursor_get_next_object(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_pool_t * pool,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -56,16 +50,12 @@ impl_afw_adaptor_impl_index_cursor_get_next_object(
  */
 afw_boolean_t
 impl_afw_adaptor_impl_index_cursor_contains_object(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_object_t * object,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -74,16 +64,12 @@ impl_afw_adaptor_impl_index_cursor_contains_object(
  */
 const afw_adaptor_impl_index_cursor_t *
 impl_afw_adaptor_impl_index_cursor_inner_join(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_adaptor_impl_index_cursor_t * cursor,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -92,14 +78,10 @@ impl_afw_adaptor_impl_index_cursor_inner_join(
  */
 afw_boolean_t
 impl_afw_adaptor_impl_index_cursor_get_count(
-    const afw_adaptor_impl_index_cursor_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_CURSOR_SELF_T *self,
     size_t * count,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

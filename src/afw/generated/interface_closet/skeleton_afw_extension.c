@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_extension */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_EXTENSION_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_extension_impl_declares.h"
 
       
@@ -31,13 +33,11 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
  */
 const afw_extension_t *
 impl_afw_extension_initialize(
-    const afw_extension_t * instance,
+    AFW_EXTENSION_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
 
         
     /*
@@ -71,7 +71,7 @@ impl_afw_extension_initialize(
  */
 void
 impl_afw_extension_release(
-    const afw_extension_t * instance,
+    AFW_EXTENSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
 

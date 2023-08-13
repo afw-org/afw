@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_log_factory */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_LOG_FACTORY_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_log_factory_impl_declares.h"
 
       
@@ -46,13 +48,11 @@ impl_<afwdev {prefixed_interface_name}>_description =
  */
 const afw_log_t *
 impl_afw_log_factory_create_log_cede_p(
-    const afw_log_factory_t * instance,
+    AFW_LOG_FACTORY_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
 
         
     /** @todo If needed, add/modify the following code to implement method. */

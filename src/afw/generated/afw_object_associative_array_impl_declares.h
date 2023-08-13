@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_object_associative_array_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_object_associative_array_inf'.
+ *
+ *   AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T - (optional) defaults to 'const afw_object_associative_array_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T
+#define AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T const afw_object_associative_array_t
+#endif
+
 #ifndef AFW_OBJECT_ASSOCIATIVE_ARRAY_INF_ONLY
 
 #ifndef impl_afw_object_associative_array_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_object_associative_array_release(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_object_associative_array_release(
 /* Declare method add_reference */
 AFW_DECLARE_STATIC(void)
 impl_afw_object_associative_array_add_reference(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -116,7 +125,7 @@ impl_afw_object_associative_array_add_reference(
 /* Declare method get */
 AFW_DECLARE_STATIC(const afw_object_t *)
 impl_afw_object_associative_array_get(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t * xctx);
 #endif
@@ -125,7 +134,7 @@ impl_afw_object_associative_array_get(
 /* Declare method get_reference */
 AFW_DECLARE_STATIC(const afw_object_t *)
 impl_afw_object_associative_array_get_reference(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t * xctx);
 #endif
@@ -134,7 +143,7 @@ impl_afw_object_associative_array_get_reference(
 /* Declare method for_each */
 AFW_DECLARE_STATIC(void)
 impl_afw_object_associative_array_for_each(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     void * context,
     afw_object_cb_t cb,
     afw_xctx_t * xctx);
@@ -144,7 +153,7 @@ impl_afw_object_associative_array_for_each(
 /* Declare method set */
 AFW_DECLARE_STATIC(void)
 impl_afw_object_associative_array_set(
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     const afw_object_t * object,
     afw_xctx_t * xctx);
@@ -173,11 +182,17 @@ impl_afw_object_associative_array_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_object_associative_array_release_t)
     impl_afw_object_associative_array_release,
+    (afw_object_associative_array_add_reference_t)
     impl_afw_object_associative_array_add_reference,
+    (afw_object_associative_array_get_t)
     impl_afw_object_associative_array_get,
+    (afw_object_associative_array_get_reference_t)
     impl_afw_object_associative_array_get_reference,
+    (afw_object_associative_array_for_each_t)
     impl_afw_object_associative_array_for_each,
+    (afw_object_associative_array_set_t)
     impl_afw_object_associative_array_set
 };
 

@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_inf'.
+ *
+ *   AFW_ADAPTOR_SELF_T - (optional) defaults to 'const afw_adaptor_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_SELF_T
+#define AFW_ADAPTOR_SELF_T const afw_adaptor_t
+#endif
+
 #ifndef AFW_ADAPTOR_INF_ONLY
 
 #ifndef impl_afw_adaptor_destroy
 /* Declare method destroy */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_destroy(
-    const afw_adaptor_t * instance,
+    AFW_ADAPTOR_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_adaptor_destroy(
 /* Declare method create_adaptor_session */
 AFW_DECLARE_STATIC(const afw_adaptor_session_t *)
 impl_afw_adaptor_create_adaptor_session(
-    const afw_adaptor_t * instance,
+    AFW_ADAPTOR_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -115,7 +124,7 @@ impl_afw_adaptor_create_adaptor_session(
 /* Declare method get_additional_metrics */
 AFW_DECLARE_STATIC(const afw_object_t *)
 impl_afw_adaptor_get_additional_metrics(
-    const afw_adaptor_t * instance,
+    AFW_ADAPTOR_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
@@ -143,8 +152,11 @@ impl_afw_adaptor_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_destroy_t)
     impl_afw_adaptor_destroy,
+    (afw_adaptor_create_adaptor_session_t)
     impl_afw_adaptor_create_adaptor_session,
+    (afw_adaptor_get_additional_metrics_t)
     impl_afw_adaptor_get_additional_metrics
 };
 

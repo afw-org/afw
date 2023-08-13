@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_request_handler_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_request_handler_inf'.
+ *
+ *   AFW_REQUEST_HANDLER_SELF_T - (optional) defaults to 'const afw_request_handler_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_REQUEST_HANDLER_SELF_T
+#define AFW_REQUEST_HANDLER_SELF_T const afw_request_handler_t
+#endif
+
 #ifndef AFW_REQUEST_HANDLER_INF_ONLY
 
 #ifndef impl_afw_request_handler_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_handler_release(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_request_handler_release(
 /* Declare method process */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_handler_process(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     const afw_request_t * request,
     afw_xctx_t * xctx);
 #endif
@@ -136,7 +145,9 @@ impl_afw_request_handler_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_request_handler_release_t)
     impl_afw_request_handler_release,
+    (afw_request_handler_process_t)
     impl_afw_request_handler_process
 };
 

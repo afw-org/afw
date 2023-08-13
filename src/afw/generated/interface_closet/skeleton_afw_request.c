@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_request */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_REQUEST_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_request_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_request_release(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,16 +34,12 @@ impl_afw_request_release(
  */
 void
 impl_afw_request_set_error_info(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_object_t * error_info,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -53,19 +47,15 @@ impl_afw_request_set_error_info(
  */
 void
 impl_afw_request_read_raw_request_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t buffer_size,
     void * buffer,
     afw_size_t * size,
     afw_boolean_t * more_to_read,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -73,17 +63,13 @@ impl_afw_request_read_raw_request_body(
  */
 void
 impl_afw_request_set_response_status_code(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * code,
     const afw_utf8_t * reason,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -91,17 +77,13 @@ impl_afw_request_set_response_status_code(
  */
 void
 impl_afw_request_write_response_header(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * name,
     const afw_utf8_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -109,17 +91,13 @@ impl_afw_request_write_response_header(
  */
 void
 impl_afw_request_write_raw_response_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t size,
     const void * buffer,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -127,15 +105,11 @@ impl_afw_request_write_raw_response_body(
  */
 void
 impl_afw_request_flush_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -143,13 +117,9 @@ impl_afw_request_flush_response(
  */
 void
 impl_afw_request_finish_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

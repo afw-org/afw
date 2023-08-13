@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_request_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_request_inf'.
+ *
+ *   AFW_REQUEST_SELF_T - (optional) defaults to 'const afw_request_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_REQUEST_SELF_T
+#define AFW_REQUEST_SELF_T const afw_request_t
+#endif
+
 #ifndef AFW_REQUEST_INF_ONLY
 
 #ifndef impl_afw_request_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_release(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_request_release(
 /* Declare method set_error_info */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_set_error_info(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_object_t * error_info,
     afw_xctx_t * xctx);
 #endif
@@ -116,7 +125,7 @@ impl_afw_request_set_error_info(
 /* Declare method read_raw_request_body */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_read_raw_request_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t buffer_size,
     void * buffer,
     afw_size_t * size,
@@ -128,7 +137,7 @@ impl_afw_request_read_raw_request_body(
 /* Declare method set_response_status_code */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_set_response_status_code(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * code,
     const afw_utf8_t * reason,
     afw_xctx_t * xctx);
@@ -138,7 +147,7 @@ impl_afw_request_set_response_status_code(
 /* Declare method write_response_header */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_write_response_header(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * name,
     const afw_utf8_t * value,
     afw_xctx_t * xctx);
@@ -148,7 +157,7 @@ impl_afw_request_write_response_header(
 /* Declare method write_raw_response_body */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_write_raw_response_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t size,
     const void * buffer,
     afw_xctx_t * xctx);
@@ -158,7 +167,7 @@ impl_afw_request_write_raw_response_body(
 /* Declare method flush_response */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_flush_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -166,7 +175,7 @@ impl_afw_request_flush_response(
 /* Declare method finish_response */
 AFW_DECLARE_STATIC(void)
 impl_afw_request_finish_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 #endif
@@ -193,13 +202,21 @@ impl_afw_request_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_request_release_t)
     impl_afw_request_release,
+    (afw_request_set_error_info_t)
     impl_afw_request_set_error_info,
+    (afw_request_read_raw_request_body_t)
     impl_afw_request_read_raw_request_body,
+    (afw_request_set_response_status_code_t)
     impl_afw_request_set_response_status_code,
+    (afw_request_write_response_header_t)
     impl_afw_request_write_response_header,
+    (afw_request_write_raw_response_body_t)
     impl_afw_request_write_raw_response_body,
+    (afw_request_flush_response_t)
     impl_afw_request_flush_response,
+    (afw_request_finish_response_t)
     impl_afw_request_finish_response
 };
 

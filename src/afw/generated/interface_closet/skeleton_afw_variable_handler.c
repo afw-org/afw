@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_variable_handler */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_VARIABLE_HANDLER_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_variable_handler_impl_declares.h"
 
 /*
@@ -20,17 +22,13 @@
  */
 const afw_value_t *
 impl_afw_variable_handler_get_variable(
-    const afw_variable_handler_t * instance,
+    AFW_VARIABLE_HANDLER_SELF_T *self,
     const afw_utf8_t * qualifier,
     const afw_utf8_t * name,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -38,16 +36,12 @@ impl_afw_variable_handler_get_variable(
  */
 afw_boolean_t
 impl_afw_variable_handler_set_variable(
-    const afw_variable_handler_t * instance,
+    AFW_VARIABLE_HANDLER_SELF_T *self,
     const afw_utf8_t * qualifier,
     const afw_utf8_t * name,
     const afw_value_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

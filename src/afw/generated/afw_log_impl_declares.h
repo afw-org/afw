@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_log_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_log_inf'.
+ *
+ *   AFW_LOG_SELF_T - (optional) defaults to 'const afw_log_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_LOG_SELF_T
+#define AFW_LOG_SELF_T const afw_log_t
+#endif
+
 #ifndef AFW_LOG_INF_ONLY
 
 #ifndef impl_afw_log_destroy
 /* Declare method destroy */
 AFW_DECLARE_STATIC(void)
 impl_afw_log_destroy(
-    const afw_log_t * instance,
+    AFW_LOG_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_log_destroy(
 /* Declare method set_own_mask */
 AFW_DECLARE_STATIC(void)
 impl_afw_log_set_own_mask(
-    const afw_log_t * instance,
+    AFW_LOG_SELF_T *self,
     afw_log_priority_mask_t mask,
     afw_xctx_t * xctx);
 #endif
@@ -116,7 +125,7 @@ impl_afw_log_set_own_mask(
 /* Declare method write */
 AFW_DECLARE_STATIC(void)
 impl_afw_log_write(
-    const afw_log_t * instance,
+    AFW_LOG_SELF_T *self,
     afw_log_priority_t priority,
     const afw_utf8_z_t * source_z,
     const afw_utf8_t * message,
@@ -146,8 +155,11 @@ impl_afw_log_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_log_destroy_t)
     impl_afw_log_destroy,
+    (afw_log_set_own_mask_t)
     impl_afw_log_set_own_mask,
+    (afw_log_write_t)
     impl_afw_log_write
 };
 

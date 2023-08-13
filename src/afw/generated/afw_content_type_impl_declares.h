@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_content_type_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_content_type_inf'.
+ *
+ *   AFW_CONTENT_TYPE_SELF_T - (optional) defaults to 'const afw_content_type_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_CONTENT_TYPE_SELF_T
+#define AFW_CONTENT_TYPE_SELF_T const afw_content_type_t
+#endif
+
 #ifndef AFW_CONTENT_TYPE_INF_ONLY
 
 #ifndef impl_afw_content_type_raw_to_value
 /* Declare method raw_to_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_content_type_raw_to_value(
-    const afw_content_type_t * instance,
+    AFW_CONTENT_TYPE_SELF_T *self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_pool_t * p,
@@ -111,7 +120,7 @@ impl_afw_content_type_raw_to_value(
 /* Declare method raw_to_object */
 AFW_DECLARE_STATIC(const afw_object_t *)
 impl_afw_content_type_raw_to_object(
-    const afw_content_type_t * instance,
+    AFW_CONTENT_TYPE_SELF_T *self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_utf8_t * adaptor_id,
@@ -126,7 +135,7 @@ impl_afw_content_type_raw_to_object(
 /* Declare method write_value */
 AFW_DECLARE_STATIC(void)
 impl_afw_content_type_write_value(
-    const afw_content_type_t * instance,
+    AFW_CONTENT_TYPE_SELF_T *self,
     const afw_value_t * value,
     const afw_object_options_t * options,
     void * context,
@@ -139,7 +148,7 @@ impl_afw_content_type_write_value(
 /* Declare method create_object_list_writer */
 AFW_DECLARE_STATIC(const afw_content_type_object_list_writer_t *)
 impl_afw_content_type_create_object_list_writer(
-    const afw_content_type_t * instance,
+    AFW_CONTENT_TYPE_SELF_T *self,
     const afw_object_options_t * options,
     void * context,
     afw_write_cb_t callback,
@@ -170,9 +179,13 @@ impl_afw_content_type_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_content_type_raw_to_value_t)
     impl_afw_content_type_raw_to_value,
+    (afw_content_type_raw_to_object_t)
     impl_afw_content_type_raw_to_object,
+    (afw_content_type_write_value_t)
     impl_afw_content_type_write_value,
+    (afw_content_type_create_object_list_writer_t)
     impl_afw_content_type_create_object_list_writer
 };
 

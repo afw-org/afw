@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_authorization_handler_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_authorization_handler_inf'.
+ *
+ *   AFW_AUTHORIZATION_HANDLER_SELF_T - (optional) defaults to 'const afw_authorization_handler_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_AUTHORIZATION_HANDLER_SELF_T
+#define AFW_AUTHORIZATION_HANDLER_SELF_T const afw_authorization_handler_t
+#endif
+
 #ifndef AFW_AUTHORIZATION_HANDLER_INF_ONLY
 
 #ifndef impl_afw_authorization_handler_destroy
 /* Declare method destroy */
 AFW_DECLARE_STATIC(void)
 impl_afw_authorization_handler_destroy(
-    const afw_authorization_handler_t * instance,
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_authorization_handler_destroy(
 /* Declare method check */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_authorization_handler_check(
-    const afw_authorization_handler_t * instance,
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self,
     const afw_value_t * resource_id,
     const afw_value_t * object,
     const afw_value_t * action_id,
@@ -139,7 +148,9 @@ impl_afw_authorization_handler_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_authorization_handler_destroy_t)
     impl_afw_authorization_handler_destroy,
+    (afw_authorization_handler_check_t)
     impl_afw_authorization_handler_check
 };
 

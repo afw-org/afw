@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_stream_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_stream_inf'.
+ *
+ *   AFW_STREAM_SELF_T - (optional) defaults to 'const afw_stream_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_STREAM_SELF_T
+#define AFW_STREAM_SELF_T const afw_stream_t
+#endif
+
 #ifndef AFW_STREAM_INF_ONLY
 
 #ifndef impl_afw_stream_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_stream_release(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_stream_release(
 /* Declare method flush */
 AFW_DECLARE_STATIC(void)
 impl_afw_stream_flush(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -115,7 +124,7 @@ impl_afw_stream_flush(
 /* Declare method read */
 AFW_DECLARE_STATIC(void)
 impl_afw_stream_read(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx);
@@ -125,7 +134,7 @@ impl_afw_stream_read(
 /* Declare method write */
 AFW_DECLARE_STATIC(void)
 impl_afw_stream_write(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx);
@@ -154,9 +163,13 @@ impl_afw_stream_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_stream_release_t)
     impl_afw_stream_release,
+    (afw_stream_flush_t)
     impl_afw_stream_flush,
+    (afw_stream_read_t)
     impl_afw_stream_read,
+    (afw_stream_write_t)
     impl_afw_stream_write
 };
 

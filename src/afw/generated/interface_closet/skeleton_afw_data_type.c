@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_data_type */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_DATA_TYPE_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_data_type_impl_declares.h"
 
 /*
@@ -20,17 +22,13 @@
  */
 const afw_utf8_t *
 impl_afw_data_type_internal_to_utf8(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const void * from_internal,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -38,18 +36,14 @@ impl_afw_data_type_internal_to_utf8(
  */
 void
 impl_afw_data_type_utf8_to_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     void * to_internal,
     const afw_utf8_t * from_utf8,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -57,17 +51,13 @@ impl_afw_data_type_utf8_to_internal(
  */
 int
 impl_afw_data_type_compare_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const void * internal1,
     const void * internal2,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -75,19 +65,15 @@ impl_afw_data_type_compare_internal(
  */
 void
 impl_afw_data_type_convert_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     void * to_internal,
     const void * from_internal,
     const afw_data_type_t * to_data_type,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -95,18 +81,14 @@ impl_afw_data_type_convert_internal(
  */
 void
 impl_afw_data_type_clone_internal(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     void * to_internal,
     const void * from_internal,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -114,17 +96,13 @@ impl_afw_data_type_clone_internal(
  */
 void
 impl_afw_data_type_value_compiler_listing(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const afw_writer_t * writer,
     const afw_value_t * value,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -132,15 +110,11 @@ impl_afw_data_type_value_compiler_listing(
  */
 void
 impl_afw_data_type_write_as_expression(
-    const afw_data_type_t * instance,
+    AFW_DATA_TYPE_SELF_T *self,
     const afw_writer_t * writer,
     const void * from_internal,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_server_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_server_inf'.
+ *
+ *   AFW_SERVER_SELF_T - (optional) defaults to 'const afw_server_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_SERVER_SELF_T
+#define AFW_SERVER_SELF_T const afw_server_t
+#endif
+
 #ifndef AFW_SERVER_INF_ONLY
 
 #ifndef impl_afw_server_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_server_release(
-    const afw_server_t * instance,
+    AFW_SERVER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_server_release(
 /* Declare method run */
 AFW_DECLARE_STATIC(void)
 impl_afw_server_run(
-    const afw_server_t * instance,
+    AFW_SERVER_SELF_T *self,
     const afw_request_handler_t * handler,
     afw_xctx_t * xctx);
 #endif
@@ -135,7 +144,9 @@ impl_afw_server_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_server_release_t)
     impl_afw_server_release,
+    (afw_server_run_t)
     impl_afw_server_run
 };
 

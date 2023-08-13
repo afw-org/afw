@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_pool_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_pool_inf'.
+ *
+ *   AFW_POOL_SELF_T - (optional) defaults to 'const afw_pool_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_POOL_SELF_T
+#define AFW_POOL_SELF_T const afw_pool_t
+#endif
+
 #ifndef AFW_POOL_INF_ONLY
 
 #ifndef impl_afw_pool_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_release(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_pool_release(
 /* Declare method add_reference */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_add_reference(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -115,7 +124,7 @@ impl_afw_pool_add_reference(
 /* Declare method destroy */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_destroy(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -123,14 +132,14 @@ impl_afw_pool_destroy(
 /* Declare method get_apr_pool */
 AFW_DECLARE_STATIC(apr_pool_t *)
 impl_afw_pool_get_apr_pool(
-    const afw_pool_t * instance);
+    AFW_POOL_SELF_T *self);
 #endif
 
 #ifndef impl_afw_pool_calloc
 /* Declare method calloc */
 AFW_DECLARE_STATIC(void *)
 impl_afw_pool_calloc(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx);
 #endif
@@ -139,7 +148,7 @@ impl_afw_pool_calloc(
 /* Declare method malloc */
 AFW_DECLARE_STATIC(void *)
 impl_afw_pool_malloc(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx);
 #endif
@@ -148,7 +157,7 @@ impl_afw_pool_malloc(
 /* Declare method free */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_free(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t * xctx);
@@ -158,7 +167,7 @@ impl_afw_pool_free(
 /* Declare method get_symbol_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_pool_get_symbol_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * symbol,
     const afw_boolean_t * found,
     afw_xctx_t * xctx);
@@ -168,7 +177,7 @@ impl_afw_pool_get_symbol_value(
 /* Declare method get_named_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_pool_get_named_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_utf8_t * name,
     const afw_boolean_t * found,
     afw_xctx_t * xctx);
@@ -178,7 +187,7 @@ impl_afw_pool_get_named_value(
 /* Declare method set_symbol_value */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_set_symbol_value(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * symbol,
     const afw_value_t * value,
     afw_xctx_t * xctx);
@@ -188,7 +197,7 @@ impl_afw_pool_set_symbol_value(
 /* Declare method set_local_variable */
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_pool_set_local_variable(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     const afw_value_block_symbol_t * name,
     const afw_value_t * value,
     afw_boolean_t replace,
@@ -199,7 +208,7 @@ impl_afw_pool_set_local_variable(
 /* Declare method register_cleanup_before */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_register_cleanup_before(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
@@ -210,7 +219,7 @@ impl_afw_pool_register_cleanup_before(
 /* Declare method deregister_cleanup */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_deregister_cleanup(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
@@ -221,7 +230,7 @@ impl_afw_pool_deregister_cleanup(
 /* Declare method release_debug */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_release_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
 #endif
@@ -230,7 +239,7 @@ impl_afw_pool_release_debug(
 /* Declare method add_reference_debug */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_add_reference_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
 #endif
@@ -239,7 +248,7 @@ impl_afw_pool_add_reference_debug(
 /* Declare method destroy_debug */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_destroy_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
 #endif
@@ -248,7 +257,7 @@ impl_afw_pool_destroy_debug(
 /* Declare method calloc_debug */
 AFW_DECLARE_STATIC(void *)
 impl_afw_pool_calloc_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
@@ -258,7 +267,7 @@ impl_afw_pool_calloc_debug(
 /* Declare method malloc_debug */
 AFW_DECLARE_STATIC(void *)
 impl_afw_pool_malloc_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
@@ -268,7 +277,7 @@ impl_afw_pool_malloc_debug(
 /* Declare method free_debug */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_free_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t * xctx,
@@ -279,7 +288,7 @@ impl_afw_pool_free_debug(
 /* Declare method register_cleanup_before_debug */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_register_cleanup_before_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
@@ -291,7 +300,7 @@ impl_afw_pool_register_cleanup_before_debug(
 /* Declare method deregister_cleanup_debug */
 AFW_DECLARE_STATIC(void)
 impl_afw_pool_deregister_cleanup_debug(
-    const afw_pool_t * instance,
+    AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
     afw_pool_cleanup_function_p_t cleanup,
@@ -322,26 +331,47 @@ impl_afw_pool_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_pool_release_t)
     impl_afw_pool_release,
+    (afw_pool_add_reference_t)
     impl_afw_pool_add_reference,
+    (afw_pool_destroy_t)
     impl_afw_pool_destroy,
+    (afw_pool_get_apr_pool_t)
     impl_afw_pool_get_apr_pool,
+    (afw_pool_calloc_t)
     impl_afw_pool_calloc,
+    (afw_pool_malloc_t)
     impl_afw_pool_malloc,
+    (afw_pool_free_t)
     impl_afw_pool_free,
+    (afw_pool_get_symbol_value_t)
     impl_afw_pool_get_symbol_value,
+    (afw_pool_get_named_value_t)
     impl_afw_pool_get_named_value,
+    (afw_pool_set_symbol_value_t)
     impl_afw_pool_set_symbol_value,
+    (afw_pool_set_local_variable_t)
     impl_afw_pool_set_local_variable,
+    (afw_pool_register_cleanup_before_t)
     impl_afw_pool_register_cleanup_before,
+    (afw_pool_deregister_cleanup_t)
     impl_afw_pool_deregister_cleanup,
+    (afw_pool_release_debug_t)
     impl_afw_pool_release_debug,
+    (afw_pool_add_reference_debug_t)
     impl_afw_pool_add_reference_debug,
+    (afw_pool_destroy_debug_t)
     impl_afw_pool_destroy_debug,
+    (afw_pool_calloc_debug_t)
     impl_afw_pool_calloc_debug,
+    (afw_pool_malloc_debug_t)
     impl_afw_pool_malloc_debug,
+    (afw_pool_free_debug_t)
     impl_afw_pool_free_debug,
+    (afw_pool_register_cleanup_before_debug_t)
     impl_afw_pool_register_cleanup_before_debug,
+    (afw_pool_deregister_cleanup_debug_t)
     impl_afw_pool_deregister_cleanup_debug
 };
 

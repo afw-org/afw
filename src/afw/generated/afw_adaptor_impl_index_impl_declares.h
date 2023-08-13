@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_impl_index_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_impl_index_inf'.
+ *
+ *   AFW_ADAPTOR_IMPL_INDEX_SELF_T - (optional) defaults to 'const afw_adaptor_impl_index_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_IMPL_INDEX_SELF_T
+#define AFW_ADAPTOR_IMPL_INDEX_SELF_T const afw_adaptor_impl_index_t
+#endif
+
 #ifndef AFW_ADAPTOR_IMPL_INDEX_INF_ONLY
 
 #ifndef impl_afw_adaptor_impl_index_open
 /* Declare method open */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_impl_index_open(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
     afw_boolean_t integer,
@@ -114,7 +123,7 @@ impl_afw_adaptor_impl_index_open(
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_impl_index_release(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -122,7 +131,7 @@ impl_afw_adaptor_impl_index_release(
 /* Declare method get_index_definitions */
 AFW_DECLARE_STATIC(const afw_object_t *)
 impl_afw_adaptor_impl_index_get_index_definitions(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -130,7 +139,7 @@ impl_afw_adaptor_impl_index_get_index_definitions(
 /* Declare method update_index_definitions */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_impl_index_update_index_definitions(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_object_t * indexDefinitions,
     afw_xctx_t * xctx);
 #endif
@@ -139,7 +148,7 @@ impl_afw_adaptor_impl_index_update_index_definitions(
 /* Declare method add */
 AFW_DECLARE_STATIC(afw_rc_t)
 impl_afw_adaptor_impl_index_add(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * key,
@@ -153,7 +162,7 @@ impl_afw_adaptor_impl_index_add(
 /* Declare method delete */
 AFW_DECLARE_STATIC(afw_rc_t)
 impl_afw_adaptor_impl_index_delete(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * key,
@@ -166,7 +175,7 @@ impl_afw_adaptor_impl_index_delete(
 /* Declare method replace */
 AFW_DECLARE_STATIC(afw_rc_t)
 impl_afw_adaptor_impl_index_replace(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * key,
@@ -180,7 +189,7 @@ impl_afw_adaptor_impl_index_replace(
 /* Declare method drop */
 AFW_DECLARE_STATIC(afw_rc_t)
 impl_afw_adaptor_impl_index_drop(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
     const afw_pool_t * pool,
@@ -191,7 +200,7 @@ impl_afw_adaptor_impl_index_drop(
 /* Declare method open_cursor */
 AFW_DECLARE_STATIC(afw_adaptor_impl_index_cursor_t *)
 impl_afw_adaptor_impl_index_open_cursor(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * index_key,
     int operator,
@@ -205,7 +214,7 @@ impl_afw_adaptor_impl_index_open_cursor(
 /* Declare method get_session */
 AFW_DECLARE_STATIC(const afw_adaptor_session_t *)
 impl_afw_adaptor_impl_index_get_session(
-    const afw_adaptor_impl_index_t * instance,
+    AFW_ADAPTOR_IMPL_INDEX_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 #endif
@@ -232,15 +241,25 @@ impl_afw_adaptor_impl_index_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_impl_index_open_t)
     impl_afw_adaptor_impl_index_open,
+    (afw_adaptor_impl_index_release_t)
     impl_afw_adaptor_impl_index_release,
+    (afw_adaptor_impl_index_get_index_definitions_t)
     impl_afw_adaptor_impl_index_get_index_definitions,
+    (afw_adaptor_impl_index_update_index_definitions_t)
     impl_afw_adaptor_impl_index_update_index_definitions,
+    (afw_adaptor_impl_index_add_t)
     impl_afw_adaptor_impl_index_add,
+    (afw_adaptor_impl_index_delete_t)
     impl_afw_adaptor_impl_index_delete,
+    (afw_adaptor_impl_index_replace_t)
     impl_afw_adaptor_impl_index_replace,
+    (afw_adaptor_impl_index_drop_t)
     impl_afw_adaptor_impl_index_drop,
+    (afw_adaptor_impl_index_open_cursor_t)
     impl_afw_adaptor_impl_index_open_cursor,
+    (afw_adaptor_impl_index_get_session_t)
     impl_afw_adaptor_impl_index_get_session
 };
 

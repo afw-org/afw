@@ -244,11 +244,16 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
             fd.write(' *\n')
             fd.write(' * Before including, define the following symbols:\n')
             fd.write(' *\n')
-            fd.write(' * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.\n')
+            fd.write(' *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.\n')
             fd.write(' *\n')
-            fd.write(' * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.\n')
+            fd.write(' *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.\n')
             fd.write(' *\n')
-            fd.write(' * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_' + interface_name + '_inf.\n')
+            fd.write(' *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to \'impl_' + interface_name + '_inf\'.\n')
+            fd.write(' *\n')
+            interface_self_t = interface_name.upper() + '_SELF_T'
+            fd.write(' *   ' + interface_self_t + ' - (optional) defaults to \'const ' + interface_name + '_t\'.\n')
+            fd.write(' *       The const is not required and normally should not be specified. It is\n')
+            fd.write(' *       the default for historical reasons.\n')
             fd.write(' *\n')
             if interface.find('inf_variable') is not None:
                 fd.write(' * - AFW_IMPLEMENTATION_INF_VARIABLES - (optional) this will be added at the end of\n')
@@ -302,7 +307,15 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
             fd.write('#define _AFW_IMPLEMENTATION_SPECIFIC_ NULL\n')
             fd.write('#endif\n')
 
+            # AFW_IMPLEMENTATION_SELF_T
+
+            fd.write('\n')
+            fd.write('#ifndef ' + interface_self_t + '\n')
+            fd.write('#define ' + interface_self_t + ' const ' + interface_name + '_t\n')
+            fd.write('#endif\n')           
+
             # method declarations
+            fd.write('\n')
             fd.write('#ifndef ' + inf_only + '\n')
             for method in interface.findall('method'):
                 method_name = method.get('name')
@@ -313,11 +326,20 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
                 fd.write('AFW_DECLARE_STATIC(' + return_node.get('type') + ')\n')
                 fd.write(method_function + '(\n')
                 ending = ''
+                first = True
                 for parameter in method.findall('parameter'):
-                    if parameter.get('type') == '...':
-                        fd.write(ending + '    ' + parameter.get('type'))
+                    if first:
+                        first_parameter_type = 'const ' + interface_name + '_t *'
+                        if parameter.get('type') != first_parameter_type:
+                            msg.error_exit('The first parameter of ' + interface_name + ' method ' + method_name + ' must be type="' + first_parameter_type + '"')
+                            fd.write(ending + '    ' + parameter.get('type'))
+                        fd.write(ending + '    ' + interface_self_t + ' *self')
+                        first = False
                     else:
-                        fd.write(ending + '    ' + parameter.get('type') + ' ' + parameter.get('name'))
+                        if parameter.get('type') == '...':
+                            fd.write(ending + '    ' + parameter.get('type'))
+                        else:
+                            fd.write(ending + '    ' + parameter.get('type') + ' ' + parameter.get('name'))
                     ending = ',\n'
                 fd.write(');\n')
                 fd.write('#endif\n')
@@ -350,7 +372,8 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
 
             ending = ''
             for method in interface.findall('method'):
-                fd.write(ending + '    impl_' + interface_name + '_' + method.get('name'))
+                fd.write(ending + '    (' + interface_name + '_' + method.get('name') + '_t)\n')
+                fd.write('    impl_' + interface_name + '_' + method.get('name'))
                 ending = ',\n'
             if interface.find('inf_variable') is not None:
                 fd.write("\n#ifdef AFW_IMPLEMENTATION_INF_VARIABLES")
@@ -483,6 +506,9 @@ def generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('\n')
             fd.write('/* Declares and rti/inf defines for interface ' + interface_name + ' */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"\n')
+            interface_self_t = interface_name.upper() + '_SELF_T'
+            fd.write('/* Change this to the name of the self typedef for this implementation */\n')
+            fd.write('#define ' + interface_self_t + ' <afwdev {prefixed_interface_name}>_self_t\n')
             fd.write('#include "' + interface_name + '_impl_declares.h"\n')
 
             # optional before function defines
@@ -490,8 +516,6 @@ def generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path):
             if model_c_code is not None:
                 if model_c_code.text is not None:
                     fd.write(model_c_code.text)
-
-            interface_self_t = '<afwdev {prefixed_interface_name}>_self_t'
  
             # create function
             model_c_code = interface.find("model_c_code[@label='create']")
@@ -569,8 +593,12 @@ def generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path):
                 fd.write(return_node.get('type') + '\n')
                 fd.write('impl_' + interface_name + '_' + method_name + '(\n')
                 ending = ''
+                first = True
                 for parameter in method.findall('parameter'):
-                    if parameter.get('type') == '...':
+                    if first:
+                        first = False
+                        fd.write('    ' + interface_self_t + ' *self')
+                    elif parameter.get('type') == '...':
                         fd.write(ending + '    ' + parameter.get('type'))
                     else:
                         fd.write(ending + '    ' + parameter.get('type') + ' ' + parameter.get('name'))
@@ -580,31 +608,19 @@ def generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path):
 
 
                 # Get optional method code
-                model_c_self_code = method.find("model_c_code[@label='assign_self']")
                 model_c_body_code = method.find("model_c_code[@label='method_body']")
-
-                # assign self
-                if model_c_self_code is not None:
-                    if model_c_self_code.text is not None:
-                        fd.write(model_c_self_code.text)
-                # elif model_c_body_code is not None:
-                #     fd.write('    ' + interface_self_t + ' *self =\n')
-                #     fd.write('        (' + interface_self_t + ' *)instance;\n')
-                else:
-                    fd.write('//    ' + interface_self_t + ' *self =\n')
-                    fd.write('//        (' + interface_self_t + ' *)instance;\n')
-
 
                 # method body
                 if model_c_body_code is not None:
                     if model_c_body_code.text is not None:
                         fd.write(model_c_body_code.text)
+                        if not model_c_body_code.text.endswith('\n'):
+                            fd.write('\n')
                 else:
-                    fd.write('\n')
                     fd.write('    /** @todo Add code to implement method. */\n')
                     fd.write('    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);\n')
 
-                fd.write('\n}\n')
+                fd.write('}\n')
 
 
 # ---- skeleton_header.h ----

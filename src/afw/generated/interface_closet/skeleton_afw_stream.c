@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_stream */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_STREAM_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_stream_impl_declares.h"
 
 /*
@@ -20,15 +22,11 @@
  */
 void
 impl_afw_stream_release(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -36,15 +34,11 @@ impl_afw_stream_release(
  */
 void
 impl_afw_stream_flush(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -52,17 +46,13 @@ impl_afw_stream_flush(
  */
 void
 impl_afw_stream_read(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -70,15 +60,11 @@ impl_afw_stream_read(
  */
 void
 impl_afw_stream_write(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_request_handler_factory_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_request_handler_factory_inf'.
+ *
+ *   AFW_REQUEST_HANDLER_FACTORY_SELF_T - (optional) defaults to 'const afw_request_handler_factory_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_REQUEST_HANDLER_FACTORY_SELF_T
+#define AFW_REQUEST_HANDLER_FACTORY_SELF_T const afw_request_handler_factory_t
+#endif
+
 #ifndef AFW_REQUEST_HANDLER_FACTORY_INF_ONLY
 
 #ifndef impl_afw_request_handler_factory_create_request_handler_cede_p
 /* Declare method create_request_handler_cede_p */
 AFW_DECLARE_STATIC(const afw_request_handler_t *)
 impl_afw_request_handler_factory_create_request_handler_cede_p(
-    const afw_request_handler_factory_t * instance,
+    AFW_REQUEST_HANDLER_FACTORY_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -129,6 +138,7 @@ impl_afw_request_handler_factory_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_request_handler_factory_create_request_handler_cede_p_t)
     impl_afw_request_handler_factory_create_request_handler_cede_p
 };
 

@@ -13,6 +13,8 @@
 
 /* Declares and rti/inf defines for interface afw_adaptor_session */
 #define AFW_IMPLEMENTATION_ID "<afwdev {implementation_id}>"
+/* Change this to the name of the self typedef for this implementation */
+#define AFW_ADAPTOR_SESSION_SELF_T <afwdev {prefixed_interface_name}>_self_t
 #include "afw_adaptor_session_impl_declares.h"
 
 /* Create for <afwdev {implementation_id}> implementation of afw_adaptor_session */
@@ -26,7 +28,7 @@
 
     /* Using a subpool of the p passed, allocate and initialize self. */
     p = afw_pool_create(p, xctx);
-    self = afw_pool_calloc_type(p,<afwdev {prefixed_interface_name}>_self_t, xctx);
+    self = afw_pool_calloc_type(p,AFW_ADAPTOR_SESSION_SELF_T, xctx);
     self->pub.inf = &impl_afw_adaptor_session_inf;
     self->pub.p = p;
 
@@ -42,15 +44,11 @@
  */
 void
 impl_afw_adaptor_session_destroy(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -58,7 +56,7 @@ impl_afw_adaptor_session_destroy(
  */
 void
 impl_afw_adaptor_session_retrieve_objects(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
@@ -68,12 +66,8 @@ impl_afw_adaptor_session_retrieve_objects(
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -81,7 +75,7 @@ impl_afw_adaptor_session_retrieve_objects(
  */
 void
 impl_afw_adaptor_session_get_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -91,12 +85,8 @@ impl_afw_adaptor_session_get_object(
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -104,7 +94,7 @@ impl_afw_adaptor_session_get_object(
  */
 const afw_utf8_t *
 impl_afw_adaptor_session_add_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * suggested_object_id,
@@ -112,12 +102,8 @@ impl_afw_adaptor_session_add_object(
     const afw_object_t * adaptor_type_specific,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -125,7 +111,7 @@ impl_afw_adaptor_session_add_object(
  */
 void
 impl_afw_adaptor_session_modify_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -133,12 +119,8 @@ impl_afw_adaptor_session_modify_object(
     const afw_object_t * adaptor_type_specific,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -146,7 +128,7 @@ impl_afw_adaptor_session_modify_object(
  */
 void
 impl_afw_adaptor_session_replace_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
@@ -154,12 +136,8 @@ impl_afw_adaptor_session_replace_object(
     const afw_object_t * adaptor_type_specific,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -167,19 +145,15 @@ impl_afw_adaptor_session_replace_object(
  */
 void
 impl_afw_adaptor_session_delete_object(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     const afw_adaptor_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_object_t * adaptor_type_specific,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -188,15 +162,11 @@ impl_afw_adaptor_session_delete_object(
  */
 const afw_adaptor_transaction_t *
 impl_afw_adaptor_session_begin_transaction(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -205,15 +175,11 @@ impl_afw_adaptor_session_begin_transaction(
  */
 const afw_adaptor_journal_t *
 impl_afw_adaptor_session_get_journal_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -222,15 +188,11 @@ impl_afw_adaptor_session_get_journal_interface(
  */
 const afw_adaptor_key_value_t *
 impl_afw_adaptor_session_get_key_value_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -239,15 +201,11 @@ impl_afw_adaptor_session_get_key_value_interface(
  */
 const afw_adaptor_impl_index_t *
 impl_afw_adaptor_session_get_index_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }
 
 /*
@@ -256,13 +214,9 @@ impl_afw_adaptor_session_get_index_interface(
  */
 const afw_adaptor_object_type_cache_t *
 impl_afw_adaptor_session_get_object_type_cache_interface(
-    const afw_adaptor_session_t * instance,
+    AFW_ADAPTOR_SESSION_SELF_T *self,
     afw_xctx_t * xctx)
 {
-//    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
-
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-
 }

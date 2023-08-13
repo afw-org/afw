@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_object_setter_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_object_setter_inf'.
+ *
+ *   AFW_OBJECT_SETTER_SELF_T - (optional) defaults to 'const afw_object_setter_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_OBJECT_SETTER_SELF_T
+#define AFW_OBJECT_SETTER_SELF_T const afw_object_setter_t
+#endif
+
 #ifndef AFW_OBJECT_SETTER_INF_ONLY
 
 #ifndef impl_afw_object_setter_set_immutable
 /* Declare method set_immutable */
 AFW_DECLARE_STATIC(void)
 impl_afw_object_setter_set_immutable(
-    const afw_object_setter_t * instance,
+    AFW_OBJECT_SETTER_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -108,7 +117,7 @@ impl_afw_object_setter_set_immutable(
 /* Declare method set_property */
 AFW_DECLARE_STATIC(void)
 impl_afw_object_setter_set_property(
-    const afw_object_setter_t * instance,
+    AFW_OBJECT_SETTER_SELF_T *self,
     const afw_utf8_t * property_name,
     const afw_value_t * value,
     afw_xctx_t * xctx);
@@ -137,7 +146,9 @@ impl_afw_object_setter_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_object_setter_set_immutable_t)
     impl_afw_object_setter_set_immutable,
+    (afw_object_setter_set_property_t)
     impl_afw_object_setter_set_property
 };
 

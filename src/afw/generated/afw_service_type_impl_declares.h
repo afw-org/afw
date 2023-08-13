@@ -44,11 +44,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_service_type_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_service_type_inf'.
+ *
+ *   AFW_SERVICE_TYPE_SELF_T - (optional) defaults to 'const afw_service_type_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -94,13 +98,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_SERVICE_TYPE_SELF_T
+#define AFW_SERVICE_TYPE_SELF_T const afw_service_type_t
+#endif
+
 #ifndef AFW_SERVICE_TYPE_INF_ONLY
 
 #ifndef impl_afw_service_type_related_instance_count
 /* Declare method related_instance_count */
 AFW_DECLARE_STATIC(afw_integer_t)
 impl_afw_service_type_related_instance_count(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_utf8_t * id,
     afw_xctx_t * xctx);
 #endif
@@ -109,7 +118,7 @@ impl_afw_service_type_related_instance_count(
 /* Declare method start_cede_p */
 AFW_DECLARE_STATIC(void)
 impl_afw_service_type_start_cede_p(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -119,7 +128,7 @@ impl_afw_service_type_start_cede_p(
 /* Declare method stop */
 AFW_DECLARE_STATIC(void)
 impl_afw_service_type_stop(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_utf8_t * id,
     afw_xctx_t * xctx);
 #endif
@@ -128,7 +137,7 @@ impl_afw_service_type_stop(
 /* Declare method restart_cede_p */
 AFW_DECLARE_STATIC(void)
 impl_afw_service_type_restart_cede_p(
-    const afw_service_type_t * instance,
+    AFW_SERVICE_TYPE_SELF_T *self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -157,9 +166,13 @@ impl_afw_service_type_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_service_type_related_instance_count_t)
     impl_afw_service_type_related_instance_count,
+    (afw_service_type_start_cede_p_t)
     impl_afw_service_type_start_cede_p,
+    (afw_service_type_stop_t)
     impl_afw_service_type_stop,
+    (afw_service_type_restart_cede_p_t)
     impl_afw_service_type_restart_cede_p
 };
 

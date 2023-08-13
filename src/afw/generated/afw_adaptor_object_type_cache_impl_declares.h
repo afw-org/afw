@@ -46,11 +46,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_adaptor_object_type_cache_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_adaptor_object_type_cache_inf'.
+ *
+ *   AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T - (optional) defaults to 'const afw_adaptor_object_type_cache_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -96,13 +100,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T
+#define AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T const afw_adaptor_object_type_cache_t
+#endif
+
 #ifndef AFW_ADAPTOR_OBJECT_TYPE_CACHE_INF_ONLY
 
 #ifndef impl_afw_adaptor_object_type_cache_get
 /* Declare method get */
 AFW_DECLARE_STATIC(const afw_object_type_t *)
 impl_afw_adaptor_object_type_cache_get(
-    const afw_adaptor_object_type_cache_t * instance,
+    AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T *self,
     const afw_utf8_t * object_type_id,
     afw_boolean_t * final_result,
     afw_xctx_t * xctx);
@@ -112,7 +121,7 @@ impl_afw_adaptor_object_type_cache_get(
 /* Declare method set */
 AFW_DECLARE_STATIC(void)
 impl_afw_adaptor_object_type_cache_set(
-    const afw_adaptor_object_type_cache_t * instance,
+    AFW_ADAPTOR_OBJECT_TYPE_CACHE_SELF_T *self,
     const afw_object_type_t * object_type,
     afw_xctx_t * xctx);
 #endif
@@ -140,7 +149,9 @@ impl_afw_adaptor_object_type_cache_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_adaptor_object_type_cache_get_t)
     impl_afw_adaptor_object_type_cache_get,
+    (afw_adaptor_object_type_cache_set_t)
     impl_afw_adaptor_object_type_cache_set
 };
 

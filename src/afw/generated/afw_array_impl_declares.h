@@ -43,11 +43,15 @@ AFW_BEGIN_DECLARES
  *
  * Before including, define the following symbols:
  *
- * - AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
+ *   AFW_IMPLEMENTATION_ID - Implementation id string for this implementation.
  *
- * - AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
+ *   AFW_IMPLEMENTATION_INF_SPECIFIER - (optional) defaults to static.
  *
- * - AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to impl_afw_array_inf.
+ *   AFW_IMPLEMENTATION_INF_LABEL - (optional) defaults to 'impl_afw_array_inf'.
+ *
+ *   AFW_ARRAY_SELF_T - (optional) defaults to 'const afw_array_t'.
+ *       The const is not required and normally should not be specified. It is
+ *       the default for historical reasons.
  *
  * Example:
  *~~~~~~~~~~~~~~~{.c}
@@ -93,13 +97,18 @@ AFW_BEGIN_DECLARES
 #else
 #define _AFW_IMPLEMENTATION_SPECIFIC_ NULL
 #endif
+
+#ifndef AFW_ARRAY_SELF_T
+#define AFW_ARRAY_SELF_T const afw_array_t
+#endif
+
 #ifndef AFW_ARRAY_INF_ONLY
 
 #ifndef impl_afw_array_release
 /* Declare method release */
 AFW_DECLARE_STATIC(void)
 impl_afw_array_release(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -107,7 +116,7 @@ impl_afw_array_release(
 /* Declare method get_count */
 AFW_DECLARE_STATIC(afw_size_t)
 impl_afw_array_get_count(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -115,7 +124,7 @@ impl_afw_array_get_count(
 /* Declare method get_data_type */
 AFW_DECLARE_STATIC(const afw_data_type_t *)
 impl_afw_array_get_data_type(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 
@@ -123,7 +132,7 @@ impl_afw_array_get_data_type(
 /* Declare method get_entry_meta */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_entry_meta(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -133,7 +142,7 @@ impl_afw_array_get_entry_meta(
 /* Declare method get_entry_internal */
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_array_get_entry_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_data_type_t * * data_type,
     const void * * internal,
@@ -144,7 +153,7 @@ impl_afw_array_get_entry_internal(
 /* Declare method get_entry_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_entry_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -154,7 +163,7 @@ impl_afw_array_get_entry_value(
 /* Declare method get_next_entry_meta */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_next_entry_meta(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -164,7 +173,7 @@ impl_afw_array_get_next_entry_meta(
 /* Declare method get_next_internal */
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_array_get_next_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
@@ -175,7 +184,7 @@ impl_afw_array_get_next_internal(
 /* Declare method get_next_value */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_next_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -185,7 +194,7 @@ impl_afw_array_get_next_value(
 /* Declare method get_setter */
 AFW_DECLARE_STATIC(const afw_array_setter_t *)
 impl_afw_array_get_setter(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
 #endif
@@ -212,15 +221,25 @@ impl_afw_array_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
+    (afw_array_release_t)
     impl_afw_array_release,
+    (afw_array_get_count_t)
     impl_afw_array_get_count,
+    (afw_array_get_data_type_t)
     impl_afw_array_get_data_type,
+    (afw_array_get_entry_meta_t)
     impl_afw_array_get_entry_meta,
+    (afw_array_get_entry_internal_t)
     impl_afw_array_get_entry_internal,
+    (afw_array_get_entry_value_t)
     impl_afw_array_get_entry_value,
+    (afw_array_get_next_entry_meta_t)
     impl_afw_array_get_next_entry_meta,
+    (afw_array_get_next_internal_t)
     impl_afw_array_get_next_internal,
+    (afw_array_get_next_value_t)
     impl_afw_array_get_next_value,
+    (afw_array_get_setter_t)
     impl_afw_array_get_setter
 };
 
