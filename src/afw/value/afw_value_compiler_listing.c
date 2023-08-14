@@ -377,7 +377,8 @@ impl_symbol_listing(
         if (e->type.data_type_parameter_contextual) {
             afw_writer_write_z(writer, " dataTypeParameter=", xctx);
             afw_writer_write(writer,
-                e->type.data_type_parameter_contextual->source_location->s +
+                e->type.data_type_parameter_contextual->compiled_value->
+                    full_source->s +
                     e->type.data_type_parameter_contextual->value_offset,
                 e->type.data_type_parameter_contextual->value_size,
                 xctx);
