@@ -751,3 +751,41 @@ afw_value_compiler_listing_value(
         afw_value_produce_compiler_listing(instance, writer, xctx);
     }
 }
+
+
+AFW_DEFINE_INTERNAL(void)
+afw_value_compiler_listing_name_and_type(
+    const afw_writer_t *writer,
+    const afw_utf8_t *name,
+    const afw_value_type_t *type,
+    afw_xctx_t *xctx)
+{
+    if (name) {
+        afw_writer_write_utf8(writer, name, xctx);
+    }
+    if (type) {
+        if (name) {
+            afw_writer_write_z(writer, ": ", xctx);
+        }
+        if (type->data_type) {
+            afw_writer_write_utf8(writer,
+                &type->data_type->data_type_id, xctx);
+            if (type->data_type_parameter_contextual) {
+                afw_writer_write_z(writer, "<", xctx);
+                afw_writer_write(writer,
+                    type->data_type_parameter_contextual->compiled_value->
+                        full_source->s +
+                        type->data_type_parameter_contextual->value_offset,
+                    type->data_type_parameter_contextual->value_size,
+                    xctx);
+                afw_writer_write_z(writer, ">", xctx);
+            }
+        }
+        else {
+            afw_writer_write_z(writer, "any", xctx);
+        }
+    }
+}
+
+
+

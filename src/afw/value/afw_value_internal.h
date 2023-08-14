@@ -734,7 +734,7 @@ afw_value_compiler_listing_begin_value(
     const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
-AFW_DEFINE_INTERNAL(void)
+AFW_DECLARE_INTERNAL(void)
 afw_value_compiler_listing_end_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
@@ -746,10 +746,17 @@ afw_value_compiler_listing_call_args(
     const afw_value_call_args_t *args,
     afw_xctx_t *xctx);
 
-AFW_DEFINE_INTERNAL(void)
+AFW_DECLARE_INTERNAL(void)
 afw_value_compiler_listing_value(
     const afw_value_t *instance,
     const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_INTERNAL(void)
+afw_value_compiler_listing_name_and_type(
+    const afw_writer_t *writer,
+    const afw_utf8_t *name,
+    const afw_value_type_t *type,
     afw_xctx_t *xctx);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)

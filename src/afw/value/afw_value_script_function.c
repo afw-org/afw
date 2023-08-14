@@ -99,35 +99,6 @@ impl_afw_value_get_data_type(
 }
 
 
-static void
-impl_decompile_type(
-    const afw_writer_t *writer,
-    const afw_value_type_t *type,
-    afw_xctx_t *xctx)
-{
-    afw_writer_write_z(writer, "(", xctx);
-    if (type) {
-        if (type->data_type) {
-            afw_writer_write_utf8(writer,
-                &type->data_type->data_type_id, xctx);
-            if (type->data_type_parameter_contextual) {
-                afw_writer_write_z(writer, " ", xctx);
-                afw_writer_write(writer,
-                    type->data_type_parameter_contextual->compiled_value->
-                        full_source->s +
-                        type->data_type_parameter_contextual->value_offset,
-                    type->data_type_parameter_contextual->value_size,
-                    xctx);
-            }
-        }
-        else {
-            afw_writer_write_z(writer, "any", xctx);
-        }
-    }
-    afw_writer_write_z(writer, ") ", xctx);
-}
-
-
 /*
  * Implementation of method compiler_listing for interface afw_value.
  */
@@ -148,14 +119,13 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_increment_indent(writer, xctx);
 
     afw_writer_write_z(writer, "returns: ", xctx);
-    impl_decompile_type(writer, self->returns, xctx);
+    afw_value_compiler_listing_name_and_type(writer, NULL, self->returns, xctx);
     afw_writer_write_eol(writer, xctx);
 
     for (i = 0; i < self->count; i++) {
         afw_writer_write_z(writer, "parameter: ", xctx);
-        impl_decompile_type(writer, self->parameters[i]->type, xctx);
-        afw_writer_write_z(writer, " ", xctx);
-        afw_writer_write_utf8(writer, self->parameters[i]->name, xctx);
+        afw_value_compiler_listing_name_and_type(
+            writer, self->parameters[i]->name, self->parameters[i]->type, xctx);
         afw_writer_write_eol(writer, xctx);
     }
 
@@ -181,7 +151,7 @@ impl_afw_value_decompile(
     afw_size_t i;
 
     afw_writer_write_z(writer, "function ", xctx);
-    impl_decompile_type(writer, self->returns, xctx);
+    afw_value_compiler_listing_name_and_type(writer, NULL, self->returns, xctx);
 
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
@@ -196,7 +166,8 @@ impl_afw_value_decompile(
                 afw_writer_write_eol(writer, xctx);
             }
         }
-        impl_decompile_type(writer, self->parameters[i]->type, xctx);
+        afw_value_compiler_listing_name_and_type(
+            writer, NULL, self->parameters[i]->type, xctx);
         afw_writer_write_utf8(writer, self->parameters[i]->name, xctx);
     }
     afw_writer_write_z(writer, ")", xctx);
