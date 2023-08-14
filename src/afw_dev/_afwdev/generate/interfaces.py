@@ -329,7 +329,9 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
                 first = True
                 for parameter in method.findall('parameter'):
                     if first:
-                        first_parameter_type = 'const ' + interface_name + '_t *'
+                        first_parameter_type = interface_name + '_t *'
+                        if (interface.get('self_const', 'true') != 'false'):
+                            first_parameter_type = 'const ' + first_parameter_type
                         if parameter.get('type') != first_parameter_type:
                             msg.error_exit('The first parameter of ' + interface_name + ' method ' + method_name + ' must be type="' + first_parameter_type + '"')
                             fd.write(ending + '    ' + parameter.get('type'))
