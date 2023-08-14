@@ -186,17 +186,17 @@ struct afw_value_type_list_s {
  *
  * There must be and afw_s_ with each name in map.
  */
-#define AFW_VALUE_FRAME_SYMBOL_TYPE(XX)                                        \
-                                                                               \
-    XX(undeclared, "Undeclared symbol")                                        \
-                                                                               \
-    XX(const, "A const variable")                                              \
-                                                                               \
-    XX(function, "A function")                                                 \
-                                                                               \
-    XX(let, "A let variable")                                                  \
-                                                                               \
-    XX(parameter, "A function parameter")                                      \
+#define AFW_VALUE_FRAME_SYMBOL_TYPE(XX)                                     \
+                                                                            \
+    XX(undeclared, "Undeclared symbol")                                     \
+                                                                            \
+    XX(const, "A const variable")                                           \
+                                                                            \
+    XX(function, "A function")                                              \
+                                                                            \
+    XX(let, "A let variable")                                               \
+                                                                            \
+    XX(parameter, "A function parameter")                                   \
 
 
 /**
