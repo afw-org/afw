@@ -125,7 +125,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
 {
     const afw_value_t *result;
     afw_size_t start_offset;
-    afw_value_block_symbol_t *symbol;
+    afw_value_frame_symbol_t *symbol;
     const afw_value_function_definition_t *function;
     const afw_utf8_t *type_id, *untyped_function_id;
 
@@ -455,10 +455,13 @@ AFW_DEFINE_INTERNAL(const afw_value_script_function_signature_t *)
 afw_compile_parse_FunctionSignature(
     afw_compile_parser_t *parser,
     const afw_value_block_t **block,
-    const afw_value_string_t **function_name_value)
+    const afw_value_string_t **function_name_value,
+    const afw_value_type_t **return_type)
 {
     apr_array_header_t *params;
     afw_value_script_function_parameter_t *param;
+    afw_value_frame_symbol_t *function_symbol;
+    afw_value_frame_symbol_t *symbol;
     afw_size_t start_offset;
     afw_value_script_function_signature_t *signature;
     afw_boolean_t optional_encountered;
@@ -467,6 +470,7 @@ afw_compile_parse_FunctionSignature(
     optional_encountered = false;
     signature = afw_pool_calloc_type(parser->p,
         afw_value_script_function_signature_t, parser->xctx);
+    function_symbol = NULL;
 
     afw_compile_save_offset(start_offset);
 
@@ -483,8 +487,9 @@ afw_compile_parse_FunctionSignature(
         if (block) {
             *block = afw_compile_parse_link_new_value_block(parser,
                 start_offset);
-            afw_compile_parse_add_symbol_entry(parser,
+            function_symbol = afw_compile_parse_add_symbol_entry(parser,
                 parser->token->identifier_name);
+            function_symbol->symbol_type = afw_value_frame_symbol_type_function;
         }
         signature->function_name_value = (const afw_value_string_t *)
             afw_value_create_string(parser->token->identifier_name,
@@ -561,7 +566,12 @@ afw_compile_parse_FunctionSignature(
                     *block = afw_compile_parse_link_new_value_block(parser,
                         start_offset);
                 }
-                afw_compile_parse_add_symbol_entry(parser, param->name);
+                symbol = afw_compile_parse_add_symbol_entry(
+                    parser, param->name);
+                symbol->symbol_type = afw_value_frame_symbol_type_parameter;
+                if (param->type) {
+                    afw_memory_copy(&symbol->type, param->type);
+                }        
             }
 
             /* Get next token. */
@@ -602,9 +612,15 @@ afw_compile_parse_FunctionSignature(
  
     /* Parse optional type and return completed signature. */
     signature->returns = afw_compile_parse_OptionalType(parser, true); 
+    if (function_symbol && signature->returns) {
+        afw_memory_copy(&function_symbol->type, signature->returns);
+    }
     signature->count = params->nelts;
     signature->parameters =
         (const afw_value_script_function_parameter_t **)params->elts;
+    if (return_type) {
+        *return_type = signature->returns;        
+    }
     return signature;
 }
 
@@ -623,7 +639,8 @@ afw_compile_parse_FunctionSignature(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_parser_t *parser,
-    const afw_value_string_t **function_name_value)
+    const afw_value_string_t **function_name_value,
+    const afw_value_type_t **return_type)
 {
     const afw_value_t *body;
     const afw_value_block_t *block;
@@ -635,7 +652,7 @@ afw_compile_parse_FunctionSignatureAndBody(
 
     /* Parse signature. */
     signature = afw_compile_parse_FunctionSignature(parser, &block,
-        function_name_value);
+        function_name_value, return_type);
 
     /* Parse body. */
     afw_compile_get_token();
@@ -706,7 +723,8 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
     }
 
     /* Return lambda definition. */
-    return afw_compile_parse_FunctionSignatureAndBody(parser, NULL);
+    return afw_compile_parse_FunctionSignatureAndBody(
+        parser, NULL, NULL);
 }
 
 
@@ -910,7 +928,8 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 {
                     afw_compile_reuse_token();
                     type->function_signature =
-                        afw_compile_parse_FunctionSignature(parser, NULL, NULL);
+                        afw_compile_parse_FunctionSignature(parser,
+                            NULL, NULL, NULL);
                 }
 
                 /* ArrayOf */

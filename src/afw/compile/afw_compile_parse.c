@@ -120,7 +120,7 @@ afw_compile_parse_reference_create(
     const afw_utf8_t *identifier)
 {
     const afw_value_t *result;
-    afw_value_block_symbol_t *symbol;
+    afw_value_frame_symbol_t *symbol;
     afw_utf8_t qualifier;
     afw_utf8_t name;
 
@@ -259,19 +259,21 @@ afw_compile_parse_variable_reference_create(
     const afw_utf8_t *identifier,
     const afw_value_type_t *type)
 {
-    afw_value_block_symbol_t *symbol;
+    afw_value_frame_symbol_t *symbol;
 
     if (assignment_type == afw_compile_assignment_type_let) {
         symbol = afw_compile_parse_add_symbol_entry(parser, identifier);
         if (type) {
             afw_memory_copy(&symbol->type, type);
         }
+        symbol->symbol_type = afw_value_frame_symbol_type_let;
     }
     else if (assignment_type == afw_compile_assignment_type_const) {
         symbol = afw_compile_parse_add_symbol_entry(parser, identifier);
         if (type) {
             afw_memory_copy(&symbol->type, type);
         }
+        symbol->symbol_type = afw_value_frame_symbol_type_const;
     }
     else if (assignment_type == afw_compile_assignment_type_reference_only) {
         symbol = afw_compile_parse_get_symbol_entry(parser, identifier);
@@ -297,13 +299,13 @@ afw_compile_parse_variable_reference_create(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_block_symbol_t *)
+AFW_DEFINE_INTERNAL(afw_value_frame_symbol_t *)
 afw_compile_parse_get_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name)
 {
     afw_value_block_t *block;
-    afw_value_block_symbol_t *entry;
+    afw_value_frame_symbol_t *entry;
 
     for (block = parser->compiled_value->current_block;
         block;
@@ -322,12 +324,12 @@ afw_compile_parse_get_symbol_entry(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_block_symbol_t *)
+AFW_DEFINE_INTERNAL(afw_value_frame_symbol_t *)
 afw_compile_parse_get_local_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name)
 {
-    afw_value_block_symbol_t *entry;
+    afw_value_frame_symbol_t *entry;
 
     for (entry = parser->compiled_value->current_block->first_entry;
         entry;
@@ -343,12 +345,12 @@ afw_compile_parse_get_local_symbol_entry(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_block_symbol_t *)
+AFW_DEFINE_INTERNAL(afw_value_frame_symbol_t *)
 afw_compile_parse_add_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name)
 {
-    afw_value_block_symbol_t *entry;
+    afw_value_frame_symbol_t *entry;
 
     if (afw_compile_parse_get_local_symbol_entry(parser, name)) {
         AFW_COMPILE_THROW_ERROR_FZ(AFW_UTF8_FMT_Q " already defined",
@@ -356,7 +358,7 @@ afw_compile_parse_add_symbol_entry(
     }
 
     entry = afw_pool_calloc_type(parser->p,
-        afw_value_block_symbol_t, parser->xctx);
+        afw_value_frame_symbol_t, parser->xctx);
     entry->name = name;
     entry->parent_block = parser->compiled_value->current_block;
     if (!parser->compiled_value->current_block->first_entry) {

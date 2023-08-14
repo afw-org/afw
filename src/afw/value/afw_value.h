@@ -1532,7 +1532,7 @@ afw_value_template_definition_create(
 AFW_DECLARE(const afw_value_t *)
 afw_value_variable_reference_create(
     const afw_compile_value_contextual_t *contextual,
-    const afw_value_block_symbol_t *symbol,
+    const afw_value_frame_symbol_t *symbol,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

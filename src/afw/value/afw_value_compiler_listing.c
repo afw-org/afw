@@ -25,6 +25,29 @@ impl_empty_prefix[] =
 static const afw_utf8_t
 impl_default_tab = AFW_UTF8_LITERAL("    ");
 
+
+/* Frame symbol types. */
+static const afw_utf8_t *
+impl_symbol_type_names[] = {
+#define XX(name, description) &afw_s_ ## name,
+    AFW_VALUE_FRAME_SYMBOL_TYPE(XX)
+#undef XX
+    NULL
+};
+
+
+static const afw_utf8_t *
+impl_symbol_type_name(
+    afw_value_frame_symbol_type_t type)
+{
+    if (type < 0 || type >= afw_value_frame_symbol_type_count) {
+        type = 0;
+    }
+    return impl_symbol_type_names[type];
+}
+
+
+
 static afw_size_t
 impl_digits_needed(afw_size_t i)
 {
@@ -318,7 +341,7 @@ impl_symbol_listing(
     afw_value_block_t *block,
     afw_xctx_t *xctx)
 {
-    afw_value_block_symbol_t *e;
+    afw_value_frame_symbol_t *e;
     afw_value_block_t *child;
 
     if (!block) {
@@ -340,8 +363,9 @@ impl_symbol_listing(
         afw_writer_write_size(writer, e->index, xctx);
         afw_writer_write_z(writer, "] name=", xctx);
         afw_writer_write_utf8(writer, e->name, xctx);
-        afw_writer_write_z(writer, " declared=", xctx);
-        afw_writer_write_z(writer, "*fixme*", xctx);
+        afw_writer_write_z(writer, " type=", xctx);
+        afw_writer_write_utf8(writer, impl_symbol_type_name(e->symbol_type),
+            xctx);
         afw_writer_write_z(writer, " dataType=", xctx);
         if (e->type.data_type) {
             afw_writer_write_utf8(writer, &e->type.data_type->data_type_id,

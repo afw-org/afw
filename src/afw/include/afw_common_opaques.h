@@ -811,12 +811,12 @@ typedef struct afw_value_block_frame_s
 afw_value_block_frame_t;
 
 /**
- * Opaque typedef for afw_value_block_symbol_t.
+ * Opaque typedef for afw_value_frame_symbol_t.
  *
  * See afw_value_internal.h for struct and more information.
  */
-typedef struct afw_value_block_symbol_s
-afw_value_block_symbol_t;
+typedef struct afw_value_frame_symbol_s
+afw_value_frame_symbol_t;
 
 /**
  * Opaque typedef for afw_value_call_t.

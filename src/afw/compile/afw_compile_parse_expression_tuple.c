@@ -331,6 +331,7 @@ impl_parse_tuple_lambda_parameters(afw_compile_parser_t *parser,
     const afw_value_script_function_parameter_t ** *parameters)
 {
     afw_value_script_function_parameter_t *parameter;
+    afw_value_frame_symbol_t *symbol;
     afw_size_t start_offset;
     int start_nelts;
     void *mem;
@@ -363,8 +364,9 @@ impl_parse_tuple_lambda_parameters(afw_compile_parser_t *parser,
             parameter->name = afw_utf8_clone(parser->token->string,
                 parser->p, parser->xctx);
             
-            afw_compile_parse_add_symbol_entry(parser,
+            symbol = afw_compile_parse_add_symbol_entry(parser,
                 parser->token->string);
+            symbol->symbol_type = afw_value_frame_symbol_type_function;
 
             APR_ARRAY_PUSH(parser->values, afw_value_script_function_parameter_t *) =
                 parameter;

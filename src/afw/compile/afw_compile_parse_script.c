@@ -847,6 +847,8 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
     const afw_value_t *result;
     const afw_value_t **argv;
     const afw_value_string_t *function_name_value;
+    afw_value_frame_symbol_t *symbol;
+    const afw_value_type_t *return_type;
     afw_size_t start_offset;
 
     afw_compile_save_cursor(start_offset);
@@ -858,13 +860,20 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
     afw_compile_reuse_token();
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = (const afw_value_t *)&afw_function_definition_const;
-    argv[2] = afw_compile_parse_FunctionSignatureAndBody(parser,
-        &function_name_value);
+    argv[2] = afw_compile_parse_FunctionSignatureAndBody(
+        parser, &function_name_value, &return_type);
+    argv[1] = NULL;
     if (function_name_value) {
-        afw_compile_parse_add_symbol_entry(parser,
+        symbol = afw_compile_parse_add_symbol_entry(parser,
             &function_name_value->internal);
+        symbol->symbol_type = afw_value_frame_symbol_type_function;
+        if (return_type) {
+            afw_memory_copy(&symbol->type, return_type);
+        }
+        argv[1] = afw_value_variable_reference_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            symbol, parser->p, parser->xctx);
     }
-    argv[1] = (const afw_value_t *)function_name_value;
     argv[3] = NULL;
 
     result = afw_value_call_built_in_function_create(

@@ -348,13 +348,6 @@ impl_assign_value(
         impl_assignment_target(at, value, assignment_type, p, xctx);
     }
 
-    /* String containing variable name */
-    else if (afw_value_is_string(target)) {
-        impl_set_variable(
-            &((afw_value_string_t *)target)->internal,
-            value, assignment_type, xctx);
-    }
-
     /* Variable Reference */
     else if (afw_value_is_variable_reference(target)) {
         const afw_value_variable_reference_t *t =

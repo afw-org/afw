@@ -351,6 +351,7 @@ catch
 continue
 const
 declare
+undeclared
 define
 do
 else

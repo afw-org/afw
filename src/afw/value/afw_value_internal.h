@@ -107,8 +107,8 @@ struct afw_value_block_s {
     afw_value_block_t *first_child_block;
     afw_value_block_t *final_child_block;
     afw_value_block_t *next_sibling_block;
-    afw_value_block_symbol_t *first_entry;
-    afw_value_block_symbol_t *final_entry;
+    afw_value_frame_symbol_t *first_entry;
+    afw_value_frame_symbol_t *final_entry;
     afw_size_t number;
     afw_size_t depth;
     afw_size_t entry_count;
@@ -180,19 +180,49 @@ struct afw_value_type_list_s {
     const afw_value_type_t *cell_type;
 };
 
+/**
+ * @brief Frame symbol type map
+ * @param XX macro
+ *
+ * There must be and afw_s_ with each name in map.
+ */
+#define AFW_VALUE_FRAME_SYMBOL_TYPE(XX)                                        \
+                                                                               \
+    XX(undeclared, "Undeclared symbol")                                        \
+                                                                               \
+    XX(const, "A const variable")                                              \
+                                                                               \
+    XX(function, "A function")                                                 \
+                                                                               \
+    XX(let, "A let variable")                                                  \
+                                                                               \
+    XX(parameter, "A function parameter")                                      \
 
 
 /**
- * @brief struct for afw_value_block_symbol_t
- *
- * This is a symbol table entry for block.
+ * @brief Frame symbol type enum
  */
-struct afw_value_block_symbol_s {
+typedef enum afw_value_frame_symbol_type_e {
+#define XX(name, description) \
+    afw_value_frame_symbol_type_ ## name,
+    AFW_VALUE_FRAME_SYMBOL_TYPE(XX)
+#undef XX
+    afw_value_frame_symbol_type_count
+} afw_value_frame_symbol_type_t;
+
+
+/**
+ * @brief struct for afw_value_frame_symbol_t
+ *
+ * This is a symbol table entry for frame.
+ */
+struct afw_value_frame_symbol_s {
     afw_value_block_t *parent_block;
-    afw_value_block_symbol_t *next_entry;
+    afw_value_frame_symbol_t *next_entry;
     const afw_utf8_t *name;
     afw_value_type_t type;
     afw_size_t index; /* Index in block entries. */
+    afw_value_frame_symbol_type_t symbol_type;
 };
 
 
@@ -526,7 +556,7 @@ struct afw_value_template_definition_s {
 struct afw_value_variable_reference_s {
     const afw_value_inf_t *inf;
     const afw_compile_value_contextual_t *contextual;
-    const afw_value_block_symbol_t *symbol;
+    const afw_value_frame_symbol_t *symbol;
     
     /*
      * This is the optimized value or self. If self can be evaluated at create

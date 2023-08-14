@@ -6451,6 +6451,9 @@ AFW_UTF8_LITERAL("uint32");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_unavailable =
 AFW_UTF8_LITERAL("unavailable");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_undeclared =
+AFW_UTF8_LITERAL("undeclared");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_undefined =
 AFW_UTF8_LITERAL("undefined");
 

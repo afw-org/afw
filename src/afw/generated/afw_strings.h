@@ -12881,6 +12881,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_uint32;
 /** @brief afw_utf8_t for string unavailable */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_unavailable;
 
+/** @brief define for quoted string undeclared */
+#define AFW_Q_undeclared "undeclared"
+
+/** @brief afw_utf8_t for string undeclared */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_undeclared;
+
 /** @brief define for quoted string undefined */
 #define AFW_Q_undefined "undefined"
 
