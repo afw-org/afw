@@ -995,12 +995,12 @@ typedef struct afw_value_type_list_s
 afw_value_type_list_t;
 
 /**
- * Opaque typedef for afw_value_variable_reference_t.
+ * Opaque typedef for afw_value_symbol_reference_t.
  *
  * See afw_value_internal.h for struct and more information.
  */
-typedef struct afw_value_variable_reference_s
-afw_value_variable_reference_t;
+typedef struct afw_value_symbol_reference_s
+afw_value_symbol_reference_t;
 
 
 /** @} */

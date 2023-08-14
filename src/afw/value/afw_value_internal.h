@@ -552,8 +552,8 @@ struct afw_value_template_definition_s {
 
 
 
-/* @brief struct for afw_value_variable_reference_t */
-struct afw_value_variable_reference_s {
+/* @brief struct for afw_value_symbol_reference_t */
+struct afw_value_symbol_reference_s {
     const afw_value_inf_t *inf;
     const afw_compile_value_contextual_t *contextual;
     const afw_value_frame_symbol_t *symbol;
@@ -720,6 +720,9 @@ struct afw_value_compiler_listing_s {
     int tab_size;
 };
 
+AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+afw_value_compiler_listing_symbol_type_name(
+    afw_value_frame_symbol_type_t type);
 
 AFW_DECLARE_INTERNAL(const afw_utf8_t *)
 afw_value_compiler_listing_for_child(

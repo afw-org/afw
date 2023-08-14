@@ -102,8 +102,8 @@ AssignmentBindingTarget ::=
 /* From afw_compile_parse_assignment_target.c                                 */
 /*                                                                            */
 /* If AssignmentBindingTarget does not return an assignment_target but        */
-/* it does return a variable_reference and this is an assignment_type of      */
-/* assign_only, create an assignment_target value from the variable_reference. */
+/* it does return a symbol_reference and this is an assignment_type of        */
+/* assign_only, create an assignment_target value from the symbol_reference.  */
 /*                                                                            */
 
 AssignmentTarget ::= AssignmentBindingTarget | Reference
@@ -171,7 +171,7 @@ VariableReference ::= ( Qualifier '::' Identifier) || VariableName
 
 /* From afw_compile_parse_expression.c                                        */
 /* Reference is any Evaluation that evaluates to a value inf id of            */
-/* reference_by_key, qualified_variable_reference, or variable_reference.     */
+/* reference_by_key, qualified_variable_reference, or symbol_reference.       */
 
 Reference ::= Evaluation
 

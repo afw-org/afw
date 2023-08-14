@@ -131,7 +131,7 @@ afw_compile_parse_reference_create(
     if (qualifier.len == 0) {
         symbol = afw_compile_parse_get_symbol_entry(parser, &name);
         if (symbol) {
-            result = afw_value_variable_reference_create(
+            result = afw_value_symbol_reference_create(
                 contextual, symbol, parser->p, parser->xctx);
         }
     }
@@ -251,7 +251,7 @@ afw_compile_parse_set_error_fz(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_value_variable_reference_t *)
+AFW_DEFINE_INTERNAL(const afw_value_symbol_reference_t *)
 afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
@@ -292,8 +292,8 @@ afw_compile_parse_variable_reference_create(
         }
     }
 
-    return (const afw_value_variable_reference_t *)
-        afw_value_variable_reference_create(
+    return (const afw_value_symbol_reference_t *)
+        afw_value_symbol_reference_create(
             contextual, symbol, parser->p, parser->xctx);
 }
 

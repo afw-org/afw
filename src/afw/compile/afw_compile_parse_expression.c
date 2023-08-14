@@ -83,7 +83,7 @@
 /*ebnf>>>
  *
  *# Reference is any Evaluation that evaluates to a value inf id of
- *# reference_by_key, qualified_variable_reference, or variable_reference.
+ *# reference_by_key, qualified_variable_reference, or symbol_reference.
  *
  * Reference ::= Evaluation
  *
@@ -157,7 +157,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                 symbol = afw_compile_parse_get_symbol_entry(parser,
                     parser->token->identifier_name);
                 if (symbol) {
-                    result = afw_value_variable_reference_create(
+                    result = afw_value_symbol_reference_create(
                         afw_compile_create_contextual_to_cursor(start_offset),
                         symbol, parser->p, parser->xctx);
                 }

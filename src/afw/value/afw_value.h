@@ -29,7 +29,7 @@
  * by internal memory specific to an afw_value implementation. There are
  * implementations of afw_value to represent values for all of the adaptive
  * data types as well as implementations that can be evaluated at runtime such
- * as "compiled_value", "block", and "variable_reference".
+ * as "compiled_value", "block", and "symbol_reference".
  *
  * Adaptive source, such as adaptive expressions, json, and adaptive scripts,
  * can be compiled to produce an adaptive value. Adaptive values can also be
@@ -317,9 +317,9 @@ afw_value_template_definition_inf;
 
 
 
-/** @brief Value variable_reference inf. */
+/** @brief Value symbol_reference inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_variable_reference_inf;
+afw_value_symbol_reference_inf;
 
 
 
@@ -744,14 +744,14 @@ afw_value_is_fully_evaluated(
 
 
 /**
- * @brief Macro to determine if value is a variable reference.
+ * @brief Macro to determine if value is a symbol reference.
  * @param A_VALUE to test.
  * @return boolean result.
  */
 #define afw_value_is_variable_reference(A_VALUE) \
 ( \
     (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_variable_reference_inf \
+    (A_VALUE)->inf == &afw_value_symbol_reference_inf \
 )
 
  
@@ -1522,7 +1522,7 @@ afw_value_template_definition_create(
 
 
 /**
- * @brief Create function for variable reference value.
+ * @brief Create function for symbol reference value.
  * @param contextual information for variable.
  * @param symbol for variable.
  * @param p pool used for value.
@@ -1530,7 +1530,7 @@ afw_value_template_definition_create(
  * @return Created afw_value_t.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_variable_reference_create(
+afw_value_symbol_reference_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_frame_symbol_t *symbol,
     const afw_pool_t *p,

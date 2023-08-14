@@ -234,7 +234,7 @@ afw_compile_parse_AssignmentProperty(
     else {
         contextual = afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset);
-        ap->variable_reference = afw_compile_parse_variable_reference_create(
+        ap->symbol_reference = afw_compile_parse_variable_reference_create(
             parser, contextual, assignment_type, identifier, NULL);
         if (afw_compile_token_is(equal)) {
             ap->default_value = afw_compile_parse_Expression(parser);
@@ -352,8 +352,8 @@ afw_compile_parse_AssignmentBindingTarget(
  *
  *#
  *# If AssignmentBindingTarget does not return an assignment_target but
- *# it does return a variable_reference and this is an assignment_type of
- *# assign_only, create an assignment_target value from the variable_reference.
+ *# it does return a symbol_reference and this is an assignment_type of
+ *# assign_only, create an assignment_target value from the symbol_reference.
  *#
  * AssignmentTarget ::= AssignmentBindingTarget | Reference
  *
@@ -377,12 +377,12 @@ afw_compile_parse_AssignmentTarget(
             afw_compile_assignment_target_t, parser->xctx);
         target->assignment_type = assignment_type;
         target->target_type =
-            afw_compile_assignment_target_type_variable_reference;
+            afw_compile_assignment_target_type_symbol_reference;
         target->variable_type = type;
-        target->variable_reference =
-            (const afw_value_variable_reference_t *)result;
+        target->symbol_reference =
+            (const afw_value_symbol_reference_t *)result;
         result = afw_value_assignment_target_create(
-            target->variable_reference->contextual,
+            target->symbol_reference->contextual,
             target, parser->p, parser->xctx);
     }
 

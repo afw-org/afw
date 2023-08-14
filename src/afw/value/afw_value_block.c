@@ -209,12 +209,12 @@ impl_object_destructure(
         }
         else {
             v = afw_object_get_property(object,
-                ap->variable_reference->symbol->name, xctx);
+                ap->symbol_reference->symbol->name, xctx);
             if (!v) {
                 v = ap->default_value;
             }
             if (v) {
-                impl_assign_value((const afw_value_t *)ap->variable_reference,
+                impl_assign_value((const afw_value_t *)ap->symbol_reference,
                     v, assignment_type, p, xctx);
             }
             else {
@@ -241,7 +241,7 @@ impl_object_destructure(
                         ap->property_name, property_name))
                     ||
                     (!ap->is_rename && afw_utf8_equal(
-                        ap->variable_reference->symbol->name, property_name))
+                        ap->symbol_reference->symbol->name, property_name))
                 )
                 {
                     break;
@@ -280,8 +280,8 @@ impl_assignment_target(
             assignment_type, p, xctx);
         break;
 
-    case afw_compile_assignment_target_type_variable_reference:
-        impl_set_variable(at->variable_reference->symbol->name,
+    case afw_compile_assignment_target_type_symbol_reference:
+        impl_set_variable(at->symbol_reference->symbol->name,
             value, assignment_type, xctx);
         break;
 
@@ -350,8 +350,8 @@ impl_assign_value(
 
     /* Variable Reference */
     else if (afw_value_is_variable_reference(target)) {
-        const afw_value_variable_reference_t *t =
-            (afw_value_variable_reference_t *)target;
+        const afw_value_symbol_reference_t *t =
+            (afw_value_symbol_reference_t *)target;
         impl_set_variable(t->symbol->name, value,
             assignment_type, xctx);
     }

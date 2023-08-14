@@ -743,7 +743,7 @@ impl_parse_tuple_operation_variable_reference(
         &qualifier, &name, parser->p, parser->xctx);
 
 error:
-    AFW_COMPILE_THROW_ERROR_Z("Invalid variable reference tuple");
+    AFW_COMPILE_THROW_ERROR_Z("Invalid symbol reference tuple");
 }
 
 

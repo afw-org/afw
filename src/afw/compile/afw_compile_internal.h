@@ -457,8 +457,8 @@ typedef enum {
     XX(object_destructure,                                                      \
         "This is a object destructure.")                                        \
                                                                                 \
-    XX(variable_reference,                                                      \
-        "This is a variable reference.")                                        \
+    XX(symbol_reference,                                                      \
+        "This is a symbol reference.")                                        \
 
 /** @brief Enum for assignment target types. */
 typedef enum {
@@ -480,7 +480,7 @@ struct afw_compile_internal_assignment_target_s {
         const afw_compile_object_destructure_t *object_destructure;
         union {
             const afw_value_type_t *variable_type;
-            const afw_value_variable_reference_t *variable_reference;
+            const afw_value_symbol_reference_t *symbol_reference;
         };
     };
 };
@@ -520,7 +520,7 @@ struct afw_compile_internal_assignment_property_s {
         };
         /* If is_rename is false. */
         struct {
-            const afw_value_variable_reference_t *variable_reference;
+            const afw_value_symbol_reference_t *symbol_reference;
             const afw_value_t *default_value;
         };
     };
@@ -935,7 +935,7 @@ afw_compile_parse_link_new_value_block(
 
 /*
  * Create the appropriate value for identifier passed.  Either
- * variable_reference, qualified_variable_reference, or
+ * symbol_reference, qualified_variable_reference, or
  * function_definition.
  */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
@@ -1249,7 +1249,7 @@ AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Hybrid(afw_compile_parser_t *parser);
 
 
-AFW_DEFINE_INTERNAL(const afw_value_variable_reference_t *)
+AFW_DEFINE_INTERNAL(const afw_value_symbol_reference_t *)
 afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,

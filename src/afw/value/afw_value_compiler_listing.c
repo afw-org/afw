@@ -36,17 +36,6 @@ impl_symbol_type_names[] = {
 };
 
 
-static const afw_utf8_t *
-impl_symbol_type_name(
-    afw_value_frame_symbol_type_t type)
-{
-    if (type < 0 || type >= afw_value_frame_symbol_type_count) {
-        type = 0;
-    }
-    return impl_symbol_type_names[type];
-}
-
-
 
 static afw_size_t
 impl_digits_needed(afw_size_t i)
@@ -311,6 +300,18 @@ impl_afw_writer_decrement_indent(
 
 
 AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+afw_value_compiler_listing_symbol_type_name(
+    afw_value_frame_symbol_type_t type)
+{
+    if (type < 0 || type >= afw_value_frame_symbol_type_count) {
+        type = 0;
+    }
+    return impl_symbol_type_names[type];
+}
+
+
+
+AFW_DEFINE_INTERNAL(const afw_utf8_t *)
 afw_value_compiler_listing_for_child(
     const afw_value_t *instance,
     const afw_writer_t *writer,
@@ -361,32 +362,13 @@ impl_symbol_listing(
     for (e = block->first_entry; e; e = e->next_entry) {
         afw_writer_write_z(writer, "    [", xctx);
         afw_writer_write_size(writer, e->index, xctx);
-        afw_writer_write_z(writer, "] name=", xctx);
-        afw_writer_write_utf8(writer, e->name, xctx);
-        afw_writer_write_z(writer, " type=", xctx);
-        afw_writer_write_utf8(writer, impl_symbol_type_name(e->symbol_type),
+        afw_writer_write_z(writer, "] ", xctx);
+        afw_writer_write_utf8(writer,
+            afw_value_compiler_listing_symbol_type_name(e->symbol_type),
             xctx);
-        afw_writer_write_z(writer, " dataType=", xctx);
-        if (e->type.data_type) {
-            afw_writer_write_utf8(writer, &e->type.data_type->data_type_id,
-                xctx);
-        }
-        else {
-            afw_writer_write_z(writer, "any", xctx);
-        }
-        if (e->type.data_type_parameter_contextual) {
-            afw_writer_write_z(writer, " dataTypeParameter=", xctx);
-            afw_writer_write(writer,
-                e->type.data_type_parameter_contextual->compiled_value->
-                    full_source->s +
-                    e->type.data_type_parameter_contextual->value_offset,
-                e->type.data_type_parameter_contextual->value_size,
-                xctx);
-        }
-        if (e->type.value_meta_object) {
-            afw_writer_write_z(writer, " valueMeta= present", xctx);
-        }
-
+        afw_writer_write_z(writer, " ", xctx);
+        afw_value_compiler_listing_name_and_type(writer,
+            e->name, &e->type, xctx);
         afw_writer_write_eol(writer, xctx);
     }
     afw_writer_write_z(writer, "]", xctx);

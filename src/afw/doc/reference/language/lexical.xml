@@ -42,7 +42,7 @@
     <paragraph>
         Identifiers are sequences of characters that are used to identify a variable 
         name, category, function name, method name, parameter name, qualifier name 
-        variable reference, interface name, type variable name, or object property name.
+        symbol reference, interface name, type variable name, or object property name.
     </paragraph>
     <paragraph>
         Identifiers have no length limit and are case-sensitive.

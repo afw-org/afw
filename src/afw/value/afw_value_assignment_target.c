@@ -79,9 +79,9 @@ impl_afw_value_optional_evaluate(
         (const afw_value_assignment_target_t *)instance;
 
     if (self->assignment_target->target_type ==
-        afw_compile_assignment_target_type_variable_reference)
+        afw_compile_assignment_target_type_symbol_reference)
     {
-        return (const afw_value_t *)self->assignment_target->variable_reference;
+        return (const afw_value_t *)self->assignment_target->symbol_reference;
     }
 
     return instance;
@@ -168,7 +168,7 @@ impl_assignment_property_produce_compiler_listing(
         afw_writer_increment_indent(writer, xctx);
 
         afw_value_produce_compiler_listing(
-            (const afw_value_t *)self->variable_reference, writer, xctx);
+            (const afw_value_t *)self->symbol_reference, writer, xctx);
 
         if (self->default_value) {
             afw_writer_write_z(writer, "default: ", xctx);
@@ -271,9 +271,9 @@ impl_afw_value_produce_compiler_listing(
             self->assignment_target->object_destructure, writer, xctx);
         break;
 
-    case afw_compile_assignment_target_type_variable_reference:
+    case afw_compile_assignment_target_type_symbol_reference:
         afw_value_produce_compiler_listing(
-            (const afw_value_t *)self->assignment_target->variable_reference,
+            (const afw_value_t *)self->assignment_target->symbol_reference,
             writer, xctx);
         break;
     

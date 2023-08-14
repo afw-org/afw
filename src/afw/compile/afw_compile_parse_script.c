@@ -870,7 +870,7 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
         if (return_type) {
             afw_memory_copy(&symbol->type, return_type);
         }
-        argv[1] = afw_value_variable_reference_create(
+        argv[1] = afw_value_symbol_reference_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             symbol, parser->p, parser->xctx);
     }
@@ -1193,7 +1193,7 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
 typedef struct {
     afw_compile_parse_StatementList_cb_t public;
     const afw_utf8_t *error_variable_name;
-    const afw_value_t **variable_reference;
+    const afw_value_t **symbol_reference;
     const afw_compile_value_contextual_t *contextual;
 } impl_parse_TryStatement_StatementList_cb_t;
 
@@ -1207,7 +1207,7 @@ impl_parse_TryStatement_StatementList_cb (
     impl_parse_TryStatement_StatementList_cb_t *self =
         (impl_parse_TryStatement_StatementList_cb_t *)cb;
  
-    *self->variable_reference = (const afw_value_t *)
+    *self->symbol_reference = (const afw_value_t *)
         afw_compile_parse_variable_reference_create(parser,
             self->contextual,
             afw_compile_assignment_type_let,
@@ -1269,7 +1269,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             cb.error_variable_name = parser->token->identifier_name;
             cb.contextual = afw_compile_create_contextual_to_cursor(
                 start_offset);
-            cb.variable_reference = &argv[4];
+            cb.symbol_reference = &argv[4];
             afw_compile_get_token();
             if (!afw_compile_token_is(close_parenthesis)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
