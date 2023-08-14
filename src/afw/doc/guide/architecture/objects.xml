@@ -172,7 +172,7 @@
             If a relative path begins with a <literal>/</literal>, its structure
             is the same as an absolute path with <literal>*</literal> used in 
             place of &amp;lt;adaptorId&amp;gt;, &amp;lt;objectTypeId&amp;gt;, 
-            and each shashed part of &amp;lt;objectId&amp;gt; to use the
+            and each slashed part of &amp;lt;objectId&amp;gt; to use the
             corresponding value from the supplied path. The
             &amp;lt;objectId&amp;gt; can also be
             <literal>**</literal> to indicate that the entire

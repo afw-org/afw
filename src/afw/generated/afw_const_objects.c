@@ -137474,7 +137474,7 @@ impl_1349_property_brief = {
 static const afw_value_string_t
 impl_1349_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This extension provides a content-type handler for Universal Binary JSON (UBSJON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes.")
+    AFW_UTF8_LITERAL("This extension provides a content-type handler for Universal Binary JSON (UBJSON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes.")
 };
 
 static const afw_runtime_property_t
@@ -137929,7 +137929,7 @@ impl_1354;
 static const afw_value_string_t
 impl_1354_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive Framework Execution Context (xctx) interface.\n      \n      An execution context holds common information related to a unit of work in\n      Adaptive Framwork. This unit of work runs in a single thread of a\n      single-threaded or multi-threaded process. In a multi-threaded process,\n      the main thread has the global execution context. Other threads have their\n      own execution context and required the appropriate mutexes or queued work\n      to access memory in the global execution context.\n\n      The type of execution contexts can be \"server\", \"request_session', etc. A\n      execution context's pool, properties, and object cache will last for the\n      life of the execution context. An execution context's parent will always\n      have a longer life.")
+    AFW_UTF8_LITERAL("Adaptive Framework Execution Context (xctx) interface.\n      \n      An execution context holds common information related to a unit of work in\n      Adaptive Framework. This unit of work runs in a single thread of a\n      single-threaded or multi-threaded process. In a multi-threaded process,\n      the main thread has the global execution context. Other threads have their\n      own execution context and required the appropriate mutexes or queued work\n      to access memory in the global execution context.\n\n      The type of execution contexts can be \"server\", \"request_session', etc. A\n      execution context's pool, properties, and object cache will last for the\n      life of the execution context. An execution context's parent will always\n      have a longer life.")
 };
 
 static const afw_runtime_property_t

@@ -9,7 +9,7 @@
 #ifndef __AFW_DOXYGEN_H__
 #define __AFW_DOXYGEN_H__
 
-/* These are major doxygen defgroup for Adaptive Framwork base package. */
+/* These are major doxygen defgroup for Adaptive Framework base package. */
 
 /** @defgroup package_afw Adaptive Framework Base Package.
  *

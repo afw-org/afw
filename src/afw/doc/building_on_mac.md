@@ -5,10 +5,8 @@
 
 This build process relies on CLang for MacOS, provided by XCode, along with Homebrew for additional package libraries and headers.
 
-## Rules to run at install time. Homebrew dependencies
+## Homebrew dependencies
 
-    brew install autoconf
-    brew install automake
     brew install pkg-config
     brew install apache2
     brew install mysql
@@ -35,6 +33,6 @@ The pkg-config tool is a system tool that gives Makefiles a convenient way to ge
     cd afw
     ./afwdev build
 
-## Rules to run at install time. Adaptive Framework
+## Adaptive Framework
 
     ./afwdev build --install

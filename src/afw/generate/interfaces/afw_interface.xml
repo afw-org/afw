@@ -4757,7 +4757,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       Adaptive Framework Execution Context (xctx) interface.
       
       An execution context holds common information related to a unit of work in
-      Adaptive Framwork. This unit of work runs in a single thread of a
+      Adaptive Framework. This unit of work runs in a single thread of a
       single-threaded or multi-threaded process. In a multi-threaded process,
       the main thread has the global execution context. Other threads have their
       own execution context and required the appropriate mutexes or queued work

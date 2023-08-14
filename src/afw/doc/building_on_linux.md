@@ -1,17 +1,16 @@
 # Building for Ubuntu Linux
-(tested on Ubuntu 20.04 LTS, 64-bit)
+(tested on Ubuntu 22.04 LTS, 64-bit)
 
 ## Source Build Dependencies
 
     sudo apt-get install git
-    sudo apt-get install autotools-dev autoconf libtool pkg-config
 
 ## Fetch Source
 
     # Fetch source for Adaptive Framework, using the 'develop' branch
     git clone https://github.com/afw-org/afw.git    
 
-## Rules to run at install time. AdaptiveFramework Core dependencies
+## Install AdaptiveFramework Core dependencies
 
     # Apache Run Time and Apache2 Dev
     sudo apt-get install libapr1 libapr1-dev apache2-dev
@@ -28,7 +27,7 @@
     # libdw for ELF symbols
     sudo apt-get install elfutils libdw-dev
 
-## Rules to run at install time. AdaptiveFramework Adaptor dependencies
+## AdaptiveFramework Adaptor dependencies
 
 Eventually, these adaptors will not be required, but rather enabled/disabled via the configure script.
 
@@ -50,12 +49,12 @@ Eventually, these adaptors will not be required, but rather enabled/disabled via
     sudo apt-get install libaprutil1-dbd-odbc
     sudo apt-get install libaprutil1-dbd-pgsql
 
-## Rules to run at install time. dependencies for content-types
+## Dependencies for content-types
 
     # YAML
     sudo apt-get install libyaml-dev
 
-## Rules to run at install time. HTTP stack, used by AdaptiveFramework 
+## HTTP stack, used by AdaptiveFramework 
 
     # FastCGI library
     sudo apt-get install libfcgi-dev
@@ -79,14 +78,20 @@ Eventually, these adaptors will not be required, but rather enabled/disabled via
     ./afwdev build    
     make
 
-## Rules to run at install time. Adaptive Framework
+## Adaptive Framework
 
     ./afwdev build --install
 
 
 ## TL;DR
 
-    sudo apt-get install git autotools-dev autoconf libtool pkg-config libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev libicu-dev libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev libyaml-dev libfcgi-dev nginx libunwind-setjmp0-dev elfutils libdw-dev
+    sudo apt-get install -y git libtool pkg-config clang-tools \
+        libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev python3-pip python3-lxml \
+        libicu-dev libunwind-setjmp0-dev elfutils libdw-dev cmake \
+        libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
+        libaprutil1-dbd-mysql libaprutil1-dbd-sqlite3 libaprutil1-dbd-odbc libaprutil1-dbd-pgsql \
+        libyaml-dev libfcgi-dev nginx gdb valgrind lsof default-jre doxygen \
+        nodejs npm tmux vim locales bash-completion docker.io
     git clone https://github.com/afw-org/afw.git    
     cd afw
     ./afwdev build --install
@@ -94,41 +99,43 @@ Eventually, these adaptors will not be required, but rather enabled/disabled via
 
 # Building on RockyLinux
 
-## Rules to run at install time. software dependencies
+## Software dependencies
 
     dnf install -y epel-release && \
-    dnf --enablerepo=PowerTools install -y autoconf make libtool \
+    dnf install -y 'dnf-command(config-manager)' && \
+    dnf install -y glibc-langpack-en && \
+        yum config-manager --set-enabled powertools && \
+        dnf group install "Development Tools" -y && \
+        dnf --enablerepo=powertools install -y \
+        make libtool cmake clang-analyzer \
+        nginx gdb gdb-gdbserver valgrind valgrind-devel \
         apr-devel apr-util-mysql apr-util-ldap \
-        libxml2-devel libicu-devel \
+        libxml2-devel libxslt-devel libicu-devel \
         elfutils elfutils-devel libunwind-devel \
         httpd-devel mariadb mariadb-devel libdb-devel lmdb lmdb-devel \
         libcurl-devel libyaml libyaml-devel \
         python3-pip python3-devel \
         fcgi fcgi-devel wget git \
-        ruby-devel rpm-build rubygems \
-        openssl openssl-devel
+        rpm-build npm \
+        openssl openssl-devel doxygen
 
-## Rules to run at install time. python packages
+## Python packages
 
-    pip3.6 install requests inflection lxml watchdog
-
-## Rules to run at install time. FPM (for creating RPMS)
-
-    gem install --no-ri --no-rdoc fpm
+    pip3.6 install python-requirements.txt
 
 ## Building Adaptive Framework
 
     cd afw
     ./afwdev build
 
-## Rules to run at install time. Adaptive Framework
+## Adaptive Framework
 
     ./afwdev build --install
 
 ## TL;DR
 
     dnf install -y epel-release && \
-    dnf --enablerepo=PowerTools install -y autoconf make libtool \
+    dnf --enablerepo=PowerTools install -y make libtool \
         apr-devel apr-util-mysql apr-util-ldap \
         libxml2-devel libicu-devel \
         elfutils elfutils-devel libunwind-devel \
@@ -144,15 +151,34 @@ Eventually, these adaptors will not be required, but rather enabled/disabled via
 
 
 # Building on OpenSUSE Leap
-(tested on Leap 15.3)
+(tested on Leap 15.5)
 
-## Rules to run at install time. dependencies
+## Install Dependencies
 
-    zypper install gcc9 gcc9-c++ automake autoconf libtool apache2-devel \
-        libapr1 libapr1-devel libxml2 libxml2-devel icu libicu-devel \
-        libunwind libunwind-devel elfutils libdw1 libdw-devel libyaml-devel \
-        FastCGI FastCGI-devel libmysqlclient-devel libdb-4_8 libdb-4_8-devel \
-        libcurl-devel lmdb lmdb-devel doxygen rpm-build python3
+    zypper ref -s && \
+    zypper -n --non-interactive in gcc9 gcc9-c++ \
+        libtool apache2-devel cmake clang-tools \
+        libapr1 libapr1-devel libxml2 libxml2-devel \
+        icu libicu-devel libunwind libunwind-devel \
+        elfutils libdw1 libdw-devel libyaml-devel \
+        FastCGI FastCGI-devel libmysqlclient-devel \
+        libdb-4_8 libdb-4_8-devel libcurl-devel git \
+        lmdb lmdb-devel doxygen rpm-build valgrind lato-fonts \
+        python3 python3-pip java-9-openjdk nodejs18 npm18
+
+## Change compiler symlinks
+
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 20 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/gcc-9 20 && \
+    update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30 && \
+    update-alternatives --set cc /usr/bin/gcc && \
+    update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30 && \
+    update-alternatives --set c++ /usr/bin/g++
+
+## Python packages
+
+    pip3 install python-requirements.txt
 
 ## Building Adaptive Framework
 
@@ -164,7 +190,7 @@ You may find it more useful to use the Dockerfile in the project root to create 
 
     docker build -t afwfcgi -f docker/images/afwfcgi/Dockerfile .
 
-This uses CentOS 7 as the base image, and installs all necessary dependencies, used to build Adaptive Framework.  It will take a while to build everything.  Once finished, you will have a docker image from which you can make container(s) from.  
+This uses Alpine Linux as the base image, and installs all necessary dependencies, used to build Adaptive Framework.  It will take a while to build everything.  Once finished, you will have a docker image from which you can make container(s) from.  
 
 ## Run afw command from docker
 

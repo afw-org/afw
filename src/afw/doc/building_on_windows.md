@@ -14,7 +14,7 @@ There are multiple ways to build Adaptive Framework on a Windows system. If you 
     # Fetch source for Adaptive Framework, using the 'develop' branch
     git clone https://github.com/afw-org/afw.git    
 
-## Rules to run at install time. AdaptiveFramework Core and Base dependencies
+## AdaptiveFramework Core and Base dependencies
 
     # apr and apr-util
     vcpkg install apr:x64-windows apr-util:x64-windows

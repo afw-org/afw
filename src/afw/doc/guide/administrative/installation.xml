@@ -29,7 +29,7 @@
                     <column>
                         The afwfcgi image provides the FastCGI Service for processing client 
                         requests. This image is useful to configure behind a web server 
-                        such as Apache or Ngninx, in order to provide RESTful web services.
+                        such as Apache or Nginx, in order to provide RESTful web services.
                     </column>
                 </row>
                 <row>
@@ -42,9 +42,9 @@
                     </column>
                 </row>
                 <row>
-                    <column>afw-demo</column>
+                    <column>afw</column>
                     <column>
-                        This image is for demo purposes. It runs both afwfcgi, along 
+                        This image contains everything. It runs both afwfcgi, along 
                         with an nginx instance serving the admin interface. Additionally, 
                         it has some minimal configuration in place to provide a handful 
                         of adaptors in order to demo the framework.
@@ -63,7 +63,7 @@
                     <column>
                         This image contains the minimum requirements to run an instance 
                         of Adaptive Framework and serves only as a "base" image for 
-                        afwfcgi and afw-demo.
+                        the afwfcgi and afw docker images.
                     </column>
                 </row>
             </rows>
@@ -134,8 +134,8 @@ volumes:
             <header>Building afw-dev-base Image</header>        
             <paragraph>
                 The <literal>afw-dev-base</literal> image contains all of the software 
-                that Adaptive Framework depends on for building. It includes autotools, 
-                gcc compiler, python and other dependency packages.
+                that Adaptive Framework depends on for building. It includes the gcc 
+                compiler, build tools, python and other dependency packages.
             </paragraph>    
             <code>cd docker/images/builder
 # Build an Alpine-based builder image
@@ -166,15 +166,15 @@ docker build --build-arg BIN=&lt;alpine-based .tar file&gt; -t afwfcgi:alpine -f
             We recommend one of the following platform versions for building from Source:
         </paragraph>
         <list>            
-            <item>RockyLinux</item>
-            <item>Ubuntu 20.04</item>
-            <item>OpenSUSE Leap 15.3</item>
+            <item>RockyLinux 8</item>
+            <item>Ubuntu 22.04</item>
+            <item>OpenSUSE Leap 15.5</item>
             <item>Alpine Linux 3.16</item>
         </list>        
         <section>
-            <title>Building on Ubuntu 20.04</title>
+            <title>Building on Ubuntu 22.04</title>
             <header>Source Build Dependencies</header>
-            <code>sudo apt-get install -y git autotools-dev autoconf libtool</code>
+            <code>sudo apt-get install -y git</code>
             <header>Fetch Source</header>
             <code># Fetch source for Adaptive Framework
 git clone https://github.com/afw-org/afw.git</code>
@@ -203,7 +203,7 @@ sudo apt-get install -y libyaml-dev</code>
             <code># FastCGI library
 sudo apt-get install -y libfcgi-dev
 
-# NGNIX
+# NGINX
 sudo apt-get install -y nginx</code>
             <header>Development tools (optional)</header>
             <code># debugging
@@ -217,13 +217,12 @@ pip install -r python-requirements.txt</code>
             <code>cd afw
 ./afwdev build --install</code>            
             <header>TL;DR</header>
-            <code>sudo apt-get install git autotools-dev autoconf libtool libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev libicu-dev libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev libyaml-dev libfcgi-dev nginx libunwind-setjmp0-dev elfutils libdw-dev
+            <code>sudo apt-get install git libapr1 libapr1-dev apache2-dev libxml2 libxml2-dev libicu-dev libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev libyaml-dev libfcgi-dev nginx libunwind-setjmp0-dev elfutils libdw-dev
 git clone https://github.com/afw-org/afw.git
 cd afw
-./afwdev build &amp;&amp; sudo make install</code>            
+./afwdev build --install</code>            
             <header>Building Web Applications</header>
-            <code>npm install
-npm run build</code>
+            <code>./afwdev build --js</code>
         </section>                
     </section> 
     <section>

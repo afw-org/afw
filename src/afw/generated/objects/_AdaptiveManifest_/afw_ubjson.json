@@ -1,6 +1,6 @@
 {
     "brief": "Extension for UBJSON",
-    "description": "This extension provides a content-type handler for Universal Binary JSON (UBSJON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes.",
+    "description": "This extension provides a content-type handler for Universal Binary JSON (UBJSON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes.",
     "extensionId": "afw_ubjson",
     "modulePath": "libafwubjson",
     "registers": [

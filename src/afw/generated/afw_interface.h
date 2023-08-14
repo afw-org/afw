@@ -4308,7 +4308,7 @@ struct afw_request_inf_s {
  * 
  * An execution context holds common information related to a unit of
  * work in
- * Adaptive Framwork. This unit of work runs in a single thread of a
+ * Adaptive Framework. This unit of work runs in a single thread of a
  * single-threaded or multi-threaded process. In a multi-threaded
  * process,
  * the main thread has the global execution context. Other threads have

@@ -50,7 +50,7 @@
         <title>Creating a New Package</title>
         <paragraph>
             New Package are created using the 
-            <literal>afdev make-afw-package</literal> subcommand.
+            <literal>afwdev make-afw-package</literal> subcommand.
         </paragraph>
         <code><![CDATA[afwdev make-afw-package <implementation_id> <afw_package_dir_path>]]></code>        
     </section>
