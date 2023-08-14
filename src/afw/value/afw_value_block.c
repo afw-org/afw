@@ -402,6 +402,13 @@ impl_assign_value(
 
     }
 
+    /* String containing variable name */
+    else if (afw_value_is_string(target)) {
+        impl_set_variable(
+            &((afw_value_string_t *)target)->internal,
+            value, assignment_type, xctx);
+    }
+    
     /* Invalid assignment target. */
     else {
         AFW_THROW_ERROR_Z(general, "Invalid assignment target", xctx);
