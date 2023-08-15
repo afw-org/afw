@@ -338,14 +338,14 @@ afw_boolean_t afw_adaptor_impl_index_try(
 
         /* create a new stack frame so that our temporary variables are
             cleared the next time we go to evaluate an expression */
-        top = afw_xctx_begin_stack_frame(xctx);
+        top = afw_xctx_frame_begin(xctx);
 
         /* Add variables for the filter and value expressions to use */
-        afw_xctx_set_local_variable(&afw_s_objectId, 
+        afw_xctx_frame_set_local_variable(&afw_s_objectId, 
             afw_value_create_string(object_id, xctx->p, xctx), xctx);
-        afw_xctx_set_local_variable(&afw_s_objectType, 
+        afw_xctx_frame_set_local_variable(&afw_s_objectType, 
             afw_value_create_string(object_type_id, xctx->p, xctx), xctx);
-        afw_xctx_set_local_variable(&afw_s_object, 
+        afw_xctx_frame_set_local_variable(&afw_s_object, 
             afw_value_create_object(object, xctx->p, xctx), xctx);
 
         /* 
@@ -359,7 +359,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
         }
         AFW_FINALLY {
             /* always release the stack frame */
-            afw_xctx_end_stack_frame(top, xctx);
+            afw_xctx_frame_end(top, xctx);
         }
         AFW_ENDTRY;
     }
@@ -540,7 +540,7 @@ afw_boolean_t afw_adaptor_impl_index_cb(
     }
 
     /* Add the object as a variable for the filter and value expressions to use */
-    afw_xctx_set_local_variable(&afw_s_object, 
+    afw_xctx_frame_set_local_variable(&afw_s_object, 
         afw_value_create_object(object, xctx->p, xctx), xctx);
 
     /* The index "key" is the name that will match the query */

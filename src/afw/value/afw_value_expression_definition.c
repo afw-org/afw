@@ -85,7 +85,7 @@ impl_afw_value_optional_evaluate(
     xctx->error->contextual = self->contextual;
 
     /* Save stack top which will be restored on return. */
-    local_top = afw_xctx_begin_stack_frame(xctx);
+    local_top = afw_xctx_frame_begin(xctx);
     result = NULL;
     AFW_TRY {
 
@@ -93,7 +93,7 @@ impl_afw_value_optional_evaluate(
         if (self->assignments) {
             for (assignment = self->assignments; *assignment; assignment++) {
                 v = afw_value_evaluate((*assignment)->value, p, xctx);
-                afw_xctx_set_local_variable((*assignment)->name, v, xctx);
+                afw_xctx_frame_set_local_variable((*assignment)->name, v, xctx);
             }
         }
 
@@ -104,7 +104,7 @@ impl_afw_value_optional_evaluate(
     AFW_FINALLY{
 
         /* Restore xctx stack top to what it was on entry. */
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
 
     }
 

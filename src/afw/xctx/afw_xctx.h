@@ -223,7 +223,7 @@ struct afw_xctx_frame_s {
  * thrown.
  */
 AFW_DECLARE(void)
-afw_xctx_define_variable(const afw_utf8_t *name,
+afw_xctx_frame_define_variable(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
@@ -239,7 +239,7 @@ afw_xctx_define_variable(const afw_utf8_t *name,
  * value.  If the variable is not found or const an error is thrown.
  */
 AFW_DECLARE(void)
-afw_xctx_set_defined_variable(const afw_utf8_t *name,
+afw_xctx_frame_set_defined_variable(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
@@ -255,7 +255,7 @@ afw_xctx_set_defined_variable(const afw_utf8_t *name,
  * will be added.
  */
 AFW_DECLARE(void)
-afw_xctx_set_local_variable(const afw_utf8_t *name,
+afw_xctx_frame_set_local_variable(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
@@ -265,7 +265,7 @@ afw_xctx_set_local_variable(const afw_utf8_t *name,
  * @return Parameter to pass to end_stack_frame.
  */
 AFW_DEFINE_STATIC_INLINE(int)
-afw_xctx_begin_stack_frame(
+afw_xctx_frame_begin(
     afw_xctx_t *xctx)
 {
     xctx->current_frame_index = xctx->stack->nelts;
@@ -275,11 +275,11 @@ afw_xctx_begin_stack_frame(
 
 /**
  * @brief Set stack top.
- * @param top Value returned from corresponding afw_xctx_begin_stack_frame().
+ * @param top Value returned from corresponding afw_xctx_frame_begin().
  * @param xctx of caller.
  */
 AFW_DEFINE_STATIC_INLINE(void)
-afw_xctx_end_stack_frame(
+afw_xctx_frame_end(
     int top, afw_xctx_t *xctx)
 {
     xctx->stack->nelts = top;

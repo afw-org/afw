@@ -180,7 +180,7 @@ afw_compile_to_value_with_callback(
      *
      * Make sure stack has same top before and after parse.
      */
-    top = afw_xctx_begin_stack_frame(xctx);
+    top = afw_xctx_frame_begin(xctx);
     AFW_TRY{
 
         if (compile_type == afw_compile_type_json ||
@@ -299,7 +299,7 @@ afw_compile_to_value_with_callback(
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {
-        afw_xctx_end_stack_frame(top, xctx);
+        afw_xctx_frame_end(top, xctx);
     }
     AFW_ENDTRY;
 
@@ -360,7 +360,7 @@ afw_compile_to_object(
      *
      * Make sure stack has same top before and after parse.
      */
-    top = afw_xctx_begin_stack_frame(xctx);
+    top = afw_xctx_frame_begin(xctx);
     AFW_TRY {
         value = afw_compile_parse_Object(parser, false, false);
         afw_compile_check_for_residual(parser);
@@ -377,7 +377,7 @@ afw_compile_to_object(
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {
-        afw_xctx_end_stack_frame(top, xctx);
+        afw_xctx_frame_end(top, xctx);
     }
     AFW_ENDTRY;
 

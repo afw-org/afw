@@ -232,7 +232,7 @@ afw_xctx_get_qualified_variable(
 
 /* Set a variable in current xctx frame. */
 AFW_DEFINE(void)
-afw_xctx_define_variable(const afw_utf8_t *name,
+afw_xctx_frame_define_variable(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx)
 {
     afw_name_value_t *cur;
@@ -260,7 +260,7 @@ afw_xctx_define_variable(const afw_utf8_t *name,
 
 /* Set most recent defined variable in xctx. */
 AFW_DEFINE(void)
-afw_xctx_set_defined_variable(
+afw_xctx_frame_set_defined_variable(
     const afw_utf8_t *name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
@@ -286,7 +286,7 @@ afw_xctx_set_defined_variable(
 
 /* Set a variable in current xctx frame. */
 AFW_DEFINE(void)
-afw_xctx_set_local_variable(const afw_utf8_t *name,
+afw_xctx_frame_set_local_variable(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx)
 {
     afw_name_value_t * cur;

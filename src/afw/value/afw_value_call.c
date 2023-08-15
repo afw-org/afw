@@ -70,7 +70,7 @@ impl_call_script_function(
     }
 
     /* Save stack top which will be restored on return. */
-    local_top = afw_xctx_begin_stack_frame(xctx);
+    local_top = afw_xctx_frame_begin(xctx);
     AFW_TRY {
 
         /*
@@ -160,7 +160,7 @@ impl_call_script_function(
     AFW_FINALLY{
 
         /* Restore xctx stack top to what it was on entry. */
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
 
     }
 

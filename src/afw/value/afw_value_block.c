@@ -78,19 +78,19 @@ impl_set_variable(
         /** @brief once symbol table is in place, replace this. */
 
     case afw_compile_assignment_type_assign_only:
-        afw_xctx_set_defined_variable(name, value, xctx);
+        afw_xctx_frame_set_defined_variable(name, value, xctx);
         break;
 
     case afw_compile_assignment_type_const:
-        afw_xctx_define_variable(name, value, xctx);
+        afw_xctx_frame_define_variable(name, value, xctx);
         break;
 
     case afw_compile_assignment_type_let:
-        afw_xctx_define_variable(name, value, xctx);
+        afw_xctx_frame_define_variable(name, value, xctx);
         break;
 
     case afw_compile_assignment_type_define_if_needed:
-        afw_xctx_set_local_variable(name, value, xctx);
+        afw_xctx_frame_set_local_variable(name, value, xctx);
         break;
 
     default:
@@ -478,7 +478,7 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    local_top = afw_xctx_begin_stack_frame(xctx);
+    local_top = afw_xctx_frame_begin(xctx);
     AFW_TRY{
         for (i = 0; i < self->argc; i++) {
             result = afw_value_block_evaluate_statement(x, type,
@@ -490,7 +490,7 @@ afw_value_block_evaluate_block(
         }
     }
     AFW_FINALLY{
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
     }
     AFW_ENDTRY;
 
@@ -519,7 +519,7 @@ afw_value_block_evaluate_for(
     const afw_value_t *body;
     int local_top;
 
-    local_top = afw_xctx_begin_stack_frame(xctx);
+    local_top = afw_xctx_frame_begin(xctx);
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
@@ -571,7 +571,7 @@ afw_value_block_evaluate_for(
         {
             *type = afw_value_block_statement_type_sequential;
         }
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
     }
     AFW_ENDTRY;
 
@@ -596,7 +596,7 @@ afw_value_block_evaluate_foreach(
     afw_compile_internal_assignment_type_t assignment_type;
     int local_top;
 
-    local_top = afw_xctx_begin_stack_frame(xctx);
+    local_top = afw_xctx_frame_begin(xctx);
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
@@ -628,7 +628,7 @@ afw_value_block_evaluate_foreach(
         {
             *type = afw_value_block_statement_type_sequential;
         }
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
     }
     AFW_ENDTRY;
 
@@ -848,7 +848,7 @@ afw_value_block_evaluate_try(
     result = afw_value_undefined;
     use_type = *type;
 
-    local_top = afw_xctx_begin_stack_frame(xctx);  
+    local_top = afw_xctx_frame_begin(xctx);  
     AFW_TRY {
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[1], p, xctx);
@@ -856,7 +856,7 @@ afw_value_block_evaluate_try(
     }
 
     AFW_CATCH_UNHANDLED {
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
@@ -888,7 +888,7 @@ afw_value_block_evaluate_try(
     }
 
     AFW_FINALLY {
-        afw_xctx_end_stack_frame(local_top, xctx);
+        afw_xctx_frame_end(local_top, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
             this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[2], p, xctx);
