@@ -345,6 +345,7 @@ environment
 
 # Scripting
 maluba
+JeremyScript
 break
 case
 catch

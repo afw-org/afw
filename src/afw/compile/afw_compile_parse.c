@@ -439,10 +439,11 @@ afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
     if (afw_compile_next_raw_starts_with_z("#!")) {
         afw_compile_get_raw_line(&line);
         if (!afw_utf8_contains(&line, &afw_s_afw) &&
-            !afw_utf8_contains(&line, &afw_s_maluba))
+            !afw_utf8_contains(&line, &afw_s_maluba) &&
+            !afw_utf8_contains(&line, &afw_s_JeremyScript))
         {
             AFW_COMPILE_THROW_ERROR_Z(
-                "Shebang line must contain 'afw' or 'maluba' to be "
+                "Shebang line must contain 'afw' to be "
                 "recognized as an adaptive script in a hybrid value");
         }
 

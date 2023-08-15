@@ -12,7 +12,7 @@
         },
         "MyObjectType2": {
             "mappedObjectType": "TestObjectType2",
-            "onRetrieveObjects": "#! afw\n\nreturn current::useDefaultProcessing;",
+            "onRetrieveObjects": "#! JeremyScript\n\nreturn current::useDefaultProcessing;",
             "onAddObject": "#! afw\n\nreturn current::useDefaultProcessing;",
             "onDeleteObject": "#! afw\n\nreturn current::useDefaultProcessing;",
             "onGetInitialObjectId": "#! afw\n\nreturn current::objectId;",

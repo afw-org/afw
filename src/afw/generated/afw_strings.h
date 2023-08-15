@@ -239,6 +239,12 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_INF;
 /** @brief afw_utf8_t for string Infinity */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_Infinity;
 
+/** @brief define for quoted string JeremyScript */
+#define AFW_Q_JeremyScript "JeremyScript"
+
+/** @brief afw_utf8_t for string JeremyScript */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_JeremyScript;
+
 /** @brief define for quoted string L */
 #define AFW_Q_L "L"
 

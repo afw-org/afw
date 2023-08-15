@@ -130,6 +130,9 @@ AFW_UTF8_LITERAL("INF");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_Infinity =
 AFW_UTF8_LITERAL("Infinity");
 
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_JeremyScript =
+AFW_UTF8_LITERAL("JeremyScript");
+
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_L =
 AFW_UTF8_LITERAL("L");
 
