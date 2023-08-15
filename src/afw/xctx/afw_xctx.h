@@ -45,7 +45,253 @@ AFW_BEGIN_DECLARES
 /** Name of request session xctx. */
 #define AFW_XCTX_s_NAME_REQUEST_SESSION afw_s_request_session
 
+/**
+ * @brief Create an Adaptive Framework xctx.
+ * @param name of xctx.
+ * @param number that is unique within the life of this Adaptive
+ *    Framework application for this xctx name.
+ * @param xctx of caller.  This will be xctx's parent.
+ *
+ * Call each time a new xctx is needed with a shorter lifetime.  For
+ * example, a server xctx with a shorter lifetime request_session
+ * xctx.  Calling the release method will release all resources
+ * allocated in the xctx including any children xctxs.  Call
+ * afw_environment_create() to create the initial xctx.
+ *
+ * The xctx authorization mode is set to user.  Use
+ * AFW_XCTX_AUTHORIZATION_MODE_BEGIN/END to change it.
+ */
+AFW_DECLARE(afw_xctx_t *)
+afw_xctx_create(
+    const afw_utf8_t *name, afw_integer_t number, afw_xctx_t *xctx);
 
+
+/**
+ * @brief Test for environment terminating.
+ * @param xctx of caller.
+ * @return true if environment terminating.
+ */
+AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
+afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
+{
+    return xctx->env->terminating;
+}
+
+
+/**
+ * @brief Macro to allocate cleared memory in xctx's lifetime pool.
+ * @param size of memory to allocate.
+ * @param xctx of caller.
+ * @return Pointer to memory allocated.
+ */
+#define afw_xctx_calloc(size, xctx) \
+    afw_pool_calloc((xctx)->p, (size), (xctx))
+
+
+/**
+ * @brief Macro to allocate cleared memory for type in xctx's lifetime pool.
+ * @param type to allocate.
+ * @param xctx of caller.
+ * @return Pointer to memory allocated cast to pointer of type.
+ *
+ * This is a helper macro to call afw_xctx_calloc() to allocate
+ * memory for a specified type and cast the return pointer to
+ * a pointer to that type.
+ */
+#define afw_xctx_calloc_type(type, xctx) \
+    (type *) afw_pool_calloc((xctx)->p, sizeof(type), (xctx))
+
+
+/**
+ * @brief Macro to allocate uncleared memory in xctx's lifetime pool.
+ * @param size of memory to allocate.
+ * @param xctx of caller.
+ * @return Pointer to memory allocated.
+ */
+#define afw_xctx_malloc(size, xctx) \
+    afw_pool_malloc((xctx)->p, (size), (xctx))
+
+
+/**
+ * @brief Macro to allocate uncleared memory for type in xctx's lifetime pool.
+ * @param type to allocate.
+ * @param xctx of caller.
+ * @return Pointer to memory allocated cast to pointer of type.
+ *
+ * This is a helper macro to call afw_pool_malloc() to allocate
+ * memory for a specified type and cast the return pointer to a pointer to
+ * that type.
+ */
+#define afw_xctx_malloc_type(type, xctx) \
+    (type *) afw_pool_malloc((xctx)->p, sizeof(type), (xctx))
+
+
+/**
+ * @brief Begin a section this can only use secure context variables.
+ * @param xctx of caller.
+ *
+ * The variable name of the current xctx must be named xctx.
+ *
+ * Usage:
+ *
+ *  AFW_XCTX_SECURE_BEGIN {
+ *     ... code that can only use secure context variables
+ *  }
+ *  AFW_XCTX_SECURE_END;
+ */
+#define AFW_XCTX_SECURE_BEGIN \
+do { \
+    afw_boolean_t this_SCOPE_save_secure = xctx->secure; \
+    xctx->secure = true; \
+    AFW_TRY
+
+
+/**
+ * @brief End a section this can only use secure context variables.
+ */
+#define AFW_XCTX_SECURE_END \
+    AFW_FINALLY { \
+        xctx->secure = this_SCOPE_save_secure; \
+    } \
+    AFW_ENDTRY; \
+} while(0)
+
+
+/**
+ * @brief Macro to begin an authorization mode change section.
+ * @param modeId (core, intermediate, or user).
+ *
+ * The variable name of the current xctx must be named xctx.
+ *
+ * Usage:
+ *
+ * AFW_XCTX_AUTHORIZATION_MODE_BEGIN(intermediate) {
+ *    ... code
+ * }
+ * AFW_XCTX_AUTHORIZATION_MODE_END;
+ */
+#define AFW_XCTX_AUTHORIZATION_MODE_BEGIN(modeId) \
+const afw_value_t *this_PREVIOUS_MODE = \
+    xctx->mode = afw_authorization_mode_id_ ## modeId ## _value; \
+AFW_TRY
+
+
+/**
+ * @brief Macro to end an authorization xctx mode change section.
+ *
+ * See AFW_XCTX_AUTHORIZATION_MODE_BEGIN for usage.
+ */
+#define AFW_XCTX_AUTHORIZATION_MODE_END \
+AFW_FINALLY { \
+    xctx->mode =  this_PREVIOUS_MODE; \
+} \
+AFW_ENDTRY
+
+
+
+/* ----------------------------------------------------------------------------
+
+    Execution Context (xctx) Frame
+    
+---------------------------------------------------------------------------- */
+
+/**
+ * @brief The struct for an execution context frame.
+ */
+struct afw_xctx_frame_s {
+    const afw_pool_t *p;
+    afw_size_t values_count;
+    const afw_value_t *values[1];
+};
+
+// struct {
+//     afw_xctx_frame_t *first;
+//     afw_xctx_frame_t *current;
+//     afw_xctx_frame_t *end;
+// } afw_xctx_frames;
+
+/**
+ * @deprecated
+ * @brief Defined a variable in current xctx frame.
+ * @param name Name of variable.
+ * @param value Value to set.
+ * @param xctx of caller.
+ * @return value or NULL if not found.
+ *
+ * Define a variable in the current xctx frame with an initial value.  If
+ * the variable is already defined in the current xctx frame, an error is
+ * thrown.
+ */
+AFW_DECLARE(void)
+afw_xctx_define_variable(const afw_utf8_t *name,
+    const afw_value_t *value, afw_xctx_t *xctx);
+
+
+/**
+ * @deprecated
+ * @brief Set a defined variable in xctx.
+ * @param name Name of variable.
+ * @param value Value to set.
+ * @param xctx of caller.
+ * @return value or NULL if not found.
+ *
+ * The most recently defined named variable in xctx will be set to the
+ * value.  If the variable is not found or const an error is thrown.
+ */
+AFW_DECLARE(void)
+afw_xctx_set_defined_variable(const afw_utf8_t *name,
+    const afw_value_t *value, afw_xctx_t *xctx);
+
+
+/**
+ * @brief Set a variable then current xctx frame.
+ * @param name Name of variable.
+ * @param value Value to set.
+ * @param xctx of caller.
+ * @return value or NULL if not found.
+ *
+ * The current stack frame will be searched for an entry with the same name.
+ * If found, the value of that entry will be set.  If not found, a new entry
+ * will be added.
+ */
+AFW_DECLARE(void)
+afw_xctx_set_local_variable(const afw_utf8_t *name,
+    const afw_value_t *value, afw_xctx_t *xctx);
+
+
+/**
+ * @brief Begin stack frame.
+ * @param xctx of caller.
+ * @return Parameter to pass to end_stack_frame.
+ */
+AFW_DEFINE_STATIC_INLINE(int)
+afw_xctx_begin_stack_frame(
+    afw_xctx_t *xctx)
+{
+    xctx->current_frame_index = xctx->stack->nelts;
+    return xctx->stack->nelts;
+}
+
+
+/**
+ * @brief Set stack top.
+ * @param top Value returned from corresponding afw_xctx_begin_stack_frame().
+ * @param xctx of caller.
+ */
+AFW_DEFINE_STATIC_INLINE(void)
+afw_xctx_end_stack_frame(
+    int top, afw_xctx_t *xctx)
+{
+    xctx->stack->nelts = top;
+    xctx->current_frame_index = top;
+}
+
+
+/* ----------------------------------------------------------------------------
+
+    Execution Context (xctx) Evaluation Stack
+    
+---------------------------------------------------------------------------- */
 
 /**
  * @brief The execution context (xctx) evaluation stack entry.
@@ -143,117 +389,11 @@ xctx->evaluation_stack->top
 xctx->evaluation_stack->top = evaluation_stack_save_top
 
 
-/**
- * @brief Create an Adaptive Framework xctx.
- * @param name of xctx.
- * @param number that is unique within the life of this Adaptive
- *    Framework application for this xctx name.
- * @param xctx of caller.  This will be xctx's parent.
- *
- * Call each time a new xctx is needed with a shorter lifetime.  For
- * example, a server xctx with a shorter lifetime request_session
- * xctx.  Calling the release method will release all resources
- * allocated in the xctx including any children xctxs.  Call
- * afw_environment_create() to create the initial xctx.
- *
- * The xctx authorization mode is set to user.  Use
- * AFW_XCTX_AUTHORIZATION_MODE_BEGIN/END to change it.
- */
-AFW_DECLARE(afw_xctx_t *)
-afw_xctx_create(
-    const afw_utf8_t *name, afw_integer_t number, afw_xctx_t *xctx);
+/* ----------------------------------------------------------------------------
 
-
-/**
- * @brief Test for environment terminating.
- * @param xctx of caller.
- * @return true if environment terminating.
- */
-AFW_DEFINE_STATIC_INLINE(afw_boolean_t)
-afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
-{
-    return xctx->env->terminating;
-}
-
-
-/**
- * @brief Macro to allocate cleared memory in xctx's pool.
- * @param size of memory to allocate.
- * @param xctx of caller.
- * @return Pointer to memory allocated.
- */
-#define afw_xctx_calloc(size, xctx) \
-    afw_pool_calloc((xctx)->p, (size), (xctx))
-
-
-/**
- * @brief Macro to allocate cleared memory to hold type in xctx's pool.
- * @param type to allocate.
- * @param xctx of caller.
- * @return Pointer to memory allocated cast to pointer of type.
- *
- * This is a helper macro to call afw_xctx_calloc() to allocate
- * memory for a specified type and cast the return pointer to
- * a pointer to that type.
- */
-#define afw_xctx_calloc_type(type, xctx) \
-    (type *) afw_pool_calloc((xctx)->p, sizeof(type), (xctx))
-
-
-/**
- * @brief Macro to allocate uncleared memory in xctx's pool.
- * @param size of memory to allocate.
- * @param xctx of caller.
- * @return Pointer to memory allocated.
- */
-#define afw_xctx_malloc(size, xctx) \
-    afw_pool_malloc((xctx)->p, (size), (xctx))
-
-
-/**
- * @brief Macro to allocate uncleared memory to hold type in xctx's pool.
- * @param type to allocate.
- * @param xctx of caller.
- * @return Pointer to memory allocated cast to pointer of type.
- *
- * This is a helper macro to call afw_pool_malloc() to allocate
- * memory for a specified type and cast the return pointer to a pointer to
- * that type.
- */
-#define afw_xctx_malloc_type(type, xctx) \
-    (type *) afw_pool_malloc((xctx)->p, sizeof(type), (xctx))
-
-/**
- * @brief Begin a section this can only use secure context variables.
- * @param xctx of caller.
- *
- * The variable name of the current xctx must be named xctx.
- *
- * Usage:
- *
- *  AFW_XCTX_SECURE_BEGIN {
- *     ... code that can only use secure context variables
- *  }
- *  AFW_XCTX_SECURE_END;
- */
-#define AFW_XCTX_SECURE_BEGIN \
-do { \
-    afw_boolean_t this_SCOPE_save_secure = xctx->secure; \
-    xctx->secure = true; \
-    AFW_TRY
-
-
-
-/**
- * @brief End a section this can only use secure context variables.
- */
-#define AFW_XCTX_SECURE_END \
-    AFW_FINALLY { \
-        xctx->secure = this_SCOPE_save_secure; \
-    } \
-    AFW_ENDTRY; \
-} while(0)
-
+    Execution Context (xctx) Qualifier and Qualified Varaibles
+    
+---------------------------------------------------------------------------- */
 
 /**
  * @brief Get a variable from xctx stack.
@@ -269,84 +409,6 @@ afw_xctx_get_qualified_variable(
     const afw_utf8_t *qualifier,
     const afw_utf8_t *name,
     afw_xctx_t *xctx);
-
-
-/**
- * @deprecated
- * @brief Defined a variable in current xctx frame.
- * @param name Name of variable.
- * @param value Value to set.
- * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * Define a variable in the current xctx frame with an initial value.  If
- * the variable is already defined in the current xctx frame, an error is
- * thrown.
- */
-AFW_DECLARE(void)
-afw_xctx_define_variable(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
-
-
-/**
- * @deprecated
- * @brief Set a defined variable in xctx.
- * @param name Name of variable.
- * @param value Value to set.
- * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * The most recently defined named variable in xctx will be set to the
- * value.  If the variable is not found or const an error is thrown.
- */
-AFW_DECLARE(void)
-afw_xctx_set_defined_variable(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
-
-
-/**
- * @brief Set a variable then current xctx frame.
- * @param name Name of variable.
- * @param value Value to set.
- * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * The current stack frame will be searched for an entry with the same name.
- * If found, the value of that entry will be set.  If not found, a new entry
- * will be added.
- */
-AFW_DECLARE(void)
-afw_xctx_set_local_variable(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
-
-
-/**
- * @brief Begin stack frame.
- * @param xctx of caller.
- * @return Parameter to pass to end_stack_frame.
- */
-AFW_DEFINE_STATIC_INLINE(int)
-afw_xctx_begin_stack_frame(
-    afw_xctx_t *xctx)
-{
-    xctx->current_frame_index = xctx->stack->nelts;
-    return xctx->stack->nelts;
-}
-
-
-/**
- * @brief Set stack top.
- * @param top Value returned from corresponding afw_xctx_begin_stack_frame().
- * @param xctx of caller.
- */
-AFW_DEFINE_STATIC_INLINE(void)
-afw_xctx_end_stack_frame(
-    int top, afw_xctx_t *xctx)
-{
-    xctx->stack->nelts = top;
-    xctx->current_frame_index = top;
-}
-
 
 /** Struct for xctx qualifier stack entry. */
 struct afw_xctx_qualifier_stack_entry_s {
@@ -492,37 +554,6 @@ afw_xctx_push_qualifier_object(
 
 
 /**
- * @brief Macro to begin an authorization mode change section.
- * @param modeId (core, intermediate, or user).
- *
- * The variable name of the current xctx must be named xctx.
- *
- * Usage:
- *
- * AFW_XCTX_AUTHORIZATION_MODE_BEGIN(intermediate) {
- *    ... code
- * }
- * AFW_XCTX_AUTHORIZATION_MODE_END;
- */
-#define AFW_XCTX_AUTHORIZATION_MODE_BEGIN(modeId) \
-const afw_value_t *this_PREVIOUS_MODE = \
-    xctx->mode = afw_authorization_mode_id_ ## modeId ## _value; \
-AFW_TRY
-
-
-/**
- * @brief Macro to end an authorization xctx mode change section.
- *
- * See AFW_XCTX_AUTHORIZATION_MODE_BEGIN for usage.
- */
-#define AFW_XCTX_AUTHORIZATION_MODE_END \
-AFW_FINALLY { \
-    xctx->mode =  this_PREVIOUS_MODE; \
-} \
-AFW_ENDTRY
-
-
-/**
  * @brief Create object to access active variables for a qualifier.
  * @param qualifier_name.
  * @param for_testing
@@ -551,7 +582,6 @@ afw_xctx_qualifiers_object_create(
     afw_boolean_t for_testing,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
-
 
 
 AFW_END_DECLARES
