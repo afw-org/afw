@@ -58,10 +58,10 @@ impl_afw_value_permanent_get_reference(
 
 
 #define impl_afw_value_get_evaluated_meta \
-    afw_value_internal_get_evaluated_meta_for_list
+    afw_value_internal_get_evaluated_meta_for_array
 
 #define impl_afw_value_get_evaluated_metas \
-    afw_value_internal_get_evaluated_metas_for_list
+    afw_value_internal_get_evaluated_metas_for_array
 
 /* This is fully evaluated so optional_evaluate method is NULL. */
 #define impl_afw_value_optional_evaluate NULL

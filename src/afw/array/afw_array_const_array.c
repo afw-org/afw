@@ -41,7 +41,7 @@ typedef struct impl_afw_array_const_array_of_values_self_s {
 } impl_afw_array_const_array_of_values_self_t;
 
 
-/* Create an immutable list from an array of objects. */
+/* Create an immutable array from an array of objects. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_const_create_array_of_objects(
     const afw_object_t *const *objects,
@@ -66,7 +66,7 @@ afw_array_const_create_array_of_objects(
 }
 
 
-/* Create an list from NULL terminated array of objects. */
+/* Create an array from NULL terminated array of objects. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_const_create_null_terminated_array_of_objects(
     const afw_object_t * const *objects,
@@ -86,7 +86,7 @@ afw_array_const_create_null_terminated_array_of_objects(
 
 
 
-/* Create an immutable list from an array of values. */
+/* Create an immutable array from an array of values. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_const_create_array_of_values(
     const afw_value_t *const *values,
@@ -109,7 +109,7 @@ afw_array_const_create_array_of_values(
 
 
 
-/* Create an immutable list from NULL terminated array of values. */
+/* Create an immutable array from NULL terminated array of values. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_const_create_null_terminated_array_of_values(
     const afw_value_t * const *values,

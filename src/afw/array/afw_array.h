@@ -31,12 +31,12 @@ AFW_THROW_ERROR_Z(read_only, "List immutable", xctx)
 
 
 /**
- * @brief Create an list in memory with options.
+ * @brief Create an array in memory with options.
  * @param options
- * @param data_type if list only holds one data type or NULL.
- * @param p to use for the list.
+ * @param data_type if array only holds one data type or NULL.
+ * @param p to use for the array.
  * @param xctx of caller.
- * @return Pointer to interface pointer of new value list.
+ * @return Pointer to interface pointer of new value array.
  * 
  * If data_type is NULL and only values of a single evaluated
  * data type are added, afw_array_get_data_type() will return
@@ -51,11 +51,11 @@ afw_array_create_with_options(
 
 
 /**
- * @brief Create an list of a specific data type in memory.
- * @param data_type if list only holds one data type or NULL.
- * @param p to use for the list.
+ * @brief Create an array of a specific data type in memory.
+ * @param data_type if array only holds one data type or NULL.
+ * @param p to use for the array.
  * @param xctx of caller.
- * @return Pointer to interface pointer of new value list.
+ * @return Pointer to interface pointer of new value array.
  *
  * If data_type is NULL and only values of a single evaluated
  * data type are added, afw_array_get_data_type() will return
@@ -67,12 +67,12 @@ afw_array_create_with_options(
 
 
 /**
- * @brief Create an value list in memory.
+ * @brief Create an value array in memory.
  * @param p to use for the object.
  * @param xctx of caller.
- * @return Pointer to interface pointer of new value list.
+ * @return Pointer to interface pointer of new value array.
  *
- * Use this function to create a value list that is not associated with an
+ * Use this function to create a value array that is not associated with an
  * adaptor.
  * 
  * If only values of a single evaluated data type are added,
@@ -84,12 +84,12 @@ afw_array_create_with_options(
 
 
 /**
- * @brief Create an immutable list from an array of objects.
+ * @brief Create an immutable array from an array of objects.
  * @param values is address of first value in array.
  * @param count is number for values.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return list instance.
+ * @return array instance.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_array_of_objects(
@@ -101,12 +101,12 @@ afw_array_const_create_array_of_objects(
 
 
 /**
- * @brief Create an immutable list from an array of values.
+ * @brief Create an immutable array from an array of values.
  * @param values is address of first value in array.
  * @param count is number for values.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return list instance.
+ * @return array instance.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_array_of_values(
@@ -118,11 +118,11 @@ afw_array_const_create_array_of_values(
 
 
 /**
- * @brief Create an immutable list from NULL terminated array of objects.
+ * @brief Create an immutable array from NULL terminated array of objects.
  * @param values is NULL terminated array of objects.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return list instance.
+ * @return array instance.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_null_terminated_array_of_objects(
@@ -133,11 +133,11 @@ afw_array_const_create_null_terminated_array_of_objects(
 
 
 /**
- * @brief Create an immutable list from NULL terminated array of values.
+ * @brief Create an immutable array from NULL terminated array of values.
  * @param values is NULL terminated array of values.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return list instance.
+ * @return array instance.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_const_create_null_terminated_array_of_values(
@@ -148,19 +148,19 @@ afw_array_const_create_null_terminated_array_of_values(
 
 
 /**
- * @brief Create a clone of a list in memory.
- * @param list to clone or NULL.
- * @param data_type to use if list is NULL.
+ * @brief Create a clone ofan array in memory.
+ * @param array to clone or NULL.
+ * @param data_type to use if array is NULL.
  * @param clone_values true will clone values as well.
- * @param p to use for the list.
+ * @param p to use for the array.
  * @param xctx of caller.
- * @return cloned instance of list.
+ * @return cloned instance of array.
  *
- * If data_type is not NULL and list is typed, they must match.
+ * If data_type is not NULL and array is typed, they must match.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_create_or_clone(
-    const afw_array_t *list,
+    const afw_array_t *array,
     const afw_data_type_t *data_type,
     afw_boolean_t clone_values,
     const afw_pool_t *p, afw_xctx_t *xctx);
@@ -168,12 +168,12 @@ afw_array_create_or_clone(
 
 
 /**
- * @brief Create a typed list from a value.
- * @param data_type of list
+ * @brief Create a typed array from a value.
+ * @param data_type of array
  * @param value.
- * @param p to use for the list.
+ * @param p to use for the array.
  * @param xctx of caller.
- * @return typed list.
+ * @return typed array.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_of_create_from_value(
@@ -184,33 +184,33 @@ afw_array_of_create_from_value(
 
 
 /**
- * @brief Convert a list to a list of strings.
- * @param list to convert.
+ * @brief Convertan array toan array of strings.
+ * @param array to convert.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return converted list or original if already list of strings.
+ * @return converted array or original if already array of strings.
  */
 AFW_DECLARE(const afw_array_t *)
 afw_array_convert_to_array_of_strings(
-    const afw_array_t *list,
+    const afw_array_t *array,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Create a immutable list wrapper for an array.
+ * @brief Create a immutable array wrapper for an array.
  * @param array of internal values.
  * @param indirect if true array is array of pointers to internal value.
  * @param data_type of array.
  * @param count of entries in array or -1 for NULL terminated.
  * @param p is pool for result.
  * @param xctx of caller.
- * @return list instance.
+ * @return array instance.
  *
  * If indirect is false, array must be an array of data_type->cType.  If
  * indirect is true, array must be an array of data_type->cType *.
  *
- * If count is -1, the array must be a list of pointers.  This can either
+ * If count is -1, the array must bean array of pointers.  This can either
  * be because data_type->cType ends in an asterisk or the indirect parameter
  * is true.
  */
@@ -226,9 +226,9 @@ afw_array_create_wrapper_for_array(
 
 
 /**
- * @brief Self for immutable list wrapper for an array
+ * @brief Self for immutable array wrapper for an array
  *
- * This is self for immutable list wrapper for an array.  This can defined
+ * This is self for immutable array wrapper for an array.  This can defined
  * and filled out in a local variable instead of calling
  * afw_array_create_wrapper_for_array() if the instance is only needed
  * temporarily.  Helper macro AFW_LIST_WRAPPER_FOR_ARRAY_P() can be used to do
@@ -306,8 +306,8 @@ _internal, _indirect, _data_type, _count, _p) \
 
 
 /**
- * @brief Get next value from list whose data type cType is afw_utf8_t.
- * @param instance of list.
+ * @brief Get next value from array whose data type cType is afw_utf8_t.
+ * @param instance of array.
  * @param iterator.
  * @param xctx of caller.
  * @return (const afw_utf8_t *) or NULL.
@@ -324,11 +324,11 @@ afw_array_of_utf8_get_next(
 
 
 /**
- * @brief Set a list to immutable if not already.
- * @param instance Pointer to this value list instance.
+ * @brief Setan array to immutable if not already.
+ * @param instance Pointer to this value array instance.
  * @param xctx of caller.
  *
- * Once a list is set to immutable, all other set calls will throw
+ * Oncean array is set to immutable, all other set calls will throw
  * an error.
  */
 AFW_DECLARE(void)
@@ -339,17 +339,17 @@ afw_array_set_immutable(
 
 
 /**
- * @brief Set list to immutable and determine data type of entries. 
- * @param instance Pointer to this value list instance.
+ * @brief Set array to immutable and determine data type of entries. 
+ * @param instance Pointer to this value array instance.
  * @param xctx of caller.
- * @return the data type of all values in list or NULL if different
+ * @return the data type of all values in array or NULL if different
  *    or unknown.
  *
- * If data type of values in list is not already known and all
- * values is list have the same data type, make the list a list of
+ * If data type of values in array is not already known and all
+ * values is array have the same data type, make the arrayan array of
  * that data type.
  *
- * Once a list is set to immutable, all other set calls will throw
+ * Oncean array is set to immutable, all other set calls will throw
  * an error.
  */
 AFW_DECLARE(const afw_data_type_t *)
@@ -361,7 +361,7 @@ afw_array_determine_data_type_and_set_immutable(
 
 /**
  * @brief Call method add of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param data_type of internal.
  * @param internal A value.
  * @param xctx of caller.
@@ -377,7 +377,7 @@ afw_array_add_internal(
 
 /**
  * @brief Call method add_value of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param value A value.
  * @param xctx of caller.
  */
@@ -391,7 +391,7 @@ afw_array_add_value(
 
 /**
  * @brief Call method remove_all_values of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -403,7 +403,7 @@ afw_array_remove_all_values(
 
 /**
  * @brief Call method remove of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param data_type of internal.
  * @param internal A value.
  * @param xctx of caller.
@@ -419,7 +419,7 @@ afw_array_remove_internal(
 
 /**
  * @brief Call method remove_value of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param value Value.
  * @param xctx of caller.
  */
@@ -432,7 +432,7 @@ afw_array_remove_value(
 
 /**
  * @brief Call method set_value_by_index of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param index.
  * @param value.
  * @param xctx of caller.
@@ -446,13 +446,13 @@ afw_array_set_value_by_index(
 
 
 /**
- * @brief Determine if list is immutable.
- * @param instance of list.
+ * @brief Determine if array is immutable.
+ * @param instance of array.
  * @param xctx of caller.
  * @return boolean result.
  */
-#define afw_array_is_immutable(list, xctx) \
-(afw_array_get_setter(list, xctx) == NULL)
+#define afw_array_is_immutable(array, xctx) \
+(afw_array_get_setter(array, xctx) == NULL)
 
 
 

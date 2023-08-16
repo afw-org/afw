@@ -27,7 +27,7 @@
 #undef AFW_IMPLEMENTATION_INF_LABEL
 
 
-/* Create a immutable list wrapper for an array. */
+/* Create a immutable array wrapper for an array. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_wrapper_for_array(
     const void *internal,
@@ -72,10 +72,10 @@ afw_array_create_wrapper_for_array(
 
 
 
-/* Convert a list to a list of strings. */
+/* Convertan array toan array of strings. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_convert_to_array_of_strings(
-    const afw_array_t *list,
+    const afw_array_t *array,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -87,13 +87,13 @@ afw_array_convert_to_array_of_strings(
     const afw_value_t *value;
     const afw_iterator_t *iterator;
 
-    /* Return original if already list of string. */
-    if (afw_array_get_data_type(list, xctx) == afw_data_type_string) {
-        return list;
+    /* Return original if already array of string. */
+    if (afw_array_get_data_type(array, xctx) == afw_data_type_string) {
+        return array;
     }
 
     /* Get count. */
-    count = afw_array_get_count(list, xctx);
+    count = afw_array_get_count(array, xctx);
 
     /* If count is 0, return empty array of string. */
     if (count == 0) {
@@ -110,11 +110,11 @@ afw_array_convert_to_array_of_strings(
     self->count = count;
     self->indirect = false;
 
-    /* Convert each value in list to a string. */
+    /* Convert each value in array to a string. */
     for (iterator = NULL;;
         internal = (void *)(((afw_byte_t *)internal) + sizeof(afw_utf8_t)))
     {
-        value = afw_array_get_next_value(list, &iterator, p, xctx);
+        value = afw_array_get_next_value(array, &iterator, p, xctx);
         if (!value) {
             break;
         }
@@ -131,7 +131,7 @@ afw_array_convert_to_array_of_strings(
         memcpy(internal, s, sizeof(afw_utf8_t));
     }
 
-    /* Return list of string. */
+    /* Return array of string. */
     return (const afw_array_t *)self;
 }
 
@@ -205,7 +205,7 @@ impl_afw_array_get_entry_internal(
         e = NULL;
     }
 
-    /* NULL terminated list. */
+    /* NULL terminated array. */
     else if (self->count == -1) {
         for (count = 0, e = self->internal;
             *(void **)e && count < i;

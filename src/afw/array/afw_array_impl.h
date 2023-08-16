@@ -19,7 +19,7 @@
 
 /**
  * @file afw_array_impl.h
- * @brief Helpers for list implementation development.
+ * @brief Helpers for array implementation development.
  */
 
 AFW_BEGIN_DECLARES
@@ -35,11 +35,11 @@ do { \
 
 /**
  * @brief A general impl of method get_entry_meta for interface afw_array.
- * @param instance of list.
+ * @param instance of array.
  * @param index of entry to get meta for.
  * @param p for result.
  * @param xctx of caller.
- * @return meta list.
+ * @return meta array.
  *
  * To use in implementation, add the following lines after the #includes in
  * the implementation source:
@@ -59,11 +59,11 @@ afw_array_impl_get_entry_meta(
 /**
  * @brief A general impl of method get_entry_meta for interface afw_array
  *    that can be accessed externally.
- * @param instance of list.
+ * @param instance of array.
  * @param index of entry to get meta for.
  * @param p for result.
  * @param xctx of caller.
- * @return meta list.
+ * @return meta array.
  *
  * Function afw_array_impl_get_entry_meta() can not be used directly in
  * separate dlls or exes.
@@ -91,11 +91,11 @@ afw_array_external_impl_get_entry_meta(
 
 /**
  * @brief A general impl of method get_next_entry_meta for interface afw_array.
- * @param instance of list.
+ * @param instance of array.
  * @param iterator pointer (set to NULL before first call)
  * @param p for result.
  * @param xctx of caller.
- * @return list value of list entry's meta.
+ * @return array value of array entry's meta.
  *
  * To use in implementation, add the following lines after the #includes in
  * the implementation source:
@@ -114,11 +114,11 @@ afw_array_impl_get_next_entry_meta(
 /**
  * @brief A general impl of method get_next_entry_meta for interface
  *    afw_array that can be accessed externally.
- * @param instance of list.
+ * @param instance of array.
  * @param iterator pointer (set to NULL before first call)
  * @param p for result.
  * @param xctx of caller.
- * @return list value of list entry's meta.
+ * @return array value of array entry's meta.
  *
  * Function afw_array_impl_get_next_entry_meta() can not be used directly in
  * separate dlls or exes.

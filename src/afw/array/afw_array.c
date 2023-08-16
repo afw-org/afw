@@ -14,7 +14,7 @@
 #include "afw_internal.h"
 
 
-/* Get next value from list whose data type cType is afw_utf8_t. */
+/* Get next value from array whose data type cType is afw_utf8_t. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_array_of_utf8_get_next(
     const afw_array_t *instance,
@@ -32,14 +32,14 @@ afw_array_of_utf8_get_next(
     if (!afw_utf8_equal(&data_type->cType, &afw_s_afw_utf8_t))
     {
         AFW_THROW_ERROR_Z(general,
-            "cType of list data type is not afw_utf8_t", xctx);
+            "cType of array data type is not afw_utf8_t", xctx);
     }
     return (const afw_utf8_t *)internal;
 }
 
 
 
-/* Set an list to immutable if it is not already. */
+/* Set an array to immutable if it is not already. */
 AFW_DEFINE(void)
 afw_array_set_immutable(
     const afw_array_t *instance, afw_xctx_t *xctx)
@@ -55,7 +55,7 @@ afw_array_set_immutable(
 }
 
 
-/* Set an list to immutable and determine data type. */
+/* Set an array to immutable and determine data type. */
 AFW_DEFINE(const afw_data_type_t *)
 afw_array_determine_data_type_and_set_immutable(
     const afw_array_t *instance, afw_xctx_t *xctx)
@@ -96,7 +96,7 @@ afw_array_add_internal(
 
 /**
  * @brief Call method add_value of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param value A value.
  * @param xctx of caller.
  */
@@ -121,7 +121,7 @@ afw_array_add_value(
 
 /**
  * @brief Call method remove_all_values of interface afw_array_setter
- * @param instance Pointer to this value list instance.
+ * @param instance Pointer to this value array instance.
  * @param xctx of caller.
  */
 AFW_DEFINE(void)

@@ -423,7 +423,7 @@ afw_value_internal_get_evaluated_metas_default(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_value_internal_get_evaluated_meta_for_list(
+afw_value_internal_get_evaluated_meta_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -440,7 +440,7 @@ afw_value_internal_get_evaluated_meta_for_list(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_value_internal_get_evaluated_metas_for_list(
+afw_value_internal_get_evaluated_metas_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

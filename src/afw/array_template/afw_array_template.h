@@ -107,7 +107,7 @@ typedef struct {\
     } _NAME##_t;\
 \
 typedef struct {\
-    const _NAME##_t *list;\
+    const _NAME##_t *array;\
     int next_index;\
     } _NAME##_iterator_t;\
 \
@@ -133,45 +133,45 @@ typedef struct {\
     \
     \
 /** @fixme Uncomment this if it seems like a good idea later. mg (or remove it)*/\
-    AFW_STATIC_INLINE _NAME##_iterator_t * make##_NAME##_iterator(apr_pool_t *p, const _NAME##_t *list)\
+    AFW_STATIC_INLINE _NAME##_iterator_t * make##_NAME##_iterator(apr_pool_t *p, const _NAME##_t *array)\
     {\
     _NAME##_iterator_t *iterator =  (_NAME##_iterator_t (*))apr_pcalloc(p, sizeof(_NAME##_iterator_t));\
-    iterator->list = list;\
+    iterator->array = array;\
     iterator->next_index = 0;\
     return iterator;\
     }\
 \
-    AFW_STATIC_INLINE void initialize##_NAME##_iterator(_NAME##_iterator_t *iterator, const _NAME##_t *list)\
+    AFW_STATIC_INLINE void initialize##_NAME##_iterator(_NAME##_iterator_t *iterator, const _NAME##_t *array)\
     {\
-    iterator->list = list;\
+    iterator->array = array;\
     iterator->next_index = 0;\
     }\
 \
 AFW_STATIC_INLINE _ELEMENT_TYPE * first##_NAME##_iterator(_NAME##_iterator_t *iterator)\
     {\
     iterator->next_index = 1;\
-    return (iterator->list->elts);\
+    return (iterator->array->elts);\
     }\
 \
 AFW_STATIC_INLINE _ELEMENT_TYPE * next##_NAME##_iterator(_NAME##_iterator_t *iterator)\
     {\
     return (\
-        (iterator->next_index < iterator->list->nelts)\
-            ?iterator->list->elts+((iterator->next_index)++)\
+        (iterator->next_index < iterator->array->nelts)\
+            ?iterator->array->elts+((iterator->next_index)++)\
             :NULL\
     );\
     }\
 \
 AFW_STATIC_INLINE int isDone##_NAME##_iterator(_NAME##_iterator_t *iterator)\
     {\
-    return (iterator->next_index >= iterator->list->nelts);\
+    return (iterator->next_index >= iterator->array->nelts);\
     }\
 \
 AFW_STATIC_INLINE _ELEMENT_TYPE * current##_NAME##_iterator(_NAME##_iterator_t *iterator)\
     {\
     return (\
-        (iterator->next_index < iterator->list->nelts)\
-            ?iterator->list->elts+(iterator->next_index)\
+        (iterator->next_index < iterator->array->nelts)\
+            ?iterator->array->elts+(iterator->next_index)\
             :NULL\
     );\
 }

@@ -15,7 +15,7 @@
  * @defgroup afw_array_internal File
  * @ingroup afw_c_api_internal
  * 
- * Internal list API.
+ * Internal array API.
  * 
  * @{
  */

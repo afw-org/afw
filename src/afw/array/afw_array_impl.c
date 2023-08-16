@@ -29,7 +29,7 @@ afw_array_impl_get_entry_meta(
     const afw_value_t *result;
     afw_value_meta_object_self_t *meta_self;
 
-    /*FIXME Meta should include list meta. */
+    /*FIXME Meta should include array meta. */
 
     result = NULL;
     entry_value = afw_array_get_entry_value(instance, index, p, xctx);
