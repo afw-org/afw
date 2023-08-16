@@ -311,9 +311,9 @@ afw_function_execute_for(
 
 
 /*
- * Adaptive function: foreach
+ * Adaptive function: for_of
  *
- * afw_function_execute_foreach
+ * afw_function_execute_for_of
  *
  * See afw_function_bindings.h for more information.
  *
@@ -322,7 +322,7 @@ afw_function_execute_for(
  * This function will evaluate an array of values (statements) while a
  * condition is true with initial and increment values. The condition is tested
  * at the beginning of the loop. If the condition is false for the first
- * iteration, the loop returns a null value.
+ * iteration, the loop returns a null value. This supports for-of statement.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -330,7 +330,7 @@ afw_function_execute_for(
  * Declaration:
  *
  * ```
- *   function foreach(
+ *   function for_of(
  *       name: (array string),
  *       value: any,
  *       body?: array
@@ -354,7 +354,7 @@ afw_function_execute_for(
  *       evaluates to false the first time.
  */
 const afw_value_t *
-afw_function_execute_foreach(
+afw_function_execute_for_of(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
@@ -363,7 +363,7 @@ afw_function_execute_foreach(
     type = afw_value_block_statement_type_sequential;
 
     /* Can be called outside of a block, but usually part of a block value. */
-    result = afw_value_block_evaluate_foreach(x,
+    result = afw_value_block_evaluate_for_of(x,
         &type, x->argc, x->argv, x->p, x->xctx);
 
     return result;

@@ -218,14 +218,15 @@ class compiler_script
     }
 
     /**
-     * foreach()
+     * for_of()
      *
      * This creates a new structured block with a new nested variable scope.
      * 
      * This function will evaluate an array of values (statements) while a
      * condition is true with initial and increment values. The condition is
      * tested at the beginning of the loop. If the condition is false for the
-     * first iteration, the loop returns a null value.
+     * first iteration, the loop returns a null value. This supports for-of
+     * statement.
      *
      * @param array $name Variable name(s).
      * @param  $value Any array, object or single value.
@@ -238,11 +239,11 @@ class compiler_script
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
      */
-    public function foreach(, $name, $value, $body = null)
+    public function for_of(, $name, $value, $body = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "foreach");
+        $request->set("function", "for_of");
 
         /* pass along required parameters to the request payload */
         $request->set("name", $name);

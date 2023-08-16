@@ -592,12 +592,6 @@ ForStatement ::= 'for'
   ) ')' Statement
 
 /* From afw_compile_parse_script.c                                            */
-/* This will probably change when set operators are added.                    */
-
-ForeachStatement ::=
-   'foreach' OptionalDefineTarget 'of' Expression Statement
-
-/* From afw_compile_parse_script.c                                            */
 /* Named function                                                             */
 /*                                                                            */
 /* FunctionName must be present for this production to match.                 */
@@ -1015,7 +1009,7 @@ PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
 
 StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' |
-     'foreach' | 'function' | 'if' | 'let' | 'return' | 'switch' |
+     'function' | 'if' | 'let' | 'return' | 'switch' |
      'throw' | 'try' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */

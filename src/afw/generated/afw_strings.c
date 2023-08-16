@@ -3343,8 +3343,8 @@ AFW_UTF8_LITERAL("fn");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_for =
 AFW_UTF8_LITERAL("for");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_foreach =
-AFW_UTF8_LITERAL("foreach");
+AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_for_of =
+AFW_UTF8_LITERAL("for_of");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_format =
 AFW_UTF8_LITERAL("format");

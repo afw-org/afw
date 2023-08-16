@@ -12,11 +12,11 @@
 #!/usr/bin/env afw
 
 const objectTypeObjects: object = retrieve_objects("afw", "_AdaptiveObjectType_");
-foreach const objectTypeObject: object of objectTypeObjects {        
+for (const objectTypeObject: object of objectTypeObjects) {        
     const {objectType: objectTypeId, allowEntity = false} = objectTypeObject;        
     if (allowEntity != false) {                
         const objects: (array of object) = retrieve_objects("afw", objectTypeId,, { normalize: true, composite: true, objectId: true, path: true });        
-        foreach const object: object of objects {      
+        for (const object: object of objects) {      
             assert(
                 meta(object)->property_get("hasErrors", false) == false, 
                 "Object " + meta(object).path + " has errors"
@@ -27,11 +27,11 @@ foreach const objectTypeObject: object of objectTypeObjects {
 
 
 const objectTypeObjectsDev: (array of object) = retrieve_objects("dev", "_AdaptiveObjectType_");
-foreach const objectTypeObjectDev: object of objectTypeObjectsDev {
+for (const objectTypeObjectDev: object of objectTypeObjectsDev) {
     const {objectType: objectTypeId, allowEntity = false} = objectTypeObjectDev;    
     if (allowEntity != false) {
         const objectsDev: (array of object) = retrieve_objects("dev", objectTypeId, undefined, { normalize: true, composite: true, objectId: true, path: true });
-        foreach const objectDev: object of objectsDev {        
+        for (const objectDev: object of objectsDev) {        
             assert(
                 meta(objectDev)->property_get("hasErrors", false) == false, 
                 "Object " + meta(objectDev).path + " has errors"

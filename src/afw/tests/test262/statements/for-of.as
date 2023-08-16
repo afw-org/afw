@@ -1757,7 +1757,7 @@ for (x of null) {}
 //? description:...
     The value of the expression in a for-of statement's head is subject to the
     semantics of the ToObject abstract operation.
-//? expect: error:Parameter 2 of function 'foreach' can not be undefined
+//? expect: error:Parameter 2 of function 'for_of' can not be undefined
 //? source: ...
 #!/usr/bin/env afw
 

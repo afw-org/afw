@@ -21395,30 +21395,30 @@ afw_function_definition_for = {
     false
 };
 
-/* ---------- foreach ---------- */
+/* ---------- for_of ---------- */
 
 static const afw_utf8_t
-impl_object_path__foreach =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/foreach");
+impl_object_path__for_of =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/for_of");
 
 static const afw_runtime_object_indirect_t
-impl_object__foreach = {
+impl_object__for_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
         {
             NULL,
             NULL,
-            &afw_s_foreach,
+            &afw_s_for_of,
             &afw_s__AdaptiveFunction_,
-            &impl_object_path__foreach
+            &impl_object_path__for_of
         }
     },
-    (void *)&afw_function_definition_foreach
+    (void *)&afw_function_definition_for_of
 };
 
 static const afw_value_function_parameter_t
-impl_foreach_returns = {
+impl_for_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -21444,7 +21444,7 @@ impl_foreach_returns = {
 };
 
 static const afw_value_function_parameter_t
-impl_foreach_parameter_1 = {
+impl_for_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -21470,7 +21470,7 @@ impl_foreach_parameter_1 = {
 };
 
 static const afw_value_function_parameter_t
-impl_foreach_parameter_2 = {
+impl_for_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -21496,7 +21496,7 @@ impl_foreach_parameter_2 = {
 };
 
 static const afw_value_function_parameter_t
-impl_foreach_parameter_3 = {
+impl_for_of_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
@@ -21522,42 +21522,42 @@ impl_foreach_parameter_3 = {
 };
 
 static const afw_value_function_parameter_t *
-impl_foreach_parameters[] = {
-    &impl_foreach_parameter_1,
-    &impl_foreach_parameter_2,
-    &impl_foreach_parameter_3,
+impl_for_of_parameters[] = {
+    &impl_for_of_parameter_1,
+    &impl_for_of_parameter_2,
+    &impl_for_of_parameter_3,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_foreach = {
+afw_function_definition_for_of = {
     &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__foreach,
+    (const afw_object_t *)&impl_object__for_of,
     AFW_UTF8_LITERAL("compiler_script"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("foreach"),
-    AFW_UTF8_LITERAL("afwForeach"),
+    AFW_UTF8_LITERAL("for_of"),
+    AFW_UTF8_LITERAL("for_of"),
+    AFW_UTF8_LITERAL("for_of"),
+    AFW_UTF8_LITERAL("forOf"),
+    AFW_UTF8_LITERAL("afwForOf"),
     AFW_UTF8_LITERAL("Evaluate an array of values (statements) while a condition is true with an array of initial and increment values"),
-    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value."),
+    AFW_UTF8_LITERAL("This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true with initial and increment values. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. This supports for-of statement."),
     AFW_UTF8_LITERAL("(name: (array string), value: any, body?: array): any"),
-    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true with an array of initial and increment values */\nfunction foreach (\n    name: (array string),\n    value: any,\n    body?: array\n): any;\n"),
+    AFW_UTF8_LITERAL("/* Evaluate an array of values (statements) while a condition is true with an array of initial and increment values */\nfunction for_of (\n    name: (array string),\n    value: any,\n    body?: array\n): any;\n"),
     AFW_UTF8_LITERAL(""),
-    afw_function_execute_foreach,
+    afw_function_execute_for_of,
     NULL,
     2,
     3,
-    &impl_foreach_parameters[0],
+    &impl_for_of_parameters[0],
     3,
-    &impl_foreach_returns,
+    &impl_for_of_returns,
     NULL,
     NULL,
     AFW_UTF8_LITERAL(""),
     NULL,
     NULL,
     0, /* Not a data type method. */
-    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOREACH,
+    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR_OF,
     false,
     false,
     false,
@@ -116404,7 +116404,7 @@ impl_function_bindings[] = {
     &afw_function_definition_continue,
     &afw_function_definition_do_while,
     &afw_function_definition_for,
-    &afw_function_definition_foreach,
+    &afw_function_definition_for_of,
     &afw_function_definition_if,
     &afw_function_definition_let,
     &afw_function_definition_rethrow,

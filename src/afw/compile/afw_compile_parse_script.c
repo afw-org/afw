@@ -676,7 +676,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     if (is_for_of) {
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 4, parser->xctx);
-        argv[0] = (const afw_value_t *)&afw_function_definition_foreach;
+        argv[0] = (const afw_value_t *)&afw_function_definition_for_of;
         argv[1] = target;   
         argv[2] = afw_compile_parse_Expression(parser);
         
@@ -756,67 +756,6 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
             4, argv, true, parser->p, parser->xctx);
 
     }
-
-    /* If there is a block for let/const finalize it. */
-    if (block) {
-        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *), parser->xctx);
-        argv[0] = result;
-        afw_value_block_finalize(block, 1, argv, parser->xctx);
-        result = (const afw_value_t *)block;
-        afw_compile_parse_pop_value_block(parser);
-    }
-
-    return result;
-}
-
-
-
-/*ebnf>>>
- *
- *# This will probably change when set operators are added.
- *
- * ForeachStatement ::=
- *    'foreach' OptionalDefineTarget 'of' Expression Statement
- *
- *<<<ebnf*/
-static const afw_value_t *
-impl_parse_ForeachStatement(afw_compile_parser_t *parser)
-{
-    const afw_value_t *result;
-    const afw_value_t **argv;
-    const afw_value_t *define_function;
-    const afw_value_block_t *block;
-    afw_size_t start_offset;
-    afw_boolean_t break_allowed;
-    afw_boolean_t continue_allowed;
-
-    block = NULL;
-    afw_compile_save_cursor(start_offset);
-
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
-    argv[0] = (const afw_value_t *)&afw_function_definition_foreach;
-    argv[1] = afw_compile_parse_OptionalDefineTarget(parser,
-        &define_function, &block);
-
-    afw_compile_get_token();
-    if (!afw_compile_token_is_name(&afw_s_of))
-    {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting 'of'");
-    }
-
-    argv[2] = afw_compile_parse_Expression(parser);
-
-    break_allowed = parser->break_allowed;
-    continue_allowed = parser->continue_allowed;
-    parser->break_allowed = true;
-    parser->continue_allowed = true;
-    argv[3] = afw_compile_parse_Statement(parser, NULL);
-    parser->break_allowed = break_allowed;
-    parser->continue_allowed = continue_allowed;
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        3, argv, true, parser->p, parser->xctx);
 
     /* If there is a block for let/const finalize it. */
     if (block) {
@@ -1461,11 +1400,6 @@ afw_compile_parse_Statement(
             &afw_s_for))
         {
             result = impl_parse_ForStatement(parser);
-        }
-        else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_foreach))
-        {
-            result = impl_parse_ForeachStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             &afw_s_if))

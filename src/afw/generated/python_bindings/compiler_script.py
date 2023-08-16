@@ -240,7 +240,7 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
     return response['actions'][0]['result']
 
-def foreach(session, name, value, body=None):
+def for_of(session, name, value, body=None):
     '''
     Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
@@ -249,7 +249,8 @@ def foreach(session, name, value, body=None):
     This function will evaluate an array of values (statements) while a
     condition is true with initial and increment values. The condition is
     tested at the beginning of the loop. If the condition is false for the
-    first iteration, the loop returns a null value.
+    first iteration, the loop returns a null value. This supports for-of
+    statement.
 
     Parameters:
 
@@ -269,7 +270,7 @@ def foreach(session, name, value, body=None):
     request = session.Request()
 
     action = {
-        "function": "foreach",
+        "function": "for_of",
         "name": name,
         "value": value
     }

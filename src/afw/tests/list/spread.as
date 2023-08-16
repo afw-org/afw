@@ -72,7 +72,7 @@ const l1 = [1, 2, 3];
 const l2 = [];
 
 // causes infinite loop
-foreach const i of l1 {
+for (const i of l1) {
     l2 = [...l2, i];
 }
 
@@ -87,7 +87,7 @@ const l1 = [1, 2, 3];
 const l2 = [];
 
 // causes infinite loop
-foreach const i of l1 {
+for (const i of l1) {
     l2 = [...l2, i, ...i];
 }
 

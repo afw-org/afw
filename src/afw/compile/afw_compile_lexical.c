@@ -1318,7 +1318,7 @@ afw_compile_is_reserved_word(
  * 
  * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' | 
  *      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' | 
- *      'foreach' | 'function' | 'if' | 'let' | 'return' | 'switch' |
+ *      'function' | 'if' | 'let' | 'return' | 'switch' |
  *      'throw' | 'try' | 'void' | 'while' )
  * 
  *<<<ebnf*/
@@ -1333,7 +1333,6 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, &afw_s_else)         ||
         afw_utf8_equal(s, &afw_s_finally)      ||
         afw_utf8_equal(s, &afw_s_for)          ||
-        afw_utf8_equal(s, &afw_s_foreach)      ||
         afw_utf8_equal(s, &afw_s_function)     ||
         afw_utf8_equal(s, &afw_s_if)           ||
         afw_utf8_equal(s, &afw_s_let)          ||

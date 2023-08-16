@@ -580,7 +580,7 @@ afw_value_block_evaluate_for(
 
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_foreach(
+afw_value_block_evaluate_for_of(
     afw_function_execute_t *x,
     afw_value_block_statement_type_t *type,
     afw_size_t argc,
@@ -588,7 +588,7 @@ afw_value_block_evaluate_foreach(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    IMPL_TEMP_FIX(foreach);
+    IMPL_TEMP_FIX(for_of);
     const afw_value_t *result = afw_value_undefined;
     const afw_value_array_t *list;
     const afw_iterator_t *iterator;
@@ -1091,12 +1091,12 @@ afw_value_block_evaluate_statement(
             xctx->error->contextual = saved_contextual;
             break;
 
-        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOREACH:
+        case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR_OF:
             afw_xctx_evaluation_stack_push_value(statement, xctx);
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_foreach(x, type,
+            result = afw_value_block_evaluate_for_of(x, type,
                 call->args.argc, call->args.argv,
                 p, xctx);
 

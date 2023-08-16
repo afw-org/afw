@@ -6665,11 +6665,11 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_fn;
 /** @brief afw_utf8_t for string for */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_for;
 
-/** @brief define for quoted string foreach */
-#define AFW_Q_foreach "foreach"
+/** @brief define for quoted string for_of */
+#define AFW_Q_for_of "for_of"
 
-/** @brief afw_utf8_t for string foreach */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_foreach;
+/** @brief afw_utf8_t for string for_of */
+AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_for_of;
 
 /** @brief define for quoted string format */
 #define AFW_Q_format "format"

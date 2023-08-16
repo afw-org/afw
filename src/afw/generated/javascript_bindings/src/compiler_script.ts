@@ -181,7 +181,8 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
  * This function will evaluate an array of values (statements) while a
  * condition is true with initial and increment values. The condition is
  * tested at the beginning of the loop. If the condition is false for the
- * first iteration, the loop returns a null value.
+ * first iteration, the loop returns a null value. This supports for-of
+ * statement.
  * 
  * @param {array} name - Variable name(s).
  * 
@@ -195,11 +196,11 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
  * @returns {} The last value evaluated in body or null if condition
  *     evaluates to false the first time.
  */
-export function afwForeach(client : any, name : any[], value : any, body? : any[]) : any {
+export function afwForOf(client : any, name : any[], value : any, body? : any[]) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "foreach";
+    _action["function"] = "for_of";
     _action["name"] = name;
     _action["value"] = value;
 

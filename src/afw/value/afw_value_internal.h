@@ -35,7 +35,7 @@ AFW_BEGIN_DECLARES
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONTINUE  4
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_DO_WHILE  5
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR       6
-#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOREACH   7
+#define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR_OF    7
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_IF        8
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LET       9
 #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW   10
@@ -791,7 +791,7 @@ afw_value_block_evaluate_for(
     afw_xctx_t *xctx);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_foreach(
+afw_value_block_evaluate_for_of(
     afw_function_execute_t *x,
     afw_value_block_statement_type_t *type,
     afw_size_t argc,

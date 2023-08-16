@@ -6144,12 +6144,12 @@ const afw_value_t *
 afw_function_execute_for(
     afw_function_execute_t *x);
 
-/** @brief Function definition foreach */
+/** @brief Function definition for_of */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_foreach;
+afw_function_definition_for_of;
 
 /**
- * @brief Adaptive Function `foreach`
+ * @brief Adaptive Function `for_of`
  * @param x function execute parameter.
  *
  * This creates a new structured block with a new nested variable scope.
@@ -6157,7 +6157,7 @@ afw_function_definition_foreach;
  * This function will evaluate an array of values (statements) while a
  * condition is true with initial and increment values. The condition is tested
  * at the beginning of the loop. If the condition is false for the first
- * iteration, the loop returns a null value.
+ * iteration, the loop returns a null value. This supports for-of statement.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6165,7 +6165,7 @@ afw_function_definition_foreach;
  * Declaration:
  *
  * ```
- *   function foreach(
+ *   function for_of(
  *       name: (array string),
  *       value: any,
  *       body?: array
@@ -6189,7 +6189,7 @@ afw_function_definition_foreach;
  *       evaluates to false the first time.
  */
 const afw_value_t *
-afw_function_execute_foreach(
+afw_function_execute_for_of(
     afw_function_execute_t *x);
 
 /** @brief Function definition if */

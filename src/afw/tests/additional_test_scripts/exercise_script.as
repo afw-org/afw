@@ -305,27 +305,27 @@ num = 11;
 num %= 1 + 1;
 assert( num == 1 );
 
-// Test assign before foreach
-x = "outside foreach";
-assert(x == 'outside foreach');
+// Test assign before for-of
+x = "outside for-of";
+assert(x == 'outside for-of');
 
-// Test foreach
+// Test for-of
 {
     s = '';
-    foreach let x: string of ['a','b','c'] {
+    for (let x: string of ['a','b','c']) {
         s += x;
     }
     assert( s == 'abc' );
 }
 
-// Test make sure x same after foreach - should print >>>outside foreach\n>>>');
-assert(x == 'outside foreach');
+// Test make sure x same after for-of - should print >>>outside for-of\n>>>');
+assert(x == 'outside for-of');
 
 //FIXME Need to convert this
 /*
-print('\nTest foreach using retrieve_objects- should print >>> with info for each data type\n');
+print('\nTest for-of using retrieve_objects- should print >>> with info for each data type\n');
 {
-    foreach const x: object of retrieve_objects('afw','_AdaptiveDataType_') {
+    for (const x: object of retrieve_objects('afw','_AdaptiveDataType_')) {
         print('>>> ' + x.dataType + ' - ' + x.brief + '\n');
     }
 }
@@ -334,8 +334,8 @@ print("\n");
 
 //FIXME Need to convert this
 /*
-print('\nTest foreach using retrieve_objects- should print >>> with info for each data type\n');
-foreach const {dataType, brief } of retrieve_objects('afw','_AdaptiveDataType_') {
+print('\nTest for-of using retrieve_objects- should print >>> with info for each data type\n');
+for (const {dataType, brief } of retrieve_objects('afw','_AdaptiveDataType_')) {
     print('>>> ' + dataType + ' - ' + brief + '\n');
 }
 print("\n");
@@ -343,9 +343,9 @@ print("\n");
 
 //FIXME Need to convert this
 /*
-print('\nTest foreach using same retrieve_objects with object destructure - should print >>> with info for each data type\n');
+print('\nTest for-of using same retrieve_objects with object destructure - should print >>> with info for each data type\n');
 {
-    foreach let {dataType, brief} of retrieve_objects('afw','_AdaptiveDataType_') {
+    for (let {dataType, brief} of retrieve_objects('afw','_AdaptiveDataType_')) {
         print('>>> ' + dataType + ' - ' + brief + '\n');
     }    
 }

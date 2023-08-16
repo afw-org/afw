@@ -163,7 +163,7 @@ let l1 = [
 ];
 
 let l2 = [];
-foreach const item of l1 {
+for (const item of l1) {
     add_entries(l2, [ item ]);
 }
 
@@ -182,7 +182,7 @@ let l1 = [
 ];
 
 let l2 = [];
-foreach const item of l1 {
+for (const item of l1) {
     const x = 5;
 
     add_entries(l2, item);

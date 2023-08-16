@@ -11,7 +11,7 @@ our @EXPORT_OK = qw(
     continue 
     do_while 
     for 
-    foreach 
+    for_of 
     if 
     let 
     rethrow 
@@ -145,14 +145,14 @@ of the loop. Each value in body is evaluated in order until the end of the
 array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
-=head3 foreach
+=head3 for_of
 
 This creates a new structured block with a new nested variable scope.
 
 This function will evaluate an array of values (statements) while a condition
 is true with initial and increment values. The condition is tested at the
 beginning of the loop. If the condition is false for the first iteration, the
-loop returns a null value.
+loop returns a null value. This supports for-of statement.
 Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
 =head4 Parameters
@@ -440,12 +440,12 @@ sub for_ {
     return $request->getResult();
 }
 
-sub foreach {
+sub for_of {
     my ($name, $value, $body) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "foreach");
+    $request->set("function" => "for_of");
     $request->set("name", $name);
     $request->set("value", $value);
 

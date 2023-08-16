@@ -358,7 +358,6 @@ do
 else
 finally
 for
-foreach
 function
 if
 in
