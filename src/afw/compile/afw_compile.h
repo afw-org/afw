@@ -363,7 +363,7 @@ afw_compile_expressions_templates_and_hybrids(
  * This was originally written to process a qualifier object which
  * is just an object where all properties are hybrids.  The resulting
  * object contains properties representing variables and their evaluated
- * values.  See afw_xctx_push_qualifier_object().  
+ * values.  See afw_xctx_qualifier_stack_qualifier_object_push().  
  */
 AFW_DECLARE(const afw_object_t *)
 afw_compile_object_all_hybrid_properties(

@@ -85,13 +85,13 @@ afw_server_fcgi_internal_create_request(
     self->pub.properties = afw_server_fcgi_internal_create_properties_object(
         self, xctx);
     afw_runtime_xctx_set_object(self->pub.properties, true, xctx);
-    afw_xctx_push_qualifier_object(&afw_s_request, self->pub.properties,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_request, self->pub.properties,
         true, xctx->p, xctx);
 
     /* Set environment object and qualifier. */
     afw_runtime_xctx_set_object(server->environment_variables_object,
         true, xctx);
-    afw_xctx_push_qualifier_object(&afw_s_environment,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_environment,
         server->environment_variables_object, true, xctx->p, xctx);   
 
     /* Get request method. */

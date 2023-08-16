@@ -233,7 +233,7 @@ impl_evaluate(
         /* Set environment object and qualifier in new xctx. */
         afw_runtime_xctx_set_object(self->environment_variables_object,
             true, xctx);
-        afw_xctx_push_qualifier_object(&afw_s_environment,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_environment,
             self->environment_variables_object, true, xctx->p, xctx);        
 
         /* If input is not NULL, insure it is NFC normalized utf-8. */
@@ -724,7 +724,7 @@ main(int argc, const char * const *argv) {
             afw_environment_create_environment_variables_object(false, xctx);
         afw_runtime_xctx_set_object(self->environment_variables_object,
             true, xctx);
-        afw_xctx_push_qualifier_object(&afw_s_environment,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_environment,
             self->environment_variables_object, true, xctx->p, xctx);        
 
         /* If extension specified, load it. */

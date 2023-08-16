@@ -97,7 +97,7 @@ afw_server_fcgi_internal_create(const char *path,
         afw_environment_create_environment_variables_object(true, xctx);
     afw_runtime_xctx_set_object(self->environment_variables_object,
         true, xctx);
-    afw_xctx_push_qualifier_object(&afw_s_environment,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_environment,
         self->environment_variables_object, true, xctx->p, xctx);        
 
     /* Open socket. */

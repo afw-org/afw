@@ -197,13 +197,13 @@ afw_adaptor_impl_push_qualifiers(
     const afw_adaptor_t *adaptor,
     afw_xctx_t *xctx)
 {
-    afw_xctx_push_qualifier_object(&afw_s_adaptor,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_adaptor,
         adaptor->properties, true, xctx->p, xctx);
-    afw_xctx_push_qualifier(&afw_s_adaptor, NULL, true,
+    afw_xctx_qualifier_stack_qualifier_push(&afw_s_adaptor, NULL, true,
         impl_adaptor_common_variable_get_cb, (void *)adaptor,
         xctx->p, xctx);
     if (adaptor->impl->custom_variables) {
-        afw_xctx_push_qualifier_object(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
             adaptor->impl->custom_variables, true,
             xctx->p, xctx);
     }

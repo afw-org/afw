@@ -564,7 +564,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
     if (untrusted_qualified_variables) {
         AFW_VALUE_ASSERT_IS_DATA_TYPE(untrusted_qualified_variables, object, xctx);
 
-        top = afw_xctx_get_qualifier_stack_top(xctx);
+        top = afw_xctx_qualifier_stack_top_get(xctx);
         AFW_TRY {
 
             iterator = NULL;
@@ -574,7 +574,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
             {
                 qualifier_object = afw_compile_object_all_hybrid_properties(
                     object, NULL, NULL, p, xctx);
-                afw_xctx_push_qualifier_object(property_name, qualifier_object,
+                afw_xctx_qualifier_stack_qualifier_object_push(property_name, qualifier_object,
                     false, p, xctx);
             }
 
@@ -582,7 +582,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
         }
 
         AFW_FINALLY{
-            afw_xctx_set_qualifier_stack_top(top, xctx);
+            afw_xctx_qualifier_stack_top_set(top, xctx);
         }
 
         AFW_ENDTRY;

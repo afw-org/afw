@@ -205,7 +205,7 @@ afw_context_variable_definitions_add(
  * @param object used as basis for new definitions.
  * @param xctx of caller.
  *
- * See afw_xctx_push_qualifier() for use pattern.
+ * See afw_xctx_qualifier_stack_qualifier_push() for use pattern.
  *
  * Any object properties that have a data type whose value must be compiled
  * will be ignored, so compile the property that should be included before
@@ -229,7 +229,7 @@ afw_context_variable_definitions_add_based_on_object(
  *    type should be included.
  * @param xctx of caller.
  *
- * See afw_xctx_push_qualifier() for use pattern.
+ * See afw_xctx_qualifier_stack_qualifier_push() for use pattern.
  */
 AFW_DECLARE(void)
 afw_context_variable_definitions_add_based_on_object_type_id(

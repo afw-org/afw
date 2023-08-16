@@ -438,7 +438,7 @@ impl_write_formatted_message(
     int top;
 
     /* Make sure there is not a recursive error while logging. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     AFW_TRY {
 
         if (!wa->p) {
@@ -448,14 +448,14 @@ impl_write_formatted_message(
         /* Add qualifiers, if needed.  Note: last one pushed has precedence. */
         if (wa->e && (wa->e->log->impl->filter || wa->e->log->impl->format))
         {
-            afw_xctx_push_qualifier_object(&afw_s_log,
+            afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_log,
                 wa->e->log->properties,
                 true, wa->p, xctx);
-            afw_xctx_push_qualifier(&afw_s_current, NULL, true,
+            afw_xctx_qualifier_stack_qualifier_push(&afw_s_current, NULL, true,
                 impl_log_current_variable_get_cb, (void *)wa,
                 wa->p, xctx);
             if (wa->e->log->impl->custom_variables) {
-                afw_xctx_push_qualifier_object(&afw_s_custom,
+                afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
                     wa->e->log->impl->custom_variables,
                     true, wa->p, xctx);
             }
@@ -519,7 +519,7 @@ impl_write_formatted_message(
     }
 
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;

@@ -1003,12 +1003,12 @@ typedef struct afw_value_symbol_reference_s
 afw_value_symbol_reference_t;
 
 /**
- * Opaque typedef for afw_xctx_frame_t.
+ * Opaque typedef for afw_xctx_scope_t.
  *
  * See afw_xctx.h for struct and more information.
  */
-typedef struct afw_xctx_frame_s
-afw_xctx_frame_t;
+typedef struct afw_xctx_scope_s
+afw_xctx_scope_t;
 
 
 /** @} */

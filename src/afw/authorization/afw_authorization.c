@@ -512,7 +512,7 @@ afw_authorization_check(
         return NULL;
     }
 
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     ah = NULL;
     AFW_TRY{
         afw_context_push_cb_variables(&afw_s_current,
@@ -726,7 +726,7 @@ afw_authorization_check(
         }
     }
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
     AFW_ENDTRY;
 

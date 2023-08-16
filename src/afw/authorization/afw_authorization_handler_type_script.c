@@ -176,10 +176,10 @@ impl_afw_authorization_handler_check(
     const afw_value_t *result;
     int top;
 
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     AFW_TRY{
         if (self->qualified_variables) {
-            afw_xctx_push_qualifiers_object(self->qualified_variables,
+            afw_xctx_qualifier_stack_qualifiers_object_push(self->qualified_variables,
                 true, xctx->p, xctx);
         }
         result = afw_value_evaluate(self->authorization_check, p, xctx);
@@ -197,7 +197,7 @@ impl_afw_authorization_handler_check(
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
     AFW_ENDTRY;
 

@@ -182,13 +182,13 @@ afw_function_execute_model_default_add_object_action(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     ctx = NULL;
 
     AFW_TRY {
 
         if (context) {
-            afw_xctx_push_qualifiers_object(context, false, x->p, xctx);
+            afw_xctx_qualifier_stack_qualifiers_object_push(context, false, x->p, xctx);
         }
 
         /* Get session self and model. */
@@ -212,7 +212,7 @@ afw_function_execute_model_default_add_object_action(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -328,13 +328,13 @@ afw_function_execute_model_default_delete_object_action(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     ctx = NULL;
 
     AFW_TRY {
 
         if (context) {
-            afw_xctx_push_qualifiers_object(context, false, x->p, xctx);
+            afw_xctx_qualifier_stack_qualifiers_object_push(context, false, x->p, xctx);
         }
 
         /* Get session self and model. */
@@ -356,7 +356,7 @@ afw_function_execute_model_default_delete_object_action(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -498,13 +498,13 @@ afw_function_execute_model_default_modify_object_action(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     ctx = NULL;
 
     AFW_TRY {
 
         if (context) {
-            afw_xctx_push_qualifiers_object(context, false, x->p, xctx);
+            afw_xctx_qualifier_stack_qualifiers_object_push(context, false, x->p, xctx);
         }
 
         /* Get session self and model. */
@@ -529,7 +529,7 @@ afw_function_execute_model_default_modify_object_action(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -649,13 +649,13 @@ afw_function_execute_model_default_replace_object_action(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     ctx = NULL;
 
     AFW_TRY {
 
         if (context) {
-            afw_xctx_push_qualifiers_object(context, false, x->p, xctx);
+            afw_xctx_qualifier_stack_qualifiers_object_push(context, false, x->p, xctx);
         }
 
         /* Get session self and model. */
@@ -680,7 +680,7 @@ afw_function_execute_model_default_replace_object_action(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;

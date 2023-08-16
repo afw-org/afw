@@ -191,45 +191,117 @@ AFW_ENDTRY
 
 /* ----------------------------------------------------------------------------
 
-    Execution Context (xctx) Frame
+    Execution Context (xctx) Scope
     
 ---------------------------------------------------------------------------- */
+
 
 /**
  * @brief The struct for an execution context frame.
  */
-struct afw_xctx_frame_s {
+struct afw_xctx_scope_s {
     const afw_pool_t *p;
+    afw_size_t static_scope_depth;
+    afw_xctx_scope_t *previous_runtime_scope;
+    afw_xctx_scope_t *previous_static_scope;
+    const afw_object_t *dynamic_variables; /* Can be NULL */
     afw_size_t values_count;
     const afw_value_t *values[1];
 };
 
-// struct {
-//     afw_xctx_frame_t *first;
-//     afw_xctx_frame_t *current;
-//     afw_xctx_frame_t *end;
-// } afw_xctx_frames;
+
 
 /**
- * @deprecated
- * @brief Defined a variable in current xctx frame.
+ * @brief Begin begin a scope.
+ * @param xctx of caller.
+ * @return Parameter to pass to end_stack_frame.
+ */
+AFW_DEFINE_STATIC_INLINE(int)
+afw_xctx_scope_begin(
+    afw_xctx_t *xctx)
+{
+    xctx->current_frame_index = xctx->stack->nelts;
+    return xctx->stack->nelts;
+}
+
+
+/**
+ * @brief Begin begin a scope for closure.
+ * @param xctx of caller.
+ * @return Parameter to pass to end_stack_frame.
+ */
+AFW_DEFINE_STATIC_INLINE(int)
+afw_xctx_scope_closer_begin(
+    const afw_xctx_scope_t *enclosure_scope,
+    afw_xctx_t *xctx)
+{
+    xctx->current_frame_index = xctx->stack->nelts;
+    return xctx->stack->nelts;
+}
+
+
+/**
+ * @brief Set a compiled variable in the appropriate static scope.
  * @param name Name of variable.
  * @param value Value to set.
  * @param xctx of caller.
  * @return value or NULL if not found.
  *
- * Define a variable in the current xctx frame with an initial value.  If
- * the variable is already defined in the current xctx frame, an error is
- * thrown.
+ * The current stack frame will be searched for an entry with the same name.
+ * If found, the value of that entry will be set.  If not found, a new entry
+ * will be added.
  */
 AFW_DECLARE(void)
-afw_xctx_frame_define_variable(const afw_utf8_t *name,
+afw_xctx_scope_compiled_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @deprecated
- * @brief Set a defined variable in xctx.
+ * @brief Set end a scope.
+ * @param top Value returned from corresponding afw_xctx_scope_begin().
+ * @param xctx of caller.
+ */
+AFW_DEFINE_STATIC_INLINE(void)
+afw_xctx_scope_end(
+    int top, afw_xctx_t *xctx)
+{
+    xctx->stack->nelts = top;
+    xctx->current_frame_index = top;
+}
+
+
+/**
+ * @brief Defined a dynamic variable in current xctx frame.
+ * @param name Name of variable.
+ * @param value Value to set.
+ * @param xctx of caller.
+ * @return value or NULL if not found.
+ *
+ * Dynamic variables are ones that are not known at compile time.  They
+ * are defined in the current xctx frame.  If the variable is already
+ * defined in the current xctx frame, an error is thrown.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_dynamic_variable_define(const afw_utf8_t *name,
+    const afw_value_t *value, afw_xctx_t *xctx);
+
+
+/**
+ * @brief Get the value of a dynamic variable by name..
+ * @param name of variable.
+ * @param xctx of caller.
+ * @return value or NULL if not found.
+ *
+ * The scopes are sera.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_dynamic_variable_get(
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Set a dynamic variable in xctx.
  * @param name Name of variable.
  * @param value Value to set.
  * @param xctx of caller.
@@ -239,7 +311,7 @@ afw_xctx_frame_define_variable(const afw_utf8_t *name,
  * value.  If the variable is not found or const an error is thrown.
  */
 AFW_DECLARE(void)
-afw_xctx_frame_set_defined_variable(const afw_utf8_t *name,
+afw_xctx_scope_dynamic_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
@@ -255,36 +327,9 @@ afw_xctx_frame_set_defined_variable(const afw_utf8_t *name,
  * will be added.
  */
 AFW_DECLARE(void)
-afw_xctx_frame_set_local_variable(const afw_utf8_t *name,
+afw_xctx_scope_compiled_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
-
-/**
- * @brief Begin stack frame.
- * @param xctx of caller.
- * @return Parameter to pass to end_stack_frame.
- */
-AFW_DEFINE_STATIC_INLINE(int)
-afw_xctx_frame_begin(
-    afw_xctx_t *xctx)
-{
-    xctx->current_frame_index = xctx->stack->nelts;
-    return xctx->stack->nelts;
-}
-
-
-/**
- * @brief Set stack top.
- * @param top Value returned from corresponding afw_xctx_frame_begin().
- * @param xctx of caller.
- */
-AFW_DEFINE_STATIC_INLINE(void)
-afw_xctx_frame_end(
-    int top, afw_xctx_t *xctx)
-{
-    xctx->stack->nelts = top;
-    xctx->current_frame_index = top;
-}
 
 
 /* ----------------------------------------------------------------------------
@@ -391,13 +436,13 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
 
 /* ----------------------------------------------------------------------------
 
-    Execution Context (xctx) Qualifier and Qualified Varaibles
+    Execution Context (xctx) Qualifier and Qualified Variables
     
 ---------------------------------------------------------------------------- */
 
 /**
  * @brief Get a variable from xctx stack.
- * @param qualifier or NULL if unqualified. (NULL is deprecated)
+ * @param qualifier of variable.
  * @param name of variable.
  * @param xctx of caller.
  * @return value or NULL if not found.
@@ -444,7 +489,7 @@ struct afw_xctx_qualifier_stack_entry_s {
  * @return Stack top index.
  */
 AFW_DECLARE(int)
-afw_xctx_get_qualifier_stack_top(
+afw_xctx_qualifier_stack_top_get(
     afw_xctx_t *xctx);
 
 
@@ -452,11 +497,11 @@ afw_xctx_get_qualifier_stack_top(
 /**
  * @brief Set stack top index.
  * @param top returned from corresponding
- *   afw_xctx_get_qualifier_stack_top().
+ *   afw_xctx_qualifier_stack_top_get().
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_xctx_set_qualifier_stack_top(int top, afw_xctx_t *xctx);
+afw_xctx_qualifier_stack_top_set(int top, afw_xctx_t *xctx);
 
 
 
@@ -476,10 +521,10 @@ afw_xctx_set_qualifier_stack_top(int top, afw_xctx_t *xctx);
  * context is used for access control and other server side configured
  * evaluates.
  *
- * See afw_xctx_push_qualifier() for use pattern.
+ * See afw_xctx_qualifier_stack_qualifier_push() for use pattern.
  */
 AFW_DECLARE(void)
-afw_xctx_push_qualifiers_object(
+afw_xctx_qualifier_stack_qualifiers_object_push(
     const afw_object_t *context_object,
     afw_boolean_t secure,
     const afw_pool_t *p,
@@ -507,18 +552,18 @@ afw_xctx_push_qualifiers_object(
  *
  * This function should use AFW_TRY to restore top.
  *
- * top = afw_xctx_get_qualifier_stack_top(xctx);
+ * top = afw_xctx_qualifier_stack_top_get(xctx);
  * AFW_TRY (xctx) {
- *  afw_xctx_push_qualifier(...);
+ *  afw_xctx_qualifier_stack_qualifier_push(...);
  *  ... do something
  * }
  * AFW_FINALLY {
- *    afw_xctx_set_qualifier_stack_top(top, xctx);
+ *    afw_xctx_qualifier_stack_top_set(top, xctx);
  * }
  *
  */
 AFW_DECLARE(afw_xctx_qualifier_stack_entry_t *)
-afw_xctx_push_qualifier(
+afw_xctx_qualifier_stack_qualifier_push(
     const afw_utf8_t *qualifier,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
@@ -541,10 +586,10 @@ afw_xctx_push_qualifier(
  * context is used for access control and other server side configured
  * evaluates.
  *
- * See afw_xctx_push_qualifier() for use pattern.
+ * See afw_xctx_qualifier_stack_qualifier_push() for use pattern.
  */
 AFW_DECLARE(void)
-afw_xctx_push_qualifier_object(
+afw_xctx_qualifier_stack_qualifier_object_push(
     const afw_utf8_t *qualifier_name,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,

@@ -260,7 +260,7 @@ impl_adapt_object_from_adaptor(
     int top;
 
     /* Add a variable qualifier and remove it when finished. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     object = afw_object_create_and_cede_p(
         p, xctx);
     AFW_TRY {
@@ -305,7 +305,7 @@ impl_adapt_object_from_adaptor(
     }
 
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -1101,7 +1101,7 @@ impl_afw_adaptor_session_retrieve_objects(
         int top;
 
         use_default_processing = false;
-        top = afw_xctx_get_qualifier_stack_top(xctx);
+        top = afw_xctx_qualifier_stack_top_get(xctx);
         AFW_TRY{
 
             /* Prime context for "onRetrieveObjects". */
@@ -1134,7 +1134,7 @@ impl_afw_adaptor_session_retrieve_objects(
 
         /* Always restore top for qualifier stack to entry value. */
             AFW_FINALLY{
-                afw_xctx_set_qualifier_stack_top(top, xctx);
+                afw_xctx_qualifier_stack_top_set(top, xctx);
         }
 
         AFW_ENDTRY;
@@ -1215,7 +1215,7 @@ impl_afw_adaptor_session_get_object(
         int top;
 
         use_default_processing = false;
-        top = afw_xctx_get_qualifier_stack_top(xctx);
+        top = afw_xctx_qualifier_stack_top_get(xctx);
         AFW_TRY{
 
             /* Prime context for onGetObject. */
@@ -1255,7 +1255,7 @@ impl_afw_adaptor_session_get_object(
 
         /* Always restore top for qualifier stack to entry value. */
         AFW_FINALLY{
-            afw_xctx_set_qualifier_stack_top(top, xctx);
+            afw_xctx_qualifier_stack_top_set(top, xctx);
         }
 
         AFW_ENDTRY;
@@ -1417,7 +1417,7 @@ impl_afw_adaptor_session_add_object(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     mapped_object_id = NULL;
     AFW_TRY {
 
@@ -1468,7 +1468,7 @@ impl_afw_adaptor_session_add_object(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -1582,7 +1582,7 @@ impl_afw_adaptor_session_modify_object(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     AFW_TRY {
 
         /* Prime context for "to adaptor". */
@@ -1629,7 +1629,7 @@ impl_afw_adaptor_session_modify_object(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -1675,7 +1675,7 @@ impl_afw_adaptor_session_replace_object(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     AFW_TRY {
 
         /* Prime context for "to adaptor". */
@@ -1718,7 +1718,7 @@ impl_afw_adaptor_session_replace_object(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;
@@ -1762,7 +1762,7 @@ impl_afw_adaptor_session_delete_object(
     }
 
     /* Save top for qualifier stack. */
-    top = afw_xctx_get_qualifier_stack_top(xctx);
+    top = afw_xctx_qualifier_stack_top_get(xctx);
     AFW_TRY {
 
         /* Prime context for "to adaptor". */
@@ -1798,7 +1798,7 @@ impl_afw_adaptor_session_delete_object(
 
     /* Always restore top for qualifier stack to entry value. */
     AFW_FINALLY{
-        afw_xctx_set_qualifier_stack_top(top, xctx);
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
 
     AFW_ENDTRY;

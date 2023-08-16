@@ -53,7 +53,7 @@ afw_context_push_cb_variables(
 {
     afw_xctx_qualifier_stack_entry_t *entry;
 
-    entry = afw_xctx_push_qualifier(qualifier_id, NULL, true,
+    entry = afw_xctx_qualifier_stack_qualifier_push(qualifier_id, NULL, true,
         impl_current_variable_get_cb, data, p, xctx);
     entry->wa = (void *)variables;
 }

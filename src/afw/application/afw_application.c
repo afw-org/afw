@@ -81,18 +81,18 @@ afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
     const afw_environment_t *env = xctx->env;
 
     /* Push current:: qualifier. */
-    afw_xctx_push_qualifier(&afw_s_current, NULL, true,
+    afw_xctx_qualifier_stack_qualifier_push(&afw_s_current, NULL, true,
         impl_current_get_variable_cb, NULL, xctx->p, xctx);
 
     /* If there is an application qualifier, push application qualifier. */
     if (env->application_object) {
-        afw_xctx_push_qualifier_object(&afw_s_application,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_application,
             env->application_object, true, xctx->p, xctx);
     }
 
     /* If there are qualified application variables, push qualifiers. */
     if (env->application_qualified_variables) {
-        afw_xctx_push_qualifiers_object(env->application_qualified_variables,
+        afw_xctx_qualifier_stack_qualifiers_object_push(env->application_qualified_variables,
             true, xctx->p, xctx);
     }
 }

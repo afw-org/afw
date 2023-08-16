@@ -4848,6 +4848,13 @@ AFW_DEFINE(const afw_request_handler_t *)
       <description>Runtime objects for xctx.</description>
     </variable>
 
+    <variable name="current_scope" type="const afw_xctx_scope_t * const">
+      <description>
+        The execution context (xctx) current scope during evaluate() or NULL.
+        This is a private variable set by afw_xctx_scope_*() functions.
+      </description>
+    </variable>
+
     <variable name="evaluation_stack" type="afw_xctx_evaluation_stack_t *">
       <description>
         The execution context (xctx) evaluation stack.

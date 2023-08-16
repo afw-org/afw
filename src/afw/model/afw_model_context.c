@@ -1310,7 +1310,7 @@ afw_model_internal_create_skeleton_context(
     /* Push qualifiers. */
     afw_adaptor_impl_push_qualifiers(
         (const afw_adaptor_t *)session_self->adaptor, xctx);
-    afw_xctx_push_qualifier(&afw_s_custom, NULL, true,
+    afw_xctx_qualifier_stack_qualifier_push(&afw_s_custom, NULL, true,
         impl_custom_variable_get_cb, ctx, p, xctx);
 
     /* Create and push current object level object. */
@@ -1318,21 +1318,21 @@ afw_model_internal_create_skeleton_context(
         runtime_object_level_skeleton);
     ctx->runtime_object_level.internal = ctx;
     ctx->runtime_object_level.pub.p = p;
-    afw_xctx_push_qualifier_object(&afw_s_current,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_current,
         (const afw_object_t *)&ctx->runtime_object_level,
         true, p, xctx);
 
 #ifdef _AFW_WORKING_ON___
     /* Push model custom variables. (First one push is last one checked) */
     if (ctx->model_object_type->model->custom_variables) {
-        afw_xctx_push_qualifier_object(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
             ctx->model_object_type->model->custom_variables,
             true, p, xctx);
     }
 
     /* Push model object type custom variables  */
     if (ctx->model_object_type->custom_variables) {
-        afw_xctx_push_qualifier_object(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
             ctx->model_object_type->custom_variables,
             true, p, xctx);
     }
@@ -1341,7 +1341,7 @@ afw_model_internal_create_skeleton_context(
     if (ctx->property_level.model_property_type &&
         ctx->property_level.model_property_type->custom_variables)
     {
-        afw_xctx_push_qualifier_object(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
             ctx->property_level.model_property_type->custom_variables,
             true, p, xctx);
     }

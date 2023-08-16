@@ -232,7 +232,7 @@ afw_xctx_get_qualified_variable(
 
 /* Set a variable in current xctx frame. */
 AFW_DEFINE(void)
-afw_xctx_frame_define_variable(const afw_utf8_t *name,
+afw_xctx_scope_dynamic_variable_define(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx)
 {
     afw_name_value_t *cur;
@@ -260,7 +260,7 @@ afw_xctx_frame_define_variable(const afw_utf8_t *name,
 
 /* Set most recent defined variable in xctx. */
 AFW_DEFINE(void)
-afw_xctx_frame_set_defined_variable(
+afw_xctx_scope_dynamic_variable_set(
     const afw_utf8_t *name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
@@ -286,7 +286,7 @@ afw_xctx_frame_set_defined_variable(
 
 /* Set a variable in current xctx frame. */
 AFW_DEFINE(void)
-afw_xctx_frame_set_local_variable(const afw_utf8_t *name,
+afw_xctx_scope_compiled_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx)
 {
     afw_name_value_t * cur;
@@ -313,7 +313,7 @@ afw_xctx_frame_set_local_variable(const afw_utf8_t *name,
 
 /* Get stack top. */
 AFW_DEFINE(int)
-afw_xctx_get_qualifier_stack_top(
+afw_xctx_qualifier_stack_top_get(
     afw_xctx_t *xctx)
 {
     return (int)(xctx->qualifier_stack->top - xctx->qualifier_stack->first);
@@ -322,7 +322,7 @@ afw_xctx_get_qualifier_stack_top(
 
 /* Set qualifier stack top. */
 AFW_DEFINE(void)
-afw_xctx_set_qualifier_stack_top(
+afw_xctx_qualifier_stack_top_set(
     int top, afw_xctx_t *xctx)
 {
     ((afw_xctx_qualifier_stack_t *)xctx->qualifier_stack)->top =
@@ -333,7 +333,7 @@ afw_xctx_set_qualifier_stack_top(
 
 /* Push qualifiers object on to stack. */
 AFW_DEFINE(void)
-afw_xctx_push_qualifiers_object(
+afw_xctx_qualifier_stack_qualifiers_object_push(
     const afw_object_t *context_object,
     afw_boolean_t secure,
     const afw_pool_t *p,
@@ -347,7 +347,7 @@ afw_xctx_push_qualifiers_object(
         (qualifier_object = afw_object_old_get_next_property_as_object(
             context_object, &iterator, &qualifier_name, xctx)); )
     {
-        afw_xctx_push_qualifier_object(qualifier_name, qualifier_object,
+        afw_xctx_qualifier_stack_qualifier_object_push(qualifier_name, qualifier_object,
             secure, p, xctx);
     }
 }
@@ -356,7 +356,7 @@ afw_xctx_push_qualifiers_object(
 
 /* Push qualifier on to stack. */
 AFW_DEFINE(afw_xctx_qualifier_stack_entry_t *)
-afw_xctx_push_qualifier(
+afw_xctx_qualifier_stack_qualifier_push(
     const afw_utf8_t *qualifier,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
@@ -403,7 +403,7 @@ impl_get_object_variable(
 
 /* Push qualifier on to stack. */
 AFW_DEFINE(void)
-afw_xctx_push_qualifier_object(
+afw_xctx_qualifier_stack_qualifier_object_push(
     const afw_utf8_t *qualifier_name,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
