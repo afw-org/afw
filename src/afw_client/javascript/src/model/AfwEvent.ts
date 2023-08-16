@@ -14,7 +14,7 @@ export enum AfwEventId {
 }
 
 interface Config {
-    parent?:        any;   // fixme AfwObject|AfwProperty|AfwList...    
+    parent?:        any;   // fixme AfwObject|AfwProperty|AfwArray...    
 }
 
 interface AfwDispatchEvent {
@@ -27,7 +27,7 @@ type AfwDispatchCallback = (event : AfwDispatchEvent) => void;
 /**
  * AfwEvent
  * 
- * AfwObject, AfwProperty, AfwList, AfwListEntry and AfwValue all
+ * AfwObject, AfwProperty, AfwArray, AfwArrayEntry and AfwValue all
  * inherit from AfwEvent to provide event notifications.  By doing so, a caller can
  * register an event listener, using:
  * 

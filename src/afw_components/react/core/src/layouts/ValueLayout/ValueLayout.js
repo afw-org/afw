@@ -18,14 +18,14 @@ import {layoutByDataType} from "../registry";
  * 
  * The React context may contain an AfwValue instance.  In this case, it will use that 
  * for the value.  If the React context contains a primitive JSON value, it creates an AfwValue out of 
- * it anyway.  The value may also be an AfwProperty or AfwListEntry, as they extend AfwValue.
+ * it anyway.  The value may also be an AfwProperty or AfwArrayEntry, as they extend AfwValue.
  * 
  * This all gives us some flexibility to use <ValueLayout value="myStr" />, which is handy 
  * for tests, or if we just don't care to use the Afw* data model interfaces and prefer to use simple 
  * JSON representation.
  * 
  * 
- * \fixme this does not have support in for AfwObject and AfwList values yet.
+ * \fixme this does not have support in for AfwObject and AfwArray values yet.
  */
 export const ValueLayout = (props) => {
 

@@ -1,42 +1,42 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {AfwClient} from "../../AfwClient";
 
-import {AfwModel, AfwObject, AfwProperty, AfwList, AfwListEntry} from "..";
+import {AfwModel, AfwObject, AfwProperty, AfwArray, AfwArrayEntry} from "..";
 
-describe("AfwList Tests", () => {
+describe("AfwArray Tests", () => {
 
     const client = new AfwClient();
     const model = new AfwModel({ client });
 
-    test("Create new AfwList", async () => {        
+    test("Create new AfwArray", async () => {        
         
-        const list = new AfwList({ 
+        const list = new AfwArray({ 
             value: [
                 "abc",
                 "def"
             ]
         });
 
-        expect(list).toBeInstanceOf(AfwList);
+        expect(list).toBeInstanceOf(AfwArray);
     });
 
-    test("Create new AfwList, iterate through values", async () => {
+    test("Create new AfwArray, iterate through values", async () => {
 
         const value = [ "abc", true, 42 ];
 
-        const list = new AfwList({ value });
+        const list = new AfwArray({ value });
 
-        expect(list).toBeInstanceOf(AfwList);
+        expect(list).toBeInstanceOf(AfwArray);
 
         /* iterate through properties */
         for (const [ind, val] of list.entries()) {            
-            expect(val).toBeInstanceOf(AfwListEntry);
+            expect(val).toBeInstanceOf(AfwArrayEntry);
 
             expect(value[ind]).toBe(val.getValue());
         }         
     });
 
-    test("Lists of objects", async () => {
+    test("Arrays of objects", async () => {
 
         const value = [
             {
@@ -49,12 +49,12 @@ describe("AfwList Tests", () => {
             }
         ];
 
-        const list = new AfwList({ value });
+        const list = new AfwArray({ value });
 
-        expect(list).toBeInstanceOf(AfwList);
+        expect(list).toBeInstanceOf(AfwArray);
 
         for (const [ind, val] of list.entries()) {
-            expect(val).toBeInstanceOf(AfwListEntry);            
+            expect(val).toBeInstanceOf(AfwArrayEntry);            
             expect(val.getValue()).toBeInstanceOf(AfwObject);
 
             // need to initialize any AfwObject
@@ -74,18 +74,18 @@ describe("AfwList Tests", () => {
     test("Test entries()", async () => {
         
         let value = [ "abc", "def", "ghi" ];
-        let list = new AfwList({ value });
+        let list = new AfwArray({ value });
 
         for (const [ind, val] of list.entries()) {
-            expect(val).toBeInstanceOf(AfwListEntry);
+            expect(val).toBeInstanceOf(AfwArrayEntry);
             expect(val.getValue()).toBe(value[ind]);
         }
 
         value = [ ];
-        list = new AfwList({ value });
+        list = new AfwArray({ value });
 
         for (const [ind, val] of list.entries()) {
-            expect(val).toBeInstanceOf(AfwListEntry);
+            expect(val).toBeInstanceOf(AfwArrayEntry);
             expect(val.getValue()).toBe(value[ind]);
         }
     });
@@ -93,7 +93,7 @@ describe("AfwList Tests", () => {
     test("Test getAt()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value });        
+        const list = new AfwArray({ value });        
 
         expect(list.getAt(0).getValue()).toBe(value[0]);
         expect(list.getAt(1).getValue()).toBe(value[1]);
@@ -103,17 +103,17 @@ describe("AfwList Tests", () => {
     test("Test forEach()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value });        
+        const list = new AfwArray({ value });        
 
         list.forEach((v, ind) => {
-            expect(v).toBeInstanceOf(AfwListEntry);
+            expect(v).toBeInstanceOf(AfwArrayEntry);
             expect(v.getValue()).toBe(value[ind]);
         });
     });
 
     test("Test map()", async () => {
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value });  
+        const list = new AfwArray({ value });  
 
         const values = list.map(entry => entry.getValue());
 
@@ -125,10 +125,10 @@ describe("AfwList Tests", () => {
     test("Test newValue()", async () => {
         const value = [ "abc", true, 42 ];
 
-        const list = new AfwList({ value });
+        const list = new AfwArray({ value });
 
         const newValue = list.newValue();
-        expect(newValue).toBeInstanceOf(AfwListEntry);
+        expect(newValue).toBeInstanceOf(AfwArrayEntry);
 
         newValue.setValue("xyz");
         expect(list.getAt(3).getValue()).toBe("xyz");
@@ -137,7 +137,7 @@ describe("AfwList Tests", () => {
     test("Test removeValue", async () => {
         const value = [ "abc", true, 42 ];
 
-        const list = new AfwList({ value });
+        const list = new AfwArray({ value });
         expect(list.length).toBe(3);
         
         list.removeValue(list.getAt(1));        
@@ -155,11 +155,11 @@ describe("AfwList Tests", () => {
     test("Test iterator()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value });        
+        const list = new AfwArray({ value });        
 
         let ind = 0;
         for (const v of list) {
-            expect(v).toBeInstanceOf(AfwListEntry);
+            expect(v).toBeInstanceOf(AfwArrayEntry);
             expect(v.getValue()).toBe(value[ind]);
 
             ind++;
@@ -169,7 +169,7 @@ describe("AfwList Tests", () => {
     test("Test includes()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value }); 
+        const list = new AfwArray({ value }); 
 
         expect(list.includes("abc")).toBe(true);
         expect(list.includes(123)).toBe(false);
@@ -181,7 +181,7 @@ describe("AfwList Tests", () => {
             "abc", "def", "ghi"
         ];
 
-        const list = new AfwList({ value });
+        const list = new AfwArray({ value });
 
         expect(list.toJSON()).toEqual([
             "abc", "def", "ghi"
@@ -191,7 +191,7 @@ describe("AfwList Tests", () => {
     test("Test validate()", async () => {
 
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value }); 
+        const list = new AfwArray({ value }); 
 
         // \fixme not sure how to test this yet
         expect(list.validate()).toBe(true);
@@ -202,7 +202,7 @@ describe("AfwList Tests", () => {
         const onChanged = jest.fn();
 
         const value = [ "abc", "def", "ghi" ];
-        const list = new AfwList({ value }); 
+        const list = new AfwArray({ value }); 
 
         list.addEventListener("onChanged", onChanged);
 

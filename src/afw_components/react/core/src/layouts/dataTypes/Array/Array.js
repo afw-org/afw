@@ -6,7 +6,7 @@
  *
  */
 
-import {ListResponsive} from "../../objectTypes/ObjectResponsive/ListResponsive";
+import {ArrayResponsive} from "../../objectTypes/ObjectResponsive/ArrayResponsive";
 
 
 /*
@@ -15,12 +15,12 @@ import {ListResponsive} from "../../objectTypes/ObjectResponsive/ListResponsive"
  * prompt for new values and manages the options when new list entries are added
  * and removed.
  */
-export const List = (props) => {
+export const _Array = (props) => {
     const {value, valueMeta = {}, onChanged, onValidate} = props;
     const {brief, description} = valueMeta;
 
     return (
-        <ListResponsive 
+        <ArrayResponsive 
             {...props}
             {...valueMeta} 
             description={brief || description}
@@ -31,6 +31,6 @@ export const List = (props) => {
     );
 };
 
-List.displayName = "List";
+_Array.displayName = "Array";
 
-export default List;
+export default _Array;

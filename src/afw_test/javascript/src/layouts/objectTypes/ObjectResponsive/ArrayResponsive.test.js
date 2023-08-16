@@ -1,13 +1,13 @@
 // See the 'COPYING' file in the project root for licensing information.
 import React from "react";
 
-import {fireEvent, render, waitFor, screen} from "@testing-library/react";
-import {ListResponsive} from "@afw/react";
+import {fireEvent, render, screen} from "@testing-library/react";
+import {ArrayResponsive} from "@afw/react";
 import {AfwProperty} from "@afw/client";
 import {OperationalContext, AdaptiveLayoutContext} from "@afw/react";
 
 
-export const AddListValue = async ({ label, value }) => {
+export const AddArrayValue = async ({ label, value }) => {
 
     // click the add button
     fireEvent.click(screen.getByText("add"));
@@ -19,12 +19,12 @@ export const AddListValue = async ({ label, value }) => {
     // click the ok button
     fireEvent.click(screen.getByText("Ok"));
 
-    // verify it's no longer in the list
+    // verify it's no longer in the array
     expect(screen.getByText(value)).toBeInTheDocument();
 };
 
 
-export const RemoveListValue = async ({ value }) => {
+export const RemoveArrayValue = async ({ value }) => {
     // select the entry
     fireEvent.click(screen.getByText(value));
 
@@ -41,7 +41,7 @@ const Test = (wrapper) => {
 
         test("Renders properly", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -51,7 +51,7 @@ const Test = (wrapper) => {
                    
             render(
                 <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                    <ListResponsive    
+                    <ArrayResponsive    
                         property={property}
                     />
                 </AdaptiveLayoutContext.Provider>,
@@ -61,7 +61,7 @@ const Test = (wrapper) => {
 
         test("Renders properly (editable)", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -71,7 +71,7 @@ const Test = (wrapper) => {
 
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
-                    <ListResponsive property={property} />
+                    <ArrayResponsive property={property} />
                 </OperationalContext.Provider>,
                 { wrapper }
             );     
@@ -79,7 +79,7 @@ const Test = (wrapper) => {
         
         test("Renders with 0 values", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -88,7 +88,7 @@ const Test = (wrapper) => {
                    
             render(
                 <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                    <ListResponsive    
+                    <ArrayResponsive    
                         property={property}
                     />
                 </AdaptiveLayoutContext.Provider>,
@@ -98,7 +98,7 @@ const Test = (wrapper) => {
 
         test("Renders (editable) with 0 values", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -108,7 +108,7 @@ const Test = (wrapper) => {
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -119,7 +119,7 @@ const Test = (wrapper) => {
 
         test("Renders with 1 value", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -129,7 +129,7 @@ const Test = (wrapper) => {
                    
             render(
                 <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                    <ListResponsive    
+                    <ArrayResponsive    
                         property={property}
                     />
                 </AdaptiveLayoutContext.Provider>,
@@ -141,7 +141,7 @@ const Test = (wrapper) => {
 
         test("Renders (editable) with 1 value", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -152,7 +152,7 @@ const Test = (wrapper) => {
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -165,7 +165,7 @@ const Test = (wrapper) => {
 
         test("Renders with 2 values", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -175,7 +175,7 @@ const Test = (wrapper) => {
                    
             render(
                 <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                    <ListResponsive    
+                    <ArrayResponsive    
                         property={property}
                     />
                 </AdaptiveLayoutContext.Provider>,
@@ -188,7 +188,7 @@ const Test = (wrapper) => {
 
         test("Renders (editable) with 2 values", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -199,7 +199,7 @@ const Test = (wrapper) => {
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -213,7 +213,7 @@ const Test = (wrapper) => {
 
         test("Renders with 100 values", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -228,7 +228,7 @@ const Test = (wrapper) => {
                    
             render(
                 <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                    <ListResponsive    
+                    <ArrayResponsive    
                         property={property}
                     />
                 </AdaptiveLayoutContext.Provider>,
@@ -243,7 +243,7 @@ const Test = (wrapper) => {
 
         test("Renders (editable) with 100 values", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string"
@@ -259,7 +259,7 @@ const Test = (wrapper) => {
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -278,18 +278,18 @@ const Test = (wrapper) => {
       
         test("Start with 0 values, add 1 value", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -297,24 +297,24 @@ const Test = (wrapper) => {
                 { wrapper }
             );                           
             
-            await AddListValue({ label: "My List", value: "List Value 1" });
+            await AddArrayValue({ label: "My Array", value: "Array Value 1" });
         });
 
         test("Start with 1 value, add 1 value", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },
-                value: [ "List Value 1" ]
+                value: [ "Array Value 1" ]
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -322,27 +322,27 @@ const Test = (wrapper) => {
                 { wrapper }
             );     
 
-            await AddListValue({ label: "My List", value: "List Value 2" });
+            await AddArrayValue({ label: "My Array", value: "Array Value 2" });
 
-            expect(screen.getByText("List Value 1")).toBeInTheDocument();
-            expect(screen.getByText("List Value 2")).toBeInTheDocument();
+            expect(screen.getByText("Array Value 1")).toBeInTheDocument();
+            expect(screen.getByText("Array Value 2")).toBeInTheDocument();
         });
 
         test("Start with 1 value, remove 1 value", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },
-                value: [ "List Value 1" ]
+                value: [ "Array Value 1" ]
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -350,24 +350,24 @@ const Test = (wrapper) => {
                 { wrapper }
             );     
 
-            await RemoveListValue({ value: "List Value 1" });
+            await RemoveArrayValue({ value: "Array Value 1" });
         });
 
         test("Start with 2 values, remove first value, then second value", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },
-                value: [ "List Value 1", "List Value 2" ]
+                value: [ "Array Value 1", "Array Value 2" ]
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -375,27 +375,27 @@ const Test = (wrapper) => {
                 { wrapper }
             );     
 
-            await RemoveListValue({ value: "List Value 1" });
-            await RemoveListValue({ value: "List Value 2" });
+            await RemoveArrayValue({ value: "Array Value 1" });
+            await RemoveArrayValue({ value: "Array Value 2" });
 
-            expect(screen.queryByText("List Value 1")).not.toBeInTheDocument();                        
-            expect(screen.queryByText("List Value 2")).not.toBeInTheDocument();
+            expect(screen.queryByText("Array Value 1")).not.toBeInTheDocument();                        
+            expect(screen.queryByText("Array Value 2")).not.toBeInTheDocument();
         });
 
         test("Start with 0 values, add 1 value, then remove it", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },                
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -403,24 +403,24 @@ const Test = (wrapper) => {
                 { wrapper }
             );     
 
-            await AddListValue({ label: "My List", value: "List Value 1" });
-            await RemoveListValue({ value: "List Value 1" });
+            await AddArrayValue({ label: "My Array", value: "Array Value 1" });
+            await RemoveArrayValue({ value: "Array Value 1" });
         });
 
         test("Start with 0 values, add 100 new values, then remove them", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },                
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -429,28 +429,28 @@ const Test = (wrapper) => {
             );     
             
             for (let i = 0; i < 100; i++) {
-                await AddListValue({ label: "My List", value: "List Value " + i });                         
+                await AddArrayValue({ label: "My Array", value: "Array Value " + i });                         
             }
 
             for (let i = 0; i < 100; i++) {                
-                await RemoveListValue({ value: "List Value " + i });
+                await RemoveArrayValue({ value: "Array Value " + i });
             }
         });
 
         test("Start with 0 values, add a new value, then cancel", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },                
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -459,28 +459,28 @@ const Test = (wrapper) => {
             );     
             
             fireEvent.click(screen.getByText("add"));
-            const input = await screen.findByLabelText("My List");
-            fireEvent.change(input, { target: { value: "List Value 1" }});  
+            const input = await screen.findByLabelText("My Array");
+            fireEvent.change(input, { target: { value: "Array Value 1" }});  
             
             fireEvent.click(screen.getByText("Cancel"));
-            expect(screen.queryByText("List Value 1")).not.toBeInTheDocument();
+            expect(screen.queryByText("Array Value 1")).not.toBeInTheDocument();
         });
 
         test("Start with 1 value, add a new value, then cancel", async () => {
             const property = new AfwProperty({ 
-                propertyName: "mylist", 
+                propertyName: "myarray", 
                 propertyType: {
                     dataType: "array",
                     dataTypeParameter: "string",
-                    label: "My List"
+                    label: "My Array"
                 },                
-                value: [ "List Value 1" ]
+                value: [ "Array Value 1" ]
             });
                    
             render(
                 <OperationalContext.Provider value={{ editable: true }}>
                     <AdaptiveLayoutContext.Provider value={{ data: { property, value: property } }}>
-                        <ListResponsive    
+                        <ArrayResponsive    
                             property={property}
                         />
                     </AdaptiveLayoutContext.Provider>
@@ -489,13 +489,13 @@ const Test = (wrapper) => {
             );     
             
             fireEvent.click(screen.getByText("add"));
-            const input = await screen.findByLabelText("My List");
-            fireEvent.change(input, { target: { value: "List Value 2" }});  
+            const input = await screen.findByLabelText("My Array");
+            fireEvent.change(input, { target: { value: "Array Value 2" }});  
             
             fireEvent.click(screen.getByText("Cancel"));
 
-            expect(screen.queryByText("List Value 1")).toBeInTheDocument();
-            expect(screen.queryByText("List Value 2")).not.toBeInTheDocument();
+            expect(screen.queryByText("Array Value 1")).toBeInTheDocument();
+            expect(screen.queryByText("Array Value 2")).not.toBeInTheDocument();
         });
 
     });

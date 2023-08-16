@@ -69,7 +69,7 @@ import Stepper from "./components/Stepper/Stepper.test";
 import Tooltip from "./components/Tooltip/Tooltip.test";
 
 import PropertyResponsive from "./layouts/objectTypes/ObjectResponsive/PropertyResponsive.test";
-import ListResponsive from "./layouts/objectTypes/ObjectResponsive/ListResponsive.test";
+import ArrayResponsive from "./layouts/objectTypes/ObjectResponsive/ArrayResponsive.test";
 import ObjectResponsive from "./layouts/objectTypes/ObjectResponsive/ObjectResponsive.test";
 import ObjectFlattened from "./layouts/objectTypes/ObjectFlattened/ObjectFlattened.test";
 import ObjectEditor from "./layouts/objectTypes/ObjectEditor/ObjectEditor.test";
@@ -146,7 +146,7 @@ export const LayoutTestRunners = {
     HybridBuilder,
     HybridEditor,
     PropertyResponsive,
-    ListResponsive,
+    ArrayResponsive,
     ObjectResponsive,
     ObjectFlattened,      
     ObjectEditor,  
@@ -261,7 +261,7 @@ export {
     HybridBuilder,
     HybridEditor,
     PropertyResponsive,
-    ListResponsive,
+    ArrayResponsive,
     ObjectResponsive,
     ObjectFlattened,      
     ObjectEditor,  

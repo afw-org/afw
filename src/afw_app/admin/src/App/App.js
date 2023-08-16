@@ -16,7 +16,7 @@ import AppRoutes from "./AppRoutes";
 import AppKeyboardShortcuts from "./AppKeyboardShortcuts";
 import {withMediaQuery, lightTheme, darkTheme} from "./AppTheme";
 
-import {AfwObject, AfwProperty, AfwList} from "@afw/client";
+import {AfwObject, AfwProperty, AfwArray} from "@afw/client";
 import {AfwClient} from "@afw/client";
 
 import {copyToClipboard} from "../utils";
@@ -299,7 +299,7 @@ class App extends React.Component {
 
         /* if the content is an object, we need to stringify it for the actual clipboard */
         if (typeof(content) === "object") {
-            if (content instanceof AfwObject || content instanceof AfwProperty || content instanceof AfwList) {
+            if (content instanceof AfwObject || content instanceof AfwProperty || content instanceof AfwArray) {
                 string = JSON.stringify(content.toJSON());
             } else
                 string = JSON.stringify(content);

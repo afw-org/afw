@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {AfwListEntry, AfwObject, AfwEvent, AfwEventId} from ".";
+import {AfwArrayEntry, AfwObject, AfwEvent, AfwEventId} from ".";
 
 import {IAnyObject} from "./types";
 
@@ -10,13 +10,13 @@ interface Config {
     getMeta?:       () => any;
 }
 
-export class AfwList extends AfwEvent {
+export class AfwArray extends AfwEvent {
     
     parent:                 any;
     private propertyName?:  string;
     private value?:         any;
     private getMeta?:       () => any;
-    private _entries?:      AfwListEntry[];
+    private _entries?:      AfwArrayEntry[];
     private length?:        number;
 
     constructor(config: Config) {        
@@ -38,7 +38,7 @@ export class AfwList extends AfwEvent {
         this._entries = [];
         if (value) {
             this._entries = value.map((v: any) => 
-                new AfwListEntry({
+                new AfwArrayEntry({
                     value: v, 
                     parent: this, 
                     getMeta,
@@ -92,7 +92,7 @@ export class AfwList extends AfwEvent {
         if (!this._entries)
             this.entries();
 
-        const newEntry = new AfwListEntry({ 
+        const newEntry = new AfwArrayEntry({ 
             parent: this, 
             getMeta,
             propertyName 
@@ -113,7 +113,7 @@ export class AfwList extends AfwEvent {
     /**
      * removeValue()
      */
-    removeValue(entry: AfwListEntry) {
+    removeValue(entry: AfwArrayEntry) {
         if (!this._entries)
             this.entries();
 
@@ -150,7 +150,7 @@ export class AfwList extends AfwEvent {
     }
 
     /* Allows the includes() method to be called, like a list */
-    // \fixme should all of these array methods use the AfwListEntry or the AfwListEntry.getValue()?
+    // \fixme should all of these array methods use the AfwArrayEntry or the AfwArrayEntry.getValue()?
     includes(value: any) {
         if (!this._entries)
             this.entries();
@@ -187,7 +187,7 @@ export class AfwList extends AfwEvent {
     }
 
     /**
-     * Turns this AfwList into a string.
+     * Turns this AfwArray into a string.
      * 
      * @param {function}    replacer
      * @param {number}      space
@@ -210,4 +210,4 @@ export class AfwList extends AfwEvent {
     }
 }
 
-export default AfwList;
+export default AfwArray;

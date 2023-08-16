@@ -76,12 +76,12 @@ var         with</code>
         three types of literals:
     </paragraph>    
     <list>
-        <item>List Literal</item>
+        <item>Array Literal</item>
         <item>Object Literal</item>
         <item>Scalar Literal</item>
     </list>
     <paragraph>
-        A List Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
+        A Array Literal is a sequence of literals, separated by <literal>,</literal> and enclosed in <literal>[</literal> and <literal>]</literal>.
     </paragraph>
     <code>[ 1, 2, 3 ]</code>
     <paragraph>

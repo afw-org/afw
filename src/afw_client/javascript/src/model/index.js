@@ -4,5 +4,5 @@ export * from "./AfwValue";
 export * from "./AfwModel";
 export * from "./AfwObject";
 export * from "./AfwProperty";
-export * from "./AfwList";
-export * from "./AfwListEntry";
+export * from "./AfwArray";
+export * from "./AfwArrayEntry";

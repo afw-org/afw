@@ -327,9 +327,9 @@
             </definition>
         </term>
         <term>
-            <identifier>List</identifier>
+            <identifier>Array</identifier>
             <definition>
-                A list of adaptive values that can be of different adaptive value and data types.
+                An array of adaptive values that can be of different adaptive value and data types.
             </definition>
         </term>
         <term>

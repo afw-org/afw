@@ -15,7 +15,7 @@ import {
     OperationalContext,
     OperationalMode
 } from "@afw/react";
-import {AfwClient, isArray, AfwList, AfwObject} from "@afw/client";
+import {AfwClient, isArray, AfwArray, AfwObject} from "@afw/client";
 import {afwRetrieveObjectsToResponse} from "@afw/core";
 
 import ObjectNew from "./ObjectNew";
@@ -389,7 +389,7 @@ const ObjectsTable = ({ onSelectObject }) => {
     const onRenderDescription = (object) => {                
         const description = getDescription(object);
 
-        if (description && description instanceof AfwList) {                                   
+        if (description && description instanceof AfwArray) {                                   
             return (
                 <ul style={{ listStyleType: "none", paddingInlineStart: "0px", marginBlockEnd: "0px", marginBlockStart: "0px" }}>
                     {                        

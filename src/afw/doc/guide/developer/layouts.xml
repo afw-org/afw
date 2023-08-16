@@ -603,7 +603,8 @@
             Metadata Components map one-to-one with dataTypes:
         </paragraph>
         <list>
-            <item>anyURI</item>
+            <item>AnyURI</item>
+            <item>Array</item>
             <item>Base64Binary</item>
             <item>Boolean</item>
             <item>Date</item>
@@ -617,7 +618,6 @@
             <item>Ia5String</item>
             <item>Integer</item>
             <item>IpAddress</item>
-            <item>List</item>
             <item>Null</item>
             <item>Object</item>
             <item>ObjectId</item>

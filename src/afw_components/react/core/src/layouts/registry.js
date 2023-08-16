@@ -12,6 +12,7 @@ import {OperationalMode} from "../context";
 /* dataTypes */
 import {
     AnyURI,
+    _Array,
     Base64Binary,
     _Boolean,
     _Date,
@@ -26,7 +27,6 @@ import {
     Ia5String,
     Integer,
     IpAddress,
-    List,
     Null,
     _Object,
     ObjectId,
@@ -74,6 +74,7 @@ import {
 /* components that can be derived by their dataType only */
 export const layoutByDataType = {    
     anyURI:                     AnyURI,
+    array:                      _Array,
     base64Binary:               Base64Binary,
     boolean:                    _Boolean,
     date:                       _Date,    
@@ -88,7 +89,6 @@ export const layoutByDataType = {
     ia5String:                  Ia5String,
     integer:                    Integer,  
     ipAddress:                  IpAddress,      
-    array:                      List,
     null:                       Null,
     object:                     _Object,
     password:                   Password,    

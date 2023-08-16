@@ -60,9 +60,9 @@ const TestObject = (wrapper) => {
 };
 
 /*
- * Tests for dataType=arrat
+ * Tests for dataType=array
  */
-const TestList = (wrapper) => {    
+const TestArray = (wrapper) => {    
 
     test("Renders properly with a property name and value", async () => {
 
@@ -793,10 +793,10 @@ const Test = (wrapper) => {
     
 
     /**
-     * List Tests
+     * Array Tests
      */
     describe("dataType=array tests", () => {
-        TestList(wrapper);
+        TestArray(wrapper);
     });
     
 

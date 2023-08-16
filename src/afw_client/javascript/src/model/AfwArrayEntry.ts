@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {AfwObject, AfwList, AfwValue, AfwEventId } from ".";
+import {AfwObject, AfwArray, AfwValue, AfwEventId } from ".";
 
 import {isObject, isArray} from "../utils";
 import {IMetaObject} from "./types";
@@ -11,7 +11,7 @@ interface Config {
     getMeta?:       () => any;
 }
 
-export class AfwListEntry extends AfwValue {
+export class AfwArrayEntry extends AfwValue {
 
     parent:                 any;
     getMeta:                () => any;
@@ -53,7 +53,7 @@ export class AfwListEntry extends AfwValue {
         }
     }
 
-    /*! \fixme this shouldn't be valid for AfwListEntry types */
+    /*! \fixme this shouldn't be valid for AfwArrayEntry types */
     getName() {        
         return this.getPropertyName();
     }
@@ -83,7 +83,7 @@ export class AfwListEntry extends AfwValue {
                     objectTypeObject,       
                 });
             } else if (dataType === "array" || isArray(value)) {
-                this.adaptiveValue = new AfwList({
+                this.adaptiveValue = new AfwArray({
                     value,
                     parent: this,
                     getMeta: () => ({
@@ -101,7 +101,7 @@ export class AfwListEntry extends AfwValue {
     }
 
     setValue(value: any) {
-        if (value instanceof AfwListEntry)
+        if (value instanceof AfwArrayEntry)
             this.value = value.toJSON();
         else
             this.value = value;
@@ -139,4 +139,4 @@ export class AfwListEntry extends AfwValue {
     }
 }
 
-export default AfwListEntry;
+export default AfwArrayEntry;

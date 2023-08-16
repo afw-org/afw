@@ -28,7 +28,7 @@ import {AdaptiveLayoutMergeProviders} from "../../AdaptiveLayout";
 import {AfwProperty} from "@afw/client";
 
 
-export const ListResponsiveReadonly = (props) => {
+export const ArrayResponsiveReadonly = (props) => {
 
     const property = useAfwProperty(props);    
     const routeBasePath = useRouteBasePath();
@@ -45,7 +45,7 @@ export const ListResponsiveReadonly = (props) => {
                     /*! \fixme need to use the metadata handler to return the appropriate string value 
                         return (
                             <ValueLayout                                 
-                                id={id + ".ListResponsive.Value"}                  
+                                id={id + ".ArrayResponsive.Value"}                  
                                 value={property.getValue()}        
                                 nestingDepth={0}                                 
                                 headerOptions="all"
@@ -80,12 +80,12 @@ export const ListResponsiveReadonly = (props) => {
 };
 
 /**
- * The ListResponsive is a component that wraps ListEditor to provide options
+ * The ArrayResponsive is a component that wraps ListEditor to provide options
  * derived from an AfwProperty of dataType list.  It handles the modals to 
  * prompt for new values and manages the options when new list entries are added
  * and removed.
  */
-export const ListResponsive = (props) => {
+export const ArrayResponsive = (props) => {
 
     const [showModal, setShowModal] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
@@ -139,7 +139,7 @@ export const ListResponsive = (props) => {
 
     const onAddItem = () => {        
         if (property) {
-            /* if this is the first value for this property, then we need to allocate a new AfwList */
+            /* if this is the first value for this property, then we need to allocate a new AfwArray */
             if (!property.getValue()) {
                 property.setValue([]);
             }
@@ -225,7 +225,7 @@ export const ListResponsive = (props) => {
 
     if (editable !== true) {
         return (
-            <ListResponsiveReadonly 
+            <ArrayResponsiveReadonly 
                 {...props}
                 items={items}
             />
@@ -259,7 +259,7 @@ export const ListResponsive = (props) => {
                                     <ValueLayout 
                                         // eslint-disable-next-line jsx-a11y/no-autofocus
                                         autoFocus={true}                      
-                                        id={id + ".ListResponsive.ValueLayout"}                  
+                                        id={id + ".ArrayResponsive.ValueLayout"}                  
                                         value={editValue}  
                                         valueMeta={{ ...property.getMeta(), ...editValue.getMeta() }}
                                     />
@@ -289,10 +289,10 @@ export const ListResponsive = (props) => {
 };
 
 
-ListResponsive.propTypes = {
+ArrayResponsive.propTypes = {
     property:           PropTypes.instanceOf(AfwProperty),
 };
 
-ListResponsive.displayName = "ListResponsive";
+ArrayResponsive.displayName = "ArrayResponsive";
 
-export default ListResponsive;
+export default ArrayResponsive;

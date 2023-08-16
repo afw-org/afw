@@ -1,5 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 export * from "./AnyURI";
+export * from "./Array";
 export * from "./Base64Binary";
 export * from "./Boolean";
 export * from "./Date";
@@ -14,7 +15,6 @@ export * from "./Hybrid";
 export * from "./Ia5String";
 export * from "./Integer";
 export * from "./IpAddress";
-export * from "./List";
 export * from "./Null";
 export * from "./Object";
 export * from "./ObjectId";

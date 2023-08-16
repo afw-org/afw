@@ -204,16 +204,16 @@ describe("AfwProperty Tests", () => {
     test("Test meta properties", async () => {
 
         const property = new AfwProperty({ 
-            propertyName: "mylist", 
+            propertyName: "myarray", 
             propertyType: {
                 dataType: "array",
                 dataTypeParameter: "string",
-                label: "My List"
+                label: "My Array"
             },                
-            value: [ "List Value 1" ]
+            value: [ "Array Value 1" ]
         });
         
-        expect(property.getLabel()).toBe("My List");
+        expect(property.getLabel()).toBe("My Array");
 
     });
 

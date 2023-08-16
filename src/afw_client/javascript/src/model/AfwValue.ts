@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {AfwObject} from ".";
-import {AfwList} from ".";
-import {AfwListEntry} from ".";
+import {AfwArray} from ".";
+import {AfwArrayEntry} from ".";
 import {AfwEvent, AfwEventId} from ".";
 
 import {
@@ -122,7 +122,7 @@ export class AfwValue extends AfwEvent {
         const value = this.value;
 
         /* try to interpret the dataType from the value */
-        if (value instanceof AfwList)
+        if (value instanceof AfwArray)
             return "array";
         else if (value instanceof AfwObject)
             return "object";
@@ -258,7 +258,7 @@ export class AfwValue extends AfwEvent {
             
             else if ((dataType === "array") && (value !== undefined)) 
             {           
-                this.adaptiveValue = new AfwList({ 
+                this.adaptiveValue = new AfwArray({ 
                     value, 
                     parent: this,
                     getMeta: () => this.getMeta(),
@@ -319,7 +319,7 @@ export class AfwValue extends AfwEvent {
         if (!this.initialValue && this.value)
             this.initialValue = JSON.stringify(this.value);
 
-        if (value instanceof AfwObject || value instanceof AfwList || value instanceof AfwListEntry)
+        if (value instanceof AfwObject || value instanceof AfwArray || value instanceof AfwArrayEntry)
             this.value = value.toJSON();               
         else 
             this.value = value;

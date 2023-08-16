@@ -1,5 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
-import {AfwObject, AfwList, AfwValue, AfwEventId} from ".";
+import {AfwObject, AfwArray, AfwValue, AfwEventId} from ".";
 
 interface PropertyType {
     dataType?:          string;

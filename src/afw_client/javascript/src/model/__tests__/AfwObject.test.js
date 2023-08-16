@@ -1,7 +1,7 @@
 // See the 'COPYING' file in the project root for licensing information.
 import AfwClient from "../../AfwClient";
 
-import {AfwModel, AfwObject, AfwProperty, AfwList, AfwListEntry} from "..";
+import {AfwModel, AfwObject, AfwProperty, AfwArray, AfwArrayEntry} from "..";
 import {isObject, isArray} from "../../utils";
 import {waitFor, mswPostCallback} from "@afw/test";
 
@@ -100,10 +100,10 @@ describe("AfwObject Tests", () => {
         expect(property).toBeInstanceOf(AfwProperty);
 
         const prop1 = property.getValue();
-        expect(prop1).toBeInstanceOf(AfwList);
+        expect(prop1).toBeInstanceOf(AfwArray);
 
         property.getValue().forEach((value, index) => {
-            expect(value).toBeInstanceOf(AfwListEntry);
+            expect(value).toBeInstanceOf(AfwArrayEntry);
 
             expect(value.getValue()).toBe(object.prop1[index]);            
         });
@@ -327,7 +327,7 @@ describe("AfwObject Tests", () => {
             if (isObject(v)) 
                 expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwObject);                
             else if (isArray(v))
-                expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwList);
+                expect(obj.getPropertyValue(p)).toBeInstanceOf(AfwArray);
             else
                 expect(obj.getPropertyValue(p)).toBe(v);
         }
@@ -676,7 +676,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getPropertyValue("prop4")).toBeInstanceOf(AfwObject);
 
         obj.setPropertyValue("prop5", []);
-        expect(obj.getPropertyValue("prop5")).toBeInstanceOf(AfwList);
+        expect(obj.getPropertyValue("prop5")).toBeInstanceOf(AfwArray);
     });
     
     test("Test forEach()", async () => {

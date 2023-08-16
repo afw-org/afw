@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {
-    AfwList,
+    AfwArray,
     AfwProperty,
     AfwEvent,
     AfwModel,

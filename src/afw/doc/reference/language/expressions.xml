@@ -40,7 +40,7 @@
         <header>Values</header>
         <paragraph>
             Values are the fundamental components of an expression. They can be
-            List Values, Object Values, Scalar Literals, Evaluations, 
+            Array Values, Object Values, Scalar Literals, Evaluations, 
             Parenthesized Expressions or Template Strings.
         </paragraph>
         <code><![CDATA[42
