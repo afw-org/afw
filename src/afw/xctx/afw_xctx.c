@@ -284,33 +284,6 @@ afw_xctx_scope_dynamic_variable_set(
 }
 
 
-/* Set a variable in current xctx frame. */
-AFW_DEFINE(void)
-afw_xctx_scope_deprecated_variable_set(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx)
-{
-    afw_name_value_t * cur;
-    afw_name_value_t * bottom;
-    afw_name_value_t * stopat;
-
-    for (bottom = (afw_name_value_t *)xctx->stack->elts,
-        stopat = bottom + xctx->current_frame_index,
-        cur = bottom + ((afw_size_t)xctx->stack->nelts - 1);
-        cur >= stopat;
-        cur--)
-    {
-        if (afw_utf8_equal(name, cur->name)) {
-            cur->value = value;
-            return;
-        }
-    };
-
-    cur = (afw_name_value_t *)apr_array_push(xctx->stack);
-    cur->name = name;
-    cur->value = value;
-}
-
-
 /* Get stack top. */
 AFW_DEFINE(int)
 afw_xctx_qualifier_stack_top_get(
