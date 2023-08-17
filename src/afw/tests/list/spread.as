@@ -63,8 +63,8 @@ assert(length(l3) === 6);
 
 return 0;
 
-//? test: spread-foreach
-//? description: Spread inside a foreach loop
+//? test: spread-for-of
+//? description: Spread inside a for-of loop
 //? expect: 0
 //? source: ...
 
@@ -78,8 +78,8 @@ for (const i of l1) {
 
 return 0;
 
-//? test: spread-foreach-error
-//? description: Spread inside a foreach loop with error
+//? test: spread-for-of-error
+//? description: Spread inside a for-of loop with error
 //? expect: error:Typesafe error: expecting 'array' but encountered 'integer'
 //? source: ...
 

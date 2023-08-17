@@ -122,18 +122,6 @@ do {
         </section>
     </section>
     <section>
-        <title>Foreach</title>
-        <image generated-src="ebnf/syntax/diagram/ForeachStatement.png" />
-        <paragraph>
-        </paragraph>
-        <section>
-            <title>Example</title>
-            <code><![CDATA[foreach let x of [1, 2, 3] {
-    print(x);
-}]]></code>
-        </section>
-    </section>
-    <section>
         <title>Function</title>
         <image generated-src="ebnf/syntax/diagram/FunctionStatement.png" />
         <paragraph>
