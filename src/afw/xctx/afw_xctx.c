@@ -286,7 +286,7 @@ afw_xctx_scope_dynamic_variable_set(
 
 /* Set a variable in current xctx frame. */
 AFW_DEFINE(void)
-afw_xctx_scope_compiled_variable_set(const afw_utf8_t *name,
+afw_xctx_scope_deprecated_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx)
 {
     afw_name_value_t * cur;

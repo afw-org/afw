@@ -89,10 +89,6 @@ impl_set_variable(
         afw_xctx_scope_dynamic_variable_define(name, value, xctx);
         break;
 
-    case afw_compile_assignment_type_define_if_needed:
-        afw_xctx_scope_compiled_variable_set(name, value, xctx);
-        break;
-
     default:
         AFW_THROW_ERROR_Z(general, "Internal error", xctx);
     }
@@ -403,11 +399,11 @@ impl_assign_value(
     }
 
     /* String containing variable name */
-    else if (afw_value_is_string(target)) {
-        impl_set_variable(
-            &((afw_value_string_t *)target)->internal,
-            value, assignment_type, xctx);
-    }
+    // else if (afw_value_is_string(target)) {
+    //     impl_set_variable(
+    //         &((afw_value_string_t *)target)->internal,
+    //         value, assignment_type, xctx);
+    // }
     
     /* Invalid assignment target. */
     else {

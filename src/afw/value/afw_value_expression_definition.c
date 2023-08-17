@@ -75,7 +75,7 @@ impl_afw_value_optional_evaluate(
 
     const afw_value_assignment_t * const *assignment;
     int local_top;
-    const afw_value_t *v;
+    //const afw_value_t *v;
     const afw_value_t *result;
     const afw_compile_value_contextual_t *saved_contextual;
 
@@ -92,8 +92,8 @@ impl_afw_value_optional_evaluate(
         /* Push all assignments on to xctx stack. */
         if (self->assignments) {
             for (assignment = self->assignments; *assignment; assignment++) {
-                v = afw_value_evaluate((*assignment)->value, p, xctx);
-                afw_xctx_scope_compiled_variable_set((*assignment)->name, v, xctx);
+                //v = afw_value_evaluate((*assignment)->value, p, xctx);
+                /// @fixme removing support afw_xctx_scope_deprecated_variable_set((*assignment)->name, v, xctx);
             }
         }
 

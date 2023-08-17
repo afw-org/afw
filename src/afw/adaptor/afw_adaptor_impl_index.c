@@ -341,14 +341,15 @@ afw_boolean_t afw_adaptor_impl_index_try(
         top = afw_xctx_scope_begin(xctx);
 
         /* Add variables for the filter and value expressions to use */
-        afw_xctx_scope_compiled_variable_set(&afw_s_objectId, 
-            afw_value_create_string(object_id, xctx->p, xctx), xctx);
-        afw_xctx_scope_compiled_variable_set(&afw_s_objectType, 
-            afw_value_create_string(object_type_id, xctx->p, xctx), xctx);
-        afw_xctx_scope_compiled_variable_set(&afw_s_object, 
-            afw_value_create_object(object, xctx->p, xctx), xctx);
+        /** @fixme These need to be custom:: variables. See issue #54. */
+        // afw_xctx_scope_deprecated_variable_set(&afw_s_objectId,
+        //     afw_value_create_string(object_id, xctx->p, xctx), xctx);
+        // afw_xctx_scope_deprecated_variable_set(&afw_s_objectType,
+        //     afw_value_create_string(object_type_id, xctx->p, xctx), xctx);
+        // afw_xctx_scope_deprecated_variable_set(&afw_s_object,
+        //     afw_value_create_object(object, xctx->p, xctx), xctx);
 
-        /* 
+        /*
             Evaluate the 'value' definition for the index.  This may generate
             one or more afw_value_t types.  For each one, generate/remove an
             index.
@@ -540,8 +541,9 @@ afw_boolean_t afw_adaptor_impl_index_cb(
     }
 
     /* Add the object as a variable for the filter and value expressions to use */
-    afw_xctx_scope_compiled_variable_set(&afw_s_object, 
-        afw_value_create_object(object, xctx->p, xctx), xctx);
+    /** @fixme These need to be custom:: variables. See issue #54. */
+    // afw_xctx_scope_deprecated_variable_set(&afw_s_object, 
+    //     afw_value_create_object(object, xctx->p, xctx), xctx);
 
     /* The index "key" is the name that will match the query */
     key = ctx->key;

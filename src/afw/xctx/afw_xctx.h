@@ -241,7 +241,8 @@ afw_xctx_scope_closer_begin(
 
 
 /**
- * @brief Set a compiled variable in the appropriate static scope.
+ * @fixme Deprecate
+ * @brief Deprecated. Going away to be replaced by a qualified variable.
  * @param name Name of variable.
  * @param value Value to set.
  * @param xctx of caller.
@@ -252,7 +253,7 @@ afw_xctx_scope_closer_begin(
  * will be added.
  */
 AFW_DECLARE(void)
-afw_xctx_scope_compiled_variable_set(const afw_utf8_t *name,
+afw_xctx_scope_deprecated_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
@@ -312,22 +313,6 @@ afw_xctx_scope_dynamic_variable_get(
  */
 AFW_DECLARE(void)
 afw_xctx_scope_dynamic_variable_set(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
-
-
-/**
- * @brief Set a variable then current xctx frame.
- * @param name Name of variable.
- * @param value Value to set.
- * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * The current stack frame will be searched for an entry with the same name.
- * If found, the value of that entry will be set.  If not found, a new entry
- * will be added.
- */
-AFW_DECLARE(void)
-afw_xctx_scope_compiled_variable_set(const afw_utf8_t *name,
     const afw_value_t *value, afw_xctx_t *xctx);
 
 
