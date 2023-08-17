@@ -1614,8 +1614,7 @@ for (const x of [x]) {}
 
 //? test: head-const-bound-names-in-stmt
 //? description: The body may not re-declare variables declared in the head
-//? expect: error
-//? skip: true
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1697,7 +1696,7 @@ for (x of [], []) {}
 //? description:...
     The value of the expression in a for-of statement's head must have an
     `@@iterator` method.
-//? expect: undefined
+//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1712,7 +1711,7 @@ for (x of {}) {}
 //? description:...
     The value of the expression in a for-of statement's head must have an
     `@@iterator` method.
-//? expect: undefined
+//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1727,7 +1726,7 @@ for (x of false) {}
 //? description:...
     The value of the expression in a for-of statement's head must have an
     `@@iterator` method.
-//? expect: undefined
+//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1742,7 +1741,7 @@ for (x of 37) {}
 //? description:...
     The value of the expression in a for-of statement's head is subject to the
     semantics of the ToObject abstract operation.
-//? expect: undefined
+//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
 //? source: ...
 #!/usr/bin/env afw
@@ -1792,8 +1791,7 @@ for (let x of [x]) {}
 
 //? test: head-let-bound-names-in-stmt
 //? description: The body may not re-declare variables declared in the head
-//? expect: error
-//? skip: true
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1999,7 +1997,7 @@ for ( let of [] ) ;
 let iterCount = 0;
 let x = {};
 
-// fixme: not sure if we should allow, but it returns "Internal Error"
+// fixme: we should allow this, but it returns "Internal Error"
 for (x.y of [23]) {
   assert(x.y === 23);
   iterCount += 1;
@@ -3149,13 +3147,13 @@ for (let x of []) label1: label2: function f() {}
 
 
 //? test: let-array-with-newline
-//? description:...
-//? expect: error
-//? skip: true
+//? description: ExpressionStatement has a lookahead restriction for `let [`
+//? expect:error:List destructure can only be performed on a list
+//? skip:true
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme should this be an error?
+// fixme this does not see it as an error because it's not executed on empty array
 for (let x of []) let
 [a] = 0;
 
@@ -3850,7 +3848,7 @@ let fourth = '𐐨';
 
 let iterationCount = 0;
 
-// fixme: should we allow this?
+// fixme: we should allow this (strings are iterable)
 for (let value of string) {
   assert(value === first);
   first = second;
@@ -3905,7 +3903,7 @@ let third = 'c';
 
 let iterationCount = 0;
 
-// fixme: should we allow this?
+// fixme: we allow this (strings are iterable)
 for (let value of string) {
   assert(value === first);
   first = second;
