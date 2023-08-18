@@ -71,8 +71,6 @@ const statusFormat = (format) => {
         return "Adaptive Expression";
     case "template":
         return "Adaptive Template";
-    case "tuple":
-        return "Adaptive Tuple";
     case "json":
         return "JSON";
     case "xml":

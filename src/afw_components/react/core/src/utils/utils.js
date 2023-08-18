@@ -29,19 +29,6 @@ export function isFunction(value) {
     return (value && typeof value === "function");
 }
 
-export function isHybridTuple(hybrid) {
-    if (!hybrid || typeof hybrid !== "string")
-        return false;
-
-    try {
-        const tuple = JSON.parse(hybrid);
-        return isArray(tuple);
-    // eslint-disable-next-line no-empty
-    } catch (e) {}
-
-    return false;
-}
-
 export function isHybridScript(hybrid) {
     if (!hybrid || typeof hybrid !== "string")
         return false;
@@ -80,8 +67,8 @@ export function isHybridLiteral(hybrid) {
         return true;
 
     else if (typeof(hybrid) === "string") {
-        /* if it's a string, it could be a template, script or tuple */
-        return !(isHybridScript(hybrid) || isHybridTemplate(hybrid) || isHybridTuple(hybrid));
+        /* if it's a string, it could be a template or script */
+        return !(isHybridScript(hybrid) || isHybridTemplate(hybrid));
     }
 }
 

@@ -1,7 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {useState, useEffect} from "react";
 
-import {ExpressionTuple} from "./tuples";
 import {Template} from "../Template";
 
 import {
@@ -15,14 +14,13 @@ import {
 
 import {
     isHybridScript, 
-    isHybridTuple, 
     isHybridTemplate, 
     isHybridLiteral
 } from "../../../utils";
 
 /**
  * A HybridContextualMenu prompts to get the choice from a user on whether a particular hybrid value
- * should be a Script, Template, Tuple or Literal.
+ * should be a Script, Template or Literal.
  */
 export const HybridContextualMenu = ({ target, open, onDismiss, onSelectMenuItem }) => {
     return (
@@ -38,11 +36,6 @@ export const HybridContextualMenu = ({ target, open, onDismiss, onSelectMenuItem
                     key: "template",
                     label: "Adaptive Template",
                     onClick: () => onSelectMenuItem("template"),
-                },
-                {
-                    key: "tuple",
-                    label: "Expression Builder",
-                    onClick: () => onSelectMenuItem("tuple"),
                 },
                 {
                     key: "literal",
@@ -118,13 +111,10 @@ const RemovableHybrid = ({ children, onRemove }) => {
 };
 
 /**
- * A Hybrid represents an ExpressionTuple, Adaptive Script, or a string Template.  
+ * A Hybrid represents an Adaptive Script, or a string Template.  
  *   We determine which one by whether it's a Javascript array vs string.
  *   For undefined values, we present Menu options that allow the user
  *   to choose which one to create.
- * 
- *       ::= ExpressionTuple
- *         | Template
  */
 export const HybridBuilder = (props) => {
      
@@ -148,10 +138,8 @@ export const HybridBuilder = (props) => {
 
     useEffect(() => {
         if (hybrid && !hybridType) {
-            if (isHybridTuple(hybrid))
-                setHybridType("tuple");
-    
-            else if (isHybridScript(hybrid))
+
+            if (isHybridScript(hybrid))
                 setHybridType("script");
 
             else if (isHybridTemplate(hybrid))
@@ -201,36 +189,6 @@ export const HybridBuilder = (props) => {
             </div>
         );
     } 
-    
-    /* Expression Tuple */
-    else if (hybridType === "tuple")
-    {               
-        let tuple;
-        if (hybrid) {
-            try {
-                tuple = JSON.parse(hybrid);
-            //eslint-disable-next-line
-            } catch (e) {}
-        }
-        
-        return (
-            <ExpressionTuple       
-                id={id}        
-                label={label} 
-                tuple={tuple}
-                dataTypeParameter={dataTypeParameter}
-                objectTypeObject={objectTypeObject}
-                onChanged={t => {
-                    if ((t !== undefined) && onChanged)
-                        onChanged( JSON.stringify(t) );
-                    else if (onChanged) {
-                        onChanged();
-                        setHybridType();
-                    }
-                }}
-            />
-        );       
-    }
 
     /* JSON Literal */
     else if (hybridType === "literal")

@@ -81,8 +81,7 @@ const FiddleHelpMoreOptions = () => {
                 <MoreOptionsOption command="Close Tab" description="Close the current Tab" />                
                 <MoreOptionsOption command="Close All Tabs" description="Close all Tabs" />                
                 <MoreOptionsOption command="Copy Input" description="Copy the current input" />                
-                <MoreOptionsOption command="Paste" description="Paste copied input into this tab" />                
-                <MoreOptionsOption command="Convert to Tuples" description="Convert the current input into tuple format" />                
+                <MoreOptionsOption command="Paste" description="Paste copied input into this tab" />                            
                 <MoreOptionsOption command="Convert to Expression" description="Convert the current input into expression format" />               
             </div>
         </>

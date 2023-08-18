@@ -95,11 +95,6 @@ export const FiddleToolbar = (props) => {
                                         onClick: onMenuOption(() => onNewFile("expression")),
                                     },
                                     {
-                                        key: "tuple",
-                                        label: "Adaptive Expression Tuple",
-                                        onClick: onMenuOption(() => onNewFile("tuple"))                                            
-                                    },
-                                    {
                                         key: "template",
                                         label: "Adaptive Template",
                                         onClick: onMenuOption(() => onNewFile("template"))
@@ -176,16 +171,6 @@ export const FiddleToolbar = (props) => {
                                         checked: (inputFormat === "expression"),    
                                         onClick: () => {
                                             onChangeInputFormat("expression");
-                                            setOptionsTarget();
-                                        }
-                                    },
-                                    {
-                                        key: "tuple",
-                                        label: "Adaptive Expression Tuple",  
-                                        canCheck: true,   
-                                        checked: (inputFormat === "tuple"),
-                                        onClick: () => {
-                                            onChangeInputFormat("tuple");
                                             setOptionsTarget();
                                         }
                                     },

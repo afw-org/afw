@@ -25,10 +25,8 @@ import {
 
 import {
     afwEvaluateExpression, 
-    afwEvaluateHybrid,
     afwEvaluateTemplate,
     afwCompileExpression,
-    afwCompileHybrid,
     afwCompileScript,
     afwCompileTemplate,
     afwGetObjectWithUri,
@@ -743,10 +741,6 @@ export const Fiddle = () => {
                 result = await afwEvaluateExpression(client.current, input, additionalUntrustedQualifiedVariables).result();                
             }
 
-            else if (activeTabInputFormat === "tuple") {
-                result = await afwEvaluateHybrid(client.current, input, additionalUntrustedQualifiedVariables).result();                
-            }
-
             else if (activeTabInputFormat === "template") {
                 result = await afwEvaluateTemplate(client.current, input, additionalUntrustedQualifiedVariables).result();                
             }
@@ -792,10 +786,6 @@ export const Fiddle = () => {
 
             else if (activeTabInputFormat === "expression") {
                 result = await afwCompileExpression(client.current, input, 4).result();
-            }
-
-            else if (activeTabInputFormat === "tuple") {
-                result = await afwCompileHybrid(client.current, input, 4).result();                
             }
 
             else if (activeTabInputFormat === "template") {

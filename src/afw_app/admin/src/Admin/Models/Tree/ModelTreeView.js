@@ -13,8 +13,7 @@ import {
     Typography,
     QualifiersProvider,
     useOperational,
-    isHybridScript,
-    isHybridTuple
+    isHybridScript
 } from "@afw/react";
 
 
@@ -508,7 +507,7 @@ const ActionMainContent = ({ model, propertyName }) => {
                 setTab({
                     source: value,
                     key: property.getName(),            
-                    format: value ? isHybridScript(value) ? "script" : isHybridTuple(value) ? "tuple" : "template" : undefined,            
+                    format: value ? isHybridScript(value) ? "script" : "template" : undefined,            
                     label: property.getName(),
                 });
             }
@@ -525,7 +524,7 @@ const ActionMainContent = ({ model, propertyName }) => {
 
     let mainContent = null;
     if (tab && tab.format) {
-        if (dataType === "hybrid" && tab.format === "tuple") {
+        if (dataType === "hybrid") {
             
             mainContent = 
                 <div style={{ padding: theme.spacing(2) }}>

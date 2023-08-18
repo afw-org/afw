@@ -16,7 +16,7 @@ import {
 } from "@afw/react";
 
 import {HybridEditor} from "./HybridEditor";
-import {isHybridScript, isHybridTuple, isHybridLiteral} from "../../../utils";
+import {isHybridScript, isHybridLiteral} from "../../../utils";
 
 /**
  * Handles dataType=hybrid
@@ -34,10 +34,6 @@ export const Hybrid = (props) => {
         if (value) {
             if (isHybridScript(value)) {
                 return [ "<Adaptive Script>", true ];                
-            }
-
-            else if (isHybridTuple(value)) {
-                return [ "<Expression Tuple>", true ];
             }
 
             else if (isHybridLiteral(value))

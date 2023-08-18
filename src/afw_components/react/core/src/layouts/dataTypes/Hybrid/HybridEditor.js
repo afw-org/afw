@@ -17,7 +17,7 @@ import {HybridBuilder} from "./HybridBuilder";
 /**
  * HybridEditor displays a TextField with an "edit" icon to allow the user to either
  * enter in the hybrid expression or open up a Dialog to build the hybrid expression, 
- * using Tuple Expression Builder or Source Editor. 
+ * using Expression Builder or Source Editor. 
  */
 export const HybridEditor = (props) => {
 
