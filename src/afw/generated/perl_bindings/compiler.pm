@@ -661,7 +661,9 @@ sub test_expression {
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("expression", $expression);
-    $request->set("expected", $expected);
+
+    if (defined $expected)
+        $request->set("expected", $expected);
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
@@ -678,7 +680,9 @@ sub test_expression_tuple {
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("expression", $expression);
-    $request->set("expected", $expected);
+
+    if (defined $expected)
+        $request->set("expected", $expected);
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
@@ -695,7 +699,9 @@ sub test_hybrid {
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("hybrid", $hybrid);
-    $request->set("expected", $expected);
+
+    if (defined $expected)
+        $request->set("expected", $expected);
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
@@ -712,7 +718,9 @@ sub test_script {
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("script", $script);
-    $request->set("expected", $expected);
+
+    if (defined $expected)
+        $request->set("expected", $expected);
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
@@ -729,7 +737,9 @@ sub test_template {
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("template", $template);
-    $request->set("expected", $expected);
+
+    if (defined $expected)
+        $request->set("expected", $expected);
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
@@ -746,7 +756,9 @@ sub test_value {
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("value", $value);
-    $request->set("expected", $expected);
+
+    if (defined $expected)
+        $request->set("expected", $expected);
 
     if (defined $additionalUntrustedQualifiedVariables)
         $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);

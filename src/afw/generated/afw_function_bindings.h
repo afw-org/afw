@@ -7169,7 +7169,7 @@ afw_function_definition_test_expression;
  *       id: string,
  *       description: string,
  *       expression: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -7182,7 +7182,7 @@ afw_function_definition_test_expression;
  *
  *   expression - (string) Expression to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -7221,7 +7221,7 @@ afw_function_definition_test_expression_tuple;
  *       id: string,
  *       description: string,
  *       expression: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -7234,7 +7234,7 @@ afw_function_definition_test_expression_tuple;
  *
  *   expression - (string) Expression tuple to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -7274,7 +7274,7 @@ afw_function_definition_test_hybrid;
  *       id: string,
  *       description: string,
  *       hybrid: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -7287,7 +7287,7 @@ afw_function_definition_test_hybrid;
  *
  *   hybrid - (string) Hybrid to compile and evaluate.
  *
- *   expected - (any dataType) Expected evaluated result.
+ *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -7326,7 +7326,7 @@ afw_function_definition_test_script;
  *       id: string,
  *       description: string,
  *       script: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -7339,7 +7339,7 @@ afw_function_definition_test_script;
  *
  *   script - (string) Script to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -7378,7 +7378,7 @@ afw_function_definition_test_template;
  *       id: string,
  *       description: string,
  *       template: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -7391,7 +7391,7 @@ afw_function_definition_test_template;
  *
  *   template - (string) Template to compile and evaluate.
  *
- *   expected - (any dataType) Expected evaluated result.
+ *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -7430,7 +7430,7 @@ afw_function_definition_test_value;
  *       id: string,
  *       description: string,
  *       value: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -7443,7 +7443,7 @@ afw_function_definition_test_value;
  *
  *   value - (string) Value to evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional

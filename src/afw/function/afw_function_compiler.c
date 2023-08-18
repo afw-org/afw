@@ -793,7 +793,7 @@ afw_function_execute_stringify(
  *       id: string,
  *       description: string,
  *       expression: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -806,7 +806,7 @@ afw_function_execute_stringify(
  *
  *   expression - (string) Expression to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -836,7 +836,7 @@ afw_function_execute_test_expression(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(expected, 4);
+    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create_managed(x->p, x->xctx);
     afw_object_set_property(result, &afw_s_passed, afw_value_true, x->xctx);
@@ -920,7 +920,7 @@ afw_function_execute_test_expression(
  *       id: string,
  *       description: string,
  *       expression: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -933,7 +933,7 @@ afw_function_execute_test_expression(
  *
  *   expression - (string) Expression tuple to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -963,7 +963,7 @@ afw_function_execute_test_expression_tuple(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(expected, 4);
+    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, &afw_s_passed, afw_value_true, xctx);
@@ -1048,7 +1048,7 @@ afw_function_execute_test_expression_tuple(
  *       id: string,
  *       description: string,
  *       hybrid: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -1061,7 +1061,7 @@ afw_function_execute_test_expression_tuple(
  *
  *   hybrid - (string) Hybrid to compile and evaluate.
  *
- *   expected - (any dataType) Expected evaluated result.
+ *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -1091,7 +1091,7 @@ afw_function_execute_test_hybrid(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(hybrid, 3, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(expected, 4);
+    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, &afw_s_passed, afw_value_true, xctx);
@@ -1175,7 +1175,7 @@ afw_function_execute_test_hybrid(
  *       id: string,
  *       description: string,
  *       script: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -1188,7 +1188,7 @@ afw_function_execute_test_hybrid(
  *
  *   script - (string) Script to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -1218,7 +1218,7 @@ afw_function_execute_test_script(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(expected, 4);
+    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, &afw_s_passed, afw_value_true, xctx);
@@ -1302,7 +1302,7 @@ afw_function_execute_test_script(
  *       id: string,
  *       description: string,
  *       template: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -1315,7 +1315,7 @@ afw_function_execute_test_script(
  *
  *   template - (string) Template to compile and evaluate.
  *
- *   expected - (any dataType) Expected evaluated result.
+ *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -1345,7 +1345,7 @@ afw_function_execute_test_template(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 3, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(expected, 4);
+    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, &afw_s_passed, afw_value_true, xctx);
@@ -1429,7 +1429,7 @@ afw_function_execute_test_template(
  *       id: string,
  *       description: string,
  *       value: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -1442,7 +1442,7 @@ afw_function_execute_test_template(
  *
  *   value - (string) Value to evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -1471,7 +1471,7 @@ afw_function_execute_test_value(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 3);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(expected, 4);
+    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
     result = afw_object_create_managed(x->p, xctx);
     afw_object_set_property(result, &afw_s_passed, afw_value_true, xctx);

@@ -510,7 +510,7 @@ def stringify(session, value, replacer=None, whitespace=None):
 
     return response['actions'][0]['result']
 
-def test_expression(session, id, description, expression, expected, additionalUntrustedQualifiedVariables=None):
+def test_expression(session, id, description, expression, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test expression
 
@@ -545,9 +545,11 @@ def test_expression(session, id, description, expression, expected, additionalUn
         "function": "test_expression",
         "id": id,
         "description": description,
-        "expression": expression,
-        "expected": expected
+        "expression": expression
     }
+
+    if expected != None:
+        action['expected'] = expected
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
@@ -560,7 +562,7 @@ def test_expression(session, id, description, expression, expected, additionalUn
 
     return response['actions'][0]['result']
 
-def test_expression_tuple(session, id, description, expression, expected, additionalUntrustedQualifiedVariables=None):
+def test_expression_tuple(session, id, description, expression, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test expression tuple
 
@@ -595,9 +597,11 @@ def test_expression_tuple(session, id, description, expression, expected, additi
         "function": "test_expression_tuple",
         "id": id,
         "description": description,
-        "expression": expression,
-        "expected": expected
+        "expression": expression
     }
+
+    if expected != None:
+        action['expected'] = expected
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
@@ -610,7 +614,7 @@ def test_expression_tuple(session, id, description, expression, expected, additi
 
     return response['actions'][0]['result']
 
-def test_hybrid(session, id, description, hybrid, expected, additionalUntrustedQualifiedVariables=None):
+def test_hybrid(session, id, description, hybrid, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test hybrid
 
@@ -646,9 +650,11 @@ def test_hybrid(session, id, description, hybrid, expected, additionalUntrustedQ
         "function": "test_hybrid",
         "id": id,
         "description": description,
-        "hybrid": hybrid,
-        "expected": expected
+        "hybrid": hybrid
     }
+
+    if expected != None:
+        action['expected'] = expected
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
@@ -661,7 +667,7 @@ def test_hybrid(session, id, description, hybrid, expected, additionalUntrustedQ
 
     return response['actions'][0]['result']
 
-def test_script(session, id, description, script, expected, additionalUntrustedQualifiedVariables=None):
+def test_script(session, id, description, script, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test an adaptive script
 
@@ -696,9 +702,11 @@ def test_script(session, id, description, script, expected, additionalUntrustedQ
         "function": "test_script",
         "id": id,
         "description": description,
-        "script": script,
-        "expected": expected
+        "script": script
     }
+
+    if expected != None:
+        action['expected'] = expected
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
@@ -711,7 +719,7 @@ def test_script(session, id, description, script, expected, additionalUntrustedQ
 
     return response['actions'][0]['result']
 
-def test_template(session, id, description, template, expected, additionalUntrustedQualifiedVariables=None):
+def test_template(session, id, description, template, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test template
 
@@ -746,9 +754,11 @@ def test_template(session, id, description, template, expected, additionalUntrus
         "function": "test_template",
         "id": id,
         "description": description,
-        "template": template,
-        "expected": expected
+        "template": template
     }
+
+    if expected != None:
+        action['expected'] = expected
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
@@ -761,7 +771,7 @@ def test_template(session, id, description, template, expected, additionalUntrus
 
     return response['actions'][0]['result']
 
-def test_value(session, id, description, value, expected, additionalUntrustedQualifiedVariables=None):
+def test_value(session, id, description, value, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test value
 
@@ -796,9 +806,11 @@ def test_value(session, id, description, value, expected, additionalUntrustedQua
         "function": "test_value",
         "id": id,
         "description": description,
-        "value": value,
-        "expected": expected
+        "value": value
     }
+
+    if expected != None:
+        action['expected'] = expected
 
     if additionalUntrustedQualifiedVariables != None:
         action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables

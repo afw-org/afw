@@ -24,7 +24,8 @@
         },
         {
             "description": "Expected evaluated result.",
-            "name": "expected"
+            "name": "expected",
+            "optional": true
         },
         {
             "brief": "Additional untrusted qualified variables",

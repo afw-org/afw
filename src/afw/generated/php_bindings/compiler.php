@@ -521,7 +521,7 @@ class compiler
      *
      * @return object Test results.
      */
-    public function test_expression(, $id, $description, $expression, $expected, $additionalUntrustedQualifiedVariables = null)
+    public function test_expression(, $id, $description, $expression, $expected = null, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
@@ -531,9 +531,11 @@ class compiler
         $request->set("id", $id);
         $request->set("description", $description);
         $request->set("expression", $expression);
-        $request->set("expected", $expected);
 
         /* pass along any optional parameters to the request payload */
+        if ($expected != null)
+            $request->set('expected', $expected);
+
         if ($additionalUntrustedQualifiedVariables != null)
             $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
 
@@ -578,7 +580,7 @@ class compiler
      *
      * @return object Test results.
      */
-    public function test_expression_tuple(, $id, $description, $expression, $expected, $additionalUntrustedQualifiedVariables = null)
+    public function test_expression_tuple(, $id, $description, $expression, $expected = null, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
@@ -588,9 +590,11 @@ class compiler
         $request->set("id", $id);
         $request->set("description", $description);
         $request->set("expression", $expression);
-        $request->set("expected", $expected);
 
         /* pass along any optional parameters to the request payload */
+        if ($expected != null)
+            $request->set('expected', $expected);
+
         if ($additionalUntrustedQualifiedVariables != null)
             $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
 
@@ -637,7 +641,7 @@ class compiler
      *
      * @return object Test results.
      */
-    public function test_hybrid(, $id, $description, $hybrid, $expected, $additionalUntrustedQualifiedVariables = null)
+    public function test_hybrid(, $id, $description, $hybrid, $expected = null, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
@@ -647,9 +651,11 @@ class compiler
         $request->set("id", $id);
         $request->set("description", $description);
         $request->set("hybrid", $hybrid);
-        $request->set("expected", $expected);
 
         /* pass along any optional parameters to the request payload */
+        if ($expected != null)
+            $request->set('expected', $expected);
+
         if ($additionalUntrustedQualifiedVariables != null)
             $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
 
@@ -694,7 +700,7 @@ class compiler
      *
      * @return object Test results.
      */
-    public function test_script(, $id, $description, $script, $expected, $additionalUntrustedQualifiedVariables = null)
+    public function test_script(, $id, $description, $script, $expected = null, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
@@ -704,9 +710,11 @@ class compiler
         $request->set("id", $id);
         $request->set("description", $description);
         $request->set("script", $script);
-        $request->set("expected", $expected);
 
         /* pass along any optional parameters to the request payload */
+        if ($expected != null)
+            $request->set('expected', $expected);
+
         if ($additionalUntrustedQualifiedVariables != null)
             $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
 
@@ -751,7 +759,7 @@ class compiler
      *
      * @return object Test results.
      */
-    public function test_template(, $id, $description, $template, $expected, $additionalUntrustedQualifiedVariables = null)
+    public function test_template(, $id, $description, $template, $expected = null, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
@@ -761,9 +769,11 @@ class compiler
         $request->set("id", $id);
         $request->set("description", $description);
         $request->set("template", $template);
-        $request->set("expected", $expected);
 
         /* pass along any optional parameters to the request payload */
+        if ($expected != null)
+            $request->set('expected', $expected);
+
         if ($additionalUntrustedQualifiedVariables != null)
             $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
 
@@ -808,7 +818,7 @@ class compiler
      *
      * @return object Test results.
      */
-    public function test_value(, $id, $description, $value, $expected, $additionalUntrustedQualifiedVariables = null)
+    public function test_value(, $id, $description, $value, $expected = null, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
@@ -818,9 +828,11 @@ class compiler
         $request->set("id", $id);
         $request->set("description", $description);
         $request->set("value", $value);
-        $request->set("expected", $expected);
 
         /* pass along any optional parameters to the request payload */
+        if ($expected != null)
+            $request->set('expected', $expected);
+
         if ($additionalUntrustedQualifiedVariables != null)
             $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
 

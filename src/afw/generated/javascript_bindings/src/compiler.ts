@@ -387,7 +387,7 @@ export function afwStringify(client : any, value : any, replacer? : any, whitesp
  * 
  * @returns {object} Test results.
  */
-export function afwTestExpression(client : any, id : string, description : string, expression : string, expected : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwTestExpression(client : any, id : string, description : string, expression : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -395,7 +395,9 @@ export function afwTestExpression(client : any, id : string, description : strin
     _action["id"] = id;
     _action["description"] = description;
     _action["expression"] = expression;
-    _action["expected"] = expected;
+
+    if (expected !== undefined)
+        _action["expected"] = expected;
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
@@ -424,7 +426,7 @@ export function afwTestExpression(client : any, id : string, description : strin
  * 
  * @returns {object} Test results.
  */
-export function afwTestExpressionTuple(client : any, id : string, description : string, expression : string, expected : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwTestExpressionTuple(client : any, id : string, description : string, expression : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -432,7 +434,9 @@ export function afwTestExpressionTuple(client : any, id : string, description : 
     _action["id"] = id;
     _action["description"] = description;
     _action["expression"] = expression;
-    _action["expected"] = expected;
+
+    if (expected !== undefined)
+        _action["expected"] = expected;
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
@@ -462,7 +466,7 @@ export function afwTestExpressionTuple(client : any, id : string, description : 
  * 
  * @returns {object} Test results.
  */
-export function afwTestHybrid(client : any, id : string, description : string, hybrid : string, expected : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwTestHybrid(client : any, id : string, description : string, hybrid : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -470,7 +474,9 @@ export function afwTestHybrid(client : any, id : string, description : string, h
     _action["id"] = id;
     _action["description"] = description;
     _action["hybrid"] = hybrid;
-    _action["expected"] = expected;
+
+    if (expected !== undefined)
+        _action["expected"] = expected;
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
@@ -499,7 +505,7 @@ export function afwTestHybrid(client : any, id : string, description : string, h
  * 
  * @returns {object} Test results.
  */
-export function afwTestScript(client : any, id : string, description : string, script : string, expected : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwTestScript(client : any, id : string, description : string, script : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -507,7 +513,9 @@ export function afwTestScript(client : any, id : string, description : string, s
     _action["id"] = id;
     _action["description"] = description;
     _action["script"] = script;
-    _action["expected"] = expected;
+
+    if (expected !== undefined)
+        _action["expected"] = expected;
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
@@ -536,7 +544,7 @@ export function afwTestScript(client : any, id : string, description : string, s
  * 
  * @returns {object} Test results.
  */
-export function afwTestTemplate(client : any, id : string, description : string, template : string, expected : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwTestTemplate(client : any, id : string, description : string, template : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -544,7 +552,9 @@ export function afwTestTemplate(client : any, id : string, description : string,
     _action["id"] = id;
     _action["description"] = description;
     _action["template"] = template;
-    _action["expected"] = expected;
+
+    if (expected !== undefined)
+        _action["expected"] = expected;
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
@@ -573,7 +583,7 @@ export function afwTestTemplate(client : any, id : string, description : string,
  * 
  * @returns {object} Test results.
  */
-export function afwTestValue(client : any, id : string, description : string, value : string, expected : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwTestValue(client : any, id : string, description : string, value : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -581,7 +591,9 @@ export function afwTestValue(client : any, id : string, description : string, va
     _action["id"] = id;
     _action["description"] = description;
     _action["value"] = value;
-    _action["expected"] = expected;
+
+    if (expected !== undefined)
+        _action["expected"] = expected;
 
     if (additionalUntrustedQualifiedVariables !== undefined)
         _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;

@@ -636,7 +636,7 @@ afw_function_execute_stringify(
  *       id: string,
  *       description: string,
  *       expression: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -649,7 +649,7 @@ afw_function_execute_stringify(
  *
  *   expression - (string) Expression to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -693,7 +693,7 @@ afw_function_execute_test_expression(
  *       id: string,
  *       description: string,
  *       expression: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -706,7 +706,7 @@ afw_function_execute_test_expression(
  *
  *   expression - (string) Expression tuple to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -751,7 +751,7 @@ afw_function_execute_test_expression_tuple(
  *       id: string,
  *       description: string,
  *       hybrid: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -764,7 +764,7 @@ afw_function_execute_test_expression_tuple(
  *
  *   hybrid - (string) Hybrid to compile and evaluate.
  *
- *   expected - (any dataType) Expected evaluated result.
+ *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -808,7 +808,7 @@ afw_function_execute_test_hybrid(
  *       id: string,
  *       description: string,
  *       script: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -821,7 +821,7 @@ afw_function_execute_test_hybrid(
  *
  *   script - (string) Script to compile and evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -865,7 +865,7 @@ afw_function_execute_test_script(
  *       id: string,
  *       description: string,
  *       template: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -878,7 +878,7 @@ afw_function_execute_test_script(
  *
  *   template - (string) Template to compile and evaluate.
  *
- *   expected - (any dataType) Expected evaluated result.
+ *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
@@ -922,7 +922,7 @@ afw_function_execute_test_template(
  *       id: string,
  *       description: string,
  *       value: string,
- *       expected: any,
+ *       expected?: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
  *   ): object;
  * ```
@@ -935,7 +935,7 @@ afw_function_execute_test_template(
  *
  *   value - (string) Value to evaluate.
  *
- *   expected - (any dataType) Expected result.
+ *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
