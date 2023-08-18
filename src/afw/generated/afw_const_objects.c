@@ -86247,7 +86247,7 @@ impl_854_property_dataType = {
 static const afw_value_string_t
 impl_854_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in either script or expressionTuple syntax.")
+    AFW_UTF8_LITERAL("This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in adaptive script syntax.")
 };
 
 static const afw_runtime_property_t

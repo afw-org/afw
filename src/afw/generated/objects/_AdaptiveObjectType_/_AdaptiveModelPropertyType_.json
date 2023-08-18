@@ -48,7 +48,7 @@
         "method": {
             "brief": "This executes when this property is called as a method",
             "dataType": "hybrid",
-            "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in either script or expressionTuple syntax.",
+            "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in adaptive script syntax.",
             "label": "Method"
         },
         "onSetProperty": {

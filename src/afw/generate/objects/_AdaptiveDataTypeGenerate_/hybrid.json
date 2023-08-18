@@ -4,7 +4,7 @@
     "compileType": "hybrid",
     "dataType": "hybrid",
     "dataTypeParameterType": "SourceParameter",
-    "description": "Data type hybrid can be a string containing the source for an adaptive script or an adaptive template. It can also be a literal (evaluated value) such as array, boolean, double, integer, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple. If the value is a string that begins with a shebang ('#!'), the string is the source for a script. If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template. In other cases, the string is a string literal.",
+    "description": "Data type hybrid can be a string containing the source for an adaptive script or an adaptive template. It can also be a literal (evaluated value) such as array, boolean, double, integer, object, or string.\n\nIf the value is a string that begins with a shebang ('#!'), the string is the source for a script. If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template. In other cases, the string is a string literal.",
     "directReturn": false,
     "evaluated": true,
     "jsonPrimitive": "string",

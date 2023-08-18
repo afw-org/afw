@@ -145,7 +145,7 @@
                     "type": "string"
                 },
                 "method": {
-                    "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in either script or expressionTuple syntax.",
+                    "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in adaptive script syntax.",
                     "title": "Method",
                     "type": "string"
                 },
