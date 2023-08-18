@@ -209,9 +209,8 @@ afw_context_variable_definitions_add(
  *
  * Any object properties that have a data type whose value must be compiled
  * will be ignored, so compile the property that should be included before
- * this call. These compiled values will use annotation (if present) and
- * then the property type associatedPropertyType to produce the variable
- * definition.
+ * this call. These compiled values will use the property type
+ * associatedPropertyType to produce the variable definition.
  */
 AFW_DECLARE(void)
 afw_context_variable_definitions_add_based_on_object(

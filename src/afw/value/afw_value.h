@@ -227,13 +227,7 @@ struct afw_value_function_definition_s {
 };
 
 
-/** @brief Value annotated inf. */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_annotated_inf;
-
-
-
-/** @brief Value annotated inf. */
+/** @brief Value assignment targe inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_assignment_target_inf;
 
@@ -410,9 +404,6 @@ if (a_value) { \
     if ((a_value)->inf == &afw_value_compiled_value_inf) { \
         a_value = ((const afw_value_compiled_value_t *)a_value)->root_value; \
     } \
-    if ((a_value)->inf == &afw_value_annotated_inf) { \
-        a_value = ((const afw_value_annotated_t *)a_value)->value; \
-    } \
 }
 
 
@@ -490,19 +481,6 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
  */
 #define AFW_VALUE_TYPE_ID(A_VALUE) \
 &(A_VALUE)->inf->rti.implementation_id
-
-
-
-/**
- * @brief Macro to determine if value is an annotated.
- * @param A_VALUE to test.
- * @return boolean result.
- */
-#define afw_value_is_annotated(A_VALUE) \
-( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_annotated_inf \
-)
 
 
 
@@ -1163,38 +1141,6 @@ afw_value_as_casted_utf8(
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone(
     const afw_value_t *value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Allocate function for annotation value.
- * @param p pool used for value.
- * @param xctx of caller.
- * @return Allocated afw_value_annotated_t.
- */
-AFW_DECLARE(afw_value_annotated_t *)
-afw_value_annotation_allocate(
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Create function for annotated value.
- * @param contextual information for annotation.
- * @param value (afw_value_t *).
- * @param annotation object.
- * @param p pool used for value.
- * @param xctx of caller.
- * @return Created afw_value_t.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_annotated_create(
-    const afw_compile_value_contextual_t *contextual,
-    const afw_value_t *value,
-    const afw_object_t *annotation,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

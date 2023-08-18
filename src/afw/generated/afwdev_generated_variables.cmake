@@ -446,7 +446,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     utf8/afw_utf8_writer.c
     uuid/afw_uuid.c
     value/afw_value.c
-    value/afw_value_annotated.c
     value/afw_value_assignment_target.c
     value/afw_value_block.c
     value/afw_value_call.c

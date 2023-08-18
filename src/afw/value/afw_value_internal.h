@@ -62,15 +62,6 @@ typedef enum {
 } afw_value_block_statement_type_t;
 
 
-/** @brief Struct for annotated value. */
-struct afw_value_annotated_s {
-    const afw_value_inf_t *inf;
-    const afw_compile_value_contextual_t *contextual;
-    const afw_object_t *annotation;
-    const afw_value_t *value;
-};
-
-
 
 /** @brief Struct for assignment target value. */
 struct afw_value_assignment_target_s {

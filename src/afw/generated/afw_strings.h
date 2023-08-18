@@ -3341,12 +3341,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ancestorPaths;
 /** @brief afw_utf8_t for string and */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_and;
 
-/** @brief define for quoted string annotated */
-#define AFW_Q_annotated "annotated"
-
-/** @brief afw_utf8_t for string annotated */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_annotated;
-
 /** @brief define for quoted string any */
 #define AFW_Q_any "any"
 

@@ -324,9 +324,6 @@ afw_context_variable_definitions_add_based_on_object(
     const afw_value_t *value;
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
-    const afw_value_t *value2;
-    const afw_iterator_t *iterator2;
-    const afw_utf8_t *property_name2;
     const afw_pool_t *p = variable_definitions->p;
     const afw_utf8_t *s;
     const afw_data_type_t *data_type;
@@ -389,25 +386,6 @@ afw_context_variable_definitions_add_based_on_object(
                 /** @fixme NOW relatedPropertyType no longer exists.
                 pt = afw_object_old_get_property_as_object(pt,
                     &afw_s_relatedPropertyType, xctx);*/
-            }
-        }
-
-        /* If this is an annotated value, merge annotation into pt. */
-        if (afw_value_is_annotated(value)) {
-            if (pt) {
-                pt = afw_object_create_clone(pt, p, xctx);
-                iterator2 = NULL;
-                while ((value2 = afw_object_get_next_property(
-                    ((const afw_value_annotated_t *)value)->annotation,
-                    &iterator2, &property_name2, xctx)))
-                {
-                    afw_object_set_property(pt, property_name2, value2,
-                        xctx);
-                    /** @fixme Think about dataType override more. */
-                }
-            }
-            else {
-                pt = ((const afw_value_annotated_t *)value)->annotation;
             }
         }
 

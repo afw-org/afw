@@ -225,10 +225,6 @@ afw_value_undecorated_inf_is(
         value = ((const afw_value_compiled_value_t *)value)->root_value;
     }
 
-    if (value->inf == &afw_value_annotated_inf) {
-        value = ((const afw_value_annotated_t *)value)->value;
-    }
-
     return value->inf == inf;
 }
 
@@ -993,10 +989,6 @@ afw_value_contains(
 AFW_DEFINE(void)
 afw_value_register_core_value_infs(afw_xctx_t *xctx)
 {
-    afw_environment_register_value_inf(
-        &afw_value_annotated_inf.rti.implementation_id,
-        &afw_value_annotated_inf, xctx);
-
     afw_environment_register_value_inf(
         &afw_value_assignment_target_inf.rti.implementation_id,
         &afw_value_assignment_target_inf, xctx);

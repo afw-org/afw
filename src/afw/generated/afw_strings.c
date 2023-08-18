@@ -1681,9 +1681,6 @@ AFW_UTF8_LITERAL("ancestorPaths");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_and =
 AFW_UTF8_LITERAL("and");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_annotated =
-AFW_UTF8_LITERAL("annotated");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_any =
 AFW_UTF8_LITERAL("any");
 

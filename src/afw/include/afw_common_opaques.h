@@ -771,14 +771,6 @@ typedef struct afw_try_s
 afw_try_t;
 
 /**
- * Opaque typedef for afw_value_annotated_t.
- *
- * See afw_value_internal.h for struct and more information.
- */
-typedef struct afw_value_annotated_s
-afw_value_annotated_t;
-
-/**
  * Opaque typedef for afw_value_assignment_t.
  *
  * See afw_value_internal.h for struct and more information.

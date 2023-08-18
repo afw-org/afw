@@ -255,7 +255,6 @@ a_flag_trace_authorization_decision_detail_description=This produces all basic p
 
 # Miscellaneous.
 Adaptive
-annotated
 fatal
 own
 S

@@ -98,32 +98,7 @@ impl_afw_value_decompile(
         (const afw_value_compiled_value_t *)instance;
 
     afw_value_decompile(self->root_value, writer, xctx);
-    /*FIXME Improve
-
-    if (self->annotation) {
-        afw_writer_write_z(writer, "annotate(", xctx);
-        if (writer->tab) {
-            afw_writer_write_eol(writer, xctx);
-            afw_writer_increment_indent(writer, xctx);
-        }
-        annotation.inf = &afw_value_evaluated_object_inf;
-        annotation.internal = self->annotation;
-        afw_value_decompile((const afw_value_t *)&annotation, writer, xctx);
-        afw_writer_write_z(writer, ",", xctx);
-        if (writer->tab) {
-            afw_writer_write_eol(writer, xctx);
-        }
-        afw_value_decompile(self->value, writer, xctx);
-        if (writer->tab) {
-            afw_writer_write_eol(writer, xctx);
-            afw_writer_decrement_indent(writer, xctx);
-        }
-        afw_writer_write_z(writer, ")", xctx);
-    }
-    else {
-        afw_value_decompile(self->value, writer, xctx);
-    }
-     */
+    /*FIXME Improve */
 }
 
 
