@@ -669,7 +669,6 @@ Statement ::=
    DeclareStatement |
    DoWhileStatement |
    ForStatement |
-   ForeachStatement |
    FunctionStatement |
    IfStatement |
    InterfaceStatement |

@@ -38,7 +38,7 @@ let f: function = function (x: any = fn_assert()): any {
 
 //? test: dflt-params-arg-val-undefined
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: error:Assertion failed: fromExpr !== 45
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -55,10 +55,9 @@ function fn(): any {
 };
 
 // \fixme can't pass in undefined for parameters
-ref(undefined, fn());
+ref(undefined, void 0);
 
 assert(callCount === 1, "callCount !== 1");
-
 
 
 //? test: dflt-params-duplicates

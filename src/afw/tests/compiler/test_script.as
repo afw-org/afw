@@ -27,6 +27,22 @@ const result = test_script(
 );
 assert(result.passed === true);
 
+
+//? test: expect-error-pass-2
+//? description: Expects an error and it passes
+//? expect: undefined
+//? source: ...
+#!/usr/bin/env afw
+
+const result = test_script(
+    "expect-error-pass", 
+    "expect an error and it passes", 
+    "#!/usr/bin/env afw\n\nfdsfds;",
+    "error"
+);
+assert(result.passed === true);
+
+
 //? test: expect-error-fail
 //? description: Expects an error and it fails
 //? expect: undefined
@@ -40,6 +56,7 @@ const result = test_script(
     "error"
 );
 assert(result.passed === false);
+
 
 //? test: expect-error-fail-undefined
 //? description: Expects an error and it returns undefined
@@ -55,6 +72,24 @@ const result = test_script(
 );
 assert(result.passed === false);
 
+
+//? test: expect-error-fail-undefined-2
+//? description: Expects an error and it returns undefined
+//? expect: undefined
+//? source: ...
+#!/usr/bin/env afw
+
+// this test may actually fail in the future, so we should 
+// change or remove it later, if we implement it
+const result = test_script(
+    "expect-error-fails-undefined", 
+    "expect an error and it returns undefined", 
+    "#!/usr/bin/env afw\n\nfor (let x of []) const y = null;",
+    "error"
+);
+assert(result.passed === false);
+
+
 //? test: expect-integer-pass
 //? description: Expects an integer and it passes
 //? expect: undefined
@@ -68,6 +103,7 @@ const result = test_script(
     42
 );
 assert(result.passed === true);
+
 
 //? test: expect-integer-fail
 //? description: Expects an integer and it fails
@@ -83,6 +119,7 @@ const result = test_script(
 );
 assert(result.passed === false);
 
+
 //? test: expect-undefined-pass
 //? description: Expects an undefined and it passes
 //? expect: undefined
@@ -97,6 +134,7 @@ const result = test_script(
 );
 assert(result.passed === true);
 
+
 //? test: expect-undefined-fail-error
 //? description: Expects an undefined and it returns error
 //? expect: undefined
@@ -107,6 +145,21 @@ const result = test_script(
     "expect-undefined-fails-error", 
     "expect undefined and it returns error", 
     "#!/usr/bin/env afw\n\nthrow 'xyz';",
+    undefined
+);
+assert(result.passed === false);
+
+
+//? test: expect-undefined-fail-error-parse
+//? description: Expects an undefined and it returns parse error
+//? expect: undefined
+//? source: ...
+#!/usr/bin/env afw
+
+const result = test_script(
+    "expect-undefined-fails-error", 
+    "expect undefined and it returns error", 
+    "#!/usr/bin/env afw\n\nasdf();",
     undefined
 );
 assert(result.passed === false);

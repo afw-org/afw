@@ -1332,7 +1332,6 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    DeclareStatement |
  *    DoWhileStatement |
  *    ForStatement |
- *    ForeachStatement |
  *    FunctionStatement |
  *    IfStatement |
  *    InterfaceStatement |
