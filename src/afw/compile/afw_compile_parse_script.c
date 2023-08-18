@@ -1881,7 +1881,7 @@ impl_test_script_get_next_key_value(
  *
  *# Default is script or the one specified in TestScriptDefinition
  * TestSourceType ::= TestScriptLineStart 'source_type:'
- *     ( 'expression' | 'expression_tuple' | 'hybrid' | 'json' |
+ *     ( 'expression' | 'hybrid' | 'json' |
  *       'parenthesized_expression' | 'relaxed_json' | 'script' |
  *       'template' )
  *

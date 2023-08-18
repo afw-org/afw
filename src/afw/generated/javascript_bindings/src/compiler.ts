@@ -36,37 +36,6 @@ export function afwAssert(client : any, assertion : boolean, reason? : string) :
 }
 
 /**
- * Compile a string containing adaptive expression tuple syntax and return
- * either an unevaluated expression tuple adaptive value or a string
- * containing the compiler listing.
- * 
- * @param {array} expression_tuple - expression tuple to compile.
- * 
- * @param {} listing - If specified, a compiler listing is produced instead
- *     of an unevaluated expression tuple value.
- *     
- *     This parameter can be an integer between 0 and 10 of a string that is
- *     used for indentation. If 0 is specified, no whitespace is added to the
- *     resulting string. If 1 through 10 is specified, that number of spaces
- *     is used.
- * 
- * @returns {} An unevaluated expression tuple value ready for use by
- *     function evaluate() or a string containing the compiler listing.
- */
-export function afwCompileExpressionTuple(client : any, expression_tuple : any[], listing? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "compile_expression_tuple";
-    _action["expression_tuple"] = expression_tuple;
-
-    if (listing !== undefined)
-        _action["listing"] = listing;
-
-    return client.perform(_action);
-}
-
-/**
  * Compile a string containing adaptive JSON syntax and return either an
  * unevaluated JSON adaptive value or a string containing the compiler
  * listing.
@@ -129,8 +98,7 @@ export function afwCompileRelaxedJson(client : any, json : string, listing? : an
 
 /**
  * Convert a string containing adaptive hybrid syntax, which can be an
- * adaptive template or adaptive expression tuple, to adaptive expression
- * syntax.
+ * adaptive template or adaptive expression, to adaptive expression syntax.
  * 
  * @param {string} hybrid - The hybrid to convert.
  * 
@@ -177,35 +145,6 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
 
     if (whitespace !== undefined)
         _action["whitespace"] = whitespace;
-
-    return client.perform(_action);
-}
-
-/**
- * Compile a string containing adaptive expression tuple syntax and then
- * evaluate the result.
- * 
- * @param {string} expression_tuple - Expression tuple to compile and
- *     evaluate.
- * 
- * @param {object} additionalUntrustedQualifiedVariables - This parameter
- *     supplies additional qualified variables that can be accessed during
- *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
- * 
- * @returns {} Evaluated adaptive expression tuple.
- */
-export function afwEvaluateExpressionTuple(client : any, expression_tuple : string, additionalUntrustedQualifiedVariables? : object) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "evaluate_expression_tuple";
-    _action["expression_tuple"] = expression_tuple;
-
-    if (additionalUntrustedQualifiedVariables !== undefined)
-        _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
 
     return client.perform(_action);
 }
@@ -406,47 +345,8 @@ export function afwTestExpression(client : any, id : string, description : strin
 }
 
 /**
- * Compile and evaluate an adaptive expression tuple and compare the results
- * to an expected value. Return object with the test's results.
- * 
- * @param {string} id - Id of test
- * 
- * @param {string} description - Description of test
- * 
- * @param {string} expression - Expression tuple to compile and evaluate.
- * 
- * @param {} expected - Expected result.
- * 
- * @param {object} additionalUntrustedQualifiedVariables - This parameter
- *     supplies additional qualified variables that can be accessed during
- *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
- * 
- * @returns {object} Test results.
- */
-export function afwTestExpressionTuple(client : any, id : string, description : string, expression : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "test_expression_tuple";
-    _action["id"] = id;
-    _action["description"] = description;
-    _action["expression"] = expression;
-
-    if (expected !== undefined)
-        _action["expected"] = expected;
-
-    if (additionalUntrustedQualifiedVariables !== undefined)
-        _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
-
-    return client.perform(_action);
-}
-
-/**
  * Compile and evaluate a string containing adaptive hybrid syntax which can
- * be an adaptive template or adaptive expression tuple and then compare the
+ * be an adaptive template or adaptive expression and then compare the
  * results to an expected value. Return object with the test's results.
  * 
  * @param {string} id - Id of test

@@ -59,56 +59,6 @@ afw_function_execute_assert(
 
 
 /*
- * Adaptive function: compile_expression_tuple
- *
- * afw_function_execute_compile_expression_tuple
- *
- * See afw_function_bindings.h for more information.
- *
- * Compile a string containing adaptive expression tuple syntax and return
- * either an unevaluated expression tuple adaptive value or a string containing
- * the compiler listing.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function compile_expression_tuple(
- *       expression_tuple: array,
- *       listing?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   expression_tuple - (array) expression tuple to compile.
- *
- *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression tuple value.
- *       
- *       This parameter can be an integer between 0 and 10 of a string that is
- *       used for indentation. If 0 is specified, no whitespace is added to the
- *       resulting string. If 1 through 10 is specified, that number of spaces
- *       is used.
- *
- * Returns:
- *
- *   (any dataType) An unevaluated expression tuple value ready for use by
- *       function evaluate() or a string containing the compiler listing.
- */
-const afw_value_t *
-afw_function_execute_compile_expression_tuple(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Adaptive function: compile_json
  *
  * afw_function_execute_compile_json
@@ -213,7 +163,7 @@ afw_function_execute_compile_relaxed_json(
  * See afw_function_bindings.h for more information.
  *
  * Convert a string containing adaptive hybrid syntax, which can be an adaptive
- * template or adaptive expression tuple, to adaptive expression syntax.
+ * template or adaptive expression, to adaptive expression syntax.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -288,54 +238,6 @@ afw_function_execute_convert_syntax_hybrid_to_expression(
  */
 const afw_value_t *
 afw_function_execute_decompile(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
- * Adaptive function: evaluate_expression_tuple
- *
- * afw_function_execute_evaluate_expression_tuple
- *
- * See afw_function_bindings.h for more information.
- *
- * Compile a string containing adaptive expression tuple syntax and then
- * evaluate the result.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function evaluate_expression_tuple(
- *       expression_tuple: string,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   expression_tuple - (string) Expression tuple to compile and evaluate.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (any dataType) Evaluated adaptive expression tuple.
- */
-const afw_value_t *
-afw_function_execute_evaluate_expression_tuple(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -674,63 +576,6 @@ afw_function_execute_test_expression(
 
 
 /*
- * Adaptive function: test_expression_tuple
- *
- * afw_function_execute_test_expression_tuple
- *
- * See afw_function_bindings.h for more information.
- *
- * Compile and evaluate an adaptive expression tuple and compare the results to
- * an expected value. Return object with the test's results.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function test_expression_tuple(
- *       id: string,
- *       description: string,
- *       expression: string,
- *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): object;
- * ```
- *
- * Parameters:
- *
- *   id - (string) Id of test.
- *
- *   description - (string) Description of test.
- *
- *   expression - (string) Expression tuple to compile and evaluate.
- *
- *   expected - (optional any dataType) Expected result.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (object) Test results.
- */
-const afw_value_t *
-afw_function_execute_test_expression_tuple(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Adaptive function: test_hybrid
  *
  * afw_function_execute_test_hybrid
@@ -738,8 +583,8 @@ afw_function_execute_test_expression_tuple(
  * See afw_function_bindings.h for more information.
  *
  * Compile and evaluate a string containing adaptive hybrid syntax which can be
- * an adaptive template or adaptive expression tuple and then compare the
- * results to an expected value. Return object with the test's results.
+ * an adaptive template or adaptive expression and then compare the results to
+ * an expected value. Return object with the test's results.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

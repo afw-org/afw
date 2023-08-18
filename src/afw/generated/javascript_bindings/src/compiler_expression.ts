@@ -12,27 +12,6 @@ interface IAnyObject {
 }
 
 /**
- * Create an annotated value.
- * 
- * @param {object} annotation - Annotation for value.
- * 
- * @param {} value - Any value. This value will not be evaluated.
- * 
- * @returns {} Unevaluated annotated value ready for use by function
- *     evaluate().
- */
-export function afwAnnotate(client : any, annotation : object, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "annotate";
-    _action["annotation"] = annotation;
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Returns the first value of values that is not null or undefined leaving
  * the remaining values unevaluated.
  * 

@@ -166,7 +166,7 @@ afw_data_type_function_direct = {
     (const afw_object_t *)&impl_data_type_object_function,
     AFW_UTF8_LITERAL("function"),
     AFW_UTF8_LITERAL("A function"),
-    AFW_UTF8_LITERAL("This is an Adaptive Script function definition, an ExpressionTupleOperation_lambda, the name of a built-in Adaptive function, or the name of a qualified variable that holds a function value. If dataTypeParameterType is specified, the function must match that signature."),
+    AFW_UTF8_LITERAL("This is an Adaptive Script function definition, the name of a built-in Adaptive function, or the name of a qualified variable that holds a function value. If dataTypeParameterType is specified, the function must match that signature."),
     AFW_UTF8_LITERAL("FunctionSignature"),
     afw_data_type_number_function,
     AFW_UTF8_LITERAL(""),

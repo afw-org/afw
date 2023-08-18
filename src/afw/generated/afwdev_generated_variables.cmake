@@ -287,7 +287,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     compile/afw_compile_parse.c
     compile/afw_compile_parse_assignment_target.c
     compile/afw_compile_parse_expression.c
-    compile/afw_compile_parse_expression_tuple.c
     compile/afw_compile_parse_script.c
     compile/afw_compile_parse_template.c
     compile/afw_compile_parse_value.c

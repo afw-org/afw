@@ -155,13 +155,6 @@
             </definition>
         </term>
         <term>
-            <identifier>Adaptive Expression Tuple</identifier>
-            <definition>
-                An adaptive expression, represented by in tuple format, making it easier to parse and interpret for 
-                tools or user interfaces.
-            </definition>
-        </term>
-        <term>
             <identifier>Adaptive Context</identifier>
             <definition>
                 
@@ -176,7 +169,7 @@
         <term>
             <identifier>Adaptive Hybrid</identifier>
             <definition>
-                A data type whose value may contain either an expression, expression tuple or template.
+                A data type whose value may contain either a script or template.
             </definition>
         </term>
         <term>

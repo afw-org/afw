@@ -43,16 +43,15 @@
 /* From afw_compile_parse.c                                                   */
 /* Hybrid is used to parse data type hybrid.                                  */
 /*                                                                            */
-/* A hybrid is parsed as a Script, ExpressionTuple, Template, or an evaluated */
+/* A hybrid is parsed as a Script, Template, or an evaluated                  */
 /* string as follows:                                                         */
 /*                                                                            */
 /*     1) If it begins with a '#!', it is parsed as a Script.                 */
-/*     2) If it begins with '[', it is parsed as an ExpressionTuple.          */
-/*     3) Otherwise, it is parsed as a Template.  Note that if the            */
+/*     2) Otherwise, it is parsed as a Template.  Note that if the            */
 /*        template does not contain '${', it produces an evaluated string.    */
 /*                                                                            */
 
-Hybrid ::= Script | ExpressionTuple | Template
+Hybrid ::= Script | Template
 
 /* From afw_compile_parse_assignment_target.c                                 */
 
@@ -358,140 +357,6 @@ Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 
 Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
-/* From afw_compile_parse_expression_tuple.c                                  */
-
-QuotedExpression ::= '"' Expression '"' /* ws: explicit */
-
-QuotedFunctionName ::= '"' FunctionName '"' /* ws: explicit */
-
-QuotedMethodName ::= '"' MethodName '"' /* ws: explicit */
-
-QuotedPropertyName ::= '"' PropertyName '"' /* ws: explicit */
-
-QuotedScript ::= '"' Script '"' /* ws: explicit */
-
-QuotedTemplate ::= '"' Template '"' /* ws: explicit */
-
-QuotedVariableReference ::= '"' VariableReference '"' /* ws: explicit */
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-
-ExpressionTuple ::= '[' ExpressionTupleAnnotation ',' ExpressionTupleOperation ']'
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-
-ExpressionTupleAnnotation ::= 'null' | Object
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Expression tuple version of an expression with variable assignments        */
-
-ExpressionTupleOperation_expressionTuple  ::= '"exprT"' ','
-   '['
-       ( ( QuotedVariableReference "," ExpressionTupleValue )
-       ( "," QuotedVariableReference "," ExpressionTupleValue )* )?
-   ']' ',' ExpressionTupleValue
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Lambda function (return type, parameter names, expression tuple)           */
-
-ExpressionTupleOperation_lambda ::= '"lambda"' ','
-   ( FunctionDeclarationObject | FunctionDeclarationURI ) ','
-   ExpressionTupleValue
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* An list with ExpressionTupleValue property values.                         */
-
-ExpressionTupleOperation_list ::='"array"' ( "," ExpressionTupleValue )*
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* An object with ExpressionTupleValue property values.                       */
-
-ExpressionTupleOperation_object ::='"obj"'
-   ( "," QuotedPropertyName "," ExpressionTupleValue )*
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Property reference (property name)                                         */
-/*                                                                            */
-/* This is either QuotedPropertyName or an ExpressionTuple that evaluates to a */
-/* property name.                                                             */
-
-ExpressionTupleOperation_propertyReference ::='"prop"' ','
-   ( QuotedPropertyName | ExpressionTupleValue ) ',' ExpressionTupleObject
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* A script in a string (See Script production)                               */
-
-ExpressionTupleOperation_script ::='"script"' ',' QuotedScript
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* A template in a string (See Template production)                           */
-
-ExpressionTupleOperation_template ::='"tmpl"' ',' QuotedTemplate
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* A reference to a variable (variable name)                                  */
-
-ExpressionTupleOperation_variableReference ::='"var"' ','
-   QuotedVariableReference
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* An expression in a string (See Expression production)                      */
-
-ExpressionTupleOperation_expression ::= '"expr"' ',' QuotedExpression
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* ExpressionTuple must evaluate to a single object.                          */
-
-ExpressionTupleObject ::= Object | ExpressionTuple
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Expression operation                                                       */
-
-ExpressionTupleOperation ::=
-   ExpressionTupleOperation_call |
-   ExpressionTupleOperation_callAdaptiveFunction |
-   ExpressionTupleOperation_callLambdaFunction |
-   ExpressionTupleOperation_callMethod |
-   ExpressionTupleOperation_expressionTuple |
-   ExpressionTupleOperation_lambda |
-   ExpressionTupleOperation_list |
-   ExpressionTupleOperation_object |
-   ExpressionTupleOperation_propertyReference |
-   ExpressionTupleOperation_script |
-   ExpressionTupleOperation_template |
-   ExpressionTupleOperation_variableReference |
-   ExpressionTupleOperation_expression
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Call an built-in adaptive function (function, parameters ...)              */
-
-ExpressionTupleOperation_callAdaptiveFunction ::= ( '"callA"' ',' )?
-   ( QuotedFunctionName | ExpressionTuple )
-   (',' ExpressionTupleValue)*
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Call either a lambda or adaptive function (function, parameters ...)       */
-/*                                                                            */
-/* This is either QuotedVariableReference of a variable containing a lambda value, */
-/* a QuotedFunctionName identifies an adaptive function, or an ExpressionTuple */
-/* that evaluates to a lambda value.                                          */
-
-ExpressionTupleOperation_call  ::= '"call"' ','
-  ( QuotedVariableReference | QuotedFunctionName | ExpressionTuple )
-  (',' ExpressionTupleValue)*
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-/* Call a lambda function (function, parameters ...)                          */
-
-ExpressionTupleOperation_callLambdaFunction ::= '"callL"' ','
-  ( QuotedVariableReference | ExpressionTuple )
-  (',' ExpressionTupleValue)*
-
-/* From afw_compile_parse_expression_tuple.c                                  */
-
-ExpressionTupleValue ::= ExpressionTuple | Double | Integer | Object |
-   String | 'true' | 'false' | 'null'
-
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
 /* Must evaluate one of following:                                            */
@@ -750,7 +615,7 @@ TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
 /* Default is script or the one specified in TestScriptDefinition             */
 
 TestSourceType ::= TestScriptLineStart 'source_type:'
-    ( 'expression' | 'expression_tuple' | 'hybrid' | 'json' |
+    ( 'expression' | 'hybrid' | 'json' |
       'parenthesized_expression' | 'relaxed_json' | 'script' |
       'template' )
 

@@ -533,12 +533,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAdaptorType_;
 /** @brief afw_utf8_t for string _AdaptiveAdaptor_ */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAdaptor_;
 
-/** @brief define for quoted string _AdaptiveAnnotation_ */
-#define AFW_Q__AdaptiveAnnotation_ "_AdaptiveAnnotation_"
-
-/** @brief afw_utf8_t for string _AdaptiveAnnotation_ */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAnnotation_;
-
 /** @brief define for quoted string _AdaptiveApplicationComponents_ */
 #define AFW_Q__AdaptiveApplicationComponents_ "_AdaptiveApplicationComponents_"
 
@@ -2615,78 +2609,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_star_slash_star;
 /** @brief afw_utf8_t for string a_tab */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tab;
 
-/** @brief define for quoted string a_tuple_operation_call */
-#define AFW_Q_a_tuple_operation_call "call"
-
-/** @brief afw_utf8_t for string a_tuple_operation_call */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_call;
-
-/** @brief define for quoted string a_tuple_operation_call_adaptive_function */
-#define AFW_Q_a_tuple_operation_call_adaptive_function "callA"
-
-/** @brief afw_utf8_t for string a_tuple_operation_call_adaptive_function */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_call_adaptive_function;
-
-/** @brief define for quoted string a_tuple_operation_call_lambda_function */
-#define AFW_Q_a_tuple_operation_call_lambda_function "callL"
-
-/** @brief afw_utf8_t for string a_tuple_operation_call_lambda_function */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_call_lambda_function;
-
-/** @brief define for quoted string a_tuple_operation_expression */
-#define AFW_Q_a_tuple_operation_expression "expr"
-
-/** @brief afw_utf8_t for string a_tuple_operation_expression */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_expression;
-
-/** @brief define for quoted string a_tuple_operation_expression_tuple_with_variables */
-#define AFW_Q_a_tuple_operation_expression_tuple_with_variables "exprT"
-
-/** @brief afw_utf8_t for string a_tuple_operation_expression_tuple_with_variables */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_expression_tuple_with_variables;
-
-/** @brief define for quoted string a_tuple_operation_lambda_function */
-#define AFW_Q_a_tuple_operation_lambda_function "lambda"
-
-/** @brief afw_utf8_t for string a_tuple_operation_lambda_function */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_lambda_function;
-
-/** @brief define for quoted string a_tuple_operation_list */
-#define AFW_Q_a_tuple_operation_list "list"
-
-/** @brief afw_utf8_t for string a_tuple_operation_list */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_list;
-
-/** @brief define for quoted string a_tuple_operation_object */
-#define AFW_Q_a_tuple_operation_object "obj"
-
-/** @brief afw_utf8_t for string a_tuple_operation_object */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_object;
-
-/** @brief define for quoted string a_tuple_operation_property_reference */
-#define AFW_Q_a_tuple_operation_property_reference "prop"
-
-/** @brief afw_utf8_t for string a_tuple_operation_property_reference */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_property_reference;
-
-/** @brief define for quoted string a_tuple_operation_script */
-#define AFW_Q_a_tuple_operation_script "script"
-
-/** @brief afw_utf8_t for string a_tuple_operation_script */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_script;
-
-/** @brief define for quoted string a_tuple_operation_template */
-#define AFW_Q_a_tuple_operation_template "tmpl"
-
-/** @brief afw_utf8_t for string a_tuple_operation_template */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_template;
-
-/** @brief define for quoted string a_tuple_operation_variable_reference */
-#define AFW_Q_a_tuple_operation_variable_reference "var"
-
-/** @brief afw_utf8_t for string a_tuple_operation_variable_reference */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_variable_reference;
-
 /** @brief define for quoted string a_undefined_as_string */
 #define AFW_Q_a_undefined_as_string "<undefined>"
 
@@ -3419,23 +3341,11 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_ancestorPaths;
 /** @brief afw_utf8_t for string and */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_and;
 
-/** @brief define for quoted string annotate */
-#define AFW_Q_annotate "annotate"
-
-/** @brief afw_utf8_t for string annotate */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_annotate;
-
 /** @brief define for quoted string annotated */
 #define AFW_Q_annotated "annotated"
 
 /** @brief afw_utf8_t for string annotated */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_annotated;
-
-/** @brief define for quoted string annotation */
-#define AFW_Q_annotation "annotation"
-
-/** @brief afw_utf8_t for string annotation */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_annotation;
 
 /** @brief define for quoted string any */
 #define AFW_Q_any "any"
@@ -4618,12 +4528,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compileType;
 
 /** @brief afw_utf8_t for string compile_expression */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compile_expression;
-
-/** @brief define for quoted string compile_expression_tuple */
-#define AFW_Q_compile_expression_tuple "compile_expression_tuple"
-
-/** @brief afw_utf8_t for string compile_expression_tuple */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_compile_expression_tuple;
 
 /** @brief define for quoted string compile_hybrid */
 #define AFW_Q_compile_hybrid "compile_hybrid"
@@ -6323,12 +6227,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_evaluate;
 /** @brief afw_utf8_t for string evaluate_expression */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_evaluate_expression;
 
-/** @brief define for quoted string evaluate_expression_tuple */
-#define AFW_Q_evaluate_expression_tuple "evaluate_expression_tuple"
-
-/** @brief afw_utf8_t for string evaluate_expression_tuple */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_evaluate_expression_tuple;
-
 /** @brief define for quoted string evaluate_hybrid */
 #define AFW_Q_evaluate_hybrid "evaluate_hybrid"
 
@@ -6466,12 +6364,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_export;
 
 /** @brief afw_utf8_t for string expression */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_expression;
-
-/** @brief define for quoted string expression_tuple */
-#define AFW_Q_expression_tuple "expression_tuple"
-
-/** @brief afw_utf8_t for string expression_tuple */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_expression_tuple;
 
 /** @brief define for quoted string expressions */
 #define AFW_Q_expressions "expressions"
@@ -12262,12 +12154,6 @@ AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_testScript;
 
 /** @brief afw_utf8_t for string test_expression */
 AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_test_expression;
-
-/** @brief define for quoted string test_expression_tuple */
-#define AFW_Q_test_expression_tuple "test_expression_tuple"
-
-/** @brief afw_utf8_t for string test_expression_tuple */
-AFW_DECLARE_CONST_DATA(afw_utf8_t) afw_s_test_expression_tuple;
 
 /** @brief define for quoted string test_hybrid */
 #define AFW_Q_test_hybrid "test_hybrid"

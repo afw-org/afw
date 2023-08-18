@@ -6,12 +6,10 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     assert 
-    compile_expression_tuple 
     compile_json 
     compile_relaxed_json 
     convert_syntax_hybrid_to_expression 
     decompile 
-    evaluate_expression_tuple 
     evaluate_value 
     evaluate_with_retry 
     qualifier 
@@ -19,7 +17,6 @@ our @EXPORT_OK = qw(
     safe_evaluate 
     stringify 
     test_expression 
-    test_expression_tuple 
     test_hybrid 
     test_script 
     test_template 
@@ -49,28 +46,6 @@ thrown.
     $reason
 
 This is an optional reason to include in the assertion_failed message.
-
-=head3 compile_expression_tuple
-
-Compile a string containing adaptive expression tuple syntax and return
-either an unevaluated expression tuple adaptive value or a string containing
-the compiler listing.
-Compile expression tuple value
-
-=head4 Parameters
-
-    $expression_tuple
-
-expression tuple to compile.
-
-    $listing
-
-If specified, a compiler listing is produced instead of an unevaluated
-expression tuple value.
-
-This parameter can be an integer between 0 and 10 of a string that is used
-for indentation. If 0 is specified, no whitespace is added to the resulting
-string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 compile_json
 
@@ -116,7 +91,7 @@ string. If 1 through 10 is specified, that number of spaces is used.
 =head3 convert_syntax_hybrid_to_expression
 
 Convert a string containing adaptive hybrid syntax, which can be an adaptive
-template or adaptive expression tuple, to adaptive expression syntax.
+template or adaptive expression, to adaptive expression syntax.
 Convert a hybrid to a expression.
 
 =head4 Parameters
@@ -149,26 +124,6 @@ Add whitespace for readability if present and not 0. This parameter can be an
 integer between 0 and 10 or a string that is used for indentation. If 0 is
 specified, no whitespace is added to the resulting string. If 1 through 10 is
 specified, that number of spaces is used.
-
-=head3 evaluate_expression_tuple
-
-Compile a string containing adaptive expression tuple syntax and then
-evaluate the result.
-Evaluate expression tuple
-
-=head4 Parameters
-
-    $expression_tuple
-
-Expression tuple to compile and evaluate.
-
-    $additionalUntrustedQualifiedVariables
-
-This parameter supplies additional qualified variables that can be accessed
-during evaluation. These variables will not be used by anything that needs to
-ensure its qualified variables must come from a trusted source, such as
-authorization. This parameter is intended to be used for testing only and
-should not be used for anything running in production.
 
 =head3 evaluate_value
 
@@ -309,43 +264,11 @@ ensure its qualified variables must come from a trusted source, such as
 authorization. This parameter is intended to be used for testing only and
 should not be used for anything running in production.
 
-=head3 test_expression_tuple
-
-Compile and evaluate an adaptive expression tuple and compare the results to
-an expected value. Return object with the test's results.
-Test expression tuple
-
-=head4 Parameters
-
-    $id
-
-Id of test
-
-    $description
-
-Description of test
-
-    $expression
-
-Expression tuple to compile and evaluate.
-
-    $expected
-
-Expected result.
-
-    $additionalUntrustedQualifiedVariables
-
-This parameter supplies additional qualified variables that can be accessed
-during evaluation. These variables will not be used by anything that needs to
-ensure its qualified variables must come from a trusted source, such as
-authorization. This parameter is intended to be used for testing only and
-should not be used for anything running in production.
-
 =head3 test_hybrid
 
 Compile and evaluate a string containing adaptive hybrid syntax which can be
-an adaptive template or adaptive expression tuple and then compare the
-results to an expected value. Return object with the test's results.
+an adaptive template or adaptive expression and then compare the results to
+an expected value. Return object with the test's results.
 Test hybrid
 
 =head4 Parameters
@@ -486,20 +409,6 @@ sub assert_ {
     return $request->getResult();
 }
 
-sub compile_expression_tuple {
-    my ($expression_tuple, $listing) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "compile_expression_tuple");
-    $request->set("expression_tuple", $expression_tuple);
-
-    if (defined $listing)
-        $request->set("listing", $listing);
-
-    return $request->getResult();
-}
-
 sub compile_json {
     my ($json, $listing) = @_;
 
@@ -552,20 +461,6 @@ sub decompile {
 
     if (defined $whitespace)
         $request->set("whitespace", $whitespace);
-
-    return $request->getResult();
-}
-
-sub evaluate_expression_tuple {
-    my ($expression_tuple, $additionalUntrustedQualifiedVariables) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "evaluate_expression_tuple");
-    $request->set("expression_tuple", $expression_tuple);
-
-    if (defined $additionalUntrustedQualifiedVariables)
-        $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
 
     return $request->getResult();
 }
@@ -658,25 +553,6 @@ sub test_expression {
     my $request = $session->request()
 
     $request->set("function" => "test_expression");
-    $request->set("id", $id);
-    $request->set("description", $description);
-    $request->set("expression", $expression);
-
-    if (defined $expected)
-        $request->set("expected", $expected);
-
-    if (defined $additionalUntrustedQualifiedVariables)
-        $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
-
-    return $request->getResult();
-}
-
-sub test_expression_tuple {
-    my ($id, $description, $expression, $expected, $additionalUntrustedQualifiedVariables) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "test_expression_tuple");
     $request->set("id", $id);
     $request->set("description", $description);
     $request->set("expression", $expression);

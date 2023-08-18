@@ -10,13 +10,6 @@
     "objectIdPropertyName": "serviceId",
     "objectType": "_AdaptiveServiceConf_",
     "propertyTypes": {
-        "annotation": {
-            "brief": "Annotation object",
-            "dataType": "object",
-            "dataTypeParameter": "_AdaptiveAnnotation_",
-            "description": "Annotation object",
-            "label": "Annotation"
-        },
         "conf": {
             "brief": "The configuration object",
             "dataType": "object",

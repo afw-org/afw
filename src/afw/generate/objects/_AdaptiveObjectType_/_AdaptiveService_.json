@@ -10,12 +10,6 @@
     "objectIdPropertyName": "serviceId",
     "objectType": "_AdaptiveService_",
     "propertyTypes": {
-        "annotation": {
-            "dataType": "object",
-            "dataTypeParameter": "_AdaptiveAnnotation_",
-            "description": "Annotation object",
-            "label": "Annotation"
-        },
         "canRestart": {
             "allowQuery": true,
             "dataType": "boolean",

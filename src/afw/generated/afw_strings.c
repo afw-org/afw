@@ -277,9 +277,6 @@ AFW_UTF8_LITERAL("_AdaptiveAdaptorType_");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAdaptor_ =
 AFW_UTF8_LITERAL("_AdaptiveAdaptor_");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAnnotation_ =
-AFW_UTF8_LITERAL("_AdaptiveAnnotation_");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveApplicationComponents_ =
 AFW_UTF8_LITERAL("_AdaptiveApplicationComponents_");
 
@@ -1318,42 +1315,6 @@ AFW_UTF8_LITERAL("*/*");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tab =
 AFW_UTF8_LITERAL("\t");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_call =
-AFW_UTF8_LITERAL("call");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_call_adaptive_function =
-AFW_UTF8_LITERAL("callA");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_call_lambda_function =
-AFW_UTF8_LITERAL("callL");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_expression =
-AFW_UTF8_LITERAL("expr");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_expression_tuple_with_variables =
-AFW_UTF8_LITERAL("exprT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_lambda_function =
-AFW_UTF8_LITERAL("lambda");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_list =
-AFW_UTF8_LITERAL("list");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_object =
-AFW_UTF8_LITERAL("obj");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_property_reference =
-AFW_UTF8_LITERAL("prop");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_script =
-AFW_UTF8_LITERAL("script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_template =
-AFW_UTF8_LITERAL("tmpl");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tuple_operation_variable_reference =
-AFW_UTF8_LITERAL("var");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_undefined_as_string =
 AFW_UTF8_LITERAL("<undefined>");
 
@@ -1720,14 +1681,8 @@ AFW_UTF8_LITERAL("ancestorPaths");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_and =
 AFW_UTF8_LITERAL("and");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_annotate =
-AFW_UTF8_LITERAL("annotate");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_annotated =
 AFW_UTF8_LITERAL("annotated");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_annotation =
-AFW_UTF8_LITERAL("annotation");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_any =
 AFW_UTF8_LITERAL("any");
@@ -2319,9 +2274,6 @@ AFW_UTF8_LITERAL("compileType");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_expression =
 AFW_UTF8_LITERAL("compile_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_expression_tuple =
-AFW_UTF8_LITERAL("compile_expression_tuple");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_hybrid =
 AFW_UTF8_LITERAL("compile_hybrid");
@@ -3172,9 +3124,6 @@ AFW_UTF8_LITERAL("evaluate");
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_expression =
 AFW_UTF8_LITERAL("evaluate_expression");
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_expression_tuple =
-AFW_UTF8_LITERAL("evaluate_expression_tuple");
-
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_hybrid =
 AFW_UTF8_LITERAL("evaluate_hybrid");
 
@@ -3243,9 +3192,6 @@ AFW_UTF8_LITERAL("export");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expression =
 AFW_UTF8_LITERAL("expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expression_tuple =
-AFW_UTF8_LITERAL("expression_tuple");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expressions =
 AFW_UTF8_LITERAL("expressions");
@@ -6141,9 +6087,6 @@ AFW_UTF8_LITERAL("testScript");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_expression =
 AFW_UTF8_LITERAL("test_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_expression_tuple =
-AFW_UTF8_LITERAL("test_expression_tuple");
 
 AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_hybrid =
 AFW_UTF8_LITERAL("test_hybrid");

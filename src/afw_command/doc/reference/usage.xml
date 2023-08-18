@@ -14,13 +14,12 @@ OPTION:
  -e, --extension   ARG  Load extension.
  -h, --help             Print this help and exit successfully.
  -l, --local       ARG  Run in "local" mode with output to path or fd number.
- -s, --syntax      ARG  expression_tuple, expression, hybrid, parenthesized, script, template, test_script
+ -s, --syntax      ARG  expression, hybrid, parenthesized, script, template, test_script
  -t, --type        ARG  Content type of configuration file.
  -v, --version          Print version and exit successfully.
 
 The syntax option (-s) determines how input will be parsed:
 
-  -s expression_tuple  - The input is an adaptive expression tuple.
   -s expression        - The input is an adaptive expression.
   -s hybrid            - The input is an adaptive hybrid.
   -s parentheses       - The input is an adaptive expression enclose in

@@ -41,48 +41,6 @@ def assert_(session, assertion, reason=None):
 
     return response['actions'][0]['result']
 
-def compile_expression_tuple(session, expression_tuple, listing=None):
-    '''
-    Compile expression tuple value
-
-    Compile a string containing adaptive expression tuple syntax and return
-    either an unevaluated expression tuple adaptive value or a string
-    containing the compiler listing.
-
-    Parameters:
-
-        expression_tuple (array): expression tuple to compile.
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated expression tuple value.
-        
-        This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
-
-    Returns:
-    None: An unevaluated expression tuple value ready for use by function evaluate() or a string containing the compiler listing.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "compile_expression_tuple",
-        "expression_tuple": expression_tuple
-    }
-
-    if listing != None:
-        action['listing'] = listing
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def compile_json(session, json, listing=None):
     '''
     Compile JSON
@@ -171,8 +129,7 @@ def convert_syntax_hybrid_to_expression(session, hybrid, whitespace=None):
     Convert a hybrid to a expression.
 
     Convert a string containing adaptive hybrid syntax, which can be an
-    adaptive template or adaptive expression tuple, to adaptive expression
-    syntax.
+    adaptive template or adaptive expression, to adaptive expression syntax.
 
     Parameters:
 
@@ -235,47 +192,6 @@ def decompile(session, value, whitespace=None):
 
     if whitespace != None:
         action['whitespace'] = whitespace
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def evaluate_expression_tuple(session, expression_tuple, additionalUntrustedQualifiedVariables=None):
-    '''
-    Evaluate expression tuple
-
-    Compile a string containing adaptive expression tuple syntax and then
-    evaluate the result.
-
-    Parameters:
-
-        expression_tuple (string): Expression tuple to compile and evaluate.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
-
-    Returns:
-    None: Evaluated adaptive expression tuple.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "evaluate_expression_tuple",
-        "expression_tuple": expression_tuple
-    }
-
-    if additionalUntrustedQualifiedVariables != None:
-        action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
 
     request.add_action(action)
 
@@ -562,64 +478,12 @@ def test_expression(session, id, description, expression, expected=None, additio
 
     return response['actions'][0]['result']
 
-def test_expression_tuple(session, id, description, expression, expected=None, additionalUntrustedQualifiedVariables=None):
-    '''
-    Test expression tuple
-
-    Compile and evaluate an adaptive expression tuple and compare the results
-    to an expected value. Return object with the test's results.
-
-    Parameters:
-
-        id (string): Id of test
-
-        description (string): Description of test
-
-        expression (string): Expression tuple to compile and evaluate.
-
-        expected (): Expected result.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
-
-    Returns:
-    object: Test results.
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "test_expression_tuple",
-        "id": id,
-        "description": description,
-        "expression": expression
-    }
-
-    if expected != None:
-        action['expected'] = expected
-
-    if additionalUntrustedQualifiedVariables != None:
-        action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def test_hybrid(session, id, description, hybrid, expected=None, additionalUntrustedQualifiedVariables=None):
     '''
     Test hybrid
 
     Compile and evaluate a string containing adaptive hybrid syntax which can
-    be an adaptive template or adaptive expression tuple and then compare the
+    be an adaptive template or adaptive expression and then compare the
     results to an expected value. Return object with the test's results.
 
     Parameters:

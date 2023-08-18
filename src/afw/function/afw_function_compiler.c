@@ -127,78 +127,6 @@ afw_function_evaluate_whitespace_parameter(
 
 
 /*
- * Adaptive function: compile_expression_tuple
- *
- * afw_function_execute_compile_expression_tuple
- *
- * See afw_function_bindings.h for more information.
- *
- * Compile a string containing adaptive expression tuple syntax and return
- * either an unevaluated expression tuple adaptive value or a string containing
- * the compiler listing.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function compile_expression_tuple(
- *       expression_tuple: array,
- *       listing?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   expression_tuple - (array) expression tuple to compile.
- *
- *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression tuple value.
- *       
- *       This parameter can be an integer between 0 and 10 of a string that is
- *       used for indentation. If 0 is specified, no whitespace is added to the
- *       resulting string. If 1 through 10 is specified, that number of spaces
- *       is used.
- *
- * Returns:
- *
- *   (any dataType) An unevaluated expression tuple value ready for use by
- *       function evaluate() or a string containing the compiler listing.
- */
-const afw_value_t *
-afw_function_execute_compile_expression_tuple(
-    afw_function_execute_t *x)
-{
-    const afw_value_array_t *expression_tuple;
-    const afw_utf8_t *s;
-    const afw_value_t *result;
-    const afw_utf8_t *listing;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression_tuple,
-        1, array);
-
-    s = afw_json_from_value((const afw_value_t *)expression_tuple, NULL,
-        x->p, x->xctx);
-
-    result = afw_compile_to_value(
-        s, AFW_FUNCTION_SOURCE_LOCATION, afw_compile_type_hybrid,
-        NULL, NULL, x->p, x->xctx);
-
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-        listing = afw_function_evaluate_whitespace_parameter(x, 2);
-        result = afw_value_create_string(
-            afw_value_compiler_listing_to_string(result, listing,
-                x->p, x->xctx),
-            x->p, x->xctx);
-    }
-
-    return result;
-}
-
-
-
-/*
  * Adaptive function: compile_json
  *
  * afw_function_execute_compile_json
@@ -339,7 +267,7 @@ afw_function_execute_compile_relaxed_json(
  * See afw_function_bindings.h for more information.
  *
  * Convert a string containing adaptive hybrid syntax, which can be an adaptive
- * template or adaptive expression tuple, to adaptive expression syntax.
+ * template or adaptive expression, to adaptive expression syntax.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -437,72 +365,6 @@ afw_function_execute_decompile(
     s = afw_value_decompile_to_string(x->argv[1], whitespace, x->p, x->xctx);
 
     return afw_value_create_string(s, x->p, x->xctx);
-}
-
-
-
-/*
- * Adaptive function: evaluate_expression_tuple
- *
- * afw_function_execute_evaluate_expression_tuple
- *
- * See afw_function_bindings.h for more information.
- *
- * Compile a string containing adaptive expression tuple syntax and then
- * evaluate the result.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function evaluate_expression_tuple(
- *       expression_tuple: string,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   expression_tuple - (string) Expression tuple to compile and evaluate.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (any dataType) Evaluated adaptive expression tuple.
- */
-const afw_value_t *
-afw_function_execute_evaluate_expression_tuple(
-    afw_function_execute_t *x)
-{
-    const afw_value_string_t *arg;
-    const afw_value_t *compiled;
-    const afw_value_t *value;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, string);
-
-    compiled = afw_compile_to_value(
-        &arg->internal, AFW_FUNCTION_SOURCE_LOCATION,
-        afw_compile_type_expression_tuple,
-        NULL, NULL, x->p, x->xctx);
-
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
-        value = afw_value_evaluate_with_additional_untrusted_qualified_variables(
-            compiled, x->argv[2], x->p, x->xctx);
-    }
-    else {
-        value = afw_value_evaluate(compiled, x->p, x->xctx);
-    }
-
-    return value;
 }
 
 
@@ -901,133 +763,6 @@ afw_function_execute_test_expression(
 
 
 /*
- * Adaptive function: test_expression_tuple
- *
- * afw_function_execute_test_expression_tuple
- *
- * See afw_function_bindings.h for more information.
- *
- * Compile and evaluate an adaptive expression tuple and compare the results to
- * an expected value. Return object with the test's results.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function test_expression_tuple(
- *       id: string,
- *       description: string,
- *       expression: string,
- *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): object;
- * ```
- *
- * Parameters:
- *
- *   id - (string) Id of test.
- *
- *   description - (string) Description of test.
- *
- *   expression - (string) Expression tuple to compile and evaluate.
- *
- *   expected - (optional any dataType) Expected result.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (object) Test results.
- */
-const afw_value_t *
-afw_function_execute_test_expression_tuple(
-    afw_function_execute_t *x)
-{
-    afw_xctx_t *xctx = x->xctx;
-    const afw_object_t *result;
-    const afw_value_string_t *id;
-    const afw_value_string_t *description;
-    const afw_value_string_t *expression;
-    const afw_value_t *expected;
-    const afw_value_t *compiled;
-    const afw_value_t *evaluated;
-
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(id, 1, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(description, 2, string);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
-    AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
-
-    result = afw_object_create_managed(x->p, xctx);
-    afw_object_set_property(result, &afw_s_passed, afw_value_true, xctx);
-    afw_object_set_property_as_string(result,
-        &afw_s_id, &id->internal, xctx);
-    afw_object_set_property_as_string(result,
-        &afw_s_description, &description->internal, xctx);
-    afw_object_set_property_as_string(result,
-        &afw_s_expression, &expression->internal, xctx);
-    afw_object_set_property_as_string(result,
-        &afw_s_expected,
-        afw_value_as_casted_utf8(expected, x->p, xctx),
-        xctx);
-
-    AFW_TRY{
-
-        compiled = afw_compile_to_value(
-            &expression->internal, AFW_FUNCTION_SOURCE_LOCATION,
-            afw_compile_type_expression_tuple,
-            NULL, NULL, x->p, xctx);
-
-        if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
-            evaluated = afw_value_evaluate_with_additional_untrusted_qualified_variables(
-                compiled, x->argv[5], x->p, xctx);
-        }
-        else {
-            evaluated = afw_value_evaluate(compiled, x->p, xctx);
-        }
-
-        afw_object_set_property_as_string(result, &afw_s_result,
-            afw_value_as_casted_utf8(evaluated, x->p, xctx),
-            xctx);
-
-        if (!afw_value_equal(evaluated, expected, xctx)) {
-            afw_object_set_property(result, &afw_s_passed, afw_value_false,
-                xctx);
-        }
-    }
-
-        AFW_CATCH_UNHANDLED{
-
-            /* If 'error' is not expected value, set passed false. */
-            if (!afw_value_is_string(expected) ||
-                !afw_utf8_equal(
-                    &((const afw_value_string_t *)expected)->internal,
-                    &afw_s_error))
-            {
-                afw_object_set_property(result, &afw_s_passed, afw_value_false,
-                    xctx);
-            }
-
-            /* Set error property. */
-            afw_object_set_property_as_object(result, &afw_s_error,
-                afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
-    }
-
-    AFW_ENDTRY;
-
-    return afw_value_create_object(result, x->p, xctx);
-}
-
-
-
-/*
  * Adaptive function: test_hybrid
  *
  * afw_function_execute_test_hybrid
@@ -1035,8 +770,8 @@ afw_function_execute_test_expression_tuple(
  * See afw_function_bindings.h for more information.
  *
  * Compile and evaluate a string containing adaptive hybrid syntax which can be
- * an adaptive template or adaptive expression tuple and then compare the
- * results to an expected value. Return object with the test's results.
+ * an adaptive template or adaptive expression and then compare the results to
+ * an expected value. Return object with the test's results.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

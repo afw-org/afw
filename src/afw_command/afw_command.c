@@ -54,7 +54,7 @@ static const apr_getopt_option_t opts[] = {
     { "extension", 'e', TRUE, "Load extension." },
     { "help", 'h', FALSE, "Print this help and exit successfully." },
     { "local", 'l', TRUE, "Run in \"local\" mode with output to path or fd number." },
-    { "syntax", 's', TRUE, "expression_tuple, expression, hybrid, parenthesized, script, template, test_script" },
+    { "syntax", 's', TRUE, "expression, hybrid, parenthesized, script, template, test_script" },
     { "type", 't', TRUE, "Content type of configuration file." },
     { "version", 'v', FALSE, "Print version and exit successfully." },
     { NULL, 0, 0, NULL }
@@ -65,7 +65,6 @@ static const char * impl_additional_help_text =
     "\n"
     "The syntax option (-s) determines how input will be parsed:\n"
     "\n"
-    "  -s expression_tuple  - The input is an adaptive expression tuple.\n"
     "  -s expression        - The input is an adaptive expression.\n"
     "  -s hybrid            - The input is an adaptive hybrid.\n"
     "  -s parentheses       - The input is an adaptive expression enclose in\n"
@@ -435,13 +434,7 @@ process_args_getopt(afw_command_self_t *self, int argc, const char * const *argv
 
         case 's':
             
-            if (afw_utf8_z_equal(option_arg, "expression_tuple"))
-            {
-                self->compile_option = afw_compile_type_expression_tuple;
-                self->can_span_lines = false;
-            }
-
-            else if (afw_utf8_z_equal(option_arg, "expression"))
+            if (afw_utf8_z_equal(option_arg, "expression"))
             {
                 self->compile_option = afw_compile_type_expression;
                 self->can_span_lines = false;

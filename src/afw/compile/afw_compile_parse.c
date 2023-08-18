@@ -415,16 +415,15 @@ afw_compile_parse_check_symbol(
  *
  *# Hybrid is used to parse data type hybrid.
  *#
- *# A hybrid is parsed as a Script, ExpressionTuple, Template, or an evaluated
+ *# A hybrid is parsed as a Script, Template, or an evaluated
  *# string as follows:
  *#
  *#     1) If it begins with a '#!', it is parsed as a Script.
- *#     2) If it begins with '[', it is parsed as an ExpressionTuple.
- *#     3) Otherwise, it is parsed as a Template.  Note that if the
+ *#     2) Otherwise, it is parsed as a Template.  Note that if the
  *#        template does not contain '${', it produces an evaluated string.
  *#
  *
- * Hybrid ::= Script | ExpressionTuple | Template
+ * Hybrid ::= Script | Template
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -465,15 +464,6 @@ afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
         }
         return afw_value_empty_string;
     }
-
-    /* If this starts with '[', parse as ExpressionTuple. */
-    if (cp == '[') {
-        if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-            parser->compiled_value->full_source_type = &afw_s_expression_tuple;
-        }
-        return afw_compile_parse_ExpressionTuple(parser);
-    }
-
 
     /*
      * Otherwise, return parser template.  Template is always one line, so

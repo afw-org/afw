@@ -166,7 +166,7 @@ afw_data_type_hybrid_direct = {
     (const afw_object_t *)&impl_data_type_object_hybrid,
     AFW_UTF8_LITERAL("hybrid"),
     AFW_UTF8_LITERAL("An adaptive hybrid"),
-    AFW_UTF8_LITERAL("Data type hybrid can be a string containing the source for an adaptive expression tuple, an adaptive script, or an adaptive template. It can also be a literal (evaluated value) such as array, boolean, double, integer, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple. If the value is a string that begins with a shebang ('#!'), the string is the source for a script. If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template. In other cases, the string is a string literal."),
+    AFW_UTF8_LITERAL("Data type hybrid can be a string containing the source for an adaptive script or an adaptive template. It can also be a literal (evaluated value) such as array, boolean, double, integer, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple. If the value is a string that begins with a shebang ('#!'), the string is the source for a script. If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template. In other cases, the string is a string literal."),
     AFW_UTF8_LITERAL("SourceParameter"),
     afw_data_type_number_hybrid,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

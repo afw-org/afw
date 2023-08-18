@@ -3,7 +3,7 @@
     "cType": "const afw_value_t *",
     "dataType": "function",
     "dataTypeParameterType": "FunctionSignature",
-    "description": "This is an Adaptive Script function definition, an ExpressionTupleOperation_lambda, the name of a built-in Adaptive function, or the name of a qualified variable that holds a function value. If dataTypeParameterType is specified, the function must match that signature.",
+    "description": "This is an Adaptive Script function definition, the name of a built-in Adaptive function, or the name of a qualified variable that holds a function value. If dataTypeParameterType is specified, the function must match that signature.",
     "directReturn": true,
     "jsonPrimitive": "string",
     "relationalCompares": false,

@@ -450,12 +450,6 @@ typedef _Bool afw_boolean_t;
         "See production Expression in src/afw/doc/syntax/index.html or "        \
         "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
                                                                                 \
-    XX(expression_tuple,                                                        \
-        hybrid,                                                                 \
-        &afw_function_definition_compile_expression_tuple,                      \
-        "See production ExpressionTuple in src/afw/doc/syntax/index.html or "   \
-        "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
-                                                                                \
     XX(hybrid,                                                                  \
         hybrid,                                                                 \
         &afw_function_definition_compile_hybrid,                                \

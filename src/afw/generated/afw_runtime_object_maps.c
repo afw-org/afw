@@ -296,21 +296,6 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveAdaptor_);
 
 
-/* Runtime object map properties for _AdaptiveAnnotation_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAnnotation_ = {
-    &afw_s__AdaptiveAnnotation_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAnnotation_, 
-    impl_runtime_meta__AdaptiveAnnotation_);
-
-
 /* Runtime object map properties for _AdaptiveApplicationComponents_ objects. */
 
 static const afw_runtime_object_map_property_t
@@ -4696,7 +4681,6 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveAdaptorMetrics_,
     &afw_runtime_inf__AdaptiveAdaptorType_,
     &afw_runtime_inf__AdaptiveAdaptor_,
-    &afw_runtime_inf__AdaptiveAnnotation_,
     &afw_runtime_inf__AdaptiveApplicationComponents_,
     &afw_runtime_inf__AdaptiveApplication_,
     &afw_runtime_inf__AdaptiveAuthorizationControl_,

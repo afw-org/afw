@@ -5,7 +5,6 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
-    annotate 
     nullish_coalescing 
     optional_chaining 
     void_operator 
@@ -18,21 +17,6 @@ afw::compiler_expression - Perl module for compiler_expression functions
 =head2 Functions
 
 The following functions are exported by default
-
-=head3 annotate
-
-Create an annotated value.
-Annotate a value
-
-=head4 Parameters
-
-    $annotation
-
-Annotation for value.
-
-    $value
-
-Any value. This value will not be evaluated.
 
 =head3 nullish_coalescing
 
@@ -72,18 +56,6 @@ Support for the void operator
 This is the value to evaluate.
 
 =cut
-
-sub annotate {
-    my ($annotation, $value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "annotate");
-    $request->set("annotation", $annotation);
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
 
 sub nullish_coalescing {
     my ($values) = @_;

@@ -55,18 +55,6 @@ a_equal==
 a_exclamation=!
 a_vertical_bar=|
 a_Content_dash_Type=Content-Type
-a_tuple_operation_call=call
-a_tuple_operation_call_adaptive_function=callA
-a_tuple_operation_call_lambda_function=callL
-a_tuple_operation_expression_tuple_with_variables=exprT
-a_tuple_operation_lambda_function=lambda
-a_tuple_operation_list=list
-a_tuple_operation_object=obj
-a_tuple_operation_property_reference=prop
-a_tuple_operation_script=script
-a_tuple_operation_template=tmpl
-a_tuple_operation_variable_reference=var
-a_tuple_operation_expression=expr
 a_automatic_start=automatic start
 a_Core_afw_adaptor=Core afw adaptor
 a_in_catch=in catch
@@ -491,7 +479,6 @@ a_not_implemented=not implemented
 a_lambda_function=Lambda function.
 an_ellipsis=...
 expression
-expression_tuple
 evaluation
 script
 environment

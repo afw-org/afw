@@ -24,31 +24,6 @@ class compiler_expression
     }
 
     /**
-     * annotate()
-     *
-     * Create an annotated value.
-     *
-     * @param object $annotation Annotation for value.
-     * @param  $value Any value. This value will not be evaluated.
-     *
-     * @return  Unevaluated annotated value ready for use by function
-     *          evaluate().
-     */
-    public function annotate(, $annotation, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "annotate");
-
-        /* pass along required parameters to the request payload */
-        $request->set("annotation", $annotation);
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * nullish_coalescing()
      *
      * Returns the first value of values that is not null or undefined

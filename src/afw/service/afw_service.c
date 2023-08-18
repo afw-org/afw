@@ -836,7 +836,6 @@ impl_AdaptiveService_cb(
     const afw_object_t *conf_property;
     const afw_object_t *object;
     const afw_utf8_t *s;
-    const afw_value_t *value;
     const afw_utf8_t *error_message;
     afw_boolean_t is_complete;
 
@@ -863,13 +862,6 @@ impl_AdaptiveService_cb(
                 &afw_s_uriServiceConf, s, xctx);
             afw_object_set_property_as_string(object,
                 &afw_s_sourceLocation, s, xctx);
-
-            value = afw_object_get_property(original_object,
-                &afw_s_annotation, xctx);
-            if (value) {
-                afw_object_set_property(object, &afw_s_annotation, value,
-                    xctx);
-            }
 
             conf_property = afw_object_old_get_property_as_object(
                 original_object, &afw_s_conf, xctx);

@@ -57,12 +57,6 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveAdaptor_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveAnnotation_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveAnnotation_;
-
-/**
  * @brief Runtime object inf for object type _AdaptiveApplicationComponents_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

@@ -5,38 +5,6 @@
 import requests
 import json
 
-def annotate(session, annotation, value):
-    '''
-    Annotate a value
-
-    Create an annotated value.
-
-    Parameters:
-
-        annotation (object): Annotation for value.
-
-        value (): Any value. This value will not be evaluated.
-
-    Returns:
-    None: Unevaluated annotated value ready for use by function evaluate().
-    '''
-
-    request = session.Request()
-
-    action = {
-        "function": "annotate",
-        "annotation": annotation,
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def nullish_coalescing(session, values):
     '''
     Nullish coalescing

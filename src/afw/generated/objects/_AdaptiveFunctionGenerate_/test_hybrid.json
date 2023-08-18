@@ -3,7 +3,7 @@
     "brief": "Test hybrid",
     "camelCaseFunctionLabel": "testHybrid",
     "category": "compiler",
-    "description": "Compile and evaluate a string containing adaptive hybrid syntax which can be an adaptive template or adaptive expression tuple and then compare the results to an expected value. Return object with the test's results.",
+    "description": "Compile and evaluate a string containing adaptive hybrid syntax which can be an adaptive template or adaptive expression and then compare the results to an expected value. Return object with the test's results.",
     "functionId": "test_hybrid",
     "functionLabel": "test_hybrid",
     "parameters": [

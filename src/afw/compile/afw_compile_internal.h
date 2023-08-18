@@ -1058,26 +1058,6 @@ afw_compile_parse_Expression(afw_compile_parser_t *parser);
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_ExpressionTuple(afw_compile_parser_t *parser);
-
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_ExpressionTupleAnnotation(afw_compile_parser_t *parser);
-
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_ExpressionTupleOperation(afw_compile_parser_t *parser);
-
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_ExpressionTupleParameter(afw_compile_parser_t *parser);
-
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Factor(afw_compile_parser_t *parser);
 
 

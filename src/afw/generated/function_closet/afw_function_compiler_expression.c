@@ -16,48 +16,6 @@
 
 
 /*
- * Adaptive function: annotate
- *
- * afw_function_execute_annotate
- *
- * See afw_function_bindings.h for more information.
- *
- * Create an annotated value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function annotate(
- *       annotation: (object _AdaptiveAnnotation_),
- *       value: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   annotation - (object _AdaptiveAnnotation_) Annotation for value.
- *
- *   value - (any dataType) Any value. This value will not be evaluated.
- *
- * Returns:
- *
- *   (any dataType) Unevaluated annotated value ready for use by function
- *       evaluate().
- */
-const afw_value_t *
-afw_function_execute_annotate(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Adaptive function: nullish_coalescing
  *
  * afw_function_execute_nullish_coalescing

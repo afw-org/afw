@@ -228,11 +228,6 @@ afw_compile_to_value_with_callback(
                 *interim = afw_compile_parse_Expression(parser);
             }
 
-            else if (compile_type == afw_compile_type_expression_tuple) {
-                parser->compiled_value->full_source_type = &afw_s_expression_tuple;
-                *interim = afw_compile_parse_ExpressionTuple(parser);
-            }
-
             else if (compile_type == afw_compile_type_parenthesized_expression) {
                 parser->compiled_value->full_source_type = &afw_s_expression;
                 afw_compile_skip_ws(parser);
