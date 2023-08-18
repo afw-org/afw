@@ -215,9 +215,14 @@ afw_function_execute_test_script_runtime_support(
                 xctx);
 
             passed_value =
-                (!expected_value && !evaluated_value) ||
-                (expected_value &&
-                afw_value_equal(evaluated_value, expected_value, xctx))
+                !afw_utf8_starts_with(expect, &afw_s_error) &&
+                (
+                    (!expected_value && !evaluated_value) ||
+                    (
+                        expected_value &&
+                        afw_value_equal(evaluated_value, expected_value, xctx)
+                    )
+                )
                 ? afw_value_true
                 : afw_value_false;
             afw_object_set_property(test, &afw_s_passed, passed_value,
