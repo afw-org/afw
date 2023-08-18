@@ -1002,10 +1002,6 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
         &afw_value_call_inf, xctx);
 
     afw_environment_register_value_inf(
-        &afw_value_expression_definition_inf.rti.implementation_id,
-        &afw_value_expression_definition_inf, xctx);
-
-    afw_environment_register_value_inf(
         &afw_value_function_definition_inf.rti.implementation_id,
         &afw_value_function_definition_inf, xctx);
 

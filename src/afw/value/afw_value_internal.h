@@ -443,26 +443,6 @@ struct afw_value_reference_by_key_s {
 };
 
 
-/** @brief Struct for expression value. */
-struct afw_value_expression_definition_s {
-    const afw_value_inf_t *inf;
-    const afw_compile_value_contextual_t *contextual;
-    /* NULL terminated list of assignments or NULL. */
-    const afw_value_assignment_t * const *assignments;
-    const afw_value_t * value;
-    
-    /*
-     * This is the optimized value or self. If self can be evaluated at create
-     * time, this will the evaluated result. If this value references other
-     * values, their optimized value will be used. If no optimization can occur,
-     * this will be self.
-     */
-    const afw_value_t *optimized_value;
-
-    /* This is the data type of the evaluated result or NULL if unknown. */
-    const afw_data_type_t *evaluated_data_type;
-};
-
 
 /** @brief Struct for lambda parameter. */
 struct afw_value_script_function_signature_s {

@@ -867,14 +867,6 @@ typedef struct afw_value_evaluated_s
 afw_value_evaluated_t;
 
 /**
- * Opaque typedef for afw_value_expression_definition_t.
- *
- * See afw_value_internal.h for struct and more information.
- */
-typedef struct afw_value_expression_definition_s
-afw_value_expression_definition_t;
-
-/**
  * Opaque typedef for afw_value_function_definition_t.
  *
  * See afw_value_internal.h for struct and more information.

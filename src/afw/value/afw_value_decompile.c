@@ -88,17 +88,6 @@ afw_value_decompile_value(
     if (!instance) {
         afw_writer_write_utf8(writer, &afw_s_undefined, xctx);
     }
-    else if (afw_value_is_expression_definition(instance)) {
-        afw_writer_write_z(writer, "(", xctx);
-        if (writer->tab) {
-            afw_writer_increment_indent(writer, xctx);
-        }
-        afw_value_decompile(instance, writer, xctx);
-        if (writer->tab) {
-            afw_writer_decrement_indent(writer, xctx);
-        }
-        afw_writer_write_z(writer, ")", xctx);
-    }
     else {
         afw_value_decompile(instance, writer, xctx);
     }

@@ -257,12 +257,6 @@ afw_value_compiled_value_inf;
 
 
 
-/** @brief Value expression inf. */
-AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_expression_definition_inf;
-
-
-
 /** @brief Value function inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_function_definition_inf;
@@ -600,19 +594,6 @@ afw_value_is_fully_evaluated(
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_compiled_value_inf \
-)
-
-
-
-/**
- * @brief Macro to determine if value is an expression definition.
- * @param A_VALUE to test.
- * @return boolean result.
- */
-#define afw_value_is_expression_definition(A_VALUE) \
-( \
-    (A_VALUE) && \
-    (A_VALUE)->inf == &afw_value_expression_definition_inf \
 )
 
 
@@ -1288,24 +1269,6 @@ afw_value_call_built_in_function_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-
-
-/**
- * @brief Create function for expression definition value.
- * @param contextual information for expression.
- * @param assignments NULL or NULL terminated list of assignments.
- * @param value evaluated for expression result.
- * @param p pool used for value.
- * @param xctx of caller.
- * @return Created afw_value_t.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_expression_definition_create(
-    const afw_compile_value_contextual_t *contextual,
-    const afw_value_assignment_t * const * assignments,
-    const afw_value_t * value,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
 
 
 /**
