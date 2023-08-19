@@ -759,7 +759,7 @@ impl_afw_data_type_function_internal_to_utf8(
     else if (afw_value_is_function_definition(value)) {
         result = &((const afw_value_function_definition_t *)value)->functionId;
     }
-    else if (afw_value_is_script_function(value)) {
+    else if (afw_value_is_script_function_definition(value)) {
         result = ((const afw_value_script_function_definition_t *)value)->
             contextual->compiled_value->full_source;
     }

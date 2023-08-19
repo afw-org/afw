@@ -291,6 +291,32 @@ struct afw_value_call_built_in_function_s {
 
 
 /**
+ * @brief Struct for call script function value.
+ *
+ * This is a call to the function defined in argv[0] with argc parameters
+ * beginning with argv[1]. The function defined can be unevaluated, a
+ * function definition, a script function definition, or a thunk definition.
+ */
+struct afw_value_call_script_function_s {
+    const afw_value_inf_t *inf;
+    const afw_value_script_function_definition_t *script_function_definition;
+    afw_value_call_args_t args;
+    
+    /*
+     * This is the optimized value or self. If self can be evaluated at create
+     * time, this will the evaluated result. If this value references other
+     * values, their optimized value will be used. If no optimization can occur,
+     * this will be self.
+     */
+    const afw_value_t *optimized_value;
+
+    /* This is the data type of the evaluated result or NULL if unknown. */
+    const afw_data_type_t *evaluated_data_type;
+};
+
+
+
+/**
  * @brief Struct for compiled value value.
  *
  * This is the top level value return from the adaptive compiler when the
@@ -595,6 +621,15 @@ afw_value_call_built_in_function(
     const afw_value_function_definition_t *function,
     afw_size_t argc,
     const afw_value_t * const *argv,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_value_call_script_function(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_value_script_function_definition_t *script_function_definition,
+    afw_size_t argc,
+    const afw_value_t * const * argv,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

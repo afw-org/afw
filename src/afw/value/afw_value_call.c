@@ -32,145 +32,6 @@
 
 
 
-static const afw_value_t *
-impl_call_script_function(
-    const afw_value_t *lambda,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_script_function_definition_t *l;
-    const afw_value_t *result;
-    const afw_value_t *value;
-    afw_size_t parameter_number;
-    const afw_value_script_function_parameter_t *const *params;
-    const afw_value_t *const *arg;
-    afw_name_value_t *cur;
-    const afw_value_t *const *rest_argv;
-    const afw_xctx_scope_t *scope;
-    afw_size_t rest_argc;
-    const afw_array_t *rest_list;
-
-    result = NULL;
-    if (!afw_value_is_script_function(lambda)) {
-        AFW_THROW_ERROR_Z(general,
-            "impl_call_script_function() must be called with script function",
-            xctx);
-    }
-    l = (const afw_value_script_function_definition_t *)lambda;
-    if (!afw_value_is_script_function(lambda)) {
-        lambda = afw_value_evaluate(lambda, p, xctx);
-        if (!afw_value_is_script_function(lambda)) {
-            AFW_THROW_ERROR_Z(general,
-                "impl_call_script_function() expects lambda value",
-                xctx);
-        }
-        l = (const afw_value_script_function_definition_t *)lambda;
-    }
-
-    /* Save stack top which will be restored on return. */
-    scope = afw_xctx_scope_begin(l->count + 1, xctx);
-    AFW_TRY {
-
-        /*
-         * Push parameters without names onto stack. This is so
-         * afw_function_evaluate_parameter_with_type() will not
-         * see these parameters yet.
-         * 
-         * First argument starts at argv[1] so index in argv is the parameter
-         * number.
-         */
-        for (parameter_number = 1, params = l->parameters, arg = argv + 1;
-            parameter_number <= l->count;
-            parameter_number++, params++, arg++)
-        {
-            /* If this is rest parameter ... */
-            if ((*params)->is_rest) {
-
-                /* If extra unused parameters, pass them in rest object. */
-                if (argc >= l->count) {
-                    rest_argc = argc - l->count + 1;
-                    rest_argv = arg;
-                }
-
-                /* If no extra unused parameters, rest object is empty. */
-                else {
-                    rest_argc = 0;
-                    rest_argv = NULL;
-                }
-
-                /* Create rest list. */
-                rest_list = afw_array_const_create_array_of_values(
-                    rest_argv, rest_argc, p, xctx);
-                value = afw_value_create_array(rest_list, p, xctx);
-            }
-
-            /* If not rest parameter */
-            else {
-                value = NULL;
-                if (parameter_number <= argc) {
-                    value = afw_function_evaluate_parameter_with_type(
-                        *arg, parameter_number,
-                        (*params)->type,
-                        p, xctx);
-                }
-
-                if (!value) {
-                    if ((*params)->default_value) {
-                        value = (*params)->default_value;
-                    }
-                    else if (!(*params)->is_optional) {
-                        AFW_THROW_ERROR_FZ(general, xctx,
-                            "Parameter " AFW_SIZE_T_FMT " is required",
-                            parameter_number);
-                    }
-                }
-            }
-
-            cur = (afw_name_value_t *)apr_array_push(xctx->stack);
-            cur->name = &afw_s_a_empty_string;
-            cur->value = value;
-        }
-
-        /* Set parameter names so they will be seen as local variables. */
-        for (
-            cur = ((afw_name_value_t *)xctx->stack->elts) + scope->local_top,
-            parameter_number = 1,
-            params = l->parameters;
-            parameter_number <= l->count;
-            cur++,
-            parameter_number++,
-            params++)
-        {
-            cur->name = (*params)->name;
-        }
-
-        /* If there is a function name, make it a local variable. */
-        if (l->signature && l->signature->function_name_value) {
-            cur = (afw_name_value_t *)apr_array_push(xctx->stack);
-            cur->name = &l->signature->function_name_value->internal;
-            cur->value = lambda;            
-        }
-
-        /* Evaluate body. */
-        result = afw_value_evaluate(l->body, p, xctx);
-    }
-
-    AFW_FINALLY{
-
-        /* Restore xctx stack top to what it was on entry. */
-        afw_xctx_scope_release(scope, xctx);
-
-    }
-
-    AFW_ENDTRY;
-
-    /* Return result. */
-    return result;
-}
-
-
 
 /* Create function for call value. */
 AFW_DEFINE(const afw_value_t *)
@@ -198,6 +59,18 @@ afw_value_call_create(
     if (afw_value_is_function_definition(argv[0])) {
         return afw_value_call_built_in_function_create(
             contextual, argc, argv, allow_optimize, p, xctx);
+    }
+
+    /*
+     * If this is a script function definition, return the self of the more 
+     * specific afw_value_call_script_function_create() to reduce the execution
+     * time code path.
+     */
+    if (afw_value_is_script_function_definition(argv[0])) {
+        return afw_value_call_script_function_create(
+            contextual,
+            (const afw_value_script_function_definition_t *)argv[0],
+            argc, argv, allow_optimize, p, xctx);
     }
 
     self = afw_pool_calloc_type(p, afw_value_call_t, xctx);
@@ -265,8 +138,10 @@ impl_afw_value_optional_evaluate(
      * handled by afw_value_built_in_function. Check and handle for script
      * functions first.
      */
-    if (afw_value_is_script_function(function_value)) {
-        result = impl_call_script_function(function_value,
+    if (afw_value_is_script_function_definition(function_value)) {
+        result = afw_value_call_script_function(
+            self->args.contextual,
+            (afw_value_script_function_definition_t *)function_value,
             self->args.argc, self->args.argv, p, xctx);
     }
 

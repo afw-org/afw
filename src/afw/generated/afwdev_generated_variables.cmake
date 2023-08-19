@@ -450,6 +450,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_block.c
     value/afw_value_call.c
     value/afw_value_call_built_in_function.c
+    value/afw_value_call_script_function.c
     value/afw_value_compiled_value.c
     value/afw_value_compiler_listing.c
     value/afw_value_decompile.c

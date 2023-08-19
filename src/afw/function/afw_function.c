@@ -238,7 +238,7 @@ afw_function_evaluate_required_parameter(
 
 
 /* Evaluate a parameter with dataTypeParameter. */
-/* Note: This is only called by impl_call_script_function at the moment. */
+/* Note: This is only called by afw_value_call_script_function at the moment. */
 AFW_DEFINE(const afw_value_t*)
 afw_function_evaluate_parameter_with_type(
     const afw_value_t* value,

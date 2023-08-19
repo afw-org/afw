@@ -245,9 +245,15 @@ afw_value_call_inf;
 
 
 
-/** @brief Value call inf. */
+/** @brief Value call built-in function inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_call_built_in_function_inf;
+
+
+
+/** @brief Value call script function inf. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_call_script_function_inf;
 
 
 
@@ -570,6 +576,19 @@ afw_value_is_fully_evaluated(
 
 
 /**
+ * @brief Macro to determine if value is a call_script_function.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_call_script_function(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_call_script_function_inf \
+)
+
+
+
+/**
  * @brief Macro to determine if value is a call.
  * @param A_VALUE to test.
  * @return boolean result.
@@ -578,8 +597,9 @@ afw_value_is_fully_evaluated(
 ( \
     (A_VALUE) && \
     ( \
-        (A_VALUE)->inf == &afw_value_call_inf || \
-        (A_VALUE)->inf == &afw_value_call_built_in_function_inf \
+        (A_VALUE)->inf == &afw_value_call_built_in_function_inf || \
+        (A_VALUE)->inf == &afw_value_call_script_function_inf || \
+        (A_VALUE)->inf == &afw_value_call_inf \
     ) \
 )
 
@@ -655,7 +675,7 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_script_function(A_VALUE) \
+#define afw_value_is_script_function_definition(A_VALUE) \
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_script_function_definition_inf \
@@ -1263,6 +1283,36 @@ afw_value_call_create(
 AFW_DECLARE(const afw_value_t *)
 afw_value_call_built_in_function_create(
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t argc,
+    const afw_value_t * const *argv,
+    const afw_boolean_t allow_optimize,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Create function for call_script_function value.
+ * @param contextual information for function call.
+ * @param argc number of arguments (does not include argv[0]).
+ * @param argv list of argument value pointers. argv[0] must be function
+ *        definition value.
+ * @param allow_optimize if true, optimize call if possible.
+ * @param p pool used for value.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ *
+ * Make sure to set allow_optimize to false if you are changing arguments values
+ * after the call to this function. For example, the higher order list functions
+ * do this. If the arguments will not be changed, allow_optimize can be true.
+ * 
+ * Call this function instead of afw_value_call_create() when it's know that
+ * argv[0] is a function definition to save a small amount of evaluation time.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_call_script_function_create(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_value_script_function_definition_t *script_function_definition,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,

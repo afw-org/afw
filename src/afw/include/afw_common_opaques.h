@@ -827,6 +827,14 @@ typedef struct afw_value_call_built_in_function_s
 afw_value_call_built_in_function_t;
 
 /**
+ * Opaque typedef for afw_value_call_script_function_t.
+ *
+ * See afw_value_internal.h for struct and more information.
+ */
+typedef struct afw_value_call_script_function_s
+afw_value_call_script_function_t;
+
+/**
  * Opaque typedef for afw_value_call_args_t.
  *
  * See afw_value_internal.h for struct and more information.
