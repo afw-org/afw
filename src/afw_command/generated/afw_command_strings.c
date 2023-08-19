@@ -25,50 +25,82 @@
 #include "afw.h"
 #include "afw_command_strings.h"
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_METHOD =
-AFW_UTF8_LITERAL("METHOD");
+const afw_value_string_t afw_command_v_METHOD = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("METHOD")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_SERVER_PROTOCOL =
-AFW_UTF8_LITERAL("SERVER_PROTOCOL");
+const afw_value_string_t afw_command_v_SERVER_PROTOCOL = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_PROTOCOL")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_URI =
-AFW_UTF8_LITERAL("URI");
+const afw_value_string_t afw_command_v_URI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("URI")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_directive_starts_with =
-AFW_UTF8_LITERAL("++afw-local-");
+const afw_value_string_t afw_command_v_a_local_directive_starts_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_mode_action =
-AFW_UTF8_LITERAL("++afw-local-mode-action");
+const afw_value_string_t afw_command_v_a_local_mode_action = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-mode-action")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_mode_action_direct =
-AFW_UTF8_LITERAL("++afw-local-mode-action-direct");
+const afw_value_string_t afw_command_v_a_local_mode_action_direct = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-mode-action-direct")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_mode_evaluate =
-AFW_UTF8_LITERAL("++afw-local-mode-evaluate");
+const afw_value_string_t afw_command_v_a_local_mode_evaluate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-mode-evaluate")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_mode_evaluate_direct =
-AFW_UTF8_LITERAL("++afw-local-mode-evaluate-direct");
+const afw_value_string_t afw_command_v_a_local_mode_evaluate_direct = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-mode-evaluate-direct")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_mode_http_like =
-AFW_UTF8_LITERAL("++afw-local-mode-http-like");
+const afw_value_string_t afw_command_v_a_local_mode_http_like = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-mode-http-like")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_a_local_request_properties =
-AFW_UTF8_LITERAL("++afw-local-multi-request-properties");
+const afw_value_string_t afw_command_v_a_local_request_properties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("++afw-local-multi-request-properties")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_afw_command =
-AFW_UTF8_LITERAL("afw_command");
+const afw_value_string_t afw_command_v_afw_command = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_command")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_afw_command_dash_x =
-AFW_UTF8_LITERAL("afw_command_dash_x");
+const afw_value_string_t afw_command_v_afw_command_dash_x = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_command_dash_x")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_afw_command_interactive =
-AFW_UTF8_LITERAL("afw_command_interactive");
+const afw_value_string_t afw_command_v_afw_command_interactive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_command_interactive")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_afw_command_local_mode =
-AFW_UTF8_LITERAL("afw_command_local_mode");
+const afw_value_string_t afw_command_v_afw_command_local_mode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_command_local_mode")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_default =
-AFW_UTF8_LITERAL("default");
+const afw_value_string_t afw_command_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
 
-AFW_COMMAND_DEFINE_CONST_DATA(afw_utf8_t) afw_command_s_indirect =
-AFW_UTF8_LITERAL("indirect");
+const afw_value_string_t afw_command_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};

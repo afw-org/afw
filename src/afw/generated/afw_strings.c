@@ -25,6695 +25,11157 @@
 #include "afw.h"
 #include "afw_strings.h"
 
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_200 =
-AFW_UTF8_LITERAL("200");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_201 =
-AFW_UTF8_LITERAL("201");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_400 =
-AFW_UTF8_LITERAL("400");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_403 =
-AFW_UTF8_LITERAL("403");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_404 =
-AFW_UTF8_LITERAL("404");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_500 =
-AFW_UTF8_LITERAL("500");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ACCEPT =
-AFW_UTF8_LITERAL("ACCEPT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_AUTH_TYPE =
-AFW_UTF8_LITERAL("AUTH_TYPE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_Adaptive =
-AFW_UTF8_LITERAL("Adaptive");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_B =
-AFW_UTF8_LITERAL("B");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_BOOL =
-AFW_UTF8_LITERAL("BOOL");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_BS =
-AFW_UTF8_LITERAL("BS");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_CONTENT_LENGTH =
-AFW_UTF8_LITERAL("CONTENT_LENGTH");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_CONTENT_TYPE =
-AFW_UTF8_LITERAL("CONTENT_TYPE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_Configuration =
-AFW_UTF8_LITERAL("Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_Created =
-AFW_UTF8_LITERAL("Created");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_DELETE =
-AFW_UTF8_LITERAL("DELETE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_DOCUMENT_ROOT =
-AFW_UTF8_LITERAL("DOCUMENT_ROOT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_DataType =
-AFW_UTF8_LITERAL("DataType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_FCGI_ROLE =
-AFW_UTF8_LITERAL("FCGI_ROLE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_GATEWAY_INTERFACE =
-AFW_UTF8_LITERAL("GATEWAY_INTERFACE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_GET =
-AFW_UTF8_LITERAL("GET");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_GNU =
-AFW_UTF8_LITERAL("GNU");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTPS =
-AFW_UTF8_LITERAL("HTTPS");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_ACCEPT =
-AFW_UTF8_LITERAL("HTTP_ACCEPT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_ACCEPT_CHARSET =
-AFW_UTF8_LITERAL("HTTP_ACCEPT_CHARSET");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_ACCEPT_ENCODING =
-AFW_UTF8_LITERAL("HTTP_ACCEPT_ENCODING");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_ACCEPT_LANGUAGE =
-AFW_UTF8_LITERAL("HTTP_ACCEPT_LANGUAGE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_COOKIE =
-AFW_UTF8_LITERAL("HTTP_COOKIE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_FROM =
-AFW_UTF8_LITERAL("HTTP_FROM");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_HOST =
-AFW_UTF8_LITERAL("HTTP_HOST");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_REFERER =
-AFW_UTF8_LITERAL("HTTP_REFERER");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_HTTP_USER_AGENT =
-AFW_UTF8_LITERAL("HTTP_USER_AGENT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_INF =
-AFW_UTF8_LITERAL("INF");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_Infinity =
-AFW_UTF8_LITERAL("Infinity");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_JeremyScript =
-AFW_UTF8_LITERAL("JeremyScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_L =
-AFW_UTF8_LITERAL("L");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_M =
-AFW_UTF8_LITERAL("M");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_N =
-AFW_UTF8_LITERAL("N");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_NS =
-AFW_UTF8_LITERAL("NS");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_NULL =
-AFW_UTF8_LITERAL("NULL");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_NaN =
-AFW_UTF8_LITERAL("NaN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_OK =
-AFW_UTF8_LITERAL("OK");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ObjectType =
-AFW_UTF8_LITERAL("ObjectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_PATCH =
-AFW_UTF8_LITERAL("PATCH");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_PATH_INFO =
-AFW_UTF8_LITERAL("PATH_INFO");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_PATH_TRANSLATED =
-AFW_UTF8_LITERAL("PATH_TRANSLATED");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_POST =
-AFW_UTF8_LITERAL("POST");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_PUT =
-AFW_UTF8_LITERAL("PUT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_PropertyType =
-AFW_UTF8_LITERAL("PropertyType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_QUERY_STRING =
-AFW_UTF8_LITERAL("QUERY_STRING");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REMOTE_ADDR =
-AFW_UTF8_LITERAL("REMOTE_ADDR");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REMOTE_HOST =
-AFW_UTF8_LITERAL("REMOTE_HOST");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REMOTE_IDENT =
-AFW_UTF8_LITERAL("REMOTE_IDENT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REMOTE_PORT =
-AFW_UTF8_LITERAL("REMOTE_PORT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REMOTE_USER =
-AFW_UTF8_LITERAL("REMOTE_USER");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REQUEST_METHOD =
-AFW_UTF8_LITERAL("REQUEST_METHOD");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REQUEST_SCHEME =
-AFW_UTF8_LITERAL("REQUEST_SCHEME");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_REQUEST_URI =
-AFW_UTF8_LITERAL("REQUEST_URI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_S =
-AFW_UTF8_LITERAL("S");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SCHEME =
-AFW_UTF8_LITERAL("SCHEME");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SCRIPT_NAME =
-AFW_UTF8_LITERAL("SCRIPT_NAME");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_ADDR =
-AFW_UTF8_LITERAL("SERVER_ADDR");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_ADMIN =
-AFW_UTF8_LITERAL("SERVER_ADMIN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_NAME =
-AFW_UTF8_LITERAL("SERVER_NAME");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_PORT =
-AFW_UTF8_LITERAL("SERVER_PORT");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_PROTOCOL =
-AFW_UTF8_LITERAL("SERVER_PROTOCOL");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_SIGNATURE =
-AFW_UTF8_LITERAL("SERVER_SIGNATURE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SERVER_SOFTWARE =
-AFW_UTF8_LITERAL("SERVER_SOFTWARE");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SS =
-AFW_UTF8_LITERAL("SS");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_M_SERIAL =
-AFW_UTF8_LITERAL("SSL_CLIENT_M_SERIAL");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_M_VERSION =
-AFW_UTF8_LITERAL("SSL_CLIENT_M_VERSION");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_S_DN =
-AFW_UTF8_LITERAL("SSL_CLIENT_S_DN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_S_DN_CN =
-AFW_UTF8_LITERAL("SSL_CLIENT_S_DN_CN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_VERIFY =
-AFW_UTF8_LITERAL("SSL_CLIENT_VERIFY");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_V_END =
-AFW_UTF8_LITERAL("SSL_CLIENT_V_END");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_V_REMAIN =
-AFW_UTF8_LITERAL("SSL_CLIENT_V_REMAIN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_SSL_CLIENT_V_START =
-AFW_UTF8_LITERAL("SSL_CLIENT_V_START");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__Adaptive =
-AFW_UTF8_LITERAL("_Adaptive");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAction_ =
-AFW_UTF8_LITERAL("_AdaptiveAction_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveActions_ =
-AFW_UTF8_LITERAL("_AdaptiveActions_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAdaptorMetrics_ =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAdaptorType_ =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAdaptor_ =
-AFW_UTF8_LITERAL("_AdaptiveAdaptor_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveApplicationComponents_ =
-AFW_UTF8_LITERAL("_AdaptiveApplicationComponents_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveApplication_ =
-AFW_UTF8_LITERAL("_AdaptiveApplication_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAuthorizationControl_ =
-AFW_UTF8_LITERAL("_AdaptiveAuthorizationControl_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAuthorizationDecision_ =
-AFW_UTF8_LITERAL("_AdaptiveAuthorizationDecision_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAuthorizationHandlerType_ =
-AFW_UTF8_LITERAL("_AdaptiveAuthorizationHandlerType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAuthorizationHandler_ =
-AFW_UTF8_LITERAL("_AdaptiveAuthorizationHandler_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAuthorizationMode_ =
-AFW_UTF8_LITERAL("_AdaptiveAuthorizationMode_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveAuthorizationResult_ =
-AFW_UTF8_LITERAL("_AdaptiveAuthorizationResult_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveCollection_ =
-AFW_UTF8_LITERAL("_AdaptiveCollection_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConfType_ =
-AFW_UTF8_LITERAL("_AdaptiveConfType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_ =
-AFW_UTF8_LITERAL("_AdaptiveConf_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_adaptor =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_adaptor_afw_runtime =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_afw_runtime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_adaptor_file =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_file");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_adaptor_model =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_model");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_application =
-AFW_UTF8_LITERAL("_AdaptiveConf_application");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_authorizationHandler =
-AFW_UTF8_LITERAL("_AdaptiveConf_authorizationHandler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_authorizationHandler_script =
-AFW_UTF8_LITERAL("_AdaptiveConf_authorizationHandler_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_extension =
-AFW_UTF8_LITERAL("_AdaptiveConf_extension");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_log =
-AFW_UTF8_LITERAL("_AdaptiveConf_log");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_log_event_log =
-AFW_UTF8_LITERAL("_AdaptiveConf_log_event_log");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_log_standard =
-AFW_UTF8_LITERAL("_AdaptiveConf_log_standard");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_log_syslog =
-AFW_UTF8_LITERAL("_AdaptiveConf_log_syslog");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_requestHandler =
-AFW_UTF8_LITERAL("_AdaptiveConf_requestHandler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveConf_requestHandler_adaptor =
-AFW_UTF8_LITERAL("_AdaptiveConf_requestHandler_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveContentType_ =
-AFW_UTF8_LITERAL("_AdaptiveContentType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveContextType_ =
-AFW_UTF8_LITERAL("_AdaptiveContextType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveDataTypeGenerate_ =
-AFW_UTF8_LITERAL("_AdaptiveDataTypeGenerate_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveDataTypeTestCase_ =
-AFW_UTF8_LITERAL("_AdaptiveDataTypeTestCase_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveDataTypeTest_ =
-AFW_UTF8_LITERAL("_AdaptiveDataTypeTest_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveDataType_ =
-AFW_UTF8_LITERAL("_AdaptiveDataType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentRegistryType_ =
-AFW_UTF8_LITERAL("_AdaptiveEnvironmentRegistryType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentRegistry_ =
-AFW_UTF8_LITERAL("_AdaptiveEnvironmentRegistry_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveEnvironmentVariables_ =
-AFW_UTF8_LITERAL("_AdaptiveEnvironmentVariables_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveErrorRVDecoder_ =
-AFW_UTF8_LITERAL("_AdaptiveErrorRVDecoder_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveError_ =
-AFW_UTF8_LITERAL("_AdaptiveError_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveExtension_ =
-AFW_UTF8_LITERAL("_AdaptiveExtension_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFlag_ =
-AFW_UTF8_LITERAL("_AdaptiveFlag_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionCategory_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionCategory_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionDeclaration_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionDeclaration_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionErrorThrown_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionErrorThrown_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionGenerate_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionGenerate_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionParameter_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionParameter_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionTestArgument_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionTestArgument_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionTestCase_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionTestCase_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionTestResult_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionTestResult_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunctionTest_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionTest_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveFunction_ =
-AFW_UTF8_LITERAL("_AdaptiveFunction_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveHybridPropertiesObjects_ =
-AFW_UTF8_LITERAL("_AdaptiveHybridPropertiesObjects_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveHybridProperties_ =
-AFW_UTF8_LITERAL("_AdaptiveHybridProperties_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveInterface_ =
-AFW_UTF8_LITERAL("_AdaptiveInterface_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveJournalEntryRequest_ =
-AFW_UTF8_LITERAL("_AdaptiveJournalEntryRequest_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveJournalEntrySource_ =
-AFW_UTF8_LITERAL("_AdaptiveJournalEntrySource_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveJournalEntry_ =
-AFW_UTF8_LITERAL("_AdaptiveJournalEntry_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveLayoutComponentTypeCategory_ =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentTypeCategory_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveLayoutComponentType_ =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveLayoutComponent_ =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponent_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveLock_ =
-AFW_UTF8_LITERAL("_AdaptiveLock_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveLogType_ =
-AFW_UTF8_LITERAL("_AdaptiveLogType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveLog_ =
-AFW_UTF8_LITERAL("_AdaptiveLog_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveManifest_ =
-AFW_UTF8_LITERAL("_AdaptiveManifest_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveMetaPropertyType_ =
-AFW_UTF8_LITERAL("_AdaptiveMetaPropertyType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveMetaPropertyTypes_ =
-AFW_UTF8_LITERAL("_AdaptiveMetaPropertyTypes_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveMeta_ =
-AFW_UTF8_LITERAL("_AdaptiveMeta_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnAddObject_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnAddObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnDeleteObject_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnDeleteObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnGetInitialObjectId_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetInitialObjectId_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnGetInitialValue_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetInitialValue_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnGetObject_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnGetProperty_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetProperty_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnModifyObject_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnModifyObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnReplaceObject_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnReplaceObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnRetrieveObjects_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnRetrieveObjects_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrentOnSetProperty_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnSetProperty_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelCurrent_ =
-AFW_UTF8_LITERAL("_AdaptiveModelCurrent_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelObjectType_ =
-AFW_UTF8_LITERAL("_AdaptiveModelObjectType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelObjectTypes_ =
-AFW_UTF8_LITERAL("_AdaptiveModelObjectTypes_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelPropertyType_ =
-AFW_UTF8_LITERAL("_AdaptiveModelPropertyType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModelPropertyTypes_ =
-AFW_UTF8_LITERAL("_AdaptiveModelPropertyTypes_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveModel_ =
-AFW_UTF8_LITERAL("_AdaptiveModel_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveObjectOptions_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectOptions_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveObjectType_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveObjectTypes_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectTypes_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveObject_ =
-AFW_UTF8_LITERAL("_AdaptiveObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptivePackageCompileOptions_ =
-AFW_UTF8_LITERAL("_AdaptivePackageCompileOptions_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptivePackageSrcdirInfo_ =
-AFW_UTF8_LITERAL("_AdaptivePackageSrcdirInfo_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptivePackageSrcdirs_ =
-AFW_UTF8_LITERAL("_AdaptivePackageSrcdirs_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptivePackage_ =
-AFW_UTF8_LITERAL("_AdaptivePackage_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveParsedURI_ =
-AFW_UTF8_LITERAL("_AdaptiveParsedURI_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptivePolymorphicFunction_ =
-AFW_UTF8_LITERAL("_AdaptivePolymorphicFunction_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptivePropertyTypes_ =
-AFW_UTF8_LITERAL("_AdaptivePropertyTypes_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveProvisioningPeer_ =
-AFW_UTF8_LITERAL("_AdaptiveProvisioningPeer_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveQualifierDefinitions_ =
-AFW_UTF8_LITERAL("_AdaptiveQualifierDefinitions_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveQueryCriteriaFilter_ =
-AFW_UTF8_LITERAL("_AdaptiveQueryCriteriaFilter_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveQueryCriteria_ =
-AFW_UTF8_LITERAL("_AdaptiveQueryCriteria_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRequestContext_ =
-AFW_UTF8_LITERAL("_AdaptiveRequestContext_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRequestHandlerType_ =
-AFW_UTF8_LITERAL("_AdaptiveRequestHandlerType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRequestHandler_ =
-AFW_UTF8_LITERAL("_AdaptiveRequestHandler_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRequestProperties_ =
-AFW_UTF8_LITERAL("_AdaptiveRequestProperties_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponseAction_ =
-AFW_UTF8_LITERAL("_AdaptiveResponseAction_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveResponse_ =
-AFW_UTF8_LITERAL("_AdaptiveResponse_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRootFilePaths_ =
-AFW_UTF8_LITERAL("_AdaptiveRootFilePaths_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRuntimeCustom_ =
-AFW_UTF8_LITERAL("_AdaptiveRuntimeCustom_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRuntimeLabels_ =
-AFW_UTF8_LITERAL("_AdaptiveRuntimeLabels_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRuntimeObjectMapInf_ =
-AFW_UTF8_LITERAL("_AdaptiveRuntimeObjectMapInf_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRuntimeObject_ =
-AFW_UTF8_LITERAL("_AdaptiveRuntimeObject_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRuntimeProperty_ =
-AFW_UTF8_LITERAL("_AdaptiveRuntimeProperty_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveRuntimeValueAccessor_ =
-AFW_UTF8_LITERAL("_AdaptiveRuntimeValueAccessor_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveServer_ =
-AFW_UTF8_LITERAL("_AdaptiveServer_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveServiceConf_ =
-AFW_UTF8_LITERAL("_AdaptiveServiceConf_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveServiceType_ =
-AFW_UTF8_LITERAL("_AdaptiveServiceType_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveService_ =
-AFW_UTF8_LITERAL("_AdaptiveService_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveSingleton_ =
-AFW_UTF8_LITERAL("_AdaptiveSingleton_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveSystemInfo_ =
-AFW_UTF8_LITERAL("_AdaptiveSystemInfo_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveTag_ =
-AFW_UTF8_LITERAL("_AdaptiveTag_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveTestScriptResult_ =
-AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveTestScriptTestResult_ =
-AFW_UTF8_LITERAL("_AdaptiveTestScriptTestResult_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveValueInf_ =
-AFW_UTF8_LITERAL("_AdaptiveValueInf_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveValueMeta_ =
-AFW_UTF8_LITERAL("_AdaptiveValueMeta_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveValuePath_ =
-AFW_UTF8_LITERAL("_AdaptiveValuePath_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__AdaptiveVersionInfo_ =
-AFW_UTF8_LITERAL("_AdaptiveVersionInfo_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__adaptive =
-AFW_UTF8_LITERAL("_adaptive");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__flags_ =
-AFW_UTF8_LITERAL("_flags_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s__meta_ =
-AFW_UTF8_LITERAL("_meta_");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_Content_dash_Type =
-AFW_UTF8_LITERAL("Content-Type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_Core_afw_adaptor =
-AFW_UTF8_LITERAL("Core afw adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_adaptor_description =
-AFW_UTF8_LITERAL("This configuration type adds an adaptor and corresponding service to this Adaptive Framework environment.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_adaptor_title =
-AFW_UTF8_LITERAL("Adaptive Framework Adaptor Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_bdb_adaptor_module_path_dll =
-AFW_UTF8_LITERAL("libafwbdb.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_bdb_adaptor_module_path_so =
-AFW_UTF8_LITERAL("libafwbdb.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_dynamo_db_adaptor_module_path_dll =
-AFW_UTF8_LITERAL("libafwdynamodb.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_dynamo_db_adaptor_module_path_so =
-AFW_UTF8_LITERAL("libafwdynamodb.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_ldap_adaptor_module_path_dll =
-AFW_UTF8_LITERAL("libafwldap.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_ldap_adaptor_module_path_so =
-AFW_UTF8_LITERAL("libafwldap.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_lmdb_adaptor_module_path_dll =
-AFW_UTF8_LITERAL("libafwlmdb.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_lmdb_adaptor_module_path_so =
-AFW_UTF8_LITERAL("libafwlmdb.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_sql_adaptor_module_path_dll =
-AFW_UTF8_LITERAL("libafwsql.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_sql_adaptor_module_path_so =
-AFW_UTF8_LITERAL("libafwsql.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_ubjson_module_path_dll =
-AFW_UTF8_LITERAL("libafwubjson.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_ubjson_module_path_so =
-AFW_UTF8_LITERAL("libafwubjson.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_xacml_module_path_dll =
-AFW_UTF8_LITERAL("libafwxacml.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_xacml_module_path_so =
-AFW_UTF8_LITERAL("libafwxamcl.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_yaml_module_path_dll =
-AFW_UTF8_LITERAL("libafwyaml.dll");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_afw_yaml_module_path_so =
-AFW_UTF8_LITERAL("libafwyaml.so");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_ampersand =
-AFW_UTF8_LITERAL("&");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_application_description =
-AFW_UTF8_LITERAL("This configuration type provides the application object for this Adaptive Framework environment.  It can only be specified once.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_application_json =
-AFW_UTF8_LITERAL("application/json");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_application_title =
-AFW_UTF8_LITERAL("Adaptive Framework Application Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_application_xml =
-AFW_UTF8_LITERAL("application/xml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_application_yaml =
-AFW_UTF8_LITERAL("application/x-yaml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_asterisk =
-AFW_UTF8_LITERAL("*");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_authorizationHandler_description =
-AFW_UTF8_LITERAL("This configuration type adds an authorization handler for this Adaptive Framework environment.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_authorizationHandler_title =
-AFW_UTF8_LITERAL("Adaptive Framework Authorization Handler Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_automatic_start =
-AFW_UTF8_LITERAL("automatic start");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_backslash =
-AFW_UTF8_LITERAL("\\");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_bracketed_value =
-AFW_UTF8_LITERAL("[value]");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_close_angle_bracket =
-AFW_UTF8_LITERAL(">");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_close_brace =
-AFW_UTF8_LITERAL("}");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_close_parenthesis =
-AFW_UTF8_LITERAL(")");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_close_square_bracket =
-AFW_UTF8_LITERAL("]");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_colon =
-AFW_UTF8_LITERAL(":");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_comma =
-AFW_UTF8_LITERAL(",");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_compile_expect_error =
-AFW_UTF8_LITERAL("Compile expect error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_compile_source_error =
-AFW_UTF8_LITERAL("Compile source error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_context_type_application_qualifier_definitions_path =
-AFW_UTF8_LITERAL("/afw/_AdaptiveContextType_/application/qualifierDefinitions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_current_colon_colon_mapBackObject =
-AFW_UTF8_LITERAL("current::mapBackObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_current_colon_colon_mapObject =
-AFW_UTF8_LITERAL("current::mapObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_current_colon_colon_returnObject =
-AFW_UTF8_LITERAL("current::returnObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_dash =
-AFW_UTF8_LITERAL("-");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_dash_dash_syntax_test_script =
-AFW_UTF8_LITERAL("--syntax test_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_dash_s_test_script =
-AFW_UTF8_LITERAL("--s test_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_decision_not_applicable =
-AFW_UTF8_LITERAL("notApplicable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_decision_not_applicable_brief =
-AFW_UTF8_LITERAL("Not applicable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_decision_not_applicable_description =
-AFW_UTF8_LITERAL("Decision is not applicable.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_decision_not_applicable_upper_camel =
-AFW_UTF8_LITERAL("NotApplicable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_dot =
-AFW_UTF8_LITERAL(".");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_dot_dot_slash =
-AFW_UTF8_LITERAL("../");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_dot_slash =
-AFW_UTF8_LITERAL("./");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_double_asterisk =
-AFW_UTF8_LITERAL("**");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_double_dot =
-AFW_UTF8_LITERAL("..");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_empty_string =
-AFW_UTF8_LITERAL("");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_equal =
-AFW_UTF8_LITERAL("=");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_evaluate_expect_error =
-AFW_UTF8_LITERAL("Evaluate expect error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_evaluate_source_error =
-AFW_UTF8_LITERAL("Evaluate source error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_exclamation =
-AFW_UTF8_LITERAL("!");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_extension_description =
-AFW_UTF8_LITERAL("This configuration type adds additional functionality this Adaptive Framework environment.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_extension_title =
-AFW_UTF8_LITERAL("Adaptive Framework Extension Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny =
-AFW_UTF8_LITERAL("compile:noImplicitAny");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny_brief =
-AFW_UTF8_LITERAL("Do not infer type any");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noImplicitAny_description =
-AFW_UTF8_LITERAL("If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize =
-AFW_UTF8_LITERAL("compile:noOptimize");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize_brief =
-AFW_UTF8_LITERAL("Evaluate values that have not been optimized");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_compile_noOptimize_description =
-AFW_UTF8_LITERAL("Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug =
-AFW_UTF8_LITERAL("debug");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_brief =
-AFW_UTF8_LITERAL("Basic debug flag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_description =
-AFW_UTF8_LITERAL("This triggers all basic debugging.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_detail =
-AFW_UTF8_LITERAL("debug:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_detail_brief =
-AFW_UTF8_LITERAL("Debug detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_detail_description =
-AFW_UTF8_LITERAL("This triggers all basic plus detail debugging.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_function_active =
-AFW_UTF8_LITERAL("debug:function_active");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_function_active_brief =
-AFW_UTF8_LITERAL("Print debug() if not detail calls");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_function_active_description =
-AFW_UTF8_LITERAL("This causes calls to the debug() adaptive function to print if the detail parameter is not true.  If off, debug() calls are ignored.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_function_active_detail =
-AFW_UTF8_LITERAL("debug:function_active:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_function_active_detail_brief =
-AFW_UTF8_LITERAL("Print all debug() calls");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_function_active_detail_description =
-AFW_UTF8_LITERAL("This causes all calls to the debug() adaptive function to print.  If off, debug() calls with true specified for detail parameter are ignored.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_lock =
-AFW_UTF8_LITERAL("debug:lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_lock_brief =
-AFW_UTF8_LITERAL("Debug lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_lock_description =
-AFW_UTF8_LITERAL("This triggers all lock debugging.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_pool =
-AFW_UTF8_LITERAL("debug:pool");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_pool_brief =
-AFW_UTF8_LITERAL("Pool debug");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_pool_description =
-AFW_UTF8_LITERAL("This triggers basic pool debugging.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_pool_detail =
-AFW_UTF8_LITERAL("debug:pool:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_pool_detail_brief =
-AFW_UTF8_LITERAL("Detailed pool debug");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_debug_pool_detail_description =
-AFW_UTF8_LITERAL("This triggers basic and detail pool debugging.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_console =
-AFW_UTF8_LITERAL("response:console");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_console_brief =
-AFW_UTF8_LITERAL("The console stream will be sent to the request's response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_console_description =
-AFW_UTF8_LITERAL("Anything written to the console stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stdout.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_console_stream =
-AFW_UTF8_LITERAL("response:console:stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_console_stream_brief =
-AFW_UTF8_LITERAL("The console stream will be sent to a stream in the request's response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_console_stream_description =
-AFW_UTF8_LITERAL("Anything written to the console stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:console is on, the console stream is included as the value of the \"console\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error =
-AFW_UTF8_LITERAL("response:error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_backtrace =
-AFW_UTF8_LITERAL("response:error:backtrace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_backtraceEvaluation =
-AFW_UTF8_LITERAL("response:error:backtraceEvaluation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_backtraceEvaluation_brief =
-AFW_UTF8_LITERAL("Include evaluation backtrace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_backtraceEvaluation_description =
-AFW_UTF8_LITERAL("Include evaluation backtrace in error responses.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_backtrace_brief =
-AFW_UTF8_LITERAL("Include backtrace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_backtrace_description =
-AFW_UTF8_LITERAL("Include backtrace in error responses.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_brief =
-AFW_UTF8_LITERAL("Include backtrace, backtraceEvaluation, and contextual");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_contextual =
-AFW_UTF8_LITERAL("response:error:contextual");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_contextual_brief =
-AFW_UTF8_LITERAL("Include contextual");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_contextual_description =
-AFW_UTF8_LITERAL("Include contextual information in error responses.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_description =
-AFW_UTF8_LITERAL("Include backtrace, backtraceEvaluation, and contextual in error responses.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_hasAdditionalDetail =
-AFW_UTF8_LITERAL("response:error:hasAdditionalDetail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_hasAdditionalDetail_brief =
-AFW_UTF8_LITERAL("Active if any other response:error flags are active");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_error_hasAdditionalDetail_description =
-AFW_UTF8_LITERAL("This flag can be tested to determine if any other response:error flags are active.  This flag should not normally be directly set.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stderr =
-AFW_UTF8_LITERAL("response:stderr");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stderr_brief =
-AFW_UTF8_LITERAL("The stderr stream will be sent to the request's response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stderr_description =
-AFW_UTF8_LITERAL("Anything written to the stderr stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stderr.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stderr_stream =
-AFW_UTF8_LITERAL("response:stderr:stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stderr_stream_brief =
-AFW_UTF8_LITERAL("The stderr stream will be sent to a stream in the request's response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stderr_stream_description =
-AFW_UTF8_LITERAL("Anything written to the stderr stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stderr is on, the stderr stream is included as the value of the \"stderr\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stderr.  This flag requires content-type application/x-afw.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stdout =
-AFW_UTF8_LITERAL("response:stdout");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stdout_brief =
-AFW_UTF8_LITERAL("The stdout stream will be sent to the request's response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stdout_description =
-AFW_UTF8_LITERAL("Anything written to the stdout stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stdout.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stdout_stream =
-AFW_UTF8_LITERAL("response:stdout:stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stdout_stream_brief =
-AFW_UTF8_LITERAL("The stdout stream will be sent to a stream in the request's response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_response_stdout_stream_description =
-AFW_UTF8_LITERAL("Anything written to the stdout stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stdout is on, the stdout stream is included as the value of the \"stdout\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace =
-AFW_UTF8_LITERAL("trace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_adaptor =
-AFW_UTF8_LITERAL("trace:adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_adaptor_brief =
-AFW_UTF8_LITERAL("Basic trace for all adaptors");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_adaptor_description =
-AFW_UTF8_LITERAL("This produces basic traces for all adaptors.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_adaptor_detail =
-AFW_UTF8_LITERAL("trace:adaptor:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_adaptor_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for all adaptors");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_adaptor_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for all adaptors.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization =
-AFW_UTF8_LITERAL("trace:authorization");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorizationHandler =
-AFW_UTF8_LITERAL("trace:authorizationHandler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorizationHandler_brief =
-AFW_UTF8_LITERAL("Basic trace for all authorizationHandler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorizationHandler_description =
-AFW_UTF8_LITERAL("This produces basic traces for all authorizationHandler.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorizationHandler_detail =
-AFW_UTF8_LITERAL("trace:authorizationHandler:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorizationHandler_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for all authorizationHandlers");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorizationHandler_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for all authorizationHandlers.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_brief =
-AFW_UTF8_LITERAL("Basic trace for authorization");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check =
-AFW_UTF8_LITERAL("trace:authorization:check");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_brief =
-AFW_UTF8_LITERAL("Basic trace for authorization check call");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_bypass =
-AFW_UTF8_LITERAL("trace:authorization:bypass");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_bypass_brief =
-AFW_UTF8_LITERAL("Basic trace for authorization check call bypasses");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_bypass_description =
-AFW_UTF8_LITERAL("This produces traces for authorization check call bypasses.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_description =
-AFW_UTF8_LITERAL("This produces basic traces for authorization check call.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_detail =
-AFW_UTF8_LITERAL("trace:authorization:check:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for authorization check call");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_check_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for authorization check calls.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_decision =
-AFW_UTF8_LITERAL("trace:authorization:decision");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_decision_brief =
-AFW_UTF8_LITERAL("Basic trace for authorization check call's decision");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_decision_description =
-AFW_UTF8_LITERAL("This produces basic traces for authorization check call's decision.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_decision_detail =
-AFW_UTF8_LITERAL("trace:authorization:decision:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_decision_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for authorization check call's decision");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_decision_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for authorization check call's decision.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_description =
-AFW_UTF8_LITERAL("This produces basic traces for authorization.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_detail =
-AFW_UTF8_LITERAL("trace:authorization:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for authorization");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_authorization_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for authorization.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_brief =
-AFW_UTF8_LITERAL("Basic traces");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_description =
-AFW_UTF8_LITERAL("This produces all basic traces.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_detail =
-AFW_UTF8_LITERAL("trace:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_detail_brief =
-AFW_UTF8_LITERAL("All detail traces");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_evaluation_detail =
-AFW_UTF8_LITERAL("trace:evaluation:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_evaluation_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for evaluations");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_evaluation_detail_description =
-AFW_UTF8_LITERAL("This produces detail traces for adaptive value evaluations.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_request =
-AFW_UTF8_LITERAL("trace:request");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_request_brief =
-AFW_UTF8_LITERAL("Basic trace for all requests");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_request_description =
-AFW_UTF8_LITERAL("This produces basic traces for all requests.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_request_detail =
-AFW_UTF8_LITERAL("trace:request:detail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_request_detail_brief =
-AFW_UTF8_LITERAL("Detail trace for all requests");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_trace_request_detail_description =
-AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for all requests.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_unspecified =
-AFW_UTF8_LITERAL("unspecified");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_unspecified_brief =
-AFW_UTF8_LITERAL("Never set");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_flag_unspecified_description =
-AFW_UTF8_LITERAL("This is flag index 0 and is never set.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_in_catch =
-AFW_UTF8_LITERAL("in catch");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_in_finally =
-AFW_UTF8_LITERAL("in finally");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_journal_get_entry =
-AFW_UTF8_LITERAL("journal::get_entry");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lambda_function =
-AFW_UTF8_LITERAL("Lambda function.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_adaptor_id_anchor =
-AFW_UTF8_LITERAL("environment:adaptor_id_anchor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_adaptor_id_anchor_brief =
-AFW_UTF8_LITERAL("Adaptor id anchor lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_adaptor_id_anchor_description =
-AFW_UTF8_LITERAL("This lock is used internally when accessing adaptor id anchor memory.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_authorization_handler_id_anchor =
-AFW_UTF8_LITERAL("environment:authorization_handler_id");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_authorization_handler_id_anchor_brief =
-AFW_UTF8_LITERAL("Authorization handler id anchor lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_authorization_handler_id_anchor_description =
-AFW_UTF8_LITERAL("This lock is used internally when accessing authorization handler id anchor memory.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_environment =
-AFW_UTF8_LITERAL("environment:registry");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_environment_brief =
-AFW_UTF8_LITERAL("Environment registry lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_environment_description =
-AFW_UTF8_LITERAL("This lock is used internally by afw_environment.c when accessing environment registry memory.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_flags =
-AFW_UTF8_LITERAL("environment:flags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_flags_brief =
-AFW_UTF8_LITERAL("Environment flags lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_flags_description =
-AFW_UTF8_LITERAL("This lock is used internally when accessing environment flags memory.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_log_list =
-AFW_UTF8_LITERAL("environment:log_list");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_log_list_brief =
-AFW_UTF8_LITERAL("Environment log list lock");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_log_list_description =
-AFW_UTF8_LITERAL("This lock is used internally when accessing environment log list memory.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_multithreaded_pool =
-AFW_UTF8_LITERAL("multithreaded_pool");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_multithreaded_pool_brief =
-AFW_UTF8_LITERAL("Multithreaded pool");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_lock_multithreaded_pool_description =
-AFW_UTF8_LITERAL("This lock is used internally by afw_pool.c when accessing multithreaded pools.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_log_description =
-AFW_UTF8_LITERAL("This configuration type adds a log and corresponding service to this Adaptive Framework environment.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_log_title =
-AFW_UTF8_LITERAL("Adaptive Framework Log Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_meta_key =
-AFW_UTF8_LITERAL("meta()");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_meta_objectType =
-AFW_UTF8_LITERAL("_meta_.objectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_newline_char =
-AFW_UTF8_LITERAL("\n");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_not_implemented =
-AFW_UTF8_LITERAL("not implemented");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_open_angle_bracket =
-AFW_UTF8_LITERAL("<");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_open_brace =
-AFW_UTF8_LITERAL("{");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_open_parenthesis =
-AFW_UTF8_LITERAL("(");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_open_square_bracket =
-AFW_UTF8_LITERAL("[");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_other_error =
-AFW_UTF8_LITERAL("Other error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_period =
-AFW_UTF8_LITERAL(".");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_qualification_operator =
-AFW_UTF8_LITERAL("::");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_requestHandler_description =
-AFW_UTF8_LITERAL("This configuration type adds a request handler to this Adaptive Framework environment.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_requestHandler_title =
-AFW_UTF8_LITERAL("Adaptive Framework Request Handler Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_request_body =
-AFW_UTF8_LITERAL("request body");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_semicolon =
-AFW_UTF8_LITERAL(";");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_service_type_adaptor_title =
-AFW_UTF8_LITERAL("Service type for adaptors.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_service_type_authorizationHandler_title =
-AFW_UTF8_LITERAL("Service type for authorizationHandler.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_service_type_log_title =
-AFW_UTF8_LITERAL("Service type for logs.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_services_description =
-AFW_UTF8_LITERAL("This configuration type defines how services are handled in this Adaptive Framework environment.  It can only be specified once.");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_services_title =
-AFW_UTF8_LITERAL("Adaptive Framework Services Configuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_slash =
-AFW_UTF8_LITERAL("/");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_slash_afw =
-AFW_UTF8_LITERAL("/afw");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_star_slash_star =
-AFW_UTF8_LITERAL("*/*");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_tab =
-AFW_UTF8_LITERAL("\t");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_undefined_as_string =
-AFW_UTF8_LITERAL("<undefined>");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_a_vertical_bar =
-AFW_UTF8_LITERAL("|");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_abs =
-AFW_UTF8_LITERAL("abs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_abs_double =
-AFW_UTF8_LITERAL("abs_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_abs_integer =
-AFW_UTF8_LITERAL("abs_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_access_permitted =
-AFW_UTF8_LITERAL("access_permitted");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_action =
-AFW_UTF8_LITERAL("action");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_actionId =
-AFW_UTF8_LITERAL("actionId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_actionNumber =
-AFW_UTF8_LITERAL("actionNumber");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_actions =
-AFW_UTF8_LITERAL("actions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor =
-AFW_UTF8_LITERAL("adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptorId =
-AFW_UTF8_LITERAL("adaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptorType =
-AFW_UTF8_LITERAL("adaptorType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptorTypeSpecific =
-AFW_UTF8_LITERAL("adaptorTypeSpecific");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor_additional_metrics =
-AFW_UTF8_LITERAL("adaptor_additional_metrics");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor_id =
-AFW_UTF8_LITERAL("adaptor_id");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor_id_anchor =
-AFW_UTF8_LITERAL("adaptor_id_anchor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor_metrics =
-AFW_UTF8_LITERAL("adaptor_metrics");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor_objectCallback_signature =
-AFW_UTF8_LITERAL("adaptor_objectCallback_signature");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_adaptor_type =
-AFW_UTF8_LITERAL("adaptor_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add =
-AFW_UTF8_LITERAL("add");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_addObjectCount =
-AFW_UTF8_LITERAL("addObjectCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_dayTimeDuration =
-AFW_UTF8_LITERAL("add_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_dayTimeDuration_dateTime =
-AFW_UTF8_LITERAL("add_dayTimeDuration_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_double =
-AFW_UTF8_LITERAL("add_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_entries =
-AFW_UTF8_LITERAL("add_entries");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_integer =
-AFW_UTF8_LITERAL("add_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_object =
-AFW_UTF8_LITERAL("add_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_object_with_uri =
-AFW_UTF8_LITERAL("add_object_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_properties =
-AFW_UTF8_LITERAL("add_properties");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_string =
-AFW_UTF8_LITERAL("add_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_value =
-AFW_UTF8_LITERAL("add_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_yearMonthDuration =
-AFW_UTF8_LITERAL("add_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_yearMonthDuration_date =
-AFW_UTF8_LITERAL("add_yearMonthDuration_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_add_yearMonthDuration_dateTime =
-AFW_UTF8_LITERAL("add_yearMonthDuration_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_additional =
-AFW_UTF8_LITERAL("additional");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_additionalArgCheck =
-AFW_UTF8_LITERAL("additionalArgCheck");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_additionalConstraints =
-AFW_UTF8_LITERAL("additionalConstraints");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_administrative =
-AFW_UTF8_LITERAL("administrative");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_advanceCursor =
-AFW_UTF8_LITERAL("advanceCursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_advice =
-AFW_UTF8_LITERAL("advice");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw =
-AFW_UTF8_LITERAL("afw");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwCamelCaseFunctionLabel =
-AFW_UTF8_LITERAL("afwCamelCaseFunctionLabel");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwCompiledVersion =
-AFW_UTF8_LITERAL("afwCompiledVersion");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwPackageId =
-AFW_UTF8_LITERAL("afwPackageId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwPackageLabel =
-AFW_UTF8_LITERAL("afwPackageLabel");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwVersion =
-AFW_UTF8_LITERAL("afwVersion");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor =
-AFW_UTF8_LITERAL("afw_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_factory =
-AFW_UTF8_LITERAL("afw_adaptor_factory");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_impl_index =
-AFW_UTF8_LITERAL("afw_adaptor_impl_index");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_impl_index_cursor =
-AFW_UTF8_LITERAL("afw_adaptor_impl_index_cursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_journal =
-AFW_UTF8_LITERAL("afw_adaptor_journal");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_key_value =
-AFW_UTF8_LITERAL("afw_adaptor_key_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_object_type_cache =
-AFW_UTF8_LITERAL("afw_adaptor_object_type_cache");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_session =
-AFW_UTF8_LITERAL("afw_adaptor_session");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_adaptor_transaction =
-AFW_UTF8_LITERAL("afw_adaptor_transaction");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_array =
-AFW_UTF8_LITERAL("afw_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_array_setter =
-AFW_UTF8_LITERAL("afw_array_setter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_authorization_handler =
-AFW_UTF8_LITERAL("afw_authorization_handler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_authorization_handler_factory =
-AFW_UTF8_LITERAL("afw_authorization_handler_factory");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_bdb_adaptor =
-AFW_UTF8_LITERAL("afw_bdb_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_command =
-AFW_UTF8_LITERAL("afw_command");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_components =
-AFW_UTF8_LITERAL("afw_components");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_components_extension_loaded =
-AFW_UTF8_LITERAL("afw_components_extension_loaded");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_connection =
-AFW_UTF8_LITERAL("afw_connection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_content_type =
-AFW_UTF8_LITERAL("afw_content_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_content_type_object_list_writer =
-AFW_UTF8_LITERAL("afw_content_type_object_list_writer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_data_type =
-AFW_UTF8_LITERAL("afw_data_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_dev =
-AFW_UTF8_LITERAL("afw_dev");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_dynamo_db_adaptor =
-AFW_UTF8_LITERAL("afw_dynamo_db_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_extension =
-AFW_UTF8_LITERAL("afw_extension");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_ldap =
-AFW_UTF8_LITERAL("afw_ldap");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_ldap_adaptor =
-AFW_UTF8_LITERAL("afw_ldap_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_lmdb =
-AFW_UTF8_LITERAL("afw_lmdb");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_lmdb_adaptor =
-AFW_UTF8_LITERAL("afw_lmdb_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_log =
-AFW_UTF8_LITERAL("afw_log");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_log_factory =
-AFW_UTF8_LITERAL("afw_log_factory");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_memory_t =
-AFW_UTF8_LITERAL("afw_memory_t");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_object =
-AFW_UTF8_LITERAL("afw_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_object_associative_array =
-AFW_UTF8_LITERAL("afw_object_associative_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_object_setter =
-AFW_UTF8_LITERAL("afw_object_setter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_pool =
-AFW_UTF8_LITERAL("afw_pool");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_request =
-AFW_UTF8_LITERAL("afw_request");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_request_handler =
-AFW_UTF8_LITERAL("afw_request_handler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_request_handler_factory =
-AFW_UTF8_LITERAL("afw_request_handler_factory");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_request_handler_head =
-AFW_UTF8_LITERAL("afw_request_handler_head");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_runtime =
-AFW_UTF8_LITERAL("afw_runtime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_server =
-AFW_UTF8_LITERAL("afw_server");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_server_fcgi =
-AFW_UTF8_LITERAL("afw_server_fcgi");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_service_type =
-AFW_UTF8_LITERAL("afw_service_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_sql_adaptor =
-AFW_UTF8_LITERAL("afw_sql_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_stream =
-AFW_UTF8_LITERAL("afw_stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_ubjson =
-AFW_UTF8_LITERAL("afw_ubjson");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_utf8_t =
-AFW_UTF8_LITERAL("afw_utf8_t");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_value =
-AFW_UTF8_LITERAL("afw_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_value_get_evaluated_meta =
-AFW_UTF8_LITERAL("afw_value_get_evaluated_meta");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_value_get_evaluated_metas =
-AFW_UTF8_LITERAL("afw_value_get_evaluated_metas");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_variable_handler =
-AFW_UTF8_LITERAL("afw_variable_handler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_vfs =
-AFW_UTF8_LITERAL("afw_vfs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_writer =
-AFW_UTF8_LITERAL("afw_writer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_xctx =
-AFW_UTF8_LITERAL("afw_xctx");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afw_yaml =
-AFW_UTF8_LITERAL("afw_yaml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwjson =
-AFW_UTF8_LITERAL("afwjson");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_afwyaml =
-AFW_UTF8_LITERAL("afwyaml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_alert =
-AFW_UTF8_LITERAL("alert");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_all_of =
-AFW_UTF8_LITERAL("all_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_all_of_all =
-AFW_UTF8_LITERAL("all_of_all");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_all_of_any =
-AFW_UTF8_LITERAL("all_of_any");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowAdd =
-AFW_UTF8_LITERAL("allowAdd");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowChange =
-AFW_UTF8_LITERAL("allowChange");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowDelete =
-AFW_UTF8_LITERAL("allowDelete");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowDenyOverride =
-AFW_UTF8_LITERAL("allowDenyOverride");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowEntity =
-AFW_UTF8_LITERAL("allowEntity");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowPermitOverride =
-AFW_UTF8_LITERAL("allowPermitOverride");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowQuery =
-AFW_UTF8_LITERAL("allowQuery");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowRead =
-AFW_UTF8_LITERAL("allowRead");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowReregister =
-AFW_UTF8_LITERAL("allowReregister");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowWrite =
-AFW_UTF8_LITERAL("allowWrite");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_allowedValues =
-AFW_UTF8_LITERAL("allowedValues");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_an_ellipsis =
-AFW_UTF8_LITERAL("...");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ancestorPaths =
-AFW_UTF8_LITERAL("ancestorPaths");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_and =
-AFW_UTF8_LITERAL("and");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_any =
-AFW_UTF8_LITERAL("any");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI =
-AFW_UTF8_LITERAL("anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_at_least_one_member_of =
-AFW_UTF8_LITERAL("anyURI_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_bag =
-AFW_UTF8_LITERAL("anyURI_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_bag_size =
-AFW_UTF8_LITERAL("anyURI_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_ends_with =
-AFW_UTF8_LITERAL("anyURI_ends_with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_eq =
-AFW_UTF8_LITERAL("anyURI_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_includes =
-AFW_UTF8_LITERAL("anyURI_includes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_intersection =
-AFW_UTF8_LITERAL("anyURI_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_is_in =
-AFW_UTF8_LITERAL("anyURI_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_one_and_only =
-AFW_UTF8_LITERAL("anyURI_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_regexp_match =
-AFW_UTF8_LITERAL("anyURI_regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_set_equals =
-AFW_UTF8_LITERAL("anyURI_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_starts_with =
-AFW_UTF8_LITERAL("anyURI_starts_with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_subset =
-AFW_UTF8_LITERAL("anyURI_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_substring =
-AFW_UTF8_LITERAL("anyURI_substring");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_to_string =
-AFW_UTF8_LITERAL("anyURI_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_anyURI_union =
-AFW_UTF8_LITERAL("anyURI_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_any_of =
-AFW_UTF8_LITERAL("any_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_any_of_all =
-AFW_UTF8_LITERAL("any_of_all");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_any_of_any =
-AFW_UTF8_LITERAL("any_of_any");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ao =
-AFW_UTF8_LITERAL("ao");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_applicableFlags =
-AFW_UTF8_LITERAL("applicableFlags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_applicablePolicies =
-AFW_UTF8_LITERAL("applicablePolicies");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_applicable_flags =
-AFW_UTF8_LITERAL("applicable_flags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_application =
-AFW_UTF8_LITERAL("application");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_applicationId =
-AFW_UTF8_LITERAL("applicationId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_apply_object_options =
-AFW_UTF8_LITERAL("apply_object_options");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_argument =
-AFW_UTF8_LITERAL("argument");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_arguments =
-AFW_UTF8_LITERAL("arguments");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_array =
-AFW_UTF8_LITERAL("array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_array_includes =
-AFW_UTF8_LITERAL("array_includes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_as =
-AFW_UTF8_LITERAL("as");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assert =
-AFW_UTF8_LITERAL("assert");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assert_has_property =
-AFW_UTF8_LITERAL("assert_has_property");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assert_has_value =
-AFW_UTF8_LITERAL("assert_has_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assert_value =
-AFW_UTF8_LITERAL("assert_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_assign =
-AFW_UTF8_LITERAL("assign");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_async =
-AFW_UTF8_LITERAL("async");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of =
-AFW_UTF8_LITERAL("at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_anyURI =
-AFW_UTF8_LITERAL("at_least_one_member_of_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_base64Binary =
-AFW_UTF8_LITERAL("at_least_one_member_of_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_boolean =
-AFW_UTF8_LITERAL("at_least_one_member_of_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_date =
-AFW_UTF8_LITERAL("at_least_one_member_of_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_dateTime =
-AFW_UTF8_LITERAL("at_least_one_member_of_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_dayTimeDuration =
-AFW_UTF8_LITERAL("at_least_one_member_of_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_double =
-AFW_UTF8_LITERAL("at_least_one_member_of_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_hexBinary =
-AFW_UTF8_LITERAL("at_least_one_member_of_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_integer =
-AFW_UTF8_LITERAL("at_least_one_member_of_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_rfc822Name =
-AFW_UTF8_LITERAL("at_least_one_member_of_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_string =
-AFW_UTF8_LITERAL("at_least_one_member_of_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_time =
-AFW_UTF8_LITERAL("at_least_one_member_of_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_x500Name =
-AFW_UTF8_LITERAL("at_least_one_member_of_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_at_least_one_member_of_yearMonthDuration =
-AFW_UTF8_LITERAL("at_least_one_member_of_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authority =
-AFW_UTF8_LITERAL("authority");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization =
-AFW_UTF8_LITERAL("authorization");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationAdaptorCreate =
-AFW_UTF8_LITERAL("authorizationAdaptorCreate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationAdaptorDelete =
-AFW_UTF8_LITERAL("authorizationAdaptorDelete");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationAdaptorQuery =
-AFW_UTF8_LITERAL("authorizationAdaptorQuery");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationAdaptorRead =
-AFW_UTF8_LITERAL("authorizationAdaptorRead");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationAdaptorUpdate =
-AFW_UTF8_LITERAL("authorizationAdaptorUpdate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationCheck =
-AFW_UTF8_LITERAL("authorizationCheck");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationControl =
-AFW_UTF8_LITERAL("authorizationControl");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationHandler =
-AFW_UTF8_LITERAL("authorizationHandler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationHandlerId =
-AFW_UTF8_LITERAL("authorizationHandlerId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationHandlerType =
-AFW_UTF8_LITERAL("authorizationHandlerType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorizationResults =
-AFW_UTF8_LITERAL("authorizationResults");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_check =
-AFW_UTF8_LITERAL("authorization_check");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_handler =
-AFW_UTF8_LITERAL("authorization_handler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_handler_id =
-AFW_UTF8_LITERAL("authorization_handler_id");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_handler_id_anchor =
-AFW_UTF8_LITERAL("authorization_handler_id_anchor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_authorization_handler_type =
-AFW_UTF8_LITERAL("authorization_handler_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_autoRegister =
-AFW_UTF8_LITERAL("autoRegister");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_await =
-AFW_UTF8_LITERAL("await");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_backtrace =
-AFW_UTF8_LITERAL("backtrace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_backtraceEvaluation =
-AFW_UTF8_LITERAL("backtraceEvaluation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag =
-AFW_UTF8_LITERAL("bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_anyURI =
-AFW_UTF8_LITERAL("bag_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_array =
-AFW_UTF8_LITERAL("bag_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_base64Binary =
-AFW_UTF8_LITERAL("bag_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_boolean =
-AFW_UTF8_LITERAL("bag_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_date =
-AFW_UTF8_LITERAL("bag_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_dateTime =
-AFW_UTF8_LITERAL("bag_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_dayTimeDuration =
-AFW_UTF8_LITERAL("bag_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_dnsName =
-AFW_UTF8_LITERAL("bag_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_double =
-AFW_UTF8_LITERAL("bag_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_expression =
-AFW_UTF8_LITERAL("bag_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_function =
-AFW_UTF8_LITERAL("bag_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_hexBinary =
-AFW_UTF8_LITERAL("bag_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_hybrid =
-AFW_UTF8_LITERAL("bag_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_ia5String =
-AFW_UTF8_LITERAL("bag_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_integer =
-AFW_UTF8_LITERAL("bag_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_ipAddress =
-AFW_UTF8_LITERAL("bag_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_null =
-AFW_UTF8_LITERAL("bag_null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_object =
-AFW_UTF8_LITERAL("bag_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_objectId =
-AFW_UTF8_LITERAL("bag_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_objectPath =
-AFW_UTF8_LITERAL("bag_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_password =
-AFW_UTF8_LITERAL("bag_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_rfc822Name =
-AFW_UTF8_LITERAL("bag_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_script =
-AFW_UTF8_LITERAL("bag_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size =
-AFW_UTF8_LITERAL("bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_anyURI =
-AFW_UTF8_LITERAL("bag_size_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_array =
-AFW_UTF8_LITERAL("bag_size_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_base64Binary =
-AFW_UTF8_LITERAL("bag_size_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_boolean =
-AFW_UTF8_LITERAL("bag_size_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_date =
-AFW_UTF8_LITERAL("bag_size_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_dateTime =
-AFW_UTF8_LITERAL("bag_size_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_dayTimeDuration =
-AFW_UTF8_LITERAL("bag_size_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_dnsName =
-AFW_UTF8_LITERAL("bag_size_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_double =
-AFW_UTF8_LITERAL("bag_size_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_expression =
-AFW_UTF8_LITERAL("bag_size_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_function =
-AFW_UTF8_LITERAL("bag_size_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_hexBinary =
-AFW_UTF8_LITERAL("bag_size_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_hybrid =
-AFW_UTF8_LITERAL("bag_size_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_ia5String =
-AFW_UTF8_LITERAL("bag_size_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_integer =
-AFW_UTF8_LITERAL("bag_size_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_ipAddress =
-AFW_UTF8_LITERAL("bag_size_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_null =
-AFW_UTF8_LITERAL("bag_size_null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_object =
-AFW_UTF8_LITERAL("bag_size_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_objectId =
-AFW_UTF8_LITERAL("bag_size_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_objectPath =
-AFW_UTF8_LITERAL("bag_size_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_password =
-AFW_UTF8_LITERAL("bag_size_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_rfc822Name =
-AFW_UTF8_LITERAL("bag_size_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_script =
-AFW_UTF8_LITERAL("bag_size_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_string =
-AFW_UTF8_LITERAL("bag_size_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_template =
-AFW_UTF8_LITERAL("bag_size_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_time =
-AFW_UTF8_LITERAL("bag_size_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_x500Name =
-AFW_UTF8_LITERAL("bag_size_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_xpathExpression =
-AFW_UTF8_LITERAL("bag_size_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_size_yearMonthDuration =
-AFW_UTF8_LITERAL("bag_size_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_string =
-AFW_UTF8_LITERAL("bag_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_template =
-AFW_UTF8_LITERAL("bag_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_time =
-AFW_UTF8_LITERAL("bag_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_x500Name =
-AFW_UTF8_LITERAL("bag_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_xpathExpression =
-AFW_UTF8_LITERAL("bag_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bag_yearMonthDuration =
-AFW_UTF8_LITERAL("bag_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base =
-AFW_UTF8_LITERAL("base");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary =
-AFW_UTF8_LITERAL("base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_at_least_one_member_of =
-AFW_UTF8_LITERAL("base64Binary_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_bag =
-AFW_UTF8_LITERAL("base64Binary_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_bag_size =
-AFW_UTF8_LITERAL("base64Binary_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_eq =
-AFW_UTF8_LITERAL("base64Binary_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_intersection =
-AFW_UTF8_LITERAL("base64Binary_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_is_in =
-AFW_UTF8_LITERAL("base64Binary_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_one_and_only =
-AFW_UTF8_LITERAL("base64Binary_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_set_equals =
-AFW_UTF8_LITERAL("base64Binary_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_subset =
-AFW_UTF8_LITERAL("base64Binary_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_base64Binary_union =
-AFW_UTF8_LITERAL("base64Binary_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_basic =
-AFW_UTF8_LITERAL("basic");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_beginTime =
-AFW_UTF8_LITERAL("beginTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean =
-AFW_UTF8_LITERAL("boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_at_least_one_member_of =
-AFW_UTF8_LITERAL("boolean_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_bag =
-AFW_UTF8_LITERAL("boolean_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_bag_size =
-AFW_UTF8_LITERAL("boolean_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_eq =
-AFW_UTF8_LITERAL("boolean_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_intersection =
-AFW_UTF8_LITERAL("boolean_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_is_in =
-AFW_UTF8_LITERAL("boolean_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_one_and_only =
-AFW_UTF8_LITERAL("boolean_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_set_equals =
-AFW_UTF8_LITERAL("boolean_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_subset =
-AFW_UTF8_LITERAL("boolean_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_to_string =
-AFW_UTF8_LITERAL("boolean_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_boolean_union =
-AFW_UTF8_LITERAL("boolean_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_break =
-AFW_UTF8_LITERAL("break");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_brief =
-AFW_UTF8_LITERAL("brief");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_bugReportEmail =
-AFW_UTF8_LITERAL("bugReportEmail");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_buildType =
-AFW_UTF8_LITERAL("buildType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_buildTypeParameters =
-AFW_UTF8_LITERAL("buildTypeParameters");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_cType =
-AFW_UTF8_LITERAL("cType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_call =
-AFW_UTF8_LITERAL("call");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_camelCaseFunctionLabel =
-AFW_UTF8_LITERAL("camelCaseFunctionLabel");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_canBeUndefined =
-AFW_UTF8_LITERAL("canBeUndefined");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_canRestart =
-AFW_UTF8_LITERAL("canRestart");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_canStart =
-AFW_UTF8_LITERAL("canStart");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_canStop =
-AFW_UTF8_LITERAL("canStop");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_case =
-AFW_UTF8_LITERAL("case");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_case_insensitive_string =
-AFW_UTF8_LITERAL("case-insensitive-string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_case_sensitive_string =
-AFW_UTF8_LITERAL("case-sensitive-string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_catch =
-AFW_UTF8_LITERAL("catch");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_category =
-AFW_UTF8_LITERAL("category");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ceil =
-AFW_UTF8_LITERAL("ceil");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ceil_double =
-AFW_UTF8_LITERAL("ceil_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_checkIntermediateMode =
-AFW_UTF8_LITERAL("checkIntermediateMode");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_checkRequired =
-AFW_UTF8_LITERAL("checkRequired");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_class =
-AFW_UTF8_LITERAL("class");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone =
-AFW_UTF8_LITERAL("clone");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone_array =
-AFW_UTF8_LITERAL("clone_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_clone_object =
-AFW_UTF8_LITERAL("clone_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_close =
-AFW_UTF8_LITERAL("close");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_collectionURIs =
-AFW_UTF8_LITERAL("collectionURIs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_column =
-AFW_UTF8_LITERAL("column");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compare_uri =
-AFW_UTF8_LITERAL("compare_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile =
-AFW_UTF8_LITERAL("compile");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compileDate =
-AFW_UTF8_LITERAL("compileDate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compileOptions =
-AFW_UTF8_LITERAL("compileOptions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compileTime =
-AFW_UTF8_LITERAL("compileTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compileType =
-AFW_UTF8_LITERAL("compileType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_expression =
-AFW_UTF8_LITERAL("compile_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_hybrid =
-AFW_UTF8_LITERAL("compile_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_json =
-AFW_UTF8_LITERAL("compile_json");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_regexp =
-AFW_UTF8_LITERAL("compile_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_relaxed_json =
-AFW_UTF8_LITERAL("compile_relaxed_json");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_script =
-AFW_UTF8_LITERAL("compile_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_template =
-AFW_UTF8_LITERAL("compile_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_type =
-AFW_UTF8_LITERAL("compile_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compile_xpathExpression =
-AFW_UTF8_LITERAL("compile_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler =
-AFW_UTF8_LITERAL("compiler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_assert =
-AFW_UTF8_LITERAL("compiler_assert");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_expression =
-AFW_UTF8_LITERAL("compiler_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_script =
-AFW_UTF8_LITERAL("compiler_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_compiler_test_script =
-AFW_UTF8_LITERAL("compiler_test_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_componentType =
-AFW_UTF8_LITERAL("componentType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_composite =
-AFW_UTF8_LITERAL("composite");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_concat =
-AFW_UTF8_LITERAL("concat");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_concurrent =
-AFW_UTF8_LITERAL("concurrent");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_conf =
-AFW_UTF8_LITERAL("conf");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_confAdaptorId =
-AFW_UTF8_LITERAL("confAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_confId =
-AFW_UTF8_LITERAL("confId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_confPropertyObjectType =
-AFW_UTF8_LITERAL("confPropertyObjectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_confSubtype =
-AFW_UTF8_LITERAL("confSubtype");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_confType =
-AFW_UTF8_LITERAL("confType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_conf_type =
-AFW_UTF8_LITERAL("conf_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_console =
-AFW_UTF8_LITERAL("console");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_const =
-AFW_UTF8_LITERAL("const");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_consumeCursor =
-AFW_UTF8_LITERAL("consumeCursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_consumeFilter =
-AFW_UTF8_LITERAL("consumeFilter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_consumeStartTime =
-AFW_UTF8_LITERAL("consumeStartTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_consumed =
-AFW_UTF8_LITERAL("consumed");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_consumerId =
-AFW_UTF8_LITERAL("consumerId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_contains =
-AFW_UTF8_LITERAL("contains");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_containsUnresolvedSubstitutions =
-AFW_UTF8_LITERAL("containsUnresolvedSubstitutions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_contentType =
-AFW_UTF8_LITERAL("contentType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_content_type =
-AFW_UTF8_LITERAL("content_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_contextType =
-AFW_UTF8_LITERAL("contextType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_contextTypeId =
-AFW_UTF8_LITERAL("contextTypeId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_continue =
-AFW_UTF8_LITERAL("continue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_control =
-AFW_UTF8_LITERAL("control");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_convert_AdaptiveQueryCriteria_to_query_string =
-AFW_UTF8_LITERAL("convert_AdaptiveQueryCriteria_to_query_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_convert_query_string_to_AdaptiveQueryCriteria =
-AFW_UTF8_LITERAL("convert_query_string_to_AdaptiveQueryCriteria");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_convert_syntax_hybrid_to_expression =
-AFW_UTF8_LITERAL("convert_syntax_hybrid_to_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_core =
-AFW_UTF8_LITERAL("core");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_coreAuthorizationCheck =
-AFW_UTF8_LITERAL("coreAuthorizationCheck");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_create =
-AFW_UTF8_LITERAL("create");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_crit =
-AFW_UTF8_LITERAL("crit");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_current =
-AFW_UTF8_LITERAL("current");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_currentCursor =
-AFW_UTF8_LITERAL("currentCursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_custom =
-AFW_UTF8_LITERAL("custom");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_data =
-AFW_UTF8_LITERAL("data");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataType =
-AFW_UTF8_LITERAL("dataType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataTypeCategory =
-AFW_UTF8_LITERAL("dataTypeCategory");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataTypeMethod =
-AFW_UTF8_LITERAL("dataTypeMethod");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataTypeMethodNumber =
-AFW_UTF8_LITERAL("dataTypeMethodNumber");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataTypeParameter =
-AFW_UTF8_LITERAL("dataTypeParameter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataTypeParameterFormatted =
-AFW_UTF8_LITERAL("dataTypeParameterFormatted");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dataTypeParameterType =
-AFW_UTF8_LITERAL("dataTypeParameterType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_data_type =
-AFW_UTF8_LITERAL("data_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date =
-AFW_UTF8_LITERAL("date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime =
-AFW_UTF8_LITERAL("dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_add_dayTimeDuration =
-AFW_UTF8_LITERAL("dateTime_add_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_add_dayTimeDuration_1_0 =
-AFW_UTF8_LITERAL("dateTime_add_dayTimeDuration_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_add_yearMonthDuration =
-AFW_UTF8_LITERAL("dateTime_add_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_add_yearMonthDuration_1_0 =
-AFW_UTF8_LITERAL("dateTime_add_yearMonthDuration_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_at_least_one_member_of =
-AFW_UTF8_LITERAL("dateTime_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_bag =
-AFW_UTF8_LITERAL("dateTime_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_bag_size =
-AFW_UTF8_LITERAL("dateTime_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_eq =
-AFW_UTF8_LITERAL("dateTime_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_ge =
-AFW_UTF8_LITERAL("dateTime_ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_gt =
-AFW_UTF8_LITERAL("dateTime_gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_intersection =
-AFW_UTF8_LITERAL("dateTime_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_is_in =
-AFW_UTF8_LITERAL("dateTime_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_le =
-AFW_UTF8_LITERAL("dateTime_le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_lt =
-AFW_UTF8_LITERAL("dateTime_lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_one_and_only =
-AFW_UTF8_LITERAL("dateTime_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_set_equals =
-AFW_UTF8_LITERAL("dateTime_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_subset =
-AFW_UTF8_LITERAL("dateTime_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_subtract_dayTimeDuration =
-AFW_UTF8_LITERAL("dateTime_subtract_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_subtract_dayTimeDuration_1_0 =
-AFW_UTF8_LITERAL("dateTime_subtract_dayTimeDuration_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_subtract_yearMonthDuration =
-AFW_UTF8_LITERAL("dateTime_subtract_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_subtract_yearMonthDuration_1_0 =
-AFW_UTF8_LITERAL("dateTime_subtract_yearMonthDuration_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_to_string =
-AFW_UTF8_LITERAL("dateTime_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dateTime_union =
-AFW_UTF8_LITERAL("dateTime_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_add_yearMonthDuration =
-AFW_UTF8_LITERAL("date_add_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_add_yearMonthDuration_1_0 =
-AFW_UTF8_LITERAL("date_add_yearMonthDuration_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_at_least_one_member_of =
-AFW_UTF8_LITERAL("date_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_bag =
-AFW_UTF8_LITERAL("date_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_bag_size =
-AFW_UTF8_LITERAL("date_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_eq =
-AFW_UTF8_LITERAL("date_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_ge =
-AFW_UTF8_LITERAL("date_ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_gt =
-AFW_UTF8_LITERAL("date_gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_intersection =
-AFW_UTF8_LITERAL("date_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_is_in =
-AFW_UTF8_LITERAL("date_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_le =
-AFW_UTF8_LITERAL("date_le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_lt =
-AFW_UTF8_LITERAL("date_lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_one_and_only =
-AFW_UTF8_LITERAL("date_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_set_equals =
-AFW_UTF8_LITERAL("date_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_subset =
-AFW_UTF8_LITERAL("date_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_subtract_yearMonthDuration =
-AFW_UTF8_LITERAL("date_subtract_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_subtract_yearMonthDuration_1_0 =
-AFW_UTF8_LITERAL("date_subtract_yearMonthDuration_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_to_string =
-AFW_UTF8_LITERAL("date_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_date_union =
-AFW_UTF8_LITERAL("date_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration =
-AFW_UTF8_LITERAL("dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_at_least_one_member_of =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_bag =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_bag_size =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_eq =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_intersection =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_is_in =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_one_and_only =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_set_equals =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_subset =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_1_0_union =
-AFW_UTF8_LITERAL("dayTimeDuration_1_0_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_at_least_one_member_of =
-AFW_UTF8_LITERAL("dayTimeDuration_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_bag =
-AFW_UTF8_LITERAL("dayTimeDuration_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_bag_size =
-AFW_UTF8_LITERAL("dayTimeDuration_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_eq =
-AFW_UTF8_LITERAL("dayTimeDuration_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_intersection =
-AFW_UTF8_LITERAL("dayTimeDuration_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_is_in =
-AFW_UTF8_LITERAL("dayTimeDuration_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_one_and_only =
-AFW_UTF8_LITERAL("dayTimeDuration_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_set_equals =
-AFW_UTF8_LITERAL("dayTimeDuration_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_subset =
-AFW_UTF8_LITERAL("dayTimeDuration_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_to_string =
-AFW_UTF8_LITERAL("dayTimeDuration_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dayTimeDuration_union =
-AFW_UTF8_LITERAL("dayTimeDuration_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_debug =
-AFW_UTF8_LITERAL("debug");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_debugFlagId =
-AFW_UTF8_LITERAL("debugFlagId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_debugFlagIndex =
-AFW_UTF8_LITERAL("debugFlagIndex");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_decision =
-AFW_UTF8_LITERAL("decision");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_decisionId =
-AFW_UTF8_LITERAL("decisionId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_declare =
-AFW_UTF8_LITERAL("declare");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_decode_to_string =
-AFW_UTF8_LITERAL("decode_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_decode_to_string_base64Binary =
-AFW_UTF8_LITERAL("decode_to_string_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_decode_to_string_hexBinary =
-AFW_UTF8_LITERAL("decode_to_string_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_decompile =
-AFW_UTF8_LITERAL("decompile");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_default =
-AFW_UTF8_LITERAL("default");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_defaultAdaptorId =
-AFW_UTF8_LITERAL("defaultAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_defaultFlags =
-AFW_UTF8_LITERAL("defaultFlags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_defaultModelAdaptorId =
-AFW_UTF8_LITERAL("defaultModelAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_defaultOptions =
-AFW_UTF8_LITERAL("defaultOptions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_defaultValue =
-AFW_UTF8_LITERAL("defaultValue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_define =
-AFW_UTF8_LITERAL("define");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_delete =
-AFW_UTF8_LITERAL("delete");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_deleteObjectCount =
-AFW_UTF8_LITERAL("deleteObjectCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_delete_object =
-AFW_UTF8_LITERAL("delete_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_delete_object_with_uri =
-AFW_UTF8_LITERAL("delete_object_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_deny =
-AFW_UTF8_LITERAL("deny");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_denyIfNotApplicable =
-AFW_UTF8_LITERAL("denyIfNotApplicable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_deprecated =
-AFW_UTF8_LITERAL("deprecated");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_description =
-AFW_UTF8_LITERAL("description");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_descriptionPropertyName =
-AFW_UTF8_LITERAL("descriptionPropertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_details =
-AFW_UTF8_LITERAL("details");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_differ =
-AFW_UTF8_LITERAL("differ");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_directReturn =
-AFW_UTF8_LITERAL("directReturn");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_disabled =
-AFW_UTF8_LITERAL("disabled");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_divide =
-AFW_UTF8_LITERAL("divide");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_divide_double =
-AFW_UTF8_LITERAL("divide_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_divide_integer =
-AFW_UTF8_LITERAL("divide_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName =
-AFW_UTF8_LITERAL("dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName_bag =
-AFW_UTF8_LITERAL("dnsName_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName_bag_size =
-AFW_UTF8_LITERAL("dnsName_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName_is_in =
-AFW_UTF8_LITERAL("dnsName_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName_one_and_only =
-AFW_UTF8_LITERAL("dnsName_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName_regexp_match =
-AFW_UTF8_LITERAL("dnsName_regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_dnsName_to_string =
-AFW_UTF8_LITERAL("dnsName_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_do =
-AFW_UTF8_LITERAL("do");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_do_while =
-AFW_UTF8_LITERAL("do_while");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double =
-AFW_UTF8_LITERAL("double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_abs =
-AFW_UTF8_LITERAL("double_abs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_add =
-AFW_UTF8_LITERAL("double_add");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_at_least_one_member_of =
-AFW_UTF8_LITERAL("double_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_bag =
-AFW_UTF8_LITERAL("double_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_bag_size =
-AFW_UTF8_LITERAL("double_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_ceil =
-AFW_UTF8_LITERAL("double_ceil");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_divide =
-AFW_UTF8_LITERAL("double_divide");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_eq =
-AFW_UTF8_LITERAL("double_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_floor =
-AFW_UTF8_LITERAL("double_floor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_ge =
-AFW_UTF8_LITERAL("double_ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_gt =
-AFW_UTF8_LITERAL("double_gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_intersection =
-AFW_UTF8_LITERAL("double_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_is_NaN =
-AFW_UTF8_LITERAL("double_is_NaN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_is_finite =
-AFW_UTF8_LITERAL("double_is_finite");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_is_in =
-AFW_UTF8_LITERAL("double_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_le =
-AFW_UTF8_LITERAL("double_le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_lt =
-AFW_UTF8_LITERAL("double_lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_multiply =
-AFW_UTF8_LITERAL("double_multiply");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_one_and_only =
-AFW_UTF8_LITERAL("double_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_pow =
-AFW_UTF8_LITERAL("double_pow");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_round =
-AFW_UTF8_LITERAL("double_round");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_set_equals =
-AFW_UTF8_LITERAL("double_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_subset =
-AFW_UTF8_LITERAL("double_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_subtract =
-AFW_UTF8_LITERAL("double_subtract");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_to_integer =
-AFW_UTF8_LITERAL("double_to_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_to_string =
-AFW_UTF8_LITERAL("double_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_double_union =
-AFW_UTF8_LITERAL("double_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_else =
-AFW_UTF8_LITERAL("else");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_emerg =
-AFW_UTF8_LITERAL("emerg");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_encode_as_base64Binary =
-AFW_UTF8_LITERAL("encode_as_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_encode_as_base64Binary_string =
-AFW_UTF8_LITERAL("encode_as_base64Binary_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_encode_as_hexBinary =
-AFW_UTF8_LITERAL("encode_as_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_encode_as_hexBinary_string =
-AFW_UTF8_LITERAL("encode_as_hexBinary_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_endTime =
-AFW_UTF8_LITERAL("endTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ends_with =
-AFW_UTF8_LITERAL("ends_with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ends_with_anyURI =
-AFW_UTF8_LITERAL("ends_with_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ends_with_string =
-AFW_UTF8_LITERAL("ends_with_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ensure_afw_components_extension_loaded =
-AFW_UTF8_LITERAL("ensure_afw_components_extension_loaded");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_entityObjectId =
-AFW_UTF8_LITERAL("entityObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_entityPath =
-AFW_UTF8_LITERAL("entityPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_entries =
-AFW_UTF8_LITERAL("entries");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_entry =
-AFW_UTF8_LITERAL("entry");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_entryCursor =
-AFW_UTF8_LITERAL("entryCursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_environment =
-AFW_UTF8_LITERAL("environment");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq =
-AFW_UTF8_LITERAL("eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_anyURI =
-AFW_UTF8_LITERAL("eq_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_array =
-AFW_UTF8_LITERAL("eq_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_base64Binary =
-AFW_UTF8_LITERAL("eq_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_boolean =
-AFW_UTF8_LITERAL("eq_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_date =
-AFW_UTF8_LITERAL("eq_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_dateTime =
-AFW_UTF8_LITERAL("eq_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_dayTimeDuration =
-AFW_UTF8_LITERAL("eq_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_dnsName =
-AFW_UTF8_LITERAL("eq_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_double =
-AFW_UTF8_LITERAL("eq_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_expression =
-AFW_UTF8_LITERAL("eq_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_function =
-AFW_UTF8_LITERAL("eq_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_hexBinary =
-AFW_UTF8_LITERAL("eq_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_hybrid =
-AFW_UTF8_LITERAL("eq_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_ia5String =
-AFW_UTF8_LITERAL("eq_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_ignore_case =
-AFW_UTF8_LITERAL("eq_ignore_case");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_ignore_case_string =
-AFW_UTF8_LITERAL("eq_ignore_case_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_integer =
-AFW_UTF8_LITERAL("eq_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_ipAddress =
-AFW_UTF8_LITERAL("eq_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_object =
-AFW_UTF8_LITERAL("eq_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_objectId =
-AFW_UTF8_LITERAL("eq_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_objectPath =
-AFW_UTF8_LITERAL("eq_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_password =
-AFW_UTF8_LITERAL("eq_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_regexp =
-AFW_UTF8_LITERAL("eq_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_rfc822Name =
-AFW_UTF8_LITERAL("eq_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_script =
-AFW_UTF8_LITERAL("eq_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_string =
-AFW_UTF8_LITERAL("eq_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_template =
-AFW_UTF8_LITERAL("eq_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_time =
-AFW_UTF8_LITERAL("eq_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_x500Name =
-AFW_UTF8_LITERAL("eq_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_xpathExpression =
-AFW_UTF8_LITERAL("eq_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eq_yearMonthDuration =
-AFW_UTF8_LITERAL("eq_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx =
-AFW_UTF8_LITERAL("eqx");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_anyURI =
-AFW_UTF8_LITERAL("eqx_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_array =
-AFW_UTF8_LITERAL("eqx_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_base64Binary =
-AFW_UTF8_LITERAL("eqx_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_boolean =
-AFW_UTF8_LITERAL("eqx_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_date =
-AFW_UTF8_LITERAL("eqx_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_dateTime =
-AFW_UTF8_LITERAL("eqx_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_dayTimeDuration =
-AFW_UTF8_LITERAL("eqx_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_dnsName =
-AFW_UTF8_LITERAL("eqx_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_double =
-AFW_UTF8_LITERAL("eqx_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_expression =
-AFW_UTF8_LITERAL("eqx_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_function =
-AFW_UTF8_LITERAL("eqx_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_hexBinary =
-AFW_UTF8_LITERAL("eqx_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_hybrid =
-AFW_UTF8_LITERAL("eqx_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_ia5String =
-AFW_UTF8_LITERAL("eqx_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_integer =
-AFW_UTF8_LITERAL("eqx_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_ipAddress =
-AFW_UTF8_LITERAL("eqx_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_object =
-AFW_UTF8_LITERAL("eqx_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_objectId =
-AFW_UTF8_LITERAL("eqx_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_objectPath =
-AFW_UTF8_LITERAL("eqx_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_password =
-AFW_UTF8_LITERAL("eqx_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_regexp =
-AFW_UTF8_LITERAL("eqx_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_rfc822Name =
-AFW_UTF8_LITERAL("eqx_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_script =
-AFW_UTF8_LITERAL("eqx_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_string =
-AFW_UTF8_LITERAL("eqx_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_template =
-AFW_UTF8_LITERAL("eqx_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_time =
-AFW_UTF8_LITERAL("eqx_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_x500Name =
-AFW_UTF8_LITERAL("eqx_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_xpathExpression =
-AFW_UTF8_LITERAL("eqx_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_eqx_yearMonthDuration =
-AFW_UTF8_LITERAL("eqx_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_err =
-AFW_UTF8_LITERAL("err");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_error =
-AFW_UTF8_LITERAL("error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorCode =
-AFW_UTF8_LITERAL("errorCode");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorReason =
-AFW_UTF8_LITERAL("errorReason");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorSource =
-AFW_UTF8_LITERAL("errorSource");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_error_rv_decoder =
-AFW_UTF8_LITERAL("error_rv_decoder");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errors =
-AFW_UTF8_LITERAL("errors");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_errorsThrown =
-AFW_UTF8_LITERAL("errorsThrown");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate =
-AFW_UTF8_LITERAL("evaluate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_expression =
-AFW_UTF8_LITERAL("evaluate_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_hybrid =
-AFW_UTF8_LITERAL("evaluate_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_script =
-AFW_UTF8_LITERAL("evaluate_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_template =
-AFW_UTF8_LITERAL("evaluate_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_value =
-AFW_UTF8_LITERAL("evaluate_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_with_retry =
-AFW_UTF8_LITERAL("evaluate_with_retry");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluate_xpathExpression =
-AFW_UTF8_LITERAL("evaluate_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluated =
-AFW_UTF8_LITERAL("evaluated");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_evaluation =
-AFW_UTF8_LITERAL("evaluation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_excludes =
-AFW_UTF8_LITERAL("excludes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_execution_start_time_local =
-AFW_UTF8_LITERAL("execution_start_time_local");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_execution_start_time_utc =
-AFW_UTF8_LITERAL("execution_start_time_utc");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expect =
-AFW_UTF8_LITERAL("expect");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectCodepointLengthInTestScript =
-AFW_UTF8_LITERAL("expectCodepointLengthInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectCodepointOffsetInTestScript =
-AFW_UTF8_LITERAL("expectCodepointOffsetInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectColumnNumberInTestScript =
-AFW_UTF8_LITERAL("expectColumnNumberInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectLineNumberInTestScript =
-AFW_UTF8_LITERAL("expectLineNumberInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectLocation =
-AFW_UTF8_LITERAL("expectLocation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectUTF8OctetLengthInTestScript =
-AFW_UTF8_LITERAL("expectUTF8OctetLengthInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectUTF8OctetOffsetInTestScript =
-AFW_UTF8_LITERAL("expectUTF8OctetOffsetInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expected =
-AFW_UTF8_LITERAL("expected");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expectedError =
-AFW_UTF8_LITERAL("expectedError");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_export =
-AFW_UTF8_LITERAL("export");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expression =
-AFW_UTF8_LITERAL("expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_expressions =
-AFW_UTF8_LITERAL("expressions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extends =
-AFW_UTF8_LITERAL("extends");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extension =
-AFW_UTF8_LITERAL("extension");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extensionId =
-AFW_UTF8_LITERAL("extensionId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extensionModulePaths =
-AFW_UTF8_LITERAL("extensionModulePaths");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extensionVersion =
-AFW_UTF8_LITERAL("extensionVersion");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extension_load =
-AFW_UTF8_LITERAL("extension_load");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extension_load_by_module_path =
-AFW_UTF8_LITERAL("extension_load_by_module_path");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_extensions =
-AFW_UTF8_LITERAL("extensions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_facility =
-AFW_UTF8_LITERAL("facility");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_failure =
-AFW_UTF8_LITERAL("failure");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_false =
-AFW_UTF8_LITERAL("false");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_fatal =
-AFW_UTF8_LITERAL("fatal");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_filenameSuffix =
-AFW_UTF8_LITERAL("filenameSuffix");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_filter =
-AFW_UTF8_LITERAL("filter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_filters =
-AFW_UTF8_LITERAL("filters");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_finally =
-AFW_UTF8_LITERAL("finally");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_find =
-AFW_UTF8_LITERAL("find");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flagId =
-AFW_UTF8_LITERAL("flagId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flagIndex =
-AFW_UTF8_LITERAL("flagIndex");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flag_get_active =
-AFW_UTF8_LITERAL("flag_get_active");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flag_get_active_defaults =
-AFW_UTF8_LITERAL("flag_get_active_defaults");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flag_get_defaults =
-AFW_UTF8_LITERAL("flag_get_defaults");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flag_modify_defaults =
-AFW_UTF8_LITERAL("flag_modify_defaults");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flag_replace_defaults =
-AFW_UTF8_LITERAL("flag_replace_defaults");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flag_set =
-AFW_UTF8_LITERAL("flag_set");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flags =
-AFW_UTF8_LITERAL("flags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_floor =
-AFW_UTF8_LITERAL("floor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_floor_double =
-AFW_UTF8_LITERAL("floor_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_flush =
-AFW_UTF8_LITERAL("flush");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_fn =
-AFW_UTF8_LITERAL("fn");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_for =
-AFW_UTF8_LITERAL("for");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_for_of =
-AFW_UTF8_LITERAL("for_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_format =
-AFW_UTF8_LITERAL("format");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_fragment =
-AFW_UTF8_LITERAL("fragment");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_fragmentTokens =
-AFW_UTF8_LITERAL("fragmentTokens");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_from =
-AFW_UTF8_LITERAL("from");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_function =
-AFW_UTF8_LITERAL("function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_functionDeclaration =
-AFW_UTF8_LITERAL("functionDeclaration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_functionDeclarationId =
-AFW_UTF8_LITERAL("functionDeclarationId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_functionId =
-AFW_UTF8_LITERAL("functionId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_functionLabel =
-AFW_UTF8_LITERAL("functionLabel");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_functionSignature =
-AFW_UTF8_LITERAL("functionSignature");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge =
-AFW_UTF8_LITERAL("ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_anyURI =
-AFW_UTF8_LITERAL("ge_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_array =
-AFW_UTF8_LITERAL("ge_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_base64Binary =
-AFW_UTF8_LITERAL("ge_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_boolean =
-AFW_UTF8_LITERAL("ge_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_date =
-AFW_UTF8_LITERAL("ge_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_dateTime =
-AFW_UTF8_LITERAL("ge_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_dayTimeDuration =
-AFW_UTF8_LITERAL("ge_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_dnsName =
-AFW_UTF8_LITERAL("ge_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_double =
-AFW_UTF8_LITERAL("ge_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_expression =
-AFW_UTF8_LITERAL("ge_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_function =
-AFW_UTF8_LITERAL("ge_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_hexBinary =
-AFW_UTF8_LITERAL("ge_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_hybrid =
-AFW_UTF8_LITERAL("ge_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_ia5String =
-AFW_UTF8_LITERAL("ge_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_integer =
-AFW_UTF8_LITERAL("ge_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_ipAddress =
-AFW_UTF8_LITERAL("ge_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_object =
-AFW_UTF8_LITERAL("ge_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_objectId =
-AFW_UTF8_LITERAL("ge_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_objectPath =
-AFW_UTF8_LITERAL("ge_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_password =
-AFW_UTF8_LITERAL("ge_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_regexp =
-AFW_UTF8_LITERAL("ge_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_rfc822Name =
-AFW_UTF8_LITERAL("ge_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_script =
-AFW_UTF8_LITERAL("ge_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_string =
-AFW_UTF8_LITERAL("ge_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_template =
-AFW_UTF8_LITERAL("ge_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_time =
-AFW_UTF8_LITERAL("ge_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_x500Name =
-AFW_UTF8_LITERAL("ge_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_xpathExpression =
-AFW_UTF8_LITERAL("ge_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ge_yearMonthDuration =
-AFW_UTF8_LITERAL("ge_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_general =
-AFW_UTF8_LITERAL("general");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_generate_uuid =
-AFW_UTF8_LITERAL("generate_uuid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_getObjectCount =
-AFW_UTF8_LITERAL("getObjectCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_get_object =
-AFW_UTF8_LITERAL("get_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_get_object_with_uri =
-AFW_UTF8_LITERAL("get_object_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_get_stream_error =
-AFW_UTF8_LITERAL("get_stream_error");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gitBranch =
-AFW_UTF8_LITERAL("gitBranch");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gitDescribe =
-AFW_UTF8_LITERAL("gitDescribe");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gitSha =
-AFW_UTF8_LITERAL("gitSha");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt =
-AFW_UTF8_LITERAL("gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_anyURI =
-AFW_UTF8_LITERAL("gt_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_array =
-AFW_UTF8_LITERAL("gt_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_base64Binary =
-AFW_UTF8_LITERAL("gt_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_boolean =
-AFW_UTF8_LITERAL("gt_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_date =
-AFW_UTF8_LITERAL("gt_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_dateTime =
-AFW_UTF8_LITERAL("gt_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_dayTimeDuration =
-AFW_UTF8_LITERAL("gt_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_dnsName =
-AFW_UTF8_LITERAL("gt_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_double =
-AFW_UTF8_LITERAL("gt_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_expression =
-AFW_UTF8_LITERAL("gt_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_function =
-AFW_UTF8_LITERAL("gt_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_hexBinary =
-AFW_UTF8_LITERAL("gt_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_hybrid =
-AFW_UTF8_LITERAL("gt_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_ia5String =
-AFW_UTF8_LITERAL("gt_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_integer =
-AFW_UTF8_LITERAL("gt_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_ipAddress =
-AFW_UTF8_LITERAL("gt_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_object =
-AFW_UTF8_LITERAL("gt_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_objectId =
-AFW_UTF8_LITERAL("gt_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_objectPath =
-AFW_UTF8_LITERAL("gt_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_password =
-AFW_UTF8_LITERAL("gt_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_regexp =
-AFW_UTF8_LITERAL("gt_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_rfc822Name =
-AFW_UTF8_LITERAL("gt_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_script =
-AFW_UTF8_LITERAL("gt_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_string =
-AFW_UTF8_LITERAL("gt_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_template =
-AFW_UTF8_LITERAL("gt_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_time =
-AFW_UTF8_LITERAL("gt_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_x500Name =
-AFW_UTF8_LITERAL("gt_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_xpathExpression =
-AFW_UTF8_LITERAL("gt_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gt_yearMonthDuration =
-AFW_UTF8_LITERAL("gt_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_gte =
-AFW_UTF8_LITERAL("gte");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hasErrors =
-AFW_UTF8_LITERAL("hasErrors");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary =
-AFW_UTF8_LITERAL("hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_at_least_one_member_of =
-AFW_UTF8_LITERAL("hexBinary_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_bag =
-AFW_UTF8_LITERAL("hexBinary_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_bag_size =
-AFW_UTF8_LITERAL("hexBinary_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_eq =
-AFW_UTF8_LITERAL("hexBinary_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_intersection =
-AFW_UTF8_LITERAL("hexBinary_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_is_in =
-AFW_UTF8_LITERAL("hexBinary_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_one_and_only =
-AFW_UTF8_LITERAL("hexBinary_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_set_equals =
-AFW_UTF8_LITERAL("hexBinary_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_subset =
-AFW_UTF8_LITERAL("hexBinary_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hexBinary_union =
-AFW_UTF8_LITERAL("hexBinary_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_higher_order_array =
-AFW_UTF8_LITERAL("higher_order_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hints =
-AFW_UTF8_LITERAL("hints");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_homePageUrl =
-AFW_UTF8_LITERAL("homePageUrl");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_host =
-AFW_UTF8_LITERAL("host");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_hybrid =
-AFW_UTF8_LITERAL("hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ia5String =
-AFW_UTF8_LITERAL("ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_id =
-AFW_UTF8_LITERAL("id");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_idPropertyName =
-AFW_UTF8_LITERAL("idPropertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_idRegistryType =
-AFW_UTF8_LITERAL("idRegistryType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_idRuntimeObjectType =
-AFW_UTF8_LITERAL("idRuntimeObjectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ident =
-AFW_UTF8_LITERAL("ident");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_if =
-AFW_UTF8_LITERAL("if");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ignore =
-AFW_UTF8_LITERAL("ignore");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_immediate =
-AFW_UTF8_LITERAL("immediate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_implementationId =
-AFW_UTF8_LITERAL("implementationId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_implementationParameters =
-AFW_UTF8_LITERAL("implementationParameters");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_implemented =
-AFW_UTF8_LITERAL("implemented");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_import =
-AFW_UTF8_LITERAL("import");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_in =
-AFW_UTF8_LITERAL("in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_in_range =
-AFW_UTF8_LITERAL("in_range");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_in_range_time =
-AFW_UTF8_LITERAL("in_range_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includeDefaultValues =
-AFW_UTF8_LITERAL("includeDefaultValues");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includeDescendentObjectTypes =
-AFW_UTF8_LITERAL("includeDescendentObjectTypes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includedByFlags =
-AFW_UTF8_LITERAL("includedByFlags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes =
-AFW_UTF8_LITERAL("includes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includesFlags =
-AFW_UTF8_LITERAL("includesFlags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_anyURI =
-AFW_UTF8_LITERAL("includes_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_array =
-AFW_UTF8_LITERAL("includes_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_includes_string =
-AFW_UTF8_LITERAL("includes_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indeterminate =
-AFW_UTF8_LITERAL("indeterminate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indeterminateD =
-AFW_UTF8_LITERAL("indeterminateD");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indeterminateDP =
-AFW_UTF8_LITERAL("indeterminateDP");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indeterminateP =
-AFW_UTF8_LITERAL("indeterminateP");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_index_create =
-AFW_UTF8_LITERAL("index_create");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_index_list =
-AFW_UTF8_LITERAL("index_list");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_index_of =
-AFW_UTF8_LITERAL("index_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_index_of_anyURI =
-AFW_UTF8_LITERAL("index_of_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_index_of_string =
-AFW_UTF8_LITERAL("index_of_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_index_remove =
-AFW_UTF8_LITERAL("index_remove");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indexes =
-AFW_UTF8_LITERAL("indexes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indirect =
-AFW_UTF8_LITERAL("indirect");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_indirectObjectId =
-AFW_UTF8_LITERAL("indirectObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_info =
-AFW_UTF8_LITERAL("info");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_inheritedFrom =
-AFW_UTF8_LITERAL("inheritedFrom");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_initialAuthorizationCheck =
-AFW_UTF8_LITERAL("initialAuthorizationCheck");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_initialEnvironmentVariables =
-AFW_UTF8_LITERAL("initialEnvironmentVariables");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_installPackageSubdir =
-AFW_UTF8_LITERAL("installPackageSubdir");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_instanceObjectType =
-AFW_UTF8_LITERAL("instanceObjectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_instanceof =
-AFW_UTF8_LITERAL("instanceof");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer =
-AFW_UTF8_LITERAL("integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_abs =
-AFW_UTF8_LITERAL("integer_abs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_add =
-AFW_UTF8_LITERAL("integer_add");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_at_least_one_member_of =
-AFW_UTF8_LITERAL("integer_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_bag =
-AFW_UTF8_LITERAL("integer_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_bag_size =
-AFW_UTF8_LITERAL("integer_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_divide =
-AFW_UTF8_LITERAL("integer_divide");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_eq =
-AFW_UTF8_LITERAL("integer_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_ge =
-AFW_UTF8_LITERAL("integer_ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_gt =
-AFW_UTF8_LITERAL("integer_gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_intersection =
-AFW_UTF8_LITERAL("integer_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_is_in =
-AFW_UTF8_LITERAL("integer_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_le =
-AFW_UTF8_LITERAL("integer_le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_lt =
-AFW_UTF8_LITERAL("integer_lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_mod =
-AFW_UTF8_LITERAL("integer_mod");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_multiply =
-AFW_UTF8_LITERAL("integer_multiply");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_one_and_only =
-AFW_UTF8_LITERAL("integer_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_set_equals =
-AFW_UTF8_LITERAL("integer_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_subset =
-AFW_UTF8_LITERAL("integer_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_subtract =
-AFW_UTF8_LITERAL("integer_subtract");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_to_double =
-AFW_UTF8_LITERAL("integer_to_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_to_string =
-AFW_UTF8_LITERAL("integer_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integer_union =
-AFW_UTF8_LITERAL("integer_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_integersAsString =
-AFW_UTF8_LITERAL("integersAsString");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_interface =
-AFW_UTF8_LITERAL("interface");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intermediate =
-AFW_UTF8_LITERAL("intermediate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intermediateOnly =
-AFW_UTF8_LITERAL("intermediateOnly");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_internal =
-AFW_UTF8_LITERAL("internal");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection =
-AFW_UTF8_LITERAL("intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_anyURI =
-AFW_UTF8_LITERAL("intersection_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_base64Binary =
-AFW_UTF8_LITERAL("intersection_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_boolean =
-AFW_UTF8_LITERAL("intersection_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_date =
-AFW_UTF8_LITERAL("intersection_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_dateTime =
-AFW_UTF8_LITERAL("intersection_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_dayTimeDuration =
-AFW_UTF8_LITERAL("intersection_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_double =
-AFW_UTF8_LITERAL("intersection_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_hexBinary =
-AFW_UTF8_LITERAL("intersection_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_integer =
-AFW_UTF8_LITERAL("intersection_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_rfc822Name =
-AFW_UTF8_LITERAL("intersection_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_string =
-AFW_UTF8_LITERAL("intersection_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_time =
-AFW_UTF8_LITERAL("intersection_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_x500Name =
-AFW_UTF8_LITERAL("intersection_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_intersection_yearMonthDuration =
-AFW_UTF8_LITERAL("intersection_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress =
-AFW_UTF8_LITERAL("ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress_bag =
-AFW_UTF8_LITERAL("ipAddress_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress_bag_size =
-AFW_UTF8_LITERAL("ipAddress_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress_is_in =
-AFW_UTF8_LITERAL("ipAddress_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress_one_and_only =
-AFW_UTF8_LITERAL("ipAddress_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress_regexp_match =
-AFW_UTF8_LITERAL("ipAddress_regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ipAddress_to_string =
-AFW_UTF8_LITERAL("ipAddress_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is =
-AFW_UTF8_LITERAL("is");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_isDevelopmentInput =
-AFW_UTF8_LITERAL("isDevelopmentInput");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_isModelLocation =
-AFW_UTF8_LITERAL("isModelLocation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_isPolicyLocation =
-AFW_UTF8_LITERAL("isPolicyLocation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_isUnique =
-AFW_UTF8_LITERAL("isUnique");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_NaN =
-AFW_UTF8_LITERAL("is_NaN");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_anyURI =
-AFW_UTF8_LITERAL("is_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_array =
-AFW_UTF8_LITERAL("is_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_base64Binary =
-AFW_UTF8_LITERAL("is_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_boolean =
-AFW_UTF8_LITERAL("is_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_date =
-AFW_UTF8_LITERAL("is_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_dateTime =
-AFW_UTF8_LITERAL("is_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_dayTimeDuration =
-AFW_UTF8_LITERAL("is_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_defined =
-AFW_UTF8_LITERAL("is_defined");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_dnsName =
-AFW_UTF8_LITERAL("is_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_double =
-AFW_UTF8_LITERAL("is_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_expression =
-AFW_UTF8_LITERAL("is_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_finite =
-AFW_UTF8_LITERAL("is_finite");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_function =
-AFW_UTF8_LITERAL("is_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_hexBinary =
-AFW_UTF8_LITERAL("is_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_hybrid =
-AFW_UTF8_LITERAL("is_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_ia5String =
-AFW_UTF8_LITERAL("is_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in =
-AFW_UTF8_LITERAL("is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_anyURI =
-AFW_UTF8_LITERAL("is_in_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_base64Binary =
-AFW_UTF8_LITERAL("is_in_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_boolean =
-AFW_UTF8_LITERAL("is_in_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_date =
-AFW_UTF8_LITERAL("is_in_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_dateTime =
-AFW_UTF8_LITERAL("is_in_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_dayTimeDuration =
-AFW_UTF8_LITERAL("is_in_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_dnsName =
-AFW_UTF8_LITERAL("is_in_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_double =
-AFW_UTF8_LITERAL("is_in_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_hexBinary =
-AFW_UTF8_LITERAL("is_in_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_integer =
-AFW_UTF8_LITERAL("is_in_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_ipAddress =
-AFW_UTF8_LITERAL("is_in_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_rfc822Name =
-AFW_UTF8_LITERAL("is_in_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_string =
-AFW_UTF8_LITERAL("is_in_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_time =
-AFW_UTF8_LITERAL("is_in_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_x500Name =
-AFW_UTF8_LITERAL("is_in_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_in_yearMonthDuration =
-AFW_UTF8_LITERAL("is_in_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_integer =
-AFW_UTF8_LITERAL("is_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_ipAddress =
-AFW_UTF8_LITERAL("is_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_null =
-AFW_UTF8_LITERAL("is_null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_nullish =
-AFW_UTF8_LITERAL("is_nullish");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_object =
-AFW_UTF8_LITERAL("is_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_objectId =
-AFW_UTF8_LITERAL("is_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_objectPath =
-AFW_UTF8_LITERAL("is_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_password =
-AFW_UTF8_LITERAL("is_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_rfc822Name =
-AFW_UTF8_LITERAL("is_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_script =
-AFW_UTF8_LITERAL("is_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_string =
-AFW_UTF8_LITERAL("is_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_template =
-AFW_UTF8_LITERAL("is_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_time =
-AFW_UTF8_LITERAL("is_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_unevaluated =
-AFW_UTF8_LITERAL("is_unevaluated");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_x500Name =
-AFW_UTF8_LITERAL("is_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_xpathExpression =
-AFW_UTF8_LITERAL("is_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_is_yearMonthDuration =
-AFW_UTF8_LITERAL("is_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_join =
-AFW_UTF8_LITERAL("join");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal =
-AFW_UTF8_LITERAL("journal");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journalAdaptorId =
-AFW_UTF8_LITERAL("journalAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_advance_cursor_for_consumer =
-AFW_UTF8_LITERAL("journal_advance_cursor_for_consumer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_get_by_cursor =
-AFW_UTF8_LITERAL("journal_get_by_cursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_get_first =
-AFW_UTF8_LITERAL("journal_get_first");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_get_next_after_cursor =
-AFW_UTF8_LITERAL("journal_get_next_after_cursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_get_next_for_consumer =
-AFW_UTF8_LITERAL("journal_get_next_for_consumer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_get_next_for_consumer_after_cursor =
-AFW_UTF8_LITERAL("journal_get_next_for_consumer_after_cursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_journal_mark_consumed =
-AFW_UTF8_LITERAL("journal_mark_consumed");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_json =
-AFW_UTF8_LITERAL("json");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_jsonImpliesDataType =
-AFW_UTF8_LITERAL("jsonImpliesDataType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_jsonPrimitive =
-AFW_UTF8_LITERAL("jsonPrimitive");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_jsonSchemaStringFormat =
-AFW_UTF8_LITERAL("jsonSchemaStringFormat");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_key =
-AFW_UTF8_LITERAL("key");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_label =
-AFW_UTF8_LITERAL("label");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_labels =
-AFW_UTF8_LITERAL("labels");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lambda =
-AFW_UTF8_LITERAL("lambda");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_largeIntegersAsString =
-AFW_UTF8_LITERAL("largeIntegersAsString");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lastContactTime =
-AFW_UTF8_LITERAL("lastContactTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_last_index_of =
-AFW_UTF8_LITERAL("last_index_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_last_index_of_anyURI =
-AFW_UTF8_LITERAL("last_index_of_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_last_index_of_string =
-AFW_UTF8_LITERAL("last_index_of_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_layoutsAdaptorId =
-AFW_UTF8_LITERAL("layoutsAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ldapOid =
-AFW_UTF8_LITERAL("ldapOid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le =
-AFW_UTF8_LITERAL("le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_anyURI =
-AFW_UTF8_LITERAL("le_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_array =
-AFW_UTF8_LITERAL("le_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_base64Binary =
-AFW_UTF8_LITERAL("le_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_boolean =
-AFW_UTF8_LITERAL("le_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_date =
-AFW_UTF8_LITERAL("le_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_dateTime =
-AFW_UTF8_LITERAL("le_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_dayTimeDuration =
-AFW_UTF8_LITERAL("le_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_dnsName =
-AFW_UTF8_LITERAL("le_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_double =
-AFW_UTF8_LITERAL("le_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_expression =
-AFW_UTF8_LITERAL("le_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_function =
-AFW_UTF8_LITERAL("le_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_hexBinary =
-AFW_UTF8_LITERAL("le_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_hybrid =
-AFW_UTF8_LITERAL("le_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_ia5String =
-AFW_UTF8_LITERAL("le_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_integer =
-AFW_UTF8_LITERAL("le_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_ipAddress =
-AFW_UTF8_LITERAL("le_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_object =
-AFW_UTF8_LITERAL("le_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_objectId =
-AFW_UTF8_LITERAL("le_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_objectPath =
-AFW_UTF8_LITERAL("le_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_password =
-AFW_UTF8_LITERAL("le_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_regexp =
-AFW_UTF8_LITERAL("le_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_rfc822Name =
-AFW_UTF8_LITERAL("le_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_script =
-AFW_UTF8_LITERAL("le_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_string =
-AFW_UTF8_LITERAL("le_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_template =
-AFW_UTF8_LITERAL("le_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_time =
-AFW_UTF8_LITERAL("le_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_x500Name =
-AFW_UTF8_LITERAL("le_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_xpathExpression =
-AFW_UTF8_LITERAL("le_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_le_yearMonthDuration =
-AFW_UTF8_LITERAL("le_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length =
-AFW_UTF8_LITERAL("length");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_anyURI =
-AFW_UTF8_LITERAL("length_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_array =
-AFW_UTF8_LITERAL("length_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_length_string =
-AFW_UTF8_LITERAL("length_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_let =
-AFW_UTF8_LITERAL("let");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_libafwVersion =
-AFW_UTF8_LITERAL("libafwVersion");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_libafwVersionWithGitInfo =
-AFW_UTF8_LITERAL("libafwVersionWithGitInfo");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_like =
-AFW_UTF8_LITERAL("like");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_limit =
-AFW_UTF8_LITERAL("limit");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_line =
-AFW_UTF8_LITERAL("line");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_load =
-AFW_UTF8_LITERAL("load");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_local_object_meta_set_ids =
-AFW_UTF8_LITERAL("local_object_meta_set_ids");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lockId =
-AFW_UTF8_LITERAL("lockId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_log =
-AFW_UTF8_LITERAL("log");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_logId =
-AFW_UTF8_LITERAL("logId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_logType =
-AFW_UTF8_LITERAL("logType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_log_id =
-AFW_UTF8_LITERAL("log_id");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_log_type =
-AFW_UTF8_LITERAL("log_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_logical =
-AFW_UTF8_LITERAL("logical");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt =
-AFW_UTF8_LITERAL("lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_anyURI =
-AFW_UTF8_LITERAL("lt_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_array =
-AFW_UTF8_LITERAL("lt_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_base64Binary =
-AFW_UTF8_LITERAL("lt_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_boolean =
-AFW_UTF8_LITERAL("lt_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_date =
-AFW_UTF8_LITERAL("lt_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_dateTime =
-AFW_UTF8_LITERAL("lt_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_dayTimeDuration =
-AFW_UTF8_LITERAL("lt_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_dnsName =
-AFW_UTF8_LITERAL("lt_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_double =
-AFW_UTF8_LITERAL("lt_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_expression =
-AFW_UTF8_LITERAL("lt_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_function =
-AFW_UTF8_LITERAL("lt_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_hexBinary =
-AFW_UTF8_LITERAL("lt_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_hybrid =
-AFW_UTF8_LITERAL("lt_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_ia5String =
-AFW_UTF8_LITERAL("lt_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_integer =
-AFW_UTF8_LITERAL("lt_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_ipAddress =
-AFW_UTF8_LITERAL("lt_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_object =
-AFW_UTF8_LITERAL("lt_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_objectId =
-AFW_UTF8_LITERAL("lt_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_objectPath =
-AFW_UTF8_LITERAL("lt_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_password =
-AFW_UTF8_LITERAL("lt_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_regexp =
-AFW_UTF8_LITERAL("lt_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_rfc822Name =
-AFW_UTF8_LITERAL("lt_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_script =
-AFW_UTF8_LITERAL("lt_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_string =
-AFW_UTF8_LITERAL("lt_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_template =
-AFW_UTF8_LITERAL("lt_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_time =
-AFW_UTF8_LITERAL("lt_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_x500Name =
-AFW_UTF8_LITERAL("lt_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_xpathExpression =
-AFW_UTF8_LITERAL("lt_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lt_yearMonthDuration =
-AFW_UTF8_LITERAL("lt_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_lte =
-AFW_UTF8_LITERAL("lte");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_maluba =
-AFW_UTF8_LITERAL("maluba");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_manual =
-AFW_UTF8_LITERAL("manual");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_manualMakefile =
-AFW_UTF8_LITERAL("manualMakefile");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_map =
-AFW_UTF8_LITERAL("map");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mapBackObject =
-AFW_UTF8_LITERAL("mapBackObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mapObject =
-AFW_UTF8_LITERAL("mapObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mapped =
-AFW_UTF8_LITERAL("mapped");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mappedAdaptorId =
-AFW_UTF8_LITERAL("mappedAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mappedObject =
-AFW_UTF8_LITERAL("mappedObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mappedObjectId =
-AFW_UTF8_LITERAL("mappedObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mappedObjectType =
-AFW_UTF8_LITERAL("mappedObjectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mappedPropertyName =
-AFW_UTF8_LITERAL("mappedPropertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mappedValue =
-AFW_UTF8_LITERAL("mappedValue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_match =
-AFW_UTF8_LITERAL("match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_match_rfc822Name =
-AFW_UTF8_LITERAL("match_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_match_x500Name =
-AFW_UTF8_LITERAL("match_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max =
-AFW_UTF8_LITERAL("max");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_maxConcurrent =
-AFW_UTF8_LITERAL("maxConcurrent");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_maxLength =
-AFW_UTF8_LITERAL("maxLength");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_maxNormalLength =
-AFW_UTF8_LITERAL("maxNormalLength");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_maxValue =
-AFW_UTF8_LITERAL("maxValue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max_date =
-AFW_UTF8_LITERAL("max_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max_dateTime =
-AFW_UTF8_LITERAL("max_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max_double =
-AFW_UTF8_LITERAL("max_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max_integer =
-AFW_UTF8_LITERAL("max_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max_string =
-AFW_UTF8_LITERAL("max_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_max_time =
-AFW_UTF8_LITERAL("max_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_maximumNumberOfParameters =
-AFW_UTF8_LITERAL("maximumNumberOfParameters");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mediaType =
-AFW_UTF8_LITERAL("mediaType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_memberName =
-AFW_UTF8_LITERAL("memberName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_message =
-AFW_UTF8_LITERAL("message");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_meta =
-AFW_UTF8_LITERAL("meta");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_metaFull =
-AFW_UTF8_LITERAL("metaFull");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_metaLimited =
-AFW_UTF8_LITERAL("metaLimited");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_metas =
-AFW_UTF8_LITERAL("metas");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_method =
-AFW_UTF8_LITERAL("method");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_metrics =
-AFW_UTF8_LITERAL("metrics");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min =
-AFW_UTF8_LITERAL("min");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_minArgs =
-AFW_UTF8_LITERAL("minArgs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_minLength =
-AFW_UTF8_LITERAL("minLength");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_minValue =
-AFW_UTF8_LITERAL("minValue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min_date =
-AFW_UTF8_LITERAL("min_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min_dateTime =
-AFW_UTF8_LITERAL("min_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min_double =
-AFW_UTF8_LITERAL("min_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min_integer =
-AFW_UTF8_LITERAL("min_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min_string =
-AFW_UTF8_LITERAL("min_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_min_time =
-AFW_UTF8_LITERAL("min_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_miscellaneous =
-AFW_UTF8_LITERAL("miscellaneous");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mod =
-AFW_UTF8_LITERAL("mod");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mod_integer =
-AFW_UTF8_LITERAL("mod_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_mode =
-AFW_UTF8_LITERAL("mode");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modeId =
-AFW_UTF8_LITERAL("modeId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model =
-AFW_UTF8_LITERAL("model");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelAddObject =
-AFW_UTF8_LITERAL("modelAddObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelDeleteObject =
-AFW_UTF8_LITERAL("modelDeleteObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelGetObject =
-AFW_UTF8_LITERAL("modelGetObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelGetProperty =
-AFW_UTF8_LITERAL("modelGetProperty");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelId =
-AFW_UTF8_LITERAL("modelId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelInitialObjectId =
-AFW_UTF8_LITERAL("modelInitialObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelLocationAdaptorId =
-AFW_UTF8_LITERAL("modelLocationAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelModifyObject =
-AFW_UTF8_LITERAL("modelModifyObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelReplaceObject =
-AFW_UTF8_LITERAL("modelReplaceObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelRetrieveObjects =
-AFW_UTF8_LITERAL("modelRetrieveObjects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modelSetProperty =
-AFW_UTF8_LITERAL("modelSetProperty");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_adaptor =
-AFW_UTF8_LITERAL("model_adaptor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_default_add_object_action =
-AFW_UTF8_LITERAL("model_default_add_object_action");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_default_delete_object_action =
-AFW_UTF8_LITERAL("model_default_delete_object_action");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_default_modify_object_action =
-AFW_UTF8_LITERAL("model_default_modify_object_action");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_default_replace_object_action =
-AFW_UTF8_LITERAL("model_default_replace_object_action");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_mapBackObject_signature =
-AFW_UTF8_LITERAL("model_mapBackObject_signature");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_mapObject_signature =
-AFW_UTF8_LITERAL("model_mapObject_signature");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_model_returnObject_signature =
-AFW_UTF8_LITERAL("model_returnObject_signature");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modify =
-AFW_UTF8_LITERAL("modify");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modifyEntries =
-AFW_UTF8_LITERAL("modifyEntries");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modifyObjectCount =
-AFW_UTF8_LITERAL("modifyObjectCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modify_object =
-AFW_UTF8_LITERAL("modify_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modify_object_with_uri =
-AFW_UTF8_LITERAL("modify_object_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_modulePath =
-AFW_UTF8_LITERAL("modulePath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_module_path =
-AFW_UTF8_LITERAL("module_path");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_multiply =
-AFW_UTF8_LITERAL("multiply");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_multiply_double =
-AFW_UTF8_LITERAL("multiply_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_multiply_integer =
-AFW_UTF8_LITERAL("multiply_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_n_of =
-AFW_UTF8_LITERAL("n_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_name =
-AFW_UTF8_LITERAL("name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne =
-AFW_UTF8_LITERAL("ne");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_anyURI =
-AFW_UTF8_LITERAL("ne_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_array =
-AFW_UTF8_LITERAL("ne_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_base64Binary =
-AFW_UTF8_LITERAL("ne_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_boolean =
-AFW_UTF8_LITERAL("ne_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_date =
-AFW_UTF8_LITERAL("ne_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_dateTime =
-AFW_UTF8_LITERAL("ne_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_dayTimeDuration =
-AFW_UTF8_LITERAL("ne_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_dnsName =
-AFW_UTF8_LITERAL("ne_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_double =
-AFW_UTF8_LITERAL("ne_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_expression =
-AFW_UTF8_LITERAL("ne_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_function =
-AFW_UTF8_LITERAL("ne_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_hexBinary =
-AFW_UTF8_LITERAL("ne_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_hybrid =
-AFW_UTF8_LITERAL("ne_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_ia5String =
-AFW_UTF8_LITERAL("ne_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_integer =
-AFW_UTF8_LITERAL("ne_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_ipAddress =
-AFW_UTF8_LITERAL("ne_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_object =
-AFW_UTF8_LITERAL("ne_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_objectId =
-AFW_UTF8_LITERAL("ne_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_objectPath =
-AFW_UTF8_LITERAL("ne_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_password =
-AFW_UTF8_LITERAL("ne_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_regexp =
-AFW_UTF8_LITERAL("ne_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_rfc822Name =
-AFW_UTF8_LITERAL("ne_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_script =
-AFW_UTF8_LITERAL("ne_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_string =
-AFW_UTF8_LITERAL("ne_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_template =
-AFW_UTF8_LITERAL("ne_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_time =
-AFW_UTF8_LITERAL("ne_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_x500Name =
-AFW_UTF8_LITERAL("ne_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_xpathExpression =
-AFW_UTF8_LITERAL("ne_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ne_yearMonthDuration =
-AFW_UTF8_LITERAL("ne_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_negative =
-AFW_UTF8_LITERAL("negative");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_negative_double =
-AFW_UTF8_LITERAL("negative_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_negative_integer =
-AFW_UTF8_LITERAL("negative_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex =
-AFW_UTF8_LITERAL("nex");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_anyURI =
-AFW_UTF8_LITERAL("nex_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_array =
-AFW_UTF8_LITERAL("nex_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_base64Binary =
-AFW_UTF8_LITERAL("nex_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_boolean =
-AFW_UTF8_LITERAL("nex_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_date =
-AFW_UTF8_LITERAL("nex_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_dateTime =
-AFW_UTF8_LITERAL("nex_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_dayTimeDuration =
-AFW_UTF8_LITERAL("nex_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_dnsName =
-AFW_UTF8_LITERAL("nex_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_double =
-AFW_UTF8_LITERAL("nex_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_expression =
-AFW_UTF8_LITERAL("nex_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_function =
-AFW_UTF8_LITERAL("nex_function");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_hexBinary =
-AFW_UTF8_LITERAL("nex_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_hybrid =
-AFW_UTF8_LITERAL("nex_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_ia5String =
-AFW_UTF8_LITERAL("nex_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_integer =
-AFW_UTF8_LITERAL("nex_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_ipAddress =
-AFW_UTF8_LITERAL("nex_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_object =
-AFW_UTF8_LITERAL("nex_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_objectId =
-AFW_UTF8_LITERAL("nex_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_objectPath =
-AFW_UTF8_LITERAL("nex_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_password =
-AFW_UTF8_LITERAL("nex_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_regexp =
-AFW_UTF8_LITERAL("nex_regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_rfc822Name =
-AFW_UTF8_LITERAL("nex_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_script =
-AFW_UTF8_LITERAL("nex_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_string =
-AFW_UTF8_LITERAL("nex_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_template =
-AFW_UTF8_LITERAL("nex_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_time =
-AFW_UTF8_LITERAL("nex_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_x500Name =
-AFW_UTF8_LITERAL("nex_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_xpathExpression =
-AFW_UTF8_LITERAL("nex_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nex_yearMonthDuration =
-AFW_UTF8_LITERAL("nex_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_none =
-AFW_UTF8_LITERAL("none");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalize =
-AFW_UTF8_LITERAL("normalize");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalize_space =
-AFW_UTF8_LITERAL("normalize_space");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalize_space_string =
-AFW_UTF8_LITERAL("normalize_space_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalize_to_lower_case =
-AFW_UTF8_LITERAL("normalize_to_lower_case");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalize_to_lower_case_string =
-AFW_UTF8_LITERAL("normalize_to_lower_case_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalizedPath =
-AFW_UTF8_LITERAL("normalizedPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_normalizedURI =
-AFW_UTF8_LITERAL("normalizedURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_not =
-AFW_UTF8_LITERAL("not");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_notApplicable =
-AFW_UTF8_LITERAL("notApplicable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_notice =
-AFW_UTF8_LITERAL("notice");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_now_local =
-AFW_UTF8_LITERAL("now_local");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_now_utc =
-AFW_UTF8_LITERAL("now_utc");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_null =
-AFW_UTF8_LITERAL("null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_null_terminated_array_of_internal =
-AFW_UTF8_LITERAL("null_terminated_array_of_internal");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_null_terminated_array_of_objects =
-AFW_UTF8_LITERAL("null_terminated_array_of_objects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_null_terminated_array_of_pointers =
-AFW_UTF8_LITERAL("null_terminated_array_of_pointers");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_null_terminated_array_of_utf8_z_key_value_pair_objects =
-AFW_UTF8_LITERAL("null_terminated_array_of_utf8_z_key_value_pair_objects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_null_terminated_array_of_values =
-AFW_UTF8_LITERAL("null_terminated_array_of_values");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_nullish_coalescing =
-AFW_UTF8_LITERAL("nullish_coalescing");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_num_indexed =
-AFW_UTF8_LITERAL("num_indexed");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_num_processed =
-AFW_UTF8_LITERAL("num_processed");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_number =
-AFW_UTF8_LITERAL("number");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_numberOfRequiredParameters =
-AFW_UTF8_LITERAL("numberOfRequiredParameters");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_numeric =
-AFW_UTF8_LITERAL("numeric");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_object =
-AFW_UTF8_LITERAL("object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_objectId =
-AFW_UTF8_LITERAL("objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_objectIdPropertyName =
-AFW_UTF8_LITERAL("objectIdPropertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_objectPath =
-AFW_UTF8_LITERAL("objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_objectType =
-AFW_UTF8_LITERAL("objectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_objectTypeObject =
-AFW_UTF8_LITERAL("objectTypeObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_objectTypes =
-AFW_UTF8_LITERAL("objectTypes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_obligations =
-AFW_UTF8_LITERAL("obligations");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_octet =
-AFW_UTF8_LITERAL("octet");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_of =
-AFW_UTF8_LITERAL("of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_offset =
-AFW_UTF8_LITERAL("offset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onAddObject =
-AFW_UTF8_LITERAL("onAddObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onApplicationStartupComplete =
-AFW_UTF8_LITERAL("onApplicationStartupComplete");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onDeleteObject =
-AFW_UTF8_LITERAL("onDeleteObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onGetInitialObjectId =
-AFW_UTF8_LITERAL("onGetInitialObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onGetInitialValue =
-AFW_UTF8_LITERAL("onGetInitialValue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onGetObject =
-AFW_UTF8_LITERAL("onGetObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onGetProperty =
-AFW_UTF8_LITERAL("onGetProperty");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onGetValueCFunctionName =
-AFW_UTF8_LITERAL("onGetValueCFunctionName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onModifyObject =
-AFW_UTF8_LITERAL("onModifyObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onReplaceObject =
-AFW_UTF8_LITERAL("onReplaceObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onRetrieveObjects =
-AFW_UTF8_LITERAL("onRetrieveObjects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_onSetProperty =
-AFW_UTF8_LITERAL("onSetProperty");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only =
-AFW_UTF8_LITERAL("one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_anyURI =
-AFW_UTF8_LITERAL("one_and_only_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_base64Binary =
-AFW_UTF8_LITERAL("one_and_only_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_boolean =
-AFW_UTF8_LITERAL("one_and_only_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_date =
-AFW_UTF8_LITERAL("one_and_only_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_dateTime =
-AFW_UTF8_LITERAL("one_and_only_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_dayTimeDuration =
-AFW_UTF8_LITERAL("one_and_only_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_dnsName =
-AFW_UTF8_LITERAL("one_and_only_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_double =
-AFW_UTF8_LITERAL("one_and_only_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_hexBinary =
-AFW_UTF8_LITERAL("one_and_only_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_integer =
-AFW_UTF8_LITERAL("one_and_only_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_ipAddress =
-AFW_UTF8_LITERAL("one_and_only_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_rfc822Name =
-AFW_UTF8_LITERAL("one_and_only_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_string =
-AFW_UTF8_LITERAL("one_and_only_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_time =
-AFW_UTF8_LITERAL("one_and_only_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_x500Name =
-AFW_UTF8_LITERAL("one_and_only_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_one_and_only_yearMonthDuration =
-AFW_UTF8_LITERAL("one_and_only_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_op =
-AFW_UTF8_LITERAL("op");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_open_file =
-AFW_UTF8_LITERAL("open_file");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_open_response =
-AFW_UTF8_LITERAL("open_response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_open_uri =
-AFW_UTF8_LITERAL("open_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_option =
-AFW_UTF8_LITERAL("option");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionLogCons =
-AFW_UTF8_LITERAL("optionLogCons");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionLogNoDelay =
-AFW_UTF8_LITERAL("optionLogNoDelay");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionLogNoWait =
-AFW_UTF8_LITERAL("optionLogNoWait");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionLogODelay =
-AFW_UTF8_LITERAL("optionLogODelay");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionLogPError =
-AFW_UTF8_LITERAL("optionLogPError");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionLogPid =
-AFW_UTF8_LITERAL("optionLogPid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optional =
-AFW_UTF8_LITERAL("optional");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionalChoiceDefault =
-AFW_UTF8_LITERAL("optionalChoiceDefault");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optional_chaining =
-AFW_UTF8_LITERAL("optional_chaining");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_options =
-AFW_UTF8_LITERAL("options");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_optionsObject =
-AFW_UTF8_LITERAL("optionsObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_or =
-AFW_UTF8_LITERAL("or");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_origin =
-AFW_UTF8_LITERAL("origin");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originURI =
-AFW_UTF8_LITERAL("originURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalAuthority =
-AFW_UTF8_LITERAL("originalAuthority");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalFragment =
-AFW_UTF8_LITERAL("originalFragment");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalHierPart =
-AFW_UTF8_LITERAL("originalHierPart");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalHost =
-AFW_UTF8_LITERAL("originalHost");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalPath =
-AFW_UTF8_LITERAL("originalPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalQuery =
-AFW_UTF8_LITERAL("originalQuery");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalURI =
-AFW_UTF8_LITERAL("originalURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_originalUserinfo =
-AFW_UTF8_LITERAL("originalUserinfo");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_os =
-AFW_UTF8_LITERAL("os");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_otherProperties =
-AFW_UTF8_LITERAL("otherProperties");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_out =
-AFW_UTF8_LITERAL("out");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_own =
-AFW_UTF8_LITERAL("own");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parameter =
-AFW_UTF8_LITERAL("parameter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parameter_number =
-AFW_UTF8_LITERAL("parameter_number");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parameters =
-AFW_UTF8_LITERAL("parameters");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parentPaths =
-AFW_UTF8_LITERAL("parentPaths");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parenthesized_expression =
-AFW_UTF8_LITERAL("parenthesized_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parse_uri =
-AFW_UTF8_LITERAL("parse_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parserColumnNumber =
-AFW_UTF8_LITERAL("parserColumnNumber");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parserCursor =
-AFW_UTF8_LITERAL("parserCursor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parserLineNumber =
-AFW_UTF8_LITERAL("parserLineNumber");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_parserSource =
-AFW_UTF8_LITERAL("parserSource");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_passed =
-AFW_UTF8_LITERAL("passed");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_password =
-AFW_UTF8_LITERAL("password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_path =
-AFW_UTF8_LITERAL("path");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_pathEmbedded =
-AFW_UTF8_LITERAL("pathEmbedded");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_pathTokens =
-AFW_UTF8_LITERAL("pathTokens");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_peerId =
-AFW_UTF8_LITERAL("peerId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_perform =
-AFW_UTF8_LITERAL("perform");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_permanent =
-AFW_UTF8_LITERAL("permanent");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_permit =
-AFW_UTF8_LITERAL("permit");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_pid =
-AFW_UTF8_LITERAL("pid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_policy_combining_algorithm =
-AFW_UTF8_LITERAL("policy_combining_algorithm");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphic =
-AFW_UTF8_LITERAL("polymorphic");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphicDataType =
-AFW_UTF8_LITERAL("polymorphicDataType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphicDataTypeParameter =
-AFW_UTF8_LITERAL("polymorphicDataTypeParameter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphicDataTypes =
-AFW_UTF8_LITERAL("polymorphicDataTypes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphicExecuteFunction =
-AFW_UTF8_LITERAL("polymorphicExecuteFunction");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphicExecuteFunctionEvaluatesFirstParameter =
-AFW_UTF8_LITERAL("polymorphicExecuteFunctionEvaluatesFirstParameter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_polymorphicOverrides =
-AFW_UTF8_LITERAL("polymorphicOverrides");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_port =
-AFW_UTF8_LITERAL("port");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_possibleValues =
-AFW_UTF8_LITERAL("possibleValues");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_pow =
-AFW_UTF8_LITERAL("pow");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_pow_double =
-AFW_UTF8_LITERAL("pow_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_prefix =
-AFW_UTF8_LITERAL("prefix");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_print =
-AFW_UTF8_LITERAL("print");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_println =
-AFW_UTF8_LITERAL("println");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_priority =
-AFW_UTF8_LITERAL("priority");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_processingOrder =
-AFW_UTF8_LITERAL("processingOrder");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_produces =
-AFW_UTF8_LITERAL("produces");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_programName =
-AFW_UTF8_LITERAL("programName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_properties =
-AFW_UTF8_LITERAL("properties");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property =
-AFW_UTF8_LITERAL("property");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_propertyName =
-AFW_UTF8_LITERAL("propertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_propertyNames =
-AFW_UTF8_LITERAL("propertyNames");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_propertyTypeObject =
-AFW_UTF8_LITERAL("propertyTypeObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_propertyTypes =
-AFW_UTF8_LITERAL("propertyTypes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_delete =
-AFW_UTF8_LITERAL("property_delete");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_delete_by_reference =
-AFW_UTF8_LITERAL("property_delete_by_reference");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_exists =
-AFW_UTF8_LITERAL("property_exists");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_get =
-AFW_UTF8_LITERAL("property_get");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_property_is_not_null =
-AFW_UTF8_LITERAL("property_is_not_null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_providesObjects =
-AFW_UTF8_LITERAL("providesObjects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_publish =
-AFW_UTF8_LITERAL("publish");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_pure =
-AFW_UTF8_LITERAL("pure");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_qualifiedVariables =
-AFW_UTF8_LITERAL("qualifiedVariables");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_qualifier =
-AFW_UTF8_LITERAL("qualifier");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_qualifierDefinitions =
-AFW_UTF8_LITERAL("qualifierDefinitions");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_qualifiers =
-AFW_UTF8_LITERAL("qualifiers");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_query =
-AFW_UTF8_LITERAL("query");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_queryCriteria =
-AFW_UTF8_LITERAL("queryCriteria");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_queryString =
-AFW_UTF8_LITERAL("queryString");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_queryTokens =
-AFW_UTF8_LITERAL("queryTokens");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_random =
-AFW_UTF8_LITERAL("random");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_random_base64Binary =
-AFW_UTF8_LITERAL("random_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_random_digits =
-AFW_UTF8_LITERAL("random_digits");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_random_hexBinary =
-AFW_UTF8_LITERAL("random_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_random_integer =
-AFW_UTF8_LITERAL("random_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_random_number =
-AFW_UTF8_LITERAL("random_number");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_raw_response_body =
-AFW_UTF8_LITERAL("raw_response_body");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_read =
-AFW_UTF8_LITERAL("read");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_read_to_base64Binary =
-AFW_UTF8_LITERAL("read_to_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_read_to_hexBinary =
-AFW_UTF8_LITERAL("read_to_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_readln =
-AFW_UTF8_LITERAL("readln");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reason =
-AFW_UTF8_LITERAL("reason");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reconcilable =
-AFW_UTF8_LITERAL("reconcilable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reconcile_object =
-AFW_UTF8_LITERAL("reconcile_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reduce =
-AFW_UTF8_LITERAL("reduce");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_referenceCount =
-AFW_UTF8_LITERAL("referenceCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_referenceURI =
-AFW_UTF8_LITERAL("referenceURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reference_by_key =
-AFW_UTF8_LITERAL("reference_by_key");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp =
-AFW_UTF8_LITERAL("regexp");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_index_of =
-AFW_UTF8_LITERAL("regexp_index_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_index_of_anyURI =
-AFW_UTF8_LITERAL("regexp_index_of_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_index_of_string =
-AFW_UTF8_LITERAL("regexp_index_of_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match =
-AFW_UTF8_LITERAL("regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match_anyURI =
-AFW_UTF8_LITERAL("regexp_match_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match_dnsName =
-AFW_UTF8_LITERAL("regexp_match_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match_ipAddress =
-AFW_UTF8_LITERAL("regexp_match_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match_rfc822Name =
-AFW_UTF8_LITERAL("regexp_match_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match_string =
-AFW_UTF8_LITERAL("regexp_match_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_match_x500Name =
-AFW_UTF8_LITERAL("regexp_match_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_replace =
-AFW_UTF8_LITERAL("regexp_replace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_replace_anyURI =
-AFW_UTF8_LITERAL("regexp_replace_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_regexp_replace_string =
-AFW_UTF8_LITERAL("regexp_replace_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_registers =
-AFW_UTF8_LITERAL("registers");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_registryType =
-AFW_UTF8_LITERAL("registryType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_registry_key_check =
-AFW_UTF8_LITERAL("registry_key_check");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_registry_type =
-AFW_UTF8_LITERAL("registry_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reissue =
-AFW_UTF8_LITERAL("reissue");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_related =
-AFW_UTF8_LITERAL("related");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_relationalCompares =
-AFW_UTF8_LITERAL("relationalCompares");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_relaxed_json =
-AFW_UTF8_LITERAL("relaxed_json");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_remove_property =
-AFW_UTF8_LITERAL("remove_property");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_remove_value =
-AFW_UTF8_LITERAL("remove_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_repeat =
-AFW_UTF8_LITERAL("repeat");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_repeat_anyURI =
-AFW_UTF8_LITERAL("repeat_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_repeat_string =
-AFW_UTF8_LITERAL("repeat_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_replace =
-AFW_UTF8_LITERAL("replace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_replaceObjectCount =
-AFW_UTF8_LITERAL("replaceObjectCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_replace_anyURI =
-AFW_UTF8_LITERAL("replace_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_replace_object =
-AFW_UTF8_LITERAL("replace_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_replace_object_with_uri =
-AFW_UTF8_LITERAL("replace_object_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_replace_string =
-AFW_UTF8_LITERAL("replace_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_request =
-AFW_UTF8_LITERAL("request");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_requestCount =
-AFW_UTF8_LITERAL("requestCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_requestHandler =
-AFW_UTF8_LITERAL("requestHandler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_requestHandlerType =
-AFW_UTF8_LITERAL("requestHandlerType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_requestId =
-AFW_UTF8_LITERAL("requestId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_request_handler =
-AFW_UTF8_LITERAL("request_handler");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_request_handler_type =
-AFW_UTF8_LITERAL("request_handler_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_request_session =
-AFW_UTF8_LITERAL("request_session");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_request_thread =
-AFW_UTF8_LITERAL("request_thread");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_required =
-AFW_UTF8_LITERAL("required");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_resolvedParentPaths =
-AFW_UTF8_LITERAL("resolvedParentPaths");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_resource =
-AFW_UTF8_LITERAL("resource");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_resourceId =
-AFW_UTF8_LITERAL("resourceId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_response =
-AFW_UTF8_LITERAL("response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_response_body =
-AFW_UTF8_LITERAL("response_body");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_result =
-AFW_UTF8_LITERAL("result");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_resultDataType =
-AFW_UTF8_LITERAL("resultDataType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rethrow =
-AFW_UTF8_LITERAL("rethrow");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieveObjectsCount =
-AFW_UTF8_LITERAL("retrieveObjectsCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects =
-AFW_UTF8_LITERAL("retrieve_objects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_to_callback =
-AFW_UTF8_LITERAL("retrieve_objects_to_callback");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_to_response =
-AFW_UTF8_LITERAL("retrieve_objects_to_response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_to_stream =
-AFW_UTF8_LITERAL("retrieve_objects_to_stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_with_uri =
-AFW_UTF8_LITERAL("retrieve_objects_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_with_uri_to_callback =
-AFW_UTF8_LITERAL("retrieve_objects_with_uri_to_callback");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_with_uri_to_response =
-AFW_UTF8_LITERAL("retrieve_objects_with_uri_to_response");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retrieve_objects_with_uri_to_stream =
-AFW_UTF8_LITERAL("retrieve_objects_with_uri_to_stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_retroactive =
-AFW_UTF8_LITERAL("retroactive");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_return =
-AFW_UTF8_LITERAL("return");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_returnObject =
-AFW_UTF8_LITERAL("returnObject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_returns =
-AFW_UTF8_LITERAL("returns");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_reverse =
-AFW_UTF8_LITERAL("reverse");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name =
-AFW_UTF8_LITERAL("rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_at_least_one_member_of =
-AFW_UTF8_LITERAL("rfc822Name_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_bag =
-AFW_UTF8_LITERAL("rfc822Name_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_bag_size =
-AFW_UTF8_LITERAL("rfc822Name_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_eq =
-AFW_UTF8_LITERAL("rfc822Name_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_intersection =
-AFW_UTF8_LITERAL("rfc822Name_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_is_in =
-AFW_UTF8_LITERAL("rfc822Name_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_match =
-AFW_UTF8_LITERAL("rfc822Name_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_one_and_only =
-AFW_UTF8_LITERAL("rfc822Name_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_regexp_match =
-AFW_UTF8_LITERAL("rfc822Name_regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_set_equals =
-AFW_UTF8_LITERAL("rfc822Name_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_subset =
-AFW_UTF8_LITERAL("rfc822Name_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_to_string =
-AFW_UTF8_LITERAL("rfc822Name_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rfc822Name_union =
-AFW_UTF8_LITERAL("rfc822Name_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_root =
-AFW_UTF8_LITERAL("root");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rootFilePaths =
-AFW_UTF8_LITERAL("rootFilePaths");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_round =
-AFW_UTF8_LITERAL("round");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_round_double =
-AFW_UTF8_LITERAL("round_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rule_combining_algorithm =
-AFW_UTF8_LITERAL("rule_combining_algorithm");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_runtime =
-AFW_UTF8_LITERAL("runtime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_runtime_custom =
-AFW_UTF8_LITERAL("runtime_custom");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_runtime_object_map_inf =
-AFW_UTF8_LITERAL("runtime_object_map_inf");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_runtime_value_accessor =
-AFW_UTF8_LITERAL("runtime_value_accessor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rv =
-AFW_UTF8_LITERAL("rv");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rvDecoded =
-AFW_UTF8_LITERAL("rvDecoded");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_rvSourceId =
-AFW_UTF8_LITERAL("rvSourceId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_safe_evaluate =
-AFW_UTF8_LITERAL("safe_evaluate");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_scalar =
-AFW_UTF8_LITERAL("scalar");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_scheme =
-AFW_UTF8_LITERAL("scheme");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_scopeNumber =
-AFW_UTF8_LITERAL("scopeNumber");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_script =
-AFW_UTF8_LITERAL("script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_scriptSupport =
-AFW_UTF8_LITERAL("scriptSupport");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_scriptSupportNumber =
-AFW_UTF8_LITERAL("scriptSupportNumber");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_script_compile =
-AFW_UTF8_LITERAL("script_compile");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_select =
-AFW_UTF8_LITERAL("select");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_serverType =
-AFW_UTF8_LITERAL("serverType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_serverVersion =
-AFW_UTF8_LITERAL("serverVersion");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service =
-AFW_UTF8_LITERAL("service");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_serviceId =
-AFW_UTF8_LITERAL("serviceId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_serviceType =
-AFW_UTF8_LITERAL("serviceType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_get =
-AFW_UTF8_LITERAL("service_get");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_restart =
-AFW_UTF8_LITERAL("service_restart");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_start =
-AFW_UTF8_LITERAL("service_start");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_startup =
-AFW_UTF8_LITERAL("service_startup");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_status =
-AFW_UTF8_LITERAL("service_status");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_stop =
-AFW_UTF8_LITERAL("service_stop");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_service_type =
-AFW_UTF8_LITERAL("service_type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_services =
-AFW_UTF8_LITERAL("services");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals =
-AFW_UTF8_LITERAL("set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_anyURI =
-AFW_UTF8_LITERAL("set_equals_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_base64Binary =
-AFW_UTF8_LITERAL("set_equals_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_boolean =
-AFW_UTF8_LITERAL("set_equals_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_date =
-AFW_UTF8_LITERAL("set_equals_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_dateTime =
-AFW_UTF8_LITERAL("set_equals_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_dayTimeDuration =
-AFW_UTF8_LITERAL("set_equals_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_double =
-AFW_UTF8_LITERAL("set_equals_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_hexBinary =
-AFW_UTF8_LITERAL("set_equals_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_integer =
-AFW_UTF8_LITERAL("set_equals_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_rfc822Name =
-AFW_UTF8_LITERAL("set_equals_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_string =
-AFW_UTF8_LITERAL("set_equals_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_time =
-AFW_UTF8_LITERAL("set_equals_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_x500Name =
-AFW_UTF8_LITERAL("set_equals_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_equals_yearMonthDuration =
-AFW_UTF8_LITERAL("set_equals_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_set_property =
-AFW_UTF8_LITERAL("set_property");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sideEffects =
-AFW_UTF8_LITERAL("sideEffects");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_signatureOnly =
-AFW_UTF8_LITERAL("signatureOnly");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_singleton =
-AFW_UTF8_LITERAL("singleton");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_size =
-AFW_UTF8_LITERAL("size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_skeleton =
-AFW_UTF8_LITERAL("skeleton");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_skip =
-AFW_UTF8_LITERAL("skip");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_slice =
-AFW_UTF8_LITERAL("slice");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sort =
-AFW_UTF8_LITERAL("sort");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sort_reverse =
-AFW_UTF8_LITERAL("sort-reverse");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_source =
-AFW_UTF8_LITERAL("source");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceCodepointLengthInTestScript =
-AFW_UTF8_LITERAL("sourceCodepointLengthInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceCodepointOffsetInTestScript =
-AFW_UTF8_LITERAL("sourceCodepointOffsetInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceColumnNumberInTestScript =
-AFW_UTF8_LITERAL("sourceColumnNumberInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceFile =
-AFW_UTF8_LITERAL("sourceFile");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceLineNumberInTestScript =
-AFW_UTF8_LITERAL("sourceLineNumberInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceLocation =
-AFW_UTF8_LITERAL("sourceLocation");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceType =
-AFW_UTF8_LITERAL("sourceType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceUTF8OctetLengthInTestScript =
-AFW_UTF8_LITERAL("sourceUTF8OctetLengthInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_sourceUTF8OctetOffsetInTestScript =
-AFW_UTF8_LITERAL("sourceUTF8OctetOffsetInTestScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_special =
-AFW_UTF8_LITERAL("special");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_split =
-AFW_UTF8_LITERAL("split");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_split_anyURI =
-AFW_UTF8_LITERAL("split_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_split_string =
-AFW_UTF8_LITERAL("split_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_srcdirManifest =
-AFW_UTF8_LITERAL("srcdirManifest");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_srcdirPath =
-AFW_UTF8_LITERAL("srcdirPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_srcdirs =
-AFW_UTF8_LITERAL("srcdirs");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_startTime =
-AFW_UTF8_LITERAL("startTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_starts_with =
-AFW_UTF8_LITERAL("starts_with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_starts_with_anyURI =
-AFW_UTF8_LITERAL("starts_with_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_starts_with_string =
-AFW_UTF8_LITERAL("starts_with_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_startup =
-AFW_UTF8_LITERAL("startup");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_startupDescription =
-AFW_UTF8_LITERAL("startupDescription");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_status =
-AFW_UTF8_LITERAL("status");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_statusDebug =
-AFW_UTF8_LITERAL("statusDebug");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_statusDescription =
-AFW_UTF8_LITERAL("statusDescription");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_statusMessage =
-AFW_UTF8_LITERAL("statusMessage");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stderr =
-AFW_UTF8_LITERAL("stderr");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stdout =
-AFW_UTF8_LITERAL("stdout");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stopping =
-AFW_UTF8_LITERAL("stopping");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stopping_adaptor_instances =
-AFW_UTF8_LITERAL("stopping_adaptor_instances");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stopping_authorization_handler_instances =
-AFW_UTF8_LITERAL("stopping_authorization_handler_instances");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stream =
-AFW_UTF8_LITERAL("stream");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string =
-AFW_UTF8_LITERAL("string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_at_least_one_member_of =
-AFW_UTF8_LITERAL("string_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_bag =
-AFW_UTF8_LITERAL("string_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_bag_size =
-AFW_UTF8_LITERAL("string_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_ends_with =
-AFW_UTF8_LITERAL("string_ends_with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_eq =
-AFW_UTF8_LITERAL("string_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_eq_ignore_case =
-AFW_UTF8_LITERAL("string_eq_ignore_case");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_ge =
-AFW_UTF8_LITERAL("string_ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_gt =
-AFW_UTF8_LITERAL("string_gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_includes =
-AFW_UTF8_LITERAL("string_includes");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_intersection =
-AFW_UTF8_LITERAL("string_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_is_in =
-AFW_UTF8_LITERAL("string_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_le =
-AFW_UTF8_LITERAL("string_le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_lt =
-AFW_UTF8_LITERAL("string_lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_normalize_space =
-AFW_UTF8_LITERAL("string_normalize_space");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_normalize_to_lower_case =
-AFW_UTF8_LITERAL("string_normalize_to_lower_case");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_one_and_only =
-AFW_UTF8_LITERAL("string_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_regexp_match =
-AFW_UTF8_LITERAL("string_regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_set_equals =
-AFW_UTF8_LITERAL("string_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_starts_with =
-AFW_UTF8_LITERAL("string_starts_with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_subset =
-AFW_UTF8_LITERAL("string_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_substring =
-AFW_UTF8_LITERAL("string_substring");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_anyURI =
-AFW_UTF8_LITERAL("string_to_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_boolean =
-AFW_UTF8_LITERAL("string_to_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_date =
-AFW_UTF8_LITERAL("string_to_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_dateTime =
-AFW_UTF8_LITERAL("string_to_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_dayTimeDuration =
-AFW_UTF8_LITERAL("string_to_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_dnsName =
-AFW_UTF8_LITERAL("string_to_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_double =
-AFW_UTF8_LITERAL("string_to_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_integer =
-AFW_UTF8_LITERAL("string_to_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_ipAddress =
-AFW_UTF8_LITERAL("string_to_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_rfc822Name =
-AFW_UTF8_LITERAL("string_to_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_time =
-AFW_UTF8_LITERAL("string_to_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_x500Name =
-AFW_UTF8_LITERAL("string_to_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_to_yearMonthDuration =
-AFW_UTF8_LITERAL("string_to_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_string_union =
-AFW_UTF8_LITERAL("string_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_stringify =
-AFW_UTF8_LITERAL("stringify");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subject =
-AFW_UTF8_LITERAL("subject");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subjectCategories =
-AFW_UTF8_LITERAL("subjectCategories");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset =
-AFW_UTF8_LITERAL("subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_anyURI =
-AFW_UTF8_LITERAL("subset_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_base64Binary =
-AFW_UTF8_LITERAL("subset_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_boolean =
-AFW_UTF8_LITERAL("subset_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_date =
-AFW_UTF8_LITERAL("subset_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_dateTime =
-AFW_UTF8_LITERAL("subset_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_dayTimeDuration =
-AFW_UTF8_LITERAL("subset_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_double =
-AFW_UTF8_LITERAL("subset_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_hexBinary =
-AFW_UTF8_LITERAL("subset_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_integer =
-AFW_UTF8_LITERAL("subset_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_rfc822Name =
-AFW_UTF8_LITERAL("subset_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_string =
-AFW_UTF8_LITERAL("subset_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_time =
-AFW_UTF8_LITERAL("subset_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_x500Name =
-AFW_UTF8_LITERAL("subset_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subset_yearMonthDuration =
-AFW_UTF8_LITERAL("subset_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substitutedAdaptorId =
-AFW_UTF8_LITERAL("substitutedAdaptorId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substitutedEntireObjectId =
-AFW_UTF8_LITERAL("substitutedEntireObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substitutedEntityObjectId =
-AFW_UTF8_LITERAL("substitutedEntityObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substitutedObjectTypeId =
-AFW_UTF8_LITERAL("substitutedObjectTypeId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substitutedPropertyName =
-AFW_UTF8_LITERAL("substitutedPropertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substitutionOccurred =
-AFW_UTF8_LITERAL("substitutionOccurred");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substring =
-AFW_UTF8_LITERAL("substring");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substring_anyURI =
-AFW_UTF8_LITERAL("substring_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_substring_string =
-AFW_UTF8_LITERAL("substring_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract =
-AFW_UTF8_LITERAL("subtract");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_dayTimeDuration =
-AFW_UTF8_LITERAL("subtract_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_dayTimeDuration_dateTime =
-AFW_UTF8_LITERAL("subtract_dayTimeDuration_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_double =
-AFW_UTF8_LITERAL("subtract_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_integer =
-AFW_UTF8_LITERAL("subtract_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_yearMonthDuration =
-AFW_UTF8_LITERAL("subtract_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_yearMonthDuration_date =
-AFW_UTF8_LITERAL("subtract_yearMonthDuration_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtract_yearMonthDuration_dateTime =
-AFW_UTF8_LITERAL("subtract_yearMonthDuration_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtypePropertyName =
-AFW_UTF8_LITERAL("subtypePropertyName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtypeRegistryType =
-AFW_UTF8_LITERAL("subtypeRegistryType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_subtypeRuntimeObjectType =
-AFW_UTF8_LITERAL("subtypeRuntimeObjectType");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_success =
-AFW_UTF8_LITERAL("success");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_suggestedObjectId =
-AFW_UTF8_LITERAL("suggestedObjectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_super =
-AFW_UTF8_LITERAL("super");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_switch =
-AFW_UTF8_LITERAL("switch");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_systemInfo =
-AFW_UTF8_LITERAL("systemInfo");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_tagId =
-AFW_UTF8_LITERAL("tagId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_tags =
-AFW_UTF8_LITERAL("tags");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_tarballName =
-AFW_UTF8_LITERAL("tarballName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_template =
-AFW_UTF8_LITERAL("template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test =
-AFW_UTF8_LITERAL("test");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_testDataParameter =
-AFW_UTF8_LITERAL("testDataParameter");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_testScript =
-AFW_UTF8_LITERAL("testScript");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_expression =
-AFW_UTF8_LITERAL("test_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_hybrid =
-AFW_UTF8_LITERAL("test_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_script =
-AFW_UTF8_LITERAL("test_script");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_script_runtime_support =
-AFW_UTF8_LITERAL("test_script_runtime_support");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_template =
-AFW_UTF8_LITERAL("test_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_test_value =
-AFW_UTF8_LITERAL("test_value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_tests =
-AFW_UTF8_LITERAL("tests");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_then =
-AFW_UTF8_LITERAL("then");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_this =
-AFW_UTF8_LITERAL("this");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_threadCount =
-AFW_UTF8_LITERAL("threadCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_throw =
-AFW_UTF8_LITERAL("throw");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time =
-AFW_UTF8_LITERAL("time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_at_least_one_member_of =
-AFW_UTF8_LITERAL("time_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_bag =
-AFW_UTF8_LITERAL("time_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_bag_size =
-AFW_UTF8_LITERAL("time_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_eq =
-AFW_UTF8_LITERAL("time_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_ge =
-AFW_UTF8_LITERAL("time_ge");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_gt =
-AFW_UTF8_LITERAL("time_gt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_in_range =
-AFW_UTF8_LITERAL("time_in_range");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_intersection =
-AFW_UTF8_LITERAL("time_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_is_in =
-AFW_UTF8_LITERAL("time_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_le =
-AFW_UTF8_LITERAL("time_le");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_lt =
-AFW_UTF8_LITERAL("time_lt");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_one_and_only =
-AFW_UTF8_LITERAL("time_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_set_equals =
-AFW_UTF8_LITERAL("time_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_subset =
-AFW_UTF8_LITERAL("time_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_to_string =
-AFW_UTF8_LITERAL("time_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_time_union =
-AFW_UTF8_LITERAL("time_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_title =
-AFW_UTF8_LITERAL("title");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_anyURI =
-AFW_UTF8_LITERAL("to_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_anyURI_string =
-AFW_UTF8_LITERAL("to_anyURI_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_boolean =
-AFW_UTF8_LITERAL("to_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_boolean_string =
-AFW_UTF8_LITERAL("to_boolean_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_date =
-AFW_UTF8_LITERAL("to_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_dateTime =
-AFW_UTF8_LITERAL("to_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_dateTime_string =
-AFW_UTF8_LITERAL("to_dateTime_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_date_string =
-AFW_UTF8_LITERAL("to_date_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_dayTimeDuration =
-AFW_UTF8_LITERAL("to_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_dayTimeDuration_string =
-AFW_UTF8_LITERAL("to_dayTimeDuration_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_dnsName =
-AFW_UTF8_LITERAL("to_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_dnsName_string =
-AFW_UTF8_LITERAL("to_dnsName_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_double =
-AFW_UTF8_LITERAL("to_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_double_integer =
-AFW_UTF8_LITERAL("to_double_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_double_string =
-AFW_UTF8_LITERAL("to_double_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_integer =
-AFW_UTF8_LITERAL("to_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_integer_double =
-AFW_UTF8_LITERAL("to_integer_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_integer_string =
-AFW_UTF8_LITERAL("to_integer_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_ipAddress =
-AFW_UTF8_LITERAL("to_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_ipAddress_string =
-AFW_UTF8_LITERAL("to_ipAddress_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_rfc822Name =
-AFW_UTF8_LITERAL("to_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_rfc822Name_string =
-AFW_UTF8_LITERAL("to_rfc822Name_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string =
-AFW_UTF8_LITERAL("to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_anyURI =
-AFW_UTF8_LITERAL("to_string_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_array =
-AFW_UTF8_LITERAL("to_string_array");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_base64Binary =
-AFW_UTF8_LITERAL("to_string_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_boolean =
-AFW_UTF8_LITERAL("to_string_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_date =
-AFW_UTF8_LITERAL("to_string_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_dateTime =
-AFW_UTF8_LITERAL("to_string_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_dayTimeDuration =
-AFW_UTF8_LITERAL("to_string_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_dnsName =
-AFW_UTF8_LITERAL("to_string_dnsName");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_double =
-AFW_UTF8_LITERAL("to_string_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_expression =
-AFW_UTF8_LITERAL("to_string_expression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_hexBinary =
-AFW_UTF8_LITERAL("to_string_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_hybrid =
-AFW_UTF8_LITERAL("to_string_hybrid");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_ia5String =
-AFW_UTF8_LITERAL("to_string_ia5String");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_integer =
-AFW_UTF8_LITERAL("to_string_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_ipAddress =
-AFW_UTF8_LITERAL("to_string_ipAddress");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_null =
-AFW_UTF8_LITERAL("to_string_null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_object =
-AFW_UTF8_LITERAL("to_string_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_objectId =
-AFW_UTF8_LITERAL("to_string_objectId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_objectPath =
-AFW_UTF8_LITERAL("to_string_objectPath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_password =
-AFW_UTF8_LITERAL("to_string_password");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_rfc822Name =
-AFW_UTF8_LITERAL("to_string_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_string =
-AFW_UTF8_LITERAL("to_string_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_template =
-AFW_UTF8_LITERAL("to_string_template");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_time =
-AFW_UTF8_LITERAL("to_string_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_x500Name =
-AFW_UTF8_LITERAL("to_string_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_xpathExpression =
-AFW_UTF8_LITERAL("to_string_xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_string_yearMonthDuration =
-AFW_UTF8_LITERAL("to_string_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_time =
-AFW_UTF8_LITERAL("to_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_time_string =
-AFW_UTF8_LITERAL("to_time_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_x500Name =
-AFW_UTF8_LITERAL("to_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_x500Name_string =
-AFW_UTF8_LITERAL("to_x500Name_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_yearMonthDuration =
-AFW_UTF8_LITERAL("to_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_to_yearMonthDuration_string =
-AFW_UTF8_LITERAL("to_yearMonthDuration_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace =
-AFW_UTF8_LITERAL("trace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace1 =
-AFW_UTF8_LITERAL("trace1");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace2 =
-AFW_UTF8_LITERAL("trace2");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace3 =
-AFW_UTF8_LITERAL("trace3");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace4 =
-AFW_UTF8_LITERAL("trace4");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace5 =
-AFW_UTF8_LITERAL("trace5");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace6 =
-AFW_UTF8_LITERAL("trace6");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace7 =
-AFW_UTF8_LITERAL("trace7");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_trace8 =
-AFW_UTF8_LITERAL("trace8");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_transitory =
-AFW_UTF8_LITERAL("transitory");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_true =
-AFW_UTF8_LITERAL("true");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_try =
-AFW_UTF8_LITERAL("try");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_type =
-AFW_UTF8_LITERAL("type");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_typedValues =
-AFW_UTF8_LITERAL("typedValues");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_typedef =
-AFW_UTF8_LITERAL("typedef");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_typeof =
-AFW_UTF8_LITERAL("typeof");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_ubjson =
-AFW_UTF8_LITERAL("ubjson");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_uint32 =
-AFW_UTF8_LITERAL("uint32");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_unavailable =
-AFW_UTF8_LITERAL("unavailable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_undeclared =
-AFW_UTF8_LITERAL("undeclared");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_undefined =
-AFW_UTF8_LITERAL("undefined");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_unevaluated =
-AFW_UTF8_LITERAL("unevaluated");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_unhandledErrors =
-AFW_UTF8_LITERAL("unhandledErrors");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union =
-AFW_UTF8_LITERAL("union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_anyURI =
-AFW_UTF8_LITERAL("union_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_base64Binary =
-AFW_UTF8_LITERAL("union_base64Binary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_boolean =
-AFW_UTF8_LITERAL("union_boolean");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_date =
-AFW_UTF8_LITERAL("union_date");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_dateTime =
-AFW_UTF8_LITERAL("union_dateTime");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_dayTimeDuration =
-AFW_UTF8_LITERAL("union_dayTimeDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_double =
-AFW_UTF8_LITERAL("union_double");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_hexBinary =
-AFW_UTF8_LITERAL("union_hexBinary");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_integer =
-AFW_UTF8_LITERAL("union_integer");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_rfc822Name =
-AFW_UTF8_LITERAL("union_rfc822Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_string =
-AFW_UTF8_LITERAL("union_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_time =
-AFW_UTF8_LITERAL("union_time");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_x500Name =
-AFW_UTF8_LITERAL("union_x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_union_yearMonthDuration =
-AFW_UTF8_LITERAL("union_yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_unique =
-AFW_UTF8_LITERAL("unique");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_unknown =
-AFW_UTF8_LITERAL("unknown");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_untypedFunctionId =
-AFW_UTF8_LITERAL("untypedFunctionId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_update =
-AFW_UTF8_LITERAL("update");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_updateObjectCount =
-AFW_UTF8_LITERAL("updateObjectCount");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_update_object =
-AFW_UTF8_LITERAL("update_object");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_update_object_with_uri =
-AFW_UTF8_LITERAL("update_object_with_uri");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_uriPrefix =
-AFW_UTF8_LITERAL("uriPrefix");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_uriRelated =
-AFW_UTF8_LITERAL("uriRelated");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_uriServiceConf =
-AFW_UTF8_LITERAL("uriServiceConf");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_urlEncodedRQLString =
-AFW_UTF8_LITERAL("urlEncodedRQLString");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_url_decode =
-AFW_UTF8_LITERAL("url_decode");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_url_encode =
-AFW_UTF8_LITERAL("url_encode");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_url_encode_anyURI =
-AFW_UTF8_LITERAL("url_encode_anyURI");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_url_encode_string =
-AFW_UTF8_LITERAL("url_encode_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_useDefaultProcessing =
-AFW_UTF8_LITERAL("useDefaultProcessing");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_useExecuteFunction =
-AFW_UTF8_LITERAL("useExecuteFunction");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_user =
-AFW_UTF8_LITERAL("user");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_userinfo =
-AFW_UTF8_LITERAL("userinfo");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_using =
-AFW_UTF8_LITERAL("using");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_value =
-AFW_UTF8_LITERAL("value");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_valueAccessor =
-AFW_UTF8_LITERAL("valueAccessor");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_valueInfId =
-AFW_UTF8_LITERAL("valueInfId");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_valuePath =
-AFW_UTF8_LITERAL("valuePath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_var =
-AFW_UTF8_LITERAL("var");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_variable =
-AFW_UTF8_LITERAL("variable");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_variable_exists =
-AFW_UTF8_LITERAL("variable_exists");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_variable_get =
-AFW_UTF8_LITERAL("variable_get");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_variable_is_not_null =
-AFW_UTF8_LITERAL("variable_is_not_null");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_version =
-AFW_UTF8_LITERAL("version");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_versionWithGitInfo =
-AFW_UTF8_LITERAL("versionWithGitInfo");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_void =
-AFW_UTF8_LITERAL("void");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_void_operator =
-AFW_UTF8_LITERAL("void_operator");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_warning =
-AFW_UTF8_LITERAL("warning");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_while =
-AFW_UTF8_LITERAL("while");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_whitespace =
-AFW_UTF8_LITERAL("whitespace");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_with =
-AFW_UTF8_LITERAL("with");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_write =
-AFW_UTF8_LITERAL("write");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_write_internal =
-AFW_UTF8_LITERAL("write_internal");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_writeln =
-AFW_UTF8_LITERAL("writeln");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name =
-AFW_UTF8_LITERAL("x500Name");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_at_least_one_member_of =
-AFW_UTF8_LITERAL("x500Name_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_bag =
-AFW_UTF8_LITERAL("x500Name_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_bag_size =
-AFW_UTF8_LITERAL("x500Name_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_eq =
-AFW_UTF8_LITERAL("x500Name_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_intersection =
-AFW_UTF8_LITERAL("x500Name_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_is_in =
-AFW_UTF8_LITERAL("x500Name_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_match =
-AFW_UTF8_LITERAL("x500Name_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_one_and_only =
-AFW_UTF8_LITERAL("x500Name_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_regexp_match =
-AFW_UTF8_LITERAL("x500Name_regexp_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_set_equals =
-AFW_UTF8_LITERAL("x500Name_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_subset =
-AFW_UTF8_LITERAL("x500Name_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_to_string =
-AFW_UTF8_LITERAL("x500Name_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_x500Name_union =
-AFW_UTF8_LITERAL("x500Name_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xacml =
-AFW_UTF8_LITERAL("xacml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xctxUUID =
-AFW_UTF8_LITERAL("xctxUUID");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xml =
-AFW_UTF8_LITERAL("xml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath =
-AFW_UTF8_LITERAL("xpath");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpathExpression =
-AFW_UTF8_LITERAL("xpathExpression");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath_node_count =
-AFW_UTF8_LITERAL("xpath_node_count");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath_node_count_1_0 =
-AFW_UTF8_LITERAL("xpath_node_count_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath_node_eq =
-AFW_UTF8_LITERAL("xpath_node_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath_node_eq_1_0 =
-AFW_UTF8_LITERAL("xpath_node_eq_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath_node_match =
-AFW_UTF8_LITERAL("xpath_node_match");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_xpath_node_match_1_0 =
-AFW_UTF8_LITERAL("xpath_node_match_1_0");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yaml =
-AFW_UTF8_LITERAL("yaml");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration =
-AFW_UTF8_LITERAL("yearMonthDuration");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_at_least_one_member_of =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_bag =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_bag_size =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_eq =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_intersection =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_is_in =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_one_and_only =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_set_equals =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_subset =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_1_0_union =
-AFW_UTF8_LITERAL("yearMonthDuration_1_0_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_at_least_one_member_of =
-AFW_UTF8_LITERAL("yearMonthDuration_at_least_one_member_of");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_bag =
-AFW_UTF8_LITERAL("yearMonthDuration_bag");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_bag_size =
-AFW_UTF8_LITERAL("yearMonthDuration_bag_size");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_eq =
-AFW_UTF8_LITERAL("yearMonthDuration_eq");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_intersection =
-AFW_UTF8_LITERAL("yearMonthDuration_intersection");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_is_in =
-AFW_UTF8_LITERAL("yearMonthDuration_is_in");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_one_and_only =
-AFW_UTF8_LITERAL("yearMonthDuration_one_and_only");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_set_equals =
-AFW_UTF8_LITERAL("yearMonthDuration_set_equals");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_subset =
-AFW_UTF8_LITERAL("yearMonthDuration_subset");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_to_string =
-AFW_UTF8_LITERAL("yearMonthDuration_to_string");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_yearMonthDuration_union =
-AFW_UTF8_LITERAL("yearMonthDuration_union");
-
-AFW_DEFINE_CONST_DATA(afw_utf8_t) afw_s_zeroOffset =
-AFW_UTF8_LITERAL("zeroOffset");
+const afw_value_string_t afw_v_200 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("200")
+};
+
+const afw_value_string_t afw_v_201 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("201")
+};
+
+const afw_value_string_t afw_v_400 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("400")
+};
+
+const afw_value_string_t afw_v_403 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("403")
+};
+
+const afw_value_string_t afw_v_404 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("404")
+};
+
+const afw_value_string_t afw_v_500 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("500")
+};
+
+const afw_value_string_t afw_v_ACCEPT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ACCEPT")
+};
+
+const afw_value_string_t afw_v_AUTH_TYPE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("AUTH_TYPE")
+};
+
+const afw_value_string_t afw_v_Adaptive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive")
+};
+
+const afw_value_string_t afw_v_B = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("B")
+};
+
+const afw_value_string_t afw_v_BOOL = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("BOOL")
+};
+
+const afw_value_string_t afw_v_BS = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("BS")
+};
+
+const afw_value_string_t afw_v_CONTENT_LENGTH = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("CONTENT_LENGTH")
+};
+
+const afw_value_string_t afw_v_CONTENT_TYPE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("CONTENT_TYPE")
+};
+
+const afw_value_string_t afw_v_Configuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Configuration")
+};
+
+const afw_value_string_t afw_v_Created = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Created")
+};
+
+const afw_value_string_t afw_v_DELETE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DELETE")
+};
+
+const afw_value_string_t afw_v_DOCUMENT_ROOT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DOCUMENT_ROOT")
+};
+
+const afw_value_string_t afw_v_DataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DataType")
+};
+
+const afw_value_string_t afw_v_FCGI_ROLE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("FCGI_ROLE")
+};
+
+const afw_value_string_t afw_v_GATEWAY_INTERFACE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("GATEWAY_INTERFACE")
+};
+
+const afw_value_string_t afw_v_GET = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("GET")
+};
+
+const afw_value_string_t afw_v_GNU = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("GNU")
+};
+
+const afw_value_string_t afw_v_HTTPS = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTPS")
+};
+
+const afw_value_string_t afw_v_HTTP_ACCEPT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_ACCEPT")
+};
+
+const afw_value_string_t afw_v_HTTP_ACCEPT_CHARSET = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_ACCEPT_CHARSET")
+};
+
+const afw_value_string_t afw_v_HTTP_ACCEPT_ENCODING = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_ACCEPT_ENCODING")
+};
+
+const afw_value_string_t afw_v_HTTP_ACCEPT_LANGUAGE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_ACCEPT_LANGUAGE")
+};
+
+const afw_value_string_t afw_v_HTTP_COOKIE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_COOKIE")
+};
+
+const afw_value_string_t afw_v_HTTP_FROM = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_FROM")
+};
+
+const afw_value_string_t afw_v_HTTP_HOST = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_HOST")
+};
+
+const afw_value_string_t afw_v_HTTP_REFERER = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_REFERER")
+};
+
+const afw_value_string_t afw_v_HTTP_USER_AGENT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("HTTP_USER_AGENT")
+};
+
+const afw_value_string_t afw_v_INF = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("INF")
+};
+
+const afw_value_string_t afw_v_Infinity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Infinity")
+};
+
+const afw_value_string_t afw_v_JeremyScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("JeremyScript")
+};
+
+const afw_value_string_t afw_v_L = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("L")
+};
+
+const afw_value_string_t afw_v_M = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("M")
+};
+
+const afw_value_string_t afw_v_N = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("N")
+};
+
+const afw_value_string_t afw_v_NS = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("NS")
+};
+
+const afw_value_string_t afw_v_NULL = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("NULL")
+};
+
+const afw_value_string_t afw_v_NaN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("NaN")
+};
+
+const afw_value_string_t afw_v_OK = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("OK")
+};
+
+const afw_value_string_t afw_v_ObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ObjectType")
+};
+
+const afw_value_string_t afw_v_PATCH = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("PATCH")
+};
+
+const afw_value_string_t afw_v_PATH_INFO = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("PATH_INFO")
+};
+
+const afw_value_string_t afw_v_PATH_TRANSLATED = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("PATH_TRANSLATED")
+};
+
+const afw_value_string_t afw_v_POST = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("POST")
+};
+
+const afw_value_string_t afw_v_PUT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("PUT")
+};
+
+const afw_value_string_t afw_v_PropertyType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("PropertyType")
+};
+
+const afw_value_string_t afw_v_QUERY_STRING = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("QUERY_STRING")
+};
+
+const afw_value_string_t afw_v_REMOTE_ADDR = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REMOTE_ADDR")
+};
+
+const afw_value_string_t afw_v_REMOTE_HOST = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REMOTE_HOST")
+};
+
+const afw_value_string_t afw_v_REMOTE_IDENT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REMOTE_IDENT")
+};
+
+const afw_value_string_t afw_v_REMOTE_PORT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REMOTE_PORT")
+};
+
+const afw_value_string_t afw_v_REMOTE_USER = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REMOTE_USER")
+};
+
+const afw_value_string_t afw_v_REQUEST_METHOD = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REQUEST_METHOD")
+};
+
+const afw_value_string_t afw_v_REQUEST_SCHEME = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REQUEST_SCHEME")
+};
+
+const afw_value_string_t afw_v_REQUEST_URI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("REQUEST_URI")
+};
+
+const afw_value_string_t afw_v_S = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("S")
+};
+
+const afw_value_string_t afw_v_SCHEME = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SCHEME")
+};
+
+const afw_value_string_t afw_v_SCRIPT_NAME = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SCRIPT_NAME")
+};
+
+const afw_value_string_t afw_v_SERVER_ADDR = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_ADDR")
+};
+
+const afw_value_string_t afw_v_SERVER_ADMIN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_ADMIN")
+};
+
+const afw_value_string_t afw_v_SERVER_NAME = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_NAME")
+};
+
+const afw_value_string_t afw_v_SERVER_PORT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_PORT")
+};
+
+const afw_value_string_t afw_v_SERVER_PROTOCOL = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_PROTOCOL")
+};
+
+const afw_value_string_t afw_v_SERVER_SIGNATURE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_SIGNATURE")
+};
+
+const afw_value_string_t afw_v_SERVER_SOFTWARE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SERVER_SOFTWARE")
+};
+
+const afw_value_string_t afw_v_SS = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SS")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_M_SERIAL = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_M_SERIAL")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_M_VERSION = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_M_VERSION")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_S_DN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_S_DN")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_S_DN_CN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_S_DN_CN")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_VERIFY = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_VERIFY")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_V_END = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_V_END")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_V_REMAIN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_V_REMAIN")
+};
+
+const afw_value_string_t afw_v_SSL_CLIENT_V_START = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SSL_CLIENT_V_START")
+};
+
+const afw_value_string_t afw_v__Adaptive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_Adaptive")
+};
+
+const afw_value_string_t afw_v__AdaptiveAction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAction_")
+};
+
+const afw_value_string_t afw_v__AdaptiveActions_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveActions_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAdaptorMetrics_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAdaptorType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAdaptor_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptor_")
+};
+
+const afw_value_string_t afw_v__AdaptiveApplicationComponents_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveApplicationComponents_")
+};
+
+const afw_value_string_t afw_v__AdaptiveApplication_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveApplication_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAuthorizationControl_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationControl_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAuthorizationDecision_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationDecision_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAuthorizationHandlerType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationHandlerType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAuthorizationHandler_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationHandler_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAuthorizationMode_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationMode_")
+};
+
+const afw_value_string_t afw_v__AdaptiveAuthorizationResult_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAuthorizationResult_")
+};
+
+const afw_value_string_t afw_v__AdaptiveCollection_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveCollection_")
+};
+
+const afw_value_string_t afw_v__AdaptiveConfType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConfType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_adaptor_afw_runtime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_afw_runtime")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_adaptor_file = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_file")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_adaptor_model = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_model")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_application = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_application")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_authorizationHandler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_authorizationHandler")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_authorizationHandler_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_authorizationHandler_script")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_extension = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_extension")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_log = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_log")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_log_event_log = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_log_event_log")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_log_standard = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_log_standard")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_log_syslog = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_log_syslog")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_requestHandler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_requestHandler")
+};
+
+const afw_value_string_t afw_v__AdaptiveConf_requestHandler_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_requestHandler_adaptor")
+};
+
+const afw_value_string_t afw_v__AdaptiveContentType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveContentType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveContextType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveContextType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveDataTypeGenerate_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveDataTypeGenerate_")
+};
+
+const afw_value_string_t afw_v__AdaptiveDataTypeTestCase_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveDataTypeTestCase_")
+};
+
+const afw_value_string_t afw_v__AdaptiveDataTypeTest_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveDataTypeTest_")
+};
+
+const afw_value_string_t afw_v__AdaptiveDataType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveDataType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveEnvironmentRegistryType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveEnvironmentRegistryType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveEnvironmentRegistry_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveEnvironmentRegistry_")
+};
+
+const afw_value_string_t afw_v__AdaptiveEnvironmentVariables_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveEnvironmentVariables_")
+};
+
+const afw_value_string_t afw_v__AdaptiveErrorRVDecoder_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveErrorRVDecoder_")
+};
+
+const afw_value_string_t afw_v__AdaptiveError_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveError_")
+};
+
+const afw_value_string_t afw_v__AdaptiveExtension_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveExtension_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFlag_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFlag_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionCategory_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionCategory_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionDeclaration_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionDeclaration_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionErrorThrown_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionErrorThrown_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionGenerate_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionGenerate_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionParameter_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionParameter_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionTestArgument_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionTestArgument_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionTestCase_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionTestCase_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionTestResult_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionTestResult_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunctionTest_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionTest_")
+};
+
+const afw_value_string_t afw_v__AdaptiveFunction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunction_")
+};
+
+const afw_value_string_t afw_v__AdaptiveHybridPropertiesObjects_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveHybridPropertiesObjects_")
+};
+
+const afw_value_string_t afw_v__AdaptiveHybridProperties_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveHybridProperties_")
+};
+
+const afw_value_string_t afw_v__AdaptiveInterface_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveInterface_")
+};
+
+const afw_value_string_t afw_v__AdaptiveJournalEntryRequest_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveJournalEntryRequest_")
+};
+
+const afw_value_string_t afw_v__AdaptiveJournalEntrySource_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveJournalEntrySource_")
+};
+
+const afw_value_string_t afw_v__AdaptiveJournalEntry_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveJournalEntry_")
+};
+
+const afw_value_string_t afw_v__AdaptiveLayoutComponentTypeCategory_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentTypeCategory_")
+};
+
+const afw_value_string_t afw_v__AdaptiveLayoutComponentType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveLayoutComponent_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponent_")
+};
+
+const afw_value_string_t afw_v__AdaptiveLock_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLock_")
+};
+
+const afw_value_string_t afw_v__AdaptiveLogType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLogType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveLog_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLog_")
+};
+
+const afw_value_string_t afw_v__AdaptiveManifest_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveManifest_")
+};
+
+const afw_value_string_t afw_v__AdaptiveMetaPropertyType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveMetaPropertyType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveMetaPropertyTypes_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveMetaPropertyTypes_")
+};
+
+const afw_value_string_t afw_v__AdaptiveMeta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveMeta_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnAddObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnAddObject_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnDeleteObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnDeleteObject_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnGetInitialObjectId_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetInitialObjectId_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnGetInitialValue_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetInitialValue_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnGetObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetObject_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnGetProperty_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnGetProperty_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnModifyObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnModifyObject_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnReplaceObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnReplaceObject_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnRetrieveObjects_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnRetrieveObjects_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrentOnSetProperty_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrentOnSetProperty_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelCurrent_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelCurrent_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelObjectType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelObjectType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelObjectTypes_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelObjectTypes_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelPropertyType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelPropertyType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModelPropertyTypes_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModelPropertyTypes_")
+};
+
+const afw_value_string_t afw_v__AdaptiveModel_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveModel_")
+};
+
+const afw_value_string_t afw_v__AdaptiveObjectOptions_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectOptions_")
+};
+
+const afw_value_string_t afw_v__AdaptiveObjectType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveObjectTypes_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectTypes_")
+};
+
+const afw_value_string_t afw_v__AdaptiveObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObject_")
+};
+
+const afw_value_string_t afw_v__AdaptivePackageCompileOptions_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePackageCompileOptions_")
+};
+
+const afw_value_string_t afw_v__AdaptivePackageSrcdirInfo_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePackageSrcdirInfo_")
+};
+
+const afw_value_string_t afw_v__AdaptivePackageSrcdirs_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePackageSrcdirs_")
+};
+
+const afw_value_string_t afw_v__AdaptivePackage_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePackage_")
+};
+
+const afw_value_string_t afw_v__AdaptiveParsedURI_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveParsedURI_")
+};
+
+const afw_value_string_t afw_v__AdaptivePolymorphicFunction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePolymorphicFunction_")
+};
+
+const afw_value_string_t afw_v__AdaptivePropertyTypes_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePropertyTypes_")
+};
+
+const afw_value_string_t afw_v__AdaptiveProvisioningPeer_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveProvisioningPeer_")
+};
+
+const afw_value_string_t afw_v__AdaptiveQualifierDefinitions_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveQualifierDefinitions_")
+};
+
+const afw_value_string_t afw_v__AdaptiveQueryCriteriaFilter_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveQueryCriteriaFilter_")
+};
+
+const afw_value_string_t afw_v__AdaptiveQueryCriteria_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveQueryCriteria_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRequestContext_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRequestContext_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRequestHandlerType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRequestHandlerType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRequestHandler_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRequestHandler_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRequestProperties_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRequestProperties_")
+};
+
+const afw_value_string_t afw_v__AdaptiveResponseAction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveResponseAction_")
+};
+
+const afw_value_string_t afw_v__AdaptiveResponse_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveResponse_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRootFilePaths_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRootFilePaths_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRuntimeCustom_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRuntimeCustom_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRuntimeLabels_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRuntimeLabels_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRuntimeObjectMapInf_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRuntimeObjectMapInf_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRuntimeObject_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRuntimeObject_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRuntimeProperty_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRuntimeProperty_")
+};
+
+const afw_value_string_t afw_v__AdaptiveRuntimeValueAccessor_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveRuntimeValueAccessor_")
+};
+
+const afw_value_string_t afw_v__AdaptiveServer_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveServer_")
+};
+
+const afw_value_string_t afw_v__AdaptiveServiceConf_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveServiceConf_")
+};
+
+const afw_value_string_t afw_v__AdaptiveServiceType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveServiceType_")
+};
+
+const afw_value_string_t afw_v__AdaptiveService_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveService_")
+};
+
+const afw_value_string_t afw_v__AdaptiveSingleton_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveSingleton_")
+};
+
+const afw_value_string_t afw_v__AdaptiveSystemInfo_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveSystemInfo_")
+};
+
+const afw_value_string_t afw_v__AdaptiveTag_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveTag_")
+};
+
+const afw_value_string_t afw_v__AdaptiveTestScriptResult_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_")
+};
+
+const afw_value_string_t afw_v__AdaptiveTestScriptTestResult_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveTestScriptTestResult_")
+};
+
+const afw_value_string_t afw_v__AdaptiveValueInf_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveValueInf_")
+};
+
+const afw_value_string_t afw_v__AdaptiveValueMeta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveValueMeta_")
+};
+
+const afw_value_string_t afw_v__AdaptiveValuePath_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveValuePath_")
+};
+
+const afw_value_string_t afw_v__AdaptiveVersionInfo_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveVersionInfo_")
+};
+
+const afw_value_string_t afw_v__adaptive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_adaptive")
+};
+
+const afw_value_string_t afw_v__flags_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_flags_")
+};
+
+const afw_value_string_t afw_v__meta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_meta_")
+};
+
+const afw_value_string_t afw_v_a_Content_dash_Type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Content-Type")
+};
+
+const afw_value_string_t afw_v_a_Core_afw_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Core afw adaptor")
+};
+
+const afw_value_string_t afw_v_a_adaptor_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type adds an adaptor and corresponding service to this Adaptive Framework environment.")
+};
+
+const afw_value_string_t afw_v_a_adaptor_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Adaptor Configuration")
+};
+
+const afw_value_string_t afw_v_a_afw_bdb_adaptor_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwbdb.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_bdb_adaptor_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwbdb.so")
+};
+
+const afw_value_string_t afw_v_a_afw_dynamo_db_adaptor_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwdynamodb.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_dynamo_db_adaptor_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwdynamodb.so")
+};
+
+const afw_value_string_t afw_v_a_afw_ldap_adaptor_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwldap.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_ldap_adaptor_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwldap.so")
+};
+
+const afw_value_string_t afw_v_a_afw_lmdb_adaptor_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwlmdb.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_lmdb_adaptor_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwlmdb.so")
+};
+
+const afw_value_string_t afw_v_a_afw_sql_adaptor_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwsql.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_sql_adaptor_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwsql.so")
+};
+
+const afw_value_string_t afw_v_a_afw_ubjson_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwubjson.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_ubjson_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwubjson.so")
+};
+
+const afw_value_string_t afw_v_a_afw_xacml_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwxacml.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_xacml_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwxamcl.so")
+};
+
+const afw_value_string_t afw_v_a_afw_yaml_module_path_dll = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwyaml.dll")
+};
+
+const afw_value_string_t afw_v_a_afw_yaml_module_path_so = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwyaml.so")
+};
+
+const afw_value_string_t afw_v_a_ampersand = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("&")
+};
+
+const afw_value_string_t afw_v_a_application_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type provides the application object for this Adaptive Framework environment.  It can only be specified once.")
+};
+
+const afw_value_string_t afw_v_a_application_json = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("application/json")
+};
+
+const afw_value_string_t afw_v_a_application_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Application Configuration")
+};
+
+const afw_value_string_t afw_v_a_application_xml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("application/xml")
+};
+
+const afw_value_string_t afw_v_a_application_yaml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("application/x-yaml")
+};
+
+const afw_value_string_t afw_v_a_asterisk = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("*")
+};
+
+const afw_value_string_t afw_v_a_authorizationHandler_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type adds an authorization handler for this Adaptive Framework environment.")
+};
+
+const afw_value_string_t afw_v_a_authorizationHandler_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Authorization Handler Configuration")
+};
+
+const afw_value_string_t afw_v_a_automatic_start = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("automatic start")
+};
+
+const afw_value_string_t afw_v_a_backslash = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("\\")
+};
+
+const afw_value_string_t afw_v_a_bracketed_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("[value]")
+};
+
+const afw_value_string_t afw_v_a_close_angle_bracket = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(">")
+};
+
+const afw_value_string_t afw_v_a_close_brace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("}")
+};
+
+const afw_value_string_t afw_v_a_close_parenthesis = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(")")
+};
+
+const afw_value_string_t afw_v_a_close_square_bracket = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("]")
+};
+
+const afw_value_string_t afw_v_a_colon = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(":")
+};
+
+const afw_value_string_t afw_v_a_comma = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(",")
+};
+
+const afw_value_string_t afw_v_a_compile_expect_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Compile expect error")
+};
+
+const afw_value_string_t afw_v_a_compile_source_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Compile source error")
+};
+
+const afw_value_string_t afw_v_a_context_type_application_qualifier_definitions_path = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("/afw/_AdaptiveContextType_/application/qualifierDefinitions")
+};
+
+const afw_value_string_t afw_v_a_current_colon_colon_mapBackObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("current::mapBackObject")
+};
+
+const afw_value_string_t afw_v_a_current_colon_colon_mapObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("current::mapObject")
+};
+
+const afw_value_string_t afw_v_a_current_colon_colon_returnObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("current::returnObject")
+};
+
+const afw_value_string_t afw_v_a_dash = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("-")
+};
+
+const afw_value_string_t afw_v_a_dash_dash_syntax_test_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("--syntax test_script")
+};
+
+const afw_value_string_t afw_v_a_dash_s_test_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("--s test_script")
+};
+
+const afw_value_string_t afw_v_a_decision_not_applicable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("notApplicable")
+};
+
+const afw_value_string_t afw_v_a_decision_not_applicable_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Not applicable")
+};
+
+const afw_value_string_t afw_v_a_decision_not_applicable_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Decision is not applicable.")
+};
+
+const afw_value_string_t afw_v_a_decision_not_applicable_upper_camel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("NotApplicable")
+};
+
+const afw_value_string_t afw_v_a_dot = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(".")
+};
+
+const afw_value_string_t afw_v_a_dot_dot_slash = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("../")
+};
+
+const afw_value_string_t afw_v_a_dot_slash = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("./")
+};
+
+const afw_value_string_t afw_v_a_double_asterisk = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("**")
+};
+
+const afw_value_string_t afw_v_a_double_dot = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("..")
+};
+
+const afw_value_string_t afw_v_a_empty_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("")
+};
+
+const afw_value_string_t afw_v_a_equal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("=")
+};
+
+const afw_value_string_t afw_v_a_evaluate_expect_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Evaluate expect error")
+};
+
+const afw_value_string_t afw_v_a_evaluate_source_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Evaluate source error")
+};
+
+const afw_value_string_t afw_v_a_exclamation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("!")
+};
+
+const afw_value_string_t afw_v_a_extension_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type adds additional functionality this Adaptive Framework environment.")
+};
+
+const afw_value_string_t afw_v_a_extension_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Extension Configuration")
+};
+
+const afw_value_string_t afw_v_a_flag_compile_noImplicitAny = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile:noImplicitAny")
+};
+
+const afw_value_string_t afw_v_a_flag_compile_noImplicitAny_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Do not infer type any")
+};
+
+const afw_value_string_t afw_v_a_flag_compile_noImplicitAny_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed.")
+};
+
+const afw_value_string_t afw_v_a_flag_compile_noOptimize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile:noOptimize")
+};
+
+const afw_value_string_t afw_v_a_flag_compile_noOptimize_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Evaluate values that have not been optimized")
+};
+
+const afw_value_string_t afw_v_a_flag_compile_noOptimize_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic debug flag")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This triggers all basic debugging.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Debug detail")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This triggers all basic plus detail debugging.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_function_active = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug:function_active")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_function_active_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Print debug() if not detail calls")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_function_active_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This causes calls to the debug() adaptive function to print if the detail parameter is not true.  If off, debug() calls are ignored.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_function_active_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug:function_active:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_function_active_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Print all debug() calls")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_function_active_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This causes all calls to the debug() adaptive function to print.  If off, debug() calls with true specified for detail parameter are ignored.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_lock = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug:lock")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_lock_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Debug lock")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_lock_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This triggers all lock debugging.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_pool = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug:pool")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_pool_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Pool debug")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_pool_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This triggers basic pool debugging.")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_pool_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug:pool:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_pool_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detailed pool debug")
+};
+
+const afw_value_string_t afw_v_a_flag_debug_pool_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This triggers basic and detail pool debugging.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_console = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:console")
+};
+
+const afw_value_string_t afw_v_a_flag_response_console_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("The console stream will be sent to the request's response")
+};
+
+const afw_value_string_t afw_v_a_flag_response_console_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Anything written to the console stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stdout.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_console_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:console:stream")
+};
+
+const afw_value_string_t afw_v_a_flag_response_console_stream_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("The console stream will be sent to a stream in the request's response")
+};
+
+const afw_value_string_t afw_v_a_flag_response_console_stream_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Anything written to the console stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:console is on, the console stream is included as the value of the \"console\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:error")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_backtrace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:error:backtrace")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_backtraceEvaluation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:error:backtraceEvaluation")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_backtraceEvaluation_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include evaluation backtrace")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_backtraceEvaluation_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include evaluation backtrace in error responses.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_backtrace_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include backtrace")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_backtrace_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include backtrace in error responses.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include backtrace, backtraceEvaluation, and contextual")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_contextual = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:error:contextual")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_contextual_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include contextual")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_contextual_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include contextual information in error responses.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Include backtrace, backtraceEvaluation, and contextual in error responses.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_hasAdditionalDetail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:error:hasAdditionalDetail")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_hasAdditionalDetail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Active if any other response:error flags are active")
+};
+
+const afw_value_string_t afw_v_a_flag_response_error_hasAdditionalDetail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This flag can be tested to determine if any other response:error flags are active.  This flag should not normally be directly set.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stderr = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:stderr")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stderr_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("The stderr stream will be sent to the request's response")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stderr_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Anything written to the stderr stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stderr.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stderr_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:stderr:stream")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stderr_stream_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("The stderr stream will be sent to a stream in the request's response")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stderr_stream_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Anything written to the stderr stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stderr is on, the stderr stream is included as the value of the \"stderr\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stderr.  This flag requires content-type application/x-afw.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stdout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:stdout")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stdout_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("The stdout stream will be sent to the request's response")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stdout_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Anything written to the stdout stream during a request will be sent to the request's response.  If this flag is not on, the stream will be written to the server's stdout.")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stdout_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response:stdout:stream")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stdout_stream_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("The stdout stream will be sent to a stream in the request's response")
+};
+
+const afw_value_string_t afw_v_a_flag_response_stdout_stream_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Anything written to the stdout stream during a request will be sent to a stream in the request's response. If this flag is not on, but response:stdout is on, the stdout stream is included as the value of the \"stdout\" property of the response object.  If neither of these flags are on, the stream will be written to the server's stdout.  This flag requires content-type application/x-afw.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:adaptor")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_adaptor_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for all adaptors")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_adaptor_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces basic traces for all adaptors.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_adaptor_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:adaptor:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_adaptor_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for all adaptors")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_adaptor_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for all adaptors.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorizationHandler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorizationHandler")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorizationHandler_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for all authorizationHandler")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorizationHandler_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces basic traces for all authorizationHandler.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorizationHandler_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorizationHandler:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorizationHandler_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for all authorizationHandlers")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorizationHandler_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for all authorizationHandlers.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for authorization")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization:check")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for authorization check call")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_bypass = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization:bypass")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_bypass_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for authorization check call bypasses")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_bypass_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces traces for authorization check call bypasses.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces basic traces for authorization check call.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization:check:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for authorization check call")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_check_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for authorization check calls.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_decision = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization:decision")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_decision_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for authorization check call's decision")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_decision_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces basic traces for authorization check call's decision.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_decision_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization:decision:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_decision_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for authorization check call's decision")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_decision_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for authorization check call's decision.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces basic traces for authorization.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:authorization:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for authorization")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_authorization_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for authorization.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic traces")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic traces.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("All detail traces")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_evaluation_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:evaluation:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_evaluation_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for evaluations")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_evaluation_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces detail traces for adaptive value evaluations.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_request = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:request")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_request_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Basic trace for all requests")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_request_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces basic traces for all requests.")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_request_detail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:request:detail")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_request_detail_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Detail trace for all requests")
+};
+
+const afw_value_string_t afw_v_a_flag_trace_request_detail_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This produces all basic plus additional detail traces for all requests.")
+};
+
+const afw_value_string_t afw_v_a_flag_unspecified = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unspecified")
+};
+
+const afw_value_string_t afw_v_a_flag_unspecified_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Never set")
+};
+
+const afw_value_string_t afw_v_a_flag_unspecified_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This is flag index 0 and is never set.")
+};
+
+const afw_value_string_t afw_v_a_in_catch = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("in catch")
+};
+
+const afw_value_string_t afw_v_a_in_finally = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("in finally")
+};
+
+const afw_value_string_t afw_v_a_journal_get_entry = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal::get_entry")
+};
+
+const afw_value_string_t afw_v_a_lambda_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Lambda function.")
+};
+
+const afw_value_string_t afw_v_a_lock_adaptor_id_anchor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment:adaptor_id_anchor")
+};
+
+const afw_value_string_t afw_v_a_lock_adaptor_id_anchor_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptor id anchor lock")
+};
+
+const afw_value_string_t afw_v_a_lock_adaptor_id_anchor_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This lock is used internally when accessing adaptor id anchor memory.")
+};
+
+const afw_value_string_t afw_v_a_lock_authorization_handler_id_anchor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment:authorization_handler_id")
+};
+
+const afw_value_string_t afw_v_a_lock_authorization_handler_id_anchor_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Authorization handler id anchor lock")
+};
+
+const afw_value_string_t afw_v_a_lock_authorization_handler_id_anchor_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This lock is used internally when accessing authorization handler id anchor memory.")
+};
+
+const afw_value_string_t afw_v_a_lock_environment = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment:registry")
+};
+
+const afw_value_string_t afw_v_a_lock_environment_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Environment registry lock")
+};
+
+const afw_value_string_t afw_v_a_lock_environment_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This lock is used internally by afw_environment.c when accessing environment registry memory.")
+};
+
+const afw_value_string_t afw_v_a_lock_flags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment:flags")
+};
+
+const afw_value_string_t afw_v_a_lock_flags_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Environment flags lock")
+};
+
+const afw_value_string_t afw_v_a_lock_flags_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This lock is used internally when accessing environment flags memory.")
+};
+
+const afw_value_string_t afw_v_a_lock_log_list = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment:log_list")
+};
+
+const afw_value_string_t afw_v_a_lock_log_list_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Environment log list lock")
+};
+
+const afw_value_string_t afw_v_a_lock_log_list_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This lock is used internally when accessing environment log list memory.")
+};
+
+const afw_value_string_t afw_v_a_lock_multithreaded_pool = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("multithreaded_pool")
+};
+
+const afw_value_string_t afw_v_a_lock_multithreaded_pool_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Multithreaded pool")
+};
+
+const afw_value_string_t afw_v_a_lock_multithreaded_pool_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This lock is used internally by afw_pool.c when accessing multithreaded pools.")
+};
+
+const afw_value_string_t afw_v_a_log_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type adds a log and corresponding service to this Adaptive Framework environment.")
+};
+
+const afw_value_string_t afw_v_a_log_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Log Configuration")
+};
+
+const afw_value_string_t afw_v_a_meta_key = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("meta()")
+};
+
+const afw_value_string_t afw_v_a_meta_objectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_meta_.objectType")
+};
+
+const afw_value_string_t afw_v_a_newline_char = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("\n")
+};
+
+const afw_value_string_t afw_v_a_not_implemented = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("not implemented")
+};
+
+const afw_value_string_t afw_v_a_open_angle_bracket = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("<")
+};
+
+const afw_value_string_t afw_v_a_open_brace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("{")
+};
+
+const afw_value_string_t afw_v_a_open_parenthesis = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("(")
+};
+
+const afw_value_string_t afw_v_a_open_square_bracket = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("[")
+};
+
+const afw_value_string_t afw_v_a_other_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Other error")
+};
+
+const afw_value_string_t afw_v_a_period = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(".")
+};
+
+const afw_value_string_t afw_v_a_qualification_operator = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("::")
+};
+
+const afw_value_string_t afw_v_a_requestHandler_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type adds a request handler to this Adaptive Framework environment.")
+};
+
+const afw_value_string_t afw_v_a_requestHandler_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Request Handler Configuration")
+};
+
+const afw_value_string_t afw_v_a_request_body = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request body")
+};
+
+const afw_value_string_t afw_v_a_semicolon = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(";")
+};
+
+const afw_value_string_t afw_v_a_service_type_adaptor_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Service type for adaptors.")
+};
+
+const afw_value_string_t afw_v_a_service_type_authorizationHandler_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Service type for authorizationHandler.")
+};
+
+const afw_value_string_t afw_v_a_service_type_log_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Service type for logs.")
+};
+
+const afw_value_string_t afw_v_a_services_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This configuration type defines how services are handled in this Adaptive Framework environment.  It can only be specified once.")
+};
+
+const afw_value_string_t afw_v_a_services_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Adaptive Framework Services Configuration")
+};
+
+const afw_value_string_t afw_v_a_slash = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("/")
+};
+
+const afw_value_string_t afw_v_a_slash_afw = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("/afw")
+};
+
+const afw_value_string_t afw_v_a_star_slash_star = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("*/*")
+};
+
+const afw_value_string_t afw_v_a_tab = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("\t")
+};
+
+const afw_value_string_t afw_v_a_undefined_as_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("<undefined>")
+};
+
+const afw_value_string_t afw_v_a_vertical_bar = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("|")
+};
+
+const afw_value_string_t afw_v_abs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("abs")
+};
+
+const afw_value_string_t afw_v_abs_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("abs_double")
+};
+
+const afw_value_string_t afw_v_abs_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("abs_integer")
+};
+
+const afw_value_string_t afw_v_access_permitted = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("access_permitted")
+};
+
+const afw_value_string_t afw_v_action = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("action")
+};
+
+const afw_value_string_t afw_v_actionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("actionId")
+};
+
+const afw_value_string_t afw_v_actionNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("actionNumber")
+};
+
+const afw_value_string_t afw_v_actions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("actions")
+};
+
+const afw_value_string_t afw_v_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor")
+};
+
+const afw_value_string_t afw_v_adaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptorId")
+};
+
+const afw_value_string_t afw_v_adaptorType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptorType")
+};
+
+const afw_value_string_t afw_v_adaptorTypeSpecific = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptorTypeSpecific")
+};
+
+const afw_value_string_t afw_v_adaptor_additional_metrics = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor_additional_metrics")
+};
+
+const afw_value_string_t afw_v_adaptor_id = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor_id")
+};
+
+const afw_value_string_t afw_v_adaptor_id_anchor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor_id_anchor")
+};
+
+const afw_value_string_t afw_v_adaptor_metrics = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor_metrics")
+};
+
+const afw_value_string_t afw_v_adaptor_objectCallback_signature = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor_objectCallback_signature")
+};
+
+const afw_value_string_t afw_v_adaptor_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("adaptor_type")
+};
+
+const afw_value_string_t afw_v_add = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add")
+};
+
+const afw_value_string_t afw_v_addObjectCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("addObjectCount")
+};
+
+const afw_value_string_t afw_v_add_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_add_dayTimeDuration_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_dayTimeDuration_dateTime")
+};
+
+const afw_value_string_t afw_v_add_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_double")
+};
+
+const afw_value_string_t afw_v_add_entries = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_entries")
+};
+
+const afw_value_string_t afw_v_add_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_integer")
+};
+
+const afw_value_string_t afw_v_add_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_object")
+};
+
+const afw_value_string_t afw_v_add_object_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_object_with_uri")
+};
+
+const afw_value_string_t afw_v_add_properties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_properties")
+};
+
+const afw_value_string_t afw_v_add_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_string")
+};
+
+const afw_value_string_t afw_v_add_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_value")
+};
+
+const afw_value_string_t afw_v_add_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_add_yearMonthDuration_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_yearMonthDuration_date")
+};
+
+const afw_value_string_t afw_v_add_yearMonthDuration_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("add_yearMonthDuration_dateTime")
+};
+
+const afw_value_string_t afw_v_additional = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("additional")
+};
+
+const afw_value_string_t afw_v_additionalArgCheck = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("additionalArgCheck")
+};
+
+const afw_value_string_t afw_v_additionalConstraints = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("additionalConstraints")
+};
+
+const afw_value_string_t afw_v_administrative = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("administrative")
+};
+
+const afw_value_string_t afw_v_advanceCursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("advanceCursor")
+};
+
+const afw_value_string_t afw_v_advice = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("advice")
+};
+
+const afw_value_string_t afw_v_afw = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw")
+};
+
+const afw_value_string_t afw_v_afwCamelCaseFunctionLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwCamelCaseFunctionLabel")
+};
+
+const afw_value_string_t afw_v_afwCompiledVersion = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwCompiledVersion")
+};
+
+const afw_value_string_t afw_v_afwPackageId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwPackageId")
+};
+
+const afw_value_string_t afw_v_afwPackageLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwPackageLabel")
+};
+
+const afw_value_string_t afw_v_afwVersion = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwVersion")
+};
+
+const afw_value_string_t afw_v_afw_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_factory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_factory")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_impl_index = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_impl_index")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_impl_index_cursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_impl_index_cursor")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_journal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_journal")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_key_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_key_value")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_object_type_cache = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_object_type_cache")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_session = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_session")
+};
+
+const afw_value_string_t afw_v_afw_adaptor_transaction = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_adaptor_transaction")
+};
+
+const afw_value_string_t afw_v_afw_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_array")
+};
+
+const afw_value_string_t afw_v_afw_array_setter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_array_setter")
+};
+
+const afw_value_string_t afw_v_afw_authorization_handler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_authorization_handler")
+};
+
+const afw_value_string_t afw_v_afw_authorization_handler_factory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_authorization_handler_factory")
+};
+
+const afw_value_string_t afw_v_afw_bdb_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_bdb_adaptor")
+};
+
+const afw_value_string_t afw_v_afw_command = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_command")
+};
+
+const afw_value_string_t afw_v_afw_components = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_components")
+};
+
+const afw_value_string_t afw_v_afw_components_extension_loaded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_components_extension_loaded")
+};
+
+const afw_value_string_t afw_v_afw_connection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_connection")
+};
+
+const afw_value_string_t afw_v_afw_content_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_content_type")
+};
+
+const afw_value_string_t afw_v_afw_content_type_object_list_writer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_content_type_object_list_writer")
+};
+
+const afw_value_string_t afw_v_afw_data_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_data_type")
+};
+
+const afw_value_string_t afw_v_afw_dev = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_dev")
+};
+
+const afw_value_string_t afw_v_afw_dynamo_db_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_dynamo_db_adaptor")
+};
+
+const afw_value_string_t afw_v_afw_extension = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_extension")
+};
+
+const afw_value_string_t afw_v_afw_ldap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_ldap")
+};
+
+const afw_value_string_t afw_v_afw_ldap_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_ldap_adaptor")
+};
+
+const afw_value_string_t afw_v_afw_lmdb = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_lmdb")
+};
+
+const afw_value_string_t afw_v_afw_lmdb_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_lmdb_adaptor")
+};
+
+const afw_value_string_t afw_v_afw_log = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_log")
+};
+
+const afw_value_string_t afw_v_afw_log_factory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_log_factory")
+};
+
+const afw_value_string_t afw_v_afw_memory_t = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_memory_t")
+};
+
+const afw_value_string_t afw_v_afw_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_object")
+};
+
+const afw_value_string_t afw_v_afw_object_associative_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_object_associative_array")
+};
+
+const afw_value_string_t afw_v_afw_object_setter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_object_setter")
+};
+
+const afw_value_string_t afw_v_afw_pool = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_pool")
+};
+
+const afw_value_string_t afw_v_afw_request = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_request")
+};
+
+const afw_value_string_t afw_v_afw_request_handler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_request_handler")
+};
+
+const afw_value_string_t afw_v_afw_request_handler_factory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_request_handler_factory")
+};
+
+const afw_value_string_t afw_v_afw_request_handler_head = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_request_handler_head")
+};
+
+const afw_value_string_t afw_v_afw_runtime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_runtime")
+};
+
+const afw_value_string_t afw_v_afw_server = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_server")
+};
+
+const afw_value_string_t afw_v_afw_server_fcgi = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_server_fcgi")
+};
+
+const afw_value_string_t afw_v_afw_service_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_service_type")
+};
+
+const afw_value_string_t afw_v_afw_sql_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_sql_adaptor")
+};
+
+const afw_value_string_t afw_v_afw_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_stream")
+};
+
+const afw_value_string_t afw_v_afw_ubjson = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_ubjson")
+};
+
+const afw_value_string_t afw_v_afw_utf8_t = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_utf8_t")
+};
+
+const afw_value_string_t afw_v_afw_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_value")
+};
+
+const afw_value_string_t afw_v_afw_value_get_evaluated_meta = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_value_get_evaluated_meta")
+};
+
+const afw_value_string_t afw_v_afw_value_get_evaluated_metas = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_value_get_evaluated_metas")
+};
+
+const afw_value_string_t afw_v_afw_variable_handler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_variable_handler")
+};
+
+const afw_value_string_t afw_v_afw_vfs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_vfs")
+};
+
+const afw_value_string_t afw_v_afw_writer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_writer")
+};
+
+const afw_value_string_t afw_v_afw_xctx = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_xctx")
+};
+
+const afw_value_string_t afw_v_afw_yaml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_yaml")
+};
+
+const afw_value_string_t afw_v_afwjson = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwjson")
+};
+
+const afw_value_string_t afw_v_afwyaml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwyaml")
+};
+
+const afw_value_string_t afw_v_alert = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("alert")
+};
+
+const afw_value_string_t afw_v_all_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("all_of")
+};
+
+const afw_value_string_t afw_v_all_of_all = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("all_of_all")
+};
+
+const afw_value_string_t afw_v_all_of_any = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("all_of_any")
+};
+
+const afw_value_string_t afw_v_allowAdd = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowAdd")
+};
+
+const afw_value_string_t afw_v_allowChange = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowChange")
+};
+
+const afw_value_string_t afw_v_allowDelete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowDelete")
+};
+
+const afw_value_string_t afw_v_allowDenyOverride = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowDenyOverride")
+};
+
+const afw_value_string_t afw_v_allowEntity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowEntity")
+};
+
+const afw_value_string_t afw_v_allowPermitOverride = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowPermitOverride")
+};
+
+const afw_value_string_t afw_v_allowQuery = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowQuery")
+};
+
+const afw_value_string_t afw_v_allowRead = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowRead")
+};
+
+const afw_value_string_t afw_v_allowReregister = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowReregister")
+};
+
+const afw_value_string_t afw_v_allowWrite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowWrite")
+};
+
+const afw_value_string_t afw_v_allowedValues = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowedValues")
+};
+
+const afw_value_string_t afw_v_an_ellipsis = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("...")
+};
+
+const afw_value_string_t afw_v_ancestorPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ancestorPaths")
+};
+
+const afw_value_string_t afw_v_and = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("and")
+};
+
+const afw_value_string_t afw_v_any = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("any")
+};
+
+const afw_value_string_t afw_v_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI")
+};
+
+const afw_value_string_t afw_v_anyURI_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_anyURI_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_bag")
+};
+
+const afw_value_string_t afw_v_anyURI_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_bag_size")
+};
+
+const afw_value_string_t afw_v_anyURI_ends_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_ends_with")
+};
+
+const afw_value_string_t afw_v_anyURI_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_eq")
+};
+
+const afw_value_string_t afw_v_anyURI_includes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_includes")
+};
+
+const afw_value_string_t afw_v_anyURI_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_intersection")
+};
+
+const afw_value_string_t afw_v_anyURI_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_is_in")
+};
+
+const afw_value_string_t afw_v_anyURI_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_one_and_only")
+};
+
+const afw_value_string_t afw_v_anyURI_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_regexp_match")
+};
+
+const afw_value_string_t afw_v_anyURI_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_set_equals")
+};
+
+const afw_value_string_t afw_v_anyURI_starts_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_starts_with")
+};
+
+const afw_value_string_t afw_v_anyURI_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_subset")
+};
+
+const afw_value_string_t afw_v_anyURI_substring = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_substring")
+};
+
+const afw_value_string_t afw_v_anyURI_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_to_string")
+};
+
+const afw_value_string_t afw_v_anyURI_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI_union")
+};
+
+const afw_value_string_t afw_v_any_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("any_of")
+};
+
+const afw_value_string_t afw_v_any_of_all = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("any_of_all")
+};
+
+const afw_value_string_t afw_v_any_of_any = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("any_of_any")
+};
+
+const afw_value_string_t afw_v_ao = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ao")
+};
+
+const afw_value_string_t afw_v_applicableFlags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("applicableFlags")
+};
+
+const afw_value_string_t afw_v_applicablePolicies = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("applicablePolicies")
+};
+
+const afw_value_string_t afw_v_applicable_flags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("applicable_flags")
+};
+
+const afw_value_string_t afw_v_application = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("application")
+};
+
+const afw_value_string_t afw_v_applicationId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("applicationId")
+};
+
+const afw_value_string_t afw_v_apply_object_options = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("apply_object_options")
+};
+
+const afw_value_string_t afw_v_argument = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("argument")
+};
+
+const afw_value_string_t afw_v_arguments = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("arguments")
+};
+
+const afw_value_string_t afw_v_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("array")
+};
+
+const afw_value_string_t afw_v_array_includes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("array_includes")
+};
+
+const afw_value_string_t afw_v_as = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("as")
+};
+
+const afw_value_string_t afw_v_assert = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("assert")
+};
+
+const afw_value_string_t afw_v_assert_has_property = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("assert_has_property")
+};
+
+const afw_value_string_t afw_v_assert_has_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("assert_has_value")
+};
+
+const afw_value_string_t afw_v_assert_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("assert_value")
+};
+
+const afw_value_string_t afw_v_assign = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("assign")
+};
+
+const afw_value_string_t afw_v_async = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("async")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_anyURI")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_base64Binary")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_boolean")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_date")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_dateTime")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_double")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_hexBinary")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_integer")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_rfc822Name")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_string")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_time")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_x500Name")
+};
+
+const afw_value_string_t afw_v_at_least_one_member_of_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("at_least_one_member_of_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_authority = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authority")
+};
+
+const afw_value_string_t afw_v_authorization = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorization")
+};
+
+const afw_value_string_t afw_v_authorizationAdaptorCreate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationAdaptorCreate")
+};
+
+const afw_value_string_t afw_v_authorizationAdaptorDelete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationAdaptorDelete")
+};
+
+const afw_value_string_t afw_v_authorizationAdaptorQuery = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationAdaptorQuery")
+};
+
+const afw_value_string_t afw_v_authorizationAdaptorRead = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationAdaptorRead")
+};
+
+const afw_value_string_t afw_v_authorizationAdaptorUpdate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationAdaptorUpdate")
+};
+
+const afw_value_string_t afw_v_authorizationCheck = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationCheck")
+};
+
+const afw_value_string_t afw_v_authorizationControl = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationControl")
+};
+
+const afw_value_string_t afw_v_authorizationHandler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationHandler")
+};
+
+const afw_value_string_t afw_v_authorizationHandlerId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationHandlerId")
+};
+
+const afw_value_string_t afw_v_authorizationHandlerType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationHandlerType")
+};
+
+const afw_value_string_t afw_v_authorizationResults = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorizationResults")
+};
+
+const afw_value_string_t afw_v_authorization_check = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorization_check")
+};
+
+const afw_value_string_t afw_v_authorization_handler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorization_handler")
+};
+
+const afw_value_string_t afw_v_authorization_handler_id = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorization_handler_id")
+};
+
+const afw_value_string_t afw_v_authorization_handler_id_anchor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorization_handler_id_anchor")
+};
+
+const afw_value_string_t afw_v_authorization_handler_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("authorization_handler_type")
+};
+
+const afw_value_string_t afw_v_autoRegister = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("autoRegister")
+};
+
+const afw_value_string_t afw_v_await = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("await")
+};
+
+const afw_value_string_t afw_v_backtrace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backtrace")
+};
+
+const afw_value_string_t afw_v_backtraceEvaluation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backtraceEvaluation")
+};
+
+const afw_value_string_t afw_v_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag")
+};
+
+const afw_value_string_t afw_v_bag_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_anyURI")
+};
+
+const afw_value_string_t afw_v_bag_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_array")
+};
+
+const afw_value_string_t afw_v_bag_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_base64Binary")
+};
+
+const afw_value_string_t afw_v_bag_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_boolean")
+};
+
+const afw_value_string_t afw_v_bag_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_date")
+};
+
+const afw_value_string_t afw_v_bag_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_dateTime")
+};
+
+const afw_value_string_t afw_v_bag_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_bag_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_dnsName")
+};
+
+const afw_value_string_t afw_v_bag_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_double")
+};
+
+const afw_value_string_t afw_v_bag_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_expression")
+};
+
+const afw_value_string_t afw_v_bag_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_function")
+};
+
+const afw_value_string_t afw_v_bag_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_hexBinary")
+};
+
+const afw_value_string_t afw_v_bag_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_hybrid")
+};
+
+const afw_value_string_t afw_v_bag_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_ia5String")
+};
+
+const afw_value_string_t afw_v_bag_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_integer")
+};
+
+const afw_value_string_t afw_v_bag_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_ipAddress")
+};
+
+const afw_value_string_t afw_v_bag_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_null")
+};
+
+const afw_value_string_t afw_v_bag_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_object")
+};
+
+const afw_value_string_t afw_v_bag_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_objectId")
+};
+
+const afw_value_string_t afw_v_bag_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_objectPath")
+};
+
+const afw_value_string_t afw_v_bag_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_password")
+};
+
+const afw_value_string_t afw_v_bag_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_rfc822Name")
+};
+
+const afw_value_string_t afw_v_bag_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_script")
+};
+
+const afw_value_string_t afw_v_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size")
+};
+
+const afw_value_string_t afw_v_bag_size_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_anyURI")
+};
+
+const afw_value_string_t afw_v_bag_size_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_array")
+};
+
+const afw_value_string_t afw_v_bag_size_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_base64Binary")
+};
+
+const afw_value_string_t afw_v_bag_size_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_boolean")
+};
+
+const afw_value_string_t afw_v_bag_size_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_date")
+};
+
+const afw_value_string_t afw_v_bag_size_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_dateTime")
+};
+
+const afw_value_string_t afw_v_bag_size_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_bag_size_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_dnsName")
+};
+
+const afw_value_string_t afw_v_bag_size_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_double")
+};
+
+const afw_value_string_t afw_v_bag_size_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_expression")
+};
+
+const afw_value_string_t afw_v_bag_size_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_function")
+};
+
+const afw_value_string_t afw_v_bag_size_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_hexBinary")
+};
+
+const afw_value_string_t afw_v_bag_size_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_hybrid")
+};
+
+const afw_value_string_t afw_v_bag_size_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_ia5String")
+};
+
+const afw_value_string_t afw_v_bag_size_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_integer")
+};
+
+const afw_value_string_t afw_v_bag_size_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_ipAddress")
+};
+
+const afw_value_string_t afw_v_bag_size_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_null")
+};
+
+const afw_value_string_t afw_v_bag_size_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_object")
+};
+
+const afw_value_string_t afw_v_bag_size_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_objectId")
+};
+
+const afw_value_string_t afw_v_bag_size_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_objectPath")
+};
+
+const afw_value_string_t afw_v_bag_size_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_password")
+};
+
+const afw_value_string_t afw_v_bag_size_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_rfc822Name")
+};
+
+const afw_value_string_t afw_v_bag_size_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_script")
+};
+
+const afw_value_string_t afw_v_bag_size_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_string")
+};
+
+const afw_value_string_t afw_v_bag_size_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_template")
+};
+
+const afw_value_string_t afw_v_bag_size_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_time")
+};
+
+const afw_value_string_t afw_v_bag_size_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_x500Name")
+};
+
+const afw_value_string_t afw_v_bag_size_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_xpathExpression")
+};
+
+const afw_value_string_t afw_v_bag_size_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_size_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_bag_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_string")
+};
+
+const afw_value_string_t afw_v_bag_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_template")
+};
+
+const afw_value_string_t afw_v_bag_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_time")
+};
+
+const afw_value_string_t afw_v_bag_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_x500Name")
+};
+
+const afw_value_string_t afw_v_bag_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_xpathExpression")
+};
+
+const afw_value_string_t afw_v_bag_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bag_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_base = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base")
+};
+
+const afw_value_string_t afw_v_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary")
+};
+
+const afw_value_string_t afw_v_base64Binary_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_base64Binary_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_bag")
+};
+
+const afw_value_string_t afw_v_base64Binary_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_bag_size")
+};
+
+const afw_value_string_t afw_v_base64Binary_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_eq")
+};
+
+const afw_value_string_t afw_v_base64Binary_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_intersection")
+};
+
+const afw_value_string_t afw_v_base64Binary_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_is_in")
+};
+
+const afw_value_string_t afw_v_base64Binary_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_one_and_only")
+};
+
+const afw_value_string_t afw_v_base64Binary_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_set_equals")
+};
+
+const afw_value_string_t afw_v_base64Binary_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_subset")
+};
+
+const afw_value_string_t afw_v_base64Binary_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base64Binary_union")
+};
+
+const afw_value_string_t afw_v_basic = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("basic")
+};
+
+const afw_value_string_t afw_v_beginTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("beginTime")
+};
+
+const afw_value_string_t afw_v_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean")
+};
+
+const afw_value_string_t afw_v_boolean_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_boolean_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_bag")
+};
+
+const afw_value_string_t afw_v_boolean_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_bag_size")
+};
+
+const afw_value_string_t afw_v_boolean_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_eq")
+};
+
+const afw_value_string_t afw_v_boolean_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_intersection")
+};
+
+const afw_value_string_t afw_v_boolean_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_is_in")
+};
+
+const afw_value_string_t afw_v_boolean_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_one_and_only")
+};
+
+const afw_value_string_t afw_v_boolean_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_set_equals")
+};
+
+const afw_value_string_t afw_v_boolean_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_subset")
+};
+
+const afw_value_string_t afw_v_boolean_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_to_string")
+};
+
+const afw_value_string_t afw_v_boolean_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean_union")
+};
+
+const afw_value_string_t afw_v_break = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("break")
+};
+
+const afw_value_string_t afw_v_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("brief")
+};
+
+const afw_value_string_t afw_v_bugReportEmail = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bugReportEmail")
+};
+
+const afw_value_string_t afw_v_buildType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("buildType")
+};
+
+const afw_value_string_t afw_v_buildTypeParameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("buildTypeParameters")
+};
+
+const afw_value_string_t afw_v_cType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("cType")
+};
+
+const afw_value_string_t afw_v_call = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("call")
+};
+
+const afw_value_string_t afw_v_camelCaseFunctionLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("camelCaseFunctionLabel")
+};
+
+const afw_value_string_t afw_v_canBeUndefined = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("canBeUndefined")
+};
+
+const afw_value_string_t afw_v_canRestart = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("canRestart")
+};
+
+const afw_value_string_t afw_v_canStart = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("canStart")
+};
+
+const afw_value_string_t afw_v_canStop = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("canStop")
+};
+
+const afw_value_string_t afw_v_case = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("case")
+};
+
+const afw_value_string_t afw_v_case_insensitive_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("case-insensitive-string")
+};
+
+const afw_value_string_t afw_v_case_sensitive_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("case-sensitive-string")
+};
+
+const afw_value_string_t afw_v_catch = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("catch")
+};
+
+const afw_value_string_t afw_v_category = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("category")
+};
+
+const afw_value_string_t afw_v_ceil = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ceil")
+};
+
+const afw_value_string_t afw_v_ceil_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ceil_double")
+};
+
+const afw_value_string_t afw_v_checkIntermediateMode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("checkIntermediateMode")
+};
+
+const afw_value_string_t afw_v_checkRequired = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("checkRequired")
+};
+
+const afw_value_string_t afw_v_class = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("class")
+};
+
+const afw_value_string_t afw_v_clone = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("clone")
+};
+
+const afw_value_string_t afw_v_clone_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("clone_array")
+};
+
+const afw_value_string_t afw_v_clone_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("clone_object")
+};
+
+const afw_value_string_t afw_v_close = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("close")
+};
+
+const afw_value_string_t afw_v_collectionURIs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("collectionURIs")
+};
+
+const afw_value_string_t afw_v_column = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("column")
+};
+
+const afw_value_string_t afw_v_compare_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compare_uri")
+};
+
+const afw_value_string_t afw_v_compile = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile")
+};
+
+const afw_value_string_t afw_v_compileDate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compileDate")
+};
+
+const afw_value_string_t afw_v_compileOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compileOptions")
+};
+
+const afw_value_string_t afw_v_compileTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compileTime")
+};
+
+const afw_value_string_t afw_v_compileType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compileType")
+};
+
+const afw_value_string_t afw_v_compile_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_expression")
+};
+
+const afw_value_string_t afw_v_compile_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_hybrid")
+};
+
+const afw_value_string_t afw_v_compile_json = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_json")
+};
+
+const afw_value_string_t afw_v_compile_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_regexp")
+};
+
+const afw_value_string_t afw_v_compile_relaxed_json = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_relaxed_json")
+};
+
+const afw_value_string_t afw_v_compile_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_script")
+};
+
+const afw_value_string_t afw_v_compile_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_template")
+};
+
+const afw_value_string_t afw_v_compile_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_type")
+};
+
+const afw_value_string_t afw_v_compile_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compile_xpathExpression")
+};
+
+const afw_value_string_t afw_v_compiler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compiler")
+};
+
+const afw_value_string_t afw_v_compiler_assert = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compiler_assert")
+};
+
+const afw_value_string_t afw_v_compiler_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compiler_expression")
+};
+
+const afw_value_string_t afw_v_compiler_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compiler_script")
+};
+
+const afw_value_string_t afw_v_compiler_test_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compiler_test_script")
+};
+
+const afw_value_string_t afw_v_componentType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("componentType")
+};
+
+const afw_value_string_t afw_v_composite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("composite")
+};
+
+const afw_value_string_t afw_v_concat = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("concat")
+};
+
+const afw_value_string_t afw_v_concurrent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("concurrent")
+};
+
+const afw_value_string_t afw_v_conf = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("conf")
+};
+
+const afw_value_string_t afw_v_confAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("confAdaptorId")
+};
+
+const afw_value_string_t afw_v_confId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("confId")
+};
+
+const afw_value_string_t afw_v_confPropertyObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("confPropertyObjectType")
+};
+
+const afw_value_string_t afw_v_confSubtype = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("confSubtype")
+};
+
+const afw_value_string_t afw_v_confType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("confType")
+};
+
+const afw_value_string_t afw_v_conf_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("conf_type")
+};
+
+const afw_value_string_t afw_v_console = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("console")
+};
+
+const afw_value_string_t afw_v_const = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("const")
+};
+
+const afw_value_string_t afw_v_consumeCursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("consumeCursor")
+};
+
+const afw_value_string_t afw_v_consumeFilter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("consumeFilter")
+};
+
+const afw_value_string_t afw_v_consumeStartTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("consumeStartTime")
+};
+
+const afw_value_string_t afw_v_consumed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("consumed")
+};
+
+const afw_value_string_t afw_v_consumerId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("consumerId")
+};
+
+const afw_value_string_t afw_v_contains = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("contains")
+};
+
+const afw_value_string_t afw_v_containsUnresolvedSubstitutions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("containsUnresolvedSubstitutions")
+};
+
+const afw_value_string_t afw_v_contentType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("contentType")
+};
+
+const afw_value_string_t afw_v_content_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("content_type")
+};
+
+const afw_value_string_t afw_v_contextType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("contextType")
+};
+
+const afw_value_string_t afw_v_contextTypeId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("contextTypeId")
+};
+
+const afw_value_string_t afw_v_continue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("continue")
+};
+
+const afw_value_string_t afw_v_control = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("control")
+};
+
+const afw_value_string_t afw_v_convert_AdaptiveQueryCriteria_to_query_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("convert_AdaptiveQueryCriteria_to_query_string")
+};
+
+const afw_value_string_t afw_v_convert_query_string_to_AdaptiveQueryCriteria = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("convert_query_string_to_AdaptiveQueryCriteria")
+};
+
+const afw_value_string_t afw_v_convert_syntax_hybrid_to_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("convert_syntax_hybrid_to_expression")
+};
+
+const afw_value_string_t afw_v_core = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("core")
+};
+
+const afw_value_string_t afw_v_coreAuthorizationCheck = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("coreAuthorizationCheck")
+};
+
+const afw_value_string_t afw_v_create = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("create")
+};
+
+const afw_value_string_t afw_v_crit = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("crit")
+};
+
+const afw_value_string_t afw_v_current = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("current")
+};
+
+const afw_value_string_t afw_v_currentCursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("currentCursor")
+};
+
+const afw_value_string_t afw_v_custom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("custom")
+};
+
+const afw_value_string_t afw_v_data = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("data")
+};
+
+const afw_value_string_t afw_v_dataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataType")
+};
+
+const afw_value_string_t afw_v_dataTypeCategory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeCategory")
+};
+
+const afw_value_string_t afw_v_dataTypeMethod = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeMethod")
+};
+
+const afw_value_string_t afw_v_dataTypeMethodNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeMethodNumber")
+};
+
+const afw_value_string_t afw_v_dataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameter")
+};
+
+const afw_value_string_t afw_v_dataTypeParameterFormatted = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameterFormatted")
+};
+
+const afw_value_string_t afw_v_dataTypeParameterType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameterType")
+};
+
+const afw_value_string_t afw_v_data_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("data_type")
+};
+
+const afw_value_string_t afw_v_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date")
+};
+
+const afw_value_string_t afw_v_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime")
+};
+
+const afw_value_string_t afw_v_dateTime_add_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_add_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_dateTime_add_dayTimeDuration_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_add_dayTimeDuration_1_0")
+};
+
+const afw_value_string_t afw_v_dateTime_add_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_add_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_dateTime_add_yearMonthDuration_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_add_yearMonthDuration_1_0")
+};
+
+const afw_value_string_t afw_v_dateTime_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_dateTime_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_bag")
+};
+
+const afw_value_string_t afw_v_dateTime_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_bag_size")
+};
+
+const afw_value_string_t afw_v_dateTime_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_eq")
+};
+
+const afw_value_string_t afw_v_dateTime_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_ge")
+};
+
+const afw_value_string_t afw_v_dateTime_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_gt")
+};
+
+const afw_value_string_t afw_v_dateTime_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_intersection")
+};
+
+const afw_value_string_t afw_v_dateTime_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_is_in")
+};
+
+const afw_value_string_t afw_v_dateTime_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_le")
+};
+
+const afw_value_string_t afw_v_dateTime_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_lt")
+};
+
+const afw_value_string_t afw_v_dateTime_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_one_and_only")
+};
+
+const afw_value_string_t afw_v_dateTime_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_set_equals")
+};
+
+const afw_value_string_t afw_v_dateTime_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_subset")
+};
+
+const afw_value_string_t afw_v_dateTime_subtract_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_subtract_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_dateTime_subtract_dayTimeDuration_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_subtract_dayTimeDuration_1_0")
+};
+
+const afw_value_string_t afw_v_dateTime_subtract_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_subtract_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_dateTime_subtract_yearMonthDuration_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_subtract_yearMonthDuration_1_0")
+};
+
+const afw_value_string_t afw_v_dateTime_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_to_string")
+};
+
+const afw_value_string_t afw_v_dateTime_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime_union")
+};
+
+const afw_value_string_t afw_v_date_add_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_add_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_date_add_yearMonthDuration_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_add_yearMonthDuration_1_0")
+};
+
+const afw_value_string_t afw_v_date_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_date_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_bag")
+};
+
+const afw_value_string_t afw_v_date_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_bag_size")
+};
+
+const afw_value_string_t afw_v_date_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_eq")
+};
+
+const afw_value_string_t afw_v_date_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_ge")
+};
+
+const afw_value_string_t afw_v_date_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_gt")
+};
+
+const afw_value_string_t afw_v_date_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_intersection")
+};
+
+const afw_value_string_t afw_v_date_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_is_in")
+};
+
+const afw_value_string_t afw_v_date_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_le")
+};
+
+const afw_value_string_t afw_v_date_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_lt")
+};
+
+const afw_value_string_t afw_v_date_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_one_and_only")
+};
+
+const afw_value_string_t afw_v_date_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_set_equals")
+};
+
+const afw_value_string_t afw_v_date_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_subset")
+};
+
+const afw_value_string_t afw_v_date_subtract_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_subtract_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_date_subtract_yearMonthDuration_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_subtract_yearMonthDuration_1_0")
+};
+
+const afw_value_string_t afw_v_date_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_to_string")
+};
+
+const afw_value_string_t afw_v_date_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date_union")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_bag")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_bag_size")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_eq")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_intersection")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_is_in")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_one_and_only")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_set_equals")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_subset")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_1_0_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_1_0_union")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_bag")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_bag_size")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_eq")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_intersection")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_is_in")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_one_and_only")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_set_equals")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_subset")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_to_string")
+};
+
+const afw_value_string_t afw_v_dayTimeDuration_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration_union")
+};
+
+const afw_value_string_t afw_v_debug = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debug")
+};
+
+const afw_value_string_t afw_v_debugFlagId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debugFlagId")
+};
+
+const afw_value_string_t afw_v_debugFlagIndex = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("debugFlagIndex")
+};
+
+const afw_value_string_t afw_v_decision = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("decision")
+};
+
+const afw_value_string_t afw_v_decisionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("decisionId")
+};
+
+const afw_value_string_t afw_v_declare = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("declare")
+};
+
+const afw_value_string_t afw_v_decode_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("decode_to_string")
+};
+
+const afw_value_string_t afw_v_decode_to_string_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("decode_to_string_base64Binary")
+};
+
+const afw_value_string_t afw_v_decode_to_string_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("decode_to_string_hexBinary")
+};
+
+const afw_value_string_t afw_v_decompile = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("decompile")
+};
+
+const afw_value_string_t afw_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
+
+const afw_value_string_t afw_v_defaultAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultAdaptorId")
+};
+
+const afw_value_string_t afw_v_defaultFlags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultFlags")
+};
+
+const afw_value_string_t afw_v_defaultModelAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultModelAdaptorId")
+};
+
+const afw_value_string_t afw_v_defaultOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultOptions")
+};
+
+const afw_value_string_t afw_v_defaultValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultValue")
+};
+
+const afw_value_string_t afw_v_define = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("define")
+};
+
+const afw_value_string_t afw_v_delete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("delete")
+};
+
+const afw_value_string_t afw_v_deleteObjectCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("deleteObjectCount")
+};
+
+const afw_value_string_t afw_v_delete_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("delete_object")
+};
+
+const afw_value_string_t afw_v_delete_object_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("delete_object_with_uri")
+};
+
+const afw_value_string_t afw_v_deny = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("deny")
+};
+
+const afw_value_string_t afw_v_denyIfNotApplicable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("denyIfNotApplicable")
+};
+
+const afw_value_string_t afw_v_deprecated = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("deprecated")
+};
+
+const afw_value_string_t afw_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
+
+const afw_value_string_t afw_v_descriptionPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("descriptionPropertyName")
+};
+
+const afw_value_string_t afw_v_details = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("details")
+};
+
+const afw_value_string_t afw_v_differ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("differ")
+};
+
+const afw_value_string_t afw_v_directReturn = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("directReturn")
+};
+
+const afw_value_string_t afw_v_disabled = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("disabled")
+};
+
+const afw_value_string_t afw_v_divide = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("divide")
+};
+
+const afw_value_string_t afw_v_divide_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("divide_double")
+};
+
+const afw_value_string_t afw_v_divide_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("divide_integer")
+};
+
+const afw_value_string_t afw_v_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName")
+};
+
+const afw_value_string_t afw_v_dnsName_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName_bag")
+};
+
+const afw_value_string_t afw_v_dnsName_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName_bag_size")
+};
+
+const afw_value_string_t afw_v_dnsName_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName_is_in")
+};
+
+const afw_value_string_t afw_v_dnsName_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName_one_and_only")
+};
+
+const afw_value_string_t afw_v_dnsName_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName_regexp_match")
+};
+
+const afw_value_string_t afw_v_dnsName_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dnsName_to_string")
+};
+
+const afw_value_string_t afw_v_do = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("do")
+};
+
+const afw_value_string_t afw_v_do_while = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("do_while")
+};
+
+const afw_value_string_t afw_v_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double")
+};
+
+const afw_value_string_t afw_v_double_abs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_abs")
+};
+
+const afw_value_string_t afw_v_double_add = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_add")
+};
+
+const afw_value_string_t afw_v_double_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_double_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_bag")
+};
+
+const afw_value_string_t afw_v_double_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_bag_size")
+};
+
+const afw_value_string_t afw_v_double_ceil = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_ceil")
+};
+
+const afw_value_string_t afw_v_double_divide = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_divide")
+};
+
+const afw_value_string_t afw_v_double_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_eq")
+};
+
+const afw_value_string_t afw_v_double_floor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_floor")
+};
+
+const afw_value_string_t afw_v_double_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_ge")
+};
+
+const afw_value_string_t afw_v_double_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_gt")
+};
+
+const afw_value_string_t afw_v_double_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_intersection")
+};
+
+const afw_value_string_t afw_v_double_is_NaN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_is_NaN")
+};
+
+const afw_value_string_t afw_v_double_is_finite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_is_finite")
+};
+
+const afw_value_string_t afw_v_double_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_is_in")
+};
+
+const afw_value_string_t afw_v_double_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_le")
+};
+
+const afw_value_string_t afw_v_double_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_lt")
+};
+
+const afw_value_string_t afw_v_double_multiply = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_multiply")
+};
+
+const afw_value_string_t afw_v_double_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_one_and_only")
+};
+
+const afw_value_string_t afw_v_double_pow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_pow")
+};
+
+const afw_value_string_t afw_v_double_round = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_round")
+};
+
+const afw_value_string_t afw_v_double_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_set_equals")
+};
+
+const afw_value_string_t afw_v_double_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_subset")
+};
+
+const afw_value_string_t afw_v_double_subtract = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_subtract")
+};
+
+const afw_value_string_t afw_v_double_to_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_to_integer")
+};
+
+const afw_value_string_t afw_v_double_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_to_string")
+};
+
+const afw_value_string_t afw_v_double_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("double_union")
+};
+
+const afw_value_string_t afw_v_else = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("else")
+};
+
+const afw_value_string_t afw_v_emerg = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("emerg")
+};
+
+const afw_value_string_t afw_v_encode_as_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("encode_as_base64Binary")
+};
+
+const afw_value_string_t afw_v_encode_as_base64Binary_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("encode_as_base64Binary_string")
+};
+
+const afw_value_string_t afw_v_encode_as_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("encode_as_hexBinary")
+};
+
+const afw_value_string_t afw_v_encode_as_hexBinary_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("encode_as_hexBinary_string")
+};
+
+const afw_value_string_t afw_v_endTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("endTime")
+};
+
+const afw_value_string_t afw_v_ends_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ends_with")
+};
+
+const afw_value_string_t afw_v_ends_with_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ends_with_anyURI")
+};
+
+const afw_value_string_t afw_v_ends_with_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ends_with_string")
+};
+
+const afw_value_string_t afw_v_ensure_afw_components_extension_loaded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ensure_afw_components_extension_loaded")
+};
+
+const afw_value_string_t afw_v_entityObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("entityObjectId")
+};
+
+const afw_value_string_t afw_v_entityPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("entityPath")
+};
+
+const afw_value_string_t afw_v_entries = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("entries")
+};
+
+const afw_value_string_t afw_v_entry = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("entry")
+};
+
+const afw_value_string_t afw_v_entryCursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("entryCursor")
+};
+
+const afw_value_string_t afw_v_environment = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment")
+};
+
+const afw_value_string_t afw_v_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq")
+};
+
+const afw_value_string_t afw_v_eq_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_anyURI")
+};
+
+const afw_value_string_t afw_v_eq_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_array")
+};
+
+const afw_value_string_t afw_v_eq_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_base64Binary")
+};
+
+const afw_value_string_t afw_v_eq_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_boolean")
+};
+
+const afw_value_string_t afw_v_eq_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_date")
+};
+
+const afw_value_string_t afw_v_eq_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_dateTime")
+};
+
+const afw_value_string_t afw_v_eq_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_eq_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_dnsName")
+};
+
+const afw_value_string_t afw_v_eq_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_double")
+};
+
+const afw_value_string_t afw_v_eq_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_expression")
+};
+
+const afw_value_string_t afw_v_eq_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_function")
+};
+
+const afw_value_string_t afw_v_eq_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_hexBinary")
+};
+
+const afw_value_string_t afw_v_eq_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_hybrid")
+};
+
+const afw_value_string_t afw_v_eq_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_ia5String")
+};
+
+const afw_value_string_t afw_v_eq_ignore_case = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_ignore_case")
+};
+
+const afw_value_string_t afw_v_eq_ignore_case_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_ignore_case_string")
+};
+
+const afw_value_string_t afw_v_eq_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_integer")
+};
+
+const afw_value_string_t afw_v_eq_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_ipAddress")
+};
+
+const afw_value_string_t afw_v_eq_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_object")
+};
+
+const afw_value_string_t afw_v_eq_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_objectId")
+};
+
+const afw_value_string_t afw_v_eq_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_objectPath")
+};
+
+const afw_value_string_t afw_v_eq_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_password")
+};
+
+const afw_value_string_t afw_v_eq_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_regexp")
+};
+
+const afw_value_string_t afw_v_eq_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_rfc822Name")
+};
+
+const afw_value_string_t afw_v_eq_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_script")
+};
+
+const afw_value_string_t afw_v_eq_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_string")
+};
+
+const afw_value_string_t afw_v_eq_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_template")
+};
+
+const afw_value_string_t afw_v_eq_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_time")
+};
+
+const afw_value_string_t afw_v_eq_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_x500Name")
+};
+
+const afw_value_string_t afw_v_eq_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_xpathExpression")
+};
+
+const afw_value_string_t afw_v_eq_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eq_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_eqx = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx")
+};
+
+const afw_value_string_t afw_v_eqx_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_anyURI")
+};
+
+const afw_value_string_t afw_v_eqx_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_array")
+};
+
+const afw_value_string_t afw_v_eqx_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_base64Binary")
+};
+
+const afw_value_string_t afw_v_eqx_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_boolean")
+};
+
+const afw_value_string_t afw_v_eqx_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_date")
+};
+
+const afw_value_string_t afw_v_eqx_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_dateTime")
+};
+
+const afw_value_string_t afw_v_eqx_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_eqx_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_dnsName")
+};
+
+const afw_value_string_t afw_v_eqx_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_double")
+};
+
+const afw_value_string_t afw_v_eqx_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_expression")
+};
+
+const afw_value_string_t afw_v_eqx_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_function")
+};
+
+const afw_value_string_t afw_v_eqx_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_hexBinary")
+};
+
+const afw_value_string_t afw_v_eqx_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_hybrid")
+};
+
+const afw_value_string_t afw_v_eqx_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_ia5String")
+};
+
+const afw_value_string_t afw_v_eqx_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_integer")
+};
+
+const afw_value_string_t afw_v_eqx_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_ipAddress")
+};
+
+const afw_value_string_t afw_v_eqx_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_object")
+};
+
+const afw_value_string_t afw_v_eqx_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_objectId")
+};
+
+const afw_value_string_t afw_v_eqx_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_objectPath")
+};
+
+const afw_value_string_t afw_v_eqx_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_password")
+};
+
+const afw_value_string_t afw_v_eqx_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_regexp")
+};
+
+const afw_value_string_t afw_v_eqx_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_rfc822Name")
+};
+
+const afw_value_string_t afw_v_eqx_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_script")
+};
+
+const afw_value_string_t afw_v_eqx_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_string")
+};
+
+const afw_value_string_t afw_v_eqx_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_template")
+};
+
+const afw_value_string_t afw_v_eqx_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_time")
+};
+
+const afw_value_string_t afw_v_eqx_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_x500Name")
+};
+
+const afw_value_string_t afw_v_eqx_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_xpathExpression")
+};
+
+const afw_value_string_t afw_v_eqx_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("eqx_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_err = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("err")
+};
+
+const afw_value_string_t afw_v_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("error")
+};
+
+const afw_value_string_t afw_v_errorCode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("errorCode")
+};
+
+const afw_value_string_t afw_v_errorReason = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("errorReason")
+};
+
+const afw_value_string_t afw_v_errorSource = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("errorSource")
+};
+
+const afw_value_string_t afw_v_error_rv_decoder = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("error_rv_decoder")
+};
+
+const afw_value_string_t afw_v_errors = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("errors")
+};
+
+const afw_value_string_t afw_v_errorsThrown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("errorsThrown")
+};
+
+const afw_value_string_t afw_v_evaluate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate")
+};
+
+const afw_value_string_t afw_v_evaluate_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_expression")
+};
+
+const afw_value_string_t afw_v_evaluate_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_hybrid")
+};
+
+const afw_value_string_t afw_v_evaluate_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_script")
+};
+
+const afw_value_string_t afw_v_evaluate_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_template")
+};
+
+const afw_value_string_t afw_v_evaluate_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_value")
+};
+
+const afw_value_string_t afw_v_evaluate_with_retry = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_with_retry")
+};
+
+const afw_value_string_t afw_v_evaluate_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluate_xpathExpression")
+};
+
+const afw_value_string_t afw_v_evaluated = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluated")
+};
+
+const afw_value_string_t afw_v_evaluation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("evaluation")
+};
+
+const afw_value_string_t afw_v_excludes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("excludes")
+};
+
+const afw_value_string_t afw_v_execution_start_time_local = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("execution_start_time_local")
+};
+
+const afw_value_string_t afw_v_execution_start_time_utc = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("execution_start_time_utc")
+};
+
+const afw_value_string_t afw_v_expect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expect")
+};
+
+const afw_value_string_t afw_v_expectCodepointLengthInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectCodepointLengthInTestScript")
+};
+
+const afw_value_string_t afw_v_expectCodepointOffsetInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectCodepointOffsetInTestScript")
+};
+
+const afw_value_string_t afw_v_expectColumnNumberInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectColumnNumberInTestScript")
+};
+
+const afw_value_string_t afw_v_expectLineNumberInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectLineNumberInTestScript")
+};
+
+const afw_value_string_t afw_v_expectLocation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectLocation")
+};
+
+const afw_value_string_t afw_v_expectUTF8OctetLengthInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectUTF8OctetLengthInTestScript")
+};
+
+const afw_value_string_t afw_v_expectUTF8OctetOffsetInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectUTF8OctetOffsetInTestScript")
+};
+
+const afw_value_string_t afw_v_expected = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expected")
+};
+
+const afw_value_string_t afw_v_expectedError = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expectedError")
+};
+
+const afw_value_string_t afw_v_export = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("export")
+};
+
+const afw_value_string_t afw_v_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expression")
+};
+
+const afw_value_string_t afw_v_expressions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expressions")
+};
+
+const afw_value_string_t afw_v_extends = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extends")
+};
+
+const afw_value_string_t afw_v_extension = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extension")
+};
+
+const afw_value_string_t afw_v_extensionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extensionId")
+};
+
+const afw_value_string_t afw_v_extensionModulePaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extensionModulePaths")
+};
+
+const afw_value_string_t afw_v_extensionVersion = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extensionVersion")
+};
+
+const afw_value_string_t afw_v_extension_load = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extension_load")
+};
+
+const afw_value_string_t afw_v_extension_load_by_module_path = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extension_load_by_module_path")
+};
+
+const afw_value_string_t afw_v_extensions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extensions")
+};
+
+const afw_value_string_t afw_v_facility = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("facility")
+};
+
+const afw_value_string_t afw_v_failure = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("failure")
+};
+
+const afw_value_string_t afw_v_false = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("false")
+};
+
+const afw_value_string_t afw_v_fatal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fatal")
+};
+
+const afw_value_string_t afw_v_filenameSuffix = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filenameSuffix")
+};
+
+const afw_value_string_t afw_v_filter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filter")
+};
+
+const afw_value_string_t afw_v_filters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filters")
+};
+
+const afw_value_string_t afw_v_finally = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("finally")
+};
+
+const afw_value_string_t afw_v_find = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("find")
+};
+
+const afw_value_string_t afw_v_flagId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flagId")
+};
+
+const afw_value_string_t afw_v_flagIndex = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flagIndex")
+};
+
+const afw_value_string_t afw_v_flag_get_active = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flag_get_active")
+};
+
+const afw_value_string_t afw_v_flag_get_active_defaults = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flag_get_active_defaults")
+};
+
+const afw_value_string_t afw_v_flag_get_defaults = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flag_get_defaults")
+};
+
+const afw_value_string_t afw_v_flag_modify_defaults = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flag_modify_defaults")
+};
+
+const afw_value_string_t afw_v_flag_replace_defaults = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flag_replace_defaults")
+};
+
+const afw_value_string_t afw_v_flag_set = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flag_set")
+};
+
+const afw_value_string_t afw_v_flags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flags")
+};
+
+const afw_value_string_t afw_v_floor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("floor")
+};
+
+const afw_value_string_t afw_v_floor_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("floor_double")
+};
+
+const afw_value_string_t afw_v_flush = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flush")
+};
+
+const afw_value_string_t afw_v_fn = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fn")
+};
+
+const afw_value_string_t afw_v_for = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("for")
+};
+
+const afw_value_string_t afw_v_for_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("for_of")
+};
+
+const afw_value_string_t afw_v_format = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("format")
+};
+
+const afw_value_string_t afw_v_fragment = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fragment")
+};
+
+const afw_value_string_t afw_v_fragmentTokens = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fragmentTokens")
+};
+
+const afw_value_string_t afw_v_from = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("from")
+};
+
+const afw_value_string_t afw_v_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("function")
+};
+
+const afw_value_string_t afw_v_functionDeclaration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionDeclaration")
+};
+
+const afw_value_string_t afw_v_functionDeclarationId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionDeclarationId")
+};
+
+const afw_value_string_t afw_v_functionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionId")
+};
+
+const afw_value_string_t afw_v_functionLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionLabel")
+};
+
+const afw_value_string_t afw_v_functionSignature = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionSignature")
+};
+
+const afw_value_string_t afw_v_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge")
+};
+
+const afw_value_string_t afw_v_ge_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_anyURI")
+};
+
+const afw_value_string_t afw_v_ge_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_array")
+};
+
+const afw_value_string_t afw_v_ge_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_base64Binary")
+};
+
+const afw_value_string_t afw_v_ge_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_boolean")
+};
+
+const afw_value_string_t afw_v_ge_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_date")
+};
+
+const afw_value_string_t afw_v_ge_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_dateTime")
+};
+
+const afw_value_string_t afw_v_ge_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_ge_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_dnsName")
+};
+
+const afw_value_string_t afw_v_ge_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_double")
+};
+
+const afw_value_string_t afw_v_ge_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_expression")
+};
+
+const afw_value_string_t afw_v_ge_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_function")
+};
+
+const afw_value_string_t afw_v_ge_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_hexBinary")
+};
+
+const afw_value_string_t afw_v_ge_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_hybrid")
+};
+
+const afw_value_string_t afw_v_ge_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_ia5String")
+};
+
+const afw_value_string_t afw_v_ge_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_integer")
+};
+
+const afw_value_string_t afw_v_ge_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_ipAddress")
+};
+
+const afw_value_string_t afw_v_ge_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_object")
+};
+
+const afw_value_string_t afw_v_ge_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_objectId")
+};
+
+const afw_value_string_t afw_v_ge_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_objectPath")
+};
+
+const afw_value_string_t afw_v_ge_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_password")
+};
+
+const afw_value_string_t afw_v_ge_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_regexp")
+};
+
+const afw_value_string_t afw_v_ge_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_rfc822Name")
+};
+
+const afw_value_string_t afw_v_ge_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_script")
+};
+
+const afw_value_string_t afw_v_ge_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_string")
+};
+
+const afw_value_string_t afw_v_ge_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_template")
+};
+
+const afw_value_string_t afw_v_ge_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_time")
+};
+
+const afw_value_string_t afw_v_ge_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_x500Name")
+};
+
+const afw_value_string_t afw_v_ge_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_xpathExpression")
+};
+
+const afw_value_string_t afw_v_ge_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ge_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_general = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("general")
+};
+
+const afw_value_string_t afw_v_generate_uuid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("generate_uuid")
+};
+
+const afw_value_string_t afw_v_getObjectCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("getObjectCount")
+};
+
+const afw_value_string_t afw_v_get_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("get_object")
+};
+
+const afw_value_string_t afw_v_get_object_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("get_object_with_uri")
+};
+
+const afw_value_string_t afw_v_get_stream_error = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("get_stream_error")
+};
+
+const afw_value_string_t afw_v_gitBranch = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gitBranch")
+};
+
+const afw_value_string_t afw_v_gitDescribe = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gitDescribe")
+};
+
+const afw_value_string_t afw_v_gitSha = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gitSha")
+};
+
+const afw_value_string_t afw_v_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt")
+};
+
+const afw_value_string_t afw_v_gt_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_anyURI")
+};
+
+const afw_value_string_t afw_v_gt_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_array")
+};
+
+const afw_value_string_t afw_v_gt_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_base64Binary")
+};
+
+const afw_value_string_t afw_v_gt_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_boolean")
+};
+
+const afw_value_string_t afw_v_gt_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_date")
+};
+
+const afw_value_string_t afw_v_gt_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_dateTime")
+};
+
+const afw_value_string_t afw_v_gt_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_gt_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_dnsName")
+};
+
+const afw_value_string_t afw_v_gt_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_double")
+};
+
+const afw_value_string_t afw_v_gt_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_expression")
+};
+
+const afw_value_string_t afw_v_gt_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_function")
+};
+
+const afw_value_string_t afw_v_gt_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_hexBinary")
+};
+
+const afw_value_string_t afw_v_gt_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_hybrid")
+};
+
+const afw_value_string_t afw_v_gt_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_ia5String")
+};
+
+const afw_value_string_t afw_v_gt_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_integer")
+};
+
+const afw_value_string_t afw_v_gt_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_ipAddress")
+};
+
+const afw_value_string_t afw_v_gt_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_object")
+};
+
+const afw_value_string_t afw_v_gt_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_objectId")
+};
+
+const afw_value_string_t afw_v_gt_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_objectPath")
+};
+
+const afw_value_string_t afw_v_gt_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_password")
+};
+
+const afw_value_string_t afw_v_gt_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_regexp")
+};
+
+const afw_value_string_t afw_v_gt_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_rfc822Name")
+};
+
+const afw_value_string_t afw_v_gt_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_script")
+};
+
+const afw_value_string_t afw_v_gt_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_string")
+};
+
+const afw_value_string_t afw_v_gt_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_template")
+};
+
+const afw_value_string_t afw_v_gt_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_time")
+};
+
+const afw_value_string_t afw_v_gt_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_x500Name")
+};
+
+const afw_value_string_t afw_v_gt_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_xpathExpression")
+};
+
+const afw_value_string_t afw_v_gt_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gt_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_gte = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gte")
+};
+
+const afw_value_string_t afw_v_hasErrors = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hasErrors")
+};
+
+const afw_value_string_t afw_v_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary")
+};
+
+const afw_value_string_t afw_v_hexBinary_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_hexBinary_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_bag")
+};
+
+const afw_value_string_t afw_v_hexBinary_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_bag_size")
+};
+
+const afw_value_string_t afw_v_hexBinary_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_eq")
+};
+
+const afw_value_string_t afw_v_hexBinary_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_intersection")
+};
+
+const afw_value_string_t afw_v_hexBinary_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_is_in")
+};
+
+const afw_value_string_t afw_v_hexBinary_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_one_and_only")
+};
+
+const afw_value_string_t afw_v_hexBinary_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_set_equals")
+};
+
+const afw_value_string_t afw_v_hexBinary_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_subset")
+};
+
+const afw_value_string_t afw_v_hexBinary_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hexBinary_union")
+};
+
+const afw_value_string_t afw_v_higher_order_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("higher_order_array")
+};
+
+const afw_value_string_t afw_v_hints = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hints")
+};
+
+const afw_value_string_t afw_v_homePageUrl = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("homePageUrl")
+};
+
+const afw_value_string_t afw_v_host = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("host")
+};
+
+const afw_value_string_t afw_v_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hybrid")
+};
+
+const afw_value_string_t afw_v_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ia5String")
+};
+
+const afw_value_string_t afw_v_id = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("id")
+};
+
+const afw_value_string_t afw_v_idPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("idPropertyName")
+};
+
+const afw_value_string_t afw_v_idRegistryType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("idRegistryType")
+};
+
+const afw_value_string_t afw_v_idRuntimeObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("idRuntimeObjectType")
+};
+
+const afw_value_string_t afw_v_ident = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ident")
+};
+
+const afw_value_string_t afw_v_if = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("if")
+};
+
+const afw_value_string_t afw_v_ignore = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ignore")
+};
+
+const afw_value_string_t afw_v_immediate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("immediate")
+};
+
+const afw_value_string_t afw_v_implementationId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("implementationId")
+};
+
+const afw_value_string_t afw_v_implementationParameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("implementationParameters")
+};
+
+const afw_value_string_t afw_v_implemented = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("implemented")
+};
+
+const afw_value_string_t afw_v_import = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("import")
+};
+
+const afw_value_string_t afw_v_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("in")
+};
+
+const afw_value_string_t afw_v_in_range = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("in_range")
+};
+
+const afw_value_string_t afw_v_in_range_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("in_range_time")
+};
+
+const afw_value_string_t afw_v_includeDefaultValues = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includeDefaultValues")
+};
+
+const afw_value_string_t afw_v_includeDescendentObjectTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includeDescendentObjectTypes")
+};
+
+const afw_value_string_t afw_v_includedByFlags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includedByFlags")
+};
+
+const afw_value_string_t afw_v_includes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includes")
+};
+
+const afw_value_string_t afw_v_includesFlags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includesFlags")
+};
+
+const afw_value_string_t afw_v_includes_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includes_anyURI")
+};
+
+const afw_value_string_t afw_v_includes_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includes_array")
+};
+
+const afw_value_string_t afw_v_includes_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includes_string")
+};
+
+const afw_value_string_t afw_v_indeterminate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indeterminate")
+};
+
+const afw_value_string_t afw_v_indeterminateD = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indeterminateD")
+};
+
+const afw_value_string_t afw_v_indeterminateDP = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indeterminateDP")
+};
+
+const afw_value_string_t afw_v_indeterminateP = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indeterminateP")
+};
+
+const afw_value_string_t afw_v_index_create = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("index_create")
+};
+
+const afw_value_string_t afw_v_index_list = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("index_list")
+};
+
+const afw_value_string_t afw_v_index_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("index_of")
+};
+
+const afw_value_string_t afw_v_index_of_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("index_of_anyURI")
+};
+
+const afw_value_string_t afw_v_index_of_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("index_of_string")
+};
+
+const afw_value_string_t afw_v_index_remove = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("index_remove")
+};
+
+const afw_value_string_t afw_v_indexes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indexes")
+};
+
+const afw_value_string_t afw_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
+
+const afw_value_string_t afw_v_indirectObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirectObjectId")
+};
+
+const afw_value_string_t afw_v_info = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("info")
+};
+
+const afw_value_string_t afw_v_inheritedFrom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("inheritedFrom")
+};
+
+const afw_value_string_t afw_v_initialAuthorizationCheck = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("initialAuthorizationCheck")
+};
+
+const afw_value_string_t afw_v_initialEnvironmentVariables = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("initialEnvironmentVariables")
+};
+
+const afw_value_string_t afw_v_installPackageSubdir = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("installPackageSubdir")
+};
+
+const afw_value_string_t afw_v_instanceObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("instanceObjectType")
+};
+
+const afw_value_string_t afw_v_instanceof = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("instanceof")
+};
+
+const afw_value_string_t afw_v_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer")
+};
+
+const afw_value_string_t afw_v_integer_abs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_abs")
+};
+
+const afw_value_string_t afw_v_integer_add = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_add")
+};
+
+const afw_value_string_t afw_v_integer_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_integer_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_bag")
+};
+
+const afw_value_string_t afw_v_integer_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_bag_size")
+};
+
+const afw_value_string_t afw_v_integer_divide = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_divide")
+};
+
+const afw_value_string_t afw_v_integer_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_eq")
+};
+
+const afw_value_string_t afw_v_integer_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_ge")
+};
+
+const afw_value_string_t afw_v_integer_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_gt")
+};
+
+const afw_value_string_t afw_v_integer_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_intersection")
+};
+
+const afw_value_string_t afw_v_integer_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_is_in")
+};
+
+const afw_value_string_t afw_v_integer_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_le")
+};
+
+const afw_value_string_t afw_v_integer_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_lt")
+};
+
+const afw_value_string_t afw_v_integer_mod = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_mod")
+};
+
+const afw_value_string_t afw_v_integer_multiply = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_multiply")
+};
+
+const afw_value_string_t afw_v_integer_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_one_and_only")
+};
+
+const afw_value_string_t afw_v_integer_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_set_equals")
+};
+
+const afw_value_string_t afw_v_integer_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_subset")
+};
+
+const afw_value_string_t afw_v_integer_subtract = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_subtract")
+};
+
+const afw_value_string_t afw_v_integer_to_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_to_double")
+};
+
+const afw_value_string_t afw_v_integer_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_to_string")
+};
+
+const afw_value_string_t afw_v_integer_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer_union")
+};
+
+const afw_value_string_t afw_v_integersAsString = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integersAsString")
+};
+
+const afw_value_string_t afw_v_interface = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("interface")
+};
+
+const afw_value_string_t afw_v_intermediate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intermediate")
+};
+
+const afw_value_string_t afw_v_intermediateOnly = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intermediateOnly")
+};
+
+const afw_value_string_t afw_v_internal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("internal")
+};
+
+const afw_value_string_t afw_v_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection")
+};
+
+const afw_value_string_t afw_v_intersection_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_anyURI")
+};
+
+const afw_value_string_t afw_v_intersection_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_base64Binary")
+};
+
+const afw_value_string_t afw_v_intersection_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_boolean")
+};
+
+const afw_value_string_t afw_v_intersection_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_date")
+};
+
+const afw_value_string_t afw_v_intersection_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_dateTime")
+};
+
+const afw_value_string_t afw_v_intersection_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_intersection_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_double")
+};
+
+const afw_value_string_t afw_v_intersection_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_hexBinary")
+};
+
+const afw_value_string_t afw_v_intersection_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_integer")
+};
+
+const afw_value_string_t afw_v_intersection_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_rfc822Name")
+};
+
+const afw_value_string_t afw_v_intersection_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_string")
+};
+
+const afw_value_string_t afw_v_intersection_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_time")
+};
+
+const afw_value_string_t afw_v_intersection_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_x500Name")
+};
+
+const afw_value_string_t afw_v_intersection_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intersection_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress")
+};
+
+const afw_value_string_t afw_v_ipAddress_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress_bag")
+};
+
+const afw_value_string_t afw_v_ipAddress_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress_bag_size")
+};
+
+const afw_value_string_t afw_v_ipAddress_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress_is_in")
+};
+
+const afw_value_string_t afw_v_ipAddress_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress_one_and_only")
+};
+
+const afw_value_string_t afw_v_ipAddress_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress_regexp_match")
+};
+
+const afw_value_string_t afw_v_ipAddress_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress_to_string")
+};
+
+const afw_value_string_t afw_v_is = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is")
+};
+
+const afw_value_string_t afw_v_isDevelopmentInput = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isDevelopmentInput")
+};
+
+const afw_value_string_t afw_v_isModelLocation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isModelLocation")
+};
+
+const afw_value_string_t afw_v_isPolicyLocation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isPolicyLocation")
+};
+
+const afw_value_string_t afw_v_isUnique = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isUnique")
+};
+
+const afw_value_string_t afw_v_is_NaN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_NaN")
+};
+
+const afw_value_string_t afw_v_is_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_anyURI")
+};
+
+const afw_value_string_t afw_v_is_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_array")
+};
+
+const afw_value_string_t afw_v_is_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_base64Binary")
+};
+
+const afw_value_string_t afw_v_is_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_boolean")
+};
+
+const afw_value_string_t afw_v_is_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_date")
+};
+
+const afw_value_string_t afw_v_is_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_dateTime")
+};
+
+const afw_value_string_t afw_v_is_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_is_defined = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_defined")
+};
+
+const afw_value_string_t afw_v_is_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_dnsName")
+};
+
+const afw_value_string_t afw_v_is_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_double")
+};
+
+const afw_value_string_t afw_v_is_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_expression")
+};
+
+const afw_value_string_t afw_v_is_finite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_finite")
+};
+
+const afw_value_string_t afw_v_is_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_function")
+};
+
+const afw_value_string_t afw_v_is_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_hexBinary")
+};
+
+const afw_value_string_t afw_v_is_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_hybrid")
+};
+
+const afw_value_string_t afw_v_is_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_ia5String")
+};
+
+const afw_value_string_t afw_v_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in")
+};
+
+const afw_value_string_t afw_v_is_in_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_anyURI")
+};
+
+const afw_value_string_t afw_v_is_in_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_base64Binary")
+};
+
+const afw_value_string_t afw_v_is_in_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_boolean")
+};
+
+const afw_value_string_t afw_v_is_in_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_date")
+};
+
+const afw_value_string_t afw_v_is_in_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_dateTime")
+};
+
+const afw_value_string_t afw_v_is_in_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_is_in_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_dnsName")
+};
+
+const afw_value_string_t afw_v_is_in_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_double")
+};
+
+const afw_value_string_t afw_v_is_in_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_hexBinary")
+};
+
+const afw_value_string_t afw_v_is_in_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_integer")
+};
+
+const afw_value_string_t afw_v_is_in_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_ipAddress")
+};
+
+const afw_value_string_t afw_v_is_in_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_rfc822Name")
+};
+
+const afw_value_string_t afw_v_is_in_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_string")
+};
+
+const afw_value_string_t afw_v_is_in_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_time")
+};
+
+const afw_value_string_t afw_v_is_in_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_x500Name")
+};
+
+const afw_value_string_t afw_v_is_in_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_in_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_is_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_integer")
+};
+
+const afw_value_string_t afw_v_is_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_ipAddress")
+};
+
+const afw_value_string_t afw_v_is_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_null")
+};
+
+const afw_value_string_t afw_v_is_nullish = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_nullish")
+};
+
+const afw_value_string_t afw_v_is_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_object")
+};
+
+const afw_value_string_t afw_v_is_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_objectId")
+};
+
+const afw_value_string_t afw_v_is_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_objectPath")
+};
+
+const afw_value_string_t afw_v_is_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_password")
+};
+
+const afw_value_string_t afw_v_is_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_rfc822Name")
+};
+
+const afw_value_string_t afw_v_is_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_script")
+};
+
+const afw_value_string_t afw_v_is_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_string")
+};
+
+const afw_value_string_t afw_v_is_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_template")
+};
+
+const afw_value_string_t afw_v_is_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_time")
+};
+
+const afw_value_string_t afw_v_is_unevaluated = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_unevaluated")
+};
+
+const afw_value_string_t afw_v_is_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_x500Name")
+};
+
+const afw_value_string_t afw_v_is_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_xpathExpression")
+};
+
+const afw_value_string_t afw_v_is_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("is_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_join = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("join")
+};
+
+const afw_value_string_t afw_v_journal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal")
+};
+
+const afw_value_string_t afw_v_journalAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journalAdaptorId")
+};
+
+const afw_value_string_t afw_v_journal_advance_cursor_for_consumer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_advance_cursor_for_consumer")
+};
+
+const afw_value_string_t afw_v_journal_get_by_cursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_get_by_cursor")
+};
+
+const afw_value_string_t afw_v_journal_get_first = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_get_first")
+};
+
+const afw_value_string_t afw_v_journal_get_next_after_cursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_get_next_after_cursor")
+};
+
+const afw_value_string_t afw_v_journal_get_next_for_consumer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_get_next_for_consumer")
+};
+
+const afw_value_string_t afw_v_journal_get_next_for_consumer_after_cursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_get_next_for_consumer_after_cursor")
+};
+
+const afw_value_string_t afw_v_journal_mark_consumed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("journal_mark_consumed")
+};
+
+const afw_value_string_t afw_v_json = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("json")
+};
+
+const afw_value_string_t afw_v_jsonImpliesDataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("jsonImpliesDataType")
+};
+
+const afw_value_string_t afw_v_jsonPrimitive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("jsonPrimitive")
+};
+
+const afw_value_string_t afw_v_jsonSchemaStringFormat = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("jsonSchemaStringFormat")
+};
+
+const afw_value_string_t afw_v_key = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("key")
+};
+
+const afw_value_string_t afw_v_label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("label")
+};
+
+const afw_value_string_t afw_v_labels = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("labels")
+};
+
+const afw_value_string_t afw_v_lambda = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lambda")
+};
+
+const afw_value_string_t afw_v_largeIntegersAsString = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("largeIntegersAsString")
+};
+
+const afw_value_string_t afw_v_lastContactTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lastContactTime")
+};
+
+const afw_value_string_t afw_v_last_index_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("last_index_of")
+};
+
+const afw_value_string_t afw_v_last_index_of_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("last_index_of_anyURI")
+};
+
+const afw_value_string_t afw_v_last_index_of_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("last_index_of_string")
+};
+
+const afw_value_string_t afw_v_layoutsAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("layoutsAdaptorId")
+};
+
+const afw_value_string_t afw_v_ldapOid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ldapOid")
+};
+
+const afw_value_string_t afw_v_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le")
+};
+
+const afw_value_string_t afw_v_le_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_anyURI")
+};
+
+const afw_value_string_t afw_v_le_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_array")
+};
+
+const afw_value_string_t afw_v_le_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_base64Binary")
+};
+
+const afw_value_string_t afw_v_le_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_boolean")
+};
+
+const afw_value_string_t afw_v_le_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_date")
+};
+
+const afw_value_string_t afw_v_le_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_dateTime")
+};
+
+const afw_value_string_t afw_v_le_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_le_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_dnsName")
+};
+
+const afw_value_string_t afw_v_le_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_double")
+};
+
+const afw_value_string_t afw_v_le_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_expression")
+};
+
+const afw_value_string_t afw_v_le_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_function")
+};
+
+const afw_value_string_t afw_v_le_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_hexBinary")
+};
+
+const afw_value_string_t afw_v_le_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_hybrid")
+};
+
+const afw_value_string_t afw_v_le_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_ia5String")
+};
+
+const afw_value_string_t afw_v_le_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_integer")
+};
+
+const afw_value_string_t afw_v_le_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_ipAddress")
+};
+
+const afw_value_string_t afw_v_le_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_object")
+};
+
+const afw_value_string_t afw_v_le_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_objectId")
+};
+
+const afw_value_string_t afw_v_le_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_objectPath")
+};
+
+const afw_value_string_t afw_v_le_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_password")
+};
+
+const afw_value_string_t afw_v_le_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_regexp")
+};
+
+const afw_value_string_t afw_v_le_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_rfc822Name")
+};
+
+const afw_value_string_t afw_v_le_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_script")
+};
+
+const afw_value_string_t afw_v_le_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_string")
+};
+
+const afw_value_string_t afw_v_le_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_template")
+};
+
+const afw_value_string_t afw_v_le_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_time")
+};
+
+const afw_value_string_t afw_v_le_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_x500Name")
+};
+
+const afw_value_string_t afw_v_le_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_xpathExpression")
+};
+
+const afw_value_string_t afw_v_le_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("le_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_length = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("length")
+};
+
+const afw_value_string_t afw_v_length_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("length_anyURI")
+};
+
+const afw_value_string_t afw_v_length_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("length_array")
+};
+
+const afw_value_string_t afw_v_length_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("length_string")
+};
+
+const afw_value_string_t afw_v_let = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("let")
+};
+
+const afw_value_string_t afw_v_libafwVersion = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwVersion")
+};
+
+const afw_value_string_t afw_v_libafwVersionWithGitInfo = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("libafwVersionWithGitInfo")
+};
+
+const afw_value_string_t afw_v_like = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("like")
+};
+
+const afw_value_string_t afw_v_limit = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("limit")
+};
+
+const afw_value_string_t afw_v_line = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("line")
+};
+
+const afw_value_string_t afw_v_load = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("load")
+};
+
+const afw_value_string_t afw_v_local_object_meta_set_ids = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("local_object_meta_set_ids")
+};
+
+const afw_value_string_t afw_v_lockId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lockId")
+};
+
+const afw_value_string_t afw_v_log = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("log")
+};
+
+const afw_value_string_t afw_v_logId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("logId")
+};
+
+const afw_value_string_t afw_v_logType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("logType")
+};
+
+const afw_value_string_t afw_v_log_id = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("log_id")
+};
+
+const afw_value_string_t afw_v_log_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("log_type")
+};
+
+const afw_value_string_t afw_v_logical = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("logical")
+};
+
+const afw_value_string_t afw_v_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt")
+};
+
+const afw_value_string_t afw_v_lt_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_anyURI")
+};
+
+const afw_value_string_t afw_v_lt_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_array")
+};
+
+const afw_value_string_t afw_v_lt_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_base64Binary")
+};
+
+const afw_value_string_t afw_v_lt_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_boolean")
+};
+
+const afw_value_string_t afw_v_lt_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_date")
+};
+
+const afw_value_string_t afw_v_lt_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_dateTime")
+};
+
+const afw_value_string_t afw_v_lt_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_lt_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_dnsName")
+};
+
+const afw_value_string_t afw_v_lt_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_double")
+};
+
+const afw_value_string_t afw_v_lt_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_expression")
+};
+
+const afw_value_string_t afw_v_lt_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_function")
+};
+
+const afw_value_string_t afw_v_lt_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_hexBinary")
+};
+
+const afw_value_string_t afw_v_lt_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_hybrid")
+};
+
+const afw_value_string_t afw_v_lt_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_ia5String")
+};
+
+const afw_value_string_t afw_v_lt_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_integer")
+};
+
+const afw_value_string_t afw_v_lt_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_ipAddress")
+};
+
+const afw_value_string_t afw_v_lt_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_object")
+};
+
+const afw_value_string_t afw_v_lt_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_objectId")
+};
+
+const afw_value_string_t afw_v_lt_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_objectPath")
+};
+
+const afw_value_string_t afw_v_lt_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_password")
+};
+
+const afw_value_string_t afw_v_lt_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_regexp")
+};
+
+const afw_value_string_t afw_v_lt_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_rfc822Name")
+};
+
+const afw_value_string_t afw_v_lt_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_script")
+};
+
+const afw_value_string_t afw_v_lt_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_string")
+};
+
+const afw_value_string_t afw_v_lt_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_template")
+};
+
+const afw_value_string_t afw_v_lt_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_time")
+};
+
+const afw_value_string_t afw_v_lt_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_x500Name")
+};
+
+const afw_value_string_t afw_v_lt_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_xpathExpression")
+};
+
+const afw_value_string_t afw_v_lt_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lt_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_lte = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lte")
+};
+
+const afw_value_string_t afw_v_maluba = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maluba")
+};
+
+const afw_value_string_t afw_v_manual = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("manual")
+};
+
+const afw_value_string_t afw_v_manualMakefile = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("manualMakefile")
+};
+
+const afw_value_string_t afw_v_map = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("map")
+};
+
+const afw_value_string_t afw_v_mapBackObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mapBackObject")
+};
+
+const afw_value_string_t afw_v_mapObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mapObject")
+};
+
+const afw_value_string_t afw_v_mapped = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mapped")
+};
+
+const afw_value_string_t afw_v_mappedAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mappedAdaptorId")
+};
+
+const afw_value_string_t afw_v_mappedObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mappedObject")
+};
+
+const afw_value_string_t afw_v_mappedObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mappedObjectId")
+};
+
+const afw_value_string_t afw_v_mappedObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mappedObjectType")
+};
+
+const afw_value_string_t afw_v_mappedPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mappedPropertyName")
+};
+
+const afw_value_string_t afw_v_mappedValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mappedValue")
+};
+
+const afw_value_string_t afw_v_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("match")
+};
+
+const afw_value_string_t afw_v_match_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("match_rfc822Name")
+};
+
+const afw_value_string_t afw_v_match_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("match_x500Name")
+};
+
+const afw_value_string_t afw_v_max = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max")
+};
+
+const afw_value_string_t afw_v_maxConcurrent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxConcurrent")
+};
+
+const afw_value_string_t afw_v_maxLength = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxLength")
+};
+
+const afw_value_string_t afw_v_maxNormalLength = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxNormalLength")
+};
+
+const afw_value_string_t afw_v_maxValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxValue")
+};
+
+const afw_value_string_t afw_v_max_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_date")
+};
+
+const afw_value_string_t afw_v_max_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_dateTime")
+};
+
+const afw_value_string_t afw_v_max_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_double")
+};
+
+const afw_value_string_t afw_v_max_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_integer")
+};
+
+const afw_value_string_t afw_v_max_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_string")
+};
+
+const afw_value_string_t afw_v_max_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_time")
+};
+
+const afw_value_string_t afw_v_maximumNumberOfParameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maximumNumberOfParameters")
+};
+
+const afw_value_string_t afw_v_mediaType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mediaType")
+};
+
+const afw_value_string_t afw_v_memberName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("memberName")
+};
+
+const afw_value_string_t afw_v_message = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("message")
+};
+
+const afw_value_string_t afw_v_meta = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("meta")
+};
+
+const afw_value_string_t afw_v_metaFull = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("metaFull")
+};
+
+const afw_value_string_t afw_v_metaLimited = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("metaLimited")
+};
+
+const afw_value_string_t afw_v_metas = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("metas")
+};
+
+const afw_value_string_t afw_v_method = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("method")
+};
+
+const afw_value_string_t afw_v_metrics = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("metrics")
+};
+
+const afw_value_string_t afw_v_min = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min")
+};
+
+const afw_value_string_t afw_v_minArgs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("minArgs")
+};
+
+const afw_value_string_t afw_v_minLength = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("minLength")
+};
+
+const afw_value_string_t afw_v_minValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("minValue")
+};
+
+const afw_value_string_t afw_v_min_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min_date")
+};
+
+const afw_value_string_t afw_v_min_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min_dateTime")
+};
+
+const afw_value_string_t afw_v_min_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min_double")
+};
+
+const afw_value_string_t afw_v_min_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min_integer")
+};
+
+const afw_value_string_t afw_v_min_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min_string")
+};
+
+const afw_value_string_t afw_v_min_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min_time")
+};
+
+const afw_value_string_t afw_v_miscellaneous = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("miscellaneous")
+};
+
+const afw_value_string_t afw_v_mod = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mod")
+};
+
+const afw_value_string_t afw_v_mod_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mod_integer")
+};
+
+const afw_value_string_t afw_v_mode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mode")
+};
+
+const afw_value_string_t afw_v_modeId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modeId")
+};
+
+const afw_value_string_t afw_v_model = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model")
+};
+
+const afw_value_string_t afw_v_modelAddObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelAddObject")
+};
+
+const afw_value_string_t afw_v_modelDeleteObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelDeleteObject")
+};
+
+const afw_value_string_t afw_v_modelGetObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelGetObject")
+};
+
+const afw_value_string_t afw_v_modelGetProperty = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelGetProperty")
+};
+
+const afw_value_string_t afw_v_modelId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelId")
+};
+
+const afw_value_string_t afw_v_modelInitialObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelInitialObjectId")
+};
+
+const afw_value_string_t afw_v_modelLocationAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelLocationAdaptorId")
+};
+
+const afw_value_string_t afw_v_modelModifyObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelModifyObject")
+};
+
+const afw_value_string_t afw_v_modelReplaceObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelReplaceObject")
+};
+
+const afw_value_string_t afw_v_modelRetrieveObjects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelRetrieveObjects")
+};
+
+const afw_value_string_t afw_v_modelSetProperty = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modelSetProperty")
+};
+
+const afw_value_string_t afw_v_model_adaptor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_adaptor")
+};
+
+const afw_value_string_t afw_v_model_default_add_object_action = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_default_add_object_action")
+};
+
+const afw_value_string_t afw_v_model_default_delete_object_action = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_default_delete_object_action")
+};
+
+const afw_value_string_t afw_v_model_default_modify_object_action = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_default_modify_object_action")
+};
+
+const afw_value_string_t afw_v_model_default_replace_object_action = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_default_replace_object_action")
+};
+
+const afw_value_string_t afw_v_model_mapBackObject_signature = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_mapBackObject_signature")
+};
+
+const afw_value_string_t afw_v_model_mapObject_signature = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_mapObject_signature")
+};
+
+const afw_value_string_t afw_v_model_returnObject_signature = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("model_returnObject_signature")
+};
+
+const afw_value_string_t afw_v_modify = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modify")
+};
+
+const afw_value_string_t afw_v_modifyEntries = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modifyEntries")
+};
+
+const afw_value_string_t afw_v_modifyObjectCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modifyObjectCount")
+};
+
+const afw_value_string_t afw_v_modify_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modify_object")
+};
+
+const afw_value_string_t afw_v_modify_object_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modify_object_with_uri")
+};
+
+const afw_value_string_t afw_v_modulePath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modulePath")
+};
+
+const afw_value_string_t afw_v_module_path = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("module_path")
+};
+
+const afw_value_string_t afw_v_multiply = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("multiply")
+};
+
+const afw_value_string_t afw_v_multiply_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("multiply_double")
+};
+
+const afw_value_string_t afw_v_multiply_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("multiply_integer")
+};
+
+const afw_value_string_t afw_v_n_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("n_of")
+};
+
+const afw_value_string_t afw_v_name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("name")
+};
+
+const afw_value_string_t afw_v_ne = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne")
+};
+
+const afw_value_string_t afw_v_ne_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_anyURI")
+};
+
+const afw_value_string_t afw_v_ne_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_array")
+};
+
+const afw_value_string_t afw_v_ne_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_base64Binary")
+};
+
+const afw_value_string_t afw_v_ne_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_boolean")
+};
+
+const afw_value_string_t afw_v_ne_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_date")
+};
+
+const afw_value_string_t afw_v_ne_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_dateTime")
+};
+
+const afw_value_string_t afw_v_ne_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_ne_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_dnsName")
+};
+
+const afw_value_string_t afw_v_ne_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_double")
+};
+
+const afw_value_string_t afw_v_ne_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_expression")
+};
+
+const afw_value_string_t afw_v_ne_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_function")
+};
+
+const afw_value_string_t afw_v_ne_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_hexBinary")
+};
+
+const afw_value_string_t afw_v_ne_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_hybrid")
+};
+
+const afw_value_string_t afw_v_ne_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_ia5String")
+};
+
+const afw_value_string_t afw_v_ne_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_integer")
+};
+
+const afw_value_string_t afw_v_ne_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_ipAddress")
+};
+
+const afw_value_string_t afw_v_ne_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_object")
+};
+
+const afw_value_string_t afw_v_ne_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_objectId")
+};
+
+const afw_value_string_t afw_v_ne_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_objectPath")
+};
+
+const afw_value_string_t afw_v_ne_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_password")
+};
+
+const afw_value_string_t afw_v_ne_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_regexp")
+};
+
+const afw_value_string_t afw_v_ne_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_rfc822Name")
+};
+
+const afw_value_string_t afw_v_ne_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_script")
+};
+
+const afw_value_string_t afw_v_ne_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_string")
+};
+
+const afw_value_string_t afw_v_ne_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_template")
+};
+
+const afw_value_string_t afw_v_ne_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_time")
+};
+
+const afw_value_string_t afw_v_ne_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_x500Name")
+};
+
+const afw_value_string_t afw_v_ne_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_xpathExpression")
+};
+
+const afw_value_string_t afw_v_ne_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ne_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_negative = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("negative")
+};
+
+const afw_value_string_t afw_v_negative_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("negative_double")
+};
+
+const afw_value_string_t afw_v_negative_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("negative_integer")
+};
+
+const afw_value_string_t afw_v_nex = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex")
+};
+
+const afw_value_string_t afw_v_nex_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_anyURI")
+};
+
+const afw_value_string_t afw_v_nex_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_array")
+};
+
+const afw_value_string_t afw_v_nex_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_base64Binary")
+};
+
+const afw_value_string_t afw_v_nex_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_boolean")
+};
+
+const afw_value_string_t afw_v_nex_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_date")
+};
+
+const afw_value_string_t afw_v_nex_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_dateTime")
+};
+
+const afw_value_string_t afw_v_nex_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_nex_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_dnsName")
+};
+
+const afw_value_string_t afw_v_nex_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_double")
+};
+
+const afw_value_string_t afw_v_nex_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_expression")
+};
+
+const afw_value_string_t afw_v_nex_function = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_function")
+};
+
+const afw_value_string_t afw_v_nex_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_hexBinary")
+};
+
+const afw_value_string_t afw_v_nex_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_hybrid")
+};
+
+const afw_value_string_t afw_v_nex_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_ia5String")
+};
+
+const afw_value_string_t afw_v_nex_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_integer")
+};
+
+const afw_value_string_t afw_v_nex_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_ipAddress")
+};
+
+const afw_value_string_t afw_v_nex_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_object")
+};
+
+const afw_value_string_t afw_v_nex_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_objectId")
+};
+
+const afw_value_string_t afw_v_nex_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_objectPath")
+};
+
+const afw_value_string_t afw_v_nex_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_password")
+};
+
+const afw_value_string_t afw_v_nex_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_regexp")
+};
+
+const afw_value_string_t afw_v_nex_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_rfc822Name")
+};
+
+const afw_value_string_t afw_v_nex_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_script")
+};
+
+const afw_value_string_t afw_v_nex_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_string")
+};
+
+const afw_value_string_t afw_v_nex_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_template")
+};
+
+const afw_value_string_t afw_v_nex_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_time")
+};
+
+const afw_value_string_t afw_v_nex_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_x500Name")
+};
+
+const afw_value_string_t afw_v_nex_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_xpathExpression")
+};
+
+const afw_value_string_t afw_v_nex_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nex_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_none = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("none")
+};
+
+const afw_value_string_t afw_v_normalize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalize")
+};
+
+const afw_value_string_t afw_v_normalize_space = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalize_space")
+};
+
+const afw_value_string_t afw_v_normalize_space_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalize_space_string")
+};
+
+const afw_value_string_t afw_v_normalize_to_lower_case = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalize_to_lower_case")
+};
+
+const afw_value_string_t afw_v_normalize_to_lower_case_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalize_to_lower_case_string")
+};
+
+const afw_value_string_t afw_v_normalizedPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalizedPath")
+};
+
+const afw_value_string_t afw_v_normalizedURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("normalizedURI")
+};
+
+const afw_value_string_t afw_v_not = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("not")
+};
+
+const afw_value_string_t afw_v_notApplicable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("notApplicable")
+};
+
+const afw_value_string_t afw_v_notice = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("notice")
+};
+
+const afw_value_string_t afw_v_now_local = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("now_local")
+};
+
+const afw_value_string_t afw_v_now_utc = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("now_utc")
+};
+
+const afw_value_string_t afw_v_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("null")
+};
+
+const afw_value_string_t afw_v_null_terminated_array_of_internal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("null_terminated_array_of_internal")
+};
+
+const afw_value_string_t afw_v_null_terminated_array_of_objects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("null_terminated_array_of_objects")
+};
+
+const afw_value_string_t afw_v_null_terminated_array_of_pointers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("null_terminated_array_of_pointers")
+};
+
+const afw_value_string_t afw_v_null_terminated_array_of_utf8_z_key_value_pair_objects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("null_terminated_array_of_utf8_z_key_value_pair_objects")
+};
+
+const afw_value_string_t afw_v_null_terminated_array_of_values = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("null_terminated_array_of_values")
+};
+
+const afw_value_string_t afw_v_nullish_coalescing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nullish_coalescing")
+};
+
+const afw_value_string_t afw_v_num_indexed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("num_indexed")
+};
+
+const afw_value_string_t afw_v_num_processed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("num_processed")
+};
+
+const afw_value_string_t afw_v_number = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("number")
+};
+
+const afw_value_string_t afw_v_numberOfRequiredParameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("numberOfRequiredParameters")
+};
+
+const afw_value_string_t afw_v_numeric = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("numeric")
+};
+
+const afw_value_string_t afw_v_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("object")
+};
+
+const afw_value_string_t afw_v_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectId")
+};
+
+const afw_value_string_t afw_v_objectIdPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectIdPropertyName")
+};
+
+const afw_value_string_t afw_v_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectPath")
+};
+
+const afw_value_string_t afw_v_objectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectType")
+};
+
+const afw_value_string_t afw_v_objectTypeObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectTypeObject")
+};
+
+const afw_value_string_t afw_v_objectTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectTypes")
+};
+
+const afw_value_string_t afw_v_obligations = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("obligations")
+};
+
+const afw_value_string_t afw_v_octet = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("octet")
+};
+
+const afw_value_string_t afw_v_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("of")
+};
+
+const afw_value_string_t afw_v_offset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("offset")
+};
+
+const afw_value_string_t afw_v_onAddObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onAddObject")
+};
+
+const afw_value_string_t afw_v_onApplicationStartupComplete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onApplicationStartupComplete")
+};
+
+const afw_value_string_t afw_v_onDeleteObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onDeleteObject")
+};
+
+const afw_value_string_t afw_v_onGetInitialObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onGetInitialObjectId")
+};
+
+const afw_value_string_t afw_v_onGetInitialValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onGetInitialValue")
+};
+
+const afw_value_string_t afw_v_onGetObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onGetObject")
+};
+
+const afw_value_string_t afw_v_onGetProperty = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onGetProperty")
+};
+
+const afw_value_string_t afw_v_onGetValueCFunctionName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onGetValueCFunctionName")
+};
+
+const afw_value_string_t afw_v_onModifyObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onModifyObject")
+};
+
+const afw_value_string_t afw_v_onReplaceObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onReplaceObject")
+};
+
+const afw_value_string_t afw_v_onRetrieveObjects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onRetrieveObjects")
+};
+
+const afw_value_string_t afw_v_onSetProperty = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onSetProperty")
+};
+
+const afw_value_string_t afw_v_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only")
+};
+
+const afw_value_string_t afw_v_one_and_only_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_anyURI")
+};
+
+const afw_value_string_t afw_v_one_and_only_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_base64Binary")
+};
+
+const afw_value_string_t afw_v_one_and_only_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_boolean")
+};
+
+const afw_value_string_t afw_v_one_and_only_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_date")
+};
+
+const afw_value_string_t afw_v_one_and_only_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_dateTime")
+};
+
+const afw_value_string_t afw_v_one_and_only_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_one_and_only_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_dnsName")
+};
+
+const afw_value_string_t afw_v_one_and_only_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_double")
+};
+
+const afw_value_string_t afw_v_one_and_only_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_hexBinary")
+};
+
+const afw_value_string_t afw_v_one_and_only_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_integer")
+};
+
+const afw_value_string_t afw_v_one_and_only_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_ipAddress")
+};
+
+const afw_value_string_t afw_v_one_and_only_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_rfc822Name")
+};
+
+const afw_value_string_t afw_v_one_and_only_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_string")
+};
+
+const afw_value_string_t afw_v_one_and_only_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_time")
+};
+
+const afw_value_string_t afw_v_one_and_only_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_x500Name")
+};
+
+const afw_value_string_t afw_v_one_and_only_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("one_and_only_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_op = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("op")
+};
+
+const afw_value_string_t afw_v_open_file = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("open_file")
+};
+
+const afw_value_string_t afw_v_open_response = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("open_response")
+};
+
+const afw_value_string_t afw_v_open_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("open_uri")
+};
+
+const afw_value_string_t afw_v_option = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("option")
+};
+
+const afw_value_string_t afw_v_optionLogCons = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionLogCons")
+};
+
+const afw_value_string_t afw_v_optionLogNoDelay = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionLogNoDelay")
+};
+
+const afw_value_string_t afw_v_optionLogNoWait = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionLogNoWait")
+};
+
+const afw_value_string_t afw_v_optionLogODelay = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionLogODelay")
+};
+
+const afw_value_string_t afw_v_optionLogPError = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionLogPError")
+};
+
+const afw_value_string_t afw_v_optionLogPid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionLogPid")
+};
+
+const afw_value_string_t afw_v_optional = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optional")
+};
+
+const afw_value_string_t afw_v_optionalChoiceDefault = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionalChoiceDefault")
+};
+
+const afw_value_string_t afw_v_optional_chaining = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optional_chaining")
+};
+
+const afw_value_string_t afw_v_options = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("options")
+};
+
+const afw_value_string_t afw_v_optionsObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("optionsObject")
+};
+
+const afw_value_string_t afw_v_or = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("or")
+};
+
+const afw_value_string_t afw_v_origin = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("origin")
+};
+
+const afw_value_string_t afw_v_originURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originURI")
+};
+
+const afw_value_string_t afw_v_originalAuthority = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalAuthority")
+};
+
+const afw_value_string_t afw_v_originalFragment = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalFragment")
+};
+
+const afw_value_string_t afw_v_originalHierPart = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalHierPart")
+};
+
+const afw_value_string_t afw_v_originalHost = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalHost")
+};
+
+const afw_value_string_t afw_v_originalPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalPath")
+};
+
+const afw_value_string_t afw_v_originalQuery = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalQuery")
+};
+
+const afw_value_string_t afw_v_originalURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalURI")
+};
+
+const afw_value_string_t afw_v_originalUserinfo = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("originalUserinfo")
+};
+
+const afw_value_string_t afw_v_os = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("os")
+};
+
+const afw_value_string_t afw_v_otherProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("otherProperties")
+};
+
+const afw_value_string_t afw_v_out = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("out")
+};
+
+const afw_value_string_t afw_v_own = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("own")
+};
+
+const afw_value_string_t afw_v_parameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parameter")
+};
+
+const afw_value_string_t afw_v_parameter_number = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parameter_number")
+};
+
+const afw_value_string_t afw_v_parameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parameters")
+};
+
+const afw_value_string_t afw_v_parentPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parentPaths")
+};
+
+const afw_value_string_t afw_v_parenthesized_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parenthesized_expression")
+};
+
+const afw_value_string_t afw_v_parse_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parse_uri")
+};
+
+const afw_value_string_t afw_v_parserColumnNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parserColumnNumber")
+};
+
+const afw_value_string_t afw_v_parserCursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parserCursor")
+};
+
+const afw_value_string_t afw_v_parserLineNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parserLineNumber")
+};
+
+const afw_value_string_t afw_v_parserSource = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parserSource")
+};
+
+const afw_value_string_t afw_v_passed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("passed")
+};
+
+const afw_value_string_t afw_v_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("password")
+};
+
+const afw_value_string_t afw_v_path = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("path")
+};
+
+const afw_value_string_t afw_v_pathEmbedded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pathEmbedded")
+};
+
+const afw_value_string_t afw_v_pathTokens = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pathTokens")
+};
+
+const afw_value_string_t afw_v_peerId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("peerId")
+};
+
+const afw_value_string_t afw_v_perform = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("perform")
+};
+
+const afw_value_string_t afw_v_permanent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("permanent")
+};
+
+const afw_value_string_t afw_v_permit = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("permit")
+};
+
+const afw_value_string_t afw_v_pid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pid")
+};
+
+const afw_value_string_t afw_v_policy_combining_algorithm = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("policy_combining_algorithm")
+};
+
+const afw_value_string_t afw_v_polymorphic = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphic")
+};
+
+const afw_value_string_t afw_v_polymorphicDataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphicDataType")
+};
+
+const afw_value_string_t afw_v_polymorphicDataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphicDataTypeParameter")
+};
+
+const afw_value_string_t afw_v_polymorphicDataTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphicDataTypes")
+};
+
+const afw_value_string_t afw_v_polymorphicExecuteFunction = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphicExecuteFunction")
+};
+
+const afw_value_string_t afw_v_polymorphicExecuteFunctionEvaluatesFirstParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphicExecuteFunctionEvaluatesFirstParameter")
+};
+
+const afw_value_string_t afw_v_polymorphicOverrides = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("polymorphicOverrides")
+};
+
+const afw_value_string_t afw_v_port = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("port")
+};
+
+const afw_value_string_t afw_v_possibleValues = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("possibleValues")
+};
+
+const afw_value_string_t afw_v_pow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pow")
+};
+
+const afw_value_string_t afw_v_pow_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pow_double")
+};
+
+const afw_value_string_t afw_v_prefix = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("prefix")
+};
+
+const afw_value_string_t afw_v_print = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("print")
+};
+
+const afw_value_string_t afw_v_println = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("println")
+};
+
+const afw_value_string_t afw_v_priority = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("priority")
+};
+
+const afw_value_string_t afw_v_processingOrder = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("processingOrder")
+};
+
+const afw_value_string_t afw_v_produces = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("produces")
+};
+
+const afw_value_string_t afw_v_programName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("programName")
+};
+
+const afw_value_string_t afw_v_properties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("properties")
+};
+
+const afw_value_string_t afw_v_property = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("property")
+};
+
+const afw_value_string_t afw_v_propertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyName")
+};
+
+const afw_value_string_t afw_v_propertyNames = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyNames")
+};
+
+const afw_value_string_t afw_v_propertyTypeObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyTypeObject")
+};
+
+const afw_value_string_t afw_v_propertyTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyTypes")
+};
+
+const afw_value_string_t afw_v_property_delete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("property_delete")
+};
+
+const afw_value_string_t afw_v_property_delete_by_reference = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("property_delete_by_reference")
+};
+
+const afw_value_string_t afw_v_property_exists = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("property_exists")
+};
+
+const afw_value_string_t afw_v_property_get = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("property_get")
+};
+
+const afw_value_string_t afw_v_property_is_not_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("property_is_not_null")
+};
+
+const afw_value_string_t afw_v_providesObjects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("providesObjects")
+};
+
+const afw_value_string_t afw_v_publish = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("publish")
+};
+
+const afw_value_string_t afw_v_pure = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pure")
+};
+
+const afw_value_string_t afw_v_qualifiedVariables = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("qualifiedVariables")
+};
+
+const afw_value_string_t afw_v_qualifier = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("qualifier")
+};
+
+const afw_value_string_t afw_v_qualifierDefinitions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("qualifierDefinitions")
+};
+
+const afw_value_string_t afw_v_qualifiers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("qualifiers")
+};
+
+const afw_value_string_t afw_v_query = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("query")
+};
+
+const afw_value_string_t afw_v_queryCriteria = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("queryCriteria")
+};
+
+const afw_value_string_t afw_v_queryString = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("queryString")
+};
+
+const afw_value_string_t afw_v_queryTokens = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("queryTokens")
+};
+
+const afw_value_string_t afw_v_random = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("random")
+};
+
+const afw_value_string_t afw_v_random_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("random_base64Binary")
+};
+
+const afw_value_string_t afw_v_random_digits = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("random_digits")
+};
+
+const afw_value_string_t afw_v_random_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("random_hexBinary")
+};
+
+const afw_value_string_t afw_v_random_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("random_integer")
+};
+
+const afw_value_string_t afw_v_random_number = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("random_number")
+};
+
+const afw_value_string_t afw_v_raw_response_body = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("raw_response_body")
+};
+
+const afw_value_string_t afw_v_read = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("read")
+};
+
+const afw_value_string_t afw_v_read_to_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("read_to_base64Binary")
+};
+
+const afw_value_string_t afw_v_read_to_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("read_to_hexBinary")
+};
+
+const afw_value_string_t afw_v_readln = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("readln")
+};
+
+const afw_value_string_t afw_v_reason = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reason")
+};
+
+const afw_value_string_t afw_v_reconcilable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reconcilable")
+};
+
+const afw_value_string_t afw_v_reconcile_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reconcile_object")
+};
+
+const afw_value_string_t afw_v_reduce = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reduce")
+};
+
+const afw_value_string_t afw_v_referenceCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("referenceCount")
+};
+
+const afw_value_string_t afw_v_referenceURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("referenceURI")
+};
+
+const afw_value_string_t afw_v_reference_by_key = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reference_by_key")
+};
+
+const afw_value_string_t afw_v_regexp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp")
+};
+
+const afw_value_string_t afw_v_regexp_index_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_index_of")
+};
+
+const afw_value_string_t afw_v_regexp_index_of_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_index_of_anyURI")
+};
+
+const afw_value_string_t afw_v_regexp_index_of_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_index_of_string")
+};
+
+const afw_value_string_t afw_v_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match")
+};
+
+const afw_value_string_t afw_v_regexp_match_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match_anyURI")
+};
+
+const afw_value_string_t afw_v_regexp_match_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match_dnsName")
+};
+
+const afw_value_string_t afw_v_regexp_match_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match_ipAddress")
+};
+
+const afw_value_string_t afw_v_regexp_match_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match_rfc822Name")
+};
+
+const afw_value_string_t afw_v_regexp_match_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match_string")
+};
+
+const afw_value_string_t afw_v_regexp_match_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_match_x500Name")
+};
+
+const afw_value_string_t afw_v_regexp_replace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_replace")
+};
+
+const afw_value_string_t afw_v_regexp_replace_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_replace_anyURI")
+};
+
+const afw_value_string_t afw_v_regexp_replace_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("regexp_replace_string")
+};
+
+const afw_value_string_t afw_v_registers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("registers")
+};
+
+const afw_value_string_t afw_v_registryType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("registryType")
+};
+
+const afw_value_string_t afw_v_registry_key_check = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("registry_key_check")
+};
+
+const afw_value_string_t afw_v_registry_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("registry_type")
+};
+
+const afw_value_string_t afw_v_reissue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reissue")
+};
+
+const afw_value_string_t afw_v_related = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("related")
+};
+
+const afw_value_string_t afw_v_relationalCompares = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("relationalCompares")
+};
+
+const afw_value_string_t afw_v_relaxed_json = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("relaxed_json")
+};
+
+const afw_value_string_t afw_v_remove_property = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("remove_property")
+};
+
+const afw_value_string_t afw_v_remove_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("remove_value")
+};
+
+const afw_value_string_t afw_v_repeat = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("repeat")
+};
+
+const afw_value_string_t afw_v_repeat_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("repeat_anyURI")
+};
+
+const afw_value_string_t afw_v_repeat_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("repeat_string")
+};
+
+const afw_value_string_t afw_v_replace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("replace")
+};
+
+const afw_value_string_t afw_v_replaceObjectCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("replaceObjectCount")
+};
+
+const afw_value_string_t afw_v_replace_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("replace_anyURI")
+};
+
+const afw_value_string_t afw_v_replace_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("replace_object")
+};
+
+const afw_value_string_t afw_v_replace_object_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("replace_object_with_uri")
+};
+
+const afw_value_string_t afw_v_replace_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("replace_string")
+};
+
+const afw_value_string_t afw_v_request = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request")
+};
+
+const afw_value_string_t afw_v_requestCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("requestCount")
+};
+
+const afw_value_string_t afw_v_requestHandler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("requestHandler")
+};
+
+const afw_value_string_t afw_v_requestHandlerType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("requestHandlerType")
+};
+
+const afw_value_string_t afw_v_requestId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("requestId")
+};
+
+const afw_value_string_t afw_v_request_handler = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request_handler")
+};
+
+const afw_value_string_t afw_v_request_handler_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request_handler_type")
+};
+
+const afw_value_string_t afw_v_request_session = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request_session")
+};
+
+const afw_value_string_t afw_v_request_thread = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request_thread")
+};
+
+const afw_value_string_t afw_v_required = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("required")
+};
+
+const afw_value_string_t afw_v_resolvedParentPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("resolvedParentPaths")
+};
+
+const afw_value_string_t afw_v_resource = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("resource")
+};
+
+const afw_value_string_t afw_v_resourceId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("resourceId")
+};
+
+const afw_value_string_t afw_v_response = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response")
+};
+
+const afw_value_string_t afw_v_response_body = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("response_body")
+};
+
+const afw_value_string_t afw_v_result = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("result")
+};
+
+const afw_value_string_t afw_v_resultDataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("resultDataType")
+};
+
+const afw_value_string_t afw_v_rethrow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rethrow")
+};
+
+const afw_value_string_t afw_v_retrieveObjectsCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieveObjectsCount")
+};
+
+const afw_value_string_t afw_v_retrieve_objects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_to_callback = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_to_callback")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_to_response = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_to_response")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_to_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_to_stream")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_with_uri")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_with_uri_to_callback = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_with_uri_to_callback")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_with_uri_to_response = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_with_uri_to_response")
+};
+
+const afw_value_string_t afw_v_retrieve_objects_with_uri_to_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retrieve_objects_with_uri_to_stream")
+};
+
+const afw_value_string_t afw_v_retroactive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("retroactive")
+};
+
+const afw_value_string_t afw_v_return = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("return")
+};
+
+const afw_value_string_t afw_v_returnObject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("returnObject")
+};
+
+const afw_value_string_t afw_v_returns = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("returns")
+};
+
+const afw_value_string_t afw_v_reverse = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reverse")
+};
+
+const afw_value_string_t afw_v_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name")
+};
+
+const afw_value_string_t afw_v_rfc822Name_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_rfc822Name_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_bag")
+};
+
+const afw_value_string_t afw_v_rfc822Name_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_bag_size")
+};
+
+const afw_value_string_t afw_v_rfc822Name_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_eq")
+};
+
+const afw_value_string_t afw_v_rfc822Name_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_intersection")
+};
+
+const afw_value_string_t afw_v_rfc822Name_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_is_in")
+};
+
+const afw_value_string_t afw_v_rfc822Name_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_match")
+};
+
+const afw_value_string_t afw_v_rfc822Name_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_one_and_only")
+};
+
+const afw_value_string_t afw_v_rfc822Name_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_regexp_match")
+};
+
+const afw_value_string_t afw_v_rfc822Name_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_set_equals")
+};
+
+const afw_value_string_t afw_v_rfc822Name_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_subset")
+};
+
+const afw_value_string_t afw_v_rfc822Name_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_to_string")
+};
+
+const afw_value_string_t afw_v_rfc822Name_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rfc822Name_union")
+};
+
+const afw_value_string_t afw_v_root = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("root")
+};
+
+const afw_value_string_t afw_v_rootFilePaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rootFilePaths")
+};
+
+const afw_value_string_t afw_v_round = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("round")
+};
+
+const afw_value_string_t afw_v_round_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("round_double")
+};
+
+const afw_value_string_t afw_v_rule_combining_algorithm = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rule_combining_algorithm")
+};
+
+const afw_value_string_t afw_v_runtime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("runtime")
+};
+
+const afw_value_string_t afw_v_runtime_custom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("runtime_custom")
+};
+
+const afw_value_string_t afw_v_runtime_object_map_inf = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("runtime_object_map_inf")
+};
+
+const afw_value_string_t afw_v_runtime_value_accessor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("runtime_value_accessor")
+};
+
+const afw_value_string_t afw_v_rv = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rv")
+};
+
+const afw_value_string_t afw_v_rvDecoded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rvDecoded")
+};
+
+const afw_value_string_t afw_v_rvSourceId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rvSourceId")
+};
+
+const afw_value_string_t afw_v_safe_evaluate = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("safe_evaluate")
+};
+
+const afw_value_string_t afw_v_scalar = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("scalar")
+};
+
+const afw_value_string_t afw_v_scheme = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("scheme")
+};
+
+const afw_value_string_t afw_v_scopeNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("scopeNumber")
+};
+
+const afw_value_string_t afw_v_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("script")
+};
+
+const afw_value_string_t afw_v_scriptSupport = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("scriptSupport")
+};
+
+const afw_value_string_t afw_v_scriptSupportNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("scriptSupportNumber")
+};
+
+const afw_value_string_t afw_v_script_compile = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("script_compile")
+};
+
+const afw_value_string_t afw_v_select = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("select")
+};
+
+const afw_value_string_t afw_v_serverType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("serverType")
+};
+
+const afw_value_string_t afw_v_serverVersion = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("serverVersion")
+};
+
+const afw_value_string_t afw_v_service = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service")
+};
+
+const afw_value_string_t afw_v_serviceId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("serviceId")
+};
+
+const afw_value_string_t afw_v_serviceType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("serviceType")
+};
+
+const afw_value_string_t afw_v_service_get = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_get")
+};
+
+const afw_value_string_t afw_v_service_restart = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_restart")
+};
+
+const afw_value_string_t afw_v_service_start = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_start")
+};
+
+const afw_value_string_t afw_v_service_startup = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_startup")
+};
+
+const afw_value_string_t afw_v_service_status = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_status")
+};
+
+const afw_value_string_t afw_v_service_stop = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_stop")
+};
+
+const afw_value_string_t afw_v_service_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("service_type")
+};
+
+const afw_value_string_t afw_v_services = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("services")
+};
+
+const afw_value_string_t afw_v_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals")
+};
+
+const afw_value_string_t afw_v_set_equals_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_anyURI")
+};
+
+const afw_value_string_t afw_v_set_equals_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_base64Binary")
+};
+
+const afw_value_string_t afw_v_set_equals_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_boolean")
+};
+
+const afw_value_string_t afw_v_set_equals_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_date")
+};
+
+const afw_value_string_t afw_v_set_equals_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_dateTime")
+};
+
+const afw_value_string_t afw_v_set_equals_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_set_equals_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_double")
+};
+
+const afw_value_string_t afw_v_set_equals_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_hexBinary")
+};
+
+const afw_value_string_t afw_v_set_equals_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_integer")
+};
+
+const afw_value_string_t afw_v_set_equals_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_rfc822Name")
+};
+
+const afw_value_string_t afw_v_set_equals_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_string")
+};
+
+const afw_value_string_t afw_v_set_equals_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_time")
+};
+
+const afw_value_string_t afw_v_set_equals_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_x500Name")
+};
+
+const afw_value_string_t afw_v_set_equals_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_equals_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_set_property = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("set_property")
+};
+
+const afw_value_string_t afw_v_sideEffects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sideEffects")
+};
+
+const afw_value_string_t afw_v_signatureOnly = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("signatureOnly")
+};
+
+const afw_value_string_t afw_v_singleton = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("singleton")
+};
+
+const afw_value_string_t afw_v_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("size")
+};
+
+const afw_value_string_t afw_v_skeleton = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("skeleton")
+};
+
+const afw_value_string_t afw_v_skip = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("skip")
+};
+
+const afw_value_string_t afw_v_slice = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("slice")
+};
+
+const afw_value_string_t afw_v_sort = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sort")
+};
+
+const afw_value_string_t afw_v_sort_reverse = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sort-reverse")
+};
+
+const afw_value_string_t afw_v_source = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("source")
+};
+
+const afw_value_string_t afw_v_sourceCodepointLengthInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceCodepointLengthInTestScript")
+};
+
+const afw_value_string_t afw_v_sourceCodepointOffsetInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceCodepointOffsetInTestScript")
+};
+
+const afw_value_string_t afw_v_sourceColumnNumberInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceColumnNumberInTestScript")
+};
+
+const afw_value_string_t afw_v_sourceFile = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceFile")
+};
+
+const afw_value_string_t afw_v_sourceLineNumberInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceLineNumberInTestScript")
+};
+
+const afw_value_string_t afw_v_sourceLocation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceLocation")
+};
+
+const afw_value_string_t afw_v_sourceType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceType")
+};
+
+const afw_value_string_t afw_v_sourceUTF8OctetLengthInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceUTF8OctetLengthInTestScript")
+};
+
+const afw_value_string_t afw_v_sourceUTF8OctetOffsetInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sourceUTF8OctetOffsetInTestScript")
+};
+
+const afw_value_string_t afw_v_special = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("special")
+};
+
+const afw_value_string_t afw_v_split = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("split")
+};
+
+const afw_value_string_t afw_v_split_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("split_anyURI")
+};
+
+const afw_value_string_t afw_v_split_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("split_string")
+};
+
+const afw_value_string_t afw_v_srcdirManifest = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("srcdirManifest")
+};
+
+const afw_value_string_t afw_v_srcdirPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("srcdirPath")
+};
+
+const afw_value_string_t afw_v_srcdirs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("srcdirs")
+};
+
+const afw_value_string_t afw_v_startTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("startTime")
+};
+
+const afw_value_string_t afw_v_starts_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("starts_with")
+};
+
+const afw_value_string_t afw_v_starts_with_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("starts_with_anyURI")
+};
+
+const afw_value_string_t afw_v_starts_with_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("starts_with_string")
+};
+
+const afw_value_string_t afw_v_startup = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("startup")
+};
+
+const afw_value_string_t afw_v_startupDescription = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("startupDescription")
+};
+
+const afw_value_string_t afw_v_status = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("status")
+};
+
+const afw_value_string_t afw_v_statusDebug = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("statusDebug")
+};
+
+const afw_value_string_t afw_v_statusDescription = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("statusDescription")
+};
+
+const afw_value_string_t afw_v_statusMessage = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("statusMessage")
+};
+
+const afw_value_string_t afw_v_stderr = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stderr")
+};
+
+const afw_value_string_t afw_v_stdout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stdout")
+};
+
+const afw_value_string_t afw_v_stopping = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stopping")
+};
+
+const afw_value_string_t afw_v_stopping_adaptor_instances = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stopping_adaptor_instances")
+};
+
+const afw_value_string_t afw_v_stopping_authorization_handler_instances = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stopping_authorization_handler_instances")
+};
+
+const afw_value_string_t afw_v_stream = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stream")
+};
+
+const afw_value_string_t afw_v_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string")
+};
+
+const afw_value_string_t afw_v_string_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_string_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_bag")
+};
+
+const afw_value_string_t afw_v_string_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_bag_size")
+};
+
+const afw_value_string_t afw_v_string_ends_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_ends_with")
+};
+
+const afw_value_string_t afw_v_string_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_eq")
+};
+
+const afw_value_string_t afw_v_string_eq_ignore_case = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_eq_ignore_case")
+};
+
+const afw_value_string_t afw_v_string_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_ge")
+};
+
+const afw_value_string_t afw_v_string_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_gt")
+};
+
+const afw_value_string_t afw_v_string_includes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_includes")
+};
+
+const afw_value_string_t afw_v_string_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_intersection")
+};
+
+const afw_value_string_t afw_v_string_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_is_in")
+};
+
+const afw_value_string_t afw_v_string_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_le")
+};
+
+const afw_value_string_t afw_v_string_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_lt")
+};
+
+const afw_value_string_t afw_v_string_normalize_space = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_normalize_space")
+};
+
+const afw_value_string_t afw_v_string_normalize_to_lower_case = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_normalize_to_lower_case")
+};
+
+const afw_value_string_t afw_v_string_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_one_and_only")
+};
+
+const afw_value_string_t afw_v_string_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_regexp_match")
+};
+
+const afw_value_string_t afw_v_string_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_set_equals")
+};
+
+const afw_value_string_t afw_v_string_starts_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_starts_with")
+};
+
+const afw_value_string_t afw_v_string_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_subset")
+};
+
+const afw_value_string_t afw_v_string_substring = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_substring")
+};
+
+const afw_value_string_t afw_v_string_to_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_anyURI")
+};
+
+const afw_value_string_t afw_v_string_to_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_boolean")
+};
+
+const afw_value_string_t afw_v_string_to_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_date")
+};
+
+const afw_value_string_t afw_v_string_to_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_dateTime")
+};
+
+const afw_value_string_t afw_v_string_to_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_string_to_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_dnsName")
+};
+
+const afw_value_string_t afw_v_string_to_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_double")
+};
+
+const afw_value_string_t afw_v_string_to_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_integer")
+};
+
+const afw_value_string_t afw_v_string_to_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_ipAddress")
+};
+
+const afw_value_string_t afw_v_string_to_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_rfc822Name")
+};
+
+const afw_value_string_t afw_v_string_to_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_time")
+};
+
+const afw_value_string_t afw_v_string_to_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_x500Name")
+};
+
+const afw_value_string_t afw_v_string_to_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_to_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_string_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string_union")
+};
+
+const afw_value_string_t afw_v_stringify = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("stringify")
+};
+
+const afw_value_string_t afw_v_subject = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subject")
+};
+
+const afw_value_string_t afw_v_subjectCategories = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subjectCategories")
+};
+
+const afw_value_string_t afw_v_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset")
+};
+
+const afw_value_string_t afw_v_subset_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_anyURI")
+};
+
+const afw_value_string_t afw_v_subset_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_base64Binary")
+};
+
+const afw_value_string_t afw_v_subset_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_boolean")
+};
+
+const afw_value_string_t afw_v_subset_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_date")
+};
+
+const afw_value_string_t afw_v_subset_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_dateTime")
+};
+
+const afw_value_string_t afw_v_subset_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_subset_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_double")
+};
+
+const afw_value_string_t afw_v_subset_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_hexBinary")
+};
+
+const afw_value_string_t afw_v_subset_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_integer")
+};
+
+const afw_value_string_t afw_v_subset_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_rfc822Name")
+};
+
+const afw_value_string_t afw_v_subset_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_string")
+};
+
+const afw_value_string_t afw_v_subset_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_time")
+};
+
+const afw_value_string_t afw_v_subset_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_x500Name")
+};
+
+const afw_value_string_t afw_v_subset_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subset_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_substitutedAdaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substitutedAdaptorId")
+};
+
+const afw_value_string_t afw_v_substitutedEntireObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substitutedEntireObjectId")
+};
+
+const afw_value_string_t afw_v_substitutedEntityObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substitutedEntityObjectId")
+};
+
+const afw_value_string_t afw_v_substitutedObjectTypeId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substitutedObjectTypeId")
+};
+
+const afw_value_string_t afw_v_substitutedPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substitutedPropertyName")
+};
+
+const afw_value_string_t afw_v_substitutionOccurred = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substitutionOccurred")
+};
+
+const afw_value_string_t afw_v_substring = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substring")
+};
+
+const afw_value_string_t afw_v_substring_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substring_anyURI")
+};
+
+const afw_value_string_t afw_v_substring_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("substring_string")
+};
+
+const afw_value_string_t afw_v_subtract = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract")
+};
+
+const afw_value_string_t afw_v_subtract_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_subtract_dayTimeDuration_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_dayTimeDuration_dateTime")
+};
+
+const afw_value_string_t afw_v_subtract_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_double")
+};
+
+const afw_value_string_t afw_v_subtract_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_integer")
+};
+
+const afw_value_string_t afw_v_subtract_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_subtract_yearMonthDuration_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_yearMonthDuration_date")
+};
+
+const afw_value_string_t afw_v_subtract_yearMonthDuration_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtract_yearMonthDuration_dateTime")
+};
+
+const afw_value_string_t afw_v_subtypePropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtypePropertyName")
+};
+
+const afw_value_string_t afw_v_subtypeRegistryType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtypeRegistryType")
+};
+
+const afw_value_string_t afw_v_subtypeRuntimeObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subtypeRuntimeObjectType")
+};
+
+const afw_value_string_t afw_v_success = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("success")
+};
+
+const afw_value_string_t afw_v_suggestedObjectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("suggestedObjectId")
+};
+
+const afw_value_string_t afw_v_super = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("super")
+};
+
+const afw_value_string_t afw_v_switch = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("switch")
+};
+
+const afw_value_string_t afw_v_systemInfo = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("systemInfo")
+};
+
+const afw_value_string_t afw_v_tagId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tagId")
+};
+
+const afw_value_string_t afw_v_tags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tags")
+};
+
+const afw_value_string_t afw_v_tarballName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tarballName")
+};
+
+const afw_value_string_t afw_v_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("template")
+};
+
+const afw_value_string_t afw_v_test = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test")
+};
+
+const afw_value_string_t afw_v_testDataParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("testDataParameter")
+};
+
+const afw_value_string_t afw_v_testScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("testScript")
+};
+
+const afw_value_string_t afw_v_test_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test_expression")
+};
+
+const afw_value_string_t afw_v_test_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test_hybrid")
+};
+
+const afw_value_string_t afw_v_test_script = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test_script")
+};
+
+const afw_value_string_t afw_v_test_script_runtime_support = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test_script_runtime_support")
+};
+
+const afw_value_string_t afw_v_test_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test_template")
+};
+
+const afw_value_string_t afw_v_test_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("test_value")
+};
+
+const afw_value_string_t afw_v_tests = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tests")
+};
+
+const afw_value_string_t afw_v_then = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("then")
+};
+
+const afw_value_string_t afw_v_this = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("this")
+};
+
+const afw_value_string_t afw_v_threadCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("threadCount")
+};
+
+const afw_value_string_t afw_v_throw = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("throw")
+};
+
+const afw_value_string_t afw_v_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time")
+};
+
+const afw_value_string_t afw_v_time_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_time_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_bag")
+};
+
+const afw_value_string_t afw_v_time_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_bag_size")
+};
+
+const afw_value_string_t afw_v_time_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_eq")
+};
+
+const afw_value_string_t afw_v_time_ge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_ge")
+};
+
+const afw_value_string_t afw_v_time_gt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_gt")
+};
+
+const afw_value_string_t afw_v_time_in_range = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_in_range")
+};
+
+const afw_value_string_t afw_v_time_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_intersection")
+};
+
+const afw_value_string_t afw_v_time_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_is_in")
+};
+
+const afw_value_string_t afw_v_time_le = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_le")
+};
+
+const afw_value_string_t afw_v_time_lt = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_lt")
+};
+
+const afw_value_string_t afw_v_time_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_one_and_only")
+};
+
+const afw_value_string_t afw_v_time_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_set_equals")
+};
+
+const afw_value_string_t afw_v_time_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_subset")
+};
+
+const afw_value_string_t afw_v_time_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_to_string")
+};
+
+const afw_value_string_t afw_v_time_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time_union")
+};
+
+const afw_value_string_t afw_v_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("title")
+};
+
+const afw_value_string_t afw_v_to_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_anyURI")
+};
+
+const afw_value_string_t afw_v_to_anyURI_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_anyURI_string")
+};
+
+const afw_value_string_t afw_v_to_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_boolean")
+};
+
+const afw_value_string_t afw_v_to_boolean_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_boolean_string")
+};
+
+const afw_value_string_t afw_v_to_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_date")
+};
+
+const afw_value_string_t afw_v_to_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_dateTime")
+};
+
+const afw_value_string_t afw_v_to_dateTime_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_dateTime_string")
+};
+
+const afw_value_string_t afw_v_to_date_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_date_string")
+};
+
+const afw_value_string_t afw_v_to_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_to_dayTimeDuration_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_dayTimeDuration_string")
+};
+
+const afw_value_string_t afw_v_to_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_dnsName")
+};
+
+const afw_value_string_t afw_v_to_dnsName_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_dnsName_string")
+};
+
+const afw_value_string_t afw_v_to_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_double")
+};
+
+const afw_value_string_t afw_v_to_double_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_double_integer")
+};
+
+const afw_value_string_t afw_v_to_double_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_double_string")
+};
+
+const afw_value_string_t afw_v_to_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_integer")
+};
+
+const afw_value_string_t afw_v_to_integer_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_integer_double")
+};
+
+const afw_value_string_t afw_v_to_integer_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_integer_string")
+};
+
+const afw_value_string_t afw_v_to_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_ipAddress")
+};
+
+const afw_value_string_t afw_v_to_ipAddress_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_ipAddress_string")
+};
+
+const afw_value_string_t afw_v_to_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_rfc822Name")
+};
+
+const afw_value_string_t afw_v_to_rfc822Name_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_rfc822Name_string")
+};
+
+const afw_value_string_t afw_v_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string")
+};
+
+const afw_value_string_t afw_v_to_string_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_anyURI")
+};
+
+const afw_value_string_t afw_v_to_string_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_array")
+};
+
+const afw_value_string_t afw_v_to_string_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_base64Binary")
+};
+
+const afw_value_string_t afw_v_to_string_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_boolean")
+};
+
+const afw_value_string_t afw_v_to_string_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_date")
+};
+
+const afw_value_string_t afw_v_to_string_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_dateTime")
+};
+
+const afw_value_string_t afw_v_to_string_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_to_string_dnsName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_dnsName")
+};
+
+const afw_value_string_t afw_v_to_string_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_double")
+};
+
+const afw_value_string_t afw_v_to_string_expression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_expression")
+};
+
+const afw_value_string_t afw_v_to_string_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_hexBinary")
+};
+
+const afw_value_string_t afw_v_to_string_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_hybrid")
+};
+
+const afw_value_string_t afw_v_to_string_ia5String = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_ia5String")
+};
+
+const afw_value_string_t afw_v_to_string_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_integer")
+};
+
+const afw_value_string_t afw_v_to_string_ipAddress = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_ipAddress")
+};
+
+const afw_value_string_t afw_v_to_string_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_null")
+};
+
+const afw_value_string_t afw_v_to_string_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_object")
+};
+
+const afw_value_string_t afw_v_to_string_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_objectId")
+};
+
+const afw_value_string_t afw_v_to_string_objectPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_objectPath")
+};
+
+const afw_value_string_t afw_v_to_string_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_password")
+};
+
+const afw_value_string_t afw_v_to_string_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_rfc822Name")
+};
+
+const afw_value_string_t afw_v_to_string_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_string")
+};
+
+const afw_value_string_t afw_v_to_string_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_template")
+};
+
+const afw_value_string_t afw_v_to_string_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_time")
+};
+
+const afw_value_string_t afw_v_to_string_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_x500Name")
+};
+
+const afw_value_string_t afw_v_to_string_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_xpathExpression")
+};
+
+const afw_value_string_t afw_v_to_string_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_string_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_to_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_time")
+};
+
+const afw_value_string_t afw_v_to_time_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_time_string")
+};
+
+const afw_value_string_t afw_v_to_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_x500Name")
+};
+
+const afw_value_string_t afw_v_to_x500Name_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_x500Name_string")
+};
+
+const afw_value_string_t afw_v_to_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_to_yearMonthDuration_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("to_yearMonthDuration_string")
+};
+
+const afw_value_string_t afw_v_trace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace")
+};
+
+const afw_value_string_t afw_v_trace1 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace1")
+};
+
+const afw_value_string_t afw_v_trace2 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace2")
+};
+
+const afw_value_string_t afw_v_trace3 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace3")
+};
+
+const afw_value_string_t afw_v_trace4 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace4")
+};
+
+const afw_value_string_t afw_v_trace5 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace5")
+};
+
+const afw_value_string_t afw_v_trace6 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace6")
+};
+
+const afw_value_string_t afw_v_trace7 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace7")
+};
+
+const afw_value_string_t afw_v_trace8 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace8")
+};
+
+const afw_value_string_t afw_v_transitory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transitory")
+};
+
+const afw_value_string_t afw_v_true = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("true")
+};
+
+const afw_value_string_t afw_v_try = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("try")
+};
+
+const afw_value_string_t afw_v_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("type")
+};
+
+const afw_value_string_t afw_v_typedValues = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("typedValues")
+};
+
+const afw_value_string_t afw_v_typedef = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("typedef")
+};
+
+const afw_value_string_t afw_v_typeof = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("typeof")
+};
+
+const afw_value_string_t afw_v_ubjson = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ubjson")
+};
+
+const afw_value_string_t afw_v_uint32 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("uint32")
+};
+
+const afw_value_string_t afw_v_unavailable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unavailable")
+};
+
+const afw_value_string_t afw_v_undeclared = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("undeclared")
+};
+
+const afw_value_string_t afw_v_undefined = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("undefined")
+};
+
+const afw_value_string_t afw_v_unevaluated = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unevaluated")
+};
+
+const afw_value_string_t afw_v_unhandledErrors = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unhandledErrors")
+};
+
+const afw_value_string_t afw_v_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union")
+};
+
+const afw_value_string_t afw_v_union_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_anyURI")
+};
+
+const afw_value_string_t afw_v_union_base64Binary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_base64Binary")
+};
+
+const afw_value_string_t afw_v_union_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_boolean")
+};
+
+const afw_value_string_t afw_v_union_date = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_date")
+};
+
+const afw_value_string_t afw_v_union_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_dateTime")
+};
+
+const afw_value_string_t afw_v_union_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_dayTimeDuration")
+};
+
+const afw_value_string_t afw_v_union_double = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_double")
+};
+
+const afw_value_string_t afw_v_union_hexBinary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_hexBinary")
+};
+
+const afw_value_string_t afw_v_union_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_integer")
+};
+
+const afw_value_string_t afw_v_union_rfc822Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_rfc822Name")
+};
+
+const afw_value_string_t afw_v_union_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_string")
+};
+
+const afw_value_string_t afw_v_union_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_time")
+};
+
+const afw_value_string_t afw_v_union_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_x500Name")
+};
+
+const afw_value_string_t afw_v_union_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("union_yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_unique = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unique")
+};
+
+const afw_value_string_t afw_v_unknown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unknown")
+};
+
+const afw_value_string_t afw_v_untypedFunctionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("untypedFunctionId")
+};
+
+const afw_value_string_t afw_v_update = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("update")
+};
+
+const afw_value_string_t afw_v_updateObjectCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("updateObjectCount")
+};
+
+const afw_value_string_t afw_v_update_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("update_object")
+};
+
+const afw_value_string_t afw_v_update_object_with_uri = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("update_object_with_uri")
+};
+
+const afw_value_string_t afw_v_uriPrefix = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("uriPrefix")
+};
+
+const afw_value_string_t afw_v_uriRelated = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("uriRelated")
+};
+
+const afw_value_string_t afw_v_uriServiceConf = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("uriServiceConf")
+};
+
+const afw_value_string_t afw_v_urlEncodedRQLString = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("urlEncodedRQLString")
+};
+
+const afw_value_string_t afw_v_url_decode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("url_decode")
+};
+
+const afw_value_string_t afw_v_url_encode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("url_encode")
+};
+
+const afw_value_string_t afw_v_url_encode_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("url_encode_anyURI")
+};
+
+const afw_value_string_t afw_v_url_encode_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("url_encode_string")
+};
+
+const afw_value_string_t afw_v_useDefaultProcessing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("useDefaultProcessing")
+};
+
+const afw_value_string_t afw_v_useExecuteFunction = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("useExecuteFunction")
+};
+
+const afw_value_string_t afw_v_user = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("user")
+};
+
+const afw_value_string_t afw_v_userinfo = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("userinfo")
+};
+
+const afw_value_string_t afw_v_using = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("using")
+};
+
+const afw_value_string_t afw_v_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("value")
+};
+
+const afw_value_string_t afw_v_valueAccessor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("valueAccessor")
+};
+
+const afw_value_string_t afw_v_valueInfId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("valueInfId")
+};
+
+const afw_value_string_t afw_v_valuePath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("valuePath")
+};
+
+const afw_value_string_t afw_v_var = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("var")
+};
+
+const afw_value_string_t afw_v_variable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("variable")
+};
+
+const afw_value_string_t afw_v_variable_exists = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("variable_exists")
+};
+
+const afw_value_string_t afw_v_variable_get = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("variable_get")
+};
+
+const afw_value_string_t afw_v_variable_is_not_null = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("variable_is_not_null")
+};
+
+const afw_value_string_t afw_v_version = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("version")
+};
+
+const afw_value_string_t afw_v_versionWithGitInfo = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("versionWithGitInfo")
+};
+
+const afw_value_string_t afw_v_void = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("void")
+};
+
+const afw_value_string_t afw_v_void_operator = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("void_operator")
+};
+
+const afw_value_string_t afw_v_warning = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("warning")
+};
+
+const afw_value_string_t afw_v_while = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("while")
+};
+
+const afw_value_string_t afw_v_whitespace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("whitespace")
+};
+
+const afw_value_string_t afw_v_with = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("with")
+};
+
+const afw_value_string_t afw_v_write = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("write")
+};
+
+const afw_value_string_t afw_v_write_internal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("write_internal")
+};
+
+const afw_value_string_t afw_v_writeln = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("writeln")
+};
+
+const afw_value_string_t afw_v_x500Name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name")
+};
+
+const afw_value_string_t afw_v_x500Name_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_x500Name_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_bag")
+};
+
+const afw_value_string_t afw_v_x500Name_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_bag_size")
+};
+
+const afw_value_string_t afw_v_x500Name_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_eq")
+};
+
+const afw_value_string_t afw_v_x500Name_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_intersection")
+};
+
+const afw_value_string_t afw_v_x500Name_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_is_in")
+};
+
+const afw_value_string_t afw_v_x500Name_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_match")
+};
+
+const afw_value_string_t afw_v_x500Name_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_one_and_only")
+};
+
+const afw_value_string_t afw_v_x500Name_regexp_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_regexp_match")
+};
+
+const afw_value_string_t afw_v_x500Name_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_set_equals")
+};
+
+const afw_value_string_t afw_v_x500Name_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_subset")
+};
+
+const afw_value_string_t afw_v_x500Name_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_to_string")
+};
+
+const afw_value_string_t afw_v_x500Name_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x500Name_union")
+};
+
+const afw_value_string_t afw_v_xacml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xacml")
+};
+
+const afw_value_string_t afw_v_xctxUUID = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xctxUUID")
+};
+
+const afw_value_string_t afw_v_xml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xml")
+};
+
+const afw_value_string_t afw_v_xpath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath")
+};
+
+const afw_value_string_t afw_v_xpathExpression = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpathExpression")
+};
+
+const afw_value_string_t afw_v_xpath_node_count = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath_node_count")
+};
+
+const afw_value_string_t afw_v_xpath_node_count_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath_node_count_1_0")
+};
+
+const afw_value_string_t afw_v_xpath_node_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath_node_eq")
+};
+
+const afw_value_string_t afw_v_xpath_node_eq_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath_node_eq_1_0")
+};
+
+const afw_value_string_t afw_v_xpath_node_match = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath_node_match")
+};
+
+const afw_value_string_t afw_v_xpath_node_match_1_0 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xpath_node_match_1_0")
+};
+
+const afw_value_string_t afw_v_yaml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yaml")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_bag")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_bag_size")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_eq")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_intersection")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_is_in")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_one_and_only")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_set_equals")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_subset")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_1_0_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_1_0_union")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_at_least_one_member_of = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_at_least_one_member_of")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_bag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_bag")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_bag_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_bag_size")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_eq = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_eq")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_intersection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_intersection")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_is_in = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_is_in")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_one_and_only = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_one_and_only")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_set_equals = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_set_equals")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_subset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_subset")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_to_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_to_string")
+};
+
+const afw_value_string_t afw_v_yearMonthDuration_union = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration_union")
+};
+
+const afw_value_string_t afw_v_zeroOffset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("zeroOffset")
+};

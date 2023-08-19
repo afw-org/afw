@@ -25,8 +25,12 @@
 #include "afw.h"
 #include "afw_ubjson_strings.h"
 
-AFW_UBJSON_DEFINE_CONST_DATA(afw_utf8_t) afw_ubjson_s_default =
-AFW_UTF8_LITERAL("default");
+const afw_value_string_t afw_ubjson_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
 
-AFW_UBJSON_DEFINE_CONST_DATA(afw_utf8_t) afw_ubjson_s_indirect =
-AFW_UTF8_LITERAL("indirect");
+const afw_value_string_t afw_ubjson_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};

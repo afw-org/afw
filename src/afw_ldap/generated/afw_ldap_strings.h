@@ -29,461 +29,1068 @@
 #include "afw_ldap_declare_helpers.h"
 
 
-/** @brief define for quoted string ABSTRACT */
+/** @brief define for quoted string "ABSTRACT" */
 #define AFW_LDAP_Q_ABSTRACT "ABSTRACT"
 
-/** @brief afw_utf8_t for string ABSTRACT */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ABSTRACT;
+/** @brief 'afw_utf8_t' for string "ABSTRACT" */
+#define afw_ldap_s_ABSTRACT (afw_ldap_v_ABSTRACT.internal)
 
-/** @brief define for quoted string AUXILIARY */
+/** @brief 'afw_value_string_t' for string "ABSTRACT" */
+extern const afw_value_string_t afw_ldap_v_ABSTRACT;
+
+/** @brief 'afw_utf8_z_t *' for string "ABSTRACT" */
+#define afw_ldap_z_ABSTRACT (afw_ldap_v_ABSTRACT.internal.s)
+
+
+
+/** @brief define for quoted string "AUXILIARY" */
 #define AFW_LDAP_Q_AUXILIARY "AUXILIARY"
 
-/** @brief afw_utf8_t for string AUXILIARY */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_AUXILIARY;
+/** @brief 'afw_utf8_t' for string "AUXILIARY" */
+#define afw_ldap_s_AUXILIARY (afw_ldap_v_AUXILIARY.internal)
 
-/** @brief define for quoted string DESC */
+/** @brief 'afw_value_string_t' for string "AUXILIARY" */
+extern const afw_value_string_t afw_ldap_v_AUXILIARY;
+
+/** @brief 'afw_utf8_z_t *' for string "AUXILIARY" */
+#define afw_ldap_z_AUXILIARY (afw_ldap_v_AUXILIARY.internal.s)
+
+
+
+/** @brief define for quoted string "DESC" */
 #define AFW_LDAP_Q_DESC "DESC"
 
-/** @brief afw_utf8_t for string DESC */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_DESC;
+/** @brief 'afw_utf8_t' for string "DESC" */
+#define afw_ldap_s_DESC (afw_ldap_v_DESC.internal)
 
-/** @brief define for quoted string MAY */
+/** @brief 'afw_value_string_t' for string "DESC" */
+extern const afw_value_string_t afw_ldap_v_DESC;
+
+/** @brief 'afw_utf8_z_t *' for string "DESC" */
+#define afw_ldap_z_DESC (afw_ldap_v_DESC.internal.s)
+
+
+
+/** @brief define for quoted string "MAY" */
 #define AFW_LDAP_Q_MAY "MAY"
 
-/** @brief afw_utf8_t for string MAY */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_MAY;
+/** @brief 'afw_utf8_t' for string "MAY" */
+#define afw_ldap_s_MAY (afw_ldap_v_MAY.internal)
 
-/** @brief define for quoted string MUST */
+/** @brief 'afw_value_string_t' for string "MAY" */
+extern const afw_value_string_t afw_ldap_v_MAY;
+
+/** @brief 'afw_utf8_z_t *' for string "MAY" */
+#define afw_ldap_z_MAY (afw_ldap_v_MAY.internal.s)
+
+
+
+/** @brief define for quoted string "MUST" */
 #define AFW_LDAP_Q_MUST "MUST"
 
-/** @brief afw_utf8_t for string MUST */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_MUST;
+/** @brief 'afw_utf8_t' for string "MUST" */
+#define afw_ldap_s_MUST (afw_ldap_v_MUST.internal)
 
-/** @brief define for quoted string NAME */
+/** @brief 'afw_value_string_t' for string "MUST" */
+extern const afw_value_string_t afw_ldap_v_MUST;
+
+/** @brief 'afw_utf8_z_t *' for string "MUST" */
+#define afw_ldap_z_MUST (afw_ldap_v_MUST.internal.s)
+
+
+
+/** @brief define for quoted string "NAME" */
 #define AFW_LDAP_Q_NAME "NAME"
 
-/** @brief afw_utf8_t for string NAME */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_NAME;
+/** @brief 'afw_utf8_t' for string "NAME" */
+#define afw_ldap_s_NAME (afw_ldap_v_NAME.internal)
 
-/** @brief define for quoted string SINGLE_VALUE */
+/** @brief 'afw_value_string_t' for string "NAME" */
+extern const afw_value_string_t afw_ldap_v_NAME;
+
+/** @brief 'afw_utf8_z_t *' for string "NAME" */
+#define afw_ldap_z_NAME (afw_ldap_v_NAME.internal.s)
+
+
+
+/** @brief define for quoted string "SINGLE_VALUE" */
 #define AFW_LDAP_Q_SINGLE_VALUE "SINGLE_VALUE"
 
-/** @brief afw_utf8_t for string SINGLE_VALUE */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_SINGLE_VALUE;
+/** @brief 'afw_utf8_t' for string "SINGLE_VALUE" */
+#define afw_ldap_s_SINGLE_VALUE (afw_ldap_v_SINGLE_VALUE.internal)
 
-/** @brief define for quoted string STRUCTURAL */
+/** @brief 'afw_value_string_t' for string "SINGLE_VALUE" */
+extern const afw_value_string_t afw_ldap_v_SINGLE_VALUE;
+
+/** @brief 'afw_utf8_z_t *' for string "SINGLE_VALUE" */
+#define afw_ldap_z_SINGLE_VALUE (afw_ldap_v_SINGLE_VALUE.internal.s)
+
+
+
+/** @brief define for quoted string "STRUCTURAL" */
 #define AFW_LDAP_Q_STRUCTURAL "STRUCTURAL"
 
-/** @brief afw_utf8_t for string STRUCTURAL */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_STRUCTURAL;
+/** @brief 'afw_utf8_t' for string "STRUCTURAL" */
+#define afw_ldap_s_STRUCTURAL (afw_ldap_v_STRUCTURAL.internal)
 
-/** @brief define for quoted string SUP */
+/** @brief 'afw_value_string_t' for string "STRUCTURAL" */
+extern const afw_value_string_t afw_ldap_v_STRUCTURAL;
+
+/** @brief 'afw_utf8_z_t *' for string "STRUCTURAL" */
+#define afw_ldap_z_STRUCTURAL (afw_ldap_v_STRUCTURAL.internal.s)
+
+
+
+/** @brief define for quoted string "SUP" */
 #define AFW_LDAP_Q_SUP "SUP"
 
-/** @brief afw_utf8_t for string SUP */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_SUP;
+/** @brief 'afw_utf8_t' for string "SUP" */
+#define afw_ldap_s_SUP (afw_ldap_v_SUP.internal)
 
-/** @brief define for quoted string SYNTAX */
+/** @brief 'afw_value_string_t' for string "SUP" */
+extern const afw_value_string_t afw_ldap_v_SUP;
+
+/** @brief 'afw_utf8_z_t *' for string "SUP" */
+#define afw_ldap_z_SUP (afw_ldap_v_SUP.internal.s)
+
+
+
+/** @brief define for quoted string "SYNTAX" */
 #define AFW_LDAP_Q_SYNTAX "SYNTAX"
 
-/** @brief afw_utf8_t for string SYNTAX */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_SYNTAX;
+/** @brief 'afw_utf8_t' for string "SYNTAX" */
+#define afw_ldap_s_SYNTAX (afw_ldap_v_SYNTAX.internal)
 
-/** @brief define for quoted string _AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects */
+/** @brief 'afw_value_string_t' for string "SYNTAX" */
+extern const afw_value_string_t afw_ldap_v_SYNTAX;
+
+/** @brief 'afw_utf8_z_t *' for string "SYNTAX" */
+#define afw_ldap_z_SYNTAX (afw_ldap_v_SYNTAX.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects" */
 #define AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects"
 
-/** @brief afw_utf8_t for string _AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
+/** @brief 'afw_utf8_t' for string "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects" */
+#define afw_ldap_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects (afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.internal)
 
-/** @brief define for quoted string _AdaptiveCollection_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects" */
+#define afw_ldap_z__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects (afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveCollection_" */
 #define AFW_LDAP_Q__AdaptiveCollection_ "_AdaptiveCollection_"
 
-/** @brief afw_utf8_t for string _AdaptiveCollection_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveCollection_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveCollection_" */
+#define afw_ldap_s__AdaptiveCollection_ (afw_ldap_v__AdaptiveCollection_.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_ldap */
+/** @brief 'afw_value_string_t' for string "_AdaptiveCollection_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveCollection_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveCollection_" */
+#define afw_ldap_z__AdaptiveCollection_ (afw_ldap_v__AdaptiveCollection_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_ldap" */
 #define AFW_LDAP_Q__AdaptiveConf_adaptor_ldap "_AdaptiveConf_adaptor_ldap"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_ldap */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveConf_adaptor_ldap;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_ldap" */
+#define afw_ldap_s__AdaptiveConf_adaptor_ldap (afw_ldap_v__AdaptiveConf_adaptor_ldap.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_ldap_bind */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_ldap" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveConf_adaptor_ldap;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_ldap" */
+#define afw_ldap_z__AdaptiveConf_adaptor_ldap (afw_ldap_v__AdaptiveConf_adaptor_ldap.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_ldap_bind" */
 #define AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind "_AdaptiveConf_adaptor_ldap_bind"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_ldap_bind */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveConf_adaptor_ldap_bind;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_ldap_bind" */
+#define afw_ldap_s__AdaptiveConf_adaptor_ldap_bind (afw_ldap_v__AdaptiveConf_adaptor_ldap_bind.internal)
 
-/** @brief define for quoted string _AdaptiveLdapAttributeType_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_ldap_bind" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveConf_adaptor_ldap_bind;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_ldap_bind" */
+#define afw_ldap_z__AdaptiveConf_adaptor_ldap_bind (afw_ldap_v__AdaptiveConf_adaptor_ldap_bind.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapAttributeType_" */
 #define AFW_LDAP_Q__AdaptiveLdapAttributeType_ "_AdaptiveLdapAttributeType_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapAttributeType_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapAttributeType_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapAttributeType_" */
+#define afw_ldap_s__AdaptiveLdapAttributeType_ (afw_ldap_v__AdaptiveLdapAttributeType_.internal)
 
-/** @brief define for quoted string _AdaptiveLdapMatchingRuleUse_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapAttributeType_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapAttributeType_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapAttributeType_" */
+#define afw_ldap_z__AdaptiveLdapAttributeType_ (afw_ldap_v__AdaptiveLdapAttributeType_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapMatchingRuleUse_" */
 #define AFW_LDAP_Q__AdaptiveLdapMatchingRuleUse_ "_AdaptiveLdapMatchingRuleUse_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapMatchingRuleUse_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapMatchingRuleUse_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapMatchingRuleUse_" */
+#define afw_ldap_s__AdaptiveLdapMatchingRuleUse_ (afw_ldap_v__AdaptiveLdapMatchingRuleUse_.internal)
 
-/** @brief define for quoted string _AdaptiveLdapMatchingRule_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapMatchingRuleUse_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapMatchingRuleUse_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapMatchingRuleUse_" */
+#define afw_ldap_z__AdaptiveLdapMatchingRuleUse_ (afw_ldap_v__AdaptiveLdapMatchingRuleUse_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapMatchingRule_" */
 #define AFW_LDAP_Q__AdaptiveLdapMatchingRule_ "_AdaptiveLdapMatchingRule_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapMatchingRule_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapMatchingRule_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapMatchingRule_" */
+#define afw_ldap_s__AdaptiveLdapMatchingRule_ (afw_ldap_v__AdaptiveLdapMatchingRule_.internal)
 
-/** @brief define for quoted string _AdaptiveLdapObjectClass_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapMatchingRule_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapMatchingRule_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapMatchingRule_" */
+#define afw_ldap_z__AdaptiveLdapMatchingRule_ (afw_ldap_v__AdaptiveLdapMatchingRule_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapObjectClass_" */
 #define AFW_LDAP_Q__AdaptiveLdapObjectClass_ "_AdaptiveLdapObjectClass_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapObjectClass_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapObjectClass_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapObjectClass_" */
+#define afw_ldap_s__AdaptiveLdapObjectClass_ (afw_ldap_v__AdaptiveLdapObjectClass_.internal)
 
-/** @brief define for quoted string _AdaptiveLdapRootDse_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapObjectClass_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapObjectClass_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapObjectClass_" */
+#define afw_ldap_z__AdaptiveLdapObjectClass_ (afw_ldap_v__AdaptiveLdapObjectClass_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapRootDse_" */
 #define AFW_LDAP_Q__AdaptiveLdapRootDse_ "_AdaptiveLdapRootDse_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapRootDse_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapRootDse_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapRootDse_" */
+#define afw_ldap_s__AdaptiveLdapRootDse_ (afw_ldap_v__AdaptiveLdapRootDse_.internal)
 
-/** @brief define for quoted string _AdaptiveLdapSchema_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapRootDse_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapRootDse_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapRootDse_" */
+#define afw_ldap_z__AdaptiveLdapRootDse_ (afw_ldap_v__AdaptiveLdapRootDse_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapSchema_" */
 #define AFW_LDAP_Q__AdaptiveLdapSchema_ "_AdaptiveLdapSchema_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapSchema_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapSchema_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapSchema_" */
+#define afw_ldap_s__AdaptiveLdapSchema_ (afw_ldap_v__AdaptiveLdapSchema_.internal)
 
-/** @brief define for quoted string _AdaptiveLdapSyntax_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapSchema_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapSchema_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapSchema_" */
+#define afw_ldap_z__AdaptiveLdapSchema_ (afw_ldap_v__AdaptiveLdapSchema_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLdapSyntax_" */
 #define AFW_LDAP_Q__AdaptiveLdapSyntax_ "_AdaptiveLdapSyntax_"
 
-/** @brief afw_utf8_t for string _AdaptiveLdapSyntax_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapSyntax_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLdapSyntax_" */
+#define afw_ldap_s__AdaptiveLdapSyntax_ (afw_ldap_v__AdaptiveLdapSyntax_.internal)
 
-/** @brief define for quoted string _AdaptiveObjectType_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLdapSyntax_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveLdapSyntax_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLdapSyntax_" */
+#define afw_ldap_z__AdaptiveLdapSyntax_ (afw_ldap_v__AdaptiveLdapSyntax_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveObjectType_" */
 #define AFW_LDAP_Q__AdaptiveObjectType_ "_AdaptiveObjectType_"
 
-/** @brief afw_utf8_t for string _AdaptiveObjectType_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveObjectType_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveObjectType_" */
+#define afw_ldap_s__AdaptiveObjectType_ (afw_ldap_v__AdaptiveObjectType_.internal)
 
-/** @brief define for quoted string _meta_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveObjectType_" */
+extern const afw_value_string_t afw_ldap_v__AdaptiveObjectType_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveObjectType_" */
+#define afw_ldap_z__AdaptiveObjectType_ (afw_ldap_v__AdaptiveObjectType_.internal.s)
+
+
+
+/** @brief define for quoted string "_meta_" */
 #define AFW_LDAP_Q__meta_ "_meta_"
 
-/** @brief afw_utf8_t for string _meta_ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s__meta_;
+/** @brief 'afw_utf8_t' for string "_meta_" */
+#define afw_ldap_s__meta_ (afw_ldap_v__meta_.internal)
 
-/** @brief define for quoted string a_NO_USER_MODIFICATION */
+/** @brief 'afw_value_string_t' for string "_meta_" */
+extern const afw_value_string_t afw_ldap_v__meta_;
+
+/** @brief 'afw_utf8_z_t *' for string "_meta_" */
+#define afw_ldap_z__meta_ (afw_ldap_v__meta_.internal.s)
+
+
+
+/** @brief define for quoted string "a_NO_USER_MODIFICATION" */
 #define AFW_LDAP_Q_a_NO_USER_MODIFICATION "NO-USER-MODIFICATION"
 
-/** @brief afw_utf8_t for string a_NO_USER_MODIFICATION */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_NO_USER_MODIFICATION;
+/** @brief 'afw_utf8_t' for string "a_NO_USER_MODIFICATION" */
+#define afw_ldap_s_a_NO_USER_MODIFICATION (afw_ldap_v_a_NO_USER_MODIFICATION.internal)
 
-/** @brief define for quoted string a_X_NDS_FILTERED_REQUIRED */
+/** @brief 'afw_value_string_t' for string "a_NO_USER_MODIFICATION" */
+extern const afw_value_string_t afw_ldap_v_a_NO_USER_MODIFICATION;
+
+/** @brief 'afw_utf8_z_t *' for string "a_NO_USER_MODIFICATION" */
+#define afw_ldap_z_a_NO_USER_MODIFICATION (afw_ldap_v_a_NO_USER_MODIFICATION.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_FILTERED_REQUIRED" */
 #define AFW_LDAP_Q_a_X_NDS_FILTERED_REQUIRED "X-NDS_FILTERED_REQUIRED"
 
-/** @brief afw_utf8_t for string a_X_NDS_FILTERED_REQUIRED */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_FILTERED_REQUIRED;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_FILTERED_REQUIRED" */
+#define afw_ldap_s_a_X_NDS_FILTERED_REQUIRED (afw_ldap_v_a_X_NDS_FILTERED_REQUIRED.internal)
 
-/** @brief define for quoted string a_X_NDS_HIDDEN */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_FILTERED_REQUIRED" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_FILTERED_REQUIRED;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_FILTERED_REQUIRED" */
+#define afw_ldap_z_a_X_NDS_FILTERED_REQUIRED (afw_ldap_v_a_X_NDS_FILTERED_REQUIRED.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_HIDDEN" */
 #define AFW_LDAP_Q_a_X_NDS_HIDDEN "X-NDS_HIDDEN"
 
-/** @brief afw_utf8_t for string a_X_NDS_HIDDEN */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_HIDDEN;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_HIDDEN" */
+#define afw_ldap_s_a_X_NDS_HIDDEN (afw_ldap_v_a_X_NDS_HIDDEN.internal)
 
-/** @brief define for quoted string a_X_NDS_LOWER_BOUND */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_HIDDEN" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_HIDDEN;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_HIDDEN" */
+#define afw_ldap_z_a_X_NDS_HIDDEN (afw_ldap_v_a_X_NDS_HIDDEN.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_LOWER_BOUND" */
 #define AFW_LDAP_Q_a_X_NDS_LOWER_BOUND "X-NDS_LOWER_BOUND"
 
-/** @brief afw_utf8_t for string a_X_NDS_LOWER_BOUND */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_LOWER_BOUND;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_LOWER_BOUND" */
+#define afw_ldap_s_a_X_NDS_LOWER_BOUND (afw_ldap_v_a_X_NDS_LOWER_BOUND.internal)
 
-/** @brief define for quoted string a_X_NDS_NAME */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_LOWER_BOUND" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_LOWER_BOUND;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_LOWER_BOUND" */
+#define afw_ldap_z_a_X_NDS_LOWER_BOUND (afw_ldap_v_a_X_NDS_LOWER_BOUND.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_NAME" */
 #define AFW_LDAP_Q_a_X_NDS_NAME "X-NDS_NAME"
 
-/** @brief afw_utf8_t for string a_X_NDS_NAME */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_NAME;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_NAME" */
+#define afw_ldap_s_a_X_NDS_NAME (afw_ldap_v_a_X_NDS_NAME.internal)
 
-/** @brief define for quoted string a_X_NDS_NONREMOVABLE */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_NAME" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_NAME;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_NAME" */
+#define afw_ldap_z_a_X_NDS_NAME (afw_ldap_v_a_X_NDS_NAME.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_NONREMOVABLE" */
 #define AFW_LDAP_Q_a_X_NDS_NONREMOVABLE "X-NDS_NONREMOVABLE"
 
-/** @brief afw_utf8_t for string a_X_NDS_NONREMOVABLE */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_NONREMOVABLE;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_NONREMOVABLE" */
+#define afw_ldap_s_a_X_NDS_NONREMOVABLE (afw_ldap_v_a_X_NDS_NONREMOVABLE.internal)
 
-/** @brief define for quoted string a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_NONREMOVABLE" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_NONREMOVABLE;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_NONREMOVABLE" */
+#define afw_ldap_z_a_X_NDS_NONREMOVABLE (afw_ldap_v_a_X_NDS_NONREMOVABLE.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE" */
 #define AFW_LDAP_Q_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE "X-NDS_NOT_SCHED_SYNC_IMMEDIATE"
 
-/** @brief afw_utf8_t for string a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE" */
+#define afw_ldap_s_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE (afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE.internal)
 
-/** @brief define for quoted string a_X_NDS_PUBLIC_READ */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE" */
+#define afw_ldap_z_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE (afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_PUBLIC_READ" */
 #define AFW_LDAP_Q_a_X_NDS_PUBLIC_READ "X-NDS_PUBLIC_READ"
 
-/** @brief afw_utf8_t for string a_X_NDS_PUBLIC_READ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_PUBLIC_READ;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_PUBLIC_READ" */
+#define afw_ldap_s_a_X_NDS_PUBLIC_READ (afw_ldap_v_a_X_NDS_PUBLIC_READ.internal)
 
-/** @brief define for quoted string a_X_NDS_READ_FILTERED */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_PUBLIC_READ" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_PUBLIC_READ;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_PUBLIC_READ" */
+#define afw_ldap_z_a_X_NDS_PUBLIC_READ (afw_ldap_v_a_X_NDS_PUBLIC_READ.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_READ_FILTERED" */
 #define AFW_LDAP_Q_a_X_NDS_READ_FILTERED "X-NDS_READ_FILTERED"
 
-/** @brief afw_utf8_t for string a_X_NDS_READ_FILTERED */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_READ_FILTERED;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_READ_FILTERED" */
+#define afw_ldap_s_a_X_NDS_READ_FILTERED (afw_ldap_v_a_X_NDS_READ_FILTERED.internal)
 
-/** @brief define for quoted string a_X_NDS_SERVER_READ */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_READ_FILTERED" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_READ_FILTERED;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_READ_FILTERED" */
+#define afw_ldap_z_a_X_NDS_READ_FILTERED (afw_ldap_v_a_X_NDS_READ_FILTERED.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_SERVER_READ" */
 #define AFW_LDAP_Q_a_X_NDS_SERVER_READ "X-NDS_SERVER_READ"
 
-/** @brief afw_utf8_t for string a_X_NDS_SERVER_READ */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_SERVER_READ;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_SERVER_READ" */
+#define afw_ldap_s_a_X_NDS_SERVER_READ (afw_ldap_v_a_X_NDS_SERVER_READ.internal)
 
-/** @brief define for quoted string a_X_NDS_SYNTAX */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_SERVER_READ" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_SERVER_READ;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_SERVER_READ" */
+#define afw_ldap_z_a_X_NDS_SERVER_READ (afw_ldap_v_a_X_NDS_SERVER_READ.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_SYNTAX" */
 #define AFW_LDAP_Q_a_X_NDS_SYNTAX "X-NDS_SYNTAX"
 
-/** @brief afw_utf8_t for string a_X_NDS_SYNTAX */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_SYNTAX;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_SYNTAX" */
+#define afw_ldap_s_a_X_NDS_SYNTAX (afw_ldap_v_a_X_NDS_SYNTAX.internal)
 
-/** @brief define for quoted string a_X_NDS_UPPER_BOUND */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_SYNTAX" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_SYNTAX;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_SYNTAX" */
+#define afw_ldap_z_a_X_NDS_SYNTAX (afw_ldap_v_a_X_NDS_SYNTAX.internal.s)
+
+
+
+/** @brief define for quoted string "a_X_NDS_UPPER_BOUND" */
 #define AFW_LDAP_Q_a_X_NDS_UPPER_BOUND "X-NDS_UPPER_BOUND"
 
-/** @brief afw_utf8_t for string a_X_NDS_UPPER_BOUND */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_UPPER_BOUND;
+/** @brief 'afw_utf8_t' for string "a_X_NDS_UPPER_BOUND" */
+#define afw_ldap_s_a_X_NDS_UPPER_BOUND (afw_ldap_v_a_X_NDS_UPPER_BOUND.internal)
 
-/** @brief define for quoted string a_single_dash_value */
+/** @brief 'afw_value_string_t' for string "a_X_NDS_UPPER_BOUND" */
+extern const afw_value_string_t afw_ldap_v_a_X_NDS_UPPER_BOUND;
+
+/** @brief 'afw_utf8_z_t *' for string "a_X_NDS_UPPER_BOUND" */
+#define afw_ldap_z_a_X_NDS_UPPER_BOUND (afw_ldap_v_a_X_NDS_UPPER_BOUND.internal.s)
+
+
+
+/** @brief define for quoted string "a_single_dash_value" */
 #define AFW_LDAP_Q_a_single_dash_value "SINGLE-VALUE"
 
-/** @brief afw_utf8_t for string a_single_dash_value */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_single_dash_value;
+/** @brief 'afw_utf8_t' for string "a_single_dash_value" */
+#define afw_ldap_s_a_single_dash_value (afw_ldap_v_a_single_dash_value.internal)
 
-/** @brief define for quoted string allowAdd */
+/** @brief 'afw_value_string_t' for string "a_single_dash_value" */
+extern const afw_value_string_t afw_ldap_v_a_single_dash_value;
+
+/** @brief 'afw_utf8_z_t *' for string "a_single_dash_value" */
+#define afw_ldap_z_a_single_dash_value (afw_ldap_v_a_single_dash_value.internal.s)
+
+
+
+/** @brief define for quoted string "allowAdd" */
 #define AFW_LDAP_Q_allowAdd "allowAdd"
 
-/** @brief afw_utf8_t for string allowAdd */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowAdd;
+/** @brief 'afw_utf8_t' for string "allowAdd" */
+#define afw_ldap_s_allowAdd (afw_ldap_v_allowAdd.internal)
 
-/** @brief define for quoted string allowChange */
+/** @brief 'afw_value_string_t' for string "allowAdd" */
+extern const afw_value_string_t afw_ldap_v_allowAdd;
+
+/** @brief 'afw_utf8_z_t *' for string "allowAdd" */
+#define afw_ldap_z_allowAdd (afw_ldap_v_allowAdd.internal.s)
+
+
+
+/** @brief define for quoted string "allowChange" */
 #define AFW_LDAP_Q_allowChange "allowChange"
 
-/** @brief afw_utf8_t for string allowChange */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowChange;
+/** @brief 'afw_utf8_t' for string "allowChange" */
+#define afw_ldap_s_allowChange (afw_ldap_v_allowChange.internal)
 
-/** @brief define for quoted string allowDelete */
+/** @brief 'afw_value_string_t' for string "allowChange" */
+extern const afw_value_string_t afw_ldap_v_allowChange;
+
+/** @brief 'afw_utf8_z_t *' for string "allowChange" */
+#define afw_ldap_z_allowChange (afw_ldap_v_allowChange.internal.s)
+
+
+
+/** @brief define for quoted string "allowDelete" */
 #define AFW_LDAP_Q_allowDelete "allowDelete"
 
-/** @brief afw_utf8_t for string allowDelete */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowDelete;
+/** @brief 'afw_utf8_t' for string "allowDelete" */
+#define afw_ldap_s_allowDelete (afw_ldap_v_allowDelete.internal)
 
-/** @brief define for quoted string allowEntity */
+/** @brief 'afw_value_string_t' for string "allowDelete" */
+extern const afw_value_string_t afw_ldap_v_allowDelete;
+
+/** @brief 'afw_utf8_z_t *' for string "allowDelete" */
+#define afw_ldap_z_allowDelete (afw_ldap_v_allowDelete.internal.s)
+
+
+
+/** @brief define for quoted string "allowEntity" */
 #define AFW_LDAP_Q_allowEntity "allowEntity"
 
-/** @brief afw_utf8_t for string allowEntity */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowEntity;
+/** @brief 'afw_utf8_t' for string "allowEntity" */
+#define afw_ldap_s_allowEntity (afw_ldap_v_allowEntity.internal)
 
-/** @brief define for quoted string allowQuery */
+/** @brief 'afw_value_string_t' for string "allowEntity" */
+extern const afw_value_string_t afw_ldap_v_allowEntity;
+
+/** @brief 'afw_utf8_z_t *' for string "allowEntity" */
+#define afw_ldap_z_allowEntity (afw_ldap_v_allowEntity.internal.s)
+
+
+
+/** @brief define for quoted string "allowQuery" */
 #define AFW_LDAP_Q_allowQuery "allowQuery"
 
-/** @brief afw_utf8_t for string allowQuery */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowQuery;
+/** @brief 'afw_utf8_t' for string "allowQuery" */
+#define afw_ldap_s_allowQuery (afw_ldap_v_allowQuery.internal)
 
-/** @brief define for quoted string array */
+/** @brief 'afw_value_string_t' for string "allowQuery" */
+extern const afw_value_string_t afw_ldap_v_allowQuery;
+
+/** @brief 'afw_utf8_z_t *' for string "allowQuery" */
+#define afw_ldap_z_allowQuery (afw_ldap_v_allowQuery.internal.s)
+
+
+
+/** @brief define for quoted string "array" */
 #define AFW_LDAP_Q_array "array"
 
-/** @brief afw_utf8_t for string array */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_array;
+/** @brief 'afw_utf8_t' for string "array" */
+#define afw_ldap_s_array (afw_ldap_v_array.internal)
 
-/** @brief define for quoted string attributeTypes */
+/** @brief 'afw_value_string_t' for string "array" */
+extern const afw_value_string_t afw_ldap_v_array;
+
+/** @brief 'afw_utf8_z_t *' for string "array" */
+#define afw_ldap_z_array (afw_ldap_v_array.internal.s)
+
+
+
+/** @brief define for quoted string "attributeTypes" */
 #define AFW_LDAP_Q_attributeTypes "attributeTypes"
 
-/** @brief afw_utf8_t for string attributeTypes */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_attributeTypes;
+/** @brief 'afw_utf8_t' for string "attributeTypes" */
+#define afw_ldap_s_attributeTypes (afw_ldap_v_attributeTypes.internal)
 
-/** @brief define for quoted string base */
+/** @brief 'afw_value_string_t' for string "attributeTypes" */
+extern const afw_value_string_t afw_ldap_v_attributeTypes;
+
+/** @brief 'afw_utf8_z_t *' for string "attributeTypes" */
+#define afw_ldap_z_attributeTypes (afw_ldap_v_attributeTypes.internal.s)
+
+
+
+/** @brief define for quoted string "base" */
 #define AFW_LDAP_Q_base "base"
 
-/** @brief afw_utf8_t for string base */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_base;
+/** @brief 'afw_utf8_t' for string "base" */
+#define afw_ldap_s_base (afw_ldap_v_base.internal)
 
-/** @brief define for quoted string bindParameters */
+/** @brief 'afw_value_string_t' for string "base" */
+extern const afw_value_string_t afw_ldap_v_base;
+
+/** @brief 'afw_utf8_z_t *' for string "base" */
+#define afw_ldap_z_base (afw_ldap_v_base.internal.s)
+
+
+
+/** @brief define for quoted string "bindParameters" */
 #define AFW_LDAP_Q_bindParameters "bindParameters"
 
-/** @brief afw_utf8_t for string bindParameters */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_bindParameters;
+/** @brief 'afw_utf8_t' for string "bindParameters" */
+#define afw_ldap_s_bindParameters (afw_ldap_v_bindParameters.internal)
 
-/** @brief define for quoted string boolean */
+/** @brief 'afw_value_string_t' for string "bindParameters" */
+extern const afw_value_string_t afw_ldap_v_bindParameters;
+
+/** @brief 'afw_utf8_z_t *' for string "bindParameters" */
+#define afw_ldap_z_bindParameters (afw_ldap_v_bindParameters.internal.s)
+
+
+
+/** @brief define for quoted string "boolean" */
 #define AFW_LDAP_Q_boolean "boolean"
 
-/** @brief afw_utf8_t for string boolean */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_boolean;
+/** @brief 'afw_utf8_t' for string "boolean" */
+#define afw_ldap_s_boolean (afw_ldap_v_boolean.internal)
 
-/** @brief define for quoted string collectionURIs */
+/** @brief 'afw_value_string_t' for string "boolean" */
+extern const afw_value_string_t afw_ldap_v_boolean;
+
+/** @brief 'afw_utf8_z_t *' for string "boolean" */
+#define afw_ldap_z_boolean (afw_ldap_v_boolean.internal.s)
+
+
+
+/** @brief define for quoted string "collectionURIs" */
 #define AFW_LDAP_Q_collectionURIs "collectionURIs"
 
-/** @brief afw_utf8_t for string collectionURIs */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_collectionURIs;
+/** @brief 'afw_utf8_t' for string "collectionURIs" */
+#define afw_ldap_s_collectionURIs (afw_ldap_v_collectionURIs.internal)
 
-/** @brief define for quoted string dataType */
+/** @brief 'afw_value_string_t' for string "collectionURIs" */
+extern const afw_value_string_t afw_ldap_v_collectionURIs;
+
+/** @brief 'afw_utf8_z_t *' for string "collectionURIs" */
+#define afw_ldap_z_collectionURIs (afw_ldap_v_collectionURIs.internal.s)
+
+
+
+/** @brief define for quoted string "dataType" */
 #define AFW_LDAP_Q_dataType "dataType"
 
-/** @brief afw_utf8_t for string dataType */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_dataType;
+/** @brief 'afw_utf8_t' for string "dataType" */
+#define afw_ldap_s_dataType (afw_ldap_v_dataType.internal)
 
-/** @brief define for quoted string dataTypeParameter */
+/** @brief 'afw_value_string_t' for string "dataType" */
+extern const afw_value_string_t afw_ldap_v_dataType;
+
+/** @brief 'afw_utf8_z_t *' for string "dataType" */
+#define afw_ldap_z_dataType (afw_ldap_v_dataType.internal.s)
+
+
+
+/** @brief define for quoted string "dataTypeParameter" */
 #define AFW_LDAP_Q_dataTypeParameter "dataTypeParameter"
 
-/** @brief afw_utf8_t for string dataTypeParameter */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_dataTypeParameter;
+/** @brief 'afw_utf8_t' for string "dataTypeParameter" */
+#define afw_ldap_s_dataTypeParameter (afw_ldap_v_dataTypeParameter.internal)
 
-/** @brief define for quoted string default */
+/** @brief 'afw_value_string_t' for string "dataTypeParameter" */
+extern const afw_value_string_t afw_ldap_v_dataTypeParameter;
+
+/** @brief 'afw_utf8_z_t *' for string "dataTypeParameter" */
+#define afw_ldap_z_dataTypeParameter (afw_ldap_v_dataTypeParameter.internal.s)
+
+
+
+/** @brief define for quoted string "default" */
 #define AFW_LDAP_Q_default "default"
 
-/** @brief afw_utf8_t for string default */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_default;
+/** @brief 'afw_utf8_t' for string "default" */
+#define afw_ldap_s_default (afw_ldap_v_default.internal)
 
-/** @brief define for quoted string description */
+/** @brief 'afw_value_string_t' for string "default" */
+extern const afw_value_string_t afw_ldap_v_default;
+
+/** @brief 'afw_utf8_z_t *' for string "default" */
+#define afw_ldap_z_default (afw_ldap_v_default.internal.s)
+
+
+
+/** @brief define for quoted string "description" */
 #define AFW_LDAP_Q_description "description"
 
-/** @brief afw_utf8_t for string description */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_description;
+/** @brief 'afw_utf8_t' for string "description" */
+#define afw_ldap_s_description (afw_ldap_v_description.internal)
 
-/** @brief define for quoted string dn */
+/** @brief 'afw_value_string_t' for string "description" */
+extern const afw_value_string_t afw_ldap_v_description;
+
+/** @brief 'afw_utf8_z_t *' for string "description" */
+#define afw_ldap_z_description (afw_ldap_v_description.internal.s)
+
+
+
+/** @brief define for quoted string "dn" */
 #define AFW_LDAP_Q_dn "dn"
 
-/** @brief afw_utf8_t for string dn */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_dn;
+/** @brief 'afw_utf8_t' for string "dn" */
+#define afw_ldap_s_dn (afw_ldap_v_dn.internal)
 
-/** @brief define for quoted string hybrid */
+/** @brief 'afw_value_string_t' for string "dn" */
+extern const afw_value_string_t afw_ldap_v_dn;
+
+/** @brief 'afw_utf8_z_t *' for string "dn" */
+#define afw_ldap_z_dn (afw_ldap_v_dn.internal.s)
+
+
+
+/** @brief define for quoted string "hybrid" */
 #define AFW_LDAP_Q_hybrid "hybrid"
 
-/** @brief afw_utf8_t for string hybrid */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_hybrid;
+/** @brief 'afw_utf8_t' for string "hybrid" */
+#define afw_ldap_s_hybrid (afw_ldap_v_hybrid.internal)
 
-/** @brief define for quoted string indirect */
+/** @brief 'afw_value_string_t' for string "hybrid" */
+extern const afw_value_string_t afw_ldap_v_hybrid;
+
+/** @brief 'afw_utf8_z_t *' for string "hybrid" */
+#define afw_ldap_z_hybrid (afw_ldap_v_hybrid.internal.s)
+
+
+
+/** @brief define for quoted string "indirect" */
 #define AFW_LDAP_Q_indirect "indirect"
 
-/** @brief afw_utf8_t for string indirect */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_indirect;
+/** @brief 'afw_utf8_t' for string "indirect" */
+#define afw_ldap_s_indirect (afw_ldap_v_indirect.internal)
 
-/** @brief define for quoted string label */
+/** @brief 'afw_value_string_t' for string "indirect" */
+extern const afw_value_string_t afw_ldap_v_indirect;
+
+/** @brief 'afw_utf8_z_t *' for string "indirect" */
+#define afw_ldap_z_indirect (afw_ldap_v_indirect.internal.s)
+
+
+
+/** @brief define for quoted string "label" */
 #define AFW_LDAP_Q_label "label"
 
-/** @brief afw_utf8_t for string label */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_label;
+/** @brief 'afw_utf8_t' for string "label" */
+#define afw_ldap_s_label (afw_ldap_v_label.internal)
 
-/** @brief define for quoted string ldap */
+/** @brief 'afw_value_string_t' for string "label" */
+extern const afw_value_string_t afw_ldap_v_label;
+
+/** @brief 'afw_utf8_z_t *' for string "label" */
+#define afw_ldap_z_label (afw_ldap_v_label.internal.s)
+
+
+
+/** @brief define for quoted string "ldap" */
 #define AFW_LDAP_Q_ldap "ldap"
 
-/** @brief afw_utf8_t for string ldap */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldap;
+/** @brief 'afw_utf8_t' for string "ldap" */
+#define afw_ldap_s_ldap (afw_ldap_v_ldap.internal)
 
-/** @brief define for quoted string ldapAttributeType */
+/** @brief 'afw_value_string_t' for string "ldap" */
+extern const afw_value_string_t afw_ldap_v_ldap;
+
+/** @brief 'afw_utf8_z_t *' for string "ldap" */
+#define afw_ldap_z_ldap (afw_ldap_v_ldap.internal.s)
+
+
+
+/** @brief define for quoted string "ldapAttributeType" */
 #define AFW_LDAP_Q_ldapAttributeType "ldapAttributeType"
 
-/** @brief afw_utf8_t for string ldapAttributeType */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapAttributeType;
+/** @brief 'afw_utf8_t' for string "ldapAttributeType" */
+#define afw_ldap_s_ldapAttributeType (afw_ldap_v_ldapAttributeType.internal)
 
-/** @brief define for quoted string ldapSyntax */
+/** @brief 'afw_value_string_t' for string "ldapAttributeType" */
+extern const afw_value_string_t afw_ldap_v_ldapAttributeType;
+
+/** @brief 'afw_utf8_z_t *' for string "ldapAttributeType" */
+#define afw_ldap_z_ldapAttributeType (afw_ldap_v_ldapAttributeType.internal.s)
+
+
+
+/** @brief define for quoted string "ldapSyntax" */
 #define AFW_LDAP_Q_ldapSyntax "ldapSyntax"
 
-/** @brief afw_utf8_t for string ldapSyntax */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapSyntax;
+/** @brief 'afw_utf8_t' for string "ldapSyntax" */
+#define afw_ldap_s_ldapSyntax (afw_ldap_v_ldapSyntax.internal)
 
-/** @brief define for quoted string ldapSyntaxes */
+/** @brief 'afw_value_string_t' for string "ldapSyntax" */
+extern const afw_value_string_t afw_ldap_v_ldapSyntax;
+
+/** @brief 'afw_utf8_z_t *' for string "ldapSyntax" */
+#define afw_ldap_z_ldapSyntax (afw_ldap_v_ldapSyntax.internal.s)
+
+
+
+/** @brief define for quoted string "ldapSyntaxes" */
 #define AFW_LDAP_Q_ldapSyntaxes "ldapSyntaxes"
 
-/** @brief afw_utf8_t for string ldapSyntaxes */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapSyntaxes;
+/** @brief 'afw_utf8_t' for string "ldapSyntaxes" */
+#define afw_ldap_s_ldapSyntaxes (afw_ldap_v_ldapSyntaxes.internal)
 
-/** @brief define for quoted string ldap_extension */
+/** @brief 'afw_value_string_t' for string "ldapSyntaxes" */
+extern const afw_value_string_t afw_ldap_v_ldapSyntaxes;
+
+/** @brief 'afw_utf8_z_t *' for string "ldapSyntaxes" */
+#define afw_ldap_z_ldapSyntaxes (afw_ldap_v_ldapSyntaxes.internal.s)
+
+
+
+/** @brief define for quoted string "ldap_extension" */
 #define AFW_LDAP_Q_ldap_extension "ldap_extension"
 
-/** @brief afw_utf8_t for string ldap_extension */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldap_extension;
+/** @brief 'afw_utf8_t' for string "ldap_extension" */
+#define afw_ldap_s_ldap_extension (afw_ldap_v_ldap_extension.internal)
 
-/** @brief define for quoted string matchingRuleUse */
+/** @brief 'afw_value_string_t' for string "ldap_extension" */
+extern const afw_value_string_t afw_ldap_v_ldap_extension;
+
+/** @brief 'afw_utf8_z_t *' for string "ldap_extension" */
+#define afw_ldap_z_ldap_extension (afw_ldap_v_ldap_extension.internal.s)
+
+
+
+/** @brief define for quoted string "matchingRuleUse" */
 #define AFW_LDAP_Q_matchingRuleUse "matchingRuleUse"
 
-/** @brief afw_utf8_t for string matchingRuleUse */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_matchingRuleUse;
+/** @brief 'afw_utf8_t' for string "matchingRuleUse" */
+#define afw_ldap_s_matchingRuleUse (afw_ldap_v_matchingRuleUse.internal)
 
-/** @brief define for quoted string matchingRules */
+/** @brief 'afw_value_string_t' for string "matchingRuleUse" */
+extern const afw_value_string_t afw_ldap_v_matchingRuleUse;
+
+/** @brief 'afw_utf8_z_t *' for string "matchingRuleUse" */
+#define afw_ldap_z_matchingRuleUse (afw_ldap_v_matchingRuleUse.internal.s)
+
+
+
+/** @brief define for quoted string "matchingRules" */
 #define AFW_LDAP_Q_matchingRules "matchingRules"
 
-/** @brief afw_utf8_t for string matchingRules */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_matchingRules;
+/** @brief 'afw_utf8_t' for string "matchingRules" */
+#define afw_ldap_s_matchingRules (afw_ldap_v_matchingRules.internal)
 
-/** @brief define for quoted string numericoid */
+/** @brief 'afw_value_string_t' for string "matchingRules" */
+extern const afw_value_string_t afw_ldap_v_matchingRules;
+
+/** @brief 'afw_utf8_z_t *' for string "matchingRules" */
+#define afw_ldap_z_matchingRules (afw_ldap_v_matchingRules.internal.s)
+
+
+
+/** @brief define for quoted string "numericoid" */
 #define AFW_LDAP_Q_numericoid "numericoid"
 
-/** @brief afw_utf8_t for string numericoid */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_numericoid;
+/** @brief 'afw_utf8_t' for string "numericoid" */
+#define afw_ldap_s_numericoid (afw_ldap_v_numericoid.internal)
 
-/** @brief define for quoted string objectClasses */
+/** @brief 'afw_value_string_t' for string "numericoid" */
+extern const afw_value_string_t afw_ldap_v_numericoid;
+
+/** @brief 'afw_utf8_z_t *' for string "numericoid" */
+#define afw_ldap_z_numericoid (afw_ldap_v_numericoid.internal.s)
+
+
+
+/** @brief define for quoted string "objectClasses" */
 #define AFW_LDAP_Q_objectClasses "objectClasses"
 
-/** @brief afw_utf8_t for string objectClasses */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_objectClasses;
+/** @brief 'afw_utf8_t' for string "objectClasses" */
+#define afw_ldap_s_objectClasses (afw_ldap_v_objectClasses.internal)
 
-/** @brief define for quoted string objectId */
+/** @brief 'afw_value_string_t' for string "objectClasses" */
+extern const afw_value_string_t afw_ldap_v_objectClasses;
+
+/** @brief 'afw_utf8_z_t *' for string "objectClasses" */
+#define afw_ldap_z_objectClasses (afw_ldap_v_objectClasses.internal.s)
+
+
+
+/** @brief define for quoted string "objectId" */
 #define AFW_LDAP_Q_objectId "objectId"
 
-/** @brief afw_utf8_t for string objectId */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_objectId;
+/** @brief 'afw_utf8_t' for string "objectId" */
+#define afw_ldap_s_objectId (afw_ldap_v_objectId.internal)
 
-/** @brief define for quoted string objectType */
+/** @brief 'afw_value_string_t' for string "objectId" */
+extern const afw_value_string_t afw_ldap_v_objectId;
+
+/** @brief 'afw_utf8_z_t *' for string "objectId" */
+#define afw_ldap_z_objectId (afw_ldap_v_objectId.internal.s)
+
+
+
+/** @brief define for quoted string "objectType" */
 #define AFW_LDAP_Q_objectType "objectType"
 
-/** @brief afw_utf8_t for string objectType */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_objectType;
+/** @brief 'afw_utf8_t' for string "objectType" */
+#define afw_ldap_s_objectType (afw_ldap_v_objectType.internal)
 
-/** @brief define for quoted string otherProperties */
+/** @brief 'afw_value_string_t' for string "objectType" */
+extern const afw_value_string_t afw_ldap_v_objectType;
+
+/** @brief 'afw_utf8_z_t *' for string "objectType" */
+#define afw_ldap_z_objectType (afw_ldap_v_objectType.internal.s)
+
+
+
+/** @brief define for quoted string "otherProperties" */
 #define AFW_LDAP_Q_otherProperties "otherProperties"
 
-/** @brief afw_utf8_t for string otherProperties */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_otherProperties;
+/** @brief 'afw_utf8_t' for string "otherProperties" */
+#define afw_ldap_s_otherProperties (afw_ldap_v_otherProperties.internal)
 
-/** @brief define for quoted string parentPaths */
+/** @brief 'afw_value_string_t' for string "otherProperties" */
+extern const afw_value_string_t afw_ldap_v_otherProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "otherProperties" */
+#define afw_ldap_z_otherProperties (afw_ldap_v_otherProperties.internal.s)
+
+
+
+/** @brief define for quoted string "parentPaths" */
 #define AFW_LDAP_Q_parentPaths "parentPaths"
 
-/** @brief afw_utf8_t for string parentPaths */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_parentPaths;
+/** @brief 'afw_utf8_t' for string "parentPaths" */
+#define afw_ldap_s_parentPaths (afw_ldap_v_parentPaths.internal)
 
-/** @brief define for quoted string password */
+/** @brief 'afw_value_string_t' for string "parentPaths" */
+extern const afw_value_string_t afw_ldap_v_parentPaths;
+
+/** @brief 'afw_utf8_z_t *' for string "parentPaths" */
+#define afw_ldap_z_parentPaths (afw_ldap_v_parentPaths.internal.s)
+
+
+
+/** @brief define for quoted string "password" */
 #define AFW_LDAP_Q_password "password"
 
-/** @brief afw_utf8_t for string password */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_password;
+/** @brief 'afw_utf8_t' for string "password" */
+#define afw_ldap_s_password (afw_ldap_v_password.internal)
 
-/** @brief define for quoted string preventVerifyCert */
+/** @brief 'afw_value_string_t' for string "password" */
+extern const afw_value_string_t afw_ldap_v_password;
+
+/** @brief 'afw_utf8_z_t *' for string "password" */
+#define afw_ldap_z_password (afw_ldap_v_password.internal.s)
+
+
+
+/** @brief define for quoted string "preventVerifyCert" */
 #define AFW_LDAP_Q_preventVerifyCert "preventVerifyCert"
 
-/** @brief afw_utf8_t for string preventVerifyCert */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_preventVerifyCert;
+/** @brief 'afw_utf8_t' for string "preventVerifyCert" */
+#define afw_ldap_s_preventVerifyCert (afw_ldap_v_preventVerifyCert.internal)
 
-/** @brief define for quoted string propertyTypes */
+/** @brief 'afw_value_string_t' for string "preventVerifyCert" */
+extern const afw_value_string_t afw_ldap_v_preventVerifyCert;
+
+/** @brief 'afw_utf8_z_t *' for string "preventVerifyCert" */
+#define afw_ldap_z_preventVerifyCert (afw_ldap_v_preventVerifyCert.internal.s)
+
+
+
+/** @brief define for quoted string "propertyTypes" */
 #define AFW_LDAP_Q_propertyTypes "propertyTypes"
 
-/** @brief afw_utf8_t for string propertyTypes */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_propertyTypes;
+/** @brief 'afw_utf8_t' for string "propertyTypes" */
+#define afw_ldap_s_propertyTypes (afw_ldap_v_propertyTypes.internal)
 
-/** @brief define for quoted string required */
+/** @brief 'afw_value_string_t' for string "propertyTypes" */
+extern const afw_value_string_t afw_ldap_v_propertyTypes;
+
+/** @brief 'afw_utf8_z_t *' for string "propertyTypes" */
+#define afw_ldap_z_propertyTypes (afw_ldap_v_propertyTypes.internal.s)
+
+
+
+/** @brief define for quoted string "required" */
 #define AFW_LDAP_Q_required "required"
 
-/** @brief afw_utf8_t for string required */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_required;
+/** @brief 'afw_utf8_t' for string "required" */
+#define afw_ldap_s_required (afw_ldap_v_required.internal)
 
-/** @brief define for quoted string string */
+/** @brief 'afw_value_string_t' for string "required" */
+extern const afw_value_string_t afw_ldap_v_required;
+
+/** @brief 'afw_utf8_z_t *' for string "required" */
+#define afw_ldap_z_required (afw_ldap_v_required.internal.s)
+
+
+
+/** @brief define for quoted string "string" */
 #define AFW_LDAP_Q_string "string"
 
-/** @brief afw_utf8_t for string string */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_string;
+/** @brief 'afw_utf8_t' for string "string" */
+#define afw_ldap_s_string (afw_ldap_v_string.internal)
 
-/** @brief define for quoted string subschemaSubentry */
+/** @brief 'afw_value_string_t' for string "string" */
+extern const afw_value_string_t afw_ldap_v_string;
+
+/** @brief 'afw_utf8_z_t *' for string "string" */
+#define afw_ldap_z_string (afw_ldap_v_string.internal.s)
+
+
+
+/** @brief define for quoted string "subschemaSubentry" */
 #define AFW_LDAP_Q_subschemaSubentry "subschemaSubentry"
 
-/** @brief afw_utf8_t for string subschemaSubentry */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_subschemaSubentry;
+/** @brief 'afw_utf8_t' for string "subschemaSubentry" */
+#define afw_ldap_s_subschemaSubentry (afw_ldap_v_subschemaSubentry.internal)
 
-/** @brief define for quoted string unique */
+/** @brief 'afw_value_string_t' for string "subschemaSubentry" */
+extern const afw_value_string_t afw_ldap_v_subschemaSubentry;
+
+/** @brief 'afw_utf8_z_t *' for string "subschemaSubentry" */
+#define afw_ldap_z_subschemaSubentry (afw_ldap_v_subschemaSubentry.internal.s)
+
+
+
+/** @brief define for quoted string "unique" */
 #define AFW_LDAP_Q_unique "unique"
 
-/** @brief afw_utf8_t for string unique */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_unique;
+/** @brief 'afw_utf8_t' for string "unique" */
+#define afw_ldap_s_unique (afw_ldap_v_unique.internal)
 
-/** @brief define for quoted string url */
+/** @brief 'afw_value_string_t' for string "unique" */
+extern const afw_value_string_t afw_ldap_v_unique;
+
+/** @brief 'afw_utf8_z_t *' for string "unique" */
+#define afw_ldap_z_unique (afw_ldap_v_unique.internal.s)
+
+
+
+/** @brief define for quoted string "url" */
 #define AFW_LDAP_Q_url "url"
 
-/** @brief afw_utf8_t for string url */
-AFW_LDAP_DECLARE_CONST_DATA(afw_utf8_t) afw_ldap_s_url;
+/** @brief 'afw_utf8_t' for string "url" */
+#define afw_ldap_s_url (afw_ldap_v_url.internal)
+
+/** @brief 'afw_value_string_t' for string "url" */
+extern const afw_value_string_t afw_ldap_v_url;
+
+/** @brief 'afw_utf8_z_t *' for string "url" */
+#define afw_ldap_z_url (afw_ldap_v_url.internal.s)
+
 
 
 #endif /* __AFW_LDAP_STRINGS_H__ */

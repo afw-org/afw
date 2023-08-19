@@ -29,2975 +29,6934 @@
 #include "afw_components_declare_helpers.h"
 
 
-/** @brief define for quoted string Autocomplete */
+/** @brief define for quoted string "Autocomplete" */
 #define AFW_COMPONENTS_Q_Autocomplete "Autocomplete"
 
-/** @brief afw_utf8_t for string Autocomplete */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Autocomplete;
+/** @brief 'afw_utf8_t' for string "Autocomplete" */
+#define afw_components_s_Autocomplete (afw_components_v_Autocomplete.internal)
 
-/** @brief define for quoted string Box */
+/** @brief 'afw_value_string_t' for string "Autocomplete" */
+extern const afw_value_string_t afw_components_v_Autocomplete;
+
+/** @brief 'afw_utf8_z_t *' for string "Autocomplete" */
+#define afw_components_z_Autocomplete (afw_components_v_Autocomplete.internal.s)
+
+
+
+/** @brief define for quoted string "Box" */
 #define AFW_COMPONENTS_Q_Box "Box"
 
-/** @brief afw_utf8_t for string Box */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Box;
+/** @brief 'afw_utf8_t' for string "Box" */
+#define afw_components_s_Box (afw_components_v_Box.internal)
 
-/** @brief define for quoted string Breadcrumb */
+/** @brief 'afw_value_string_t' for string "Box" */
+extern const afw_value_string_t afw_components_v_Box;
+
+/** @brief 'afw_utf8_z_t *' for string "Box" */
+#define afw_components_z_Box (afw_components_v_Box.internal.s)
+
+
+
+/** @brief define for quoted string "Breadcrumb" */
 #define AFW_COMPONENTS_Q_Breadcrumb "Breadcrumb"
 
-/** @brief afw_utf8_t for string Breadcrumb */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Breadcrumb;
+/** @brief 'afw_utf8_t' for string "Breadcrumb" */
+#define afw_components_s_Breadcrumb (afw_components_v_Breadcrumb.internal)
 
-/** @brief define for quoted string Button */
+/** @brief 'afw_value_string_t' for string "Breadcrumb" */
+extern const afw_value_string_t afw_components_v_Breadcrumb;
+
+/** @brief 'afw_utf8_z_t *' for string "Breadcrumb" */
+#define afw_components_z_Breadcrumb (afw_components_v_Breadcrumb.internal.s)
+
+
+
+/** @brief define for quoted string "Button" */
 #define AFW_COMPONENTS_Q_Button "Button"
 
-/** @brief afw_utf8_t for string Button */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Button;
+/** @brief 'afw_utf8_t' for string "Button" */
+#define afw_components_s_Button (afw_components_v_Button.internal)
 
-/** @brief define for quoted string Callout */
+/** @brief 'afw_value_string_t' for string "Button" */
+extern const afw_value_string_t afw_components_v_Button;
+
+/** @brief 'afw_utf8_z_t *' for string "Button" */
+#define afw_components_z_Button (afw_components_v_Button.internal.s)
+
+
+
+/** @brief define for quoted string "Callout" */
 #define AFW_COMPONENTS_Q_Callout "Callout"
 
-/** @brief afw_utf8_t for string Callout */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Callout;
+/** @brief 'afw_utf8_t' for string "Callout" */
+#define afw_components_s_Callout (afw_components_v_Callout.internal)
 
-/** @brief define for quoted string Chart */
+/** @brief 'afw_value_string_t' for string "Callout" */
+extern const afw_value_string_t afw_components_v_Callout;
+
+/** @brief 'afw_utf8_z_t *' for string "Callout" */
+#define afw_components_z_Callout (afw_components_v_Callout.internal.s)
+
+
+
+/** @brief define for quoted string "Chart" */
 #define AFW_COMPONENTS_Q_Chart "Chart"
 
-/** @brief afw_utf8_t for string Chart */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Chart;
+/** @brief 'afw_utf8_t' for string "Chart" */
+#define afw_components_s_Chart (afw_components_v_Chart.internal)
 
-/** @brief define for quoted string Checkbox */
+/** @brief 'afw_value_string_t' for string "Chart" */
+extern const afw_value_string_t afw_components_v_Chart;
+
+/** @brief 'afw_utf8_z_t *' for string "Chart" */
+#define afw_components_z_Chart (afw_components_v_Chart.internal.s)
+
+
+
+/** @brief define for quoted string "Checkbox" */
 #define AFW_COMPONENTS_Q_Checkbox "Checkbox"
 
-/** @brief afw_utf8_t for string Checkbox */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Checkbox;
+/** @brief 'afw_utf8_t' for string "Checkbox" */
+#define afw_components_s_Checkbox (afw_components_v_Checkbox.internal)
 
-/** @brief define for quoted string ChoiceGroup */
+/** @brief 'afw_value_string_t' for string "Checkbox" */
+extern const afw_value_string_t afw_components_v_Checkbox;
+
+/** @brief 'afw_utf8_z_t *' for string "Checkbox" */
+#define afw_components_z_Checkbox (afw_components_v_Checkbox.internal.s)
+
+
+
+/** @brief define for quoted string "ChoiceGroup" */
 #define AFW_COMPONENTS_Q_ChoiceGroup "ChoiceGroup"
 
-/** @brief afw_utf8_t for string ChoiceGroup */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_ChoiceGroup;
+/** @brief 'afw_utf8_t' for string "ChoiceGroup" */
+#define afw_components_s_ChoiceGroup (afw_components_v_ChoiceGroup.internal)
 
-/** @brief define for quoted string CodeEditor */
+/** @brief 'afw_value_string_t' for string "ChoiceGroup" */
+extern const afw_value_string_t afw_components_v_ChoiceGroup;
+
+/** @brief 'afw_utf8_z_t *' for string "ChoiceGroup" */
+#define afw_components_z_ChoiceGroup (afw_components_v_ChoiceGroup.internal.s)
+
+
+
+/** @brief define for quoted string "CodeEditor" */
 #define AFW_COMPONENTS_Q_CodeEditor "CodeEditor"
 
-/** @brief afw_utf8_t for string CodeEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_CodeEditor;
+/** @brief 'afw_utf8_t' for string "CodeEditor" */
+#define afw_components_s_CodeEditor (afw_components_v_CodeEditor.internal)
 
-/** @brief define for quoted string Collapsible */
+/** @brief 'afw_value_string_t' for string "CodeEditor" */
+extern const afw_value_string_t afw_components_v_CodeEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "CodeEditor" */
+#define afw_components_z_CodeEditor (afw_components_v_CodeEditor.internal.s)
+
+
+
+/** @brief define for quoted string "Collapsible" */
 #define AFW_COMPONENTS_Q_Collapsible "Collapsible"
 
-/** @brief afw_utf8_t for string Collapsible */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Collapsible;
+/** @brief 'afw_utf8_t' for string "Collapsible" */
+#define afw_components_s_Collapsible (afw_components_v_Collapsible.internal)
 
-/** @brief define for quoted string DatePicker */
+/** @brief 'afw_value_string_t' for string "Collapsible" */
+extern const afw_value_string_t afw_components_v_Collapsible;
+
+/** @brief 'afw_utf8_z_t *' for string "Collapsible" */
+#define afw_components_z_Collapsible (afw_components_v_Collapsible.internal.s)
+
+
+
+/** @brief define for quoted string "DatePicker" */
 #define AFW_COMPONENTS_Q_DatePicker "DatePicker"
 
-/** @brief afw_utf8_t for string DatePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_DatePicker;
+/** @brief 'afw_utf8_t' for string "DatePicker" */
+#define afw_components_s_DatePicker (afw_components_v_DatePicker.internal)
 
-/** @brief define for quoted string DateTimePicker */
+/** @brief 'afw_value_string_t' for string "DatePicker" */
+extern const afw_value_string_t afw_components_v_DatePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "DatePicker" */
+#define afw_components_z_DatePicker (afw_components_v_DatePicker.internal.s)
+
+
+
+/** @brief define for quoted string "DateTimePicker" */
 #define AFW_COMPONENTS_Q_DateTimePicker "DateTimePicker"
 
-/** @brief afw_utf8_t for string DateTimePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_DateTimePicker;
+/** @brief 'afw_utf8_t' for string "DateTimePicker" */
+#define afw_components_s_DateTimePicker (afw_components_v_DateTimePicker.internal)
 
-/** @brief define for quoted string Dialog */
+/** @brief 'afw_value_string_t' for string "DateTimePicker" */
+extern const afw_value_string_t afw_components_v_DateTimePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "DateTimePicker" */
+#define afw_components_z_DateTimePicker (afw_components_v_DateTimePicker.internal.s)
+
+
+
+/** @brief define for quoted string "Dialog" */
 #define AFW_COMPONENTS_Q_Dialog "Dialog"
 
-/** @brief afw_utf8_t for string Dialog */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Dialog;
+/** @brief 'afw_utf8_t' for string "Dialog" */
+#define afw_components_s_Dialog (afw_components_v_Dialog.internal)
 
-/** @brief define for quoted string DiffEditor */
+/** @brief 'afw_value_string_t' for string "Dialog" */
+extern const afw_value_string_t afw_components_v_Dialog;
+
+/** @brief 'afw_utf8_z_t *' for string "Dialog" */
+#define afw_components_z_Dialog (afw_components_v_Dialog.internal.s)
+
+
+
+/** @brief define for quoted string "DiffEditor" */
 #define AFW_COMPONENTS_Q_DiffEditor "DiffEditor"
 
-/** @brief afw_utf8_t for string DiffEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_DiffEditor;
+/** @brief 'afw_utf8_t' for string "DiffEditor" */
+#define afw_components_s_DiffEditor (afw_components_v_DiffEditor.internal)
 
-/** @brief define for quoted string Divider */
+/** @brief 'afw_value_string_t' for string "DiffEditor" */
+extern const afw_value_string_t afw_components_v_DiffEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "DiffEditor" */
+#define afw_components_z_DiffEditor (afw_components_v_DiffEditor.internal.s)
+
+
+
+/** @brief define for quoted string "Divider" */
 #define AFW_COMPONENTS_Q_Divider "Divider"
 
-/** @brief afw_utf8_t for string Divider */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Divider;
+/** @brief 'afw_utf8_t' for string "Divider" */
+#define afw_components_s_Divider (afw_components_v_Divider.internal)
 
-/** @brief define for quoted string Drawer */
+/** @brief 'afw_value_string_t' for string "Divider" */
+extern const afw_value_string_t afw_components_v_Divider;
+
+/** @brief 'afw_utf8_z_t *' for string "Divider" */
+#define afw_components_z_Divider (afw_components_v_Divider.internal.s)
+
+
+
+/** @brief define for quoted string "Drawer" */
 #define AFW_COMPONENTS_Q_Drawer "Drawer"
 
-/** @brief afw_utf8_t for string Drawer */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Drawer;
+/** @brief 'afw_utf8_t' for string "Drawer" */
+#define afw_components_s_Drawer (afw_components_v_Drawer.internal)
 
-/** @brief define for quoted string Dropdown */
+/** @brief 'afw_value_string_t' for string "Drawer" */
+extern const afw_value_string_t afw_components_v_Drawer;
+
+/** @brief 'afw_utf8_z_t *' for string "Drawer" */
+#define afw_components_z_Drawer (afw_components_v_Drawer.internal.s)
+
+
+
+/** @brief define for quoted string "Dropdown" */
 #define AFW_COMPONENTS_Q_Dropdown "Dropdown"
 
-/** @brief afw_utf8_t for string Dropdown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Dropdown;
+/** @brief 'afw_utf8_t' for string "Dropdown" */
+#define afw_components_s_Dropdown (afw_components_v_Dropdown.internal)
 
-/** @brief define for quoted string DropdownEditor */
+/** @brief 'afw_value_string_t' for string "Dropdown" */
+extern const afw_value_string_t afw_components_v_Dropdown;
+
+/** @brief 'afw_utf8_z_t *' for string "Dropdown" */
+#define afw_components_z_Dropdown (afw_components_v_Dropdown.internal.s)
+
+
+
+/** @brief define for quoted string "DropdownEditor" */
 #define AFW_COMPONENTS_Q_DropdownEditor "DropdownEditor"
 
-/** @brief afw_utf8_t for string DropdownEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_DropdownEditor;
+/** @brief 'afw_utf8_t' for string "DropdownEditor" */
+#define afw_components_s_DropdownEditor (afw_components_v_DropdownEditor.internal)
 
-/** @brief define for quoted string EditableCallout */
+/** @brief 'afw_value_string_t' for string "DropdownEditor" */
+extern const afw_value_string_t afw_components_v_DropdownEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "DropdownEditor" */
+#define afw_components_z_DropdownEditor (afw_components_v_DropdownEditor.internal.s)
+
+
+
+/** @brief define for quoted string "EditableCallout" */
 #define AFW_COMPONENTS_Q_EditableCallout "EditableCallout"
 
-/** @brief afw_utf8_t for string EditableCallout */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_EditableCallout;
+/** @brief 'afw_utf8_t' for string "EditableCallout" */
+#define afw_components_s_EditableCallout (afw_components_v_EditableCallout.internal)
 
-/** @brief define for quoted string EditableLabel */
+/** @brief 'afw_value_string_t' for string "EditableCallout" */
+extern const afw_value_string_t afw_components_v_EditableCallout;
+
+/** @brief 'afw_utf8_z_t *' for string "EditableCallout" */
+#define afw_components_z_EditableCallout (afw_components_v_EditableCallout.internal.s)
+
+
+
+/** @brief define for quoted string "EditableLabel" */
 #define AFW_COMPONENTS_Q_EditableLabel "EditableLabel"
 
-/** @brief afw_utf8_t for string EditableLabel */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_EditableLabel;
+/** @brief 'afw_utf8_t' for string "EditableLabel" */
+#define afw_components_s_EditableLabel (afw_components_v_EditableLabel.internal)
 
-/** @brief define for quoted string Hidden */
+/** @brief 'afw_value_string_t' for string "EditableLabel" */
+extern const afw_value_string_t afw_components_v_EditableLabel;
+
+/** @brief 'afw_utf8_z_t *' for string "EditableLabel" */
+#define afw_components_z_EditableLabel (afw_components_v_EditableLabel.internal.s)
+
+
+
+/** @brief define for quoted string "Hidden" */
 #define AFW_COMPONENTS_Q_Hidden "Hidden"
 
-/** @brief afw_utf8_t for string Hidden */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Hidden;
+/** @brief 'afw_utf8_t' for string "Hidden" */
+#define afw_components_s_Hidden (afw_components_v_Hidden.internal)
 
-/** @brief define for quoted string Icon */
+/** @brief 'afw_value_string_t' for string "Hidden" */
+extern const afw_value_string_t afw_components_v_Hidden;
+
+/** @brief 'afw_utf8_z_t *' for string "Hidden" */
+#define afw_components_z_Hidden (afw_components_v_Hidden.internal.s)
+
+
+
+/** @brief define for quoted string "Icon" */
 #define AFW_COMPONENTS_Q_Icon "Icon"
 
-/** @brief afw_utf8_t for string Icon */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Icon;
+/** @brief 'afw_utf8_t' for string "Icon" */
+#define afw_components_s_Icon (afw_components_v_Icon.internal)
 
-/** @brief define for quoted string Image */
+/** @brief 'afw_value_string_t' for string "Icon" */
+extern const afw_value_string_t afw_components_v_Icon;
+
+/** @brief 'afw_utf8_z_t *' for string "Icon" */
+#define afw_components_z_Icon (afw_components_v_Icon.internal.s)
+
+
+
+/** @brief define for quoted string "Image" */
 #define AFW_COMPONENTS_Q_Image "Image"
 
-/** @brief afw_utf8_t for string Image */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Image;
+/** @brief 'afw_utf8_t' for string "Image" */
+#define afw_components_s_Image (afw_components_v_Image.internal)
 
-/** @brief define for quoted string Link */
+/** @brief 'afw_value_string_t' for string "Image" */
+extern const afw_value_string_t afw_components_v_Image;
+
+/** @brief 'afw_utf8_z_t *' for string "Image" */
+#define afw_components_z_Image (afw_components_v_Image.internal.s)
+
+
+
+/** @brief define for quoted string "Link" */
 #define AFW_COMPONENTS_Q_Link "Link"
 
-/** @brief afw_utf8_t for string Link */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Link;
+/** @brief 'afw_utf8_t' for string "Link" */
+#define afw_components_s_Link (afw_components_v_Link.internal)
 
-/** @brief define for quoted string List */
+/** @brief 'afw_value_string_t' for string "Link" */
+extern const afw_value_string_t afw_components_v_Link;
+
+/** @brief 'afw_utf8_z_t *' for string "Link" */
+#define afw_components_z_Link (afw_components_v_Link.internal.s)
+
+
+
+/** @brief define for quoted string "List" */
 #define AFW_COMPONENTS_Q_List "List"
 
-/** @brief afw_utf8_t for string List */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_List;
+/** @brief 'afw_utf8_t' for string "List" */
+#define afw_components_s_List (afw_components_v_List.internal)
 
-/** @brief define for quoted string ListEditor */
+/** @brief 'afw_value_string_t' for string "List" */
+extern const afw_value_string_t afw_components_v_List;
+
+/** @brief 'afw_utf8_z_t *' for string "List" */
+#define afw_components_z_List (afw_components_v_List.internal.s)
+
+
+
+/** @brief define for quoted string "ListEditor" */
 #define AFW_COMPONENTS_Q_ListEditor "ListEditor"
 
-/** @brief afw_utf8_t for string ListEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_ListEditor;
+/** @brief 'afw_utf8_t' for string "ListEditor" */
+#define afw_components_s_ListEditor (afw_components_v_ListEditor.internal)
 
-/** @brief define for quoted string Menu */
+/** @brief 'afw_value_string_t' for string "ListEditor" */
+extern const afw_value_string_t afw_components_v_ListEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "ListEditor" */
+#define afw_components_z_ListEditor (afw_components_v_ListEditor.internal.s)
+
+
+
+/** @brief define for quoted string "Menu" */
 #define AFW_COMPONENTS_Q_Menu "Menu"
 
-/** @brief afw_utf8_t for string Menu */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Menu;
+/** @brief 'afw_utf8_t' for string "Menu" */
+#define afw_components_s_Menu (afw_components_v_Menu.internal)
 
-/** @brief define for quoted string Message */
+/** @brief 'afw_value_string_t' for string "Menu" */
+extern const afw_value_string_t afw_components_v_Menu;
+
+/** @brief 'afw_utf8_z_t *' for string "Menu" */
+#define afw_components_z_Menu (afw_components_v_Menu.internal.s)
+
+
+
+/** @brief define for quoted string "Message" */
 #define AFW_COMPONENTS_Q_Message "Message"
 
-/** @brief afw_utf8_t for string Message */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Message;
+/** @brief 'afw_utf8_t' for string "Message" */
+#define afw_components_s_Message (afw_components_v_Message.internal)
 
-/** @brief define for quoted string Modal */
+/** @brief 'afw_value_string_t' for string "Message" */
+extern const afw_value_string_t afw_components_v_Message;
+
+/** @brief 'afw_utf8_z_t *' for string "Message" */
+#define afw_components_z_Message (afw_components_v_Message.internal.s)
+
+
+
+/** @brief define for quoted string "Modal" */
 #define AFW_COMPONENTS_Q_Modal "Modal"
 
-/** @brief afw_utf8_t for string Modal */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Modal;
+/** @brief 'afw_utf8_t' for string "Modal" */
+#define afw_components_s_Modal (afw_components_v_Modal.internal)
 
-/** @brief define for quoted string Native */
+/** @brief 'afw_value_string_t' for string "Modal" */
+extern const afw_value_string_t afw_components_v_Modal;
+
+/** @brief 'afw_utf8_z_t *' for string "Modal" */
+#define afw_components_z_Modal (afw_components_v_Modal.internal.s)
+
+
+
+/** @brief define for quoted string "Native" */
 #define AFW_COMPONENTS_Q_Native "Native"
 
-/** @brief afw_utf8_t for string Native */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Native;
+/** @brief 'afw_utf8_t' for string "Native" */
+#define afw_components_s_Native (afw_components_v_Native.internal)
 
-/** @brief define for quoted string Nav */
+/** @brief 'afw_value_string_t' for string "Native" */
+extern const afw_value_string_t afw_components_v_Native;
+
+/** @brief 'afw_utf8_z_t *' for string "Native" */
+#define afw_components_z_Native (afw_components_v_Native.internal.s)
+
+
+
+/** @brief define for quoted string "Nav" */
 #define AFW_COMPONENTS_Q_Nav "Nav"
 
-/** @brief afw_utf8_t for string Nav */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Nav;
+/** @brief 'afw_utf8_t' for string "Nav" */
+#define afw_components_s_Nav (afw_components_v_Nav.internal)
 
-/** @brief define for quoted string Paper */
+/** @brief 'afw_value_string_t' for string "Nav" */
+extern const afw_value_string_t afw_components_v_Nav;
+
+/** @brief 'afw_utf8_z_t *' for string "Nav" */
+#define afw_components_z_Nav (afw_components_v_Nav.internal.s)
+
+
+
+/** @brief define for quoted string "Paper" */
 #define AFW_COMPONENTS_Q_Paper "Paper"
 
-/** @brief afw_utf8_t for string Paper */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Paper;
+/** @brief 'afw_utf8_t' for string "Paper" */
+#define afw_components_s_Paper (afw_components_v_Paper.internal)
 
-/** @brief define for quoted string Picker */
+/** @brief 'afw_value_string_t' for string "Paper" */
+extern const afw_value_string_t afw_components_v_Paper;
+
+/** @brief 'afw_utf8_z_t *' for string "Paper" */
+#define afw_components_z_Paper (afw_components_v_Paper.internal.s)
+
+
+
+/** @brief define for quoted string "Picker" */
 #define AFW_COMPONENTS_Q_Picker "Picker"
 
-/** @brief afw_utf8_t for string Picker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Picker;
+/** @brief 'afw_utf8_t' for string "Picker" */
+#define afw_components_s_Picker (afw_components_v_Picker.internal)
 
-/** @brief define for quoted string Responsive */
+/** @brief 'afw_value_string_t' for string "Picker" */
+extern const afw_value_string_t afw_components_v_Picker;
+
+/** @brief 'afw_utf8_z_t *' for string "Picker" */
+#define afw_components_z_Picker (afw_components_v_Picker.internal.s)
+
+
+
+/** @brief define for quoted string "Responsive" */
 #define AFW_COMPONENTS_Q_Responsive "Responsive"
 
-/** @brief afw_utf8_t for string Responsive */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Responsive;
+/** @brief 'afw_utf8_t' for string "Responsive" */
+#define afw_components_s_Responsive (afw_components_v_Responsive.internal)
 
-/** @brief define for quoted string Skeleton */
+/** @brief 'afw_value_string_t' for string "Responsive" */
+extern const afw_value_string_t afw_components_v_Responsive;
+
+/** @brief 'afw_utf8_z_t *' for string "Responsive" */
+#define afw_components_z_Responsive (afw_components_v_Responsive.internal.s)
+
+
+
+/** @brief define for quoted string "Skeleton" */
 #define AFW_COMPONENTS_Q_Skeleton "Skeleton"
 
-/** @brief afw_utf8_t for string Skeleton */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Skeleton;
+/** @brief 'afw_utf8_t' for string "Skeleton" */
+#define afw_components_s_Skeleton (afw_components_v_Skeleton.internal)
 
-/** @brief define for quoted string Slider */
+/** @brief 'afw_value_string_t' for string "Skeleton" */
+extern const afw_value_string_t afw_components_v_Skeleton;
+
+/** @brief 'afw_utf8_z_t *' for string "Skeleton" */
+#define afw_components_z_Skeleton (afw_components_v_Skeleton.internal.s)
+
+
+
+/** @brief define for quoted string "Slider" */
 #define AFW_COMPONENTS_Q_Slider "Slider"
 
-/** @brief afw_utf8_t for string Slider */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Slider;
+/** @brief 'afw_utf8_t' for string "Slider" */
+#define afw_components_s_Slider (afw_components_v_Slider.internal)
 
-/** @brief define for quoted string Snackbar */
+/** @brief 'afw_value_string_t' for string "Slider" */
+extern const afw_value_string_t afw_components_v_Slider;
+
+/** @brief 'afw_utf8_z_t *' for string "Slider" */
+#define afw_components_z_Slider (afw_components_v_Slider.internal.s)
+
+
+
+/** @brief define for quoted string "Snackbar" */
 #define AFW_COMPONENTS_Q_Snackbar "Snackbar"
 
-/** @brief afw_utf8_t for string Snackbar */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Snackbar;
+/** @brief 'afw_utf8_t' for string "Snackbar" */
+#define afw_components_s_Snackbar (afw_components_v_Snackbar.internal)
 
-/** @brief define for quoted string SpinButton */
+/** @brief 'afw_value_string_t' for string "Snackbar" */
+extern const afw_value_string_t afw_components_v_Snackbar;
+
+/** @brief 'afw_utf8_z_t *' for string "Snackbar" */
+#define afw_components_z_Snackbar (afw_components_v_Snackbar.internal.s)
+
+
+
+/** @brief define for quoted string "SpinButton" */
 #define AFW_COMPONENTS_Q_SpinButton "SpinButton"
 
-/** @brief afw_utf8_t for string SpinButton */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_SpinButton;
+/** @brief 'afw_utf8_t' for string "SpinButton" */
+#define afw_components_s_SpinButton (afw_components_v_SpinButton.internal)
 
-/** @brief define for quoted string Spinner */
+/** @brief 'afw_value_string_t' for string "SpinButton" */
+extern const afw_value_string_t afw_components_v_SpinButton;
+
+/** @brief 'afw_utf8_z_t *' for string "SpinButton" */
+#define afw_components_z_SpinButton (afw_components_v_SpinButton.internal.s)
+
+
+
+/** @brief define for quoted string "Spinner" */
 #define AFW_COMPONENTS_Q_Spinner "Spinner"
 
-/** @brief afw_utf8_t for string Spinner */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Spinner;
+/** @brief 'afw_utf8_t' for string "Spinner" */
+#define afw_components_s_Spinner (afw_components_v_Spinner.internal)
 
-/** @brief define for quoted string Stepper */
+/** @brief 'afw_value_string_t' for string "Spinner" */
+extern const afw_value_string_t afw_components_v_Spinner;
+
+/** @brief 'afw_utf8_z_t *' for string "Spinner" */
+#define afw_components_z_Spinner (afw_components_v_Spinner.internal.s)
+
+
+
+/** @brief define for quoted string "Stepper" */
 #define AFW_COMPONENTS_Q_Stepper "Stepper"
 
-/** @brief afw_utf8_t for string Stepper */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Stepper;
+/** @brief 'afw_utf8_t' for string "Stepper" */
+#define afw_components_s_Stepper (afw_components_v_Stepper.internal)
 
-/** @brief define for quoted string Table */
+/** @brief 'afw_value_string_t' for string "Stepper" */
+extern const afw_value_string_t afw_components_v_Stepper;
+
+/** @brief 'afw_utf8_z_t *' for string "Stepper" */
+#define afw_components_z_Stepper (afw_components_v_Stepper.internal.s)
+
+
+
+/** @brief define for quoted string "Table" */
 #define AFW_COMPONENTS_Q_Table "Table"
 
-/** @brief afw_utf8_t for string Table */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Table;
+/** @brief 'afw_utf8_t' for string "Table" */
+#define afw_components_s_Table (afw_components_v_Table.internal)
 
-/** @brief define for quoted string Tabs */
+/** @brief 'afw_value_string_t' for string "Table" */
+extern const afw_value_string_t afw_components_v_Table;
+
+/** @brief 'afw_utf8_z_t *' for string "Table" */
+#define afw_components_z_Table (afw_components_v_Table.internal.s)
+
+
+
+/** @brief define for quoted string "Tabs" */
 #define AFW_COMPONENTS_Q_Tabs "Tabs"
 
-/** @brief afw_utf8_t for string Tabs */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Tabs;
+/** @brief 'afw_utf8_t' for string "Tabs" */
+#define afw_components_s_Tabs (afw_components_v_Tabs.internal)
 
-/** @brief define for quoted string TextField */
+/** @brief 'afw_value_string_t' for string "Tabs" */
+extern const afw_value_string_t afw_components_v_Tabs;
+
+/** @brief 'afw_utf8_z_t *' for string "Tabs" */
+#define afw_components_z_Tabs (afw_components_v_Tabs.internal.s)
+
+
+
+/** @brief define for quoted string "TextField" */
 #define AFW_COMPONENTS_Q_TextField "TextField"
 
-/** @brief afw_utf8_t for string TextField */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_TextField;
+/** @brief 'afw_utf8_t' for string "TextField" */
+#define afw_components_s_TextField (afw_components_v_TextField.internal)
 
-/** @brief define for quoted string TimeDuration */
+/** @brief 'afw_value_string_t' for string "TextField" */
+extern const afw_value_string_t afw_components_v_TextField;
+
+/** @brief 'afw_utf8_z_t *' for string "TextField" */
+#define afw_components_z_TextField (afw_components_v_TextField.internal.s)
+
+
+
+/** @brief define for quoted string "TimeDuration" */
 #define AFW_COMPONENTS_Q_TimeDuration "TimeDuration"
 
-/** @brief afw_utf8_t for string TimeDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_TimeDuration;
+/** @brief 'afw_utf8_t' for string "TimeDuration" */
+#define afw_components_s_TimeDuration (afw_components_v_TimeDuration.internal)
 
-/** @brief define for quoted string TimePicker */
+/** @brief 'afw_value_string_t' for string "TimeDuration" */
+extern const afw_value_string_t afw_components_v_TimeDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "TimeDuration" */
+#define afw_components_z_TimeDuration (afw_components_v_TimeDuration.internal.s)
+
+
+
+/** @brief define for quoted string "TimePicker" */
 #define AFW_COMPONENTS_Q_TimePicker "TimePicker"
 
-/** @brief afw_utf8_t for string TimePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_TimePicker;
+/** @brief 'afw_utf8_t' for string "TimePicker" */
+#define afw_components_s_TimePicker (afw_components_v_TimePicker.internal)
 
-/** @brief define for quoted string TimezonePicker */
+/** @brief 'afw_value_string_t' for string "TimePicker" */
+extern const afw_value_string_t afw_components_v_TimePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "TimePicker" */
+#define afw_components_z_TimePicker (afw_components_v_TimePicker.internal.s)
+
+
+
+/** @brief define for quoted string "TimezonePicker" */
 #define AFW_COMPONENTS_Q_TimezonePicker "TimezonePicker"
 
-/** @brief afw_utf8_t for string TimezonePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_TimezonePicker;
+/** @brief 'afw_utf8_t' for string "TimezonePicker" */
+#define afw_components_s_TimezonePicker (afw_components_v_TimezonePicker.internal)
 
-/** @brief define for quoted string Toggle */
+/** @brief 'afw_value_string_t' for string "TimezonePicker" */
+extern const afw_value_string_t afw_components_v_TimezonePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "TimezonePicker" */
+#define afw_components_z_TimezonePicker (afw_components_v_TimezonePicker.internal.s)
+
+
+
+/** @brief define for quoted string "Toggle" */
 #define AFW_COMPONENTS_Q_Toggle "Toggle"
 
-/** @brief afw_utf8_t for string Toggle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Toggle;
+/** @brief 'afw_utf8_t' for string "Toggle" */
+#define afw_components_s_Toggle (afw_components_v_Toggle.internal)
 
-/** @brief define for quoted string ToggleButtons */
+/** @brief 'afw_value_string_t' for string "Toggle" */
+extern const afw_value_string_t afw_components_v_Toggle;
+
+/** @brief 'afw_utf8_z_t *' for string "Toggle" */
+#define afw_components_z_Toggle (afw_components_v_Toggle.internal.s)
+
+
+
+/** @brief define for quoted string "ToggleButtons" */
 #define AFW_COMPONENTS_Q_ToggleButtons "ToggleButtons"
 
-/** @brief afw_utf8_t for string ToggleButtons */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_ToggleButtons;
+/** @brief 'afw_utf8_t' for string "ToggleButtons" */
+#define afw_components_s_ToggleButtons (afw_components_v_ToggleButtons.internal)
 
-/** @brief define for quoted string Toolbar */
+/** @brief 'afw_value_string_t' for string "ToggleButtons" */
+extern const afw_value_string_t afw_components_v_ToggleButtons;
+
+/** @brief 'afw_utf8_z_t *' for string "ToggleButtons" */
+#define afw_components_z_ToggleButtons (afw_components_v_ToggleButtons.internal.s)
+
+
+
+/** @brief define for quoted string "Toolbar" */
 #define AFW_COMPONENTS_Q_Toolbar "Toolbar"
 
-/** @brief afw_utf8_t for string Toolbar */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Toolbar;
+/** @brief 'afw_utf8_t' for string "Toolbar" */
+#define afw_components_s_Toolbar (afw_components_v_Toolbar.internal)
 
-/** @brief define for quoted string Tooltip */
+/** @brief 'afw_value_string_t' for string "Toolbar" */
+extern const afw_value_string_t afw_components_v_Toolbar;
+
+/** @brief 'afw_utf8_z_t *' for string "Toolbar" */
+#define afw_components_z_Toolbar (afw_components_v_Toolbar.internal.s)
+
+
+
+/** @brief define for quoted string "Tooltip" */
 #define AFW_COMPONENTS_Q_Tooltip "Tooltip"
 
-/** @brief afw_utf8_t for string Tooltip */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Tooltip;
+/** @brief 'afw_utf8_t' for string "Tooltip" */
+#define afw_components_s_Tooltip (afw_components_v_Tooltip.internal)
 
-/** @brief define for quoted string Tree */
+/** @brief 'afw_value_string_t' for string "Tooltip" */
+extern const afw_value_string_t afw_components_v_Tooltip;
+
+/** @brief 'afw_utf8_z_t *' for string "Tooltip" */
+#define afw_components_z_Tooltip (afw_components_v_Tooltip.internal.s)
+
+
+
+/** @brief define for quoted string "Tree" */
 #define AFW_COMPONENTS_Q_Tree "Tree"
 
-/** @brief afw_utf8_t for string Tree */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Tree;
+/** @brief 'afw_utf8_t' for string "Tree" */
+#define afw_components_s_Tree (afw_components_v_Tree.internal)
 
-/** @brief define for quoted string Typography */
+/** @brief 'afw_value_string_t' for string "Tree" */
+extern const afw_value_string_t afw_components_v_Tree;
+
+/** @brief 'afw_utf8_z_t *' for string "Tree" */
+#define afw_components_z_Tree (afw_components_v_Tree.internal.s)
+
+
+
+/** @brief define for quoted string "Typography" */
 #define AFW_COMPONENTS_Q_Typography "Typography"
 
-/** @brief afw_utf8_t for string Typography */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_Typography;
+/** @brief 'afw_utf8_t' for string "Typography" */
+#define afw_components_s_Typography (afw_components_v_Typography.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentTypeCategory_ */
+/** @brief 'afw_value_string_t' for string "Typography" */
+extern const afw_value_string_t afw_components_v_Typography;
+
+/** @brief 'afw_utf8_z_t *' for string "Typography" */
+#define afw_components_z_Typography (afw_components_v_Typography.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentTypeCategory_" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_ "_AdaptiveLayoutComponentTypeCategory_"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentTypeCategory_ */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentTypeCategory_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentTypeCategory_" */
+#define afw_components_s__AdaptiveLayoutComponentTypeCategory_ (afw_components_v__AdaptiveLayoutComponentTypeCategory_.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentTypeCategory_" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentTypeCategory_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentTypeCategory_" */
+#define afw_components_z__AdaptiveLayoutComponentTypeCategory_ (afw_components_v__AdaptiveLayoutComponentTypeCategory_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ "_AdaptiveLayoutComponentType_"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_" */
+#define afw_components_s__AdaptiveLayoutComponentType_ (afw_components_v__AdaptiveLayoutComponentType_.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_AdaptiveProperty */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_" */
+#define afw_components_z__AdaptiveLayoutComponentType_ (afw_components_v__AdaptiveLayoutComponentType_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_AdaptiveProperty" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty "_AdaptiveLayoutComponentType_AdaptiveProperty"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_AdaptiveProperty */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_AdaptiveProperty;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_AdaptiveProperty" */
+#define afw_components_s__AdaptiveLayoutComponentType_AdaptiveProperty (afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Autocomplete */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_AdaptiveProperty" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_AdaptiveProperty" */
+#define afw_components_z__AdaptiveLayoutComponentType_AdaptiveProperty (afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Autocomplete" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete "_AdaptiveLayoutComponentType_Autocomplete"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Autocomplete */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Autocomplete;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Autocomplete" */
+#define afw_components_s__AdaptiveLayoutComponentType_Autocomplete (afw_components_v__AdaptiveLayoutComponentType_Autocomplete.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Autocomplete_Option */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Autocomplete" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Autocomplete;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Autocomplete" */
+#define afw_components_z__AdaptiveLayoutComponentType_Autocomplete (afw_components_v__AdaptiveLayoutComponentType_Autocomplete.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Autocomplete_Option" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option "_AdaptiveLayoutComponentType_Autocomplete_Option"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Autocomplete_Option */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Autocomplete_Option;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Autocomplete_Option" */
+#define afw_components_s__AdaptiveLayoutComponentType_Autocomplete_Option (afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Box */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Autocomplete_Option" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Autocomplete_Option" */
+#define afw_components_z__AdaptiveLayoutComponentType_Autocomplete_Option (afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Box" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box "_AdaptiveLayoutComponentType_Box"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Box */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Box;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Box" */
+#define afw_components_s__AdaptiveLayoutComponentType_Box (afw_components_v__AdaptiveLayoutComponentType_Box.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_BoxItem */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Box" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Box;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Box" */
+#define afw_components_z__AdaptiveLayoutComponentType_Box (afw_components_v__AdaptiveLayoutComponentType_Box.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_BoxItem" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem "_AdaptiveLayoutComponentType_BoxItem"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_BoxItem */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_BoxItem;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_BoxItem" */
+#define afw_components_s__AdaptiveLayoutComponentType_BoxItem (afw_components_v__AdaptiveLayoutComponentType_BoxItem.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Breadcrumb */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_BoxItem" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_BoxItem;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_BoxItem" */
+#define afw_components_z__AdaptiveLayoutComponentType_BoxItem (afw_components_v__AdaptiveLayoutComponentType_BoxItem.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Breadcrumb" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb "_AdaptiveLayoutComponentType_Breadcrumb"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Breadcrumb */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Breadcrumb;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Breadcrumb" */
+#define afw_components_s__AdaptiveLayoutComponentType_Breadcrumb (afw_components_v__AdaptiveLayoutComponentType_Breadcrumb.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_BreadcrumbItem */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Breadcrumb" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Breadcrumb;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Breadcrumb" */
+#define afw_components_z__AdaptiveLayoutComponentType_Breadcrumb (afw_components_v__AdaptiveLayoutComponentType_Breadcrumb.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_BreadcrumbItem" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem "_AdaptiveLayoutComponentType_BreadcrumbItem"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_BreadcrumbItem */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_BreadcrumbItem;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_BreadcrumbItem" */
+#define afw_components_s__AdaptiveLayoutComponentType_BreadcrumbItem (afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Button */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_BreadcrumbItem" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_BreadcrumbItem" */
+#define afw_components_z__AdaptiveLayoutComponentType_BreadcrumbItem (afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Button" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button "_AdaptiveLayoutComponentType_Button"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Button */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Button;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Button" */
+#define afw_components_s__AdaptiveLayoutComponentType_Button (afw_components_v__AdaptiveLayoutComponentType_Button.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Callout */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Button" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Button;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Button" */
+#define afw_components_z__AdaptiveLayoutComponentType_Button (afw_components_v__AdaptiveLayoutComponentType_Button.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Callout" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout "_AdaptiveLayoutComponentType_Callout"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Callout */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Callout;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Callout" */
+#define afw_components_s__AdaptiveLayoutComponentType_Callout (afw_components_v__AdaptiveLayoutComponentType_Callout.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Chart */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Callout" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Callout;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Callout" */
+#define afw_components_z__AdaptiveLayoutComponentType_Callout (afw_components_v__AdaptiveLayoutComponentType_Callout.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Chart" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart "_AdaptiveLayoutComponentType_Chart"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Chart */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Chart;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Chart" */
+#define afw_components_s__AdaptiveLayoutComponentType_Chart (afw_components_v__AdaptiveLayoutComponentType_Chart.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Chart_Data */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Chart" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Chart;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Chart" */
+#define afw_components_z__AdaptiveLayoutComponentType_Chart (afw_components_v__AdaptiveLayoutComponentType_Chart.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Chart_Data" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data "_AdaptiveLayoutComponentType_Chart_Data"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Chart_Data */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Chart_Data;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Chart_Data" */
+#define afw_components_s__AdaptiveLayoutComponentType_Chart_Data (afw_components_v__AdaptiveLayoutComponentType_Chart_Data.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Checkbox */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Chart_Data" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Chart_Data;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Chart_Data" */
+#define afw_components_z__AdaptiveLayoutComponentType_Chart_Data (afw_components_v__AdaptiveLayoutComponentType_Chart_Data.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Checkbox" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox "_AdaptiveLayoutComponentType_Checkbox"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Checkbox */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Checkbox;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Checkbox" */
+#define afw_components_s__AdaptiveLayoutComponentType_Checkbox (afw_components_v__AdaptiveLayoutComponentType_Checkbox.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ChoiceGroup */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Checkbox" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Checkbox;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Checkbox" */
+#define afw_components_z__AdaptiveLayoutComponentType_Checkbox (afw_components_v__AdaptiveLayoutComponentType_Checkbox.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ChoiceGroup" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup "_AdaptiveLayoutComponentType_ChoiceGroup"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ChoiceGroup */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ChoiceGroup" */
+#define afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ChoiceGroup_Option */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ChoiceGroup" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ChoiceGroup" */
+#define afw_components_z__AdaptiveLayoutComponentType_ChoiceGroup (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ChoiceGroup_Option" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option "_AdaptiveLayoutComponentType_ChoiceGroup_Option"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ChoiceGroup_Option */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup_Option;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ChoiceGroup_Option" */
+#define afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup_Option (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_CodeEditor */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ChoiceGroup_Option" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ChoiceGroup_Option" */
+#define afw_components_z__AdaptiveLayoutComponentType_ChoiceGroup_Option (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_CodeEditor" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor "_AdaptiveLayoutComponentType_CodeEditor"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_CodeEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_CodeEditor;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_CodeEditor" */
+#define afw_components_s__AdaptiveLayoutComponentType_CodeEditor (afw_components_v__AdaptiveLayoutComponentType_CodeEditor.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Collapsible */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_CodeEditor" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_CodeEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_CodeEditor" */
+#define afw_components_z__AdaptiveLayoutComponentType_CodeEditor (afw_components_v__AdaptiveLayoutComponentType_CodeEditor.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Collapsible" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible "_AdaptiveLayoutComponentType_Collapsible"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Collapsible */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Collapsible;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Collapsible" */
+#define afw_components_s__AdaptiveLayoutComponentType_Collapsible (afw_components_v__AdaptiveLayoutComponentType_Collapsible.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Common */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Collapsible" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Collapsible;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Collapsible" */
+#define afw_components_z__AdaptiveLayoutComponentType_Collapsible (afw_components_v__AdaptiveLayoutComponentType_Collapsible.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Common" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common "_AdaptiveLayoutComponentType_Common"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Common */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Common;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Common" */
+#define afw_components_s__AdaptiveLayoutComponentType_Common (afw_components_v__AdaptiveLayoutComponentType_Common.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_DatePicker */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Common" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Common;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Common" */
+#define afw_components_z__AdaptiveLayoutComponentType_Common (afw_components_v__AdaptiveLayoutComponentType_Common.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_DatePicker" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker "_AdaptiveLayoutComponentType_DatePicker"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_DatePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DatePicker;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_DatePicker" */
+#define afw_components_s__AdaptiveLayoutComponentType_DatePicker (afw_components_v__AdaptiveLayoutComponentType_DatePicker.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_DateTimePicker */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_DatePicker" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DatePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_DatePicker" */
+#define afw_components_z__AdaptiveLayoutComponentType_DatePicker (afw_components_v__AdaptiveLayoutComponentType_DatePicker.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_DateTimePicker" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker "_AdaptiveLayoutComponentType_DateTimePicker"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_DateTimePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DateTimePicker;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_DateTimePicker" */
+#define afw_components_s__AdaptiveLayoutComponentType_DateTimePicker (afw_components_v__AdaptiveLayoutComponentType_DateTimePicker.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Dialog */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_DateTimePicker" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DateTimePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_DateTimePicker" */
+#define afw_components_z__AdaptiveLayoutComponentType_DateTimePicker (afw_components_v__AdaptiveLayoutComponentType_DateTimePicker.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Dialog" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog "_AdaptiveLayoutComponentType_Dialog"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Dialog */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Dialog;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Dialog" */
+#define afw_components_s__AdaptiveLayoutComponentType_Dialog (afw_components_v__AdaptiveLayoutComponentType_Dialog.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_DiffEditor */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Dialog" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dialog;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Dialog" */
+#define afw_components_z__AdaptiveLayoutComponentType_Dialog (afw_components_v__AdaptiveLayoutComponentType_Dialog.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_DiffEditor" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor "_AdaptiveLayoutComponentType_DiffEditor"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_DiffEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DiffEditor;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_DiffEditor" */
+#define afw_components_s__AdaptiveLayoutComponentType_DiffEditor (afw_components_v__AdaptiveLayoutComponentType_DiffEditor.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Divider */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_DiffEditor" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DiffEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_DiffEditor" */
+#define afw_components_z__AdaptiveLayoutComponentType_DiffEditor (afw_components_v__AdaptiveLayoutComponentType_DiffEditor.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Divider" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider "_AdaptiveLayoutComponentType_Divider"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Divider */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Divider;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Divider" */
+#define afw_components_s__AdaptiveLayoutComponentType_Divider (afw_components_v__AdaptiveLayoutComponentType_Divider.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Drawer */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Divider" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Divider;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Divider" */
+#define afw_components_z__AdaptiveLayoutComponentType_Divider (afw_components_v__AdaptiveLayoutComponentType_Divider.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Drawer" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer "_AdaptiveLayoutComponentType_Drawer"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Drawer */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Drawer;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Drawer" */
+#define afw_components_s__AdaptiveLayoutComponentType_Drawer (afw_components_v__AdaptiveLayoutComponentType_Drawer.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Dropdown */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Drawer" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Drawer;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Drawer" */
+#define afw_components_z__AdaptiveLayoutComponentType_Drawer (afw_components_v__AdaptiveLayoutComponentType_Drawer.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Dropdown" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown "_AdaptiveLayoutComponentType_Dropdown"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Dropdown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Dropdown;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Dropdown" */
+#define afw_components_s__AdaptiveLayoutComponentType_Dropdown (afw_components_v__AdaptiveLayoutComponentType_Dropdown.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_DropdownEditor */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Dropdown" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dropdown;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Dropdown" */
+#define afw_components_z__AdaptiveLayoutComponentType_Dropdown (afw_components_v__AdaptiveLayoutComponentType_Dropdown.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_DropdownEditor" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor "_AdaptiveLayoutComponentType_DropdownEditor"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_DropdownEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DropdownEditor;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_DropdownEditor" */
+#define afw_components_s__AdaptiveLayoutComponentType_DropdownEditor (afw_components_v__AdaptiveLayoutComponentType_DropdownEditor.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Dropdown_Option */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_DropdownEditor" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DropdownEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_DropdownEditor" */
+#define afw_components_z__AdaptiveLayoutComponentType_DropdownEditor (afw_components_v__AdaptiveLayoutComponentType_DropdownEditor.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Dropdown_Option" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option "_AdaptiveLayoutComponentType_Dropdown_Option"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Dropdown_Option */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Dropdown_Option;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Dropdown_Option" */
+#define afw_components_s__AdaptiveLayoutComponentType_Dropdown_Option (afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_EditableCallout */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Dropdown_Option" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Dropdown_Option" */
+#define afw_components_z__AdaptiveLayoutComponentType_Dropdown_Option (afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_EditableCallout" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout "_AdaptiveLayoutComponentType_EditableCallout"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_EditableCallout */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_EditableCallout;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_EditableCallout" */
+#define afw_components_s__AdaptiveLayoutComponentType_EditableCallout (afw_components_v__AdaptiveLayoutComponentType_EditableCallout.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_EditableLabel */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_EditableCallout" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_EditableCallout;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_EditableCallout" */
+#define afw_components_z__AdaptiveLayoutComponentType_EditableCallout (afw_components_v__AdaptiveLayoutComponentType_EditableCallout.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_EditableLabel" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel "_AdaptiveLayoutComponentType_EditableLabel"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_EditableLabel */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_EditableLabel;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_EditableLabel" */
+#define afw_components_s__AdaptiveLayoutComponentType_EditableLabel (afw_components_v__AdaptiveLayoutComponentType_EditableLabel.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Hidden */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_EditableLabel" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_EditableLabel;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_EditableLabel" */
+#define afw_components_z__AdaptiveLayoutComponentType_EditableLabel (afw_components_v__AdaptiveLayoutComponentType_EditableLabel.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Hidden" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden "_AdaptiveLayoutComponentType_Hidden"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Hidden */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Hidden;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Hidden" */
+#define afw_components_s__AdaptiveLayoutComponentType_Hidden (afw_components_v__AdaptiveLayoutComponentType_Hidden.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Icon */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Hidden" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Hidden;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Hidden" */
+#define afw_components_z__AdaptiveLayoutComponentType_Hidden (afw_components_v__AdaptiveLayoutComponentType_Hidden.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Icon" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon "_AdaptiveLayoutComponentType_Icon"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Icon */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Icon;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Icon" */
+#define afw_components_s__AdaptiveLayoutComponentType_Icon (afw_components_v__AdaptiveLayoutComponentType_Icon.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Image */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Icon" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Icon;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Icon" */
+#define afw_components_z__AdaptiveLayoutComponentType_Icon (afw_components_v__AdaptiveLayoutComponentType_Icon.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Image" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image "_AdaptiveLayoutComponentType_Image"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Image */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Image;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Image" */
+#define afw_components_s__AdaptiveLayoutComponentType_Image (afw_components_v__AdaptiveLayoutComponentType_Image.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Label */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Image" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Image;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Image" */
+#define afw_components_z__AdaptiveLayoutComponentType_Image (afw_components_v__AdaptiveLayoutComponentType_Image.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Label" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label "_AdaptiveLayoutComponentType_Label"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Label */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Label;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Label" */
+#define afw_components_s__AdaptiveLayoutComponentType_Label (afw_components_v__AdaptiveLayoutComponentType_Label.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Link */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Label" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Label;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Label" */
+#define afw_components_z__AdaptiveLayoutComponentType_Label (afw_components_v__AdaptiveLayoutComponentType_Label.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Link" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link "_AdaptiveLayoutComponentType_Link"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Link */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Link;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Link" */
+#define afw_components_s__AdaptiveLayoutComponentType_Link (afw_components_v__AdaptiveLayoutComponentType_Link.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_List */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Link" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Link;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Link" */
+#define afw_components_z__AdaptiveLayoutComponentType_Link (afw_components_v__AdaptiveLayoutComponentType_Link.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_List" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List "_AdaptiveLayoutComponentType_List"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_List */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_List;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_List" */
+#define afw_components_s__AdaptiveLayoutComponentType_List (afw_components_v__AdaptiveLayoutComponentType_List.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ListEditor */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_List" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_List;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_List" */
+#define afw_components_z__AdaptiveLayoutComponentType_List (afw_components_v__AdaptiveLayoutComponentType_List.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ListEditor" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor "_AdaptiveLayoutComponentType_ListEditor"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ListEditor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ListEditor;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ListEditor" */
+#define afw_components_s__AdaptiveLayoutComponentType_ListEditor (afw_components_v__AdaptiveLayoutComponentType_ListEditor.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ListEditor_Item */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ListEditor" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ListEditor;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ListEditor" */
+#define afw_components_z__AdaptiveLayoutComponentType_ListEditor (afw_components_v__AdaptiveLayoutComponentType_ListEditor.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ListEditor_Item" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item "_AdaptiveLayoutComponentType_ListEditor_Item"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ListEditor_Item */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ListEditor_Item;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ListEditor_Item" */
+#define afw_components_s__AdaptiveLayoutComponentType_ListEditor_Item (afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Menu */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ListEditor_Item" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ListEditor_Item" */
+#define afw_components_z__AdaptiveLayoutComponentType_ListEditor_Item (afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Menu" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu "_AdaptiveLayoutComponentType_Menu"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Menu */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Menu;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Menu" */
+#define afw_components_s__AdaptiveLayoutComponentType_Menu (afw_components_v__AdaptiveLayoutComponentType_Menu.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Menu_Item */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Menu" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Menu;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Menu" */
+#define afw_components_z__AdaptiveLayoutComponentType_Menu (afw_components_v__AdaptiveLayoutComponentType_Menu.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Menu_Item" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item "_AdaptiveLayoutComponentType_Menu_Item"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Menu_Item */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Menu_Item;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Menu_Item" */
+#define afw_components_s__AdaptiveLayoutComponentType_Menu_Item (afw_components_v__AdaptiveLayoutComponentType_Menu_Item.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Message */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Menu_Item" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Menu_Item;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Menu_Item" */
+#define afw_components_z__AdaptiveLayoutComponentType_Menu_Item (afw_components_v__AdaptiveLayoutComponentType_Menu_Item.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Message" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message "_AdaptiveLayoutComponentType_Message"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Message */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Message;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Message" */
+#define afw_components_s__AdaptiveLayoutComponentType_Message (afw_components_v__AdaptiveLayoutComponentType_Message.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Modal */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Message" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Message;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Message" */
+#define afw_components_z__AdaptiveLayoutComponentType_Message (afw_components_v__AdaptiveLayoutComponentType_Message.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Modal" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal "_AdaptiveLayoutComponentType_Modal"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Modal */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Modal;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Modal" */
+#define afw_components_s__AdaptiveLayoutComponentType_Modal (afw_components_v__AdaptiveLayoutComponentType_Modal.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Native */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Modal" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Modal;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Modal" */
+#define afw_components_z__AdaptiveLayoutComponentType_Modal (afw_components_v__AdaptiveLayoutComponentType_Modal.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Native" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native "_AdaptiveLayoutComponentType_Native"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Native */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Native;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Native" */
+#define afw_components_s__AdaptiveLayoutComponentType_Native (afw_components_v__AdaptiveLayoutComponentType_Native.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Nav */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Native" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Native;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Native" */
+#define afw_components_z__AdaptiveLayoutComponentType_Native (afw_components_v__AdaptiveLayoutComponentType_Native.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Nav" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav "_AdaptiveLayoutComponentType_Nav"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Nav */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Nav;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Nav" */
+#define afw_components_s__AdaptiveLayoutComponentType_Nav (afw_components_v__AdaptiveLayoutComponentType_Nav.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Nav_Item */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Nav" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Nav;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Nav" */
+#define afw_components_z__AdaptiveLayoutComponentType_Nav (afw_components_v__AdaptiveLayoutComponentType_Nav.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Nav_Item" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item "_AdaptiveLayoutComponentType_Nav_Item"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Nav_Item */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Nav_Item;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Nav_Item" */
+#define afw_components_s__AdaptiveLayoutComponentType_Nav_Item (afw_components_v__AdaptiveLayoutComponentType_Nav_Item.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Paper */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Nav_Item" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Nav_Item;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Nav_Item" */
+#define afw_components_z__AdaptiveLayoutComponentType_Nav_Item (afw_components_v__AdaptiveLayoutComponentType_Nav_Item.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Paper" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper "_AdaptiveLayoutComponentType_Paper"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Paper */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Paper;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Paper" */
+#define afw_components_s__AdaptiveLayoutComponentType_Paper (afw_components_v__AdaptiveLayoutComponentType_Paper.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Picker */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Paper" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Paper;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Paper" */
+#define afw_components_z__AdaptiveLayoutComponentType_Paper (afw_components_v__AdaptiveLayoutComponentType_Paper.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Picker" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker "_AdaptiveLayoutComponentType_Picker"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Picker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Picker;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Picker" */
+#define afw_components_s__AdaptiveLayoutComponentType_Picker (afw_components_v__AdaptiveLayoutComponentType_Picker.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Picker_Item */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Picker" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Picker;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Picker" */
+#define afw_components_z__AdaptiveLayoutComponentType_Picker (afw_components_v__AdaptiveLayoutComponentType_Picker.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Picker_Item" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item "_AdaptiveLayoutComponentType_Picker_Item"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Picker_Item */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Picker_Item;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Picker_Item" */
+#define afw_components_s__AdaptiveLayoutComponentType_Picker_Item (afw_components_v__AdaptiveLayoutComponentType_Picker_Item.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Responsive */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Picker_Item" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Picker_Item;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Picker_Item" */
+#define afw_components_z__AdaptiveLayoutComponentType_Picker_Item (afw_components_v__AdaptiveLayoutComponentType_Picker_Item.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Responsive" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive "_AdaptiveLayoutComponentType_Responsive"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Responsive */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Responsive;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Responsive" */
+#define afw_components_s__AdaptiveLayoutComponentType_Responsive (afw_components_v__AdaptiveLayoutComponentType_Responsive.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ResponsiveCol */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Responsive" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Responsive;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Responsive" */
+#define afw_components_z__AdaptiveLayoutComponentType_Responsive (afw_components_v__AdaptiveLayoutComponentType_Responsive.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ResponsiveCol" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol "_AdaptiveLayoutComponentType_ResponsiveCol"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ResponsiveCol */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ResponsiveCol;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ResponsiveCol" */
+#define afw_components_s__AdaptiveLayoutComponentType_ResponsiveCol (afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ResponsiveRow */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ResponsiveCol" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ResponsiveCol" */
+#define afw_components_z__AdaptiveLayoutComponentType_ResponsiveCol (afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ResponsiveRow" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow "_AdaptiveLayoutComponentType_ResponsiveRow"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ResponsiveRow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ResponsiveRow;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ResponsiveRow" */
+#define afw_components_s__AdaptiveLayoutComponentType_ResponsiveRow (afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Responsive_Breakpoints */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ResponsiveRow" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ResponsiveRow" */
+#define afw_components_z__AdaptiveLayoutComponentType_ResponsiveRow (afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Responsive_Breakpoints" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints "_AdaptiveLayoutComponentType_Responsive_Breakpoints"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Responsive_Breakpoints */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Responsive_Breakpoints;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Responsive_Breakpoints" */
+#define afw_components_s__AdaptiveLayoutComponentType_Responsive_Breakpoints (afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Skeleton */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Responsive_Breakpoints" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Responsive_Breakpoints" */
+#define afw_components_z__AdaptiveLayoutComponentType_Responsive_Breakpoints (afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Skeleton" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton "_AdaptiveLayoutComponentType_Skeleton"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Skeleton */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Skeleton;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Skeleton" */
+#define afw_components_s__AdaptiveLayoutComponentType_Skeleton (afw_components_v__AdaptiveLayoutComponentType_Skeleton.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Slider */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Skeleton" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Skeleton;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Skeleton" */
+#define afw_components_z__AdaptiveLayoutComponentType_Skeleton (afw_components_v__AdaptiveLayoutComponentType_Skeleton.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Slider" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider "_AdaptiveLayoutComponentType_Slider"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Slider */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Slider;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Slider" */
+#define afw_components_s__AdaptiveLayoutComponentType_Slider (afw_components_v__AdaptiveLayoutComponentType_Slider.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Snackbar */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Slider" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Slider;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Slider" */
+#define afw_components_z__AdaptiveLayoutComponentType_Slider (afw_components_v__AdaptiveLayoutComponentType_Slider.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Snackbar" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar "_AdaptiveLayoutComponentType_Snackbar"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Snackbar */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Snackbar;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Snackbar" */
+#define afw_components_s__AdaptiveLayoutComponentType_Snackbar (afw_components_v__AdaptiveLayoutComponentType_Snackbar.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_SpinButton */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Snackbar" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Snackbar;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Snackbar" */
+#define afw_components_z__AdaptiveLayoutComponentType_Snackbar (afw_components_v__AdaptiveLayoutComponentType_Snackbar.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_SpinButton" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton "_AdaptiveLayoutComponentType_SpinButton"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_SpinButton */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_SpinButton;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_SpinButton" */
+#define afw_components_s__AdaptiveLayoutComponentType_SpinButton (afw_components_v__AdaptiveLayoutComponentType_SpinButton.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Spinner */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_SpinButton" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_SpinButton;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_SpinButton" */
+#define afw_components_z__AdaptiveLayoutComponentType_SpinButton (afw_components_v__AdaptiveLayoutComponentType_SpinButton.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Spinner" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner "_AdaptiveLayoutComponentType_Spinner"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Spinner */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Spinner;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Spinner" */
+#define afw_components_s__AdaptiveLayoutComponentType_Spinner (afw_components_v__AdaptiveLayoutComponentType_Spinner.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Stepper */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Spinner" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Spinner;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Spinner" */
+#define afw_components_z__AdaptiveLayoutComponentType_Spinner (afw_components_v__AdaptiveLayoutComponentType_Spinner.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Stepper" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper "_AdaptiveLayoutComponentType_Stepper"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Stepper */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Stepper;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Stepper" */
+#define afw_components_s__AdaptiveLayoutComponentType_Stepper (afw_components_v__AdaptiveLayoutComponentType_Stepper.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Style */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Stepper" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Stepper;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Stepper" */
+#define afw_components_z__AdaptiveLayoutComponentType_Stepper (afw_components_v__AdaptiveLayoutComponentType_Stepper.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Style" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style "_AdaptiveLayoutComponentType_Style"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Style */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Style;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Style" */
+#define afw_components_s__AdaptiveLayoutComponentType_Style (afw_components_v__AdaptiveLayoutComponentType_Style.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Table */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Style" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Style;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Style" */
+#define afw_components_z__AdaptiveLayoutComponentType_Style (afw_components_v__AdaptiveLayoutComponentType_Style.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Table" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table "_AdaptiveLayoutComponentType_Table"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Table */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Table;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Table" */
+#define afw_components_s__AdaptiveLayoutComponentType_Table (afw_components_v__AdaptiveLayoutComponentType_Table.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Table_Column */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Table" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Table" */
+#define afw_components_z__AdaptiveLayoutComponentType_Table (afw_components_v__AdaptiveLayoutComponentType_Table.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Table_Column" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column "_AdaptiveLayoutComponentType_Table_Column"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Table_Column */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Table_Column;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Table_Column" */
+#define afw_components_s__AdaptiveLayoutComponentType_Table_Column (afw_components_v__AdaptiveLayoutComponentType_Table_Column.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Table_Row */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Table_Column" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table_Column;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Table_Column" */
+#define afw_components_z__AdaptiveLayoutComponentType_Table_Column (afw_components_v__AdaptiveLayoutComponentType_Table_Column.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Table_Row" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row "_AdaptiveLayoutComponentType_Table_Row"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Table_Row */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Table_Row;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Table_Row" */
+#define afw_components_s__AdaptiveLayoutComponentType_Table_Row (afw_components_v__AdaptiveLayoutComponentType_Table_Row.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Tabs */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Table_Row" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table_Row;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Table_Row" */
+#define afw_components_z__AdaptiveLayoutComponentType_Table_Row (afw_components_v__AdaptiveLayoutComponentType_Table_Row.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Tabs" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs "_AdaptiveLayoutComponentType_Tabs"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Tabs */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tabs;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Tabs" */
+#define afw_components_s__AdaptiveLayoutComponentType_Tabs (afw_components_v__AdaptiveLayoutComponentType_Tabs.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Tabs_Tab */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Tabs" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tabs;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Tabs" */
+#define afw_components_z__AdaptiveLayoutComponentType_Tabs (afw_components_v__AdaptiveLayoutComponentType_Tabs.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Tabs_Tab" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab "_AdaptiveLayoutComponentType_Tabs_Tab"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Tabs_Tab */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tabs_Tab;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Tabs_Tab" */
+#define afw_components_s__AdaptiveLayoutComponentType_Tabs_Tab (afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_TextField */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Tabs_Tab" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Tabs_Tab" */
+#define afw_components_z__AdaptiveLayoutComponentType_Tabs_Tab (afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_TextField" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField "_AdaptiveLayoutComponentType_TextField"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_TextField */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TextField;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_TextField" */
+#define afw_components_s__AdaptiveLayoutComponentType_TextField (afw_components_v__AdaptiveLayoutComponentType_TextField.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_TimeDuration */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_TextField" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TextField;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_TextField" */
+#define afw_components_z__AdaptiveLayoutComponentType_TextField (afw_components_v__AdaptiveLayoutComponentType_TextField.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_TimeDuration" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration "_AdaptiveLayoutComponentType_TimeDuration"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_TimeDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TimeDuration;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_TimeDuration" */
+#define afw_components_s__AdaptiveLayoutComponentType_TimeDuration (afw_components_v__AdaptiveLayoutComponentType_TimeDuration.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_TimePicker */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_TimeDuration" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimeDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_TimeDuration" */
+#define afw_components_z__AdaptiveLayoutComponentType_TimeDuration (afw_components_v__AdaptiveLayoutComponentType_TimeDuration.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_TimePicker" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker "_AdaptiveLayoutComponentType_TimePicker"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_TimePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TimePicker;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_TimePicker" */
+#define afw_components_s__AdaptiveLayoutComponentType_TimePicker (afw_components_v__AdaptiveLayoutComponentType_TimePicker.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_TimezonePicker */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_TimePicker" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_TimePicker" */
+#define afw_components_z__AdaptiveLayoutComponentType_TimePicker (afw_components_v__AdaptiveLayoutComponentType_TimePicker.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_TimezonePicker" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker "_AdaptiveLayoutComponentType_TimezonePicker"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_TimezonePicker */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TimezonePicker;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_TimezonePicker" */
+#define afw_components_s__AdaptiveLayoutComponentType_TimezonePicker (afw_components_v__AdaptiveLayoutComponentType_TimezonePicker.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Toggle */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_TimezonePicker" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimezonePicker;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_TimezonePicker" */
+#define afw_components_z__AdaptiveLayoutComponentType_TimezonePicker (afw_components_v__AdaptiveLayoutComponentType_TimezonePicker.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Toggle" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle "_AdaptiveLayoutComponentType_Toggle"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Toggle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Toggle;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Toggle" */
+#define afw_components_s__AdaptiveLayoutComponentType_Toggle (afw_components_v__AdaptiveLayoutComponentType_Toggle.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_ToggleButtons */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Toggle" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Toggle;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Toggle" */
+#define afw_components_z__AdaptiveLayoutComponentType_Toggle (afw_components_v__AdaptiveLayoutComponentType_Toggle.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_ToggleButtons" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons "_AdaptiveLayoutComponentType_ToggleButtons"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_ToggleButtons */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ToggleButtons;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_ToggleButtons" */
+#define afw_components_s__AdaptiveLayoutComponentType_ToggleButtons (afw_components_v__AdaptiveLayoutComponentType_ToggleButtons.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Toolbar */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_ToggleButtons" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ToggleButtons;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_ToggleButtons" */
+#define afw_components_z__AdaptiveLayoutComponentType_ToggleButtons (afw_components_v__AdaptiveLayoutComponentType_ToggleButtons.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Toolbar" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar "_AdaptiveLayoutComponentType_Toolbar"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Toolbar */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Toolbar;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Toolbar" */
+#define afw_components_s__AdaptiveLayoutComponentType_Toolbar (afw_components_v__AdaptiveLayoutComponentType_Toolbar.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Tooltip */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Toolbar" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Toolbar;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Toolbar" */
+#define afw_components_z__AdaptiveLayoutComponentType_Toolbar (afw_components_v__AdaptiveLayoutComponentType_Toolbar.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Tooltip" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip "_AdaptiveLayoutComponentType_Tooltip"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Tooltip */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tooltip;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Tooltip" */
+#define afw_components_s__AdaptiveLayoutComponentType_Tooltip (afw_components_v__AdaptiveLayoutComponentType_Tooltip.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Tree */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Tooltip" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tooltip;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Tooltip" */
+#define afw_components_z__AdaptiveLayoutComponentType_Tooltip (afw_components_v__AdaptiveLayoutComponentType_Tooltip.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Tree" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree "_AdaptiveLayoutComponentType_Tree"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Tree */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tree;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Tree" */
+#define afw_components_s__AdaptiveLayoutComponentType_Tree (afw_components_v__AdaptiveLayoutComponentType_Tree.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Tree_Node */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Tree" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tree;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Tree" */
+#define afw_components_z__AdaptiveLayoutComponentType_Tree (afw_components_v__AdaptiveLayoutComponentType_Tree.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Tree_Node" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node "_AdaptiveLayoutComponentType_Tree_Node"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Tree_Node */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tree_Node;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Tree_Node" */
+#define afw_components_s__AdaptiveLayoutComponentType_Tree_Node (afw_components_v__AdaptiveLayoutComponentType_Tree_Node.internal)
 
-/** @brief define for quoted string _AdaptiveLayoutComponentType_Typography */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Tree_Node" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tree_Node;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Tree_Node" */
+#define afw_components_z__AdaptiveLayoutComponentType_Tree_Node (afw_components_v__AdaptiveLayoutComponentType_Tree_Node.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayoutComponentType_Typography" */
 #define AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography "_AdaptiveLayoutComponentType_Typography"
 
-/** @brief afw_utf8_t for string _AdaptiveLayoutComponentType_Typography */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Typography;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayoutComponentType_Typography" */
+#define afw_components_s__AdaptiveLayoutComponentType_Typography (afw_components_v__AdaptiveLayoutComponentType_Typography.internal)
 
-/** @brief define for quoted string _AdaptiveLayout_ObjectResponsive */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayoutComponentType_Typography" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Typography;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayoutComponentType_Typography" */
+#define afw_components_z__AdaptiveLayoutComponentType_Typography (afw_components_v__AdaptiveLayoutComponentType_Typography.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayout_ObjectResponsive" */
 #define AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive "_AdaptiveLayout_ObjectResponsive"
 
-/** @brief afw_utf8_t for string _AdaptiveLayout_ObjectResponsive */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayout_ObjectResponsive" */
+#define afw_components_s__AdaptiveLayout_ObjectResponsive (afw_components_v__AdaptiveLayout_ObjectResponsive.internal)
 
-/** @brief define for quoted string _AdaptiveLayout_ObjectResponsive_embedded */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayout_ObjectResponsive" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayout_ObjectResponsive" */
+#define afw_components_z__AdaptiveLayout_ObjectResponsive (afw_components_v__AdaptiveLayout_ObjectResponsive.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayout_ObjectResponsive_embedded" */
 #define AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded "_AdaptiveLayout_ObjectResponsive_embedded"
 
-/** @brief afw_utf8_t for string _AdaptiveLayout_ObjectResponsive_embedded */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_embedded;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayout_ObjectResponsive_embedded" */
+#define afw_components_s__AdaptiveLayout_ObjectResponsive_embedded (afw_components_v__AdaptiveLayout_ObjectResponsive_embedded.internal)
 
-/** @brief define for quoted string _AdaptiveLayout_ObjectResponsive_filterOptions */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayout_ObjectResponsive_embedded" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_embedded;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayout_ObjectResponsive_embedded" */
+#define afw_components_z__AdaptiveLayout_ObjectResponsive_embedded (afw_components_v__AdaptiveLayout_ObjectResponsive_embedded.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayout_ObjectResponsive_filterOptions" */
 #define AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions "_AdaptiveLayout_ObjectResponsive_filterOptions"
 
-/** @brief afw_utf8_t for string _AdaptiveLayout_ObjectResponsive_filterOptions */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_filterOptions;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayout_ObjectResponsive_filterOptions" */
+#define afw_components_s__AdaptiveLayout_ObjectResponsive_filterOptions (afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal)
 
-/** @brief define for quoted string _AdaptiveLayout_ObjectResponsive_preferredComponent */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayout_ObjectResponsive_filterOptions" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayout_ObjectResponsive_filterOptions" */
+#define afw_components_z__AdaptiveLayout_ObjectResponsive_filterOptions (afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayout_ObjectResponsive_preferredComponent" */
 #define AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent "_AdaptiveLayout_ObjectResponsive_preferredComponent"
 
-/** @brief afw_utf8_t for string _AdaptiveLayout_ObjectResponsive_preferredComponent */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_preferredComponent;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayout_ObjectResponsive_preferredComponent" */
+#define afw_components_s__AdaptiveLayout_ObjectResponsive_preferredComponent (afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal)
 
-/** @brief define for quoted string _AdaptiveLayout_ObjectResponsive_sortOptions */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayout_ObjectResponsive_preferredComponent" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayout_ObjectResponsive_preferredComponent" */
+#define afw_components_z__AdaptiveLayout_ObjectResponsive_preferredComponent (afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveLayout_ObjectResponsive_sortOptions" */
 #define AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions "_AdaptiveLayout_ObjectResponsive_sortOptions"
 
-/** @brief afw_utf8_t for string _AdaptiveLayout_ObjectResponsive_sortOptions */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_sortOptions;
+/** @brief 'afw_utf8_t' for string "_AdaptiveLayout_ObjectResponsive_sortOptions" */
+#define afw_components_s__AdaptiveLayout_ObjectResponsive_sortOptions (afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal)
 
-/** @brief define for quoted string _AdaptiveObjectType_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveLayout_ObjectResponsive_sortOptions" */
+extern const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveLayout_ObjectResponsive_sortOptions" */
+#define afw_components_z__AdaptiveLayout_ObjectResponsive_sortOptions (afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveObjectType_" */
 #define AFW_COMPONENTS_Q__AdaptiveObjectType_ "_AdaptiveObjectType_"
 
-/** @brief afw_utf8_t for string _AdaptiveObjectType_ */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveObjectType_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveObjectType_" */
+#define afw_components_s__AdaptiveObjectType_ (afw_components_v__AdaptiveObjectType_.internal)
 
-/** @brief define for quoted string _meta_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveObjectType_" */
+extern const afw_value_string_t afw_components_v__AdaptiveObjectType_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveObjectType_" */
+#define afw_components_z__AdaptiveObjectType_ (afw_components_v__AdaptiveObjectType_.internal.s)
+
+
+
+/** @brief define for quoted string "_meta_" */
 #define AFW_COMPONENTS_Q__meta_ "_meta_"
 
-/** @brief afw_utf8_t for string _meta_ */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s__meta_;
+/** @brief 'afw_utf8_t' for string "_meta_" */
+#define afw_components_s__meta_ (afw_components_v__meta_.internal)
 
-/** @brief define for quoted string a_aria_label */
+/** @brief 'afw_value_string_t' for string "_meta_" */
+extern const afw_value_string_t afw_components_v__meta_;
+
+/** @brief 'afw_utf8_z_t *' for string "_meta_" */
+#define afw_components_z__meta_ (afw_components_v__meta_.internal.s)
+
+
+
+/** @brief define for quoted string "a_aria_label" */
 #define AFW_COMPONENTS_Q_a_aria_label "aria-label"
 
-/** @brief afw_utf8_t for string a_aria_label */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_a_aria_label;
+/** @brief 'afw_utf8_t' for string "a_aria_label" */
+#define afw_components_s_a_aria_label (afw_components_v_a_aria_label.internal)
 
-/** @brief define for quoted string a_aria_labelledby */
+/** @brief 'afw_value_string_t' for string "a_aria_label" */
+extern const afw_value_string_t afw_components_v_a_aria_label;
+
+/** @brief 'afw_utf8_z_t *' for string "a_aria_label" */
+#define afw_components_z_a_aria_label (afw_components_v_a_aria_label.internal.s)
+
+
+
+/** @brief define for quoted string "a_aria_labelledby" */
 #define AFW_COMPONENTS_Q_a_aria_labelledby "aria-labelledby"
 
-/** @brief afw_utf8_t for string a_aria_labelledby */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_a_aria_labelledby;
+/** @brief 'afw_utf8_t' for string "a_aria_labelledby" */
+#define afw_components_s_a_aria_labelledby (afw_components_v_a_aria_labelledby.internal)
 
-/** @brief define for quoted string activeStep */
+/** @brief 'afw_value_string_t' for string "a_aria_labelledby" */
+extern const afw_value_string_t afw_components_v_a_aria_labelledby;
+
+/** @brief 'afw_utf8_z_t *' for string "a_aria_labelledby" */
+#define afw_components_z_a_aria_labelledby (afw_components_v_a_aria_labelledby.internal.s)
+
+
+
+/** @brief define for quoted string "activeStep" */
 #define AFW_COMPONENTS_Q_activeStep "activeStep"
 
-/** @brief afw_utf8_t for string activeStep */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_activeStep;
+/** @brief 'afw_utf8_t' for string "activeStep" */
+#define afw_components_s_activeStep (afw_components_v_activeStep.internal)
 
-/** @brief define for quoted string alignContent */
+/** @brief 'afw_value_string_t' for string "activeStep" */
+extern const afw_value_string_t afw_components_v_activeStep;
+
+/** @brief 'afw_utf8_z_t *' for string "activeStep" */
+#define afw_components_z_activeStep (afw_components_v_activeStep.internal.s)
+
+
+
+/** @brief define for quoted string "alignContent" */
 #define AFW_COMPONENTS_Q_alignContent "alignContent"
 
-/** @brief afw_utf8_t for string alignContent */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_alignContent;
+/** @brief 'afw_utf8_t' for string "alignContent" */
+#define afw_components_s_alignContent (afw_components_v_alignContent.internal)
 
-/** @brief define for quoted string alignItems */
+/** @brief 'afw_value_string_t' for string "alignContent" */
+extern const afw_value_string_t afw_components_v_alignContent;
+
+/** @brief 'afw_utf8_z_t *' for string "alignContent" */
+#define afw_components_z_alignContent (afw_components_v_alignContent.internal.s)
+
+
+
+/** @brief define for quoted string "alignItems" */
 #define AFW_COMPONENTS_Q_alignItems "alignItems"
 
-/** @brief afw_utf8_t for string alignItems */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_alignItems;
+/** @brief 'afw_utf8_t' for string "alignItems" */
+#define afw_components_s_alignItems (afw_components_v_alignItems.internal)
 
-/** @brief define for quoted string alignSelf */
+/** @brief 'afw_value_string_t' for string "alignItems" */
+extern const afw_value_string_t afw_components_v_alignItems;
+
+/** @brief 'afw_utf8_z_t *' for string "alignItems" */
+#define afw_components_z_alignItems (afw_components_v_alignItems.internal.s)
+
+
+
+/** @brief define for quoted string "alignSelf" */
 #define AFW_COMPONENTS_Q_alignSelf "alignSelf"
 
-/** @brief afw_utf8_t for string alignSelf */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_alignSelf;
+/** @brief 'afw_utf8_t' for string "alignSelf" */
+#define afw_components_s_alignSelf (afw_components_v_alignSelf.internal)
 
-/** @brief define for quoted string allowAdd */
+/** @brief 'afw_value_string_t' for string "alignSelf" */
+extern const afw_value_string_t afw_components_v_alignSelf;
+
+/** @brief 'afw_utf8_z_t *' for string "alignSelf" */
+#define afw_components_z_alignSelf (afw_components_v_alignSelf.internal.s)
+
+
+
+/** @brief define for quoted string "allowAdd" */
 #define AFW_COMPONENTS_Q_allowAdd "allowAdd"
 
-/** @brief afw_utf8_t for string allowAdd */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_allowAdd;
+/** @brief 'afw_utf8_t' for string "allowAdd" */
+#define afw_components_s_allowAdd (afw_components_v_allowAdd.internal)
 
-/** @brief define for quoted string allowChange */
+/** @brief 'afw_value_string_t' for string "allowAdd" */
+extern const afw_value_string_t afw_components_v_allowAdd;
+
+/** @brief 'afw_utf8_z_t *' for string "allowAdd" */
+#define afw_components_z_allowAdd (afw_components_v_allowAdd.internal.s)
+
+
+
+/** @brief define for quoted string "allowChange" */
 #define AFW_COMPONENTS_Q_allowChange "allowChange"
 
-/** @brief afw_utf8_t for string allowChange */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_allowChange;
+/** @brief 'afw_utf8_t' for string "allowChange" */
+#define afw_components_s_allowChange (afw_components_v_allowChange.internal)
 
-/** @brief define for quoted string allowDelete */
+/** @brief 'afw_value_string_t' for string "allowChange" */
+extern const afw_value_string_t afw_components_v_allowChange;
+
+/** @brief 'afw_utf8_z_t *' for string "allowChange" */
+#define afw_components_z_allowChange (afw_components_v_allowChange.internal.s)
+
+
+
+/** @brief define for quoted string "allowDelete" */
 #define AFW_COMPONENTS_Q_allowDelete "allowDelete"
 
-/** @brief afw_utf8_t for string allowDelete */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_allowDelete;
+/** @brief 'afw_utf8_t' for string "allowDelete" */
+#define afw_components_s_allowDelete (afw_components_v_allowDelete.internal)
 
-/** @brief define for quoted string allowEntity */
+/** @brief 'afw_value_string_t' for string "allowDelete" */
+extern const afw_value_string_t afw_components_v_allowDelete;
+
+/** @brief 'afw_utf8_z_t *' for string "allowDelete" */
+#define afw_components_z_allowDelete (afw_components_v_allowDelete.internal.s)
+
+
+
+/** @brief define for quoted string "allowEntity" */
 #define AFW_COMPONENTS_Q_allowEntity "allowEntity"
 
-/** @brief afw_utf8_t for string allowEntity */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_allowEntity;
+/** @brief 'afw_utf8_t' for string "allowEntity" */
+#define afw_components_s_allowEntity (afw_components_v_allowEntity.internal)
 
-/** @brief define for quoted string allowWrite */
+/** @brief 'afw_value_string_t' for string "allowEntity" */
+extern const afw_value_string_t afw_components_v_allowEntity;
+
+/** @brief 'afw_utf8_z_t *' for string "allowEntity" */
+#define afw_components_z_allowEntity (afw_components_v_allowEntity.internal.s)
+
+
+
+/** @brief define for quoted string "allowWrite" */
 #define AFW_COMPONENTS_Q_allowWrite "allowWrite"
 
-/** @brief afw_utf8_t for string allowWrite */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_allowWrite;
+/** @brief 'afw_utf8_t' for string "allowWrite" */
+#define afw_components_s_allowWrite (afw_components_v_allowWrite.internal)
 
-/** @brief define for quoted string allowedValues */
+/** @brief 'afw_value_string_t' for string "allowWrite" */
+extern const afw_value_string_t afw_components_v_allowWrite;
+
+/** @brief 'afw_utf8_z_t *' for string "allowWrite" */
+#define afw_components_z_allowWrite (afw_components_v_allowWrite.internal.s)
+
+
+
+/** @brief define for quoted string "allowedValues" */
 #define AFW_COMPONENTS_Q_allowedValues "allowedValues"
 
-/** @brief afw_utf8_t for string allowedValues */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_allowedValues;
+/** @brief 'afw_utf8_t' for string "allowedValues" */
+#define afw_components_s_allowedValues (afw_components_v_allowedValues.internal)
 
-/** @brief define for quoted string anchor */
+/** @brief 'afw_value_string_t' for string "allowedValues" */
+extern const afw_value_string_t afw_components_v_allowedValues;
+
+/** @brief 'afw_utf8_z_t *' for string "allowedValues" */
+#define afw_components_z_allowedValues (afw_components_v_allowedValues.internal.s)
+
+
+
+/** @brief define for quoted string "anchor" */
 #define AFW_COMPONENTS_Q_anchor "anchor"
 
-/** @brief afw_utf8_t for string anchor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_anchor;
+/** @brief 'afw_utf8_t' for string "anchor" */
+#define afw_components_s_anchor (afw_components_v_anchor.internal)
 
-/** @brief define for quoted string animateDuration */
+/** @brief 'afw_value_string_t' for string "anchor" */
+extern const afw_value_string_t afw_components_v_anchor;
+
+/** @brief 'afw_utf8_z_t *' for string "anchor" */
+#define afw_components_z_anchor (afw_components_v_anchor.internal.s)
+
+
+
+/** @brief define for quoted string "animateDuration" */
 #define AFW_COMPONENTS_Q_animateDuration "animateDuration"
 
-/** @brief afw_utf8_t for string animateDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animateDuration;
+/** @brief 'afw_utf8_t' for string "animateDuration" */
+#define afw_components_s_animateDuration (afw_components_v_animateDuration.internal)
 
-/** @brief define for quoted string animation */
+/** @brief 'afw_value_string_t' for string "animateDuration" */
+extern const afw_value_string_t afw_components_v_animateDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "animateDuration" */
+#define afw_components_z_animateDuration (afw_components_v_animateDuration.internal.s)
+
+
+
+/** @brief define for quoted string "animation" */
 #define AFW_COMPONENTS_Q_animation "animation"
 
-/** @brief afw_utf8_t for string animation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animation;
+/** @brief 'afw_utf8_t' for string "animation" */
+#define afw_components_s_animation (afw_components_v_animation.internal)
 
-/** @brief define for quoted string animationDelay */
+/** @brief 'afw_value_string_t' for string "animation" */
+extern const afw_value_string_t afw_components_v_animation;
+
+/** @brief 'afw_utf8_z_t *' for string "animation" */
+#define afw_components_z_animation (afw_components_v_animation.internal.s)
+
+
+
+/** @brief define for quoted string "animationDelay" */
 #define AFW_COMPONENTS_Q_animationDelay "animationDelay"
 
-/** @brief afw_utf8_t for string animationDelay */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationDelay;
+/** @brief 'afw_utf8_t' for string "animationDelay" */
+#define afw_components_s_animationDelay (afw_components_v_animationDelay.internal)
 
-/** @brief define for quoted string animationDirection */
+/** @brief 'afw_value_string_t' for string "animationDelay" */
+extern const afw_value_string_t afw_components_v_animationDelay;
+
+/** @brief 'afw_utf8_z_t *' for string "animationDelay" */
+#define afw_components_z_animationDelay (afw_components_v_animationDelay.internal.s)
+
+
+
+/** @brief define for quoted string "animationDirection" */
 #define AFW_COMPONENTS_Q_animationDirection "animationDirection"
 
-/** @brief afw_utf8_t for string animationDirection */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationDirection;
+/** @brief 'afw_utf8_t' for string "animationDirection" */
+#define afw_components_s_animationDirection (afw_components_v_animationDirection.internal)
 
-/** @brief define for quoted string animationDuration */
+/** @brief 'afw_value_string_t' for string "animationDirection" */
+extern const afw_value_string_t afw_components_v_animationDirection;
+
+/** @brief 'afw_utf8_z_t *' for string "animationDirection" */
+#define afw_components_z_animationDirection (afw_components_v_animationDirection.internal.s)
+
+
+
+/** @brief define for quoted string "animationDuration" */
 #define AFW_COMPONENTS_Q_animationDuration "animationDuration"
 
-/** @brief afw_utf8_t for string animationDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationDuration;
+/** @brief 'afw_utf8_t' for string "animationDuration" */
+#define afw_components_s_animationDuration (afw_components_v_animationDuration.internal)
 
-/** @brief define for quoted string animationFillMode */
+/** @brief 'afw_value_string_t' for string "animationDuration" */
+extern const afw_value_string_t afw_components_v_animationDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "animationDuration" */
+#define afw_components_z_animationDuration (afw_components_v_animationDuration.internal.s)
+
+
+
+/** @brief define for quoted string "animationFillMode" */
 #define AFW_COMPONENTS_Q_animationFillMode "animationFillMode"
 
-/** @brief afw_utf8_t for string animationFillMode */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationFillMode;
+/** @brief 'afw_utf8_t' for string "animationFillMode" */
+#define afw_components_s_animationFillMode (afw_components_v_animationFillMode.internal)
 
-/** @brief define for quoted string animationIterationCount */
+/** @brief 'afw_value_string_t' for string "animationFillMode" */
+extern const afw_value_string_t afw_components_v_animationFillMode;
+
+/** @brief 'afw_utf8_z_t *' for string "animationFillMode" */
+#define afw_components_z_animationFillMode (afw_components_v_animationFillMode.internal.s)
+
+
+
+/** @brief define for quoted string "animationIterationCount" */
 #define AFW_COMPONENTS_Q_animationIterationCount "animationIterationCount"
 
-/** @brief afw_utf8_t for string animationIterationCount */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationIterationCount;
+/** @brief 'afw_utf8_t' for string "animationIterationCount" */
+#define afw_components_s_animationIterationCount (afw_components_v_animationIterationCount.internal)
 
-/** @brief define for quoted string animationName */
+/** @brief 'afw_value_string_t' for string "animationIterationCount" */
+extern const afw_value_string_t afw_components_v_animationIterationCount;
+
+/** @brief 'afw_utf8_z_t *' for string "animationIterationCount" */
+#define afw_components_z_animationIterationCount (afw_components_v_animationIterationCount.internal.s)
+
+
+
+/** @brief define for quoted string "animationName" */
 #define AFW_COMPONENTS_Q_animationName "animationName"
 
-/** @brief afw_utf8_t for string animationName */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationName;
+/** @brief 'afw_utf8_t' for string "animationName" */
+#define afw_components_s_animationName (afw_components_v_animationName.internal)
 
-/** @brief define for quoted string animationPlayState */
+/** @brief 'afw_value_string_t' for string "animationName" */
+extern const afw_value_string_t afw_components_v_animationName;
+
+/** @brief 'afw_utf8_z_t *' for string "animationName" */
+#define afw_components_z_animationName (afw_components_v_animationName.internal.s)
+
+
+
+/** @brief define for quoted string "animationPlayState" */
 #define AFW_COMPONENTS_Q_animationPlayState "animationPlayState"
 
-/** @brief afw_utf8_t for string animationPlayState */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationPlayState;
+/** @brief 'afw_utf8_t' for string "animationPlayState" */
+#define afw_components_s_animationPlayState (afw_components_v_animationPlayState.internal)
 
-/** @brief define for quoted string animationTimingFunction */
+/** @brief 'afw_value_string_t' for string "animationPlayState" */
+extern const afw_value_string_t afw_components_v_animationPlayState;
+
+/** @brief 'afw_utf8_z_t *' for string "animationPlayState" */
+#define afw_components_z_animationPlayState (afw_components_v_animationPlayState.internal.s)
+
+
+
+/** @brief define for quoted string "animationTimingFunction" */
 #define AFW_COMPONENTS_Q_animationTimingFunction "animationTimingFunction"
 
-/** @brief afw_utf8_t for string animationTimingFunction */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_animationTimingFunction;
+/** @brief 'afw_utf8_t' for string "animationTimingFunction" */
+#define afw_components_s_animationTimingFunction (afw_components_v_animationTimingFunction.internal)
 
-/** @brief define for quoted string array */
+/** @brief 'afw_value_string_t' for string "animationTimingFunction" */
+extern const afw_value_string_t afw_components_v_animationTimingFunction;
+
+/** @brief 'afw_utf8_z_t *' for string "animationTimingFunction" */
+#define afw_components_z_animationTimingFunction (afw_components_v_animationTimingFunction.internal.s)
+
+
+
+/** @brief define for quoted string "array" */
 #define AFW_COMPONENTS_Q_array "array"
 
-/** @brief afw_utf8_t for string array */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_array;
+/** @brief 'afw_utf8_t' for string "array" */
+#define afw_components_s_array (afw_components_v_array.internal)
 
-/** @brief define for quoted string backfaceVisibility */
+/** @brief 'afw_value_string_t' for string "array" */
+extern const afw_value_string_t afw_components_v_array;
+
+/** @brief 'afw_utf8_z_t *' for string "array" */
+#define afw_components_z_array (afw_components_v_array.internal.s)
+
+
+
+/** @brief define for quoted string "backfaceVisibility" */
 #define AFW_COMPONENTS_Q_backfaceVisibility "backfaceVisibility"
 
-/** @brief afw_utf8_t for string backfaceVisibility */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backfaceVisibility;
+/** @brief 'afw_utf8_t' for string "backfaceVisibility" */
+#define afw_components_s_backfaceVisibility (afw_components_v_backfaceVisibility.internal)
 
-/** @brief define for quoted string background */
+/** @brief 'afw_value_string_t' for string "backfaceVisibility" */
+extern const afw_value_string_t afw_components_v_backfaceVisibility;
+
+/** @brief 'afw_utf8_z_t *' for string "backfaceVisibility" */
+#define afw_components_z_backfaceVisibility (afw_components_v_backfaceVisibility.internal.s)
+
+
+
+/** @brief define for quoted string "background" */
 #define AFW_COMPONENTS_Q_background "background"
 
-/** @brief afw_utf8_t for string background */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_background;
+/** @brief 'afw_utf8_t' for string "background" */
+#define afw_components_s_background (afw_components_v_background.internal)
 
-/** @brief define for quoted string backgroundAttachment */
+/** @brief 'afw_value_string_t' for string "background" */
+extern const afw_value_string_t afw_components_v_background;
+
+/** @brief 'afw_utf8_z_t *' for string "background" */
+#define afw_components_z_background (afw_components_v_background.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundAttachment" */
 #define AFW_COMPONENTS_Q_backgroundAttachment "backgroundAttachment"
 
-/** @brief afw_utf8_t for string backgroundAttachment */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundAttachment;
+/** @brief 'afw_utf8_t' for string "backgroundAttachment" */
+#define afw_components_s_backgroundAttachment (afw_components_v_backgroundAttachment.internal)
 
-/** @brief define for quoted string backgroundClip */
+/** @brief 'afw_value_string_t' for string "backgroundAttachment" */
+extern const afw_value_string_t afw_components_v_backgroundAttachment;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundAttachment" */
+#define afw_components_z_backgroundAttachment (afw_components_v_backgroundAttachment.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundClip" */
 #define AFW_COMPONENTS_Q_backgroundClip "backgroundClip"
 
-/** @brief afw_utf8_t for string backgroundClip */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundClip;
+/** @brief 'afw_utf8_t' for string "backgroundClip" */
+#define afw_components_s_backgroundClip (afw_components_v_backgroundClip.internal)
 
-/** @brief define for quoted string backgroundColor */
+/** @brief 'afw_value_string_t' for string "backgroundClip" */
+extern const afw_value_string_t afw_components_v_backgroundClip;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundClip" */
+#define afw_components_z_backgroundClip (afw_components_v_backgroundClip.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundColor" */
 #define AFW_COMPONENTS_Q_backgroundColor "backgroundColor"
 
-/** @brief afw_utf8_t for string backgroundColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundColor;
+/** @brief 'afw_utf8_t' for string "backgroundColor" */
+#define afw_components_s_backgroundColor (afw_components_v_backgroundColor.internal)
 
-/** @brief define for quoted string backgroundImage */
+/** @brief 'afw_value_string_t' for string "backgroundColor" */
+extern const afw_value_string_t afw_components_v_backgroundColor;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundColor" */
+#define afw_components_z_backgroundColor (afw_components_v_backgroundColor.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundImage" */
 #define AFW_COMPONENTS_Q_backgroundImage "backgroundImage"
 
-/** @brief afw_utf8_t for string backgroundImage */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundImage;
+/** @brief 'afw_utf8_t' for string "backgroundImage" */
+#define afw_components_s_backgroundImage (afw_components_v_backgroundImage.internal)
 
-/** @brief define for quoted string backgroundOrigin */
+/** @brief 'afw_value_string_t' for string "backgroundImage" */
+extern const afw_value_string_t afw_components_v_backgroundImage;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundImage" */
+#define afw_components_z_backgroundImage (afw_components_v_backgroundImage.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundOrigin" */
 #define AFW_COMPONENTS_Q_backgroundOrigin "backgroundOrigin"
 
-/** @brief afw_utf8_t for string backgroundOrigin */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundOrigin;
+/** @brief 'afw_utf8_t' for string "backgroundOrigin" */
+#define afw_components_s_backgroundOrigin (afw_components_v_backgroundOrigin.internal)
 
-/** @brief define for quoted string backgroundPosition */
+/** @brief 'afw_value_string_t' for string "backgroundOrigin" */
+extern const afw_value_string_t afw_components_v_backgroundOrigin;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundOrigin" */
+#define afw_components_z_backgroundOrigin (afw_components_v_backgroundOrigin.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundPosition" */
 #define AFW_COMPONENTS_Q_backgroundPosition "backgroundPosition"
 
-/** @brief afw_utf8_t for string backgroundPosition */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundPosition;
+/** @brief 'afw_utf8_t' for string "backgroundPosition" */
+#define afw_components_s_backgroundPosition (afw_components_v_backgroundPosition.internal)
 
-/** @brief define for quoted string backgroundRepeat */
+/** @brief 'afw_value_string_t' for string "backgroundPosition" */
+extern const afw_value_string_t afw_components_v_backgroundPosition;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundPosition" */
+#define afw_components_z_backgroundPosition (afw_components_v_backgroundPosition.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundRepeat" */
 #define AFW_COMPONENTS_Q_backgroundRepeat "backgroundRepeat"
 
-/** @brief afw_utf8_t for string backgroundRepeat */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundRepeat;
+/** @brief 'afw_utf8_t' for string "backgroundRepeat" */
+#define afw_components_s_backgroundRepeat (afw_components_v_backgroundRepeat.internal)
 
-/** @brief define for quoted string backgroundSize */
+/** @brief 'afw_value_string_t' for string "backgroundRepeat" */
+extern const afw_value_string_t afw_components_v_backgroundRepeat;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundRepeat" */
+#define afw_components_z_backgroundRepeat (afw_components_v_backgroundRepeat.internal.s)
+
+
+
+/** @brief define for quoted string "backgroundSize" */
 #define AFW_COMPONENTS_Q_backgroundSize "backgroundSize"
 
-/** @brief afw_utf8_t for string backgroundSize */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundSize;
+/** @brief 'afw_utf8_t' for string "backgroundSize" */
+#define afw_components_s_backgroundSize (afw_components_v_backgroundSize.internal)
 
-/** @brief define for quoted string badge */
+/** @brief 'afw_value_string_t' for string "backgroundSize" */
+extern const afw_value_string_t afw_components_v_backgroundSize;
+
+/** @brief 'afw_utf8_z_t *' for string "backgroundSize" */
+#define afw_components_z_backgroundSize (afw_components_v_backgroundSize.internal.s)
+
+
+
+/** @brief define for quoted string "badge" */
 #define AFW_COMPONENTS_Q_badge "badge"
 
-/** @brief afw_utf8_t for string badge */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_badge;
+/** @brief 'afw_utf8_t' for string "badge" */
+#define afw_components_s_badge (afw_components_v_badge.internal)
 
-/** @brief define for quoted string boolean */
+/** @brief 'afw_value_string_t' for string "badge" */
+extern const afw_value_string_t afw_components_v_badge;
+
+/** @brief 'afw_utf8_z_t *' for string "badge" */
+#define afw_components_z_badge (afw_components_v_badge.internal.s)
+
+
+
+/** @brief define for quoted string "boolean" */
 #define AFW_COMPONENTS_Q_boolean "boolean"
 
-/** @brief afw_utf8_t for string boolean */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_boolean;
+/** @brief 'afw_utf8_t' for string "boolean" */
+#define afw_components_s_boolean (afw_components_v_boolean.internal)
 
-/** @brief define for quoted string border */
+/** @brief 'afw_value_string_t' for string "boolean" */
+extern const afw_value_string_t afw_components_v_boolean;
+
+/** @brief 'afw_utf8_z_t *' for string "boolean" */
+#define afw_components_z_boolean (afw_components_v_boolean.internal.s)
+
+
+
+/** @brief define for quoted string "border" */
 #define AFW_COMPONENTS_Q_border "border"
 
-/** @brief afw_utf8_t for string border */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_border;
+/** @brief 'afw_utf8_t' for string "border" */
+#define afw_components_s_border (afw_components_v_border.internal)
 
-/** @brief define for quoted string borderBottom */
+/** @brief 'afw_value_string_t' for string "border" */
+extern const afw_value_string_t afw_components_v_border;
+
+/** @brief 'afw_utf8_z_t *' for string "border" */
+#define afw_components_z_border (afw_components_v_border.internal.s)
+
+
+
+/** @brief define for quoted string "borderBottom" */
 #define AFW_COMPONENTS_Q_borderBottom "borderBottom"
 
-/** @brief afw_utf8_t for string borderBottom */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottom;
+/** @brief 'afw_utf8_t' for string "borderBottom" */
+#define afw_components_s_borderBottom (afw_components_v_borderBottom.internal)
 
-/** @brief define for quoted string borderBottomColor */
+/** @brief 'afw_value_string_t' for string "borderBottom" */
+extern const afw_value_string_t afw_components_v_borderBottom;
+
+/** @brief 'afw_utf8_z_t *' for string "borderBottom" */
+#define afw_components_z_borderBottom (afw_components_v_borderBottom.internal.s)
+
+
+
+/** @brief define for quoted string "borderBottomColor" */
 #define AFW_COMPONENTS_Q_borderBottomColor "borderBottomColor"
 
-/** @brief afw_utf8_t for string borderBottomColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomColor;
+/** @brief 'afw_utf8_t' for string "borderBottomColor" */
+#define afw_components_s_borderBottomColor (afw_components_v_borderBottomColor.internal)
 
-/** @brief define for quoted string borderBottomLeftRadius */
+/** @brief 'afw_value_string_t' for string "borderBottomColor" */
+extern const afw_value_string_t afw_components_v_borderBottomColor;
+
+/** @brief 'afw_utf8_z_t *' for string "borderBottomColor" */
+#define afw_components_z_borderBottomColor (afw_components_v_borderBottomColor.internal.s)
+
+
+
+/** @brief define for quoted string "borderBottomLeftRadius" */
 #define AFW_COMPONENTS_Q_borderBottomLeftRadius "borderBottomLeftRadius"
 
-/** @brief afw_utf8_t for string borderBottomLeftRadius */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomLeftRadius;
+/** @brief 'afw_utf8_t' for string "borderBottomLeftRadius" */
+#define afw_components_s_borderBottomLeftRadius (afw_components_v_borderBottomLeftRadius.internal)
 
-/** @brief define for quoted string borderBottomRightRadius */
+/** @brief 'afw_value_string_t' for string "borderBottomLeftRadius" */
+extern const afw_value_string_t afw_components_v_borderBottomLeftRadius;
+
+/** @brief 'afw_utf8_z_t *' for string "borderBottomLeftRadius" */
+#define afw_components_z_borderBottomLeftRadius (afw_components_v_borderBottomLeftRadius.internal.s)
+
+
+
+/** @brief define for quoted string "borderBottomRightRadius" */
 #define AFW_COMPONENTS_Q_borderBottomRightRadius "borderBottomRightRadius"
 
-/** @brief afw_utf8_t for string borderBottomRightRadius */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomRightRadius;
+/** @brief 'afw_utf8_t' for string "borderBottomRightRadius" */
+#define afw_components_s_borderBottomRightRadius (afw_components_v_borderBottomRightRadius.internal)
 
-/** @brief define for quoted string borderBottomStyle */
+/** @brief 'afw_value_string_t' for string "borderBottomRightRadius" */
+extern const afw_value_string_t afw_components_v_borderBottomRightRadius;
+
+/** @brief 'afw_utf8_z_t *' for string "borderBottomRightRadius" */
+#define afw_components_z_borderBottomRightRadius (afw_components_v_borderBottomRightRadius.internal.s)
+
+
+
+/** @brief define for quoted string "borderBottomStyle" */
 #define AFW_COMPONENTS_Q_borderBottomStyle "borderBottomStyle"
 
-/** @brief afw_utf8_t for string borderBottomStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomStyle;
+/** @brief 'afw_utf8_t' for string "borderBottomStyle" */
+#define afw_components_s_borderBottomStyle (afw_components_v_borderBottomStyle.internal)
 
-/** @brief define for quoted string borderBottomWidth */
+/** @brief 'afw_value_string_t' for string "borderBottomStyle" */
+extern const afw_value_string_t afw_components_v_borderBottomStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "borderBottomStyle" */
+#define afw_components_z_borderBottomStyle (afw_components_v_borderBottomStyle.internal.s)
+
+
+
+/** @brief define for quoted string "borderBottomWidth" */
 #define AFW_COMPONENTS_Q_borderBottomWidth "borderBottomWidth"
 
-/** @brief afw_utf8_t for string borderBottomWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomWidth;
+/** @brief 'afw_utf8_t' for string "borderBottomWidth" */
+#define afw_components_s_borderBottomWidth (afw_components_v_borderBottomWidth.internal)
 
-/** @brief define for quoted string borderCollapse */
+/** @brief 'afw_value_string_t' for string "borderBottomWidth" */
+extern const afw_value_string_t afw_components_v_borderBottomWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "borderBottomWidth" */
+#define afw_components_z_borderBottomWidth (afw_components_v_borderBottomWidth.internal.s)
+
+
+
+/** @brief define for quoted string "borderCollapse" */
 #define AFW_COMPONENTS_Q_borderCollapse "borderCollapse"
 
-/** @brief afw_utf8_t for string borderCollapse */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderCollapse;
+/** @brief 'afw_utf8_t' for string "borderCollapse" */
+#define afw_components_s_borderCollapse (afw_components_v_borderCollapse.internal)
 
-/** @brief define for quoted string borderColor */
+/** @brief 'afw_value_string_t' for string "borderCollapse" */
+extern const afw_value_string_t afw_components_v_borderCollapse;
+
+/** @brief 'afw_utf8_z_t *' for string "borderCollapse" */
+#define afw_components_z_borderCollapse (afw_components_v_borderCollapse.internal.s)
+
+
+
+/** @brief define for quoted string "borderColor" */
 #define AFW_COMPONENTS_Q_borderColor "borderColor"
 
-/** @brief afw_utf8_t for string borderColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderColor;
+/** @brief 'afw_utf8_t' for string "borderColor" */
+#define afw_components_s_borderColor (afw_components_v_borderColor.internal)
 
-/** @brief define for quoted string borderImage */
+/** @brief 'afw_value_string_t' for string "borderColor" */
+extern const afw_value_string_t afw_components_v_borderColor;
+
+/** @brief 'afw_utf8_z_t *' for string "borderColor" */
+#define afw_components_z_borderColor (afw_components_v_borderColor.internal.s)
+
+
+
+/** @brief define for quoted string "borderImage" */
 #define AFW_COMPONENTS_Q_borderImage "borderImage"
 
-/** @brief afw_utf8_t for string borderImage */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderImage;
+/** @brief 'afw_utf8_t' for string "borderImage" */
+#define afw_components_s_borderImage (afw_components_v_borderImage.internal)
 
-/** @brief define for quoted string borderImageOutset */
+/** @brief 'afw_value_string_t' for string "borderImage" */
+extern const afw_value_string_t afw_components_v_borderImage;
+
+/** @brief 'afw_utf8_z_t *' for string "borderImage" */
+#define afw_components_z_borderImage (afw_components_v_borderImage.internal.s)
+
+
+
+/** @brief define for quoted string "borderImageOutset" */
 #define AFW_COMPONENTS_Q_borderImageOutset "borderImageOutset"
 
-/** @brief afw_utf8_t for string borderImageOutset */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageOutset;
+/** @brief 'afw_utf8_t' for string "borderImageOutset" */
+#define afw_components_s_borderImageOutset (afw_components_v_borderImageOutset.internal)
 
-/** @brief define for quoted string borderImageRepeat */
+/** @brief 'afw_value_string_t' for string "borderImageOutset" */
+extern const afw_value_string_t afw_components_v_borderImageOutset;
+
+/** @brief 'afw_utf8_z_t *' for string "borderImageOutset" */
+#define afw_components_z_borderImageOutset (afw_components_v_borderImageOutset.internal.s)
+
+
+
+/** @brief define for quoted string "borderImageRepeat" */
 #define AFW_COMPONENTS_Q_borderImageRepeat "borderImageRepeat"
 
-/** @brief afw_utf8_t for string borderImageRepeat */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageRepeat;
+/** @brief 'afw_utf8_t' for string "borderImageRepeat" */
+#define afw_components_s_borderImageRepeat (afw_components_v_borderImageRepeat.internal)
 
-/** @brief define for quoted string borderImageSlice */
+/** @brief 'afw_value_string_t' for string "borderImageRepeat" */
+extern const afw_value_string_t afw_components_v_borderImageRepeat;
+
+/** @brief 'afw_utf8_z_t *' for string "borderImageRepeat" */
+#define afw_components_z_borderImageRepeat (afw_components_v_borderImageRepeat.internal.s)
+
+
+
+/** @brief define for quoted string "borderImageSlice" */
 #define AFW_COMPONENTS_Q_borderImageSlice "borderImageSlice"
 
-/** @brief afw_utf8_t for string borderImageSlice */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageSlice;
+/** @brief 'afw_utf8_t' for string "borderImageSlice" */
+#define afw_components_s_borderImageSlice (afw_components_v_borderImageSlice.internal)
 
-/** @brief define for quoted string borderImageSource */
+/** @brief 'afw_value_string_t' for string "borderImageSlice" */
+extern const afw_value_string_t afw_components_v_borderImageSlice;
+
+/** @brief 'afw_utf8_z_t *' for string "borderImageSlice" */
+#define afw_components_z_borderImageSlice (afw_components_v_borderImageSlice.internal.s)
+
+
+
+/** @brief define for quoted string "borderImageSource" */
 #define AFW_COMPONENTS_Q_borderImageSource "borderImageSource"
 
-/** @brief afw_utf8_t for string borderImageSource */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageSource;
+/** @brief 'afw_utf8_t' for string "borderImageSource" */
+#define afw_components_s_borderImageSource (afw_components_v_borderImageSource.internal)
 
-/** @brief define for quoted string borderImageWidth */
+/** @brief 'afw_value_string_t' for string "borderImageSource" */
+extern const afw_value_string_t afw_components_v_borderImageSource;
+
+/** @brief 'afw_utf8_z_t *' for string "borderImageSource" */
+#define afw_components_z_borderImageSource (afw_components_v_borderImageSource.internal.s)
+
+
+
+/** @brief define for quoted string "borderImageWidth" */
 #define AFW_COMPONENTS_Q_borderImageWidth "borderImageWidth"
 
-/** @brief afw_utf8_t for string borderImageWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageWidth;
+/** @brief 'afw_utf8_t' for string "borderImageWidth" */
+#define afw_components_s_borderImageWidth (afw_components_v_borderImageWidth.internal)
 
-/** @brief define for quoted string borderLeft */
+/** @brief 'afw_value_string_t' for string "borderImageWidth" */
+extern const afw_value_string_t afw_components_v_borderImageWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "borderImageWidth" */
+#define afw_components_z_borderImageWidth (afw_components_v_borderImageWidth.internal.s)
+
+
+
+/** @brief define for quoted string "borderLeft" */
 #define AFW_COMPONENTS_Q_borderLeft "borderLeft"
 
-/** @brief afw_utf8_t for string borderLeft */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeft;
+/** @brief 'afw_utf8_t' for string "borderLeft" */
+#define afw_components_s_borderLeft (afw_components_v_borderLeft.internal)
 
-/** @brief define for quoted string borderLeftColor */
+/** @brief 'afw_value_string_t' for string "borderLeft" */
+extern const afw_value_string_t afw_components_v_borderLeft;
+
+/** @brief 'afw_utf8_z_t *' for string "borderLeft" */
+#define afw_components_z_borderLeft (afw_components_v_borderLeft.internal.s)
+
+
+
+/** @brief define for quoted string "borderLeftColor" */
 #define AFW_COMPONENTS_Q_borderLeftColor "borderLeftColor"
 
-/** @brief afw_utf8_t for string borderLeftColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeftColor;
+/** @brief 'afw_utf8_t' for string "borderLeftColor" */
+#define afw_components_s_borderLeftColor (afw_components_v_borderLeftColor.internal)
 
-/** @brief define for quoted string borderLeftStyle */
+/** @brief 'afw_value_string_t' for string "borderLeftColor" */
+extern const afw_value_string_t afw_components_v_borderLeftColor;
+
+/** @brief 'afw_utf8_z_t *' for string "borderLeftColor" */
+#define afw_components_z_borderLeftColor (afw_components_v_borderLeftColor.internal.s)
+
+
+
+/** @brief define for quoted string "borderLeftStyle" */
 #define AFW_COMPONENTS_Q_borderLeftStyle "borderLeftStyle"
 
-/** @brief afw_utf8_t for string borderLeftStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeftStyle;
+/** @brief 'afw_utf8_t' for string "borderLeftStyle" */
+#define afw_components_s_borderLeftStyle (afw_components_v_borderLeftStyle.internal)
 
-/** @brief define for quoted string borderLeftWidth */
+/** @brief 'afw_value_string_t' for string "borderLeftStyle" */
+extern const afw_value_string_t afw_components_v_borderLeftStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "borderLeftStyle" */
+#define afw_components_z_borderLeftStyle (afw_components_v_borderLeftStyle.internal.s)
+
+
+
+/** @brief define for quoted string "borderLeftWidth" */
 #define AFW_COMPONENTS_Q_borderLeftWidth "borderLeftWidth"
 
-/** @brief afw_utf8_t for string borderLeftWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeftWidth;
+/** @brief 'afw_utf8_t' for string "borderLeftWidth" */
+#define afw_components_s_borderLeftWidth (afw_components_v_borderLeftWidth.internal)
 
-/** @brief define for quoted string borderRadius */
+/** @brief 'afw_value_string_t' for string "borderLeftWidth" */
+extern const afw_value_string_t afw_components_v_borderLeftWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "borderLeftWidth" */
+#define afw_components_z_borderLeftWidth (afw_components_v_borderLeftWidth.internal.s)
+
+
+
+/** @brief define for quoted string "borderRadius" */
 #define AFW_COMPONENTS_Q_borderRadius "borderRadius"
 
-/** @brief afw_utf8_t for string borderRadius */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderRadius;
+/** @brief 'afw_utf8_t' for string "borderRadius" */
+#define afw_components_s_borderRadius (afw_components_v_borderRadius.internal)
 
-/** @brief define for quoted string borderRight */
+/** @brief 'afw_value_string_t' for string "borderRadius" */
+extern const afw_value_string_t afw_components_v_borderRadius;
+
+/** @brief 'afw_utf8_z_t *' for string "borderRadius" */
+#define afw_components_z_borderRadius (afw_components_v_borderRadius.internal.s)
+
+
+
+/** @brief define for quoted string "borderRight" */
 #define AFW_COMPONENTS_Q_borderRight "borderRight"
 
-/** @brief afw_utf8_t for string borderRight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderRight;
+/** @brief 'afw_utf8_t' for string "borderRight" */
+#define afw_components_s_borderRight (afw_components_v_borderRight.internal)
 
-/** @brief define for quoted string borderRightColor */
+/** @brief 'afw_value_string_t' for string "borderRight" */
+extern const afw_value_string_t afw_components_v_borderRight;
+
+/** @brief 'afw_utf8_z_t *' for string "borderRight" */
+#define afw_components_z_borderRight (afw_components_v_borderRight.internal.s)
+
+
+
+/** @brief define for quoted string "borderRightColor" */
 #define AFW_COMPONENTS_Q_borderRightColor "borderRightColor"
 
-/** @brief afw_utf8_t for string borderRightColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderRightColor;
+/** @brief 'afw_utf8_t' for string "borderRightColor" */
+#define afw_components_s_borderRightColor (afw_components_v_borderRightColor.internal)
 
-/** @brief define for quoted string borderRightStyle */
+/** @brief 'afw_value_string_t' for string "borderRightColor" */
+extern const afw_value_string_t afw_components_v_borderRightColor;
+
+/** @brief 'afw_utf8_z_t *' for string "borderRightColor" */
+#define afw_components_z_borderRightColor (afw_components_v_borderRightColor.internal.s)
+
+
+
+/** @brief define for quoted string "borderRightStyle" */
 #define AFW_COMPONENTS_Q_borderRightStyle "borderRightStyle"
 
-/** @brief afw_utf8_t for string borderRightStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderRightStyle;
+/** @brief 'afw_utf8_t' for string "borderRightStyle" */
+#define afw_components_s_borderRightStyle (afw_components_v_borderRightStyle.internal)
 
-/** @brief define for quoted string borderRightWidth */
+/** @brief 'afw_value_string_t' for string "borderRightStyle" */
+extern const afw_value_string_t afw_components_v_borderRightStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "borderRightStyle" */
+#define afw_components_z_borderRightStyle (afw_components_v_borderRightStyle.internal.s)
+
+
+
+/** @brief define for quoted string "borderRightWidth" */
 #define AFW_COMPONENTS_Q_borderRightWidth "borderRightWidth"
 
-/** @brief afw_utf8_t for string borderRightWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderRightWidth;
+/** @brief 'afw_utf8_t' for string "borderRightWidth" */
+#define afw_components_s_borderRightWidth (afw_components_v_borderRightWidth.internal)
 
-/** @brief define for quoted string borderSpacing */
+/** @brief 'afw_value_string_t' for string "borderRightWidth" */
+extern const afw_value_string_t afw_components_v_borderRightWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "borderRightWidth" */
+#define afw_components_z_borderRightWidth (afw_components_v_borderRightWidth.internal.s)
+
+
+
+/** @brief define for quoted string "borderSpacing" */
 #define AFW_COMPONENTS_Q_borderSpacing "borderSpacing"
 
-/** @brief afw_utf8_t for string borderSpacing */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderSpacing;
+/** @brief 'afw_utf8_t' for string "borderSpacing" */
+#define afw_components_s_borderSpacing (afw_components_v_borderSpacing.internal)
 
-/** @brief define for quoted string borderStyle */
+/** @brief 'afw_value_string_t' for string "borderSpacing" */
+extern const afw_value_string_t afw_components_v_borderSpacing;
+
+/** @brief 'afw_utf8_z_t *' for string "borderSpacing" */
+#define afw_components_z_borderSpacing (afw_components_v_borderSpacing.internal.s)
+
+
+
+/** @brief define for quoted string "borderStyle" */
 #define AFW_COMPONENTS_Q_borderStyle "borderStyle"
 
-/** @brief afw_utf8_t for string borderStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderStyle;
+/** @brief 'afw_utf8_t' for string "borderStyle" */
+#define afw_components_s_borderStyle (afw_components_v_borderStyle.internal)
 
-/** @brief define for quoted string borderTop */
+/** @brief 'afw_value_string_t' for string "borderStyle" */
+extern const afw_value_string_t afw_components_v_borderStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "borderStyle" */
+#define afw_components_z_borderStyle (afw_components_v_borderStyle.internal.s)
+
+
+
+/** @brief define for quoted string "borderTop" */
 #define AFW_COMPONENTS_Q_borderTop "borderTop"
 
-/** @brief afw_utf8_t for string borderTop */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderTop;
+/** @brief 'afw_utf8_t' for string "borderTop" */
+#define afw_components_s_borderTop (afw_components_v_borderTop.internal)
 
-/** @brief define for quoted string borderTopColor */
+/** @brief 'afw_value_string_t' for string "borderTop" */
+extern const afw_value_string_t afw_components_v_borderTop;
+
+/** @brief 'afw_utf8_z_t *' for string "borderTop" */
+#define afw_components_z_borderTop (afw_components_v_borderTop.internal.s)
+
+
+
+/** @brief define for quoted string "borderTopColor" */
 #define AFW_COMPONENTS_Q_borderTopColor "borderTopColor"
 
-/** @brief afw_utf8_t for string borderTopColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopColor;
+/** @brief 'afw_utf8_t' for string "borderTopColor" */
+#define afw_components_s_borderTopColor (afw_components_v_borderTopColor.internal)
 
-/** @brief define for quoted string borderTopLeftRadius */
+/** @brief 'afw_value_string_t' for string "borderTopColor" */
+extern const afw_value_string_t afw_components_v_borderTopColor;
+
+/** @brief 'afw_utf8_z_t *' for string "borderTopColor" */
+#define afw_components_z_borderTopColor (afw_components_v_borderTopColor.internal.s)
+
+
+
+/** @brief define for quoted string "borderTopLeftRadius" */
 #define AFW_COMPONENTS_Q_borderTopLeftRadius "borderTopLeftRadius"
 
-/** @brief afw_utf8_t for string borderTopLeftRadius */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopLeftRadius;
+/** @brief 'afw_utf8_t' for string "borderTopLeftRadius" */
+#define afw_components_s_borderTopLeftRadius (afw_components_v_borderTopLeftRadius.internal)
 
-/** @brief define for quoted string borderTopRightRadius */
+/** @brief 'afw_value_string_t' for string "borderTopLeftRadius" */
+extern const afw_value_string_t afw_components_v_borderTopLeftRadius;
+
+/** @brief 'afw_utf8_z_t *' for string "borderTopLeftRadius" */
+#define afw_components_z_borderTopLeftRadius (afw_components_v_borderTopLeftRadius.internal.s)
+
+
+
+/** @brief define for quoted string "borderTopRightRadius" */
 #define AFW_COMPONENTS_Q_borderTopRightRadius "borderTopRightRadius"
 
-/** @brief afw_utf8_t for string borderTopRightRadius */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopRightRadius;
+/** @brief 'afw_utf8_t' for string "borderTopRightRadius" */
+#define afw_components_s_borderTopRightRadius (afw_components_v_borderTopRightRadius.internal)
 
-/** @brief define for quoted string borderTopStyle */
+/** @brief 'afw_value_string_t' for string "borderTopRightRadius" */
+extern const afw_value_string_t afw_components_v_borderTopRightRadius;
+
+/** @brief 'afw_utf8_z_t *' for string "borderTopRightRadius" */
+#define afw_components_z_borderTopRightRadius (afw_components_v_borderTopRightRadius.internal.s)
+
+
+
+/** @brief define for quoted string "borderTopStyle" */
 #define AFW_COMPONENTS_Q_borderTopStyle "borderTopStyle"
 
-/** @brief afw_utf8_t for string borderTopStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopStyle;
+/** @brief 'afw_utf8_t' for string "borderTopStyle" */
+#define afw_components_s_borderTopStyle (afw_components_v_borderTopStyle.internal)
 
-/** @brief define for quoted string borderTopWidth */
+/** @brief 'afw_value_string_t' for string "borderTopStyle" */
+extern const afw_value_string_t afw_components_v_borderTopStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "borderTopStyle" */
+#define afw_components_z_borderTopStyle (afw_components_v_borderTopStyle.internal.s)
+
+
+
+/** @brief define for quoted string "borderTopWidth" */
 #define AFW_COMPONENTS_Q_borderTopWidth "borderTopWidth"
 
-/** @brief afw_utf8_t for string borderTopWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopWidth;
+/** @brief 'afw_utf8_t' for string "borderTopWidth" */
+#define afw_components_s_borderTopWidth (afw_components_v_borderTopWidth.internal)
 
-/** @brief define for quoted string borderWidth */
+/** @brief 'afw_value_string_t' for string "borderTopWidth" */
+extern const afw_value_string_t afw_components_v_borderTopWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "borderTopWidth" */
+#define afw_components_z_borderTopWidth (afw_components_v_borderTopWidth.internal.s)
+
+
+
+/** @brief define for quoted string "borderWidth" */
 #define AFW_COMPONENTS_Q_borderWidth "borderWidth"
 
-/** @brief afw_utf8_t for string borderWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_borderWidth;
+/** @brief 'afw_utf8_t' for string "borderWidth" */
+#define afw_components_s_borderWidth (afw_components_v_borderWidth.internal)
 
-/** @brief define for quoted string bottom */
+/** @brief 'afw_value_string_t' for string "borderWidth" */
+extern const afw_value_string_t afw_components_v_borderWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "borderWidth" */
+#define afw_components_z_borderWidth (afw_components_v_borderWidth.internal.s)
+
+
+
+/** @brief define for quoted string "bottom" */
 #define AFW_COMPONENTS_Q_bottom "bottom"
 
-/** @brief afw_utf8_t for string bottom */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_bottom;
+/** @brief 'afw_utf8_t' for string "bottom" */
+#define afw_components_s_bottom (afw_components_v_bottom.internal)
 
-/** @brief define for quoted string boxDecorationBreak */
+/** @brief 'afw_value_string_t' for string "bottom" */
+extern const afw_value_string_t afw_components_v_bottom;
+
+/** @brief 'afw_utf8_z_t *' for string "bottom" */
+#define afw_components_z_bottom (afw_components_v_bottom.internal.s)
+
+
+
+/** @brief define for quoted string "boxDecorationBreak" */
 #define AFW_COMPONENTS_Q_boxDecorationBreak "boxDecorationBreak"
 
-/** @brief afw_utf8_t for string boxDecorationBreak */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_boxDecorationBreak;
+/** @brief 'afw_utf8_t' for string "boxDecorationBreak" */
+#define afw_components_s_boxDecorationBreak (afw_components_v_boxDecorationBreak.internal)
 
-/** @brief define for quoted string boxShadow */
+/** @brief 'afw_value_string_t' for string "boxDecorationBreak" */
+extern const afw_value_string_t afw_components_v_boxDecorationBreak;
+
+/** @brief 'afw_utf8_z_t *' for string "boxDecorationBreak" */
+#define afw_components_z_boxDecorationBreak (afw_components_v_boxDecorationBreak.internal.s)
+
+
+
+/** @brief define for quoted string "boxShadow" */
 #define AFW_COMPONENTS_Q_boxShadow "boxShadow"
 
-/** @brief afw_utf8_t for string boxShadow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_boxShadow;
+/** @brief 'afw_utf8_t' for string "boxShadow" */
+#define afw_components_s_boxShadow (afw_components_v_boxShadow.internal)
 
-/** @brief define for quoted string boxSide */
+/** @brief 'afw_value_string_t' for string "boxShadow" */
+extern const afw_value_string_t afw_components_v_boxShadow;
+
+/** @brief 'afw_utf8_z_t *' for string "boxShadow" */
+#define afw_components_z_boxShadow (afw_components_v_boxShadow.internal.s)
+
+
+
+/** @brief define for quoted string "boxSide" */
 #define AFW_COMPONENTS_Q_boxSide "boxSide"
 
-/** @brief afw_utf8_t for string boxSide */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_boxSide;
+/** @brief 'afw_utf8_t' for string "boxSide" */
+#define afw_components_s_boxSide (afw_components_v_boxSide.internal)
 
-/** @brief define for quoted string boxSizing */
+/** @brief 'afw_value_string_t' for string "boxSide" */
+extern const afw_value_string_t afw_components_v_boxSide;
+
+/** @brief 'afw_utf8_z_t *' for string "boxSide" */
+#define afw_components_z_boxSide (afw_components_v_boxSide.internal.s)
+
+
+
+/** @brief define for quoted string "boxSizing" */
 #define AFW_COMPONENTS_Q_boxSizing "boxSizing"
 
-/** @brief afw_utf8_t for string boxSizing */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_boxSizing;
+/** @brief 'afw_utf8_t' for string "boxSizing" */
+#define afw_components_s_boxSizing (afw_components_v_boxSizing.internal)
 
-/** @brief define for quoted string breakpoints */
+/** @brief 'afw_value_string_t' for string "boxSizing" */
+extern const afw_value_string_t afw_components_v_boxSizing;
+
+/** @brief 'afw_utf8_z_t *' for string "boxSizing" */
+#define afw_components_z_boxSizing (afw_components_v_boxSizing.internal.s)
+
+
+
+/** @brief define for quoted string "breakpoints" */
 #define AFW_COMPONENTS_Q_breakpoints "breakpoints"
 
-/** @brief afw_utf8_t for string breakpoints */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_breakpoints;
+/** @brief 'afw_utf8_t' for string "breakpoints" */
+#define afw_components_s_breakpoints (afw_components_v_breakpoints.internal)
 
-/** @brief define for quoted string brief */
+/** @brief 'afw_value_string_t' for string "breakpoints" */
+extern const afw_value_string_t afw_components_v_breakpoints;
+
+/** @brief 'afw_utf8_z_t *' for string "breakpoints" */
+#define afw_components_z_breakpoints (afw_components_v_breakpoints.internal.s)
+
+
+
+/** @brief define for quoted string "brief" */
 #define AFW_COMPONENTS_Q_brief "brief"
 
-/** @brief afw_utf8_t for string brief */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_brief;
+/** @brief 'afw_utf8_t' for string "brief" */
+#define afw_components_s_brief (afw_components_v_brief.internal)
 
-/** @brief define for quoted string canDismiss */
+/** @brief 'afw_value_string_t' for string "brief" */
+extern const afw_value_string_t afw_components_v_brief;
+
+/** @brief 'afw_utf8_z_t *' for string "brief" */
+#define afw_components_z_brief (afw_components_v_brief.internal.s)
+
+
+
+/** @brief define for quoted string "canDismiss" */
 #define AFW_COMPONENTS_Q_canDismiss "canDismiss"
 
-/** @brief afw_utf8_t for string canDismiss */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_canDismiss;
+/** @brief 'afw_utf8_t' for string "canDismiss" */
+#define afw_components_s_canDismiss (afw_components_v_canDismiss.internal)
 
-/** @brief define for quoted string captionSide */
+/** @brief 'afw_value_string_t' for string "canDismiss" */
+extern const afw_value_string_t afw_components_v_canDismiss;
+
+/** @brief 'afw_utf8_z_t *' for string "canDismiss" */
+#define afw_components_z_canDismiss (afw_components_v_canDismiss.internal.s)
+
+
+
+/** @brief define for quoted string "captionSide" */
 #define AFW_COMPONENTS_Q_captionSide "captionSide"
 
-/** @brief afw_utf8_t for string captionSide */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_captionSide;
+/** @brief 'afw_utf8_t' for string "captionSide" */
+#define afw_components_s_captionSide (afw_components_v_captionSide.internal)
 
-/** @brief define for quoted string category */
+/** @brief 'afw_value_string_t' for string "captionSide" */
+extern const afw_value_string_t afw_components_v_captionSide;
+
+/** @brief 'afw_utf8_z_t *' for string "captionSide" */
+#define afw_components_z_captionSide (afw_components_v_captionSide.internal.s)
+
+
+
+/** @brief define for quoted string "category" */
 #define AFW_COMPONENTS_Q_category "category"
 
-/** @brief afw_utf8_t for string category */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_category;
+/** @brief 'afw_utf8_t' for string "category" */
+#define afw_components_s_category (afw_components_v_category.internal)
 
-/** @brief define for quoted string children */
+/** @brief 'afw_value_string_t' for string "category" */
+extern const afw_value_string_t afw_components_v_category;
+
+/** @brief 'afw_utf8_z_t *' for string "category" */
+#define afw_components_z_category (afw_components_v_category.internal.s)
+
+
+
+/** @brief define for quoted string "children" */
 #define AFW_COMPONENTS_Q_children "children"
 
-/** @brief afw_utf8_t for string children */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_children;
+/** @brief 'afw_utf8_t' for string "children" */
+#define afw_components_s_children (afw_components_v_children.internal)
 
-/** @brief define for quoted string className */
+/** @brief 'afw_value_string_t' for string "children" */
+extern const afw_value_string_t afw_components_v_children;
+
+/** @brief 'afw_utf8_z_t *' for string "children" */
+#define afw_components_z_children (afw_components_v_children.internal.s)
+
+
+
+/** @brief define for quoted string "className" */
 #define AFW_COMPONENTS_Q_className "className"
 
-/** @brief afw_utf8_t for string className */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_className;
+/** @brief 'afw_utf8_t' for string "className" */
+#define afw_components_s_className (afw_components_v_className.internal)
 
-/** @brief define for quoted string clear */
+/** @brief 'afw_value_string_t' for string "className" */
+extern const afw_value_string_t afw_components_v_className;
+
+/** @brief 'afw_utf8_z_t *' for string "className" */
+#define afw_components_z_className (afw_components_v_className.internal.s)
+
+
+
+/** @brief define for quoted string "clear" */
 #define AFW_COMPONENTS_Q_clear "clear"
 
-/** @brief afw_utf8_t for string clear */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_clear;
+/** @brief 'afw_utf8_t' for string "clear" */
+#define afw_components_s_clear (afw_components_v_clear.internal)
 
-/** @brief define for quoted string clip */
+/** @brief 'afw_value_string_t' for string "clear" */
+extern const afw_value_string_t afw_components_v_clear;
+
+/** @brief 'afw_utf8_z_t *' for string "clear" */
+#define afw_components_z_clear (afw_components_v_clear.internal.s)
+
+
+
+/** @brief define for quoted string "clip" */
 #define AFW_COMPONENTS_Q_clip "clip"
 
-/** @brief afw_utf8_t for string clip */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_clip;
+/** @brief 'afw_utf8_t' for string "clip" */
+#define afw_components_s_clip (afw_components_v_clip.internal)
 
-/** @brief define for quoted string collectionURIs */
+/** @brief 'afw_value_string_t' for string "clip" */
+extern const afw_value_string_t afw_components_v_clip;
+
+/** @brief 'afw_utf8_z_t *' for string "clip" */
+#define afw_components_z_clip (afw_components_v_clip.internal.s)
+
+
+
+/** @brief define for quoted string "collectionURIs" */
 #define AFW_COMPONENTS_Q_collectionURIs "collectionURIs"
 
-/** @brief afw_utf8_t for string collectionURIs */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_collectionURIs;
+/** @brief 'afw_utf8_t' for string "collectionURIs" */
+#define afw_components_s_collectionURIs (afw_components_v_collectionURIs.internal)
 
-/** @brief define for quoted string color */
+/** @brief 'afw_value_string_t' for string "collectionURIs" */
+extern const afw_value_string_t afw_components_v_collectionURIs;
+
+/** @brief 'afw_utf8_z_t *' for string "collectionURIs" */
+#define afw_components_z_collectionURIs (afw_components_v_collectionURIs.internal.s)
+
+
+
+/** @brief define for quoted string "color" */
 #define AFW_COMPONENTS_Q_color "color"
 
-/** @brief afw_utf8_t for string color */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_color;
+/** @brief 'afw_utf8_t' for string "color" */
+#define afw_components_s_color (afw_components_v_color.internal)
 
-/** @brief define for quoted string columnCount */
+/** @brief 'afw_value_string_t' for string "color" */
+extern const afw_value_string_t afw_components_v_color;
+
+/** @brief 'afw_utf8_z_t *' for string "color" */
+#define afw_components_z_color (afw_components_v_color.internal.s)
+
+
+
+/** @brief define for quoted string "columnCount" */
 #define AFW_COMPONENTS_Q_columnCount "columnCount"
 
-/** @brief afw_utf8_t for string columnCount */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnCount;
+/** @brief 'afw_utf8_t' for string "columnCount" */
+#define afw_components_s_columnCount (afw_components_v_columnCount.internal)
 
-/** @brief define for quoted string columnFill */
+/** @brief 'afw_value_string_t' for string "columnCount" */
+extern const afw_value_string_t afw_components_v_columnCount;
+
+/** @brief 'afw_utf8_z_t *' for string "columnCount" */
+#define afw_components_z_columnCount (afw_components_v_columnCount.internal.s)
+
+
+
+/** @brief define for quoted string "columnFill" */
 #define AFW_COMPONENTS_Q_columnFill "columnFill"
 
-/** @brief afw_utf8_t for string columnFill */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnFill;
+/** @brief 'afw_utf8_t' for string "columnFill" */
+#define afw_components_s_columnFill (afw_components_v_columnFill.internal)
 
-/** @brief define for quoted string columnGap */
+/** @brief 'afw_value_string_t' for string "columnFill" */
+extern const afw_value_string_t afw_components_v_columnFill;
+
+/** @brief 'afw_utf8_z_t *' for string "columnFill" */
+#define afw_components_z_columnFill (afw_components_v_columnFill.internal.s)
+
+
+
+/** @brief define for quoted string "columnGap" */
 #define AFW_COMPONENTS_Q_columnGap "columnGap"
 
-/** @brief afw_utf8_t for string columnGap */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnGap;
+/** @brief 'afw_utf8_t' for string "columnGap" */
+#define afw_components_s_columnGap (afw_components_v_columnGap.internal)
 
-/** @brief define for quoted string columnRule */
+/** @brief 'afw_value_string_t' for string "columnGap" */
+extern const afw_value_string_t afw_components_v_columnGap;
+
+/** @brief 'afw_utf8_z_t *' for string "columnGap" */
+#define afw_components_z_columnGap (afw_components_v_columnGap.internal.s)
+
+
+
+/** @brief define for quoted string "columnRule" */
 #define AFW_COMPONENTS_Q_columnRule "columnRule"
 
-/** @brief afw_utf8_t for string columnRule */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnRule;
+/** @brief 'afw_utf8_t' for string "columnRule" */
+#define afw_components_s_columnRule (afw_components_v_columnRule.internal)
 
-/** @brief define for quoted string columnRuleColor */
+/** @brief 'afw_value_string_t' for string "columnRule" */
+extern const afw_value_string_t afw_components_v_columnRule;
+
+/** @brief 'afw_utf8_z_t *' for string "columnRule" */
+#define afw_components_z_columnRule (afw_components_v_columnRule.internal.s)
+
+
+
+/** @brief define for quoted string "columnRuleColor" */
 #define AFW_COMPONENTS_Q_columnRuleColor "columnRuleColor"
 
-/** @brief afw_utf8_t for string columnRuleColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnRuleColor;
+/** @brief 'afw_utf8_t' for string "columnRuleColor" */
+#define afw_components_s_columnRuleColor (afw_components_v_columnRuleColor.internal)
 
-/** @brief define for quoted string columnRuleStyle */
+/** @brief 'afw_value_string_t' for string "columnRuleColor" */
+extern const afw_value_string_t afw_components_v_columnRuleColor;
+
+/** @brief 'afw_utf8_z_t *' for string "columnRuleColor" */
+#define afw_components_z_columnRuleColor (afw_components_v_columnRuleColor.internal.s)
+
+
+
+/** @brief define for quoted string "columnRuleStyle" */
 #define AFW_COMPONENTS_Q_columnRuleStyle "columnRuleStyle"
 
-/** @brief afw_utf8_t for string columnRuleStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnRuleStyle;
+/** @brief 'afw_utf8_t' for string "columnRuleStyle" */
+#define afw_components_s_columnRuleStyle (afw_components_v_columnRuleStyle.internal)
 
-/** @brief define for quoted string columnRuleWidth */
+/** @brief 'afw_value_string_t' for string "columnRuleStyle" */
+extern const afw_value_string_t afw_components_v_columnRuleStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "columnRuleStyle" */
+#define afw_components_z_columnRuleStyle (afw_components_v_columnRuleStyle.internal.s)
+
+
+
+/** @brief define for quoted string "columnRuleWidth" */
 #define AFW_COMPONENTS_Q_columnRuleWidth "columnRuleWidth"
 
-/** @brief afw_utf8_t for string columnRuleWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnRuleWidth;
+/** @brief 'afw_utf8_t' for string "columnRuleWidth" */
+#define afw_components_s_columnRuleWidth (afw_components_v_columnRuleWidth.internal)
 
-/** @brief define for quoted string columnSpan */
+/** @brief 'afw_value_string_t' for string "columnRuleWidth" */
+extern const afw_value_string_t afw_components_v_columnRuleWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "columnRuleWidth" */
+#define afw_components_z_columnRuleWidth (afw_components_v_columnRuleWidth.internal.s)
+
+
+
+/** @brief define for quoted string "columnSpan" */
 #define AFW_COMPONENTS_Q_columnSpan "columnSpan"
 
-/** @brief afw_utf8_t for string columnSpan */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnSpan;
+/** @brief 'afw_utf8_t' for string "columnSpan" */
+#define afw_components_s_columnSpan (afw_components_v_columnSpan.internal)
 
-/** @brief define for quoted string columnWidth */
+/** @brief 'afw_value_string_t' for string "columnSpan" */
+extern const afw_value_string_t afw_components_v_columnSpan;
+
+/** @brief 'afw_utf8_z_t *' for string "columnSpan" */
+#define afw_components_z_columnSpan (afw_components_v_columnSpan.internal.s)
+
+
+
+/** @brief define for quoted string "columnWidth" */
 #define AFW_COMPONENTS_Q_columnWidth "columnWidth"
 
-/** @brief afw_utf8_t for string columnWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columnWidth;
+/** @brief 'afw_utf8_t' for string "columnWidth" */
+#define afw_components_s_columnWidth (afw_components_v_columnWidth.internal)
 
-/** @brief define for quoted string columns */
+/** @brief 'afw_value_string_t' for string "columnWidth" */
+extern const afw_value_string_t afw_components_v_columnWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "columnWidth" */
+#define afw_components_z_columnWidth (afw_components_v_columnWidth.internal.s)
+
+
+
+/** @brief define for quoted string "columns" */
 #define AFW_COMPONENTS_Q_columns "columns"
 
-/** @brief afw_utf8_t for string columns */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_columns;
+/** @brief 'afw_utf8_t' for string "columns" */
+#define afw_components_s_columns (afw_components_v_columns.internal)
 
-/** @brief define for quoted string compact */
+/** @brief 'afw_value_string_t' for string "columns" */
+extern const afw_value_string_t afw_components_v_columns;
+
+/** @brief 'afw_utf8_z_t *' for string "columns" */
+#define afw_components_z_columns (afw_components_v_columns.internal.s)
+
+
+
+/** @brief define for quoted string "compact" */
 #define AFW_COMPONENTS_Q_compact "compact"
 
-/** @brief afw_utf8_t for string compact */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_compact;
+/** @brief 'afw_utf8_t' for string "compact" */
+#define afw_components_s_compact (afw_components_v_compact.internal)
 
-/** @brief define for quoted string component */
+/** @brief 'afw_value_string_t' for string "compact" */
+extern const afw_value_string_t afw_components_v_compact;
+
+/** @brief 'afw_utf8_z_t *' for string "compact" */
+#define afw_components_z_compact (afw_components_v_compact.internal.s)
+
+
+
+/** @brief define for quoted string "component" */
 #define AFW_COMPONENTS_Q_component "component"
 
-/** @brief afw_utf8_t for string component */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_component;
+/** @brief 'afw_utf8_t' for string "component" */
+#define afw_components_s_component (afw_components_v_component.internal)
 
-/** @brief define for quoted string componentProps */
+/** @brief 'afw_value_string_t' for string "component" */
+extern const afw_value_string_t afw_components_v_component;
+
+/** @brief 'afw_utf8_z_t *' for string "component" */
+#define afw_components_z_component (afw_components_v_component.internal.s)
+
+
+
+/** @brief define for quoted string "componentProps" */
 #define AFW_COMPONENTS_Q_componentProps "componentProps"
 
-/** @brief afw_utf8_t for string componentProps */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_componentProps;
+/** @brief 'afw_utf8_t' for string "componentProps" */
+#define afw_components_s_componentProps (afw_components_v_componentProps.internal)
 
-/** @brief define for quoted string componentType */
+/** @brief 'afw_value_string_t' for string "componentProps" */
+extern const afw_value_string_t afw_components_v_componentProps;
+
+/** @brief 'afw_utf8_z_t *' for string "componentProps" */
+#define afw_components_z_componentProps (afw_components_v_componentProps.internal.s)
+
+
+
+/** @brief define for quoted string "componentType" */
 #define AFW_COMPONENTS_Q_componentType "componentType"
 
-/** @brief afw_utf8_t for string componentType */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_componentType;
+/** @brief 'afw_utf8_t' for string "componentType" */
+#define afw_components_s_componentType (afw_components_v_componentType.internal)
 
-/** @brief define for quoted string containers */
+/** @brief 'afw_value_string_t' for string "componentType" */
+extern const afw_value_string_t afw_components_v_componentType;
+
+/** @brief 'afw_utf8_z_t *' for string "componentType" */
+#define afw_components_z_componentType (afw_components_v_componentType.internal.s)
+
+
+
+/** @brief define for quoted string "containers" */
 #define AFW_COMPONENTS_Q_containers "containers"
 
-/** @brief afw_utf8_t for string containers */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_containers;
+/** @brief 'afw_utf8_t' for string "containers" */
+#define afw_components_s_containers (afw_components_v_containers.internal)
 
-/** @brief define for quoted string contains */
+/** @brief 'afw_value_string_t' for string "containers" */
+extern const afw_value_string_t afw_components_v_containers;
+
+/** @brief 'afw_utf8_z_t *' for string "containers" */
+#define afw_components_z_containers (afw_components_v_containers.internal.s)
+
+
+
+/** @brief define for quoted string "contains" */
 #define AFW_COMPONENTS_Q_contains "contains"
 
-/** @brief afw_utf8_t for string contains */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_contains;
+/** @brief 'afw_utf8_t' for string "contains" */
+#define afw_components_s_contains (afw_components_v_contains.internal)
 
-/** @brief define for quoted string content */
+/** @brief 'afw_value_string_t' for string "contains" */
+extern const afw_value_string_t afw_components_v_contains;
+
+/** @brief 'afw_utf8_z_t *' for string "contains" */
+#define afw_components_z_contains (afw_components_v_contains.internal.s)
+
+
+
+/** @brief define for quoted string "content" */
 #define AFW_COMPONENTS_Q_content "content"
 
-/** @brief afw_utf8_t for string content */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_content;
+/** @brief 'afw_utf8_t' for string "content" */
+#define afw_components_s_content (afw_components_v_content.internal)
 
-/** @brief define for quoted string counterIncrement */
+/** @brief 'afw_value_string_t' for string "content" */
+extern const afw_value_string_t afw_components_v_content;
+
+/** @brief 'afw_utf8_z_t *' for string "content" */
+#define afw_components_z_content (afw_components_v_content.internal.s)
+
+
+
+/** @brief define for quoted string "counterIncrement" */
 #define AFW_COMPONENTS_Q_counterIncrement "counterIncrement"
 
-/** @brief afw_utf8_t for string counterIncrement */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_counterIncrement;
+/** @brief 'afw_utf8_t' for string "counterIncrement" */
+#define afw_components_s_counterIncrement (afw_components_v_counterIncrement.internal)
 
-/** @brief define for quoted string counterReset */
+/** @brief 'afw_value_string_t' for string "counterIncrement" */
+extern const afw_value_string_t afw_components_v_counterIncrement;
+
+/** @brief 'afw_utf8_z_t *' for string "counterIncrement" */
+#define afw_components_z_counterIncrement (afw_components_v_counterIncrement.internal.s)
+
+
+
+/** @brief define for quoted string "counterReset" */
 #define AFW_COMPONENTS_Q_counterReset "counterReset"
 
-/** @brief afw_utf8_t for string counterReset */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_counterReset;
+/** @brief 'afw_utf8_t' for string "counterReset" */
+#define afw_components_s_counterReset (afw_components_v_counterReset.internal)
 
-/** @brief define for quoted string cssFloat */
+/** @brief 'afw_value_string_t' for string "counterReset" */
+extern const afw_value_string_t afw_components_v_counterReset;
+
+/** @brief 'afw_utf8_z_t *' for string "counterReset" */
+#define afw_components_z_counterReset (afw_components_v_counterReset.internal.s)
+
+
+
+/** @brief define for quoted string "cssFloat" */
 #define AFW_COMPONENTS_Q_cssFloat "cssFloat"
 
-/** @brief afw_utf8_t for string cssFloat */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_cssFloat;
+/** @brief 'afw_utf8_t' for string "cssFloat" */
+#define afw_components_s_cssFloat (afw_components_v_cssFloat.internal)
 
-/** @brief define for quoted string cursor */
+/** @brief 'afw_value_string_t' for string "cssFloat" */
+extern const afw_value_string_t afw_components_v_cssFloat;
+
+/** @brief 'afw_utf8_z_t *' for string "cssFloat" */
+#define afw_components_z_cssFloat (afw_components_v_cssFloat.internal.s)
+
+
+
+/** @brief define for quoted string "cursor" */
 #define AFW_COMPONENTS_Q_cursor "cursor"
 
-/** @brief afw_utf8_t for string cursor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_cursor;
+/** @brief 'afw_utf8_t' for string "cursor" */
+#define afw_components_s_cursor (afw_components_v_cursor.internal)
 
-/** @brief define for quoted string data */
+/** @brief 'afw_value_string_t' for string "cursor" */
+extern const afw_value_string_t afw_components_v_cursor;
+
+/** @brief 'afw_utf8_z_t *' for string "cursor" */
+#define afw_components_z_cursor (afw_components_v_cursor.internal.s)
+
+
+
+/** @brief define for quoted string "data" */
 #define AFW_COMPONENTS_Q_data "data"
 
-/** @brief afw_utf8_t for string data */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_data;
+/** @brief 'afw_utf8_t' for string "data" */
+#define afw_components_s_data (afw_components_v_data.internal)
 
-/** @brief define for quoted string dataType */
+/** @brief 'afw_value_string_t' for string "data" */
+extern const afw_value_string_t afw_components_v_data;
+
+/** @brief 'afw_utf8_z_t *' for string "data" */
+#define afw_components_z_data (afw_components_v_data.internal.s)
+
+
+
+/** @brief define for quoted string "dataType" */
 #define AFW_COMPONENTS_Q_dataType "dataType"
 
-/** @brief afw_utf8_t for string dataType */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_dataType;
+/** @brief 'afw_utf8_t' for string "dataType" */
+#define afw_components_s_dataType (afw_components_v_dataType.internal)
 
-/** @brief define for quoted string dataTypeParameter */
+/** @brief 'afw_value_string_t' for string "dataType" */
+extern const afw_value_string_t afw_components_v_dataType;
+
+/** @brief 'afw_utf8_z_t *' for string "dataType" */
+#define afw_components_z_dataType (afw_components_v_dataType.internal.s)
+
+
+
+/** @brief define for quoted string "dataTypeParameter" */
 #define AFW_COMPONENTS_Q_dataTypeParameter "dataTypeParameter"
 
-/** @brief afw_utf8_t for string dataTypeParameter */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_dataTypeParameter;
+/** @brief 'afw_utf8_t' for string "dataTypeParameter" */
+#define afw_components_s_dataTypeParameter (afw_components_v_dataTypeParameter.internal)
 
-/** @brief define for quoted string dateTime */
+/** @brief 'afw_value_string_t' for string "dataTypeParameter" */
+extern const afw_value_string_t afw_components_v_dataTypeParameter;
+
+/** @brief 'afw_utf8_z_t *' for string "dataTypeParameter" */
+#define afw_components_z_dataTypeParameter (afw_components_v_dataTypeParameter.internal.s)
+
+
+
+/** @brief define for quoted string "dateTime" */
 #define AFW_COMPONENTS_Q_dateTime "dateTime"
 
-/** @brief afw_utf8_t for string dateTime */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_dateTime;
+/** @brief 'afw_utf8_t' for string "dateTime" */
+#define afw_components_s_dateTime (afw_components_v_dateTime.internal)
 
-/** @brief define for quoted string dayTimeDuration */
+/** @brief 'afw_value_string_t' for string "dateTime" */
+extern const afw_value_string_t afw_components_v_dateTime;
+
+/** @brief 'afw_utf8_z_t *' for string "dateTime" */
+#define afw_components_z_dateTime (afw_components_v_dateTime.internal.s)
+
+
+
+/** @brief define for quoted string "dayTimeDuration" */
 #define AFW_COMPONENTS_Q_dayTimeDuration "dayTimeDuration"
 
-/** @brief afw_utf8_t for string dayTimeDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_dayTimeDuration;
+/** @brief 'afw_utf8_t' for string "dayTimeDuration" */
+#define afw_components_s_dayTimeDuration (afw_components_v_dayTimeDuration.internal)
 
-/** @brief define for quoted string default */
+/** @brief 'afw_value_string_t' for string "dayTimeDuration" */
+extern const afw_value_string_t afw_components_v_dayTimeDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "dayTimeDuration" */
+#define afw_components_z_dayTimeDuration (afw_components_v_dayTimeDuration.internal.s)
+
+
+
+/** @brief define for quoted string "default" */
 #define AFW_COMPONENTS_Q_default "default"
 
-/** @brief afw_utf8_t for string default */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_default;
+/** @brief 'afw_utf8_t' for string "default" */
+#define afw_components_s_default (afw_components_v_default.internal)
 
-/** @brief define for quoted string defaultValue */
+/** @brief 'afw_value_string_t' for string "default" */
+extern const afw_value_string_t afw_components_v_default;
+
+/** @brief 'afw_utf8_z_t *' for string "default" */
+#define afw_components_z_default (afw_components_v_default.internal.s)
+
+
+
+/** @brief define for quoted string "defaultValue" */
 #define AFW_COMPONENTS_Q_defaultValue "defaultValue"
 
-/** @brief afw_utf8_t for string defaultValue */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_defaultValue;
+/** @brief 'afw_utf8_t' for string "defaultValue" */
+#define afw_components_s_defaultValue (afw_components_v_defaultValue.internal)
 
-/** @brief define for quoted string delay */
+/** @brief 'afw_value_string_t' for string "defaultValue" */
+extern const afw_value_string_t afw_components_v_defaultValue;
+
+/** @brief 'afw_utf8_z_t *' for string "defaultValue" */
+#define afw_components_z_defaultValue (afw_components_v_defaultValue.internal.s)
+
+
+
+/** @brief define for quoted string "delay" */
 #define AFW_COMPONENTS_Q_delay "delay"
 
-/** @brief afw_utf8_t for string delay */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_delay;
+/** @brief 'afw_utf8_t' for string "delay" */
+#define afw_components_s_delay (afw_components_v_delay.internal)
 
-/** @brief define for quoted string dense */
+/** @brief 'afw_value_string_t' for string "delay" */
+extern const afw_value_string_t afw_components_v_delay;
+
+/** @brief 'afw_utf8_z_t *' for string "delay" */
+#define afw_components_z_delay (afw_components_v_delay.internal.s)
+
+
+
+/** @brief define for quoted string "dense" */
 #define AFW_COMPONENTS_Q_dense "dense"
 
-/** @brief afw_utf8_t for string dense */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_dense;
+/** @brief 'afw_utf8_t' for string "dense" */
+#define afw_components_s_dense (afw_components_v_dense.internal)
 
-/** @brief define for quoted string description */
+/** @brief 'afw_value_string_t' for string "dense" */
+extern const afw_value_string_t afw_components_v_dense;
+
+/** @brief 'afw_utf8_z_t *' for string "dense" */
+#define afw_components_z_dense (afw_components_v_dense.internal.s)
+
+
+
+/** @brief define for quoted string "description" */
 #define AFW_COMPONENTS_Q_description "description"
 
-/** @brief afw_utf8_t for string description */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_description;
+/** @brief 'afw_utf8_t' for string "description" */
+#define afw_components_s_description (afw_components_v_description.internal)
 
-/** @brief define for quoted string designMode */
+/** @brief 'afw_value_string_t' for string "description" */
+extern const afw_value_string_t afw_components_v_description;
+
+/** @brief 'afw_utf8_z_t *' for string "description" */
+#define afw_components_z_description (afw_components_v_description.internal.s)
+
+
+
+/** @brief define for quoted string "designMode" */
 #define AFW_COMPONENTS_Q_designMode "designMode"
 
-/** @brief afw_utf8_t for string designMode */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_designMode;
+/** @brief 'afw_utf8_t' for string "designMode" */
+#define afw_components_s_designMode (afw_components_v_designMode.internal)
 
-/** @brief define for quoted string direction */
+/** @brief 'afw_value_string_t' for string "designMode" */
+extern const afw_value_string_t afw_components_v_designMode;
+
+/** @brief 'afw_utf8_z_t *' for string "designMode" */
+#define afw_components_z_designMode (afw_components_v_designMode.internal.s)
+
+
+
+/** @brief define for quoted string "direction" */
 #define AFW_COMPONENTS_Q_direction "direction"
 
-/** @brief afw_utf8_t for string direction */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_direction;
+/** @brief 'afw_utf8_t' for string "direction" */
+#define afw_components_s_direction (afw_components_v_direction.internal)
 
-/** @brief define for quoted string disabled */
+/** @brief 'afw_value_string_t' for string "direction" */
+extern const afw_value_string_t afw_components_v_direction;
+
+/** @brief 'afw_utf8_z_t *' for string "direction" */
+#define afw_components_z_direction (afw_components_v_direction.internal.s)
+
+
+
+/** @brief define for quoted string "disabled" */
 #define AFW_COMPONENTS_Q_disabled "disabled"
 
-/** @brief afw_utf8_t for string disabled */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_disabled;
+/** @brief 'afw_utf8_t' for string "disabled" */
+#define afw_components_s_disabled (afw_components_v_disabled.internal)
 
-/** @brief define for quoted string display */
+/** @brief 'afw_value_string_t' for string "disabled" */
+extern const afw_value_string_t afw_components_v_disabled;
+
+/** @brief 'afw_utf8_z_t *' for string "disabled" */
+#define afw_components_z_disabled (afw_components_v_disabled.internal.s)
+
+
+
+/** @brief define for quoted string "display" */
 #define AFW_COMPONENTS_Q_display "display"
 
-/** @brief afw_utf8_t for string display */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_display;
+/** @brief 'afw_utf8_t' for string "display" */
+#define afw_components_s_display (afw_components_v_display.internal)
 
-/** @brief define for quoted string dropdown */
+/** @brief 'afw_value_string_t' for string "display" */
+extern const afw_value_string_t afw_components_v_display;
+
+/** @brief 'afw_utf8_z_t *' for string "display" */
+#define afw_components_z_display (afw_components_v_display.internal.s)
+
+
+
+/** @brief define for quoted string "dropdown" */
 #define AFW_COMPONENTS_Q_dropdown "dropdown"
 
-/** @brief afw_utf8_t for string dropdown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_dropdown;
+/** @brief 'afw_utf8_t' for string "dropdown" */
+#define afw_components_s_dropdown (afw_components_v_dropdown.internal)
 
-/** @brief define for quoted string duration */
+/** @brief 'afw_value_string_t' for string "dropdown" */
+extern const afw_value_string_t afw_components_v_dropdown;
+
+/** @brief 'afw_utf8_z_t *' for string "dropdown" */
+#define afw_components_z_dropdown (afw_components_v_dropdown.internal.s)
+
+
+
+/** @brief define for quoted string "duration" */
 #define AFW_COMPONENTS_Q_duration "duration"
 
-/** @brief afw_utf8_t for string duration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_duration;
+/** @brief 'afw_utf8_t' for string "duration" */
+#define afw_components_s_duration (afw_components_v_duration.internal)
 
-/** @brief define for quoted string editable */
+/** @brief 'afw_value_string_t' for string "duration" */
+extern const afw_value_string_t afw_components_v_duration;
+
+/** @brief 'afw_utf8_z_t *' for string "duration" */
+#define afw_components_z_duration (afw_components_v_duration.internal.s)
+
+
+
+/** @brief define for quoted string "editable" */
 #define AFW_COMPONENTS_Q_editable "editable"
 
-/** @brief afw_utf8_t for string editable */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_editable;
+/** @brief 'afw_utf8_t' for string "editable" */
+#define afw_components_s_editable (afw_components_v_editable.internal)
 
-/** @brief define for quoted string editors */
+/** @brief 'afw_value_string_t' for string "editable" */
+extern const afw_value_string_t afw_components_v_editable;
+
+/** @brief 'afw_utf8_z_t *' for string "editable" */
+#define afw_components_z_editable (afw_components_v_editable.internal.s)
+
+
+
+/** @brief define for quoted string "editors" */
 #define AFW_COMPONENTS_Q_editors "editors"
 
-/** @brief afw_utf8_t for string editors */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_editors;
+/** @brief 'afw_utf8_t' for string "editors" */
+#define afw_components_s_editors (afw_components_v_editors.internal)
 
-/** @brief define for quoted string elevation */
+/** @brief 'afw_value_string_t' for string "editors" */
+extern const afw_value_string_t afw_components_v_editors;
+
+/** @brief 'afw_utf8_z_t *' for string "editors" */
+#define afw_components_z_editors (afw_components_v_editors.internal.s)
+
+
+
+/** @brief define for quoted string "elevation" */
 #define AFW_COMPONENTS_Q_elevation "elevation"
 
-/** @brief afw_utf8_t for string elevation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_elevation;
+/** @brief 'afw_utf8_t' for string "elevation" */
+#define afw_components_s_elevation (afw_components_v_elevation.internal)
 
-/** @brief define for quoted string embedded */
+/** @brief 'afw_value_string_t' for string "elevation" */
+extern const afw_value_string_t afw_components_v_elevation;
+
+/** @brief 'afw_utf8_z_t *' for string "elevation" */
+#define afw_components_z_elevation (afw_components_v_elevation.internal.s)
+
+
+
+/** @brief define for quoted string "embedded" */
 #define AFW_COMPONENTS_Q_embedded "embedded"
 
-/** @brief afw_utf8_t for string embedded */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_embedded;
+/** @brief 'afw_utf8_t' for string "embedded" */
+#define afw_components_s_embedded (afw_components_v_embedded.internal)
 
-/** @brief define for quoted string emptyCells */
+/** @brief 'afw_value_string_t' for string "embedded" */
+extern const afw_value_string_t afw_components_v_embedded;
+
+/** @brief 'afw_utf8_z_t *' for string "embedded" */
+#define afw_components_z_embedded (afw_components_v_embedded.internal.s)
+
+
+
+/** @brief define for quoted string "emptyCells" */
 #define AFW_COMPONENTS_Q_emptyCells "emptyCells"
 
-/** @brief afw_utf8_t for string emptyCells */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_emptyCells;
+/** @brief 'afw_utf8_t' for string "emptyCells" */
+#define afw_components_s_emptyCells (afw_components_v_emptyCells.internal)
 
-/** @brief define for quoted string exclusive */
+/** @brief 'afw_value_string_t' for string "emptyCells" */
+extern const afw_value_string_t afw_components_v_emptyCells;
+
+/** @brief 'afw_utf8_z_t *' for string "emptyCells" */
+#define afw_components_z_emptyCells (afw_components_v_emptyCells.internal.s)
+
+
+
+/** @brief define for quoted string "exclusive" */
 #define AFW_COMPONENTS_Q_exclusive "exclusive"
 
-/** @brief afw_utf8_t for string exclusive */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_exclusive;
+/** @brief 'afw_utf8_t' for string "exclusive" */
+#define afw_components_s_exclusive (afw_components_v_exclusive.internal)
 
-/** @brief define for quoted string expandedKeys */
+/** @brief 'afw_value_string_t' for string "exclusive" */
+extern const afw_value_string_t afw_components_v_exclusive;
+
+/** @brief 'afw_utf8_z_t *' for string "exclusive" */
+#define afw_components_z_exclusive (afw_components_v_exclusive.internal.s)
+
+
+
+/** @brief define for quoted string "expandedKeys" */
 #define AFW_COMPONENTS_Q_expandedKeys "expandedKeys"
 
-/** @brief afw_utf8_t for string expandedKeys */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_expandedKeys;
+/** @brief 'afw_utf8_t' for string "expandedKeys" */
+#define afw_components_s_expandedKeys (afw_components_v_expandedKeys.internal)
 
-/** @brief define for quoted string fieldName */
+/** @brief 'afw_value_string_t' for string "expandedKeys" */
+extern const afw_value_string_t afw_components_v_expandedKeys;
+
+/** @brief 'afw_utf8_z_t *' for string "expandedKeys" */
+#define afw_components_z_expandedKeys (afw_components_v_expandedKeys.internal.s)
+
+
+
+/** @brief define for quoted string "fieldName" */
 #define AFW_COMPONENTS_Q_fieldName "fieldName"
 
-/** @brief afw_utf8_t for string fieldName */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fieldName;
+/** @brief 'afw_utf8_t' for string "fieldName" */
+#define afw_components_s_fieldName (afw_components_v_fieldName.internal)
 
-/** @brief define for quoted string filter */
+/** @brief 'afw_value_string_t' for string "fieldName" */
+extern const afw_value_string_t afw_components_v_fieldName;
+
+/** @brief 'afw_utf8_z_t *' for string "fieldName" */
+#define afw_components_z_fieldName (afw_components_v_fieldName.internal.s)
+
+
+
+/** @brief define for quoted string "filter" */
 #define AFW_COMPONENTS_Q_filter "filter"
 
-/** @brief afw_utf8_t for string filter */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filter;
+/** @brief 'afw_utf8_t' for string "filter" */
+#define afw_components_s_filter (afw_components_v_filter.internal)
 
-/** @brief define for quoted string filterCondAndProperties */
+/** @brief 'afw_value_string_t' for string "filter" */
+extern const afw_value_string_t afw_components_v_filter;
+
+/** @brief 'afw_utf8_z_t *' for string "filter" */
+#define afw_components_z_filter (afw_components_v_filter.internal.s)
+
+
+
+/** @brief define for quoted string "filterCondAndProperties" */
 #define AFW_COMPONENTS_Q_filterCondAndProperties "filterCondAndProperties"
 
-/** @brief afw_utf8_t for string filterCondAndProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterCondAndProperties;
+/** @brief 'afw_utf8_t' for string "filterCondAndProperties" */
+#define afw_components_s_filterCondAndProperties (afw_components_v_filterCondAndProperties.internal)
 
-/** @brief define for quoted string filterCondOrProperties */
+/** @brief 'afw_value_string_t' for string "filterCondAndProperties" */
+extern const afw_value_string_t afw_components_v_filterCondAndProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterCondAndProperties" */
+#define afw_components_z_filterCondAndProperties (afw_components_v_filterCondAndProperties.internal.s)
+
+
+
+/** @brief define for quoted string "filterCondOrProperties" */
 #define AFW_COMPONENTS_Q_filterCondOrProperties "filterCondOrProperties"
 
-/** @brief afw_utf8_t for string filterCondOrProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterCondOrProperties;
+/** @brief 'afw_utf8_t' for string "filterCondOrProperties" */
+#define afw_components_s_filterCondOrProperties (afw_components_v_filterCondOrProperties.internal)
 
-/** @brief define for quoted string filterExcludeEmbeddedProperties */
+/** @brief 'afw_value_string_t' for string "filterCondOrProperties" */
+extern const afw_value_string_t afw_components_v_filterCondOrProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterCondOrProperties" */
+#define afw_components_z_filterCondOrProperties (afw_components_v_filterCondOrProperties.internal.s)
+
+
+
+/** @brief define for quoted string "filterExcludeEmbeddedProperties" */
 #define AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties "filterExcludeEmbeddedProperties"
 
-/** @brief afw_utf8_t for string filterExcludeEmbeddedProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterExcludeEmbeddedProperties;
+/** @brief 'afw_utf8_t' for string "filterExcludeEmbeddedProperties" */
+#define afw_components_s_filterExcludeEmbeddedProperties (afw_components_v_filterExcludeEmbeddedProperties.internal)
 
-/** @brief define for quoted string filterExcludeProperties */
+/** @brief 'afw_value_string_t' for string "filterExcludeEmbeddedProperties" */
+extern const afw_value_string_t afw_components_v_filterExcludeEmbeddedProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterExcludeEmbeddedProperties" */
+#define afw_components_z_filterExcludeEmbeddedProperties (afw_components_v_filterExcludeEmbeddedProperties.internal.s)
+
+
+
+/** @brief define for quoted string "filterExcludeProperties" */
 #define AFW_COMPONENTS_Q_filterExcludeProperties "filterExcludeProperties"
 
-/** @brief afw_utf8_t for string filterExcludeProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterExcludeProperties;
+/** @brief 'afw_utf8_t' for string "filterExcludeProperties" */
+#define afw_components_s_filterExcludeProperties (afw_components_v_filterExcludeProperties.internal)
 
-/** @brief define for quoted string filterOptions */
+/** @brief 'afw_value_string_t' for string "filterExcludeProperties" */
+extern const afw_value_string_t afw_components_v_filterExcludeProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterExcludeProperties" */
+#define afw_components_z_filterExcludeProperties (afw_components_v_filterExcludeProperties.internal.s)
+
+
+
+/** @brief define for quoted string "filterOptions" */
 #define AFW_COMPONENTS_Q_filterOptions "filterOptions"
 
-/** @brief afw_utf8_t for string filterOptions */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterOptions;
+/** @brief 'afw_utf8_t' for string "filterOptions" */
+#define afw_components_s_filterOptions (afw_components_v_filterOptions.internal)
 
-/** @brief define for quoted string filterProperties */
+/** @brief 'afw_value_string_t' for string "filterOptions" */
+extern const afw_value_string_t afw_components_v_filterOptions;
+
+/** @brief 'afw_utf8_z_t *' for string "filterOptions" */
+#define afw_components_z_filterOptions (afw_components_v_filterOptions.internal.s)
+
+
+
+/** @brief define for quoted string "filterProperties" */
 #define AFW_COMPONENTS_Q_filterProperties "filterProperties"
 
-/** @brief afw_utf8_t for string filterProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterProperties;
+/** @brief 'afw_utf8_t' for string "filterProperties" */
+#define afw_components_s_filterProperties (afw_components_v_filterProperties.internal)
 
-/** @brief define for quoted string filterRequiredProperties */
+/** @brief 'afw_value_string_t' for string "filterProperties" */
+extern const afw_value_string_t afw_components_v_filterProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterProperties" */
+#define afw_components_z_filterProperties (afw_components_v_filterProperties.internal.s)
+
+
+
+/** @brief define for quoted string "filterRequiredProperties" */
 #define AFW_COMPONENTS_Q_filterRequiredProperties "filterRequiredProperties"
 
-/** @brief afw_utf8_t for string filterRequiredProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterRequiredProperties;
+/** @brief 'afw_utf8_t' for string "filterRequiredProperties" */
+#define afw_components_s_filterRequiredProperties (afw_components_v_filterRequiredProperties.internal)
 
-/** @brief define for quoted string filterValuedProperties */
+/** @brief 'afw_value_string_t' for string "filterRequiredProperties" */
+extern const afw_value_string_t afw_components_v_filterRequiredProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterRequiredProperties" */
+#define afw_components_z_filterRequiredProperties (afw_components_v_filterRequiredProperties.internal.s)
+
+
+
+/** @brief define for quoted string "filterValuedProperties" */
 #define AFW_COMPONENTS_Q_filterValuedProperties "filterValuedProperties"
 
-/** @brief afw_utf8_t for string filterValuedProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_filterValuedProperties;
+/** @brief 'afw_utf8_t' for string "filterValuedProperties" */
+#define afw_components_s_filterValuedProperties (afw_components_v_filterValuedProperties.internal)
 
-/** @brief define for quoted string flex */
+/** @brief 'afw_value_string_t' for string "filterValuedProperties" */
+extern const afw_value_string_t afw_components_v_filterValuedProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "filterValuedProperties" */
+#define afw_components_z_filterValuedProperties (afw_components_v_filterValuedProperties.internal.s)
+
+
+
+/** @brief define for quoted string "flex" */
 #define AFW_COMPONENTS_Q_flex "flex"
 
-/** @brief afw_utf8_t for string flex */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flex;
+/** @brief 'afw_utf8_t' for string "flex" */
+#define afw_components_s_flex (afw_components_v_flex.internal)
 
-/** @brief define for quoted string flexBasis */
+/** @brief 'afw_value_string_t' for string "flex" */
+extern const afw_value_string_t afw_components_v_flex;
+
+/** @brief 'afw_utf8_z_t *' for string "flex" */
+#define afw_components_z_flex (afw_components_v_flex.internal.s)
+
+
+
+/** @brief define for quoted string "flexBasis" */
 #define AFW_COMPONENTS_Q_flexBasis "flexBasis"
 
-/** @brief afw_utf8_t for string flexBasis */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flexBasis;
+/** @brief 'afw_utf8_t' for string "flexBasis" */
+#define afw_components_s_flexBasis (afw_components_v_flexBasis.internal)
 
-/** @brief define for quoted string flexDirection */
+/** @brief 'afw_value_string_t' for string "flexBasis" */
+extern const afw_value_string_t afw_components_v_flexBasis;
+
+/** @brief 'afw_utf8_z_t *' for string "flexBasis" */
+#define afw_components_z_flexBasis (afw_components_v_flexBasis.internal.s)
+
+
+
+/** @brief define for quoted string "flexDirection" */
 #define AFW_COMPONENTS_Q_flexDirection "flexDirection"
 
-/** @brief afw_utf8_t for string flexDirection */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flexDirection;
+/** @brief 'afw_utf8_t' for string "flexDirection" */
+#define afw_components_s_flexDirection (afw_components_v_flexDirection.internal)
 
-/** @brief define for quoted string flexFlow */
+/** @brief 'afw_value_string_t' for string "flexDirection" */
+extern const afw_value_string_t afw_components_v_flexDirection;
+
+/** @brief 'afw_utf8_z_t *' for string "flexDirection" */
+#define afw_components_z_flexDirection (afw_components_v_flexDirection.internal.s)
+
+
+
+/** @brief define for quoted string "flexFlow" */
 #define AFW_COMPONENTS_Q_flexFlow "flexFlow"
 
-/** @brief afw_utf8_t for string flexFlow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flexFlow;
+/** @brief 'afw_utf8_t' for string "flexFlow" */
+#define afw_components_s_flexFlow (afw_components_v_flexFlow.internal)
 
-/** @brief define for quoted string flexGrow */
+/** @brief 'afw_value_string_t' for string "flexFlow" */
+extern const afw_value_string_t afw_components_v_flexFlow;
+
+/** @brief 'afw_utf8_z_t *' for string "flexFlow" */
+#define afw_components_z_flexFlow (afw_components_v_flexFlow.internal.s)
+
+
+
+/** @brief define for quoted string "flexGrow" */
 #define AFW_COMPONENTS_Q_flexGrow "flexGrow"
 
-/** @brief afw_utf8_t for string flexGrow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flexGrow;
+/** @brief 'afw_utf8_t' for string "flexGrow" */
+#define afw_components_s_flexGrow (afw_components_v_flexGrow.internal)
 
-/** @brief define for quoted string flexShrink */
+/** @brief 'afw_value_string_t' for string "flexGrow" */
+extern const afw_value_string_t afw_components_v_flexGrow;
+
+/** @brief 'afw_utf8_z_t *' for string "flexGrow" */
+#define afw_components_z_flexGrow (afw_components_v_flexGrow.internal.s)
+
+
+
+/** @brief define for quoted string "flexShrink" */
 #define AFW_COMPONENTS_Q_flexShrink "flexShrink"
 
-/** @brief afw_utf8_t for string flexShrink */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flexShrink;
+/** @brief 'afw_utf8_t' for string "flexShrink" */
+#define afw_components_s_flexShrink (afw_components_v_flexShrink.internal)
 
-/** @brief define for quoted string flexWrap */
+/** @brief 'afw_value_string_t' for string "flexShrink" */
+extern const afw_value_string_t afw_components_v_flexShrink;
+
+/** @brief 'afw_utf8_z_t *' for string "flexShrink" */
+#define afw_components_z_flexShrink (afw_components_v_flexShrink.internal.s)
+
+
+
+/** @brief define for quoted string "flexWrap" */
 #define AFW_COMPONENTS_Q_flexWrap "flexWrap"
 
-/** @brief afw_utf8_t for string flexWrap */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_flexWrap;
+/** @brief 'afw_utf8_t' for string "flexWrap" */
+#define afw_components_s_flexWrap (afw_components_v_flexWrap.internal)
 
-/** @brief define for quoted string font */
+/** @brief 'afw_value_string_t' for string "flexWrap" */
+extern const afw_value_string_t afw_components_v_flexWrap;
+
+/** @brief 'afw_utf8_z_t *' for string "flexWrap" */
+#define afw_components_z_flexWrap (afw_components_v_flexWrap.internal.s)
+
+
+
+/** @brief define for quoted string "font" */
 #define AFW_COMPONENTS_Q_font "font"
 
-/** @brief afw_utf8_t for string font */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_font;
+/** @brief 'afw_utf8_t' for string "font" */
+#define afw_components_s_font (afw_components_v_font.internal)
 
-/** @brief define for quoted string fontFamily */
+/** @brief 'afw_value_string_t' for string "font" */
+extern const afw_value_string_t afw_components_v_font;
+
+/** @brief 'afw_utf8_z_t *' for string "font" */
+#define afw_components_z_font (afw_components_v_font.internal.s)
+
+
+
+/** @brief define for quoted string "fontFamily" */
 #define AFW_COMPONENTS_Q_fontFamily "fontFamily"
 
-/** @brief afw_utf8_t for string fontFamily */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontFamily;
+/** @brief 'afw_utf8_t' for string "fontFamily" */
+#define afw_components_s_fontFamily (afw_components_v_fontFamily.internal)
 
-/** @brief define for quoted string fontSize */
+/** @brief 'afw_value_string_t' for string "fontFamily" */
+extern const afw_value_string_t afw_components_v_fontFamily;
+
+/** @brief 'afw_utf8_z_t *' for string "fontFamily" */
+#define afw_components_z_fontFamily (afw_components_v_fontFamily.internal.s)
+
+
+
+/** @brief define for quoted string "fontSize" */
 #define AFW_COMPONENTS_Q_fontSize "fontSize"
 
-/** @brief afw_utf8_t for string fontSize */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontSize;
+/** @brief 'afw_utf8_t' for string "fontSize" */
+#define afw_components_s_fontSize (afw_components_v_fontSize.internal)
 
-/** @brief define for quoted string fontSizeAdjust */
+/** @brief 'afw_value_string_t' for string "fontSize" */
+extern const afw_value_string_t afw_components_v_fontSize;
+
+/** @brief 'afw_utf8_z_t *' for string "fontSize" */
+#define afw_components_z_fontSize (afw_components_v_fontSize.internal.s)
+
+
+
+/** @brief define for quoted string "fontSizeAdjust" */
 #define AFW_COMPONENTS_Q_fontSizeAdjust "fontSizeAdjust"
 
-/** @brief afw_utf8_t for string fontSizeAdjust */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontSizeAdjust;
+/** @brief 'afw_utf8_t' for string "fontSizeAdjust" */
+#define afw_components_s_fontSizeAdjust (afw_components_v_fontSizeAdjust.internal)
 
-/** @brief define for quoted string fontStretch */
+/** @brief 'afw_value_string_t' for string "fontSizeAdjust" */
+extern const afw_value_string_t afw_components_v_fontSizeAdjust;
+
+/** @brief 'afw_utf8_z_t *' for string "fontSizeAdjust" */
+#define afw_components_z_fontSizeAdjust (afw_components_v_fontSizeAdjust.internal.s)
+
+
+
+/** @brief define for quoted string "fontStretch" */
 #define AFW_COMPONENTS_Q_fontStretch "fontStretch"
 
-/** @brief afw_utf8_t for string fontStretch */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontStretch;
+/** @brief 'afw_utf8_t' for string "fontStretch" */
+#define afw_components_s_fontStretch (afw_components_v_fontStretch.internal)
 
-/** @brief define for quoted string fontStyle */
+/** @brief 'afw_value_string_t' for string "fontStretch" */
+extern const afw_value_string_t afw_components_v_fontStretch;
+
+/** @brief 'afw_utf8_z_t *' for string "fontStretch" */
+#define afw_components_z_fontStretch (afw_components_v_fontStretch.internal.s)
+
+
+
+/** @brief define for quoted string "fontStyle" */
 #define AFW_COMPONENTS_Q_fontStyle "fontStyle"
 
-/** @brief afw_utf8_t for string fontStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontStyle;
+/** @brief 'afw_utf8_t' for string "fontStyle" */
+#define afw_components_s_fontStyle (afw_components_v_fontStyle.internal)
 
-/** @brief define for quoted string fontVariant */
+/** @brief 'afw_value_string_t' for string "fontStyle" */
+extern const afw_value_string_t afw_components_v_fontStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "fontStyle" */
+#define afw_components_z_fontStyle (afw_components_v_fontStyle.internal.s)
+
+
+
+/** @brief define for quoted string "fontVariant" */
 #define AFW_COMPONENTS_Q_fontVariant "fontVariant"
 
-/** @brief afw_utf8_t for string fontVariant */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontVariant;
+/** @brief 'afw_utf8_t' for string "fontVariant" */
+#define afw_components_s_fontVariant (afw_components_v_fontVariant.internal)
 
-/** @brief define for quoted string fontWeight */
+/** @brief 'afw_value_string_t' for string "fontVariant" */
+extern const afw_value_string_t afw_components_v_fontVariant;
+
+/** @brief 'afw_utf8_z_t *' for string "fontVariant" */
+#define afw_components_z_fontVariant (afw_components_v_fontVariant.internal.s)
+
+
+
+/** @brief define for quoted string "fontWeight" */
 #define AFW_COMPONENTS_Q_fontWeight "fontWeight"
 
-/** @brief afw_utf8_t for string fontWeight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fontWeight;
+/** @brief 'afw_utf8_t' for string "fontWeight" */
+#define afw_components_s_fontWeight (afw_components_v_fontWeight.internal)
 
-/** @brief define for quoted string footer */
+/** @brief 'afw_value_string_t' for string "fontWeight" */
+extern const afw_value_string_t afw_components_v_fontWeight;
+
+/** @brief 'afw_utf8_z_t *' for string "fontWeight" */
+#define afw_components_z_fontWeight (afw_components_v_fontWeight.internal.s)
+
+
+
+/** @brief define for quoted string "footer" */
 #define AFW_COMPONENTS_Q_footer "footer"
 
-/** @brief afw_utf8_t for string footer */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_footer;
+/** @brief 'afw_utf8_t' for string "footer" */
+#define afw_components_s_footer (afw_components_v_footer.internal)
 
-/** @brief define for quoted string for */
+/** @brief 'afw_value_string_t' for string "footer" */
+extern const afw_value_string_t afw_components_v_footer;
+
+/** @brief 'afw_utf8_z_t *' for string "footer" */
+#define afw_components_z_footer (afw_components_v_footer.internal.s)
+
+
+
+/** @brief define for quoted string "for" */
 #define AFW_COMPONENTS_Q_for "for"
 
-/** @brief afw_utf8_t for string for */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_for;
+/** @brief 'afw_utf8_t' for string "for" */
+#define afw_components_s_for (afw_components_v_for.internal)
 
-/** @brief define for quoted string fullScreen */
+/** @brief 'afw_value_string_t' for string "for" */
+extern const afw_value_string_t afw_components_v_for;
+
+/** @brief 'afw_utf8_z_t *' for string "for" */
+#define afw_components_z_for (afw_components_v_for.internal.s)
+
+
+
+/** @brief define for quoted string "fullScreen" */
 #define AFW_COMPONENTS_Q_fullScreen "fullScreen"
 
-/** @brief afw_utf8_t for string fullScreen */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_fullScreen;
+/** @brief 'afw_utf8_t' for string "fullScreen" */
+#define afw_components_s_fullScreen (afw_components_v_fullScreen.internal)
 
-/** @brief define for quoted string gapSpace */
+/** @brief 'afw_value_string_t' for string "fullScreen" */
+extern const afw_value_string_t afw_components_v_fullScreen;
+
+/** @brief 'afw_utf8_z_t *' for string "fullScreen" */
+#define afw_components_z_fullScreen (afw_components_v_fullScreen.internal.s)
+
+
+
+/** @brief define for quoted string "gapSpace" */
 #define AFW_COMPONENTS_Q_gapSpace "gapSpace"
 
-/** @brief afw_utf8_t for string gapSpace */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_gapSpace;
+/** @brief 'afw_utf8_t' for string "gapSpace" */
+#define afw_components_s_gapSpace (afw_components_v_gapSpace.internal)
 
-/** @brief define for quoted string grow */
+/** @brief 'afw_value_string_t' for string "gapSpace" */
+extern const afw_value_string_t afw_components_v_gapSpace;
+
+/** @brief 'afw_utf8_z_t *' for string "gapSpace" */
+#define afw_components_z_gapSpace (afw_components_v_gapSpace.internal.s)
+
+
+
+/** @brief define for quoted string "grow" */
 #define AFW_COMPONENTS_Q_grow "grow"
 
-/** @brief afw_utf8_t for string grow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_grow;
+/** @brief 'afw_utf8_t' for string "grow" */
+#define afw_components_s_grow (afw_components_v_grow.internal)
 
-/** @brief define for quoted string hangingPunctuation */
+/** @brief 'afw_value_string_t' for string "grow" */
+extern const afw_value_string_t afw_components_v_grow;
+
+/** @brief 'afw_utf8_z_t *' for string "grow" */
+#define afw_components_z_grow (afw_components_v_grow.internal.s)
+
+
+
+/** @brief define for quoted string "hangingPunctuation" */
 #define AFW_COMPONENTS_Q_hangingPunctuation "hangingPunctuation"
 
-/** @brief afw_utf8_t for string hangingPunctuation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_hangingPunctuation;
+/** @brief 'afw_utf8_t' for string "hangingPunctuation" */
+#define afw_components_s_hangingPunctuation (afw_components_v_hangingPunctuation.internal)
 
-/** @brief define for quoted string headerItems */
+/** @brief 'afw_value_string_t' for string "hangingPunctuation" */
+extern const afw_value_string_t afw_components_v_hangingPunctuation;
+
+/** @brief 'afw_utf8_z_t *' for string "hangingPunctuation" */
+#define afw_components_z_hangingPunctuation (afw_components_v_hangingPunctuation.internal.s)
+
+
+
+/** @brief define for quoted string "headerItems" */
 #define AFW_COMPONENTS_Q_headerItems "headerItems"
 
-/** @brief afw_utf8_t for string headerItems */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_headerItems;
+/** @brief 'afw_utf8_t' for string "headerItems" */
+#define afw_components_s_headerItems (afw_components_v_headerItems.internal)
 
-/** @brief define for quoted string headerOptions */
+/** @brief 'afw_value_string_t' for string "headerItems" */
+extern const afw_value_string_t afw_components_v_headerItems;
+
+/** @brief 'afw_utf8_z_t *' for string "headerItems" */
+#define afw_components_z_headerItems (afw_components_v_headerItems.internal.s)
+
+
+
+/** @brief define for quoted string "headerOptions" */
 #define AFW_COMPONENTS_Q_headerOptions "headerOptions"
 
-/** @brief afw_utf8_t for string headerOptions */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_headerOptions;
+/** @brief 'afw_utf8_t' for string "headerOptions" */
+#define afw_components_s_headerOptions (afw_components_v_headerOptions.internal)
 
-/** @brief define for quoted string height */
+/** @brief 'afw_value_string_t' for string "headerOptions" */
+extern const afw_value_string_t afw_components_v_headerOptions;
+
+/** @brief 'afw_utf8_z_t *' for string "headerOptions" */
+#define afw_components_z_headerOptions (afw_components_v_headerOptions.internal.s)
+
+
+
+/** @brief define for quoted string "height" */
 #define AFW_COMPONENTS_Q_height "height"
 
-/** @brief afw_utf8_t for string height */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_height;
+/** @brief 'afw_utf8_t' for string "height" */
+#define afw_components_s_height (afw_components_v_height.internal)
 
-/** @brief define for quoted string hyphens */
+/** @brief 'afw_value_string_t' for string "height" */
+extern const afw_value_string_t afw_components_v_height;
+
+/** @brief 'afw_utf8_z_t *' for string "height" */
+#define afw_components_z_height (afw_components_v_height.internal.s)
+
+
+
+/** @brief define for quoted string "hyphens" */
 #define AFW_COMPONENTS_Q_hyphens "hyphens"
 
-/** @brief afw_utf8_t for string hyphens */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_hyphens;
+/** @brief 'afw_utf8_t' for string "hyphens" */
+#define afw_components_s_hyphens (afw_components_v_hyphens.internal)
 
-/** @brief define for quoted string icon */
+/** @brief 'afw_value_string_t' for string "hyphens" */
+extern const afw_value_string_t afw_components_v_hyphens;
+
+/** @brief 'afw_utf8_z_t *' for string "hyphens" */
+#define afw_components_z_hyphens (afw_components_v_hyphens.internal.s)
+
+
+
+/** @brief define for quoted string "icon" */
 #define AFW_COMPONENTS_Q_icon "icon"
 
-/** @brief afw_utf8_t for string icon */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_icon;
+/** @brief 'afw_utf8_t' for string "icon" */
+#define afw_components_s_icon (afw_components_v_icon.internal)
 
-/** @brief define for quoted string iconName */
+/** @brief 'afw_value_string_t' for string "icon" */
+extern const afw_value_string_t afw_components_v_icon;
+
+/** @brief 'afw_utf8_z_t *' for string "icon" */
+#define afw_components_z_icon (afw_components_v_icon.internal.s)
+
+
+
+/** @brief define for quoted string "iconName" */
 #define AFW_COMPONENTS_Q_iconName "iconName"
 
-/** @brief afw_utf8_t for string iconName */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_iconName;
+/** @brief 'afw_utf8_t' for string "iconName" */
+#define afw_components_s_iconName (afw_components_v_iconName.internal)
 
-/** @brief define for quoted string id */
+/** @brief 'afw_value_string_t' for string "iconName" */
+extern const afw_value_string_t afw_components_v_iconName;
+
+/** @brief 'afw_utf8_z_t *' for string "iconName" */
+#define afw_components_z_iconName (afw_components_v_iconName.internal.s)
+
+
+
+/** @brief define for quoted string "id" */
 #define AFW_COMPONENTS_Q_id "id"
 
-/** @brief afw_utf8_t for string id */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_id;
+/** @brief 'afw_utf8_t' for string "id" */
+#define afw_components_s_id (afw_components_v_id.internal)
 
-/** @brief define for quoted string imageOrientation */
+/** @brief 'afw_value_string_t' for string "id" */
+extern const afw_value_string_t afw_components_v_id;
+
+/** @brief 'afw_utf8_z_t *' for string "id" */
+#define afw_components_z_id (afw_components_v_id.internal.s)
+
+
+
+/** @brief define for quoted string "imageOrientation" */
 #define AFW_COMPONENTS_Q_imageOrientation "imageOrientation"
 
-/** @brief afw_utf8_t for string imageOrientation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_imageOrientation;
+/** @brief 'afw_utf8_t' for string "imageOrientation" */
+#define afw_components_s_imageOrientation (afw_components_v_imageOrientation.internal)
 
-/** @brief define for quoted string implementationId */
+/** @brief 'afw_value_string_t' for string "imageOrientation" */
+extern const afw_value_string_t afw_components_v_imageOrientation;
+
+/** @brief 'afw_utf8_z_t *' for string "imageOrientation" */
+#define afw_components_z_imageOrientation (afw_components_v_imageOrientation.internal.s)
+
+
+
+/** @brief define for quoted string "implementationId" */
 #define AFW_COMPONENTS_Q_implementationId "implementationId"
 
-/** @brief afw_utf8_t for string implementationId */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_implementationId;
+/** @brief 'afw_utf8_t' for string "implementationId" */
+#define afw_components_s_implementationId (afw_components_v_implementationId.internal)
 
-/** @brief define for quoted string indirect */
+/** @brief 'afw_value_string_t' for string "implementationId" */
+extern const afw_value_string_t afw_components_v_implementationId;
+
+/** @brief 'afw_utf8_z_t *' for string "implementationId" */
+#define afw_components_z_implementationId (afw_components_v_implementationId.internal.s)
+
+
+
+/** @brief define for quoted string "indirect" */
 #define AFW_COMPONENTS_Q_indirect "indirect"
 
-/** @brief afw_utf8_t for string indirect */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_indirect;
+/** @brief 'afw_utf8_t' for string "indirect" */
+#define afw_components_s_indirect (afw_components_v_indirect.internal)
 
-/** @brief define for quoted string inputs */
+/** @brief 'afw_value_string_t' for string "indirect" */
+extern const afw_value_string_t afw_components_v_indirect;
+
+/** @brief 'afw_utf8_z_t *' for string "indirect" */
+#define afw_components_z_indirect (afw_components_v_indirect.internal.s)
+
+
+
+/** @brief define for quoted string "inputs" */
 #define AFW_COMPONENTS_Q_inputs "inputs"
 
-/** @brief afw_utf8_t for string inputs */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_inputs;
+/** @brief 'afw_utf8_t' for string "inputs" */
+#define afw_components_s_inputs (afw_components_v_inputs.internal)
 
-/** @brief define for quoted string instanceObjectType */
+/** @brief 'afw_value_string_t' for string "inputs" */
+extern const afw_value_string_t afw_components_v_inputs;
+
+/** @brief 'afw_utf8_z_t *' for string "inputs" */
+#define afw_components_z_inputs (afw_components_v_inputs.internal.s)
+
+
+
+/** @brief define for quoted string "instanceObjectType" */
 #define AFW_COMPONENTS_Q_instanceObjectType "instanceObjectType"
 
-/** @brief afw_utf8_t for string instanceObjectType */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_instanceObjectType;
+/** @brief 'afw_utf8_t' for string "instanceObjectType" */
+#define afw_components_s_instanceObjectType (afw_components_v_instanceObjectType.internal)
 
-/** @brief define for quoted string integer */
+/** @brief 'afw_value_string_t' for string "instanceObjectType" */
+extern const afw_value_string_t afw_components_v_instanceObjectType;
+
+/** @brief 'afw_utf8_z_t *' for string "instanceObjectType" */
+#define afw_components_z_instanceObjectType (afw_components_v_instanceObjectType.internal.s)
+
+
+
+/** @brief define for quoted string "integer" */
 #define AFW_COMPONENTS_Q_integer "integer"
 
-/** @brief afw_utf8_t for string integer */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_integer;
+/** @brief 'afw_utf8_t' for string "integer" */
+#define afw_components_s_integer (afw_components_v_integer.internal)
 
-/** @brief define for quoted string isBlocking */
+/** @brief 'afw_value_string_t' for string "integer" */
+extern const afw_value_string_t afw_components_v_integer;
+
+/** @brief 'afw_utf8_z_t *' for string "integer" */
+#define afw_components_z_integer (afw_components_v_integer.internal.s)
+
+
+
+/** @brief define for quoted string "isBlocking" */
 #define AFW_COMPONENTS_Q_isBlocking "isBlocking"
 
-/** @brief afw_utf8_t for string isBlocking */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isBlocking;
+/** @brief 'afw_utf8_t' for string "isBlocking" */
+#define afw_components_s_isBlocking (afw_components_v_isBlocking.internal)
 
-/** @brief define for quoted string isCollapsed */
+/** @brief 'afw_value_string_t' for string "isBlocking" */
+extern const afw_value_string_t afw_components_v_isBlocking;
+
+/** @brief 'afw_utf8_z_t *' for string "isBlocking" */
+#define afw_components_z_isBlocking (afw_components_v_isBlocking.internal.s)
+
+
+
+/** @brief define for quoted string "isCollapsed" */
 #define AFW_COMPONENTS_Q_isCollapsed "isCollapsed"
 
-/** @brief afw_utf8_t for string isCollapsed */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isCollapsed;
+/** @brief 'afw_utf8_t' for string "isCollapsed" */
+#define afw_components_s_isCollapsed (afw_components_v_isCollapsed.internal)
 
-/** @brief define for quoted string isExpanded */
+/** @brief 'afw_value_string_t' for string "isCollapsed" */
+extern const afw_value_string_t afw_components_v_isCollapsed;
+
+/** @brief 'afw_utf8_z_t *' for string "isCollapsed" */
+#define afw_components_z_isCollapsed (afw_components_v_isCollapsed.internal.s)
+
+
+
+/** @brief define for quoted string "isExpanded" */
 #define AFW_COMPONENTS_Q_isExpanded "isExpanded"
 
-/** @brief afw_utf8_t for string isExpanded */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isExpanded;
+/** @brief 'afw_utf8_t' for string "isExpanded" */
+#define afw_components_s_isExpanded (afw_components_v_isExpanded.internal)
 
-/** @brief define for quoted string isHeaderVisible */
+/** @brief 'afw_value_string_t' for string "isExpanded" */
+extern const afw_value_string_t afw_components_v_isExpanded;
+
+/** @brief 'afw_utf8_z_t *' for string "isExpanded" */
+#define afw_components_z_isExpanded (afw_components_v_isExpanded.internal.s)
+
+
+
+/** @brief define for quoted string "isHeaderVisible" */
 #define AFW_COMPONENTS_Q_isHeaderVisible "isHeaderVisible"
 
-/** @brief afw_utf8_t for string isHeaderVisible */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isHeaderVisible;
+/** @brief 'afw_utf8_t' for string "isHeaderVisible" */
+#define afw_components_s_isHeaderVisible (afw_components_v_isHeaderVisible.internal)
 
-/** @brief define for quoted string isLoading */
+/** @brief 'afw_value_string_t' for string "isHeaderVisible" */
+extern const afw_value_string_t afw_components_v_isHeaderVisible;
+
+/** @brief 'afw_utf8_z_t *' for string "isHeaderVisible" */
+#define afw_components_z_isHeaderVisible (afw_components_v_isHeaderVisible.internal.s)
+
+
+
+/** @brief define for quoted string "isLoading" */
 #define AFW_COMPONENTS_Q_isLoading "isLoading"
 
-/** @brief afw_utf8_t for string isLoading */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isLoading;
+/** @brief 'afw_utf8_t' for string "isLoading" */
+#define afw_components_s_isLoading (afw_components_v_isLoading.internal)
 
-/** @brief define for quoted string isMultiline */
+/** @brief 'afw_value_string_t' for string "isLoading" */
+extern const afw_value_string_t afw_components_v_isLoading;
+
+/** @brief 'afw_utf8_z_t *' for string "isLoading" */
+#define afw_components_z_isLoading (afw_components_v_isLoading.internal.s)
+
+
+
+/** @brief define for quoted string "isMultiline" */
 #define AFW_COMPONENTS_Q_isMultiline "isMultiline"
 
-/** @brief afw_utf8_t for string isMultiline */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isMultiline;
+/** @brief 'afw_utf8_t' for string "isMultiline" */
+#define afw_components_s_isMultiline (afw_components_v_isMultiline.internal)
 
-/** @brief define for quoted string isResizable */
+/** @brief 'afw_value_string_t' for string "isMultiline" */
+extern const afw_value_string_t afw_components_v_isMultiline;
+
+/** @brief 'afw_utf8_z_t *' for string "isMultiline" */
+#define afw_components_z_isMultiline (afw_components_v_isMultiline.internal.s)
+
+
+
+/** @brief define for quoted string "isResizable" */
 #define AFW_COMPONENTS_Q_isResizable "isResizable"
 
-/** @brief afw_utf8_t for string isResizable */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isResizable;
+/** @brief 'afw_utf8_t' for string "isResizable" */
+#define afw_components_s_isResizable (afw_components_v_isResizable.internal)
 
-/** @brief define for quoted string isolation */
+/** @brief 'afw_value_string_t' for string "isResizable" */
+extern const afw_value_string_t afw_components_v_isResizable;
+
+/** @brief 'afw_utf8_z_t *' for string "isResizable" */
+#define afw_components_z_isResizable (afw_components_v_isResizable.internal.s)
+
+
+
+/** @brief define for quoted string "isolation" */
 #define AFW_COMPONENTS_Q_isolation "isolation"
 
-/** @brief afw_utf8_t for string isolation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_isolation;
+/** @brief 'afw_utf8_t' for string "isolation" */
+#define afw_components_s_isolation (afw_components_v_isolation.internal)
 
-/** @brief define for quoted string items */
+/** @brief 'afw_value_string_t' for string "isolation" */
+extern const afw_value_string_t afw_components_v_isolation;
+
+/** @brief 'afw_utf8_z_t *' for string "isolation" */
+#define afw_components_z_isolation (afw_components_v_isolation.internal.s)
+
+
+
+/** @brief define for quoted string "items" */
 #define AFW_COMPONENTS_Q_items "items"
 
-/** @brief afw_utf8_t for string items */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_items;
+/** @brief 'afw_utf8_t' for string "items" */
+#define afw_components_s_items (afw_components_v_items.internal)
 
-/** @brief define for quoted string justify */
+/** @brief 'afw_value_string_t' for string "items" */
+extern const afw_value_string_t afw_components_v_items;
+
+/** @brief 'afw_utf8_z_t *' for string "items" */
+#define afw_components_z_items (afw_components_v_items.internal.s)
+
+
+
+/** @brief define for quoted string "justify" */
 #define AFW_COMPONENTS_Q_justify "justify"
 
-/** @brief afw_utf8_t for string justify */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_justify;
+/** @brief 'afw_utf8_t' for string "justify" */
+#define afw_components_s_justify (afw_components_v_justify.internal)
 
-/** @brief define for quoted string justifyContent */
+/** @brief 'afw_value_string_t' for string "justify" */
+extern const afw_value_string_t afw_components_v_justify;
+
+/** @brief 'afw_utf8_z_t *' for string "justify" */
+#define afw_components_z_justify (afw_components_v_justify.internal.s)
+
+
+
+/** @brief define for quoted string "justifyContent" */
 #define AFW_COMPONENTS_Q_justifyContent "justifyContent"
 
-/** @brief afw_utf8_t for string justifyContent */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_justifyContent;
+/** @brief 'afw_utf8_t' for string "justifyContent" */
+#define afw_components_s_justifyContent (afw_components_v_justifyContent.internal)
 
-/** @brief define for quoted string key */
+/** @brief 'afw_value_string_t' for string "justifyContent" */
+extern const afw_value_string_t afw_components_v_justifyContent;
+
+/** @brief 'afw_utf8_z_t *' for string "justifyContent" */
+#define afw_components_z_justifyContent (afw_components_v_justifyContent.internal.s)
+
+
+
+/** @brief define for quoted string "key" */
 #define AFW_COMPONENTS_Q_key "key"
 
-/** @brief afw_utf8_t for string key */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_key;
+/** @brief 'afw_utf8_t' for string "key" */
+#define afw_components_s_key (afw_components_v_key.internal)
 
-/** @brief define for quoted string label */
+/** @brief 'afw_value_string_t' for string "key" */
+extern const afw_value_string_t afw_components_v_key;
+
+/** @brief 'afw_utf8_z_t *' for string "key" */
+#define afw_components_z_key (afw_components_v_key.internal.s)
+
+
+
+/** @brief define for quoted string "label" */
 #define AFW_COMPONENTS_Q_label "label"
 
-/** @brief afw_utf8_t for string label */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_label;
+/** @brief 'afw_utf8_t' for string "label" */
+#define afw_components_s_label (afw_components_v_label.internal)
 
-/** @brief define for quoted string large */
+/** @brief 'afw_value_string_t' for string "label" */
+extern const afw_value_string_t afw_components_v_label;
+
+/** @brief 'afw_utf8_z_t *' for string "label" */
+#define afw_components_z_label (afw_components_v_label.internal.s)
+
+
+
+/** @brief define for quoted string "large" */
 #define AFW_COMPONENTS_Q_large "large"
 
-/** @brief afw_utf8_t for string large */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_large;
+/** @brief 'afw_utf8_t' for string "large" */
+#define afw_components_s_large (afw_components_v_large.internal)
 
-/** @brief define for quoted string left */
+/** @brief 'afw_value_string_t' for string "large" */
+extern const afw_value_string_t afw_components_v_large;
+
+/** @brief 'afw_utf8_z_t *' for string "large" */
+#define afw_components_z_large (afw_components_v_large.internal.s)
+
+
+
+/** @brief define for quoted string "left" */
 #define AFW_COMPONENTS_Q_left "left"
 
-/** @brief afw_utf8_t for string left */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_left;
+/** @brief 'afw_utf8_t' for string "left" */
+#define afw_components_s_left (afw_components_v_left.internal)
 
-/** @brief define for quoted string letterSpacing */
+/** @brief 'afw_value_string_t' for string "left" */
+extern const afw_value_string_t afw_components_v_left;
+
+/** @brief 'afw_utf8_z_t *' for string "left" */
+#define afw_components_z_left (afw_components_v_left.internal.s)
+
+
+
+/** @brief define for quoted string "letterSpacing" */
 #define AFW_COMPONENTS_Q_letterSpacing "letterSpacing"
 
-/** @brief afw_utf8_t for string letterSpacing */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_letterSpacing;
+/** @brief 'afw_utf8_t' for string "letterSpacing" */
+#define afw_components_s_letterSpacing (afw_components_v_letterSpacing.internal)
 
-/** @brief define for quoted string lgDown */
+/** @brief 'afw_value_string_t' for string "letterSpacing" */
+extern const afw_value_string_t afw_components_v_letterSpacing;
+
+/** @brief 'afw_utf8_z_t *' for string "letterSpacing" */
+#define afw_components_z_letterSpacing (afw_components_v_letterSpacing.internal.s)
+
+
+
+/** @brief define for quoted string "lgDown" */
 #define AFW_COMPONENTS_Q_lgDown "lgDown"
 
-/** @brief afw_utf8_t for string lgDown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_lgDown;
+/** @brief 'afw_utf8_t' for string "lgDown" */
+#define afw_components_s_lgDown (afw_components_v_lgDown.internal)
 
-/** @brief define for quoted string lineHeight */
+/** @brief 'afw_value_string_t' for string "lgDown" */
+extern const afw_value_string_t afw_components_v_lgDown;
+
+/** @brief 'afw_utf8_z_t *' for string "lgDown" */
+#define afw_components_z_lgDown (afw_components_v_lgDown.internal.s)
+
+
+
+/** @brief define for quoted string "lineHeight" */
 #define AFW_COMPONENTS_Q_lineHeight "lineHeight"
 
-/** @brief afw_utf8_t for string lineHeight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_lineHeight;
+/** @brief 'afw_utf8_t' for string "lineHeight" */
+#define afw_components_s_lineHeight (afw_components_v_lineHeight.internal)
 
-/** @brief define for quoted string listStyle */
+/** @brief 'afw_value_string_t' for string "lineHeight" */
+extern const afw_value_string_t afw_components_v_lineHeight;
+
+/** @brief 'afw_utf8_z_t *' for string "lineHeight" */
+#define afw_components_z_lineHeight (afw_components_v_lineHeight.internal.s)
+
+
+
+/** @brief define for quoted string "listStyle" */
 #define AFW_COMPONENTS_Q_listStyle "listStyle"
 
-/** @brief afw_utf8_t for string listStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_listStyle;
+/** @brief 'afw_utf8_t' for string "listStyle" */
+#define afw_components_s_listStyle (afw_components_v_listStyle.internal)
 
-/** @brief define for quoted string listStyleImage */
+/** @brief 'afw_value_string_t' for string "listStyle" */
+extern const afw_value_string_t afw_components_v_listStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "listStyle" */
+#define afw_components_z_listStyle (afw_components_v_listStyle.internal.s)
+
+
+
+/** @brief define for quoted string "listStyleImage" */
 #define AFW_COMPONENTS_Q_listStyleImage "listStyleImage"
 
-/** @brief afw_utf8_t for string listStyleImage */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_listStyleImage;
+/** @brief 'afw_utf8_t' for string "listStyleImage" */
+#define afw_components_s_listStyleImage (afw_components_v_listStyleImage.internal)
 
-/** @brief define for quoted string listStylePosition */
+/** @brief 'afw_value_string_t' for string "listStyleImage" */
+extern const afw_value_string_t afw_components_v_listStyleImage;
+
+/** @brief 'afw_utf8_z_t *' for string "listStyleImage" */
+#define afw_components_z_listStyleImage (afw_components_v_listStyleImage.internal.s)
+
+
+
+/** @brief define for quoted string "listStylePosition" */
 #define AFW_COMPONENTS_Q_listStylePosition "listStylePosition"
 
-/** @brief afw_utf8_t for string listStylePosition */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_listStylePosition;
+/** @brief 'afw_utf8_t' for string "listStylePosition" */
+#define afw_components_s_listStylePosition (afw_components_v_listStylePosition.internal)
 
-/** @brief define for quoted string listStyleType */
+/** @brief 'afw_value_string_t' for string "listStylePosition" */
+extern const afw_value_string_t afw_components_v_listStylePosition;
+
+/** @brief 'afw_utf8_z_t *' for string "listStylePosition" */
+#define afw_components_z_listStylePosition (afw_components_v_listStylePosition.internal.s)
+
+
+
+/** @brief define for quoted string "listStyleType" */
 #define AFW_COMPONENTS_Q_listStyleType "listStyleType"
 
-/** @brief afw_utf8_t for string listStyleType */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_listStyleType;
+/** @brief 'afw_utf8_t' for string "listStyleType" */
+#define afw_components_s_listStyleType (afw_components_v_listStyleType.internal)
 
-/** @brief define for quoted string margin */
+/** @brief 'afw_value_string_t' for string "listStyleType" */
+extern const afw_value_string_t afw_components_v_listStyleType;
+
+/** @brief 'afw_utf8_z_t *' for string "listStyleType" */
+#define afw_components_z_listStyleType (afw_components_v_listStyleType.internal.s)
+
+
+
+/** @brief define for quoted string "margin" */
 #define AFW_COMPONENTS_Q_margin "margin"
 
-/** @brief afw_utf8_t for string margin */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_margin;
+/** @brief 'afw_utf8_t' for string "margin" */
+#define afw_components_s_margin (afw_components_v_margin.internal)
 
-/** @brief define for quoted string marginBottom */
+/** @brief 'afw_value_string_t' for string "margin" */
+extern const afw_value_string_t afw_components_v_margin;
+
+/** @brief 'afw_utf8_z_t *' for string "margin" */
+#define afw_components_z_margin (afw_components_v_margin.internal.s)
+
+
+
+/** @brief define for quoted string "marginBottom" */
 #define AFW_COMPONENTS_Q_marginBottom "marginBottom"
 
-/** @brief afw_utf8_t for string marginBottom */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_marginBottom;
+/** @brief 'afw_utf8_t' for string "marginBottom" */
+#define afw_components_s_marginBottom (afw_components_v_marginBottom.internal)
 
-/** @brief define for quoted string marginLeft */
+/** @brief 'afw_value_string_t' for string "marginBottom" */
+extern const afw_value_string_t afw_components_v_marginBottom;
+
+/** @brief 'afw_utf8_z_t *' for string "marginBottom" */
+#define afw_components_z_marginBottom (afw_components_v_marginBottom.internal.s)
+
+
+
+/** @brief define for quoted string "marginLeft" */
 #define AFW_COMPONENTS_Q_marginLeft "marginLeft"
 
-/** @brief afw_utf8_t for string marginLeft */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_marginLeft;
+/** @brief 'afw_utf8_t' for string "marginLeft" */
+#define afw_components_s_marginLeft (afw_components_v_marginLeft.internal)
 
-/** @brief define for quoted string marginRight */
+/** @brief 'afw_value_string_t' for string "marginLeft" */
+extern const afw_value_string_t afw_components_v_marginLeft;
+
+/** @brief 'afw_utf8_z_t *' for string "marginLeft" */
+#define afw_components_z_marginLeft (afw_components_v_marginLeft.internal.s)
+
+
+
+/** @brief define for quoted string "marginRight" */
 #define AFW_COMPONENTS_Q_marginRight "marginRight"
 
-/** @brief afw_utf8_t for string marginRight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_marginRight;
+/** @brief 'afw_utf8_t' for string "marginRight" */
+#define afw_components_s_marginRight (afw_components_v_marginRight.internal)
 
-/** @brief define for quoted string marginTop */
+/** @brief 'afw_value_string_t' for string "marginRight" */
+extern const afw_value_string_t afw_components_v_marginRight;
+
+/** @brief 'afw_utf8_z_t *' for string "marginRight" */
+#define afw_components_z_marginRight (afw_components_v_marginRight.internal.s)
+
+
+
+/** @brief define for quoted string "marginTop" */
 #define AFW_COMPONENTS_Q_marginTop "marginTop"
 
-/** @brief afw_utf8_t for string marginTop */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_marginTop;
+/** @brief 'afw_utf8_t' for string "marginTop" */
+#define afw_components_s_marginTop (afw_components_v_marginTop.internal)
 
-/** @brief define for quoted string max */
+/** @brief 'afw_value_string_t' for string "marginTop" */
+extern const afw_value_string_t afw_components_v_marginTop;
+
+/** @brief 'afw_utf8_z_t *' for string "marginTop" */
+#define afw_components_z_marginTop (afw_components_v_marginTop.internal.s)
+
+
+
+/** @brief define for quoted string "max" */
 #define AFW_COMPONENTS_Q_max "max"
 
-/** @brief afw_utf8_t for string max */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_max;
+/** @brief 'afw_utf8_t' for string "max" */
+#define afw_components_s_max (afw_components_v_max.internal)
 
-/** @brief define for quoted string maxHeight */
+/** @brief 'afw_value_string_t' for string "max" */
+extern const afw_value_string_t afw_components_v_max;
+
+/** @brief 'afw_utf8_z_t *' for string "max" */
+#define afw_components_z_max (afw_components_v_max.internal.s)
+
+
+
+/** @brief define for quoted string "maxHeight" */
 #define AFW_COMPONENTS_Q_maxHeight "maxHeight"
 
-/** @brief afw_utf8_t for string maxHeight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_maxHeight;
+/** @brief 'afw_utf8_t' for string "maxHeight" */
+#define afw_components_s_maxHeight (afw_components_v_maxHeight.internal)
 
-/** @brief define for quoted string maxWidth */
+/** @brief 'afw_value_string_t' for string "maxHeight" */
+extern const afw_value_string_t afw_components_v_maxHeight;
+
+/** @brief 'afw_utf8_z_t *' for string "maxHeight" */
+#define afw_components_z_maxHeight (afw_components_v_maxHeight.internal.s)
+
+
+
+/** @brief define for quoted string "maxWidth" */
 #define AFW_COMPONENTS_Q_maxWidth "maxWidth"
 
-/** @brief afw_utf8_t for string maxWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_maxWidth;
+/** @brief 'afw_utf8_t' for string "maxWidth" */
+#define afw_components_s_maxWidth (afw_components_v_maxWidth.internal)
 
-/** @brief define for quoted string mdDown */
+/** @brief 'afw_value_string_t' for string "maxWidth" */
+extern const afw_value_string_t afw_components_v_maxWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "maxWidth" */
+#define afw_components_z_maxWidth (afw_components_v_maxWidth.internal.s)
+
+
+
+/** @brief define for quoted string "mdDown" */
 #define AFW_COMPONENTS_Q_mdDown "mdDown"
 
-/** @brief afw_utf8_t for string mdDown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_mdDown;
+/** @brief 'afw_utf8_t' for string "mdDown" */
+#define afw_components_s_mdDown (afw_components_v_mdDown.internal)
 
-/** @brief define for quoted string medium */
+/** @brief 'afw_value_string_t' for string "mdDown" */
+extern const afw_value_string_t afw_components_v_mdDown;
+
+/** @brief 'afw_utf8_z_t *' for string "mdDown" */
+#define afw_components_z_mdDown (afw_components_v_mdDown.internal.s)
+
+
+
+/** @brief define for quoted string "medium" */
 #define AFW_COMPONENTS_Q_medium "medium"
 
-/** @brief afw_utf8_t for string medium */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_medium;
+/** @brief 'afw_utf8_t' for string "medium" */
+#define afw_components_s_medium (afw_components_v_medium.internal)
 
-/** @brief define for quoted string message */
+/** @brief 'afw_value_string_t' for string "medium" */
+extern const afw_value_string_t afw_components_v_medium;
+
+/** @brief 'afw_utf8_z_t *' for string "medium" */
+#define afw_components_z_medium (afw_components_v_medium.internal.s)
+
+
+
+/** @brief define for quoted string "message" */
 #define AFW_COMPONENTS_Q_message "message"
 
-/** @brief afw_utf8_t for string message */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_message;
+/** @brief 'afw_utf8_t' for string "message" */
+#define afw_components_s_message (afw_components_v_message.internal)
 
-/** @brief define for quoted string min */
+/** @brief 'afw_value_string_t' for string "message" */
+extern const afw_value_string_t afw_components_v_message;
+
+/** @brief 'afw_utf8_z_t *' for string "message" */
+#define afw_components_z_message (afw_components_v_message.internal.s)
+
+
+
+/** @brief define for quoted string "min" */
 #define AFW_COMPONENTS_Q_min "min"
 
-/** @brief afw_utf8_t for string min */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_min;
+/** @brief 'afw_utf8_t' for string "min" */
+#define afw_components_s_min (afw_components_v_min.internal)
 
-/** @brief define for quoted string minHeight */
+/** @brief 'afw_value_string_t' for string "min" */
+extern const afw_value_string_t afw_components_v_min;
+
+/** @brief 'afw_utf8_z_t *' for string "min" */
+#define afw_components_z_min (afw_components_v_min.internal.s)
+
+
+
+/** @brief define for quoted string "minHeight" */
 #define AFW_COMPONENTS_Q_minHeight "minHeight"
 
-/** @brief afw_utf8_t for string minHeight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_minHeight;
+/** @brief 'afw_utf8_t' for string "minHeight" */
+#define afw_components_s_minHeight (afw_components_v_minHeight.internal)
 
-/** @brief define for quoted string minWidth */
+/** @brief 'afw_value_string_t' for string "minHeight" */
+extern const afw_value_string_t afw_components_v_minHeight;
+
+/** @brief 'afw_utf8_z_t *' for string "minHeight" */
+#define afw_components_z_minHeight (afw_components_v_minHeight.internal.s)
+
+
+
+/** @brief define for quoted string "minWidth" */
 #define AFW_COMPONENTS_Q_minWidth "minWidth"
 
-/** @brief afw_utf8_t for string minWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_minWidth;
+/** @brief 'afw_utf8_t' for string "minWidth" */
+#define afw_components_s_minWidth (afw_components_v_minWidth.internal)
 
-/** @brief define for quoted string modified */
+/** @brief 'afw_value_string_t' for string "minWidth" */
+extern const afw_value_string_t afw_components_v_minWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "minWidth" */
+#define afw_components_z_minWidth (afw_components_v_minWidth.internal.s)
+
+
+
+/** @brief define for quoted string "modified" */
 #define AFW_COMPONENTS_Q_modified "modified"
 
-/** @brief afw_utf8_t for string modified */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_modified;
+/** @brief 'afw_utf8_t' for string "modified" */
+#define afw_components_s_modified (afw_components_v_modified.internal)
 
-/** @brief define for quoted string multiline */
+/** @brief 'afw_value_string_t' for string "modified" */
+extern const afw_value_string_t afw_components_v_modified;
+
+/** @brief 'afw_utf8_z_t *' for string "modified" */
+#define afw_components_z_modified (afw_components_v_modified.internal.s)
+
+
+
+/** @brief define for quoted string "multiline" */
 #define AFW_COMPONENTS_Q_multiline "multiline"
 
-/** @brief afw_utf8_t for string multiline */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_multiline;
+/** @brief 'afw_utf8_t' for string "multiline" */
+#define afw_components_s_multiline (afw_components_v_multiline.internal)
 
-/** @brief define for quoted string multiselect */
+/** @brief 'afw_value_string_t' for string "multiline" */
+extern const afw_value_string_t afw_components_v_multiline;
+
+/** @brief 'afw_utf8_z_t *' for string "multiline" */
+#define afw_components_z_multiline (afw_components_v_multiline.internal.s)
+
+
+
+/** @brief define for quoted string "multiselect" */
 #define AFW_COMPONENTS_Q_multiselect "multiselect"
 
-/** @brief afw_utf8_t for string multiselect */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_multiselect;
+/** @brief 'afw_utf8_t' for string "multiselect" */
+#define afw_components_s_multiselect (afw_components_v_multiselect.internal)
 
-/** @brief define for quoted string name */
+/** @brief 'afw_value_string_t' for string "multiselect" */
+extern const afw_value_string_t afw_components_v_multiselect;
+
+/** @brief 'afw_utf8_z_t *' for string "multiselect" */
+#define afw_components_z_multiselect (afw_components_v_multiselect.internal.s)
+
+
+
+/** @brief define for quoted string "name" */
 #define AFW_COMPONENTS_Q_name "name"
 
-/** @brief afw_utf8_t for string name */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_name;
+/** @brief 'afw_utf8_t' for string "name" */
+#define afw_components_s_name (afw_components_v_name.internal)
 
-/** @brief define for quoted string navDown */
+/** @brief 'afw_value_string_t' for string "name" */
+extern const afw_value_string_t afw_components_v_name;
+
+/** @brief 'afw_utf8_z_t *' for string "name" */
+#define afw_components_z_name (afw_components_v_name.internal.s)
+
+
+
+/** @brief define for quoted string "navDown" */
 #define AFW_COMPONENTS_Q_navDown "navDown"
 
-/** @brief afw_utf8_t for string navDown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_navDown;
+/** @brief 'afw_utf8_t' for string "navDown" */
+#define afw_components_s_navDown (afw_components_v_navDown.internal)
 
-/** @brief define for quoted string navIndex */
+/** @brief 'afw_value_string_t' for string "navDown" */
+extern const afw_value_string_t afw_components_v_navDown;
+
+/** @brief 'afw_utf8_z_t *' for string "navDown" */
+#define afw_components_z_navDown (afw_components_v_navDown.internal.s)
+
+
+
+/** @brief define for quoted string "navIndex" */
 #define AFW_COMPONENTS_Q_navIndex "navIndex"
 
-/** @brief afw_utf8_t for string navIndex */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_navIndex;
+/** @brief 'afw_utf8_t' for string "navIndex" */
+#define afw_components_s_navIndex (afw_components_v_navIndex.internal)
 
-/** @brief define for quoted string navLeft */
+/** @brief 'afw_value_string_t' for string "navIndex" */
+extern const afw_value_string_t afw_components_v_navIndex;
+
+/** @brief 'afw_utf8_z_t *' for string "navIndex" */
+#define afw_components_z_navIndex (afw_components_v_navIndex.internal.s)
+
+
+
+/** @brief define for quoted string "navLeft" */
 #define AFW_COMPONENTS_Q_navLeft "navLeft"
 
-/** @brief afw_utf8_t for string navLeft */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_navLeft;
+/** @brief 'afw_utf8_t' for string "navLeft" */
+#define afw_components_s_navLeft (afw_components_v_navLeft.internal)
 
-/** @brief define for quoted string navRight */
+/** @brief 'afw_value_string_t' for string "navLeft" */
+extern const afw_value_string_t afw_components_v_navLeft;
+
+/** @brief 'afw_utf8_z_t *' for string "navLeft" */
+#define afw_components_z_navLeft (afw_components_v_navLeft.internal.s)
+
+
+
+/** @brief define for quoted string "navRight" */
 #define AFW_COMPONENTS_Q_navRight "navRight"
 
-/** @brief afw_utf8_t for string navRight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_navRight;
+/** @brief 'afw_utf8_t' for string "navRight" */
+#define afw_components_s_navRight (afw_components_v_navRight.internal)
 
-/** @brief define for quoted string navUp */
+/** @brief 'afw_value_string_t' for string "navRight" */
+extern const afw_value_string_t afw_components_v_navRight;
+
+/** @brief 'afw_utf8_z_t *' for string "navRight" */
+#define afw_components_z_navRight (afw_components_v_navRight.internal.s)
+
+
+
+/** @brief define for quoted string "navUp" */
 #define AFW_COMPONENTS_Q_navUp "navUp"
 
-/** @brief afw_utf8_t for string navUp */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_navUp;
+/** @brief 'afw_utf8_t' for string "navUp" */
+#define afw_components_s_navUp (afw_components_v_navUp.internal)
 
-/** @brief define for quoted string navigation */
+/** @brief 'afw_value_string_t' for string "navUp" */
+extern const afw_value_string_t afw_components_v_navUp;
+
+/** @brief 'afw_utf8_z_t *' for string "navUp" */
+#define afw_components_z_navUp (afw_components_v_navUp.internal.s)
+
+
+
+/** @brief define for quoted string "navigation" */
 #define AFW_COMPONENTS_Q_navigation "navigation"
 
-/** @brief afw_utf8_t for string navigation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_navigation;
+/** @brief 'afw_utf8_t' for string "navigation" */
+#define afw_components_s_navigation (afw_components_v_navigation.internal)
 
-/** @brief define for quoted string nestingDepth */
+/** @brief 'afw_value_string_t' for string "navigation" */
+extern const afw_value_string_t afw_components_v_navigation;
+
+/** @brief 'afw_utf8_z_t *' for string "navigation" */
+#define afw_components_z_navigation (afw_components_v_navigation.internal.s)
+
+
+
+/** @brief define for quoted string "nestingDepth" */
 #define AFW_COMPONENTS_Q_nestingDepth "nestingDepth"
 
-/** @brief afw_utf8_t for string nestingDepth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_nestingDepth;
+/** @brief 'afw_utf8_t' for string "nestingDepth" */
+#define afw_components_s_nestingDepth (afw_components_v_nestingDepth.internal)
 
-/** @brief define for quoted string object */
+/** @brief 'afw_value_string_t' for string "nestingDepth" */
+extern const afw_value_string_t afw_components_v_nestingDepth;
+
+/** @brief 'afw_utf8_z_t *' for string "nestingDepth" */
+#define afw_components_z_nestingDepth (afw_components_v_nestingDepth.internal.s)
+
+
+
+/** @brief define for quoted string "object" */
 #define AFW_COMPONENTS_Q_object "object"
 
-/** @brief afw_utf8_t for string object */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_object;
+/** @brief 'afw_utf8_t' for string "object" */
+#define afw_components_s_object (afw_components_v_object.internal)
 
-/** @brief define for quoted string objectFit */
+/** @brief 'afw_value_string_t' for string "object" */
+extern const afw_value_string_t afw_components_v_object;
+
+/** @brief 'afw_utf8_z_t *' for string "object" */
+#define afw_components_z_object (afw_components_v_object.internal.s)
+
+
+
+/** @brief define for quoted string "objectFit" */
 #define AFW_COMPONENTS_Q_objectFit "objectFit"
 
-/** @brief afw_utf8_t for string objectFit */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_objectFit;
+/** @brief 'afw_utf8_t' for string "objectFit" */
+#define afw_components_s_objectFit (afw_components_v_objectFit.internal)
 
-/** @brief define for quoted string objectIdPropertyName */
+/** @brief 'afw_value_string_t' for string "objectFit" */
+extern const afw_value_string_t afw_components_v_objectFit;
+
+/** @brief 'afw_utf8_z_t *' for string "objectFit" */
+#define afw_components_z_objectFit (afw_components_v_objectFit.internal.s)
+
+
+
+/** @brief define for quoted string "objectIdPropertyName" */
 #define AFW_COMPONENTS_Q_objectIdPropertyName "objectIdPropertyName"
 
-/** @brief afw_utf8_t for string objectIdPropertyName */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_objectIdPropertyName;
+/** @brief 'afw_utf8_t' for string "objectIdPropertyName" */
+#define afw_components_s_objectIdPropertyName (afw_components_v_objectIdPropertyName.internal)
 
-/** @brief define for quoted string objectPosition */
+/** @brief 'afw_value_string_t' for string "objectIdPropertyName" */
+extern const afw_value_string_t afw_components_v_objectIdPropertyName;
+
+/** @brief 'afw_utf8_z_t *' for string "objectIdPropertyName" */
+#define afw_components_z_objectIdPropertyName (afw_components_v_objectIdPropertyName.internal.s)
+
+
+
+/** @brief define for quoted string "objectPosition" */
 #define AFW_COMPONENTS_Q_objectPosition "objectPosition"
 
-/** @brief afw_utf8_t for string objectPosition */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_objectPosition;
+/** @brief 'afw_utf8_t' for string "objectPosition" */
+#define afw_components_s_objectPosition (afw_components_v_objectPosition.internal)
 
-/** @brief define for quoted string objectType */
+/** @brief 'afw_value_string_t' for string "objectPosition" */
+extern const afw_value_string_t afw_components_v_objectPosition;
+
+/** @brief 'afw_utf8_z_t *' for string "objectPosition" */
+#define afw_components_z_objectPosition (afw_components_v_objectPosition.internal.s)
+
+
+
+/** @brief define for quoted string "objectType" */
 #define AFW_COMPONENTS_Q_objectType "objectType"
 
-/** @brief afw_utf8_t for string objectType */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_objectType;
+/** @brief 'afw_utf8_t' for string "objectType" */
+#define afw_components_s_objectType (afw_components_v_objectType.internal)
 
-/** @brief define for quoted string offText */
+/** @brief 'afw_value_string_t' for string "objectType" */
+extern const afw_value_string_t afw_components_v_objectType;
+
+/** @brief 'afw_utf8_z_t *' for string "objectType" */
+#define afw_components_z_objectType (afw_components_v_objectType.internal.s)
+
+
+
+/** @brief define for quoted string "offText" */
 #define AFW_COMPONENTS_Q_offText "offText"
 
-/** @brief afw_utf8_t for string offText */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_offText;
+/** @brief 'afw_utf8_t' for string "offText" */
+#define afw_components_s_offText (afw_components_v_offText.internal)
 
-/** @brief define for quoted string onText */
+/** @brief 'afw_value_string_t' for string "offText" */
+extern const afw_value_string_t afw_components_v_offText;
+
+/** @brief 'afw_utf8_z_t *' for string "offText" */
+#define afw_components_z_offText (afw_components_v_offText.internal.s)
+
+
+
+/** @brief define for quoted string "onText" */
 #define AFW_COMPONENTS_Q_onText "onText"
 
-/** @brief afw_utf8_t for string onText */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_onText;
+/** @brief 'afw_utf8_t' for string "onText" */
+#define afw_components_s_onText (afw_components_v_onText.internal)
 
-/** @brief define for quoted string opacity */
+/** @brief 'afw_value_string_t' for string "onText" */
+extern const afw_value_string_t afw_components_v_onText;
+
+/** @brief 'afw_utf8_z_t *' for string "onText" */
+#define afw_components_z_onText (afw_components_v_onText.internal.s)
+
+
+
+/** @brief define for quoted string "opacity" */
 #define AFW_COMPONENTS_Q_opacity "opacity"
 
-/** @brief afw_utf8_t for string opacity */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_opacity;
+/** @brief 'afw_utf8_t' for string "opacity" */
+#define afw_components_s_opacity (afw_components_v_opacity.internal)
 
-/** @brief define for quoted string open */
+/** @brief 'afw_value_string_t' for string "opacity" */
+extern const afw_value_string_t afw_components_v_opacity;
+
+/** @brief 'afw_utf8_z_t *' for string "opacity" */
+#define afw_components_z_opacity (afw_components_v_opacity.internal.s)
+
+
+
+/** @brief define for quoted string "open" */
 #define AFW_COMPONENTS_Q_open "open"
 
-/** @brief afw_utf8_t for string open */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_open;
+/** @brief 'afw_utf8_t' for string "open" */
+#define afw_components_s_open (afw_components_v_open.internal)
 
-/** @brief define for quoted string options */
+/** @brief 'afw_value_string_t' for string "open" */
+extern const afw_value_string_t afw_components_v_open;
+
+/** @brief 'afw_utf8_z_t *' for string "open" */
+#define afw_components_z_open (afw_components_v_open.internal.s)
+
+
+
+/** @brief define for quoted string "options" */
 #define AFW_COMPONENTS_Q_options "options"
 
-/** @brief afw_utf8_t for string options */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_options;
+/** @brief 'afw_utf8_t' for string "options" */
+#define afw_components_s_options (afw_components_v_options.internal)
 
-/** @brief define for quoted string order */
+/** @brief 'afw_value_string_t' for string "options" */
+extern const afw_value_string_t afw_components_v_options;
+
+/** @brief 'afw_utf8_z_t *' for string "options" */
+#define afw_components_z_options (afw_components_v_options.internal.s)
+
+
+
+/** @brief define for quoted string "order" */
 #define AFW_COMPONENTS_Q_order "order"
 
-/** @brief afw_utf8_t for string order */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_order;
+/** @brief 'afw_utf8_t' for string "order" */
+#define afw_components_s_order (afw_components_v_order.internal)
 
-/** @brief define for quoted string orientation */
+/** @brief 'afw_value_string_t' for string "order" */
+extern const afw_value_string_t afw_components_v_order;
+
+/** @brief 'afw_utf8_z_t *' for string "order" */
+#define afw_components_z_order (afw_components_v_order.internal.s)
+
+
+
+/** @brief define for quoted string "orientation" */
 #define AFW_COMPONENTS_Q_orientation "orientation"
 
-/** @brief afw_utf8_t for string orientation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_orientation;
+/** @brief 'afw_utf8_t' for string "orientation" */
+#define afw_components_s_orientation (afw_components_v_orientation.internal)
 
-/** @brief define for quoted string original */
+/** @brief 'afw_value_string_t' for string "orientation" */
+extern const afw_value_string_t afw_components_v_orientation;
+
+/** @brief 'afw_utf8_z_t *' for string "orientation" */
+#define afw_components_z_orientation (afw_components_v_orientation.internal.s)
+
+
+
+/** @brief define for quoted string "original" */
 #define AFW_COMPONENTS_Q_original "original"
 
-/** @brief afw_utf8_t for string original */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_original;
+/** @brief 'afw_utf8_t' for string "original" */
+#define afw_components_s_original (afw_components_v_original.internal)
 
-/** @brief define for quoted string orphans */
+/** @brief 'afw_value_string_t' for string "original" */
+extern const afw_value_string_t afw_components_v_original;
+
+/** @brief 'afw_utf8_z_t *' for string "original" */
+#define afw_components_z_original (afw_components_v_original.internal.s)
+
+
+
+/** @brief define for quoted string "orphans" */
 #define AFW_COMPONENTS_Q_orphans "orphans"
 
-/** @brief afw_utf8_t for string orphans */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_orphans;
+/** @brief 'afw_utf8_t' for string "orphans" */
+#define afw_components_s_orphans (afw_components_v_orphans.internal)
 
-/** @brief define for quoted string otherProperties */
+/** @brief 'afw_value_string_t' for string "orphans" */
+extern const afw_value_string_t afw_components_v_orphans;
+
+/** @brief 'afw_utf8_z_t *' for string "orphans" */
+#define afw_components_z_orphans (afw_components_v_orphans.internal.s)
+
+
+
+/** @brief define for quoted string "otherProperties" */
 #define AFW_COMPONENTS_Q_otherProperties "otherProperties"
 
-/** @brief afw_utf8_t for string otherProperties */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_otherProperties;
+/** @brief 'afw_utf8_t' for string "otherProperties" */
+#define afw_components_s_otherProperties (afw_components_v_otherProperties.internal)
 
-/** @brief define for quoted string outline */
+/** @brief 'afw_value_string_t' for string "otherProperties" */
+extern const afw_value_string_t afw_components_v_otherProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "otherProperties" */
+#define afw_components_z_otherProperties (afw_components_v_otherProperties.internal.s)
+
+
+
+/** @brief define for quoted string "outline" */
 #define AFW_COMPONENTS_Q_outline "outline"
 
-/** @brief afw_utf8_t for string outline */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_outline;
+/** @brief 'afw_utf8_t' for string "outline" */
+#define afw_components_s_outline (afw_components_v_outline.internal)
 
-/** @brief define for quoted string outlineColor */
+/** @brief 'afw_value_string_t' for string "outline" */
+extern const afw_value_string_t afw_components_v_outline;
+
+/** @brief 'afw_utf8_z_t *' for string "outline" */
+#define afw_components_z_outline (afw_components_v_outline.internal.s)
+
+
+
+/** @brief define for quoted string "outlineColor" */
 #define AFW_COMPONENTS_Q_outlineColor "outlineColor"
 
-/** @brief afw_utf8_t for string outlineColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_outlineColor;
+/** @brief 'afw_utf8_t' for string "outlineColor" */
+#define afw_components_s_outlineColor (afw_components_v_outlineColor.internal)
 
-/** @brief define for quoted string outlineOffset */
+/** @brief 'afw_value_string_t' for string "outlineColor" */
+extern const afw_value_string_t afw_components_v_outlineColor;
+
+/** @brief 'afw_utf8_z_t *' for string "outlineColor" */
+#define afw_components_z_outlineColor (afw_components_v_outlineColor.internal.s)
+
+
+
+/** @brief define for quoted string "outlineOffset" */
 #define AFW_COMPONENTS_Q_outlineOffset "outlineOffset"
 
-/** @brief afw_utf8_t for string outlineOffset */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_outlineOffset;
+/** @brief 'afw_utf8_t' for string "outlineOffset" */
+#define afw_components_s_outlineOffset (afw_components_v_outlineOffset.internal)
 
-/** @brief define for quoted string outlineStyle */
+/** @brief 'afw_value_string_t' for string "outlineOffset" */
+extern const afw_value_string_t afw_components_v_outlineOffset;
+
+/** @brief 'afw_utf8_z_t *' for string "outlineOffset" */
+#define afw_components_z_outlineOffset (afw_components_v_outlineOffset.internal.s)
+
+
+
+/** @brief define for quoted string "outlineStyle" */
 #define AFW_COMPONENTS_Q_outlineStyle "outlineStyle"
 
-/** @brief afw_utf8_t for string outlineStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_outlineStyle;
+/** @brief 'afw_utf8_t' for string "outlineStyle" */
+#define afw_components_s_outlineStyle (afw_components_v_outlineStyle.internal)
 
-/** @brief define for quoted string outlineWidth */
+/** @brief 'afw_value_string_t' for string "outlineStyle" */
+extern const afw_value_string_t afw_components_v_outlineStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "outlineStyle" */
+#define afw_components_z_outlineStyle (afw_components_v_outlineStyle.internal.s)
+
+
+
+/** @brief define for quoted string "outlineWidth" */
 #define AFW_COMPONENTS_Q_outlineWidth "outlineWidth"
 
-/** @brief afw_utf8_t for string outlineWidth */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_outlineWidth;
+/** @brief 'afw_utf8_t' for string "outlineWidth" */
+#define afw_components_s_outlineWidth (afw_components_v_outlineWidth.internal)
 
-/** @brief define for quoted string overflow */
+/** @brief 'afw_value_string_t' for string "outlineWidth" */
+extern const afw_value_string_t afw_components_v_outlineWidth;
+
+/** @brief 'afw_utf8_z_t *' for string "outlineWidth" */
+#define afw_components_z_outlineWidth (afw_components_v_outlineWidth.internal.s)
+
+
+
+/** @brief define for quoted string "overflow" */
 #define AFW_COMPONENTS_Q_overflow "overflow"
 
-/** @brief afw_utf8_t for string overflow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_overflow;
+/** @brief 'afw_utf8_t' for string "overflow" */
+#define afw_components_s_overflow (afw_components_v_overflow.internal)
 
-/** @brief define for quoted string overflowX */
+/** @brief 'afw_value_string_t' for string "overflow" */
+extern const afw_value_string_t afw_components_v_overflow;
+
+/** @brief 'afw_utf8_z_t *' for string "overflow" */
+#define afw_components_z_overflow (afw_components_v_overflow.internal.s)
+
+
+
+/** @brief define for quoted string "overflowX" */
 #define AFW_COMPONENTS_Q_overflowX "overflowX"
 
-/** @brief afw_utf8_t for string overflowX */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_overflowX;
+/** @brief 'afw_utf8_t' for string "overflowX" */
+#define afw_components_s_overflowX (afw_components_v_overflowX.internal)
 
-/** @brief define for quoted string overflowY */
+/** @brief 'afw_value_string_t' for string "overflowX" */
+extern const afw_value_string_t afw_components_v_overflowX;
+
+/** @brief 'afw_utf8_z_t *' for string "overflowX" */
+#define afw_components_z_overflowX (afw_components_v_overflowX.internal.s)
+
+
+
+/** @brief define for quoted string "overflowY" */
 #define AFW_COMPONENTS_Q_overflowY "overflowY"
 
-/** @brief afw_utf8_t for string overflowY */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_overflowY;
+/** @brief 'afw_utf8_t' for string "overflowY" */
+#define afw_components_s_overflowY (afw_components_v_overflowY.internal)
 
-/** @brief define for quoted string padding */
+/** @brief 'afw_value_string_t' for string "overflowY" */
+extern const afw_value_string_t afw_components_v_overflowY;
+
+/** @brief 'afw_utf8_z_t *' for string "overflowY" */
+#define afw_components_z_overflowY (afw_components_v_overflowY.internal.s)
+
+
+
+/** @brief define for quoted string "padding" */
 #define AFW_COMPONENTS_Q_padding "padding"
 
-/** @brief afw_utf8_t for string padding */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_padding;
+/** @brief 'afw_utf8_t' for string "padding" */
+#define afw_components_s_padding (afw_components_v_padding.internal)
 
-/** @brief define for quoted string paddingBottom */
+/** @brief 'afw_value_string_t' for string "padding" */
+extern const afw_value_string_t afw_components_v_padding;
+
+/** @brief 'afw_utf8_z_t *' for string "padding" */
+#define afw_components_z_padding (afw_components_v_padding.internal.s)
+
+
+
+/** @brief define for quoted string "paddingBottom" */
 #define AFW_COMPONENTS_Q_paddingBottom "paddingBottom"
 
-/** @brief afw_utf8_t for string paddingBottom */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_paddingBottom;
+/** @brief 'afw_utf8_t' for string "paddingBottom" */
+#define afw_components_s_paddingBottom (afw_components_v_paddingBottom.internal)
 
-/** @brief define for quoted string paddingLeft */
+/** @brief 'afw_value_string_t' for string "paddingBottom" */
+extern const afw_value_string_t afw_components_v_paddingBottom;
+
+/** @brief 'afw_utf8_z_t *' for string "paddingBottom" */
+#define afw_components_z_paddingBottom (afw_components_v_paddingBottom.internal.s)
+
+
+
+/** @brief define for quoted string "paddingLeft" */
 #define AFW_COMPONENTS_Q_paddingLeft "paddingLeft"
 
-/** @brief afw_utf8_t for string paddingLeft */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_paddingLeft;
+/** @brief 'afw_utf8_t' for string "paddingLeft" */
+#define afw_components_s_paddingLeft (afw_components_v_paddingLeft.internal)
 
-/** @brief define for quoted string paddingRight */
+/** @brief 'afw_value_string_t' for string "paddingLeft" */
+extern const afw_value_string_t afw_components_v_paddingLeft;
+
+/** @brief 'afw_utf8_z_t *' for string "paddingLeft" */
+#define afw_components_z_paddingLeft (afw_components_v_paddingLeft.internal.s)
+
+
+
+/** @brief define for quoted string "paddingRight" */
 #define AFW_COMPONENTS_Q_paddingRight "paddingRight"
 
-/** @brief afw_utf8_t for string paddingRight */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_paddingRight;
+/** @brief 'afw_utf8_t' for string "paddingRight" */
+#define afw_components_s_paddingRight (afw_components_v_paddingRight.internal)
 
-/** @brief define for quoted string paddingTop */
+/** @brief 'afw_value_string_t' for string "paddingRight" */
+extern const afw_value_string_t afw_components_v_paddingRight;
+
+/** @brief 'afw_utf8_z_t *' for string "paddingRight" */
+#define afw_components_z_paddingRight (afw_components_v_paddingRight.internal.s)
+
+
+
+/** @brief define for quoted string "paddingTop" */
 #define AFW_COMPONENTS_Q_paddingTop "paddingTop"
 
-/** @brief afw_utf8_t for string paddingTop */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_paddingTop;
+/** @brief 'afw_utf8_t' for string "paddingTop" */
+#define afw_components_s_paddingTop (afw_components_v_paddingTop.internal)
 
-/** @brief define for quoted string pageBreakAfter */
+/** @brief 'afw_value_string_t' for string "paddingTop" */
+extern const afw_value_string_t afw_components_v_paddingTop;
+
+/** @brief 'afw_utf8_z_t *' for string "paddingTop" */
+#define afw_components_z_paddingTop (afw_components_v_paddingTop.internal.s)
+
+
+
+/** @brief define for quoted string "pageBreakAfter" */
 #define AFW_COMPONENTS_Q_pageBreakAfter "pageBreakAfter"
 
-/** @brief afw_utf8_t for string pageBreakAfter */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_pageBreakAfter;
+/** @brief 'afw_utf8_t' for string "pageBreakAfter" */
+#define afw_components_s_pageBreakAfter (afw_components_v_pageBreakAfter.internal)
 
-/** @brief define for quoted string pageBreakBefore */
+/** @brief 'afw_value_string_t' for string "pageBreakAfter" */
+extern const afw_value_string_t afw_components_v_pageBreakAfter;
+
+/** @brief 'afw_utf8_z_t *' for string "pageBreakAfter" */
+#define afw_components_z_pageBreakAfter (afw_components_v_pageBreakAfter.internal.s)
+
+
+
+/** @brief define for quoted string "pageBreakBefore" */
 #define AFW_COMPONENTS_Q_pageBreakBefore "pageBreakBefore"
 
-/** @brief afw_utf8_t for string pageBreakBefore */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_pageBreakBefore;
+/** @brief 'afw_utf8_t' for string "pageBreakBefore" */
+#define afw_components_s_pageBreakBefore (afw_components_v_pageBreakBefore.internal)
 
-/** @brief define for quoted string pageBreakInside */
+/** @brief 'afw_value_string_t' for string "pageBreakBefore" */
+extern const afw_value_string_t afw_components_v_pageBreakBefore;
+
+/** @brief 'afw_utf8_z_t *' for string "pageBreakBefore" */
+#define afw_components_z_pageBreakBefore (afw_components_v_pageBreakBefore.internal.s)
+
+
+
+/** @brief define for quoted string "pageBreakInside" */
 #define AFW_COMPONENTS_Q_pageBreakInside "pageBreakInside"
 
-/** @brief afw_utf8_t for string pageBreakInside */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_pageBreakInside;
+/** @brief 'afw_utf8_t' for string "pageBreakInside" */
+#define afw_components_s_pageBreakInside (afw_components_v_pageBreakInside.internal)
 
-/** @brief define for quoted string parentPaths */
+/** @brief 'afw_value_string_t' for string "pageBreakInside" */
+extern const afw_value_string_t afw_components_v_pageBreakInside;
+
+/** @brief 'afw_utf8_z_t *' for string "pageBreakInside" */
+#define afw_components_z_pageBreakInside (afw_components_v_pageBreakInside.internal.s)
+
+
+
+/** @brief define for quoted string "parentPaths" */
 #define AFW_COMPONENTS_Q_parentPaths "parentPaths"
 
-/** @brief afw_utf8_t for string parentPaths */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_parentPaths;
+/** @brief 'afw_utf8_t' for string "parentPaths" */
+#define afw_components_s_parentPaths (afw_components_v_parentPaths.internal)
 
-/** @brief define for quoted string perspective */
+/** @brief 'afw_value_string_t' for string "parentPaths" */
+extern const afw_value_string_t afw_components_v_parentPaths;
+
+/** @brief 'afw_utf8_z_t *' for string "parentPaths" */
+#define afw_components_z_parentPaths (afw_components_v_parentPaths.internal.s)
+
+
+
+/** @brief define for quoted string "perspective" */
 #define AFW_COMPONENTS_Q_perspective "perspective"
 
-/** @brief afw_utf8_t for string perspective */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_perspective;
+/** @brief 'afw_utf8_t' for string "perspective" */
+#define afw_components_s_perspective (afw_components_v_perspective.internal)
 
-/** @brief define for quoted string perspectiveOrigin */
+/** @brief 'afw_value_string_t' for string "perspective" */
+extern const afw_value_string_t afw_components_v_perspective;
+
+/** @brief 'afw_utf8_z_t *' for string "perspective" */
+#define afw_components_z_perspective (afw_components_v_perspective.internal.s)
+
+
+
+/** @brief define for quoted string "perspectiveOrigin" */
 #define AFW_COMPONENTS_Q_perspectiveOrigin "perspectiveOrigin"
 
-/** @brief afw_utf8_t for string perspectiveOrigin */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_perspectiveOrigin;
+/** @brief 'afw_utf8_t' for string "perspectiveOrigin" */
+#define afw_components_s_perspectiveOrigin (afw_components_v_perspectiveOrigin.internal)
 
-/** @brief define for quoted string pickers */
+/** @brief 'afw_value_string_t' for string "perspectiveOrigin" */
+extern const afw_value_string_t afw_components_v_perspectiveOrigin;
+
+/** @brief 'afw_utf8_z_t *' for string "perspectiveOrigin" */
+#define afw_components_z_perspectiveOrigin (afw_components_v_perspectiveOrigin.internal.s)
+
+
+
+/** @brief define for quoted string "pickers" */
 #define AFW_COMPONENTS_Q_pickers "pickers"
 
-/** @brief afw_utf8_t for string pickers */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_pickers;
+/** @brief 'afw_utf8_t' for string "pickers" */
+#define afw_components_s_pickers (afw_components_v_pickers.internal)
 
-/** @brief define for quoted string placeholder */
+/** @brief 'afw_value_string_t' for string "pickers" */
+extern const afw_value_string_t afw_components_v_pickers;
+
+/** @brief 'afw_utf8_z_t *' for string "pickers" */
+#define afw_components_z_pickers (afw_components_v_pickers.internal.s)
+
+
+
+/** @brief define for quoted string "placeholder" */
 #define AFW_COMPONENTS_Q_placeholder "placeholder"
 
-/** @brief afw_utf8_t for string placeholder */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_placeholder;
+/** @brief 'afw_utf8_t' for string "placeholder" */
+#define afw_components_s_placeholder (afw_components_v_placeholder.internal)
 
-/** @brief define for quoted string position */
+/** @brief 'afw_value_string_t' for string "placeholder" */
+extern const afw_value_string_t afw_components_v_placeholder;
+
+/** @brief 'afw_utf8_z_t *' for string "placeholder" */
+#define afw_components_z_placeholder (afw_components_v_placeholder.internal.s)
+
+
+
+/** @brief define for quoted string "position" */
 #define AFW_COMPONENTS_Q_position "position"
 
-/** @brief afw_utf8_t for string position */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_position;
+/** @brief 'afw_utf8_t' for string "position" */
+#define afw_components_s_position (afw_components_v_position.internal)
 
-/** @brief define for quoted string possibleValues */
+/** @brief 'afw_value_string_t' for string "position" */
+extern const afw_value_string_t afw_components_v_position;
+
+/** @brief 'afw_utf8_z_t *' for string "position" */
+#define afw_components_z_position (afw_components_v_position.internal.s)
+
+
+
+/** @brief define for quoted string "possibleValues" */
 #define AFW_COMPONENTS_Q_possibleValues "possibleValues"
 
-/** @brief afw_utf8_t for string possibleValues */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_possibleValues;
+/** @brief 'afw_utf8_t' for string "possibleValues" */
+#define afw_components_s_possibleValues (afw_components_v_possibleValues.internal)
 
-/** @brief define for quoted string preferredComponents */
+/** @brief 'afw_value_string_t' for string "possibleValues" */
+extern const afw_value_string_t afw_components_v_possibleValues;
+
+/** @brief 'afw_utf8_z_t *' for string "possibleValues" */
+#define afw_components_z_possibleValues (afw_components_v_possibleValues.internal.s)
+
+
+
+/** @brief define for quoted string "preferredComponents" */
 #define AFW_COMPONENTS_Q_preferredComponents "preferredComponents"
 
-/** @brief afw_utf8_t for string preferredComponents */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_preferredComponents;
+/** @brief 'afw_utf8_t' for string "preferredComponents" */
+#define afw_components_s_preferredComponents (afw_components_v_preferredComponents.internal)
 
-/** @brief define for quoted string propertyName */
+/** @brief 'afw_value_string_t' for string "preferredComponents" */
+extern const afw_value_string_t afw_components_v_preferredComponents;
+
+/** @brief 'afw_utf8_z_t *' for string "preferredComponents" */
+#define afw_components_z_preferredComponents (afw_components_v_preferredComponents.internal.s)
+
+
+
+/** @brief define for quoted string "propertyName" */
 #define AFW_COMPONENTS_Q_propertyName "propertyName"
 
-/** @brief afw_utf8_t for string propertyName */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_propertyName;
+/** @brief 'afw_utf8_t' for string "propertyName" */
+#define afw_components_s_propertyName (afw_components_v_propertyName.internal)
 
-/** @brief define for quoted string propertyTypes */
+/** @brief 'afw_value_string_t' for string "propertyName" */
+extern const afw_value_string_t afw_components_v_propertyName;
+
+/** @brief 'afw_utf8_z_t *' for string "propertyName" */
+#define afw_components_z_propertyName (afw_components_v_propertyName.internal.s)
+
+
+
+/** @brief define for quoted string "propertyTypes" */
 #define AFW_COMPONENTS_Q_propertyTypes "propertyTypes"
 
-/** @brief afw_utf8_t for string propertyTypes */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_propertyTypes;
+/** @brief 'afw_utf8_t' for string "propertyTypes" */
+#define afw_components_s_propertyTypes (afw_components_v_propertyTypes.internal)
 
-/** @brief define for quoted string quotes */
+/** @brief 'afw_value_string_t' for string "propertyTypes" */
+extern const afw_value_string_t afw_components_v_propertyTypes;
+
+/** @brief 'afw_utf8_z_t *' for string "propertyTypes" */
+#define afw_components_z_propertyTypes (afw_components_v_propertyTypes.internal.s)
+
+
+
+/** @brief define for quoted string "quotes" */
 #define AFW_COMPONENTS_Q_quotes "quotes"
 
-/** @brief afw_utf8_t for string quotes */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_quotes;
+/** @brief 'afw_utf8_t' for string "quotes" */
+#define afw_components_s_quotes (afw_components_v_quotes.internal)
 
-/** @brief define for quoted string readOnly */
+/** @brief 'afw_value_string_t' for string "quotes" */
+extern const afw_value_string_t afw_components_v_quotes;
+
+/** @brief 'afw_utf8_z_t *' for string "quotes" */
+#define afw_components_z_quotes (afw_components_v_quotes.internal.s)
+
+
+
+/** @brief define for quoted string "readOnly" */
 #define AFW_COMPONENTS_Q_readOnly "readOnly"
 
-/** @brief afw_utf8_t for string readOnly */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_readOnly;
+/** @brief 'afw_utf8_t' for string "readOnly" */
+#define afw_components_s_readOnly (afw_components_v_readOnly.internal)
 
-/** @brief define for quoted string readOnlyOrientation */
+/** @brief 'afw_value_string_t' for string "readOnly" */
+extern const afw_value_string_t afw_components_v_readOnly;
+
+/** @brief 'afw_utf8_z_t *' for string "readOnly" */
+#define afw_components_z_readOnly (afw_components_v_readOnly.internal.s)
+
+
+
+/** @brief define for quoted string "readOnlyOrientation" */
 #define AFW_COMPONENTS_Q_readOnlyOrientation "readOnlyOrientation"
 
-/** @brief afw_utf8_t for string readOnlyOrientation */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_readOnlyOrientation;
+/** @brief 'afw_utf8_t' for string "readOnlyOrientation" */
+#define afw_components_s_readOnlyOrientation (afw_components_v_readOnlyOrientation.internal)
 
-/** @brief define for quoted string recurse */
+/** @brief 'afw_value_string_t' for string "readOnlyOrientation" */
+extern const afw_value_string_t afw_components_v_readOnlyOrientation;
+
+/** @brief 'afw_utf8_z_t *' for string "readOnlyOrientation" */
+#define afw_components_z_readOnlyOrientation (afw_components_v_readOnlyOrientation.internal.s)
+
+
+
+/** @brief define for quoted string "recurse" */
 #define AFW_COMPONENTS_Q_recurse "recurse"
 
-/** @brief afw_utf8_t for string recurse */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_recurse;
+/** @brief 'afw_utf8_t' for string "recurse" */
+#define afw_components_s_recurse (afw_components_v_recurse.internal)
 
-/** @brief define for quoted string required */
+/** @brief 'afw_value_string_t' for string "recurse" */
+extern const afw_value_string_t afw_components_v_recurse;
+
+/** @brief 'afw_utf8_z_t *' for string "recurse" */
+#define afw_components_z_recurse (afw_components_v_recurse.internal.s)
+
+
+
+/** @brief define for quoted string "required" */
 #define AFW_COMPONENTS_Q_required "required"
 
-/** @brief afw_utf8_t for string required */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_required;
+/** @brief 'afw_utf8_t' for string "required" */
+#define afw_components_s_required (afw_components_v_required.internal)
 
-/** @brief define for quoted string resize */
+/** @brief 'afw_value_string_t' for string "required" */
+extern const afw_value_string_t afw_components_v_required;
+
+/** @brief 'afw_utf8_z_t *' for string "required" */
+#define afw_components_z_required (afw_components_v_required.internal.s)
+
+
+
+/** @brief define for quoted string "resize" */
 #define AFW_COMPONENTS_Q_resize "resize"
 
-/** @brief afw_utf8_t for string resize */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_resize;
+/** @brief 'afw_utf8_t' for string "resize" */
+#define afw_components_s_resize (afw_components_v_resize.internal)
 
-/** @brief define for quoted string right */
+/** @brief 'afw_value_string_t' for string "resize" */
+extern const afw_value_string_t afw_components_v_resize;
+
+/** @brief 'afw_utf8_z_t *' for string "resize" */
+#define afw_components_z_resize (afw_components_v_resize.internal.s)
+
+
+
+/** @brief define for quoted string "right" */
 #define AFW_COMPONENTS_Q_right "right"
 
-/** @brief afw_utf8_t for string right */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_right;
+/** @brief 'afw_utf8_t' for string "right" */
+#define afw_components_s_right (afw_components_v_right.internal)
 
-/** @brief define for quoted string role */
+/** @brief 'afw_value_string_t' for string "right" */
+extern const afw_value_string_t afw_components_v_right;
+
+/** @brief 'afw_utf8_z_t *' for string "right" */
+#define afw_components_z_right (afw_components_v_right.internal.s)
+
+
+
+/** @brief define for quoted string "role" */
 #define AFW_COMPONENTS_Q_role "role"
 
-/** @brief afw_utf8_t for string role */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_role;
+/** @brief 'afw_utf8_t' for string "role" */
+#define afw_components_s_role (afw_components_v_role.internal)
 
-/** @brief define for quoted string rows */
+/** @brief 'afw_value_string_t' for string "role" */
+extern const afw_value_string_t afw_components_v_role;
+
+/** @brief 'afw_utf8_z_t *' for string "role" */
+#define afw_components_z_role (afw_components_v_role.internal.s)
+
+
+
+/** @brief define for quoted string "rows" */
 #define AFW_COMPONENTS_Q_rows "rows"
 
-/** @brief afw_utf8_t for string rows */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_rows;
+/** @brief 'afw_utf8_t' for string "rows" */
+#define afw_components_s_rows (afw_components_v_rows.internal)
 
-/** @brief define for quoted string secondary */
+/** @brief 'afw_value_string_t' for string "rows" */
+extern const afw_value_string_t afw_components_v_rows;
+
+/** @brief 'afw_utf8_z_t *' for string "rows" */
+#define afw_components_z_rows (afw_components_v_rows.internal.s)
+
+
+
+/** @brief define for quoted string "secondary" */
 #define AFW_COMPONENTS_Q_secondary "secondary"
 
-/** @brief afw_utf8_t for string secondary */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_secondary;
+/** @brief 'afw_utf8_t' for string "secondary" */
+#define afw_components_s_secondary (afw_components_v_secondary.internal)
 
-/** @brief define for quoted string secondaryText */
+/** @brief 'afw_value_string_t' for string "secondary" */
+extern const afw_value_string_t afw_components_v_secondary;
+
+/** @brief 'afw_utf8_z_t *' for string "secondary" */
+#define afw_components_z_secondary (afw_components_v_secondary.internal.s)
+
+
+
+/** @brief define for quoted string "secondaryText" */
 #define AFW_COMPONENTS_Q_secondaryText "secondaryText"
 
-/** @brief afw_utf8_t for string secondaryText */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_secondaryText;
+/** @brief 'afw_utf8_t' for string "secondaryText" */
+#define afw_components_s_secondaryText (afw_components_v_secondaryText.internal)
 
-/** @brief define for quoted string selectable */
+/** @brief 'afw_value_string_t' for string "secondaryText" */
+extern const afw_value_string_t afw_components_v_secondaryText;
+
+/** @brief 'afw_utf8_z_t *' for string "secondaryText" */
+#define afw_components_z_secondaryText (afw_components_v_secondaryText.internal.s)
+
+
+
+/** @brief define for quoted string "selectable" */
 #define AFW_COMPONENTS_Q_selectable "selectable"
 
-/** @brief afw_utf8_t for string selectable */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_selectable;
+/** @brief 'afw_utf8_t' for string "selectable" */
+#define afw_components_s_selectable (afw_components_v_selectable.internal)
 
-/** @brief define for quoted string selected */
+/** @brief 'afw_value_string_t' for string "selectable" */
+extern const afw_value_string_t afw_components_v_selectable;
+
+/** @brief 'afw_utf8_z_t *' for string "selectable" */
+#define afw_components_z_selectable (afw_components_v_selectable.internal.s)
+
+
+
+/** @brief define for quoted string "selected" */
 #define AFW_COMPONENTS_Q_selected "selected"
 
-/** @brief afw_utf8_t for string selected */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_selected;
+/** @brief 'afw_utf8_t' for string "selected" */
+#define afw_components_s_selected (afw_components_v_selected.internal)
 
-/** @brief define for quoted string selectedKey */
+/** @brief 'afw_value_string_t' for string "selected" */
+extern const afw_value_string_t afw_components_v_selected;
+
+/** @brief 'afw_utf8_z_t *' for string "selected" */
+#define afw_components_z_selected (afw_components_v_selected.internal.s)
+
+
+
+/** @brief define for quoted string "selectedKey" */
 #define AFW_COMPONENTS_Q_selectedKey "selectedKey"
 
-/** @brief afw_utf8_t for string selectedKey */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_selectedKey;
+/** @brief 'afw_utf8_t' for string "selectedKey" */
+#define afw_components_s_selectedKey (afw_components_v_selectedKey.internal)
 
-/** @brief define for quoted string selectedKeys */
+/** @brief 'afw_value_string_t' for string "selectedKey" */
+extern const afw_value_string_t afw_components_v_selectedKey;
+
+/** @brief 'afw_utf8_z_t *' for string "selectedKey" */
+#define afw_components_z_selectedKey (afw_components_v_selectedKey.internal.s)
+
+
+
+/** @brief define for quoted string "selectedKeys" */
 #define AFW_COMPONENTS_Q_selectedKeys "selectedKeys"
 
-/** @brief afw_utf8_t for string selectedKeys */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_selectedKeys;
+/** @brief 'afw_utf8_t' for string "selectedKeys" */
+#define afw_components_s_selectedKeys (afw_components_v_selectedKeys.internal)
 
-/** @brief define for quoted string selectionMode */
+/** @brief 'afw_value_string_t' for string "selectedKeys" */
+extern const afw_value_string_t afw_components_v_selectedKeys;
+
+/** @brief 'afw_utf8_z_t *' for string "selectedKeys" */
+#define afw_components_z_selectedKeys (afw_components_v_selectedKeys.internal.s)
+
+
+
+/** @brief define for quoted string "selectionMode" */
 #define AFW_COMPONENTS_Q_selectionMode "selectionMode"
 
-/** @brief afw_utf8_t for string selectionMode */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_selectionMode;
+/** @brief 'afw_utf8_t' for string "selectionMode" */
+#define afw_components_s_selectionMode (afw_components_v_selectionMode.internal)
 
-/** @brief define for quoted string showClose */
+/** @brief 'afw_value_string_t' for string "selectionMode" */
+extern const afw_value_string_t afw_components_v_selectionMode;
+
+/** @brief 'afw_utf8_z_t *' for string "selectionMode" */
+#define afw_components_z_selectionMode (afw_components_v_selectionMode.internal.s)
+
+
+
+/** @brief define for quoted string "showClose" */
 #define AFW_COMPONENTS_Q_showClose "showClose"
 
-/** @brief afw_utf8_t for string showClose */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showClose;
+/** @brief 'afw_utf8_t' for string "showClose" */
+#define afw_components_s_showClose (afw_components_v_showClose.internal)
 
-/** @brief define for quoted string showCollapse */
+/** @brief 'afw_value_string_t' for string "showClose" */
+extern const afw_value_string_t afw_components_v_showClose;
+
+/** @brief 'afw_utf8_z_t *' for string "showClose" */
+#define afw_components_z_showClose (afw_components_v_showClose.internal.s)
+
+
+
+/** @brief define for quoted string "showCollapse" */
 #define AFW_COMPONENTS_Q_showCollapse "showCollapse"
 
-/** @brief afw_utf8_t for string showCollapse */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showCollapse;
+/** @brief 'afw_utf8_t' for string "showCollapse" */
+#define afw_components_s_showCollapse (afw_components_v_showCollapse.internal)
 
-/** @brief define for quoted string showDescriptions */
+/** @brief 'afw_value_string_t' for string "showCollapse" */
+extern const afw_value_string_t afw_components_v_showCollapse;
+
+/** @brief 'afw_utf8_z_t *' for string "showCollapse" */
+#define afw_components_z_showCollapse (afw_components_v_showCollapse.internal.s)
+
+
+
+/** @brief define for quoted string "showDescriptions" */
 #define AFW_COMPONENTS_Q_showDescriptions "showDescriptions"
 
-/** @brief afw_utf8_t for string showDescriptions */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showDescriptions;
+/** @brief 'afw_utf8_t' for string "showDescriptions" */
+#define afw_components_s_showDescriptions (afw_components_v_showDescriptions.internal)
 
-/** @brief define for quoted string showGutter */
+/** @brief 'afw_value_string_t' for string "showDescriptions" */
+extern const afw_value_string_t afw_components_v_showDescriptions;
+
+/** @brief 'afw_utf8_z_t *' for string "showDescriptions" */
+#define afw_components_z_showDescriptions (afw_components_v_showDescriptions.internal.s)
+
+
+
+/** @brief define for quoted string "showGutter" */
 #define AFW_COMPONENTS_Q_showGutter "showGutter"
 
-/** @brief afw_utf8_t for string showGutter */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showGutter;
+/** @brief 'afw_utf8_t' for string "showGutter" */
+#define afw_components_s_showGutter (afw_components_v_showGutter.internal)
 
-/** @brief define for quoted string showLabels */
+/** @brief 'afw_value_string_t' for string "showGutter" */
+extern const afw_value_string_t afw_components_v_showGutter;
+
+/** @brief 'afw_utf8_z_t *' for string "showGutter" */
+#define afw_components_z_showGutter (afw_components_v_showGutter.internal.s)
+
+
+
+/** @brief define for quoted string "showLabels" */
 #define AFW_COMPONENTS_Q_showLabels "showLabels"
 
-/** @brief afw_utf8_t for string showLabels */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showLabels;
+/** @brief 'afw_utf8_t' for string "showLabels" */
+#define afw_components_s_showLabels (afw_components_v_showLabels.internal)
 
-/** @brief define for quoted string showLineNumbers */
+/** @brief 'afw_value_string_t' for string "showLabels" */
+extern const afw_value_string_t afw_components_v_showLabels;
+
+/** @brief 'afw_utf8_z_t *' for string "showLabels" */
+#define afw_components_z_showLabels (afw_components_v_showLabels.internal.s)
+
+
+
+/** @brief define for quoted string "showLineNumbers" */
 #define AFW_COMPONENTS_Q_showLineNumbers "showLineNumbers"
 
-/** @brief afw_utf8_t for string showLineNumbers */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showLineNumbers;
+/** @brief 'afw_utf8_t' for string "showLineNumbers" */
+#define afw_components_s_showLineNumbers (afw_components_v_showLineNumbers.internal)
 
-/** @brief define for quoted string showMeta */
+/** @brief 'afw_value_string_t' for string "showLineNumbers" */
+extern const afw_value_string_t afw_components_v_showLineNumbers;
+
+/** @brief 'afw_utf8_z_t *' for string "showLineNumbers" */
+#define afw_components_z_showLineNumbers (afw_components_v_showLineNumbers.internal.s)
+
+
+
+/** @brief define for quoted string "showMeta" */
 #define AFW_COMPONENTS_Q_showMeta "showMeta"
 
-/** @brief afw_utf8_t for string showMeta */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showMeta;
+/** @brief 'afw_utf8_t' for string "showMeta" */
+#define afw_components_s_showMeta (afw_components_v_showMeta.internal)
 
-/** @brief define for quoted string showNumber */
+/** @brief 'afw_value_string_t' for string "showMeta" */
+extern const afw_value_string_t afw_components_v_showMeta;
+
+/** @brief 'afw_utf8_z_t *' for string "showMeta" */
+#define afw_components_z_showMeta (afw_components_v_showMeta.internal.s)
+
+
+
+/** @brief define for quoted string "showNumber" */
 #define AFW_COMPONENTS_Q_showNumber "showNumber"
 
-/** @brief afw_utf8_t for string showNumber */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showNumber;
+/** @brief 'afw_utf8_t' for string "showNumber" */
+#define afw_components_s_showNumber (afw_components_v_showNumber.internal)
 
-/** @brief define for quoted string showPrintMargin */
+/** @brief 'afw_value_string_t' for string "showNumber" */
+extern const afw_value_string_t afw_components_v_showNumber;
+
+/** @brief 'afw_utf8_z_t *' for string "showNumber" */
+#define afw_components_z_showNumber (afw_components_v_showNumber.internal.s)
+
+
+
+/** @brief define for quoted string "showPrintMargin" */
 #define AFW_COMPONENTS_Q_showPrintMargin "showPrintMargin"
 
-/** @brief afw_utf8_t for string showPrintMargin */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_showPrintMargin;
+/** @brief 'afw_utf8_t' for string "showPrintMargin" */
+#define afw_components_s_showPrintMargin (afw_components_v_showPrintMargin.internal)
 
-/** @brief define for quoted string shrink */
+/** @brief 'afw_value_string_t' for string "showPrintMargin" */
+extern const afw_value_string_t afw_components_v_showPrintMargin;
+
+/** @brief 'afw_utf8_z_t *' for string "showPrintMargin" */
+#define afw_components_z_showPrintMargin (afw_components_v_showPrintMargin.internal.s)
+
+
+
+/** @brief define for quoted string "shrink" */
 #define AFW_COMPONENTS_Q_shrink "shrink"
 
-/** @brief afw_utf8_t for string shrink */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_shrink;
+/** @brief 'afw_utf8_t' for string "shrink" */
+#define afw_components_s_shrink (afw_components_v_shrink.internal)
 
-/** @brief define for quoted string size */
+/** @brief 'afw_value_string_t' for string "shrink" */
+extern const afw_value_string_t afw_components_v_shrink;
+
+/** @brief 'afw_utf8_z_t *' for string "shrink" */
+#define afw_components_z_shrink (afw_components_v_shrink.internal.s)
+
+
+
+/** @brief define for quoted string "size" */
 #define AFW_COMPONENTS_Q_size "size"
 
-/** @brief afw_utf8_t for string size */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_size;
+/** @brief 'afw_utf8_t' for string "size" */
+#define afw_components_s_size (afw_components_v_size.internal)
 
-/** @brief define for quoted string smDown */
+/** @brief 'afw_value_string_t' for string "size" */
+extern const afw_value_string_t afw_components_v_size;
+
+/** @brief 'afw_utf8_z_t *' for string "size" */
+#define afw_components_z_size (afw_components_v_size.internal.s)
+
+
+
+/** @brief define for quoted string "smDown" */
 #define AFW_COMPONENTS_Q_smDown "smDown"
 
-/** @brief afw_utf8_t for string smDown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_smDown;
+/** @brief 'afw_utf8_t' for string "smDown" */
+#define afw_components_s_smDown (afw_components_v_smDown.internal)
 
-/** @brief define for quoted string small */
+/** @brief 'afw_value_string_t' for string "smDown" */
+extern const afw_value_string_t afw_components_v_smDown;
+
+/** @brief 'afw_utf8_z_t *' for string "smDown" */
+#define afw_components_z_smDown (afw_components_v_smDown.internal.s)
+
+
+
+/** @brief define for quoted string "small" */
 #define AFW_COMPONENTS_Q_small "small"
 
-/** @brief afw_utf8_t for string small */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_small;
+/** @brief 'afw_utf8_t' for string "small" */
+#define afw_components_s_small (afw_components_v_small.internal)
 
-/** @brief define for quoted string sortByDataType */
+/** @brief 'afw_value_string_t' for string "small" */
+extern const afw_value_string_t afw_components_v_small;
+
+/** @brief 'afw_utf8_z_t *' for string "small" */
+#define afw_components_z_small (afw_components_v_small.internal.s)
+
+
+
+/** @brief define for quoted string "sortByDataType" */
 #define AFW_COMPONENTS_Q_sortByDataType "sortByDataType"
 
-/** @brief afw_utf8_t for string sortByDataType */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_sortByDataType;
+/** @brief 'afw_utf8_t' for string "sortByDataType" */
+#define afw_components_s_sortByDataType (afw_components_v_sortByDataType.internal)
 
-/** @brief define for quoted string sortByPropertyName */
+/** @brief 'afw_value_string_t' for string "sortByDataType" */
+extern const afw_value_string_t afw_components_v_sortByDataType;
+
+/** @brief 'afw_utf8_z_t *' for string "sortByDataType" */
+#define afw_components_z_sortByDataType (afw_components_v_sortByDataType.internal.s)
+
+
+
+/** @brief define for quoted string "sortByPropertyName" */
 #define AFW_COMPONENTS_Q_sortByPropertyName "sortByPropertyName"
 
-/** @brief afw_utf8_t for string sortByPropertyName */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_sortByPropertyName;
+/** @brief 'afw_utf8_t' for string "sortByPropertyName" */
+#define afw_components_s_sortByPropertyName (afw_components_v_sortByPropertyName.internal)
 
-/** @brief define for quoted string sortByRequired */
+/** @brief 'afw_value_string_t' for string "sortByPropertyName" */
+extern const afw_value_string_t afw_components_v_sortByPropertyName;
+
+/** @brief 'afw_utf8_z_t *' for string "sortByPropertyName" */
+#define afw_components_z_sortByPropertyName (afw_components_v_sortByPropertyName.internal.s)
+
+
+
+/** @brief define for quoted string "sortByRequired" */
 #define AFW_COMPONENTS_Q_sortByRequired "sortByRequired"
 
-/** @brief afw_utf8_t for string sortByRequired */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_sortByRequired;
+/** @brief 'afw_utf8_t' for string "sortByRequired" */
+#define afw_components_s_sortByRequired (afw_components_v_sortByRequired.internal)
 
-/** @brief define for quoted string sortOptions */
+/** @brief 'afw_value_string_t' for string "sortByRequired" */
+extern const afw_value_string_t afw_components_v_sortByRequired;
+
+/** @brief 'afw_utf8_z_t *' for string "sortByRequired" */
+#define afw_components_z_sortByRequired (afw_components_v_sortByRequired.internal.s)
+
+
+
+/** @brief define for quoted string "sortOptions" */
 #define AFW_COMPONENTS_Q_sortOptions "sortOptions"
 
-/** @brief afw_utf8_t for string sortOptions */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_sortOptions;
+/** @brief 'afw_utf8_t' for string "sortOptions" */
+#define afw_components_s_sortOptions (afw_components_v_sortOptions.internal)
 
-/** @brief define for quoted string source */
+/** @brief 'afw_value_string_t' for string "sortOptions" */
+extern const afw_value_string_t afw_components_v_sortOptions;
+
+/** @brief 'afw_utf8_z_t *' for string "sortOptions" */
+#define afw_components_z_sortOptions (afw_components_v_sortOptions.internal.s)
+
+
+
+/** @brief define for quoted string "source" */
 #define AFW_COMPONENTS_Q_source "source"
 
-/** @brief afw_utf8_t for string source */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_source;
+/** @brief 'afw_utf8_t' for string "source" */
+#define afw_components_s_source (afw_components_v_source.internal)
 
-/** @brief define for quoted string spacing */
+/** @brief 'afw_value_string_t' for string "source" */
+extern const afw_value_string_t afw_components_v_source;
+
+/** @brief 'afw_utf8_z_t *' for string "source" */
+#define afw_components_z_source (afw_components_v_source.internal.s)
+
+
+
+/** @brief define for quoted string "spacing" */
 #define AFW_COMPONENTS_Q_spacing "spacing"
 
-/** @brief afw_utf8_t for string spacing */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_spacing;
+/** @brief 'afw_utf8_t' for string "spacing" */
+#define afw_components_s_spacing (afw_components_v_spacing.internal)
 
-/** @brief define for quoted string square */
+/** @brief 'afw_value_string_t' for string "spacing" */
+extern const afw_value_string_t afw_components_v_spacing;
+
+/** @brief 'afw_utf8_z_t *' for string "spacing" */
+#define afw_components_z_spacing (afw_components_v_spacing.internal.s)
+
+
+
+/** @brief define for quoted string "square" */
 #define AFW_COMPONENTS_Q_square "square"
 
-/** @brief afw_utf8_t for string square */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_square;
+/** @brief 'afw_utf8_t' for string "square" */
+#define afw_components_s_square (afw_components_v_square.internal)
 
-/** @brief define for quoted string src */
+/** @brief 'afw_value_string_t' for string "square" */
+extern const afw_value_string_t afw_components_v_square;
+
+/** @brief 'afw_utf8_z_t *' for string "square" */
+#define afw_components_z_square (afw_components_v_square.internal.s)
+
+
+
+/** @brief define for quoted string "src" */
 #define AFW_COMPONENTS_Q_src "src"
 
-/** @brief afw_utf8_t for string src */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_src;
+/** @brief 'afw_utf8_t' for string "src" */
+#define afw_components_s_src (afw_components_v_src.internal)
 
-/** @brief define for quoted string status */
+/** @brief 'afw_value_string_t' for string "src" */
+extern const afw_value_string_t afw_components_v_src;
+
+/** @brief 'afw_utf8_z_t *' for string "src" */
+#define afw_components_z_src (afw_components_v_src.internal.s)
+
+
+
+/** @brief define for quoted string "status" */
 #define AFW_COMPONENTS_Q_status "status"
 
-/** @brief afw_utf8_t for string status */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_status;
+/** @brief 'afw_utf8_t' for string "status" */
+#define afw_components_s_status (afw_components_v_status.internal)
 
-/** @brief define for quoted string step */
+/** @brief 'afw_value_string_t' for string "status" */
+extern const afw_value_string_t afw_components_v_status;
+
+/** @brief 'afw_utf8_z_t *' for string "status" */
+#define afw_components_z_status (afw_components_v_status.internal.s)
+
+
+
+/** @brief define for quoted string "step" */
 #define AFW_COMPONENTS_Q_step "step"
 
-/** @brief afw_utf8_t for string step */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_step;
+/** @brief 'afw_utf8_t' for string "step" */
+#define afw_components_s_step (afw_components_v_step.internal)
 
-/** @brief define for quoted string steps */
+/** @brief 'afw_value_string_t' for string "step" */
+extern const afw_value_string_t afw_components_v_step;
+
+/** @brief 'afw_utf8_z_t *' for string "step" */
+#define afw_components_z_step (afw_components_v_step.internal.s)
+
+
+
+/** @brief define for quoted string "steps" */
 #define AFW_COMPONENTS_Q_steps "steps"
 
-/** @brief afw_utf8_t for string steps */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_steps;
+/** @brief 'afw_utf8_t' for string "steps" */
+#define afw_components_s_steps (afw_components_v_steps.internal)
 
-/** @brief define for quoted string string */
+/** @brief 'afw_value_string_t' for string "steps" */
+extern const afw_value_string_t afw_components_v_steps;
+
+/** @brief 'afw_utf8_z_t *' for string "steps" */
+#define afw_components_z_steps (afw_components_v_steps.internal.s)
+
+
+
+/** @brief define for quoted string "string" */
 #define AFW_COMPONENTS_Q_string "string"
 
-/** @brief afw_utf8_t for string string */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_string;
+/** @brief 'afw_utf8_t' for string "string" */
+#define afw_components_s_string (afw_components_v_string.internal)
 
-/** @brief define for quoted string structured */
+/** @brief 'afw_value_string_t' for string "string" */
+extern const afw_value_string_t afw_components_v_string;
+
+/** @brief 'afw_utf8_z_t *' for string "string" */
+#define afw_components_z_string (afw_components_v_string.internal.s)
+
+
+
+/** @brief define for quoted string "structured" */
 #define AFW_COMPONENTS_Q_structured "structured"
 
-/** @brief afw_utf8_t for string structured */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_structured;
+/** @brief 'afw_utf8_t' for string "structured" */
+#define afw_components_s_structured (afw_components_v_structured.internal)
 
-/** @brief define for quoted string style */
+/** @brief 'afw_value_string_t' for string "structured" */
+extern const afw_value_string_t afw_components_v_structured;
+
+/** @brief 'afw_utf8_z_t *' for string "structured" */
+#define afw_components_z_structured (afw_components_v_structured.internal.s)
+
+
+
+/** @brief define for quoted string "style" */
 #define AFW_COMPONENTS_Q_style "style"
 
-/** @brief afw_utf8_t for string style */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_style;
+/** @brief 'afw_utf8_t' for string "style" */
+#define afw_components_s_style (afw_components_v_style.internal)
 
-/** @brief define for quoted string subText */
+/** @brief 'afw_value_string_t' for string "style" */
+extern const afw_value_string_t afw_components_v_style;
+
+/** @brief 'afw_utf8_z_t *' for string "style" */
+#define afw_components_z_style (afw_components_v_style.internal.s)
+
+
+
+/** @brief define for quoted string "subText" */
 #define AFW_COMPONENTS_Q_subText "subText"
 
-/** @brief afw_utf8_t for string subText */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_subText;
+/** @brief 'afw_utf8_t' for string "subText" */
+#define afw_components_s_subText (afw_components_v_subText.internal)
 
-/** @brief define for quoted string tabSize */
+/** @brief 'afw_value_string_t' for string "subText" */
+extern const afw_value_string_t afw_components_v_subText;
+
+/** @brief 'afw_utf8_z_t *' for string "subText" */
+#define afw_components_z_subText (afw_components_v_subText.internal.s)
+
+
+
+/** @brief define for quoted string "tabSize" */
 #define AFW_COMPONENTS_Q_tabSize "tabSize"
 
-/** @brief afw_utf8_t for string tabSize */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_tabSize;
+/** @brief 'afw_utf8_t' for string "tabSize" */
+#define afw_components_s_tabSize (afw_components_v_tabSize.internal)
 
-/** @brief define for quoted string tableLayout */
+/** @brief 'afw_value_string_t' for string "tabSize" */
+extern const afw_value_string_t afw_components_v_tabSize;
+
+/** @brief 'afw_utf8_z_t *' for string "tabSize" */
+#define afw_components_z_tabSize (afw_components_v_tabSize.internal.s)
+
+
+
+/** @brief define for quoted string "tableLayout" */
 #define AFW_COMPONENTS_Q_tableLayout "tableLayout"
 
-/** @brief afw_utf8_t for string tableLayout */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_tableLayout;
+/** @brief 'afw_utf8_t' for string "tableLayout" */
+#define afw_components_s_tableLayout (afw_components_v_tableLayout.internal)
 
-/** @brief define for quoted string tabs */
+/** @brief 'afw_value_string_t' for string "tableLayout" */
+extern const afw_value_string_t afw_components_v_tableLayout;
+
+/** @brief 'afw_utf8_z_t *' for string "tableLayout" */
+#define afw_components_z_tableLayout (afw_components_v_tableLayout.internal.s)
+
+
+
+/** @brief define for quoted string "tabs" */
 #define AFW_COMPONENTS_Q_tabs "tabs"
 
-/** @brief afw_utf8_t for string tabs */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_tabs;
+/** @brief 'afw_utf8_t' for string "tabs" */
+#define afw_components_s_tabs (afw_components_v_tabs.internal)
 
-/** @brief define for quoted string tag */
+/** @brief 'afw_value_string_t' for string "tabs" */
+extern const afw_value_string_t afw_components_v_tabs;
+
+/** @brief 'afw_utf8_z_t *' for string "tabs" */
+#define afw_components_z_tabs (afw_components_v_tabs.internal.s)
+
+
+
+/** @brief define for quoted string "tag" */
 #define AFW_COMPONENTS_Q_tag "tag"
 
-/** @brief afw_utf8_t for string tag */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_tag;
+/** @brief 'afw_utf8_t' for string "tag" */
+#define afw_components_s_tag (afw_components_v_tag.internal)
 
-/** @brief define for quoted string target */
+/** @brief 'afw_value_string_t' for string "tag" */
+extern const afw_value_string_t afw_components_v_tag;
+
+/** @brief 'afw_utf8_z_t *' for string "tag" */
+#define afw_components_z_tag (afw_components_v_tag.internal.s)
+
+
+
+/** @brief define for quoted string "target" */
 #define AFW_COMPONENTS_Q_target "target"
 
-/** @brief afw_utf8_t for string target */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_target;
+/** @brief 'afw_utf8_t' for string "target" */
+#define afw_components_s_target (afw_components_v_target.internal)
 
-/** @brief define for quoted string targetPosition */
+/** @brief 'afw_value_string_t' for string "target" */
+extern const afw_value_string_t afw_components_v_target;
+
+/** @brief 'afw_utf8_z_t *' for string "target" */
+#define afw_components_z_target (afw_components_v_target.internal.s)
+
+
+
+/** @brief define for quoted string "targetPosition" */
 #define AFW_COMPONENTS_Q_targetPosition "targetPosition"
 
-/** @brief afw_utf8_t for string targetPosition */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_targetPosition;
+/** @brief 'afw_utf8_t' for string "targetPosition" */
+#define afw_components_s_targetPosition (afw_components_v_targetPosition.internal)
 
-/** @brief define for quoted string testDataParameter */
+/** @brief 'afw_value_string_t' for string "targetPosition" */
+extern const afw_value_string_t afw_components_v_targetPosition;
+
+/** @brief 'afw_utf8_z_t *' for string "targetPosition" */
+#define afw_components_z_targetPosition (afw_components_v_targetPosition.internal.s)
+
+
+
+/** @brief define for quoted string "testDataParameter" */
 #define AFW_COMPONENTS_Q_testDataParameter "testDataParameter"
 
-/** @brief afw_utf8_t for string testDataParameter */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_testDataParameter;
+/** @brief 'afw_utf8_t' for string "testDataParameter" */
+#define afw_components_s_testDataParameter (afw_components_v_testDataParameter.internal)
 
-/** @brief define for quoted string text */
+/** @brief 'afw_value_string_t' for string "testDataParameter" */
+extern const afw_value_string_t afw_components_v_testDataParameter;
+
+/** @brief 'afw_utf8_z_t *' for string "testDataParameter" */
+#define afw_components_z_testDataParameter (afw_components_v_testDataParameter.internal.s)
+
+
+
+/** @brief define for quoted string "text" */
 #define AFW_COMPONENTS_Q_text "text"
 
-/** @brief afw_utf8_t for string text */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_text;
+/** @brief 'afw_utf8_t' for string "text" */
+#define afw_components_s_text (afw_components_v_text.internal)
 
-/** @brief define for quoted string textAlign */
+/** @brief 'afw_value_string_t' for string "text" */
+extern const afw_value_string_t afw_components_v_text;
+
+/** @brief 'afw_utf8_z_t *' for string "text" */
+#define afw_components_z_text (afw_components_v_text.internal.s)
+
+
+
+/** @brief define for quoted string "textAlign" */
 #define AFW_COMPONENTS_Q_textAlign "textAlign"
 
-/** @brief afw_utf8_t for string textAlign */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textAlign;
+/** @brief 'afw_utf8_t' for string "textAlign" */
+#define afw_components_s_textAlign (afw_components_v_textAlign.internal)
 
-/** @brief define for quoted string textAlignLast */
+/** @brief 'afw_value_string_t' for string "textAlign" */
+extern const afw_value_string_t afw_components_v_textAlign;
+
+/** @brief 'afw_utf8_z_t *' for string "textAlign" */
+#define afw_components_z_textAlign (afw_components_v_textAlign.internal.s)
+
+
+
+/** @brief define for quoted string "textAlignLast" */
 #define AFW_COMPONENTS_Q_textAlignLast "textAlignLast"
 
-/** @brief afw_utf8_t for string textAlignLast */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textAlignLast;
+/** @brief 'afw_utf8_t' for string "textAlignLast" */
+#define afw_components_s_textAlignLast (afw_components_v_textAlignLast.internal)
 
-/** @brief define for quoted string textDecoration */
+/** @brief 'afw_value_string_t' for string "textAlignLast" */
+extern const afw_value_string_t afw_components_v_textAlignLast;
+
+/** @brief 'afw_utf8_z_t *' for string "textAlignLast" */
+#define afw_components_z_textAlignLast (afw_components_v_textAlignLast.internal.s)
+
+
+
+/** @brief define for quoted string "textDecoration" */
 #define AFW_COMPONENTS_Q_textDecoration "textDecoration"
 
-/** @brief afw_utf8_t for string textDecoration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textDecoration;
+/** @brief 'afw_utf8_t' for string "textDecoration" */
+#define afw_components_s_textDecoration (afw_components_v_textDecoration.internal)
 
-/** @brief define for quoted string textDecorationColor */
+/** @brief 'afw_value_string_t' for string "textDecoration" */
+extern const afw_value_string_t afw_components_v_textDecoration;
+
+/** @brief 'afw_utf8_z_t *' for string "textDecoration" */
+#define afw_components_z_textDecoration (afw_components_v_textDecoration.internal.s)
+
+
+
+/** @brief define for quoted string "textDecorationColor" */
 #define AFW_COMPONENTS_Q_textDecorationColor "textDecorationColor"
 
-/** @brief afw_utf8_t for string textDecorationColor */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textDecorationColor;
+/** @brief 'afw_utf8_t' for string "textDecorationColor" */
+#define afw_components_s_textDecorationColor (afw_components_v_textDecorationColor.internal)
 
-/** @brief define for quoted string textDecorationLine */
+/** @brief 'afw_value_string_t' for string "textDecorationColor" */
+extern const afw_value_string_t afw_components_v_textDecorationColor;
+
+/** @brief 'afw_utf8_z_t *' for string "textDecorationColor" */
+#define afw_components_z_textDecorationColor (afw_components_v_textDecorationColor.internal.s)
+
+
+
+/** @brief define for quoted string "textDecorationLine" */
 #define AFW_COMPONENTS_Q_textDecorationLine "textDecorationLine"
 
-/** @brief afw_utf8_t for string textDecorationLine */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textDecorationLine;
+/** @brief 'afw_utf8_t' for string "textDecorationLine" */
+#define afw_components_s_textDecorationLine (afw_components_v_textDecorationLine.internal)
 
-/** @brief define for quoted string textDecorationStyle */
+/** @brief 'afw_value_string_t' for string "textDecorationLine" */
+extern const afw_value_string_t afw_components_v_textDecorationLine;
+
+/** @brief 'afw_utf8_z_t *' for string "textDecorationLine" */
+#define afw_components_z_textDecorationLine (afw_components_v_textDecorationLine.internal.s)
+
+
+
+/** @brief define for quoted string "textDecorationStyle" */
 #define AFW_COMPONENTS_Q_textDecorationStyle "textDecorationStyle"
 
-/** @brief afw_utf8_t for string textDecorationStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textDecorationStyle;
+/** @brief 'afw_utf8_t' for string "textDecorationStyle" */
+#define afw_components_s_textDecorationStyle (afw_components_v_textDecorationStyle.internal)
 
-/** @brief define for quoted string textIndent */
+/** @brief 'afw_value_string_t' for string "textDecorationStyle" */
+extern const afw_value_string_t afw_components_v_textDecorationStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "textDecorationStyle" */
+#define afw_components_z_textDecorationStyle (afw_components_v_textDecorationStyle.internal.s)
+
+
+
+/** @brief define for quoted string "textIndent" */
 #define AFW_COMPONENTS_Q_textIndent "textIndent"
 
-/** @brief afw_utf8_t for string textIndent */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textIndent;
+/** @brief 'afw_utf8_t' for string "textIndent" */
+#define afw_components_s_textIndent (afw_components_v_textIndent.internal)
 
-/** @brief define for quoted string textJustify */
+/** @brief 'afw_value_string_t' for string "textIndent" */
+extern const afw_value_string_t afw_components_v_textIndent;
+
+/** @brief 'afw_utf8_z_t *' for string "textIndent" */
+#define afw_components_z_textIndent (afw_components_v_textIndent.internal.s)
+
+
+
+/** @brief define for quoted string "textJustify" */
 #define AFW_COMPONENTS_Q_textJustify "textJustify"
 
-/** @brief afw_utf8_t for string textJustify */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textJustify;
+/** @brief 'afw_utf8_t' for string "textJustify" */
+#define afw_components_s_textJustify (afw_components_v_textJustify.internal)
 
-/** @brief define for quoted string textOverflow */
+/** @brief 'afw_value_string_t' for string "textJustify" */
+extern const afw_value_string_t afw_components_v_textJustify;
+
+/** @brief 'afw_utf8_z_t *' for string "textJustify" */
+#define afw_components_z_textJustify (afw_components_v_textJustify.internal.s)
+
+
+
+/** @brief define for quoted string "textOverflow" */
 #define AFW_COMPONENTS_Q_textOverflow "textOverflow"
 
-/** @brief afw_utf8_t for string textOverflow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textOverflow;
+/** @brief 'afw_utf8_t' for string "textOverflow" */
+#define afw_components_s_textOverflow (afw_components_v_textOverflow.internal)
 
-/** @brief define for quoted string textShadow */
+/** @brief 'afw_value_string_t' for string "textOverflow" */
+extern const afw_value_string_t afw_components_v_textOverflow;
+
+/** @brief 'afw_utf8_z_t *' for string "textOverflow" */
+#define afw_components_z_textOverflow (afw_components_v_textOverflow.internal.s)
+
+
+
+/** @brief define for quoted string "textShadow" */
 #define AFW_COMPONENTS_Q_textShadow "textShadow"
 
-/** @brief afw_utf8_t for string textShadow */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textShadow;
+/** @brief 'afw_utf8_t' for string "textShadow" */
+#define afw_components_s_textShadow (afw_components_v_textShadow.internal)
 
-/** @brief define for quoted string textTransform */
+/** @brief 'afw_value_string_t' for string "textShadow" */
+extern const afw_value_string_t afw_components_v_textShadow;
+
+/** @brief 'afw_utf8_z_t *' for string "textShadow" */
+#define afw_components_z_textShadow (afw_components_v_textShadow.internal.s)
+
+
+
+/** @brief define for quoted string "textTransform" */
 #define AFW_COMPONENTS_Q_textTransform "textTransform"
 
-/** @brief afw_utf8_t for string textTransform */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_textTransform;
+/** @brief 'afw_utf8_t' for string "textTransform" */
+#define afw_components_s_textTransform (afw_components_v_textTransform.internal)
 
-/** @brief define for quoted string title */
+/** @brief 'afw_value_string_t' for string "textTransform" */
+extern const afw_value_string_t afw_components_v_textTransform;
+
+/** @brief 'afw_utf8_z_t *' for string "textTransform" */
+#define afw_components_z_textTransform (afw_components_v_textTransform.internal.s)
+
+
+
+/** @brief define for quoted string "title" */
 #define AFW_COMPONENTS_Q_title "title"
 
-/** @brief afw_utf8_t for string title */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_title;
+/** @brief 'afw_utf8_t' for string "title" */
+#define afw_components_s_title (afw_components_v_title.internal)
 
-/** @brief define for quoted string tooltip */
+/** @brief 'afw_value_string_t' for string "title" */
+extern const afw_value_string_t afw_components_v_title;
+
+/** @brief 'afw_utf8_z_t *' for string "title" */
+#define afw_components_z_title (afw_components_v_title.internal.s)
+
+
+
+/** @brief define for quoted string "tooltip" */
 #define AFW_COMPONENTS_Q_tooltip "tooltip"
 
-/** @brief afw_utf8_t for string tooltip */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_tooltip;
+/** @brief 'afw_utf8_t' for string "tooltip" */
+#define afw_components_s_tooltip (afw_components_v_tooltip.internal)
 
-/** @brief define for quoted string top */
+/** @brief 'afw_value_string_t' for string "tooltip" */
+extern const afw_value_string_t afw_components_v_tooltip;
+
+/** @brief 'afw_utf8_z_t *' for string "tooltip" */
+#define afw_components_z_tooltip (afw_components_v_tooltip.internal.s)
+
+
+
+/** @brief define for quoted string "top" */
 #define AFW_COMPONENTS_Q_top "top"
 
-/** @brief afw_utf8_t for string top */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_top;
+/** @brief 'afw_utf8_t' for string "top" */
+#define afw_components_s_top (afw_components_v_top.internal)
 
-/** @brief define for quoted string transform */
+/** @brief 'afw_value_string_t' for string "top" */
+extern const afw_value_string_t afw_components_v_top;
+
+/** @brief 'afw_utf8_z_t *' for string "top" */
+#define afw_components_z_top (afw_components_v_top.internal.s)
+
+
+
+/** @brief define for quoted string "transform" */
 #define AFW_COMPONENTS_Q_transform "transform"
 
-/** @brief afw_utf8_t for string transform */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transform;
+/** @brief 'afw_utf8_t' for string "transform" */
+#define afw_components_s_transform (afw_components_v_transform.internal)
 
-/** @brief define for quoted string transformOrigin */
+/** @brief 'afw_value_string_t' for string "transform" */
+extern const afw_value_string_t afw_components_v_transform;
+
+/** @brief 'afw_utf8_z_t *' for string "transform" */
+#define afw_components_z_transform (afw_components_v_transform.internal.s)
+
+
+
+/** @brief define for quoted string "transformOrigin" */
 #define AFW_COMPONENTS_Q_transformOrigin "transformOrigin"
 
-/** @brief afw_utf8_t for string transformOrigin */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transformOrigin;
+/** @brief 'afw_utf8_t' for string "transformOrigin" */
+#define afw_components_s_transformOrigin (afw_components_v_transformOrigin.internal)
 
-/** @brief define for quoted string transformStyle */
+/** @brief 'afw_value_string_t' for string "transformOrigin" */
+extern const afw_value_string_t afw_components_v_transformOrigin;
+
+/** @brief 'afw_utf8_z_t *' for string "transformOrigin" */
+#define afw_components_z_transformOrigin (afw_components_v_transformOrigin.internal.s)
+
+
+
+/** @brief define for quoted string "transformStyle" */
 #define AFW_COMPONENTS_Q_transformStyle "transformStyle"
 
-/** @brief afw_utf8_t for string transformStyle */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transformStyle;
+/** @brief 'afw_utf8_t' for string "transformStyle" */
+#define afw_components_s_transformStyle (afw_components_v_transformStyle.internal)
 
-/** @brief define for quoted string transition */
+/** @brief 'afw_value_string_t' for string "transformStyle" */
+extern const afw_value_string_t afw_components_v_transformStyle;
+
+/** @brief 'afw_utf8_z_t *' for string "transformStyle" */
+#define afw_components_z_transformStyle (afw_components_v_transformStyle.internal.s)
+
+
+
+/** @brief define for quoted string "transition" */
 #define AFW_COMPONENTS_Q_transition "transition"
 
-/** @brief afw_utf8_t for string transition */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transition;
+/** @brief 'afw_utf8_t' for string "transition" */
+#define afw_components_s_transition (afw_components_v_transition.internal)
 
-/** @brief define for quoted string transitionDelay */
+/** @brief 'afw_value_string_t' for string "transition" */
+extern const afw_value_string_t afw_components_v_transition;
+
+/** @brief 'afw_utf8_z_t *' for string "transition" */
+#define afw_components_z_transition (afw_components_v_transition.internal.s)
+
+
+
+/** @brief define for quoted string "transitionDelay" */
 #define AFW_COMPONENTS_Q_transitionDelay "transitionDelay"
 
-/** @brief afw_utf8_t for string transitionDelay */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transitionDelay;
+/** @brief 'afw_utf8_t' for string "transitionDelay" */
+#define afw_components_s_transitionDelay (afw_components_v_transitionDelay.internal)
 
-/** @brief define for quoted string transitionDuration */
+/** @brief 'afw_value_string_t' for string "transitionDelay" */
+extern const afw_value_string_t afw_components_v_transitionDelay;
+
+/** @brief 'afw_utf8_z_t *' for string "transitionDelay" */
+#define afw_components_z_transitionDelay (afw_components_v_transitionDelay.internal.s)
+
+
+
+/** @brief define for quoted string "transitionDuration" */
 #define AFW_COMPONENTS_Q_transitionDuration "transitionDuration"
 
-/** @brief afw_utf8_t for string transitionDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transitionDuration;
+/** @brief 'afw_utf8_t' for string "transitionDuration" */
+#define afw_components_s_transitionDuration (afw_components_v_transitionDuration.internal)
 
-/** @brief define for quoted string transitionProperty */
+/** @brief 'afw_value_string_t' for string "transitionDuration" */
+extern const afw_value_string_t afw_components_v_transitionDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "transitionDuration" */
+#define afw_components_z_transitionDuration (afw_components_v_transitionDuration.internal.s)
+
+
+
+/** @brief define for quoted string "transitionProperty" */
 #define AFW_COMPONENTS_Q_transitionProperty "transitionProperty"
 
-/** @brief afw_utf8_t for string transitionProperty */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transitionProperty;
+/** @brief 'afw_utf8_t' for string "transitionProperty" */
+#define afw_components_s_transitionProperty (afw_components_v_transitionProperty.internal)
 
-/** @brief define for quoted string transitionTimingFunction */
+/** @brief 'afw_value_string_t' for string "transitionProperty" */
+extern const afw_value_string_t afw_components_v_transitionProperty;
+
+/** @brief 'afw_utf8_z_t *' for string "transitionProperty" */
+#define afw_components_z_transitionProperty (afw_components_v_transitionProperty.internal.s)
+
+
+
+/** @brief define for quoted string "transitionTimingFunction" */
 #define AFW_COMPONENTS_Q_transitionTimingFunction "transitionTimingFunction"
 
-/** @brief afw_utf8_t for string transitionTimingFunction */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_transitionTimingFunction;
+/** @brief 'afw_utf8_t' for string "transitionTimingFunction" */
+#define afw_components_s_transitionTimingFunction (afw_components_v_transitionTimingFunction.internal)
 
-/** @brief define for quoted string type */
+/** @brief 'afw_value_string_t' for string "transitionTimingFunction" */
+extern const afw_value_string_t afw_components_v_transitionTimingFunction;
+
+/** @brief 'afw_utf8_z_t *' for string "transitionTimingFunction" */
+#define afw_components_z_transitionTimingFunction (afw_components_v_transitionTimingFunction.internal.s)
+
+
+
+/** @brief define for quoted string "type" */
 #define AFW_COMPONENTS_Q_type "type"
 
-/** @brief afw_utf8_t for string type */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_type;
+/** @brief 'afw_utf8_t' for string "type" */
+#define afw_components_s_type (afw_components_v_type.internal)
 
-/** @brief define for quoted string unicodeBidi */
+/** @brief 'afw_value_string_t' for string "type" */
+extern const afw_value_string_t afw_components_v_type;
+
+/** @brief 'afw_utf8_z_t *' for string "type" */
+#define afw_components_z_type (afw_components_v_type.internal.s)
+
+
+
+/** @brief define for quoted string "unicodeBidi" */
 #define AFW_COMPONENTS_Q_unicodeBidi "unicodeBidi"
 
-/** @brief afw_utf8_t for string unicodeBidi */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_unicodeBidi;
+/** @brief 'afw_utf8_t' for string "unicodeBidi" */
+#define afw_components_s_unicodeBidi (afw_components_v_unicodeBidi.internal)
 
-/** @brief define for quoted string url */
+/** @brief 'afw_value_string_t' for string "unicodeBidi" */
+extern const afw_value_string_t afw_components_v_unicodeBidi;
+
+/** @brief 'afw_utf8_z_t *' for string "unicodeBidi" */
+#define afw_components_z_unicodeBidi (afw_components_v_unicodeBidi.internal.s)
+
+
+
+/** @brief define for quoted string "url" */
 #define AFW_COMPONENTS_Q_url "url"
 
-/** @brief afw_utf8_t for string url */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_url;
+/** @brief 'afw_utf8_t' for string "url" */
+#define afw_components_s_url (afw_components_v_url.internal)
 
-/** @brief define for quoted string userSelect */
+/** @brief 'afw_value_string_t' for string "url" */
+extern const afw_value_string_t afw_components_v_url;
+
+/** @brief 'afw_utf8_z_t *' for string "url" */
+#define afw_components_z_url (afw_components_v_url.internal.s)
+
+
+
+/** @brief define for quoted string "userSelect" */
 #define AFW_COMPONENTS_Q_userSelect "userSelect"
 
-/** @brief afw_utf8_t for string userSelect */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_userSelect;
+/** @brief 'afw_utf8_t' for string "userSelect" */
+#define afw_components_s_userSelect (afw_components_v_userSelect.internal)
 
-/** @brief define for quoted string utilities */
+/** @brief 'afw_value_string_t' for string "userSelect" */
+extern const afw_value_string_t afw_components_v_userSelect;
+
+/** @brief 'afw_utf8_z_t *' for string "userSelect" */
+#define afw_components_z_userSelect (afw_components_v_userSelect.internal.s)
+
+
+
+/** @brief define for quoted string "utilities" */
 #define AFW_COMPONENTS_Q_utilities "utilities"
 
-/** @brief afw_utf8_t for string utilities */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_utilities;
+/** @brief 'afw_utf8_t' for string "utilities" */
+#define afw_components_s_utilities (afw_components_v_utilities.internal)
 
-/** @brief define for quoted string value */
+/** @brief 'afw_value_string_t' for string "utilities" */
+extern const afw_value_string_t afw_components_v_utilities;
+
+/** @brief 'afw_utf8_z_t *' for string "utilities" */
+#define afw_components_z_utilities (afw_components_v_utilities.internal.s)
+
+
+
+/** @brief define for quoted string "value" */
 #define AFW_COMPONENTS_Q_value "value"
 
-/** @brief afw_utf8_t for string value */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_value;
+/** @brief 'afw_utf8_t' for string "value" */
+#define afw_components_s_value (afw_components_v_value.internal)
 
-/** @brief define for quoted string variant */
+/** @brief 'afw_value_string_t' for string "value" */
+extern const afw_value_string_t afw_components_v_value;
+
+/** @brief 'afw_utf8_z_t *' for string "value" */
+#define afw_components_z_value (afw_components_v_value.internal.s)
+
+
+
+/** @brief define for quoted string "variant" */
 #define AFW_COMPONENTS_Q_variant "variant"
 
-/** @brief afw_utf8_t for string variant */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_variant;
+/** @brief 'afw_utf8_t' for string "variant" */
+#define afw_components_s_variant (afw_components_v_variant.internal)
 
-/** @brief define for quoted string vertical */
+/** @brief 'afw_value_string_t' for string "variant" */
+extern const afw_value_string_t afw_components_v_variant;
+
+/** @brief 'afw_utf8_z_t *' for string "variant" */
+#define afw_components_z_variant (afw_components_v_variant.internal.s)
+
+
+
+/** @brief define for quoted string "vertical" */
 #define AFW_COMPONENTS_Q_vertical "vertical"
 
-/** @brief afw_utf8_t for string vertical */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_vertical;
+/** @brief 'afw_utf8_t' for string "vertical" */
+#define afw_components_s_vertical (afw_components_v_vertical.internal)
 
-/** @brief define for quoted string verticalAlign */
+/** @brief 'afw_value_string_t' for string "vertical" */
+extern const afw_value_string_t afw_components_v_vertical;
+
+/** @brief 'afw_utf8_z_t *' for string "vertical" */
+#define afw_components_z_vertical (afw_components_v_vertical.internal.s)
+
+
+
+/** @brief define for quoted string "verticalAlign" */
 #define AFW_COMPONENTS_Q_verticalAlign "verticalAlign"
 
-/** @brief afw_utf8_t for string verticalAlign */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_verticalAlign;
+/** @brief 'afw_utf8_t' for string "verticalAlign" */
+#define afw_components_s_verticalAlign (afw_components_v_verticalAlign.internal)
 
-/** @brief define for quoted string visibility */
+/** @brief 'afw_value_string_t' for string "verticalAlign" */
+extern const afw_value_string_t afw_components_v_verticalAlign;
+
+/** @brief 'afw_utf8_z_t *' for string "verticalAlign" */
+#define afw_components_z_verticalAlign (afw_components_v_verticalAlign.internal.s)
+
+
+
+/** @brief define for quoted string "visibility" */
 #define AFW_COMPONENTS_Q_visibility "visibility"
 
-/** @brief afw_utf8_t for string visibility */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_visibility;
+/** @brief 'afw_utf8_t' for string "visibility" */
+#define afw_components_s_visibility (afw_components_v_visibility.internal)
 
-/** @brief define for quoted string whiteSpace */
+/** @brief 'afw_value_string_t' for string "visibility" */
+extern const afw_value_string_t afw_components_v_visibility;
+
+/** @brief 'afw_utf8_z_t *' for string "visibility" */
+#define afw_components_z_visibility (afw_components_v_visibility.internal.s)
+
+
+
+/** @brief define for quoted string "whiteSpace" */
 #define AFW_COMPONENTS_Q_whiteSpace "whiteSpace"
 
-/** @brief afw_utf8_t for string whiteSpace */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_whiteSpace;
+/** @brief 'afw_utf8_t' for string "whiteSpace" */
+#define afw_components_s_whiteSpace (afw_components_v_whiteSpace.internal)
 
-/** @brief define for quoted string widows */
+/** @brief 'afw_value_string_t' for string "whiteSpace" */
+extern const afw_value_string_t afw_components_v_whiteSpace;
+
+/** @brief 'afw_utf8_z_t *' for string "whiteSpace" */
+#define afw_components_z_whiteSpace (afw_components_v_whiteSpace.internal.s)
+
+
+
+/** @brief define for quoted string "widows" */
 #define AFW_COMPONENTS_Q_widows "widows"
 
-/** @brief afw_utf8_t for string widows */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_widows;
+/** @brief 'afw_utf8_t' for string "widows" */
+#define afw_components_s_widows (afw_components_v_widows.internal)
 
-/** @brief define for quoted string width */
+/** @brief 'afw_value_string_t' for string "widows" */
+extern const afw_value_string_t afw_components_v_widows;
+
+/** @brief 'afw_utf8_z_t *' for string "widows" */
+#define afw_components_z_widows (afw_components_v_widows.internal.s)
+
+
+
+/** @brief define for quoted string "width" */
 #define AFW_COMPONENTS_Q_width "width"
 
-/** @brief afw_utf8_t for string width */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_width;
+/** @brief 'afw_utf8_t' for string "width" */
+#define afw_components_s_width (afw_components_v_width.internal)
 
-/** @brief define for quoted string wordBreak */
+/** @brief 'afw_value_string_t' for string "width" */
+extern const afw_value_string_t afw_components_v_width;
+
+/** @brief 'afw_utf8_z_t *' for string "width" */
+#define afw_components_z_width (afw_components_v_width.internal.s)
+
+
+
+/** @brief define for quoted string "wordBreak" */
 #define AFW_COMPONENTS_Q_wordBreak "wordBreak"
 
-/** @brief afw_utf8_t for string wordBreak */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_wordBreak;
+/** @brief 'afw_utf8_t' for string "wordBreak" */
+#define afw_components_s_wordBreak (afw_components_v_wordBreak.internal)
 
-/** @brief define for quoted string wordSpacing */
+/** @brief 'afw_value_string_t' for string "wordBreak" */
+extern const afw_value_string_t afw_components_v_wordBreak;
+
+/** @brief 'afw_utf8_z_t *' for string "wordBreak" */
+#define afw_components_z_wordBreak (afw_components_v_wordBreak.internal.s)
+
+
+
+/** @brief define for quoted string "wordSpacing" */
 #define AFW_COMPONENTS_Q_wordSpacing "wordSpacing"
 
-/** @brief afw_utf8_t for string wordSpacing */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_wordSpacing;
+/** @brief 'afw_utf8_t' for string "wordSpacing" */
+#define afw_components_s_wordSpacing (afw_components_v_wordSpacing.internal)
 
-/** @brief define for quoted string wordWrap */
+/** @brief 'afw_value_string_t' for string "wordSpacing" */
+extern const afw_value_string_t afw_components_v_wordSpacing;
+
+/** @brief 'afw_utf8_z_t *' for string "wordSpacing" */
+#define afw_components_z_wordSpacing (afw_components_v_wordSpacing.internal.s)
+
+
+
+/** @brief define for quoted string "wordWrap" */
 #define AFW_COMPONENTS_Q_wordWrap "wordWrap"
 
-/** @brief afw_utf8_t for string wordWrap */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_wordWrap;
+/** @brief 'afw_utf8_t' for string "wordWrap" */
+#define afw_components_s_wordWrap (afw_components_v_wordWrap.internal)
 
-/** @brief define for quoted string wrap */
+/** @brief 'afw_value_string_t' for string "wordWrap" */
+extern const afw_value_string_t afw_components_v_wordWrap;
+
+/** @brief 'afw_utf8_z_t *' for string "wordWrap" */
+#define afw_components_z_wordWrap (afw_components_v_wordWrap.internal.s)
+
+
+
+/** @brief define for quoted string "wrap" */
 #define AFW_COMPONENTS_Q_wrap "wrap"
 
-/** @brief afw_utf8_t for string wrap */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_wrap;
+/** @brief 'afw_utf8_t' for string "wrap" */
+#define afw_components_s_wrap (afw_components_v_wrap.internal)
 
-/** @brief define for quoted string x */
+/** @brief 'afw_value_string_t' for string "wrap" */
+extern const afw_value_string_t afw_components_v_wrap;
+
+/** @brief 'afw_utf8_z_t *' for string "wrap" */
+#define afw_components_z_wrap (afw_components_v_wrap.internal.s)
+
+
+
+/** @brief define for quoted string "x" */
 #define AFW_COMPONENTS_Q_x "x"
 
-/** @brief afw_utf8_t for string x */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_x;
+/** @brief 'afw_utf8_t' for string "x" */
+#define afw_components_s_x (afw_components_v_x.internal)
 
-/** @brief define for quoted string xl */
+/** @brief 'afw_value_string_t' for string "x" */
+extern const afw_value_string_t afw_components_v_x;
+
+/** @brief 'afw_utf8_z_t *' for string "x" */
+#define afw_components_z_x (afw_components_v_x.internal.s)
+
+
+
+/** @brief define for quoted string "xl" */
 #define AFW_COMPONENTS_Q_xl "xl"
 
-/** @brief afw_utf8_t for string xl */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_xl;
+/** @brief 'afw_utf8_t' for string "xl" */
+#define afw_components_s_xl (afw_components_v_xl.internal)
 
-/** @brief define for quoted string xlDown */
+/** @brief 'afw_value_string_t' for string "xl" */
+extern const afw_value_string_t afw_components_v_xl;
+
+/** @brief 'afw_utf8_z_t *' for string "xl" */
+#define afw_components_z_xl (afw_components_v_xl.internal.s)
+
+
+
+/** @brief define for quoted string "xlDown" */
 #define AFW_COMPONENTS_Q_xlDown "xlDown"
 
-/** @brief afw_utf8_t for string xlDown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_xlDown;
+/** @brief 'afw_utf8_t' for string "xlDown" */
+#define afw_components_s_xlDown (afw_components_v_xlDown.internal)
 
-/** @brief define for quoted string xsDown */
+/** @brief 'afw_value_string_t' for string "xlDown" */
+extern const afw_value_string_t afw_components_v_xlDown;
+
+/** @brief 'afw_utf8_z_t *' for string "xlDown" */
+#define afw_components_z_xlDown (afw_components_v_xlDown.internal.s)
+
+
+
+/** @brief define for quoted string "xsDown" */
 #define AFW_COMPONENTS_Q_xsDown "xsDown"
 
-/** @brief afw_utf8_t for string xsDown */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_xsDown;
+/** @brief 'afw_utf8_t' for string "xsDown" */
+#define afw_components_s_xsDown (afw_components_v_xsDown.internal)
 
-/** @brief define for quoted string xxl */
+/** @brief 'afw_value_string_t' for string "xsDown" */
+extern const afw_value_string_t afw_components_v_xsDown;
+
+/** @brief 'afw_utf8_z_t *' for string "xsDown" */
+#define afw_components_z_xsDown (afw_components_v_xsDown.internal.s)
+
+
+
+/** @brief define for quoted string "xxl" */
 #define AFW_COMPONENTS_Q_xxl "xxl"
 
-/** @brief afw_utf8_t for string xxl */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_xxl;
+/** @brief 'afw_utf8_t' for string "xxl" */
+#define afw_components_s_xxl (afw_components_v_xxl.internal)
 
-/** @brief define for quoted string xxxl */
+/** @brief 'afw_value_string_t' for string "xxl" */
+extern const afw_value_string_t afw_components_v_xxl;
+
+/** @brief 'afw_utf8_z_t *' for string "xxl" */
+#define afw_components_z_xxl (afw_components_v_xxl.internal.s)
+
+
+
+/** @brief define for quoted string "xxxl" */
 #define AFW_COMPONENTS_Q_xxxl "xxxl"
 
-/** @brief afw_utf8_t for string xxxl */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_xxxl;
+/** @brief 'afw_utf8_t' for string "xxxl" */
+#define afw_components_s_xxxl (afw_components_v_xxxl.internal)
 
-/** @brief define for quoted string y */
+/** @brief 'afw_value_string_t' for string "xxxl" */
+extern const afw_value_string_t afw_components_v_xxxl;
+
+/** @brief 'afw_utf8_z_t *' for string "xxxl" */
+#define afw_components_z_xxxl (afw_components_v_xxxl.internal.s)
+
+
+
+/** @brief define for quoted string "y" */
 #define AFW_COMPONENTS_Q_y "y"
 
-/** @brief afw_utf8_t for string y */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_y;
+/** @brief 'afw_utf8_t' for string "y" */
+#define afw_components_s_y (afw_components_v_y.internal)
 
-/** @brief define for quoted string yearMonthDuration */
+/** @brief 'afw_value_string_t' for string "y" */
+extern const afw_value_string_t afw_components_v_y;
+
+/** @brief 'afw_utf8_z_t *' for string "y" */
+#define afw_components_z_y (afw_components_v_y.internal.s)
+
+
+
+/** @brief define for quoted string "yearMonthDuration" */
 #define AFW_COMPONENTS_Q_yearMonthDuration "yearMonthDuration"
 
-/** @brief afw_utf8_t for string yearMonthDuration */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_yearMonthDuration;
+/** @brief 'afw_utf8_t' for string "yearMonthDuration" */
+#define afw_components_s_yearMonthDuration (afw_components_v_yearMonthDuration.internal)
 
-/** @brief define for quoted string zIndex */
+/** @brief 'afw_value_string_t' for string "yearMonthDuration" */
+extern const afw_value_string_t afw_components_v_yearMonthDuration;
+
+/** @brief 'afw_utf8_z_t *' for string "yearMonthDuration" */
+#define afw_components_z_yearMonthDuration (afw_components_v_yearMonthDuration.internal.s)
+
+
+
+/** @brief define for quoted string "zIndex" */
 #define AFW_COMPONENTS_Q_zIndex "zIndex"
 
-/** @brief afw_utf8_t for string zIndex */
-AFW_COMPONENTS_DECLARE_CONST_DATA(afw_utf8_t) afw_components_s_zIndex;
+/** @brief 'afw_utf8_t' for string "zIndex" */
+#define afw_components_s_zIndex (afw_components_v_zIndex.internal)
+
+/** @brief 'afw_value_string_t' for string "zIndex" */
+extern const afw_value_string_t afw_components_v_zIndex;
+
+/** @brief 'afw_utf8_z_t *' for string "zIndex" */
+#define afw_components_z_zIndex (afw_components_v_zIndex.internal.s)
+
 
 
 #endif /* __AFW_COMPONENTS_STRINGS_H__ */

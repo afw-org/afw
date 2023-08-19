@@ -29,551 +29,1278 @@
 #include "afw_lmdb_declare_helpers.h"
 
 
-/** @brief define for quoted string Extern */
+/** @brief define for quoted string "Extern" */
 #define AFW_LMDB_Q_Extern "Extern"
 
-/** @brief afw_utf8_t for string Extern */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Extern;
+/** @brief 'afw_utf8_t' for string "Extern" */
+#define afw_lmdb_s_Extern (afw_lmdb_v_Extern.internal)
 
-/** @brief define for quoted string Index */
+/** @brief 'afw_value_string_t' for string "Extern" */
+extern const afw_value_string_t afw_lmdb_v_Extern;
+
+/** @brief 'afw_utf8_z_t *' for string "Extern" */
+#define afw_lmdb_z_Extern (afw_lmdb_v_Extern.internal.s)
+
+
+
+/** @brief define for quoted string "Index" */
 #define AFW_LMDB_Q_Index "Index"
 
-/** @brief afw_utf8_t for string Index */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Index;
+/** @brief 'afw_utf8_t' for string "Index" */
+#define afw_lmdb_s_Index (afw_lmdb_v_Index.internal)
 
-/** @brief define for quoted string Journal */
+/** @brief 'afw_value_string_t' for string "Index" */
+extern const afw_value_string_t afw_lmdb_v_Index;
+
+/** @brief 'afw_utf8_z_t *' for string "Index" */
+#define afw_lmdb_z_Index (afw_lmdb_v_Index.internal.s)
+
+
+
+/** @brief define for quoted string "Journal" */
 #define AFW_LMDB_Q_Journal "Journal"
 
-/** @brief afw_utf8_t for string Journal */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Journal;
+/** @brief 'afw_utf8_t' for string "Journal" */
+#define afw_lmdb_s_Journal (afw_lmdb_v_Journal.internal)
 
-/** @brief define for quoted string Primary */
+/** @brief 'afw_value_string_t' for string "Journal" */
+extern const afw_value_string_t afw_lmdb_v_Journal;
+
+/** @brief 'afw_utf8_z_t *' for string "Journal" */
+#define afw_lmdb_z_Journal (afw_lmdb_v_Journal.internal.s)
+
+
+
+/** @brief define for quoted string "Primary" */
 #define AFW_LMDB_Q_Primary "Primary"
 
-/** @brief afw_utf8_t for string Primary */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Primary;
+/** @brief 'afw_utf8_t' for string "Primary" */
+#define afw_lmdb_s_Primary (afw_lmdb_v_Primary.internal)
 
-/** @brief define for quoted string _AdaptiveAdaptorMetrics_adaptor_lmdb */
+/** @brief 'afw_value_string_t' for string "Primary" */
+extern const afw_value_string_t afw_lmdb_v_Primary;
+
+/** @brief 'afw_utf8_z_t *' for string "Primary" */
+#define afw_lmdb_z_Primary (afw_lmdb_v_Primary.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveAdaptorMetrics_adaptor_lmdb" */
 #define AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb "_AdaptiveAdaptorMetrics_adaptor_lmdb"
 
-/** @brief afw_utf8_t for string _AdaptiveAdaptorMetrics_adaptor_lmdb */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb;
+/** @brief 'afw_utf8_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb" */
+#define afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb.internal)
 
-/** @brief define for quoted string _AdaptiveAdaptorMetrics_adaptor_lmdb_information */
+/** @brief 'afw_value_string_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb" */
+#define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveAdaptorMetrics_adaptor_lmdb_information" */
 #define AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_information "_AdaptiveAdaptorMetrics_adaptor_lmdb_information"
 
-/** @brief afw_utf8_t for string _AdaptiveAdaptorMetrics_adaptor_lmdb_information */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information;
+/** @brief 'afw_utf8_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_information" */
+#define afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information.internal)
 
-/** @brief define for quoted string _AdaptiveAdaptorMetrics_adaptor_lmdb_statistic */
+/** @brief 'afw_value_string_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_information" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_information" */
+#define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_information (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic" */
 #define AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
 
-/** @brief afw_utf8_t for string _AdaptiveAdaptorMetrics_adaptor_lmdb_statistic */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic;
+/** @brief 'afw_utf8_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic" */
+#define afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic.internal)
 
-/** @brief define for quoted string _AdaptiveAdaptorMetrics_adaptor_lmdb_statistics */
+/** @brief 'afw_value_string_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic" */
+#define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics" */
 #define AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics"
 
-/** @brief afw_utf8_t for string _AdaptiveAdaptorMetrics_adaptor_lmdb_statistics */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics;
+/** @brief 'afw_utf8_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics" */
+#define afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics.internal)
 
-/** @brief define for quoted string _AdaptiveAdaptorMetrics_adaptor_lmdb_version */
+/** @brief 'afw_value_string_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics" */
+#define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveAdaptorMetrics_adaptor_lmdb_version" */
 #define AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_version "_AdaptiveAdaptorMetrics_adaptor_lmdb_version"
 
-/** @brief afw_utf8_t for string _AdaptiveAdaptorMetrics_adaptor_lmdb_version */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version;
+/** @brief 'afw_utf8_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_version" */
+#define afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version.internal)
 
-/** @brief define for quoted string _AdaptiveCollection_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_version" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveAdaptorMetrics_adaptor_lmdb_version" */
+#define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_version (afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveCollection_" */
 #define AFW_LMDB_Q__AdaptiveCollection_ "_AdaptiveCollection_"
 
-/** @brief afw_utf8_t for string _AdaptiveCollection_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveCollection_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveCollection_" */
+#define afw_lmdb_s__AdaptiveCollection_ (afw_lmdb_v__AdaptiveCollection_.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_lmdb */
+/** @brief 'afw_value_string_t' for string "_AdaptiveCollection_" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveCollection_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveCollection_" */
+#define afw_lmdb_z__AdaptiveCollection_ (afw_lmdb_v__AdaptiveCollection_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_lmdb" */
 #define AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb "_AdaptiveConf_adaptor_lmdb"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_lmdb */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_lmdb" */
+#define afw_lmdb_s__AdaptiveConf_adaptor_lmdb (afw_lmdb_v__AdaptiveConf_adaptor_lmdb.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_lmdb_env */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_lmdb" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_lmdb" */
+#define afw_lmdb_z__AdaptiveConf_adaptor_lmdb (afw_lmdb_v__AdaptiveConf_adaptor_lmdb.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_lmdb_env" */
 #define AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_env "_AdaptiveConf_adaptor_lmdb_env"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_lmdb_env */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_env;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_lmdb_env" */
+#define afw_lmdb_s__AdaptiveConf_adaptor_lmdb_env (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_env.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_lmdb_limits */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_lmdb_env" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_env;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_lmdb_env" */
+#define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_env (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_env.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_lmdb_limits" */
 #define AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits "_AdaptiveConf_adaptor_lmdb_limits"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_lmdb_limits */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_lmdb_limits" */
+#define afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_lmdb_limits_size */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_lmdb_limits" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_lmdb_limits" */
+#define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_limits (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_lmdb_limits_size" */
 #define AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits_size "_AdaptiveConf_adaptor_lmdb_limits_size"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_lmdb_limits_size */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_size;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_lmdb_limits_size" */
+#define afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_size (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_size.internal)
 
-/** @brief define for quoted string _AdaptiveConf_adaptor_lmdb_limits_time */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_lmdb_limits_size" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_size;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_lmdb_limits_size" */
+#define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_limits_size (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_size.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveConf_adaptor_lmdb_limits_time" */
 #define AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits_time "_AdaptiveConf_adaptor_lmdb_limits_time"
 
-/** @brief afw_utf8_t for string _AdaptiveConf_adaptor_lmdb_limits_time */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_time;
+/** @brief 'afw_utf8_t' for string "_AdaptiveConf_adaptor_lmdb_limits_time" */
+#define afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_time (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_time.internal)
 
-/** @brief define for quoted string _AdaptiveFunctionCategory_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveConf_adaptor_lmdb_limits_time" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_time;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveConf_adaptor_lmdb_limits_time" */
+#define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_limits_time (afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_time.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveFunctionCategory_" */
 #define AFW_LMDB_Q__AdaptiveFunctionCategory_ "_AdaptiveFunctionCategory_"
 
-/** @brief afw_utf8_t for string _AdaptiveFunctionCategory_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunctionCategory_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveFunctionCategory_" */
+#define afw_lmdb_s__AdaptiveFunctionCategory_ (afw_lmdb_v__AdaptiveFunctionCategory_.internal)
 
-/** @brief define for quoted string _AdaptiveFunctionGenerate_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveFunctionCategory_" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveFunctionCategory_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveFunctionCategory_" */
+#define afw_lmdb_z__AdaptiveFunctionCategory_ (afw_lmdb_v__AdaptiveFunctionCategory_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveFunctionGenerate_" */
 #define AFW_LMDB_Q__AdaptiveFunctionGenerate_ "_AdaptiveFunctionGenerate_"
 
-/** @brief afw_utf8_t for string _AdaptiveFunctionGenerate_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunctionGenerate_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveFunctionGenerate_" */
+#define afw_lmdb_s__AdaptiveFunctionGenerate_ (afw_lmdb_v__AdaptiveFunctionGenerate_.internal)
 
-/** @brief define for quoted string _AdaptiveFunctionParameter_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveFunctionGenerate_" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveFunctionGenerate_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveFunctionGenerate_" */
+#define afw_lmdb_z__AdaptiveFunctionGenerate_ (afw_lmdb_v__AdaptiveFunctionGenerate_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveFunctionParameter_" */
 #define AFW_LMDB_Q__AdaptiveFunctionParameter_ "_AdaptiveFunctionParameter_"
 
-/** @brief afw_utf8_t for string _AdaptiveFunctionParameter_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunctionParameter_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveFunctionParameter_" */
+#define afw_lmdb_s__AdaptiveFunctionParameter_ (afw_lmdb_v__AdaptiveFunctionParameter_.internal)
 
-/** @brief define for quoted string _AdaptiveFunction_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveFunctionParameter_" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveFunctionParameter_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveFunctionParameter_" */
+#define afw_lmdb_z__AdaptiveFunctionParameter_ (afw_lmdb_v__AdaptiveFunctionParameter_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveFunction_" */
 #define AFW_LMDB_Q__AdaptiveFunction_ "_AdaptiveFunction_"
 
-/** @brief afw_utf8_t for string _AdaptiveFunction_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunction_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveFunction_" */
+#define afw_lmdb_s__AdaptiveFunction_ (afw_lmdb_v__AdaptiveFunction_.internal)
 
-/** @brief define for quoted string _AdaptiveObjectType_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveFunction_" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveFunction_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveFunction_" */
+#define afw_lmdb_z__AdaptiveFunction_ (afw_lmdb_v__AdaptiveFunction_.internal.s)
+
+
+
+/** @brief define for quoted string "_AdaptiveObjectType_" */
 #define AFW_LMDB_Q__AdaptiveObjectType_ "_AdaptiveObjectType_"
 
-/** @brief afw_utf8_t for string _AdaptiveObjectType_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveObjectType_;
+/** @brief 'afw_utf8_t' for string "_AdaptiveObjectType_" */
+#define afw_lmdb_s__AdaptiveObjectType_ (afw_lmdb_v__AdaptiveObjectType_.internal)
 
-/** @brief define for quoted string _meta_ */
+/** @brief 'afw_value_string_t' for string "_AdaptiveObjectType_" */
+extern const afw_value_string_t afw_lmdb_v__AdaptiveObjectType_;
+
+/** @brief 'afw_utf8_z_t *' for string "_AdaptiveObjectType_" */
+#define afw_lmdb_z__AdaptiveObjectType_ (afw_lmdb_v__AdaptiveObjectType_.internal.s)
+
+
+
+/** @brief define for quoted string "_meta_" */
 #define AFW_LMDB_Q__meta_ "_meta_"
 
-/** @brief afw_utf8_t for string _meta_ */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s__meta_;
+/** @brief 'afw_utf8_t' for string "_meta_" */
+#define afw_lmdb_s__meta_ (afw_lmdb_v__meta_.internal)
 
-/** @brief define for quoted string afwCamelCaseFunctionLabel */
+/** @brief 'afw_value_string_t' for string "_meta_" */
+extern const afw_value_string_t afw_lmdb_v__meta_;
+
+/** @brief 'afw_utf8_z_t *' for string "_meta_" */
+#define afw_lmdb_z__meta_ (afw_lmdb_v__meta_.internal.s)
+
+
+
+/** @brief define for quoted string "afwCamelCaseFunctionLabel" */
 #define AFW_LMDB_Q_afwCamelCaseFunctionLabel "afwCamelCaseFunctionLabel"
 
-/** @brief afw_utf8_t for string afwCamelCaseFunctionLabel */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_afwCamelCaseFunctionLabel;
+/** @brief 'afw_utf8_t' for string "afwCamelCaseFunctionLabel" */
+#define afw_lmdb_s_afwCamelCaseFunctionLabel (afw_lmdb_v_afwCamelCaseFunctionLabel.internal)
 
-/** @brief define for quoted string allowEntity */
+/** @brief 'afw_value_string_t' for string "afwCamelCaseFunctionLabel" */
+extern const afw_value_string_t afw_lmdb_v_afwCamelCaseFunctionLabel;
+
+/** @brief 'afw_utf8_z_t *' for string "afwCamelCaseFunctionLabel" */
+#define afw_lmdb_z_afwCamelCaseFunctionLabel (afw_lmdb_v_afwCamelCaseFunctionLabel.internal.s)
+
+
+
+/** @brief define for quoted string "allowEntity" */
 #define AFW_LMDB_Q_allowEntity "allowEntity"
 
-/** @brief afw_utf8_t for string allowEntity */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_allowEntity;
+/** @brief 'afw_utf8_t' for string "allowEntity" */
+#define afw_lmdb_s_allowEntity (afw_lmdb_v_allowEntity.internal)
 
-/** @brief define for quoted string allowQuery */
+/** @brief 'afw_value_string_t' for string "allowEntity" */
+extern const afw_value_string_t afw_lmdb_v_allowEntity;
+
+/** @brief 'afw_utf8_z_t *' for string "allowEntity" */
+#define afw_lmdb_z_allowEntity (afw_lmdb_v_allowEntity.internal.s)
+
+
+
+/** @brief define for quoted string "allowQuery" */
 #define AFW_LMDB_Q_allowQuery "allowQuery"
 
-/** @brief afw_utf8_t for string allowQuery */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_allowQuery;
+/** @brief 'afw_utf8_t' for string "allowQuery" */
+#define afw_lmdb_s_allowQuery (afw_lmdb_v_allowQuery.internal)
 
-/** @brief define for quoted string allowWrite */
+/** @brief 'afw_value_string_t' for string "allowQuery" */
+extern const afw_value_string_t afw_lmdb_v_allowQuery;
+
+/** @brief 'afw_utf8_z_t *' for string "allowQuery" */
+#define afw_lmdb_z_allowQuery (afw_lmdb_v_allowQuery.internal.s)
+
+
+
+/** @brief define for quoted string "allowWrite" */
 #define AFW_LMDB_Q_allowWrite "allowWrite"
 
-/** @brief afw_utf8_t for string allowWrite */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_allowWrite;
+/** @brief 'afw_utf8_t' for string "allowWrite" */
+#define afw_lmdb_s_allowWrite (afw_lmdb_v_allowWrite.internal)
 
-/** @brief define for quoted string branch_pages */
+/** @brief 'afw_value_string_t' for string "allowWrite" */
+extern const afw_value_string_t afw_lmdb_v_allowWrite;
+
+/** @brief 'afw_utf8_z_t *' for string "allowWrite" */
+#define afw_lmdb_z_allowWrite (afw_lmdb_v_allowWrite.internal.s)
+
+
+
+/** @brief define for quoted string "branch_pages" */
 #define AFW_LMDB_Q_branch_pages "branch_pages"
 
-/** @brief afw_utf8_t for string branch_pages */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_branch_pages;
+/** @brief 'afw_utf8_t' for string "branch_pages" */
+#define afw_lmdb_s_branch_pages (afw_lmdb_v_branch_pages.internal)
 
-/** @brief define for quoted string brief */
+/** @brief 'afw_value_string_t' for string "branch_pages" */
+extern const afw_value_string_t afw_lmdb_v_branch_pages;
+
+/** @brief 'afw_utf8_z_t *' for string "branch_pages" */
+#define afw_lmdb_z_branch_pages (afw_lmdb_v_branch_pages.internal.s)
+
+
+
+/** @brief define for quoted string "brief" */
 #define AFW_LMDB_Q_brief "brief"
 
-/** @brief afw_utf8_t for string brief */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_brief;
+/** @brief 'afw_utf8_t' for string "brief" */
+#define afw_lmdb_s_brief (afw_lmdb_v_brief.internal)
 
-/** @brief define for quoted string camelCaseFunctionLabel */
+/** @brief 'afw_value_string_t' for string "brief" */
+extern const afw_value_string_t afw_lmdb_v_brief;
+
+/** @brief 'afw_utf8_z_t *' for string "brief" */
+#define afw_lmdb_z_brief (afw_lmdb_v_brief.internal.s)
+
+
+
+/** @brief define for quoted string "camelCaseFunctionLabel" */
 #define AFW_LMDB_Q_camelCaseFunctionLabel "camelCaseFunctionLabel"
 
-/** @brief afw_utf8_t for string camelCaseFunctionLabel */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_camelCaseFunctionLabel;
+/** @brief 'afw_utf8_t' for string "camelCaseFunctionLabel" */
+#define afw_lmdb_s_camelCaseFunctionLabel (afw_lmdb_v_camelCaseFunctionLabel.internal)
 
-/** @brief define for quoted string category */
+/** @brief 'afw_value_string_t' for string "camelCaseFunctionLabel" */
+extern const afw_value_string_t afw_lmdb_v_camelCaseFunctionLabel;
+
+/** @brief 'afw_utf8_z_t *' for string "camelCaseFunctionLabel" */
+#define afw_lmdb_z_camelCaseFunctionLabel (afw_lmdb_v_camelCaseFunctionLabel.internal.s)
+
+
+
+/** @brief define for quoted string "category" */
 #define AFW_LMDB_Q_category "category"
 
-/** @brief afw_utf8_t for string category */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_category;
+/** @brief 'afw_utf8_t' for string "category" */
+#define afw_lmdb_s_category (afw_lmdb_v_category.internal)
 
-/** @brief define for quoted string collectionURIs */
+/** @brief 'afw_value_string_t' for string "category" */
+extern const afw_value_string_t afw_lmdb_v_category;
+
+/** @brief 'afw_utf8_z_t *' for string "category" */
+#define afw_lmdb_z_category (afw_lmdb_v_category.internal.s)
+
+
+
+/** @brief define for quoted string "collectionURIs" */
 #define AFW_LMDB_Q_collectionURIs "collectionURIs"
 
-/** @brief afw_utf8_t for string collectionURIs */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_collectionURIs;
+/** @brief 'afw_utf8_t' for string "collectionURIs" */
+#define afw_lmdb_s_collectionURIs (afw_lmdb_v_collectionURIs.internal)
 
-/** @brief define for quoted string content_type */
+/** @brief 'afw_value_string_t' for string "collectionURIs" */
+extern const afw_value_string_t afw_lmdb_v_collectionURIs;
+
+/** @brief 'afw_utf8_z_t *' for string "collectionURIs" */
+#define afw_lmdb_z_collectionURIs (afw_lmdb_v_collectionURIs.internal.s)
+
+
+
+/** @brief define for quoted string "content_type" */
 #define AFW_LMDB_Q_content_type "content_type"
 
-/** @brief afw_utf8_t for string content_type */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_content_type;
+/** @brief 'afw_utf8_t' for string "content_type" */
+#define afw_lmdb_s_content_type (afw_lmdb_v_content_type.internal)
 
-/** @brief define for quoted string createTimeStamp */
+/** @brief 'afw_value_string_t' for string "content_type" */
+extern const afw_value_string_t afw_lmdb_v_content_type;
+
+/** @brief 'afw_utf8_z_t *' for string "content_type" */
+#define afw_lmdb_z_content_type (afw_lmdb_v_content_type.internal.s)
+
+
+
+/** @brief define for quoted string "createTimeStamp" */
 #define AFW_LMDB_Q_createTimeStamp "createTimeStamp"
 
-/** @brief afw_utf8_t for string createTimeStamp */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_createTimeStamp;
+/** @brief 'afw_utf8_t' for string "createTimeStamp" */
+#define afw_lmdb_s_createTimeStamp (afw_lmdb_v_createTimeStamp.internal)
 
-/** @brief define for quoted string dataType */
+/** @brief 'afw_value_string_t' for string "createTimeStamp" */
+extern const afw_value_string_t afw_lmdb_v_createTimeStamp;
+
+/** @brief 'afw_utf8_z_t *' for string "createTimeStamp" */
+#define afw_lmdb_z_createTimeStamp (afw_lmdb_v_createTimeStamp.internal.s)
+
+
+
+/** @brief define for quoted string "dataType" */
 #define AFW_LMDB_Q_dataType "dataType"
 
-/** @brief afw_utf8_t for string dataType */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_dataType;
+/** @brief 'afw_utf8_t' for string "dataType" */
+#define afw_lmdb_s_dataType (afw_lmdb_v_dataType.internal)
 
-/** @brief define for quoted string dataTypeParameter */
+/** @brief 'afw_value_string_t' for string "dataType" */
+extern const afw_value_string_t afw_lmdb_v_dataType;
+
+/** @brief 'afw_utf8_z_t *' for string "dataType" */
+#define afw_lmdb_z_dataType (afw_lmdb_v_dataType.internal.s)
+
+
+
+/** @brief define for quoted string "dataTypeParameter" */
 #define AFW_LMDB_Q_dataTypeParameter "dataTypeParameter"
 
-/** @brief afw_utf8_t for string dataTypeParameter */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_dataTypeParameter;
+/** @brief 'afw_utf8_t' for string "dataTypeParameter" */
+#define afw_lmdb_s_dataTypeParameter (afw_lmdb_v_dataTypeParameter.internal)
 
-/** @brief define for quoted string default */
+/** @brief 'afw_value_string_t' for string "dataTypeParameter" */
+extern const afw_value_string_t afw_lmdb_v_dataTypeParameter;
+
+/** @brief 'afw_utf8_z_t *' for string "dataTypeParameter" */
+#define afw_lmdb_z_dataTypeParameter (afw_lmdb_v_dataTypeParameter.internal.s)
+
+
+
+/** @brief define for quoted string "default" */
 #define AFW_LMDB_Q_default "default"
 
-/** @brief afw_utf8_t for string default */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_default;
+/** @brief 'afw_utf8_t' for string "default" */
+#define afw_lmdb_s_default (afw_lmdb_v_default.internal)
 
-/** @brief define for quoted string depth */
+/** @brief 'afw_value_string_t' for string "default" */
+extern const afw_value_string_t afw_lmdb_v_default;
+
+/** @brief 'afw_utf8_z_t *' for string "default" */
+#define afw_lmdb_z_default (afw_lmdb_v_default.internal.s)
+
+
+
+/** @brief define for quoted string "depth" */
 #define AFW_LMDB_Q_depth "depth"
 
-/** @brief afw_utf8_t for string depth */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_depth;
+/** @brief 'afw_utf8_t' for string "depth" */
+#define afw_lmdb_s_depth (afw_lmdb_v_depth.internal)
 
-/** @brief define for quoted string description */
+/** @brief 'afw_value_string_t' for string "depth" */
+extern const afw_value_string_t afw_lmdb_v_depth;
+
+/** @brief 'afw_utf8_z_t *' for string "depth" */
+#define afw_lmdb_z_depth (afw_lmdb_v_depth.internal.s)
+
+
+
+/** @brief define for quoted string "description" */
 #define AFW_LMDB_Q_description "description"
 
-/** @brief afw_utf8_t for string description */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_description;
+/** @brief 'afw_utf8_t' for string "description" */
+#define afw_lmdb_s_description (afw_lmdb_v_description.internal)
 
-/** @brief define for quoted string entries */
+/** @brief 'afw_value_string_t' for string "description" */
+extern const afw_value_string_t afw_lmdb_v_description;
+
+/** @brief 'afw_utf8_z_t *' for string "description" */
+#define afw_lmdb_z_description (afw_lmdb_v_description.internal.s)
+
+
+
+/** @brief define for quoted string "entries" */
 #define AFW_LMDB_Q_entries "entries"
 
-/** @brief afw_utf8_t for string entries */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_entries;
+/** @brief 'afw_utf8_t' for string "entries" */
+#define afw_lmdb_s_entries (afw_lmdb_v_entries.internal)
 
-/** @brief define for quoted string env */
+/** @brief 'afw_value_string_t' for string "entries" */
+extern const afw_value_string_t afw_lmdb_v_entries;
+
+/** @brief 'afw_utf8_z_t *' for string "entries" */
+#define afw_lmdb_z_entries (afw_lmdb_v_entries.internal.s)
+
+
+
+/** @brief define for quoted string "env" */
 #define AFW_LMDB_Q_env "env"
 
-/** @brief afw_utf8_t for string env */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_env;
+/** @brief 'afw_utf8_t' for string "env" */
+#define afw_lmdb_s_env (afw_lmdb_v_env.internal)
 
-/** @brief define for quoted string environment */
+/** @brief 'afw_value_string_t' for string "env" */
+extern const afw_value_string_t afw_lmdb_v_env;
+
+/** @brief 'afw_utf8_z_t *' for string "env" */
+#define afw_lmdb_z_env (afw_lmdb_v_env.internal.s)
+
+
+
+/** @brief define for quoted string "environment" */
 #define AFW_LMDB_Q_environment "environment"
 
-/** @brief afw_utf8_t for string environment */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_environment;
+/** @brief 'afw_utf8_t' for string "environment" */
+#define afw_lmdb_s_environment (afw_lmdb_v_environment.internal)
 
-/** @brief define for quoted string equality */
+/** @brief 'afw_value_string_t' for string "environment" */
+extern const afw_value_string_t afw_lmdb_v_environment;
+
+/** @brief 'afw_utf8_z_t *' for string "environment" */
+#define afw_lmdb_z_environment (afw_lmdb_v_environment.internal.s)
+
+
+
+/** @brief define for quoted string "equality" */
 #define AFW_LMDB_Q_equality "equality"
 
-/** @brief afw_utf8_t for string equality */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_equality;
+/** @brief 'afw_utf8_t' for string "equality" */
+#define afw_lmdb_s_equality (afw_lmdb_v_equality.internal)
 
-/** @brief define for quoted string flags */
+/** @brief 'afw_value_string_t' for string "equality" */
+extern const afw_value_string_t afw_lmdb_v_equality;
+
+/** @brief 'afw_utf8_z_t *' for string "equality" */
+#define afw_lmdb_z_equality (afw_lmdb_v_equality.internal.s)
+
+
+
+/** @brief define for quoted string "flags" */
 #define AFW_LMDB_Q_flags "flags"
 
-/** @brief afw_utf8_t for string flags */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_flags;
+/** @brief 'afw_utf8_t' for string "flags" */
+#define afw_lmdb_s_flags (afw_lmdb_v_flags.internal)
 
-/** @brief define for quoted string functionId */
+/** @brief 'afw_value_string_t' for string "flags" */
+extern const afw_value_string_t afw_lmdb_v_flags;
+
+/** @brief 'afw_utf8_z_t *' for string "flags" */
+#define afw_lmdb_z_flags (afw_lmdb_v_flags.internal.s)
+
+
+
+/** @brief define for quoted string "functionId" */
 #define AFW_LMDB_Q_functionId "functionId"
 
-/** @brief afw_utf8_t for string functionId */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_functionId;
+/** @brief 'afw_utf8_t' for string "functionId" */
+#define afw_lmdb_s_functionId (afw_lmdb_v_functionId.internal)
 
-/** @brief define for quoted string functionLabel */
+/** @brief 'afw_value_string_t' for string "functionId" */
+extern const afw_value_string_t afw_lmdb_v_functionId;
+
+/** @brief 'afw_utf8_z_t *' for string "functionId" */
+#define afw_lmdb_z_functionId (afw_lmdb_v_functionId.internal.s)
+
+
+
+/** @brief define for quoted string "functionLabel" */
 #define AFW_LMDB_Q_functionLabel "functionLabel"
 
-/** @brief afw_utf8_t for string functionLabel */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_functionLabel;
+/** @brief 'afw_utf8_t' for string "functionLabel" */
+#define afw_lmdb_s_functionLabel (afw_lmdb_v_functionLabel.internal)
 
-/** @brief define for quoted string hard */
+/** @brief 'afw_value_string_t' for string "functionLabel" */
+extern const afw_value_string_t afw_lmdb_v_functionLabel;
+
+/** @brief 'afw_utf8_z_t *' for string "functionLabel" */
+#define afw_lmdb_z_functionLabel (afw_lmdb_v_functionLabel.internal.s)
+
+
+
+/** @brief define for quoted string "hard" */
 #define AFW_LMDB_Q_hard "hard"
 
-/** @brief afw_utf8_t for string hard */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_hard;
+/** @brief 'afw_utf8_t' for string "hard" */
+#define afw_lmdb_s_hard (afw_lmdb_v_hard.internal)
 
-/** @brief define for quoted string indexDefinitions */
+/** @brief 'afw_value_string_t' for string "hard" */
+extern const afw_value_string_t afw_lmdb_v_hard;
+
+/** @brief 'afw_utf8_z_t *' for string "hard" */
+#define afw_lmdb_z_hard (afw_lmdb_v_hard.internal.s)
+
+
+
+/** @brief define for quoted string "indexDefinitions" */
 #define AFW_LMDB_Q_indexDefinitions "indexDefinitions"
 
-/** @brief afw_utf8_t for string indexDefinitions */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_indexDefinitions;
+/** @brief 'afw_utf8_t' for string "indexDefinitions" */
+#define afw_lmdb_s_indexDefinitions (afw_lmdb_v_indexDefinitions.internal)
 
-/** @brief define for quoted string indexes */
+/** @brief 'afw_value_string_t' for string "indexDefinitions" */
+extern const afw_value_string_t afw_lmdb_v_indexDefinitions;
+
+/** @brief 'afw_utf8_z_t *' for string "indexDefinitions" */
+#define afw_lmdb_z_indexDefinitions (afw_lmdb_v_indexDefinitions.internal.s)
+
+
+
+/** @brief define for quoted string "indexes" */
 #define AFW_LMDB_Q_indexes "indexes"
 
-/** @brief afw_utf8_t for string indexes */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_indexes;
+/** @brief 'afw_utf8_t' for string "indexes" */
+#define afw_lmdb_s_indexes (afw_lmdb_v_indexes.internal)
 
-/** @brief define for quoted string indirect */
+/** @brief 'afw_value_string_t' for string "indexes" */
+extern const afw_value_string_t afw_lmdb_v_indexes;
+
+/** @brief 'afw_utf8_z_t *' for string "indexes" */
+#define afw_lmdb_z_indexes (afw_lmdb_v_indexes.internal.s)
+
+
+
+/** @brief define for quoted string "indirect" */
 #define AFW_LMDB_Q_indirect "indirect"
 
-/** @brief afw_utf8_t for string indirect */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_indirect;
+/** @brief 'afw_utf8_t' for string "indirect" */
+#define afw_lmdb_s_indirect (afw_lmdb_v_indirect.internal)
 
-/** @brief define for quoted string information */
+/** @brief 'afw_value_string_t' for string "indirect" */
+extern const afw_value_string_t afw_lmdb_v_indirect;
+
+/** @brief 'afw_utf8_z_t *' for string "indirect" */
+#define afw_lmdb_z_indirect (afw_lmdb_v_indirect.internal.s)
+
+
+
+/** @brief define for quoted string "information" */
 #define AFW_LMDB_Q_information "information"
 
-/** @brief afw_utf8_t for string information */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_information;
+/** @brief 'afw_utf8_t' for string "information" */
+#define afw_lmdb_s_information (afw_lmdb_v_information.internal)
 
-/** @brief define for quoted string integer */
+/** @brief 'afw_value_string_t' for string "information" */
+extern const afw_value_string_t afw_lmdb_v_information;
+
+/** @brief 'afw_utf8_z_t *' for string "information" */
+#define afw_lmdb_z_information (afw_lmdb_v_information.internal.s)
+
+
+
+/** @brief define for quoted string "integer" */
 #define AFW_LMDB_Q_integer "integer"
 
-/** @brief afw_utf8_t for string integer */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_integer;
+/** @brief 'afw_utf8_t' for string "integer" */
+#define afw_lmdb_s_integer (afw_lmdb_v_integer.internal)
 
-/** @brief define for quoted string internalConfig */
+/** @brief 'afw_value_string_t' for string "integer" */
+extern const afw_value_string_t afw_lmdb_v_integer;
+
+/** @brief 'afw_utf8_z_t *' for string "integer" */
+#define afw_lmdb_z_integer (afw_lmdb_v_integer.internal.s)
+
+
+
+/** @brief define for quoted string "internalConfig" */
 #define AFW_LMDB_Q_internalConfig "internalConfig"
 
-/** @brief afw_utf8_t for string internalConfig */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_internalConfig;
+/** @brief 'afw_utf8_t' for string "internalConfig" */
+#define afw_lmdb_s_internalConfig (afw_lmdb_v_internalConfig.internal)
 
-/** @brief define for quoted string label */
+/** @brief 'afw_value_string_t' for string "internalConfig" */
+extern const afw_value_string_t afw_lmdb_v_internalConfig;
+
+/** @brief 'afw_utf8_z_t *' for string "internalConfig" */
+#define afw_lmdb_z_internalConfig (afw_lmdb_v_internalConfig.internal.s)
+
+
+
+/** @brief define for quoted string "label" */
 #define AFW_LMDB_Q_label "label"
 
-/** @brief afw_utf8_t for string label */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_label;
+/** @brief 'afw_utf8_t' for string "label" */
+#define afw_lmdb_s_label (afw_lmdb_v_label.internal)
 
-/** @brief define for quoted string last_pgno */
+/** @brief 'afw_value_string_t' for string "label" */
+extern const afw_value_string_t afw_lmdb_v_label;
+
+/** @brief 'afw_utf8_z_t *' for string "label" */
+#define afw_lmdb_z_label (afw_lmdb_v_label.internal.s)
+
+
+
+/** @brief define for quoted string "last_pgno" */
 #define AFW_LMDB_Q_last_pgno "last_pgno"
 
-/** @brief afw_utf8_t for string last_pgno */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_last_pgno;
+/** @brief 'afw_utf8_t' for string "last_pgno" */
+#define afw_lmdb_s_last_pgno (afw_lmdb_v_last_pgno.internal)
 
-/** @brief define for quoted string last_txnid */
+/** @brief 'afw_value_string_t' for string "last_pgno" */
+extern const afw_value_string_t afw_lmdb_v_last_pgno;
+
+/** @brief 'afw_utf8_z_t *' for string "last_pgno" */
+#define afw_lmdb_z_last_pgno (afw_lmdb_v_last_pgno.internal.s)
+
+
+
+/** @brief define for quoted string "last_txnid" */
 #define AFW_LMDB_Q_last_txnid "last_txnid"
 
-/** @brief afw_utf8_t for string last_txnid */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_last_txnid;
+/** @brief 'afw_utf8_t' for string "last_txnid" */
+#define afw_lmdb_s_last_txnid (afw_lmdb_v_last_txnid.internal)
 
-/** @brief define for quoted string leaf_pages */
+/** @brief 'afw_value_string_t' for string "last_txnid" */
+extern const afw_value_string_t afw_lmdb_v_last_txnid;
+
+/** @brief 'afw_utf8_z_t *' for string "last_txnid" */
+#define afw_lmdb_z_last_txnid (afw_lmdb_v_last_txnid.internal.s)
+
+
+
+/** @brief define for quoted string "leaf_pages" */
 #define AFW_LMDB_Q_leaf_pages "leaf_pages"
 
-/** @brief afw_utf8_t for string leaf_pages */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_leaf_pages;
+/** @brief 'afw_utf8_t' for string "leaf_pages" */
+#define afw_lmdb_s_leaf_pages (afw_lmdb_v_leaf_pages.internal)
 
-/** @brief define for quoted string limits */
+/** @brief 'afw_value_string_t' for string "leaf_pages" */
+extern const afw_value_string_t afw_lmdb_v_leaf_pages;
+
+/** @brief 'afw_utf8_z_t *' for string "leaf_pages" */
+#define afw_lmdb_z_leaf_pages (afw_lmdb_v_leaf_pages.internal.s)
+
+
+
+/** @brief define for quoted string "limits" */
 #define AFW_LMDB_Q_limits "limits"
 
-/** @brief afw_utf8_t for string limits */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_limits;
+/** @brief 'afw_utf8_t' for string "limits" */
+#define afw_lmdb_s_limits (afw_lmdb_v_limits.internal)
 
-/** @brief define for quoted string lmdb */
+/** @brief 'afw_value_string_t' for string "limits" */
+extern const afw_value_string_t afw_lmdb_v_limits;
+
+/** @brief 'afw_utf8_z_t *' for string "limits" */
+#define afw_lmdb_z_limits (afw_lmdb_v_limits.internal.s)
+
+
+
+/** @brief define for quoted string "lmdb" */
 #define AFW_LMDB_Q_lmdb "lmdb"
 
-/** @brief afw_utf8_t for string lmdb */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_lmdb;
+/** @brief 'afw_utf8_t' for string "lmdb" */
+#define afw_lmdb_s_lmdb (afw_lmdb_v_lmdb.internal)
 
-/** @brief define for quoted string lmdb_extension */
+/** @brief 'afw_value_string_t' for string "lmdb" */
+extern const afw_value_string_t afw_lmdb_v_lmdb;
+
+/** @brief 'afw_utf8_z_t *' for string "lmdb" */
+#define afw_lmdb_z_lmdb (afw_lmdb_v_lmdb.internal.s)
+
+
+
+/** @brief define for quoted string "lmdb_extension" */
 #define AFW_LMDB_Q_lmdb_extension "lmdb_extension"
 
-/** @brief afw_utf8_t for string lmdb_extension */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_lmdb_extension;
+/** @brief 'afw_utf8_t' for string "lmdb_extension" */
+#define afw_lmdb_s_lmdb_extension (afw_lmdb_v_lmdb_extension.internal)
 
-/** @brief define for quoted string major */
+/** @brief 'afw_value_string_t' for string "lmdb_extension" */
+extern const afw_value_string_t afw_lmdb_v_lmdb_extension;
+
+/** @brief 'afw_utf8_z_t *' for string "lmdb_extension" */
+#define afw_lmdb_z_lmdb_extension (afw_lmdb_v_lmdb_extension.internal.s)
+
+
+
+/** @brief define for quoted string "major" */
 #define AFW_LMDB_Q_major "major"
 
-/** @brief afw_utf8_t for string major */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_major;
+/** @brief 'afw_utf8_t' for string "major" */
+#define afw_lmdb_s_major (afw_lmdb_v_major.internal)
 
-/** @brief define for quoted string mapaddr */
+/** @brief 'afw_value_string_t' for string "major" */
+extern const afw_value_string_t afw_lmdb_v_major;
+
+/** @brief 'afw_utf8_z_t *' for string "major" */
+#define afw_lmdb_z_major (afw_lmdb_v_major.internal.s)
+
+
+
+/** @brief define for quoted string "mapaddr" */
 #define AFW_LMDB_Q_mapaddr "mapaddr"
 
-/** @brief afw_utf8_t for string mapaddr */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_mapaddr;
+/** @brief 'afw_utf8_t' for string "mapaddr" */
+#define afw_lmdb_s_mapaddr (afw_lmdb_v_mapaddr.internal)
 
-/** @brief define for quoted string mapsize */
+/** @brief 'afw_value_string_t' for string "mapaddr" */
+extern const afw_value_string_t afw_lmdb_v_mapaddr;
+
+/** @brief 'afw_utf8_z_t *' for string "mapaddr" */
+#define afw_lmdb_z_mapaddr (afw_lmdb_v_mapaddr.internal.s)
+
+
+
+/** @brief define for quoted string "mapsize" */
 #define AFW_LMDB_Q_mapsize "mapsize"
 
-/** @brief afw_utf8_t for string mapsize */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_mapsize;
+/** @brief 'afw_utf8_t' for string "mapsize" */
+#define afw_lmdb_s_mapsize (afw_lmdb_v_mapsize.internal)
 
-/** @brief define for quoted string maxdbs */
+/** @brief 'afw_value_string_t' for string "mapsize" */
+extern const afw_value_string_t afw_lmdb_v_mapsize;
+
+/** @brief 'afw_utf8_z_t *' for string "mapsize" */
+#define afw_lmdb_z_mapsize (afw_lmdb_v_mapsize.internal.s)
+
+
+
+/** @brief define for quoted string "maxdbs" */
 #define AFW_LMDB_Q_maxdbs "maxdbs"
 
-/** @brief afw_utf8_t for string maxdbs */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_maxdbs;
+/** @brief 'afw_utf8_t' for string "maxdbs" */
+#define afw_lmdb_s_maxdbs (afw_lmdb_v_maxdbs.internal)
 
-/** @brief define for quoted string maxreaders */
+/** @brief 'afw_value_string_t' for string "maxdbs" */
+extern const afw_value_string_t afw_lmdb_v_maxdbs;
+
+/** @brief 'afw_utf8_z_t *' for string "maxdbs" */
+#define afw_lmdb_z_maxdbs (afw_lmdb_v_maxdbs.internal.s)
+
+
+
+/** @brief define for quoted string "maxreaders" */
 #define AFW_LMDB_Q_maxreaders "maxreaders"
 
-/** @brief afw_utf8_t for string maxreaders */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_maxreaders;
+/** @brief 'afw_utf8_t' for string "maxreaders" */
+#define afw_lmdb_s_maxreaders (afw_lmdb_v_maxreaders.internal)
 
-/** @brief define for quoted string minor */
+/** @brief 'afw_value_string_t' for string "maxreaders" */
+extern const afw_value_string_t afw_lmdb_v_maxreaders;
+
+/** @brief 'afw_utf8_z_t *' for string "maxreaders" */
+#define afw_lmdb_z_maxreaders (afw_lmdb_v_maxreaders.internal.s)
+
+
+
+/** @brief define for quoted string "minor" */
 #define AFW_LMDB_Q_minor "minor"
 
-/** @brief afw_utf8_t for string minor */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_minor;
+/** @brief 'afw_utf8_t' for string "minor" */
+#define afw_lmdb_s_minor (afw_lmdb_v_minor.internal)
 
-/** @brief define for quoted string mode */
+/** @brief 'afw_value_string_t' for string "minor" */
+extern const afw_value_string_t afw_lmdb_v_minor;
+
+/** @brief 'afw_utf8_z_t *' for string "minor" */
+#define afw_lmdb_z_minor (afw_lmdb_v_minor.internal.s)
+
+
+
+/** @brief define for quoted string "mode" */
 #define AFW_LMDB_Q_mode "mode"
 
-/** @brief afw_utf8_t for string mode */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_mode;
+/** @brief 'afw_utf8_t' for string "mode" */
+#define afw_lmdb_s_mode (afw_lmdb_v_mode.internal)
 
-/** @brief define for quoted string numreaders */
+/** @brief 'afw_value_string_t' for string "mode" */
+extern const afw_value_string_t afw_lmdb_v_mode;
+
+/** @brief 'afw_utf8_z_t *' for string "mode" */
+#define afw_lmdb_z_mode (afw_lmdb_v_mode.internal.s)
+
+
+
+/** @brief define for quoted string "numreaders" */
 #define AFW_LMDB_Q_numreaders "numreaders"
 
-/** @brief afw_utf8_t for string numreaders */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_numreaders;
+/** @brief 'afw_utf8_t' for string "numreaders" */
+#define afw_lmdb_s_numreaders (afw_lmdb_v_numreaders.internal)
 
-/** @brief define for quoted string object */
+/** @brief 'afw_value_string_t' for string "numreaders" */
+extern const afw_value_string_t afw_lmdb_v_numreaders;
+
+/** @brief 'afw_utf8_z_t *' for string "numreaders" */
+#define afw_lmdb_z_numreaders (afw_lmdb_v_numreaders.internal.s)
+
+
+
+/** @brief define for quoted string "object" */
 #define AFW_LMDB_Q_object "object"
 
-/** @brief afw_utf8_t for string object */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_object;
+/** @brief 'afw_utf8_t' for string "object" */
+#define afw_lmdb_s_object (afw_lmdb_v_object.internal)
 
-/** @brief define for quoted string objectId */
+/** @brief 'afw_value_string_t' for string "object" */
+extern const afw_value_string_t afw_lmdb_v_object;
+
+/** @brief 'afw_utf8_z_t *' for string "object" */
+#define afw_lmdb_z_object (afw_lmdb_v_object.internal.s)
+
+
+
+/** @brief define for quoted string "objectId" */
 #define AFW_LMDB_Q_objectId "objectId"
 
-/** @brief afw_utf8_t for string objectId */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_objectId;
+/** @brief 'afw_utf8_t' for string "objectId" */
+#define afw_lmdb_s_objectId (afw_lmdb_v_objectId.internal)
 
-/** @brief define for quoted string objectType */
+/** @brief 'afw_value_string_t' for string "objectId" */
+extern const afw_value_string_t afw_lmdb_v_objectId;
+
+/** @brief 'afw_utf8_z_t *' for string "objectId" */
+#define afw_lmdb_z_objectId (afw_lmdb_v_objectId.internal.s)
+
+
+
+/** @brief define for quoted string "objectType" */
 #define AFW_LMDB_Q_objectType "objectType"
 
-/** @brief afw_utf8_t for string objectType */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_objectType;
+/** @brief 'afw_utf8_t' for string "objectType" */
+#define afw_lmdb_s_objectType (afw_lmdb_v_objectType.internal)
 
-/** @brief define for quoted string otherProperties */
+/** @brief 'afw_value_string_t' for string "objectType" */
+extern const afw_value_string_t afw_lmdb_v_objectType;
+
+/** @brief 'afw_utf8_z_t *' for string "objectType" */
+#define afw_lmdb_z_objectType (afw_lmdb_v_objectType.internal.s)
+
+
+
+/** @brief define for quoted string "otherProperties" */
 #define AFW_LMDB_Q_otherProperties "otherProperties"
 
-/** @brief afw_utf8_t for string otherProperties */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_otherProperties;
+/** @brief 'afw_utf8_t' for string "otherProperties" */
+#define afw_lmdb_s_otherProperties (afw_lmdb_v_otherProperties.internal)
 
-/** @brief define for quoted string overflow_pages */
+/** @brief 'afw_value_string_t' for string "otherProperties" */
+extern const afw_value_string_t afw_lmdb_v_otherProperties;
+
+/** @brief 'afw_utf8_z_t *' for string "otherProperties" */
+#define afw_lmdb_z_otherProperties (afw_lmdb_v_otherProperties.internal.s)
+
+
+
+/** @brief define for quoted string "overflow_pages" */
 #define AFW_LMDB_Q_overflow_pages "overflow_pages"
 
-/** @brief afw_utf8_t for string overflow_pages */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_overflow_pages;
+/** @brief 'afw_utf8_t' for string "overflow_pages" */
+#define afw_lmdb_s_overflow_pages (afw_lmdb_v_overflow_pages.internal)
 
-/** @brief define for quoted string parameters */
+/** @brief 'afw_value_string_t' for string "overflow_pages" */
+extern const afw_value_string_t afw_lmdb_v_overflow_pages;
+
+/** @brief 'afw_utf8_z_t *' for string "overflow_pages" */
+#define afw_lmdb_z_overflow_pages (afw_lmdb_v_overflow_pages.internal.s)
+
+
+
+/** @brief define for quoted string "parameters" */
 #define AFW_LMDB_Q_parameters "parameters"
 
-/** @brief afw_utf8_t for string parameters */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_parameters;
+/** @brief 'afw_utf8_t' for string "parameters" */
+#define afw_lmdb_s_parameters (afw_lmdb_v_parameters.internal)
 
-/** @brief define for quoted string parentPaths */
+/** @brief 'afw_value_string_t' for string "parameters" */
+extern const afw_value_string_t afw_lmdb_v_parameters;
+
+/** @brief 'afw_utf8_z_t *' for string "parameters" */
+#define afw_lmdb_z_parameters (afw_lmdb_v_parameters.internal.s)
+
+
+
+/** @brief define for quoted string "parentPaths" */
 #define AFW_LMDB_Q_parentPaths "parentPaths"
 
-/** @brief afw_utf8_t for string parentPaths */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_parentPaths;
+/** @brief 'afw_utf8_t' for string "parentPaths" */
+#define afw_lmdb_s_parentPaths (afw_lmdb_v_parentPaths.internal)
 
-/** @brief define for quoted string patch */
+/** @brief 'afw_value_string_t' for string "parentPaths" */
+extern const afw_value_string_t afw_lmdb_v_parentPaths;
+
+/** @brief 'afw_utf8_z_t *' for string "parentPaths" */
+#define afw_lmdb_z_parentPaths (afw_lmdb_v_parentPaths.internal.s)
+
+
+
+/** @brief define for quoted string "patch" */
 #define AFW_LMDB_Q_patch "patch"
 
-/** @brief afw_utf8_t for string patch */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_patch;
+/** @brief 'afw_utf8_t' for string "patch" */
+#define afw_lmdb_s_patch (afw_lmdb_v_patch.internal)
 
-/** @brief define for quoted string path */
+/** @brief 'afw_value_string_t' for string "patch" */
+extern const afw_value_string_t afw_lmdb_v_patch;
+
+/** @brief 'afw_utf8_z_t *' for string "patch" */
+#define afw_lmdb_z_patch (afw_lmdb_v_patch.internal.s)
+
+
+
+/** @brief define for quoted string "path" */
 #define AFW_LMDB_Q_path "path"
 
-/** @brief afw_utf8_t for string path */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_path;
+/** @brief 'afw_utf8_t' for string "path" */
+#define afw_lmdb_s_path (afw_lmdb_v_path.internal)
 
-/** @brief define for quoted string propertyTypes */
+/** @brief 'afw_value_string_t' for string "path" */
+extern const afw_value_string_t afw_lmdb_v_path;
+
+/** @brief 'afw_utf8_z_t *' for string "path" */
+#define afw_lmdb_z_path (afw_lmdb_v_path.internal.s)
+
+
+
+/** @brief define for quoted string "propertyTypes" */
 #define AFW_LMDB_Q_propertyTypes "propertyTypes"
 
-/** @brief afw_utf8_t for string propertyTypes */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_propertyTypes;
+/** @brief 'afw_utf8_t' for string "propertyTypes" */
+#define afw_lmdb_s_propertyTypes (afw_lmdb_v_propertyTypes.internal)
 
-/** @brief define for quoted string psize */
+/** @brief 'afw_value_string_t' for string "propertyTypes" */
+extern const afw_value_string_t afw_lmdb_v_propertyTypes;
+
+/** @brief 'afw_utf8_z_t *' for string "propertyTypes" */
+#define afw_lmdb_z_propertyTypes (afw_lmdb_v_propertyTypes.internal.s)
+
+
+
+/** @brief define for quoted string "psize" */
 #define AFW_LMDB_Q_psize "psize"
 
-/** @brief afw_utf8_t for string psize */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_psize;
+/** @brief 'afw_utf8_t' for string "psize" */
+#define afw_lmdb_s_psize (afw_lmdb_v_psize.internal)
 
-/** @brief define for quoted string reader_check */
+/** @brief 'afw_value_string_t' for string "psize" */
+extern const afw_value_string_t afw_lmdb_v_psize;
+
+/** @brief 'afw_utf8_z_t *' for string "psize" */
+#define afw_lmdb_z_psize (afw_lmdb_v_psize.internal.s)
+
+
+
+/** @brief define for quoted string "reader_check" */
 #define AFW_LMDB_Q_reader_check "reader_check"
 
-/** @brief afw_utf8_t for string reader_check */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_reader_check;
+/** @brief 'afw_utf8_t' for string "reader_check" */
+#define afw_lmdb_s_reader_check (afw_lmdb_v_reader_check.internal)
 
-/** @brief define for quoted string reader_list */
+/** @brief 'afw_value_string_t' for string "reader_check" */
+extern const afw_value_string_t afw_lmdb_v_reader_check;
+
+/** @brief 'afw_utf8_z_t *' for string "reader_check" */
+#define afw_lmdb_z_reader_check (afw_lmdb_v_reader_check.internal.s)
+
+
+
+/** @brief define for quoted string "reader_list" */
 #define AFW_LMDB_Q_reader_list "reader_list"
 
-/** @brief afw_utf8_t for string reader_list */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_reader_list;
+/** @brief 'afw_utf8_t' for string "reader_list" */
+#define afw_lmdb_s_reader_list (afw_lmdb_v_reader_list.internal)
 
-/** @brief define for quoted string required */
+/** @brief 'afw_value_string_t' for string "reader_list" */
+extern const afw_value_string_t afw_lmdb_v_reader_list;
+
+/** @brief 'afw_utf8_z_t *' for string "reader_list" */
+#define afw_lmdb_z_reader_list (afw_lmdb_v_reader_list.internal.s)
+
+
+
+/** @brief define for quoted string "required" */
 #define AFW_LMDB_Q_required "required"
 
-/** @brief afw_utf8_t for string required */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_required;
+/** @brief 'afw_utf8_t' for string "required" */
+#define afw_lmdb_s_required (afw_lmdb_v_required.internal)
 
-/** @brief define for quoted string returns */
+/** @brief 'afw_value_string_t' for string "required" */
+extern const afw_value_string_t afw_lmdb_v_required;
+
+/** @brief 'afw_utf8_z_t *' for string "required" */
+#define afw_lmdb_z_required (afw_lmdb_v_required.internal.s)
+
+
+
+/** @brief define for quoted string "returns" */
 #define AFW_LMDB_Q_returns "returns"
 
-/** @brief afw_utf8_t for string returns */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_returns;
+/** @brief 'afw_utf8_t' for string "returns" */
+#define afw_lmdb_s_returns (afw_lmdb_v_returns.internal)
 
-/** @brief define for quoted string single */
+/** @brief 'afw_value_string_t' for string "returns" */
+extern const afw_value_string_t afw_lmdb_v_returns;
+
+/** @brief 'afw_utf8_z_t *' for string "returns" */
+#define afw_lmdb_z_returns (afw_lmdb_v_returns.internal.s)
+
+
+
+/** @brief define for quoted string "single" */
 #define AFW_LMDB_Q_single "single"
 
-/** @brief afw_utf8_t for string single */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_single;
+/** @brief 'afw_utf8_t' for string "single" */
+#define afw_lmdb_s_single (afw_lmdb_v_single.internal)
 
-/** @brief define for quoted string size */
+/** @brief 'afw_value_string_t' for string "single" */
+extern const afw_value_string_t afw_lmdb_v_single;
+
+/** @brief 'afw_utf8_z_t *' for string "single" */
+#define afw_lmdb_z_single (afw_lmdb_v_single.internal.s)
+
+
+
+/** @brief define for quoted string "size" */
 #define AFW_LMDB_Q_size "size"
 
-/** @brief afw_utf8_t for string size */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_size;
+/** @brief 'afw_utf8_t' for string "size" */
+#define afw_lmdb_s_size (afw_lmdb_v_size.internal)
 
-/** @brief define for quoted string soft */
+/** @brief 'afw_value_string_t' for string "size" */
+extern const afw_value_string_t afw_lmdb_v_size;
+
+/** @brief 'afw_utf8_z_t *' for string "size" */
+#define afw_lmdb_z_size (afw_lmdb_v_size.internal.s)
+
+
+
+/** @brief define for quoted string "soft" */
 #define AFW_LMDB_Q_soft "soft"
 
-/** @brief afw_utf8_t for string soft */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_soft;
+/** @brief 'afw_utf8_t' for string "soft" */
+#define afw_lmdb_s_soft (afw_lmdb_v_soft.internal)
 
-/** @brief define for quoted string statistics */
+/** @brief 'afw_value_string_t' for string "soft" */
+extern const afw_value_string_t afw_lmdb_v_soft;
+
+/** @brief 'afw_utf8_z_t *' for string "soft" */
+#define afw_lmdb_z_soft (afw_lmdb_v_soft.internal.s)
+
+
+
+/** @brief define for quoted string "statistics" */
 #define AFW_LMDB_Q_statistics "statistics"
 
-/** @brief afw_utf8_t for string statistics */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_statistics;
+/** @brief 'afw_utf8_t' for string "statistics" */
+#define afw_lmdb_s_statistics (afw_lmdb_v_statistics.internal)
 
-/** @brief define for quoted string string */
+/** @brief 'afw_value_string_t' for string "statistics" */
+extern const afw_value_string_t afw_lmdb_v_statistics;
+
+/** @brief 'afw_utf8_z_t *' for string "statistics" */
+#define afw_lmdb_z_statistics (afw_lmdb_v_statistics.internal.s)
+
+
+
+/** @brief define for quoted string "string" */
 #define AFW_LMDB_Q_string "string"
 
-/** @brief afw_utf8_t for string string */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_string;
+/** @brief 'afw_utf8_t' for string "string" */
+#define afw_lmdb_s_string (afw_lmdb_v_string.internal)
 
-/** @brief define for quoted string time */
+/** @brief 'afw_value_string_t' for string "string" */
+extern const afw_value_string_t afw_lmdb_v_string;
+
+/** @brief 'afw_utf8_z_t *' for string "string" */
+#define afw_lmdb_z_string (afw_lmdb_v_string.internal.s)
+
+
+
+/** @brief define for quoted string "time" */
 #define AFW_LMDB_Q_time "time"
 
-/** @brief afw_utf8_t for string time */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_time;
+/** @brief 'afw_utf8_t' for string "time" */
+#define afw_lmdb_s_time (afw_lmdb_v_time.internal)
 
-/** @brief define for quoted string unique */
+/** @brief 'afw_value_string_t' for string "time" */
+extern const afw_value_string_t afw_lmdb_v_time;
+
+/** @brief 'afw_utf8_z_t *' for string "time" */
+#define afw_lmdb_z_time (afw_lmdb_v_time.internal.s)
+
+
+
+/** @brief define for quoted string "unique" */
 #define AFW_LMDB_Q_unique "unique"
 
-/** @brief afw_utf8_t for string unique */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_unique;
+/** @brief 'afw_utf8_t' for string "unique" */
+#define afw_lmdb_s_unique (afw_lmdb_v_unique.internal)
 
-/** @brief define for quoted string updateTimeStamp */
+/** @brief 'afw_value_string_t' for string "unique" */
+extern const afw_value_string_t afw_lmdb_v_unique;
+
+/** @brief 'afw_utf8_z_t *' for string "unique" */
+#define afw_lmdb_z_unique (afw_lmdb_v_unique.internal.s)
+
+
+
+/** @brief define for quoted string "updateTimeStamp" */
 #define AFW_LMDB_Q_updateTimeStamp "updateTimeStamp"
 
-/** @brief afw_utf8_t for string updateTimeStamp */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_updateTimeStamp;
+/** @brief 'afw_utf8_t' for string "updateTimeStamp" */
+#define afw_lmdb_s_updateTimeStamp (afw_lmdb_v_updateTimeStamp.internal)
 
-/** @brief define for quoted string version */
+/** @brief 'afw_value_string_t' for string "updateTimeStamp" */
+extern const afw_value_string_t afw_lmdb_v_updateTimeStamp;
+
+/** @brief 'afw_utf8_z_t *' for string "updateTimeStamp" */
+#define afw_lmdb_z_updateTimeStamp (afw_lmdb_v_updateTimeStamp.internal.s)
+
+
+
+/** @brief define for quoted string "version" */
 #define AFW_LMDB_Q_version "version"
 
-/** @brief afw_utf8_t for string version */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_version;
+/** @brief 'afw_utf8_t' for string "version" */
+#define afw_lmdb_s_version (afw_lmdb_v_version.internal)
 
-/** @brief define for quoted string version_string */
+/** @brief 'afw_value_string_t' for string "version" */
+extern const afw_value_string_t afw_lmdb_v_version;
+
+/** @brief 'afw_utf8_z_t *' for string "version" */
+#define afw_lmdb_z_version (afw_lmdb_v_version.internal.s)
+
+
+
+/** @brief define for quoted string "version_string" */
 #define AFW_LMDB_Q_version_string "version_string"
 
-/** @brief afw_utf8_t for string version_string */
-AFW_LMDB_DECLARE_CONST_DATA(afw_utf8_t) afw_lmdb_s_version_string;
+/** @brief 'afw_utf8_t' for string "version_string" */
+#define afw_lmdb_s_version_string (afw_lmdb_v_version_string.internal)
+
+/** @brief 'afw_value_string_t' for string "version_string" */
+extern const afw_value_string_t afw_lmdb_v_version_string;
+
+/** @brief 'afw_utf8_z_t *' for string "version_string" */
+#define afw_lmdb_z_version_string (afw_lmdb_v_version_string.internal.s)
+
 
 
 #endif /* __AFW_LMDB_STRINGS_H__ */

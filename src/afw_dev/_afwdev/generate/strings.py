@@ -18,15 +18,23 @@ def generate_h(generated_by, prefix, strings, generated_dir_path):
 
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
-        fd.write('\n')
 
         for name, value in sorted(strings.items()):
+            fd.write('\n')
 
-            fd.write('\n/** @brief define for quoted string ' + name + ' */\n')
+            fd.write('\n/** @brief define for quoted string "' + name + '" */\n')
             fd.write('#define ' + prefix.upper() + 'Q_' + name + ' "' + value + '"\n')
 
-            fd.write('\n/** @brief afw_utf8_t for string ' + name + ' */\n')
-            fd.write(declare_data + '(afw_utf8_t) ' + prefix + 's_' + name + ';\n')
+            fd.write('\n/** @brief \'afw_utf8_t\' for string "' + name + '" */\n')
+            fd.write('#define ' + prefix + 's_' + name + ' (' +  prefix + 'v_' + name + '.internal)\n')
+            
+            fd.write('\n/** @brief \'afw_value_string_t\' for string "' + name + '" */\n')
+            fd.write('extern const afw_value_string_t ' + prefix + 'v_' + name + ';\n')
+
+            fd.write('\n/** @brief \'afw_utf8_z_t *\' for string "' + name + '" */\n')
+            fd.write('#define ' + prefix + 'z_' + name + ' (' +  prefix + 'v_' + name + '.internal.s)\n')
+            
+            fd.write('\n')
 
         c.write_h_epilogue(fd, filename)
 
@@ -45,8 +53,10 @@ def generate_c(generated_by, prefix, strings, generated_dir_path):
 
         for name, value in sorted(strings.items()):
             fd.write('\n')
-            fd.write(define_data + '(afw_utf8_t) ' + prefix + 's_' + name + ' =\n')
-            fd.write('AFW_UTF8_LITERAL("' + value + '");\n')
+            fd.write('const afw_value_string_t ' + prefix + 'v_' + name + ' = {\n')
+            fd.write('    &afw_value_permanent_string_inf,\n')
+            fd.write('    AFW_UTF8_LITERAL("' + value + '")\n')
+            fd.write('};\n')
 
 def add_object_strings(obj, strings):
     for name in obj.keys():

@@ -25,71 +25,117 @@
 #include "afw.h"
 #include "afw_server_fcgi_strings.h"
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s__AdaptiveCollection_ =
-AFW_UTF8_LITERAL("_AdaptiveCollection_");
+const afw_value_string_t afw_server_fcgi_v__AdaptiveCollection_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveCollection_")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s__AdaptiveServer_ =
-AFW_UTF8_LITERAL("_AdaptiveServer_");
+const afw_value_string_t afw_server_fcgi_v__AdaptiveServer_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveServer_")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server =
-AFW_UTF8_LITERAL("trace:server");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:server")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_brief =
-AFW_UTF8_LITERAL("Server related flags");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Server related flags")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_description =
-AFW_UTF8_LITERAL("This includes all trace:server related flags.");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This includes all trace:server related flags.")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request =
-AFW_UTF8_LITERAL("trace:server:request");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:server:request")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_brief =
-AFW_UTF8_LITERAL("Trace server request");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Trace server request")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_description =
-AFW_UTF8_LITERAL("This includes all trace:server:request related flags.");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This includes all trace:server:request related flags.")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_process =
-AFW_UTF8_LITERAL("trace:server:request:process");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_process = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("trace:server:request:process")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_process_brief =
-AFW_UTF8_LITERAL("Trace process request begin and end");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_process_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Trace process request begin and end")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_a_flag_trace_server_request_process_description =
-AFW_UTF8_LITERAL("This traces the begin and end of processing for requests.");
+const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_process_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("This traces the begin and end of processing for requests.")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_afw_server_fcgi =
-AFW_UTF8_LITERAL("afw_server_fcgi");
+const afw_value_string_t afw_server_fcgi_v_afw_server_fcgi = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_server_fcgi")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_concurrent =
-AFW_UTF8_LITERAL("concurrent");
+const afw_value_string_t afw_server_fcgi_v_concurrent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("concurrent")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_default =
-AFW_UTF8_LITERAL("default");
+const afw_value_string_t afw_server_fcgi_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_description =
-AFW_UTF8_LITERAL("description");
+const afw_value_string_t afw_server_fcgi_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_indirect =
-AFW_UTF8_LITERAL("indirect");
+const afw_value_string_t afw_server_fcgi_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_integer =
-AFW_UTF8_LITERAL("integer");
+const afw_value_string_t afw_server_fcgi_v_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_max_concurrent =
-AFW_UTF8_LITERAL("max_concurrent");
+const afw_value_string_t afw_server_fcgi_v_max_concurrent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max_concurrent")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_objectId =
-AFW_UTF8_LITERAL("objectId");
+const afw_value_string_t afw_server_fcgi_v_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectId")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_request_count =
-AFW_UTF8_LITERAL("request_count");
+const afw_value_string_t afw_server_fcgi_v_request_count = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("request_count")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_single =
-AFW_UTF8_LITERAL("single");
+const afw_value_string_t afw_server_fcgi_v_single = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("single")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_thread_count =
-AFW_UTF8_LITERAL("thread_count");
+const afw_value_string_t afw_server_fcgi_v_thread_count = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("thread_count")
+};
 
-AFW_SERVER_FCGI_DEFINE_CONST_DATA(afw_utf8_t) afw_server_fcgi_s_uint32 =
-AFW_UTF8_LITERAL("uint32");
+const afw_value_string_t afw_server_fcgi_v_uint32 = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("uint32")
+};

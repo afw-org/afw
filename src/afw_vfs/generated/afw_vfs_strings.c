@@ -25,137 +25,227 @@
 #include "afw.h"
 #include "afw_vfs_strings.h"
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects");
+const afw_value_string_t afw_vfs_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveConf_adaptor_vfs =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_vfs");
+const afw_value_string_t afw_vfs_v__AdaptiveConf_adaptor_vfs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_vfs")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveFile_vfs =
-AFW_UTF8_LITERAL("_AdaptiveFile_vfs");
+const afw_value_string_t afw_vfs_v__AdaptiveFile_vfs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFile_vfs")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveFunctionGenerate_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionGenerate_");
+const afw_value_string_t afw_vfs_v__AdaptiveFunctionGenerate_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionGenerate_")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveFunctionParameter_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionParameter_");
+const afw_value_string_t afw_vfs_v__AdaptiveFunctionParameter_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionParameter_")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveFunction_ =
-AFW_UTF8_LITERAL("_AdaptiveFunction_");
+const afw_value_string_t afw_vfs_v__AdaptiveFunction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunction_")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptiveObjectType_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectType_");
+const afw_value_string_t afw_vfs_v__AdaptiveObjectType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__AdaptivePolymorphicFunction_ =
-AFW_UTF8_LITERAL("_AdaptivePolymorphicFunction_");
+const afw_value_string_t afw_vfs_v__AdaptivePolymorphicFunction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptivePolymorphicFunction_")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s__meta_ =
-AFW_UTF8_LITERAL("_meta_");
+const afw_value_string_t afw_vfs_v__meta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_meta_")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_allowAdd =
-AFW_UTF8_LITERAL("allowAdd");
+const afw_value_string_t afw_vfs_v_allowAdd = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowAdd")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_allowChange =
-AFW_UTF8_LITERAL("allowChange");
+const afw_value_string_t afw_vfs_v_allowChange = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowChange")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_allowDelete =
-AFW_UTF8_LITERAL("allowDelete");
+const afw_value_string_t afw_vfs_v_allowDelete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowDelete")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_allowEntity =
-AFW_UTF8_LITERAL("allowEntity");
+const afw_value_string_t afw_vfs_v_allowEntity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowEntity")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_allowWrite =
-AFW_UTF8_LITERAL("allowWrite");
+const afw_value_string_t afw_vfs_v_allowWrite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowWrite")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_anyURI =
-AFW_UTF8_LITERAL("anyURI");
+const afw_value_string_t afw_vfs_v_anyURI = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anyURI")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_array =
-AFW_UTF8_LITERAL("array");
+const afw_value_string_t afw_vfs_v_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("array")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_boolean =
-AFW_UTF8_LITERAL("boolean");
+const afw_value_string_t afw_vfs_v_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_brief =
-AFW_UTF8_LITERAL("brief");
+const afw_value_string_t afw_vfs_v_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("brief")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_collectionURIs =
-AFW_UTF8_LITERAL("collectionURIs");
+const afw_value_string_t afw_vfs_v_collectionURIs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("collectionURIs")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_data =
-AFW_UTF8_LITERAL("data");
+const afw_value_string_t afw_vfs_v_data = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("data")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_dataType =
-AFW_UTF8_LITERAL("dataType");
+const afw_value_string_t afw_vfs_v_dataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataType")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_dataTypeParameter =
-AFW_UTF8_LITERAL("dataTypeParameter");
+const afw_value_string_t afw_vfs_v_dataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameter")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_dateTime =
-AFW_UTF8_LITERAL("dateTime");
+const afw_value_string_t afw_vfs_v_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_default =
-AFW_UTF8_LITERAL("default");
+const afw_value_string_t afw_vfs_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_defaultValue =
-AFW_UTF8_LITERAL("defaultValue");
+const afw_value_string_t afw_vfs_v_defaultValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultValue")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_description =
-AFW_UTF8_LITERAL("description");
+const afw_value_string_t afw_vfs_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_includeHidden =
-AFW_UTF8_LITERAL("includeHidden");
+const afw_value_string_t afw_vfs_v_includeHidden = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("includeHidden")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_indirect =
-AFW_UTF8_LITERAL("indirect");
+const afw_value_string_t afw_vfs_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_isDirectory =
-AFW_UTF8_LITERAL("isDirectory");
+const afw_value_string_t afw_vfs_v_isDirectory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isDirectory")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_label =
-AFW_UTF8_LITERAL("label");
+const afw_value_string_t afw_vfs_v_label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("label")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_markExecutable =
-AFW_UTF8_LITERAL("markExecutable");
+const afw_value_string_t afw_vfs_v_markExecutable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("markExecutable")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_objectType =
-AFW_UTF8_LITERAL("objectType");
+const afw_value_string_t afw_vfs_v_objectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectType")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_otherProperties =
-AFW_UTF8_LITERAL("otherProperties");
+const afw_value_string_t afw_vfs_v_otherProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("otherProperties")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_parentPaths =
-AFW_UTF8_LITERAL("parentPaths");
+const afw_value_string_t afw_vfs_v_parentPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parentPaths")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_propertyTypes =
-AFW_UTF8_LITERAL("propertyTypes");
+const afw_value_string_t afw_vfs_v_propertyTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyTypes")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_recursive =
-AFW_UTF8_LITERAL("recursive");
+const afw_value_string_t afw_vfs_v_recursive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("recursive")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_required =
-AFW_UTF8_LITERAL("required");
+const afw_value_string_t afw_vfs_v_required = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("required")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_string =
-AFW_UTF8_LITERAL("string");
+const afw_value_string_t afw_vfs_v_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_subdirectory =
-AFW_UTF8_LITERAL("subdirectory");
+const afw_value_string_t afw_vfs_v_subdirectory = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subdirectory")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_suffix =
-AFW_UTF8_LITERAL("suffix");
+const afw_value_string_t afw_vfs_v_suffix = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("suffix")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_timeAccessed =
-AFW_UTF8_LITERAL("timeAccessed");
+const afw_value_string_t afw_vfs_v_timeAccessed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("timeAccessed")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_timeCreated =
-AFW_UTF8_LITERAL("timeCreated");
+const afw_value_string_t afw_vfs_v_timeCreated = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("timeCreated")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_timeModified =
-AFW_UTF8_LITERAL("timeModified");
+const afw_value_string_t afw_vfs_v_timeModified = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("timeModified")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_vfsMap =
-AFW_UTF8_LITERAL("vfsMap");
+const afw_value_string_t afw_vfs_v_vfsMap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("vfsMap")
+};
 
-AFW_VFS_DEFINE_CONST_DATA(afw_utf8_t) afw_vfs_s_vfsPath =
-AFW_UTF8_LITERAL("vfsPath");
+const afw_value_string_t afw_vfs_v_vfsPath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("vfsPath")
+};

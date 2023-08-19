@@ -25,29 +25,47 @@
 #include "afw.h"
 #include "afw_yaml_strings.h"
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s__AdaptiveManifest_ =
-AFW_UTF8_LITERAL("_AdaptiveManifest_");
+const afw_value_string_t afw_yaml_v__AdaptiveManifest_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveManifest_")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_afw_yaml =
-AFW_UTF8_LITERAL("afw_yaml");
+const afw_value_string_t afw_yaml_v_afw_yaml = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afw_yaml")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_brief =
-AFW_UTF8_LITERAL("brief");
+const afw_value_string_t afw_yaml_v_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("brief")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_default =
-AFW_UTF8_LITERAL("default");
+const afw_value_string_t afw_yaml_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_description =
-AFW_UTF8_LITERAL("description");
+const afw_value_string_t afw_yaml_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_extensionId =
-AFW_UTF8_LITERAL("extensionId");
+const afw_value_string_t afw_yaml_v_extensionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("extensionId")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_indirect =
-AFW_UTF8_LITERAL("indirect");
+const afw_value_string_t afw_yaml_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_modulePath =
-AFW_UTF8_LITERAL("modulePath");
+const afw_value_string_t afw_yaml_v_modulePath = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modulePath")
+};
 
-AFW_YAML_DEFINE_CONST_DATA(afw_utf8_t) afw_yaml_s_registers =
-AFW_UTF8_LITERAL("registers");
+const afw_value_string_t afw_yaml_v_registers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("registers")
+};

@@ -25,230 +25,382 @@
 #include "afw.h"
 #include "afw_ldap_strings.h"
 
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ABSTRACT =
-AFW_UTF8_LITERAL("ABSTRACT");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_AUXILIARY =
-AFW_UTF8_LITERAL("AUXILIARY");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_DESC =
-AFW_UTF8_LITERAL("DESC");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_MAY =
-AFW_UTF8_LITERAL("MAY");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_MUST =
-AFW_UTF8_LITERAL("MUST");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_NAME =
-AFW_UTF8_LITERAL("NAME");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_SINGLE_VALUE =
-AFW_UTF8_LITERAL("SINGLE_VALUE");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_STRUCTURAL =
-AFW_UTF8_LITERAL("STRUCTURAL");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_SUP =
-AFW_UTF8_LITERAL("SUP");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_SYNTAX =
-AFW_UTF8_LITERAL("SYNTAX");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveCollection_ =
-AFW_UTF8_LITERAL("_AdaptiveCollection_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveConf_adaptor_ldap =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_ldap");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveConf_adaptor_ldap_bind =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_ldap_bind");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapAttributeType_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapAttributeType_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapMatchingRuleUse_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapMatchingRuleUse_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapMatchingRule_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapMatchingRule_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapObjectClass_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapObjectClass_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapRootDse_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapRootDse_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapSchema_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapSchema_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveLdapSyntax_ =
-AFW_UTF8_LITERAL("_AdaptiveLdapSyntax_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__AdaptiveObjectType_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectType_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s__meta_ =
-AFW_UTF8_LITERAL("_meta_");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_NO_USER_MODIFICATION =
-AFW_UTF8_LITERAL("NO-USER-MODIFICATION");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_FILTERED_REQUIRED =
-AFW_UTF8_LITERAL("X-NDS_FILTERED_REQUIRED");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_HIDDEN =
-AFW_UTF8_LITERAL("X-NDS_HIDDEN");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_LOWER_BOUND =
-AFW_UTF8_LITERAL("X-NDS_LOWER_BOUND");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_NAME =
-AFW_UTF8_LITERAL("X-NDS_NAME");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_NONREMOVABLE =
-AFW_UTF8_LITERAL("X-NDS_NONREMOVABLE");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE =
-AFW_UTF8_LITERAL("X-NDS_NOT_SCHED_SYNC_IMMEDIATE");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_PUBLIC_READ =
-AFW_UTF8_LITERAL("X-NDS_PUBLIC_READ");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_READ_FILTERED =
-AFW_UTF8_LITERAL("X-NDS_READ_FILTERED");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_SERVER_READ =
-AFW_UTF8_LITERAL("X-NDS_SERVER_READ");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_SYNTAX =
-AFW_UTF8_LITERAL("X-NDS_SYNTAX");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_X_NDS_UPPER_BOUND =
-AFW_UTF8_LITERAL("X-NDS_UPPER_BOUND");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_a_single_dash_value =
-AFW_UTF8_LITERAL("SINGLE-VALUE");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowAdd =
-AFW_UTF8_LITERAL("allowAdd");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowChange =
-AFW_UTF8_LITERAL("allowChange");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowDelete =
-AFW_UTF8_LITERAL("allowDelete");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowEntity =
-AFW_UTF8_LITERAL("allowEntity");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_allowQuery =
-AFW_UTF8_LITERAL("allowQuery");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_array =
-AFW_UTF8_LITERAL("array");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_attributeTypes =
-AFW_UTF8_LITERAL("attributeTypes");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_base =
-AFW_UTF8_LITERAL("base");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_bindParameters =
-AFW_UTF8_LITERAL("bindParameters");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_boolean =
-AFW_UTF8_LITERAL("boolean");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_collectionURIs =
-AFW_UTF8_LITERAL("collectionURIs");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_dataType =
-AFW_UTF8_LITERAL("dataType");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_dataTypeParameter =
-AFW_UTF8_LITERAL("dataTypeParameter");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_default =
-AFW_UTF8_LITERAL("default");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_description =
-AFW_UTF8_LITERAL("description");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_dn =
-AFW_UTF8_LITERAL("dn");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_hybrid =
-AFW_UTF8_LITERAL("hybrid");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_indirect =
-AFW_UTF8_LITERAL("indirect");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_label =
-AFW_UTF8_LITERAL("label");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldap =
-AFW_UTF8_LITERAL("ldap");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapAttributeType =
-AFW_UTF8_LITERAL("ldapAttributeType");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapSyntax =
-AFW_UTF8_LITERAL("ldapSyntax");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldapSyntaxes =
-AFW_UTF8_LITERAL("ldapSyntaxes");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_ldap_extension =
-AFW_UTF8_LITERAL("ldap_extension");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_matchingRuleUse =
-AFW_UTF8_LITERAL("matchingRuleUse");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_matchingRules =
-AFW_UTF8_LITERAL("matchingRules");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_numericoid =
-AFW_UTF8_LITERAL("numericoid");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_objectClasses =
-AFW_UTF8_LITERAL("objectClasses");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_objectId =
-AFW_UTF8_LITERAL("objectId");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_objectType =
-AFW_UTF8_LITERAL("objectType");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_otherProperties =
-AFW_UTF8_LITERAL("otherProperties");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_parentPaths =
-AFW_UTF8_LITERAL("parentPaths");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_password =
-AFW_UTF8_LITERAL("password");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_preventVerifyCert =
-AFW_UTF8_LITERAL("preventVerifyCert");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_propertyTypes =
-AFW_UTF8_LITERAL("propertyTypes");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_required =
-AFW_UTF8_LITERAL("required");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_string =
-AFW_UTF8_LITERAL("string");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_subschemaSubentry =
-AFW_UTF8_LITERAL("subschemaSubentry");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_unique =
-AFW_UTF8_LITERAL("unique");
-
-AFW_LDAP_DEFINE_CONST_DATA(afw_utf8_t) afw_ldap_s_url =
-AFW_UTF8_LITERAL("url");
+const afw_value_string_t afw_ldap_v_ABSTRACT = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ABSTRACT")
+};
+
+const afw_value_string_t afw_ldap_v_AUXILIARY = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("AUXILIARY")
+};
+
+const afw_value_string_t afw_ldap_v_DESC = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DESC")
+};
+
+const afw_value_string_t afw_ldap_v_MAY = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("MAY")
+};
+
+const afw_value_string_t afw_ldap_v_MUST = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("MUST")
+};
+
+const afw_value_string_t afw_ldap_v_NAME = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("NAME")
+};
+
+const afw_value_string_t afw_ldap_v_SINGLE_VALUE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SINGLE_VALUE")
+};
+
+const afw_value_string_t afw_ldap_v_STRUCTURAL = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("STRUCTURAL")
+};
+
+const afw_value_string_t afw_ldap_v_SUP = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SUP")
+};
+
+const afw_value_string_t afw_ldap_v_SYNTAX = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SYNTAX")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveCollection_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveCollection_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveConf_adaptor_ldap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_ldap")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveConf_adaptor_ldap_bind = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_ldap_bind")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapAttributeType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapAttributeType_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapMatchingRuleUse_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapMatchingRuleUse_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapMatchingRule_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapMatchingRule_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapObjectClass_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapObjectClass_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapRootDse_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapRootDse_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapSchema_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapSchema_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveLdapSyntax_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLdapSyntax_")
+};
+
+const afw_value_string_t afw_ldap_v__AdaptiveObjectType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_")
+};
+
+const afw_value_string_t afw_ldap_v__meta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_meta_")
+};
+
+const afw_value_string_t afw_ldap_v_a_NO_USER_MODIFICATION = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("NO-USER-MODIFICATION")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_FILTERED_REQUIRED = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_FILTERED_REQUIRED")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_HIDDEN = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_HIDDEN")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_LOWER_BOUND = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_LOWER_BOUND")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_NAME = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_NAME")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_NONREMOVABLE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_NONREMOVABLE")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_NOT_SCHED_SYNC_IMMEDIATE")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_PUBLIC_READ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_PUBLIC_READ")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_READ_FILTERED = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_READ_FILTERED")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_SERVER_READ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_SERVER_READ")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_SYNTAX = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_SYNTAX")
+};
+
+const afw_value_string_t afw_ldap_v_a_X_NDS_UPPER_BOUND = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("X-NDS_UPPER_BOUND")
+};
+
+const afw_value_string_t afw_ldap_v_a_single_dash_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SINGLE-VALUE")
+};
+
+const afw_value_string_t afw_ldap_v_allowAdd = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowAdd")
+};
+
+const afw_value_string_t afw_ldap_v_allowChange = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowChange")
+};
+
+const afw_value_string_t afw_ldap_v_allowDelete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowDelete")
+};
+
+const afw_value_string_t afw_ldap_v_allowEntity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowEntity")
+};
+
+const afw_value_string_t afw_ldap_v_allowQuery = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowQuery")
+};
+
+const afw_value_string_t afw_ldap_v_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("array")
+};
+
+const afw_value_string_t afw_ldap_v_attributeTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("attributeTypes")
+};
+
+const afw_value_string_t afw_ldap_v_base = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("base")
+};
+
+const afw_value_string_t afw_ldap_v_bindParameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bindParameters")
+};
+
+const afw_value_string_t afw_ldap_v_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean")
+};
+
+const afw_value_string_t afw_ldap_v_collectionURIs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("collectionURIs")
+};
+
+const afw_value_string_t afw_ldap_v_dataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataType")
+};
+
+const afw_value_string_t afw_ldap_v_dataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameter")
+};
+
+const afw_value_string_t afw_ldap_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
+
+const afw_value_string_t afw_ldap_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
+
+const afw_value_string_t afw_ldap_v_dn = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dn")
+};
+
+const afw_value_string_t afw_ldap_v_hybrid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hybrid")
+};
+
+const afw_value_string_t afw_ldap_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
+
+const afw_value_string_t afw_ldap_v_label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("label")
+};
+
+const afw_value_string_t afw_ldap_v_ldap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ldap")
+};
+
+const afw_value_string_t afw_ldap_v_ldapAttributeType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ldapAttributeType")
+};
+
+const afw_value_string_t afw_ldap_v_ldapSyntax = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ldapSyntax")
+};
+
+const afw_value_string_t afw_ldap_v_ldapSyntaxes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ldapSyntaxes")
+};
+
+const afw_value_string_t afw_ldap_v_ldap_extension = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ldap_extension")
+};
+
+const afw_value_string_t afw_ldap_v_matchingRuleUse = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("matchingRuleUse")
+};
+
+const afw_value_string_t afw_ldap_v_matchingRules = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("matchingRules")
+};
+
+const afw_value_string_t afw_ldap_v_numericoid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("numericoid")
+};
+
+const afw_value_string_t afw_ldap_v_objectClasses = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectClasses")
+};
+
+const afw_value_string_t afw_ldap_v_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectId")
+};
+
+const afw_value_string_t afw_ldap_v_objectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectType")
+};
+
+const afw_value_string_t afw_ldap_v_otherProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("otherProperties")
+};
+
+const afw_value_string_t afw_ldap_v_parentPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parentPaths")
+};
+
+const afw_value_string_t afw_ldap_v_password = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("password")
+};
+
+const afw_value_string_t afw_ldap_v_preventVerifyCert = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("preventVerifyCert")
+};
+
+const afw_value_string_t afw_ldap_v_propertyTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyTypes")
+};
+
+const afw_value_string_t afw_ldap_v_required = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("required")
+};
+
+const afw_value_string_t afw_ldap_v_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string")
+};
+
+const afw_value_string_t afw_ldap_v_subschemaSubentry = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subschemaSubentry")
+};
+
+const afw_value_string_t afw_ldap_v_unique = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unique")
+};
+
+const afw_value_string_t afw_ldap_v_url = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("url")
+};

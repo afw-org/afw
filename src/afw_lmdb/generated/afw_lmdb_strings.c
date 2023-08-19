@@ -25,275 +25,457 @@
 #include "afw.h"
 #include "afw_lmdb_strings.h"
 
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Extern =
-AFW_UTF8_LITERAL("Extern");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Index =
-AFW_UTF8_LITERAL("Index");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Journal =
-AFW_UTF8_LITERAL("Journal");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_Primary =
-AFW_UTF8_LITERAL("Primary");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_information");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version =
-AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_version");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveCollection_ =
-AFW_UTF8_LITERAL("_AdaptiveCollection_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_env =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_env");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_limits");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_size =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_limits_size");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_time =
-AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_limits_time");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunctionCategory_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionCategory_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunctionGenerate_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionGenerate_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunctionParameter_ =
-AFW_UTF8_LITERAL("_AdaptiveFunctionParameter_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveFunction_ =
-AFW_UTF8_LITERAL("_AdaptiveFunction_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__AdaptiveObjectType_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectType_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s__meta_ =
-AFW_UTF8_LITERAL("_meta_");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_afwCamelCaseFunctionLabel =
-AFW_UTF8_LITERAL("afwCamelCaseFunctionLabel");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_allowEntity =
-AFW_UTF8_LITERAL("allowEntity");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_allowQuery =
-AFW_UTF8_LITERAL("allowQuery");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_allowWrite =
-AFW_UTF8_LITERAL("allowWrite");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_branch_pages =
-AFW_UTF8_LITERAL("branch_pages");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_brief =
-AFW_UTF8_LITERAL("brief");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_camelCaseFunctionLabel =
-AFW_UTF8_LITERAL("camelCaseFunctionLabel");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_category =
-AFW_UTF8_LITERAL("category");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_collectionURIs =
-AFW_UTF8_LITERAL("collectionURIs");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_content_type =
-AFW_UTF8_LITERAL("content_type");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_createTimeStamp =
-AFW_UTF8_LITERAL("createTimeStamp");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_dataType =
-AFW_UTF8_LITERAL("dataType");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_dataTypeParameter =
-AFW_UTF8_LITERAL("dataTypeParameter");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_default =
-AFW_UTF8_LITERAL("default");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_depth =
-AFW_UTF8_LITERAL("depth");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_description =
-AFW_UTF8_LITERAL("description");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_entries =
-AFW_UTF8_LITERAL("entries");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_env =
-AFW_UTF8_LITERAL("env");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_environment =
-AFW_UTF8_LITERAL("environment");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_equality =
-AFW_UTF8_LITERAL("equality");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_flags =
-AFW_UTF8_LITERAL("flags");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_functionId =
-AFW_UTF8_LITERAL("functionId");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_functionLabel =
-AFW_UTF8_LITERAL("functionLabel");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_hard =
-AFW_UTF8_LITERAL("hard");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_indexDefinitions =
-AFW_UTF8_LITERAL("indexDefinitions");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_indexes =
-AFW_UTF8_LITERAL("indexes");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_indirect =
-AFW_UTF8_LITERAL("indirect");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_information =
-AFW_UTF8_LITERAL("information");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_integer =
-AFW_UTF8_LITERAL("integer");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_internalConfig =
-AFW_UTF8_LITERAL("internalConfig");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_label =
-AFW_UTF8_LITERAL("label");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_last_pgno =
-AFW_UTF8_LITERAL("last_pgno");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_last_txnid =
-AFW_UTF8_LITERAL("last_txnid");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_leaf_pages =
-AFW_UTF8_LITERAL("leaf_pages");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_limits =
-AFW_UTF8_LITERAL("limits");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_lmdb =
-AFW_UTF8_LITERAL("lmdb");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_lmdb_extension =
-AFW_UTF8_LITERAL("lmdb_extension");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_major =
-AFW_UTF8_LITERAL("major");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_mapaddr =
-AFW_UTF8_LITERAL("mapaddr");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_mapsize =
-AFW_UTF8_LITERAL("mapsize");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_maxdbs =
-AFW_UTF8_LITERAL("maxdbs");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_maxreaders =
-AFW_UTF8_LITERAL("maxreaders");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_minor =
-AFW_UTF8_LITERAL("minor");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_mode =
-AFW_UTF8_LITERAL("mode");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_numreaders =
-AFW_UTF8_LITERAL("numreaders");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_object =
-AFW_UTF8_LITERAL("object");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_objectId =
-AFW_UTF8_LITERAL("objectId");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_objectType =
-AFW_UTF8_LITERAL("objectType");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_otherProperties =
-AFW_UTF8_LITERAL("otherProperties");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_overflow_pages =
-AFW_UTF8_LITERAL("overflow_pages");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_parameters =
-AFW_UTF8_LITERAL("parameters");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_parentPaths =
-AFW_UTF8_LITERAL("parentPaths");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_patch =
-AFW_UTF8_LITERAL("patch");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_path =
-AFW_UTF8_LITERAL("path");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_propertyTypes =
-AFW_UTF8_LITERAL("propertyTypes");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_psize =
-AFW_UTF8_LITERAL("psize");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_reader_check =
-AFW_UTF8_LITERAL("reader_check");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_reader_list =
-AFW_UTF8_LITERAL("reader_list");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_required =
-AFW_UTF8_LITERAL("required");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_returns =
-AFW_UTF8_LITERAL("returns");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_single =
-AFW_UTF8_LITERAL("single");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_size =
-AFW_UTF8_LITERAL("size");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_soft =
-AFW_UTF8_LITERAL("soft");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_statistics =
-AFW_UTF8_LITERAL("statistics");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_string =
-AFW_UTF8_LITERAL("string");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_time =
-AFW_UTF8_LITERAL("time");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_unique =
-AFW_UTF8_LITERAL("unique");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_updateTimeStamp =
-AFW_UTF8_LITERAL("updateTimeStamp");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_version =
-AFW_UTF8_LITERAL("version");
-
-AFW_LMDB_DEFINE_CONST_DATA(afw_utf8_t) afw_lmdb_s_version_string =
-AFW_UTF8_LITERAL("version_string");
+const afw_value_string_t afw_lmdb_v_Extern = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Extern")
+};
+
+const afw_value_string_t afw_lmdb_v_Index = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Index")
+};
+
+const afw_value_string_t afw_lmdb_v_Journal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Journal")
+};
+
+const afw_value_string_t afw_lmdb_v_Primary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Primary")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_information")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_adaptor_lmdb_version")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveCollection_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveCollection_")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_env = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_env")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_limits")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_limits_size")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_lmdb_limits_time")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveFunctionCategory_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionCategory_")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveFunctionGenerate_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionGenerate_")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveFunctionParameter_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunctionParameter_")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveFunction_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveFunction_")
+};
+
+const afw_value_string_t afw_lmdb_v__AdaptiveObjectType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_")
+};
+
+const afw_value_string_t afw_lmdb_v__meta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_meta_")
+};
+
+const afw_value_string_t afw_lmdb_v_afwCamelCaseFunctionLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("afwCamelCaseFunctionLabel")
+};
+
+const afw_value_string_t afw_lmdb_v_allowEntity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowEntity")
+};
+
+const afw_value_string_t afw_lmdb_v_allowQuery = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowQuery")
+};
+
+const afw_value_string_t afw_lmdb_v_allowWrite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowWrite")
+};
+
+const afw_value_string_t afw_lmdb_v_branch_pages = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("branch_pages")
+};
+
+const afw_value_string_t afw_lmdb_v_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("brief")
+};
+
+const afw_value_string_t afw_lmdb_v_camelCaseFunctionLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("camelCaseFunctionLabel")
+};
+
+const afw_value_string_t afw_lmdb_v_category = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("category")
+};
+
+const afw_value_string_t afw_lmdb_v_collectionURIs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("collectionURIs")
+};
+
+const afw_value_string_t afw_lmdb_v_content_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("content_type")
+};
+
+const afw_value_string_t afw_lmdb_v_createTimeStamp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("createTimeStamp")
+};
+
+const afw_value_string_t afw_lmdb_v_dataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataType")
+};
+
+const afw_value_string_t afw_lmdb_v_dataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameter")
+};
+
+const afw_value_string_t afw_lmdb_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
+
+const afw_value_string_t afw_lmdb_v_depth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("depth")
+};
+
+const afw_value_string_t afw_lmdb_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
+
+const afw_value_string_t afw_lmdb_v_entries = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("entries")
+};
+
+const afw_value_string_t afw_lmdb_v_env = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("env")
+};
+
+const afw_value_string_t afw_lmdb_v_environment = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("environment")
+};
+
+const afw_value_string_t afw_lmdb_v_equality = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("equality")
+};
+
+const afw_value_string_t afw_lmdb_v_flags = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flags")
+};
+
+const afw_value_string_t afw_lmdb_v_functionId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionId")
+};
+
+const afw_value_string_t afw_lmdb_v_functionLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("functionLabel")
+};
+
+const afw_value_string_t afw_lmdb_v_hard = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hard")
+};
+
+const afw_value_string_t afw_lmdb_v_indexDefinitions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indexDefinitions")
+};
+
+const afw_value_string_t afw_lmdb_v_indexes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indexes")
+};
+
+const afw_value_string_t afw_lmdb_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
+
+const afw_value_string_t afw_lmdb_v_information = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("information")
+};
+
+const afw_value_string_t afw_lmdb_v_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer")
+};
+
+const afw_value_string_t afw_lmdb_v_internalConfig = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("internalConfig")
+};
+
+const afw_value_string_t afw_lmdb_v_label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("label")
+};
+
+const afw_value_string_t afw_lmdb_v_last_pgno = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("last_pgno")
+};
+
+const afw_value_string_t afw_lmdb_v_last_txnid = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("last_txnid")
+};
+
+const afw_value_string_t afw_lmdb_v_leaf_pages = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("leaf_pages")
+};
+
+const afw_value_string_t afw_lmdb_v_limits = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("limits")
+};
+
+const afw_value_string_t afw_lmdb_v_lmdb = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lmdb")
+};
+
+const afw_value_string_t afw_lmdb_v_lmdb_extension = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lmdb_extension")
+};
+
+const afw_value_string_t afw_lmdb_v_major = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("major")
+};
+
+const afw_value_string_t afw_lmdb_v_mapaddr = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mapaddr")
+};
+
+const afw_value_string_t afw_lmdb_v_mapsize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mapsize")
+};
+
+const afw_value_string_t afw_lmdb_v_maxdbs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxdbs")
+};
+
+const afw_value_string_t afw_lmdb_v_maxreaders = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxreaders")
+};
+
+const afw_value_string_t afw_lmdb_v_minor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("minor")
+};
+
+const afw_value_string_t afw_lmdb_v_mode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mode")
+};
+
+const afw_value_string_t afw_lmdb_v_numreaders = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("numreaders")
+};
+
+const afw_value_string_t afw_lmdb_v_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("object")
+};
+
+const afw_value_string_t afw_lmdb_v_objectId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectId")
+};
+
+const afw_value_string_t afw_lmdb_v_objectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectType")
+};
+
+const afw_value_string_t afw_lmdb_v_otherProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("otherProperties")
+};
+
+const afw_value_string_t afw_lmdb_v_overflow_pages = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("overflow_pages")
+};
+
+const afw_value_string_t afw_lmdb_v_parameters = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parameters")
+};
+
+const afw_value_string_t afw_lmdb_v_parentPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parentPaths")
+};
+
+const afw_value_string_t afw_lmdb_v_patch = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("patch")
+};
+
+const afw_value_string_t afw_lmdb_v_path = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("path")
+};
+
+const afw_value_string_t afw_lmdb_v_propertyTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyTypes")
+};
+
+const afw_value_string_t afw_lmdb_v_psize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("psize")
+};
+
+const afw_value_string_t afw_lmdb_v_reader_check = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reader_check")
+};
+
+const afw_value_string_t afw_lmdb_v_reader_list = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("reader_list")
+};
+
+const afw_value_string_t afw_lmdb_v_required = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("required")
+};
+
+const afw_value_string_t afw_lmdb_v_returns = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("returns")
+};
+
+const afw_value_string_t afw_lmdb_v_single = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("single")
+};
+
+const afw_value_string_t afw_lmdb_v_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("size")
+};
+
+const afw_value_string_t afw_lmdb_v_soft = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("soft")
+};
+
+const afw_value_string_t afw_lmdb_v_statistics = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("statistics")
+};
+
+const afw_value_string_t afw_lmdb_v_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string")
+};
+
+const afw_value_string_t afw_lmdb_v_time = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("time")
+};
+
+const afw_value_string_t afw_lmdb_v_unique = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unique")
+};
+
+const afw_value_string_t afw_lmdb_v_updateTimeStamp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("updateTimeStamp")
+};
+
+const afw_value_string_t afw_lmdb_v_version = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("version")
+};
+
+const afw_value_string_t afw_lmdb_v_version_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("version_string")
+};

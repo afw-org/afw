@@ -25,1487 +25,2477 @@
 #include "afw.h"
 #include "afw_components_strings.h"
 
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Autocomplete =
-AFW_UTF8_LITERAL("Autocomplete");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Box =
-AFW_UTF8_LITERAL("Box");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Breadcrumb =
-AFW_UTF8_LITERAL("Breadcrumb");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Button =
-AFW_UTF8_LITERAL("Button");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Callout =
-AFW_UTF8_LITERAL("Callout");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Chart =
-AFW_UTF8_LITERAL("Chart");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Checkbox =
-AFW_UTF8_LITERAL("Checkbox");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_ChoiceGroup =
-AFW_UTF8_LITERAL("ChoiceGroup");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_CodeEditor =
-AFW_UTF8_LITERAL("CodeEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Collapsible =
-AFW_UTF8_LITERAL("Collapsible");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_DatePicker =
-AFW_UTF8_LITERAL("DatePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_DateTimePicker =
-AFW_UTF8_LITERAL("DateTimePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Dialog =
-AFW_UTF8_LITERAL("Dialog");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_DiffEditor =
-AFW_UTF8_LITERAL("DiffEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Divider =
-AFW_UTF8_LITERAL("Divider");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Drawer =
-AFW_UTF8_LITERAL("Drawer");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Dropdown =
-AFW_UTF8_LITERAL("Dropdown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_DropdownEditor =
-AFW_UTF8_LITERAL("DropdownEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_EditableCallout =
-AFW_UTF8_LITERAL("EditableCallout");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_EditableLabel =
-AFW_UTF8_LITERAL("EditableLabel");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Hidden =
-AFW_UTF8_LITERAL("Hidden");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Icon =
-AFW_UTF8_LITERAL("Icon");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Image =
-AFW_UTF8_LITERAL("Image");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Link =
-AFW_UTF8_LITERAL("Link");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_List =
-AFW_UTF8_LITERAL("List");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_ListEditor =
-AFW_UTF8_LITERAL("ListEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Menu =
-AFW_UTF8_LITERAL("Menu");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Message =
-AFW_UTF8_LITERAL("Message");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Modal =
-AFW_UTF8_LITERAL("Modal");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Native =
-AFW_UTF8_LITERAL("Native");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Nav =
-AFW_UTF8_LITERAL("Nav");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Paper =
-AFW_UTF8_LITERAL("Paper");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Picker =
-AFW_UTF8_LITERAL("Picker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Responsive =
-AFW_UTF8_LITERAL("Responsive");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Skeleton =
-AFW_UTF8_LITERAL("Skeleton");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Slider =
-AFW_UTF8_LITERAL("Slider");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Snackbar =
-AFW_UTF8_LITERAL("Snackbar");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_SpinButton =
-AFW_UTF8_LITERAL("SpinButton");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Spinner =
-AFW_UTF8_LITERAL("Spinner");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Stepper =
-AFW_UTF8_LITERAL("Stepper");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Table =
-AFW_UTF8_LITERAL("Table");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Tabs =
-AFW_UTF8_LITERAL("Tabs");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_TextField =
-AFW_UTF8_LITERAL("TextField");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_TimeDuration =
-AFW_UTF8_LITERAL("TimeDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_TimePicker =
-AFW_UTF8_LITERAL("TimePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_TimezonePicker =
-AFW_UTF8_LITERAL("TimezonePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Toggle =
-AFW_UTF8_LITERAL("Toggle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_ToggleButtons =
-AFW_UTF8_LITERAL("ToggleButtons");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Toolbar =
-AFW_UTF8_LITERAL("Toolbar");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Tooltip =
-AFW_UTF8_LITERAL("Tooltip");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Tree =
-AFW_UTF8_LITERAL("Tree");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_Typography =
-AFW_UTF8_LITERAL("Typography");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentTypeCategory_ =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentTypeCategory_");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_AdaptiveProperty =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_AdaptiveProperty");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Autocomplete =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Autocomplete");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Autocomplete_Option =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Autocomplete_Option");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Box =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Box");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_BoxItem =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_BoxItem");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Breadcrumb =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Breadcrumb");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_BreadcrumbItem =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_BreadcrumbItem");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Button =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Button");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Callout =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Callout");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Chart =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Chart");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Chart_Data =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Chart_Data");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Checkbox =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Checkbox");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ChoiceGroup");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup_Option =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ChoiceGroup_Option");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_CodeEditor =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_CodeEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Collapsible =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Collapsible");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Common =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Common");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DatePicker =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DatePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DateTimePicker =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DateTimePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Dialog =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Dialog");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DiffEditor =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DiffEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Divider =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Divider");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Drawer =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Drawer");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Dropdown =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Dropdown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_DropdownEditor =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DropdownEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Dropdown_Option =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Dropdown_Option");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_EditableCallout =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_EditableCallout");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_EditableLabel =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_EditableLabel");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Hidden =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Hidden");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Icon =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Icon");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Image =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Image");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Label =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Label");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Link =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Link");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_List =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_List");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ListEditor =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ListEditor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ListEditor_Item =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ListEditor_Item");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Menu =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Menu");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Menu_Item =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Menu_Item");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Message =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Message");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Modal =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Modal");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Native =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Native");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Nav =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Nav");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Nav_Item =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Nav_Item");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Paper =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Paper");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Picker =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Picker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Picker_Item =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Picker_Item");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Responsive =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Responsive");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ResponsiveCol =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ResponsiveCol");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ResponsiveRow =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ResponsiveRow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Responsive_Breakpoints =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Responsive_Breakpoints");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Skeleton =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Skeleton");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Slider =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Slider");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Snackbar =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Snackbar");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_SpinButton =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_SpinButton");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Spinner =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Spinner");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Stepper =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Stepper");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Style =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Style");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Table =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Table");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Table_Column =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Table_Column");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Table_Row =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Table_Row");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tabs =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tabs");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tabs_Tab =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tabs_Tab");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TextField =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TextField");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TimeDuration =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TimeDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TimePicker =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TimePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_TimezonePicker =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TimezonePicker");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Toggle =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Toggle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_ToggleButtons =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ToggleButtons");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Toolbar =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Toolbar");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tooltip =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tooltip");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tree =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tree");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Tree_Node =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tree_Node");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayoutComponentType_Typography =
-AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Typography");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive =
-AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_embedded =
-AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_embedded");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_filterOptions =
-AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_filterOptions");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_preferredComponent =
-AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_preferredComponent");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveLayout_ObjectResponsive_sortOptions =
-AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_sortOptions");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__AdaptiveObjectType_ =
-AFW_UTF8_LITERAL("_AdaptiveObjectType_");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s__meta_ =
-AFW_UTF8_LITERAL("_meta_");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_a_aria_label =
-AFW_UTF8_LITERAL("aria-label");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_a_aria_labelledby =
-AFW_UTF8_LITERAL("aria-labelledby");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_activeStep =
-AFW_UTF8_LITERAL("activeStep");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_alignContent =
-AFW_UTF8_LITERAL("alignContent");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_alignItems =
-AFW_UTF8_LITERAL("alignItems");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_alignSelf =
-AFW_UTF8_LITERAL("alignSelf");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_allowAdd =
-AFW_UTF8_LITERAL("allowAdd");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_allowChange =
-AFW_UTF8_LITERAL("allowChange");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_allowDelete =
-AFW_UTF8_LITERAL("allowDelete");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_allowEntity =
-AFW_UTF8_LITERAL("allowEntity");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_allowWrite =
-AFW_UTF8_LITERAL("allowWrite");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_allowedValues =
-AFW_UTF8_LITERAL("allowedValues");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_anchor =
-AFW_UTF8_LITERAL("anchor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animateDuration =
-AFW_UTF8_LITERAL("animateDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animation =
-AFW_UTF8_LITERAL("animation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationDelay =
-AFW_UTF8_LITERAL("animationDelay");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationDirection =
-AFW_UTF8_LITERAL("animationDirection");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationDuration =
-AFW_UTF8_LITERAL("animationDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationFillMode =
-AFW_UTF8_LITERAL("animationFillMode");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationIterationCount =
-AFW_UTF8_LITERAL("animationIterationCount");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationName =
-AFW_UTF8_LITERAL("animationName");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationPlayState =
-AFW_UTF8_LITERAL("animationPlayState");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_animationTimingFunction =
-AFW_UTF8_LITERAL("animationTimingFunction");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_array =
-AFW_UTF8_LITERAL("array");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backfaceVisibility =
-AFW_UTF8_LITERAL("backfaceVisibility");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_background =
-AFW_UTF8_LITERAL("background");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundAttachment =
-AFW_UTF8_LITERAL("backgroundAttachment");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundClip =
-AFW_UTF8_LITERAL("backgroundClip");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundColor =
-AFW_UTF8_LITERAL("backgroundColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundImage =
-AFW_UTF8_LITERAL("backgroundImage");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundOrigin =
-AFW_UTF8_LITERAL("backgroundOrigin");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundPosition =
-AFW_UTF8_LITERAL("backgroundPosition");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundRepeat =
-AFW_UTF8_LITERAL("backgroundRepeat");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_backgroundSize =
-AFW_UTF8_LITERAL("backgroundSize");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_badge =
-AFW_UTF8_LITERAL("badge");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_boolean =
-AFW_UTF8_LITERAL("boolean");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_border =
-AFW_UTF8_LITERAL("border");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottom =
-AFW_UTF8_LITERAL("borderBottom");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomColor =
-AFW_UTF8_LITERAL("borderBottomColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomLeftRadius =
-AFW_UTF8_LITERAL("borderBottomLeftRadius");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomRightRadius =
-AFW_UTF8_LITERAL("borderBottomRightRadius");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomStyle =
-AFW_UTF8_LITERAL("borderBottomStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderBottomWidth =
-AFW_UTF8_LITERAL("borderBottomWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderCollapse =
-AFW_UTF8_LITERAL("borderCollapse");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderColor =
-AFW_UTF8_LITERAL("borderColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderImage =
-AFW_UTF8_LITERAL("borderImage");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageOutset =
-AFW_UTF8_LITERAL("borderImageOutset");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageRepeat =
-AFW_UTF8_LITERAL("borderImageRepeat");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageSlice =
-AFW_UTF8_LITERAL("borderImageSlice");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageSource =
-AFW_UTF8_LITERAL("borderImageSource");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderImageWidth =
-AFW_UTF8_LITERAL("borderImageWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeft =
-AFW_UTF8_LITERAL("borderLeft");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeftColor =
-AFW_UTF8_LITERAL("borderLeftColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeftStyle =
-AFW_UTF8_LITERAL("borderLeftStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderLeftWidth =
-AFW_UTF8_LITERAL("borderLeftWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderRadius =
-AFW_UTF8_LITERAL("borderRadius");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderRight =
-AFW_UTF8_LITERAL("borderRight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderRightColor =
-AFW_UTF8_LITERAL("borderRightColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderRightStyle =
-AFW_UTF8_LITERAL("borderRightStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderRightWidth =
-AFW_UTF8_LITERAL("borderRightWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderSpacing =
-AFW_UTF8_LITERAL("borderSpacing");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderStyle =
-AFW_UTF8_LITERAL("borderStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderTop =
-AFW_UTF8_LITERAL("borderTop");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopColor =
-AFW_UTF8_LITERAL("borderTopColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopLeftRadius =
-AFW_UTF8_LITERAL("borderTopLeftRadius");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopRightRadius =
-AFW_UTF8_LITERAL("borderTopRightRadius");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopStyle =
-AFW_UTF8_LITERAL("borderTopStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderTopWidth =
-AFW_UTF8_LITERAL("borderTopWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_borderWidth =
-AFW_UTF8_LITERAL("borderWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_bottom =
-AFW_UTF8_LITERAL("bottom");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_boxDecorationBreak =
-AFW_UTF8_LITERAL("boxDecorationBreak");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_boxShadow =
-AFW_UTF8_LITERAL("boxShadow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_boxSide =
-AFW_UTF8_LITERAL("boxSide");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_boxSizing =
-AFW_UTF8_LITERAL("boxSizing");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_breakpoints =
-AFW_UTF8_LITERAL("breakpoints");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_brief =
-AFW_UTF8_LITERAL("brief");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_canDismiss =
-AFW_UTF8_LITERAL("canDismiss");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_captionSide =
-AFW_UTF8_LITERAL("captionSide");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_category =
-AFW_UTF8_LITERAL("category");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_children =
-AFW_UTF8_LITERAL("children");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_className =
-AFW_UTF8_LITERAL("className");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_clear =
-AFW_UTF8_LITERAL("clear");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_clip =
-AFW_UTF8_LITERAL("clip");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_collectionURIs =
-AFW_UTF8_LITERAL("collectionURIs");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_color =
-AFW_UTF8_LITERAL("color");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnCount =
-AFW_UTF8_LITERAL("columnCount");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnFill =
-AFW_UTF8_LITERAL("columnFill");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnGap =
-AFW_UTF8_LITERAL("columnGap");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnRule =
-AFW_UTF8_LITERAL("columnRule");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnRuleColor =
-AFW_UTF8_LITERAL("columnRuleColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnRuleStyle =
-AFW_UTF8_LITERAL("columnRuleStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnRuleWidth =
-AFW_UTF8_LITERAL("columnRuleWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnSpan =
-AFW_UTF8_LITERAL("columnSpan");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columnWidth =
-AFW_UTF8_LITERAL("columnWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_columns =
-AFW_UTF8_LITERAL("columns");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_compact =
-AFW_UTF8_LITERAL("compact");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_component =
-AFW_UTF8_LITERAL("component");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_componentProps =
-AFW_UTF8_LITERAL("componentProps");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_componentType =
-AFW_UTF8_LITERAL("componentType");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_containers =
-AFW_UTF8_LITERAL("containers");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_contains =
-AFW_UTF8_LITERAL("contains");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_content =
-AFW_UTF8_LITERAL("content");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_counterIncrement =
-AFW_UTF8_LITERAL("counterIncrement");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_counterReset =
-AFW_UTF8_LITERAL("counterReset");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_cssFloat =
-AFW_UTF8_LITERAL("cssFloat");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_cursor =
-AFW_UTF8_LITERAL("cursor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_data =
-AFW_UTF8_LITERAL("data");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_dataType =
-AFW_UTF8_LITERAL("dataType");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_dataTypeParameter =
-AFW_UTF8_LITERAL("dataTypeParameter");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_dateTime =
-AFW_UTF8_LITERAL("dateTime");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_dayTimeDuration =
-AFW_UTF8_LITERAL("dayTimeDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_default =
-AFW_UTF8_LITERAL("default");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_defaultValue =
-AFW_UTF8_LITERAL("defaultValue");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_delay =
-AFW_UTF8_LITERAL("delay");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_dense =
-AFW_UTF8_LITERAL("dense");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_description =
-AFW_UTF8_LITERAL("description");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_designMode =
-AFW_UTF8_LITERAL("designMode");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_direction =
-AFW_UTF8_LITERAL("direction");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_disabled =
-AFW_UTF8_LITERAL("disabled");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_display =
-AFW_UTF8_LITERAL("display");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_dropdown =
-AFW_UTF8_LITERAL("dropdown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_duration =
-AFW_UTF8_LITERAL("duration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_editable =
-AFW_UTF8_LITERAL("editable");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_editors =
-AFW_UTF8_LITERAL("editors");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_elevation =
-AFW_UTF8_LITERAL("elevation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_embedded =
-AFW_UTF8_LITERAL("embedded");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_emptyCells =
-AFW_UTF8_LITERAL("emptyCells");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_exclusive =
-AFW_UTF8_LITERAL("exclusive");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_expandedKeys =
-AFW_UTF8_LITERAL("expandedKeys");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fieldName =
-AFW_UTF8_LITERAL("fieldName");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filter =
-AFW_UTF8_LITERAL("filter");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterCondAndProperties =
-AFW_UTF8_LITERAL("filterCondAndProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterCondOrProperties =
-AFW_UTF8_LITERAL("filterCondOrProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterExcludeEmbeddedProperties =
-AFW_UTF8_LITERAL("filterExcludeEmbeddedProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterExcludeProperties =
-AFW_UTF8_LITERAL("filterExcludeProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterOptions =
-AFW_UTF8_LITERAL("filterOptions");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterProperties =
-AFW_UTF8_LITERAL("filterProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterRequiredProperties =
-AFW_UTF8_LITERAL("filterRequiredProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_filterValuedProperties =
-AFW_UTF8_LITERAL("filterValuedProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flex =
-AFW_UTF8_LITERAL("flex");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flexBasis =
-AFW_UTF8_LITERAL("flexBasis");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flexDirection =
-AFW_UTF8_LITERAL("flexDirection");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flexFlow =
-AFW_UTF8_LITERAL("flexFlow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flexGrow =
-AFW_UTF8_LITERAL("flexGrow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flexShrink =
-AFW_UTF8_LITERAL("flexShrink");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_flexWrap =
-AFW_UTF8_LITERAL("flexWrap");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_font =
-AFW_UTF8_LITERAL("font");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontFamily =
-AFW_UTF8_LITERAL("fontFamily");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontSize =
-AFW_UTF8_LITERAL("fontSize");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontSizeAdjust =
-AFW_UTF8_LITERAL("fontSizeAdjust");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontStretch =
-AFW_UTF8_LITERAL("fontStretch");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontStyle =
-AFW_UTF8_LITERAL("fontStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontVariant =
-AFW_UTF8_LITERAL("fontVariant");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fontWeight =
-AFW_UTF8_LITERAL("fontWeight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_footer =
-AFW_UTF8_LITERAL("footer");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_for =
-AFW_UTF8_LITERAL("for");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_fullScreen =
-AFW_UTF8_LITERAL("fullScreen");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_gapSpace =
-AFW_UTF8_LITERAL("gapSpace");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_grow =
-AFW_UTF8_LITERAL("grow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_hangingPunctuation =
-AFW_UTF8_LITERAL("hangingPunctuation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_headerItems =
-AFW_UTF8_LITERAL("headerItems");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_headerOptions =
-AFW_UTF8_LITERAL("headerOptions");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_height =
-AFW_UTF8_LITERAL("height");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_hyphens =
-AFW_UTF8_LITERAL("hyphens");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_icon =
-AFW_UTF8_LITERAL("icon");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_iconName =
-AFW_UTF8_LITERAL("iconName");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_id =
-AFW_UTF8_LITERAL("id");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_imageOrientation =
-AFW_UTF8_LITERAL("imageOrientation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_implementationId =
-AFW_UTF8_LITERAL("implementationId");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_indirect =
-AFW_UTF8_LITERAL("indirect");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_inputs =
-AFW_UTF8_LITERAL("inputs");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_instanceObjectType =
-AFW_UTF8_LITERAL("instanceObjectType");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_integer =
-AFW_UTF8_LITERAL("integer");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isBlocking =
-AFW_UTF8_LITERAL("isBlocking");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isCollapsed =
-AFW_UTF8_LITERAL("isCollapsed");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isExpanded =
-AFW_UTF8_LITERAL("isExpanded");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isHeaderVisible =
-AFW_UTF8_LITERAL("isHeaderVisible");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isLoading =
-AFW_UTF8_LITERAL("isLoading");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isMultiline =
-AFW_UTF8_LITERAL("isMultiline");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isResizable =
-AFW_UTF8_LITERAL("isResizable");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_isolation =
-AFW_UTF8_LITERAL("isolation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_items =
-AFW_UTF8_LITERAL("items");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_justify =
-AFW_UTF8_LITERAL("justify");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_justifyContent =
-AFW_UTF8_LITERAL("justifyContent");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_key =
-AFW_UTF8_LITERAL("key");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_label =
-AFW_UTF8_LITERAL("label");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_large =
-AFW_UTF8_LITERAL("large");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_left =
-AFW_UTF8_LITERAL("left");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_letterSpacing =
-AFW_UTF8_LITERAL("letterSpacing");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_lgDown =
-AFW_UTF8_LITERAL("lgDown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_lineHeight =
-AFW_UTF8_LITERAL("lineHeight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_listStyle =
-AFW_UTF8_LITERAL("listStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_listStyleImage =
-AFW_UTF8_LITERAL("listStyleImage");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_listStylePosition =
-AFW_UTF8_LITERAL("listStylePosition");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_listStyleType =
-AFW_UTF8_LITERAL("listStyleType");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_margin =
-AFW_UTF8_LITERAL("margin");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_marginBottom =
-AFW_UTF8_LITERAL("marginBottom");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_marginLeft =
-AFW_UTF8_LITERAL("marginLeft");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_marginRight =
-AFW_UTF8_LITERAL("marginRight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_marginTop =
-AFW_UTF8_LITERAL("marginTop");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_max =
-AFW_UTF8_LITERAL("max");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_maxHeight =
-AFW_UTF8_LITERAL("maxHeight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_maxWidth =
-AFW_UTF8_LITERAL("maxWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_mdDown =
-AFW_UTF8_LITERAL("mdDown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_medium =
-AFW_UTF8_LITERAL("medium");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_message =
-AFW_UTF8_LITERAL("message");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_min =
-AFW_UTF8_LITERAL("min");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_minHeight =
-AFW_UTF8_LITERAL("minHeight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_minWidth =
-AFW_UTF8_LITERAL("minWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_modified =
-AFW_UTF8_LITERAL("modified");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_multiline =
-AFW_UTF8_LITERAL("multiline");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_multiselect =
-AFW_UTF8_LITERAL("multiselect");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_name =
-AFW_UTF8_LITERAL("name");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_navDown =
-AFW_UTF8_LITERAL("navDown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_navIndex =
-AFW_UTF8_LITERAL("navIndex");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_navLeft =
-AFW_UTF8_LITERAL("navLeft");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_navRight =
-AFW_UTF8_LITERAL("navRight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_navUp =
-AFW_UTF8_LITERAL("navUp");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_navigation =
-AFW_UTF8_LITERAL("navigation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_nestingDepth =
-AFW_UTF8_LITERAL("nestingDepth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_object =
-AFW_UTF8_LITERAL("object");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_objectFit =
-AFW_UTF8_LITERAL("objectFit");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_objectIdPropertyName =
-AFW_UTF8_LITERAL("objectIdPropertyName");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_objectPosition =
-AFW_UTF8_LITERAL("objectPosition");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_objectType =
-AFW_UTF8_LITERAL("objectType");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_offText =
-AFW_UTF8_LITERAL("offText");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_onText =
-AFW_UTF8_LITERAL("onText");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_opacity =
-AFW_UTF8_LITERAL("opacity");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_open =
-AFW_UTF8_LITERAL("open");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_options =
-AFW_UTF8_LITERAL("options");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_order =
-AFW_UTF8_LITERAL("order");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_orientation =
-AFW_UTF8_LITERAL("orientation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_original =
-AFW_UTF8_LITERAL("original");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_orphans =
-AFW_UTF8_LITERAL("orphans");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_otherProperties =
-AFW_UTF8_LITERAL("otherProperties");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_outline =
-AFW_UTF8_LITERAL("outline");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_outlineColor =
-AFW_UTF8_LITERAL("outlineColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_outlineOffset =
-AFW_UTF8_LITERAL("outlineOffset");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_outlineStyle =
-AFW_UTF8_LITERAL("outlineStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_outlineWidth =
-AFW_UTF8_LITERAL("outlineWidth");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_overflow =
-AFW_UTF8_LITERAL("overflow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_overflowX =
-AFW_UTF8_LITERAL("overflowX");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_overflowY =
-AFW_UTF8_LITERAL("overflowY");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_padding =
-AFW_UTF8_LITERAL("padding");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_paddingBottom =
-AFW_UTF8_LITERAL("paddingBottom");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_paddingLeft =
-AFW_UTF8_LITERAL("paddingLeft");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_paddingRight =
-AFW_UTF8_LITERAL("paddingRight");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_paddingTop =
-AFW_UTF8_LITERAL("paddingTop");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_pageBreakAfter =
-AFW_UTF8_LITERAL("pageBreakAfter");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_pageBreakBefore =
-AFW_UTF8_LITERAL("pageBreakBefore");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_pageBreakInside =
-AFW_UTF8_LITERAL("pageBreakInside");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_parentPaths =
-AFW_UTF8_LITERAL("parentPaths");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_perspective =
-AFW_UTF8_LITERAL("perspective");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_perspectiveOrigin =
-AFW_UTF8_LITERAL("perspectiveOrigin");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_pickers =
-AFW_UTF8_LITERAL("pickers");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_placeholder =
-AFW_UTF8_LITERAL("placeholder");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_position =
-AFW_UTF8_LITERAL("position");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_possibleValues =
-AFW_UTF8_LITERAL("possibleValues");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_preferredComponents =
-AFW_UTF8_LITERAL("preferredComponents");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_propertyName =
-AFW_UTF8_LITERAL("propertyName");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_propertyTypes =
-AFW_UTF8_LITERAL("propertyTypes");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_quotes =
-AFW_UTF8_LITERAL("quotes");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_readOnly =
-AFW_UTF8_LITERAL("readOnly");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_readOnlyOrientation =
-AFW_UTF8_LITERAL("readOnlyOrientation");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_recurse =
-AFW_UTF8_LITERAL("recurse");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_required =
-AFW_UTF8_LITERAL("required");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_resize =
-AFW_UTF8_LITERAL("resize");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_right =
-AFW_UTF8_LITERAL("right");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_role =
-AFW_UTF8_LITERAL("role");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_rows =
-AFW_UTF8_LITERAL("rows");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_secondary =
-AFW_UTF8_LITERAL("secondary");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_secondaryText =
-AFW_UTF8_LITERAL("secondaryText");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_selectable =
-AFW_UTF8_LITERAL("selectable");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_selected =
-AFW_UTF8_LITERAL("selected");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_selectedKey =
-AFW_UTF8_LITERAL("selectedKey");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_selectedKeys =
-AFW_UTF8_LITERAL("selectedKeys");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_selectionMode =
-AFW_UTF8_LITERAL("selectionMode");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showClose =
-AFW_UTF8_LITERAL("showClose");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showCollapse =
-AFW_UTF8_LITERAL("showCollapse");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showDescriptions =
-AFW_UTF8_LITERAL("showDescriptions");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showGutter =
-AFW_UTF8_LITERAL("showGutter");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showLabels =
-AFW_UTF8_LITERAL("showLabels");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showLineNumbers =
-AFW_UTF8_LITERAL("showLineNumbers");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showMeta =
-AFW_UTF8_LITERAL("showMeta");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showNumber =
-AFW_UTF8_LITERAL("showNumber");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_showPrintMargin =
-AFW_UTF8_LITERAL("showPrintMargin");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_shrink =
-AFW_UTF8_LITERAL("shrink");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_size =
-AFW_UTF8_LITERAL("size");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_smDown =
-AFW_UTF8_LITERAL("smDown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_small =
-AFW_UTF8_LITERAL("small");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_sortByDataType =
-AFW_UTF8_LITERAL("sortByDataType");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_sortByPropertyName =
-AFW_UTF8_LITERAL("sortByPropertyName");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_sortByRequired =
-AFW_UTF8_LITERAL("sortByRequired");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_sortOptions =
-AFW_UTF8_LITERAL("sortOptions");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_source =
-AFW_UTF8_LITERAL("source");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_spacing =
-AFW_UTF8_LITERAL("spacing");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_square =
-AFW_UTF8_LITERAL("square");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_src =
-AFW_UTF8_LITERAL("src");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_status =
-AFW_UTF8_LITERAL("status");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_step =
-AFW_UTF8_LITERAL("step");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_steps =
-AFW_UTF8_LITERAL("steps");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_string =
-AFW_UTF8_LITERAL("string");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_structured =
-AFW_UTF8_LITERAL("structured");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_style =
-AFW_UTF8_LITERAL("style");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_subText =
-AFW_UTF8_LITERAL("subText");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_tabSize =
-AFW_UTF8_LITERAL("tabSize");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_tableLayout =
-AFW_UTF8_LITERAL("tableLayout");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_tabs =
-AFW_UTF8_LITERAL("tabs");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_tag =
-AFW_UTF8_LITERAL("tag");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_target =
-AFW_UTF8_LITERAL("target");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_targetPosition =
-AFW_UTF8_LITERAL("targetPosition");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_testDataParameter =
-AFW_UTF8_LITERAL("testDataParameter");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_text =
-AFW_UTF8_LITERAL("text");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textAlign =
-AFW_UTF8_LITERAL("textAlign");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textAlignLast =
-AFW_UTF8_LITERAL("textAlignLast");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textDecoration =
-AFW_UTF8_LITERAL("textDecoration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textDecorationColor =
-AFW_UTF8_LITERAL("textDecorationColor");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textDecorationLine =
-AFW_UTF8_LITERAL("textDecorationLine");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textDecorationStyle =
-AFW_UTF8_LITERAL("textDecorationStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textIndent =
-AFW_UTF8_LITERAL("textIndent");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textJustify =
-AFW_UTF8_LITERAL("textJustify");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textOverflow =
-AFW_UTF8_LITERAL("textOverflow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textShadow =
-AFW_UTF8_LITERAL("textShadow");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_textTransform =
-AFW_UTF8_LITERAL("textTransform");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_title =
-AFW_UTF8_LITERAL("title");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_tooltip =
-AFW_UTF8_LITERAL("tooltip");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_top =
-AFW_UTF8_LITERAL("top");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transform =
-AFW_UTF8_LITERAL("transform");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transformOrigin =
-AFW_UTF8_LITERAL("transformOrigin");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transformStyle =
-AFW_UTF8_LITERAL("transformStyle");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transition =
-AFW_UTF8_LITERAL("transition");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transitionDelay =
-AFW_UTF8_LITERAL("transitionDelay");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transitionDuration =
-AFW_UTF8_LITERAL("transitionDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transitionProperty =
-AFW_UTF8_LITERAL("transitionProperty");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_transitionTimingFunction =
-AFW_UTF8_LITERAL("transitionTimingFunction");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_type =
-AFW_UTF8_LITERAL("type");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_unicodeBidi =
-AFW_UTF8_LITERAL("unicodeBidi");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_url =
-AFW_UTF8_LITERAL("url");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_userSelect =
-AFW_UTF8_LITERAL("userSelect");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_utilities =
-AFW_UTF8_LITERAL("utilities");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_value =
-AFW_UTF8_LITERAL("value");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_variant =
-AFW_UTF8_LITERAL("variant");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_vertical =
-AFW_UTF8_LITERAL("vertical");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_verticalAlign =
-AFW_UTF8_LITERAL("verticalAlign");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_visibility =
-AFW_UTF8_LITERAL("visibility");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_whiteSpace =
-AFW_UTF8_LITERAL("whiteSpace");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_widows =
-AFW_UTF8_LITERAL("widows");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_width =
-AFW_UTF8_LITERAL("width");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_wordBreak =
-AFW_UTF8_LITERAL("wordBreak");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_wordSpacing =
-AFW_UTF8_LITERAL("wordSpacing");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_wordWrap =
-AFW_UTF8_LITERAL("wordWrap");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_wrap =
-AFW_UTF8_LITERAL("wrap");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_x =
-AFW_UTF8_LITERAL("x");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_xl =
-AFW_UTF8_LITERAL("xl");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_xlDown =
-AFW_UTF8_LITERAL("xlDown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_xsDown =
-AFW_UTF8_LITERAL("xsDown");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_xxl =
-AFW_UTF8_LITERAL("xxl");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_xxxl =
-AFW_UTF8_LITERAL("xxxl");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_y =
-AFW_UTF8_LITERAL("y");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_yearMonthDuration =
-AFW_UTF8_LITERAL("yearMonthDuration");
-
-AFW_COMPONENTS_DEFINE_CONST_DATA(afw_utf8_t) afw_components_s_zIndex =
-AFW_UTF8_LITERAL("zIndex");
+const afw_value_string_t afw_components_v_Autocomplete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Autocomplete")
+};
+
+const afw_value_string_t afw_components_v_Box = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Box")
+};
+
+const afw_value_string_t afw_components_v_Breadcrumb = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Breadcrumb")
+};
+
+const afw_value_string_t afw_components_v_Button = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Button")
+};
+
+const afw_value_string_t afw_components_v_Callout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Callout")
+};
+
+const afw_value_string_t afw_components_v_Chart = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Chart")
+};
+
+const afw_value_string_t afw_components_v_Checkbox = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Checkbox")
+};
+
+const afw_value_string_t afw_components_v_ChoiceGroup = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ChoiceGroup")
+};
+
+const afw_value_string_t afw_components_v_CodeEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("CodeEditor")
+};
+
+const afw_value_string_t afw_components_v_Collapsible = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Collapsible")
+};
+
+const afw_value_string_t afw_components_v_DatePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DatePicker")
+};
+
+const afw_value_string_t afw_components_v_DateTimePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DateTimePicker")
+};
+
+const afw_value_string_t afw_components_v_Dialog = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Dialog")
+};
+
+const afw_value_string_t afw_components_v_DiffEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DiffEditor")
+};
+
+const afw_value_string_t afw_components_v_Divider = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Divider")
+};
+
+const afw_value_string_t afw_components_v_Drawer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Drawer")
+};
+
+const afw_value_string_t afw_components_v_Dropdown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Dropdown")
+};
+
+const afw_value_string_t afw_components_v_DropdownEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("DropdownEditor")
+};
+
+const afw_value_string_t afw_components_v_EditableCallout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("EditableCallout")
+};
+
+const afw_value_string_t afw_components_v_EditableLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("EditableLabel")
+};
+
+const afw_value_string_t afw_components_v_Hidden = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Hidden")
+};
+
+const afw_value_string_t afw_components_v_Icon = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Icon")
+};
+
+const afw_value_string_t afw_components_v_Image = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Image")
+};
+
+const afw_value_string_t afw_components_v_Link = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Link")
+};
+
+const afw_value_string_t afw_components_v_List = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("List")
+};
+
+const afw_value_string_t afw_components_v_ListEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ListEditor")
+};
+
+const afw_value_string_t afw_components_v_Menu = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Menu")
+};
+
+const afw_value_string_t afw_components_v_Message = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Message")
+};
+
+const afw_value_string_t afw_components_v_Modal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Modal")
+};
+
+const afw_value_string_t afw_components_v_Native = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Native")
+};
+
+const afw_value_string_t afw_components_v_Nav = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Nav")
+};
+
+const afw_value_string_t afw_components_v_Paper = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Paper")
+};
+
+const afw_value_string_t afw_components_v_Picker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Picker")
+};
+
+const afw_value_string_t afw_components_v_Responsive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Responsive")
+};
+
+const afw_value_string_t afw_components_v_Skeleton = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Skeleton")
+};
+
+const afw_value_string_t afw_components_v_Slider = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Slider")
+};
+
+const afw_value_string_t afw_components_v_Snackbar = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Snackbar")
+};
+
+const afw_value_string_t afw_components_v_SpinButton = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("SpinButton")
+};
+
+const afw_value_string_t afw_components_v_Spinner = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Spinner")
+};
+
+const afw_value_string_t afw_components_v_Stepper = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Stepper")
+};
+
+const afw_value_string_t afw_components_v_Table = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Table")
+};
+
+const afw_value_string_t afw_components_v_Tabs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Tabs")
+};
+
+const afw_value_string_t afw_components_v_TextField = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("TextField")
+};
+
+const afw_value_string_t afw_components_v_TimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("TimeDuration")
+};
+
+const afw_value_string_t afw_components_v_TimePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("TimePicker")
+};
+
+const afw_value_string_t afw_components_v_TimezonePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("TimezonePicker")
+};
+
+const afw_value_string_t afw_components_v_Toggle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Toggle")
+};
+
+const afw_value_string_t afw_components_v_ToggleButtons = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ToggleButtons")
+};
+
+const afw_value_string_t afw_components_v_Toolbar = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Toolbar")
+};
+
+const afw_value_string_t afw_components_v_Tooltip = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Tooltip")
+};
+
+const afw_value_string_t afw_components_v_Tree = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Tree")
+};
+
+const afw_value_string_t afw_components_v_Typography = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Typography")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentTypeCategory_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentTypeCategory_")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_AdaptiveProperty")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Autocomplete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Autocomplete")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Autocomplete_Option")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Box = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Box")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_BoxItem = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_BoxItem")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Breadcrumb = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Breadcrumb")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_BreadcrumbItem")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Button = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Button")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Callout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Callout")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Chart = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Chart")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Chart_Data = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Chart_Data")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Checkbox = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Checkbox")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ChoiceGroup")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ChoiceGroup_Option")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_CodeEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_CodeEditor")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Collapsible = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Collapsible")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Common = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Common")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DatePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DatePicker")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DateTimePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DateTimePicker")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dialog = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Dialog")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DiffEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DiffEditor")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Divider = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Divider")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Drawer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Drawer")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dropdown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Dropdown")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DropdownEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_DropdownEditor")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Dropdown_Option")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_EditableCallout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_EditableCallout")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_EditableLabel = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_EditableLabel")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Hidden = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Hidden")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Icon = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Icon")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Image = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Image")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Label")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Link = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Link")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_List = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_List")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ListEditor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ListEditor")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ListEditor_Item")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Menu = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Menu")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Menu_Item = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Menu_Item")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Message = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Message")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Modal = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Modal")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Native = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Native")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Nav = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Nav")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Nav_Item = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Nav_Item")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Paper = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Paper")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Picker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Picker")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Picker_Item = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Picker_Item")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Responsive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Responsive")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ResponsiveCol")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ResponsiveRow")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Responsive_Breakpoints")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Skeleton = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Skeleton")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Slider = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Slider")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Snackbar = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Snackbar")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_SpinButton = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_SpinButton")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Spinner = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Spinner")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Stepper = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Stepper")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Style = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Style")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Table")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table_Column = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Table_Column")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table_Row = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Table_Row")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tabs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tabs")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tabs_Tab")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TextField = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TextField")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TimeDuration")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TimePicker")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimezonePicker = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_TimezonePicker")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Toggle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Toggle")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ToggleButtons = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_ToggleButtons")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Toolbar = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Toolbar")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tooltip = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tooltip")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tree = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tree")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tree_Node = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Tree_Node")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Typography = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayoutComponentType_Typography")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_embedded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_embedded")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_filterOptions")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_preferredComponent")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveLayout_ObjectResponsive_sortOptions")
+};
+
+const afw_value_string_t afw_components_v__AdaptiveObjectType_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_AdaptiveObjectType_")
+};
+
+const afw_value_string_t afw_components_v__meta_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("_meta_")
+};
+
+const afw_value_string_t afw_components_v_a_aria_label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("aria-label")
+};
+
+const afw_value_string_t afw_components_v_a_aria_labelledby = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("aria-labelledby")
+};
+
+const afw_value_string_t afw_components_v_activeStep = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("activeStep")
+};
+
+const afw_value_string_t afw_components_v_alignContent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("alignContent")
+};
+
+const afw_value_string_t afw_components_v_alignItems = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("alignItems")
+};
+
+const afw_value_string_t afw_components_v_alignSelf = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("alignSelf")
+};
+
+const afw_value_string_t afw_components_v_allowAdd = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowAdd")
+};
+
+const afw_value_string_t afw_components_v_allowChange = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowChange")
+};
+
+const afw_value_string_t afw_components_v_allowDelete = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowDelete")
+};
+
+const afw_value_string_t afw_components_v_allowEntity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowEntity")
+};
+
+const afw_value_string_t afw_components_v_allowWrite = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowWrite")
+};
+
+const afw_value_string_t afw_components_v_allowedValues = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("allowedValues")
+};
+
+const afw_value_string_t afw_components_v_anchor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("anchor")
+};
+
+const afw_value_string_t afw_components_v_animateDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animateDuration")
+};
+
+const afw_value_string_t afw_components_v_animation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animation")
+};
+
+const afw_value_string_t afw_components_v_animationDelay = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationDelay")
+};
+
+const afw_value_string_t afw_components_v_animationDirection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationDirection")
+};
+
+const afw_value_string_t afw_components_v_animationDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationDuration")
+};
+
+const afw_value_string_t afw_components_v_animationFillMode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationFillMode")
+};
+
+const afw_value_string_t afw_components_v_animationIterationCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationIterationCount")
+};
+
+const afw_value_string_t afw_components_v_animationName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationName")
+};
+
+const afw_value_string_t afw_components_v_animationPlayState = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationPlayState")
+};
+
+const afw_value_string_t afw_components_v_animationTimingFunction = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("animationTimingFunction")
+};
+
+const afw_value_string_t afw_components_v_array = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("array")
+};
+
+const afw_value_string_t afw_components_v_backfaceVisibility = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backfaceVisibility")
+};
+
+const afw_value_string_t afw_components_v_background = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("background")
+};
+
+const afw_value_string_t afw_components_v_backgroundAttachment = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundAttachment")
+};
+
+const afw_value_string_t afw_components_v_backgroundClip = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundClip")
+};
+
+const afw_value_string_t afw_components_v_backgroundColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundColor")
+};
+
+const afw_value_string_t afw_components_v_backgroundImage = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundImage")
+};
+
+const afw_value_string_t afw_components_v_backgroundOrigin = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundOrigin")
+};
+
+const afw_value_string_t afw_components_v_backgroundPosition = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundPosition")
+};
+
+const afw_value_string_t afw_components_v_backgroundRepeat = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundRepeat")
+};
+
+const afw_value_string_t afw_components_v_backgroundSize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("backgroundSize")
+};
+
+const afw_value_string_t afw_components_v_badge = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("badge")
+};
+
+const afw_value_string_t afw_components_v_boolean = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boolean")
+};
+
+const afw_value_string_t afw_components_v_border = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("border")
+};
+
+const afw_value_string_t afw_components_v_borderBottom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderBottom")
+};
+
+const afw_value_string_t afw_components_v_borderBottomColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderBottomColor")
+};
+
+const afw_value_string_t afw_components_v_borderBottomLeftRadius = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderBottomLeftRadius")
+};
+
+const afw_value_string_t afw_components_v_borderBottomRightRadius = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderBottomRightRadius")
+};
+
+const afw_value_string_t afw_components_v_borderBottomStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderBottomStyle")
+};
+
+const afw_value_string_t afw_components_v_borderBottomWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderBottomWidth")
+};
+
+const afw_value_string_t afw_components_v_borderCollapse = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderCollapse")
+};
+
+const afw_value_string_t afw_components_v_borderColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderColor")
+};
+
+const afw_value_string_t afw_components_v_borderImage = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderImage")
+};
+
+const afw_value_string_t afw_components_v_borderImageOutset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderImageOutset")
+};
+
+const afw_value_string_t afw_components_v_borderImageRepeat = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderImageRepeat")
+};
+
+const afw_value_string_t afw_components_v_borderImageSlice = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderImageSlice")
+};
+
+const afw_value_string_t afw_components_v_borderImageSource = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderImageSource")
+};
+
+const afw_value_string_t afw_components_v_borderImageWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderImageWidth")
+};
+
+const afw_value_string_t afw_components_v_borderLeft = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderLeft")
+};
+
+const afw_value_string_t afw_components_v_borderLeftColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderLeftColor")
+};
+
+const afw_value_string_t afw_components_v_borderLeftStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderLeftStyle")
+};
+
+const afw_value_string_t afw_components_v_borderLeftWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderLeftWidth")
+};
+
+const afw_value_string_t afw_components_v_borderRadius = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderRadius")
+};
+
+const afw_value_string_t afw_components_v_borderRight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderRight")
+};
+
+const afw_value_string_t afw_components_v_borderRightColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderRightColor")
+};
+
+const afw_value_string_t afw_components_v_borderRightStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderRightStyle")
+};
+
+const afw_value_string_t afw_components_v_borderRightWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderRightWidth")
+};
+
+const afw_value_string_t afw_components_v_borderSpacing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderSpacing")
+};
+
+const afw_value_string_t afw_components_v_borderStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderStyle")
+};
+
+const afw_value_string_t afw_components_v_borderTop = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderTop")
+};
+
+const afw_value_string_t afw_components_v_borderTopColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderTopColor")
+};
+
+const afw_value_string_t afw_components_v_borderTopLeftRadius = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderTopLeftRadius")
+};
+
+const afw_value_string_t afw_components_v_borderTopRightRadius = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderTopRightRadius")
+};
+
+const afw_value_string_t afw_components_v_borderTopStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderTopStyle")
+};
+
+const afw_value_string_t afw_components_v_borderTopWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderTopWidth")
+};
+
+const afw_value_string_t afw_components_v_borderWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("borderWidth")
+};
+
+const afw_value_string_t afw_components_v_bottom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("bottom")
+};
+
+const afw_value_string_t afw_components_v_boxDecorationBreak = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boxDecorationBreak")
+};
+
+const afw_value_string_t afw_components_v_boxShadow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boxShadow")
+};
+
+const afw_value_string_t afw_components_v_boxSide = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boxSide")
+};
+
+const afw_value_string_t afw_components_v_boxSizing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("boxSizing")
+};
+
+const afw_value_string_t afw_components_v_breakpoints = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("breakpoints")
+};
+
+const afw_value_string_t afw_components_v_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("brief")
+};
+
+const afw_value_string_t afw_components_v_canDismiss = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("canDismiss")
+};
+
+const afw_value_string_t afw_components_v_captionSide = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("captionSide")
+};
+
+const afw_value_string_t afw_components_v_category = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("category")
+};
+
+const afw_value_string_t afw_components_v_children = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("children")
+};
+
+const afw_value_string_t afw_components_v_className = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("className")
+};
+
+const afw_value_string_t afw_components_v_clear = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("clear")
+};
+
+const afw_value_string_t afw_components_v_clip = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("clip")
+};
+
+const afw_value_string_t afw_components_v_collectionURIs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("collectionURIs")
+};
+
+const afw_value_string_t afw_components_v_color = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("color")
+};
+
+const afw_value_string_t afw_components_v_columnCount = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnCount")
+};
+
+const afw_value_string_t afw_components_v_columnFill = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnFill")
+};
+
+const afw_value_string_t afw_components_v_columnGap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnGap")
+};
+
+const afw_value_string_t afw_components_v_columnRule = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnRule")
+};
+
+const afw_value_string_t afw_components_v_columnRuleColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnRuleColor")
+};
+
+const afw_value_string_t afw_components_v_columnRuleStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnRuleStyle")
+};
+
+const afw_value_string_t afw_components_v_columnRuleWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnRuleWidth")
+};
+
+const afw_value_string_t afw_components_v_columnSpan = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnSpan")
+};
+
+const afw_value_string_t afw_components_v_columnWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columnWidth")
+};
+
+const afw_value_string_t afw_components_v_columns = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("columns")
+};
+
+const afw_value_string_t afw_components_v_compact = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("compact")
+};
+
+const afw_value_string_t afw_components_v_component = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("component")
+};
+
+const afw_value_string_t afw_components_v_componentProps = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("componentProps")
+};
+
+const afw_value_string_t afw_components_v_componentType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("componentType")
+};
+
+const afw_value_string_t afw_components_v_containers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("containers")
+};
+
+const afw_value_string_t afw_components_v_contains = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("contains")
+};
+
+const afw_value_string_t afw_components_v_content = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("content")
+};
+
+const afw_value_string_t afw_components_v_counterIncrement = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("counterIncrement")
+};
+
+const afw_value_string_t afw_components_v_counterReset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("counterReset")
+};
+
+const afw_value_string_t afw_components_v_cssFloat = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("cssFloat")
+};
+
+const afw_value_string_t afw_components_v_cursor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("cursor")
+};
+
+const afw_value_string_t afw_components_v_data = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("data")
+};
+
+const afw_value_string_t afw_components_v_dataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataType")
+};
+
+const afw_value_string_t afw_components_v_dataTypeParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dataTypeParameter")
+};
+
+const afw_value_string_t afw_components_v_dateTime = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dateTime")
+};
+
+const afw_value_string_t afw_components_v_dayTimeDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dayTimeDuration")
+};
+
+const afw_value_string_t afw_components_v_default = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("default")
+};
+
+const afw_value_string_t afw_components_v_defaultValue = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("defaultValue")
+};
+
+const afw_value_string_t afw_components_v_delay = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("delay")
+};
+
+const afw_value_string_t afw_components_v_dense = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dense")
+};
+
+const afw_value_string_t afw_components_v_description = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("description")
+};
+
+const afw_value_string_t afw_components_v_designMode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("designMode")
+};
+
+const afw_value_string_t afw_components_v_direction = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("direction")
+};
+
+const afw_value_string_t afw_components_v_disabled = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("disabled")
+};
+
+const afw_value_string_t afw_components_v_display = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("display")
+};
+
+const afw_value_string_t afw_components_v_dropdown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("dropdown")
+};
+
+const afw_value_string_t afw_components_v_duration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("duration")
+};
+
+const afw_value_string_t afw_components_v_editable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("editable")
+};
+
+const afw_value_string_t afw_components_v_editors = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("editors")
+};
+
+const afw_value_string_t afw_components_v_elevation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("elevation")
+};
+
+const afw_value_string_t afw_components_v_embedded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("embedded")
+};
+
+const afw_value_string_t afw_components_v_emptyCells = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("emptyCells")
+};
+
+const afw_value_string_t afw_components_v_exclusive = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("exclusive")
+};
+
+const afw_value_string_t afw_components_v_expandedKeys = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("expandedKeys")
+};
+
+const afw_value_string_t afw_components_v_fieldName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fieldName")
+};
+
+const afw_value_string_t afw_components_v_filter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filter")
+};
+
+const afw_value_string_t afw_components_v_filterCondAndProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterCondAndProperties")
+};
+
+const afw_value_string_t afw_components_v_filterCondOrProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterCondOrProperties")
+};
+
+const afw_value_string_t afw_components_v_filterExcludeEmbeddedProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterExcludeEmbeddedProperties")
+};
+
+const afw_value_string_t afw_components_v_filterExcludeProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterExcludeProperties")
+};
+
+const afw_value_string_t afw_components_v_filterOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterOptions")
+};
+
+const afw_value_string_t afw_components_v_filterProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterProperties")
+};
+
+const afw_value_string_t afw_components_v_filterRequiredProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterRequiredProperties")
+};
+
+const afw_value_string_t afw_components_v_filterValuedProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("filterValuedProperties")
+};
+
+const afw_value_string_t afw_components_v_flex = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flex")
+};
+
+const afw_value_string_t afw_components_v_flexBasis = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flexBasis")
+};
+
+const afw_value_string_t afw_components_v_flexDirection = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flexDirection")
+};
+
+const afw_value_string_t afw_components_v_flexFlow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flexFlow")
+};
+
+const afw_value_string_t afw_components_v_flexGrow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flexGrow")
+};
+
+const afw_value_string_t afw_components_v_flexShrink = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flexShrink")
+};
+
+const afw_value_string_t afw_components_v_flexWrap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("flexWrap")
+};
+
+const afw_value_string_t afw_components_v_font = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("font")
+};
+
+const afw_value_string_t afw_components_v_fontFamily = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontFamily")
+};
+
+const afw_value_string_t afw_components_v_fontSize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontSize")
+};
+
+const afw_value_string_t afw_components_v_fontSizeAdjust = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontSizeAdjust")
+};
+
+const afw_value_string_t afw_components_v_fontStretch = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontStretch")
+};
+
+const afw_value_string_t afw_components_v_fontStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontStyle")
+};
+
+const afw_value_string_t afw_components_v_fontVariant = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontVariant")
+};
+
+const afw_value_string_t afw_components_v_fontWeight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fontWeight")
+};
+
+const afw_value_string_t afw_components_v_footer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("footer")
+};
+
+const afw_value_string_t afw_components_v_for = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("for")
+};
+
+const afw_value_string_t afw_components_v_fullScreen = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("fullScreen")
+};
+
+const afw_value_string_t afw_components_v_gapSpace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("gapSpace")
+};
+
+const afw_value_string_t afw_components_v_grow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("grow")
+};
+
+const afw_value_string_t afw_components_v_hangingPunctuation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hangingPunctuation")
+};
+
+const afw_value_string_t afw_components_v_headerItems = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("headerItems")
+};
+
+const afw_value_string_t afw_components_v_headerOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("headerOptions")
+};
+
+const afw_value_string_t afw_components_v_height = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("height")
+};
+
+const afw_value_string_t afw_components_v_hyphens = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("hyphens")
+};
+
+const afw_value_string_t afw_components_v_icon = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("icon")
+};
+
+const afw_value_string_t afw_components_v_iconName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("iconName")
+};
+
+const afw_value_string_t afw_components_v_id = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("id")
+};
+
+const afw_value_string_t afw_components_v_imageOrientation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("imageOrientation")
+};
+
+const afw_value_string_t afw_components_v_implementationId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("implementationId")
+};
+
+const afw_value_string_t afw_components_v_indirect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("indirect")
+};
+
+const afw_value_string_t afw_components_v_inputs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("inputs")
+};
+
+const afw_value_string_t afw_components_v_instanceObjectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("instanceObjectType")
+};
+
+const afw_value_string_t afw_components_v_integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("integer")
+};
+
+const afw_value_string_t afw_components_v_isBlocking = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isBlocking")
+};
+
+const afw_value_string_t afw_components_v_isCollapsed = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isCollapsed")
+};
+
+const afw_value_string_t afw_components_v_isExpanded = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isExpanded")
+};
+
+const afw_value_string_t afw_components_v_isHeaderVisible = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isHeaderVisible")
+};
+
+const afw_value_string_t afw_components_v_isLoading = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isLoading")
+};
+
+const afw_value_string_t afw_components_v_isMultiline = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isMultiline")
+};
+
+const afw_value_string_t afw_components_v_isResizable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isResizable")
+};
+
+const afw_value_string_t afw_components_v_isolation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("isolation")
+};
+
+const afw_value_string_t afw_components_v_items = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("items")
+};
+
+const afw_value_string_t afw_components_v_justify = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("justify")
+};
+
+const afw_value_string_t afw_components_v_justifyContent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("justifyContent")
+};
+
+const afw_value_string_t afw_components_v_key = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("key")
+};
+
+const afw_value_string_t afw_components_v_label = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("label")
+};
+
+const afw_value_string_t afw_components_v_large = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("large")
+};
+
+const afw_value_string_t afw_components_v_left = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("left")
+};
+
+const afw_value_string_t afw_components_v_letterSpacing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("letterSpacing")
+};
+
+const afw_value_string_t afw_components_v_lgDown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lgDown")
+};
+
+const afw_value_string_t afw_components_v_lineHeight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("lineHeight")
+};
+
+const afw_value_string_t afw_components_v_listStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("listStyle")
+};
+
+const afw_value_string_t afw_components_v_listStyleImage = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("listStyleImage")
+};
+
+const afw_value_string_t afw_components_v_listStylePosition = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("listStylePosition")
+};
+
+const afw_value_string_t afw_components_v_listStyleType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("listStyleType")
+};
+
+const afw_value_string_t afw_components_v_margin = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("margin")
+};
+
+const afw_value_string_t afw_components_v_marginBottom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("marginBottom")
+};
+
+const afw_value_string_t afw_components_v_marginLeft = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("marginLeft")
+};
+
+const afw_value_string_t afw_components_v_marginRight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("marginRight")
+};
+
+const afw_value_string_t afw_components_v_marginTop = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("marginTop")
+};
+
+const afw_value_string_t afw_components_v_max = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("max")
+};
+
+const afw_value_string_t afw_components_v_maxHeight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxHeight")
+};
+
+const afw_value_string_t afw_components_v_maxWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("maxWidth")
+};
+
+const afw_value_string_t afw_components_v_mdDown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("mdDown")
+};
+
+const afw_value_string_t afw_components_v_medium = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("medium")
+};
+
+const afw_value_string_t afw_components_v_message = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("message")
+};
+
+const afw_value_string_t afw_components_v_min = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("min")
+};
+
+const afw_value_string_t afw_components_v_minHeight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("minHeight")
+};
+
+const afw_value_string_t afw_components_v_minWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("minWidth")
+};
+
+const afw_value_string_t afw_components_v_modified = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("modified")
+};
+
+const afw_value_string_t afw_components_v_multiline = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("multiline")
+};
+
+const afw_value_string_t afw_components_v_multiselect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("multiselect")
+};
+
+const afw_value_string_t afw_components_v_name = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("name")
+};
+
+const afw_value_string_t afw_components_v_navDown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("navDown")
+};
+
+const afw_value_string_t afw_components_v_navIndex = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("navIndex")
+};
+
+const afw_value_string_t afw_components_v_navLeft = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("navLeft")
+};
+
+const afw_value_string_t afw_components_v_navRight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("navRight")
+};
+
+const afw_value_string_t afw_components_v_navUp = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("navUp")
+};
+
+const afw_value_string_t afw_components_v_navigation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("navigation")
+};
+
+const afw_value_string_t afw_components_v_nestingDepth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("nestingDepth")
+};
+
+const afw_value_string_t afw_components_v_object = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("object")
+};
+
+const afw_value_string_t afw_components_v_objectFit = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectFit")
+};
+
+const afw_value_string_t afw_components_v_objectIdPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectIdPropertyName")
+};
+
+const afw_value_string_t afw_components_v_objectPosition = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectPosition")
+};
+
+const afw_value_string_t afw_components_v_objectType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("objectType")
+};
+
+const afw_value_string_t afw_components_v_offText = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("offText")
+};
+
+const afw_value_string_t afw_components_v_onText = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("onText")
+};
+
+const afw_value_string_t afw_components_v_opacity = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("opacity")
+};
+
+const afw_value_string_t afw_components_v_open = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("open")
+};
+
+const afw_value_string_t afw_components_v_options = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("options")
+};
+
+const afw_value_string_t afw_components_v_order = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("order")
+};
+
+const afw_value_string_t afw_components_v_orientation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("orientation")
+};
+
+const afw_value_string_t afw_components_v_original = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("original")
+};
+
+const afw_value_string_t afw_components_v_orphans = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("orphans")
+};
+
+const afw_value_string_t afw_components_v_otherProperties = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("otherProperties")
+};
+
+const afw_value_string_t afw_components_v_outline = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("outline")
+};
+
+const afw_value_string_t afw_components_v_outlineColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("outlineColor")
+};
+
+const afw_value_string_t afw_components_v_outlineOffset = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("outlineOffset")
+};
+
+const afw_value_string_t afw_components_v_outlineStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("outlineStyle")
+};
+
+const afw_value_string_t afw_components_v_outlineWidth = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("outlineWidth")
+};
+
+const afw_value_string_t afw_components_v_overflow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("overflow")
+};
+
+const afw_value_string_t afw_components_v_overflowX = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("overflowX")
+};
+
+const afw_value_string_t afw_components_v_overflowY = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("overflowY")
+};
+
+const afw_value_string_t afw_components_v_padding = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("padding")
+};
+
+const afw_value_string_t afw_components_v_paddingBottom = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("paddingBottom")
+};
+
+const afw_value_string_t afw_components_v_paddingLeft = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("paddingLeft")
+};
+
+const afw_value_string_t afw_components_v_paddingRight = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("paddingRight")
+};
+
+const afw_value_string_t afw_components_v_paddingTop = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("paddingTop")
+};
+
+const afw_value_string_t afw_components_v_pageBreakAfter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pageBreakAfter")
+};
+
+const afw_value_string_t afw_components_v_pageBreakBefore = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pageBreakBefore")
+};
+
+const afw_value_string_t afw_components_v_pageBreakInside = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pageBreakInside")
+};
+
+const afw_value_string_t afw_components_v_parentPaths = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("parentPaths")
+};
+
+const afw_value_string_t afw_components_v_perspective = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("perspective")
+};
+
+const afw_value_string_t afw_components_v_perspectiveOrigin = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("perspectiveOrigin")
+};
+
+const afw_value_string_t afw_components_v_pickers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("pickers")
+};
+
+const afw_value_string_t afw_components_v_placeholder = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("placeholder")
+};
+
+const afw_value_string_t afw_components_v_position = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("position")
+};
+
+const afw_value_string_t afw_components_v_possibleValues = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("possibleValues")
+};
+
+const afw_value_string_t afw_components_v_preferredComponents = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("preferredComponents")
+};
+
+const afw_value_string_t afw_components_v_propertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyName")
+};
+
+const afw_value_string_t afw_components_v_propertyTypes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("propertyTypes")
+};
+
+const afw_value_string_t afw_components_v_quotes = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("quotes")
+};
+
+const afw_value_string_t afw_components_v_readOnly = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("readOnly")
+};
+
+const afw_value_string_t afw_components_v_readOnlyOrientation = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("readOnlyOrientation")
+};
+
+const afw_value_string_t afw_components_v_recurse = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("recurse")
+};
+
+const afw_value_string_t afw_components_v_required = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("required")
+};
+
+const afw_value_string_t afw_components_v_resize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("resize")
+};
+
+const afw_value_string_t afw_components_v_right = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("right")
+};
+
+const afw_value_string_t afw_components_v_role = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("role")
+};
+
+const afw_value_string_t afw_components_v_rows = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("rows")
+};
+
+const afw_value_string_t afw_components_v_secondary = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("secondary")
+};
+
+const afw_value_string_t afw_components_v_secondaryText = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("secondaryText")
+};
+
+const afw_value_string_t afw_components_v_selectable = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("selectable")
+};
+
+const afw_value_string_t afw_components_v_selected = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("selected")
+};
+
+const afw_value_string_t afw_components_v_selectedKey = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("selectedKey")
+};
+
+const afw_value_string_t afw_components_v_selectedKeys = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("selectedKeys")
+};
+
+const afw_value_string_t afw_components_v_selectionMode = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("selectionMode")
+};
+
+const afw_value_string_t afw_components_v_showClose = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showClose")
+};
+
+const afw_value_string_t afw_components_v_showCollapse = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showCollapse")
+};
+
+const afw_value_string_t afw_components_v_showDescriptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showDescriptions")
+};
+
+const afw_value_string_t afw_components_v_showGutter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showGutter")
+};
+
+const afw_value_string_t afw_components_v_showLabels = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showLabels")
+};
+
+const afw_value_string_t afw_components_v_showLineNumbers = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showLineNumbers")
+};
+
+const afw_value_string_t afw_components_v_showMeta = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showMeta")
+};
+
+const afw_value_string_t afw_components_v_showNumber = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showNumber")
+};
+
+const afw_value_string_t afw_components_v_showPrintMargin = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("showPrintMargin")
+};
+
+const afw_value_string_t afw_components_v_shrink = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("shrink")
+};
+
+const afw_value_string_t afw_components_v_size = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("size")
+};
+
+const afw_value_string_t afw_components_v_smDown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("smDown")
+};
+
+const afw_value_string_t afw_components_v_small = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("small")
+};
+
+const afw_value_string_t afw_components_v_sortByDataType = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sortByDataType")
+};
+
+const afw_value_string_t afw_components_v_sortByPropertyName = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sortByPropertyName")
+};
+
+const afw_value_string_t afw_components_v_sortByRequired = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sortByRequired")
+};
+
+const afw_value_string_t afw_components_v_sortOptions = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("sortOptions")
+};
+
+const afw_value_string_t afw_components_v_source = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("source")
+};
+
+const afw_value_string_t afw_components_v_spacing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("spacing")
+};
+
+const afw_value_string_t afw_components_v_square = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("square")
+};
+
+const afw_value_string_t afw_components_v_src = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("src")
+};
+
+const afw_value_string_t afw_components_v_status = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("status")
+};
+
+const afw_value_string_t afw_components_v_step = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("step")
+};
+
+const afw_value_string_t afw_components_v_steps = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("steps")
+};
+
+const afw_value_string_t afw_components_v_string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("string")
+};
+
+const afw_value_string_t afw_components_v_structured = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("structured")
+};
+
+const afw_value_string_t afw_components_v_style = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("style")
+};
+
+const afw_value_string_t afw_components_v_subText = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("subText")
+};
+
+const afw_value_string_t afw_components_v_tabSize = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tabSize")
+};
+
+const afw_value_string_t afw_components_v_tableLayout = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tableLayout")
+};
+
+const afw_value_string_t afw_components_v_tabs = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tabs")
+};
+
+const afw_value_string_t afw_components_v_tag = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tag")
+};
+
+const afw_value_string_t afw_components_v_target = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("target")
+};
+
+const afw_value_string_t afw_components_v_targetPosition = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("targetPosition")
+};
+
+const afw_value_string_t afw_components_v_testDataParameter = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("testDataParameter")
+};
+
+const afw_value_string_t afw_components_v_text = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("text")
+};
+
+const afw_value_string_t afw_components_v_textAlign = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textAlign")
+};
+
+const afw_value_string_t afw_components_v_textAlignLast = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textAlignLast")
+};
+
+const afw_value_string_t afw_components_v_textDecoration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textDecoration")
+};
+
+const afw_value_string_t afw_components_v_textDecorationColor = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textDecorationColor")
+};
+
+const afw_value_string_t afw_components_v_textDecorationLine = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textDecorationLine")
+};
+
+const afw_value_string_t afw_components_v_textDecorationStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textDecorationStyle")
+};
+
+const afw_value_string_t afw_components_v_textIndent = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textIndent")
+};
+
+const afw_value_string_t afw_components_v_textJustify = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textJustify")
+};
+
+const afw_value_string_t afw_components_v_textOverflow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textOverflow")
+};
+
+const afw_value_string_t afw_components_v_textShadow = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textShadow")
+};
+
+const afw_value_string_t afw_components_v_textTransform = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("textTransform")
+};
+
+const afw_value_string_t afw_components_v_title = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("title")
+};
+
+const afw_value_string_t afw_components_v_tooltip = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("tooltip")
+};
+
+const afw_value_string_t afw_components_v_top = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("top")
+};
+
+const afw_value_string_t afw_components_v_transform = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transform")
+};
+
+const afw_value_string_t afw_components_v_transformOrigin = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transformOrigin")
+};
+
+const afw_value_string_t afw_components_v_transformStyle = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transformStyle")
+};
+
+const afw_value_string_t afw_components_v_transition = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transition")
+};
+
+const afw_value_string_t afw_components_v_transitionDelay = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transitionDelay")
+};
+
+const afw_value_string_t afw_components_v_transitionDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transitionDuration")
+};
+
+const afw_value_string_t afw_components_v_transitionProperty = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transitionProperty")
+};
+
+const afw_value_string_t afw_components_v_transitionTimingFunction = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("transitionTimingFunction")
+};
+
+const afw_value_string_t afw_components_v_type = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("type")
+};
+
+const afw_value_string_t afw_components_v_unicodeBidi = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("unicodeBidi")
+};
+
+const afw_value_string_t afw_components_v_url = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("url")
+};
+
+const afw_value_string_t afw_components_v_userSelect = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("userSelect")
+};
+
+const afw_value_string_t afw_components_v_utilities = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("utilities")
+};
+
+const afw_value_string_t afw_components_v_value = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("value")
+};
+
+const afw_value_string_t afw_components_v_variant = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("variant")
+};
+
+const afw_value_string_t afw_components_v_vertical = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("vertical")
+};
+
+const afw_value_string_t afw_components_v_verticalAlign = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("verticalAlign")
+};
+
+const afw_value_string_t afw_components_v_visibility = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("visibility")
+};
+
+const afw_value_string_t afw_components_v_whiteSpace = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("whiteSpace")
+};
+
+const afw_value_string_t afw_components_v_widows = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("widows")
+};
+
+const afw_value_string_t afw_components_v_width = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("width")
+};
+
+const afw_value_string_t afw_components_v_wordBreak = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("wordBreak")
+};
+
+const afw_value_string_t afw_components_v_wordSpacing = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("wordSpacing")
+};
+
+const afw_value_string_t afw_components_v_wordWrap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("wordWrap")
+};
+
+const afw_value_string_t afw_components_v_wrap = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("wrap")
+};
+
+const afw_value_string_t afw_components_v_x = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("x")
+};
+
+const afw_value_string_t afw_components_v_xl = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xl")
+};
+
+const afw_value_string_t afw_components_v_xlDown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xlDown")
+};
+
+const afw_value_string_t afw_components_v_xsDown = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xsDown")
+};
+
+const afw_value_string_t afw_components_v_xxl = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xxl")
+};
+
+const afw_value_string_t afw_components_v_xxxl = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("xxxl")
+};
+
+const afw_value_string_t afw_components_v_y = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("y")
+};
+
+const afw_value_string_t afw_components_v_yearMonthDuration = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("yearMonthDuration")
+};
+
+const afw_value_string_t afw_components_v_zIndex = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("zIndex")
+};
