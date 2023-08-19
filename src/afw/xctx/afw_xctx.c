@@ -416,3 +416,74 @@ impl_afw_xctx_release(
         afw_pool_destroy(instance->p, xctx);
     }
 }
+
+
+/* Begin begin a scope */
+AFW_DEFINE(const afw_xctx_scope_t *)
+afw_xctx_scope_begin(
+    afw_size_t symbol_count,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *p;
+    afw_xctx_scope_t *scope;
+
+    p = afw_pool_create(xctx->p, xctx);
+    scope = afw_pool_calloc(p,
+        sizeof(afw_xctx_scope_t) + (sizeof(afw_value_t *) * (symbol_count + 1)),
+        xctx);
+    scope->p = p;
+    scope->symbol_count = symbol_count;
+    xctx->current_frame_index = xctx->stack->nelts;
+    scope->local_top = xctx->stack->nelts;
+    scope->previous_static_scope = (afw_xctx_scope_t *)(xctx->current_scope);
+    xctx->current_scope = scope;
+    // Put in runtime scope.
+    return scope;
+}
+
+
+/* Begin begin a scope for closure. */
+AFW_DEFINE(void)
+afw_xctx_scope_closure_begin(
+    const afw_xctx_scope_t *enclosure_scope,
+    afw_xctx_t *xctx)
+{
+    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+}
+
+
+/**
+ * @brief Set to a scope.
+ * @param top Value returned from corresponding afw_xctx_scope_begin().
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_xctx_scope_jump_to(
+    const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
+{
+    if (scope != xctx->current_scope) {
+        //AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
+    }
+    xctx->stack->nelts = scope->local_top;
+    xctx->current_frame_index = scope->local_top;
+    xctx->current_scope = scope->previous_static_scope;
+}
+
+
+/**
+ * @brief Set end a scope.
+ * @param top Value returned from corresponding afw_xctx_scope_begin().
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_xctx_scope_release(
+    const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
+{
+    if (scope != xctx->current_scope) {
+        //AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
+    }
+    xctx->stack->nelts = scope->local_top;
+    xctx->current_frame_index = scope->local_top;
+    xctx->current_scope = scope->previous_static_scope;
+    afw_pool_release(scope->p, xctx);
+}

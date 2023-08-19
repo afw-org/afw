@@ -313,7 +313,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
     const afw_utf8_t   * value_expression;
     const afw_value_t  * value;
     const afw_value_t  * eval;
-    int                  top;
+    const afw_xctx_scope_t *scope;
 
     /* first we make sure the objectType is applicable */
     if (!afw_adaptor_impl_index_object_type_applicable(
@@ -338,7 +338,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
 
         /* create a new stack frame so that our temporary variables are
             cleared the next time we go to evaluate an expression */
-        top = afw_xctx_scope_begin(xctx);
+        scope = afw_xctx_scope_begin(1, xctx);
 
         /* Add variables for the filter and value expressions to use */
         /** @fixme These need to be custom:: variables. See issue #54. */
@@ -360,7 +360,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
         }
         AFW_FINALLY {
             /* always release the stack frame */
-            afw_xctx_scope_end(top, xctx);
+            afw_xctx_scope_release(scope, xctx);
         }
         AFW_ENDTRY;
     }

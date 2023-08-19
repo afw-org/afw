@@ -48,9 +48,9 @@ impl_call_script_function(
     const afw_value_t *const *arg;
     afw_name_value_t *cur;
     const afw_value_t *const *rest_argv;
+    const afw_xctx_scope_t *scope;
     afw_size_t rest_argc;
     const afw_array_t *rest_list;
-    int local_top;
 
     result = NULL;
     if (!afw_value_is_script_function(lambda)) {
@@ -70,7 +70,7 @@ impl_call_script_function(
     }
 
     /* Save stack top which will be restored on return. */
-    local_top = afw_xctx_scope_begin(xctx);
+    scope = afw_xctx_scope_begin(l->count + 1, xctx);
     AFW_TRY {
 
         /*
@@ -135,7 +135,7 @@ impl_call_script_function(
 
         /* Set parameter names so they will be seen as local variables. */
         for (
-            cur = ((afw_name_value_t *)xctx->stack->elts) + local_top,
+            cur = ((afw_name_value_t *)xctx->stack->elts) + scope->local_top,
             parameter_number = 1,
             params = l->parameters;
             parameter_number <= l->count;
@@ -160,7 +160,7 @@ impl_call_script_function(
     AFW_FINALLY{
 
         /* Restore xctx stack top to what it was on entry. */
-        afw_xctx_scope_end(local_top, xctx);
+        afw_xctx_scope_release(scope, xctx);
 
     }
 

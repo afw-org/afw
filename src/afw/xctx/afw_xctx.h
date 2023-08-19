@@ -201,28 +201,27 @@ AFW_ENDTRY
  */
 struct afw_xctx_scope_s {
     const afw_pool_t *p;
+    int local_top; /** @fixme Will be removed.*/
     afw_size_t static_scope_depth;
     afw_xctx_scope_t *previous_runtime_scope;
     afw_xctx_scope_t *previous_static_scope;
-    const afw_object_t *dynamic_variables; /* Can be NULL */
-    afw_size_t values_count;
-    const afw_value_t *values[1];
+    afw_size_t symbol_count;
+    /* This is often used as argv so symbols[0] may not be a symbol. */
+    const afw_value_t *symbols[1];
 };
 
 
 
 /**
  * @brief Begin begin a scope.
+ * @param symbol_count Number of symbols in scope.
  * @param xctx of caller.
- * @return Parameter to pass to end_stack_frame.
+ * @return New xctx scope.
  */
-AFW_DEFINE_STATIC_INLINE(int)
+AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_begin(
-    afw_xctx_t *xctx)
-{
-    xctx->current_frame_index = xctx->stack->nelts;
-    return xctx->stack->nelts;
-}
+    afw_size_t symbol_count,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -230,28 +229,40 @@ afw_xctx_scope_begin(
  * @param xctx of caller.
  * @return Parameter to pass to end_stack_frame.
  */
-AFW_DEFINE_STATIC_INLINE(int)
-afw_xctx_scope_closer_begin(
+AFW_DECLARE(void)
+afw_xctx_scope_closure_begin(
     const afw_xctx_scope_t *enclosure_scope,
-    afw_xctx_t *xctx)
-{
-    xctx->current_frame_index = xctx->stack->nelts;
-    return xctx->stack->nelts;
-}
+    afw_xctx_t *xctx);
 
 
 /**
- * @brief Set end a scope.
- * @param top Value returned from corresponding afw_xctx_scope_begin().
+ * @brief Jump to a scope.
+ * @param scope returned from corresponding to afw_xctx_scope_begin().
  * @param xctx of caller.
+ * 
+ * This will normally only be used at the beginning of AFW_CATCH* and
+ * AFW_FINALLY to set the scope to the one associated with the AFW_TRY without
+ * releasing it in the case where an adaptive value is going to be evaluated
+ * that needs to be in that scope. Then the associated AFW_FINALLY should call
+ * afw_xctx_scope_release() before it ends to release the scope.
  */
-AFW_DEFINE_STATIC_INLINE(void)
-afw_xctx_scope_end(
-    int top, afw_xctx_t *xctx)
-{
-    xctx->stack->nelts = top;
-    xctx->current_frame_index = top;
-}
+AFW_DEFINE(void)
+afw_xctx_scope_jump_to(
+    const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
+
+
+/**
+ * @brief Release scope.
+ * @param scope returned from corresponding to afw_xctx_scope_begin().
+ * @param xctx of caller.
+ * 
+ * This will release all resources allocated in the scope including and
+ * children. This is a release, not a destroy, so if there is a referenced
+ * closure for any scope, it will just have its reference count decremented.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_release(
+    const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
 
 
 /**
