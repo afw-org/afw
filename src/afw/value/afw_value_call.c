@@ -115,23 +115,12 @@ impl_afw_value_optional_evaluate(
     /*
      * The function value may need to be evaluated since it's likely to be
      * a variable reference or something else that needs to be evaluated
-     * first.
+     * first. Function afw_value_call_create() will have already determined
+     * if the function value is a built-in or script function definition and
+     * called the appropriate create function, so those should not be
+     * encountered here.
      */
     function_value = afw_value_evaluate(self->function_value, p, xctx);
-
-    /*
-     * @fixme 
-     * 
-     * This extra evaluate was put in for some reason but I'm not sure it's
-     * needed anymore. I've left it here commented out in case that need is
-     * discovered.
-     * 
-     * The original fixme comment was:
-     *     this should be done at the time variable is defined???
-     */
-    //if (afw_value_is_compiled_value(function_value)) {
-        //function_value = afw_value_evaluate(function_value, p, xctx);
-    //}
 
     /*
      * This is most likely a script function call since built-ins are usually
@@ -163,6 +152,8 @@ impl_afw_value_optional_evaluate(
                 (const afw_value_function_thunk_t *)function_value,
                 self->args.argc, self->args.argv, p, xctx);
     }
+
+    /* Not a value function value at this point. */
     else {
         AFW_THROW_ERROR_Z(general, "Invalid function_value", xctx);
     }
