@@ -468,8 +468,11 @@ AFW_DEFINE(void)
 afw_xctx_scope_jump_to(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {
-    if (scope != xctx->current_scope) {
-        //AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
+    if (!scope) {
+        /** @fixme release frames. */
+        xctx->current_frame_index = 0;
+        xctx->current_scope = NULL;
+        return;
     }
     xctx->stack->nelts = scope->local_top;
     xctx->current_frame_index = scope->local_top;

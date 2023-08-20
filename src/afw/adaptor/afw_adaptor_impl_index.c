@@ -313,7 +313,6 @@ afw_boolean_t afw_adaptor_impl_index_try(
     const afw_utf8_t   * value_expression;
     const afw_value_t  * value;
     const afw_value_t  * eval;
-    const afw_xctx_scope_t *scope;
 
     /* first we make sure the objectType is applicable */
     if (!afw_adaptor_impl_index_object_type_applicable(
@@ -336,12 +335,9 @@ afw_boolean_t afw_adaptor_impl_index_try(
         value = afw_compile_to_value(value_expression, NULL,
             afw_compile_type_expression, NULL, NULL, object->p, xctx);
 
-        /* create a new stack frame so that our temporary variables are
-            cleared the next time we go to evaluate an expression */
-        scope = afw_xctx_scope_begin(NULL, xctx);
-
         /* Add variables for the filter and value expressions to use */
-        /** @fixme These need to be custom:: variables. See issue #54. */
+        /** @fixme These need to be current:: variables. See issue #54. */
+        // scope = afw_xctx_scope_begin(NULL, xctx);
         // afw_xctx_scope_deprecated_variable_set(&afw_s_objectId,
         //     afw_value_create_string(object_id, xctx->p, xctx), xctx);
         // afw_xctx_scope_deprecated_variable_set(&afw_s_objectType,
@@ -360,7 +356,8 @@ afw_boolean_t afw_adaptor_impl_index_try(
         }
         AFW_FINALLY {
             /* always release the stack frame */
-            afw_xctx_scope_release(scope, xctx);
+            /** @fixme These need to be current:: variables. See issue #54. */
+            // afw_xctx_scope_release(scope, xctx);
         }
         AFW_ENDTRY;
     }

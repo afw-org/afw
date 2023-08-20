@@ -513,9 +513,7 @@ afw_value_block_evaluate_for(
     const afw_value_t *result;
     const afw_value_t *increment;
     const afw_value_t *body;
-    const afw_xctx_scope_t *scope;
 
-    scope = afw_xctx_scope_begin(NULL, xctx);
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
@@ -567,7 +565,6 @@ afw_value_block_evaluate_for(
         {
             *type = afw_value_block_statement_type_sequential;
         }
-        afw_xctx_scope_release(scope, xctx);
     }
     AFW_ENDTRY;
 
@@ -589,10 +586,8 @@ afw_value_block_evaluate_for_of(
     const afw_value_array_t *list;
     const afw_iterator_t *iterator;
     const afw_value_t *value;
-    const afw_xctx_scope_t *scope;
     afw_compile_internal_assignment_type_t assignment_type;
 
-    scope = afw_xctx_scope_begin(NULL, xctx);
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
@@ -624,7 +619,6 @@ afw_value_block_evaluate_for_of(
         {
             *type = afw_value_block_statement_type_sequential;
         }
-        afw_xctx_scope_release(scope, xctx);
     }
     AFW_ENDTRY;
 
