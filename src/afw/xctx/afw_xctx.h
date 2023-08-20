@@ -207,20 +207,20 @@ struct afw_xctx_scope_s {
     afw_xctx_scope_t *previous_static_scope;
     afw_size_t symbol_count;
     /* This is often used as argv so symbols[0] may not be a symbol. */
-    const afw_value_t *symbols[1];
+    const afw_value_t *symbol_values[1];
 };
 
 
 
 /**
  * @brief Begin begin a scope.
- * @param symbol_count Number of symbols in scope.
+ * @param block associated with this scope.
  * @param xctx of caller.
  * @return New xctx scope.
  */
-AFW_DECLARE(const afw_xctx_scope_t *)
+AFW_DECLARE(afw_xctx_scope_t *)
 afw_xctx_scope_begin(
-    afw_size_t symbol_count,
+    const afw_value_block_t *block,
     afw_xctx_t *xctx);
 
 

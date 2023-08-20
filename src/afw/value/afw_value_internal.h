@@ -89,10 +89,8 @@ struct afw_value_block_s {
     const afw_value_inf_t *inf;
     const afw_compile_value_contextual_t *contextual;
 
-    afw_size_t argc;
-    const afw_value_t * const * argv;
-
-    const afw_value_t *statements;
+    afw_size_t statement_count;
+    const afw_value_t * const * statements;
 
     afw_value_block_t *parent_block;
     afw_value_block_t *first_child_block;
@@ -102,7 +100,7 @@ struct afw_value_block_s {
     afw_value_frame_symbol_t *final_entry;
     afw_size_t number;
     afw_size_t depth;
-    afw_size_t entry_count;
+    afw_size_t symbol_count;
 };
 
 
@@ -214,6 +212,7 @@ struct afw_value_frame_symbol_s {
     afw_value_type_t type;
     afw_size_t index; /* Index in block entries. */
     afw_value_frame_symbol_type_t symbol_type;
+    const afw_value_t *initial_value;
 };
 
 
@@ -473,9 +472,11 @@ struct afw_value_reference_by_key_s {
 /** @brief Struct for lambda parameter. */
 struct afw_value_script_function_signature_s {
     const afw_compile_value_contextual_t *contextual;
+    const afw_value_block_t *block;
     const afw_value_type_t *returns;
-    afw_size_t count;
+    const afw_value_frame_symbol_t *function_name_symbol;
     const afw_value_string_t *function_name_value;
+    afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
 };
 
@@ -483,6 +484,7 @@ struct afw_value_script_function_signature_s {
 
 /** @brief Struct for script function parameter. */
 struct afw_value_script_function_parameter_s {
+    const afw_value_frame_symbol_t *symbol;
     const afw_utf8_t *name;
     const afw_value_type_t *type;
     const afw_value_t *default_value;

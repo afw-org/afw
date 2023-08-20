@@ -129,6 +129,9 @@ impl_afw_value_produce_compiler_listing(
         afw_writer_write_eol(writer, xctx);
     }
 
+    afw_value_produce_compiler_listing(
+        (const afw_value_t *)self->signature->block, writer, xctx);
+
     afw_value_produce_compiler_listing(self->body, writer, xctx);
 
     afw_writer_decrement_indent(writer, xctx);

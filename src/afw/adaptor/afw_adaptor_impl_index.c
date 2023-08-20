@@ -338,7 +338,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
 
         /* create a new stack frame so that our temporary variables are
             cleared the next time we go to evaluate an expression */
-        scope = afw_xctx_scope_begin(1, xctx);
+        scope = afw_xctx_scope_begin(NULL, xctx);
 
         /* Add variables for the filter and value expressions to use */
         /** @fixme These need to be custom:: variables. See issue #54. */

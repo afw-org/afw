@@ -345,7 +345,7 @@ impl_assign_value(
     }
 
     /* Variable Reference */
-    else if (afw_value_is_variable_reference(target)) {
+    else if (afw_value_is_symbol_reference(target)) {
         const afw_value_symbol_reference_t *t =
             (afw_value_symbol_reference_t *)target;
         impl_set_variable(t->symbol->name, value,
@@ -474,11 +474,11 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    scope = afw_xctx_scope_begin(1, xctx);
+    scope = afw_xctx_scope_begin(self, xctx);
     AFW_TRY{
-        for (i = 0; i < self->argc; i++) {
+        for (i = 0; i < self->statement_count; i++) {
             result = afw_value_block_evaluate_statement(x, type,
-                true, is_loop, self->argv[i], p, xctx);
+                true, is_loop, self->statements[i], p, xctx);
             if (*type != afw_value_block_statement_type_sequential)
             {
                 break;
@@ -515,7 +515,7 @@ afw_value_block_evaluate_for(
     const afw_value_t *body;
     const afw_xctx_scope_t *scope;
 
-    scope = afw_xctx_scope_begin(1, xctx);
+    scope = afw_xctx_scope_begin(NULL, xctx);
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
@@ -592,7 +592,7 @@ afw_value_block_evaluate_for_of(
     const afw_xctx_scope_t *scope;
     afw_compile_internal_assignment_type_t assignment_type;
 
-    scope = afw_xctx_scope_begin(1, xctx);
+    scope = afw_xctx_scope_begin(NULL, xctx);
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
@@ -844,7 +844,7 @@ afw_value_block_evaluate_try(
     result = afw_value_undefined;
     use_type = *type;
 
-    scope = afw_xctx_scope_begin(1, xctx);  
+    scope = afw_xctx_scope_begin(NULL, xctx);  
     AFW_TRY {
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[1], p, xctx);
@@ -1272,14 +1272,14 @@ afw_value_block_allocated_and_link(
 AFW_DEFINE(const afw_value_t *)
 afw_value_block_finalize(
     const afw_value_block_t *block,
-    afw_size_t argc,
-    const afw_value_t * const *argv,
+    afw_size_t statement_count,
+    const afw_value_t * const *statements,
     afw_xctx_t *xctx)
 {
     afw_value_block_t *self = (afw_value_block_t *)block;
 
-    self->argc = argc;
-    self->argv = argv;
+    self->statement_count = statement_count;
+    self->statements = statements;
 
     return (const afw_value_t *)self;
 }
@@ -1332,6 +1332,7 @@ impl_afw_value_produce_compiler_listing(
 {
     const afw_value_block_t *self =
         (const afw_value_block_t *)instance;
+    afw_value_frame_symbol_t *symbol;
     afw_size_t i;
 
     afw_value_compiler_listing_begin_value(writer, instance,
@@ -1339,14 +1340,46 @@ impl_afw_value_produce_compiler_listing(
 
     afw_writer_write_z(writer, " number=", xctx);
     afw_writer_write_size(writer, self->number, xctx);
-
-    afw_writer_write_z(writer, ": [", xctx);
+    afw_writer_write_z(writer, " depth=", xctx);
+    afw_writer_write_size(writer, self->depth, xctx);
+    afw_writer_write_z(writer, " : [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
 
     AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED
-    for (i = 0; i < self->argc; i++) {
-        afw_value_produce_compiler_listing(self->argv[i], writer, xctx);
+
+    if (self->symbol_count > 0) {
+        afw_writer_write_z(writer, "symbols: [", xctx);
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_increment_indent(writer, xctx);
+        for (symbol = self->first_entry; symbol; symbol = symbol->next_entry) {
+            afw_writer_write_z(writer, "[", xctx);
+            afw_writer_write_size(writer, symbol->index, xctx);
+            afw_writer_write_z(writer, "] ", xctx);
+            afw_writer_write_utf8(writer,
+                afw_value_compiler_listing_symbol_type_name(
+                    symbol->symbol_type),
+                xctx);
+            afw_writer_write_z(writer, " ", xctx);
+            afw_value_compiler_listing_name_and_type(writer,
+                symbol->name, &symbol->type, xctx);
+            afw_writer_write_eol(writer, xctx);
+        }
+        afw_writer_decrement_indent(writer, xctx);
+        afw_writer_write_z(writer, "]", xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
+    if (self->statement_count > 0) {
+        afw_writer_write_z(writer, "statements: [", xctx);
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_increment_indent(writer, xctx);
+        for (i = 0; i < self->statement_count; i++) {
+            afw_value_produce_compiler_listing(self->statements[i], writer, xctx);
+        }
+        afw_writer_decrement_indent(writer, xctx);
+        afw_writer_write_z(writer, "]", xctx);
+        afw_writer_write_eol(writer, xctx);
     }
 
     afw_writer_decrement_indent(writer, xctx);

@@ -102,7 +102,7 @@ impl_afw_value_optional_evaluate(
     const afw_value_t *const *arg;
     afw_name_value_t *cur;
     const afw_value_t *const *rest_argv;
-    const afw_xctx_scope_t *scope;
+    afw_xctx_scope_t *scope;
     afw_size_t rest_argc;
     const afw_array_t *rest_list;
 
@@ -110,7 +110,7 @@ impl_afw_value_optional_evaluate(
     l = self->script_function_definition;
 
     /* Save stack top which will be restored on return. */
-    scope = afw_xctx_scope_begin(l->count + 1, xctx);
+    scope = afw_xctx_scope_begin(l->signature->block, xctx);
     AFW_TRY {
 
         /*
@@ -175,7 +175,8 @@ impl_afw_value_optional_evaluate(
             cur->value = value;
         }
 
-        /* Set parameter names so they will be seen as local variables. */
+        /** @fixme This whole function is converted to use scope.*/
+        /* Set parameter symbol values in scope. */
         for (
             cur = ((afw_name_value_t *)xctx->stack->elts) + scope->local_top,
             parameter_number = 1,
@@ -185,10 +186,17 @@ impl_afw_value_optional_evaluate(
             parameter_number++,
             params++)
         {
-            cur->name = (*params)->name;
+            scope->symbol_values[(*params)->symbol->index] = cur->value;
+            cur->name = (*params)->name; // Old way also add support for destructuring.
         }
 
-        /* If there is a function name, make it a local variable. */
+        /* If function named, set its symbol value in scope. */
+        if (l->signature && l->signature->function_name_symbol) {
+            scope->symbol_values[l->signature->function_name_symbol->index] =
+                (const afw_value_t *)self->script_function_definition; 
+        }
+
+        /*OLD> If there is a function name, make it a local variable. */
         if (l->signature && l->signature->function_name_value) {
             cur = (afw_name_value_t *)apr_array_push(xctx->stack);
             cur->name = &l->signature->function_name_value->internal;
@@ -253,7 +261,17 @@ impl_afw_value_produce_compiler_listing(
         afw_writer_write_eol(writer, xctx);
     }
 
-    afw_value_compiler_listing_call_args(writer, &self->args, xctx);
+    afw_value_compiler_listing_value(self->args.argv[0], writer, xctx);
+
+    afw_writer_write_z(writer, "arguments : [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+    for (afw_size_t i = 1; i <= self->args.argc; i++) {
+        afw_value_compiler_listing_value(self->args.argv[i], writer, xctx);
+    }
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 
     afw_writer_decrement_indent(writer, xctx);
     afw_writer_write_z(writer, "]", xctx);

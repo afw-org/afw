@@ -355,7 +355,7 @@ impl_symbol_listing(
     afw_writer_write_z(writer, " depth=", xctx);
     afw_writer_write_size(writer, block->depth, xctx);
     afw_writer_write_z(writer, " entries=", xctx);
-    afw_writer_write_size(writer, block->entry_count, xctx);
+    afw_writer_write_size(writer, block->symbol_count, xctx);
     afw_writer_write_z(writer, " : [", xctx);
     afw_writer_write_eol(writer, xctx);
 
@@ -711,6 +711,7 @@ afw_value_compiler_listing_call_args(
     afw_size_t i;
 
     AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED
+
     for (i = 0; i <= args->argc; i++) {
         afw_value_compiler_listing_value(args->argv[i], writer, xctx);
     }

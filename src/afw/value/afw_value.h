@@ -727,7 +727,7 @@ afw_value_is_fully_evaluated(
  * @param A_VALUE to test.
  * @return boolean result.
  */
-#define afw_value_is_variable_reference(A_VALUE) \
+#define afw_value_is_symbol_reference(A_VALUE) \
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_symbol_reference_inf \
@@ -1186,16 +1186,16 @@ afw_value_block_allocated_and_link(
 /**
  * @brief Create and link a new block.
  * @param block value to set statements in.
- * @param argc is number of statements.
- * @param argv is array of statements.
+ * @param statement_count is number of statements.
+ * @param statements is array of statements.
  * @param xctx of caller.
  * @return Finalized block value.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_block_finalize(
     const afw_value_block_t *block,
-    afw_size_t argc,
-    const afw_value_t * const *argv,
+    afw_size_t statement_count,
+    const afw_value_t * const *statements,
     afw_xctx_t *xctx);
 
 

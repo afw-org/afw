@@ -98,7 +98,7 @@ afw_compile_parse_Reference(afw_compile_parser_t *parser)
 
     if (result &&
         !afw_value_is_reference_by_key(result) &&
-        !afw_value_is_variable_reference(result) &&
+        !afw_value_is_symbol_reference(result) &&
         !afw_value_is_qualified_variable_reference(result))
     {
         AFW_COMPILE_THROW_ERROR_Z("Expecting property name or index");
@@ -487,9 +487,11 @@ afw_compile_parse_FunctionSignature(
         if (block) {
             *block = afw_compile_parse_link_new_value_block(parser,
                 start_offset);
+            signature->block = *block;
             function_symbol = afw_compile_parse_add_symbol_entry(parser,
                 parser->token->identifier_name);
             function_symbol->symbol_type = afw_value_frame_symbol_type_function;
+            signature->function_name_symbol = function_symbol;
         }
         signature->function_name_value = (const afw_value_string_t *)
             afw_value_create_string(parser->token->identifier_name,
@@ -566,9 +568,11 @@ afw_compile_parse_FunctionSignature(
                     *block = afw_compile_parse_link_new_value_block(parser,
                         start_offset);
                 }
+                signature->block = *block;
                 symbol = afw_compile_parse_add_symbol_entry(
                     parser, param->name);
                 symbol->symbol_type = afw_value_frame_symbol_type_parameter;
+                param->symbol = symbol;
                 if (param->type) {
                     afw_memory_copy(&symbol->type, param->type);
                 }        

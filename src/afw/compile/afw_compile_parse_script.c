@@ -806,6 +806,7 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
         symbol = afw_compile_parse_add_symbol_entry(parser,
             &function_name_value->internal);
         symbol->symbol_type = afw_value_frame_symbol_type_function;
+        symbol->initial_value = argv[2];
         if (return_type) {
             afw_memory_copy(&symbol->type, return_type);
         }

@@ -73,6 +73,26 @@ afw_value_call_create(
             argc, argv, allow_optimize, p, xctx);
     }
 
+    /*
+     * If this is a symbol reference directly to a script function definition,
+     * return the self of the more specific
+     * afw_value_call_script_function_create() to reduce the execution time
+     * code path.
+     */
+    if (afw_value_is_symbol_reference(argv[0])) {
+        const afw_value_symbol_reference_t *ref =
+            (const afw_value_symbol_reference_t *)argv[0];
+        if (afw_value_is_script_function_definition(
+            ref->symbol->initial_value))
+        {
+            return afw_value_call_script_function_create(
+                contextual,
+                (const afw_value_script_function_definition_t *)
+                    ref->symbol->initial_value,
+                argc, argv, allow_optimize, p, xctx);
+        }
+    }
+
     self = afw_pool_calloc_type(p, afw_value_call_t, xctx);
     self->inf = &afw_value_call_inf;
     self->function_value = argv[0];
@@ -208,7 +228,17 @@ impl_afw_value_produce_compiler_listing(
         afw_writer_write_eol(writer, xctx);
     }
 
-    afw_value_compiler_listing_call_args(writer, &self->args, xctx);
+    afw_value_compiler_listing_value(self->args.argv[0], writer, xctx);
+
+    afw_writer_write_z(writer, "arguments : [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+    for (afw_size_t i = 1; i <= self->args.argc; i++) {
+        afw_value_compiler_listing_value(self->args.argv[i], writer, xctx);
+    }
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 
     afw_writer_decrement_indent(writer, xctx);
     afw_writer_write_z(writer, "]", xctx);

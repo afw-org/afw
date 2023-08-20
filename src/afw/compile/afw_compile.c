@@ -180,7 +180,7 @@ afw_compile_to_value_with_callback(
      *
      * Make sure stack has same top before and after parse.
      */
-    scope = afw_xctx_scope_begin(1, xctx);
+    scope = afw_xctx_scope_begin(NULL, xctx);
     AFW_TRY{
 
         if (compile_type == afw_compile_type_json ||
@@ -355,7 +355,7 @@ afw_compile_to_object(
      *
      * Make sure stack has same top before and after parse.
      */
-    scope = afw_xctx_scope_begin(1, xctx);
+    scope = afw_xctx_scope_begin(NULL, xctx);
     AFW_TRY {
         value = afw_compile_parse_Object(parser, false, false);
         afw_compile_check_for_residual(parser);

@@ -419,17 +419,24 @@ impl_afw_xctx_release(
 
 
 /* Begin begin a scope */
-AFW_DEFINE(const afw_xctx_scope_t *)
+AFW_DEFINE(afw_xctx_scope_t *)
 afw_xctx_scope_begin(
-    afw_size_t symbol_count,
+    const afw_value_block_t *block,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
     afw_xctx_scope_t *scope;
+    afw_size_t symbol_count;
+
+    symbol_count = (block) ? block->symbol_count : 0;
 
     p = afw_pool_create(xctx->p, xctx);
     scope = afw_pool_calloc(p,
-        sizeof(afw_xctx_scope_t) + (sizeof(afw_value_t *) * (symbol_count + 1)),
+        (
+            sizeof(afw_xctx_scope_t) + // Size of struct.
+            + (sizeof(afw_value_t *) * symbol_count ) // symbol_values[]
+            - sizeof(afw_value_t *) // To account for the one in the struct.
+        ),
         xctx);
     scope->p = p;
     scope->symbol_count = symbol_count;

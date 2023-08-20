@@ -256,7 +256,17 @@ impl_afw_value_produce_compiler_listing(
         afw_writer_write_eol(writer, xctx);
     }
 
-    afw_value_compiler_listing_call_args(writer, &self->args, xctx);
+    afw_value_compiler_listing_value(self->args.argv[0], writer, xctx);
+
+    afw_writer_write_z(writer, "arguments : [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+    for (afw_size_t i = 1; i <= self->args.argc; i++) {
+        afw_value_compiler_listing_value(self->args.argv[i], writer, xctx);
+    }
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 
     afw_writer_decrement_indent(writer, xctx);
     afw_writer_write_z(writer, "]", xctx);

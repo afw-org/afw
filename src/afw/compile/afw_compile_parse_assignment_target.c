@@ -371,7 +371,7 @@ afw_compile_parse_AssignmentTarget(
         assignment_type, &type, &result);
     if (!afw_value_is_assignment_target(result) &&
         assignment_type != afw_compile_assignment_type_assign_only &&
-        afw_value_is_variable_reference(result))
+        afw_value_is_symbol_reference(result))
     {
         target = afw_pool_calloc_type(parser->p,
             afw_compile_assignment_target_t, parser->xctx);

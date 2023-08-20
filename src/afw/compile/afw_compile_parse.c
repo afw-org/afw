@@ -366,11 +366,11 @@ afw_compile_parse_add_symbol_entry(
         parser->compiled_value->current_block->final_entry = entry;
     }
     else {
-        entry->index = parser->compiled_value->current_block->entry_count;
+        entry->index = parser->compiled_value->current_block->symbol_count;
         parser->compiled_value->current_block->final_entry->next_entry = entry;
         parser->compiled_value->current_block->final_entry = entry;
     }
-    parser->compiled_value->current_block->entry_count++;
+    parser->compiled_value->current_block->symbol_count++;
 
     return entry;
 }
