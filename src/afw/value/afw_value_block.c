@@ -1332,7 +1332,7 @@ impl_afw_value_produce_compiler_listing(
 {
     const afw_value_block_t *self =
         (const afw_value_block_t *)instance;
-    afw_value_frame_symbol_t *symbol;
+    afw_value_block_symbol_t *symbol;
     afw_size_t i;
 
     afw_value_compiler_listing_begin_value(writer, instance,

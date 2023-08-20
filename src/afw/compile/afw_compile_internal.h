@@ -893,21 +893,21 @@ afw_compile_parse_set_error_fz(
 
 
 
-AFW_DECLARE_INTERNAL(afw_value_frame_symbol_t *)
+AFW_DECLARE_INTERNAL(afw_value_block_symbol_t *)
 afw_compile_parse_get_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name);
 
 
 
-AFW_DECLARE_INTERNAL(afw_value_frame_symbol_t *)
+AFW_DECLARE_INTERNAL(afw_value_block_symbol_t *)
 afw_compile_parse_get_local_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name);
 
 
 
-AFW_DECLARE_INTERNAL(afw_value_frame_symbol_t *)
+AFW_DECLARE_INTERNAL(afw_value_block_symbol_t *)
 afw_compile_parse_add_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name);

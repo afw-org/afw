@@ -96,8 +96,8 @@ struct afw_value_block_s {
     afw_value_block_t *first_child_block;
     afw_value_block_t *final_child_block;
     afw_value_block_t *next_sibling_block;
-    afw_value_frame_symbol_t *first_entry;
-    afw_value_frame_symbol_t *final_entry;
+    afw_value_block_symbol_t *first_entry;
+    afw_value_block_symbol_t *final_entry;
     afw_size_t number;
     afw_size_t depth;
     afw_size_t symbol_count;
@@ -170,12 +170,12 @@ struct afw_value_type_list_s {
 };
 
 /**
- * @brief Frame symbol type map
+ * @brief Block symbol type map
  * @param XX macro
  *
  * There must be and afw_s_ with each name in map.
  */
-#define AFW_VALUE_FRAME_SYMBOL_TYPE(XX)                                     \
+#define AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)                                     \
                                                                             \
     XX(undeclared, "Undeclared symbol")                                     \
                                                                             \
@@ -189,29 +189,29 @@ struct afw_value_type_list_s {
 
 
 /**
- * @brief Frame symbol type enum
+ * @brief Block symbol type enum
  */
-typedef enum afw_value_frame_symbol_type_e {
+typedef enum afw_value_block_symbol_type_e {
 #define XX(name, description) \
-    afw_value_frame_symbol_type_ ## name,
-    AFW_VALUE_FRAME_SYMBOL_TYPE(XX)
+    afw_value_block_symbol_type_ ## name,
+    AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)
 #undef XX
-    afw_value_frame_symbol_type_count
-} afw_value_frame_symbol_type_t;
+    afw_value_block_symbol_type_count
+} afw_value_block_symbol_type_t;
 
 
 /**
- * @brief struct for afw_value_frame_symbol_t
+ * @brief struct for afw_value_block_symbol_t
  *
- * This is a symbol table entry for frame.
+ * This is a symbol table entry for block.
  */
-struct afw_value_frame_symbol_s {
+struct afw_value_block_symbol_s {
     afw_value_block_t *parent_block;
-    afw_value_frame_symbol_t *next_entry;
+    afw_value_block_symbol_t *next_entry;
     const afw_utf8_t *name;
     afw_value_type_t type;
     afw_size_t index; /* Index in block entries. */
-    afw_value_frame_symbol_type_t symbol_type;
+    afw_value_block_symbol_type_t symbol_type;
     const afw_value_t *initial_value;
 };
 
@@ -474,7 +474,7 @@ struct afw_value_script_function_signature_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_block_t *block;
     const afw_value_type_t *returns;
-    const afw_value_frame_symbol_t *function_name_symbol;
+    const afw_value_block_symbol_t *function_name_symbol;
     const afw_value_string_t *function_name_value;
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
@@ -484,7 +484,7 @@ struct afw_value_script_function_signature_s {
 
 /** @brief Struct for script function parameter. */
 struct afw_value_script_function_parameter_s {
-    const afw_value_frame_symbol_t *symbol;
+    const afw_value_block_symbol_t *symbol;
     const afw_utf8_t *name;
     const afw_value_type_t *type;
     const afw_value_t *default_value;
@@ -555,7 +555,7 @@ struct afw_value_template_definition_s {
 struct afw_value_symbol_reference_s {
     const afw_value_inf_t *inf;
     const afw_compile_value_contextual_t *contextual;
-    const afw_value_frame_symbol_t *symbol;
+    const afw_value_block_symbol_t *symbol;
     
     /*
      * This is the optimized value or self. If self can be evaluated at create
@@ -730,7 +730,7 @@ struct afw_value_compiler_listing_s {
 
 AFW_DECLARE_INTERNAL(const afw_utf8_t *)
 afw_value_compiler_listing_symbol_type_name(
-    afw_value_frame_symbol_type_t type);
+    afw_value_block_symbol_type_t type);
 
 AFW_DECLARE_INTERNAL(const afw_utf8_t *)
 afw_value_compiler_listing_for_child(

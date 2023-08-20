@@ -125,7 +125,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
 {
     const afw_value_t *result;
     afw_size_t start_offset;
-    afw_value_frame_symbol_t *symbol;
+    afw_value_block_symbol_t *symbol;
     const afw_value_function_definition_t *function;
     const afw_utf8_t *type_id, *untyped_function_id;
 
@@ -460,8 +460,8 @@ afw_compile_parse_FunctionSignature(
 {
     apr_array_header_t *params;
     afw_value_script_function_parameter_t *param;
-    afw_value_frame_symbol_t *function_symbol;
-    afw_value_frame_symbol_t *symbol;
+    afw_value_block_symbol_t *function_symbol;
+    afw_value_block_symbol_t *symbol;
     afw_size_t start_offset;
     afw_value_script_function_signature_t *signature;
     afw_boolean_t optional_encountered;
@@ -490,7 +490,7 @@ afw_compile_parse_FunctionSignature(
             signature->block = *block;
             function_symbol = afw_compile_parse_add_symbol_entry(parser,
                 parser->token->identifier_name);
-            function_symbol->symbol_type = afw_value_frame_symbol_type_function;
+            function_symbol->symbol_type = afw_value_block_symbol_type_function;
             signature->function_name_symbol = function_symbol;
         }
         signature->function_name_value = (const afw_value_string_t *)
@@ -571,7 +571,7 @@ afw_compile_parse_FunctionSignature(
                 signature->block = *block;
                 symbol = afw_compile_parse_add_symbol_entry(
                     parser, param->name);
-                symbol->symbol_type = afw_value_frame_symbol_type_parameter;
+                symbol->symbol_type = afw_value_block_symbol_type_parameter;
                 param->symbol = symbol;
                 if (param->type) {
                     afw_memory_copy(&symbol->type, param->type);

@@ -30,7 +30,7 @@ impl_default_tab = AFW_UTF8_LITERAL("    ");
 static const afw_utf8_t *
 impl_symbol_type_names[] = {
 #define XX(name, description) &afw_s_ ## name,
-    AFW_VALUE_FRAME_SYMBOL_TYPE(XX)
+    AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)
 #undef XX
     NULL
 };
@@ -301,9 +301,9 @@ impl_afw_writer_decrement_indent(
 
 AFW_DEFINE_INTERNAL(const afw_utf8_t *)
 afw_value_compiler_listing_symbol_type_name(
-    afw_value_frame_symbol_type_t type)
+    afw_value_block_symbol_type_t type)
 {
-    if (type < 0 || type >= afw_value_frame_symbol_type_count) {
+    if (type < 0 || type >= afw_value_block_symbol_type_count) {
         type = 0;
     }
     return impl_symbol_type_names[type];
@@ -342,7 +342,7 @@ impl_symbol_listing(
     afw_value_block_t *block,
     afw_xctx_t *xctx)
 {
-    afw_value_frame_symbol_t *e;
+    afw_value_block_symbol_t *e;
     afw_value_block_t *child;
 
     if (!block) {
