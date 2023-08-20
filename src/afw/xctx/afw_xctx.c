@@ -439,12 +439,12 @@ afw_xctx_scope_begin(
         ),
         xctx);
     scope->p = p;
+    scope->block = block;
     scope->symbol_count = symbol_count;
     xctx->current_frame_index = xctx->stack->nelts;
     scope->local_top = xctx->stack->nelts;
-    scope->previous_static_scope = (afw_xctx_scope_t *)(xctx->current_scope);
+    scope->previous_scope = (afw_xctx_scope_t *)xctx->current_scope;
     xctx->current_scope = scope;
-    // Put in runtime scope.
     return scope;
 }
 
@@ -473,7 +473,7 @@ afw_xctx_scope_jump_to(
     }
     xctx->stack->nelts = scope->local_top;
     xctx->current_frame_index = scope->local_top;
-    xctx->current_scope = scope->previous_static_scope;
+    xctx->current_scope = scope->previous_scope;
 }
 
 
@@ -491,6 +491,6 @@ afw_xctx_scope_release(
     }
     xctx->stack->nelts = scope->local_top;
     xctx->current_frame_index = scope->local_top;
-    xctx->current_scope = scope->previous_static_scope;
+    xctx->current_scope = scope->previous_scope;
     afw_pool_release(scope->p, xctx);
 }

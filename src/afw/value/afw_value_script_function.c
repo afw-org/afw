@@ -122,16 +122,35 @@ impl_afw_value_produce_compiler_listing(
     afw_value_compiler_listing_name_and_type(writer, NULL, self->returns, xctx);
     afw_writer_write_eol(writer, xctx);
 
+    afw_writer_write_z(writer, "parameters: [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+
     for (i = 0; i < self->count; i++) {
-        afw_writer_write_z(writer, "parameter: ", xctx);
         afw_value_compiler_listing_name_and_type(
             writer, self->parameters[i]->name, self->parameters[i]->type, xctx);
-        afw_writer_write_eol(writer, xctx);
+        if (self->parameters[i]->default_value) {
+            afw_writer_write_z(writer, " = ", xctx);
+            afw_value_compiler_listing_value(
+                self->parameters[i]->default_value, writer, xctx);
+        }
+        else if (self->parameters[i]->is_optional) {
+            afw_writer_write_z(writer, "?", xctx);
+            afw_writer_write_eol(writer, xctx);
+        }
+        else {
+            afw_writer_write_eol(writer, xctx);
+        }
     }
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 
+    afw_writer_write_z(writer, "signature ", xctx);
     afw_value_produce_compiler_listing(
         (const afw_value_t *)self->signature->block, writer, xctx);
 
+    afw_writer_write_z(writer, "body ", xctx);
     afw_value_produce_compiler_listing(self->body, writer, xctx);
 
     afw_writer_decrement_indent(writer, xctx);

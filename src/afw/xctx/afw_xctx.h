@@ -201,9 +201,9 @@ AFW_ENDTRY
  */
 struct afw_xctx_scope_s {
     const afw_pool_t *p;
+    const afw_value_block_t *block;
     int local_top; /** @fixme Will be removed.*/
-    afw_size_t static_scope_depth;
-    afw_xctx_scope_t *previous_runtime_scope;
+    afw_xctx_scope_t *previous_scope;
     afw_xctx_scope_t *previous_static_scope;
     afw_size_t symbol_count;
     /* This is often used as argv so symbols[0] may not be a symbol. */
