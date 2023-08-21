@@ -156,7 +156,6 @@ afw_compile_to_value_with_callback(
     const afw_utf8_octet_t *cursor;
     const afw_value_block_t *block;
     const afw_value_t **block_argv;
-    const afw_xctx_scope_t *scope;
     afw_size_t count;
 
     if (compile_type == afw_compile_type_regexp) {
@@ -175,12 +174,7 @@ afw_compile_to_value_with_callback(
         string, callback, callback_data, source_location,
         compile_type, residual_check, false, parent, shared, p, xctx);
 
-    /*
-     * Parse expression.
-     *
-     * Make sure stack has same top before and after parse.
-     */
-    scope = afw_xctx_scope_begin(NULL, xctx);
+    /* Parse. */
     AFW_TRY{
 
         if (compile_type == afw_compile_type_json ||
@@ -294,11 +288,9 @@ afw_compile_to_value_with_callback(
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {
-        afw_xctx_scope_release(scope, xctx);
+        afw_compile_lexical_parser_finish_and_release(parser, xctx);
     }
     AFW_ENDTRY;
-
-    afw_compile_lexical_parser_finish_and_release(parser, xctx);
 
     /* Return result. */
     return result;
@@ -322,7 +314,6 @@ afw_compile_to_object(
     afw_compile_parser_t *parser;
     const afw_object_t *result = NULL;
     const afw_value_t *value;
-    const afw_xctx_scope_t *scope;
     const afw_pool_t *parser_p;
 
     /* Create parser. */
@@ -350,12 +341,7 @@ afw_compile_to_object(
         true, NULL, NULL, parser_p, xctx);
     parser->compiled_value->full_source_type = &afw_s_json;
 
-    /*
-     * Parse expression.
-     *
-     * Make sure stack has same top before and after parse.
-     */
-    scope = afw_xctx_scope_begin(NULL, xctx);
+    /* Parse. */
     AFW_TRY {
         value = afw_compile_parse_Object(parser, false, false);
         afw_compile_check_for_residual(parser);
@@ -372,11 +358,9 @@ afw_compile_to_object(
         AFW_ERROR_RETHROW;
     }
     AFW_FINALLY {
-        afw_xctx_scope_release(scope, xctx);
+        afw_compile_lexical_parser_finish_and_release(parser, xctx);
     }
     AFW_ENDTRY;
-
-    afw_compile_lexical_parser_finish_and_release(parser, xctx);
 
     /* Return result. */
     return result;

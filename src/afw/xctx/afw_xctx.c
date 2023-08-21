@@ -417,6 +417,88 @@ impl_afw_xctx_release(
     }
 }
 
+//#define AFW_XCTX_SCOPE_DEBUG
+
+#ifdef AFW_XCTX_SCOPE_DEBUG
+#define afw_xctx_scope_debug(place, scope, xctx) \
+    impl_scope_debug(place, scope, xctx)
+#else
+#define afw_xctx_scope_debug(place, scope, xctx)
+#endif
+
+#ifdef AFW_XCTX_SCOPE_DEBUG
+static void impl_scope_debug(
+    const afw_utf8_z_t *place,
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{
+    //return;
+    printf("%s: [\n", place);
+
+    printf(
+        "    xctx current_frame_index=%d"
+        " stack->nelts=%d\n",
+        xctx->current_frame_index,
+        xctx->stack->nelts);
+
+    if (xctx->current_scope) {
+        printf("    xctx scope: [\n");
+        printf(
+            "        scope number=" AFW_SIZE_T_FMT
+            " local_top=%d"
+            "\n",
+            xctx->current_scope->scope_number,
+            xctx->current_scope->local_top);
+        if (xctx->current_scope->block) {
+            printf(
+                "        block number=" AFW_SIZE_T_FMT
+                " depth=" AFW_SIZE_T_FMT
+                " symbol_count=" AFW_SIZE_T_FMT
+                 "\n",
+                xctx->current_scope->block->number,
+                xctx->current_scope->block->depth,
+                xctx->current_scope->block->symbol_count);
+        }
+        else {
+            printf("        block: NULL\n");
+        }
+        printf("    ]\n");
+    }
+    else {
+        printf("    xctx scope: NULL\n");
+    }
+
+    if (scope) {
+        printf("    scope: [\n");
+        printf(
+            "        scope number=" AFW_SIZE_T_FMT
+            " local_top=%d"
+            "\n",
+            scope->scope_number,
+            scope->local_top);
+        if (scope->block) {
+            printf(
+                "        block number=" AFW_SIZE_T_FMT
+                " depth=" AFW_SIZE_T_FMT
+                " symbol_count=" AFW_SIZE_T_FMT
+                "\n",
+                scope->block->number,
+                scope->block->depth,
+                scope->block->symbol_count);
+        }
+        else {
+            printf("        block: NULL\n");
+        }
+        printf("    ]\n");
+    }
+    else {
+        printf("    scope: NULL\n");
+    }
+    
+    printf("]\n\n");
+}
+#endif
+
 
 /* Begin begin a scope */
 AFW_DEFINE(afw_xctx_scope_t *)
@@ -441,9 +523,56 @@ afw_xctx_scope_begin(
     scope->p = p;
     scope->block = block;
     scope->symbol_count = symbol_count;
-    xctx->current_frame_index = xctx->stack->nelts;
     scope->local_top = xctx->stack->nelts;
     scope->previous_scope = (afw_xctx_scope_t *)xctx->current_scope;
+
+    // // Find parent scope.
+    // if (block && block->depth > 0) {
+
+    //     if (xctx->current_scope && xctx->current_scope->block) {
+
+    //         /* If depth is one deeper, current is new one's previous. */
+    //         if (xctx->current_scope->block->depth + 1 == block->depth) {
+    //             scope->previous_static_scope = 
+    //                 (afw_xctx_scope_t *)xctx->current_scope;
+    //         }
+
+    //         /* If more than one deeper or equal, it's a problem. */
+    //         else if (xctx->current_scope->block->depth <= block->depth) {
+    //             AFW_THROW_ERROR_FZ(general, xctx,
+    //                 "Current block depth " AFW_SIZE_T_FMT
+    //                 " new block depth " AFW_SIZE_T_FMT,
+    //                 xctx->current_scope->block->depth,
+    //                 block->depth);
+    //         }
+
+    //         /* If new one is not as deep, search previous for one less. */
+    //         else {
+    //             for (scope->previous_static_scope =
+    //                     (afw_xctx_scope_t *)xctx->current_scope
+    //                 ;
+    //                 scope->previous_static_scope &&
+    //                 scope->previous_static_scope->block &&
+    //                 scope->previous_static_scope->block->depth >= block->depth
+    //                 ;
+    //                 scope->previous_static_scope =
+    //                     scope->previous_static_scope->previous_static_scope);
+
+    //             if (!scope->previous_static_scope) {
+    //                 AFW_THROW_ERROR_FZ(general, xctx,
+    //                     "No previous scope found for block depth "
+    //                     AFW_SIZE_T_FMT,
+    //                     block->depth);
+    //             }
+    //         }
+    //     }
+    // }
+
+    xctx->scope_count++;
+    scope->scope_number = xctx->scope_count;
+    afw_xctx_scope_debug("afw_xctx_scope_begin", scope, xctx);
+
+    xctx->current_frame_index = xctx->stack->nelts;
     xctx->current_scope = scope;
     return scope;
 }
@@ -468,6 +597,8 @@ AFW_DEFINE(void)
 afw_xctx_scope_jump_to(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {
+    afw_xctx_scope_debug("afw_xctx_scope_jump_to", scope, xctx);
+
     if (!scope) {
         /** @fixme release frames. */
         xctx->current_frame_index = 0;
@@ -489,6 +620,8 @@ AFW_DEFINE(void)
 afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {
+    afw_xctx_scope_debug("afw_xctx_scope_release", scope, xctx);
+
     if (scope != xctx->current_scope) {
         //AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
     }

@@ -4855,6 +4855,12 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </variable>
 
+    <variable name="scope_count" type="afw_size_t">
+      <description>
+        The number of the scopes created.
+      </description>
+    </variable>
+
     <variable name="evaluation_stack" type="afw_xctx_evaluation_stack_t *">
       <description>
         The execution context (xctx) evaluation stack.

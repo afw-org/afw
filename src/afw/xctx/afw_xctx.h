@@ -205,6 +205,7 @@ struct afw_xctx_scope_s {
     int local_top; /** @fixme Will be removed.*/
     afw_xctx_scope_t *previous_scope;
     afw_xctx_scope_t *previous_static_scope;
+    afw_size_t scope_number;
     afw_size_t symbol_count;
     /* This is often used as argv so symbols[0] may not be a symbol. */
     const afw_value_t *symbol_values[1];
