@@ -4348,8 +4348,8 @@ struct afw_xctx_s {
     afw_error_t * error;
     afw_try_t * current_try;
     const afw_runtime_objects_t * runtime_objects;
-    const afw_xctx_scope_t * current_scope;
     afw_size_t scope_count;
+    apr_array_header_t * scope_stack;
     afw_xctx_evaluation_stack_t * evaluation_stack;
     apr_array_header_t * stack;
     const afw_xctx_qualifier_stack_t * qualifier_stack;

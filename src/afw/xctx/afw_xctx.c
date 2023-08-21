@@ -70,6 +70,13 @@ afw_xctx_internal_create_initialize(
             "apr_array_make() failed");
     }
 
+    self->scope_stack = apr_array_make(afw_pool_get_apr_pool(p),
+        10, sizeof(afw_xctx_scope_t *));
+    if (!self->scope_stack) {
+        AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general, na, 0,
+            "apr_array_make() failed");
+    }
+
     /*
      * Set libxml2 error func to suppress error print. Use
      * xmlGetLastError() instead.
@@ -432,6 +439,9 @@ static void impl_scope_debug(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
+    const afw_xctx_scope_t *current_scope;
+
+    current_scope = afw_xctx_scope_current(xctx);
     //return;
     printf("%s: [\n", place);
 
@@ -441,23 +451,23 @@ static void impl_scope_debug(
         xctx->current_frame_index,
         xctx->stack->nelts);
 
-    if (xctx->current_scope) {
+    if (current_scope) {
         printf("    xctx scope: [\n");
         printf(
             "        scope number=" AFW_SIZE_T_FMT
             " local_top=%d"
             "\n",
-            xctx->current_scope->scope_number,
-            xctx->current_scope->local_top);
-        if (xctx->current_scope->block) {
+            current_scope->scope_number,
+            current_scope->local_top);
+        if (current_scope->block) {
             printf(
                 "        block number=" AFW_SIZE_T_FMT
                 " depth=" AFW_SIZE_T_FMT
                 " symbol_count=" AFW_SIZE_T_FMT
                  "\n",
-                xctx->current_scope->block->number,
-                xctx->current_scope->block->depth,
-                xctx->current_scope->block->symbol_count);
+                current_scope->block->number,
+                current_scope->block->depth,
+                current_scope->block->symbol_count);
         }
         else {
             printf("        block: NULL\n");
@@ -508,8 +518,10 @@ afw_xctx_scope_begin(
 {
     const afw_pool_t *p;
     afw_xctx_scope_t *scope;
+    const afw_xctx_scope_t *current_scope;
     afw_size_t symbol_count;
 
+    current_scope = afw_xctx_scope_current(xctx);
     symbol_count = (block) ? block->symbol_count : 0;
 
     p = afw_pool_create(xctx->p, xctx);
@@ -524,32 +536,43 @@ afw_xctx_scope_begin(
     scope->block = block;
     scope->symbol_count = symbol_count;
     scope->local_top = xctx->stack->nelts;
-    scope->previous_scope = (afw_xctx_scope_t *)xctx->current_scope;
+    scope->parent_static_scope = current_scope;
+
+    /* This will be different for calling functions. */
 
     // // Find parent scope.
     // if (block && block->depth > 0) {
 
-    //     if (xctx->current_scope && xctx->current_scope->block) {
+    //     if (current_scope && current_scope->block) {
 
     //         /* If depth is one deeper, current is new one's previous. */
-    //         if (xctx->current_scope->block->depth + 1 == block->depth) {
+    //         if (current_scope->block->depth + 1 == block->depth) {
     //             scope->previous_static_scope = 
-    //                 (afw_xctx_scope_t *)xctx->current_scope;
+    //                 (afw_xctx_scope_t *)current_scope;
     //         }
 
-    //         /* If more than one deeper or equal, it's a problem. */
-    //         else if (xctx->current_scope->block->depth <= block->depth) {
+    //         else if (current_scope->block->depth == block->depth) {
+    //             // Probably unwinding because of try.
+    //             scope->previous_static_scope =
+    //                 current_scope->previous_static_scope;
+    //         }
+
+    //         /* If more than one deeper, it's a problem. */
+    //         else if (current_scope->block->depth <= block->depth) {
+    //             // Probably unwinding because of try.
+    //             // scope->previous_static_scope =
+    //             //     current_scope->previous_static_scope;
     //             AFW_THROW_ERROR_FZ(general, xctx,
     //                 "Current block depth " AFW_SIZE_T_FMT
     //                 " new block depth " AFW_SIZE_T_FMT,
-    //                 xctx->current_scope->block->depth,
+    //                 current_scope->block->depth,
     //                 block->depth);
     //         }
 
     //         /* If new one is not as deep, search previous for one less. */
     //         else {
     //             for (scope->previous_static_scope =
-    //                     (afw_xctx_scope_t *)xctx->current_scope
+    //                     (afw_xctx_scope_t *)current_scope
     //                 ;
     //                 scope->previous_static_scope &&
     //                 scope->previous_static_scope->block &&
@@ -573,7 +596,7 @@ afw_xctx_scope_begin(
     afw_xctx_scope_debug("afw_xctx_scope_begin", scope, xctx);
 
     xctx->current_frame_index = xctx->stack->nelts;
-    xctx->current_scope = scope;
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
     return scope;
 }
 
@@ -584,49 +607,65 @@ afw_xctx_scope_closure_begin(
     const afw_xctx_scope_t *enclosure_scope,
     afw_xctx_t *xctx)
 {
+    // const afw_xctx_scope_t *current_scope;
+
+    // current_scope = afw_xctx_scope_current(xctx);
     AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
 }
 
 
+
 /**
- * @brief Set to a scope.
- * @param top Value returned from corresponding afw_xctx_scope_begin().
+ * @brief Unwind the scope stack down to but not including the specified scope.
+ * @param scope to unwind down to
  * @param xctx of caller.
  */
 AFW_DEFINE(void)
-afw_xctx_scope_jump_to(
+afw_xctx_scope_unwind(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {
-    afw_xctx_scope_debug("afw_xctx_scope_jump_to", scope, xctx);
-
-    if (!scope) {
-        /** @fixme release frames. */
-        xctx->current_frame_index = 0;
-        xctx->current_scope = NULL;
-        return;
+    const afw_xctx_scope_t *current_scope;
+ 
+    for (;;) {
+        current_scope = afw_xctx_scope_current(xctx);
+        if (!current_scope) {
+            AFW_THROW_ERROR_Z(general,
+                "afw_xctx_scope_unwind() did not find specified scope",
+                xctx);
+        }
+        if (scope == current_scope) {
+            break;
+        }
+        xctx->stack->nelts = current_scope->local_top;
+        xctx->current_frame_index = current_scope->local_top;
+        apr_array_pop(xctx->scope_stack);
+        afw_pool_release(scope->p, xctx);
     }
-    xctx->stack->nelts = scope->local_top;
-    xctx->current_frame_index = scope->local_top;
-    xctx->current_scope = scope->previous_scope;
 }
 
 
+
 /**
- * @brief Set end a scope.
- * @param top Value returned from corresponding afw_xctx_scope_begin().
+ * @brief Set the current scope.
+ * @param scope must be the current scope.
  * @param xctx of caller.
  */
 AFW_DEFINE(void)
 afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {
+    const afw_xctx_scope_t *current_scope;
+ 
     afw_xctx_scope_debug("afw_xctx_scope_release", scope, xctx);
 
-    if (scope != xctx->current_scope) {
-        //AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
+    current_scope = afw_xctx_scope_current(xctx);
+
+    if (scope != current_scope) {
+        AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
     }
+
     xctx->stack->nelts = scope->local_top;
     xctx->current_frame_index = scope->local_top;
-    xctx->current_scope = scope->previous_scope;
+    apr_array_pop(xctx->scope_stack);
     afw_pool_release(scope->p, xctx);
 }

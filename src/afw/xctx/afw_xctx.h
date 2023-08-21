@@ -203,15 +203,18 @@ struct afw_xctx_scope_s {
     const afw_pool_t *p;
     const afw_value_block_t *block;
     int local_top; /** @fixme Will be removed.*/
-    afw_xctx_scope_t *previous_scope;
-    afw_xctx_scope_t *previous_static_scope;
+    const afw_xctx_scope_t *parent_static_scope;
     afw_size_t scope_number;
     afw_size_t symbol_count;
     /* This is often used as argv so symbols[0] may not be a symbol. */
     const afw_value_t *symbol_values[1];
 };
 
-
+#define afw_xctx_scope_current(xctx) \
+    (xctx->scope_stack->nelts > 0) \
+    ? ((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
+        [xctx->scope_stack->nelts - 1] \
+    : NULL;
 
 /**
  * @brief Begin begin a scope.
@@ -235,31 +238,23 @@ afw_xctx_scope_closure_begin(
     const afw_xctx_scope_t *enclosure_scope,
     afw_xctx_t *xctx);
 
-
 /**
- * @brief Jump to a scope.
- * @param scope returned from corresponding to afw_xctx_scope_begin().
+ * @brief Unwind the scope stack down to but not including the specified scope.
+ * @param scope to unwind down to
  * @param xctx of caller.
- * 
- * This will normally only be used at the beginning of AFW_CATCH* and
- * AFW_FINALLY to set the scope to the one associated with the AFW_TRY without
- * releasing it in the case where an adaptive value is going to be evaluated
- * that needs to be in that scope. Then the associated AFW_FINALLY should call
- * afw_xctx_scope_release() before it ends to release the scope.
  */
-AFW_DEFINE(void)
-afw_xctx_scope_jump_to(
+AFW_DECLARE(void)
+afw_xctx_scope_unwind(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
 
-
 /**
- * @brief Release scope.
- * @param scope returned from corresponding to afw_xctx_scope_begin().
+ * @brief Release current scope.
+ * @param scope much match afw_xctx_scope_current(xctx)
  * @param xctx of caller.
  * 
- * This will release all resources allocated in the scope including and
- * children. This is a release, not a destroy, so if there is a referenced
- * closure for any scope, it will just have its reference count decremented.
+ * This will decrement the reference count of this scope and any parent scopes.
+ * If any of these scopes reference count goes to zero, there resources will be
+ * freed.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_release(

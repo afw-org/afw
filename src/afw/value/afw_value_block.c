@@ -829,7 +829,7 @@ afw_value_block_evaluate_try(
     const afw_value_t *this_result;
     const afw_object_t *error_object;
     const afw_value_t *error_value;
-    const afw_xctx_scope_t *scope;
+    const afw_xctx_scope_t *scope_at_entry;
     afw_value_block_statement_type_t use_type;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
@@ -838,7 +838,7 @@ afw_value_block_evaluate_try(
     result = afw_value_undefined;
     use_type = *type;
 
-    scope = afw_xctx_scope_begin(NULL, xctx);  
+    scope_at_entry = afw_xctx_scope_current(xctx);
     AFW_TRY {
         result = afw_value_block_evaluate_statement(x, type,
             true, true, argv[1], p, xctx);
@@ -846,17 +846,43 @@ afw_value_block_evaluate_try(
     }
 
     AFW_CATCH_UNHANDLED {
-        afw_xctx_scope_jump_to(scope, xctx);
+        afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
                 error_value = afw_value_create_object(error_object, p, xctx);
                 /// @fixme Assignment type is not correct when frames used
-                impl_assign_value(argv[4], error_value,
-                    afw_compile_assignment_type_let, p, xctx);            
-            }
+ // -------------------------------------------------------------------
+ /// @fixme There needs to be a better way to do this. This is a copy of
+ /// some of the code from afw_value_block_evaluate_block that had to be
+ /// copied here so that the error object can be set in scope after the
+ /// scope is created.
+    const afw_xctx_scope_t *scope;
+    const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
+    scope = afw_xctx_scope_begin(block, xctx);
+    AFW_TRY{
+        impl_assign_value(argv[4], error_value,
+            afw_compile_assignment_type_let, p, xctx);
+        this_result = afw_value_undefined;        
+        for (int i = 0; i < block->statement_count; i++) {
             this_result = afw_value_block_evaluate_statement(x, type,
-                true, true, argv[3], p, xctx);
+                true, true, block->statements[i], p, xctx);
+            if (*type != afw_value_block_statement_type_sequential)
+            {
+                break;
+            }
+        }
+    }
+    AFW_FINALLY{
+        afw_xctx_scope_release(scope, xctx);
+    }
+    AFW_ENDTRY;
+// --------------------------------------------------------------------
+            }
+            else {
+                this_result = afw_value_block_evaluate_statement(x, type,
+                    true, true, argv[3], p, xctx);
+            }
             if (*type == afw_value_block_statement_type_break ||
                 *type == afw_value_block_statement_type_continue)
             {
@@ -878,7 +904,7 @@ afw_value_block_evaluate_try(
     }
 
     AFW_FINALLY {
-        afw_xctx_scope_jump_to(scope, xctx);
+        afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
             this_result = afw_value_block_evaluate_statement(x, type,
                 true, true, argv[2], p, xctx);
@@ -899,7 +925,6 @@ afw_value_block_evaluate_try(
                 use_type = afw_value_block_statement_type_sequential;
             }
         }
-        afw_xctx_scope_release(scope, xctx);
     }
 
     AFW_ENDTRY;
