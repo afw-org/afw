@@ -500,6 +500,7 @@ struct afw_value_script_function_definition_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
+    afw_size_t depth;
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
     const afw_value_t *body;

@@ -210,42 +210,108 @@ struct afw_xctx_scope_s {
     const afw_value_t *symbol_values[1];
 };
 
-#define afw_xctx_scope_current(xctx) \
-    (xctx->scope_stack->nelts > 0) \
-    ? ((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
-        [xctx->scope_stack->nelts - 1] \
-    : NULL;
+
 
 /**
- * @brief Begin begin a scope.
+ * @brief Get current scope.
+ * @param xctx of caller.
+ * @return Current scope.
+ */
+#define afw_xctx_scope_current(xctx) \
+    ((xctx->scope_stack->nelts > 0) \
+    ? ((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
+        [xctx->scope_stack->nelts - 1] \
+    : NULL)
+
+
+
+/**
+ * @brief Begin begin a new scope.
  * @param block associated with this scope.
+ * @param parent_static_scope of this scope or NULL for first one.
  * @param xctx of caller.
  * @return New xctx scope.
+ *
+ * This is used to create a new scope and must be paired with a call to
+ * afw_xctx_scope_release() when the scope is no longer needed.
+ *
+ * The block depth of the specfied block must be one more than the block depth
+ * of the parent_static_scope's block or 0 if parent_static_scope is NULL.
+ *
+ * For nested scopes, the parent_static_scope must be the current scope. Use
+ * afw_xctx_scope_current(xctx) to get the current scope.
+ *
+ * When calling a script function, this must be the scope enclosing the
+ * function. If this is a regular function call, this will be the scope that
+ * contains the function definition. If this is a closure call, this will be the
+ * parent static scope of the function at the time the closure binding was
+ * created.
+ *
+ * More detail on how scopes work:
+ *
+ * The evaluate for a compiled value always pushes a NULL on the scope stack
+ * before evaluating its root value then makes sure the NULL is still there in
+ * the same position and removes it when the evaluation is complete. This causes
+ * the evaluation of the root value to begin with a current scope of NULL which
+ * will cause it's first scope to be lexical scope depth 0.
+ *
+ * Symbols (variables, parameters, etc.) go in and out of scope. The scope
+ * struct has a C array of values for the symbols in the scope. A symbol has a
+ * static scope depth and index into the corresponding scope's array of values.
+ *
+ * Scopes are created and released with afw_xctx_scope_begin() and
+ * afw_xctx_scope_release(). There is also an afw_xctx_scope_rewind() used in
+ * 'catch' and 'finally' to release all of the scopes down to the current scope
+ * at the time 'try' was entered.
+ *
+ * Each new scope struct is created in a new pool that is a subpool of the
+ * parent static scope's pool. This parent static scope is stored in the new
+ * scope to form a chain of ancestor static scopes.
+ *
+ * The scope's pool is released (not necessarily destroyed if still referenced)
+ * when the scope is released. The lifetime of the scope struct is based on the
+ * lifetime of the scope's pool.
+ *
+ * When a closure binding is created, a new reference is made to the pool of the
+ * parent static scope of the function being enclosed by calling
+ * afw_xctx_scope_add_reference(), which keeps the chain of ancestor static
+ * scopes around. The parent static scope pointer is remembered in the binding.
+ * When the closure is called, this is the parent_static_scope used in the call
+ * to afw_xctx_scope_begin(). When the closure binding goes out of scope, the
+ * associated parent static scope is released.
  */
 AFW_DECLARE(afw_xctx_scope_t *)
 afw_xctx_scope_begin(
     const afw_value_block_t *block,
+    const afw_xctx_scope_t *parent_static_scope,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Begin begin a scope for closure.
+ * @brief Add a reference to a scope.
+ * @param scope to be referenced. 
  * @param xctx of caller.
- * @return Parameter to pass to end_stack_frame.
  */
-AFW_DECLARE(void)
-afw_xctx_scope_closure_begin(
-    const afw_xctx_scope_t *enclosure_scope,
-    afw_xctx_t *xctx);
+#define afw_xctx_scope_add_reference(scope, xctx) \
+    afw_pool_add_reference((scope)->p, xctx)
+
+
 
 /**
  * @brief Unwind the scope stack down to but not including the specified scope.
  * @param scope to unwind down to
  * @param xctx of caller.
+ * 
+ * This pops and releases all of the scopes in the scope stack down to but not
+ * including the specified scope.  This is used to unwind the scope stack when
+ * an error occurs.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_unwind(
-    const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
+
+
 
 /**
  * @brief Release current scope.

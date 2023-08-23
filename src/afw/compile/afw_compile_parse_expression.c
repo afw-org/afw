@@ -649,10 +649,15 @@ afw_compile_parse_FunctionSignatureAndBody(
     const afw_value_t *body;
     const afw_value_block_t *block;
     const afw_value_script_function_signature_t *signature;
+    afw_size_t depth;
     afw_size_t start_offset;
 
     block = NULL;
     afw_compile_save_offset(start_offset);
+
+    depth = (parser->compiled_value->current_block)
+        ? parser->compiled_value->current_block->depth
+        : 0;
 
     /* Parse signature. */
     signature = afw_compile_parse_FunctionSignature(parser, &block,
@@ -676,7 +681,8 @@ afw_compile_parse_FunctionSignatureAndBody(
 
     /* Return lambda function value. */
     return afw_value_script_function_definition_create(
-        afw_compile_create_contextual_to_cursor(start_offset), signature,
+        afw_compile_create_contextual_to_cursor(start_offset),
+        depth, signature,
         signature->returns, signature->count, signature->parameters,
         body, parser->p, parser->xctx);
 }

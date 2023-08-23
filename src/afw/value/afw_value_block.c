@@ -474,7 +474,7 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    scope = afw_xctx_scope_begin(self, xctx);
+    scope = afw_xctx_scope_begin(self, afw_xctx_scope_current(xctx), xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
             result = afw_value_block_evaluate_statement(x, type,
@@ -719,6 +719,9 @@ afw_value_block_evaluate_switch(
     const afw_value_t * const *pair;
     const afw_value_t * const *default_pair;     
     const afw_value_t *result;
+    const afw_value_t *statement;
+    const afw_array_t *statement_list;
+    const afw_iterator_t *iterator;
 
     result = afw_value_undefined;
 
@@ -774,8 +777,27 @@ afw_value_block_evaluate_switch(
     for (;pair < end_of_args; pair += 2)
     {
         if (pair[1]) {
-            result = afw_value_block_evaluate_statement(x, type,
-                true, true, pair[1], p, xctx);
+            if (!afw_value_is_array(pair[1])) {
+                AFW_THROW_ERROR_Z(general,
+                    "Expecting an array of statements",
+                     xctx);
+            }
+            statement_list = ((const afw_value_array_t *)pair[1])->internal;
+            for (iterator = NULL;;) {
+                statement = afw_array_get_next_value(
+                    statement_list, &iterator, p, xctx);
+                if (!statement) {
+                    break;
+                }
+                result = afw_value_block_evaluate_statement(x, type,
+                    true, true, statement, p, xctx);
+                if (*type == afw_value_block_statement_type_break ||
+                    *type == afw_value_block_statement_type_rethrow ||
+                    *type == afw_value_block_statement_type_return)
+                {
+                    break;
+                }
+            }
             if (*type == afw_value_block_statement_type_break ||
                 *type == afw_value_block_statement_type_rethrow ||
                 *type == afw_value_block_statement_type_return)
@@ -859,7 +881,7 @@ afw_value_block_evaluate_try(
  /// scope is created.
     const afw_xctx_scope_t *scope;
     const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
-    scope = afw_xctx_scope_begin(block, xctx);
+    scope = afw_xctx_scope_begin(block, afw_xctx_scope_current(xctx), xctx);
     AFW_TRY{
         impl_assign_value(argv[4], error_value,
             afw_compile_assignment_type_let, p, xctx);

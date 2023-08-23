@@ -1364,6 +1364,7 @@ afw_value_function_thunk_create_impl( \
 /**
  * @brief Create function for lambda definition value.
  * @param contextual information for lambda.
+ * @param depth is static depth of function.
  * @param signature or NULL.
  * @param returns struct for lambda function.
  * @param count number of parameters.
@@ -1376,6 +1377,7 @@ afw_value_function_thunk_create_impl( \
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_function_definition_create(
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     const afw_value_script_function_signature_t *signature,
     const afw_value_type_t *returns,
     afw_size_t count,

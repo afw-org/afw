@@ -42,9 +42,37 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_compiled_value_t *self =
         (const afw_value_compiled_value_t *)instance;
+    const afw_value_t *result;
+    int nelts;
+
+    AFW_TRY {
+
+        /* Push a NULL onto the scope stack to indicate new compiled value. */
+        nelts = xctx->scope_stack->nelts;
+        APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = NULL;
+
+        /* Evaluate compiled value root value. */
+        result = afw_value_evaluate(self->root_value, p, xctx);
+
+    }
+    AFW_FINALLY {
+
+        /* Make sure all scopes were released during evaluate. */
+        if (xctx->scope_stack->nelts != nelts + 1) {
+            AFW_THROW_ERROR_Z(general,
+                "Scope stack still has active scopes at end after computed "
+                "value is evaluated",
+                xctx);
+        }
+
+        /* Pop off the NULL compiled value indicator on scope stack. */
+        apr_array_pop(xctx->scope_stack);
+        
+    }
+    AFW_ENDTRY;
 
     /* Return the result of calling root value's evaluate(). */
-    return afw_value_evaluate(self->root_value, p, xctx);
+    return result;
 }
 
 /*

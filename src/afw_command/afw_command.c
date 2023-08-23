@@ -671,6 +671,8 @@ impl_print_end(afw_command_self_t *self)
     /* Nothing to do. */
 }
 
+static const afw_utf8_t impl_response_error_flag =
+    AFW_UTF8_LITERAL("response:error");
 
 int
 main(int argc, const char * const *argv) {
@@ -694,6 +696,13 @@ main(int argc, const char * const *argv) {
 
     /* Generated register. */
     afw_command_generated_register(xctx);
+
+    /*
+     * Since the caller of the afw command has to have access to all resources
+     * anyways to run the afw command, default to receiving additional error
+     * info that might be sensitive.
+     */
+    afw_flag_set_default(&impl_response_error_flag, true, xctx);
 
     /* Make sure environment is cleaned up. */
     self = NULL;

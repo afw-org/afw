@@ -990,6 +990,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     const afw_value_t *predicate;
     const afw_value_t *case_expression;
     const afw_value_t *statement_list;
+    const afw_value_block_t *block;
     afw_compile_args_t *args;
     afw_size_t argc;
     const afw_value_t **argv;
@@ -998,6 +999,9 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     afw_boolean_t default_encountered;
 
     afw_compile_save_cursor(start_offset);
+
+    /* All of switch is in a new block. */
+    block = afw_compile_parse_link_new_value_block(parser, start_offset);
  
     /* Build variable length args. */
     args = afw_compile_args_create(parser);
@@ -1062,6 +1066,12 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
         afw_compile_create_contextual_to_cursor(start_offset),
         argc - 1, argv, true, parser->p, parser->xctx);
 
+    /* Finalize the block. */
+    argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *), parser->xctx);
+    *argv = result;
+    afw_value_block_finalize(block, 1, argv, parser->xctx);
+    result = (const afw_value_t *)block;
+  
     return result;
 }
 
@@ -1529,10 +1539,12 @@ afw_compile_parse_StatementList(
     afw_compile_args_t *args;
     const afw_value_t **argv;
     const afw_value_block_t *block;
+    const afw_array_t *array;
     afw_size_t argc;
     afw_size_t start_offset;
     afw_boolean_t *was_expression;
     afw_boolean_t was_expression_value;
+    afw_boolean_t building_list_not_block;
 
     args = afw_compile_args_create(parser);
     was_expression_value = false;
@@ -1540,11 +1552,15 @@ afw_compile_parse_StatementList(
         ? &was_expression_value
         : NULL;
 
+    building_list_not_block = end_is_close_brace_case_or_default;
+
     /* Save starting cursor. */
     afw_compile_save_cursor(start_offset);
 
-    /* Make new block and link. */
-    block = afw_compile_parse_link_new_value_block(parser, start_offset);
+    /* Make new block and link if making block. */
+    if (!building_list_not_block) {
+        block = afw_compile_parse_link_new_value_block(parser, start_offset);   
+    }
 
     /* If cb passed, call it now that args and block are set. */
     if (cb) {
@@ -1564,7 +1580,8 @@ afw_compile_parse_StatementList(
                 break;
             }
             else if afw_compile_token_is(end) {
-                AFW_COMPILE_THROW_ERROR_Z("Expecting '}'");
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting '}', 'case', or 'default'");
             }
         }
         else if (end_is_close_brace) {
@@ -1605,13 +1622,22 @@ afw_compile_parse_StatementList(
         }
     }
 
-    /* Make block of statements. */
+    /* Finalize args. */
     afw_compile_args_finalize(args, &argc, &argv);
-    afw_value_block_finalize(block, argc, argv, parser->xctx);
-    result = (const afw_value_t *)block;
 
-    /* Pop block. */
-    afw_compile_parse_pop_value_block(parser);
+    /* If building statement list, create an array of statements. */
+    if (building_list_not_block) {
+        array = afw_array_const_create_array_of_values(
+            argv, argc, parser->p, parser->xctx);
+        result = afw_value_create_array(array, parser->p, parser->xctx);
+    }
+
+    /* If building block, finalize and set result. */
+    else {
+        afw_value_block_finalize(block, argc, argv, parser->xctx);
+        result = (const afw_value_t *)block;
+        afw_compile_parse_pop_value_block(parser);
+    }
 
     /* Return block or list. */
     return result;
