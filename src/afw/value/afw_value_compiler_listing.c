@@ -443,7 +443,12 @@ afw_value_compiler_listing_to_string_instance(
             afw_writer_write_utf8(writer, &afw_s_undefined, xctx);
         }
         else {
-            afw_value_decompile(value, writer, xctx);
+            afw_data_type_write_as_expression(
+                afw_value_quick_data_type(value),
+                writer,
+                (const void *)&(((const afw_value_evaluated_t *)value)->
+                    internal),
+                xctx);
         }
         afw_writer_write_eol(writer, xctx);
         return self;
