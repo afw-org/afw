@@ -316,6 +316,20 @@ struct afw_value_call_script_function_s {
 
 
 /**
+ * @brief Struct for closure binding value.
+ *
+ * This is a closure binding.
+ */
+struct afw_value_closure_binding_s {
+    const afw_value_inf_t *inf;
+    const afw_value_script_function_definition_t *script_function_definition;
+    const afw_xctx_scope_t *scope;
+    afw_size_t reference_count;
+};
+
+
+
+/**
  * @brief Struct for compiled value value.
  *
  * This is the top level value return from the adaptive compiler when the

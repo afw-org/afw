@@ -843,6 +843,14 @@ typedef struct afw_value_call_args_s
 afw_value_call_args_t;
 
 /**
+ * Opaque typedef for afw_value_closure_binding_t.
+ *
+ * See afw_value_internal.h for struct and more information.
+ */
+typedef struct afw_value_closure_binding_s
+afw_value_closure_binding_t;
+
+/**
  * Opaque typedef for afw_value_compiled_value_t.
  *
  * See afw_value_internal.h for struct and more information.
