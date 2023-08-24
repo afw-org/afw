@@ -1234,6 +1234,21 @@ afw_value_evaluated_create(
 
 
 /**
+ * @brief Create function closure binding value.
+ * @param script_function_definition script function to enclose.
+ * @param enclosing_scope for closure binding.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_closure_binding_create(
+    const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_scope,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create function for call value.
  * @param contextual information for function call.
  * @param argc number of arguments (does not include argv[0]).

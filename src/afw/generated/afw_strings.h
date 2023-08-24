@@ -3235,6 +3235,20 @@ extern const afw_value_string_t afw_v_a_ampersand;
 
 
 
+/** @brief define for quoted string "a_anonymous_function_id" */
+#define AFW_Q_a_anonymous_function_id "**anonymous**"
+
+/** @brief 'afw_utf8_t' for string "a_anonymous_function_id" */
+#define afw_s_a_anonymous_function_id (afw_v_a_anonymous_function_id.internal)
+
+/** @brief 'afw_value_string_t' for string "a_anonymous_function_id" */
+extern const afw_value_string_t afw_v_a_anonymous_function_id;
+
+/** @brief 'afw_utf8_z_t *' for string "a_anonymous_function_id" */
+#define afw_z_a_anonymous_function_id (afw_v_a_anonymous_function_id.internal.s)
+
+
+
 /** @brief define for quoted string "a_application_description" */
 #define AFW_Q_a_application_description "This configuration type provides the application object for this Adaptive Framework environment.  It can only be specified once."
 

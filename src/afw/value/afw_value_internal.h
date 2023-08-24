@@ -323,7 +323,7 @@ struct afw_value_call_script_function_s {
 struct afw_value_closure_binding_s {
     const afw_value_inf_t *inf;
     const afw_value_script_function_definition_t *script_function_definition;
-    const afw_xctx_scope_t *scope;
+    const afw_xctx_scope_t *enclosing_scope;
     afw_size_t reference_count;
 };
 

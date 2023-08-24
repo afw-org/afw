@@ -1170,6 +1170,11 @@ const afw_value_string_t afw_v_a_ampersand = {
     AFW_UTF8_LITERAL("&")
 };
 
+const afw_value_string_t afw_v_a_anonymous_function_id = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("**anonymous**")
+};
+
 const afw_value_string_t afw_v_a_application_description = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("This configuration type provides the application object for this Adaptive Framework environment.  It can only be specified once.")
