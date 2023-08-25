@@ -275,9 +275,14 @@ afw_value_function_thunk_inf;
 
 
 
-/** @brief Value lambda inf. */
+/** @brief Value script function inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_script_function_definition_inf;
+
+
+/** @brief Value closure binding inf. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_closure_binding_inf;
 
 
 
@@ -679,6 +684,19 @@ afw_value_is_fully_evaluated(
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_script_function_definition_inf \
+)
+
+
+
+/**
+ * @brief Macro to determine if value is closure binding.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_closure_binding(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_closure_binding_inf \
 )
 
 
@@ -1309,6 +1327,8 @@ afw_value_call_built_in_function_create(
 /**
  * @brief Create function for call_script_function value.
  * @param contextual information for function call.
+ * @param script_function_definition script function to call.
+ * @param enclosing_scope for closure binding or NULL if not enclosed.
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function
  *        definition value.
@@ -1328,6 +1348,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,

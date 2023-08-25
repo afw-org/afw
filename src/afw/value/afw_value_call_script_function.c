@@ -37,6 +37,7 @@ AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_scope,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -46,7 +47,8 @@ afw_value_call_script_function(
 
     /* Optimize is set to false since this is one time call. */
     value = afw_value_call_script_function_create(
-        contextual, script_function_definition, argc, argv, false, p, xctx);
+        contextual, script_function_definition, enclosing_scope,
+        argc, argv, false, p, xctx);
     return impl_afw_value_optional_evaluate(
         (AFW_VALUE_SELF_T *)value, p, xctx);
 }
@@ -58,6 +60,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,
@@ -69,6 +72,7 @@ afw_value_call_script_function_create(
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_call_script_function_inf;
     self->script_function_definition = script_function_definition;
+    self->enclosing_scope = enclosing_scope;
     self->args.contextual = contextual;
     self->args.argc = argc;
     self->args.argv = argv;
@@ -112,25 +116,31 @@ impl_afw_value_optional_evaluate(
     l = self->script_function_definition;
 
 
-    /** @fixme This will all be cleaned up and rewritten. */
-
-    /* This will need to change for closures. */
-    /* Find enclosing static scope. */
+    /* Scope at entry will be restored on return. */
     scope_at_entry = afw_xctx_scope_current(xctx);
-    for (
-        parent_static_scope = scope_at_entry;
-        (
-            parent_static_scope &&
-            parent_static_scope->block->depth >= l->depth
+
+    /* If closure, use enclosing scope ans parent static scope. */
+    if (self->enclosing_scope) {
+        parent_static_scope = self->enclosing_scope;
+    }
+
+    /* If not closure, parent scope is the one enclosing this function.. */
+    else {                                                                                                                                                        /* Find enclosing static scope. */
+        for (
+            parent_static_scope = scope_at_entry;
+            (
+                parent_static_scope &&
+                parent_static_scope->block->depth > l->depth
+            );
+            parent_static_scope = parent_static_scope->parent_static_scope
         );
-        parent_static_scope = parent_static_scope->parent_static_scope
-    );
-    if (!parent_static_scope ||
-        scope_at_entry->block->depth < l->depth)
-    {
-        AFW_THROW_ERROR_Z(general,
-            "Can not determine parent static scope for function",
-            xctx);
+        if (!parent_static_scope ||
+            scope_at_entry->block->depth < l->depth)
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Can not determine parent static scope for function",
+                xctx);
+        }
     }
 
     /* Save stack top which will be restored on return. */

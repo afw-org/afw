@@ -65,6 +65,26 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
+static const afw_value_t *
+impl_create_closure_if_needed(
+    const afw_value_script_function_definition_t *function,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+    const afw_value_t *result;
+
+    scope = afw_xctx_scope_current(xctx);
+
+    if (function->depth >= scope->block->depth) {
+        result = afw_value_closure_binding_create(function, scope, xctx);
+    }
+    else {
+        result = (const afw_value_t *)function;
+    }
+
+    return result;
+}
 
 static void
 impl_set_variable(
@@ -307,13 +327,22 @@ impl_assign(
     {
         value = afw_value_clone(value, p, xctx);
     }
-    else {
+    else
+    {
         value = afw_value_evaluate(value, p, xctx);
+    }
+
+    if (afw_value_is_script_function_definition(value))
+    {
+        value = impl_create_closure_if_needed(
+            (const afw_value_script_function_definition_t *)value,
+            p, xctx);
     }
 
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
-        if (afw_value_is_assignment_target(target)) {
+        if (afw_value_is_assignment_target(target))
+        {
             at = (const afw_value_assignment_target_t *)target;
             assignment_type = at->assignment_target->assignment_type;
         }
@@ -1069,6 +1098,11 @@ afw_value_block_evaluate_statement(
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
                 result = afw_function_evaluate_required_parameter(
                         &modified_x, 1, NULL);
+                if (afw_value_is_script_function_definition(result)) {
+                    result = impl_create_closure_if_needed(
+                        (const afw_value_script_function_definition_t *)result,
+                        p, xctx);
+                }
             }
             break;
 
@@ -1199,6 +1233,11 @@ afw_value_block_evaluate_statement(
                 /* NULL (undefined) is okay here. */
                 result = afw_function_evaluate_parameter(&modified_x, 1,
                         NULL);
+                if (afw_value_is_script_function_definition(result)) {
+                    result = impl_create_closure_if_needed(
+                        (const afw_value_script_function_definition_t *)result,
+                        p, xctx);
+                }
             }
             break;
 
