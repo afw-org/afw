@@ -327,6 +327,48 @@ afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
 
 
+
+/**
+ * @brief Get the address where the value of a symbol is stored within the
+ *     current scope chain.
+ * @param symbol whose value address is to be returned.
+ * @param xctx of caller.
+ * @return value address.
+ * 
+ * An error is thrown if the symbol's value location is not found.
+ */
+AFW_DECLARE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address(
+    const afw_value_block_symbol_t *symbol,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Get the value of a symbol in the appropriate scope of execution
+ *      context.
+ * @param symbol to get value of.
+ * @param value Value to set.
+ * @param xctx of caller.
+ * @return value or NULL if not found.
+ */
+#define afw_xctx_scope_symbol_get_value(symbol, xctx) \
+    *afw_xctx_scope_symbol_get_value_address(symbol, xctx)
+
+
+
+/**
+ * @brief Set the value of a symbol in the appropriate scope of execution
+ *      context.
+ * @param symbol to set value of.
+ * @param value to set.
+ * @param xctx of caller.
+ */
+#define afw_xctx_scope_symbol_set_value(symbol, value, xctx) \
+    *afw_xctx_scope_symbol_get_value_address(symbol, xctx) = value
+
+
+
 /**
  * @brief Defined a dynamic variable in current xctx frame.
  * @param name Name of variable.

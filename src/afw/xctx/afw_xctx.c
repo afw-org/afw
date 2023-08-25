@@ -237,6 +237,40 @@ afw_xctx_get_qualified_variable(
 }
 
 
+
+AFW_DEFINE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address(
+    const afw_value_block_symbol_t *symbol,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+
+    for (scope = afw_xctx_scope_current(xctx);
+         scope && scope->block->depth >= symbol->parent_block->depth;
+         scope = scope->parent_static_scope);
+
+    if (!scope ||
+        scope->block->depth != symbol->parent_block->depth)
+    {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol " AFW_UTF8_FMT_Q
+            " not found in current scope chain",
+            AFW_UTF8_FMT_ARG(symbol->name));
+    }
+
+    if (symbol->index >= scope->symbol_count) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol " AFW_UTF8_FMT_Q
+            " index " AFW_SIZE_T_FMT
+            " is out of range for scope",
+            AFW_UTF8_FMT_ARG(symbol->name), symbol->index);
+    }
+
+    return (const afw_value_t **)&scope->symbol_values[symbol->index];   
+}
+
+
+
 /* Set a variable in current xctx frame. */
 AFW_DEFINE(void)
 afw_xctx_scope_dynamic_variable_define(const afw_utf8_t *name,
