@@ -222,7 +222,7 @@ afw_xctx_scope_symbol_get_value_address(
     const afw_xctx_scope_t *scope;
 
     for (scope = afw_xctx_scope_current(xctx);
-         scope && scope->block->depth >= symbol->parent_block->depth;
+         scope && scope->block->depth > symbol->parent_block->depth;
          scope = scope->parent_static_scope);
 
     if (!scope ||
