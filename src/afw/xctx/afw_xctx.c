@@ -553,9 +553,8 @@ static void impl_scope_debug(
 
     if (scope) {
         printf(
-            ", scope number: " AFW_SIZE_T_FMT
-            ", scope local_top: %d",
-            scope->scope_number, scope->local_top);
+            ", scope number: " AFW_SIZE_T_FMT,
+            scope->scope_number);
     }
     else {
         printf(" scope: NULL");
@@ -563,9 +562,8 @@ static void impl_scope_debug(
 
     if (parent_scope) {
         printf(
-            ", parent scope number: " AFW_SIZE_T_FMT
-            ", parent scope local_top: %d",
-            parent_scope->scope_number, parent_scope->local_top);
+            ", parent scope number: " AFW_SIZE_T_FMT,
+            parent_scope->scope_number);
     }
     else {
         printf(" parent_scope: NULL");
@@ -573,9 +571,8 @@ static void impl_scope_debug(
 
     if (current_scope) {
         printf(
-            ", current scope number: " AFW_SIZE_T_FMT
-            ", current scope local_top: %d",
-            current_scope->scope_number, current_scope->local_top);
+            ", current scope number: " AFW_SIZE_T_FMT,
+            current_scope->scope_number);
     }
     else {
         printf(", current scope: NULL");
@@ -611,9 +608,9 @@ afw_xctx_scope_begin(
     AFW_COMPILER_ANNOTATION_UNUSED const afw_xctx_scope_t *current_scope =
         afw_xctx_scope_current(xctx);
 
-    afw_xctx_scope_debug(
-        "-> afw_xctx_scope_begin()",
-        block, NULL, parent_static_scope, NULL, xctx);
+    // afw_xctx_scope_debug(
+    //     "-> afw_xctx_scope_begin()",
+    //     block, NULL, parent_static_scope, NULL, xctx);
 
     if (!block) {
         AFW_THROW_ERROR_Z(general,
@@ -701,9 +698,9 @@ afw_xctx_scope_unwind(
         afw_pool_release(scope->p, xctx);
     }
 
-    afw_xctx_scope_debug(
-        "<- afw_xctx_scope_unwind()",
-        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+    // afw_xctx_scope_debug(
+    //     "<- afw_xctx_scope_unwind()",
+    //     scope->block, scope, scope->parent_static_scope, NULL, xctx);
 }
 
 
@@ -727,7 +724,7 @@ afw_xctx_scope_release(
     apr_array_pop(xctx->scope_stack);
     afw_pool_release(scope->p, xctx);
 
-    afw_xctx_scope_debug(
-        "<- afw_xctx_scope_release()",
-        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+    // afw_xctx_scope_debug(
+    //     "<- afw_xctx_scope_release()",
+    //     scope->block, scope, scope->parent_static_scope, NULL, xctx);
 }
