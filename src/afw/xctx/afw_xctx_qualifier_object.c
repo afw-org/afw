@@ -163,7 +163,7 @@ impl_afw_object_get_property(
     afw_xctx_qualifier_object_self_t *self =
         (afw_xctx_qualifier_object_self_t *)instance;
 
-    return afw_xctx_get_qualified_variable(self->qualifier,
+    return afw_xctx_get_optionally_qualified_variable(self->qualifier,
         property_name, xctx);
 }
 
@@ -225,7 +225,7 @@ impl_afw_object_has_property(
     afw_xctx_qualifier_object_self_t *self =
         (afw_xctx_qualifier_object_self_t *)instance;
 
-    return afw_xctx_get_qualified_variable(self->qualifier,
+    return afw_xctx_get_optionally_qualified_variable(self->qualifier,
         property_name, xctx) != NULL;
 }
 

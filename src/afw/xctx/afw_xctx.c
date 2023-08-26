@@ -171,48 +171,6 @@ afw_xctx_create(
 }
 
 
-/* Get a variable from xctx stack. */
-AFW_DEFINE(const afw_value_t *)
-afw_xctx_get_qualified_variable(
-    const afw_utf8_t *qualifier,
-    const afw_utf8_t *name,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t * result;
-    const afw_xctx_qualifier_stack_entry_t * e_cur;
-    afw_boolean_t qualifier_passed;
-
-    result = NULL;
-    qualifier_passed = qualifier && qualifier->len != 0;
-
-    for (
-        e_cur = xctx->qualifier_stack->top;
-        e_cur >= xctx->qualifier_stack->first;
-        e_cur--)
-    {
-        if (!e_cur->get) {
-            continue;
-        }
-
-        if (qualifier_passed) {
-            if (!afw_utf8_equal(qualifier, &e_cur->qualifier)) {
-                continue;
-            }
-        }
-
-        if (!e_cur->secure && xctx->secure) {
-            continue;
-        }
-
-        result = e_cur->get(e_cur, name, xctx);
-        break;
-    }
-
-    /* Return result. */
-    return result;
-}
-
-
 
 AFW_DEFINE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
@@ -246,8 +204,38 @@ afw_xctx_scope_symbol_get_value_address(
 }
 
 
+AFW_DEFINE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+    const afw_value_block_t *block;
+    const afw_value_block_symbol_t *symbol;
 
-/* Get the value of a symbol in the appropriate scope of execution context. */
+    for (scope = afw_xctx_scope_current(xctx);
+         scope;
+         scope = scope->parent_static_scope)
+    {
+        for (block = scope->block,
+             symbol = block->first_entry;
+             symbol;
+             symbol = symbol->next_entry)
+        {
+            if (afw_utf8_equal(symbol_name, symbol->name)) {
+                return (const afw_value_t **)
+                &scope->symbol_values[symbol->index];
+            }
+        }
+    }
+
+    return NULL;
+}
+
+
+
+
+/* Get the value of a symbol in the current scope chain. */
 AFW_DEFINE(const afw_value_t *)
 afw_xctx_scope_symbol_get_value(
     const afw_value_block_symbol_t *symbol,
@@ -263,7 +251,41 @@ afw_xctx_scope_symbol_get_value(
 
 
 
-/* Set the value of a symbol in the appropriate scope of execution context. */
+/* Get the value of a named symbol in the current scope chain. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **value_address;
+
+    value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+        symbol_name, xctx);
+
+    if (!value_address) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol name " AFW_UTF8_FMT_Q
+            " not found in current scope chain",
+            AFW_UTF8_FMT_ARG(symbol_name));
+    }
+
+    return *value_address;
+}
+
+
+
+/* Determine if the named symbol exists in the current scope chain. */
+AFW_DECLARE(afw_boolean_t)
+afw_xctx_scope_symbol_exists_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx)
+{
+    return afw_xctx_scope_symbol_get_value_address_by_name(
+        symbol_name, xctx) != NULL;
+}
+
+
+/*  Set the value of a symbol in the current scope chain. */
 AFW_DEFINE(void)
 afw_xctx_scope_symbol_set_value(
     const afw_value_block_symbol_t *symbol,
@@ -276,6 +298,80 @@ afw_xctx_scope_symbol_set_value(
         symbol, xctx);
 
     *value_address = value;
+}
+
+
+
+/* Set the value of a named symbol in the current scope chain. */
+AFW_DEFINE(void)
+afw_xctx_scope_symbol_set_value_by_name(
+    const afw_utf8_t *symbol_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **value_address;
+
+    value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+        symbol_name, xctx);
+
+    if (!value_address) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol name " AFW_UTF8_FMT_Q
+            " not found in current scope chain",
+            AFW_UTF8_FMT_ARG(symbol_name));
+    }
+
+    *value_address = value;
+}
+
+
+
+/* Get a variable from xctx stack. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_get_optionally_qualified_variable(
+    const afw_utf8_t *qualifier,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t * result;
+    const afw_xctx_qualifier_stack_entry_t * e_cur;
+    const afw_value_t **value_address;
+
+    if (!qualifier | (qualifier->len == 0)) {
+        value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+            name, xctx);
+        if (value_address) {
+            return *value_address;
+        }
+        else {
+            return NULL;
+        }
+    }
+
+    for (
+        result = NULL,
+        e_cur = xctx->qualifier_stack->top;
+        e_cur >= xctx->qualifier_stack->first;
+        e_cur--)
+    {
+        if (!e_cur->get) {
+            continue;
+        }
+
+        if (!afw_utf8_equal(qualifier, &e_cur->qualifier)) {
+            continue;
+        }
+
+        if (!e_cur->secure && xctx->secure) {
+            continue;
+        }
+
+        result = e_cur->get(e_cur, name, xctx);
+        break;
+    }
+
+    /* Return result. */
+    return result;
 }
 
 
@@ -360,6 +456,7 @@ afw_xctx_qualifier_stack_qualifier_push(
 }
 
 
+
 static const afw_value_t *
 impl_get_object_variable(
     const afw_xctx_qualifier_stack_entry_t *entry,
@@ -413,6 +510,8 @@ impl_afw_xctx_release(
         afw_pool_destroy(instance->p, xctx);
     }
 }
+
+
 
 //#define AFW_XCTX_SCOPE_DEBUG
 

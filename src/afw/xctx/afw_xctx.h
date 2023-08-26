@@ -337,7 +337,8 @@ afw_xctx_scope_release(
  * @param xctx of caller.
  * @return value address.
  * 
- * An error is thrown if the symbol's value location is not found.
+ * An error is thrown if the symbol's value location is not found. This most
+ * likely is caused by a compile error.
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
@@ -345,14 +346,28 @@ afw_xctx_scope_symbol_get_value_address(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Get the address where the value of a named symbol is stored within the
+ *     current scope chain.
+ * @param symbol_name of symbol whose value address is to be returned.
+ * @param xctx of caller.
+ * @return value address or NULL if not found.
+ */
+AFW_DECLARE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx);
+
+
+
 
 /**
- * @brief Get the value of a symbol in the appropriate scope of execution
- *      context.
+ * @brief Get the value of a symbol in the current scope chain.
  * @param symbol to get value of.
- * @param value Value to set.
  * @param xctx of caller.
- * @return value or NULL if not found.
+ * @return value.
+ * 
+ * An error is thrown if the symbol's value location is not found.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_symbol_get_value(
@@ -362,8 +377,36 @@ afw_xctx_scope_symbol_get_value(
 
 
 /**
- * @brief Set the value of a symbol in the appropriate scope of execution
- *      context.
+ * @brief Get the value of a named symbol in the current scope chain.
+ * @param symbol_name of value to get.
+ * @param xctx of caller.
+ * @return value.
+ * 
+ * An error is thrown if the symbol's name if not found in the current scope
+ * chain.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Determine if the named symbol exists in the current scope chain.
+ * @param symbol_name of value to check.
+ * @param xctx of caller.
+ * @return true if exists, false otherwise.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_xctx_scope_symbol_exists_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Set the value of a symbol in the current scope chain.
  * @param symbol to set value of.
  * @param value to set.
  * @param xctx of caller.
@@ -371,6 +414,20 @@ afw_xctx_scope_symbol_get_value(
 AFW_DECLARE(void)
 afw_xctx_scope_symbol_set_value(
     const afw_value_block_symbol_t *symbol,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Set the value of a named symbol in the current scope chain.
+ * @param symbol_name of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_symbol_set_value_by_name(
+    const afw_utf8_t *symbol_name,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
@@ -484,9 +541,10 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
     
 ---------------------------------------------------------------------------- */
 
+
 /**
  * @brief Get a variable from xctx stack.
- * @param qualifier of variable.
+ * @param qualifier of variable or NULL..
  * @param name of variable.
  * @param xctx of caller.
  * @return value or NULL if not found.
@@ -494,7 +552,7 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
  * The stack is searched from newest to oldest.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_xctx_get_qualified_variable(
+afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
     const afw_utf8_t *name,
     afw_xctx_t *xctx);
