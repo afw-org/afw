@@ -86,35 +86,6 @@ impl_create_closure_if_needed(
     return result;
 }
 
-static void
-impl_set_variable(
-    const afw_utf8_t *name,
-    const afw_value_t *value,
-    afw_compile_internal_assignment_type_t assignment_type,
-    afw_xctx_t *xctx)
-{
-    switch (assignment_type) {
-
-        /** @brief once symbol table is in place, replace this. */
-
-    case afw_compile_assignment_type_assign_only:
-        afw_xctx_scope_dynamic_variable_set(name, value, xctx);
-        break;
-
-    case afw_compile_assignment_type_const:
-        afw_xctx_scope_dynamic_variable_define(name, value, xctx);
-        break;
-
-    case afw_compile_assignment_type_let:
-        afw_xctx_scope_dynamic_variable_define(name, value, xctx);
-        break;
-
-    default:
-        AFW_THROW_ERROR_Z(general, "Internal error", xctx);
-    }
-
-}
-
 
 
 static void
@@ -297,8 +268,8 @@ impl_assignment_target(
         break;
 
     case afw_compile_assignment_target_type_symbol_reference:
-        impl_set_variable(at->symbol_reference->symbol->name,
-            value, assignment_type, xctx);
+        afw_xctx_scope_symbol_set_value(
+            at->symbol_reference->symbol, value, xctx);
         break;
 
     case afw_compile_assignment_target_type_max_type:
@@ -377,8 +348,7 @@ impl_assign_value(
     else if (afw_value_is_symbol_reference(target)) {
         const afw_value_symbol_reference_t *t =
             (afw_value_symbol_reference_t *)target;
-        impl_set_variable(t->symbol->name, value,
-            assignment_type, xctx);
+        afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
     }
 
     /* Reference by key */
@@ -426,13 +396,6 @@ impl_assign_value(
         }
 
     }
-
-    /* String containing variable name */
-    // else if (afw_value_is_string(target)) {
-    //     impl_set_variable(
-    //         &((afw_value_string_t *)target)->internal,
-    //         value, assignment_type, xctx);
-    // }
     
     /* Invalid assignment target. */
     else {

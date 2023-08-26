@@ -104,7 +104,6 @@ impl_afw_value_optional_evaluate(
     afw_size_t parameter_number;
     const afw_value_script_function_parameter_t *const *params;
     const afw_value_t *const *arg;
-    afw_name_value_t *cur;
     const afw_value_t *const *rest_argv;
     afw_xctx_scope_t *scope;
     const afw_xctx_scope_t *parent_static_scope;
@@ -154,17 +153,110 @@ impl_afw_value_optional_evaluate(
 
         /* If there is a signature, process it. */
         else {
-            scope = afw_xctx_scope_begin(
-                l->signature->block, parent_static_scope, xctx);
+            // afw_name_value_t *cur;
+            // scope = afw_xctx_scope_begin(
+            //     l->signature->block, parent_static_scope, xctx);
+
+            // /** @fixme This whole function is converted to use scope.*/
+            // /*
+            // * Push parameters without names onto stack. This is so
+            // * afw_function_evaluate_parameter_with_type() will not
+            // * see these parameters yet.
+            // * 
+            // * First argument starts at argv[1] so index in argv is the parameter
+            // * number.
+            // */
+            // for (parameter_number = 1,
+            //     params = l->parameters,
+            //     arg = self->args.argv + 1;
+            //     parameter_number <= l->count;
+            //     parameter_number++, params++, arg++)
+            // {
+            //     /* If this is rest parameter ... */
+            //     if ((*params)->is_rest) {
+
+            //         /* If extra unused parameters, pass them in rest object. */
+            //         if (self->args.argc >= l->count) {
+            //             rest_argc = self->args.argc - l->count + 1;
+            //             rest_argv = arg;
+            //         }
+
+            //         /* If no extra unused parameters, rest object is empty. */
+            //         else {
+            //             rest_argc = 0;
+            //             rest_argv = NULL;
+            //         }
+
+            //         /* Create rest list. */
+            //         rest_list = afw_array_const_create_array_of_values(
+            //             rest_argv, rest_argc, p, xctx);
+            //         value = afw_value_create_array(rest_list, p, xctx);
+            //     }
+
+            //     /* If not rest parameter */
+            //     else {
+            //         value = NULL;
+            //         if (parameter_number <= self->args.argc) {
+            //             value = afw_function_evaluate_parameter_with_type(
+            //                 *arg, parameter_number,
+            //                 (*params)->type,
+            //                 p, xctx);
+            //         }
+
+            //         if (!value) {
+            //             if ((*params)->default_value) {
+            //                 value = (*params)->default_value;
+            //             }
+            //             else if (!(*params)->is_optional) {
+            //                 AFW_THROW_ERROR_FZ(general, xctx,
+            //                     "Parameter " AFW_SIZE_T_FMT " is required",
+            //                     parameter_number);
+            //             }
+            //         }
+            //     }
+
+            //     cur = (afw_name_value_t *)apr_array_push(xctx->stack);
+            //     cur->name = &afw_s_a_empty_string;
+            //     cur->value = value;
+            // }
+
+            // /* Set parameter symbol values in scope. */
+            // for (
+            //     cur = ((afw_name_value_t *)xctx->stack->elts) + scope->local_top,
+            //     parameter_number = 1,
+            //     params = l->parameters;
+            //     parameter_number <= l->count;
+            //     cur++,
+            //     parameter_number++,
+            //     params++)
+            // {
+            //     scope->symbol_values[(*params)->symbol->index] = cur->value;
+            //     cur->name = (*params)->name; // Old way also add support for destructuring.
+            // }
+
+            // /* If function named, set its symbol value in scope. */
+            // if (l->signature && l->signature->function_name_symbol) {
+            //     scope->symbol_values[l->signature->function_name_symbol->index] =
+            //         (const afw_value_t *)self->script_function_definition; 
+            // }
+
+            // /*OLD> If there is a function name, make it a local variable. */
+            // if (l->signature && l->signature->function_name_value) {
+            //     cur = (afw_name_value_t *)apr_array_push(xctx->stack);
+            //     cur->name = &l->signature->function_name_value->internal;
+            //     cur->value = (const afw_value_t *)self->script_function_definition;            
+            // }
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             /*
-            * Push parameters without names onto stack. This is so
-            * afw_function_evaluate_parameter_with_type() will not
-            * see these parameters yet.
-            * 
-            * First argument starts at argv[1] so index in argv is the parameter
-            * number.
-            */
+             * Set parameter values in scope.
+             * 
+             * First argument starts at argv[1] so index in argv is the
+             * parameter number.
+             */
+            scope = afw_xctx_scope_begin(
+                l->signature->block, parent_static_scope, xctx);
             for (parameter_number = 1,
                 params = l->parameters,
                 arg = self->args.argv + 1;
@@ -214,38 +306,12 @@ impl_afw_value_optional_evaluate(
                     }
                 }
 
-                cur = (afw_name_value_t *)apr_array_push(xctx->stack);
-                cur->name = &afw_s_a_empty_string;
-                cur->value = value;
+                afw_xctx_scope_symbol_set_value(
+                    (*params)->symbol, value, xctx);
             }
 
-            /** @fixme This whole function is converted to use scope.*/
-            /* Set parameter symbol values in scope. */
-            for (
-                cur = ((afw_name_value_t *)xctx->stack->elts) + scope->local_top,
-                parameter_number = 1,
-                params = l->parameters;
-                parameter_number <= l->count;
-                cur++,
-                parameter_number++,
-                params++)
-            {
-                scope->symbol_values[(*params)->symbol->index] = cur->value;
-                cur->name = (*params)->name; // Old way also add support for destructuring.
-            }
+//********************************************************************************
 
-            /* If function named, set its symbol value in scope. */
-            if (l->signature && l->signature->function_name_symbol) {
-                scope->symbol_values[l->signature->function_name_symbol->index] =
-                    (const afw_value_t *)self->script_function_definition; 
-            }
-
-            /*OLD> If there is a function name, make it a local variable. */
-            if (l->signature && l->signature->function_name_value) {
-                cur = (afw_name_value_t *)apr_array_push(xctx->stack);
-                cur->name = &l->signature->function_name_value->internal;
-                cur->value = (const afw_value_t *)self->script_function_definition;            
-            }
         }
 
         /* Evaluate body. */

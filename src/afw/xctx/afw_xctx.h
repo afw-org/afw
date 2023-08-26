@@ -202,11 +202,13 @@ AFW_ENDTRY
 struct afw_xctx_scope_s {
     const afw_pool_t *p;
     const afw_value_block_t *block;
-    int local_top; /** @fixme Will be removed.*/
     const afw_xctx_scope_t *parent_static_scope;
     afw_size_t scope_number;
     afw_size_t symbol_count;
-    /* This is often used as argv so symbols[0] may not be a symbol. */
+    /*
+     * When this struct is created by afw_xctx_scope_begin(), it will be
+     * allocated large enough to hold symbol_count symbol_values.
+     */ 
     const afw_value_t *symbol_values[1];
 };
 
@@ -352,8 +354,10 @@ afw_xctx_scope_symbol_get_value_address(
  * @param xctx of caller.
  * @return value or NULL if not found.
  */
-#define afw_xctx_scope_symbol_get_value(symbol, xctx) \
-    *afw_xctx_scope_symbol_get_value_address(symbol, xctx)
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value(
+    const afw_value_block_symbol_t *symbol,
+    afw_xctx_t *xctx);
 
 
 
@@ -364,40 +368,11 @@ afw_xctx_scope_symbol_get_value_address(
  * @param value to set.
  * @param xctx of caller.
  */
-#define afw_xctx_scope_symbol_set_value(symbol, value, xctx) \
-    *afw_xctx_scope_symbol_get_value_address(symbol, xctx) = value
-
-
-
-/**
- * @brief Defined a dynamic variable in current xctx frame.
- * @param name Name of variable.
- * @param value Value to set.
- * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * Dynamic variables are ones that are not known at compile time.  They
- * are defined in the current xctx frame.  If the variable is already
- * defined in the current xctx frame, an error is thrown.
- */
 AFW_DECLARE(void)
-afw_xctx_scope_dynamic_variable_define(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
-
-
-/**
- * @brief Set a dynamic variable in xctx.
- * @param name Name of variable.
- * @param value Value to set.
- * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * The most recently defined named variable in xctx will be set to the
- * value.  If the variable is not found or const an error is thrown.
- */
-AFW_DECLARE(void)
-afw_xctx_scope_dynamic_variable_set(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
+afw_xctx_scope_symbol_set_value(
+    const afw_value_block_symbol_t *symbol,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 
 

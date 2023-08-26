@@ -4351,9 +4351,7 @@ struct afw_xctx_s {
     afw_size_t scope_count;
     apr_array_header_t * scope_stack;
     afw_xctx_evaluation_stack_t * evaluation_stack;
-    apr_array_header_t * stack;
     const afw_xctx_qualifier_stack_t * qualifier_stack;
-    int current_frame_index;
     afw_adaptor_xctx_internal_t * adaptor_xctx_internal;
     afw_adaptor_internal_cache_t * cache;
     afw_dateTime_t local_dateTime_when_created;
