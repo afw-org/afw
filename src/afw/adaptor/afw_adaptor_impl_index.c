@@ -337,7 +337,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
 
         /* Add variables for the filter and value expressions to use */
         /** @fixme These need to be current:: variables. See issue #54. */
-        // scope = afw_xctx_scope_begin(NULL, xctx);
+        // scope = afw_xctx_scope_create(NULL, xctx);
         // afw_xctx_scope_deprecated_variable_set(&afw_s_objectId,
         //     afw_value_create_string(object_id, xctx->p, xctx), xctx);
         // afw_xctx_scope_deprecated_variable_set(&afw_s_objectType,

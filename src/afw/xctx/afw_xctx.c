@@ -175,11 +175,10 @@ afw_xctx_create(
 AFW_DEFINE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
     const afw_value_block_symbol_t *symbol,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    const afw_xctx_scope_t *scope;
-
-    for (scope = afw_xctx_scope_current(xctx);
+    for (;
          scope && scope->block->depth > symbol->parent_block->depth;
          scope = scope->parent_static_scope);
 
@@ -244,7 +243,7 @@ afw_xctx_scope_symbol_get_value(
     const afw_value_t **value_address;
 
     value_address = afw_xctx_scope_symbol_get_value_address(
-        symbol, xctx);
+        symbol, afw_xctx_scope_current(xctx), xctx);
 
     return *value_address;
 }
@@ -295,7 +294,7 @@ afw_xctx_scope_symbol_set_value(
     const afw_value_t **value_address;
 
     value_address = afw_xctx_scope_symbol_get_value_address(
-        symbol, xctx);
+        symbol, afw_xctx_scope_current(xctx), xctx);
 
     *value_address = value;
 }
@@ -595,33 +594,28 @@ static void impl_scope_debug(
 
 /* Begin begin a scope */
 AFW_DEFINE(afw_xctx_scope_t *)
-afw_xctx_scope_begin(
+afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_static_scope,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
     afw_xctx_scope_t *scope;
+    const afw_xctx_scope_t *current_scope;
     afw_size_t symbol_count;
 
-    //FIXME remove this line. Here for debugging.
-    AFW_COMPILER_ANNOTATION_UNUSED const afw_xctx_scope_t *current_scope =
-        afw_xctx_scope_current(xctx);
-
-    // afw_xctx_scope_debug(
-    //     "-> afw_xctx_scope_begin()",
-    //     block, NULL, parent_static_scope, NULL, xctx);
+    current_scope = afw_xctx_scope_current(xctx);
 
     if (!block) {
         AFW_THROW_ERROR_Z(general,
-            "afw_xctx_scope_begin(): block required",
+            "afw_xctx_scope_create(): block required",
             xctx);
     }
 
     if (parent_static_scope) {
         if (parent_static_scope->block->depth != block->depth - 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "afw_xctx_scope_begin(): parent_static_scope block depth must "
+                "afw_xctx_scope_create(): parent_static_scope block depth must "
                 "be one less than block depth "
                 "(scope count: " AFW_SIZE_T_FMT
                 ", active scopes: %d"
@@ -633,17 +627,18 @@ afw_xctx_scope_begin(
                 parent_static_scope->block->depth,
                 block->depth);
         }
+        afw_xctx_scope_add_reference(parent_static_scope, xctx);
     }
     else if (block->depth != 0) {
         AFW_THROW_ERROR_Z(general,
-            "afw_xctx_scope_begin(): block depth must be zero if "
+            "afw_xctx_scope_create(): block depth must be zero if "
             "parent_static_scope is NULL",
             xctx);
     }
     
     symbol_count = (block) ? block->symbol_count : 0;
     p = afw_pool_create(
-        (parent_static_scope) ? parent_static_scope->p : xctx->p,
+        (current_scope) ? current_scope->p : xctx->p,
         xctx);
     scope = afw_pool_calloc(p,
         (
@@ -656,12 +651,14 @@ afw_xctx_scope_begin(
     scope->block = block;
     scope->symbol_count = symbol_count;
     scope->parent_static_scope = parent_static_scope;
+    /* Current scope many not be necessary to remember but keep for now. */
+    /* Pools will remember this but might be needed for recursion/closure. */
+    scope->parent_dynamic_scope = current_scope;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
 
     afw_xctx_scope_debug(
-        "<- afw_xctx_scope_begin()",
+        "-> afw_xctx_scope_create()",
         block, scope, parent_static_scope, NULL, xctx);
 
     return scope;
@@ -681,7 +678,7 @@ afw_xctx_scope_unwind(
     const afw_xctx_scope_t *current_scope;
 
     afw_xctx_scope_debug(
-        "-> afw_xctx_scope_unwind()",
+        "<- afw_xctx_scope_unwind()",
         scope->block, scope, scope->parent_static_scope, NULL, xctx);
  
     for (;;) {
@@ -697,10 +694,6 @@ afw_xctx_scope_unwind(
         apr_array_pop(xctx->scope_stack);
         afw_pool_release(scope->p, xctx);
     }
-
-    // afw_xctx_scope_debug(
-    //     "<- afw_xctx_scope_unwind()",
-    //     scope->block, scope, scope->parent_static_scope, NULL, xctx);
 }
 
 
@@ -715,7 +708,7 @@ afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {  
     afw_xctx_scope_debug(
-        "-> afw_xctx_scope_release()",
+        "<- afw_xctx_scope_release()",
         scope->block, scope, scope->parent_static_scope,
         (afw_xctx_scope_current(xctx) == scope)
             ? NULL 
@@ -723,8 +716,4 @@ afw_xctx_scope_release(
         xctx);
     apr_array_pop(xctx->scope_stack);
     afw_pool_release(scope->p, xctx);
-
-    // afw_xctx_scope_debug(
-    //     "<- afw_xctx_scope_release()",
-    //     scope->block, scope, scope->parent_static_scope, NULL, xctx);
 }

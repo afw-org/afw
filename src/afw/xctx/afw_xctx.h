@@ -203,10 +203,11 @@ struct afw_xctx_scope_s {
     const afw_pool_t *p;
     const afw_value_block_t *block;
     const afw_xctx_scope_t *parent_static_scope;
+    const afw_xctx_scope_t *parent_dynamic_scope;
     afw_size_t scope_number;
     afw_size_t symbol_count;
     /*
-     * When this struct is created by afw_xctx_scope_begin(), it will be
+     * When this struct is created by afw_xctx_scope_create(), it will be
      * allocated large enough to hold symbol_count symbol_values.
      */ 
     const afw_value_t *symbol_values[1];
@@ -228,14 +229,17 @@ struct afw_xctx_scope_s {
 
 
 /**
- * @brief Begin begin a new scope.
+ * @brief Creat a new scope.
  * @param block associated with this scope.
  * @param parent_static_scope of this scope or NULL for first one.
  * @param xctx of caller.
  * @return New xctx scope.
  *
- * This is used to create a new scope and must be paired with a call to
- * afw_xctx_scope_release() when the scope is no longer needed.
+ * This is used to create a new scope. This must be followed with a call to
+ * afw_xctx_scope_activate() then a call to afw_xctx_scope_release() when the
+ * scope is no longer needed. The call to create() and activate() are separate
+ * to allow the new scope to be primed before activation such as when the
+ * parameters or being evaluated in the scope of the caller.
  *
  * The block depth of the specfied block must be one more than the block depth
  * of the parent_static_scope's block or 0 if parent_static_scope is NULL.
@@ -261,7 +265,7 @@ struct afw_xctx_scope_s {
  * struct has a C array of values for the symbols in the scope. A symbol has a
  * static scope depth and index into the corresponding scope's array of values.
  *
- * Scopes are created and released with afw_xctx_scope_begin() and
+ * Scopes are created and released with afw_xctx_scope_create() and
  * afw_xctx_scope_release(). There is also an afw_xctx_scope_rewind() used in
  * 'catch' and 'finally' to release all of the scopes down to the current scope
  * at the time 'try' was entered.
@@ -279,14 +283,23 @@ struct afw_xctx_scope_s {
  * afw_xctx_scope_add_reference(), which keeps the chain of ancestor static
  * scopes around. The parent static scope pointer is remembered in the binding.
  * When the closure is called, this is the parent_static_scope used in the call
- * to afw_xctx_scope_begin(). When the closure binding goes out of scope, the
+ * to afw_xctx_scope_create(). When the closure binding goes out of scope, the
  * associated parent static scope is released.
  */
 AFW_DECLARE(afw_xctx_scope_t *)
-afw_xctx_scope_begin(
+afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_static_scope,
     afw_xctx_t *xctx);
+
+
+/**
+ * @brief Activate scope.
+ * @param scope to activate as the current scope.
+ * @param xctx of caller.
+ */
+#define afw_xctx_scope_activate(scope, xctx) \
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
 
 
 /**
@@ -334,6 +347,7 @@ afw_xctx_scope_release(
  * @brief Get the address where the value of a symbol is stored within the
  *     current scope chain.
  * @param symbol whose value address is to be returned.
+ * @param scope to start search from.
  * @param xctx of caller.
  * @return value address.
  * 
@@ -343,6 +357,7 @@ afw_xctx_scope_release(
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
     const afw_value_block_symbol_t *symbol,
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
 
 

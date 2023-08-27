@@ -299,7 +299,7 @@ struct afw_value_call_built_in_function_s {
 struct afw_value_call_script_function_s {
     const afw_value_inf_t *inf;
     const afw_value_script_function_definition_t *script_function_definition;
-    const afw_xctx_scope_t *enclosing_scope;
+    const afw_xctx_scope_t *enclosing_static_scope;
     afw_value_call_args_t args;
     
     /*
@@ -324,7 +324,7 @@ struct afw_value_call_script_function_s {
 struct afw_value_closure_binding_s {
     const afw_value_inf_t *inf;
     const afw_value_script_function_definition_t *script_function_definition;
-    const afw_xctx_scope_t *enclosing_scope;
+    const afw_xctx_scope_t *enclosing_static_scope;
     afw_size_t reference_count;
 };
 
@@ -646,7 +646,7 @@ AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_scope, /* NULL if not enclosed. */
+    const afw_xctx_scope_t *enclosing_static_scope, /* NULL if not enclosed. */
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,

@@ -37,7 +37,7 @@ AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_scope,
+    const afw_xctx_scope_t *enclosing_static_scope,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -47,7 +47,7 @@ afw_value_call_script_function(
 
     /* Optimize is set to false since this is one time call. */
     value = afw_value_call_script_function_create(
-        contextual, script_function_definition, enclosing_scope,
+        contextual, script_function_definition, enclosing_static_scope,
         argc, argv, false, p, xctx);
     return impl_afw_value_optional_evaluate(
         (AFW_VALUE_SELF_T *)value, p, xctx);
@@ -60,7 +60,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_scope,
+    const afw_xctx_scope_t *enclosing_static_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,
@@ -72,7 +72,7 @@ afw_value_call_script_function_create(
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_call_script_function_inf;
     self->script_function_definition = script_function_definition;
-    self->enclosing_scope = enclosing_scope;
+    self->enclosing_static_scope = enclosing_static_scope;
     self->args.contextual = contextual;
     self->args.argc = argc;
     self->args.argv = argv;
@@ -98,42 +98,44 @@ impl_afw_value_optional_evaluate(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_script_function_definition_t *l;
+    const afw_value_script_function_definition_t *script;
     const afw_value_t *result;
+    const afw_xctx_scope_t *enclosing_static_scope;
+    afw_xctx_scope_t *parameter_scope;
+    const afw_xctx_scope_t *caller_scope;
     const afw_value_t *value;
-    afw_size_t parameter_number;
     const afw_value_script_function_parameter_t *const *params;
     const afw_value_t *const *arg;
     const afw_value_t *const *rest_argv;
-    afw_xctx_scope_t *scope;
-    const afw_xctx_scope_t *parent_static_scope;
-    const afw_xctx_scope_t *scope_at_entry;
+    const afw_array_t *rest_array;
+    afw_size_t parameter_number;
     afw_size_t rest_argc;
-    const afw_array_t *rest_list;
+    afw_boolean_t parameter_scope_activated;
 
     result = NULL;
-    l = self->script_function_definition;
+    caller_scope = afw_xctx_scope_current(xctx);
+    parameter_scope = NULL;
+    parameter_scope_activated = false;
+    script = self->script_function_definition;
 
-    /* Scope at entry will be restored on return. */
-    scope_at_entry = afw_xctx_scope_current(xctx);
-
-    /* If closure, use enclosing scope ans parent static scope. */
-    if (self->enclosing_scope) {
-        parent_static_scope = self->enclosing_scope;
+    /* If closure, use its enclosing static scope. */
+    if (self->enclosing_static_scope) {
+        enclosing_static_scope = self->enclosing_static_scope;
     }
 
-    /* If not closure, parent scope is the one enclosing this function.. */
+    /* If not closure, use the one at correct depth from caller scope chain. */
     else {                                                                                                                                                        /* Find enclosing static scope. */
         for (
-            parent_static_scope = scope_at_entry;
+            enclosing_static_scope = caller_scope;
             (
-                parent_static_scope &&
-                parent_static_scope->block->depth > l->depth
+                enclosing_static_scope &&
+                enclosing_static_scope->block->depth > script->depth
             );
-            parent_static_scope = parent_static_scope->parent_static_scope
+            enclosing_static_scope =
+                enclosing_static_scope->parent_static_scope
         );
-        if (!parent_static_scope ||
-            scope_at_entry->block->depth < l->depth)
+        if (!enclosing_static_scope ||
+            caller_scope->block->depth < script->depth)
         {
             AFW_THROW_ERROR_Z(general,
                 "Can not determine parent static scope for function",
@@ -144,47 +146,26 @@ impl_afw_value_optional_evaluate(
     /* Save stack top which will be restored on return. */
     AFW_TRY {
 
-        /* Make parent static scope the current scope. */
-        APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = 
-            parent_static_scope;
-
-        /* If there is a signature, set its properties in scope. */
-        if (l->signature->block) {
-
-            // FIXME This comment was here before. This might should be in set..
-            // * Push parameters without names onto stack. This is so
-            // * afw_function_evaluate_parameter_with_type() will not
-            // * see these parameters yet.
-
-            /*
-             * First argument starts at argv[1] so index in argv is the
-             * parameter number.
-             */
+        /* If there is are parameters, make a parameter block. */
+        if (script->signature->block) {
 
             /* Make a scope for parameters. */
-            scope = afw_xctx_scope_begin(
-                l->signature->block, parent_static_scope, xctx);
-
-            /* If named function, set symbol for it in scope for recursion. */
-            if (l->signature->function_name_symbol) {
-                afw_xctx_scope_symbol_set_value(
-                    l->signature->function_name_symbol,
-                    (const afw_value_t *)l, xctx);
-            }
+            parameter_scope = afw_xctx_scope_create(
+                script->signature->block, enclosing_static_scope, xctx);
 
             /* Set parameters in scope. */
             for (parameter_number = 1,
-                params = l->parameters,
+                params = script->parameters,
                 arg = self->args.argv + 1;
-                parameter_number <= l->count;
+                parameter_number <= script->count;
                 parameter_number++, params++, arg++)
             {
                 /* If this is rest parameter ... */
                 if ((*params)->is_rest) {
 
                     /* If extra unused parameters, pass them in rest object. */
-                    if (self->args.argc >= l->count) {
-                        rest_argc = self->args.argc - l->count + 1;
+                    if (self->args.argc >= script->count) {
+                        rest_argc = self->args.argc - script->count + 1;
                         rest_argv = arg;
                     }
 
@@ -195,9 +176,9 @@ impl_afw_value_optional_evaluate(
                     }
 
                     /* Create rest list. */
-                    rest_list = afw_array_const_create_array_of_values(
+                    rest_array = afw_array_const_create_array_of_values(
                         rest_argv, rest_argc, p, xctx);
-                    value = afw_value_create_array(rest_list, p, xctx);
+                    value = afw_value_create_array(rest_array, p, xctx);
                 }
 
                 /* If not rest parameter */
@@ -222,30 +203,50 @@ impl_afw_value_optional_evaluate(
                     }
                 }
 
-                /* Set parameter value in scope. */
+                /* Set parameter value in parameters scope. */
+                *afw_xctx_scope_symbol_get_value_address(
+                    (*params)->symbol, parameter_scope, xctx) = value;
+            }
+
+            /* Activate the parameter scope. */
+            afw_xctx_scope_activate(parameter_scope, xctx);
+            parameter_scope_activated = true;
+            
+            /* If named function, set its symbol in parameter scope. */
+            if (script->signature->function_name_symbol) {
                 afw_xctx_scope_symbol_set_value(
-                    (*params)->symbol, value, xctx);
+                    script->signature->function_name_symbol,
+                    (const afw_value_t *)script, xctx);
             }
         }
 
+        /* If no parameters, activate functions parent static scope. */
+        else {
+            afw_xctx_scope_add_reference(enclosing_static_scope, xctx);
+            afw_xctx_scope_activate(enclosing_static_scope, xctx);
+        }
+
         /* Evaluate body. */
-        result = afw_value_evaluate(l->body, p, xctx);
+        result = afw_value_evaluate(script->body, p, xctx);
     }
 
     AFW_FINALLY{
 
-        /* If there was a signature block, release it. */
-        if (l->signature->block) {
-           afw_xctx_scope_release(scope, xctx);
+        /* If there was a parameters scope, release it. */
+        if (parameter_scope)
+        {
+            /* Make sure it was activated so release will succeed. */
+            if (!parameter_scope_activated) {
+                afw_xctx_scope_activate(parameter_scope, xctx);
+            }
+
+            /* Release parameters scope. */
+            afw_xctx_scope_release(parameter_scope, xctx);
         }
 
-        /* Return to scope at entry. */
-        apr_array_pop(xctx->scope_stack);
-        if (scope_at_entry != afw_xctx_scope_current(xctx)) {
-            AFW_THROW_ERROR_Z(general,
-                "Scope stack not restored to entry state",
-                xctx);
-        }
+        /* Return to caller's scope. */
+        afw_xctx_scope_release(enclosing_static_scope, xctx);
+        afw_xctx_scope_activate(caller_scope, xctx);
     }
 
     AFW_ENDTRY;
