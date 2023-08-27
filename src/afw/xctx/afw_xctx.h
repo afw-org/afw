@@ -297,9 +297,33 @@ afw_xctx_scope_create(
  * @brief Activate scope.
  * @param scope to activate as the current scope.
  * @param xctx of caller.
+ * 
+ * Call this after afw_xctx_scope_create() or when the current stack needs to
+ * be switched to a different enclosing static scope.
  */
-#define afw_xctx_scope_activate(scope, xctx) \
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+AFW_DECLARE(void)
+afw_xctx_scope_activate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Deactivate scope.
+ * @param scope to deactivate that must be the current scope.
+ * @param xctx of caller.
+ *
+ * Deactivate is done automatically when a afw_xctx_scope_release() is called
+ * for a scope so only use this when afw_xctx_scope_activate() is called at
+ * times other than paired after a afw_xctx_scope_create(). One place this
+ * happens is in call_script_function evaluate when there are no parameters but
+ * there is a need to switch to the enclosing static scope.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_deactivate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
+
 
 
 /**

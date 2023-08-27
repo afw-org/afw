@@ -222,7 +222,6 @@ impl_afw_value_optional_evaluate(
 
         /* If no parameters, activate functions parent static scope. */
         else {
-            afw_xctx_scope_add_reference(enclosing_static_scope, xctx);
             afw_xctx_scope_activate(enclosing_static_scope, xctx);
         }
 
@@ -244,9 +243,16 @@ impl_afw_value_optional_evaluate(
             afw_xctx_scope_release(parameter_scope, xctx);
         }
 
-        /* Return to caller's scope. */
-        afw_xctx_scope_release(enclosing_static_scope, xctx);
-        afw_xctx_scope_activate(caller_scope, xctx);
+        /* If no parameters, deactivate enclosing scope so callers active. */
+        else {
+            afw_xctx_scope_deactivate(enclosing_static_scope, xctx);
+        }
+
+        if (caller_scope != afw_xctx_scope_current(xctx)) {
+            AFW_THROW_ERROR_Z(general,
+                "Caller scope not current on return from function",
+                xctx);
+        }
     }
 
     AFW_ENDTRY;

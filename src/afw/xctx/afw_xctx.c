@@ -172,6 +172,31 @@ afw_xctx_create(
 
 
 
+AFW_DEFINE(void)
+afw_xctx_scope_activate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+}
+
+
+
+AFW_DEFINE(void)
+afw_xctx_scope_deactivate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{ 
+    if ((scope) != afw_xctx_scope_current(xctx)) { 
+        AFW_THROW_ERROR_Z(general, 
+            "Request to deactivate scope that is not current",
+            xctx);
+    }
+    apr_array_pop(xctx->scope_stack);
+}
+
+
+
 AFW_DEFINE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
     const afw_value_block_symbol_t *symbol,
