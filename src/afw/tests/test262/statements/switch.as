@@ -1078,7 +1078,7 @@ x;
 
 //? test: scope-lex-close-case
 //? description: Removal of lexical environment (from `case` clause)
-//? expect: error:Assertion failed: from first `case` clause
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1102,7 +1102,7 @@ assert(x === 'outside');
 
 //? test: scope-lex-close-dflt
 //? description: Removal of lexical environment (from `default` clause)
-//? expect: error:Assertion failed: from lone `default` clause`
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1130,12 +1130,11 @@ switch (null) {
 }
 
 assert(
-  probeDefaultBeforeCase(),
-  'inside',
+  probeDefaultBeforeCase() == 'inside',
   'from `default` clause preceding `case` clause'
 );
 assert(
-  probeCase(), 'inside', 'from `case` clause following `default` clause'
+  probeCase() == 'inside', 'from `case` clause following `default` clause'
 );
 
 

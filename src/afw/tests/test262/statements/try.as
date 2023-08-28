@@ -4508,7 +4508,7 @@ if(fin!==10){
 
 //? test: scope-catch-block-lex-close
 //? description: Removal of lexical environment for `catch` block
-//? expect: error:Assertion failed
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4524,7 +4524,6 @@ try {
 x = 'outside';
 
 assert(x === 'outside');
-// fixme closure causes x to be 'outside' instead of 'inside'
 assert(probe() === 'inside');
 
 
