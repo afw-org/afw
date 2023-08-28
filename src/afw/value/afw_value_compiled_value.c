@@ -45,10 +45,10 @@ impl_afw_value_optional_evaluate(
     const afw_value_t *result;
     int nelts;
 
+    nelts = xctx->scope_stack->nelts;
     AFW_TRY {
 
         /* Push a NULL onto the scope stack to indicate new compiled value. */
-        nelts = xctx->scope_stack->nelts;
         APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = NULL;
 
         /* Evaluate compiled value root value. */

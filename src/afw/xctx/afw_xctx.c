@@ -361,7 +361,7 @@ afw_xctx_get_optionally_qualified_variable(
     const afw_xctx_qualifier_stack_entry_t * e_cur;
     const afw_value_t **value_address;
 
-    if (!qualifier | (qualifier->len == 0)) {
+    if (!qualifier || (qualifier->len == 0)) {
         value_address = afw_xctx_scope_symbol_get_value_address_by_name(
             name, xctx);
         if (value_address) {
