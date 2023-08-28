@@ -58,11 +58,14 @@ if(!(f1() === 0)){
 let x = 0;
 
 function f1(){
+
+  let x;
+
   function f2(){
     return x;
   };
 
-  let x = 1;
+  x = 1;
   return f2();
 }
 

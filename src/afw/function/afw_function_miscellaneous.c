@@ -628,7 +628,7 @@ afw_function_execute_variable_is_not_null(
     afw_compile_split_qualified_name(&qualified_name->internal,
         &qualifier, &name, x->xctx);
 
-    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
+    value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name, x->xctx);
 
     return (value && !afw_value_is_null(value))
         ? afw_value_true
@@ -762,7 +762,7 @@ afw_function_execute_variable_exists(
     afw_compile_split_qualified_name(&qualified_name->internal,
         &qualifier, &name, x->xctx);
 
-    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
+    value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name, x->xctx);
 
     return (value) ? afw_value_true : afw_value_false;
 }
@@ -817,7 +817,8 @@ afw_function_execute_variable_get(
     afw_compile_split_qualified_name(&qualified_name->internal,
         &qualifier, &name, x->xctx);
 
-    value = afw_xctx_get_qualified_variable(&qualifier, &name, x->xctx);
+    value = afw_xctx_get_optionally_qualified_variable(
+        &qualifier, &name, x->xctx);
 
     if (!value) {
         value = afw_value_undefined;

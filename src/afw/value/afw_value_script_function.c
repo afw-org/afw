@@ -43,6 +43,7 @@
 AFW_DEFINE(const afw_value_t *)
 afw_value_script_function_definition_create(
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     const afw_value_script_function_signature_t *signature,
     const afw_value_type_t *returns,
     afw_size_t count,
@@ -58,6 +59,7 @@ afw_value_script_function_definition_create(
     self = afw_pool_calloc_type(p, afw_value_script_function_definition_t, xctx);
     self->inf = &afw_value_script_function_definition_inf;
     self->contextual = contextual;
+    self->depth = depth;
     self->signature = signature;
     self->returns = returns;
     self->count = count;
@@ -147,11 +149,23 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_eol(writer, xctx);
 
     afw_writer_write_z(writer, "signature ", xctx);
+    if (self->signature->block) {
     afw_value_produce_compiler_listing(
         (const afw_value_t *)self->signature->block, writer, xctx);
+    }
+    else {
+        afw_writer_write_z(writer, "undefined", xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
 
     afw_writer_write_z(writer, "body ", xctx);
-    afw_value_produce_compiler_listing(self->body, writer, xctx);
+    if (self->body) {
+        afw_value_produce_compiler_listing(self->body, writer, xctx);
+    }
+    else {
+        afw_writer_write_z(writer, "undefined", xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
 
     afw_writer_decrement_indent(writer, xctx);
     afw_writer_write_z(writer, "]", xctx);

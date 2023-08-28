@@ -800,7 +800,8 @@ afw_object_meta_add_thrown_property_error(
 
     if (afw_flag_is_active(
         xctx->env->flag_index_response_error_hasAdditionalDetail, xctx))
-    {        message = afw_error_to_utf8(error, instance->p, xctx);
+    {
+        message = afw_error_to_utf8(error, instance->p, xctx);
         if (index >= 0) {
             message = afw_utf8_printf(instance->p, xctx,
                 "[" AFW_INTEGER_FMT "] " AFW_UTF8_FMT,

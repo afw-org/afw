@@ -84,7 +84,7 @@ impl_afw_value_optional_evaluate(
     xctx->error->contextual = self->contextual;
 
     /* Try to locate qualified variable. */
-    result = afw_xctx_get_qualified_variable(&self->qualifier, &self->name,
+    result = afw_xctx_get_optionally_qualified_variable(&self->qualifier, &self->name,
         xctx);
 
     /* Pop value from evaluation stack and return result. */

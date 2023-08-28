@@ -72,8 +72,8 @@ impl_afw_value_optional_evaluate(
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
-    /* Try to locate a variable. */
-    result = afw_xctx_get_qualified_variable(NULL, self->symbol->name, xctx);
+    /* Get value of symbol. */
+    result = afw_xctx_scope_symbol_get_value(self->symbol, xctx);
 
     /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);

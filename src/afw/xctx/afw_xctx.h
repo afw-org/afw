@@ -202,50 +202,155 @@ AFW_ENDTRY
 struct afw_xctx_scope_s {
     const afw_pool_t *p;
     const afw_value_block_t *block;
-    int local_top; /** @fixme Will be removed.*/
     const afw_xctx_scope_t *parent_static_scope;
+    const afw_xctx_scope_t *parent_dynamic_scope;
     afw_size_t scope_number;
     afw_size_t symbol_count;
-    /* This is often used as argv so symbols[0] may not be a symbol. */
+    /*
+     * When this struct is created by afw_xctx_scope_create(), it will be
+     * allocated large enough to hold symbol_count symbol_values.
+     */ 
     const afw_value_t *symbol_values[1];
 };
 
+
+
+/**
+ * @brief Get current scope.
+ * @param xctx of caller.
+ * @return Current scope.
+ */
 #define afw_xctx_scope_current(xctx) \
-    (xctx->scope_stack->nelts > 0) \
+    ((xctx->scope_stack->nelts > 0) \
     ? ((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
         [xctx->scope_stack->nelts - 1] \
-    : NULL;
+    : NULL)
+
+
 
 /**
- * @brief Begin begin a scope.
+ * @brief Creat a new scope.
  * @param block associated with this scope.
+ * @param parent_static_scope of this scope or NULL for first one.
  * @param xctx of caller.
  * @return New xctx scope.
+ *
+ * This is used to create a new scope. This must be followed with a call to
+ * afw_xctx_scope_activate() then a call to afw_xctx_scope_release() when the
+ * scope is no longer needed. The call to create() and activate() are separate
+ * to allow the new scope to be primed before activation such as when the
+ * parameters or being evaluated in the scope of the caller.
+ *
+ * The block depth of the specfied block must be one more than the block depth
+ * of the parent_static_scope's block or 0 if parent_static_scope is NULL.
+ *
+ * For nested scopes, the parent_static_scope must be the current scope. Use
+ * afw_xctx_scope_current(xctx) to get the current scope.
+ *
+ * When calling a script function, this must be the scope enclosing the
+ * function. If this is a regular function call, this will be the scope that
+ * contains the function definition. If this is a closure call, this will be the
+ * parent static scope of the function at the time the closure binding was
+ * created.
+ *
+ * More detail on how scopes work:
+ *
+ * The evaluate for a compiled value always pushes a NULL on the scope stack
+ * before evaluating its root value then makes sure the NULL is still there in
+ * the same position and removes it when the evaluation is complete. This causes
+ * the evaluation of the root value to begin with a current scope of NULL which
+ * will cause it's first scope to be lexical scope depth 0.
+ *
+ * Symbols (variables, parameters, etc.) go in and out of scope. The scope
+ * struct has a C array of values for the symbols in the scope. A symbol has a
+ * static scope depth and index into the corresponding scope's array of values.
+ *
+ * Scopes are created and released with afw_xctx_scope_create() and
+ * afw_xctx_scope_release(). There is also an afw_xctx_scope_rewind() used in
+ * 'catch' and 'finally' to release all of the scopes down to the current scope
+ * at the time 'try' was entered.
+ *
+ * Each new scope struct is created in a new pool that is a subpool of the
+ * parent static scope's pool. This parent static scope is stored in the new
+ * scope to form a chain of ancestor static scopes.
+ *
+ * The scope's pool is released (not necessarily destroyed if still referenced)
+ * when the scope is released. The lifetime of the scope struct is based on the
+ * lifetime of the scope's pool.
+ *
+ * When a closure binding is created, a new reference is made to the pool of the
+ * parent static scope of the function being enclosed by calling
+ * afw_xctx_scope_add_reference(), which keeps the chain of ancestor static
+ * scopes around. The parent static scope pointer is remembered in the binding.
+ * When the closure is called, this is the parent_static_scope used in the call
+ * to afw_xctx_scope_create(). When the closure binding goes out of scope, the
+ * associated parent static scope is released.
  */
 AFW_DECLARE(afw_xctx_scope_t *)
-afw_xctx_scope_begin(
+afw_xctx_scope_create(
     const afw_value_block_t *block,
+    const afw_xctx_scope_t *parent_static_scope,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Begin begin a scope for closure.
+ * @brief Activate scope.
+ * @param scope to activate as the current scope.
  * @param xctx of caller.
- * @return Parameter to pass to end_stack_frame.
+ * 
+ * Call this after afw_xctx_scope_create() or when the current stack needs to
+ * be switched to a different enclosing static scope.
  */
 AFW_DECLARE(void)
-afw_xctx_scope_closure_begin(
-    const afw_xctx_scope_t *enclosure_scope,
+afw_xctx_scope_activate(
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Deactivate scope.
+ * @param scope to deactivate that must be the current scope.
+ * @param xctx of caller.
+ *
+ * Deactivate is done automatically when a afw_xctx_scope_release() is called
+ * for a scope so only use this when afw_xctx_scope_activate() is called at
+ * times other than paired after a afw_xctx_scope_create(). One place this
+ * happens is in call_script_function evaluate when there are no parameters but
+ * there is a need to switch to the enclosing static scope.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_deactivate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Add a reference to a scope.
+ * @param scope to be referenced. 
+ * @param xctx of caller.
+ */
+#define afw_xctx_scope_add_reference(scope, xctx) \
+    afw_pool_add_reference((scope)->p, xctx)
+
+
 
 /**
  * @brief Unwind the scope stack down to but not including the specified scope.
  * @param scope to unwind down to
  * @param xctx of caller.
+ * 
+ * This pops and releases all of the scopes in the scope stack down to but not
+ * including the specified scope.  This is used to unwind the scope stack when
+ * an error occurs.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_unwind(
-    const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
+
+
 
 /**
  * @brief Release current scope.
@@ -261,35 +366,109 @@ afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
 
 
+
 /**
- * @brief Defined a dynamic variable in current xctx frame.
- * @param name Name of variable.
- * @param value Value to set.
+ * @brief Get the address where the value of a symbol is stored within the
+ *     current scope chain.
+ * @param symbol whose value address is to be returned.
+ * @param scope to start search from.
  * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * Dynamic variables are ones that are not known at compile time.  They
- * are defined in the current xctx frame.  If the variable is already
- * defined in the current xctx frame, an error is thrown.
+ * @return value address.
+ * 
+ * An error is thrown if the symbol's value location is not found. This most
+ * likely is caused by a compile error.
  */
-AFW_DECLARE(void)
-afw_xctx_scope_dynamic_variable_define(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
+AFW_DECLARE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address(
+    const afw_value_block_symbol_t *symbol,
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
 
 
 /**
- * @brief Set a dynamic variable in xctx.
- * @param name Name of variable.
- * @param value Value to set.
+ * @brief Get the address where the value of a named symbol is stored within the
+ *     current scope chain.
+ * @param symbol_name of symbol whose value address is to be returned.
  * @param xctx of caller.
- * @return value or NULL if not found.
- *
- * The most recently defined named variable in xctx will be set to the
- * value.  If the variable is not found or const an error is thrown.
+ * @return value address or NULL if not found.
+ */
+AFW_DECLARE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx);
+
+
+
+
+/**
+ * @brief Get the value of a symbol in the current scope chain.
+ * @param symbol to get value of.
+ * @param xctx of caller.
+ * @return value.
+ * 
+ * An error is thrown if the symbol's value location is not found.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value(
+    const afw_value_block_symbol_t *symbol,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Get the value of a named symbol in the current scope chain.
+ * @param symbol_name of value to get.
+ * @param xctx of caller.
+ * @return value.
+ * 
+ * An error is thrown if the symbol's name if not found in the current scope
+ * chain.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Determine if the named symbol exists in the current scope chain.
+ * @param symbol_name of value to check.
+ * @param xctx of caller.
+ * @return true if exists, false otherwise.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_xctx_scope_symbol_exists_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Set the value of a symbol in the current scope chain.
+ * @param symbol to set value of.
+ * @param value to set.
+ * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_xctx_scope_dynamic_variable_set(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx);
+afw_xctx_scope_symbol_set_value(
+    const afw_value_block_symbol_t *symbol,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Set the value of a named symbol in the current scope chain.
+ * @param symbol_name of value to set.
+ * @param value to set.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_xctx_scope_symbol_set_value_by_name(
+    const afw_utf8_t *symbol_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 
 
@@ -401,9 +580,10 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
     
 ---------------------------------------------------------------------------- */
 
+
 /**
  * @brief Get a variable from xctx stack.
- * @param qualifier of variable.
+ * @param qualifier of variable or NULL..
  * @param name of variable.
  * @param xctx of caller.
  * @return value or NULL if not found.
@@ -411,7 +591,7 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
  * The stack is searched from newest to oldest.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_xctx_get_qualified_variable(
+afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
     const afw_utf8_t *name,
     afw_xctx_t *xctx);

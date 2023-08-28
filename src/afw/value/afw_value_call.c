@@ -69,7 +69,22 @@ afw_value_call_create(
     if (afw_value_is_script_function_definition(argv[0])) {
         return afw_value_call_script_function_create(
             contextual,
-            (const afw_value_script_function_definition_t *)argv[0],
+            (const afw_value_script_function_definition_t *)argv[0], NULL,
+            argc, argv, allow_optimize, p, xctx);
+    }
+
+    /*
+     * If this is a script function definition, return the self of the more 
+     * specific afw_value_call_script_function_create() to reduce the execution
+     * time code path.
+     */
+    if (afw_value_is_closure_binding(argv[0])) {
+        return afw_value_call_script_function_create(
+            contextual,
+                ((const afw_value_closure_binding_t *)argv[0])->
+                    script_function_definition,
+                ((const afw_value_closure_binding_t *)argv[0])->
+                    enclosing_static_scope,
             argc, argv, allow_optimize, p, xctx);
     }
 
@@ -89,6 +104,17 @@ afw_value_call_create(
                 contextual,
                 (const afw_value_script_function_definition_t *)
                     ref->symbol->initial_value,
+                NULL,
+                argc, argv, allow_optimize, p, xctx);
+        }
+        if (afw_value_is_closure_binding(ref->symbol->initial_value))
+        {
+            return afw_value_call_script_function_create(
+                contextual,
+                ((const afw_value_closure_binding_t *)
+                    ref->symbol->initial_value)->script_function_definition,
+                ((const afw_value_closure_binding_t *)
+                    ref->symbol->initial_value)->enclosing_static_scope,
                 argc, argv, allow_optimize, p, xctx);
         }
     }
@@ -151,6 +177,7 @@ impl_afw_value_optional_evaluate(
         result = afw_value_call_script_function(
             self->args.contextual,
             (afw_value_script_function_definition_t *)function_value,
+            NULL,
             self->args.argc, self->args.argv, p, xctx);
     }
 
@@ -162,6 +189,19 @@ impl_afw_value_optional_evaluate(
         result = afw_value_call_built_in_function(
             self->args.contextual,
             (const afw_value_function_definition_t *)function_value,
+            self->args.argc, self->args.argv, p, xctx);
+    }
+
+    /*
+     * This may still be a call to a closure if a variable is assigned one.
+     */
+    else if (afw_value_is_closure_binding(function_value)) {
+        result = afw_value_call_script_function(
+            self->args.contextual,
+            ((const afw_value_closure_binding_t *)function_value)->
+                script_function_definition,
+            ((const afw_value_closure_binding_t *)function_value)->
+                enclosing_static_scope,
             self->args.argc, self->args.argv, p, xctx);
     }
 

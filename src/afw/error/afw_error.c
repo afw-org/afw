@@ -498,7 +498,8 @@ impl_evaluation_backtrace(
                 info.contextual->value_offset, 4, xctx);
             snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
                 "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                "%*" AFW_SIZE_T_FMT_NO_PERCENT ":" "%-*" AFW_SIZE_T_FMT_NO_PERCENT,
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT ":"
+                "%-*" AFW_SIZE_T_FMT_NO_PERCENT,
                 offset_cell_octets, info.contextual->value_offset,
                 line_cell_octets, line_number,
                 column_cell_octets, column_number);
@@ -572,16 +573,14 @@ afw_error_to_utf8(
         " [code=%s(%d)"                /* code-decoded */
         " rv=%s%s%d%s%s"               /* source:rv-decoded */
 
-        "%s"                           /* recursive error */
-
-        "%s" AFW_UTF8_FMT "%s"        /* source location */
+        "%s" AFW_UTF8_FMT "%s"         /* source location */
         "%.0" AFW_SIZE_T_FMT_NO_PERCENT
 
         "]"
 
-        "%s" AFW_UTF8_FMT             /* evaluation backtrace */
+        "%s" AFW_UTF8_FMT              /* evaluation backtrace */
 
-        "%s" AFW_UTF8_FMT,            /* code backtrace */
+        "%s" AFW_UTF8_FMT,             /* code backtrace */
 
         /* message. */
         error->message_z,

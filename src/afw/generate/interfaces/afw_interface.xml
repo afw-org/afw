@@ -4867,22 +4867,10 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </variable>
 
-    <variable name="stack" type="apr_array_header_t *">
-      <description>
-        The execution context (xctx) stack. Entries are const afw_xctx_stack_entry_t *.
-      </description>
-    </variable>
-
     <variable name="qualifier_stack" type="const afw_xctx_qualifier_stack_t *">
       <description>
         The execution context (xctx) qualifier stack. Entries are
         const afw_xctx_qualifier_stack_entry_t *.
-      </description>
-    </variable>
-
-    <variable name="current_frame_index" type="int">
-      <description>
-        Index of current frame in stack.
       </description>
     </variable>
 

@@ -63,13 +63,6 @@ afw_xctx_internal_create_initialize(
     /*! \fixme stream_anchor may be too early??? */
     self->stream_anchor = afw_stream_internal_stream_anchor_create(self);
 
-    self->stack = apr_array_make(afw_pool_get_apr_pool(p),
-        10, sizeof(afw_name_value_t));
-    if (!self->stack) {
-        AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general, na, 0,
-            "apr_array_make() failed");
-    }
-
     self->scope_stack = apr_array_make(afw_pool_get_apr_pool(p),
         10, sizeof(afw_xctx_scope_t *));
     if (!self->scope_stack) {
@@ -178,38 +171,209 @@ afw_xctx_create(
 }
 
 
-/* Get a variable from xctx stack. */
-AFW_DEFINE(const afw_value_t *)
-afw_xctx_get_qualified_variable(
-    const afw_utf8_t *qualifier,
-    const afw_utf8_t *name,
+
+AFW_DEFINE(void)
+afw_xctx_scope_activate(
+    const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    afw_name_value_t * cur;
-    afw_name_value_t * bottom;
-    const afw_value_t * result;
-    const afw_xctx_qualifier_stack_entry_t * e_cur;
-    afw_boolean_t qualifier_passed;
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+}
 
-    result = NULL;
-    qualifier_passed = qualifier && qualifier->len != 0;
 
-    /* If no qualifier, check variable stack for variable. */
-    if (!qualifier_passed) {
-        for (
-            bottom = (afw_name_value_t *)xctx->stack->elts,
-            cur = bottom + ((afw_size_t)xctx->stack->nelts - 1);
-            cur >= bottom;
-            cur--) 
+
+AFW_DEFINE(void)
+afw_xctx_scope_deactivate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{ 
+    if ((scope) != afw_xctx_scope_current(xctx)) { 
+        AFW_THROW_ERROR_Z(general, 
+            "Request to deactivate scope that is not current",
+            xctx);
+    }
+    apr_array_pop(xctx->scope_stack);
+}
+
+
+
+AFW_DEFINE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address(
+    const afw_value_block_symbol_t *symbol,
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{
+    for (;
+         scope && scope->block->depth > symbol->parent_block->depth;
+         scope = scope->parent_static_scope);
+
+    if (!scope ||
+        scope->block->depth != symbol->parent_block->depth)
+    {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol " AFW_UTF8_FMT_Q
+            " not found in current scope chain",
+            AFW_UTF8_FMT_ARG(symbol->name));
+    }
+
+    if (symbol->index >= scope->symbol_count) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol " AFW_UTF8_FMT_Q
+            " index " AFW_SIZE_T_FMT
+            " is out of range for scope",
+            AFW_UTF8_FMT_ARG(symbol->name), symbol->index);
+    }
+
+    return (const afw_value_t **)&scope->symbol_values[symbol->index];   
+}
+
+
+AFW_DEFINE(const afw_value_t **)
+afw_xctx_scope_symbol_get_value_address_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx)
+{
+    const afw_xctx_scope_t *scope;
+    const afw_value_block_t *block;
+    const afw_value_block_symbol_t *symbol;
+
+    for (scope = afw_xctx_scope_current(xctx);
+         scope;
+         scope = scope->parent_static_scope)
+    {
+        for (block = scope->block,
+             symbol = block->first_entry;
+             symbol;
+             symbol = symbol->next_entry)
         {
-            if (afw_utf8_equal(name, cur->name)) {
-                return cur->value;
+            if (afw_utf8_equal(symbol_name, symbol->name)) {
+                return (const afw_value_t **)
+                &scope->symbol_values[symbol->index];
             }
         }
     }
 
-    /* Else if there is a qualifier, ...*/
-    else for (
+    return NULL;
+}
+
+
+
+
+/* Get the value of a symbol in the current scope chain. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value(
+    const afw_value_block_symbol_t *symbol,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **value_address;
+
+    value_address = afw_xctx_scope_symbol_get_value_address(
+        symbol, afw_xctx_scope_current(xctx), xctx);
+
+    return *value_address;
+}
+
+
+
+/* Get the value of a named symbol in the current scope chain. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_scope_symbol_get_value_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **value_address;
+
+    value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+        symbol_name, xctx);
+
+    if (!value_address) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol name " AFW_UTF8_FMT_Q
+            " not found in current scope chain",
+            AFW_UTF8_FMT_ARG(symbol_name));
+    }
+
+    return *value_address;
+}
+
+
+
+/* Determine if the named symbol exists in the current scope chain. */
+AFW_DECLARE(afw_boolean_t)
+afw_xctx_scope_symbol_exists_by_name(
+    const afw_utf8_t *symbol_name,
+    afw_xctx_t *xctx)
+{
+    return afw_xctx_scope_symbol_get_value_address_by_name(
+        symbol_name, xctx) != NULL;
+}
+
+
+/*  Set the value of a symbol in the current scope chain. */
+AFW_DEFINE(void)
+afw_xctx_scope_symbol_set_value(
+    const afw_value_block_symbol_t *symbol,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **value_address;
+
+    value_address = afw_xctx_scope_symbol_get_value_address(
+        symbol, afw_xctx_scope_current(xctx), xctx);
+
+    *value_address = value;
+}
+
+
+
+/* Set the value of a named symbol in the current scope chain. */
+AFW_DEFINE(void)
+afw_xctx_scope_symbol_set_value_by_name(
+    const afw_utf8_t *symbol_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t **value_address;
+
+    value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+        symbol_name, xctx);
+
+    if (!value_address) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "symbol name " AFW_UTF8_FMT_Q
+            " not found in current scope chain",
+            AFW_UTF8_FMT_ARG(symbol_name));
+    }
+
+    *value_address = value;
+}
+
+
+
+/* Get a variable from xctx stack. */
+AFW_DEFINE(const afw_value_t *)
+afw_xctx_get_optionally_qualified_variable(
+    const afw_utf8_t *qualifier,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t * result;
+    const afw_xctx_qualifier_stack_entry_t * e_cur;
+    const afw_value_t **value_address;
+
+    if (!qualifier || (qualifier->len == 0)) {
+        value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+            name, xctx);
+        if (value_address) {
+            return *value_address;
+        }
+        else {
+            return NULL;
+        }
+    }
+
+    for (
+        result = NULL,
         e_cur = xctx->qualifier_stack->top;
         e_cur >= xctx->qualifier_stack->first;
         e_cur--)
@@ -218,10 +382,8 @@ afw_xctx_get_qualified_variable(
             continue;
         }
 
-        if (qualifier_passed) {
-            if (!afw_utf8_equal(qualifier, &e_cur->qualifier)) {
-                continue;
-            }
+        if (!afw_utf8_equal(qualifier, &e_cur->qualifier)) {
+            continue;
         }
 
         if (!e_cur->secure && xctx->secure) {
@@ -237,59 +399,6 @@ afw_xctx_get_qualified_variable(
 }
 
 
-/* Set a variable in current xctx frame. */
-AFW_DEFINE(void)
-afw_xctx_scope_dynamic_variable_define(const afw_utf8_t *name,
-    const afw_value_t *value, afw_xctx_t *xctx)
-{
-    afw_name_value_t *cur;
-    afw_name_value_t *bottom;
-    afw_name_value_t *stopat;
- 
-    for (bottom = (afw_name_value_t *)xctx->stack->elts,
-        stopat = bottom + xctx->current_frame_index,
-        cur = bottom + ((afw_size_t)xctx->stack->nelts - 1);
-        cur >= stopat;
-        cur--)
-    {
-        if (afw_utf8_equal(name, cur->name)) {
-            AFW_THROW_ERROR_FZ(general, xctx,
-                "Variable " AFW_UTF8_FMT_Q " is already defined",
-                AFW_UTF8_FMT_ARG(name));
-        }
-    };
-
-    cur = (afw_name_value_t *)apr_array_push(xctx->stack);
-    cur->name = name;
-    cur->value = value;
-}
-
-
-/* Set most recent defined variable in xctx. */
-AFW_DEFINE(void)
-afw_xctx_scope_dynamic_variable_set(
-    const afw_utf8_t *name,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    afw_name_value_t *cur;
-
-    for (cur = (afw_name_value_t *)xctx->stack->elts +
-        ((afw_size_t)xctx->stack->nelts - 1);
-        cur >= (afw_name_value_t *)xctx->stack->elts;
-        cur--)
-    {
-        if (afw_utf8_equal(name, cur->name)) {
-            cur->value = value;
-            return;
-        }
-    };
-
-    AFW_THROW_ERROR_FZ(general, xctx,
-        "Variable " AFW_UTF8_FMT_Q " is not defined",
-        AFW_UTF8_FMT_ARG(name));
-}
-
 
 /* Get stack top. */
 AFW_DEFINE(int)
@@ -298,6 +407,7 @@ afw_xctx_qualifier_stack_top_get(
 {
     return (int)(xctx->qualifier_stack->top - xctx->qualifier_stack->first);
 }
+
 
 
 /* Set qualifier stack top. */
@@ -370,6 +480,7 @@ afw_xctx_qualifier_stack_qualifier_push(
 }
 
 
+
 static const afw_value_t *
 impl_get_object_variable(
     const afw_xctx_qualifier_stack_entry_t *entry,
@@ -424,96 +535,93 @@ impl_afw_xctx_release(
     }
 }
 
+
+
 //#define AFW_XCTX_SCOPE_DEBUG
 
 #ifdef AFW_XCTX_SCOPE_DEBUG
-#define afw_xctx_scope_debug(place, scope, xctx) \
-    impl_scope_debug(place, scope, xctx)
+#define afw_xctx_scope_debug(place, block, scope, parent_scope, note, xctx) \
+    impl_scope_debug(place, block, scope, parent_scope, note, xctx)
 #else
-#define afw_xctx_scope_debug(place, scope, xctx)
+#define afw_xctx_scope_debug(place, block, scope, parent_scope, note, xctx)
 #endif
 
 #ifdef AFW_XCTX_SCOPE_DEBUG
 static void impl_scope_debug(
-    const afw_utf8_z_t *place,
+    const afw_utf8_z_t *place,   
+    const afw_value_block_t *block,
     const afw_xctx_scope_t *scope,
+    const afw_xctx_scope_t *parent_scope,
+    const afw_utf8_z_t *note,
     afw_xctx_t *xctx)
 {
     const afw_xctx_scope_t *current_scope;
 
     current_scope = afw_xctx_scope_current(xctx);
-    //return;
-    printf("%s: [\n", place);
 
-    printf(
-        "    xctx current_frame_index=%d"
-        " stack->nelts=%d\n",
-        xctx->current_frame_index,
-        xctx->stack->nelts);
+    printf("--- debug: " AFW_SIZE_T_FMT " %s",
+        (scope)
+            ? scope->scope_number
+            : xctx->scope_count + 1 /* Will be number for new scope. */,
+        place);
 
-    if (current_scope) {
-        printf("    xctx scope: [\n");
+    if (block) {
         printf(
-            "        scope number=" AFW_SIZE_T_FMT
-            " local_top=%d"
-            "\n",
-            current_scope->scope_number,
-            current_scope->local_top);
-        if (current_scope->block) {
-            printf(
-                "        block number=" AFW_SIZE_T_FMT
-                " depth=" AFW_SIZE_T_FMT
-                " symbol_count=" AFW_SIZE_T_FMT
-                 "\n",
-                current_scope->block->number,
-                current_scope->block->depth,
-                current_scope->block->symbol_count);
-        }
-        else {
-            printf("        block: NULL\n");
-        }
-        printf("    ]\n");
+            ", block number: " AFW_SIZE_T_FMT
+            ", depth: " AFW_SIZE_T_FMT,
+            block->number, block->depth);
     }
     else {
-        printf("    xctx scope: NULL\n");
+        printf(", block: NULL");
     }
 
     if (scope) {
-        printf("    scope: [\n");
         printf(
-            "        scope number=" AFW_SIZE_T_FMT
-            " local_top=%d"
-            "\n",
-            scope->scope_number,
-            scope->local_top);
-        if (scope->block) {
-            printf(
-                "        block number=" AFW_SIZE_T_FMT
-                " depth=" AFW_SIZE_T_FMT
-                " symbol_count=" AFW_SIZE_T_FMT
-                "\n",
-                scope->block->number,
-                scope->block->depth,
-                scope->block->symbol_count);
-        }
-        else {
-            printf("        block: NULL\n");
-        }
-        printf("    ]\n");
+            ", scope number: " AFW_SIZE_T_FMT,
+            scope->scope_number);
     }
     else {
-        printf("    scope: NULL\n");
+        printf(" scope: NULL");
     }
-    
-    printf("]\n\n");
+
+    if (parent_scope) {
+        printf(
+            ", parent scope number: " AFW_SIZE_T_FMT,
+            parent_scope->scope_number);
+    }
+    else {
+        printf(" parent_scope: NULL");
+    }
+
+    if (current_scope) {
+        printf(
+            ", current scope number: " AFW_SIZE_T_FMT,
+            current_scope->scope_number);
+    }
+    else {
+        printf(", current scope: NULL");
+    }
+
+    printf(
+        ", total scope count: " AFW_SIZE_T_FMT
+        ", active scope count: %d",
+        xctx->scope_count, xctx->scope_stack->nelts);
+
+    if (note) {
+        printf(" %s", note);
+    }
+
+    printf("\n");
 }
+
 #endif
 
 
 /* Begin begin a scope */
 AFW_DEFINE(afw_xctx_scope_t *)
-afw_xctx_scope_begin(
+afw_xctx_scope_create(
     const afw_value_block_t *block,
+    const afw_xctx_scope_t *parent_static_scope,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
@@ -522,9 +630,41 @@ afw_xctx_scope_begin(
     afw_size_t symbol_count;
 
     current_scope = afw_xctx_scope_current(xctx);
-    symbol_count = (block) ? block->symbol_count : 0;
 
-    p = afw_pool_create(xctx->p, xctx);
+    if (!block) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_xctx_scope_create(): block required",
+            xctx);
+    }
+
+    if (parent_static_scope) {
+        if (parent_static_scope->block->depth != block->depth - 1) {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                "afw_xctx_scope_create(): parent_static_scope block depth must "
+                "be one less than block depth "
+                "(scope count: " AFW_SIZE_T_FMT
+                ", active scopes: %d"
+                ", parent scope number: " AFW_SIZE_T_FMT 
+                ", parent block depth: " AFW_SIZE_T_FMT
+                ", block depth: " AFW_SIZE_T_FMT ")",
+                xctx->scope_count, xctx->scope_stack->nelts,
+                parent_static_scope->scope_number,
+                parent_static_scope->block->depth,
+                block->depth);
+        }
+        //afw_xctx_scope_add_reference(parent_static_scope, xctx);
+    }
+    else if (block->depth != 0) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_xctx_scope_create(): block depth must be zero if "
+            "parent_static_scope is NULL",
+            xctx);
+    }
+    
+    symbol_count = (block) ? block->symbol_count : 0;
+    p = afw_pool_create(
+        (current_scope) ? current_scope->p : xctx->p,
+        xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
@@ -535,82 +675,18 @@ afw_xctx_scope_begin(
     scope->p = p;
     scope->block = block;
     scope->symbol_count = symbol_count;
-    scope->local_top = xctx->stack->nelts;
-    scope->parent_static_scope = current_scope;
-
-    /* This will be different for calling functions. */
-
-    // // Find parent scope.
-    // if (block && block->depth > 0) {
-
-    //     if (current_scope && current_scope->block) {
-
-    //         /* If depth is one deeper, current is new one's previous. */
-    //         if (current_scope->block->depth + 1 == block->depth) {
-    //             scope->previous_static_scope = 
-    //                 (afw_xctx_scope_t *)current_scope;
-    //         }
-
-    //         else if (current_scope->block->depth == block->depth) {
-    //             // Probably unwinding because of try.
-    //             scope->previous_static_scope =
-    //                 current_scope->previous_static_scope;
-    //         }
-
-    //         /* If more than one deeper, it's a problem. */
-    //         else if (current_scope->block->depth <= block->depth) {
-    //             // Probably unwinding because of try.
-    //             // scope->previous_static_scope =
-    //             //     current_scope->previous_static_scope;
-    //             AFW_THROW_ERROR_FZ(general, xctx,
-    //                 "Current block depth " AFW_SIZE_T_FMT
-    //                 " new block depth " AFW_SIZE_T_FMT,
-    //                 current_scope->block->depth,
-    //                 block->depth);
-    //         }
-
-    //         /* If new one is not as deep, search previous for one less. */
-    //         else {
-    //             for (scope->previous_static_scope =
-    //                     (afw_xctx_scope_t *)current_scope
-    //                 ;
-    //                 scope->previous_static_scope &&
-    //                 scope->previous_static_scope->block &&
-    //                 scope->previous_static_scope->block->depth >= block->depth
-    //                 ;
-    //                 scope->previous_static_scope =
-    //                     scope->previous_static_scope->previous_static_scope);
-
-    //             if (!scope->previous_static_scope) {
-    //                 AFW_THROW_ERROR_FZ(general, xctx,
-    //                     "No previous scope found for block depth "
-    //                     AFW_SIZE_T_FMT,
-    //                     block->depth);
-    //             }
-    //         }
-    //     }
-    // }
-
+    scope->parent_static_scope = parent_static_scope;
+    /* Current scope many not be necessary to remember but keep for now. */
+    /* Pools will remember this but might be needed for recursion/closure. */
+    scope->parent_dynamic_scope = current_scope;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
-    afw_xctx_scope_debug("afw_xctx_scope_begin", scope, xctx);
 
-    xctx->current_frame_index = xctx->stack->nelts;
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+    afw_xctx_scope_debug(
+        "-> afw_xctx_scope_create()",
+        block, scope, parent_static_scope, NULL, xctx);
+
     return scope;
-}
-
-
-/* Begin begin a scope for closure. */
-AFW_DEFINE(void)
-afw_xctx_scope_closure_begin(
-    const afw_xctx_scope_t *enclosure_scope,
-    afw_xctx_t *xctx)
-{
-    // const afw_xctx_scope_t *current_scope;
-
-    // current_scope = afw_xctx_scope_current(xctx);
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
 }
 
 
@@ -625,6 +701,10 @@ afw_xctx_scope_unwind(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {
     const afw_xctx_scope_t *current_scope;
+
+    afw_xctx_scope_debug(
+        "<- afw_xctx_scope_unwind()",
+        scope->block, scope, scope->parent_static_scope, NULL, xctx);
  
     for (;;) {
         current_scope = afw_xctx_scope_current(xctx);
@@ -636,8 +716,6 @@ afw_xctx_scope_unwind(
         if (scope == current_scope) {
             break;
         }
-        xctx->stack->nelts = current_scope->local_top;
-        xctx->current_frame_index = current_scope->local_top;
         apr_array_pop(xctx->scope_stack);
         afw_pool_release(scope->p, xctx);
     }
@@ -653,19 +731,14 @@ afw_xctx_scope_unwind(
 AFW_DEFINE(void)
 afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
-{
-    const afw_xctx_scope_t *current_scope;
- 
-    afw_xctx_scope_debug("afw_xctx_scope_release", scope, xctx);
-
-    current_scope = afw_xctx_scope_current(xctx);
-
-    if (scope != current_scope) {
-        AFW_THROW_ERROR_Z(general, "Scope mismatch", xctx);
-    }
-
-    xctx->stack->nelts = scope->local_top;
-    xctx->current_frame_index = scope->local_top;
+{  
+    afw_xctx_scope_debug(
+        "<- afw_xctx_scope_release()",
+        scope->block, scope, scope->parent_static_scope,
+        (afw_xctx_scope_current(xctx) == scope)
+            ? NULL 
+            : "- current scope is not scope passed",
+        xctx);
     apr_array_pop(xctx->scope_stack);
     afw_pool_release(scope->p, xctx);
 }

@@ -311,6 +311,7 @@ a_compile_source_error=Compile source error
 a_evaluate_source_error=Evaluate source error
 a_other_error=Other error
 a_slash_afw=/afw
+a_anonymous_function_id=**anonymous**
 
 # adaptor authorization
 actionId

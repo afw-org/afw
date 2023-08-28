@@ -275,9 +275,14 @@ afw_value_function_thunk_inf;
 
 
 
-/** @brief Value lambda inf. */
+/** @brief Value script function inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_script_function_definition_inf;
+
+
+/** @brief Value closure binding inf. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_closure_binding_inf;
 
 
 
@@ -679,6 +684,19 @@ afw_value_is_fully_evaluated(
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_script_function_definition_inf \
+)
+
+
+
+/**
+ * @brief Macro to determine if value is closure binding.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_closure_binding(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_closure_binding_inf \
 )
 
 
@@ -1234,6 +1252,21 @@ afw_value_evaluated_create(
 
 
 /**
+ * @brief Create function closure binding value.
+ * @param script_function_definition script function to enclose.
+ * @param enclosing_static_scope for closure binding.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_closure_binding_create(
+    const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_static_scope,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create function for call value.
  * @param contextual information for function call.
  * @param argc number of arguments (does not include argv[0]).
@@ -1294,6 +1327,8 @@ afw_value_call_built_in_function_create(
 /**
  * @brief Create function for call_script_function value.
  * @param contextual information for function call.
+ * @param script_function_definition script function to call.
+ * @param enclosing_static_scope for closure binding or NULL if not enclosed.
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function
  *        definition value.
@@ -1313,6 +1348,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_static_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,
@@ -1364,6 +1400,7 @@ afw_value_function_thunk_create_impl( \
 /**
  * @brief Create function for lambda definition value.
  * @param contextual information for lambda.
+ * @param depth is static depth of function.
  * @param signature or NULL.
  * @param returns struct for lambda function.
  * @param count number of parameters.
@@ -1376,6 +1413,7 @@ afw_value_function_thunk_create_impl( \
 AFW_DECLARE(const afw_value_t *)
 afw_value_script_function_definition_create(
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     const afw_value_script_function_signature_t *signature,
     const afw_value_type_t *returns,
     afw_size_t count,

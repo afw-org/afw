@@ -299,6 +299,7 @@ struct afw_value_call_built_in_function_s {
 struct afw_value_call_script_function_s {
     const afw_value_inf_t *inf;
     const afw_value_script_function_definition_t *script_function_definition;
+    const afw_xctx_scope_t *enclosing_static_scope;
     afw_value_call_args_t args;
     
     /*
@@ -311,6 +312,20 @@ struct afw_value_call_script_function_s {
 
     /* This is the data type of the evaluated result or NULL if unknown. */
     const afw_data_type_t *evaluated_data_type;
+};
+
+
+
+/**
+ * @brief Struct for closure binding value.
+ *
+ * This is a closure binding.
+ */
+struct afw_value_closure_binding_s {
+    const afw_value_inf_t *inf;
+    const afw_value_script_function_definition_t *script_function_definition;
+    const afw_xctx_scope_t *enclosing_static_scope;
+    afw_size_t reference_count;
 };
 
 
@@ -500,6 +515,7 @@ struct afw_value_script_function_definition_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
+    afw_size_t depth;
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
     const afw_value_t *body;
@@ -630,6 +646,7 @@ AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
+    const afw_xctx_scope_t *enclosing_static_scope, /* NULL if not enclosed. */
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,

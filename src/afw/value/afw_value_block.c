@@ -65,34 +65,25 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
-
-static void
-impl_set_variable(
-    const afw_utf8_t *name,
-    const afw_value_t *value,
-    afw_compile_internal_assignment_type_t assignment_type,
+static const afw_value_t *
+impl_create_closure_if_needed(
+    const afw_value_script_function_definition_t *function,
+    const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    switch (assignment_type) {
+    const afw_xctx_scope_t *scope;
+    const afw_value_t *result;
 
-        /** @brief once symbol table is in place, replace this. */
+    scope = afw_xctx_scope_current(xctx);
 
-    case afw_compile_assignment_type_assign_only:
-        afw_xctx_scope_dynamic_variable_set(name, value, xctx);
-        break;
-
-    case afw_compile_assignment_type_const:
-        afw_xctx_scope_dynamic_variable_define(name, value, xctx);
-        break;
-
-    case afw_compile_assignment_type_let:
-        afw_xctx_scope_dynamic_variable_define(name, value, xctx);
-        break;
-
-    default:
-        AFW_THROW_ERROR_Z(general, "Internal error", xctx);
+    if (function->depth >= scope->block->depth) {
+        result = afw_value_closure_binding_create(function, scope, xctx);
+    }
+    else {
+        result = (const afw_value_t *)function;
     }
 
+    return result;
 }
 
 
@@ -277,8 +268,8 @@ impl_assignment_target(
         break;
 
     case afw_compile_assignment_target_type_symbol_reference:
-        impl_set_variable(at->symbol_reference->symbol->name,
-            value, assignment_type, xctx);
+        afw_xctx_scope_symbol_set_value(
+            at->symbol_reference->symbol, value, xctx);
         break;
 
     case afw_compile_assignment_target_type_max_type:
@@ -307,13 +298,22 @@ impl_assign(
     {
         value = afw_value_clone(value, p, xctx);
     }
-    else {
+    else
+    {
         value = afw_value_evaluate(value, p, xctx);
+    }
+
+    if (afw_value_is_script_function_definition(value))
+    {
+        value = impl_create_closure_if_needed(
+            (const afw_value_script_function_definition_t *)value,
+            p, xctx);
     }
 
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
-        if (afw_value_is_assignment_target(target)) {
+        if (afw_value_is_assignment_target(target))
+        {
             at = (const afw_value_assignment_target_t *)target;
             assignment_type = at->assignment_target->assignment_type;
         }
@@ -348,8 +348,7 @@ impl_assign_value(
     else if (afw_value_is_symbol_reference(target)) {
         const afw_value_symbol_reference_t *t =
             (afw_value_symbol_reference_t *)target;
-        impl_set_variable(t->symbol->name, value,
-            assignment_type, xctx);
+        afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
     }
 
     /* Reference by key */
@@ -397,13 +396,6 @@ impl_assign_value(
         }
 
     }
-
-    /* String containing variable name */
-    // else if (afw_value_is_string(target)) {
-    //     impl_set_variable(
-    //         &((afw_value_string_t *)target)->internal,
-    //         value, assignment_type, xctx);
-    // }
     
     /* Invalid assignment target. */
     else {
@@ -474,7 +466,8 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    scope = afw_xctx_scope_begin(self, xctx);
+    scope = afw_xctx_scope_create(self, afw_xctx_scope_current(xctx), xctx);
+    afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
             result = afw_value_block_evaluate_statement(x, type,
@@ -719,6 +712,9 @@ afw_value_block_evaluate_switch(
     const afw_value_t * const *pair;
     const afw_value_t * const *default_pair;     
     const afw_value_t *result;
+    const afw_value_t *statement;
+    const afw_array_t *statement_list;
+    const afw_iterator_t *iterator;
 
     result = afw_value_undefined;
 
@@ -774,8 +770,27 @@ afw_value_block_evaluate_switch(
     for (;pair < end_of_args; pair += 2)
     {
         if (pair[1]) {
-            result = afw_value_block_evaluate_statement(x, type,
-                true, true, pair[1], p, xctx);
+            if (!afw_value_is_array(pair[1])) {
+                AFW_THROW_ERROR_Z(general,
+                    "Expecting an array of statements",
+                     xctx);
+            }
+            statement_list = ((const afw_value_array_t *)pair[1])->internal;
+            for (iterator = NULL;;) {
+                statement = afw_array_get_next_value(
+                    statement_list, &iterator, p, xctx);
+                if (!statement) {
+                    break;
+                }
+                result = afw_value_block_evaluate_statement(x, type,
+                    true, true, statement, p, xctx);
+                if (*type == afw_value_block_statement_type_break ||
+                    *type == afw_value_block_statement_type_rethrow ||
+                    *type == afw_value_block_statement_type_return)
+                {
+                    break;
+                }
+            }
             if (*type == afw_value_block_statement_type_break ||
                 *type == afw_value_block_statement_type_rethrow ||
                 *type == afw_value_block_statement_type_return)
@@ -859,7 +874,8 @@ afw_value_block_evaluate_try(
  /// scope is created.
     const afw_xctx_scope_t *scope;
     const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
-    scope = afw_xctx_scope_begin(block, xctx);
+    scope = afw_xctx_scope_create(block, afw_xctx_scope_current(xctx), xctx);
+    afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         impl_assign_value(argv[4], error_value,
             afw_compile_assignment_type_let, p, xctx);
@@ -1047,6 +1063,11 @@ afw_value_block_evaluate_statement(
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
                 result = afw_function_evaluate_required_parameter(
                         &modified_x, 1, NULL);
+                if (afw_value_is_script_function_definition(result)) {
+                    result = impl_create_closure_if_needed(
+                        (const afw_value_script_function_definition_t *)result,
+                        p, xctx);
+                }
             }
             break;
 
@@ -1177,6 +1198,11 @@ afw_value_block_evaluate_statement(
                 /* NULL (undefined) is okay here. */
                 result = afw_function_evaluate_parameter(&modified_x, 1,
                         NULL);
+                if (afw_value_is_script_function_definition(result)) {
+                    result = impl_create_closure_if_needed(
+                        (const afw_value_script_function_definition_t *)result,
+                        p, xctx);
+                }
             }
             break;
 
