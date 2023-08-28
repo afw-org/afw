@@ -498,7 +498,8 @@ impl_evaluation_backtrace(
                 info.contextual->value_offset, 4, xctx);
             snprintf(buf2, AFW_SIZE_T_MAX_BUFFER,
                 "%*" AFW_SIZE_T_FMT_NO_PERCENT "  "
-                "%*" AFW_SIZE_T_FMT_NO_PERCENT ":" "%-*" AFW_SIZE_T_FMT_NO_PERCENT,
+                "%*" AFW_SIZE_T_FMT_NO_PERCENT ":"
+                "%-*" AFW_SIZE_T_FMT_NO_PERCENT,
                 offset_cell_octets, info.contextual->value_offset,
                 line_cell_octets, line_number,
                 column_cell_octets, column_number);
