@@ -652,7 +652,7 @@ afw_xctx_scope_create(
                 parent_static_scope->block->depth,
                 block->depth);
         }
-        afw_xctx_scope_add_reference(parent_static_scope, xctx);
+        //afw_xctx_scope_add_reference(parent_static_scope, xctx);
     }
     else if (block->depth != 0) {
         AFW_THROW_ERROR_Z(general,
