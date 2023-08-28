@@ -1071,6 +1071,8 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     *argv = result;
     afw_value_block_finalize(block, 1, argv, parser->xctx);
     result = (const afw_value_t *)block;
+
+    afw_compile_parse_pop_value_block(parser);
   
     return result;
 }
