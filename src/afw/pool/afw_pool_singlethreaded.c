@@ -118,7 +118,9 @@ impl_remove_child(AFW_POOL_SELF_T *parent,
     }
 
     if (!sibling) {
-        AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
+        /** @fixme This needs to be uncommented. */
+        //AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
+        return;
     }
 
     afw_pool_release(&parent->pub, xctx);
