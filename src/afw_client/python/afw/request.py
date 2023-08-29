@@ -134,13 +134,13 @@ class LocalRequest(object):
         cmd = 'perform(' + json.dumps(self._payload) + ')'
 
         # write the length of our request
-        self._session._localSession.stdin.write((str(len(cmd)) + '\n').encode('utf-8'))
+        self._session._localSession.stdin.write((str(len(cmd)) + '\n'))
 
         # write the command
-        self._session._localSession.stdin.write(cmd.encode('utf-8'))
+        self._session._localSession.stdin.write(cmd)
 
         # denote end of response with length (0)
-        self._session._localSession.stdin.write('0\n'.encode('utf-8'))
+        self._session._localSession.stdin.write('0\n')
 
         # flush input so it can be read
         self._session._localSession.stdin.flush()

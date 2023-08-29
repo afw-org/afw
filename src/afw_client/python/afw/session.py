@@ -51,7 +51,7 @@ class Session(object):
             # open local session through a subprocess, forwarding stdout/stderr
             self._localSession = subprocess.Popen(
                 args, stdin=subprocess.PIPE, stdout=stdout, 
-                stderr=stderr, bufsize=1)
+                stderr=stderr, bufsize=1, encoding='utf-8')
 
             # make sure it is running
             if self._localSession.poll() is None:
