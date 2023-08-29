@@ -1254,14 +1254,14 @@ afw_value_evaluated_create(
 /**
  * @brief Create function closure binding value.
  * @param script_function_definition script function to enclose.
- * @param enclosing_static_scope for closure binding.
+ * @param enclosing_lexical_scope for closure binding.
  * @param xctx of caller.
  * @return Created afw_value_t.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create(
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_static_scope,
+    const afw_xctx_scope_t *enclosing_lexical_scope,
     afw_xctx_t *xctx);
 
 
@@ -1328,7 +1328,7 @@ afw_value_call_built_in_function_create(
  * @brief Create function for call_script_function value.
  * @param contextual information for function call.
  * @param script_function_definition script function to call.
- * @param enclosing_static_scope for closure binding or NULL if not enclosed.
+ * @param enclosing_lexical_scope for closure binding or NULL if not enclosed.
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function
  *        definition value.
@@ -1348,7 +1348,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_static_scope,
+    const afw_xctx_scope_t *enclosing_lexical_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,

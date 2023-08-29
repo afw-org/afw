@@ -84,7 +84,7 @@ afw_value_call_create(
                 ((const afw_value_closure_binding_t *)argv[0])->
                     script_function_definition,
                 ((const afw_value_closure_binding_t *)argv[0])->
-                    enclosing_static_scope,
+                    enclosing_lexical_scope,
             argc, argv, allow_optimize, p, xctx);
     }
 
@@ -114,7 +114,7 @@ afw_value_call_create(
                 ((const afw_value_closure_binding_t *)
                     ref->symbol->initial_value)->script_function_definition,
                 ((const afw_value_closure_binding_t *)
-                    ref->symbol->initial_value)->enclosing_static_scope,
+                    ref->symbol->initial_value)->enclosing_lexical_scope,
                 argc, argv, allow_optimize, p, xctx);
         }
     }
@@ -201,7 +201,7 @@ impl_afw_value_optional_evaluate(
             ((const afw_value_closure_binding_t *)function_value)->
                 script_function_definition,
             ((const afw_value_closure_binding_t *)function_value)->
-                enclosing_static_scope,
+                enclosing_lexical_scope,
             self->args.argc, self->args.argv, p, xctx);
     }
 

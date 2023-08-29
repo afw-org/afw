@@ -180,7 +180,7 @@ afw_xctx_scope_symbol_get_value_address(
 {
     for (;
          scope && scope->block->depth > symbol->parent_block->depth;
-         scope = scope->parent_static_scope);
+         scope = scope->parent_lexical_scope);
 
     if (!scope ||
         scope->block->depth != symbol->parent_block->depth)
@@ -214,7 +214,7 @@ afw_xctx_scope_symbol_get_value_address_by_name(
 
     for (scope = afw_xctx_scope_current(xctx);
          scope;
-         scope = scope->parent_static_scope)
+         scope = scope->parent_lexical_scope)
     {
         for (block = scope->block,
              symbol = block->first_entry;
@@ -600,7 +600,7 @@ static void impl_scope_debug(
 AFW_DEFINE(afw_xctx_scope_t *)
 afw_xctx_scope_create(
     const afw_value_block_t *block,
-    const afw_xctx_scope_t *parent_static_scope,
+    const afw_xctx_scope_t *parent_lexical_scope,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p;
@@ -616,10 +616,10 @@ afw_xctx_scope_create(
             xctx);
     }
 
-    if (parent_static_scope) {
-        if (parent_static_scope->block->depth != block->depth - 1) {
+    if (parent_lexical_scope) {
+        if (parent_lexical_scope->block->depth != block->depth - 1) {
             AFW_THROW_ERROR_FZ(general, xctx,
-                "afw_xctx_scope_create(): parent_static_scope block depth must "
+                "afw_xctx_scope_create(): parent_lexical_scope block depth must "
                 "be one less than block depth "
                 "(scope count: " AFW_SIZE_T_FMT
                 ", active scopes: %d"
@@ -627,21 +627,21 @@ afw_xctx_scope_create(
                 ", parent block depth: " AFW_SIZE_T_FMT
                 ", block depth: " AFW_SIZE_T_FMT ")",
                 xctx->scope_count, xctx->scope_stack->nelts,
-                parent_static_scope->scope_number,
-                parent_static_scope->block->depth,
+                parent_lexical_scope->scope_number,
+                parent_lexical_scope->block->depth,
                 block->depth);
         }
     }
     else if (block->depth != 0) {
         AFW_THROW_ERROR_Z(general,
             "afw_xctx_scope_create(): block depth must be zero if "
-            "parent_static_scope is NULL",
+            "parent_lexical_scope is NULL",
             xctx);
     }
     
     symbol_count = (block) ? block->symbol_count : 0;
     p = afw_pool_create(
-        (current_scope) ? current_scope->p : xctx->p,
+        (parent_lexical_scope) ? parent_lexical_scope->p : xctx->p,
         xctx);
     scope = afw_pool_calloc(p,
         (
@@ -653,7 +653,7 @@ afw_xctx_scope_create(
     scope->p = p;
     scope->block = block;
     scope->symbol_count = symbol_count;
-    scope->parent_static_scope = parent_static_scope;
+    scope->parent_lexical_scope = parent_lexical_scope;
     /* Current scope many not be necessary to remember but keep for now. */
     /* Pools will remember this but might be needed for recursion/closure. */
     scope->parent_dynamic_scope = current_scope;
@@ -662,7 +662,7 @@ afw_xctx_scope_create(
 
     afw_xctx_scope_debug(
         ">> afw_xctx_scope_create()",
-        block, scope, parent_static_scope, NULL, xctx);
+        block, scope, parent_lexical_scope, NULL, xctx);
 
     return scope;
 }
@@ -676,7 +676,7 @@ afw_xctx_scope_add_reference(
 {
     afw_xctx_scope_debug(
         "+> afw_xctx_scope_add_reference()",
-        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     afw_pool_add_reference((scope)->p, xctx);
     return scope;
@@ -691,7 +691,7 @@ afw_xctx_scope_activate(
 {
     afw_xctx_scope_debug(
         "-> afw_xctx_scope_activate()",
-        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
 }
@@ -705,7 +705,7 @@ afw_xctx_scope_deactivate(
 { 
     afw_xctx_scope_debug(
         "<- afw_xctx_scope_deactivate()",
-        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     if ((scope) != afw_xctx_scope_current(xctx)) { 
         AFW_THROW_ERROR_Z(general, 
@@ -725,7 +725,7 @@ afw_xctx_scope_unwind(
 
     afw_xctx_scope_debug(
         "<n afw_xctx_scope_unwind()",
-        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
  
     for (;;) {
         current_scope = afw_xctx_scope_current(xctx);
@@ -754,7 +754,7 @@ afw_xctx_scope_release(
 {  
     afw_xctx_scope_debug(
         "<1 afw_xctx_scope_release()",
-        scope->block, scope, scope->parent_static_scope,
+        scope->block, scope, scope->parent_lexical_scope,
         (afw_xctx_scope_current(xctx) == scope)
             ? NULL 
             : "- current scope is not scope passed",

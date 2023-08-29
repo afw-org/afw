@@ -37,7 +37,7 @@ AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_static_scope,
+    const afw_xctx_scope_t *enclosing_lexical_scope,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -47,7 +47,7 @@ afw_value_call_script_function(
 
     /* Optimize is set to false since this is one time call. */
     value = afw_value_call_script_function_create(
-        contextual, script_function_definition, enclosing_static_scope,
+        contextual, script_function_definition, enclosing_lexical_scope,
         argc, argv, false, p, xctx);
     return impl_afw_value_optional_evaluate(
         (AFW_VALUE_SELF_T *)value, p, xctx);
@@ -60,7 +60,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_call_script_function_create(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_static_scope,
+    const afw_xctx_scope_t *enclosing_lexical_scope,
     afw_size_t argc,
     const afw_value_t * const *argv,
     const afw_boolean_t allow_optimize,
@@ -72,7 +72,7 @@ afw_value_call_script_function_create(
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_call_script_function_inf;
     self->script_function_definition = script_function_definition;
-    self->enclosing_static_scope = enclosing_static_scope;
+    self->enclosing_lexical_scope = enclosing_lexical_scope;
     self->args.contextual = contextual;
     self->args.argc = argc;
     self->args.argv = argv;
@@ -100,7 +100,7 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_script_function_definition_t *script;
     const afw_value_t *result;
-    const afw_xctx_scope_t *enclosing_static_scope;
+    const afw_xctx_scope_t *enclosing_lexical_scope;
     afw_xctx_scope_t *parameter_scope;
     const afw_xctx_scope_t *caller_scope;
     const afw_value_t *value;
@@ -119,22 +119,22 @@ impl_afw_value_optional_evaluate(
     script = self->script_function_definition;
 
     /* If closure, use its enclosing static scope. */
-    if (self->enclosing_static_scope) {
-        enclosing_static_scope = self->enclosing_static_scope;
+    if (self->enclosing_lexical_scope) {
+        enclosing_lexical_scope = self->enclosing_lexical_scope;
     }
 
     /* If not closure, use the one at correct depth from caller scope chain. */
     else {                                                                                                                                                        /* Find enclosing static scope. */
         for (
-            enclosing_static_scope = caller_scope;
+            enclosing_lexical_scope = caller_scope;
             (
-                enclosing_static_scope &&
-                enclosing_static_scope->block->depth > script->depth
+                enclosing_lexical_scope &&
+                enclosing_lexical_scope->block->depth > script->depth
             );
-            enclosing_static_scope =
-                enclosing_static_scope->parent_static_scope
+            enclosing_lexical_scope =
+                enclosing_lexical_scope->parent_lexical_scope
         );
-        if (!enclosing_static_scope ||
+        if (!enclosing_lexical_scope ||
             caller_scope->block->depth < script->depth)
         {
             AFW_THROW_ERROR_Z(general,
@@ -151,7 +151,7 @@ impl_afw_value_optional_evaluate(
 
             /* Make a scope for parameters. */
             parameter_scope = afw_xctx_scope_create(
-                script->signature->block, enclosing_static_scope, xctx);
+                script->signature->block, enclosing_lexical_scope, xctx);
 
             /* Set parameters in scope. */
             for (parameter_number = 1,
@@ -222,7 +222,7 @@ impl_afw_value_optional_evaluate(
 
         /* If no parameters, activate functions parent static scope. */
         else {
-            afw_xctx_scope_activate(enclosing_static_scope, xctx);
+            afw_xctx_scope_activate(enclosing_lexical_scope, xctx);
         }
 
         /* Evaluate body. */
@@ -245,7 +245,7 @@ impl_afw_value_optional_evaluate(
 
         /* If no parameters, deactivate enclosing scope so callers active. */
         else {
-            afw_xctx_scope_deactivate(enclosing_static_scope, xctx);
+            afw_xctx_scope_deactivate(enclosing_lexical_scope, xctx);
         }
 
         if (caller_scope != afw_xctx_scope_current(xctx)) {

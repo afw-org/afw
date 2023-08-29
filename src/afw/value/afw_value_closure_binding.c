@@ -27,17 +27,17 @@
 AFW_DEFINE(const afw_value_t *)
 afw_value_closure_binding_create(
     const afw_value_script_function_definition_t *script_function_definition,
-    const afw_xctx_scope_t *enclosing_static_scope,
+    const afw_xctx_scope_t *enclosing_lexical_scope,
     afw_xctx_t *xctx)
 {
     AFW_VALUE_SELF_T *self;
     self = afw_pool_calloc_type(
-        enclosing_static_scope->p, AFW_VALUE_SELF_T, xctx);
+        enclosing_lexical_scope->p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_closure_binding_inf;
     self->script_function_definition = script_function_definition;
-    self->enclosing_static_scope = enclosing_static_scope;
+    self->enclosing_lexical_scope = enclosing_lexical_scope;
     self->reference_count = 1;
-    afw_xctx_scope_add_reference(enclosing_static_scope, xctx);
+    afw_xctx_scope_add_reference(enclosing_lexical_scope, xctx);
 
     return (afw_value_t *)self;
 }
@@ -52,7 +52,7 @@ impl_afw_value_optional_release(
     afw_xctx_t * xctx)
 {
     if (self->reference_count <= 1) {
-        afw_xctx_scope_release(self->enclosing_static_scope, xctx);
+        afw_xctx_scope_release(self->enclosing_lexical_scope, xctx);
     }
     else {
         self->reference_count--;

@@ -202,7 +202,7 @@ AFW_ENDTRY
 struct afw_xctx_scope_s {
     const afw_pool_t *p;
     const afw_value_block_t *block;
-    const afw_xctx_scope_t *parent_static_scope;
+    const afw_xctx_scope_t *parent_lexical_scope;
     const afw_xctx_scope_t *parent_dynamic_scope;
     afw_size_t scope_number;
     afw_size_t symbol_count;
@@ -231,65 +231,82 @@ struct afw_xctx_scope_s {
 /**
  * @brief Creat a new scope.
  * @param block associated with this scope.
- * @param parent_static_scope of this scope or NULL for first one.
+ * @param parent_lexical_scope of this scope or NULL for first one.
  * @param xctx of caller.
  * @return New xctx scope.
  *
- * This is used to create a new scope. This must be followed with a call to
- * afw_xctx_scope_activate() then a call to afw_xctx_scope_release() when the
- * scope is no longer needed. The call to create() and activate() are separate
- * to allow the new scope to be primed before activation such as when the
- * parameters or being evaluated in the scope of the caller.
+ * Function afw_xctx_scope_create() is used to create a new scope. This must be
+ * followed with a call to afw_xctx_scope_activate() then ultimately a call to
+ * afw_xctx_scope_release().
  *
- * The block depth of the specfied block must be one more than the block depth
- * of the parent_static_scope's block or 0 if parent_static_scope is NULL.
+ * The call to afw_xctx_scope_create() and afw_xctx_scope_activate() are
+ * separate to allow the new scope to be primed before activation, such as when
+ * the parameters or being evaluated in the scope of the caller.
  *
- * For nested scopes, the parent_static_scope must be the current scope. Use
- * afw_xctx_scope_current(xctx) to get the current scope.
+ * If parent_lexical_scope is NULL, the specified block's lexical depth must be
+ * zero. Otherwise, the specified block's lexical depth must be one more than
+ * the block lexical depth of the parent_lexical_scope's block.
  *
- * When calling a script function, this must be the scope enclosing the
- * function. If this is a regular function call, this will be the scope that
- * contains the function definition. If this is a closure call, this will be the
- * parent static scope of the function at the time the closure binding was
- * created.
+ * When creating the scope for a lexically nested block, the
+ * parent_lexical_scope should be the current active scope.
+ *
+ * When creating the scope for a function call, the parent_lexical_scope should
+ * be one whose lexical depth matches the lexical depth of the function's
+ * definition. For regular function calls, this is the the scope in the current
+ * lexical scope chain that contains the function definition. For closure calls,
+ * this is the parent lexical scope of the function at the time the closure
+ * binding was created.
  *
  * More detail on how scopes work:
+ *
+ * An empty scope stack is created when the xctx is created and destroyed when
+ * the xctx is destroyed. This scope stack is a stack of pointers to scope
+ * structs of the currently active scopes in order of their activation.
+ *
+ * The current scope, which can be retrieve by calling afw_xctx_scope_current(),
+ * is at the top of the scope stack.
+ *
+ * The scope stack is maintained by the functions afw_xctx_scope_activate() and
+ * afw_xctx_scope_deactivate(). Function afw_xctx_scope_release() calls
+ * afw_xctx_scope_deactivate() but it can also be called directly when
+ * afw_xctx_scope_activate() is not paired with an afw_xctx_scope_release().
+ *
+ * There is also an afw_xctx_scope_rewind() used in 'catch' and 'finally' to
+ * call afw_xctx_scope_release() on all of the scopes down to the current scope
+ * at the time 'try' was entered.
  *
  * The evaluate for a compiled value always pushes a NULL on the scope stack
  * before evaluating its root value then makes sure the NULL is still there in
  * the same position and removes it when the evaluation is complete. This causes
- * the evaluation of the root value to begin with a current scope of NULL which
- * will cause it's first scope to be lexical scope depth 0.
+ * the evaluation of the root value to begin with a current scope of NULL, which
+ * will cause it's first scope to be lexical scope lexical depth 0.
  *
  * Symbols (variables, parameters, etc.) go in and out of scope. The scope
  * struct has a C array of values for the symbols in the scope. A symbol has a
- * static scope depth and index into the corresponding scope's array of values.
- *
- * Scopes are created and released with afw_xctx_scope_create() and
- * afw_xctx_scope_release(). There is also an afw_xctx_scope_rewind() used in
- * 'catch' and 'finally' to release all of the scopes down to the current scope
- * at the time 'try' was entered.
+ * lexical scope depth and index into the corresponding scope's array of values.
  *
  * Each new scope struct is created in a new pool that is a subpool of the
- * parent static scope's pool. This parent static scope is stored in the new
- * scope to form a chain of ancestor static scopes.
+ * lexical parent scope's pool.
+ *
+ * A point to the parent's lexical scope is stored in the new scope to form a
+ * chain of ancestor lexical scopes.
  *
  * The scope's pool is released (not necessarily destroyed if still referenced)
  * when the scope is released. The lifetime of the scope struct is based on the
  * lifetime of the scope's pool.
  *
  * When a closure binding is created, a new reference is made to the pool of the
- * parent static scope of the function being enclosed by calling
- * afw_xctx_scope_add_reference(), which keeps the chain of ancestor static
- * scopes around. The parent static scope pointer is remembered in the binding.
- * When the closure is called, this is the parent_static_scope used in the call
+ * parent lexical scope of the function being enclosed by calling
+ * afw_xctx_scope_add_reference(), which keeps the chain of ancestor lexical
+ * scopes around. The parent lexical scope pointer is remembered in the binding.
+ * When the closure is called, this is the parent_lexical_scope used in the call
  * to afw_xctx_scope_create(). When the closure binding goes out of scope, the
- * associated parent static scope is released.
+ * associated parent lexical scope is released.
  */
 AFW_DECLARE(afw_xctx_scope_t *)
 afw_xctx_scope_create(
     const afw_value_block_t *block,
-    const afw_xctx_scope_t *parent_static_scope,
+    const afw_xctx_scope_t *parent_lexical_scope,
     afw_xctx_t *xctx);
 
 
@@ -299,7 +316,7 @@ afw_xctx_scope_create(
  * @param xctx of caller.
  * 
  * Call this after afw_xctx_scope_create() or when the current stack needs to
- * be switched to a different enclosing static scope.
+ * be switched to a different enclosing lexical scope.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_activate(
@@ -317,7 +334,7 @@ afw_xctx_scope_activate(
  * for a scope so only use this when afw_xctx_scope_activate() is called at
  * times other than paired after a afw_xctx_scope_create(). One place this
  * happens is in call_script_function evaluate when there are no parameters but
- * there is a need to switch to the enclosing static scope.
+ * there is a need to switch to the enclosing lexical scope.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_deactivate(
