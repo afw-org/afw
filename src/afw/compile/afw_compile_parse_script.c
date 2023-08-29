@@ -1784,7 +1784,7 @@ impl_test_script_get_next_key_value(
                     remaining.s = start;
                     remaining.len = end - start;
 
-                    /* If "...", string is next line all all to end or "//?". */
+                    /* If "...", string is next line to end or "//?" line. */
                     if (afw_utf8_starts_with_z(&remaining, "...")) {
                         afw_compile_save_cursor(start_cursor);
                         afw_compile_save_cursor(*string_offset);
@@ -1801,7 +1801,10 @@ impl_test_script_get_next_key_value(
                             else if (afw_utf8_starts_with_z(&line, "//?")) {
                                 afw_compile_restore_cursor(end_cursor);
                                 /* Don't include \n before //? */
-                                *string_length = end_cursor - start_cursor - 1;
+                                *string_length = end_cursor - start_cursor;
+                                if (*string_length > 0) {
+                                    *string_length -= 1;
+                                }
                                 *string = afw_utf8_create_copy(
                                     parser->full_source->s + start_cursor,
                                     *string_length,  parser->p, parser->xctx);
