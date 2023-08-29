@@ -77,10 +77,18 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
             passed += numPassed
             skipped += numSkipped            
 
-            if error != None:                             
+            if error != None:                      
                 msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(test, pwd), round((end - start) * 1000)))  
                 if error:
-                    msg.error("\n    \u2717 {}\n".format(error))                   
+                    # The error could be from a Python exception, or an afw error object
+                    # The best solution will be to make separate Exception classes for
+                    # each type of error, so we can handle them differently.
+                    str = error
+                    try:
+                        str = nfc.json_loads(error).get('message')
+                    except:
+                        str = error
+                    msg.error("\n    \u2717 {}\n".format(str))                   
                 if debug:
                     # replace newlines with newlines and indentation
                     debug = debug.replace('\n', '\n      ')
