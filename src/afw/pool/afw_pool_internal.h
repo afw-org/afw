@@ -170,6 +170,12 @@ afw_pool_internal_create_thread_debug(
     afw_pool_internal_create_thread_debug(size, xctx, AFW__FILE_LINE__)
 #endif
 
+
+void afw_pool_print_debug_info(
+    int indent,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 /** @} */

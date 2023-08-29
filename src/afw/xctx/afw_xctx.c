@@ -172,31 +172,6 @@ afw_xctx_create(
 
 
 
-AFW_DEFINE(void)
-afw_xctx_scope_activate(
-    const afw_xctx_scope_t *scope,
-    afw_xctx_t *xctx)
-{
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
-}
-
-
-
-AFW_DEFINE(void)
-afw_xctx_scope_deactivate(
-    const afw_xctx_scope_t *scope,
-    afw_xctx_t *xctx)
-{ 
-    if ((scope) != afw_xctx_scope_current(xctx)) { 
-        AFW_THROW_ERROR_Z(general, 
-            "Request to deactivate scope that is not current",
-            xctx);
-    }
-    apr_array_pop(xctx->scope_stack);
-}
-
-
-
 AFW_DEFINE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
     const afw_value_block_symbol_t *symbol,
@@ -558,7 +533,7 @@ static void impl_scope_debug(
     const afw_xctx_scope_t *current_scope;
 
     current_scope = afw_xctx_scope_current(xctx);
-
+    printf("\n");
     printf("--- debug: " AFW_SIZE_T_FMT " %s",
         (scope)
             ? scope->scope_number
@@ -612,6 +587,10 @@ static void impl_scope_debug(
     }
 
     printf("\n");
+
+    afw_pool_print_debug_info(8, scope->p, xctx);
+    printf("\n");
+
 }
 
 #endif
@@ -652,7 +631,6 @@ afw_xctx_scope_create(
                 parent_static_scope->block->depth,
                 block->depth);
         }
-        //afw_xctx_scope_add_reference(parent_static_scope, xctx);
     }
     else if (block->depth != 0) {
         AFW_THROW_ERROR_Z(general,
@@ -683,19 +661,62 @@ afw_xctx_scope_create(
     scope->scope_number = xctx->scope_count;
 
     afw_xctx_scope_debug(
-        "-> afw_xctx_scope_create()",
+        ">> afw_xctx_scope_create()",
         block, scope, parent_static_scope, NULL, xctx);
 
     return scope;
 }
 
 
+/* Add a reference to a scope. */
+AFW_DEFINE(const afw_xctx_scope_t *)
+afw_xctx_scope_add_reference(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{
+    afw_xctx_scope_debug(
+        "+> afw_xctx_scope_add_reference()",
+        scope->block, scope, scope->parent_static_scope, NULL, xctx);
 
-/**
- * @brief Unwind the scope stack down to but not including the specified scope.
- * @param scope to unwind down to
- * @param xctx of caller.
- */
+    afw_pool_add_reference((scope)->p, xctx);
+    return scope;
+}
+
+
+/* Activate a scope. */
+AFW_DEFINE(void)
+afw_xctx_scope_activate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{
+    afw_xctx_scope_debug(
+        "-> afw_xctx_scope_activate()",
+        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+}
+
+
+/* Deactivate a scope. */
+AFW_DEFINE(void)
+afw_xctx_scope_deactivate(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
+{ 
+    afw_xctx_scope_debug(
+        "<- afw_xctx_scope_deactivate()",
+        scope->block, scope, scope->parent_static_scope, NULL, xctx);
+
+    if ((scope) != afw_xctx_scope_current(xctx)) { 
+        AFW_THROW_ERROR_Z(general, 
+            "Request to deactivate scope that is not current",
+            xctx);
+    }
+    apr_array_pop(xctx->scope_stack);
+}
+
+
+/* Unwind the scope stack down to but not including the specified scope. */
 AFW_DEFINE(void)
 afw_xctx_scope_unwind(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
@@ -703,7 +724,7 @@ afw_xctx_scope_unwind(
     const afw_xctx_scope_t *current_scope;
 
     afw_xctx_scope_debug(
-        "<- afw_xctx_scope_unwind()",
+        "<n afw_xctx_scope_unwind()",
         scope->block, scope, scope->parent_static_scope, NULL, xctx);
  
     for (;;) {
@@ -722,7 +743,6 @@ afw_xctx_scope_unwind(
 }
 
 
-
 /**
  * @brief Set the current scope.
  * @param scope must be the current scope.
@@ -733,7 +753,7 @@ afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {  
     afw_xctx_scope_debug(
-        "<- afw_xctx_scope_release()",
+        "<1 afw_xctx_scope_release()",
         scope->block, scope, scope->parent_static_scope,
         (afw_xctx_scope_current(xctx) == scope)
             ? NULL 

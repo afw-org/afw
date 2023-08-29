@@ -330,9 +330,12 @@ afw_xctx_scope_deactivate(
  * @brief Add a reference to a scope.
  * @param scope to be referenced. 
  * @param xctx of caller.
+ * @return scope.
  */
-#define afw_xctx_scope_add_reference(scope, xctx) \
-    afw_pool_add_reference((scope)->p, xctx)
+AFW_DECLARE(const afw_xctx_scope_t *)
+afw_xctx_scope_add_reference(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
 
 
 
@@ -396,7 +399,6 @@ AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address_by_name(
     const afw_utf8_t *symbol_name,
     afw_xctx_t *xctx);
-
 
 
 

@@ -118,9 +118,7 @@ impl_remove_child(AFW_POOL_SELF_T *parent,
     }
 
     if (!sibling) {
-        /** @fixme This needs to be uncommented. */
-        //AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
-        return;
+        AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
     }
 
     afw_pool_release(&parent->pub, xctx);
@@ -153,6 +151,8 @@ impl_pool_create(AFW_POOL_SELF_T *parent, afw_xctx_t *xctx)
     if (parent) {
         impl_add_child(parent, self, xctx);
     }
+
+    //printf("pool " AFW_INTEGER_FMT " create\n", self->pool_number);
 
     /* Return new pool. */
     return self;
@@ -255,6 +255,9 @@ impl_afw_pool_release(
     if (!self) {
         return;
     }
+
+    //printf("pool " AFW_INTEGER_FMT " release refs " AFW_SIZE_T_FMT "\n",
+    //    self->pool_number, self->reference_count);
 
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
@@ -597,4 +600,52 @@ impl_afw_pool_deregister_cleanup_debug(
         data, cleanup);
 
     impl_afw_pool_deregister_cleanup(self, data, data2, cleanup, xctx);
+}
+
+
+void afw_pool_print_debug_info(
+    int indent,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    if (pool->inf != &impl_afw_pool_inf) {
+        printf("Not correct pool inf\n");
+        return;
+    }
+    const AFW_POOL_SELF_T *self = (const AFW_POOL_SELF_T *)pool;
+
+    for (int i = 0; i < indent; i++) {
+        printf("  ");
+    }
+
+    printf(
+        "pool " AFW_INTEGER_FMT " " AFW_SIZE_T_FMT " refs " AFW_INTEGER_FMT
+        " parent " AFW_INTEGER_FMT "\n",
+        self->pool_number,
+        (self->bytes_allocated),
+        (self->reference_count),
+        (afw_integer_t)
+            ((self->parent) && self->parent->pub.inf == &impl_afw_pool_inf
+                ? self->parent->pool_number
+                : 0)
+        );
+
+    // for (int i = 0; i < indent; i++) {
+    //     printf("  ");
+    // }
+    // printf("Siblings:\n");
+    // for (const AFW_POOL_SELF_T *sibling = self->next_sibling;
+    //     sibling;
+    //     sibling = sibling->next_sibling)
+    // {
+    //     afw_pool_print_debug_info(indent + 2, &sibling->pub, xctx);
+    // }
+
+    for (const AFW_POOL_SELF_T *child = self->first_child;
+        child;
+        child = child->next_sibling)
+    {
+        afw_pool_print_debug_info(indent + 2, &child->pub, xctx);
+    }
+
 }
