@@ -263,7 +263,7 @@
             "detail": "Starts the valgrind built-in gdb server, so you can debug afw with gdb running under valgrind.",
             "type": "shell",
             "isBackground": true,
-            "command": "valgrind --vgdb=yes --vgdb-error=0 --suppressions=${workspaceFolder}/src/afw_dev/valgrind.suppress /usr/local/bin/afw ${file}",
+            "command": "valgrind --vgdb=yes --vgdb-error=0 --suppressions=${workspaceFolder}/src/afw_dev/_afwdev/test/valgrind.suppress /usr/local/bin/afw ${file}",
             "problemMatcher": [
                 {
                     "pattern": [
@@ -291,7 +291,7 @@
             "detail": "Starts the valgrind built-in gdb server, so you can debug afwfcgi with gdb running under valgrind.",
             "type": "shell",
             "isBackground": true,
-            "command": "valgrind --vgdb=yes --vgdb-error=0 --suppressions=${workspaceFolder}/src/afw_dev/valgrind.suppress /usr/local/bin/afwfcgi -f /afw/afw.conf -p /var/run/afw.sock -n 25",
+            "command": "valgrind --vgdb=yes --vgdb-error=0 --suppressions=${workspaceFolder}/src/afw_dev/_afwdev/test/valgrind.suppress /usr/local/bin/afwfcgi -f /afw/afw.conf -p /var/run/afw.sock -n 25",
             "runOptions": {
                 "instanceLimit": 1
             },
