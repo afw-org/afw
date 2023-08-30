@@ -40,6 +40,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                     afw_cmd.append('--conf')
                     afw_cmd.append('afw.conf')
         
+            msg.debug("Running test script: %s" % test)
             p = subprocess.run(afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 
         debug = p.stderr.decode("utf-8")

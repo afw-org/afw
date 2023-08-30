@@ -668,6 +668,51 @@ afw_xctx_scope_create(
 }
 
 
+
+/* Begin clone a scope */
+AFW_DEFINE(afw_xctx_scope_t *)
+afw_xctx_scope_clone(
+    const afw_xctx_scope_t *original_scope,
+    afw_xctx_t *xctx)
+{
+    const afw_pool_t *p;
+    afw_xctx_scope_t *scope;
+    
+    p = afw_pool_create(
+        (original_scope->parent_lexical_scope) 
+            ? original_scope->parent_lexical_scope->p 
+            : xctx->p,
+        xctx);
+    scope = afw_pool_calloc(p,
+        (
+            sizeof(afw_xctx_scope_t) +
+            + (sizeof(afw_value_t *) * original_scope->symbol_count )
+            - sizeof(afw_value_t *)
+        ),
+        xctx);
+    scope->p = p;
+    scope->block = original_scope->block;
+    scope->symbol_count =  original_scope->symbol_count;
+    scope->parent_lexical_scope =  original_scope->parent_lexical_scope;
+    scope->parent_dynamic_scope = afw_xctx_scope_current(xctx);
+    xctx->scope_count++;
+    scope->scope_number = xctx->scope_count;
+
+    /* Copy entries. */
+    for (afw_size_t i = 0; i < scope->symbol_count; i++) {
+        /** @fixme change these to value references when that's done. */
+        scope->symbol_values[i] = original_scope->symbol_values[i];
+    }
+
+    afw_xctx_scope_debug(
+        "++ afw_xctx_scope_clone()",
+        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
+
+    return scope;        
+}
+
+
+
 /* Add a reference to a scope. */
 AFW_DEFINE(const afw_xctx_scope_t *)
 afw_xctx_scope_add_reference(

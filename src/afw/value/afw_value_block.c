@@ -373,6 +373,11 @@ impl_assign_value(
         const afw_value_t *aggregate_value;
         const afw_utf8_t *name;
 
+        if (afw_value_is_script_function_definition(value)) {
+            value = impl_create_closure_if_needed(
+                (const afw_value_script_function_definition_t *)value, p, xctx);
+        }
+
         aggregate_value = afw_value_evaluate(t->aggregate_value, p, xctx);
         key = afw_value_evaluate(t->key, p, xctx);
 
@@ -515,6 +520,8 @@ afw_value_block_evaluate_for(
 {
     IMPL_TEMP_FIX(for);
     const afw_value_boolean_t *condition;
+    const afw_xctx_scope_t *scope;
+    const afw_xctx_scope_t *previous_scope;
     const afw_value_t *result;
     const afw_value_t *increment;
     const afw_value_t *body;
@@ -537,7 +544,7 @@ afw_value_block_evaluate_for(
             body = argv[4];
         }
 
-        for (result= afw_value_undefined;;) {
+        for (result= afw_value_undefined, previous_scope = NULL;;) {
 
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
                 AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition,
@@ -559,6 +566,17 @@ afw_value_block_evaluate_for(
             }
 
             if (increment) {
+                scope = previous_scope; // Get rid of warning.
+                // scope = afw_xctx_scope_clone(
+                //     (previous_scope)
+                //         ? previous_scope
+                //         : afw_xctx_scope_current(xctx),
+                //     xctx);
+                // if (previous_scope) {
+                //     afw_xctx_scope_release(previous_scope, xctx);
+                // }
+                // afw_xctx_scope_activate(scope, xctx);
+                previous_scope = scope;
                 impl_evaluate_one_or_more_values(x, 3, increment, p, xctx);
             }
         }
@@ -573,6 +591,11 @@ afw_value_block_evaluate_for(
     }
     AFW_ENDTRY;
 
+    /* Release final increment scope. */
+    if (previous_scope) {
+        afw_xctx_scope_release(previous_scope, xctx);
+    }
+    
     return result;
 }
 

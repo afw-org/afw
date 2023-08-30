@@ -55,7 +55,7 @@ AFW_BEGIN_DECLARES
  * Call each time a new xctx is needed with a shorter lifetime.  For
  * example, a server xctx with a shorter lifetime request_session
  * xctx.  Calling the release method will release all resources
- * allocated in the xctx including any children xctxs.  Call
+ * allocated in the xctx including any children xctx's.  Call
  * afw_environment_create() to create the initial xctx.
  *
  * The xctx authorization mode is set to user.  Use
@@ -308,6 +308,23 @@ afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
     afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Clone a scope.
+ * @param original_scope to clone.
+ * @param xctx of caller.
+ *
+ * This makes a clone of a scope and its symbol_value. This function was
+ * originally needed to support the incrementor of 'for' statements since each
+ * increment needs its own copy of variables to support closure semantics.
+ */
+AFW_DECLARE(afw_xctx_scope_t *)
+afw_xctx_scope_clone(
+    const afw_xctx_scope_t *original_scope,
+    afw_xctx_t *xctx);
+
 
 
 /**
