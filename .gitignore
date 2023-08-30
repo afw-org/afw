@@ -333,7 +333,8 @@ $RECYCLE.BIN/
 # vim swap files
 *.swp
 
-# core dumps
+# core dumps and valgrind outputs
 core
 vgcore.*
+cachegrind.out.*
 !core/

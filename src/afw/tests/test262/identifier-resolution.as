@@ -50,22 +50,24 @@ if(!(f1() === 0)){
 
 //? test: S10.2.2_A1_T4
 //? description: Checking scope chain containing function declarations
-//? expect: undefined
+//? expect: error:#1: Scope chain disturbed
 //? source: ...
 #!/usr/bin/env afw
 
-
+/* This test originally used 'var' which is not supported by afw 
+   Furthermore, ECMAScript "hoists" variables to the top of the 
+   scope when not in "use strict" mode, which we also do not support.
+   Therefore, it should fail.
+*/
 let x = 0;
 
 function f1(){
-
-  let x;
 
   function f2(){
     return x;
   };
 
-  x = 1;
+  let x = 1;
   return f2();
 }
 
