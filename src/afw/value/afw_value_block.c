@@ -77,6 +77,15 @@ impl_create_closure_if_needed(
     scope = afw_xctx_scope_current(xctx);
 
     if (function->depth >= scope->block->depth) {
+        for (; scope; scope = scope->parent_lexical_scope) {
+            if (function->depth == scope->block->depth) {
+                break;
+            }
+        }
+        if (!scope) {
+            AFW_THROW_ERROR_Z(general,
+                "Internal error: scope not found", xctx);
+        }
         result = afw_value_closure_binding_create(function, scope, xctx);
     }
     else {
@@ -303,13 +312,6 @@ impl_assign(
         value = afw_value_evaluate(value, p, xctx);
     }
 
-    if (afw_value_is_script_function_definition(value))
-    {
-        value = impl_create_closure_if_needed(
-            (const afw_value_script_function_definition_t *)value,
-            p, xctx);
-    }
-
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
         if (afw_value_is_assignment_target(target))
@@ -344,10 +346,20 @@ impl_assign_value(
         impl_assignment_target(at, value, assignment_type, p, xctx);
     }
 
-    /* Variable Reference */
+    /*
+     * If symbol reference, set value in scope. If this is a function definition
+     * and not assigning to a function symbol slot, create a closure for it if
+     * needed.
+     */
     else if (afw_value_is_symbol_reference(target)) {
         const afw_value_symbol_reference_t *t =
             (afw_value_symbol_reference_t *)target;
+        if (t->symbol->symbol_type != afw_value_block_symbol_type_function &&
+            afw_value_is_script_function_definition(value))
+        {
+            value = impl_create_closure_if_needed(
+                (const afw_value_script_function_definition_t *)value, p, xctx);
+        }
         afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
     }
 

@@ -588,7 +588,7 @@ static void impl_scope_debug(
 
     printf("\n");
 
-    afw_pool_print_debug_info(8, scope->p, xctx);
+    afw_pool_print_debug_info(8, xctx->p, xctx);
     printf("\n");
 
 }
@@ -737,7 +737,6 @@ afw_xctx_scope_unwind(
         if (scope == current_scope) {
             break;
         }
-        apr_array_pop(xctx->scope_stack);
         afw_pool_release(scope->p, xctx);
     }
 }
@@ -759,6 +758,11 @@ afw_xctx_scope_release(
             ? NULL 
             : "- current scope is not scope passed",
         xctx);
+    if (scope != afw_xctx_scope_current(xctx)) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_xctx_scope_release() called with scope that is not current",
+            xctx);
+    }
     apr_array_pop(xctx->scope_stack);
     afw_pool_release(scope->p, xctx);
 }
