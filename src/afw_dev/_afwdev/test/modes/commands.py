@@ -135,6 +135,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     }
 
     try:
+        msg.debug("Running test commands file: %s" % test)
         with redirect_stdout(stdout_w):
             with redirect_stderr(stderr_w):
 

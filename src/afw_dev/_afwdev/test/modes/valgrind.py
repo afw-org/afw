@@ -45,6 +45,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             # FIXME this needs to be a resource that we load/copy into the temp dir
             afw_package_dir_path = options.get("afw_package_dir_path")
 
+            msg.debug("Running test script: %s" % test)
             p = subprocess.run([
                 'valgrind', 
                 '--suppressions={0}/src/afw_dev/_afwdev/test/valgrind.suppress'.format(afw_package_dir_path), 
@@ -53,6 +54,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 '--show-possibly-lost=no'
                 ] + afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
         else:
+            msg.debug("Running test: %s" % test)            
             p = subprocess.run(afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 
         if p.returncode < 0:

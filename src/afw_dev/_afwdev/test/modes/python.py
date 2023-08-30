@@ -27,6 +27,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     stderr_r = os.fdopen(stderr_p[0], 'r')
 
     try:   
+        msg.debug("Running python test: %s" % test)
         with redirect_stdout(stdout_w):
             with redirect_stderr(stderr_w):
                 test_module = importlib.machinery.SourceFileLoader("test", test).load_module()                                                              
