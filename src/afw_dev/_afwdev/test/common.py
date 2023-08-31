@@ -419,9 +419,16 @@ def print_test_failure(test, testCase):
 
     else:
         # if there was no error object, look for expect/result and dump the source
-        if (testCase.get("expect") != None):            
-            msg.error("    Expected: " + nfc.json_dumps(testCase.get('expect')))
-            msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")            
+        if (testCase.get("expect") != None):
+            if testCase != None:
+                msg.error("    Expected: " + nfc.json_dumps(testCase.get('expect')))
+            else:
+                msg.error("    Expected: undefined")
+
+            if (testCase.get("result") != None):
+                msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")    
+            else:
+                msg.error("    Result:   undefined\n") 
 
         format_source_code(testCase.get("source"), "Test Failed at {}".format(sourceLocationNav))
 

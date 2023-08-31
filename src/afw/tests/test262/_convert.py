@@ -93,14 +93,15 @@ for line in lines:
 
         if "$DONOTEVALUATE();" in converted:
             expectError = True
-            converted = ""
+            converted = None
 
         # convert assert.sameValue(x, y) to assert(x == y)
-        if "assert.sameValue(" in converted:
+        if converted and "assert.sameValue(" in converted:
             converted = converted.replace("assert.sameValue(", "assert(")
             converted = converted.replace(", ", " === ")
 
-        code += converted + "\n"
+        if inCode and converted:
+            code += converted + "\n"
 
 
 print("//? test: " + test)
