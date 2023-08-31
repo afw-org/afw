@@ -47,12 +47,12 @@ for (let let in {}) { }
 //? test: let-closure-inside-condition
 //? description:...
     let: closure inside for loop condition
-//? expect: undefined
-//? skip: true
+//? expect: error:Parse error at offset 150 around line 5 column 50: Expecting ';'
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme we need push for this
+// we need push for this, but we also don't support ++ pre-increment and
+// comma operator in the increment part of for iteration
 let a = [];
 for (let i = 0; a.push(function () { return i; }), i < 5; ++i) { }
 for (let k = 0; k < 5; ++k) {

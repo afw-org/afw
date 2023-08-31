@@ -211,6 +211,13 @@ verifyConfigurable(gen, 'name');
 
 // fixme this produces some strange errors
 // when fixed, the expect should be specific about 'x' not being declared
+/*
+ --- Error ---
+      error type:  general
+      error type #: 3
+      error source: afw_json_from_value.c:348
+      message:     Unevaluated value encountered producing json (closure_binding )
+*/
 function() {
   (function() {
     let x = x + 1;
