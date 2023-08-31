@@ -47,7 +47,7 @@ for (let let in {}) { }
 //? test: let-closure-inside-condition
 //? description:...
     let: closure inside for loop condition
-//? expect: error:Parse error at offset 150 around line 5 column 50: Expecting ';'
+//? expect: error:Parse error at offset 211 around line 6 column 50: Expecting ';'
 //? source: ...
 #!/usr/bin/env afw
 
