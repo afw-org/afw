@@ -4,18 +4,16 @@ import sys
 import time
 import fnmatch
 
-from _afwdev.common import msg, nfc, package
-from _afwdev.test import coverage, watch, runner, js
+from _afwdev.common import msg, package
+from _afwdev.test import watch, runner, js
 
 # This routine is the main entry point from which afwdev invokes in order 
-# to run any and all test-related subcommands (watch, runner, coverage):
+# to run any and all test-related subcommands (watch, runner):
 #
 # "watch" will wait for file system changes and run the test that has 
 #   changed.
 #
 # "runner" will simply run all requested tests.
-#
-# "coverage" will report on the number of tests implemented.
 #
 # This routine also collects some stats from test runs to report to the user.
 def run(options):
@@ -43,7 +41,6 @@ def run(options):
             options, srcdir, set_all=True)   
 
         objects_dir = options['srcdir_path'] + 'generate/objects/'
-        generated_tests = options['srcdir_path'] + 'generated/tests'
         manual_tests = options['srcdir_path'] + 'tests'
 
         srcdirs.append(
@@ -51,7 +48,6 @@ def run(options):
                 srcdir, 
                 options['srcdir_path'], 
                 objects_dir, 
-                generated_tests, 
                 manual_tests
             )
         )
@@ -59,10 +55,6 @@ def run(options):
     if options.get('javascript'):
 
         js.run(options, srcdirs)
-
-    elif options.get('coverage'):
-        
-        coverage.run(options, srcdirs)
 
     elif options.get('watch'):
 

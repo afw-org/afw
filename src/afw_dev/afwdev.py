@@ -835,14 +835,6 @@ _info_test_list = {
     "help": "List tests (do not run)"
 }
 
-_info_test_coverage = {
-    "optionName": "coverage",
-    "arg": "--coverage",
-    "action": "store_true",
-    "default": False,
-    "help": "List test coverage"
-}
-
 _info_test_tags = {
     "optionName": "test_tags",
     "arg": "--tags",    
@@ -909,7 +901,6 @@ _info_test = {
         _info_test_list,
         _info_test_tags,
         _info_test_errors,
-        _info_test_coverage,
         _info_srcdir_pattern, 
         _info_test_watch,
         _info_test_jobs,

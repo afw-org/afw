@@ -225,18 +225,6 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveDataTypeGenerate_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveDataTypeTestCase_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveDataTypeTestCase_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveDataTypeTest_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveDataTypeTest_;
-
-/**
  * @brief Runtime object inf for object type _AdaptiveDataType_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
@@ -313,30 +301,6 @@ afw_runtime_inf__AdaptiveFunctionGenerate_;
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveFunctionParameter_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveFunctionTestArgument_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveFunctionTestArgument_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveFunctionTestCase_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveFunctionTestCase_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveFunctionTestResult_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveFunctionTestResult_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveFunctionTest_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveFunctionTest_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveFunction_

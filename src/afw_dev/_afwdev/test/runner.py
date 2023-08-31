@@ -173,12 +173,9 @@ def run(options, srcdirs):
     test_working_directory = allocate_working_directory()
 
     # for each srcdir find all tests    
-    for srcdir, srcdirPath, _, generated_tests, manual_tests in srcdirs:
+    for srcdir, srcdirPath, _, manual_tests in srcdirs:
         
         srcDirTestGroups = []
-        if os.path.exists(generated_tests):
-            testGroups = find_test_groups(srcdir, generated_tests)
-            srcDirTestGroups += testGroups
 
         if os.path.exists(manual_tests):
             testGroups = find_test_groups(srcdir, manual_tests)

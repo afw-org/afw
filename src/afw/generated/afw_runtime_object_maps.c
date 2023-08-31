@@ -971,36 +971,6 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveDataTypeGenerate_);
 
 
-/* Runtime object map properties for _AdaptiveDataTypeTestCase_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveDataTypeTestCase_ = {
-    &afw_s__AdaptiveDataTypeTestCase_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveDataTypeTestCase_, 
-    impl_runtime_meta__AdaptiveDataTypeTestCase_);
-
-
-/* Runtime object map properties for _AdaptiveDataTypeTest_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveDataTypeTest_ = {
-    &afw_s__AdaptiveDataTypeTest_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveDataTypeTest_, 
-    impl_runtime_meta__AdaptiveDataTypeTest_);
-
-
 /* Runtime object map properties for _AdaptiveDataType_ objects. */
 
 static const afw_runtime_object_map_property_t
@@ -1670,66 +1640,6 @@ impl_runtime_meta__AdaptiveFunctionParameter_ = {
 AFW_RUNTIME_OBJECT_INF( 
     afw_runtime_inf__AdaptiveFunctionParameter_, 
     impl_runtime_meta__AdaptiveFunctionParameter_);
-
-
-/* Runtime object map properties for _AdaptiveFunctionTestArgument_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveFunctionTestArgument_ = {
-    &afw_s__AdaptiveFunctionTestArgument_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveFunctionTestArgument_, 
-    impl_runtime_meta__AdaptiveFunctionTestArgument_);
-
-
-/* Runtime object map properties for _AdaptiveFunctionTestCase_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveFunctionTestCase_ = {
-    &afw_s__AdaptiveFunctionTestCase_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveFunctionTestCase_, 
-    impl_runtime_meta__AdaptiveFunctionTestCase_);
-
-
-/* Runtime object map properties for _AdaptiveFunctionTestResult_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveFunctionTestResult_ = {
-    &afw_s__AdaptiveFunctionTestResult_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveFunctionTestResult_, 
-    impl_runtime_meta__AdaptiveFunctionTestResult_);
-
-
-/* Runtime object map properties for _AdaptiveFunctionTest_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveFunctionTest_ = {
-    &afw_s__AdaptiveFunctionTest_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveFunctionTest_, 
-    impl_runtime_meta__AdaptiveFunctionTest_);
 
 
 /* Runtime object map properties for _AdaptiveFunction_ objects. */
@@ -4709,8 +4619,6 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveContentType_,
     &afw_runtime_inf__AdaptiveContextType_,
     &afw_runtime_inf__AdaptiveDataTypeGenerate_,
-    &afw_runtime_inf__AdaptiveDataTypeTestCase_,
-    &afw_runtime_inf__AdaptiveDataTypeTest_,
     &afw_runtime_inf__AdaptiveDataType_,
     &afw_runtime_inf__AdaptiveEnvironmentRegistryType_,
     &afw_runtime_inf__AdaptiveEnvironmentRegistry_,
@@ -4724,10 +4632,6 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveFunctionErrorThrown_,
     &afw_runtime_inf__AdaptiveFunctionGenerate_,
     &afw_runtime_inf__AdaptiveFunctionParameter_,
-    &afw_runtime_inf__AdaptiveFunctionTestArgument_,
-    &afw_runtime_inf__AdaptiveFunctionTestCase_,
-    &afw_runtime_inf__AdaptiveFunctionTestResult_,
-    &afw_runtime_inf__AdaptiveFunctionTest_,
     &afw_runtime_inf__AdaptiveFunction_,
     &afw_runtime_inf__AdaptiveHybridPropertiesObjects_,
     &afw_runtime_inf__AdaptiveHybridProperties_,

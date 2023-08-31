@@ -11,11 +11,9 @@ from _afwdev.generate import \
     cmake, \
     const_objects, \
     data_type_bindings, \
-    data_type_tests, \
     declare_helpers, \
     ebnf, \
     function_bindings, \
-    function_tests, \
     javascript_bindings, \
     json_schema, \
     interfaces, \
@@ -269,10 +267,8 @@ def generate(passed_options):
         {
             "const_objects": False,
             "data_types": False,
-            "datatype_tests" :False,
             "exports": False,
-            "functions": False,
-            "function_tests": False,            
+            "functions": False,          
             "generated_by" : 'afwdev generate ' + options['srcdir'],
             "ebnf": False,
             "interfaces": False,
@@ -405,8 +401,6 @@ def generate(passed_options):
         options['functions'] = has_more_than_readme(options['objects_dir_path'] + '_AdaptiveFunctionGenerate_/')
         options['runtime_object_maps'] = has_more_than_readme(options['objects_dir_path'] + '_AdaptiveObjectType_/')
         options['react_components'] = has_more_than_readme(options['objects_dir_path'] + '_AdaptiveLayoutComponentType_')
-        options['function_tests'] = has_more_than_readme(options['objects_dir_path'] + '_AdaptiveFunctionTest_')
-        options['datatype_tests'] = has_more_than_readme(options['objects_dir_path'] + '_AdaptiveDataTypeTest_')
 
     # Directory polymorphic_functions/ contains functions.
     options['polymorphic_functions_dir_path'] = None
@@ -576,14 +570,6 @@ def generate(passed_options):
         data_type_list.sort(key=sort_use_id_cb)
         data_type_bindings.generate(generated_by, options['prefix'], data_type_list,
             options['generated_dir_path'] , options)
-    
-    # Generate optional function tests.
-    if options['function_tests']: 
-        function_tests.generate(options)
-
-    # Generate optional datatype tests.
-    if options['datatype_tests']: 
-        data_type_tests.generate(options)
 
     # Generate optional functions:
     if options['functions']:
@@ -628,7 +614,7 @@ def generate(passed_options):
             msg.error_exit("_AdaptiveDataType_ is not allowed in generate/objects/. Use _AdaptiveDataTypeGenerate_ instead.")
         if '_AdaptiveFunction_' in objectTypes:
             msg.error_exit("_AdaptiveFunction_ is not allowed in generate/objects/. Use _AdaptiveFunctionGenerate_ instead.")
-        special_objectTypes = ['_AdaptiveDataTypeGenerate_','_AdaptiveFunctionGenerate_','_AdaptiveManifest_','_AdaptivePolymorphicFunction_','_AdaptiveFunctionTest_','_AdaptiveDataTypeTest_']
+        special_objectTypes = ['_AdaptiveDataTypeGenerate_','_AdaptiveFunctionGenerate_','_AdaptiveManifest_','_AdaptivePolymorphicFunction_']
         gen_const_objectTypes = [n for n in objectTypes if n not in special_objectTypes]    
     if include_object_type__AdaptiveManifest_:
         gen_const_objectTypes.append('_AdaptiveManifest_')

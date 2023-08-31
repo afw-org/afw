@@ -124,12 +124,6 @@
         },
         {
             "fileMatch": [
-                "/src/*/generate*/objects/_AdaptiveDataTypeTestCase_/*.json"
-            ],
-            "url": "./generated/schemas/afw/_AdaptiveDataTypeTestCase_.json"
-        },
-        {
-            "fileMatch": [
                 "/src/*/generate*/objects/_AdaptiveSystemInfo_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveSystemInfo_.json"
@@ -169,12 +163,6 @@
                 "/src/*/generate*/objects/_AdaptivePackage_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptivePackage_.json"
-        },
-        {
-            "fileMatch": [
-                "/src/*/generate*/objects/_AdaptiveFunctionTest_/*.json"
-            ],
-            "url": "./generated/schemas/afw/_AdaptiveFunctionTest_.json"
         },
         {
             "fileMatch": [
@@ -328,12 +316,6 @@
         },
         {
             "fileMatch": [
-                "/src/*/generate*/objects/_AdaptiveDataTypeTest_/*.json"
-            ],
-            "url": "./generated/schemas/afw/_AdaptiveDataTypeTest_.json"
-        },
-        {
-            "fileMatch": [
                 "/src/*/generate*/objects/_AdaptiveFunction_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveFunction_.json"
@@ -349,12 +331,6 @@
                 "/src/*/generate*/objects/_AdaptiveLog_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveLog_.json"
-        },
-        {
-            "fileMatch": [
-                "/src/*/generate*/objects/_AdaptiveFunctionTestCase_/*.json"
-            ],
-            "url": "./generated/schemas/afw/_AdaptiveFunctionTestCase_.json"
         },
         {
             "fileMatch": [
