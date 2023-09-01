@@ -35,6 +35,10 @@ struct afw_pool_internal_multithreaded_self_s {
 
     afw_pool_t pub;
 
+    /*NOTE: Keep pool_number just after pub for debugging. */
+    /** @brief Unique number for pool. */
+    afw_integer_t pool_number;
+
     /** @brief Associated apr pool or NULL if it has not been created. */
     apr_pool_t *apr_p;
 
@@ -64,9 +68,6 @@ struct afw_pool_internal_multithreaded_self_s {
     /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
     AFW_ATOMIC afw_size_t bytes_allocated;
 
-    /** @brief Unique number for pool. */
-    afw_integer_t pool_number;
-
 };
 
 
@@ -77,6 +78,10 @@ afw_pool_internal_singlethreaded_self_t;
 struct afw_pool_internal_singlethreaded_self_s {
 
     afw_pool_t pub;
+
+    /*NOTE: Keep pool_number just after pub for debugging. */
+    /** @brief Unique number for pool. */
+    afw_integer_t pool_number;
 
     /** @brief Associated apr pool or NULL if it has not been created. */
     apr_pool_t *apr_p;
@@ -114,9 +119,6 @@ struct afw_pool_internal_singlethreaded_self_s {
 
     /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
     afw_size_t bytes_allocated;
-
-    /** @brief Unique number for pool. */
-    afw_integer_t pool_number;
 
 };
 

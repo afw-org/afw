@@ -506,6 +506,8 @@ impl_afw_xctx_release(
 
     /* Release xctx's pool. */
     if (instance->p) {
+        // printf("\nxctx release\n");
+        // afw_pool_print_debug_info(0, instance->p, xctx);
         afw_pool_destroy(instance->p, xctx);
     }
 }
@@ -539,6 +541,7 @@ static void impl_scope_debug(
             ? scope->scope_number
             : xctx->scope_count + 1 /* Will be number for new scope. */,
         place);
+        
 
     if (block) {
         printf(
@@ -552,8 +555,12 @@ static void impl_scope_debug(
 
     if (scope) {
         printf(
-            ", scope number: " AFW_SIZE_T_FMT,
-            scope->scope_number);
+            ", pool number: " AFW_INTEGER_FMT
+            ", scope number: " AFW_SIZE_T_FMT
+            ", refs: " AFW_SIZE_T_FMT,
+            ((afw_pool_internal_singlethreaded_self_t *)scope->p)->pool_number,
+            scope->scope_number,
+            scope->reference_count);
     }
     else {
         printf(" scope: NULL");
@@ -645,9 +652,12 @@ afw_xctx_scope_create(
         xctx);
     scope->p = p;
     scope->block = block;
-    scope->parent_lexical_scope = parent_lexical_scope;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
+    if (parent_lexical_scope) {
+        scope->parent_lexical_scope = parent_lexical_scope;
+        afw_xctx_scope_add_reference(parent_lexical_scope, xctx);
+    }
 
     afw_xctx_scope_debug(
         "*  afw_xctx_scope_create()",
@@ -695,13 +705,12 @@ afw_xctx_scope_create_and_activate(
 
     scope = afw_xctx_scope_create(block, parent_lexical_scope, xctx);
 
-    afw_xctx_scope_add_reference(scope, xctx);
+    scope->reference_count++;
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
 
     afw_xctx_scope_debug(
         "*> afw_xctx_scope_create_and_activate()",
         block, scope, parent_lexical_scope, NULL, xctx);
-
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
 
     return scope;
 }
@@ -714,13 +723,12 @@ afw_xctx_scope_activate(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
+    ((afw_xctx_scope_t *)scope)->reference_count++;
+    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
+
     afw_xctx_scope_debug(
         "-> afw_xctx_scope_activate()",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
-
-    afw_xctx_scope_add_reference(scope, xctx);
-
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
 }
 
 
@@ -731,21 +739,11 @@ afw_xctx_scope_add_reference(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
-    afw_xctx_scope_t *self;
+    ((afw_xctx_scope_t *)scope)->reference_count++;
 
     afw_xctx_scope_debug(
         "+1 afw_xctx_scope_add_reference()",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
-
-    for (self = (afw_xctx_scope_t *)scope;
-        ;
-        self = (afw_xctx_scope_t *)self->parent_lexical_scope)
-    {
-        self->reference_count++;
-        if (self->block->depth == 0) {
-            break;
-        }
-    }
 
     return scope;
 }
@@ -759,7 +757,7 @@ afw_xctx_scope_deactivate(
     afw_xctx_t *xctx)
 { 
     afw_xctx_scope_debug(
-        "<- afw_xctx_scope_deactivate()",
+        "<- afw_xctx_scope_deactivate() begin",
         scope->block, scope, scope->parent_lexical_scope,
         (afw_xctx_scope_current(xctx) == scope)
             ? NULL 
@@ -786,7 +784,7 @@ afw_xctx_scope_unwind(
     const afw_xctx_scope_t *current_scope;
 
     afw_xctx_scope_debug(
-        "-n afw_xctx_scope_unwind()",
+        "-n afw_xctx_scope_unwind() begin",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
  
     for (;;) {
@@ -814,31 +812,22 @@ AFW_DEFINE(void)
 afw_xctx_scope_release(
     const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
 {    
-    afw_xctx_scope_t *self;
-    afw_boolean_t block_0;
-
     afw_xctx_scope_debug(
-        "-1 afw_xctx_scope_release()",
+        "-1 afw_xctx_scope_release() begin",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
- 
-    /* Just release if never activated even once. */
-    if (scope->reference_count == 0) {
+
+    /*
+     * If never activated or reference count is 1, release reference to parent
+     * lexical scope and free this scope's pool.
+     */
+    if (scope->reference_count <= 1) {
+        if (scope->parent_lexical_scope) {
+            afw_xctx_scope_release(scope->parent_lexical_scope, xctx);
+        }
         afw_pool_release(scope->p, xctx);
         return;
     }
 
-    /* Release scope and all parent scopes. */
-    for (self = (afw_xctx_scope_t *)scope;
-        ;
-        self = (afw_xctx_scope_t *)self->parent_lexical_scope)
-    {
-        self->reference_count--;
-        block_0 = (self->block->depth == 0);
-        if (self->reference_count == 0) {
-            afw_pool_release(self->p, xctx);
-        }
-        if (block_0) {
-            break;
-        }
-    }
+    /* Otherwise, just decrement reference count. */
+    ((afw_xctx_scope_t *)scope)->reference_count--;
 }

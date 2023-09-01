@@ -526,6 +526,7 @@ afw_value_block_evaluate_for(
     const afw_value_t *increment;
     const afw_value_t *body;
 
+    previous_iterator_scope = NULL;
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
@@ -544,7 +545,7 @@ afw_value_block_evaluate_for(
             body = argv[4];
         }
 
-        for (result= afw_value_undefined, previous_iterator_scope = NULL;;) {
+        for (result= afw_value_undefined;;) {
 
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
                 AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition,
