@@ -209,7 +209,7 @@ impl_afw_value_optional_evaluate(
             }
 
             /* Activate the parameter scope. */
-            afw_xctx_scope_activate_existing(parameter_scope, xctx);
+            afw_xctx_scope_activate(parameter_scope, xctx);
             parameter_scope_activated = true;
             
             /* If named function, set its symbol in parameter scope. */
@@ -222,7 +222,7 @@ impl_afw_value_optional_evaluate(
 
         /* If no parameters, just activate enclosing scope. */
         else {
-            afw_xctx_scope_activate_existing(enclosing_lexical_scope, xctx);
+            afw_xctx_scope_activate(enclosing_lexical_scope, xctx);
         }
 
         /* Evaluate body. */

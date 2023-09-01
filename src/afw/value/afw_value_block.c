@@ -483,7 +483,7 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    scope = afw_xctx_scope_activate_new(
+    scope = afw_xctx_scope_create_and_activate(
         self, afw_xctx_scope_current(xctx), xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
@@ -521,7 +521,7 @@ afw_value_block_evaluate_for(
     IMPL_TEMP_FIX(for);
     const afw_value_boolean_t *condition;
     const afw_xctx_scope_t *scope;
-    const afw_xctx_scope_t *previous_scope;
+    const afw_xctx_scope_t *previous_iterator_scope;
     const afw_value_t *result;
     const afw_value_t *increment;
     const afw_value_t *body;
@@ -544,7 +544,7 @@ afw_value_block_evaluate_for(
             body = argv[4];
         }
 
-        for (result= afw_value_undefined, previous_scope = NULL;;) {
+        for (result= afw_value_undefined, previous_iterator_scope = NULL;;) {
 
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
                 AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition,
@@ -566,25 +566,17 @@ afw_value_block_evaluate_for(
             }
 
             if (increment) {
-            //     scope = afw_xctx_scope_activate_clone(
-            //         (previous_scope)
-            //             ? previous_scope
-            //             : afw_xctx_scope_current(xctx),
-            //         xctx);
-            //     if (previous_scope) {
-            //         afw_xctx_scope_deactivate(previous_scope, xctx);
-            //     }
-                scope = previous_scope; // Get rid of warning.
-                // scope = afw_xctx_scope_clone(
-                //     (previous_scope)
-                //         ? previous_scope
-                //         : afw_xctx_scope_current(xctx),
-                //     xctx);
-                // if (previous_scope) {
-                //     afw_xctx_scope_release(previous_scope, xctx);
-                // }
-                // afw_xctx_scope_activate(scope, xctx);
-                previous_scope = scope;
+                //scope = previous_iterator_scope; // Get rid of warning.
+                if (previous_iterator_scope) {
+                    scope = afw_xctx_scope_clone(previous_iterator_scope, xctx);
+                    afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
+                }
+                else {
+                    scope = afw_xctx_scope_clone(
+                        afw_xctx_scope_current(xctx), xctx);
+                }
+                previous_iterator_scope = scope;
+                afw_xctx_scope_activate(scope, xctx);
                 impl_evaluate_one_or_more_values(x, 3, increment, p, xctx);
             }
         }
@@ -596,14 +588,14 @@ afw_value_block_evaluate_for(
         {
             *type = afw_value_block_statement_type_sequential;
         }
+
+        /* Release final increment scope. */
+        if (previous_iterator_scope) {
+            afw_xctx_scope_deactivate(previous_iterator_scope, xctx);
+        }      
     }
     AFW_ENDTRY;
 
-    /* Release final increment scope. */
-    if (previous_scope) {
-        afw_xctx_scope_deactivate(previous_scope, xctx);
-    }
-    
     return result;
 }
 
@@ -917,7 +909,7 @@ afw_value_block_evaluate_try(
  /// scope is created.
     const afw_xctx_scope_t *scope;
     const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
-    scope = afw_xctx_scope_activate_new(block, afw_xctx_scope_current(xctx), xctx);
+    scope = afw_xctx_scope_create_and_activate(block, afw_xctx_scope_current(xctx), xctx);
     AFW_TRY{
         impl_assign_value(argv[4], error_value,
             afw_compile_assignment_type_let, p, xctx);

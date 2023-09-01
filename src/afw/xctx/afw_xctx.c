@@ -658,9 +658,35 @@ afw_xctx_scope_create(
 
 
 
+/* Begin clone a scope */
+AFW_DEFINE(afw_xctx_scope_t *)
+afw_xctx_scope_clone(
+    const afw_xctx_scope_t *original_scope,
+    afw_xctx_t *xctx)
+{
+    afw_xctx_scope_t *scope;
+
+    scope = afw_xctx_scope_create(
+        original_scope->block, original_scope->parent_lexical_scope, xctx);
+
+    /* Copy entries. */
+    for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
+        /** @fixme change these to value references when that's done. */
+        scope->symbol_values[i] = original_scope->symbol_values[i];
+    }
+
+    afw_xctx_scope_debug(
+        "*c afw_xctx_scope_clone()",
+        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
+
+    return scope;        
+}
+
+
+
 /* Begin begin a scope */
 AFW_DEFINE(afw_xctx_scope_t *)
-afw_xctx_scope_activate_new(
+afw_xctx_scope_create_and_activate(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
     afw_xctx_t *xctx)
@@ -672,7 +698,7 @@ afw_xctx_scope_activate_new(
     afw_xctx_scope_add_reference(scope, xctx);
 
     afw_xctx_scope_debug(
-        "*> afw_xctx_scope_activate_new()",
+        "*> afw_xctx_scope_create_and_activate()",
         block, scope, parent_lexical_scope, NULL, xctx);
 
     APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
@@ -682,44 +708,14 @@ afw_xctx_scope_activate_new(
 
 
 
-/* Begin clone a scope */
-AFW_DEFINE(afw_xctx_scope_t *)
-afw_xctx_scope_activate_clone(
-    const afw_xctx_scope_t *original_scope,
-    afw_xctx_t *xctx)
-{
-    afw_xctx_scope_t *scope;
-
-    scope = afw_xctx_scope_create(
-        original_scope->block, original_scope->parent_lexical_scope, xctx);
-
-    afw_xctx_scope_add_reference(scope, xctx);
-
-    /* Copy entries. */
-    for (afw_size_t i = 0; i < scope->block->symbol_count; i++) {
-        /** @fixme change these to value references when that's done. */
-        scope->symbol_values[i] = original_scope->symbol_values[i];
-    }
-
-    afw_xctx_scope_debug(
-        "c> afw_xctx_scope_activate_clone()",
-        scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
-
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
-
-    return scope;        
-}
-
-
-
 /* Activate a scope. */
 AFW_DEFINE(void)
-afw_xctx_scope_activate_existing(
+afw_xctx_scope_activate(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
     afw_xctx_scope_debug(
-        "-> afw_xctx_scope_activate_existing()",
+        "-> afw_xctx_scope_activate()",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     afw_xctx_scope_add_reference(scope, xctx);
