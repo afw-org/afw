@@ -203,12 +203,11 @@ struct afw_xctx_scope_s {
     const afw_pool_t *p;
     const afw_value_block_t *block;
     const afw_xctx_scope_t *parent_lexical_scope;
-    const afw_xctx_scope_t *parent_dynamic_scope;
+    afw_size_t reference_count;
     afw_size_t scope_number;
-    afw_size_t symbol_count;
     /*
-     * When this struct is created by afw_xctx_scope_create(), it will be
-     * allocated large enough to hold symbol_count symbol_values.
+     * When this struct is created by afw_xctx_scope_activate_new(), it will be
+     * allocated large enough to hold block->symbol_count symbol_values.
      */ 
     const afw_value_t *symbol_values[1];
 };
@@ -235,11 +234,11 @@ struct afw_xctx_scope_s {
  * @param xctx of caller.
  * @return New xctx scope.
  *
- * Function afw_xctx_scope_create() is used to create a new scope. This must be
- * followed with a call to afw_xctx_scope_activate() then ultimately a call to
+ * Function afw_xctx_scope_activate_new() is used to create a new scope. This must be
+ * followed with a call to afw_xctx_scope_activate_existing() then ultimately a call to
  * afw_xctx_scope_release().
  *
- * The call to afw_xctx_scope_create() and afw_xctx_scope_activate() are
+ * The call to afw_xctx_scope_activate_new() and afw_xctx_scope_activate_existing() are
  * separate to allow the new scope to be primed before activation, such as when
  * the parameters or being evaluated in the scope of the caller.
  *
@@ -266,10 +265,10 @@ struct afw_xctx_scope_s {
  * The current scope, which can be retrieve by calling afw_xctx_scope_current(),
  * is at the top of the scope stack.
  *
- * The scope stack is maintained by the functions afw_xctx_scope_activate() and
+ * The scope stack is maintained by the functions afw_xctx_scope_activate_existing() and
  * afw_xctx_scope_deactivate(). Function afw_xctx_scope_release() calls
  * afw_xctx_scope_deactivate() but it can also be called directly when
- * afw_xctx_scope_activate() is not paired with an afw_xctx_scope_release().
+ * afw_xctx_scope_activate_existing() is not paired with an afw_xctx_scope_release().
  *
  * There is also an afw_xctx_scope_rewind() used in 'catch' and 'finally' to
  * call afw_xctx_scope_release() on all of the scopes down to the current scope
@@ -300,7 +299,7 @@ struct afw_xctx_scope_s {
  * afw_xctx_scope_add_reference(), which keeps the chain of ancestor lexical
  * scopes around. The parent lexical scope pointer is remembered in the binding.
  * When the closure is called, this is the parent_lexical_scope used in the call
- * to afw_xctx_scope_create(). When the closure binding goes out of scope, the
+ * to afw_xctx_scope_activate_new(). When the closure binding goes out of scope, the
  * associated parent lexical scope is released.
  */
 AFW_DECLARE(afw_xctx_scope_t *)
@@ -309,6 +308,13 @@ afw_xctx_scope_create(
     const afw_xctx_scope_t *parent_lexical_scope,
     afw_xctx_t *xctx);
 
+
+/** @fixme all afw_xctx_scope_*() comments need to be fixed with rework. */
+AFW_DECLARE(afw_xctx_scope_t *)
+afw_xctx_scope_activate_new(
+    const afw_value_block_t *block,
+    const afw_xctx_scope_t *parent_lexical_scope,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -321,7 +327,7 @@ afw_xctx_scope_create(
  * increment needs its own copy of variables to support closure semantics.
  */
 AFW_DECLARE(afw_xctx_scope_t *)
-afw_xctx_scope_clone(
+afw_xctx_scope_activate_clone(
     const afw_xctx_scope_t *original_scope,
     afw_xctx_t *xctx);
 
@@ -332,11 +338,11 @@ afw_xctx_scope_clone(
  * @param scope to activate as the current scope.
  * @param xctx of caller.
  * 
- * Call this after afw_xctx_scope_create() or when the current stack needs to
+ * Call this after afw_xctx_scope_activate_new() or when the current stack needs to
  * be switched to a different enclosing lexical scope.
  */
 AFW_DECLARE(void)
-afw_xctx_scope_activate(
+afw_xctx_scope_activate_existing(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
 
@@ -348,8 +354,8 @@ afw_xctx_scope_activate(
  * @param xctx of caller.
  *
  * Deactivate is done automatically when a afw_xctx_scope_release() is called
- * for a scope so only use this when afw_xctx_scope_activate() is called at
- * times other than paired after a afw_xctx_scope_create(). One place this
+ * for a scope so only use this when afw_xctx_scope_activate_existing() is called at
+ * times other than paired after a afw_xctx_scope_activate_new(). One place this
  * happens is in call_script_function evaluate when there are no parameters but
  * there is a need to switch to the enclosing lexical scope.
  */

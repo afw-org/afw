@@ -483,8 +483,8 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    scope = afw_xctx_scope_create(self, afw_xctx_scope_current(xctx), xctx);
-    afw_xctx_scope_activate(scope, xctx);
+    scope = afw_xctx_scope_activate_new(
+        self, afw_xctx_scope_current(xctx), xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
             result = afw_value_block_evaluate_statement(x, type,
@@ -496,7 +496,7 @@ afw_value_block_evaluate_block(
         }
     }
     AFW_FINALLY{
-        afw_xctx_scope_release(scope, xctx);
+        afw_xctx_scope_deactivate(scope, xctx);
     }
     AFW_ENDTRY;
 
@@ -566,6 +566,14 @@ afw_value_block_evaluate_for(
             }
 
             if (increment) {
+            //     scope = afw_xctx_scope_activate_clone(
+            //         (previous_scope)
+            //             ? previous_scope
+            //             : afw_xctx_scope_current(xctx),
+            //         xctx);
+            //     if (previous_scope) {
+            //         afw_xctx_scope_deactivate(previous_scope, xctx);
+            //     }
                 scope = previous_scope; // Get rid of warning.
                 // scope = afw_xctx_scope_clone(
                 //     (previous_scope)
@@ -593,7 +601,7 @@ afw_value_block_evaluate_for(
 
     /* Release final increment scope. */
     if (previous_scope) {
-        afw_xctx_scope_release(previous_scope, xctx);
+        afw_xctx_scope_deactivate(previous_scope, xctx);
     }
     
     return result;
@@ -909,8 +917,7 @@ afw_value_block_evaluate_try(
  /// scope is created.
     const afw_xctx_scope_t *scope;
     const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
-    scope = afw_xctx_scope_create(block, afw_xctx_scope_current(xctx), xctx);
-    afw_xctx_scope_activate(scope, xctx);
+    scope = afw_xctx_scope_activate_new(block, afw_xctx_scope_current(xctx), xctx);
     AFW_TRY{
         impl_assign_value(argv[4], error_value,
             afw_compile_assignment_type_let, p, xctx);
@@ -925,7 +932,7 @@ afw_value_block_evaluate_try(
         }
     }
     AFW_FINALLY{
-        afw_xctx_scope_release(scope, xctx);
+        afw_xctx_scope_deactivate(scope, xctx);
     }
     AFW_ENDTRY;
 // --------------------------------------------------------------------

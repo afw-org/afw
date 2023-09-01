@@ -209,7 +209,7 @@ impl_afw_value_optional_evaluate(
             }
 
             /* Activate the parameter scope. */
-            afw_xctx_scope_activate(parameter_scope, xctx);
+            afw_xctx_scope_activate_existing(parameter_scope, xctx);
             parameter_scope_activated = true;
             
             /* If named function, set its symbol in parameter scope. */
@@ -220,9 +220,9 @@ impl_afw_value_optional_evaluate(
             }
         }
 
-        /* If no parameters, activate functions parent static scope. */
+        /* If no parameters, just activate enclosing scope. */
         else {
-            afw_xctx_scope_activate(enclosing_lexical_scope, xctx);
+            afw_xctx_scope_activate_existing(enclosing_lexical_scope, xctx);
         }
 
         /* Evaluate body. */
@@ -231,31 +231,35 @@ impl_afw_value_optional_evaluate(
 
     AFW_FINALLY{
 
-        /* If there was a parameters scope, release it. */
+        /* If there was a parameters scope, ... */
         if (parameter_scope)
         {
-            /* Make sure it was activated so release will succeed. */
-            if (!parameter_scope_activated) {
-                afw_xctx_scope_activate(parameter_scope, xctx);
+            /* If parameter_scope activated, deactivate. */
+            if (parameter_scope_activated) {
+                afw_xctx_scope_deactivate(parameter_scope, xctx);
             }
 
-            /* Release parameters scope. */
-            afw_xctx_scope_release(parameter_scope, xctx);
+            /* If it didn't make it as far as activation, just release. */
+            else {
+                afw_xctx_scope_release(parameter_scope, xctx);
+            }
+
         }
 
-        /* If no parameters, deactivate enclosing scope so callers active. */
+        /* If no parameter scope, just deactivate enclosing scope. */
         else {
             afw_xctx_scope_deactivate(enclosing_lexical_scope, xctx);
-        }
-
-        if (caller_scope != afw_xctx_scope_current(xctx)) {
-            AFW_THROW_ERROR_Z(general,
-                "Caller scope not current on return from function",
-                xctx);
         }
     }
 
     AFW_ENDTRY;
+
+    /* Make sure we're back in caller's scope. */
+    if (caller_scope != afw_xctx_scope_current(xctx)) {
+        AFW_THROW_ERROR_Z(general,
+            "Caller scope not current on return from function",
+            xctx);
+    }
 
     /* Return result. */
     return result;
