@@ -6,19 +6,18 @@ import requests
 import json
 
 def is_unevaluated(session, value):
-    '''
+    """
     Checks whether value is dataType unevaluated
 
     Checks whether value is dataType unevaluated and return the boolean
     result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 

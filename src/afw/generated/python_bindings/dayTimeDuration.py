@@ -6,21 +6,20 @@ import requests
 import json
 
 def at_least_one_member_of_dayTimeDuration(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in dayTimeDuration array1 is
     in dayTimeDuration array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -39,18 +38,17 @@ def at_least_one_member_of_dayTimeDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_dayTimeDuration(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of dayTimeDuration values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -70,18 +68,17 @@ def bag_dayTimeDuration(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_dayTimeDuration(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -99,19 +96,18 @@ def bag_size_dayTimeDuration(session, value):
     return response['actions'][0]['result']
 
 def dayTimeDuration(session, value):
-    '''
+    """
     Convert to data type dateTimeDuration
 
     Converts value to data type dayTimeDuration returning dayTimeDuration
     result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    dayTimeDuration: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -129,7 +125,7 @@ def dayTimeDuration(session, value):
     return response['actions'][0]['result']
 
 def eq_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if dayTimeDuration arg1 is equal to the value of arg2 converted
@@ -137,15 +133,14 @@ def eq_dayTimeDuration(session, arg1, arg2):
     ('===') instead if you want false to be returned if arg1 and arg2's data
     type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -164,22 +159,21 @@ def eq_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for dayTimeDuration arg1 is equal to the value and data type
     of arg2 then return the boolean result. Use 'eq' ('==') instead if you
     want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -198,21 +192,20 @@ def eqx_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for dayTimeDuration arg1 is greater than or equal to
     dayTimeDuration arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -231,21 +224,20 @@ def ge_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for dayTimeDuration arg1 is greater than dayTimeDuration arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -264,21 +256,20 @@ def gt_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def intersection_dayTimeDuration(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of dayTimeDuration with the values that are common to
     both array of dayTimeDuration array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -297,19 +288,18 @@ def intersection_dayTimeDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_dayTimeDuration(session, value):
-    '''
+    """
     Checks whether value is dataType dayTimeDuration
 
     Checks whether value is dataType dayTimeDuration and return the boolean
     result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -327,21 +317,20 @@ def is_dayTimeDuration(session, value):
     return response['actions'][0]['result']
 
 def is_in_dayTimeDuration(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether dayTimeDuration value is in array of dayTimeDuration array
     and returns the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (dayTimeDuration):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -360,21 +349,20 @@ def is_in_dayTimeDuration(session, value, array):
     return response['actions'][0]['result']
 
 def le_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for dayTimeDuration arg1 is less than or equal to dayTimeDuration
     arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -393,21 +381,20 @@ def le_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for dayTimeDuration arg1 is less that dayTimeDuration arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -426,7 +413,7 @@ def lt_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if dayTimeDuration arg1 is not equal to the value of arg2
@@ -434,15 +421,14 @@ def ne_dayTimeDuration(session, arg1, arg2):
     'nex' ('!==') instead if you want true to be returned if arg1 and arg2's
     data type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -461,22 +447,21 @@ def ne_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for dayTimeDuration arg1 is not equal to the value or data
     type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
     you want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dayTimeDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -495,19 +480,18 @@ def nex_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_dayTimeDuration(session, array):
-    '''
+    """
     Converts a one value array to a dayTimeDuration value
 
     This converts an array of dayTimeDuration values that contains one value
     to a single dayTimeDuration value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    dayTimeDuration: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -525,21 +509,20 @@ def one_and_only_dayTimeDuration(session, array):
     return response['actions'][0]['result']
 
 def set_equals_dayTimeDuration(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2
     are subsets of each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -558,21 +541,20 @@ def set_equals_dayTimeDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def subset_dayTimeDuration(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in dayTimeDuration array1 are
     all in dayTimeDuration array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -591,19 +573,18 @@ def subset_dayTimeDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def to_string_dayTimeDuration(session, value):
-    '''
+    """
     Converts value to string
 
     Converts dayTimeDuration value to string. For array values, the
     to_string() value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (dayTimeDuration): A dayTimeDuration value.
+    Args:
+        value (object): A dayTimeDuration value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -621,19 +602,18 @@ def to_string_dayTimeDuration(session, value):
     return response['actions'][0]['result']
 
 def union_dayTimeDuration(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of dayTimeDuration contains all of the unique values in
     two or more array of dayTimeDuration values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 

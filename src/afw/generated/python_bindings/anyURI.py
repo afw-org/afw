@@ -6,18 +6,17 @@ import requests
 import json
 
 def anyURI(session, value):
-    '''
+    """
     Convert to data type anyURI
 
     Converts value to data type anyURI returning anyURI result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    anyURI: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -35,21 +34,20 @@ def anyURI(session, value):
     return response['actions'][0]['result']
 
 def at_least_one_member_of_anyURI(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in anyURI array1 is in anyURI
     array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -68,18 +66,17 @@ def at_least_one_member_of_anyURI(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_anyURI(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of anyURI values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -99,18 +96,17 @@ def bag_anyURI(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_anyURI(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -128,21 +124,20 @@ def bag_size_anyURI(session, value):
     return response['actions'][0]['result']
 
 def ends_with_anyURI(session, value, subString):
-    '''
+    """
     Checks whether value ends with a string
 
     Checks whether anyURI value ends with a anyURI and return the boolean
     result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (anyURI):
-
-        subString (string):
+        subString (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -161,7 +156,7 @@ def ends_with_anyURI(session, value, subString):
     return response['actions'][0]['result']
 
 def eq_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if anyURI arg1 is equal to the value of arg2 converted to the
@@ -169,15 +164,14 @@ def eq_anyURI(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -196,22 +190,21 @@ def eq_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for anyURI arg1 is equal to the value and data type of arg2
     then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -230,21 +223,20 @@ def eqx_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for anyURI arg1 is greater than or equal to anyURI arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 (anyURI):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -263,21 +255,20 @@ def ge_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for anyURI arg1 is greater than anyURI arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 (anyURI):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -296,24 +287,23 @@ def gt_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def includes_anyURI(session, searchString, subString, position=None):
-    '''
+    """
     Checks whether the anyURI value includes a string
 
     Checks whether the anyURI value includes a string and return the boolean
     result.
 
-    Parameters:
+    Args:
+        searchString (object): The anyURI to search.
 
-        searchString (anyURI): The anyURI to search.
+        subString (str): Substring to find.
 
-        subString (string): Substring to find.
-
-        position (integer): Zero-based position in the search string to start
+        position (int): Zero-based position in the search string to start
         search.
 
     Returns:
-    boolean: Indicates if the substring is contained in the search string.
-    '''
+        bool: Indicates if the substring is contained in the search string.
+    """
 
     request = session.Request()
 
@@ -335,24 +325,23 @@ def includes_anyURI(session, searchString, subString, position=None):
     return response['actions'][0]['result']
 
 def index_of_anyURI(session, value, subString, startIndex=None):
-    '''
+    """
     Returns index of first occurrence
 
     Returns the zero-based index into anyURI value of subString. If subString
     is not found, -1 is returned.
 
-    Parameters:
+    Args:
+        value (object): The anyURI value to search.
 
-        value (anyURI): The anyURI value to search.
+        subString (str): Substring to search for.
 
-        subString (string): Substring to search for.
-
-        startIndex (integer): Optional start index for search if different
-        than start of string.
+        startIndex (int): Optional start index for search if different than
+        start of string.
 
     Returns:
-    integer: Zero-based index of subString or -1 if not found.
-    '''
+        int: Zero-based index of subString or -1 if not found.
+    """
 
     request = session.Request()
 
@@ -374,21 +363,20 @@ def index_of_anyURI(session, value, subString, startIndex=None):
     return response['actions'][0]['result']
 
 def intersection_anyURI(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of anyURI with the values that are common to both array
     of anyURI array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -407,18 +395,17 @@ def intersection_anyURI(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_anyURI(session, value):
-    '''
+    """
     Checks whether value is dataType anyURI
 
     Checks whether value is dataType anyURI and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -436,21 +423,20 @@ def is_anyURI(session, value):
     return response['actions'][0]['result']
 
 def is_in_anyURI(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether anyURI value is in array of anyURI array and returns the
     boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (anyURI):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -469,24 +455,23 @@ def is_in_anyURI(session, value, array):
     return response['actions'][0]['result']
 
 def last_index_of_anyURI(session, value, subString, startIndex=None):
-    '''
+    """
     Returns index of last occurrence
 
     Returns the zero-based index into anyURI value of the last occurrence of
     a subString. If subString is not found, -1 is returned.
 
-    Parameters:
+    Args:
+        value (object): The anyURI value to search.
 
-        value (anyURI): The anyURI value to search.
+        subString (str): Substring to search for.
 
-        subString (string): Substring to search for.
-
-        startIndex (integer): Optional start index for search if different
-        than start of string.
+        startIndex (int): Optional start index for search if different than
+        start of string.
 
     Returns:
-    integer: Zero-based index of subString or -1 if not found.
-    '''
+        int: Zero-based index of subString or -1 if not found.
+    """
 
     request = session.Request()
 
@@ -508,21 +493,20 @@ def last_index_of_anyURI(session, value, subString, startIndex=None):
     return response['actions'][0]['result']
 
 def le_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for anyURI arg1 is less than or equal to anyURI arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -541,21 +525,20 @@ def le_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def length_anyURI(session, value):
-    '''
+    """
     Returns number of codepoints or entries in value
 
     This is a polymorphic function where anyURI can be any of the supported
     data types. Return the integer number of entries in datatype array or
     codepoints in others.
 
-    Parameters:
-
-        value (anyURI): Returns the number of entries in an array or code
+    Args:
+        value (object): Returns the number of entries in an array or code
         points in others.
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -573,21 +556,20 @@ def length_anyURI(session, value):
     return response['actions'][0]['result']
 
 def lt_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for anyURI arg1 is less that anyURI arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 (anyURI):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -606,7 +588,7 @@ def lt_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if anyURI arg1 is not equal to the value of arg2 converted to
@@ -614,15 +596,14 @@ def ne_anyURI(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -641,22 +622,21 @@ def ne_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_anyURI(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for anyURI arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (anyURI):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -675,19 +655,18 @@ def nex_anyURI(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_anyURI(session, array):
-    '''
+    """
     Converts a one value array to a anyURI value
 
     This converts an array of anyURI values that contains one value to a
     single anyURI value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    anyURI: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -705,21 +684,20 @@ def one_and_only_anyURI(session, array):
     return response['actions'][0]['result']
 
 def regexp_index_of_anyURI(session, value, regexp):
-    '''
+    """
     Returns index of first match of regular expression
 
     Search anyURI value for a regular expression and return index. If not
     found, -1 is returned.
 
-    Parameters:
+    Args:
+        value (object): The anyURI value to search.
 
-        value (anyURI): The anyURI value to search.
-
-        regexp (string): A regular expression to use for search.
+        regexp (str): A regular expression to use for search.
 
     Returns:
-    integer: Zero-based index of subString or -1 if not found.
-    '''
+        int: Zero-based index of subString or -1 if not found.
+    """
 
     request = session.Request()
 
@@ -738,21 +716,20 @@ def regexp_index_of_anyURI(session, value, regexp):
     return response['actions'][0]['result']
 
 def regexp_match_anyURI(session, value, regexp):
-    '''
+    """
     Search for a match using a regular expression
 
     Checks whether anyURI value matches the regular expression regexp and
     return the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (anyURI):
-
-        regexp (string):
+        regexp (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -771,25 +748,24 @@ def regexp_match_anyURI(session, value, regexp):
     return response['actions'][0]['result']
 
 def regexp_replace_anyURI(session, value, regexp, replacement, limit=None):
-    '''
+    """
     Replace strings matching a regular expression
 
     Replace matched values for a regular expression in a anyURI value.
 
-    Parameters:
+    Args:
+        value (object): The original anyURI value.
 
-        value (anyURI): The original anyURI value.
+        regexp (str): A regular expression to use for search.
 
-        regexp (string): A regular expression to use for search.
+        replacement (str): The replacement string.
 
-        replacement (string): The replacement string.
-
-        limit (integer): This is the maximum times to replace. The default is
-        1. Specify -1 to replace all occurrences.
+        limit (int): This is the maximum times to replace. The default is 1.
+        Specify -1 to replace all occurrences.
 
     Returns:
-    anyURI: A anyURI value with the matched string(s) replaced.
-    '''
+        object: A anyURI value with the matched string(s) replaced.
+    """
 
     request = session.Request()
 
@@ -812,20 +788,19 @@ def regexp_replace_anyURI(session, value, regexp, replacement, limit=None):
     return response['actions'][0]['result']
 
 def repeat_anyURI(session, value, times):
-    '''
+    """
     Returns a repeated value
 
     Repeat a anyURI value a specified number of times.
 
-    Parameters:
+    Args:
+        value (object): The anyURI value to repeat.
 
-        value (anyURI): The anyURI value to repeat.
-
-        times (integer): The number of times to repeat the value.
+        times (int): The number of times to repeat the value.
 
     Returns:
-    anyURI: The repeated anyURI value.
-    '''
+        object: The repeated anyURI value.
+    """
 
     request = session.Request()
 
@@ -844,25 +819,24 @@ def repeat_anyURI(session, value, times):
     return response['actions'][0]['result']
 
 def replace_anyURI(session, value, match, replacement, limit=None):
-    '''
+    """
     Replace strings
 
     Replace string(s) in a anyURI value.
 
-    Parameters:
+    Args:
+        value (object): The original anyURI value.
 
-        value (anyURI): The original anyURI value.
+        match (str): The string to replace.
 
-        match (string): The string to replace.
+        replacement (str): The replacement string.
 
-        replacement (string): The replacement string.
-
-        limit (integer): This is the maximum times to replace. The default is
-        1. Specify -1 to replace all occurrences.
+        limit (int): This is the maximum times to replace. The default is 1.
+        Specify -1 to replace all occurrences.
 
     Returns:
-    anyURI: A anyURI value with the matched string(s) replaced.
-    '''
+        object: A anyURI value with the matched string(s) replaced.
+    """
 
     request = session.Request()
 
@@ -885,21 +859,20 @@ def replace_anyURI(session, value, match, replacement, limit=None):
     return response['actions'][0]['result']
 
 def set_equals_anyURI(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if anyURI array1 and anyURI array2 are subsets of
     each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -918,24 +891,23 @@ def set_equals_anyURI(session, array1, array2):
     return response['actions'][0]['result']
 
 def split_anyURI(session, value, separator=None, limit=None):
-    '''
+    """
     Split at a separator
 
     Split anyURI value into an array of strings using a separator.
 
-    Parameters:
+    Args:
+        value (object): The anyURI value to split.
 
-        value (anyURI): The anyURI value to split.
+        separator (str): The separator to use. If this is an empty string or
+        separator is not specified, the value is split between characters.
 
-        separator (string): The separator to use. If this is an empty string
-        or separator is not specified, the value is split between characters.
-
-        limit (integer): This is the maximum number of splits. Any remaining
-        part of value is ignored.
+        limit (int): This is the maximum number of splits. Any remaining part
+        of value is ignored.
 
     Returns:
-    array: An array of strings.
-    '''
+        list: An array of strings.
+    """
 
     request = session.Request()
 
@@ -959,21 +931,20 @@ def split_anyURI(session, value, separator=None, limit=None):
     return response['actions'][0]['result']
 
 def starts_with_anyURI(session, value, subString):
-    '''
+    """
     Checks whether value starts with a string
 
     Checks whether anyURI value starts with a subString and return the
     boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (anyURI):
-
-        subString (string):
+        subString (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -992,21 +963,20 @@ def starts_with_anyURI(session, value, subString):
     return response['actions'][0]['result']
 
 def subset_anyURI(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in anyURI array1 are all in
     anyURI array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1025,24 +995,23 @@ def subset_anyURI(session, array1, array2):
     return response['actions'][0]['result']
 
 def substring_anyURI(session, string, startIndex, endIndex=None):
-    '''
+    """
     Extract a substring
 
     Returns the anyURI substring of value beginning at zero-based position
     integer startIndex and ending at the position before integer endIndex.
     Specify -1 or omitting endIndex to return up to end of anyURI.
 
-    Parameters:
+    Args:
+        string (object):
 
-        string (anyURI):
+        startIndex (int):
 
-        startIndex (integer):
-
-        endIndex (integer):
+        endIndex (int):
 
     Returns:
-    anyURI: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1064,19 +1033,18 @@ def substring_anyURI(session, string, startIndex, endIndex=None):
     return response['actions'][0]['result']
 
 def to_string_anyURI(session, value):
-    '''
+    """
     Converts value to string
 
     Converts anyURI value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (anyURI): A anyURI value.
+    Args:
+        value (object): A anyURI value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -1094,19 +1062,18 @@ def to_string_anyURI(session, value):
     return response['actions'][0]['result']
 
 def union_anyURI(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of anyURI contains all of the unique values in two or
     more array of anyURI values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -1124,19 +1091,18 @@ def union_anyURI(session, arrays):
     return response['actions'][0]['result']
 
 def url_encode_anyURI(session, unencoded):
-    '''
+    """
     URI encode
 
     URL encode a value or bag of values.
 
-    Parameters:
-
-        unencoded (anyURI): URL encode a single value. See the url_encode
+    Args:
+        unencoded (object): URL encode a single value. See the url_encode
         method for the data type of more details.
 
     Returns:
-    string: URI encoded string.
-    '''
+        str: URI encoded string.
+    """
 
     request = session.Request()
 

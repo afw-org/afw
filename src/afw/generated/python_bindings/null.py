@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_null(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of null values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_null(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_null(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,18 +64,17 @@ def bag_size_null(session, value):
     return response['actions'][0]['result']
 
 def is_null(session, value):
-    '''
+    """
     Checks whether value is dataType null
 
     Checks whether value is dataType null and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -95,18 +92,17 @@ def is_null(session, value):
     return response['actions'][0]['result']
 
 def null(session, value):
-    '''
+    """
     Convert to data type null
 
     Converts value to data type null returning null result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    void: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -124,19 +120,18 @@ def null(session, value):
     return response['actions'][0]['result']
 
 def to_string_null(session, value):
-    '''
+    """
     Converts value to string
 
     Converts null value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (null): A null value.
+    Args:
+        value (None): A null value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 

@@ -6,20 +6,19 @@ import requests
 import json
 
 def add_dayTimeDuration_dateTime(session, arg1, arg2):
-    '''
+    """
     Add duration
 
     Add dateTime arg1 to dayTimeDuration arg2 and return the dateTime result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -38,21 +37,20 @@ def add_dayTimeDuration_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def add_yearMonthDuration_dateTime(session, arg1, arg2):
-    '''
+    """
     Add duration
 
     Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -71,21 +69,20 @@ def add_yearMonthDuration_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def at_least_one_member_of_dateTime(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in dateTime array1 is in
     dateTime array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -104,18 +101,17 @@ def at_least_one_member_of_dateTime(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_dateTime(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of dateTime values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -135,18 +131,17 @@ def bag_dateTime(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_dateTime(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -164,18 +159,17 @@ def bag_size_dateTime(session, value):
     return response['actions'][0]['result']
 
 def dateTime(session, value):
-    '''
+    """
     Convert to data type dateTime
 
     Converts value to data type dateTime returning dateTime result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    dateTime: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -193,7 +187,7 @@ def dateTime(session, value):
     return response['actions'][0]['result']
 
 def eq_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if dateTime arg1 is equal to the value of arg2 converted to the
@@ -201,15 +195,14 @@ def eq_dateTime(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -228,22 +221,21 @@ def eq_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for dateTime arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -262,7 +254,7 @@ def eqx_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for dateTime arg1 is greater than or equal to dateTime arg2 and
@@ -271,15 +263,14 @@ def ge_dateTime(session, arg1, arg2):
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (dateTime):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -298,7 +289,7 @@ def ge_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for dateTime arg1 is greater than dateTime arg2 and return the
@@ -307,15 +298,14 @@ def gt_dateTime(session, arg1, arg2):
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (dateTime):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -334,21 +324,20 @@ def gt_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def intersection_dateTime(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of dateTime with the values that are common to both
     array of dateTime array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -367,18 +356,17 @@ def intersection_dateTime(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_dateTime(session, value):
-    '''
+    """
     Checks whether value is dataType dateTime
 
     Checks whether value is dataType dateTime and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -396,21 +384,20 @@ def is_dateTime(session, value):
     return response['actions'][0]['result']
 
 def is_in_dateTime(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether dateTime value is in array of dateTime array and returns
     the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (dateTime):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -429,7 +416,7 @@ def is_in_dateTime(session, value, array):
     return response['actions'][0]['result']
 
 def le_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for dateTime arg1 is less than or equal to dateTime arg2 and
@@ -438,15 +425,14 @@ def le_dateTime(session, arg1, arg2):
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -465,7 +451,7 @@ def le_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for dateTime arg1 is less that dateTime arg2 and return the
@@ -474,15 +460,14 @@ def lt_dateTime(session, arg1, arg2):
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (dateTime):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -501,7 +486,7 @@ def lt_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def max_dateTime(session, values):
-    '''
+    """
     Maximum value
 
     Return the dateTime value that is greater than or equal to the others.
@@ -509,13 +494,12 @@ def max_dateTime(session, values):
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
 
-    Parameters:
-
-        values (dateTime):
+    Args:
+        values (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -533,7 +517,7 @@ def max_dateTime(session, values):
     return response['actions'][0]['result']
 
 def min_dateTime(session, values):
-    '''
+    """
     Minimum value
 
     Return the dateTime value that is less than or equal to the others.
@@ -541,13 +525,12 @@ def min_dateTime(session, values):
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
 
-    Parameters:
-
-        values (dateTime):
+    Args:
+        values (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -565,7 +548,7 @@ def min_dateTime(session, values):
     return response['actions'][0]['result']
 
 def ne_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if dateTime arg1 is not equal to the value of arg2 converted to
@@ -573,15 +556,14 @@ def ne_dateTime(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -600,22 +582,21 @@ def ne_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_dateTime(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for dateTime arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -634,19 +615,18 @@ def nex_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_dateTime(session, array):
-    '''
+    """
     Converts a one value array to a dateTime value
 
     This converts an array of dateTime values that contains one value to a
     single dateTime value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -664,21 +644,20 @@ def one_and_only_dateTime(session, array):
     return response['actions'][0]['result']
 
 def set_equals_dateTime(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if dateTime array1 and dateTime array2 are subsets
     of each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -697,21 +676,20 @@ def set_equals_dateTime(session, array1, array2):
     return response['actions'][0]['result']
 
 def subset_dateTime(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in dateTime array1 are all in
     dateTime array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -730,21 +708,20 @@ def subset_dateTime(session, array1, array2):
     return response['actions'][0]['result']
 
 def subtract_dayTimeDuration_dateTime(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract dayTimeDuration arg2 from dateTime arg1 and return the dateTime
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -763,21 +740,20 @@ def subtract_dayTimeDuration_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def subtract_yearMonthDuration_dateTime(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract yearMonthDuration arg2 from dateTime arg1 and return the
     dateTime result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dateTime):
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -796,19 +772,18 @@ def subtract_yearMonthDuration_dateTime(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_string_dateTime(session, value):
-    '''
+    """
     Converts value to string
 
     Converts dateTime value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (dateTime): A dateTime value.
+    Args:
+        value (object): A dateTime value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -826,19 +801,18 @@ def to_string_dateTime(session, value):
     return response['actions'][0]['result']
 
 def union_dateTime(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of dateTime contains all of the unique values in two or
     more array of dateTime values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 

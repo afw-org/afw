@@ -6,19 +6,18 @@ import requests
 import json
 
 def abs_integer(session, value):
-    '''
+    """
     Absolute value
 
     Compute the absolute value of the integer value and return the integer
     result.
 
-    Parameters:
-
-        value (integer):
+    Args:
+        value (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -36,18 +35,17 @@ def abs_integer(session, value):
     return response['actions'][0]['result']
 
 def add_integer(session, values):
-    '''
+    """
     Add
 
     Add 2 or more integer values and return the integer result.
 
-    Parameters:
-
-        values (integer):
+    Args:
+        values (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -65,21 +63,20 @@ def add_integer(session, values):
     return response['actions'][0]['result']
 
 def at_least_one_member_of_integer(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in integer array1 is in
     integer array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -98,18 +95,17 @@ def at_least_one_member_of_integer(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_integer(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of integer values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -129,18 +125,17 @@ def bag_integer(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_integer(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -158,21 +153,20 @@ def bag_size_integer(session, value):
     return response['actions'][0]['result']
 
 def divide_integer(session, dividend, divisor):
-    '''
+    """
     Divide numbers
 
     Divide integer dividend by integer divisor and return the integer
     quotient.
 
-    Parameters:
+    Args:
+        dividend (int):
 
-        dividend (integer):
-
-        divisor (integer):
+        divisor (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -191,7 +185,7 @@ def divide_integer(session, dividend, divisor):
     return response['actions'][0]['result']
 
 def eq_integer(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if integer arg1 is equal to the value of arg2 converted to the
@@ -199,15 +193,14 @@ def eq_integer(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -226,22 +219,21 @@ def eq_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_integer(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for integer arg1 is equal to the value and data type of arg2
     then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -260,21 +252,20 @@ def eqx_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_integer(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for integer arg1 is greater than or equal to integer arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 (integer):
+        arg2 (int):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -293,21 +284,20 @@ def ge_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_integer(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for integer arg1 is greater than integer arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 (integer):
+        arg2 (int):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -326,18 +316,17 @@ def gt_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def integer(session, value):
-    '''
+    """
     Convert to data type integer
 
     Converts value to data type integer returning integer result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    integer: Converted value
-    '''
+        int: Converted value
+    """
 
     request = session.Request()
 
@@ -355,21 +344,20 @@ def integer(session, value):
     return response['actions'][0]['result']
 
 def intersection_integer(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of integer with the values that are common to both array
     of integer array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -388,21 +376,20 @@ def intersection_integer(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_in_integer(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether integer value is in array of integer array and returns the
     boolean result.
 
-    Parameters:
+    Args:
+        value (int):
 
-        value (integer):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -421,18 +408,17 @@ def is_in_integer(session, value, array):
     return response['actions'][0]['result']
 
 def is_integer(session, value):
-    '''
+    """
     Checks whether value is dataType integer
 
     Checks whether value is dataType integer and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -450,21 +436,20 @@ def is_integer(session, value):
     return response['actions'][0]['result']
 
 def le_integer(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for integer arg1 is less than or equal to integer arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -483,21 +468,20 @@ def le_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_integer(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for integer arg1 is less that integer arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 (integer):
+        arg2 (int):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -516,18 +500,17 @@ def lt_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def max_integer(session, values):
-    '''
+    """
     Maximum value
 
     Return the integer value that is greater than or equal to the others.
 
-    Parameters:
-
-        values (integer):
+    Args:
+        values (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -545,18 +528,17 @@ def max_integer(session, values):
     return response['actions'][0]['result']
 
 def min_integer(session, values):
-    '''
+    """
     Minimum value
 
     Return the integer value that is less than or equal to the others.
 
-    Parameters:
-
-        values (integer):
+    Args:
+        values (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -574,21 +556,20 @@ def min_integer(session, values):
     return response['actions'][0]['result']
 
 def mod_integer(session, dividend, divisor):
-    '''
+    """
     Remainder of dividing numbers
 
     Divide integer dividend by integer divisor and return the integer
     remainder.
 
-    Parameters:
+    Args:
+        dividend (int):
 
-        dividend (integer):
-
-        divisor (integer):
+        divisor (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -607,18 +588,17 @@ def mod_integer(session, dividend, divisor):
     return response['actions'][0]['result']
 
 def multiply_integer(session, values):
-    '''
+    """
     Multiply numbers
 
     Multiply 2 or more integer values and return the integer result.
 
-    Parameters:
-
-        values (integer):
+    Args:
+        values (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -636,7 +616,7 @@ def multiply_integer(session, values):
     return response['actions'][0]['result']
 
 def ne_integer(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if integer arg1 is not equal to the value of arg2 converted to
@@ -644,15 +624,14 @@ def ne_integer(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -671,18 +650,17 @@ def ne_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def negative_integer(session, value):
-    '''
+    """
     Negative of a number
 
     Return negative of integer value.
 
-    Parameters:
-
-        value (integer):
+    Args:
+        value (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -700,22 +678,21 @@ def negative_integer(session, value):
     return response['actions'][0]['result']
 
 def nex_integer(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for integer arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -734,19 +711,18 @@ def nex_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_integer(session, array):
-    '''
+    """
     Converts a one value array to a integer value
 
     This converts an array of integer values that contains one value to a
     single integer value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -764,21 +740,20 @@ def one_and_only_integer(session, array):
     return response['actions'][0]['result']
 
 def set_equals_integer(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if integer array1 and integer array2 are subsets of
     each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -797,21 +772,20 @@ def set_equals_integer(session, array1, array2):
     return response['actions'][0]['result']
 
 def subset_integer(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in integer array1 are all in
     integer array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -830,20 +804,19 @@ def subset_integer(session, array1, array2):
     return response['actions'][0]['result']
 
 def subtract_integer(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract integer arg2 from integer arg1 and return the integer result.
 
-    Parameters:
+    Args:
+        arg1 (int):
 
-        arg1 (integer):
-
-        arg2 (integer):
+        arg2 (int):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -862,18 +835,17 @@ def subtract_integer(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_double_integer(session, value):
-    '''
+    """
     Converts to double
 
     Converts integer value to double and returns double result.
 
-    Parameters:
-
-        value (integer):
+    Args:
+        value (int):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -891,19 +863,18 @@ def to_double_integer(session, value):
     return response['actions'][0]['result']
 
 def to_string_integer(session, value):
-    '''
+    """
     Converts value to string
 
     Converts integer value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (integer): A integer value.
+    Args:
+        value (int): A integer value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -921,19 +892,18 @@ def to_string_integer(session, value):
     return response['actions'][0]['result']
 
 def union_integer(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of integer contains all of the unique values in two or
     more array of integer values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 

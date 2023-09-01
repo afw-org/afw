@@ -6,34 +6,33 @@ import requests
 import json
 
 def index_create(session, key, adaptorId=None, value=None, objectType=None, filter=None, options=None, retroactive=None, test=None):
-    '''
+    """
     Create index definition
 
     Create an index definition.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
+        key (str): Name of the property index to be created.
 
-        key (string): Name of the property index to be created.
+        value (str): Expression to calculate the index value(s).
 
-        value (string): Expression to calculate the index value(s).
+        objectType (str): Object Type(s) this index may apply to.
 
-        objectType (string): Object Type(s) this index may apply to.
-
-        filter (string): Expression to determine if this index applies to a
+        filter (str): Expression to determine if this index applies to a
         particular object.
 
-        options (string): Indexing options.
+        options (str): Indexing options.
 
-        retroactive (boolean): Retroactively generate indexes for existing
+        retroactive (bool): Retroactively generate indexes for existing
         objects.
 
-        test (boolean): Test create (don't actually perform).
+        test (bool): Test create (don't actually perform).
 
     Returns:
-    object: Object response from the indexing process
-    '''
+        dict: Object response from the indexing process
+    """
 
     request = session.Request()
 
@@ -72,20 +71,19 @@ def index_create(session, key, adaptorId=None, value=None, objectType=None, filt
     return response['actions'][0]['result']
 
 def index_list(session, adaptorId=None, objectType=None):
-    '''
+    """
     List property indexes
 
     List property indexes
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        objectType (string): Id of adaptive object type indexes
+        objectType (str): Id of adaptive object type indexes
 
     Returns:
-    object: Object response from the index repair process
-    '''
+        dict: Object response from the index repair process
+    """
 
     request = session.Request()
 
@@ -108,20 +106,19 @@ def index_list(session, adaptorId=None, objectType=None):
     return response['actions'][0]['result']
 
 def index_remove(session, key, adaptorId=None):
-    '''
+    """
     Remove index definition
 
     Remove an index definition.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        key (string): The index key to be removed.
+        key (str): The index key to be removed.
 
     Returns:
-    object: Object response from the indexing process
-    '''
+        dict: Object response from the indexing process
+    """
 
     request = session.Request()
 

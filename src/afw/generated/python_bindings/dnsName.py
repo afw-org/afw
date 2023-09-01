@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_dnsName(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of dnsName values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_dnsName(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_dnsName(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,18 +64,17 @@ def bag_size_dnsName(session, value):
     return response['actions'][0]['result']
 
 def dnsName(session, value):
-    '''
+    """
     Convert to data type dnsName
 
     Converts value to data type dnsName returning dnsName result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    dnsName: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -95,7 +92,7 @@ def dnsName(session, value):
     return response['actions'][0]['result']
 
 def eq_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if dnsName arg1 is equal to the value of arg2 converted to the
@@ -103,15 +100,14 @@ def eq_dnsName(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -130,22 +126,21 @@ def eq_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for dnsName arg1 is equal to the value and data type of arg2
     then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -164,21 +159,20 @@ def eqx_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for dnsName arg1 is greater than or equal to dnsName arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 (dnsName):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -197,21 +191,20 @@ def ge_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for dnsName arg1 is greater than dnsName arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 (dnsName):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -230,18 +223,17 @@ def gt_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_dnsName(session, value):
-    '''
+    """
     Checks whether value is dataType dnsName
 
     Checks whether value is dataType dnsName and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -259,21 +251,20 @@ def is_dnsName(session, value):
     return response['actions'][0]['result']
 
 def is_in_dnsName(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether dnsName value is in array of dnsName array and returns the
     boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (dnsName):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -292,21 +283,20 @@ def is_in_dnsName(session, value, array):
     return response['actions'][0]['result']
 
 def le_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for dnsName arg1 is less than or equal to dnsName arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -325,21 +315,20 @@ def le_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for dnsName arg1 is less that dnsName arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 (dnsName):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -358,7 +347,7 @@ def lt_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if dnsName arg1 is not equal to the value of arg2 converted to
@@ -366,15 +355,14 @@ def ne_dnsName(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -393,22 +381,21 @@ def ne_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_dnsName(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for dnsName arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (dnsName):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -427,19 +414,18 @@ def nex_dnsName(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_dnsName(session, array):
-    '''
+    """
     Converts a one value array to a dnsName value
 
     This converts an array of dnsName values that contains one value to a
     single dnsName value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    dnsName: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -457,21 +443,20 @@ def one_and_only_dnsName(session, array):
     return response['actions'][0]['result']
 
 def regexp_match_dnsName(session, value, regexp):
-    '''
+    """
     Search for a match using a regular expression
 
     Checks whether dnsName value matches the regular expression regexp and
     return the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (dnsName):
-
-        regexp (string):
+        regexp (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -490,19 +475,18 @@ def regexp_match_dnsName(session, value, regexp):
     return response['actions'][0]['result']
 
 def to_string_dnsName(session, value):
-    '''
+    """
     Converts value to string
 
     Converts dnsName value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (dnsName): A dnsName value.
+    Args:
+        value (object): A dnsName value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 

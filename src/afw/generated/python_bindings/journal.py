@@ -6,7 +6,7 @@ import requests
 import json
 
 def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, limit=None):
-    '''
+    """
     Advance journal cursor for consumer
 
     Update the advance cursor for a consumer referenced by the consumerId
@@ -30,20 +30,19 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
     If an new applicable entry is found or if the limit is met, the
     advanceCursor property is set to the currently scanned entry's cursor.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        consumerId (string): The consumerId property value of the associated
+        consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
 
-        limit (integer): The maximum number of entries that will be scanned
-        for an entry where the consumerFilter expression in the associated
+        limit (int): The maximum number of entries that will be scanned for
+        an entry where the consumerFilter expression in the associated
         _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -67,7 +66,7 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
     return response['actions'][0]['result']
 
 def journal_get_by_cursor(session, cursor, adaptorId=None):
-    '''
+    """
     Get journal entry at cursor
 
     Get journal entry specified by entry_cursor parameter.
@@ -76,15 +75,14 @@ def journal_get_by_cursor(session, cursor, adaptorId=None):
     an entry to retrieve. If an entry with the supplied cursor does not
     exist, a not_found error is thrown.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        cursor (string): Journal entry cursor.
+        cursor (str): Journal entry cursor.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -105,7 +103,7 @@ def journal_get_by_cursor(session, cursor, adaptorId=None):
     return response['actions'][0]['result']
 
 def journal_get_first(session, adaptorId=None):
-    '''
+    """
     Get first journal entry
 
     Get first journal entry.
@@ -113,13 +111,12 @@ def journal_get_first(session, adaptorId=None):
     This option will set response properties 'entry' and 'cursor' if there is
     a first entry to return.
 
-    Parameters:
-
-        adaptorId (string): Id of adaptor.
+    Args:
+        adaptorId (str): Id of adaptor.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -139,7 +136,7 @@ def journal_get_first(session, adaptorId=None):
     return response['actions'][0]['result']
 
 def journal_get_next_after_cursor(session, cursor, adaptorId=None):
-    '''
+    """
     Get next journal entry after cursor
 
     Get the next journal entry after the one specified by the entry_cursor
@@ -148,15 +145,14 @@ def journal_get_next_after_cursor(session, cursor, adaptorId=None):
     This option will set response properties 'entry' and 'cursor' if there is
     a next entry to retrieve.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        cursor (string): Journal entry cursor.
+        cursor (str): Journal entry cursor.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -177,7 +173,7 @@ def journal_get_next_after_cursor(session, cursor, adaptorId=None):
     return response['actions'][0]['result']
 
 def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=None):
-    '''
+    """
     Get next journal entry for consumer
 
     Get the next journal entry for a consumer referenced by the consumer_id
@@ -210,20 +206,19 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
     If no applicable entry is found, advanceCursor is set to the last entry
     scanned.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        consumerId (string): The consumerId property value of the associated
+        consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
 
-        limit (integer): The maximum number of entries that will be scanned
-        for an entry where the consumerFilter expression in the associated
+        limit (int): The maximum number of entries that will be scanned for
+        an entry where the consumerFilter expression in the associated
         _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -247,7 +242,7 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
     return response['actions'][0]['result']
 
 def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adaptorId=None, limit=None):
-    '''
+    """
     Get next journal entry for consumer after cursor
 
     Get the next journal entry for a consumer referenced by the consumer_id
@@ -267,22 +262,21 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
     Unlike option get_next_for_consumer, no other properties are referenced
     or modified.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        consumerId (string): The consumerId property value of the associated
+        consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
 
-        cursor (string): Journal entry cursor.
+        cursor (str): Journal entry cursor.
 
-        limit (integer): The maximum number of entries that will be scanned
-        for an entry where the consumerFilter expression in the associated
+        limit (int): The maximum number of entries that will be scanned for
+        an entry where the consumerFilter expression in the associated
         _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -307,23 +301,22 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
     return response['actions'][0]['result']
 
 def journal_mark_consumed(session, consumerId, cursor, adaptorId=None):
-    '''
+    """
     Mark journal entry consumed
 
     Mark a journal entry returned by get_next_for_consumer() as consumed.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
-
-        consumerId (string): The consumerId property value of the associated
+        consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
 
-        cursor (string): Journal entry cursor.
+        cursor (str): Journal entry cursor.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 

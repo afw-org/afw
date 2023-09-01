@@ -6,24 +6,24 @@ import requests
 import json
 
 def adaptor_objectCallback_signature(session, object, userData=None):
-    '''
+    """
     Signature used for adaptor objectCallback
 
     This is the function signature for the objectCallback parameter in
     adaptor functions. Calling this directly will throw a 'Do not call
     directly' error.
 
-    Parameters:
+    Args:
+        object (dict): This is the object from adaptor or undefined if there
+        are no more objects to return.
 
-        object (object): This is the object from adaptor or undefined if
-        there are no more objects to return.
-
-        userData (any): This is the value of the userData parameter when
+        userData (object): This is the value of the userData parameter when
         objectCallback was called.
 
     Returns:
-    boolean: Return true if this callback should not be called again for any reason such a limit exceeded or the desired object being found.
-    '''
+        bool: Return true if this callback should not be called again for any
+        reason such a limit exceeded or the desired object being found.
+    """
 
     request = session.Request()
 
@@ -44,32 +44,30 @@ def adaptor_objectCallback_signature(session, object, userData=None):
     return response['actions'][0]['result']
 
 def add_object(session, objectType, object, adaptorId=None, objectId=None, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Add adaptive object
 
     Add an adaptive object to an adaptor, specified by the adaptorId, with a
     specified objectType. You may supply an optional objectId, if the
     underlying adaptorId allows it.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor.
 
-        adaptorId (string): Id of adaptor.
+        objectType (str): Id of adaptive object type of object being added.
 
-        objectType (string): Id of adaptive object type of object being
-        added.
+        object (dict): Object to add.
 
-        object (object): Object to add.
-
-        objectId (string): Optional preferred objectId of object to add. The
+        objectId (str): Optional preferred objectId of object to add. The
         adaptor may ignore this.
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -78,8 +76,9 @@ def add_object(session, objectType, object, adaptorId=None, objectId=None, journ
         where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry. Property 'objectId' is the objectId assigned by the adaptor.
-    '''
+        dict: Resulting journal entry. Property 'objectId' is the objectId
+        assigned by the adaptor.
+    """
 
     request = session.Request()
 
@@ -110,27 +109,26 @@ def add_object(session, objectType, object, adaptorId=None, objectId=None, journ
     return response['actions'][0]['result']
 
 def add_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Add adaptive object with URI
 
     Add an adaptive object with a given URI.
 
-    Parameters:
-
-        uri (anyURI): URI of object to add. If a URI begins with a single
+    Args:
+        uri (object): URI of object to add. If a URI begins with a single
         slash ('/'), it is the local object path. In the case of a local
         path, an optional preferred objectId of object can be including in
         URI which the adaptor may ignore.
 
-        object (object): Object to add.
+        object (dict): Object to add.
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -139,8 +137,9 @@ def add_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecific=
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry. Property 'objectId' is the objectId assigned by the adaptor.
-    '''
+        dict: Resulting journal entry. Property 'objectId' is the objectId
+        assigned by the adaptor.
+    """
 
     request = session.Request()
 
@@ -165,26 +164,24 @@ def add_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecific=
     return response['actions'][0]['result']
 
 def convert_AdaptiveQueryCriteria_to_query_string(session, queryCriteria, adaptorId=None, objectType=None, style=None):
-    '''
+    """
     Convert _AdaptiveQueryCriteria_ to RQL
 
     This function converts an _AdaptiveQueryCriteria_ object to a query
     string.
 
-    Parameters:
+    Args:
+        queryCriteria (dict): An object type _AdaptiveQueryCriteria_ object.
 
-        queryCriteria (object): An object type _AdaptiveQueryCriteria_
-        object.
-
-        adaptorId (string): This is the adaptorId of adaptor containing the
+        adaptorId (str): This is the adaptorId of adaptor containing the
         objectType for validating and mapping this query. If not specified,
         no validation or mapping will occur.
 
-        objectType (string): This is the objectType used in conjunction with
-        the adaptorId parameter. This parameter is only allowed and is
-        required if the adaptorId parameter is specified.
+        objectType (str): This is the objectType used in conjunction with the
+        adaptorId parameter. This parameter is only allowed and is required
+        if the adaptorId parameter is specified.
 
-        style (integer): The style of the query string produced. All of the
+        style (int): The style of the query string produced. All of the
         styles are appropriately url encoded.
         
         0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc.
@@ -202,8 +199,8 @@ def convert_AdaptiveQueryCriteria_to_query_string(session, queryCriteria, adapto
         comma separated list of any comparison or conjunction.
 
     Returns:
-    string: Query string representation of the query criteria.
-    '''
+        str: Query string representation of the query criteria.
+    """
 
     request = session.Request()
 
@@ -230,27 +227,27 @@ def convert_AdaptiveQueryCriteria_to_query_string(session, queryCriteria, adapto
     return response['actions'][0]['result']
 
 def convert_query_string_to_AdaptiveQueryCriteria(session, queryString, adaptorId=None, objectType=None):
-    '''
+    """
     Convert query string to _AdaptiveQueryCriteria_
 
     This function converts a query string to an _AdaptiveQueryCriteria_
     object.
 
-    Parameters:
+    Args:
+        queryString (str): The query string to convert.
 
-        queryString (string): The query string to convert.
-
-        adaptorId (string): This is the adaptorId of adaptor containing the
+        adaptorId (str): This is the adaptorId of adaptor containing the
         objectType for validating and mapping this query. If not specified,
         no validation or mapping will occur.
 
-        objectType (string): This is the objectType used in conjunction with
-        the adaptorId parameter. This parameter is only allowed and is
-        required if the adaptorId parameter is specified.
+        objectType (str): This is the objectType used in conjunction with the
+        adaptorId parameter. This parameter is only allowed and is required
+        if the adaptorId parameter is specified.
 
     Returns:
-    object: An object type _AdaptiveQueryCriteria_ object representing query string.
-    '''
+        dict: An object type _AdaptiveQueryCriteria_ object representing
+        query string.
+    """
 
     request = session.Request()
 
@@ -274,26 +271,25 @@ def convert_query_string_to_AdaptiveQueryCriteria(session, queryString, adaptorI
     return response['actions'][0]['result']
 
 def delete_object(session, objectType, objectId, adaptorId=None, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Delete adaptive object
 
     Delete an adaptive object.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing object to delete.
 
-        adaptorId (string): Id of adaptor containing object to delete.
+        objectType (str): Id of adaptive object type of object to delete.
 
-        objectType (string): Id of adaptive object type of object to delete.
+        objectId (str): Id of object to delete.
 
-        objectId (string): Id of object to delete.
-
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -302,8 +298,8 @@ def delete_object(session, objectType, objectId, adaptorId=None, journal=None, a
         where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -331,23 +327,22 @@ def delete_object(session, objectType, objectId, adaptorId=None, journal=None, a
     return response['actions'][0]['result']
 
 def delete_object_with_uri(session, uri, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Delete adaptive object with URI
 
     Delete an adaptive object with a given URI.
 
-    Parameters:
-
-        uri (anyURI): URI of object to delete. If a URI begins with a single
+    Args:
+        uri (object): URI of object to delete. If a URI begins with a single
         slash ('/'), it is the local object path.
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -356,8 +351,8 @@ def delete_object_with_uri(session, uri, journal=None, adaptorTypeSpecific=None)
         where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -381,28 +376,26 @@ def delete_object_with_uri(session, uri, journal=None, adaptorTypeSpecific=None)
     return response['actions'][0]['result']
 
 def get_object(session, objectType, objectId, adaptorId=None, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Get adaptive object
 
     Get an adaptive object from the adaptor, specified by adaptorId,
     objectType and objectId. Optional view options and adaptor-specific
     options may be supplied to influence how the object is returned.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing object to retrieve.
 
-        adaptorId (string): Id of adaptor containing object to retrieve.
+        objectType (str): Id of adaptive object type of object to retrieve.
 
-        objectType (string): Id of adaptive object type of object to
-        retrieve.
+        objectId (str): Id of object to retrieve.
 
-        objectId (string): Id of object to retrieve.
-
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -411,8 +404,8 @@ def get_object(session, objectType, objectId, adaptorId=None, options=None, adap
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Object retrieved or NULL if not found.
-    '''
+        dict: Object retrieved or NULL if not found.
+    """
 
     request = session.Request()
 
@@ -440,22 +433,21 @@ def get_object(session, objectType, objectId, adaptorId=None, options=None, adap
     return response['actions'][0]['result']
 
 def get_object_with_uri(session, uri, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Get adaptive object with URI
 
     Get an object with a given URI.
 
-    Parameters:
-
-        uri (anyURI): URI of object to retrieve. If a URI begins with a
+    Args:
+        uri (object): URI of object to retrieve. If a URI begins with a
         single slash ('/'), it is the local object path.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -464,8 +456,8 @@ def get_object_with_uri(session, uri, options=None, adaptorTypeSpecific=None):
         where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Object retrieved or NULL if not found.
-    '''
+        dict: Object retrieved or NULL if not found.
+    """
 
     request = session.Request()
 
@@ -489,20 +481,19 @@ def get_object_with_uri(session, uri, options=None, adaptorTypeSpecific=None):
     return response['actions'][0]['result']
 
 def modify_object(session, objectType, objectId, entries, adaptorId=None, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Modify adaptive object
 
     Modify an adaptive object.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing object to modify.
 
-        adaptorId (string): Id of adaptor containing object to modify.
+        objectType (str): Id of adaptive object type of object to modify.
 
-        objectType (string): Id of adaptive object type of object to modify.
+        objectId (str): Id of object to modify.
 
-        objectId (string): Id of object to modify.
-
-        entries (array): List of modifications. Entries are of the form:
+        entries (list): List of modifications. Entries are of the form:
         
         [
         'add_value',
@@ -527,13 +518,13 @@ def modify_object(session, objectType, objectId, entries, adaptorId=None, journa
         value
         ]
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -542,8 +533,8 @@ def modify_object(session, objectType, objectId, entries, adaptorId=None, journa
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -572,18 +563,17 @@ def modify_object(session, objectType, objectId, entries, adaptorId=None, journa
     return response['actions'][0]['result']
 
 def modify_object_with_uri(session, uri, entries, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Modify adaptive object with URI
 
     Modify an adaptive object with a given URI.
 
-    Parameters:
-
-        uri (anyURI): URI of object to modify. If a URI begins with a single
+    Args:
+        uri (object): URI of object to modify. If a URI begins with a single
         slash ('/'), it is the local object path.
 
-        entries (array): List of asserts and modifications. Entries are of
-        the form:
+        entries (list): List of asserts and modifications. Entries are of the
+        form:
         
         [
         'add_value',
@@ -608,13 +598,13 @@ def modify_object_with_uri(session, uri, entries, journal=None, adaptorTypeSpeci
         value
         ]
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -623,8 +613,8 @@ def modify_object_with_uri(session, uri, entries, journal=None, adaptorTypeSpeci
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -649,25 +639,24 @@ def modify_object_with_uri(session, uri, entries, journal=None, adaptorTypeSpeci
     return response['actions'][0]['result']
 
 def reconcile_object(session, object, checkOnly=None):
-    '''
+    """
     Reconcile adaptive object
 
     Reconcile an adaptive object.
 
-    Parameters:
-
-        object (object): An object that has been retrieved with object
-        options reconcilable, and whose properties have been modified. A
+    Args:
+        object (dict): An object that has been retrieved with object options
+        reconcilable, and whose properties have been modified. A
         modify_object request will be produced reflecting the difference
         between the original object and this unmodified object.
 
-        checkOnly (boolean): Produce the modify_object request but don't
-        execute it. The returned journal enter will contain the modify_object
+        checkOnly (bool): Produce the modify_object request but don't execute
+        it. The returned journal enter will contain the modify_object
         request.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -688,28 +677,27 @@ def reconcile_object(session, object, checkOnly=None):
     return response['actions'][0]['result']
 
 def replace_object(session, objectType, objectId, object, adaptorId=None, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Replace adaptive object
 
     Replace an adaptive object.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing object to replace.
 
-        adaptorId (string): Id of adaptor containing object to replace.
+        objectType (str): Id of adaptive object type of object to replace.
 
-        objectType (string): Id of adaptive object type of object to replace.
+        objectId (str): Id of object to replace.
 
-        objectId (string): Id of object to replace.
+        object (dict): Replacement object.
 
-        object (object): Replacement object.
-
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -718,8 +706,8 @@ def replace_object(session, objectType, objectId, object, adaptorId=None, journa
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -748,25 +736,24 @@ def replace_object(session, objectType, objectId, object, adaptorId=None, journa
     return response['actions'][0]['result']
 
 def replace_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Replace adaptive object with URI
 
     Replace an adaptive object with a given URI.
 
-    Parameters:
-
-        uri (anyURI): URI of object to replace. If a URI begins with a single
+    Args:
+        uri (object): URI of object to replace. If a URI begins with a single
         slash ('/'), it is the local object path.
 
-        object (object): Replacement object.
+        object (dict): Replacement object.
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -775,8 +762,8 @@ def replace_object_with_uri(session, uri, object, journal=None, adaptorTypeSpeci
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -801,7 +788,7 @@ def replace_object_with_uri(session, uri, object, journal=None, adaptorTypeSpeci
     return response['actions'][0]['result']
 
 def retrieve_objects(session, objectType, adaptorId=None, queryCriteria=None, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive objects
 
     This function retrieves adaptive objects from an adaptor, specified by
@@ -813,22 +800,20 @@ def retrieve_objects(session, objectType, adaptorId=None, queryCriteria=None, op
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing objects to retrieve.
 
-        adaptorId (string): Id of adaptor containing objects to retrieve.
+        objectType (str): Id of adaptive object type of objects to retrieve.
 
-        objectType (string): Id of adaptive object type of objects to
-        retrieve.
-
-        queryCriteria (object): This is the query criteria for objects to be
+        queryCriteria (dict): This is the query criteria for objects to be
         retrieved. If not specified, all objects will be retrieved.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -837,8 +822,8 @@ def retrieve_objects(session, objectType, adaptorId=None, queryCriteria=None, op
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    array: This is the array of objects retrieved.
-    '''
+        list: This is the array of objects retrieved.
+    """
 
     request = session.Request()
 
@@ -868,7 +853,7 @@ def retrieve_objects(session, objectType, adaptorId=None, queryCriteria=None, op
     return response['actions'][0]['result']
 
 def retrieve_objects_to_callback(session, objectCallback, userData, objectType, adaptorId=None, queryCriteria=None, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive objects
 
     This function retrieves adaptive objects from an adaptor, specified by
@@ -882,31 +867,29 @@ def retrieve_objects_to_callback(session, objectCallback, userData, objectType, 
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
-
-        objectCallback (function): If this is specified, this function is
+    Args:
+        objectCallback (object): If this is specified, this function is
         called once for each object retrieved instead of adding the object to
         the return array. Parameter object will be an object retrieved or
         undefined if there are no more objects. This function should return
         true if it wants to abort the retrieve request.
 
-        userData (): This value is passed to the objectCallback function in
-        the userData parameter.
+        userData (object): This value is passed to the objectCallback
+        function in the userData parameter.
 
-        adaptorId (string): Id of adaptor containing objects to retrieve.
+        adaptorId (str): Id of adaptor containing objects to retrieve.
 
-        objectType (string): Id of adaptive object type of objects to
-        retrieve.
+        objectType (str): Id of adaptive object type of objects to retrieve.
 
-        queryCriteria (object): This is the query criteria for objects to be
+        queryCriteria (dict): This is the query criteria for objects to be
         retrieved. If not specified, all objects will be retrieved.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -916,8 +899,8 @@ def retrieve_objects_to_callback(session, objectCallback, userData, objectType, 
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -949,7 +932,7 @@ def retrieve_objects_to_callback(session, objectCallback, userData, objectType, 
     return response['actions'][0]['result']
 
 def retrieve_objects_to_response(session, objectType, adaptorId=None, queryCriteria=None, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive objects to a response
 
     This function retrieves adaptive objects from an adaptor, specified by
@@ -967,22 +950,20 @@ def retrieve_objects_to_response(session, objectType, adaptorId=None, queryCrite
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing objects to retrieve.
 
-        adaptorId (string): Id of adaptor containing objects to retrieve.
+        objectType (str): Id of adaptive object type of objects to retrieve.
 
-        objectType (string): Id of adaptive object type of objects to
-        retrieve.
-
-        queryCriteria (object): This is the query criteria for objects to be
+        queryCriteria (dict): This is the query criteria for objects to be
         retrieved. If not specified, all objects will be retrieved.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -991,8 +972,8 @@ def retrieve_objects_to_response(session, objectType, adaptorId=None, queryCrite
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1022,7 +1003,7 @@ def retrieve_objects_to_response(session, objectType, adaptorId=None, queryCrite
     return response['actions'][0]['result']
 
 def retrieve_objects_to_stream(session, streamNumber, objectType, adaptorId=None, queryCriteria=None, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive objects to a stream
 
     This function retrieves adaptive objects from an adaptor, specified by
@@ -1036,25 +1017,23 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adaptorId=None
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
+    Args:
+        streamNumber (int): Stream number objects will be written to as they
+        are retrieved.
 
-        streamNumber (integer): Stream number objects will be written to as
-        they are retrieved.
+        adaptorId (str): Id of adaptor containing objects to retrieve.
 
-        adaptorId (string): Id of adaptor containing objects to retrieve.
+        objectType (str): Id of adaptive object type of objects to retrieve.
 
-        objectType (string): Id of adaptive object type of objects to
-        retrieve.
-
-        queryCriteria (object): This is the query criteria for objects to be
+        queryCriteria (dict): This is the query criteria for objects to be
         retrieved. If not specified, all objects will be retrieved.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1063,8 +1042,8 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adaptorId=None
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1095,7 +1074,7 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adaptorId=None
     return response['actions'][0]['result']
 
 def retrieve_objects_with_uri(session, uri, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive object with URI
 
     Retrieve adaptive objects with a given URI.
@@ -1106,18 +1085,17 @@ def retrieve_objects_with_uri(session, uri, options=None, adaptorTypeSpecific=No
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
-
-        uri (anyURI): URI of objects to retrieve. If a URI begins with a
+    Args:
+        uri (object): URI of objects to retrieve. If a URI begins with a
         single slash ('/'), it is the local object path. A query string can
         be specified.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1126,8 +1104,8 @@ def retrieve_objects_with_uri(session, uri, options=None, adaptorTypeSpecific=No
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    array: This is the array of objects retrieved.
-    '''
+        list: This is the array of objects retrieved.
+    """
 
     request = session.Request()
 
@@ -1151,7 +1129,7 @@ def retrieve_objects_with_uri(session, uri, options=None, adaptorTypeSpecific=No
     return response['actions'][0]['result']
 
 def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive object with URI
 
     Retrieve adaptive objects with a given URI.
@@ -1164,27 +1142,26 @@ def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
-
-        objectCallback (function): If this is specified, this function is
+    Args:
+        objectCallback (object): If this is specified, this function is
         called once for each object retrieved instead of adding the object to
         the return array. Parameter object will be an object retrieved or
         undefined if there are no more objects. This function should return
         true if it wants to abort the retrieve request.
 
-        userData (any): This is the value passed to the objectCallback
+        userData (object): This is the value passed to the objectCallback
         function in the userData parameter.
 
-        uri (anyURI): URI of objects to retrieve. If a URI begins with a
+        uri (object): URI of objects to retrieve. If a URI begins with a
         single slash ('/'), it is the local object path. A query string can
         be specified.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1193,8 +1170,8 @@ def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1220,7 +1197,7 @@ def retrieve_objects_with_uri_to_callback(session, objectCallback, userData, uri
     return response['actions'][0]['result']
 
 def retrieve_objects_with_uri_to_response(session, uri, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive object with URI to response
 
     This function retrieves adaptive objects with a given URI.
@@ -1237,18 +1214,17 @@ def retrieve_objects_with_uri_to_response(session, uri, options=None, adaptorTyp
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
-
-        uri (anyURI): URI of objects to retrieve. If a URI begins with a
+    Args:
+        uri (object): URI of objects to retrieve. If a URI begins with a
         single slash ('/'), it is the local object path. A query string can
         be specified.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1257,8 +1233,8 @@ def retrieve_objects_with_uri_to_response(session, uri, options=None, adaptorTyp
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1282,7 +1258,7 @@ def retrieve_objects_with_uri_to_response(session, uri, options=None, adaptorTyp
     return response['actions'][0]['result']
 
 def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None, adaptorTypeSpecific=None):
-    '''
+    """
     Retrieve adaptive object with URI to stream
 
     This function retrieves adaptive objects with a given URI.
@@ -1295,21 +1271,20 @@ def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None
     
     Options, specific to the adaptorId, can be optionally supplied.
 
-    Parameters:
+    Args:
+        streamNumber (int): Stream number objects will be written to as they
+        are retrieved.
 
-        streamNumber (integer): Stream number objects will be written to as
-        they are retrieved.
-
-        uri (anyURI): URI of objects to retrieve. If a URI begins with a
+        uri (object): URI of objects to retrieve. If a URI begins with a
         single slash ('/'), it is the local object path. A query string can
         be specified.
 
-        options (object): Object view options. See
+        options (dict): Object view options. See
         /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
         information.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1318,8 +1293,8 @@ def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1344,31 +1319,30 @@ def retrieve_objects_with_uri_to_stream(session, streamNumber, uri, options=None
     return response['actions'][0]['result']
 
 def update_object(session, objectType, objectId, object, adaptorId=None, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Update adaptive object
 
     Update an adaptive object.
 
-    Parameters:
+    Args:
+        adaptorId (str): Id of adaptor containing object to update.
 
-        adaptorId (string): Id of adaptor containing object to update.
+        objectType (str): Id of adaptive object type of object to update.
 
-        objectType (string): Id of adaptive object type of object to update.
+        objectId (str): Id of object to update.
 
-        objectId (string): Id of object to update.
-
-        object (object): Object containing properties to replace in existing
+        object (dict): Object containing properties to replace in existing
         object. You can use object_modify instead to update properties of
         embedded objects and arrays, as well as to modify individual values
         of the object.
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1377,8 +1351,8 @@ def update_object(session, objectType, objectId, object, adaptorId=None, journal
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 
@@ -1407,28 +1381,27 @@ def update_object(session, objectType, objectId, object, adaptorId=None, journal
     return response['actions'][0]['result']
 
 def update_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecific=None):
-    '''
+    """
     Update adaptive object with URI
 
     Update an adaptive object with a given URI.
 
-    Parameters:
-
-        uri (anyURI): URI of object to update. If a URI begins with a single
+    Args:
+        uri (object): URI of object to update. If a URI begins with a single
         slash ('/'), it is the local object path.
 
-        object (object): Object containing properties to replace in existing
+        object (dict): Object containing properties to replace in existing
         object. You can use object_modify instead to update properties of
         embedded objects and arrays, as well as to modify individual values
         of the object.
 
-        journal (object): The properties of this object will be added to the
+        journal (dict): The properties of this object will be added to the
         associated journal entry. Refer to
         /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names
         to avoid and for ones that have specific semantics.
 
-        adaptorTypeSpecific (object): This is an optional object parameter
-        with an objectType determined by the adaptorType associated with the
+        adaptorTypeSpecific (dict): This is an optional object parameter with
+        an objectType determined by the adaptorType associated with the
         adaptorId parameter. If the adaptorType supports this parameter,
         adaptor afw will have an adaptive object type with an id of:
         
@@ -1437,8 +1410,8 @@ def update_object_with_uri(session, uri, object, journal=None, adaptorTypeSpecif
         Where ${adaptorType} is the adaptor type id.
 
     Returns:
-    object: Resulting journal entry.
-    '''
+        dict: Resulting journal entry.
+    """
 
     request = session.Request()
 

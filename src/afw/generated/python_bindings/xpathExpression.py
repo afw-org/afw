@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_size_xpathExpression(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -35,18 +34,17 @@ def bag_size_xpathExpression(session, value):
     return response['actions'][0]['result']
 
 def bag_xpathExpression(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of xpathExpression values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -66,18 +64,17 @@ def bag_xpathExpression(session, values=None):
     return response['actions'][0]['result']
 
 def compile_xpathExpression(session, source, listing=None):
-    '''
+    """
     Compile xpathExpression value
 
     Compile xpathExpression value and return either an unevaluated adaptive
     value or a string containing the compiler listing.
 
-    Parameters:
+    Args:
+        source (object): xpathExpression string to compile
 
-        source (xpathExpression): xpathExpression string to compile
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -85,8 +82,8 @@ def compile_xpathExpression(session, source, listing=None):
         spaces is used.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -107,7 +104,7 @@ def compile_xpathExpression(session, source, listing=None):
     return response['actions'][0]['result']
 
 def eq_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if xpathExpression arg1 is equal to the value of arg2 converted
@@ -115,15 +112,14 @@ def eq_xpathExpression(session, arg1, arg2):
     ('===') instead if you want false to be returned if arg1 and arg2's data
     type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -142,22 +138,21 @@ def eq_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for xpathExpression arg1 is equal to the value and data type
     of arg2 then return the boolean result. Use 'eq' ('==') instead if you
     want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -176,18 +171,16 @@ def eqx_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def evaluate_xpathExpression(session, source, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Evaluate xpathExpression value
 
     Compile and evaluate xpathExpression value.
 
-    Parameters:
+    Args:
+        source (object): xpathExpression string to compile and evaluate
 
-        source (xpathExpression): xpathExpression string to compile and
-        evaluate
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -195,8 +188,8 @@ def evaluate_xpathExpression(session, source, additionalUntrustedQualifiedVariab
         production.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -217,21 +210,20 @@ def evaluate_xpathExpression(session, source, additionalUntrustedQualifiedVariab
     return response['actions'][0]['result']
 
 def ge_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for xpathExpression arg1 is greater than or equal to
     xpathExpression arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 (xpathExpression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -250,21 +242,20 @@ def ge_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for xpathExpression arg1 is greater than xpathExpression arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 (xpathExpression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -283,19 +274,18 @@ def gt_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_xpathExpression(session, value):
-    '''
+    """
     Checks whether value is dataType xpathExpression
 
     Checks whether value is dataType xpathExpression and return the boolean
     result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -313,21 +303,20 @@ def is_xpathExpression(session, value):
     return response['actions'][0]['result']
 
 def le_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for xpathExpression arg1 is less than or equal to xpathExpression
     arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -346,21 +335,20 @@ def le_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for xpathExpression arg1 is less that xpathExpression arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 (xpathExpression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -379,7 +367,7 @@ def lt_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if xpathExpression arg1 is not equal to the value of arg2
@@ -387,15 +375,14 @@ def ne_xpathExpression(session, arg1, arg2):
     'nex' ('!==') instead if you want true to be returned if arg1 and arg2's
     data type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -414,22 +401,21 @@ def ne_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_xpathExpression(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for xpathExpression arg1 is not equal to the value or data
     type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
     you want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -448,19 +434,18 @@ def nex_xpathExpression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_string_xpathExpression(session, value):
-    '''
+    """
     Converts value to string
 
     Converts xpathExpression value to string. For array values, the
     to_string() value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (xpathExpression): A xpathExpression value.
+    Args:
+        value (object): A xpathExpression value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -478,19 +463,18 @@ def to_string_xpathExpression(session, value):
     return response['actions'][0]['result']
 
 def xpathExpression(session, value):
-    '''
+    """
     Convert to data type xpathExpression
 
     Converts value to data type xpathExpression returning xpathExpression
     result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    xpathExpression: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -508,18 +492,17 @@ def xpathExpression(session, value):
     return response['actions'][0]['result']
 
 def xpath_node_count(session, nodeset):
-    '''
+    """
     Number of nodes in node-set
 
     The number of nodes in a node-set.
 
-    Parameters:
-
-        nodeset (xpathExpression):
+    Args:
+        nodeset (object):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -537,21 +520,20 @@ def xpath_node_count(session, nodeset):
     return response['actions'][0]['result']
 
 def xpath_node_eq(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Checks for xpathExpression arg1 is equal to xpathExpression arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (xpathExpression):
-
-        arg2 (xpathExpression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -570,21 +552,20 @@ def xpath_node_eq(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def xpath_node_match(session, nodeset2, arg2):
-    '''
+    """
     Checks whether two node-sets or their children have an equal node
 
     Returns true if any of the nodes matched by nodeset1 are equal to any of
     the nodes matched by nodeset2 or their corresponding children.
 
-    Parameters:
+    Args:
+        nodeset2 (object):
 
-        nodeset2 (xpathExpression):
-
-        arg2 (xpathExpression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 

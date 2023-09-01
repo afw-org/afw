@@ -6,21 +6,20 @@ import requests
 import json
 
 def at_least_one_member_of_yearMonthDuration(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in yearMonthDuration array1 is
     in yearMonthDuration array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -39,18 +38,17 @@ def at_least_one_member_of_yearMonthDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_size_yearMonthDuration(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -68,19 +66,18 @@ def bag_size_yearMonthDuration(session, value):
     return response['actions'][0]['result']
 
 def bag_yearMonthDuration(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of yearMonthDuration values and returns an array of
     array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -100,7 +97,7 @@ def bag_yearMonthDuration(session, values=None):
     return response['actions'][0]['result']
 
 def eq_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if yearMonthDuration arg1 is equal to the value of arg2
@@ -108,15 +105,14 @@ def eq_yearMonthDuration(session, arg1, arg2):
     'eqx' ('===') instead if you want false to be returned if arg1 and arg2's
     data type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -135,22 +131,21 @@ def eq_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for yearMonthDuration arg1 is equal to the value and data
     type of arg2 then return the boolean result. Use 'eq' ('==') instead if
     you want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -169,21 +164,20 @@ def eqx_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for yearMonthDuration arg1 is greater than or equal to
     yearMonthDuration arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -202,21 +196,20 @@ def ge_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for yearMonthDuration arg1 is greater than yearMonthDuration arg2
     and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -235,21 +228,20 @@ def gt_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def intersection_yearMonthDuration(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of yearMonthDuration with the values that are common to
     both array of yearMonthDuration array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -268,21 +260,20 @@ def intersection_yearMonthDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_in_yearMonthDuration(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether yearMonthDuration value is in array of yearMonthDuration
     array and returns the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value (yearMonthDuration):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -301,19 +292,18 @@ def is_in_yearMonthDuration(session, value, array):
     return response['actions'][0]['result']
 
 def is_yearMonthDuration(session, value):
-    '''
+    """
     Checks whether value is dataType yearMonthDuration
 
     Checks whether value is dataType yearMonthDuration and return the boolean
     result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -331,21 +321,20 @@ def is_yearMonthDuration(session, value):
     return response['actions'][0]['result']
 
 def le_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for yearMonthDuration arg1 is less than or equal to
     yearMonthDuration arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -364,21 +353,20 @@ def le_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for yearMonthDuration arg1 is less that yearMonthDuration arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -397,7 +385,7 @@ def lt_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if yearMonthDuration arg1 is not equal to the value of arg2
@@ -405,15 +393,14 @@ def ne_yearMonthDuration(session, arg1, arg2):
     'nex' ('!==') instead if you want true to be returned if arg1 and arg2's
     data type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -432,22 +419,21 @@ def ne_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for yearMonthDuration arg1 is not equal to the value or data
     type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
     you want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (yearMonthDuration):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -466,19 +452,18 @@ def nex_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_yearMonthDuration(session, array):
-    '''
+    """
     Converts a one value array to a yearMonthDuration value
 
     This converts an array of yearMonthDuration values that contains one
     value to a single yearMonthDuration value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    yearMonthDuration: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -496,21 +481,20 @@ def one_and_only_yearMonthDuration(session, array):
     return response['actions'][0]['result']
 
 def set_equals_yearMonthDuration(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if yearMonthDuration array1 and yearMonthDuration
     array2 are subsets of each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -529,21 +513,20 @@ def set_equals_yearMonthDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def subset_yearMonthDuration(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in yearMonthDuration array1 are
     all in yearMonthDuration array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -562,19 +545,18 @@ def subset_yearMonthDuration(session, array1, array2):
     return response['actions'][0]['result']
 
 def to_string_yearMonthDuration(session, value):
-    '''
+    """
     Converts value to string
 
     Converts yearMonthDuration value to string. For array values, the
     to_string() value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (yearMonthDuration): A yearMonthDuration value.
+    Args:
+        value (object): A yearMonthDuration value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -592,19 +574,18 @@ def to_string_yearMonthDuration(session, value):
     return response['actions'][0]['result']
 
 def union_yearMonthDuration(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of yearMonthDuration contains all of the unique values
     in two or more array of yearMonthDuration values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -622,19 +603,18 @@ def union_yearMonthDuration(session, arrays):
     return response['actions'][0]['result']
 
 def yearMonthDuration(session, value):
-    '''
+    """
     Convert to data type yearMonthDuration
 
     Converts value to data type yearMonthDuration returning yearMonthDuration
     result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    yearMonthDuration: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 

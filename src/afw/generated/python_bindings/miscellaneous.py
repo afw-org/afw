@@ -6,32 +6,31 @@ import requests
 import json
 
 def compare_uri(session, uri1, uri2, isValuePath=None, currentPath=None):
-    '''
+    """
     Compare URIs
 
     Compare two URIs.
 
-    Parameters:
-
-        uri1 (string): First URI for compare. This URI can not contain an
+    Args:
+        uri1 (str): First URI for compare. This URI can not contain an
         asterisk ('*')
 
-        uri2 (string): Second URI for compare. This URI can contain asterisk
+        uri2 (str): Second URI for compare. This URI can contain asterisk
         ('*') for substitution if isValuePath is true and currentPath2 is
         specified.
 
-        isValuePath (boolean): The URIs are adaptive value paths. If one of
-        the URIs begins with a single slash '/', both must, and each URI will
-        be parsed as an adaptive value path (example:
+        isValuePath (bool): The URIs are adaptive value paths. If one of the
+        URIs begins with a single slash '/', both must, and each URI will be
+        parsed as an adaptive value path (example:
         /adaptorId/objectType/objectId.propertyNames).
 
-        currentPath (string): If isValuePath is true, this is the current
-        path that is used to resolve a relative path in the URIs. If
-        isValuePath is not true, this parameter is ignored.
+        currentPath (str): If isValuePath is true, this is the current path
+        that is used to resolve a relative path in the URIs. If isValuePath
+        is not true, this parameter is ignored.
 
     Returns:
-    boolean: Result of comparison.
-    '''
+        bool: Result of comparison.
+    """
 
     request = session.Request()
 
@@ -56,25 +55,24 @@ def compare_uri(session, uri1, uri2, isValuePath=None, currentPath=None):
     return response['actions'][0]['result']
 
 def debug(session, value, detail=None):
-    '''
+    """
     Conditionally write a debug value
 
     Conditionally, based on the detail parameter, write a value as a string
     to the debug file descriptor (usually stderr).
 
-    Parameters:
+    Args:
+        value (object): This is the value that will be converted to its
+        string representation and written. An undefined value is represented
+        by `<undefined>`.
 
-        value (): This is the value that will be converted to its string
-        representation and written. An undefined value is represented by
-        `<undefined>`.
-
-        detail (boolean): If true, the string will only written if the
+        detail (bool): If true, the string will only written if the
         debug:function_active:detail flag is on. If false or not specified,
         the string will only written if the debug:function_active flag is on.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -95,17 +93,16 @@ def debug(session, value, detail=None):
     return response['actions'][0]['result']
 
 def execution_start_time_local(session):
-    '''
+    """
     The execution context (xctx) local create dataTime
 
     Return local dateTime when the execution context was created. This will
     usually be the start of request time.
 
-    Parameters:
-
+    Args:
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -122,17 +119,16 @@ def execution_start_time_local(session):
     return response['actions'][0]['result']
 
 def execution_start_time_utc(session):
-    '''
+    """
     The execution context (xctx) UTC create dataTime
 
     Return UTC dateTime when the execution context was created. This will
     usually be the start of request time.
 
-    Parameters:
-
+    Args:
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -149,16 +145,15 @@ def execution_start_time_utc(session):
     return response['actions'][0]['result']
 
 def generate_uuid(session):
-    '''
+    """
     Generate UUID
 
     Generate a UUID.
 
-    Parameters:
-
+    Args:
     Returns:
-    string: 
-    '''
+        str:
+    """
 
     request = session.Request()
 
@@ -175,18 +170,17 @@ def generate_uuid(session):
     return response['actions'][0]['result']
 
 def is_defined(session, value):
-    '''
+    """
     Is defined
 
     Test value returning boolean True if it is not undefined.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: True if value is not undefined.
-    '''
+        bool: True if value is not undefined.
+    """
 
     request = session.Request()
 
@@ -204,18 +198,17 @@ def is_defined(session, value):
     return response['actions'][0]['result']
 
 def is_nullish(session, value):
-    '''
+    """
     Is nullish
 
     Test value returning boolean True if it is null or undefined.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: True if value is null or undefined.
-    '''
+        bool: True if value is null or undefined.
+    """
 
     request = session.Request()
 
@@ -233,18 +226,17 @@ def is_nullish(session, value):
     return response['actions'][0]['result']
 
 def log(session, value):
-    '''
+    """
     Log value
 
     Evaluate and convert value to String and log it.
 
-    Parameters:
-
-        value (): Value to log.
+    Args:
+        value (object): Value to log.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -262,16 +254,15 @@ def log(session, value):
     return response['actions'][0]['result']
 
 def now_local(session):
-    '''
+    """
     Local dataTime
 
     Return current local dateTime.
 
-    Parameters:
-
+    Args:
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -288,16 +279,15 @@ def now_local(session):
     return response['actions'][0]['result']
 
 def now_utc(session):
-    '''
+    """
     UTC dataTime
 
     Return current UTC dateTime.
 
-    Parameters:
-
+    Args:
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -314,26 +304,25 @@ def now_utc(session):
     return response['actions'][0]['result']
 
 def parse_uri(session, uri, isValuePath=None, currentPath=None):
-    '''
+    """
     Parse URI
 
     Parse a URI.
 
-    Parameters:
+    Args:
+        uri (str): URI to parse
 
-        uri (string): URI to parse
-
-        isValuePath (boolean): The URI is an adaptive value path. If the path
+        isValuePath (bool): The URI is an adaptive value path. If the path
         begins with a single slash '/', the URI will be parsed as an adaptive
         value path (example: /adaptorId/objectType/objectId.propertyNames)
 
-        currentPath (string): If isValuePath is true, this is the current
-        path that is used to resolve relative paths. If isValuePath is not
-        true, this parameter is ignored.
+        currentPath (str): If isValuePath is true, this is the current path
+        that is used to resolve relative paths. If isValuePath is not true,
+        this parameter is ignored.
 
     Returns:
-    object: Object with results of parse.
-    '''
+        dict: Object with results of parse.
+    """
 
     request = session.Request()
 
@@ -357,19 +346,18 @@ def parse_uri(session, uri, isValuePath=None, currentPath=None):
     return response['actions'][0]['result']
 
 def perform(session, request):
-    '''
+    """
     Perform actions
 
     Perform actions right away.
 
-    Parameters:
-
-        request (object): See /afw/_AdaptiveObjectType_/_AdaptiveActions_ for
+    Args:
+        request (dict): See /afw/_AdaptiveObjectType_/_AdaptiveActions_ for
         more information.
 
     Returns:
-    object: Response object.
-    '''
+        dict: Response object.
+    """
 
     request = session.Request()
 
@@ -387,26 +375,25 @@ def perform(session, request):
     return response['actions'][0]['result']
 
 def trace(session, value, filter=None, number=None):
-    '''
+    """
     Write a value to the a trace log
 
     Write a value to a trace log.
 
-    Parameters:
+    Args:
+        value (object): This is the value that will be converted to its
+        string representation and written the trace log. An undefined value
+        is represented by `<undefined>`.
 
-        value (): This is the value that will be converted to its string
-        representation and written the trace log. An undefined value is
-        represented by `<undefined>`.
-
-        filter (boolean): If this optional filter is false, nothing will be
+        filter (bool): If this optional filter is false, nothing will be
         written to the trace log. The default is true.
 
-        number (integer): This is an optional number between 1 and 8 that is
+        number (int): This is an optional number between 1 and 8 that is
         appended to 'trace' to identify the trace log. The default is 1.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -430,19 +417,18 @@ def trace(session, value, filter=None, number=None):
     return response['actions'][0]['result']
 
 def variable_exists(session, name):
-    '''
+    """
     Determine if a variable exists
 
     Return the true if the named variable exists.
 
-    Parameters:
-
-        name (string): Name of variable to check. The name can optionally be
+    Args:
+        name (str): Name of variable to check. The name can optionally be
         preceded with a qualifier followed by '::'.
 
     Returns:
-    boolean: True if variable exists.
-    '''
+        bool: True if variable exists.
+    """
 
     request = session.Request()
 
@@ -460,23 +446,22 @@ def variable_exists(session, name):
     return response['actions'][0]['result']
 
 def variable_get(session, name, defaultValue=None):
-    '''
+    """
     Get a variable value
 
     Return the value of a variable. If variable is not available, return a
     default or null value.
 
-    Parameters:
-
-        name (string): Name of variable to get. The name can optionally be
+    Args:
+        name (str): Name of variable to get. The name can optionally be
         preceded with a qualifier followed by '::'.
 
-        defaultValue (): The default value of variable if it does not exist
-        in object. If not specified, null value is the default.
+        defaultValue (object): The default value of variable if it does not
+        exist in object. If not specified, null value is the default.
 
     Returns:
-    None: Evaluated variable value or default.
-    '''
+        object: Evaluated variable value or default.
+    """
 
     request = session.Request()
 
@@ -497,19 +482,18 @@ def variable_get(session, name, defaultValue=None):
     return response['actions'][0]['result']
 
 def variable_is_not_null(session, name):
-    '''
+    """
     Determine if a variable exists and is not null
 
     Return the true if the named variable exists and is not null.
 
-    Parameters:
-
-        name (string): Name of variable to check. The name can optionally be
+    Args:
+        name (str): Name of variable to check. The name can optionally be
         preceded with a qualifier followed by '::'.
 
     Returns:
-    boolean: True if variable exists and is not null.
-    '''
+        bool: True if variable exists and is not null.
+    """
 
     request = session.Request()
 

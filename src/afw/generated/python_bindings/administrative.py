@@ -6,21 +6,23 @@ import requests
 import json
 
 def extension_load(session, extension_id):
-    '''
+    """
     Load extension by id
 
     Load an extension by its extension id if it is not already loaded.
     Loading an AFW package's manifest extension will register the manifest of
     all extensions in the package.
 
-    Parameters:
-
-        extension_id (string): This is the object id of a
+    Args:
+        extension_id (str): This is the object id of a
         /afw/_AdaptiveManifest_/ object.
 
     Returns:
-    boolean: If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem.
-    '''
+        bool: If false the extension was already loaded. If true, the
+        extension was successfully loaded which might have caused side
+        effects such as environment registry changes. An error is thrown if
+        there is a problem.
+    """
 
     request = session.Request()
 
@@ -38,21 +40,20 @@ def extension_load(session, extension_id):
     return response['actions'][0]['result']
 
 def extension_load_by_module_path(session, module_path):
-    '''
+    """
     Load extension by module path
 
     Load an extension by its module path. Loading an AFW package's manifest
     extension will register the manifest of all extensions in the package.
 
-    Parameters:
-
-        module_path (string): This is the path to the dso containing the
+    Args:
+        module_path (str): This is the path to the dso containing the
         extension. If the extension is installed in the normal place, the
         library name without a file extension (.so) will suffice.
 
     Returns:
-    string: The extension id of the extension loaded.
-    '''
+        str: The extension id of the extension loaded.
+    """
 
     request = session.Request()
 
@@ -70,17 +71,17 @@ def extension_load_by_module_path(session, module_path):
     return response['actions'][0]['result']
 
 def flag_get_active(session):
-    '''
+    """
     Get an array of active flags
 
     Get an array of of the flagId of flags that are set in the current
     execution context (xctx).
 
-    Parameters:
-
+    Args:
     Returns:
-    array: This is an array of the flagId of flags that are set in the current execution context (xctx).
-    '''
+        list: This is an array of the flagId of flags that are set in the
+        current execution context (xctx).
+    """
 
     request = session.Request()
 
@@ -97,17 +98,17 @@ def flag_get_active(session):
     return response['actions'][0]['result']
 
 def flag_get_active_defaults(session):
-    '''
+    """
     Get an array of default active flags
 
     Get an array of the flagId of flags that are set by default when a new
     execution context (xctx) is created.
 
-    Parameters:
-
+    Args:
     Returns:
-    array: This is an array of the flagId of flags that are set by default when a new execution context (xctx) is created.
-    '''
+        list: This is an array of the flagId of flags that are set by default
+        when a new execution context (xctx) is created.
+    """
 
     request = session.Request()
 
@@ -124,7 +125,7 @@ def flag_get_active_defaults(session):
     return response['actions'][0]['result']
 
 def flag_get_defaults(session):
-    '''
+    """
     Get the array of flags used to determine the default active flags
 
     Get the array of the flagId of flags that are used to determine the
@@ -133,11 +134,11 @@ def flag_get_defaults(session):
     Each of these flags and the flags they include are set as the active
     default flags.
 
-    Parameters:
-
+    Args:
     Returns:
-    array: This is an array of the flagId of flags used to determine the default active flags.
-    '''
+        list: This is an array of the flagId of flags used to determine the
+        default active flags.
+    """
 
     request = session.Request()
 
@@ -154,7 +155,7 @@ def flag_get_defaults(session):
     return response['actions'][0]['result']
 
 def flag_modify_defaults(session, flagId, add=None):
-    '''
+    """
     Add or remove flags used to determine the default active flags
 
     Add or remove flags from the array of the flagId of flags that are used
@@ -168,16 +169,15 @@ def flag_modify_defaults(session, flagId, add=None):
     change to persist, change the defaultFlags property in the application
     config.
 
-    Parameters:
+    Args:
+        flagId (list): The flagId of flags to be added or removed.
 
-        flagId (array): The flagId of flags to be added or removed.
-
-        add (boolean): Specify true to add and false to remove flags. If not
+        add (bool): Specify true to add and false to remove flags. If not
         specified, flags are added.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -198,7 +198,7 @@ def flag_modify_defaults(session, flagId, add=None):
     return response['actions'][0]['result']
 
 def flag_replace_defaults(session, flagId):
-    '''
+    """
     Replace the array of flags used to determine the default active flags
 
     Completely replace the array of the flagId of flags that are used to
@@ -212,14 +212,13 @@ def flag_replace_defaults(session, flagId):
     change to persist, change the defaultFlags property in the application
     config.
 
-    Parameters:
-
-        flagId (array): The array of the flagId of flags used to determine
-        the default active flags.
+    Args:
+        flagId (list): The array of the flagId of flags used to determine the
+        default active flags.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -237,21 +236,20 @@ def flag_replace_defaults(session, flagId):
     return response['actions'][0]['result']
 
 def flag_set(session, flagId, setTo=None):
-    '''
+    """
     Set or unset active xctx flags
 
     Set or unset one or more active xctx (request) flags.
 
-    Parameters:
+    Args:
+        flagId (list): List of flagId of flags to set or unset.
 
-        flagId (array): List of flagId of flags to set or unset.
-
-        setTo (boolean): Specify true to set and false to unset. If not
+        setTo (bool): Specify true to set and false to unset. If not
         specified, flags are set.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -272,26 +270,28 @@ def flag_set(session, flagId, setTo=None):
     return response['actions'][0]['result']
 
 def registry_key_check(session, registryType, key, loadExtension=None):
-    '''
+    """
     Check to see if a registry key exists
 
     This will check to see if a registry key exists for a specified registry
     type and optionally load it's associated extension if needed.
 
-    Parameters:
+    Args:
+        registryType (str): This is the registry type, which is the object id
+        of a /afw/_AdaptiveEnvironmentRegistryType_/ object.
 
-        registryType (string): This is the registry type, which is the object
-        id of a /afw/_AdaptiveEnvironmentRegistryType_/ object.
-
-        key (string): This is a key to check for existence in the specified
+        key (str): This is a key to check for existence in the specified
         registryType.
 
-        loadExtension (boolean): Specifying true for this optional parameter
+        loadExtension (bool): Specifying true for this optional parameter
         will cause the associated extension to be loaded if needed.
 
     Returns:
-    boolean: If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem.
-    '''
+        bool: If false the extension was already loaded. If true, the
+        extension was successfully loaded which might have caused side
+        effects such as environment registry changes. An error is thrown if
+        there is a problem.
+    """
 
     request = session.Request()
 
@@ -313,18 +313,20 @@ def registry_key_check(session, registryType, key, loadExtension=None):
     return response['actions'][0]['result']
 
 def service_get(session, serviceId):
-    '''
+    """
     Get service object
 
     Get a service object.
 
-    Parameters:
-
-        serviceId (string): The serviceId of the service.
+    Args:
+        serviceId (str): The serviceId of the service.
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
-    '''
+        dict: _AdaptiveService_ object for the service which will contain the
+        current status of the service. If there is an error, the status
+        property value will be 'error' and 'statusMessage' contain an error
+        message.
+    """
 
     request = session.Request()
 
@@ -342,18 +344,20 @@ def service_get(session, serviceId):
     return response['actions'][0]['result']
 
 def service_restart(session, serviceId):
-    '''
+    """
     Restart service
 
     Restart a service.
 
-    Parameters:
-
-        serviceId (string): The serviceId of the service to restart.
+    Args:
+        serviceId (str): The serviceId of the service to restart.
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
-    '''
+        dict: _AdaptiveService_ object for the service which will contain the
+        current status of the service. If there is an error, the status
+        property value will be 'error' and 'statusMessage' contain an error
+        message.
+    """
 
     request = session.Request()
 
@@ -371,18 +375,20 @@ def service_restart(session, serviceId):
     return response['actions'][0]['result']
 
 def service_start(session, serviceId):
-    '''
+    """
     Start service
 
     Start a service.
 
-    Parameters:
-
-        serviceId (string): The serviceId of the service to start
+    Args:
+        serviceId (str): The serviceId of the service to start
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
-    '''
+        dict: _AdaptiveService_ object for the service which will contain the
+        current status of the service. If there is an error, the status
+        property value will be 'error' and 'statusMessage' contain an error
+        message.
+    """
 
     request = session.Request()
 
@@ -400,18 +406,20 @@ def service_start(session, serviceId):
     return response['actions'][0]['result']
 
 def service_stop(session, serviceId):
-    '''
+    """
     Stop service
 
     Stop a service.
 
-    Parameters:
-
-        serviceId (string): The serviceId of the service to stop.
+    Args:
+        serviceId (str): The serviceId of the service to stop.
 
     Returns:
-    object: _AdaptiveService_ object for the service which will contain the current status of the service. If there is an error, the status property value will be 'error' and 'statusMessage' contain an error message.
-    '''
+        dict: _AdaptiveService_ object for the service which will contain the
+        current status of the service. If there is an error, the status
+        property value will be 'error' and 'statusMessage' contain an error
+        message.
+    """
 
     request = session.Request()
 

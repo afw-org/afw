@@ -6,24 +6,23 @@ import requests
 import json
 
 def all_of(session, predicate, values):
-    '''
+    """
     All values pass a test
 
     Returns true if all values in an array pass the predicate test.
 
-    Parameters:
-
-        predicate (function): This function is called for each value in the
+    Args:
+        predicate (object): This function is called for each value in the
         first array in values or until false is returned. If no calls return
         false, the result is true.
 
-        values (): These are the parameters passed to predicate with the
-        exception that the first array is passed one value at a time. At
+        values (object): These are the parameters passed to predicate with
+        the exception that the first array is passed one value at a time. At
         least one array is required.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -42,24 +41,23 @@ def all_of(session, predicate, values):
     return response['actions'][0]['result']
 
 def all_of_all(session, predicate, array1, array2):
-    '''
+    """
     All combinations true
 
     Returns true if the result of calling predicate with all of the
     combination of values from array1 and array2 returns true.
 
-    Parameters:
+    Args:
+        predicate (object): The predicate is passed two parameters, the first
+        is a value from array1 and the second is a value from array2.
 
-        predicate (function): The predicate is passed two parameters, the
-        first is a value from array1 and the second is a value from array2.
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -79,25 +77,24 @@ def all_of_all(session, predicate, array1, array2):
     return response['actions'][0]['result']
 
 def all_of_any(session, predicate, array1, array2):
-    '''
+    """
     Combinations of all in array1 and any in array2 true
 
     This function returns true if the result of calling predicate with all of
     the combination of values from array1 and any of the values of array2
     returns true.
 
-    Parameters:
+    Args:
+        predicate (object): The predicate is passed two parameters, the first
+        is a value from array1 and the second is a value from array2.
 
-        predicate (function): The predicate is passed two parameters, the
-        first is a value from array1 and the second is a value from array2.
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -117,24 +114,23 @@ def all_of_any(session, predicate, array1, array2):
     return response['actions'][0]['result']
 
 def any_of(session, predicate, values):
-    '''
+    """
     Any values pass a test
 
     Returns true if any value in an array pass the predicate test.
 
-    Parameters:
-
-        predicate (function): This function is called for each value in the
+    Args:
+        predicate (object): This function is called for each value in the
         first array in values or until true is returned. If no calls return
         true, the result is false.
 
-        values (): These are the parameters passed to predicate with the
-        exception that the first array is passed one value at a time. At
+        values (object): These are the parameters passed to predicate with
+        the exception that the first array is passed one value at a time. At
         least one array is required.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -153,25 +149,24 @@ def any_of(session, predicate, values):
     return response['actions'][0]['result']
 
 def any_of_all(session, predicate, array1, array2):
-    '''
+    """
     Combinations of any in array1 and all in array2 true
 
     Returns true if the result of calling predicate with all of the
     combination of values from array2 and any of the values of array1 returns
     true.
 
-    Parameters:
+    Args:
+        predicate (object): The predicate is passed two parameters, the first
+        is a value from array1 and the second is a value from array2.
 
-        predicate (function): The predicate is passed two parameters, the
-        first is a value from array1 and the second is a value from array2.
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -191,24 +186,23 @@ def any_of_all(session, predicate, array1, array2):
     return response['actions'][0]['result']
 
 def any_of_any(session, predicate, array1, array2):
-    '''
+    """
     Any combinations true
 
     This function returns true if the result of calling predicate with any of
     the combination of values from array1 and array2 returns true.
 
-    Parameters:
+    Args:
+        predicate (object): The predicate is passed two parameters, the first
+        is a value from array1 and the second is a value from array2.
 
-        predicate (function): The predicate is passed two parameters, the
-        first is a value from array1 and the second is a value from array2.
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -228,24 +222,23 @@ def any_of_any(session, predicate, array1, array2):
     return response['actions'][0]['result']
 
 def filter(session, predicate, values):
-    '''
+    """
     Filter an array
 
     This produces an array containing only values from another array that
     pass a predicate test.
 
-    Parameters:
-
-        predicate (function): This is a boolean function that is called to
+    Args:
+        predicate (object): This is a boolean function that is called to
         determine if an array entry should be included in the returned array.
 
-        values (): These are the values passed to the predicate with the
-        exception that the first array is passed as the single current value
-        from the array. At least one array is required.
+        values (object): These are the values passed to the predicate with
+        the exception that the first array is passed as the single current
+        value from the array. At least one array is required.
 
     Returns:
-    array: This is the resulting filtered array.
-    '''
+        list: This is the resulting filtered array.
+    """
 
     request = session.Request()
 
@@ -264,24 +257,23 @@ def filter(session, predicate, values):
     return response['actions'][0]['result']
 
 def find(session, predicate, values):
-    '''
+    """
     Returns the first value in an array that passes a test
 
     The predicate is called for each value in the first array in values until
     true is returned, then that value is returned.
 
-    Parameters:
-
-        predicate (function): This is a boolean function that is called to
+    Args:
+        predicate (object): This is a boolean function that is called to
         determine if an array entry passes the test.
 
-        values (): These are the values passed to the predicate with the
-        exception that the first array is passed as the single current value
-        from the array. At least one array is required.
+        values (object): These are the values passed to the predicate with
+        the exception that the first array is passed as the single current
+        value from the array. At least one array is required.
 
     Returns:
-    None: The first value that passes the test is returned.
-    '''
+        object: The first value that passes the test is returned.
+    """
 
     request = session.Request()
 
@@ -300,23 +292,22 @@ def find(session, predicate, values):
     return response['actions'][0]['result']
 
 def map(session, functor, values):
-    '''
+    """
     Maps values of an array
 
     This function creates an array of the results of calling functor with
     each value of the first array in values
 
-    Parameters:
+    Args:
+        functor (object):
 
-        functor (function):
-
-        values (): These are the parameters passed to functor with the
+        values (object): These are the parameters passed to functor with the
         exception that the first array is passed one value at a time. At
         least one array is required.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -335,7 +326,7 @@ def map(session, functor, values):
     return response['actions'][0]['result']
 
 def reduce(session, functor, accumulator, array):
-    '''
+    """
     Reduce values of an array to a single value
 
     Reduce calls functor for each value in array with two parameters,
@@ -345,21 +336,21 @@ def reduce(session, functor, accumulator, array):
     dataType of the return value should normally be the same as accumulator,
     but this is not required.
 
-    Parameters:
+    Args:
+        functor (object): This function is called for each value in an array.
+        The returned value is passed as the accumulator parameter on the next
+        call to functor().
 
-        functor (function): This function is called for each value in an
-        array. The returned value is passed as the accumulator parameter on
-        the next call to functor().
-
-        accumulator (): This is an initial accumulator value passed to
+        accumulator (object): This is an initial accumulator value passed to
         functor(). Normally, the dataType of accumulator will be the dataTape
         for the reduce() return value, but this is not required.
 
-        array (array): This is an array to be reduced.
+        array (list): This is an array to be reduced.
 
     Returns:
-    None: This is the final return value from functor() or the accumulator parameter value if array is empty.
-    '''
+        object: This is the final return value from functor() or the
+        accumulator parameter value if array is empty.
+    """
 
     request = session.Request()
 
@@ -379,7 +370,7 @@ def reduce(session, functor, accumulator, array):
     return response['actions'][0]['result']
 
 def sort(session, compareFunction, array):
-    '''
+    """
     Sort values in an array
 
     This produces an array with values sorted based on result of
@@ -388,16 +379,15 @@ def sort(session, compareFunction, array):
     the second value, 0 if they are equal, and a integer greater than 0 if
     the first value is greater than the second value.
 
-    Parameters:
+    Args:
+        compareFunction (object): This function is called with two value from
+        array.
 
-        compareFunction (function): This function is called with two value
-        from array.
-
-        array (array): This is the array to sort.
+        array (list): This is the array to sort.
 
     Returns:
-    array: This the the resulting sorted array.
-    '''
+        list: This the the resulting sorted array.
+    """
 
     request = session.Request()
 

@@ -6,19 +6,18 @@ import requests
 import json
 
 def abs(session, value):
-    '''
+    """
     Absolute value
 
     Compute the absolute value of the `<dataType>` value and return the
     `<dataType>` result.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -36,18 +35,17 @@ def abs(session, value):
     return response['actions'][0]['result']
 
 def add(session, values):
-    '''
+    """
     Add
 
     Add 2 or more `<dataType>` values and return the `<dataType>` result.
 
-    Parameters:
-
-        values ():
+    Args:
+        values (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -65,21 +63,20 @@ def add(session, values):
     return response['actions'][0]['result']
 
 def add_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Add duration
 
     Add `<dataType>` arg1 to dayTimeDuration arg2 and return the `<dataType>`
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -98,21 +95,20 @@ def add_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def add_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Add duration
 
     Add `<dataType>` arg1 to yearMonthDuration arg2 and return the
     `<dataType>` result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -131,21 +127,20 @@ def add_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def at_least_one_member_of(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in `<dataType>` array1 is in
     `<dataType>` array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -164,18 +159,17 @@ def at_least_one_member_of(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of `<dataType>` values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -195,18 +189,17 @@ def bag(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -224,19 +217,18 @@ def bag_size(session, value):
     return response['actions'][0]['result']
 
 def ceil(session, value):
-    '''
+    """
     Round upward to nearest integer
 
     Determine the smallest integer that is greater then or equal to the
     `<dataType>` value and return the `<dataType>` result.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -254,18 +246,17 @@ def ceil(session, value):
     return response['actions'][0]['result']
 
 def clone(session, value):
-    '''
+    """
     Clone <dataType> value
 
     Deep clone a `<dataType>` value.
 
-    Parameters:
-
-        value (): The `<dataType>` value to clone.
+    Args:
+        value (object): The `<dataType>` value to clone.
 
     Returns:
-    None: The cloned <dataType> value.
-    '''
+        object: The cloned `<dataType>` value.
+    """
 
     request = session.Request()
 
@@ -283,18 +274,17 @@ def clone(session, value):
     return response['actions'][0]['result']
 
 def compile(session, source, listing=None):
-    '''
+    """
     Compile <dataType> value
 
     Compile `<dataType>` value and return either an unevaluated adaptive
     value or a string containing the compiler listing.
 
-    Parameters:
+    Args:
+        source (object): `<dataType>` string to compile
 
-        source (): `<dataType>` string to compile
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -302,8 +292,8 @@ def compile(session, source, listing=None):
         spaces is used.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -324,19 +314,18 @@ def compile(session, source, listing=None):
     return response['actions'][0]['result']
 
 def decode_to_string(session, value):
-    '''
+    """
     Decode <dataType> to string
 
     Decode `<dataType>` value to string. An error is thrown if decoded value
     is not valid UTF-8.
 
-    Parameters:
-
-        value (): The `<dataType>` value to decode.
+    Args:
+        value (object): The `<dataType>` value to decode.
 
     Returns:
-    string: The decoded string.
-    '''
+        str: The decoded string.
+    """
 
     request = session.Request()
 
@@ -354,21 +343,20 @@ def decode_to_string(session, value):
     return response['actions'][0]['result']
 
 def divide(session, dividend, divisor):
-    '''
+    """
     Divide numbers
 
     Divide `<dataType>` dividend by `<dataType>` divisor and return the
     `<dataType>` quotient.
 
-    Parameters:
+    Args:
+        dividend (object):
 
-        dividend ():
-
-        divisor ():
+        divisor (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -387,19 +375,18 @@ def divide(session, dividend, divisor):
     return response['actions'][0]['result']
 
 def encode_as_base64Binary(session, value):
-    '''
+    """
     Encode to a base64Binary value
 
     Encode a value as a base64Binary. The effect is to create a base64Binary
     value with an internal value of the value passed.
 
-    Parameters:
-
-        value (): The `<dataType>` value to encode.
+    Args:
+        value (object): The `<dataType>` value to encode.
 
     Returns:
-    base64Binary: A base64Binary value.
-    '''
+        object: A base64Binary value.
+    """
 
     request = session.Request()
 
@@ -417,19 +404,18 @@ def encode_as_base64Binary(session, value):
     return response['actions'][0]['result']
 
 def encode_as_hexBinary(session, value):
-    '''
+    """
     Encode to a hexBinary value
 
     Encode a value as a hexBinary. The effect is to create a hexBinary value
     with an internal value of the value passed.
 
-    Parameters:
-
-        value (): The `<dataType>` value to encode.
+    Args:
+        value (object): The `<dataType>` value to encode.
 
     Returns:
-    hexBinary: A hexBinary value.
-    '''
+        object: A hexBinary value.
+    """
 
     request = session.Request()
 
@@ -447,21 +433,20 @@ def encode_as_hexBinary(session, value):
     return response['actions'][0]['result']
 
 def ends_with(session, value, subString):
-    '''
+    """
     Checks whether value ends with a string
 
     Checks whether `<dataType>` value ends with a `<dataType>` and return the
     boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value ():
-
-        subString (string):
+        subString (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -480,7 +465,7 @@ def ends_with(session, value, subString):
     return response['actions'][0]['result']
 
 def eq(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
@@ -488,15 +473,14 @@ def eq(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -515,21 +499,20 @@ def eq(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eq_ignore_case(session, arg1, arg2):
-    '''
+    """
     Checks for equal ignoring case
 
     Checks for `<dataType>` arg1 is equal to `<dataType>` arg2 ignoring case
     and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -548,22 +531,21 @@ def eq_ignore_case(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for `<dataType>` arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -582,17 +564,16 @@ def eqx(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Evaluate <dataType> value
 
     Compile and evaluate `<dataType>` value.
 
-    Parameters:
+    Args:
+        source (object): `<dataType>` string to compile and evaluate
 
-        source (): `<dataType>` string to compile and evaluate
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -600,8 +581,8 @@ def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
         production.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -622,19 +603,18 @@ def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
     return response['actions'][0]['result']
 
 def floor(session, number):
-    '''
+    """
     Round downwards to nearest integer
 
     Determine the largest integer that is smaller then or equal to the
     `<dataType>` value and return the `<dataType>` result.
 
-    Parameters:
-
-        number ():
+    Args:
+        number (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -652,21 +632,20 @@ def floor(session, number):
     return response['actions'][0]['result']
 
 def ge(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for `<dataType>` arg1 is greater than or equal to `<dataType>`
     arg2 and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -685,21 +664,20 @@ def ge(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -718,7 +696,7 @@ def gt(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def in_range(session, time, startTime, endTime):
-    '''
+    """
     Checks if time in range
 
     Checks if `<dataType>` is between startTime and endTime, inclusive.
@@ -728,17 +706,16 @@ def in_range(session, time, startTime, endTime):
     `<dataType>` zone is specified for startTime or endTime, the `<dataType>`
     zone of `<dataType>` is used.
 
-    Parameters:
+    Args:
+        time (object):
 
-        time ():
+        startTime (object):
 
-        startTime ():
-
-        endTime ():
+        endTime (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -758,24 +735,23 @@ def in_range(session, time, startTime, endTime):
     return response['actions'][0]['result']
 
 def includes(session, searchString, subString, position=None):
-    '''
+    """
     Checks whether the <dataType> value includes a string
 
     Checks whether the `<dataType>` value includes a string and return the
     boolean result.
 
-    Parameters:
+    Args:
+        searchString (object): The `<dataType>` to search.
 
-        searchString (): The `<dataType>` to search.
+        subString (str): Substring to find.
 
-        subString (string): Substring to find.
-
-        position (integer): Zero-based position in the search string to start
+        position (int): Zero-based position in the search string to start
         search.
 
     Returns:
-    boolean: Indicates if the substring is contained in the search string.
-    '''
+        bool: Indicates if the substring is contained in the search string.
+    """
 
     request = session.Request()
 
@@ -797,24 +773,23 @@ def includes(session, searchString, subString, position=None):
     return response['actions'][0]['result']
 
 def index_of(session, value, subString, startIndex=None):
-    '''
+    """
     Returns index of first occurrence
 
     Returns the zero-based index into `<dataType>` value of subString. If
     subString is not found, -1 is returned.
 
-    Parameters:
+    Args:
+        value (object): The `<dataType>` value to search.
 
-        value (): The `<dataType>` value to search.
+        subString (str): Substring to search for.
 
-        subString (string): Substring to search for.
-
-        startIndex (integer): Optional start index for search if different
-        than start of string.
+        startIndex (int): Optional start index for search if different than
+        start of string.
 
     Returns:
-    integer: Zero-based index of subString or -1 if not found.
-    '''
+        int: Zero-based index of subString or -1 if not found.
+    """
 
     request = session.Request()
 
@@ -836,21 +811,20 @@ def index_of(session, value, subString, startIndex=None):
     return response['actions'][0]['result']
 
 def intersection(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of `<dataType>` with the values that are common to both
     array of `<dataType>` array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -869,19 +843,18 @@ def intersection(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_(session, value):
-    '''
+    """
     Checks whether value is dataType <dataType>
 
     Checks whether value is dataType `<dataType>` and return the boolean
     result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -899,21 +872,20 @@ def is_(session, value):
     return response['actions'][0]['result']
 
 def is_in(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether `<dataType>` value is in array of `<dataType>` array and
     returns the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value ():
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -932,24 +904,23 @@ def is_in(session, value, array):
     return response['actions'][0]['result']
 
 def last_index_of(session, value, subString, startIndex=None):
-    '''
+    """
     Returns index of last occurrence
 
     Returns the zero-based index into `<dataType>` value of the last
     occurrence of a subString. If subString is not found, -1 is returned.
 
-    Parameters:
+    Args:
+        value (object): The `<dataType>` value to search.
 
-        value (): The `<dataType>` value to search.
+        subString (str): Substring to search for.
 
-        subString (string): Substring to search for.
-
-        startIndex (integer): Optional start index for search if different
-        than start of string.
+        startIndex (int): Optional start index for search if different than
+        start of string.
 
     Returns:
-    integer: Zero-based index of subString or -1 if not found.
-    '''
+        int: Zero-based index of subString or -1 if not found.
+    """
 
     request = session.Request()
 
@@ -971,21 +942,20 @@ def last_index_of(session, value, subString, startIndex=None):
     return response['actions'][0]['result']
 
 def le(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2
     and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1004,21 +974,20 @@ def le(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def length(session, value):
-    '''
+    """
     Returns number of codepoints or entries in value
 
     This is a polymorphic function where `<dataType>` can be any of the
     supported data types. Return the integer number of entries in datatype
     array or codepoints in others.
 
-    Parameters:
-
-        value (): Returns the number of entries in an array or code points in
-        others.
+    Args:
+        value (object): Returns the number of entries in an array or code
+        points in others.
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -1036,21 +1005,20 @@ def length(session, value):
     return response['actions'][0]['result']
 
 def lt(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1069,21 +1037,20 @@ def lt(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def match(session, arg1, arg2):
-    '''
+    """
     Checks if x500Name matches
 
     Returns true if arg1 matches some terminal sequence of RDNs from arg2
     when compared using `equal_<dataType>`.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 (string):
+        arg2 (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1102,19 +1069,18 @@ def match(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def max(session, values):
-    '''
+    """
     Maximum value
 
     Return the `<dataType>` value that is greater than or equal to the
     others.
 
-    Parameters:
-
-        values ():
+    Args:
+        values (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1132,18 +1098,17 @@ def max(session, values):
     return response['actions'][0]['result']
 
 def min(session, values):
-    '''
+    """
     Minimum value
 
     Return the `<dataType>` value that is less than or equal to the others.
 
-    Parameters:
-
-        values ():
+    Args:
+        values (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1161,21 +1126,20 @@ def min(session, values):
     return response['actions'][0]['result']
 
 def mod(session, dividend, divisor):
-    '''
+    """
     Remainder of dividing numbers
 
     Divide `<dataType>` dividend by `<dataType>` divisor and return the
     `<dataType>` remainder.
 
-    Parameters:
+    Args:
+        dividend (object):
 
-        dividend ():
-
-        divisor ():
+        divisor (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1194,19 +1158,18 @@ def mod(session, dividend, divisor):
     return response['actions'][0]['result']
 
 def multiply(session, values):
-    '''
+    """
     Multiply numbers
 
     Multiply 2 or more `<dataType>` values and return the `<dataType>`
     result.
 
-    Parameters:
-
-        values ():
+    Args:
+        values (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1224,7 +1187,7 @@ def multiply(session, values):
     return response['actions'][0]['result']
 
 def ne(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if `<dataType>` arg1 is not equal to the value of arg2
@@ -1232,15 +1195,14 @@ def ne(session, arg1, arg2):
     'nex' ('!==') instead if you want true to be returned if arg1 and arg2's
     data type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1259,18 +1221,17 @@ def ne(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def negative(session, value):
-    '''
+    """
     Negative of a number
 
     Return negative of `<dataType>` value.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1288,22 +1249,21 @@ def negative(session, value):
     return response['actions'][0]['result']
 
 def nex(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for `<dataType>` arg1 is not equal to the value or data type
     of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
     want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1322,18 +1282,17 @@ def nex(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def normalize_space(session, string):
-    '''
+    """
     Trims whitespace from beginning and end
 
     Remove whitespace from the beginning and end of a `<dataType>` value.
 
-    Parameters:
-
-        string ():
+    Args:
+        string (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1351,19 +1310,18 @@ def normalize_space(session, string):
     return response['actions'][0]['result']
 
 def normalize_to_lower_case(session, string):
-    '''
+    """
     Converts to lower case
 
     Normalize `<dataType>` value to lower case and returns `<dataType>`
     result.
 
-    Parameters:
-
-        string ():
+    Args:
+        string (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1381,19 +1339,18 @@ def normalize_to_lower_case(session, string):
     return response['actions'][0]['result']
 
 def one_and_only(session, array):
-    '''
+    """
     Converts a one value array to a <dataType> value
 
     This converts an array of `<dataType>` values that contains one value to
     a single `<dataType>` value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1411,22 +1368,21 @@ def one_and_only(session, array):
     return response['actions'][0]['result']
 
 def pow(session, base, exponent):
-    '''
+    """
     Base raised to a power
 
     This returns the value of base raised to a power. Multiple exponents can
     be specified to raise the previous exponent to the power of the latter
     exponent.
 
-    Parameters:
+    Args:
+        base (object): Base value.
 
-        base (): Base value.
-
-        exponent (): Exponent value.
+        exponent (object): Exponent value.
 
     Returns:
-    None: Base raised to the power.
-    '''
+        object: Base raised to the power.
+    """
 
     request = session.Request()
 
@@ -1445,21 +1401,20 @@ def pow(session, base, exponent):
     return response['actions'][0]['result']
 
 def regexp_index_of(session, value, regexp):
-    '''
+    """
     Returns index of first match of regular expression
 
     Search `<dataType>` value for a regular expression and return index. If
     not found, -1 is returned.
 
-    Parameters:
+    Args:
+        value (object): The `<dataType>` value to search.
 
-        value (): The `<dataType>` value to search.
-
-        regexp (string): A regular expression to use for search.
+        regexp (str): A regular expression to use for search.
 
     Returns:
-    integer: Zero-based index of subString or -1 if not found.
-    '''
+        int: Zero-based index of subString or -1 if not found.
+    """
 
     request = session.Request()
 
@@ -1478,21 +1433,20 @@ def regexp_index_of(session, value, regexp):
     return response['actions'][0]['result']
 
 def regexp_match(session, value, regexp):
-    '''
+    """
     Search for a match using a regular expression
 
     Checks whether `<dataType>` value matches the regular expression regexp
     and return the boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value ():
-
-        regexp (string):
+        regexp (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1511,25 +1465,24 @@ def regexp_match(session, value, regexp):
     return response['actions'][0]['result']
 
 def regexp_replace(session, value, regexp, replacement, limit=None):
-    '''
+    """
     Replace strings matching a regular expression
 
     Replace matched values for a regular expression in a `<dataType>` value.
 
-    Parameters:
+    Args:
+        value (object): The original `<dataType>` value.
 
-        value (): The original `<dataType>` value.
+        regexp (str): A regular expression to use for search.
 
-        regexp (string): A regular expression to use for search.
+        replacement (str): The replacement string.
 
-        replacement (string): The replacement string.
-
-        limit (integer): This is the maximum times to replace. The default is
-        1. Specify -1 to replace all occurrences.
+        limit (int): This is the maximum times to replace. The default is 1.
+        Specify -1 to replace all occurrences.
 
     Returns:
-    None: A <dataType> value with the matched string(s) replaced.
-    '''
+        object: A `<dataType>` value with the matched string(s) replaced.
+    """
 
     request = session.Request()
 
@@ -1552,20 +1505,19 @@ def regexp_replace(session, value, regexp, replacement, limit=None):
     return response['actions'][0]['result']
 
 def repeat(session, value, times):
-    '''
+    """
     Returns a repeated value
 
     Repeat a `<dataType>` value a specified number of times.
 
-    Parameters:
+    Args:
+        value (object): The `<dataType>` value to repeat.
 
-        value (): The `<dataType>` value to repeat.
-
-        times (integer): The number of times to repeat the value.
+        times (int): The number of times to repeat the value.
 
     Returns:
-    None: The repeated <dataType> value.
-    '''
+        object: The repeated `<dataType>` value.
+    """
 
     request = session.Request()
 
@@ -1584,25 +1536,24 @@ def repeat(session, value, times):
     return response['actions'][0]['result']
 
 def replace(session, value, match, replacement, limit=None):
-    '''
+    """
     Replace strings
 
     Replace string(s) in a `<dataType>` value.
 
-    Parameters:
+    Args:
+        value (object): The original `<dataType>` value.
 
-        value (): The original `<dataType>` value.
+        match (str): The string to replace.
 
-        match (string): The string to replace.
+        replacement (str): The replacement string.
 
-        replacement (string): The replacement string.
-
-        limit (integer): This is the maximum times to replace. The default is
-        1. Specify -1 to replace all occurrences.
+        limit (int): This is the maximum times to replace. The default is 1.
+        Specify -1 to replace all occurrences.
 
     Returns:
-    None: A <dataType> value with the matched string(s) replaced.
-    '''
+        object: A `<dataType>` value with the matched string(s) replaced.
+    """
 
     request = session.Request()
 
@@ -1625,19 +1576,18 @@ def replace(session, value, match, replacement, limit=None):
     return response['actions'][0]['result']
 
 def round(session, number):
-    '''
+    """
     Round to nearest integer
 
     Determine the integer closest to `<dataType>` value and return the
     `<dataType>` result.
 
-    Parameters:
-
-        number ():
+    Args:
+        number (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1655,21 +1605,20 @@ def round(session, number):
     return response['actions'][0]['result']
 
 def set_equals(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
     subsets of each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1688,24 +1637,23 @@ def set_equals(session, array1, array2):
     return response['actions'][0]['result']
 
 def split(session, value, separator=None, limit=None):
-    '''
+    """
     Split at a separator
 
     Split `<dataType>` value into an array of strings using a separator.
 
-    Parameters:
+    Args:
+        value (object): The `<dataType>` value to split.
 
-        value (): The `<dataType>` value to split.
+        separator (str): The separator to use. If this is an empty string or
+        separator is not specified, the value is split between characters.
 
-        separator (string): The separator to use. If this is an empty string
-        or separator is not specified, the value is split between characters.
-
-        limit (integer): This is the maximum number of splits. Any remaining
-        part of value is ignored.
+        limit (int): This is the maximum number of splits. Any remaining part
+        of value is ignored.
 
     Returns:
-    array: An array of strings.
-    '''
+        list: An array of strings.
+    """
 
     request = session.Request()
 
@@ -1729,21 +1677,20 @@ def split(session, value, separator=None, limit=None):
     return response['actions'][0]['result']
 
 def starts_with(session, value, subString):
-    '''
+    """
     Checks whether value starts with a string
 
     Checks whether `<dataType>` value starts with a subString and return the
     boolean result.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value ():
-
-        subString (string):
+        subString (str):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1762,21 +1709,20 @@ def starts_with(session, value, subString):
     return response['actions'][0]['result']
 
 def subset(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in `<dataType>` array1 are all
     in `<dataType>` array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1795,7 +1741,7 @@ def subset(session, array1, array2):
     return response['actions'][0]['result']
 
 def substring(session, string, startIndex, endIndex=None):
-    '''
+    """
     Extract a substring
 
     Returns the `<dataType>` substring of value beginning at zero-based
@@ -1803,17 +1749,16 @@ def substring(session, string, startIndex, endIndex=None):
     endIndex. Specify -1 or omitting endIndex to return up to end of
     `<dataType>`.
 
-    Parameters:
+    Args:
+        string (object):
 
-        string ():
+        startIndex (int):
 
-        startIndex (integer):
-
-        endIndex (integer):
+        endIndex (int):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1835,21 +1780,20 @@ def substring(session, string, startIndex, endIndex=None):
     return response['actions'][0]['result']
 
 def subtract(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
     `<dataType>` result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1868,21 +1812,20 @@ def subtract(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def subtract_dayTimeDuration(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract dayTimeDuration arg2 from `<dataType>` arg1 and return the
     `<dataType>` result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 (dayTimeDuration):
+        arg2 (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1901,21 +1844,20 @@ def subtract_dayTimeDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def subtract_yearMonthDuration(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract yearMonthDuration arg2 from `<dataType>` arg1 and return the
     `<dataType>` result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 (yearMonthDuration):
+        arg2 (object):
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1934,18 +1876,17 @@ def subtract_yearMonthDuration(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_anyURI(session, value):
-    '''
+    """
     Converts string to anyURI
 
     Converts `<dataType>` value to anyURI.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    anyURI: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -1963,18 +1904,17 @@ def to_anyURI(session, value):
     return response['actions'][0]['result']
 
 def to_boolean(session, value):
-    '''
+    """
     Converts string to boolean
 
     Converts `<dataType>` value to boolean.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -1992,18 +1932,17 @@ def to_boolean(session, value):
     return response['actions'][0]['result']
 
 def to_date(session, value):
-    '''
+    """
     Converts string to date
 
     Converts `<dataType>` value to date.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    date: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2021,18 +1960,17 @@ def to_date(session, value):
     return response['actions'][0]['result']
 
 def to_dateTime(session, value):
-    '''
+    """
     Converts string to dateTime
 
     Converts `<dataType>` value to dateTime.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    dateTime: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2050,18 +1988,17 @@ def to_dateTime(session, value):
     return response['actions'][0]['result']
 
 def to_dayTimeDuration(session, value):
-    '''
+    """
     Converts string to dayTimeDuration
 
     Converts `<dataType>` value to dayTimeDuration.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    dayTimeDuration: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2079,18 +2016,17 @@ def to_dayTimeDuration(session, value):
     return response['actions'][0]['result']
 
 def to_dnsName(session, value):
-    '''
+    """
     Converts string to dnsName
 
     Converts `<dataType>` value to dnsName.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    dnsName: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2108,18 +2044,17 @@ def to_dnsName(session, value):
     return response['actions'][0]['result']
 
 def to_double(session, value):
-    '''
+    """
     Converts to double
 
     Converts `<dataType>` value to double and returns double result.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -2137,18 +2072,17 @@ def to_double(session, value):
     return response['actions'][0]['result']
 
 def to_integer(session, value):
-    '''
+    """
     Converts to integer
 
     Truncate `<dataType>` value to a whole number and returns integer result.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -2166,18 +2100,17 @@ def to_integer(session, value):
     return response['actions'][0]['result']
 
 def to_ipAddress(session, value):
-    '''
+    """
     Converts string to ipAddress
 
     Converts `<dataType>` value to ipAddress.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    ipAddress: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2195,18 +2128,17 @@ def to_ipAddress(session, value):
     return response['actions'][0]['result']
 
 def to_rfc822Name(session, value):
-    '''
+    """
     Converts string to rfc822Name
 
     Converts `<dataType>` value to rfc822Name.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    rfc822Name: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2224,19 +2156,18 @@ def to_rfc822Name(session, value):
     return response['actions'][0]['result']
 
 def to_string(session, value):
-    '''
+    """
     Converts value to string
 
     Converts `<dataType>` value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (): A `<dataType>` value.
+    Args:
+        value (object): A `<dataType>` value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -2254,18 +2185,17 @@ def to_string(session, value):
     return response['actions'][0]['result']
 
 def to_time(session, value):
-    '''
+    """
     Converts string to time
 
     Converts `<dataType>` value to time.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    time: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2283,18 +2213,17 @@ def to_time(session, value):
     return response['actions'][0]['result']
 
 def to_x500Name(session, value):
-    '''
+    """
     Converts string to x500Name
 
     Converts `<dataType>` value to x500Name.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    x500Name: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2312,18 +2241,17 @@ def to_x500Name(session, value):
     return response['actions'][0]['result']
 
 def to_yearMonthDuration(session, value):
-    '''
+    """
     Converts string to yearMonthDuration
 
     Converts `<dataType>` value to yearMonthDuration.
 
-    Parameters:
-
-        value ():
+    Args:
+        value (object):
 
     Returns:
-    yearMonthDuration: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -2341,19 +2269,18 @@ def to_yearMonthDuration(session, value):
     return response['actions'][0]['result']
 
 def union(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of `<dataType>` contains all of the unique values in two
     or more array of `<dataType>` values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -2371,19 +2298,18 @@ def union(session, arrays):
     return response['actions'][0]['result']
 
 def url_encode(session, unencoded):
-    '''
+    """
     URI encode
 
     URL encode a value or bag of values.
 
-    Parameters:
-
-        unencoded (): URL encode a single value. See the url_encode method
-        for the data type of more details.
+    Args:
+        unencoded (object): URL encode a single value. See the url_encode
+        method for the data type of more details.
 
     Returns:
-    string: URI encoded string.
-    '''
+        str: URI encoded string.
+    """
 
     request = session.Request()
 

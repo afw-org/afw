@@ -6,20 +6,21 @@ import requests
 import json
 
 def meta(session, value):
-    '''
+    """
     Return the meta object about an adaptive value
 
     This function returns an object containing meta information for an
     adaptive value.
 
-    Parameters:
-
-        value (): This is the adaptive value whose meta object is to be
+    Args:
+        value (object): This is the adaptive value whose meta object is to be
         returned.
 
     Returns:
-    object: An object containing the meta information for the adaptive value. The objectType of this object is normally _AdaptiveValueMeta_ or one of its descendants.
-    '''
+        dict: An object containing the meta information for the adaptive
+        value. The objectType of this object is normally _AdaptiveValueMeta_
+        or one of its descendants.
+    """
 
     request = session.Request()
 
@@ -37,19 +38,19 @@ def meta(session, value):
     return response['actions'][0]['result']
 
 def metas(session, value):
-    '''
+    """
     Return an array of the result of calling meta() for each value in an array or object adaptive value
 
     This function returns an array of the result of calling meta() for each
     value in an array or object adaptive value.
 
-    Parameters:
-
-        value (): This is an adaptive array or object.
+    Args:
+        value (object): This is an adaptive array or object.
 
     Returns:
-    object: An array containing the result of calling meta() of each value in array or object adaptive value.
-    '''
+        dict: An array containing the result of calling meta() of each value
+        in array or object adaptive value.
+    """
 
     request = session.Request()
 

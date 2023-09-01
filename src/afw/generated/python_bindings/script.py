@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_script(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of script values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_script(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_script(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,18 +64,17 @@ def bag_size_script(session, value):
     return response['actions'][0]['result']
 
 def compile_script(session, source, listing=None):
-    '''
+    """
     Compile script value
 
     Compile script value and return either an unevaluated adaptive value or a
     string containing the compiler listing.
 
-    Parameters:
+    Args:
+        source (object): script string to compile
 
-        source (script): script string to compile
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -85,8 +82,8 @@ def compile_script(session, source, listing=None):
         spaces is used.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -107,7 +104,7 @@ def compile_script(session, source, listing=None):
     return response['actions'][0]['result']
 
 def eq_script(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if script arg1 is equal to the value of arg2 converted to the
@@ -115,15 +112,14 @@ def eq_script(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -142,22 +138,21 @@ def eq_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_script(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for script arg1 is equal to the value and data type of arg2
     then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -176,17 +171,16 @@ def eqx_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Evaluate script value
 
     Compile and evaluate script value.
 
-    Parameters:
+    Args:
+        source (object): script string to compile and evaluate
 
-        source (script): script string to compile and evaluate
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -194,8 +188,8 @@ def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None)
         production.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -216,21 +210,20 @@ def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None)
     return response['actions'][0]['result']
 
 def ge_script(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for script arg1 is greater than or equal to script arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 (script):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -249,21 +242,20 @@ def ge_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_script(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for script arg1 is greater than script arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 (script):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -282,18 +274,17 @@ def gt_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_script(session, value):
-    '''
+    """
     Checks whether value is dataType script
 
     Checks whether value is dataType script and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -311,21 +302,20 @@ def is_script(session, value):
     return response['actions'][0]['result']
 
 def le_script(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for script arg1 is less than or equal to script arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -344,21 +334,20 @@ def le_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_script(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for script arg1 is less that script arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 (script):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -377,7 +366,7 @@ def lt_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_script(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if script arg1 is not equal to the value of arg2 converted to
@@ -385,15 +374,14 @@ def ne_script(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -412,22 +400,21 @@ def ne_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_script(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for script arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (script):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -446,18 +433,17 @@ def nex_script(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def script(session, value):
-    '''
+    """
     Convert to data type script
 
     Converts value to data type script returning script result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    script: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 

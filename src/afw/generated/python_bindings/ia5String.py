@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_ia5String(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of ia5String values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_ia5String(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_ia5String(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,7 +64,7 @@ def bag_size_ia5String(session, value):
     return response['actions'][0]['result']
 
 def eq_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if ia5String arg1 is equal to the value of arg2 converted to
@@ -74,15 +72,14 @@ def eq_ia5String(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -101,22 +98,21 @@ def eq_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for ia5String arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -135,21 +131,20 @@ def eqx_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for ia5String arg1 is greater than or equal to ia5String arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 (ia5String):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -168,21 +163,20 @@ def ge_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for ia5String arg1 is greater than ia5String arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 (ia5String):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -201,18 +195,17 @@ def gt_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ia5String(session, value):
-    '''
+    """
     Convert to data type ia5String
 
     Converts value to data type ia5String returning ia5String result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    ia5String: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -230,18 +223,17 @@ def ia5String(session, value):
     return response['actions'][0]['result']
 
 def is_ia5String(session, value):
-    '''
+    """
     Checks whether value is dataType ia5String
 
     Checks whether value is dataType ia5String and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -259,21 +251,20 @@ def is_ia5String(session, value):
     return response['actions'][0]['result']
 
 def le_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for ia5String arg1 is less than or equal to ia5String arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -292,21 +283,20 @@ def le_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for ia5String arg1 is less that ia5String arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 (ia5String):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -325,7 +315,7 @@ def lt_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if ia5String arg1 is not equal to the value of arg2 converted
@@ -333,15 +323,14 @@ def ne_ia5String(session, arg1, arg2):
     ('!==') instead if you want true to be returned if arg1 and arg2's data
     type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -360,22 +349,21 @@ def ne_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_ia5String(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for ia5String arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (ia5String):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -394,19 +382,18 @@ def nex_ia5String(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_string_ia5String(session, value):
-    '''
+    """
     Converts value to string
 
     Converts ia5String value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (ia5String): A ia5String value.
+    Args:
+        value (object): A ia5String value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 

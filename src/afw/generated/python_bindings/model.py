@@ -6,7 +6,7 @@ import requests
 import json
 
 def model_default_add_object_action(session, objectType, object, adaptorId=None, objectId=None, modelId=None, context=None):
-    '''
+    """
     Produce a default _AdaptiveAction_ object for an add object request to a model adaptor.
 
     This function returns a _AdaptiveAction_ object for the default action
@@ -16,33 +16,31 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
     side effects. This function can be called as part of a onAdd expression
     or for testing.
 
-    Parameters:
-
-        adaptorId (string): This is the adaptorId of a model adaptor.
-        Variable custom::adaptorId can be used to access this value in model
+    Args:
+        adaptorId (str): This is the adaptorId of a model adaptor. Variable
+        custom::adaptorId can be used to access this value in model
         expressions.
 
-        objectType (string): This is the adaptive object type of object being
+        objectType (str): This is the adaptive object type of object being
         added. Variable custom::objectType can be used to access this value
         in model expressions.
 
-        object (object): This is the object to add. Variable custom::object
-        can be used to access this value in model expressions.
+        object (dict): This is the object to add. Variable custom::object can
+        be used to access this value in model expressions.
 
-        objectId (string): This is the optional preferred objectId of object
-        to add. The adaptor may ignore this. Variable custom::objectId can be
+        objectId (str): This is the optional preferred objectId of object to
+        add. The adaptor may ignore this. Variable custom::objectId can be
         used to access this value in model expressions.
 
-        modelId (string): This specifics a modelId of model to use for
-        producing results. If not specified, the adaptor's current model will
-        be used.
+        modelId (str): This specifics a modelId of model to use for producing
+        results. If not specified, the adaptor's current model will be used.
 
-        context (object): This specifies additional context information
+        context (dict): This specifies additional context information
         available to model expressions.
 
     Returns:
-    object: The default action object.
-    '''
+        dict: The default action object.
+    """
 
     request = session.Request()
 
@@ -73,7 +71,7 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
     return response['actions'][0]['result']
 
 def model_default_delete_object_action(session, objectType, objectId, adaptorId=None, modelId=None, context=None):
-    '''
+    """
     Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor.
 
     This function returns a _AdaptiveAction_ object for the default action
@@ -83,29 +81,27 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
     may cause side effects. This function can be called as part of a onDelete
     expression or for testing.
 
-    Parameters:
-
-        adaptorId (string): This is the adaptorId of a model adaptor.
-        Variable custom::adaptorId can be used to access this value in model
+    Args:
+        adaptorId (str): This is the adaptorId of a model adaptor. Variable
+        custom::adaptorId can be used to access this value in model
         expressions.
 
-        objectType (string): This is the adaptive object type of object being
+        objectType (str): This is the adaptive object type of object being
         deleted. Variable custom::objectType can be used to access this value
         in model expressions.
 
-        objectId (string): This is the objectId of object to delete. Variable
+        objectId (str): This is the objectId of object to delete. Variable
         custom::object can be used to access this value in model expressions.
 
-        modelId (string): This specifics a modelId of model to use for
-        producing results. If not specified, the adaptor's current model will
-        be used.
+        modelId (str): This specifics a modelId of model to use for producing
+        results. If not specified, the adaptor's current model will be used.
 
-        context (object): This specifies additional context information
+        context (dict): This specifies additional context information
         available to model expressions.
 
     Returns:
-    object: The default action object.
-    '''
+        dict: The default action object.
+    """
 
     request = session.Request()
 
@@ -133,7 +129,7 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
     return response['actions'][0]['result']
 
 def model_default_modify_object_action(session, objectType, objectId, entries, adaptorId=None, modelId=None, context=None):
-    '''
+    """
     Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.
 
     This function returns a _AdaptiveAction_ object for the default action
@@ -143,21 +139,20 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
     may cause side effects. This function can be called as part of a onModify
     expression or for testing.
 
-    Parameters:
-
-        adaptorId (string): This is the adaptorId of a model adaptor.
-        Variable custom::adaptorId can be used to access this value in model
+    Args:
+        adaptorId (str): This is the adaptorId of a model adaptor. Variable
+        custom::adaptorId can be used to access this value in model
         expressions.
 
-        objectType (string): This is the adaptive object type of object being
+        objectType (str): This is the adaptive object type of object being
         modified. Variable custom::objectType can be used to access this
         value in model expressions.
 
-        objectId (string): This is the objectId of object to modify. Variable
+        objectId (str): This is the objectId of object to modify. Variable
         custom::objectId can be used to access this value in model
         expressions.
 
-        entries (array): This is an array of modifications. Variable
+        entries (list): This is an array of modifications. Variable
         custom::actions can be used to access this value in model
         expressions. Entries are of the form:
         
@@ -184,16 +179,15 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
         value
         ]
 
-        modelId (string): This specifics a modelId of model to use for
-        producing results. If not specified, the adaptor's current model will
-        be used.
+        modelId (str): This specifics a modelId of model to use for producing
+        results. If not specified, the adaptor's current model will be used.
 
-        context (object): This specifies additional context information
+        context (dict): This specifies additional context information
         available to model expressions.
 
     Returns:
-    object: The default action object.
-    '''
+        dict: The default action object.
+    """
 
     request = session.Request()
 
@@ -222,7 +216,7 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
     return response['actions'][0]['result']
 
 def model_default_replace_object_action(session, objectType, objectId, object, adaptorId=None, modelId=None, context=None):
-    '''
+    """
     Produce a default _AdaptiveAction_ object for an replace object request to a model adaptor.
 
     This function returns a _AdaptiveAction_ object for the default action
@@ -232,33 +226,31 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
     may cause side effects. This function can be called as part of a
     onReplace expression or for testing.
 
-    Parameters:
-
-        adaptorId (string): This is the adaptorId of a model adaptor.
-        Variable custom::adaptorId can be used to access this value in model
+    Args:
+        adaptorId (str): This is the adaptorId of a model adaptor. Variable
+        custom::adaptorId can be used to access this value in model
         expressions.
 
-        objectType (string): This is the adaptive object type of object being
+        objectType (str): This is the adaptive object type of object being
         replaced. Variable custom::objectType can be used to access this
         value in model expressions.
 
-        objectId (string): The objectId of object to replace. Variable
+        objectId (str): The objectId of object to replace. Variable
         custom::objectId can be used to access this value in model
         expressions.
 
-        object (object): This is the object to replace. Variable
-        custom::object can be used to access this value in model expressions.
+        object (dict): This is the object to replace. Variable custom::object
+        can be used to access this value in model expressions.
 
-        modelId (string): This specifics a modelId of model to use for
-        producing results. If not specified, the adaptor's current model will
-        be used.
+        modelId (str): This specifics a modelId of model to use for producing
+        results. If not specified, the adaptor's current model will be used.
 
-        context (object): This specifies additional context information
+        context (dict): This specifies additional context information
         available to model expressions.
 
     Returns:
-    object: The default action object.
-    '''
+        dict: The default action object.
+    """
 
     request = session.Request()
 
@@ -287,20 +279,20 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
     return response['actions'][0]['result']
 
 def model_mapBackObject_signature(session, mappedObject):
-    '''
+    """
     Signature used for current:mapBackObject()
 
     This is the function signature for current:mapBackObject used by
     onGetObjects and onRetrieveObjects. Calling this directly will throw a
     'Do not call directly' error.
 
-    Parameters:
-
-        mappedObject (object): This is the object to map back.
+    Args:
+        mappedObject (dict): This is the object to map back.
 
     Returns:
-    object: This is the mappedObject mapped back from mapped adaptor object.
-    '''
+        dict: This is the mappedObject mapped back from mapped adaptor
+        object.
+    """
 
     request = session.Request()
 
@@ -318,20 +310,19 @@ def model_mapBackObject_signature(session, mappedObject):
     return response['actions'][0]['result']
 
 def model_mapObject_signature(session, object):
-    '''
+    """
     Signature used for current:mapObject()
 
     This is the function signature for current:mapObject used by onAddObject.
     onDeleteObject, onModifyObject, and onReplaceObject. Calling this
     directly will throw a 'Do not call directly' error.
 
-    Parameters:
-
-        object (object): This is the object to map.
+    Args:
+        object (dict): This is the object to map.
 
     Returns:
-    object: This is the object mapped to mappedAdaptor object.
-    '''
+        dict: This is the object mapped to mappedAdaptor object.
+    """
 
     request = session.Request()
 
@@ -349,24 +340,25 @@ def model_mapObject_signature(session, object):
     return response['actions'][0]['result']
 
 def model_returnObject_signature(session, object, userData=None):
-    '''
+    """
     Signature used for current:returnObject()
 
     This is the function signature for current:returnObject used by
     onGetObjects and onRetrieveObjects. Calling this directly will throw a
     'Do not call directly' error.
 
-    Parameters:
+    Args:
+        object (dict): This is the object to return.
 
-        object (object): This is the object to return.
-
-        userData (boolean): If this is present and true, the object will be
+        userData (bool): If this is present and true, the object will be
         mapped its mapped adaptor's object type to the model adaptor's object
         type.
 
     Returns:
-    boolean: This will return true if no more objects can be returned for any reason including a limit exceeded, connection closed, or server stopping.
-    '''
+        bool: This will return true if no more objects can be returned for
+        any reason including a limit exceeded, connection closed, or server
+        stopping.
+    """
 
     request = session.Request()
 

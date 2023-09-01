@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_function(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of function values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_function(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_function(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,7 +64,7 @@ def bag_size_function(session, value):
     return response['actions'][0]['result']
 
 def eq_function(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if function arg1 is equal to the value of arg2 converted to the
@@ -74,15 +72,14 @@ def eq_function(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -101,22 +98,21 @@ def eq_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_function(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for function arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -135,18 +131,17 @@ def eqx_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def function(session, value):
-    '''
+    """
     
 
     Converts value to data type function returning function result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    function: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -164,21 +159,20 @@ def function(session, value):
     return response['actions'][0]['result']
 
 def ge_function(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for function arg1 is greater than or equal to function arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 (function):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -197,21 +191,20 @@ def ge_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_function(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for function arg1 is greater than function arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 (function):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -230,18 +223,17 @@ def gt_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_function(session, value):
-    '''
+    """
     Checks whether value is dataType function
 
     Checks whether value is dataType function and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -259,21 +251,20 @@ def is_function(session, value):
     return response['actions'][0]['result']
 
 def le_function(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for function arg1 is less than or equal to function arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -292,21 +283,20 @@ def le_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_function(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for function arg1 is less that function arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 (function):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -325,7 +315,7 @@ def lt_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_function(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if function arg1 is not equal to the value of arg2 converted to
@@ -333,15 +323,14 @@ def ne_function(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -360,22 +349,21 @@ def ne_function(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_function(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for function arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (function):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 

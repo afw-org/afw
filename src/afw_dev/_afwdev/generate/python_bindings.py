@@ -13,6 +13,26 @@ def sort_category_functionLabel_cb(obj):
         category = ''
     return category + '~' + obj.get('functionLabel')
 
+# returns the Python dataType from the Adaptive dataType
+def get_data_type(dataType):
+
+    if dataType == 'boolean':
+        return 'bool'
+    elif dataType == 'integer':
+        return 'int'
+    elif dataType == 'double':
+        return 'float'
+    elif dataType == 'string':
+        return 'str'
+    elif dataType == 'object':
+        return 'dict'
+    elif dataType == 'array':
+        return 'list'
+    elif dataType == 'null':
+        return 'None'
+    else:
+        return 'object'
+
 def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path, options):
 
     # Make sure generated/ directory structure exists
@@ -82,23 +102,24 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
                     fd.write('):\n')
 
                     # write out docstrings comments
-                    fd.write("    '''\n")
+                    fd.write('    """\n')
                     fd.write('    ' + brief + '\n')
                     fd.write('\n')
                     #fd.write('    ' + description + '\n')
                     c.write_wrapped(fd, 78, '    ', description, '', '', True)
                     fd.write('\n')
-                    fd.write('    Parameters:\n')
+                    fd.write('    Args:')
 
                     for param in obj.get('parameters'):
                         fd.write('\n')
-                        paramDescription = param.get('name') + ' (' + param.get('dataType', '') + '): ' + param.get('description', '')
+                        paramDescription = param.get('name') + ' (' + get_data_type(param.get('dataType')) + '): ' + param.get('description', '')
                         c.write_wrapped(fd, 78, '        ', paramDescription, '', '', True)                        
 
                     fd.write('\n')
                     fd.write('    Returns:\n')
-                    fd.write('    ' + returns.get('dataType', 'None') + ': ' + returns.get('description', '') + '\n')
-                    fd.write("    '''\n")
+                    returnDescription = get_data_type(returns.get('dataType')) + ': ' + returns.get('description', '')
+                    c.write_wrapped(fd, 78, '        ', returnDescription, '', '', True)
+                    fd.write('    """\n')
 
                     fd.write('\n')
                     fd.write('    request = session.Request()\n')

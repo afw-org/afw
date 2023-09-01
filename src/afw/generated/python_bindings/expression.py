@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_expression(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of expression values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_expression(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_expression(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,18 +64,17 @@ def bag_size_expression(session, value):
     return response['actions'][0]['result']
 
 def compile_expression(session, source, listing=None):
-    '''
+    """
     Compile expression value
 
     Compile expression value and return either an unevaluated adaptive value
     or a string containing the compiler listing.
 
-    Parameters:
+    Args:
+        source (object): expression string to compile
 
-        source (expression): expression string to compile
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -85,8 +82,8 @@ def compile_expression(session, source, listing=None):
         spaces is used.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -107,7 +104,7 @@ def compile_expression(session, source, listing=None):
     return response['actions'][0]['result']
 
 def eq_expression(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if expression arg1 is equal to the value of arg2 converted to
@@ -115,15 +112,14 @@ def eq_expression(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -142,22 +138,21 @@ def eq_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_expression(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for expression arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -176,17 +171,16 @@ def eqx_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def evaluate_expression(session, source, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Evaluate expression value
 
     Compile and evaluate expression value.
 
-    Parameters:
+    Args:
+        source (object): expression string to compile and evaluate
 
-        source (expression): expression string to compile and evaluate
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -194,8 +188,8 @@ def evaluate_expression(session, source, additionalUntrustedQualifiedVariables=N
         production.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -216,18 +210,17 @@ def evaluate_expression(session, source, additionalUntrustedQualifiedVariables=N
     return response['actions'][0]['result']
 
 def expression(session, value):
-    '''
+    """
     Convert to data type expression
 
     Converts value to data type expression returning expression result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    expression: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -245,21 +238,20 @@ def expression(session, value):
     return response['actions'][0]['result']
 
 def ge_expression(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for expression arg1 is greater than or equal to expression arg2
     and return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 (expression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -278,21 +270,20 @@ def ge_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_expression(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for expression arg1 is greater than expression arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 (expression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -311,19 +302,18 @@ def gt_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_expression(session, value):
-    '''
+    """
     Checks whether value is dataType expression
 
     Checks whether value is dataType expression and return the boolean
     result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -341,21 +331,20 @@ def is_expression(session, value):
     return response['actions'][0]['result']
 
 def le_expression(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for expression arg1 is less than or equal to expression arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -374,21 +363,20 @@ def le_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_expression(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for expression arg1 is less that expression arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 (expression):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -407,7 +395,7 @@ def lt_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_expression(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if expression arg1 is not equal to the value of arg2 converted
@@ -415,15 +403,14 @@ def ne_expression(session, arg1, arg2):
     ('!==') instead if you want true to be returned if arg1 and arg2's data
     type don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -442,22 +429,21 @@ def ne_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_expression(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for expression arg1 is not equal to the value or data type
     of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
     want arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (expression):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -476,19 +462,18 @@ def nex_expression(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_string_expression(session, value):
-    '''
+    """
     Converts value to string
 
     Converts expression value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (expression): A expression value.
+    Args:
+        value (object): A expression value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 

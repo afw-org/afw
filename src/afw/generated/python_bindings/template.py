@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_size_template(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -35,18 +34,17 @@ def bag_size_template(session, value):
     return response['actions'][0]['result']
 
 def bag_template(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of template values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -66,18 +64,17 @@ def bag_template(session, values=None):
     return response['actions'][0]['result']
 
 def compile_template(session, source, listing=None):
-    '''
+    """
     Compile template value
 
     Compile template value and return either an unevaluated adaptive value or
     a string containing the compiler listing.
 
-    Parameters:
+    Args:
+        source (object): template string to compile
 
-        source (template): template string to compile
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -85,8 +82,8 @@ def compile_template(session, source, listing=None):
         spaces is used.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -107,7 +104,7 @@ def compile_template(session, source, listing=None):
     return response['actions'][0]['result']
 
 def eq_template(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if template arg1 is equal to the value of arg2 converted to the
@@ -115,15 +112,14 @@ def eq_template(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -142,22 +138,21 @@ def eq_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_template(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for template arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -176,17 +171,16 @@ def eqx_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def evaluate_template(session, source, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Evaluate template value
 
     Compile and evaluate template value.
 
-    Parameters:
+    Args:
+        source (object): template string to compile and evaluate
 
-        source (template): template string to compile and evaluate
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -194,8 +188,8 @@ def evaluate_template(session, source, additionalUntrustedQualifiedVariables=Non
         production.
 
     Returns:
-    unevaluated: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -216,21 +210,20 @@ def evaluate_template(session, source, additionalUntrustedQualifiedVariables=Non
     return response['actions'][0]['result']
 
 def ge_template(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for template arg1 is greater than or equal to template arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 (template):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -249,21 +242,20 @@ def ge_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_template(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for template arg1 is greater than template arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 (template):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -282,18 +274,17 @@ def gt_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_template(session, value):
-    '''
+    """
     Checks whether value is dataType template
 
     Checks whether value is dataType template and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -311,21 +302,20 @@ def is_template(session, value):
     return response['actions'][0]['result']
 
 def le_template(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for template arg1 is less than or equal to template arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -344,21 +334,20 @@ def le_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_template(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for template arg1 is less that template arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 (template):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -377,7 +366,7 @@ def lt_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_template(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if template arg1 is not equal to the value of arg2 converted to
@@ -385,15 +374,14 @@ def ne_template(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -412,22 +400,21 @@ def ne_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_template(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for template arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (template):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -446,18 +433,17 @@ def nex_template(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def template(session, value):
-    '''
+    """
     Convert to data type template
 
     Converts value to data type template returning template result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    template: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -475,19 +461,18 @@ def template(session, value):
     return response['actions'][0]['result']
 
 def to_string_template(session, value):
-    '''
+    """
     Converts value to string
 
     Converts template value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (template): A template value.
+    Args:
+        value (object): A template value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 

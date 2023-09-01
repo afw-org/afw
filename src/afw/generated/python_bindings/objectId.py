@@ -6,18 +6,17 @@ import requests
 import json
 
 def bag_objectId(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of objectId values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def bag_objectId(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_objectId(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -66,7 +64,7 @@ def bag_size_objectId(session, value):
     return response['actions'][0]['result']
 
 def eq_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if objectId arg1 is equal to the value of arg2 converted to the
@@ -74,15 +72,14 @@ def eq_objectId(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -101,22 +98,21 @@ def eq_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for objectId arg1 is equal to the value and data type of
     arg2 then return the boolean result. Use 'eq' ('==') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -135,21 +131,20 @@ def eqx_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for objectId arg1 is greater than or equal to objectId arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 (objectId):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -168,21 +163,20 @@ def ge_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for objectId arg1 is greater than objectId arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 (objectId):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -201,18 +195,17 @@ def gt_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def is_objectId(session, value):
-    '''
+    """
     Checks whether value is dataType objectId
 
     Checks whether value is dataType objectId and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -230,21 +223,20 @@ def is_objectId(session, value):
     return response['actions'][0]['result']
 
 def le_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for objectId arg1 is less than or equal to objectId arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -263,21 +255,20 @@ def le_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for objectId arg1 is less that objectId arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 (objectId):
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -296,7 +287,7 @@ def lt_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if objectId arg1 is not equal to the value of arg2 converted to
@@ -304,15 +295,14 @@ def ne_objectId(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -331,22 +321,21 @@ def ne_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_objectId(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for objectId arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 (objectId):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -365,18 +354,17 @@ def nex_objectId(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def objectId(session, value):
-    '''
+    """
     Convert to data type objectId
 
     Converts value to data type objectId returning objectId result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    objectId: Converted value
-    '''
+        object: Converted value
+    """
 
     request = session.Request()
 
@@ -394,19 +382,18 @@ def objectId(session, value):
     return response['actions'][0]['result']
 
 def to_string_objectId(session, value):
-    '''
+    """
     Converts value to string
 
     Converts objectId value to string. For array values, the to_string()
     value for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (objectId): A objectId value.
+    Args:
+        value (object): A objectId value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 

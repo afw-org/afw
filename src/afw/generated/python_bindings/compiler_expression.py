@@ -6,19 +6,18 @@ import requests
 import json
 
 def nullish_coalescing(session, values):
-    '''
+    """
     Nullish coalescing
 
     Returns the first value of values that is not null or undefined leaving
     the remaining values unevaluated.
 
-    Parameters:
-
-        values ():
+    Args:
+        values (object):
 
     Returns:
-    None: The first value of values that is not null or undefined.
-    '''
+        object: The first value of values that is not null or undefined.
+    """
 
     request = session.Request()
 
@@ -36,21 +35,21 @@ def nullish_coalescing(session, values):
     return response['actions'][0]['result']
 
 def optional_chaining(session, arg1, arg2):
-    '''
+    """
     Optional chaining
 
     Returns undefined if arg1 is null or undefined without evaluating arg2,
     but otherwise returns evaluated value of arg2.
 
-    Parameters:
+    Args:
+        arg1 (object):
 
-        arg1 ():
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    None: Undefined value if arg1 is null or undefined but otherwise evaluated arg2.
-    '''
+        object: Undefined value if arg1 is null or undefined but otherwise
+        evaluated arg2.
+    """
 
     request = session.Request()
 
@@ -69,19 +68,18 @@ def optional_chaining(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def void_operator(session, value):
-    '''
+    """
     Support for the void operator
 
     This is the support function for the void operator which evaluates value
     and returns undefined.
 
-    Parameters:
-
-        value (): This is the value to evaluate.
+    Args:
+        value (object): This is the value to evaluate.
 
     Returns:
-    None: This always returns undefined.
-    '''
+        object: This always returns undefined.
+    """
 
     request = session.Request()
 

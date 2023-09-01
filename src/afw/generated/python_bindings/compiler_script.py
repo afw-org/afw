@@ -6,7 +6,7 @@ import requests
 import json
 
 def assign(session, name, value):
-    '''
+    """
     Assign a value to a defined variable
 
     Assign a value to the innermost structured block definition of a
@@ -14,15 +14,14 @@ def assign(session, name, value):
     innermost structured block. An error is thrown if not called from an
     array of values (statements) in a structured function.
 
-    Parameters:
+    Args:
+        name (str): Variable name
 
-        name (string): Variable name
-
-        value (): This is the value to assign to the variable.
+        value (object): This is the value to assign to the variable.
 
     Returns:
-    None: The value assigned.
-    '''
+        object: The value assigned.
+    """
 
     request = session.Request()
 
@@ -41,21 +40,21 @@ def assign(session, name, value):
     return response['actions'][0]['result']
 
 def break_(session, value=None):
-    '''
+    """
     Break out of a block
 
     This is a special function that can be called to break out of the body of
     a loop. If called outside of a loop body, an error is thrown.
 
-    Parameters:
-
-        value (): The value to evaluate that the enclosing loop will return.
-        If not specified, the last evaluated value or a null value will be
-        returned.
+    Args:
+        value (object): The value to evaluate that the enclosing loop will
+        return. If not specified, the last evaluated value or a null value
+        will be returned.
 
     Returns:
-    None: This function returns from the body of a loop with the last evaluated value.
-    '''
+        object: This function returns from the body of a loop with the last
+        evaluated value.
+    """
 
     request = session.Request()
 
@@ -75,7 +74,7 @@ def break_(session, value=None):
     return response['actions'][0]['result']
 
 def const(session, name, value, type=None):
-    '''
+    """
     Define one or more constants in the current block
 
     Define one or more statically scoped constants local to the current
@@ -83,18 +82,17 @@ def const(session, name, value, type=None):
     the current block and inner blocks, but can not be assigned a different
     value.
 
-    Parameters:
-
-        name (array): The name of one or more constants to defined in the
+    Args:
+        name (list): The name of one or more constants to defined in the
         current block.
 
-        value (): This is the value of the constant(s).
+        value (object): This is the value of the constant(s).
 
-        type (object): The type of the constant(s).
+        type (dict): The type of the constant(s).
 
     Returns:
-    None: The value assigned.
-    '''
+        object: The value assigned.
+    """
 
     request = session.Request()
 
@@ -116,18 +114,17 @@ def const(session, name, value, type=None):
     return response['actions'][0]['result']
 
 def continue_(session):
-    '''
+    """
     Continue at beginning of a loop
 
     This is a special function that can be called in the body of a loop
     function to test the condition and, if true, start evaluating the body
     again. If called outside of a loop body, an error is thrown.
 
-    Parameters:
-
+    Args:
     Returns:
-    None: This function does not return.
-    '''
+        object: This function does not return.
+    """
 
     request = session.Request()
 
@@ -144,7 +141,7 @@ def continue_(session):
     return response['actions'][0]['result']
 
 def do_while(session, condition, body):
-    '''
+    """
     Evaluate an array of values (statements) at least once while a condition is true
 
     This creates a new structured block with a new nested variable scope.
@@ -153,19 +150,19 @@ def do_while(session, condition, body):
     while a condition is true. See the related functions 'break', 'continue',
     'return' and 'throw'.
 
-    Parameters:
-
-        condition (boolean): While this condition is true, the loop will
+    Args:
+        condition (bool): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (array): This is an array of values (statements) that are
+        body (list): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
         evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
-    None: The last value evaluated in body or null if the body is empty.
-    '''
+        object: The last value evaluated in body or null if the body is
+        empty.
+    """
 
     request = session.Request()
 
@@ -184,7 +181,7 @@ def do_while(session, condition, body):
     return response['actions'][0]['result']
 
 def for_(session, initial=None, condition=None, increment=None, body=None):
-    '''
+    """
     Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
     This creates a new structured block with a new nested variable scope.
@@ -192,27 +189,27 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
     This function loops while condition is true. If the condition is false
     for the first iteration, the loop returns a null value.
 
-    Parameters:
-
-        initial (array): This is an array of values (statements) to evaluate
+    Args:
+        initial (list): This is an array of values (statements) to evaluate
         before the loop starts. The values will normally be a call to the
         'assign' function.
 
-        condition (boolean): While this condition is true, the loop will
+        condition (bool): While this condition is true, the loop will
         continue.
 
-        increment (array): This is an array of values (statements) to
-        evaluate after each iteration of the loop. The values will normally
-        be a call to the 'assign' function.
+        increment (list): This is an array of values (statements) to evaluate
+        after each iteration of the loop. The values will normally be a call
+        to the 'assign' function.
 
-        body (array): This is an array of values (statements) that are
+        body (list): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
         evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
-    None: The last value evaluated in body or null if condition evaluates to false the first time.
-    '''
+        object: The last value evaluated in body or null if condition
+        evaluates to false the first time.
+    """
 
     request = session.Request()
 
@@ -241,7 +238,7 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
     return response['actions'][0]['result']
 
 def for_of(session, name, value, body=None):
-    '''
+    """
     Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
     This creates a new structured block with a new nested variable scope.
@@ -252,20 +249,20 @@ def for_of(session, name, value, body=None):
     first iteration, the loop returns a null value. This supports for-of
     statement.
 
-    Parameters:
+    Args:
+        name (list): Variable name(s).
 
-        name (array): Variable name(s).
+        value (object): Any array, object or single value.
 
-        value (): Any array, object or single value.
-
-        body (array): This is an array of values (statements) that are
+        body (list): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
         evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
-    None: The last value evaluated in body or null if condition evaluates to false the first time.
-    '''
+        object: The last value evaluated in body or null if condition
+        evaluates to false the first time.
+    """
 
     request = session.Request()
 
@@ -287,28 +284,27 @@ def for_of(session, name, value, body=None):
     return response['actions'][0]['result']
 
 def if_(session, condition, then, _else=None):
-    '''
+    """
     If/then/else function
 
     Evaluate one of two different values depending on test condition.
 
-    Parameters:
+    Args:
+        condition (bool): If true, parameter 'then' is evaluated for result.
+        If false, parameter 'else' is evaluated.
 
-        condition (boolean): If true, parameter 'then' is evaluated for
-        result. If false, parameter 'else' is evaluated.
+        then (list): This is the body of a structured block that is evaluated
+        if 'condition' is true. See the 'body' parameter of the 'block'
+        function for information on how the body is processed.
 
-        then (array): This is the body of a structured block that is
-        evaluated if 'condition' is true. See the 'body' parameter of the
-        'block' function for information on how the body is processed.
-
-        else (array): This is the body of a structured block that is
-        evaluated if 'condition' is false. If not specified and condition is
-        false, a null value is returned. See the 'body' parameter of the
-        'block' function for information on how the body is processed.
+        else (list): This is the body of a structured block that is evaluated
+        if 'condition' is false. If not specified and condition is false, a
+        null value is returned. See the 'body' parameter of the 'block'
+        function for information on how the body is processed.
 
     Returns:
-    None: The result of evaluating 'then' or 'else'
-    '''
+        object: The result of evaluating 'then' or 'else'
+    """
 
     request = session.Request()
 
@@ -330,7 +326,7 @@ def if_(session, condition, then, _else=None):
     return response['actions'][0]['result']
 
 def let(session, name, value=None, type=None):
-    '''
+    """
     Declare one or more variables in the current block
 
     Declare one or more statically scoped variable locations local to the
@@ -338,19 +334,18 @@ def let(session, name, value=None, type=None):
     variables can be accessed and assigned different values from the current
     block and inner blocks.
 
-    Parameters:
-
-        name (array): The name of one or more variables to declared in the
+    Args:
+        name (list): The name of one or more variables to declared in the
         current block.
 
-        value (): This is the initial value of the variable(s). If not
+        value (object): This is the initial value of the variable(s). If not
         specified, the variable will have a value of undefined.
 
-        type (object): The type of the variable(s).
+        type (dict): The type of the variable(s).
 
     Returns:
-    None: The value assigned.
-    '''
+        object: The value assigned.
+    """
 
     request = session.Request()
 
@@ -374,17 +369,16 @@ def let(session, name, value=None, type=None):
     return response['actions'][0]['result']
 
 def rethrow(session):
-    '''
+    """
     rethrow error from inside case block
 
     This is a special function that can be called to rethrow an error inside
     of a catch block. If called outside of a catch body, an error is thrown.
 
-    Parameters:
-
+    Args:
     Returns:
-    None: This function rethrows the current error in a catch block.
-    '''
+        object: This function rethrows the current error in a catch block.
+    """
 
     request = session.Request()
 
@@ -401,7 +395,7 @@ def rethrow(session):
     return response['actions'][0]['result']
 
 def return_(session, value=None):
-    '''
+    """
     Return from the outermost structured block
 
     Return from the outermost structured block. If the expression of a lambda
@@ -409,15 +403,15 @@ def return_(session, value=None):
     lambda function. If called outside of a structured block, an error is
     thrown.
 
-    Parameters:
-
-        value (): The value to evaluate that the outermost block will return.
-        If not specified, the last evaluated value or a null value will be
-        returned.
+    Args:
+        value (object): The value to evaluate that the outermost block will
+        return. If not specified, the last evaluated value or a null value
+        will be returned.
 
     Returns:
-    None: This function returns from the outermost structured block with the last evaluated value.
-    '''
+        object: This function returns from the outermost structured block
+        with the last evaluated value.
+    """
 
     request = session.Request()
 
@@ -437,25 +431,25 @@ def return_(session, value=None):
     return response['actions'][0]['result']
 
 def switch(session, predicate, value1, case_clause):
-    '''
+    """
     All combinations true
 
     Support for switch statement.
 
-    Parameters:
-
-        predicate (function): The predicate is passed two parameters and must
+    Args:
+        predicate (object): The predicate is passed two parameters and must
         return a boolean. The first parameter passed is the evaluated value
         of the value1 parameter and the second is the value2 from a case
         clause. This predicate will often be 'eqx' to use the exactly equal
         function but can also be any other function such as 'regexp_match' or
         a lambda function.
 
-        value1 (): The first parameter passed to the predicate.
+        value1 (object): The first parameter passed to the predicate.
 
-        case_clause (): This is one or more case clauses which are pairs of a
-        value2 parameter followed by a statement list or undefined parameter.
-        One value2 can be undefined to indicate the default case clause.
+        case_clause (object): This is one or more case clauses which are
+        pairs of a value2 parameter followed by a statement list or undefined
+        parameter. One value2 can be undefined to indicate the default case
+        clause.
         
         For the first value2 that is undefined or calling the predicate
         returns true, the statement list followed by any statement lists of
@@ -464,8 +458,8 @@ def switch(session, predicate, value1, case_clause):
         clause's value2.
 
     Returns:
-    None: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -485,7 +479,7 @@ def switch(session, predicate, value1, case_clause):
     return response['actions'][0]['result']
 
 def throw(session, message, additional=None):
-    '''
+    """
     Throws an error
 
     This throws an error that can be caught by a try/catch block. An error
@@ -493,17 +487,16 @@ def throw(session, message, additional=None):
     block. Its 'id' property will be set to 'throw'. The other properties set
     based on the parameters specified and where this function is called.
 
-    Parameters:
-
-        message (string): This is the message that will be included in the
+    Args:
+        message (str): This is the message that will be included in the
         _AdaptiveError_ error object available in the catch block.
 
-        additional (): Optional additional information that will be available
-        as a 'additional' property in the error object.
+        additional (object): Optional additional information that will be
+        available as a 'additional' property in the error object.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -524,7 +517,7 @@ def throw(session, message, additional=None):
     return response['actions'][0]['result']
 
 def try_(session, body, _finally=None, catch=None, error=None):
-    '''
+    """
     Evaluate an array of values (statements) as a try block with optional catch and finally statements
 
     This creates a new structured block with a new nested variable scope.
@@ -535,32 +528,31 @@ def try_(session, body, _finally=None, catch=None, error=None):
     are always evaluated after the body and catch statements. See the related
     functions 'break', 'continue', 'return' and 'throw'.
 
-    Parameters:
-
-        body (array): This is an array of values (statements) that are
+    Args:
+        body (list): This is an array of values (statements) that are
         evaluated. Each value in body is evaluated in order until the end of
         the list or until a 'break', 'continue', 'return' or 'throw' function
         is encountered.
 
-        finally (array): This is an array of values (statements) that are
+        finally (list): This is an array of values (statements) that are
         evaluated after the try and catch statements even if an error occurs.
         Each value in body is evaluated in order until the end of the list or
         until a 'break', 'continue', 'return' or 'throw' function is
         encountered.
 
-        catch (array): This is an array of values (statements) that are
+        catch (list): This is an array of values (statements) that are
         evaluated when an error is thrown while evaluating the body. Each
         value in body is evaluated in order until the end of the list or
         until a 'break', 'continue', 'return' or 'throw' function is
         encountered.
 
-        error (object): The error object thrown. This is only available in
-        the catch block. See adaptive object type _AdaptiveObjectType_ for
+        error (dict): The error object thrown. This is only available in the
+        catch block. See adaptive object type _AdaptiveObjectType_ for
         details.
 
     Returns:
-    None: The last value evaluated in body.
-    '''
+        object: The last value evaluated in body.
+    """
 
     request = session.Request()
 
@@ -587,7 +579,7 @@ def try_(session, body, _finally=None, catch=None, error=None):
     return response['actions'][0]['result']
 
 def while_(session, condition, body):
-    '''
+    """
     Evaluate an array of values (statements) while a condition is true
 
     This creates a new structured block with a new nested variable scope.
@@ -598,19 +590,19 @@ def while_(session, condition, body):
     null value. See the related functions 'break', 'continue', 'return' and
     'throw'.
 
-    Parameters:
-
-        condition (boolean): While this condition is true, the loop will
+    Args:
+        condition (bool): While this condition is true, the loop will
         continue. This is evaluated in the loop's scope.
 
-        body (array): This is an array of values (statements) that are
+        body (list): This is an array of values (statements) that are
         evaluated for each iteration of the loop. Each value in body is
         evaluated in order until the end of the list or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
-    None: The last value evaluated in body or null if condition evaluates to false the first time.
-    '''
+        object: The last value evaluated in body or null if condition
+        evaluates to false the first time.
+    """
 
     request = session.Request()
 

@@ -6,19 +6,18 @@ import requests
 import json
 
 def random_base64Binary(session, numberOfOctets):
-    '''
+    """
     Generate random octets (base64Binary)
 
     This returns a specified number of random octets as dataType
     base64Binary.
 
-    Parameters:
-
-        numberOfOctets (integer): The number of random octets to generate.
+    Args:
+        numberOfOctets (int): The number of random octets to generate.
 
     Returns:
-    base64Binary: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -36,18 +35,17 @@ def random_base64Binary(session, numberOfOctets):
     return response['actions'][0]['result']
 
 def random_digits(session, numberOfDigits):
-    '''
+    """
     Generate random decimal digits
 
     Generate a string containing a specified number of random decimal digits.
 
-    Parameters:
-
-        numberOfDigits (integer): The number (1-18) of digits to generate.
+    Args:
+        numberOfDigits (int): The number (1-18) of digits to generate.
 
     Returns:
-    string: 
-    '''
+        str:
+    """
 
     request = session.Request()
 
@@ -65,18 +63,17 @@ def random_digits(session, numberOfDigits):
     return response['actions'][0]['result']
 
 def random_hexBinary(session, numberOfOctets):
-    '''
+    """
     Generate random octets (hexBinary)
 
     This returns a specified number of random octets as dataType hexBinary.
 
-    Parameters:
-
-        numberOfOctets (integer): The number of random octets to generate.
+    Args:
+        numberOfOctets (int): The number of random octets to generate.
 
     Returns:
-    hexBinary: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -94,20 +91,19 @@ def random_hexBinary(session, numberOfOctets):
     return response['actions'][0]['result']
 
 def random_integer(session, min, max):
-    '''
+    """
     Generate a random integer between specified values
 
     This returns a random integer between specified values inclusive.
 
-    Parameters:
+    Args:
+        min (int): Minimum integer inclusive.
 
-        min (integer): Minimum integer inclusive.
-
-        max (integer): Maximum integer inclusive.
+        max (int): Maximum integer inclusive.
 
     Returns:
-    integer: A random integer.
-    '''
+        int: A random integer.
+    """
 
     request = session.Request()
 
@@ -126,20 +122,19 @@ def random_integer(session, min, max):
     return response['actions'][0]['result']
 
 def random_number(session, min=None, max=None):
-    '''
+    """
     Generate a random number between specified values
 
     This returns a random double between specified values
 
-    Parameters:
+    Args:
+        min (float): Minimum double inclusive. The default is 0.0.
 
-        min (double): Minimum double inclusive. The default is 0.0.
-
-        max (double): Maximum double exclusive. The default is 1.0.
+        max (float): Maximum double exclusive. The default is 1.0.
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 

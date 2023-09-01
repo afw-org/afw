@@ -6,36 +6,35 @@ import requests
 import json
 
 def authorization_check(session, requestId, resourceId, actionId, object=None, enforce=None):
-    '''
+    """
     Perform authorization check
 
     This function can be used to check if the current subject has a given
     access to the specified resource in the current environment.
 
-    Parameters:
-
-        requestId (string): This is a request id to associate with the
+    Args:
+        requestId (str): This is a request id to associate with the
         authorization request. Variable current::requestId can be used to
         access this value in authorization policies.
 
-        resourceId (string): This is the URI of the resource being checked.
+        resourceId (str): This is the URI of the resource being checked.
         Variable current::resourceId can be used to access this value in
         authorization policies.
 
-        actionId (string): This is the action that on the resource that's
-        being checked.  Variable current::actionId can be used to access this
+        actionId (str): This is the action that on the resource that's being
+        checked.  Variable current::actionId can be used to access this value
+        in authorization policies.
+
+        object (dict): Variable current::object can be used to access this
         value in authorization policies.
 
-        object (object): Variable current::object can be used to access this
-        value in authorization policies.
-
-        enforce (boolean): This specifies whether an error is thrown if
-        access is denied. If false or not specified, an error is not thrown
-        and the decision can be checked in the returned object.
+        enforce (bool): This specifies whether an error is thrown if access
+        is denied. If false or not specified, an error is not thrown and the
+        decision can be checked in the returned object.
 
     Returns:
-    object: The authorization result.
-    '''
+        dict: The authorization result.
+    """
 
     request = session.Request()
 

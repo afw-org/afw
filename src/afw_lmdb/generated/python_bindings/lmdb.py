@@ -6,18 +6,17 @@ import requests
 import json
 
 def reader_check(session, adaptorId=None):
-    '''
+    """
     
 
     Check for stale entries in the reader lock table.
 
-    Parameters:
-
-        adaptorId (string): Adaptor Id.
+    Args:
+        adaptorId (str): Adaptor Id.
 
     Returns:
-    integer: Number of stale slots that were cleared.
-    '''
+        int: Number of stale slots that were cleared.
+    """
 
     request = session.Request()
 
@@ -37,18 +36,17 @@ def reader_check(session, adaptorId=None):
     return response['actions'][0]['result']
 
 def reader_list(session, adaptorId=None):
-    '''
+    """
     
 
     Dump the entries in the reader lock table.
 
-    Parameters:
-
-        adaptorId (string): Adaptor Id.
+    Args:
+        adaptorId (str): Adaptor Id.
 
     Returns:
-    string: Reader entries.
-    '''
+        str: Reader entries.
+    """
 
     request = session.Request()
 

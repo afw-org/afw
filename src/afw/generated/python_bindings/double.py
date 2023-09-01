@@ -6,19 +6,18 @@ import requests
 import json
 
 def abs_double(session, value):
-    '''
+    """
     Absolute value
 
     Compute the absolute value of the double value and return the double
     result.
 
-    Parameters:
-
-        value (double):
+    Args:
+        value (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -36,18 +35,17 @@ def abs_double(session, value):
     return response['actions'][0]['result']
 
 def add_double(session, values):
-    '''
+    """
     Add
 
     Add 2 or more double values and return the double result.
 
-    Parameters:
-
-        values (double):
+    Args:
+        values (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -65,21 +63,20 @@ def add_double(session, values):
     return response['actions'][0]['result']
 
 def at_least_one_member_of_double(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in double array1 is in double
     array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -98,18 +95,17 @@ def at_least_one_member_of_double(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_double(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of double values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -129,18 +125,17 @@ def bag_double(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_double(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -158,19 +153,18 @@ def bag_size_double(session, value):
     return response['actions'][0]['result']
 
 def ceil_double(session, value):
-    '''
+    """
     Round upward to nearest integer
 
     Determine the smallest integer that is greater then or equal to the
     double value and return the double result.
 
-    Parameters:
-
-        value (double):
+    Args:
+        value (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -188,20 +182,19 @@ def ceil_double(session, value):
     return response['actions'][0]['result']
 
 def divide_double(session, dividend, divisor):
-    '''
+    """
     Divide numbers
 
     Divide double dividend by double divisor and return the double quotient.
 
-    Parameters:
+    Args:
+        dividend (float):
 
-        dividend (double):
-
-        divisor (double):
+        divisor (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -220,18 +213,17 @@ def divide_double(session, dividend, divisor):
     return response['actions'][0]['result']
 
 def double(session, value):
-    '''
+    """
     Convert to data type double
 
     Converts value to data type double returning double result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    double: Converted value
-    '''
+        float: Converted value
+    """
 
     request = session.Request()
 
@@ -249,7 +241,7 @@ def double(session, value):
     return response['actions'][0]['result']
 
 def eq_double(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if double arg1 is equal to the value of arg2 converted to the
@@ -257,15 +249,14 @@ def eq_double(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -284,22 +275,21 @@ def eq_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_double(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for double arg1 is equal to the value and data type of arg2
     then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -318,19 +308,18 @@ def eqx_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def floor_double(session, number):
-    '''
+    """
     Round downwards to nearest integer
 
     Determine the largest integer that is smaller then or equal to the double
     value and return the double result.
 
-    Parameters:
-
-        number (double):
+    Args:
+        number (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -348,21 +337,20 @@ def floor_double(session, number):
     return response['actions'][0]['result']
 
 def ge_double(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for double arg1 is greater than or equal to double arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 (double):
+        arg2 (float):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -381,21 +369,20 @@ def ge_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_double(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for double arg1 is greater than double arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 (double):
+        arg2 (float):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -414,21 +401,20 @@ def gt_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def intersection_double(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of double with the values that are common to both array
     of double array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -447,19 +433,18 @@ def intersection_double(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_NaN(session, number):
-    '''
+    """
     Is not a number(NaN)
 
     Checks if the argument 'number' is not a number(NaN) and returns the
     boolean result.
 
-    Parameters:
-
-        number (double): Number to check
+    Args:
+        number (float): Number to check
 
     Returns:
-    boolean: True if the argument 'number' is not a number.
-    '''
+        bool: True if the argument 'number' is not a number.
+    """
 
     request = session.Request()
 
@@ -477,18 +462,17 @@ def is_NaN(session, number):
     return response['actions'][0]['result']
 
 def is_double(session, value):
-    '''
+    """
     Checks whether value is dataType double
 
     Checks whether value is dataType double and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -506,18 +490,17 @@ def is_double(session, value):
     return response['actions'][0]['result']
 
 def is_finite(session, number):
-    '''
+    """
     Is a number finite
 
     Checks if the argument 'number' is finite and returns the boolean result.
 
-    Parameters:
-
-        number (double): Number to check
+    Args:
+        number (float): Number to check
 
     Returns:
-    boolean: True if the argument 'number' is finite.
-    '''
+        bool: True if the argument 'number' is finite.
+    """
 
     request = session.Request()
 
@@ -535,21 +518,20 @@ def is_finite(session, number):
     return response['actions'][0]['result']
 
 def is_in_double(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether double value is in array of double array and returns the
     boolean result.
 
-    Parameters:
+    Args:
+        value (float):
 
-        value (double):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -568,21 +550,20 @@ def is_in_double(session, value, array):
     return response['actions'][0]['result']
 
 def le_double(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for double arg1 is less than or equal to double arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -601,21 +582,20 @@ def le_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_double(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for double arg1 is less that double arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 (double):
+        arg2 (float):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -634,18 +614,17 @@ def lt_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def max_double(session, values):
-    '''
+    """
     Maximum value
 
     Return the double value that is greater than or equal to the others.
 
-    Parameters:
-
-        values (double):
+    Args:
+        values (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -663,18 +642,17 @@ def max_double(session, values):
     return response['actions'][0]['result']
 
 def min_double(session, values):
-    '''
+    """
     Minimum value
 
     Return the double value that is less than or equal to the others.
 
-    Parameters:
-
-        values (double):
+    Args:
+        values (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -692,18 +670,17 @@ def min_double(session, values):
     return response['actions'][0]['result']
 
 def multiply_double(session, values):
-    '''
+    """
     Multiply numbers
 
     Multiply 2 or more double values and return the double result.
 
-    Parameters:
-
-        values (double):
+    Args:
+        values (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -721,7 +698,7 @@ def multiply_double(session, values):
     return response['actions'][0]['result']
 
 def ne_double(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if double arg1 is not equal to the value of arg2 converted to
@@ -729,15 +706,14 @@ def ne_double(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -756,18 +732,17 @@ def ne_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def negative_double(session, value):
-    '''
+    """
     Negative of a number
 
     Return negative of double value.
 
-    Parameters:
-
-        value (double):
+    Args:
+        value (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -785,22 +760,21 @@ def negative_double(session, value):
     return response['actions'][0]['result']
 
 def nex_double(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for double arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -819,19 +793,18 @@ def nex_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_double(session, array):
-    '''
+    """
     Converts a one value array to a double value
 
     This converts an array of double values that contains one value to a
     single double value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -849,22 +822,21 @@ def one_and_only_double(session, array):
     return response['actions'][0]['result']
 
 def pow_double(session, base, exponent):
-    '''
+    """
     Base raised to a power
 
     This returns the value of base raised to a power. Multiple exponents can
     be specified to raise the previous exponent to the power of the latter
     exponent.
 
-    Parameters:
+    Args:
+        base (float): Base value.
 
-        base (double): Base value.
-
-        exponent (double): Exponent value.
+        exponent (float): Exponent value.
 
     Returns:
-    double: Base raised to the power.
-    '''
+        float: Base raised to the power.
+    """
 
     request = session.Request()
 
@@ -883,19 +855,18 @@ def pow_double(session, base, exponent):
     return response['actions'][0]['result']
 
 def round_double(session, number):
-    '''
+    """
     Round to nearest integer
 
     Determine the integer closest to double value and return the double
     result.
 
-    Parameters:
-
-        number (double):
+    Args:
+        number (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -913,21 +884,20 @@ def round_double(session, number):
     return response['actions'][0]['result']
 
 def set_equals_double(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if double array1 and double array2 are subsets of
     each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -946,21 +916,20 @@ def set_equals_double(session, array1, array2):
     return response['actions'][0]['result']
 
 def subset_double(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in double array1 are all in
     double array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -979,20 +948,19 @@ def subset_double(session, array1, array2):
     return response['actions'][0]['result']
 
 def subtract_double(session, arg1, arg2):
-    '''
+    """
     Subtract numbers
 
     Subtract double arg2 from double arg1 and return the double result.
 
-    Parameters:
+    Args:
+        arg1 (float):
 
-        arg1 (double):
-
-        arg2 (double):
+        arg2 (float):
 
     Returns:
-    double: 
-    '''
+        float:
+    """
 
     request = session.Request()
 
@@ -1011,18 +979,17 @@ def subtract_double(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def to_integer_double(session, value):
-    '''
+    """
     Converts to integer
 
     Truncate double value to a whole number and returns integer result.
 
-    Parameters:
-
-        value (double):
+    Args:
+        value (float):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -1040,19 +1007,18 @@ def to_integer_double(session, value):
     return response['actions'][0]['result']
 
 def to_string_double(session, value):
-    '''
+    """
     Converts value to string
 
     Converts double value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (double): A double value.
+    Args:
+        value (float): A double value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -1070,19 +1036,18 @@ def to_string_double(session, value):
     return response['actions'][0]['result']
 
 def union_double(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of double contains all of the unique values in two or
     more array of double values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 

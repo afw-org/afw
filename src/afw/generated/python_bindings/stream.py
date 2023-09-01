@@ -6,18 +6,17 @@ import requests
 import json
 
 def close(session, streamNumber):
-    '''
+    """
     Close a stream
 
     This will close an open stream
 
-    Parameters:
-
-        streamNumber (integer): The streamNumber for the stream to close.
+    Args:
+        streamNumber (int): The streamNumber for the stream to close.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -35,18 +34,17 @@ def close(session, streamNumber):
     return response['actions'][0]['result']
 
 def flush(session, streamNumber):
-    '''
+    """
     Flush stream buffer
 
     Write the content of the stream's buffers to its destination.
 
-    Parameters:
-
-        streamNumber (integer): The streamNumber for the stream to flush.
+    Args:
+        streamNumber (int): The streamNumber for the stream to flush.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -64,16 +62,15 @@ def flush(session, streamNumber):
     return response['actions'][0]['result']
 
 def get_stream_error(session):
-    '''
+    """
     Get stream error
 
     Get the most recent stream error.
 
-    Parameters:
-
+    Args:
     Returns:
-    string: The most recent stream error.
-    '''
+        str: The most recent stream error.
+    """
 
     request = session.Request()
 
@@ -90,20 +87,19 @@ def get_stream_error(session):
     return response['actions'][0]['result']
 
 def open_file(session, streamId, path, mode, autoFlush=None):
-    '''
+    """
     Open a file stream
 
     This will open a file stream.
 
-    Parameters:
-
-        streamId (string): This is the streamId that will be associated with
+    Args:
+        streamId (str): This is the streamId that will be associated with
         this open file stream.
 
-        path (string): This is the path to the file to open. The
-        rootDirectory of the path is defined in the application object.
+        path (str): This is the path to the file to open. The rootDirectory
+        of the path is defined in the application object.
 
-        mode (string): This is the access mode string. Values can be:
+        mode (str): This is the access mode string. Values can be:
         r - Open an existing file text file for read.
         w - Open a text file for writing. If the file does not exist, it
         will be created.
@@ -122,12 +118,13 @@ def open_file(session, streamId, path, mode, autoFlush=None):
         modes, 'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and
         'a+b'.
 
-        autoFlush (boolean): If specified and true, this will automatically
+        autoFlush (bool): If specified and true, this will automatically
         flush the stream's buffers after every write.
 
     Returns:
-    integer: The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information.
-    '''
+        int: The streamNumber for the streamId or -1 if there was an error.
+        Use get_stream_error() for error information.
+    """
 
     request = session.Request()
 
@@ -150,23 +147,23 @@ def open_file(session, streamId, path, mode, autoFlush=None):
     return response['actions'][0]['result']
 
 def open_response(session, streamId, autoFlush=None):
-    '''
+    """
     Open a response stream
 
     This will open a response text write-only stream that will be written to
     the http response.
 
-    Parameters:
-
-        streamId (string): This is the streamId that will be associated with
+    Args:
+        streamId (str): This is the streamId that will be associated with
         this open response stream.
 
-        autoFlush (boolean): If specified and true, this will automatically
+        autoFlush (bool): If specified and true, this will automatically
         flush the stream's buffers after every write.
 
     Returns:
-    integer: The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information.
-    '''
+        int: The streamNumber for the streamId or -1 if there was an error.
+        Use get_stream_error() for error information.
+    """
 
     request = session.Request()
 
@@ -187,27 +184,27 @@ def open_response(session, streamId, autoFlush=None):
     return response['actions'][0]['result']
 
 def open_uri(session, streamId, uri, mode, autoFlush=None):
-    '''
+    """
     Open a URI
 
     This will open a read or write stream for a URI.
 
-    Parameters:
-
-        streamId (string): This is the streamId that will be associated with
+    Args:
+        streamId (str): This is the streamId that will be associated with
         this open URI stream.
 
-        uri (string): This is the URI of the stream to open.
+        uri (str): This is the URI of the stream to open.
 
-        mode (string): This is the access mode string. Values can be 'r' for
+        mode (str): This is the access mode string. Values can be 'r' for
         read or 'w' for write.
 
-        autoFlush (boolean): If specified and true, this will automatically
+        autoFlush (bool): If specified and true, this will automatically
         flush the stream's buffers after every write.
 
     Returns:
-    integer: The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information.
-    '''
+        int: The streamNumber for the streamId or -1 if there was an error.
+        Use get_stream_error() for error information.
+    """
 
     request = session.Request()
 
@@ -230,19 +227,18 @@ def open_uri(session, streamId, uri, mode, autoFlush=None):
     return response['actions'][0]['result']
 
 def print(session, values):
-    '''
+    """
     Print value
 
     Evaluate and convert 0 or more values to its string value, then write
     them to stdout. An undefined value is represented by `<undefined>`.
 
-    Parameters:
-
-        values (): Values to print.
+    Args:
+        values (object): Values to print.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -260,20 +256,19 @@ def print(session, values):
     return response['actions'][0]['result']
 
 def println(session, value):
-    '''
+    """
     Print value followed by '\n'
 
     Evaluate and convert 0 or more values to their string value, then write
     them to stdout. A newline character ('\n') is written after the last
     value. An undefined value is represented by `<undefined>`.
 
-    Parameters:
-
-        value (): Values to print.
+    Args:
+        value (object): Values to print.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -291,21 +286,21 @@ def println(session, value):
     return response['actions'][0]['result']
 
 def read(session, streamNumber, n):
-    '''
+    """
     Read from a UTF-8 text stream
 
     Read a UTF-8 text stream up to a specified number of octets. The stream
     must contain valid UTF-8 or an error is thrown.
 
-    Parameters:
+    Args:
+        streamNumber (int): Stream number
 
-        streamNumber (integer): Stream number
-
-        n (): The maximum number of octets to read.
+        n (object): The maximum number of octets to read.
 
     Returns:
-    string: The UTF-8 string read. Check the size of this value to determine the actual number of octets read.
-    '''
+        str: The UTF-8 string read. Check the size of this value to determine
+        the actual number of octets read.
+    """
 
     request = session.Request()
 
@@ -324,21 +319,21 @@ def read(session, streamNumber, n):
     return response['actions'][0]['result']
 
 def read_to_base64Binary(session, streamNumber, n):
-    '''
+    """
     Read from a stream to base64Binary
 
     Read a stream up to a specified number of octets. The result will be the
     internal memory of a base64Binary value.
 
-    Parameters:
+    Args:
+        streamNumber (int): Stream number
 
-        streamNumber (integer): Stream number
-
-        n (): The maximum number of octets to read.
+        n (object): The maximum number of octets to read.
 
     Returns:
-    base64Binary: The base64Binary value read. Check the size of this value to determine the actual number of octets read.
-    '''
+        object: The base64Binary value read. Check the size of this value to
+        determine the actual number of octets read.
+    """
 
     request = session.Request()
 
@@ -357,21 +352,21 @@ def read_to_base64Binary(session, streamNumber, n):
     return response['actions'][0]['result']
 
 def read_to_hexBinary(session, streamNumber, n):
-    '''
+    """
     Read from a stream to hexBinary
 
     Read a stream up to a specified number of octets. The result will be the
     internal memory of a hexBinary value.
 
-    Parameters:
+    Args:
+        streamNumber (int): Stream number
 
-        streamNumber (integer): Stream number
-
-        n (): The maximum number of octets to read.
+        n (object): The maximum number of octets to read.
 
     Returns:
-    hexBinary: The hexBinary value read. Check the size of this value to determine the actual number of octets read.
-    '''
+        object: The hexBinary value read. Check the size of this value to
+        determine the actual number of octets read.
+    """
 
     request = session.Request()
 
@@ -390,19 +385,18 @@ def read_to_hexBinary(session, streamNumber, n):
     return response['actions'][0]['result']
 
 def readln(session, streamNumber):
-    '''
+    """
     Read from a UTF-8 text stream line
 
     Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an
     error is thrown.
 
-    Parameters:
-
-        streamNumber (integer): Stream number
+    Args:
+        streamNumber (int): Stream number
 
     Returns:
-    string: The UTF-8 string read.
-    '''
+        str: The UTF-8 string read.
+    """
 
     request = session.Request()
 
@@ -420,20 +414,20 @@ def readln(session, streamNumber):
     return response['actions'][0]['result']
 
 def stream(session, streamId):
-    '''
+    """
     Get streamNumber for a streamId
 
     This will return the streamNumber for a streamId. This function useful to
     obtain the number of the automatically opened standard streams 'console',
     'stderr' and 'stdout' as well and any other open stream.
 
-    Parameters:
-
-        streamId (string): The id of a stream.
+    Args:
+        streamId (str): The id of a stream.
 
     Returns:
-    integer: The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information.
-    '''
+        int: The streamNumber for the streamId or -1 if there was an error.
+        Use get_stream_error() for error information.
+    """
 
     request = session.Request()
 
@@ -451,22 +445,21 @@ def stream(session, streamId):
     return response['actions'][0]['result']
 
 def write(session, streamNumber, value):
-    '''
+    """
     Write values to stream as sting
 
     Evaluate and convert 0 or more values to its string value, then write
     them to stream. An value with an undefined value is represented by
     `<undefined>`.
 
-    Parameters:
+    Args:
+        streamNumber (int): The streamNumber for the stream to write.
 
-        streamNumber (integer): The streamNumber for the stream to write.
-
-        value (any): Values to write as their string value.
+        value (object): Values to write as their string value.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -485,21 +478,20 @@ def write(session, streamNumber, value):
     return response['actions'][0]['result']
 
 def write_internal(session, streamNumber, value):
-    '''
+    """
     Write internal
 
     Write a value's internal memory. This is especially useful for writing
     data type base64Binary and hexBinary.
 
-    Parameters:
+    Args:
+        streamNumber (int): The streamNumber for the stream to write.
 
-        streamNumber (integer): The streamNumber for the stream to write.
-
-        value (any): The internal memory of this value is written.
+        value (object): The internal memory of this value is written.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -518,22 +510,21 @@ def write_internal(session, streamNumber, value):
     return response['actions'][0]['result']
 
 def writeln(session, streamNumber, value):
-    '''
+    """
     Write values to stream as string followed by '\n'
 
     Evaluate and convert 0 or more values to its string value, then write
     them to stream. A newline character ('\n') is written after the last
     value. An undefined value is represented by `<undefined>`.
 
-    Parameters:
+    Args:
+        streamNumber (int): The streamNumber for the stream to write.
 
-        streamNumber (integer): The streamNumber for the stream to write.
-
-        value (): Values to write.
+        value (object): Values to write.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 

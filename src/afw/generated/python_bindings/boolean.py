@@ -6,21 +6,20 @@ import requests
 import json
 
 def at_least_one_member_of_boolean(session, array1, array2):
-    '''
+    """
     Checks for at least one value in common
 
     Returns boolean true if at least one value in boolean array1 is in
     boolean array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -39,18 +38,17 @@ def at_least_one_member_of_boolean(session, array1, array2):
     return response['actions'][0]['result']
 
 def bag_boolean(session, values=None):
-    '''
+    """
     Makes an array from values
 
     Takes any number of boolean values and returns an array of array.
 
-    Parameters:
-
-        values (array):
+    Args:
+        values (list):
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -70,18 +68,17 @@ def bag_boolean(session, values=None):
     return response['actions'][0]['result']
 
 def bag_size_boolean(session, value):
-    '''
+    """
     Returns the number of values in a bag
 
     This returns the integer number of values in array.
 
-    Parameters:
-
-        value (array):
+    Args:
+        value (list):
 
     Returns:
-    integer: 
-    '''
+        int:
+    """
 
     request = session.Request()
 
@@ -99,18 +96,17 @@ def bag_size_boolean(session, value):
     return response['actions'][0]['result']
 
 def boolean(session, value):
-    '''
+    """
     Convert to data type boolean
 
     Converts value to data type boolean returning boolean result.
 
-    Parameters:
-
-        value (): Value to convert
+    Args:
+        value (object): Value to convert
 
     Returns:
-    boolean: Converted value
-    '''
+        bool: Converted value
+    """
 
     request = session.Request()
 
@@ -128,7 +124,7 @@ def boolean(session, value):
     return response['actions'][0]['result']
 
 def eq_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for equal
 
     Determine if boolean arg1 is equal to the value of arg2 converted to the
@@ -136,15 +132,14 @@ def eq_boolean(session, arg1, arg2):
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -163,22 +158,21 @@ def eq_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def eqx_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for equal and type
 
     Determine if for boolean arg1 is equal to the value and data type of arg2
     then return the boolean result. Use 'eq' ('==') instead if you want arg2
     to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -197,21 +191,20 @@ def eqx_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ge_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for greater than or equal
 
     Checks for boolean arg1 is greater than or equal to boolean arg2 and
     return the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 (boolean):
+        arg2 (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -230,21 +223,20 @@ def ge_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def gt_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for greater than
 
     Checks for boolean arg1 is greater than boolean arg2 and return the
     boolean result.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 (boolean):
+        arg2 (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -263,21 +255,20 @@ def gt_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def intersection_boolean(session, array1, array2):
-    '''
+    """
     Returns intersection of two arrays
 
     Returns an array of boolean with the values that are common to both array
     of boolean array1 and array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 
@@ -296,18 +287,17 @@ def intersection_boolean(session, array1, array2):
     return response['actions'][0]['result']
 
 def is_boolean(session, value):
-    '''
+    """
     Checks whether value is dataType boolean
 
     Checks whether value is dataType boolean and return the boolean result.
 
-    Parameters:
-
-        value (): Value to check
+    Args:
+        value (object): Value to check
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -325,21 +315,20 @@ def is_boolean(session, value):
     return response['actions'][0]['result']
 
 def is_in_boolean(session, value, array):
-    '''
+    """
     Checks whether a value is in an array
 
     Checks whether boolean value is in array of boolean array and returns the
     boolean result.
 
-    Parameters:
+    Args:
+        value (bool):
 
-        value (boolean):
-
-        array (array):
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -358,21 +347,20 @@ def is_in_boolean(session, value, array):
     return response['actions'][0]['result']
 
 def le_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for less than or equal
 
     Checks for boolean arg1 is less than or equal to boolean arg2 and return
     the boolean result.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -391,21 +379,20 @@ def le_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def lt_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for less than
 
     Checks for boolean arg1 is less that boolean arg2 and return the boolean
     result.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 (boolean):
+        arg2 (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -424,7 +411,7 @@ def lt_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def ne_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for not equal
 
     Determine if boolean arg1 is not equal to the value of arg2 converted to
@@ -432,15 +419,14 @@ def ne_boolean(session, arg1, arg2):
     instead if you want true to be returned if arg1 and arg2's data type
     don't match.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -459,22 +445,21 @@ def ne_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def nex_boolean(session, arg1, arg2):
-    '''
+    """
     Checks for not equal value or type
 
     Determine if for boolean arg1 is not equal to the value or data type of
     arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
     arg2 to be converted to the data type of arg1 before comparison.
 
-    Parameters:
+    Args:
+        arg1 (bool):
 
-        arg1 (boolean):
-
-        arg2 ():
+        arg2 (object):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -493,19 +478,18 @@ def nex_boolean(session, arg1, arg2):
     return response['actions'][0]['result']
 
 def one_and_only_boolean(session, array):
-    '''
+    """
     Converts a one value array to a boolean value
 
     This converts an array of boolean values that contains one value to a
     single boolean value.
 
-    Parameters:
-
-        array (array):
+    Args:
+        array (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -523,21 +507,20 @@ def one_and_only_boolean(session, array):
     return response['actions'][0]['result']
 
 def set_equals_boolean(session, array1, array2):
-    '''
+    """
     Checks whether two arrays are subsets of each other
 
     Returns boolean true if boolean array1 and boolean array2 are subsets of
     each other and return the boolean result.
 
-    Parameters:
+    Args:
+        array1 (list):
 
-        array1 (array):
-
-        array2 (array):
+        array2 (list):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -556,21 +539,20 @@ def set_equals_boolean(session, array1, array2):
     return response['actions'][0]['result']
 
 def subset_boolean(session, array1, array2):
-    '''
+    """
     Determines if the first array is a subset of second array
 
     Returns boolean true if the unique values in boolean array1 are all in
     boolean array2.
 
-    Parameters:
+    Args:
+        array1 (list): The first array.
 
-        array1 (array): The first array.
-
-        array2 (array): The second array.
+        array2 (list): The second array.
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -589,19 +571,18 @@ def subset_boolean(session, array1, array2):
     return response['actions'][0]['result']
 
 def to_string_boolean(session, value):
-    '''
+    """
     Converts value to string
 
     Converts boolean value to string. For array values, the to_string() value
     for each entry is returned separated with commas.
 
-    Parameters:
-
-        value (boolean): A boolean value.
+    Args:
+        value (bool): A boolean value.
 
     Returns:
-    string: The string representation of the value.
-    '''
+        str: The string representation of the value.
+    """
 
     request = session.Request()
 
@@ -619,19 +600,18 @@ def to_string_boolean(session, value):
     return response['actions'][0]['result']
 
 def union_boolean(session, arrays):
-    '''
+    """
     Returns union of two or more string arrays
 
     Returns an array of boolean contains all of the unique values in two or
     more array of boolean values.
 
-    Parameters:
-
-        arrays (array): Two or more arrays.
+    Args:
+        arrays (list): Two or more arrays.
 
     Returns:
-    array: 
-    '''
+        list:
+    """
 
     request = session.Request()
 

@@ -6,20 +6,19 @@ import requests
 import json
 
 def and_(session, conditions):
-    '''
+    """
     Logical and
 
     Evaluates 0 or more boolean conditions returning boolean true if there
     are no conditions and boolean false if any condition evaluate to false.
     All conditions after the first false remain unevaluated.
 
-    Parameters:
-
-        conditions (boolean):
+    Args:
+        conditions (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -37,7 +36,7 @@ def and_(session, conditions):
     return response['actions'][0]['result']
 
 def n_of(session, n, conditions):
-    '''
+    """
     Check for n true values
 
     integer n specifies the number of boolean conditions that follow that
@@ -45,15 +44,14 @@ def n_of(session, n, conditions):
     returned. Once n conditions evaluate to true, true is returned and the
     remaining conditions remain unevaluated.
 
-    Parameters:
+    Args:
+        n (int):
 
-        n (integer):
-
-        conditions (boolean):
+        conditions (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -72,19 +70,18 @@ def n_of(session, n, conditions):
     return response['actions'][0]['result']
 
 def not_(session, condition):
-    '''
+    """
     Logical not
 
     Evaluates boolean condition returning boolean true if condition evaluates
     to false and false if condition evaluates to true.
 
-    Parameters:
-
-        condition (boolean):
+    Args:
+        condition (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 
@@ -102,20 +99,19 @@ def not_(session, condition):
     return response['actions'][0]['result']
 
 def or_(session, conditions):
-    '''
+    """
     Logical or
 
     Evaluates 0 or more boolean conditions returning boolean false if there
     are no conditions and boolean true if any condition evaluate to true. All
     conditions after the first true remain unevaluated.
 
-    Parameters:
-
-        conditions (boolean):
+    Args:
+        conditions (bool):
 
     Returns:
-    boolean: 
-    '''
+        bool:
+    """
 
     request = session.Request()
 

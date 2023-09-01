@@ -6,22 +6,21 @@ import requests
 import json
 
 def assert_(session, assertion, reason=None):
-    '''
+    """
     Assert a value
 
     Assert that a value is true. If not, an assertion_failed error is thrown.
 
-    Parameters:
-
-        assertion (boolean): This is the assertion to make. If not true, an
+    Args:
+        assertion (bool): This is the assertion to make. If not true, an
         assertion_failed error is thrown.
 
-        reason (string): This is an optional reason to include in the
+        reason (str): This is an optional reason to include in the
         assertion_failed message.
 
     Returns:
-    void: 
-    '''
+        object:
+    """
 
     request = session.Request()
 
@@ -42,19 +41,18 @@ def assert_(session, assertion, reason=None):
     return response['actions'][0]['result']
 
 def compile_json(session, json, listing=None):
-    '''
+    """
     Compile JSON
 
     Compile a string containing adaptive JSON syntax and return either an
     unevaluated JSON adaptive value or a string containing the compiler
     listing.
 
-    Parameters:
+    Args:
+        json (str): JSON string to compile.
 
-        json (string): JSON string to compile.
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated JSON value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated JSON value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -62,8 +60,9 @@ def compile_json(session, json, listing=None):
         spaces is used.
 
     Returns:
-    None: An unevaluated JSON value ready for use by function evaluate() or a string containing the compiler listing.
-    '''
+        object: An unevaluated JSON value ready for use by function
+        evaluate() or a string containing the compiler listing.
+    """
 
     request = session.Request()
 
@@ -84,18 +83,17 @@ def compile_json(session, json, listing=None):
     return response['actions'][0]['result']
 
 def compile_relaxed_json(session, json, listing=None):
-    '''
+    """
     Compile relaxed JSON
 
     Compile an adaptive relaxed JSON syntax string and return an adaptive
     value.
 
-    Parameters:
+    Args:
+        json (str): Adaptive relaxed JSON syntax string to compile.
 
-        json (string): Adaptive relaxed JSON syntax string to compile.
-
-        listing (): If specified, a compiler listing is produced instead of
-        an unevaluated relaxed JSON value.
+        listing (object): If specified, a compiler listing is produced
+        instead of an unevaluated relaxed JSON value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to
@@ -103,8 +101,9 @@ def compile_relaxed_json(session, json, listing=None):
         spaces is used.
 
     Returns:
-    None: An unevaluated relaxed JSON value ready for use by function evaluate() or a string containing the compiler listing.
-    '''
+        object: An unevaluated relaxed JSON value ready for use by function
+        evaluate() or a string containing the compiler listing.
+    """
 
     request = session.Request()
 
@@ -125,25 +124,24 @@ def compile_relaxed_json(session, json, listing=None):
     return response['actions'][0]['result']
 
 def convert_syntax_hybrid_to_expression(session, hybrid, whitespace=None):
-    '''
+    """
     Convert a hybrid to a expression.
 
     Convert a string containing adaptive hybrid syntax, which can be an
     adaptive template or adaptive expression, to adaptive expression syntax.
 
-    Parameters:
+    Args:
+        hybrid (str): The hybrid to convert.
 
-        hybrid (string): The hybrid to convert.
-
-        whitespace (): Add whitespace for readability if present and not 0.
-        This parameter can be an integer between 0 and 10 or a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        whitespace (object): Add whitespace for readability if present and
+        not 0. This parameter can be an integer between 0 and 10 or a string
+        that is used for indentation. If 0 is specified, no whitespace is
+        added to the resulting string. If 1 through 10 is specified, that
+        number of spaces is used.
 
     Returns:
-    expression: The converted value in adaptive expression syntax.
-    '''
+        object: The converted value in adaptive expression syntax.
+    """
 
     request = session.Request()
 
@@ -164,24 +162,23 @@ def convert_syntax_hybrid_to_expression(session, hybrid, whitespace=None):
     return response['actions'][0]['result']
 
 def decompile(session, value, whitespace=None):
-    '''
+    """
     Decompile value
 
     Decompile an adaptive value to string.
 
-    Parameters:
+    Args:
+        value (object): Value to decompile.
 
-        value (): Value to decompile.
-
-        whitespace (): Add whitespace for readability if present and not 0.
-        This parameter can be an integer between 0 and 10 or a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        whitespace (object): Add whitespace for readability if present and
+        not 0. This parameter can be an integer between 0 and 10 or a string
+        that is used for indentation. If 0 is specified, no whitespace is
+        added to the resulting string. If 1 through 10 is specified, that
+        number of spaces is used.
 
     Returns:
-    string: Decompiled value.
-    '''
+        str: Decompiled value.
+    """
 
     request = session.Request()
 
@@ -202,17 +199,16 @@ def decompile(session, value, whitespace=None):
     return response['actions'][0]['result']
 
 def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Evaluate value
 
     Evaluate an adaptive value.
 
-    Parameters:
+    Args:
+        value (object):
 
-        value ():
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -220,8 +216,8 @@ def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
         production.
 
     Returns:
-    None: Evaluated adaptive value.
-    '''
+        object: Evaluated adaptive value.
+    """
 
     request = session.Request()
 
@@ -242,20 +238,19 @@ def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
     return response['actions'][0]['result']
 
 def evaluate_with_retry(session, value, limit):
-    '''
+    """
     Evaluate value with retry
 
     Evaluate a value and retry up to a limit if an exception occurs.
 
-    Parameters:
+    Args:
+        value (object): Value to evaluated
 
-        value (): Value to evaluated
-
-        limit (integer): Maximum number to retry if an exception occurs.
+        limit (int): Maximum number to retry if an exception occurs.
 
     Returns:
-    None: Evaluated value.
-    '''
+        object: Evaluated value.
+    """
 
     request = session.Request()
 
@@ -274,25 +269,25 @@ def evaluate_with_retry(session, value, limit):
     return response['actions'][0]['result']
 
 def qualifier(session, qualifier, forTesting=None):
-    '''
+    """
     Access variables of a qualifier as an object
 
     This function allows the active variables for a qualifier to be accessed
     as the properties of an object.
 
-    Parameters:
-
-        qualifier (string): This is the qualifier whose variables are to be
+    Args:
+        qualifier (str): This is the qualifier whose variables are to be
         accessed as properties of the returned object.
 
-        forTesting (boolean): If specified and true, the object returned will
-        be suitable to pass as the additionalUntrustedQualifiedVariables
+        forTesting (bool): If specified and true, the object returned will be
+        suitable to pass as the additionalUntrustedQualifiedVariables
         parameter of evaluate*() functions. This is intended for testing
         purposes and should not be used in production.
 
     Returns:
-    object: Each property is the name of a variable with the value influenced by the forTesting property.
-    '''
+        dict: Each property is the name of a variable with the value
+        influenced by the forTesting property.
+    """
 
     request = session.Request()
 
@@ -313,23 +308,25 @@ def qualifier(session, qualifier, forTesting=None):
     return response['actions'][0]['result']
 
 def qualifiers(session, forTesting=None):
-    '''
+    """
     Access qualifiers as an object
 
     This function allows the active qualifiers to be accessed as properties
     of an object. The value of each of these properties is an object whose
     properties are the variables for the corresponding qualifier.
 
-    Parameters:
-
-        forTesting (boolean): If specified and true, the object returned will
-        be suitable to pass as the additionalUntrustedQualifiedVariables
+    Args:
+        forTesting (bool): If specified and true, the object returned will be
+        suitable to pass as the additionalUntrustedQualifiedVariables
         parameter of evaluate*() functions. This is intended for testing
         purposes and should not be used in production.
 
     Returns:
-    object: Each property is the name of a qualifier with a value that is an object whose properties are the variables of that qualifier. The value of the variable properties is influenced by the forTesting property.
-    '''
+        dict: Each property is the name of a qualifier with a value that is
+        an object whose properties are the variables of that qualifier. The
+        value of the variable properties is influenced by the forTesting
+        property.
+    """
 
     request = session.Request()
 
@@ -349,22 +346,21 @@ def qualifiers(session, forTesting=None):
     return response['actions'][0]['result']
 
 def safe_evaluate(session, value, error):
-    '''
+    """
     Safe evaluate
 
     Return the evaluated adaptive value. If an exception occurs, return
     evaluated error instead.
 
-    Parameters:
+    Args:
+        value (object): Value to evaluated
 
-        value (): Value to evaluated
-
-        error (): Value to evaluate and return if exception occurs. If an
-        error occurs evaluating this value, the exception will continue.
+        error (object): Value to evaluate and return if exception occurs. If
+        an error occurs evaluating this value, the exception will continue.
 
     Returns:
-    None: Evaluated adaptive value or error value.
-    '''
+        object: Evaluated adaptive value or error value.
+    """
 
     request = session.Request()
 
@@ -383,27 +379,26 @@ def safe_evaluate(session, value, error):
     return response['actions'][0]['result']
 
 def stringify(session, value, replacer=None, whitespace=None):
-    '''
+    """
     Evaluate and decompile a value
 
     Evaluate and decompile an adaptive value to string. For most values this
     has the effect of producing a string containing json.
 
-    Parameters:
+    Args:
+        value (object): Value to stringify.
 
-        value (): Value to stringify.
+        replacer (object): Optional replacer function.
 
-        replacer (): Optional replacer function.
-
-        whitespace (): Add whitespace for readability if present and not 0.
-        This parameter can be an integer between 0 and 10 or a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        whitespace (object): Add whitespace for readability if present and
+        not 0. This parameter can be an integer between 0 and 10 or a string
+        that is used for indentation. If 0 is specified, no whitespace is
+        added to the resulting string. If 1 through 10 is specified, that
+        number of spaces is used.
 
     Returns:
-    string: Evaluated and decompiled value.
-    '''
+        str: Evaluated and decompiled value.
+    """
 
     request = session.Request()
 
@@ -427,24 +422,23 @@ def stringify(session, value, replacer=None, whitespace=None):
     return response['actions'][0]['result']
 
 def test_expression(session, id, description, expression, expected=None, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Test expression
 
     Compile and evaluate an adaptive expression and compare the results to an
     expected value. Return object with the test's results.
 
-    Parameters:
+    Args:
+        id (str): Id of test
 
-        id (string): Id of test
+        description (str): Description of test
 
-        description (string): Description of test
+        expression (str): Expression to compile and evaluate.
 
-        expression (string): Expression to compile and evaluate.
+        expected (object): Expected result.
 
-        expected (): Expected result.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -452,8 +446,8 @@ def test_expression(session, id, description, expression, expected=None, additio
         production.
 
     Returns:
-    object: Test results.
-    '''
+        dict: Test results.
+    """
 
     request = session.Request()
 
@@ -479,25 +473,24 @@ def test_expression(session, id, description, expression, expected=None, additio
     return response['actions'][0]['result']
 
 def test_hybrid(session, id, description, hybrid, expected=None, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Test hybrid
 
     Compile and evaluate a string containing adaptive hybrid syntax which can
     be an adaptive template or adaptive expression and then compare the
     results to an expected value. Return object with the test's results.
 
-    Parameters:
+    Args:
+        id (str): Id of test
 
-        id (string): Id of test
+        description (str): Description of test
 
-        description (string): Description of test
+        hybrid (str): Hybrid to compile and evaluate.
 
-        hybrid (string): Hybrid to compile and evaluate.
+        expected (object): Expected evaluated result.
 
-        expected (): Expected evaluated result.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -505,8 +498,8 @@ def test_hybrid(session, id, description, hybrid, expected=None, additionalUntru
         production.
 
     Returns:
-    object: Test results.
-    '''
+        dict: Test results.
+    """
 
     request = session.Request()
 
@@ -532,24 +525,23 @@ def test_hybrid(session, id, description, hybrid, expected=None, additionalUntru
     return response['actions'][0]['result']
 
 def test_script(session, id, description, script, expected=None, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Test an adaptive script
 
     Compile and evaluate an adaptive script and compare the results to an
     expected value. Return object with the test's results.
 
-    Parameters:
+    Args:
+        id (str): Id of test
 
-        id (string): Id of test
+        description (str): Description of test
 
-        description (string): Description of test
+        script (str): Script to compile and evaluate.
 
-        script (string): Script to compile and evaluate.
+        expected (object): Expected result.
 
-        expected (): Expected result.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -557,8 +549,8 @@ def test_script(session, id, description, script, expected=None, additionalUntru
         production.
 
     Returns:
-    object: Test results.
-    '''
+        dict: Test results.
+    """
 
     request = session.Request()
 
@@ -584,24 +576,23 @@ def test_script(session, id, description, script, expected=None, additionalUntru
     return response['actions'][0]['result']
 
 def test_template(session, id, description, template, expected=None, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Test template
 
     Compile and evaluate an adaptive template and compare the results to an
     expected value. Return object with the test's results.
 
-    Parameters:
+    Args:
+        id (str): Id of test
 
-        id (string): Id of test
+        description (str): Description of test
 
-        description (string): Description of test
+        template (str): Template to compile and evaluate.
 
-        template (string): Template to compile and evaluate.
+        expected (object): Expected evaluated result.
 
-        expected (): Expected evaluated result.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -609,8 +600,8 @@ def test_template(session, id, description, template, expected=None, additionalU
         production.
 
     Returns:
-    object: Test results.
-    '''
+        dict: Test results.
+    """
 
     request = session.Request()
 
@@ -636,24 +627,23 @@ def test_template(session, id, description, template, expected=None, additionalU
     return response['actions'][0]['result']
 
 def test_value(session, id, description, value, expected=None, additionalUntrustedQualifiedVariables=None):
-    '''
+    """
     Test value
 
     Evaluate an adaptive value and compare it to an expected value. Return
     object with the test's results.
 
-    Parameters:
+    Args:
+        id (str): Id of test
 
-        id (string): Id of test
+        description (str): Description of test
 
-        description (string): Description of test
+        value (str): Value to evaluate
 
-        value (string): Value to evaluate
+        expected (object): Expected result.
 
-        expected (): Expected result.
-
-        additionalUntrustedQualifiedVariables (object): This parameter
-        supplies additional qualified variables that can be accessed during
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during
         evaluation. These variables will not be used by anything that needs
         to ensure its qualified variables must come from a trusted source,
         such as authorization. This parameter is intended to be used for
@@ -661,8 +651,8 @@ def test_value(session, id, description, value, expected=None, additionalUntrust
         production.
 
     Returns:
-    object: Test results.
-    '''
+        dict: Test results.
+    """
 
     request = session.Request()
 
