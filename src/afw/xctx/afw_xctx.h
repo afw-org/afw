@@ -206,7 +206,7 @@ struct afw_xctx_scope_s {
     afw_size_t reference_count;
     afw_size_t scope_number;
     /*
-     * When this struct is created by afw_xctx_scope_create_and_activate(), it will be
+     * When this struct is created by afw_xctx_scope_create(), it will be
      * allocated large enough to hold block->symbol_count symbol_values.
      */ 
     const afw_value_t *symbol_values[1];
@@ -234,27 +234,25 @@ struct afw_xctx_scope_s {
  * @param xctx of caller.
  * @return New xctx scope.
  *
- * Function afw_xctx_scope_create_and_activate() is used to create a new scope. This must be
- * followed with a call to afw_xctx_scope_activate() then ultimately a call to
- * afw_xctx_scope_release().
+ * Function afw_xctx_scope_create() is used to create a new scope for the
+ * supplied block.
  *
- * The call to afw_xctx_scope_create_and_activate() and afw_xctx_scope_activate() are
- * separate to allow the new scope to be primed before activation, such as when
- * the parameters or being evaluated in the scope of the caller.
+ * If a parent_lexical_scope is specified, it's reference count will be
+ * incremented. The block depth of the block supplied must be 1 more than the
+ * block depth of the parent_lexical_scope's block depth.
  *
- * If parent_lexical_scope is NULL, the specified block's lexical depth must be
- * zero. Otherwise, the specified block's lexical depth must be one more than
- * the block lexical depth of the parent_lexical_scope's block.
+ * If parent_lexical_scope is NULL, the block's depth must be 0.
  *
- * When creating the scope for a lexically nested block, the
- * parent_lexical_scope should be the current active scope.
+ * This newly created scope has a reference count of 0 when first created. This
+ * reference count is incremented by functions afw_xctx_scope_activate() and
+ * afw_xctx_scope_add_reference(), as well as a call to afw_xctx_scope_create()
+ * with this scope specified as its parent_lexical_scope.
  *
- * When creating the scope for a function call, the parent_lexical_scope should
- * be one whose lexical depth matches the lexical depth of the function's
- * definition. For regular function calls, this is the the scope in the current
- * lexical scope chain that contains the function definition. For closure calls,
- * this is the parent lexical scope of the function at the time the closure
- * binding was created.
+ * The reference count is decreased by calls to afw_xctx_scope_deactivate(),
+ * afw_xctx_scope_release() and afw_xctx_scope_unwind(). When the reference
+ * count reaches 0, or it is already 0 because it's never been referenced, this
+ * scope's pool is released and afw_xctx_scope_release() is call for the
+ * parent_lexical_scope, if there is one.
  *
  * More detail on how scopes work:
  *
@@ -265,14 +263,14 @@ struct afw_xctx_scope_s {
  * The current scope, which can be retrieve by calling afw_xctx_scope_current(),
  * is at the top of the scope stack.
  *
- * The scope stack is maintained by the functions afw_xctx_scope_activate() and
- * afw_xctx_scope_deactivate(). Function afw_xctx_scope_release() calls
- * afw_xctx_scope_deactivate() but it can also be called directly when
- * afw_xctx_scope_activate() is not paired with an afw_xctx_scope_release().
+ * The scope stack is maintained by calls to function afw_xctx_scope_activate(),
+ * which pushes a scope onto the scope stack and increments its reference count,
+ * paired with calls to afw_xctx_scope_deactivate() which pops a scope off the
+ * scope stack and calls afw_xctx_stack_release() for it.
  *
- * There is also an afw_xctx_scope_rewind() used in 'catch' and 'finally' to
- * call afw_xctx_scope_release() on all of the scopes down to the current scope
- * at the time 'try' was entered.
+ * Function afw_xctx_scope_rewind(), used in 'catch' and 'finally', calls
+ * afw_xctx_scope_deactivate() on all of the scopes down to the current scope at
+ * the time 'try' was entered.
  *
  * The evaluate for a compiled value always pushes a NULL on the scope stack
  * before evaluating its root value then makes sure the NULL is still there in
@@ -282,36 +280,21 @@ struct afw_xctx_scope_s {
  *
  * Symbols (variables, parameters, etc.) go in and out of scope. The scope
  * struct has a C array of values for the symbols in the scope. A symbol has a
- * lexical scope depth and index into the corresponding scope's array of values.
+ * lexical scope depth and index into the corresponding scope's symbol values
+ * array, which is determined at compile time. The depth of the current scope's
+ * block minus the lexical scope depth of a symbol determines how many times the
+ * scope parent_lexical_scope pointer must be dereferenced to find the scope
+ * containing the symbol's value.
  *
- * Each new scope struct is created in a new pool that is a subpool of the
- * lexical parent scope's pool.
+ * When a closure binding is created, afw_xctx_scope_add_reference() is called
+ * on its enclosing pool. When the closure binding goes out of scope, a
+ * corresponding afw_xctx_scope_release() is called.
  *
- * A point to the parent's lexical scope is stored in the new scope to form a
- * chain of ancestor lexical scopes.
- *
- * The scope's pool is released (not necessarily destroyed if still referenced)
- * when the scope is released. The lifetime of the scope struct is based on the
- * lifetime of the scope's pool.
- *
- * When a closure binding is created, a new reference is made to the pool of the
- * parent lexical scope of the function being enclosed by calling
- * afw_xctx_scope_add_reference(), which keeps the chain of ancestor lexical
- * scopes around. The parent lexical scope pointer is remembered in the binding.
- * When the closure is called, this is the parent_lexical_scope used in the call
- * to afw_xctx_scope_create_and_activate(). When the closure binding goes out of scope, the
- * associated parent lexical scope is released.
+ * The afw_xctx_scope_symbol_*() functions are used to get and set symbol
+ * values.
  */
-AFW_DECLARE(afw_xctx_scope_t *)
+AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
-    const afw_value_block_t *block,
-    const afw_xctx_scope_t *parent_lexical_scope,
-    afw_xctx_t *xctx);
-
-
-/** @fixme all afw_xctx_scope_*() comments need to be fixed with rework. */
-AFW_DECLARE(afw_xctx_scope_t *)
-afw_xctx_scope_create_and_activate(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
     afw_xctx_t *xctx);
@@ -322,11 +305,14 @@ afw_xctx_scope_create_and_activate(
  * @param original_scope to clone.
  * @param xctx of caller.
  *
- * This makes a clone of a scope and its symbol_value. This function was
- * originally needed to support the incrementor of 'for' statements since each
- * increment needs its own copy of variables to support closure semantics.
+ * This function calls afw_xctx_scope_create() and clones the value from the
+ * original_scope's symbol_values to this new created scope.
+ *
+ * This function was originally needed to support the incrementor of 'for'
+ * statements since each increment needs its own copy of variables to support
+ * closure semantics.
  */
-AFW_DECLARE(afw_xctx_scope_t *)
+AFW_DECLARE(const afw_xctx_scope_t *)
 afw_xctx_scope_clone(
     const afw_xctx_scope_t *original_scope,
     afw_xctx_t *xctx);
@@ -338,14 +324,26 @@ afw_xctx_scope_clone(
  * @param scope to activate as the current scope.
  * @param xctx of caller.
  * 
- * Call this after afw_xctx_scope_create_and_activate() or when the current stack needs to
- * be switched to a different enclosing lexical scope.
+ * Call this after afw_xctx_scope_create() or afw_xctx_scope_clone() and when
+ * there is a need to switch to a different containing lexical scope.
  */
 AFW_DECLARE(void)
 afw_xctx_scope_activate(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
 
+
+
+/**
+ * @brief Add a reference to a scope.
+ * @param scope to be referenced. 
+ * @param xctx of caller.
+ * @return scope.
+ */
+AFW_DECLARE(const afw_xctx_scope_t *)
+afw_xctx_scope_add_reference(
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -367,15 +365,17 @@ afw_xctx_scope_deactivate(
 
 
 /**
- * @brief Add a reference to a scope.
- * @param scope to be referenced. 
+ * @brief Release current scope.
+ * @param scope much match afw_xctx_scope_current(xctx)
  * @param xctx of caller.
- * @return scope.
+ * 
+ * This will decrement the reference count of this scope and any parent scopes.
+ * If any of these scopes reference count goes to zero, there resources will be
+ * freed.
  */
-AFW_DECLARE(const afw_xctx_scope_t *)
-afw_xctx_scope_add_reference(
-    const afw_xctx_scope_t *scope,
-    afw_xctx_t *xctx);
+AFW_DECLARE(void)
+afw_xctx_scope_release(
+    const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
 
 
 
@@ -392,22 +392,6 @@ AFW_DECLARE(void)
 afw_xctx_scope_unwind(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Release current scope.
- * @param scope much match afw_xctx_scope_current(xctx)
- * @param xctx of caller.
- * 
- * This will decrement the reference count of this scope and any parent scopes.
- * If any of these scopes reference count goes to zero, there resources will be
- * freed.
- */
-AFW_DECLARE(void)
-afw_xctx_scope_release(
-    const afw_xctx_scope_t *scope, afw_xctx_t *xctx);
-
 
 
 /**

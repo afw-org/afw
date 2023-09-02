@@ -483,8 +483,8 @@ afw_value_block_evaluate_block(
     xctx->error->contextual = self->contextual;
     result = afw_value_undefined;
 
-    scope = afw_xctx_scope_create_and_activate(
-        self, afw_xctx_scope_current(xctx), xctx);
+    scope = afw_xctx_scope_create(self, afw_xctx_scope_current(xctx), xctx);
+    afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
             result = afw_value_block_evaluate_statement(x, type,
@@ -910,7 +910,8 @@ afw_value_block_evaluate_try(
  /// scope is created.
     const afw_xctx_scope_t *scope;
     const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
-    scope = afw_xctx_scope_create_and_activate(block, afw_xctx_scope_current(xctx), xctx);
+    scope = afw_xctx_scope_create(block, afw_xctx_scope_current(xctx), xctx);
+    afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         impl_assign_value(argv[4], error_value,
             afw_compile_assignment_type_let, p, xctx);

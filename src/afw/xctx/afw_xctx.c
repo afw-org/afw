@@ -604,7 +604,7 @@ static void impl_scope_debug(
 
 
 /* Begin begin a scope */
-AFW_DEFINE(afw_xctx_scope_t *)
+AFW_DEFINE(const afw_xctx_scope_t *)
 afw_xctx_scope_create(
     const afw_value_block_t *block,
     const afw_xctx_scope_t *parent_lexical_scope,
@@ -671,14 +671,14 @@ afw_xctx_scope_create(
 
 
 /* Begin clone a scope */
-AFW_DEFINE(afw_xctx_scope_t *)
+AFW_DEFINE(const afw_xctx_scope_t *)
 afw_xctx_scope_clone(
     const afw_xctx_scope_t *original_scope,
     afw_xctx_t *xctx)
 {
     afw_xctx_scope_t *scope;
 
-    scope = afw_xctx_scope_create(
+    scope = (afw_xctx_scope_t *)afw_xctx_scope_create(
         original_scope->block, original_scope->parent_lexical_scope, xctx);
 
     /* Copy entries. */
@@ -692,29 +692,6 @@ afw_xctx_scope_clone(
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     return scope;        
-}
-
-
-
-/* Begin begin a scope */
-AFW_DEFINE(afw_xctx_scope_t *)
-afw_xctx_scope_create_and_activate(
-    const afw_value_block_t *block,
-    const afw_xctx_scope_t *parent_lexical_scope,
-    afw_xctx_t *xctx)
-{
-    afw_xctx_scope_t *scope;
-
-    scope = afw_xctx_scope_create(block, parent_lexical_scope, xctx);
-
-    scope->reference_count++;
-    APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = scope;
-
-    afw_xctx_scope_debug(
-        "*> afw_xctx_scope_create_and_activate()",
-        block, scope, parent_lexical_scope, NULL, xctx);
-
-    return scope;
 }
 
 
@@ -781,7 +758,8 @@ afw_xctx_scope_deactivate(
 /* Unwind the scope stack down to but not including the specified scope. */
 AFW_DEFINE(void)
 afw_xctx_scope_unwind(
-    const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
 {
     const afw_xctx_scope_t *current_scope;
 
@@ -812,7 +790,8 @@ afw_xctx_scope_unwind(
  */
 AFW_DEFINE(void)
 afw_xctx_scope_release(
-    const afw_xctx_scope_t *scope, afw_xctx_t *xctx)
+    const afw_xctx_scope_t *scope,
+    afw_xctx_t *xctx)
 {    
     afw_xctx_scope_debug(
         "-1 afw_xctx_scope_release() begin",

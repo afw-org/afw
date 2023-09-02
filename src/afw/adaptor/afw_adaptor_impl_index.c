@@ -337,13 +337,6 @@ afw_boolean_t afw_adaptor_impl_index_try(
 
         /* Add variables for the filter and value expressions to use */
         /** @fixme These need to be current:: variables. See issue #54. */
-        // scope = afw_xctx_scope_create_and_activate(NULL, xctx);
-        // afw_xctx_scope_deprecated_variable_set(&afw_s_objectId,
-        //     afw_value_create_string(object_id, xctx->p, xctx), xctx);
-        // afw_xctx_scope_deprecated_variable_set(&afw_s_objectType,
-        //     afw_value_create_string(object_type_id, xctx->p, xctx), xctx);
-        // afw_xctx_scope_deprecated_variable_set(&afw_s_object,
-        //     afw_value_create_object(object, xctx->p, xctx), xctx);
 
         /*
             Evaluate the 'value' definition for the index.  This may generate
