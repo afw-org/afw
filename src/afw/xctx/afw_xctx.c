@@ -654,9 +654,11 @@ afw_xctx_scope_create(
     scope->block = block;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
+
+    /* If there is a parent_lexical_scope, update its reference count. */
     if (parent_lexical_scope) {
         scope->parent_lexical_scope = parent_lexical_scope;
-        afw_xctx_scope_add_reference(parent_lexical_scope, xctx);
+        ((afw_xctx_scope_t *)parent_lexical_scope)->reference_count++;
     }
 
     afw_xctx_scope_debug(
