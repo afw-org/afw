@@ -91,10 +91,10 @@ impl_afw_object_associative_array_release (
 
 
 /*
- * Implementation of method add_reference of interface afw_object_associative_array.
+ * Implementation of method get_reference of interface afw_object_associative_array.
  */
 void
-impl_afw_object_associative_array_add_reference (
+impl_afw_object_associative_array_get_reference (
     const afw_object_associative_array_t * instance,
     afw_xctx_t *xctx)
 {
@@ -138,7 +138,7 @@ impl_afw_object_associative_array_get (
      * xctx is released.
      */
     if (object) {
-        afw_object_add_reference(object, xctx);
+        afw_object_get_reference(object, xctx);
         afw_pool_register_cleanup_before(xctx->p, (void *)object, NULL,
             impl_release_object, xctx);
     }
@@ -153,7 +153,7 @@ impl_afw_object_associative_array_get (
  * Implementation of method get_reference of interface afw_object_associative_array.
  */
 const afw_object_t *
-impl_afw_object_associative_array_get_reference (
+impl_afw_object_associative_array_get_associated_object_reference (
     const afw_object_associative_array_t * instance,
     const afw_utf8_t * key,
     afw_xctx_t *xctx)
@@ -169,7 +169,7 @@ impl_afw_object_associative_array_get_reference (
 
     /* If object found, add reference. */
     if (object) {
-        afw_object_add_reference(object, xctx);
+        afw_object_get_reference(object, xctx);
     }
 
     /* Return result. */
@@ -219,7 +219,7 @@ impl_afw_object_associative_array_set (
 
     /* If object passed, add reference. */
     if (object) {
-        afw_object_add_reference(object, xctx);
+        afw_object_get_reference(object, xctx);
     }
 
     /* Set/remove association. */

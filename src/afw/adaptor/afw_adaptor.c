@@ -638,7 +638,7 @@ afw_adaptor_internal_process_object_from_adaptor(
     const afw_utf8_t *entity_path;
 
     *adapted_object = object;
-    afw_object_add_reference(object, xctx);
+    afw_object_get_reference(object, xctx);
     entity_path = afw_object_path_make(
         ctx->adaptor_id,
         ctx->object_type_id,

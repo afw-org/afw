@@ -112,10 +112,10 @@ impl_afw_pool_release(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_pool_add_reference
-/* Declare method add_reference */
+#ifndef impl_afw_pool_get_reference
+/* Declare method get_reference */
 AFW_DECLARE_STATIC(void)
-impl_afw_pool_add_reference(
+impl_afw_pool_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
@@ -194,10 +194,10 @@ impl_afw_pool_release_debug(
     const afw_utf8_z_t * source_z);
 #endif
 
-#ifndef impl_afw_pool_add_reference_debug
-/* Declare method add_reference_debug */
+#ifndef impl_afw_pool_get_reference_debug
+/* Declare method get_reference_debug */
 AFW_DECLARE_STATIC(void)
-impl_afw_pool_add_reference_debug(
+impl_afw_pool_get_reference_debug(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
@@ -292,8 +292,8 @@ impl_afw_pool_inf = {
     },
     (afw_pool_release_t)
     impl_afw_pool_release,
-    (afw_pool_add_reference_t)
-    impl_afw_pool_add_reference,
+    (afw_pool_get_reference_t)
+    impl_afw_pool_get_reference,
     (afw_pool_destroy_t)
     impl_afw_pool_destroy,
     (afw_pool_get_apr_pool_t)
@@ -310,8 +310,8 @@ impl_afw_pool_inf = {
     impl_afw_pool_deregister_cleanup,
     (afw_pool_release_debug_t)
     impl_afw_pool_release_debug,
-    (afw_pool_add_reference_debug_t)
-    impl_afw_pool_add_reference_debug,
+    (afw_pool_get_reference_debug_t)
+    impl_afw_pool_get_reference_debug,
     (afw_pool_destroy_debug_t)
     impl_afw_pool_destroy_debug,
     (afw_pool_calloc_debug_t)

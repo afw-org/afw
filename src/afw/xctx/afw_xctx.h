@@ -245,7 +245,7 @@ struct afw_xctx_scope_s {
  *
  * This newly created scope has a reference count of 0 when first created. This
  * reference count is incremented by functions afw_xctx_scope_activate() and
- * afw_xctx_scope_add_reference(), as well as a call to afw_xctx_scope_create()
+ * afw_xctx_scope_get_reference(), as well as a call to afw_xctx_scope_create()
  * with this scope specified as its parent_lexical_scope.
  *
  * The reference count is decreased by calls to afw_xctx_scope_deactivate(),
@@ -286,7 +286,7 @@ struct afw_xctx_scope_s {
  * scope parent_lexical_scope pointer must be dereferenced to find the scope
  * containing the symbol's value.
  *
- * When a closure binding is created, afw_xctx_scope_add_reference() is called
+ * When a closure binding is created, afw_xctx_scope_get_reference() is called
  * on its enclosing pool. When the closure binding goes out of scope, a
  * corresponding afw_xctx_scope_release() is called.
  *
@@ -341,7 +341,7 @@ afw_xctx_scope_activate(
  * @return scope.
  */
 AFW_DECLARE(const afw_xctx_scope_t *)
-afw_xctx_scope_add_reference(
+afw_xctx_scope_get_reference(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx);
 

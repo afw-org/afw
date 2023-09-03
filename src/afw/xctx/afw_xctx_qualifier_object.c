@@ -52,7 +52,7 @@ afw_xctx_qualifier_object_create(
     self->pub.p = p;
     self->qualifier = qualifier;
     self->for_testing = for_testing;
-    afw_pool_add_reference(p, xctx);
+    afw_pool_get_reference(p, xctx);
 
     /* Return new instance. */
     return (afw_object_t *)self;
@@ -108,10 +108,10 @@ impl_afw_object_release(
 }
 
 /*
- * Implementation of method add_reference for interface afw_object.
+ * Implementation of method get_reference for interface afw_object.
  */
 void
-impl_afw_object_add_reference(
+impl_afw_object_get_reference(
     const afw_object_t *instance,
     afw_xctx_t *xctx)
 {

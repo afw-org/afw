@@ -156,10 +156,10 @@ impl_afw_object_release(
 
 
 /*
- * Implementation of method add_reference of interface afw_object.
+ * Implementation of method get_reference of interface afw_object.
  */
 void
-impl_afw_object_add_reference(
+impl_afw_object_get_reference(
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {
@@ -171,12 +171,12 @@ impl_afw_object_add_reference(
     if (self->unmanaged) return;
 
     /*
-     * If embedded object managed by parent, call parent's add_reference
+     * If embedded object managed by parent, call parent's get_reference
      * and return.
      */
     if (self->managed_by_entity) {
         AFW_OBJECT_GET_ENTITY(entity, instance);
-        afw_object_add_reference(entity, xctx);
+        afw_object_get_reference(entity, xctx);
         return;
     }
 

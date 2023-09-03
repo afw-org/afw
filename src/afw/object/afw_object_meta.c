@@ -844,17 +844,17 @@ impl_afw_object_release(
 }
 
 /*
- * Implementation of method add_reference for interface afw_object.
+ * Implementation of method get_reference for interface afw_object.
  */
 void
-impl_afw_object_add_reference(
+impl_afw_object_get_reference(
     const afw_object_t *instance,
     afw_xctx_t *xctx)
 {
     afw_object_meta_object_t *self =
         (afw_object_meta_object_t *)instance;
 
-    afw_object_add_reference(self->pub.meta.embedding_object, xctx);
+    afw_object_get_reference(self->pub.meta.embedding_object, xctx);
 }
 
 /*

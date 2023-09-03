@@ -37,7 +37,7 @@ afw_value_closure_binding_create(
     self->script_function_definition = script_function_definition;
     self->enclosing_lexical_scope = enclosing_lexical_scope;
     self->reference_count = 1;
-    afw_xctx_scope_add_reference(enclosing_lexical_scope, xctx);
+    afw_xctx_scope_get_reference(enclosing_lexical_scope, xctx);
 
     return (afw_value_t *)self;
 }

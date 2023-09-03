@@ -96,7 +96,7 @@ static void
 impl_add_child(AFW_POOL_SELF_T *parent,
     AFW_POOL_SELF_T *child, afw_xctx_t *xctx)
 {
-    afw_pool_add_reference(&parent->pub, xctx);
+    afw_pool_get_reference(&parent->pub, xctx);
 
     child->next_sibling = parent->first_child;
     parent->first_child = child;
@@ -257,10 +257,10 @@ impl_afw_pool_release(
 }
 
 /*
- * Implementation of method add_reference for interface afw_pool.
+ * Implementation of method get_reference for interface afw_pool.
  */
 void
-impl_afw_pool_add_reference(
+impl_afw_pool_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
@@ -479,17 +479,17 @@ impl_afw_pool_release_debug(
 }
 
 /*
- * Implementation of method add_reference for interface afw_pool.
+ * Implementation of method get_reference for interface afw_pool.
  */
 void
-impl_afw_pool_add_reference_debug(
+impl_afw_pool_get_reference_debug(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_add_reference");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
 
-    impl_afw_pool_add_reference(self, xctx);
+    impl_afw_pool_get_reference(self, xctx);
 }
 
 /*

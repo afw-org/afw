@@ -18,7 +18,7 @@ typedef struct impl_associative_array_s {
 
     const afw_pool_t *p;
 
-    afw_associative_array_add_reference_value_cb add_reference_value;
+    afw_associative_array_get_reference_value_cb get_reference_value;
 
     afw_associative_array_release_value_cb release_value;
 
@@ -35,7 +35,7 @@ typedef struct impl_associative_array_s {
 /* Create associative array. */
 AFW_DEFINE(const afw_associative_array_t *)
 afw_associative_array_create(
-    afw_associative_array_add_reference_value_cb add_reference_value,
+    afw_associative_array_get_reference_value_cb get_reference_value,
     afw_associative_array_release_value_cb release_value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -49,19 +49,19 @@ afw_associative_array_create(
     self = afw_pool_calloc_type(new_p, impl_associative_array_t, xctx);
     self->p = new_p;
     self->reference_count = 1;
-    self->add_reference_value = add_reference_value;
+    self->get_reference_value = get_reference_value;
     self->release_value = release_value;
     self->values = apr_hash_make(afw_pool_get_apr_pool(new_p));
 
     /*
-     * If either add_reference_value or release_value is specified,
+     * If either get_reference_value or release_value is specified,
      * both must be specified.
      */
-    if ((add_reference_value && !release_value) ||
-        (release_value && !add_reference_value))
+    if ((get_reference_value && !release_value) ||
+        (release_value && !get_reference_value))
     {
         AFW_THROW_ERROR_Z(general,
-            "If either add_reference_value or release_value is specified, "
+            "If either get_reference_value or release_value is specified, "
             "both must be specified.",
             xctx);
     }
@@ -107,7 +107,7 @@ afw_associative_array_release (
 
 /* Add reference. */
 AFW_DEFINE(void)
-afw_associative_array_add_reference (
+afw_associative_array_get_reference (
     const afw_associative_array_t *instance,
     afw_xctx_t *xctx)
 {
@@ -147,8 +147,8 @@ afw_associative_array_get (
      * If value found, add reference and register automatic release when
      * xctx is released.
      */
-    if (value && self->add_reference_value) {
-        self->add_reference_value(value, xctx);
+    if (value && self->get_reference_value) {
+        self->get_reference_value(value, xctx);
         afw_pool_register_cleanup_before(xctx->p, (void *)value, self->release_value,
             impl_release_value, xctx);
     }
@@ -163,7 +163,7 @@ afw_associative_array_get (
  * Implementation of method get_reference of interface afw_object_associative_array.
  */
 AFW_DEFINE(const void *)
-afw_associative_array_get_reference(
+afw_associative_array_get_associated_object_reference(
     const afw_associative_array_t *instance,
     const afw_utf8_t *key, afw_xctx_t *xctx)
 {
@@ -174,8 +174,8 @@ afw_associative_array_get_reference(
     value = apr_hash_get(self->values, key->s, key->len);
 
     /* If value found, add reference. */
-    if (value && self->add_reference_value) {
-        self->add_reference_value(value, xctx);
+    if (value && self->get_reference_value) {
+        self->get_reference_value(value, xctx);
     }
 
     /* Return result. */
@@ -229,8 +229,8 @@ afw_associative_array_set(
     }
 
     /* If value passed, add reference. */
-    if (value && self->add_reference_value) {
-        self->add_reference_value(value, xctx);
+    if (value && self->get_reference_value) {
+        self->get_reference_value(value, xctx);
     }
 
     /* Set/remove association. */

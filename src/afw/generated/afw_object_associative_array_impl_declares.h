@@ -113,10 +113,10 @@ impl_afw_object_associative_array_release(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_object_associative_array_add_reference
-/* Declare method add_reference */
+#ifndef impl_afw_object_associative_array_get_reference
+/* Declare method get_reference */
 AFW_DECLARE_STATIC(void)
-impl_afw_object_associative_array_add_reference(
+impl_afw_object_associative_array_get_reference(
     AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t * xctx);
 #endif
@@ -130,10 +130,10 @@ impl_afw_object_associative_array_get(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_object_associative_array_get_reference
-/* Declare method get_reference */
+#ifndef impl_afw_object_associative_array_get_associated_object_reference
+/* Declare method get_associated_object_reference */
 AFW_DECLARE_STATIC(const afw_object_t *)
-impl_afw_object_associative_array_get_reference(
+impl_afw_object_associative_array_get_associated_object_reference(
     AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t * xctx);
@@ -184,12 +184,12 @@ impl_afw_object_associative_array_inf = {
     },
     (afw_object_associative_array_release_t)
     impl_afw_object_associative_array_release,
-    (afw_object_associative_array_add_reference_t)
-    impl_afw_object_associative_array_add_reference,
-    (afw_object_associative_array_get_t)
-    impl_afw_object_associative_array_get,
     (afw_object_associative_array_get_reference_t)
     impl_afw_object_associative_array_get_reference,
+    (afw_object_associative_array_get_t)
+    impl_afw_object_associative_array_get,
+    (afw_object_associative_array_get_associated_object_reference_t)
+    impl_afw_object_associative_array_get_associated_object_reference,
     (afw_object_associative_array_for_each_t)
     impl_afw_object_associative_array_for_each,
     (afw_object_associative_array_set_t)

@@ -714,14 +714,14 @@ afw_xctx_scope_activate(
 
 /* Add a reference to a scope. */
 AFW_DEFINE(const afw_xctx_scope_t *)
-afw_xctx_scope_add_reference(
+afw_xctx_scope_get_reference(
     const afw_xctx_scope_t *scope,
     afw_xctx_t *xctx)
 {
     ((afw_xctx_scope_t *)scope)->reference_count++;
 
     afw_xctx_scope_debug(
-        "+1 afw_xctx_scope_add_reference()",
+        "+1 afw_xctx_scope_get_reference()",
         scope->block, scope, scope->parent_lexical_scope, NULL, xctx);
 
     return scope;

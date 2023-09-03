@@ -30,11 +30,11 @@ impl_afw_object_associative_array_release(
 }
 
 /*
- * Implementation of method add_reference for interface
+ * Implementation of method get_reference for interface
  * afw_object_associative_array.
  */
 void
-impl_afw_object_associative_array_add_reference(
+impl_afw_object_associative_array_get_reference(
     AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t * xctx)
 {
@@ -56,11 +56,11 @@ impl_afw_object_associative_array_get(
 }
 
 /*
- * Implementation of method get_reference for interface
+ * Implementation of method get_associated_object_reference for interface
  * afw_object_associative_array.
  */
 const afw_object_t *
-impl_afw_object_associative_array_get_reference(
+impl_afw_object_associative_array_get_associated_object_reference(
     AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t * xctx)

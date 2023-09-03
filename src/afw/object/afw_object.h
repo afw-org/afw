@@ -715,7 +715,7 @@ afw_object_memory_associative_array_create(
  *
  * A subpool will be created of the p passed to create and be considered the
  * object's pool.  The lifetime of the object's pool will be controlled by
- * calls to the object's add_reference() and release() methods.
+ * calls to the object's get_reference() and release() methods.
  */
 #define AFW_OBJECT_MEMORY_OPTION_default              0
 
@@ -723,7 +723,7 @@ afw_object_memory_associative_array_create(
 /**
  * @brief Object should be unmanaged.
  *
- * Calls to methods release() and add_reference() will not do reference
+ * Calls to methods release() and get_reference() will not do reference
  * counting and the associated pool and will not call release() for the pool.
  *
  * Normally, managed entity objects and embedded object reside in a pool
@@ -738,7 +738,7 @@ afw_object_memory_associative_array_create(
  *
  * The p passed to create will cede control to the object and be considered
  * the object's pool.  The lifetime of the object's pool will be controlled
- * by calls to the object's add_reference() and release() methods.
+ * by calls to the object's get_reference() and release() methods.
  */
 #define AFW_OBJECT_MEMORY_OPTION_cede_p               (1 << 1)
 
@@ -758,7 +758,7 @@ afw_object_memory_associative_array_create(
  *
  * The p passed to create will cede control to the object and be considered
  * the object's pool.  The lifetime of the object's pool will be controlled
- * by calls to the object's add_reference() and release() methods.
+ * by calls to the object's get_reference() and release() methods.
  */
 #define AFW_OBJECT_MEMORY_OPTION_cede_p_and_clone_on_set \
     AFW_OBJECT_MEMORY_OPTION_cede_p + \

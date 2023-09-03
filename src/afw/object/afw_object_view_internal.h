@@ -128,7 +128,7 @@ struct afw_object_view_internal_view_s {
      *
      * This pool goes away when the reference count goes to 0.  The reference
      * count is incremented and decremented the contained objects
-     * add_reference() and release() methods.
+     * get_reference() and release() methods.
      */
     const afw_pool_t *p;
 

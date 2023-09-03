@@ -565,7 +565,7 @@ AFW_DEFINE(const afw_adaptor_t *)
 
           The callback function will call afw_object_release() on the object
           when finished with it. If you want to have the object last past the
-          callback, call afw_object_add_reference() on the object before calling
+          callback, call afw_object_get_reference() on the object before calling
           the callback.
         </description>
       </parameter>
@@ -632,7 +632,7 @@ AFW_DEFINE(const afw_adaptor_t *)
 
           The callback function will call afw_object_release() on the object
           when finished with it. If you want to have the object last past the
-          callback, call afw_object_add_reference() on the object before calling
+          callback, call afw_object_get_reference() on the object before calling
           the callback.
         </description>
       </parameter>
@@ -703,7 +703,7 @@ AFW_DEFINE(const afw_adaptor_t *)
           to memory store. In this case, it's the caller responsibility to create
           the object in a pool that has the minimal lifetime of the memory adaptor
           itself. For instance, the adaptor's pool can be used during object create.
-          The memory adaptor then uses the object's pool's add_reference() and release()
+          The memory adaptor then uses the object's pool's get_reference() and release()
           methods to manage the lifetime of the object.
         </description>
       </parameter>
@@ -3562,7 +3562,7 @@ AFW_DEFINE(const afw_log_t *)
       <description>
         Reduces the object's reference count and releases the object's resources
         if the count is 0. An object returned from a create function has a
-        reference count of 1. Call's to method add_reference() increments
+        reference count of 1. Call's to method get_reference() increments
         the count.
       </description>
 
@@ -3579,7 +3579,7 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
-    <method name="add_reference">
+    <method name="get_reference">
 
       <description>
         Adds an additional reference to an object. This call is only necessary
@@ -4120,7 +4120,7 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
-    <method name="add_reference">
+    <method name="get_reference">
 
       <description>
         Adds an additional reference to the object associative array.
@@ -4142,7 +4142,7 @@ AFW_DEFINE(const afw_log_t *)
     <method name="get">
 
       <description>
-        Get a reference to an associated object. The object's add_reference()
+        Get a reference to an associated object. The object's get_reference()
         method will be called. The reference will be released automatically
         when the supplied xctx is released. Do not call the object's release()
         function to release this reference or errors will occur.
@@ -4172,10 +4172,10 @@ AFW_DEFINE(const afw_log_t *)
     </method>
 
 
-    <method name="get_reference">
+    <method name="get_associated_object_reference">
 
       <description>
-        Get a reference to an associated object. The object's add_reference()
+        Get a reference to an associated object. The object's get_reference()
         method will be called. When the reference to the object is no longer
         needed, call the object's release() method.
 
@@ -4207,7 +4207,7 @@ AFW_DEFINE(const afw_log_t *)
     <method name="for_each">
 
       <description>
-        Get a reference to an associated object. The object's add_reference()
+        Get a reference to an associated object. The object's get_reference()
         method will be called. When the reference to the object is no longer
         needed, call the object's release() method.
 
@@ -4245,7 +4245,7 @@ AFW_DEFINE(const afw_log_t *)
       <description>
         Set or remove an association of a key to an object in the associative array.
 
-        Set calls add_reference() for the object being set. When the associative
+        Set calls get_reference() for the object being set. When the associative
         array is released, all object's in the associative array will have
         their release() method called. When method set() is called for a
         key that already has an associated object, that associated object's
@@ -5120,7 +5120,7 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-    <method name="add_reference">
+    <method name="get_reference">
 
       <description>
         Add reference to a pool.
@@ -5331,10 +5331,10 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-    <method name="add_reference_debug">
+    <method name="get_reference_debug">
 
       <description>
-        Debug version of method add_reference().
+        Debug version of method get_reference().
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
@@ -5717,10 +5717,10 @@ AFW_DEFINE(const afw_request_handler_t *)
       <description>
         This will get a reference to this value. There are 3 possible results:
         
-        1) If the value is managed and the value's internal value has an add_reference method,
-        the result of calling add_reference is returned.
+        1) If the value is managed and the value's internal value has an get_reference method,
+        the result of calling get_reference is returned.
         
-        2) If the value is managed and the value's internal value does not have an add_reference method,
+        2) If the value is managed and the value's internal value does not have an get_reference method,
         a copy of the value in the supplied pool (p) is returned.
 
         3) If the value is not managed, the instance is returned asis.

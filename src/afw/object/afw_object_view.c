@@ -1170,7 +1170,7 @@ impl_afw_object_release (
     afw_object_view_internal_object_self_t * self;
     const afw_object_t *entity;
 
-    /* Methods release and add_reference act on the entity. */
+    /* Methods release and get_reference act on the entity. */
     AFW_OBJECT_GET_ENTITY(entity, instance);
     self = (afw_object_view_internal_object_self_t *)entity;
 
@@ -1183,17 +1183,17 @@ impl_afw_object_release (
 
 
 /*
- * Implementation of method add_reference of interface afw_object.
+ * Implementation of method get_reference of interface afw_object.
  */
 void
-impl_afw_object_add_reference (
+impl_afw_object_get_reference (
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {
     afw_object_view_internal_object_self_t * self;
     const afw_object_t *entity;
 
-    /* Methods release and add_reference act on the entity. */
+    /* Methods release and get_reference act on the entity. */
     AFW_OBJECT_GET_ENTITY(entity, instance);
     self = (afw_object_view_internal_object_self_t *)entity;
 
@@ -1338,7 +1338,7 @@ afw_object_view_create(
      * Add reference to instance.  Instance most have lifetime at least as
      * long as returned view object since uncloned values are used.
      */
-    afw_object_add_reference(instance, xctx);
+    afw_object_get_reference(instance, xctx);
 
     /* If no options specified, just return instance asis. */
     if (!options || options->mask == 0)

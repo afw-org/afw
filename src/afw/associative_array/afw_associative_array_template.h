@@ -29,12 +29,12 @@ struct name##_s { \
 \
 AFW_DEFINE_STATIC_INLINE( const name##_t * ) \
 name##_create( \
-    afw_associative_array_add_reference_value_cb add_reference_value, \
+    afw_associative_array_get_reference_value_cb get_reference_value, \
     afw_associative_array_release_value_cb release_value, \
     const afw_pool_t *p, afw_xctx_t *xctx) \
 {\
     return (const name##_t *)afw_associative_array_create( \
-        add_reference_value, release_value, p, xctx); \
+        get_reference_value, release_value, p, xctx); \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( void ) \
@@ -47,10 +47,10 @@ name##_release(const name##_t *instance, \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( void ) \
-name##_add_reference(const name##_t *instance, \
+name##_get_reference(const name##_t *instance, \
     afw_xctx_t *xctx) \
 {\
-    afw_associative_array_add_reference( \
+    afw_associative_array_get_reference( \
         (const afw_associative_array_t *)instance, \
         xctx); \
 }\
@@ -65,10 +65,10 @@ name##_get(const name##_t *instance, const afw_utf8_t *key, \
 }\
 \
 AFW_DEFINE_STATIC_INLINE( const type * ) \
-name##_get_reference(const name##_t *instance, const afw_utf8_t *key, \
-    afw_xctx_t *xctx) \
+name##_get_associated_object_reference( \
+    const name##_t *instance, const afw_utf8_t *key, afw_xctx_t *xctx) \
 {\
-    return afw_associative_array_get_reference( \
+    return afw_associative_array_get_associated_object_reference( \
         (const afw_associative_array_t *)instance, \
         key,  xctx); \
 }\

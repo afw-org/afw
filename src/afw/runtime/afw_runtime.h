@@ -646,7 +646,7 @@ inf_ = {                                                                        
         &meta_                                                                  \
     },                                                                          \
     afw_runtime_object_release,                                                 \
-    afw_runtime_object_add_reference,                                           \
+    afw_runtime_object_get_reference,                                           \
     afw_runtime_object_get_count,                                           \
     afw_runtime_object_get_meta,                                                \
     afw_runtime_object_get_property,                                            \
@@ -669,10 +669,10 @@ afw_runtime_object_release(
 
 
 /**
- * @brief Method add_reference for runtime object.
+ * @brief Method get_reference for runtime object.
  */
 void
-afw_runtime_object_add_reference(
+afw_runtime_object_get_reference(
     const afw_object_t * instance,
     afw_xctx_t *xctx);
 

@@ -42,7 +42,7 @@ afw_runtime_inf_const_meta_object_inf = {
         AFW_UTF8_LITERAL(AFW_IMPLEMENTATION_ID)
     },
     impl_afw_object_release,
-    impl_afw_object_add_reference,
+    impl_afw_object_get_reference,
     impl_afw_object_get_count,
     impl_afw_object_get_meta,
     impl_afw_object_get_property,
@@ -69,10 +69,10 @@ impl_afw_object_release (
 
 
 /*
- * Implementation of method add_reference of interface afw_object.
+ * Implementation of method get_reference of interface afw_object.
  */
 void
-impl_afw_object_add_reference (
+impl_afw_object_get_reference (
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {

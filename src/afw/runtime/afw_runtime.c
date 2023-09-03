@@ -219,7 +219,7 @@ afw_runtime_env_set_object(
     impl_set_entry(object_type_id, object_id,
         (const impl_ht_object_entry *)object, overwrite, xctx);
 
-    afw_object_add_reference(object, xctx);
+    afw_object_get_reference(object, xctx);
 }
 
 
@@ -334,7 +334,7 @@ afw_runtime_xctx_set_object(
                 AFW_UTF8_FMT_ARG(type), AFW_UTF8_FMT_ARG(id));
         }
     }
-    afw_object_add_reference(object, xctx);
+    afw_object_get_reference(object, xctx);
     apr_hash_set(ht, id->s, id->len, object);
 }
 
@@ -892,7 +892,7 @@ afw_runtime_get_object(
     }
 
     if (result) {
-        afw_object_add_reference(result, xctx);
+        afw_object_get_reference(result, xctx);
     }
     return result;
 }
@@ -1119,7 +1119,7 @@ impl_afw_adaptor_session_get_object(
 
     /* Call callback with object. */
     object = afw_runtime_get_object(object_type_id, object_id, xctx);
-    if (object) afw_object_add_reference(object, xctx);
+    if (object) afw_object_get_reference(object, xctx);
 
     callback(object, context, xctx);
 }
@@ -1325,10 +1325,10 @@ afw_runtime_object_release(
 
 
 /*
- * Implementation of method add_reference of interface afw_object.
+ * Implementation of method get_reference of interface afw_object.
  */
 void
-afw_runtime_object_add_reference (
+afw_runtime_object_get_reference (
     const afw_object_t * instance,
     afw_xctx_t *xctx)
 {

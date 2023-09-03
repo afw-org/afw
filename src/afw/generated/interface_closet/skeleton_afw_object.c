@@ -30,10 +30,10 @@ impl_afw_object_release(
 }
 
 /*
- * Implementation of method add_reference for interface afw_object.
+ * Implementation of method get_reference for interface afw_object.
  */
 void
-impl_afw_object_add_reference(
+impl_afw_object_get_reference(
     AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {

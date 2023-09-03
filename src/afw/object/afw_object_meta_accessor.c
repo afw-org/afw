@@ -87,10 +87,10 @@ impl_afw_object_release(
 
 
 /*
- * Implementation of method add_reference of interface afw_object.
+ * Implementation of method get_reference of interface afw_object.
  */
 void
-impl_afw_object_add_reference(
+impl_afw_object_get_reference(
     const afw_object_t *instance,
     afw_xctx_t *xctx)
 {

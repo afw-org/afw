@@ -61,7 +61,7 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
         p = (object->p) ? object->p : ctx->p;
         /** @fixme Need corresponding releases. */
         if (ctx->array) {
-            afw_object_add_reference(object, xctx);
+            afw_object_get_reference(object, xctx);
             afw_array_add_value(ctx->array,
                 afw_value_create_object(object, ctx->p, xctx), xctx);
         }

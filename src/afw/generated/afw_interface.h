@@ -548,7 +548,7 @@ struct afw_adaptor_session_inf_s {
  *     retrieved and once          with a NULL object pointer when finished.   
  *           The callback function will call afw_object_release() on the object
  *              when finished with it. If you want to have the object last past
- *     the          callback, call afw_object_add_reference() on the object
+ *     the          callback, call afw_object_get_reference() on the object
  *     before calling          the callback.
  * @param adaptor_type_specific This is an adaptor type specific object
  *     parameter or NULL.                    If the adaptor type supports this
@@ -595,7 +595,7 @@ struct afw_adaptor_session_inf_s {
  *     retrieved          or a NULL object pointer if not found.          The
  *     callback function will call afw_object_release() on the object         
  *     when finished with it. If you want to have the object last past the     
- *         callback, call afw_object_add_reference() on the object before
+ *         callback, call afw_object_get_reference() on the object before
  *     calling          the callback.
  * @param adaptor_type_specific This is an adaptor type specific object
  *     parameter or NULL.          If the adaptor type supports this parameter,
@@ -649,7 +649,7 @@ struct afw_adaptor_session_inf_s {
  *     responsibility to create          the object in a pool that has the
  *     minimal lifetime of the memory adaptor          itself. For instance,
  *     the adaptor's pool can be used during object create.          The memory
- *     adaptor then uses the object's pool's add_reference() and release()     
+ *     adaptor then uses the object's pool's get_reference() and release()     
  *         methods to manage the lifetime of the object.
  * @param adaptor_type_specific This is an adaptor type specific object
  *     parameter or NULL.          If the adaptor type supports this parameter,
@@ -3211,9 +3211,9 @@ typedef void
     const afw_object_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_object_add_reference() */
+/** @sa afw_object_get_reference() */
 typedef void
-(*afw_object_add_reference_t)(
+(*afw_object_get_reference_t)(
     const afw_object_t * instance,
     afw_xctx_t * xctx);
 
@@ -3279,7 +3279,7 @@ typedef const afw_object_setter_t *
 struct afw_object_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_release_t release;
-    afw_object_add_reference_t add_reference;
+    afw_object_get_reference_t get_reference;
     afw_object_get_count_t get_count;
     afw_object_get_meta_t get_meta;
     afw_object_get_property_t get_property;
@@ -3305,15 +3305,15 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method add_reference of interface afw_object
+ * @brief Call method get_reference of interface afw_object
  * @param instance Pointer to this object instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_object_add_reference( \
+#define afw_object_get_reference( \
     instance, \
     xctx \
 ) \
-(instance)->inf->add_reference( \
+(instance)->inf->get_reference( \
     (instance), \
     (xctx) \
 )
@@ -3721,9 +3721,9 @@ typedef void
     const afw_object_associative_array_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_object_associative_array_add_reference() */
+/** @sa afw_object_associative_array_get_reference() */
 typedef void
-(*afw_object_associative_array_add_reference_t)(
+(*afw_object_associative_array_get_reference_t)(
     const afw_object_associative_array_t * instance,
     afw_xctx_t * xctx);
 
@@ -3734,9 +3734,9 @@ typedef const afw_object_t *
     const afw_utf8_t * key,
     afw_xctx_t * xctx);
 
-/** @sa afw_object_associative_array_get_reference() */
+/** @sa afw_object_associative_array_get_associated_object_reference() */
 typedef const afw_object_t *
-(*afw_object_associative_array_get_reference_t)(
+(*afw_object_associative_array_get_associated_object_reference_t)(
     const afw_object_associative_array_t * instance,
     const afw_utf8_t * key,
     afw_xctx_t * xctx);
@@ -3761,9 +3761,9 @@ typedef void
 struct afw_object_associative_array_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_object_associative_array_release_t release;
-    afw_object_associative_array_add_reference_t add_reference;
-    afw_object_associative_array_get_t get;
     afw_object_associative_array_get_reference_t get_reference;
+    afw_object_associative_array_get_t get;
+    afw_object_associative_array_get_associated_object_reference_t get_associated_object_reference;
     afw_object_associative_array_for_each_t for_each;
     afw_object_associative_array_set_t set;
 };
@@ -3783,15 +3783,15 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method add_reference of interface afw_object_associative_array
+ * @brief Call method get_reference of interface afw_object_associative_array
  * @param instance Pointer to this object associative array instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_object_associative_array_add_reference( \
+#define afw_object_associative_array_get_reference( \
     instance, \
     xctx \
 ) \
-(instance)->inf->add_reference( \
+(instance)->inf->get_reference( \
     (instance), \
     (xctx) \
 )
@@ -3814,17 +3814,18 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method get_reference of interface afw_object_associative_array
+ * @brief Call method get_associated_object_reference of interface
+ *     afw_object_associative_array
  * @param instance Pointer to this object associative array instance.
  * @param key The key associated with the object.
  * @param xctx This is the caller's xctx.
  */
-#define afw_object_associative_array_get_reference( \
+#define afw_object_associative_array_get_associated_object_reference( \
     instance, \
     key, \
     xctx \
 ) \
-(instance)->inf->get_reference( \
+(instance)->inf->get_associated_object_reference( \
     (instance), \
     (key), \
     (xctx) \
@@ -4552,9 +4553,9 @@ typedef void
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_add_reference() */
+/** @sa afw_pool_get_reference() */
 typedef void
-(*afw_pool_add_reference_t)(
+(*afw_pool_get_reference_t)(
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
 
@@ -4616,9 +4617,9 @@ typedef void
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
 
-/** @sa afw_pool_add_reference_debug() */
+/** @sa afw_pool_get_reference_debug() */
 typedef void
-(*afw_pool_add_reference_debug_t)(
+(*afw_pool_get_reference_debug_t)(
     const afw_pool_t * instance,
     afw_xctx_t * xctx,
     const afw_utf8_z_t * source_z);
@@ -4679,7 +4680,7 @@ typedef void
 struct afw_pool_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_pool_release_t release;
-    afw_pool_add_reference_t add_reference;
+    afw_pool_get_reference_t get_reference;
     afw_pool_destroy_t destroy;
     afw_pool_get_apr_pool_t get_apr_pool;
     afw_pool_calloc_t calloc;
@@ -4688,7 +4689,7 @@ struct afw_pool_inf_s {
     afw_pool_register_cleanup_before_t register_cleanup_before;
     afw_pool_deregister_cleanup_t deregister_cleanup;
     afw_pool_release_debug_t release_debug;
-    afw_pool_add_reference_debug_t add_reference_debug;
+    afw_pool_get_reference_debug_t get_reference_debug;
     afw_pool_destroy_debug_t destroy_debug;
     afw_pool_calloc_debug_t calloc_debug;
     afw_pool_malloc_debug_t malloc_debug;
@@ -4712,15 +4713,15 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method add_reference of interface afw_pool
+ * @brief Call method get_reference of interface afw_pool
  * @param instance Pointer to this pool instance.
  * @param xctx This is the caller's xctx.
  */
-#define afw_pool_add_reference( \
+#define afw_pool_get_reference( \
     instance, \
     xctx \
 ) \
-(instance)->inf->add_reference( \
+(instance)->inf->get_reference( \
     (instance), \
     (xctx) \
 )
@@ -4868,17 +4869,17 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method add_reference_debug of interface afw_pool
+ * @brief Call method get_reference_debug of interface afw_pool
  * @param instance Pointer to this pool instance.
  * @param xctx This is the caller's xctx.
  * @param source_z Source file:line where method was called.
  */
-#define afw_pool_add_reference_debug( \
+#define afw_pool_get_reference_debug( \
     instance, \
     xctx, \
     source_z \
 ) \
-(instance)->inf->add_reference_debug( \
+(instance)->inf->get_reference_debug( \
     (instance), \
     (xctx), \
     (source_z) \

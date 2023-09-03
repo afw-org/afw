@@ -58,7 +58,7 @@ struct afw_pool_internal_multithreaded_self_s {
      * @brief Pools reference count.
      *
      * This starts at 1 on create and is incremented and decremented
-     * by afw_pool_add_reference() and afw_pool_release().
+     * by afw_pool_get_reference() and afw_pool_release().
      */
     AFW_ATOMIC afw_integer_t reference_count;
 
@@ -102,7 +102,7 @@ struct afw_pool_internal_singlethreaded_self_s {
      * @brief Pools reference count.
      *
      * This starts at 1 on create and is incremented and decremented
-     * by afw_pool_add_reference() and afw_pool_release().
+     * by afw_pool_get_reference() and afw_pool_release().
      */
     afw_integer_t reference_count;
 

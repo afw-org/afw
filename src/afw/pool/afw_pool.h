@@ -193,9 +193,9 @@ afw_pool_create_multithreaded_debug(const afw_pool_t *parent,
 #define afw_pool_destroy(instance,xctx) \
     afw_pool_destroy_debug(instance, xctx, AFW__FILE_LINE__)
 
-#undef afw_pool_add_reference
-#define afw_pool_add_reference(instance,xctx) \
-    afw_pool_add_reference_debug(instance, xctx, AFW__FILE_LINE__)
+#undef afw_pool_get_reference
+#define afw_pool_get_reference(instance,xctx) \
+    afw_pool_get_reference_debug(instance, xctx, AFW__FILE_LINE__)
 
 #undef afw_pool_calloc
 #define afw_pool_calloc(instance,size,xctx) \
