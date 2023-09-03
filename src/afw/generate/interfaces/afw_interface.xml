@@ -4861,6 +4861,14 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
     </variable>
 
+    <variable name="evaluation_result" type="const afw_value_t *">
+      <description>
+        This is set each time a result is produced while evaluated an adaptive
+        script. Once evaluate of a script is complete, this is the final
+        return value.
+      </description>
+    </variable>
+
     <variable name="evaluation_stack" type="afw_xctx_evaluation_stack_t *">
       <description>
         The execution context (xctx) evaluation stack.

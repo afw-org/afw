@@ -783,11 +783,7 @@ afw_xctx_scope_unwind(
 
 
 
-/**
- * @brief Set the current scope.
- * @param scope must be the current scope.
- * @param xctx of caller.
- */
+/* Set the current scope. */
 AFW_DEFINE(void)
 afw_xctx_scope_release(
     const afw_xctx_scope_t *scope,
@@ -811,4 +807,15 @@ afw_xctx_scope_release(
 
     /* Otherwise, just decrement reference count. */
     ((afw_xctx_scope_t *)scope)->reference_count--;
+}
+
+
+/* Set the xctx evaluation result. */
+AFW_DEFINE(void)
+afw_xctx_evaluation_result_set(
+    afw_xctx_t *xctx,
+    const afw_value_t *value)
+{
+    /** @fixme Change to use afw_value_get_reference() when that is in place. */
+    ((afw_xctx_t *)xctx)->evaluation_result = value;
 }

@@ -4350,6 +4350,7 @@ struct afw_xctx_s {
     const afw_runtime_objects_t * runtime_objects;
     afw_size_t scope_count;
     apr_array_header_t * scope_stack;
+    const afw_value_t * evaluation_result;
     afw_xctx_evaluation_stack_t * evaluation_stack;
     const afw_xctx_qualifier_stack_t * qualifier_stack;
     afw_adaptor_xctx_internal_t * adaptor_xctx_internal;

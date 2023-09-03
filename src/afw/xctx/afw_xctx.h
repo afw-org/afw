@@ -505,6 +505,26 @@ afw_xctx_scope_symbol_set_value_by_name(
 ---------------------------------------------------------------------------- */
 
 /**
+ * @brief Set the xctx evaluation result.
+ * @param value to set.
+ * @param xctx of caller.
+ *
+ * This is called while evaluating an adaptive script each time a result is
+ * produced to set xctx->evaluation_result. Once evaluate of a script is
+ * complete, this is the final return value.
+ *
+ * This function will call the afw_value_release() of the previous
+ * xctx->evaluation_result. If you need to keep the previous evaluation_result,
+ * call afw_value_get_reference() to get a reference to it before calling this
+ * function.
+ */
+AFW_DECLARE(void)
+afw_xctx_evaluation_result_set(
+    afw_xctx_t *xctx,
+    const afw_value_t *value);
+
+
+/**
  * @brief The execution context (xctx) evaluation stack entry.
  *
  * The xctx evaluation stack is used to detection recursive loops and
