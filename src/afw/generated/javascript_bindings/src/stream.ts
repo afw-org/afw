@@ -68,26 +68,23 @@ export function afwGetStreamError(client : any) : any {
  * @param {string} path - This is the path to the file to open. The
  *     rootDirectory of the path is defined in the application object.
  * 
- * @param {string} mode - This is the access mode string. Values can be:
- *     r - Open an existing file text file for read.
- *     w - Open a text file for writing. If the file does not exist, it
- *     will be created.
- *     a - Open a text file for writing additional data to the end. If the
- *     file does not exist, it will be created.
- *     r+ - Open a text file for both reading and writing.
- *     w+ - Open a text file for both reading and writing. If the file
- *     exists, it will be overwritten. If the file does not exist, it will be
- *     created.
- *     a+ - Open a text file for both reading and writing. Reading will
- *     begin at the start of the file while writing will be appended to the
- *     end.
- *     
- *     All of these modes expect data type string. If you are using data type
- *     base64Binary or hexBinary you can use corresponding binary modes,
- *     'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
+ * @param {string} mode - This is the access mode string. Values can be:   r -
+ *     Open an existing file text file for read.   w - Open a text file for
+ *     writing. If the file does not exist, it will be created.   a - Open a
+ *     text file for writing additional data to the end. If the file does not
+ *     exist, it will be created.   r+ - Open a text file for both reading and
+ *     writing.   w+ - Open a text file for both reading and writing. If the
+ *     file exists, it will be overwritten. If the file does not exist, it
+ *     will be created.   a+ - Open a text file for both reading and writing.
+ *     Reading will begin at the start of the file while writing will be
+ *     appended to the end.
  * 
- * @param {boolean} autoFlush - If specified and true, this will
- *     automatically flush the stream's buffers after every write.
+ *     All of these modes expect data type string. If you are using data type
+ *     base64Binary or hexBinary you can use corresponding binary modes, 'rb',
+ *     'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
+ * 
+ * @param {boolean} autoFlush - If specified and true, this will automatically
+ *     flush the stream's buffers after every write.
  * 
  * @returns {integer} The streamNumber for the streamId or -1 if there was an
  *     error. Use get_stream_error() for error information.
@@ -114,8 +111,8 @@ export function afwOpenFile(client : any, streamId : string, path : string, mode
  * @param {string} streamId - This is the streamId that will be associated
  *     with this open response stream.
  * 
- * @param {boolean} autoFlush - If specified and true, this will
- *     automatically flush the stream's buffers after every write.
+ * @param {boolean} autoFlush - If specified and true, this will automatically
+ *     flush the stream's buffers after every write.
  * 
  * @returns {integer} The streamNumber for the streamId or -1 if there was an
  *     error. Use get_stream_error() for error information.
@@ -144,8 +141,8 @@ export function afwOpenResponse(client : any, streamId : string, autoFlush? : bo
  * @param {string} mode - This is the access mode string. Values can be 'r'
  *     for read or 'w' for write.
  * 
- * @param {boolean} autoFlush - If specified and true, this will
- *     automatically flush the stream's buffers after every write.
+ * @param {boolean} autoFlush - If specified and true, this will automatically
+ *     flush the stream's buffers after every write.
  * 
  * @returns {integer} The streamNumber for the streamId or -1 if there was an
  *     error. Use get_stream_error() for error information.
@@ -185,8 +182,8 @@ export function afwPrint(client : any, values : any) : any {
 
 /**
  * Evaluate and convert 0 or more values to their string value, then write
- * them to stdout. A newline character ('\n') is written after the last
- * value. An undefined value is represented by `<undefined>`.
+ * them to stdout. A newline character ('\n') is written after the last value.
+ * An undefined value is represented by `<undefined>`.
  * 
  * @param {} value - Values to print.
  * 
@@ -232,8 +229,8 @@ export function afwRead(client : any, streamNumber : number, n : any) : any {
  * 
  * @param {} n - The maximum number of octets to read.
  * 
- * @returns {base64Binary} The base64Binary value read. Check the size of
- *     this value to determine the actual number of octets read.
+ * @returns {base64Binary} The base64Binary value read. Check the size of this
+ *     value to determine the actual number of octets read.
  */
 export function afwReadToBase64Binary(client : any, streamNumber : number, n : any) : any {
 
@@ -254,8 +251,8 @@ export function afwReadToBase64Binary(client : any, streamNumber : number, n : a
  * 
  * @param {} n - The maximum number of octets to read.
  * 
- * @returns {hexBinary} The hexBinary value read. Check the size of this
- *     value to determine the actual number of octets read.
+ * @returns {hexBinary} The hexBinary value read. Check the size of this value
+ *     to determine the actual number of octets read.
  */
 export function afwReadToHexBinary(client : any, streamNumber : number, n : any) : any {
 
@@ -329,8 +326,8 @@ export function afwWrite(client : any, streamNumber : number, value : any) : any
 }
 
 /**
- * Write a value's internal memory. This is especially useful for writing
- * data type base64Binary and hexBinary.
+ * Write a value's internal memory. This is especially useful for writing data
+ * type base64Binary and hexBinary.
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to write.
  * 

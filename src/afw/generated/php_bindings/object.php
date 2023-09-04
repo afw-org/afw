@@ -57,8 +57,8 @@ class object
      *
      * @param object $object Object used to produce result.
      * @param object $options Object options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
      *
      * @return object This is an object with object options applied.
      */
@@ -149,10 +149,10 @@ class object
     /**
      * eq_object()
      *
-     * Determine if object arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if object arg1 is equal to the value of arg2 converted to the
+     * data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param object $arg1
      * @param  $arg2
@@ -299,8 +299,8 @@ class object
     /**
      * local_object_meta_set_ids()
      *
-     * This is used to set the ids in a local mutable object. The ids are
-     * used to construct a local path.
+     * This is used to set the ids in a local mutable object. The ids are used
+     * to construct a local path.
      *
      * @param object $object Object to set ids in.
      * @param string $adaptorId Adaptor id for object.
@@ -355,10 +355,10 @@ class object
     /**
      * ne_object()
      *
-     * Determine if object arg1 is not equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if object arg1 is not equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param object $arg1
      * @param  $arg2

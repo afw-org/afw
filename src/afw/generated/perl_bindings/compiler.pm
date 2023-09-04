@@ -64,8 +64,8 @@ JSON string to compile.
 If specified, a compiler listing is produced instead of an unevaluated JSON
 value.
 
-This parameter can be an integer between 0 and 10 of a string that is used
-for indentation. If 0 is specified, no whitespace is added to the resulting
+This parameter can be an integer between 0 and 10 of a string that is used for
+indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 compile_relaxed_json
@@ -81,11 +81,11 @@ Adaptive relaxed JSON syntax string to compile.
 
     $listing
 
-If specified, a compiler listing is produced instead of an unevaluated
-relaxed JSON value.
+If specified, a compiler listing is produced instead of an unevaluated relaxed
+JSON value.
 
-This parameter can be an integer between 0 and 10 of a string that is used
-for indentation. If 0 is specified, no whitespace is added to the resulting
+This parameter can be an integer between 0 and 10 of a string that is used for
+indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 convert_syntax_hybrid_to_expression
@@ -174,8 +174,8 @@ returned object.
     $forTesting
 
 If specified and true, the object returned will be suitable to pass as the
-additionalUntrustedQualifiedVariables parameter of evaluate*() functions.
-This is intended for testing purposes and should not be used in production.
+additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This
+is intended for testing purposes and should not be used in production.
 
 =head3 qualifiers
 
@@ -189,8 +189,8 @@ Access qualifiers as an object
     $forTesting
 
 If specified and true, the object returned will be suitable to pass as the
-additionalUntrustedQualifiedVariables parameter of evaluate*() functions.
-This is intended for testing purposes and should not be used in production.
+additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This
+is intended for testing purposes and should not be used in production.
 
 =head3 safe_evaluate
 
@@ -267,8 +267,8 @@ should not be used for anything running in production.
 =head3 test_hybrid
 
 Compile and evaluate a string containing adaptive hybrid syntax which can be
-an adaptive template or adaptive expression and then compare the results to
-an expected value. Return object with the test's results.
+an adaptive template or adaptive expression and then compare the results to an
+expected value. Return object with the test's results.
 Test hybrid
 
 =head4 Parameters
@@ -299,8 +299,8 @@ should not be used for anything running in production.
 
 =head3 test_script
 
-Compile and evaluate an adaptive script and compare the results to an
-expected value. Return object with the test's results.
+Compile and evaluate an adaptive script and compare the results to an expected
+value. Return object with the test's results.
 Test an adaptive script
 
 =head4 Parameters

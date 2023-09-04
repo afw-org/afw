@@ -98,8 +98,8 @@ The base64Binary value to decode.
 =head3 eq_base64Binary
 
 Determine if base64Binary arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+you want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -112,9 +112,9 @@ Checks for equal
 
 =head3 eqx_base64Binary
 
-Determine if for base64Binary arg1 is equal to the value and data type of
-arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
-to be converted to the data type of arg1 before comparison.
+Determine if for base64Binary arg1 is equal to the value and data type of arg2
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -127,8 +127,8 @@ Checks for equal and type
 
 =head3 ge_base64Binary
 
-Checks for base64Binary arg1 is greater than or equal to base64Binary arg2
-and return the boolean result.
+Checks for base64Binary arg1 is greater than or equal to base64Binary arg2 and
+return the boolean result.
 Checks for greater than or equal
 
 =head4 Parameters
@@ -155,8 +155,8 @@ Checks for greater than
 
 =head3 intersection_base64Binary
 
-Returns an array of base64Binary with the values that are common to both
-array of base64Binary array1 and array2.
+Returns an array of base64Binary with the values that are common to both array
+of base64Binary array1 and array2.
 Returns intersection of two arrays
 
 =head4 Parameters
@@ -296,8 +296,8 @@ The second array.
 
 =head3 to_string_base64Binary
 
-Converts base64Binary value to string. For array values, the to_string()
-value for each entry is returned separated with commas.
+Converts base64Binary value to string. For array values, the to_string() value
+for each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters

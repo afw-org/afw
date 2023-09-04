@@ -19,9 +19,9 @@ interface IAnyObject {
  *     authorization request. Variable current::requestId can be used to
  *     access this value in authorization policies.
  * 
- * @param {string} resourceId - This is the URI of the resource being
- *     checked. Variable current::resourceId can be used to access this value
- *     in authorization policies.
+ * @param {string} resourceId - This is the URI of the resource being checked.
+ *     Variable current::resourceId can be used to access this value in
+ *     authorization policies.
  * 
  * @param {string} actionId - This is the action that on the resource that's
  *     being checked.  Variable current::actionId can be used to access this
@@ -31,8 +31,8 @@ interface IAnyObject {
  *     this value in authorization policies.
  * 
  * @param {boolean} enforce - This specifies whether an error is thrown if
- *     access is denied. If false or not specified, an error is not thrown
- *     and the decision can be checked in the returned object.
+ *     access is denied. If false or not specified, an error is not thrown and
+ *     the decision can be checked in the returned object.
  * 
  * @returns {object} The authorization result.
  */

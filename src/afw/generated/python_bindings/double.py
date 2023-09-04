@@ -156,8 +156,8 @@ def ceil_double(session, value):
     """
     Round upward to nearest integer
 
-    Determine the smallest integer that is greater then or equal to the
-    double value and return the double result.
+    Determine the smallest integer that is greater then or equal to the double
+    value and return the double result.
 
     Args:
         value (float):
@@ -553,8 +553,8 @@ def le_double(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for double arg1 is less than or equal to double arg2 and return
-    the boolean result.
+    Checks for double arg1 is less than or equal to double arg2 and return the
+    boolean result.
 
     Args:
         arg1 (float):
@@ -703,8 +703,8 @@ def ne_double(session, arg1, arg2):
 
     Determine if double arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (float):

@@ -126,8 +126,8 @@ class yearMonthDuration
      * eqx_yearMonthDuration()
      *
      * Determine if for yearMonthDuration arg1 is equal to the value and data
-     * type of arg2 then return the boolean result. Use 'eq' ('==') instead
-     * if you want arg2 to be converted to the data type of arg1 before
+     * type of arg2 then return the boolean result. Use 'eq' ('==') instead if
+     * you want arg2 to be converted to the data type of arg1 before
      * comparison.
      *
      * @param yearMonthDuration $arg1
@@ -227,8 +227,8 @@ class yearMonthDuration
     /**
      * is_in_yearMonthDuration()
      *
-     * Checks whether yearMonthDuration value is in array of
-     * yearMonthDuration array and returns the boolean result.
+     * Checks whether yearMonthDuration value is in array of yearMonthDuration
+     * array and returns the boolean result.
      *
      * @param yearMonthDuration $value
      * @param array $array
@@ -475,8 +475,8 @@ class yearMonthDuration
     /**
      * union_yearMonthDuration()
      *
-     * Returns an array of yearMonthDuration contains all of the unique
-     * values in two or more array of yearMonthDuration values.
+     * Returns an array of yearMonthDuration contains all of the unique values
+     * in two or more array of yearMonthDuration values.
      *
      * @param array $arrays Two or more arrays.
      *

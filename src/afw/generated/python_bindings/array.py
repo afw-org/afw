@@ -43,8 +43,8 @@ def array(session, values):
     Construct an array with 0 or more elements.
 
     Args:
-        values (object): A value can refer to any adaptable value belonging
-        to any data type or an array expression. In the case of an array
+        values (object): A value can refer to any adaptable value belonging to
+        any data type or an array expression. In the case of an array
         expression, indicated by '...' followed by an expression that results
         in an array, every element within that array is included in the newly
         created array.
@@ -425,8 +425,8 @@ def length_array(session, value):
     codepoints in others.
 
     Args:
-        value (list): Returns the number of entries in an array or code
-        points in others.
+        value (list): Returns the number of entries in an array or code points
+        in others.
 
     Returns:
         int:
@@ -483,10 +483,10 @@ def ne_array(session, arg1, arg2):
     """
     Checks for not equal
 
-    Determine if array arg1 is not equal to the value of arg2 converted to
-    the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    Determine if array arg1 is not equal to the value of arg2 converted to the
+    data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (list):
@@ -517,9 +517,9 @@ def nex_array(session, arg1, arg2):
     """
     Checks for not equal value or type
 
-    Determine if for array arg1 is not equal to the value or data type of
-    arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
-    arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for array arg1 is not equal to the value or data type of arg2
+    then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+    to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (list):
@@ -588,11 +588,10 @@ def slice(session, array, startIndex=None, endIndex=None):
         number to index from the end of the array. If not specified, an index
         of 0 is assumed.
 
-        endIndex (int): This is the zero based ending index. If positive,
-        this is one more than the index of the last value to include in the
-        array. If negative, the index is from the end of the array. If not
-        specified, the slice is from startIndex up to and including the end
-        of the array.
+        endIndex (int): This is the zero based ending index. If positive, this
+        is one more than the index of the last value to include in the array.
+        If negative, the index is from the end of the array. If not specified,
+        the slice is from startIndex up to and including the end of the array.
 
     Returns:
         list: An array containing the selected values. If all of the values

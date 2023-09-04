@@ -98,9 +98,9 @@ class x500Name
      * eq_x500Name()
      *
      * Determine if x500Name arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param x500Name $arg1
      * @param  $arg2
@@ -225,8 +225,8 @@ class x500Name
     /**
      * is_in_x500Name()
      *
-     * Checks whether x500Name value is in array of x500Name array and
-     * returns the boolean result.
+     * Checks whether x500Name value is in array of x500Name array and returns
+     * the boolean result.
      *
      * @param x500Name $value
      * @param array $array
@@ -350,8 +350,8 @@ class x500Name
      *
      * Determine if x500Name arg1 is not equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param x500Name $arg1
      * @param  $arg2
@@ -424,8 +424,8 @@ class x500Name
     /**
      * regexp_match_x500Name()
      *
-     * Checks whether x500Name value matches the regular expression regexp
-     * and return the boolean result.
+     * Checks whether x500Name value matches the regular expression regexp and
+     * return the boolean result.
      *
      * @param x500Name $value
      * @param string $regexp
@@ -449,8 +449,8 @@ class x500Name
     /**
      * set_equals_x500Name()
      *
-     * Returns boolean true if x500Name array1 and x500Name array2 are
-     * subsets of each other and return the boolean result.
+     * Returns boolean true if x500Name array1 and x500Name array2 are subsets
+     * of each other and return the boolean result.
      *
      * @param array $array1
      * @param array $array2
@@ -474,8 +474,8 @@ class x500Name
     /**
      * subset_x500Name()
      *
-     * Returns boolean true if the unique values in x500Name array1 are all
-     * in x500Name array2.
+     * Returns boolean true if the unique values in x500Name array1 are all in
+     * x500Name array2.
      *
      * @param array $array1 The first array.
      * @param array $array2 The second array.

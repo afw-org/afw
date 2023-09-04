@@ -33,24 +33,23 @@ class journal
      * 
      * There are no response properties set by this function.
      * 
-     * The properties of the _AdaptiveProvisioningPeer_ object associated
-     * with the consumer_id are used in the following way:
+     * The properties of the _AdaptiveProvisioningPeer_ object associated with
+     * the consumer_id are used in the following way:
      * 
      * The consumerFilter expression is used to determine if an entry is
      * applicable.
      * 
-     * Journal entries are scanned beginning at the entry at the cursor in
-     * the advanceCursor property. If the advanceCursor property is not
-     * present, the scan begins after the cursor in currentCursor. If neither
-     * are present, the scan begins at the start of the journal.
+     * Journal entries are scanned beginning at the entry at the cursor in the
+     * advanceCursor property. If the advanceCursor property is not present,
+     * the scan begins after the cursor in currentCursor. If neither are
+     * present, the scan begins at the start of the journal.
      * 
      * If an new applicable entry is found or if the limit is met, the
      * advanceCursor property is set to the currently scanned entry's cursor.
      *
      * @param string $adaptorId Id of adaptor.
      * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_
-     *                           object.
+     *                           associated _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
      *                       scanned for an entry where the consumerFilter
      *                       expression in the associated
@@ -168,17 +167,17 @@ class journal
     /**
      * journal_get_next_for_consumer()
      *
-     * Get the next journal entry for a consumer referenced by the
-     * consumer_id parameter. The entry_cursor parameter is ignored. The
-     * limit parameter specifies the maximum number of entries to scan for an
-     * applicable entry for consumer before returning.
+     * Get the next journal entry for a consumer referenced by the consumer_id
+     * parameter. The entry_cursor parameter is ignored. The limit parameter
+     * specifies the maximum number of entries to scan for an applicable entry
+     * for consumer before returning.
      * 
-     * This option will set response properties 'entry' and 'entryCursor' if
+     *  This option will set response properties 'entry' and 'entryCursor' if
      * an applicable entry is retrieved. Property 'reissue' will be set as
      * described below.
      * 
-     * The properties of the _AdaptiveProvisioningPeer_ object associated
-     * with the consumer_id are used in the following way:
+     * The properties of the _AdaptiveProvisioningPeer_ object associated with
+     * the consumer_id are used in the following way:
      * 
      * The consumerFilter expression is used to determine if an entry is
      * applicable.
@@ -186,22 +185,21 @@ class journal
      * If consumeCursor property exists, return that entry at that cursor
      * again immediately with a 'reissue' property added and set to true.
      * 
-     * Journal entries are scanned beginning at the entry at the cursor in
-     * the advanceCursor property. If the advanceCursor property is not
-     * present, the scan begins after the cursor in currentCursor. If neither
-     * are present, the scan begins at the start of the journal.
+     * Journal entries are scanned beginning at the entry at the cursor in the
+     * advanceCursor property. If the advanceCursor property is not present,
+     * the scan begins after the cursor in currentCursor. If neither are
+     * present, the scan begins at the start of the journal.
      * 
      * If an applicable entry is found, properties consumeStart and
      * consumeCursor are set, advanceCursor is removed, and the entry is
      * returned. Method mark_entry_consumed() will remove these properties.
      * 
-     * If no applicable entry is found, advanceCursor is set to the last
-     * entry scanned.
+     * If no applicable entry is found, advanceCursor is set to the last entry
+     * scanned.
      *
      * @param string $adaptorId Id of adaptor.
      * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_
-     *                           object.
+     *                           associated _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
      *                       scanned for an entry where the consumerFilter
      *                       expression in the associated
@@ -232,27 +230,26 @@ class journal
     /**
      * journal_get_next_for_consumer_after_cursor()
      *
-     * Get the next journal entry for a consumer referenced by the
-     * consumer_id after the one specified by the entry_cursor parameter. The
-     * limit parameter specifies the maximum number of entries to scan for an
+     * Get the next journal entry for a consumer referenced by the consumer_id
+     * after the one specified by the entry_cursor parameter. The limit
+     * parameter specifies the maximum number of entries to scan for an
      * applicable entry for consumer before returning.
      * 
      * This option will set response properties 'entry' and 'cursor' if an
      * applicable entry is retrieved.
      * 
-     * The properties of the _AdaptiveProvisioningPeer_ object associated
-     * with the consumer_id are used in the following way:
+     * The properties of the _AdaptiveProvisioningPeer_ object associated with
+     * the consumer_id are used in the following way:
      * 
      * The consumerFilter expression is used to determine if an entry is
      * applicable.
      * 
-     * Unlike option get_next_for_consumer, no other properties are
-     * referenced or modified.
+     * Unlike option get_next_for_consumer, no other properties are referenced
+     * or modified.
      *
      * @param string $adaptorId Id of adaptor.
      * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_
-     *                           object.
+     *                           associated _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      * @param integer $limit The maximum number of entries that will be
      *                       scanned for an entry where the consumerFilter
@@ -289,8 +286,7 @@ class journal
      *
      * @param string $adaptorId Id of adaptor.
      * @param string $consumerId The consumerId property value of the
-     *                           associated _AdaptiveProvisioningPeer_
-     *                           object.
+     *                           associated _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      *
      * @return void

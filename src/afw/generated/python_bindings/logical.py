@@ -9,9 +9,9 @@ def and_(session, conditions):
     """
     Logical and
 
-    Evaluates 0 or more boolean conditions returning boolean true if there
-    are no conditions and boolean false if any condition evaluate to false.
-    All conditions after the first false remain unevaluated.
+    Evaluates 0 or more boolean conditions returning boolean true if there are
+    no conditions and boolean false if any condition evaluate to false. All
+    conditions after the first false remain unevaluated.
 
     Args:
         conditions (bool):
@@ -39,8 +39,8 @@ def n_of(session, n, conditions):
     """
     Check for n true values
 
-    integer n specifies the number of boolean conditions that follow that
-    must evaluate to true for boolean true to be returned. If n is 0, true is
+    integer n specifies the number of boolean conditions that follow that must
+    evaluate to true for boolean true to be returned. If n is 0, true is
     returned. Once n conditions evaluate to true, true is returned and the
     remaining conditions remain unevaluated.
 

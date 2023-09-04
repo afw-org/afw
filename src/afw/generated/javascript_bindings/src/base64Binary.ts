@@ -86,8 +86,8 @@ export function afwBase64Binary(client : any, value : any) : any {
 }
 
 /**
- * Decode base64Binary value to string. An error is thrown if decoded value
- * is not valid UTF-8.
+ * Decode base64Binary value to string. An error is thrown if decoded value is
+ * not valid UTF-8.
  * 
  * @param {base64Binary} value - The base64Binary value to decode.
  * 
@@ -106,8 +106,8 @@ export function afwDecodeToStringBase64Binary(client : any, value : any) : any {
 /**
  * Determine if base64Binary arg1 is equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * instead if you want false to be returned if arg1 and arg2's data type don't
+ * match.
  * 
  * @param {base64Binary} arg1 -
  * 
@@ -251,8 +251,8 @@ export function afwIsInBase64Binary(client : any, value : any, array : any[]) : 
 }
 
 /**
- * Checks for base64Binary arg1 is less than or equal to base64Binary arg2
- * and return the boolean result.
+ * Checks for base64Binary arg1 is less than or equal to base64Binary arg2 and
+ * return the boolean result.
  * 
  * @param {base64Binary} arg1 -
  * 
@@ -317,8 +317,8 @@ export function afwNeBase64Binary(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for base64Binary arg1 is not equal to the value or data type
- * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
- * want arg2 to be converted to the data type of arg1 before comparison.
+ * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
+ * arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {base64Binary} arg1 -
  * 
@@ -377,8 +377,8 @@ export function afwSetEqualsBase64Binary(client : any, array1 : any[], array2 : 
 }
 
 /**
- * Returns boolean true if the unique values in base64Binary array1 are all
- * in base64Binary array2.
+ * Returns boolean true if the unique values in base64Binary array1 are all in
+ * base64Binary array2.
  * 
  * @param {array} array1 - The first array.
  * 

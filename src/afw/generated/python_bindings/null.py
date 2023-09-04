@@ -123,8 +123,8 @@ def to_string_null(session, value):
     """
     Converts value to string
 
-    Converts null value to string. For array values, the to_string() value
-    for each entry is returned separated with commas.
+    Converts null value to string. For array values, the to_string() value for
+    each entry is returned separated with commas.
 
     Args:
         value (None): A null value.

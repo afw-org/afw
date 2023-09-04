@@ -45,8 +45,8 @@ class model
      *                       in model expressions.
      * @param string $objectId This is the optional preferred objectId of
      *                         object to add. The adaptor may ignore this.
-     *                         Variable custom::objectId can be used to
-     *                         access this value in model expressions.
+     *                         Variable custom::objectId can be used to access
+     *                         this value in model expressions.
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
      *                        adaptor's current model will be used.
@@ -88,8 +88,8 @@ class model
      * performed if a onDeleteObject parameter is not specified on the
      * associated _AdaptiveModelObjectType_. The action is not performed, but
      * be aware that functions called while producing the _AdaptiveAction_
-     * object may cause side effects. This function can be called as part of
-     * a onDelete expression or for testing.
+     * object may cause side effects. This function can be called as part of a
+     * onDelete expression or for testing.
      *
      * @param string $adaptorId This is the adaptorId of a model adaptor.
      *                          Variable custom::adaptorId can be used to
@@ -139,8 +139,8 @@ class model
      * performed if a onModifyObject parameter is not specified on the
      * associated _AdaptiveModelObjectType_. The action is not performed, but
      * be aware that functions called while producing the _AdaptiveAction_
-     * object may cause side effects. This function can be called as part of
-     * a onModify expression or for testing.
+     * object may cause side effects. This function can be called as part of a
+     * onModify expression or for testing.
      *
      * @param string $adaptorId This is the adaptorId of a model adaptor.
      *                          Variable custom::adaptorId can be used to
@@ -150,38 +150,26 @@ class model
      *                           can be used to access this value in model
      *                           expressions.
      * @param string $objectId This is the objectId of object to modify.
-     *                         Variable custom::objectId can be used to
-     *                         access this value in model expressions.
+     *                         Variable custom::objectId can be used to access
+     *                         this value in model expressions.
      * @param array $entries This is an array of modifications. Variable
      *                       custom::actions can be used to access this value
      *                       in model expressions. Entries are of the form:
-     *                       
-     *                       [
-     *                       'add_value',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
-     *                       
-     *                       [
-     *                       'remove_property',
-     *                       'property name' or ['property name', ...
-     *                       ]
-     *                       ]
-     *                       
-     *                       [
-     *                       'remove_value',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
-     *                       
-     *                       [
-     *                       'set_property',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
+     * 
+     *                           [         'add_value',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
+     * 
+     *                           [         'remove_property',        
+     *                       'property name' or ['property name', ... ]     ]
+     * 
+     *                           [         'remove_value',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
+     * 
+     *                           [         'set_property',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
      *                        adaptor's current model will be used.
@@ -221,8 +209,8 @@ class model
      * performed if a onReplaceObject parameter is not specified on the
      * associated _AdaptiveModelObjectType_. The action is not performed, but
      * be aware that functions called while producing the _AdaptiveAction_
-     * object may cause side effects. This function can be called as part of
-     * a onReplace expression or for testing.
+     * object may cause side effects. This function can be called as part of a
+     * onReplace expression or for testing.
      *
      * @param string $adaptorId This is the adaptorId of a model adaptor.
      *                          Variable custom::adaptorId can be used to
@@ -278,8 +266,8 @@ class model
      *
      * @param object $mappedObject This is the object to map back.
      *
-     * @return object This is the mappedObject mapped back from mapped
-     *                adaptor object.
+     * @return object This is the mappedObject mapped back from mapped adaptor
+     *                object.
      */
     public function model_mapBackObject_signature(, $mappedObject)
     {

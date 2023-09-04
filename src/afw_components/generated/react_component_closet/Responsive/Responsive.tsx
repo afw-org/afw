@@ -22,10 +22,10 @@ import {ctx} from "@afw/react";
  * A layout container that renders content in a grid format, with breakpoints
  * defined for a variety of screen sizes.
  * 
- * This container component defines a Row/Column grid of components to
- * display content horizontally and vertically, depending on the screen size.
- * For larger displays, you may assign breakpoints that allow for all content
- * to fit, while on smaller mobile devices, content will be divided up into
+ * This container component defines a Row/Column grid of components to display
+ * content horizontally and vertically, depending on the screen size. For
+ * larger displays, you may assign breakpoints that allow for all content to
+ * fit, while on smaller mobile devices, content will be divided up into
  * chunks.
  * 
  */

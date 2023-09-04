@@ -23,8 +23,8 @@ import {ctx} from "@afw/react";
  * confirmation response.
  * 
  * This component container is visible when a target element is clicked. It's
- * used to quickly show or grab input from the user in a popup area and can
- * be dismissed by confirming or cancelling via buttons.
+ * used to quickly show or grab input from the user in a popup area and can be
+ * dismissed by confirming or cancelling via buttons.
  * 
  */
 export const Dialog : React.FunctionComponent<IDialogProps> = (props) => {

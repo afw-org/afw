@@ -48,14 +48,14 @@ export function afwBagTemplate(client : any, values? : any[]) : any {
 }
 
 /**
- * Compile template value and return either an unevaluated adaptive value or
- * a string containing the compiler listing.
+ * Compile template value and return either an unevaluated adaptive value or a
+ * string containing the compiler listing.
  * 
  * @param {template} source - template string to compile
  * 
- * @param {} listing - If specified, a compiler listing is produced instead
- *     of an unevaluated expression value.
- *     
+ * @param {} listing - If specified, a compiler listing is produced instead of
+ *     an unevaluated expression value.
+ * 
  *     This parameter can be an integer between 0 and 10 of a string that is
  *     used for indentation. If 0 is specified, no whitespace is added to the
  *     resulting string. If 1 through 10 is specified, that number of spaces
@@ -78,9 +78,8 @@ export function afwCompileTemplate(client : any, source : any, listing? : any) :
 
 /**
  * Determine if template arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {template} arg1 -
  * 
@@ -101,8 +100,8 @@ export function afwEqTemplate(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for template arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {template} arg1 -
  * 
@@ -129,9 +128,9 @@ export function afwEqxTemplate(client : any, arg1 : any, arg2 : any) : any {
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {unevaluated}
  */

@@ -53,9 +53,9 @@ export function afwBagXpathExpression(client : any, values? : any[]) : any {
  * 
  * @param {xpathExpression} source - xpathExpression string to compile
  * 
- * @param {} listing - If specified, a compiler listing is produced instead
- *     of an unevaluated expression value.
- *     
+ * @param {} listing - If specified, a compiler listing is produced instead of
+ *     an unevaluated expression value.
+ * 
  *     This parameter can be an integer between 0 and 10 of a string that is
  *     used for indentation. If 0 is specified, no whitespace is added to the
  *     resulting string. If 1 through 10 is specified, that number of spaces
@@ -79,8 +79,8 @@ export function afwCompileXpathExpression(client : any, source : any, listing? :
 /**
  * Determine if xpathExpression arg1 is equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * instead if you want false to be returned if arg1 and arg2's data type don't
+ * match.
  * 
  * @param {xpathExpression} arg1 -
  * 
@@ -101,8 +101,8 @@ export function afwEqXpathExpression(client : any, arg1 : any, arg2 : any) : any
 
 /**
  * Determine if for xpathExpression arg1 is equal to the value and data type
- * of arg2 then return the boolean result. Use 'eq' ('==') instead if you
- * want arg2 to be converted to the data type of arg1 before comparison.
+ * of arg2 then return the boolean result. Use 'eq' ('==') instead if you want
+ * arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {xpathExpression} arg1 -
  * 
@@ -130,9 +130,9 @@ export function afwEqxXpathExpression(client : any, arg1 : any, arg2 : any) : an
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {unevaluated}
  */
@@ -150,8 +150,8 @@ export function afwEvaluateXpathExpression(client : any, source : any, additiona
 }
 
 /**
- * Checks for xpathExpression arg1 is greater than or equal to
- * xpathExpression arg2 and return the boolean result.
+ * Checks for xpathExpression arg1 is greater than or equal to xpathExpression
+ * arg2 and return the boolean result.
  * 
  * @param {xpathExpression} arg1 -
  * 
@@ -276,8 +276,8 @@ export function afwNeXpathExpression(client : any, arg1 : any, arg2 : any) : any
 
 /**
  * Determine if for xpathExpression arg1 is not equal to the value or data
- * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
- * you want arg2 to be converted to the data type of arg1 before comparison.
+ * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+ * want arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {xpathExpression} arg1 -
  * 
@@ -297,8 +297,8 @@ export function afwNexXpathExpression(client : any, arg1 : any, arg2 : any) : an
 }
 
 /**
- * Converts xpathExpression value to string. For array values, the
- * to_string() value for each entry is returned separated with commas.
+ * Converts xpathExpression value to string. For array values, the to_string()
+ * value for each entry is returned separated with commas.
  * 
  * @param {xpathExpression} value - A xpathExpression value.
  * 
@@ -350,8 +350,8 @@ export function afwXpathNodeCount(client : any, nodeset : any) : any {
 }
 
 /**
- * Checks for xpathExpression arg1 is equal to xpathExpression arg2 and
- * return the boolean result.
+ * Checks for xpathExpression arg1 is equal to xpathExpression arg2 and return
+ * the boolean result.
  * 
  * @param {xpathExpression} arg1 -
  * 

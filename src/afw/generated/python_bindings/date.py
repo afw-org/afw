@@ -158,10 +158,9 @@ def eq_date(session, arg1, arg2):
     """
     Checks for equal
 
-    Determine if date arg1 is equal to the value of arg2 converted to the
-    data type of arg1 then return the boolean result. Use 'eqx' ('===')
-    instead if you want false to be returned if arg1 and arg2's data type
-    don't match.
+    Determine if date arg1 is equal to the value of arg2 converted to the data
+    type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+    you want false to be returned if arg1 and arg2's data type don't match.
 
     Args:
         arg1 (object):
@@ -422,8 +421,7 @@ def lt_date(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for date arg1 is less that date arg2 and return the boolean
-    result.
+    Checks for date arg1 is less that date arg2 and return the boolean result.
     
     If a date value does not include a time-zone value, then the local
     time-zone value will be assigned.
@@ -521,8 +519,8 @@ def ne_date(session, arg1, arg2):
 
     Determine if date arg1 is not equal to the value of arg2 converted to the
     data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -679,8 +677,7 @@ def subtract_yearMonthDuration_date(session, arg1, arg2):
     """
     Subtract numbers
 
-    Subtract yearMonthDuration arg2 from date arg1 and return the date
-    result.
+    Subtract yearMonthDuration arg2 from date arg1 and return the date result.
 
     Args:
         arg1 (object):
@@ -711,8 +708,8 @@ def to_string_date(session, value):
     """
     Converts value to string
 
-    Converts date value to string. For array values, the to_string() value
-    for each entry is returned separated with commas.
+    Converts date value to string. For array values, the to_string() value for
+    each entry is returned separated with commas.
 
     Args:
         value (object): A date value.

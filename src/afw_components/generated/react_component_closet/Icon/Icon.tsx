@@ -22,9 +22,8 @@ import {ctx} from "@afw/react";
  * A component that displays an icon.
  * 
  * This component displays an icon, which references a common dictionary of
- * icon names, each of which may map to the appropriate icon library
- * depending on the framework that is being used. The icon itself may be
- * clickable.
+ * icon names, each of which may map to the appropriate icon library depending
+ * on the framework that is being used. The icon itself may be clickable.
  * 
  */
 export const Icon : React.FunctionComponent<IIconProps> = (props) => {

@@ -22,8 +22,8 @@ interface IAnyObject {
  * 
  * @param {string} objectType - Object Type(s) this index may apply to.
  * 
- * @param {string} filter - Expression to determine if this index applies to
- *     a particular object.
+ * @param {string} filter - Expression to determine if this index applies to a
+ *     particular object.
  * 
  * @param {string} options - Indexing options.
  * 

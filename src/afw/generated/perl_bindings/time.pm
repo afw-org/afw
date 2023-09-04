@@ -158,8 +158,8 @@ Checks if time in range
 
 =head3 intersection_time
 
-Returns an array of time with the values that are common to both array of
-time array1 and array2.
+Returns an array of time with the values that are common to both array of time
+array1 and array2.
 Returns intersection of two arrays
 
 =head4 Parameters
@@ -199,8 +199,8 @@ Value to check
 
 =head3 le_time
 
-Checks for time arg1 is less than or equal to time arg2 and return the
-boolean result.
+Checks for time arg1 is less than or equal to time arg2 and return the boolean
+result.
 
 It is illegal to compare a time that includes a time-zone value with one that
 does not. In such cases, the `in_range<time>` function should be used.
@@ -258,9 +258,9 @@ Minimum value
 
 =head3 ne_time
 
-Determine if time arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+Determine if time arg1 is not equal to the value of arg2 converted to the data
+type of arg1 then return the boolean result. Use 'nex' ('!==') instead if you
+want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -273,9 +273,9 @@ Checks for not equal
 
 =head3 nex_time
 
-Determine if for time arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+Determine if for time arg1 is not equal to the value or data type of arg2 then
+return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -288,8 +288,8 @@ Checks for not equal value or type
 
 =head3 one_and_only_time
 
-This converts an array of time values that contains one value to a single
-time value.
+This converts an array of time values that contains one value to a single time
+value.
 Converts a one value array to a time value
 
 =head4 Parameters

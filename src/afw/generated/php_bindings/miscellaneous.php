@@ -34,15 +34,14 @@ class miscellaneous
      *                     asterisk ('*') for substitution if isValuePath is
      *                     true and currentPath2 is specified.
      * @param boolean $isValuePath The URIs are adaptive value paths. If one
-     *                             of the URIs begins with a single slash
-     *                             '/', both must, and each URI will be
-     *                             parsed as an adaptive value path (example:
-     *                             /adaptorId/objectType/objectId.propertyName
-     *                             s).
+     *                             of the URIs begins with a single slash '/',
+     *                             both must, and each URI will be parsed as
+     *                             an adaptive value path (example:
+     *                             /adaptorId/objectType/objectId.propertyNames).
      * @param string $currentPath If isValuePath is true, this is the current
-     *                            path that is used to resolve a relative
-     *                            path in the URIs. If isValuePath is not
-     *                            true, this parameter is ignored.
+     *                            path that is used to resolve a relative path
+     *                            in the URIs. If isValuePath is not true,
+     *                            this parameter is ignored.
      *
      * @return boolean Result of comparison.
      */
@@ -69,8 +68,8 @@ class miscellaneous
     /**
      * debug()
      *
-     * Conditionally, based on the detail parameter, write a value as a
-     * string to the debug file descriptor (usually stderr).
+     * Conditionally, based on the detail parameter, write a value as a string
+     * to the debug file descriptor (usually stderr).
      *
      * @param  $value This is the value that will be converted to its string
      *                representation and written. An undefined value is
@@ -78,8 +77,7 @@ class miscellaneous
      * @param boolean $detail If true, the string will only written if the
      *                        debug:function_active:detail flag is on. If
      *                        false or not specified, the string will only
-     *                        written if the debug:function_active flag is
-     *                        on.
+     *                        written if the debug:function_active flag is on.
      *
      * @return void
      */
@@ -102,8 +100,8 @@ class miscellaneous
     /**
      * execution_start_time_local()
      *
-     * Return local dateTime when the execution context was created. This
-     * will usually be the start of request time.
+     * Return local dateTime when the execution context was created. This will
+     * usually be the start of request time.
      *
      *
      * @return dateTime
@@ -277,12 +275,11 @@ class miscellaneous
      *                             path begins with a single slash '/', the
      *                             URI will be parsed as an adaptive value
      *                             path (example:
-     *                             /adaptorId/objectType/objectId.propertyName
-     *                             s)
+     *                             /adaptorId/objectType/objectId.propertyNames)
      * @param string $currentPath If isValuePath is true, this is the current
-     *                            path that is used to resolve relative
-     *                            paths. If isValuePath is not true, this
-     *                            parameter is ignored.
+     *                            path that is used to resolve relative paths.
+     *                            If isValuePath is not true, this parameter
+     *                            is ignored.
      *
      * @return object Object with results of parse.
      */
@@ -393,8 +390,8 @@ class miscellaneous
      * Return the value of a variable. If variable is not available, return a
      * default or null value.
      *
-     * @param string $name Name of variable to get. The name can optionally
-     *                     be preceded with a qualifier followed by '::'.
+     * @param string $name Name of variable to get. The name can optionally be
+     *                     preceded with a qualifier followed by '::'.
      * @param  $defaultValue The default value of variable if it does not
      *                       exist in object. If not specified, null value is
      *                       the default.

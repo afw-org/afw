@@ -95,9 +95,9 @@ class dnsName
      * eq_dnsName()
      *
      * Determine if dnsName arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param dnsName $arg1
      * @param  $arg2
@@ -197,8 +197,7 @@ class dnsName
     /**
      * is_dnsName()
      *
-     * Checks whether value is dataType dnsName and return the boolean
-     * result.
+     * Checks whether value is dataType dnsName and return the boolean result.
      *
      * @param  $value Value to check
      *
@@ -297,8 +296,8 @@ class dnsName
      *
      * Determine if dnsName arg1 is not equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param dnsName $arg1
      * @param  $arg2
@@ -322,8 +321,8 @@ class dnsName
     /**
      * nex_dnsName()
      *
-     * Determine if for dnsName arg1 is not equal to the value or data type
-     * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+     * Determine if for dnsName arg1 is not equal to the value or data type of
+     * arg2 then return the boolean result. Use 'ne' ('!=') instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param dnsName $arg1

@@ -209,9 +209,9 @@ class time
      * in_range_time()
      *
      * Checks if time is between startTime and endTime, inclusive. Regardless
-     * of endTime value, it is always considered to be equal to, but less
-     * than 24 hours greater than startTime. If no time zone is specified for
-     * time, the default time zone is used. If no time zone is specified for
+     * of endTime value, it is always considered to be equal to, but less than
+     * 24 hours greater than startTime. If no time zone is specified for time,
+     * the default time zone is used. If no time zone is specified for
      * startTime or endTime, the time zone of time is used.
      *
      * @param time $time
@@ -421,9 +421,9 @@ class time
      * ne_time()
      *
      * Determine if time arg1 is not equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param time $arg1
      * @param  $arg2
@@ -496,8 +496,8 @@ class time
     /**
      * set_equals_time()
      *
-     * Returns boolean true if time array1 and time array2 are subsets of
-     * each other and return the boolean result.
+     * Returns boolean true if time array1 and time array2 are subsets of each
+     * other and return the boolean result.
      *
      * @param array $array1
      * @param array $array2

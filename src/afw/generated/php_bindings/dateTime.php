@@ -170,9 +170,9 @@ class dateTime
      * eq_dateTime()
      *
      * Determine if dateTime arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param dateTime $arg1
      * @param  $arg2
@@ -326,8 +326,8 @@ class dateTime
     /**
      * is_in_dateTime()
      *
-     * Checks whether dateTime value is in array of dateTime array and
-     * returns the boolean result.
+     * Checks whether dateTime value is in array of dateTime array and returns
+     * the boolean result.
      *
      * @param dateTime $value
      * @param array $array
@@ -459,8 +459,8 @@ class dateTime
      *
      * Determine if dateTime arg1 is not equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param dateTime $arg1
      * @param  $arg2
@@ -533,8 +533,8 @@ class dateTime
     /**
      * set_equals_dateTime()
      *
-     * Returns boolean true if dateTime array1 and dateTime array2 are
-     * subsets of each other and return the boolean result.
+     * Returns boolean true if dateTime array1 and dateTime array2 are subsets
+     * of each other and return the boolean result.
      *
      * @param array $array1
      * @param array $array2
@@ -558,8 +558,8 @@ class dateTime
     /**
      * subset_dateTime()
      *
-     * Returns boolean true if the unique values in dateTime array1 are all
-     * in dateTime array2.
+     * Returns boolean true if the unique values in dateTime array1 are all in
+     * dateTime array2.
      *
      * @param array $array1 The first array.
      * @param array $array2 The second array.

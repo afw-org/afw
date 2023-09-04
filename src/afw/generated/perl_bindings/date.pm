@@ -163,8 +163,8 @@ Checks for greater than
 
 =head3 intersection_date
 
-Returns an array of date with the values that are common to both array of
-date array1 and array2.
+Returns an array of date with the values that are common to both array of date
+array1 and array2.
 Returns intersection of two arrays
 
 =head4 Parameters
@@ -204,8 +204,8 @@ Checks whether a value is in an array
 
 =head3 le_date
 
-Checks for date arg1 is less than or equal to date arg2 and return the
-boolean result.
+Checks for date arg1 is less than or equal to date arg2 and return the boolean
+result.
 
 If a date value does not include a time-zone value, then the local time-zone
 value will be assigned.
@@ -263,9 +263,9 @@ Minimum value
 
 =head3 ne_date
 
-Determine if date arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+Determine if date arg1 is not equal to the value of arg2 converted to the data
+type of arg1 then return the boolean result. Use 'nex' ('!==') instead if you
+want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -278,9 +278,9 @@ Checks for not equal
 
 =head3 nex_date
 
-Determine if for date arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+Determine if for date arg1 is not equal to the value or data type of arg2 then
+return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -293,8 +293,8 @@ Checks for not equal value or type
 
 =head3 one_and_only_date
 
-This converts an array of date values that contains one value to a single
-date value.
+This converts an array of date values that contains one value to a single date
+value.
 Converts a one value array to a date value
 
 =head4 Parameters

@@ -9,10 +9,10 @@ def assign(session, name, value):
     """
     Assign a value to a defined variable
 
-    Assign a value to the innermost structured block definition of a
-    variable. If the variable is not defined, the variable is defined in the
-    innermost structured block. An error is thrown if not called from an
-    array of values (statements) in a structured function.
+    Assign a value to the innermost structured block definition of a variable.
+    If the variable is not defined, the variable is defined in the innermost
+    structured block. An error is thrown if not called from an array of values
+    (statements) in a structured function.
 
     Args:
         name (str): Variable name
@@ -77,10 +77,9 @@ def const(session, name, value, type=None):
     """
     Define one or more constants in the current block
 
-    Define one or more statically scoped constants local to the current
-    script block with a permanent value. These constants can be accessed from
-    the current block and inner blocks, but can not be assigned a different
-    value.
+    Define one or more statically scoped constants local to the current script
+    block with a permanent value. These constants can be accessed from the
+    current block and inner blocks, but can not be assigned a different value.
 
     Args:
         name (list): The name of one or more constants to defined in the
@@ -160,8 +159,7 @@ def do_while(session, condition, body):
         'continue', 'return' or 'throw' function is encountered.
 
     Returns:
-        object: The last value evaluated in body or null if the body is
-        empty.
+        object: The last value evaluated in body or null if the body is empty.
     """
 
     request = session.Request()
@@ -186,8 +184,8 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
     This creates a new structured block with a new nested variable scope.
     
-    This function loops while condition is true. If the condition is false
-    for the first iteration, the loop returns a null value.
+    This function loops while condition is true. If the condition is false for
+    the first iteration, the loop returns a null value.
 
     Args:
         initial (list): This is an array of values (statements) to evaluate
@@ -399,9 +397,8 @@ def return_(session, value=None):
     Return from the outermost structured block
 
     Return from the outermost structured block. If the expression of a lambda
-    function is a block function, this will effectively return from the
-    lambda function. If called outside of a structured block, an error is
-    thrown.
+    function is a block function, this will effectively return from the lambda
+    function. If called outside of a structured block, an error is thrown.
 
     Args:
         value (object): The value to evaluate that the outermost block will
@@ -409,8 +406,8 @@ def return_(session, value=None):
         will be returned.
 
     Returns:
-        object: This function returns from the outermost structured block
-        with the last evaluated value.
+        object: This function returns from the outermost structured block with
+        the last evaluated value.
     """
 
     request = session.Request()
@@ -438,24 +435,24 @@ def switch(session, predicate, value1, case_clause):
 
     Args:
         predicate (object): The predicate is passed two parameters and must
-        return a boolean. The first parameter passed is the evaluated value
-        of the value1 parameter and the second is the value2 from a case
-        clause. This predicate will often be 'eqx' to use the exactly equal
-        function but can also be any other function such as 'regexp_match' or
-        a lambda function.
+        return a boolean. The first parameter passed is the evaluated value of
+        the value1 parameter and the second is the value2 from a case clause.
+        This predicate will often be 'eqx' to use the exactly equal function
+        but can also be any other function such as 'regexp_match' or a lambda
+        function.
 
         value1 (object): The first parameter passed to the predicate.
 
-        case_clause (object): This is one or more case clauses which are
-        pairs of a value2 parameter followed by a statement list or undefined
+        case_clause (object): This is one or more case clauses which are pairs
+        of a value2 parameter followed by a statement list or undefined
         parameter. One value2 can be undefined to indicate the default case
         clause.
         
         For the first value2 that is undefined or calling the predicate
         returns true, the statement list followed by any statement lists of
         subsequent case clauses are executed until a break or return is
-        encountered. The predicate is called with value1 and the case
-        clause's value2.
+        encountered. The predicate is called with value1 and the case clause's
+        value2.
 
     Returns:
         object:
@@ -522,11 +519,11 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
     This creates a new structured block with a new nested variable scope.
     
-    This function will evaluate the body statements. If an error is thrown
-    and there is an optional catch, the error will be 'caught' and the
-    associated statements will be evaluated. The optional finally statements
-    are always evaluated after the body and catch statements. See the related
-    functions 'break', 'continue', 'return' and 'throw'.
+    This function will evaluate the body statements. If an error is thrown and
+    there is an optional catch, the error will be 'caught' and the associated
+    statements will be evaluated. The optional finally statements are always
+    evaluated after the body and catch statements. See the related functions
+    'break', 'continue', 'return' and 'throw'.
 
     Args:
         body (list): This is an array of values (statements) that are
@@ -542,9 +539,8 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
         catch (list): This is an array of values (statements) that are
         evaluated when an error is thrown while evaluating the body. Each
-        value in body is evaluated in order until the end of the list or
-        until a 'break', 'continue', 'return' or 'throw' function is
-        encountered.
+        value in body is evaluated in order until the end of the list or until
+        a 'break', 'continue', 'return' or 'throw' function is encountered.
 
         error (dict): The error object thrown. This is only available in the
         catch block. See adaptive object type _AdaptiveObjectType_ for
@@ -586,8 +582,8 @@ def while_(session, condition, body):
     
     This function will evaluate an array of values (statements) while a
     condition is true. The condition is tested at the beginning of the loop.
-    If the condition is false for the first iteration, the loop returns a
-    null value. See the related functions 'break', 'continue', 'return' and
+    If the condition is false for the first iteration, the loop returns a null
+    value. See the related functions 'break', 'continue', 'return' and
     'throw'.
 
     Args:

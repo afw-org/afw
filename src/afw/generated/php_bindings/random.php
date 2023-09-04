@@ -29,8 +29,7 @@ class random
      * This returns a specified number of random octets as dataType
      * base64Binary.
      *
-     * @param integer $numberOfOctets The number of random octets to
-     *                                generate.
+     * @param integer $numberOfOctets The number of random octets to generate.
      *
      * @return base64Binary
      */
@@ -53,8 +52,7 @@ class random
      * Generate a string containing a specified number of random decimal
      * digits.
      *
-     * @param integer $numberOfDigits The number (1-18) of digits to
-     *                                generate.
+     * @param integer $numberOfDigits The number (1-18) of digits to generate.
      *
      * @return string
      */
@@ -74,11 +72,9 @@ class random
     /**
      * random_hexBinary()
      *
-     * This returns a specified number of random octets as dataType
-     * hexBinary.
+     * This returns a specified number of random octets as dataType hexBinary.
      *
-     * @param integer $numberOfOctets The number of random octets to
-     *                                generate.
+     * @param integer $numberOfOctets The number of random octets to generate.
      *
      * @return hexBinary
      */

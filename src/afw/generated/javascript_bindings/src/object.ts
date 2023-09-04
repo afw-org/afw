@@ -40,8 +40,7 @@ export function afwAddProperties(client : any, target : object, source : object)
  * @param {object} object - Object used to produce result.
  * 
  * @param {object} options - Object options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @returns {object} This is an object with object options applied.
  */
@@ -113,9 +112,8 @@ export function afwCloneObject(client : any, value : object) : any {
 
 /**
  * Determine if object arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {object} arg1 -
  * 
@@ -136,8 +134,8 @@ export function afwEqObject(client : any, arg1 : object, arg2 : any) : any {
 
 /**
  * Determine if for object arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {object} arg1 -
  * 
@@ -287,10 +285,9 @@ export function afwLtObject(client : any, arg1 : object, arg2 : object) : any {
 }
 
 /**
- * Determine if object arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if object arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {object} arg1 -
  * 
@@ -310,9 +307,9 @@ export function afwNeObject(client : any, arg1 : object, arg2 : any) : any {
 }
 
 /**
- * Determine if for object arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for object arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {object} arg1 -
  * 
@@ -371,8 +368,7 @@ export function afwPropertyDelete(client : any, object : object, name : string) 
 /**
  * Delete a property from an object by reference.
  * 
- * @param {} reference - This is a reference to the object property to
- *     delete.
+ * @param {} reference - This is a reference to the object property to delete.
  * 
  * @returns {boolean} True if object had the property and it was deleted.
  */
@@ -414,8 +410,8 @@ export function afwPropertyExists(client : any, object : object, name : string) 
  * 
  * @param {string} name - Name of property to get.
  * 
- * @param {} defaultValue - The default value of property if it does not
- *     exist in object. If not specified, null value is the default.
+ * @param {} defaultValue - The default value of property if it does not exist
+ *     in object. If not specified, null value is the default.
  * 
  * @returns {} Evaluated property value or default.
  */

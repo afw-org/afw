@@ -78,9 +78,9 @@ class expression
      * @param expression $source expression string to compile
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated expression value.
-     *                  
-     *                  This parameter can be an integer between 0 and 10 of
-     *                  a string that is used for indentation. If 0 is
+     * 
+     *                  This parameter can be an integer between 0 and 10 of a
+     *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
      *                  spaces is used.
@@ -106,10 +106,10 @@ class expression
     /**
      * eq_expression()
      *
-     * Determine if expression arg1 is equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if expression arg1 is equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param expression $arg1
      * @param  $arg2
@@ -133,8 +133,8 @@ class expression
     /**
      * eqx_expression()
      *
-     * Determine if for expression arg1 is equal to the value and data type
-     * of arg2 then return the boolean result. Use 'eq' ('==') instead if you
+     * Determine if for expression arg1 is equal to the value and data type of
+     * arg2 then return the boolean result. Use 'eq' ('==') instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param expression $arg1
@@ -166,12 +166,11 @@ class expression
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -304,8 +303,8 @@ class expression
     /**
      * le_expression()
      *
-     * Checks for expression arg1 is less than or equal to expression arg2
-     * and return the boolean result.
+     * Checks for expression arg1 is less than or equal to expression arg2 and
+     * return the boolean result.
      *
      * @param expression $arg1
      * @param  $arg2
@@ -381,10 +380,9 @@ class expression
     /**
      * nex_expression()
      *
-     * Determine if for expression arg1 is not equal to the value or data
-     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead
-     * if you want arg2 to be converted to the data type of arg1 before
-     * comparison.
+     * Determine if for expression arg1 is not equal to the value or data type
+     * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+     * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param expression $arg1
      * @param  $arg2

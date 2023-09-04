@@ -73,13 +73,13 @@ def compile_expression(session, source, listing=None):
     Args:
         source (object): expression string to compile
 
-        listing (object): If specified, a compiler listing is produced
-        instead of an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced instead
+        of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        used for indentation. If 0 is specified, no whitespace is added to the
+        resulting string. If 1 through 10 is specified, that number of spaces
+        is used.
 
     Returns:
         object:
@@ -180,12 +180,11 @@ def evaluate_expression(session, source, additionalUntrustedQualifiedVariables=N
         source (object): expression string to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         object:
@@ -241,8 +240,8 @@ def ge_expression(session, arg1, arg2):
     """
     Checks for greater than or equal
 
-    Checks for expression arg1 is greater than or equal to expression arg2
-    and return the boolean result.
+    Checks for expression arg1 is greater than or equal to expression arg2 and
+    return the boolean result.
 
     Args:
         arg1 (object):
@@ -305,8 +304,7 @@ def is_expression(session, value):
     """
     Checks whether value is dataType expression
 
-    Checks whether value is dataType expression and return the boolean
-    result.
+    Checks whether value is dataType expression and return the boolean result.
 
     Args:
         value (object): Value to check
@@ -399,9 +397,9 @@ def ne_expression(session, arg1, arg2):
     Checks for not equal
 
     Determine if expression arg1 is not equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use 'nex'
-    ('!==') instead if you want true to be returned if arg1 and arg2's data
-    type don't match.
+    to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -432,9 +430,9 @@ def nex_expression(session, arg1, arg2):
     """
     Checks for not equal value or type
 
-    Determine if for expression arg1 is not equal to the value or data type
-    of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
-    want arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for expression arg1 is not equal to the value or data type of
+    arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
+    arg2 to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):

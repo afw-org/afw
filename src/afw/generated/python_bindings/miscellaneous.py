@@ -25,8 +25,8 @@ def compare_uri(session, uri1, uri2, isValuePath=None, currentPath=None):
         /adaptorId/objectType/objectId.propertyNames).
 
         currentPath (str): If isValuePath is true, this is the current path
-        that is used to resolve a relative path in the URIs. If isValuePath
-        is not true, this parameter is ignored.
+        that is used to resolve a relative path in the URIs. If isValuePath is
+        not true, this parameter is ignored.
 
     Returns:
         bool: Result of comparison.
@@ -58,13 +58,13 @@ def debug(session, value, detail=None):
     """
     Conditionally write a debug value
 
-    Conditionally, based on the detail parameter, write a value as a string
-    to the debug file descriptor (usually stderr).
+    Conditionally, based on the detail parameter, write a value as a string to
+    the debug file descriptor (usually stderr).
 
     Args:
-        value (object): This is the value that will be converted to its
-        string representation and written. An undefined value is represented
-        by `<undefined>`.
+        value (object): This is the value that will be converted to its string
+        representation and written. An undefined value is represented by
+        `<undefined>`.
 
         detail (bool): If true, the string will only written if the
         debug:function_active:detail flag is on. If false or not specified,
@@ -381,9 +381,9 @@ def trace(session, value, filter=None, number=None):
     Write a value to a trace log.
 
     Args:
-        value (object): This is the value that will be converted to its
-        string representation and written the trace log. An undefined value
-        is represented by `<undefined>`.
+        value (object): This is the value that will be converted to its string
+        representation and written the trace log. An undefined value is
+        represented by `<undefined>`.
 
         filter (bool): If this optional filter is false, nothing will be
         written to the trace log. The default is true.

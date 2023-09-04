@@ -9,8 +9,8 @@ def at_least_one_member_of_dayTimeDuration(session, array1, array2):
     """
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in dayTimeDuration array1 is
-    in dayTimeDuration array2.
+    Returns boolean true if at least one value in dayTimeDuration array1 is in
+    dayTimeDuration array2.
 
     Args:
         array1 (list): The first array.
@@ -129,9 +129,9 @@ def eq_dayTimeDuration(session, arg1, arg2):
     Checks for equal
 
     Determine if dayTimeDuration arg1 is equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use 'eqx'
-    ('===') instead if you want false to be returned if arg1 and arg2's data
-    type don't match.
+    to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+    instead if you want false to be returned if arg1 and arg2's data type
+    don't match.
 
     Args:
         arg1 (object):

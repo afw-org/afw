@@ -213,8 +213,8 @@ Compile <dataType> value
 If specified, a compiler listing is produced instead of an unevaluated
 expression value.
 
-This parameter can be an integer between 0 and 10 of a string that is used
-for indentation. If 0 is specified, no whitespace is added to the resulting
+This parameter can be an integer between 0 and 10 of a string that is used for
+indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 decode_to_string
@@ -245,8 +245,8 @@ Divide numbers
 
 =head3 encode_as_base64Binary
 
-Encode a value as a base64Binary. The effect is to create a base64Binary
-value with an internal value of the value passed.
+Encode a value as a base64Binary. The effect is to create a base64Binary value
+with an internal value of the value passed.
 Encode to a base64Binary value
 
 =head4 Parameters
@@ -284,8 +284,8 @@ Checks whether value ends with a string
 =head3 eq
 
 Determine if `<dataType>` arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+you want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -312,9 +312,9 @@ Checks for equal ignoring case
 
 =head3 eqx
 
-Determine if for `<dataType>` arg1 is equal to the value and data type of
-arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
-to be converted to the data type of arg1 before comparison.
+Determine if for `<dataType>` arg1 is equal to the value and data type of arg2
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -357,8 +357,8 @@ Round downwards to nearest integer
 
 =head3 ge
 
-Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
-and return the boolean result.
+Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2 and
+return the boolean result.
 Checks for greater than or equal
 
 =head4 Parameters
@@ -385,12 +385,12 @@ Checks for greater than
 
 =head3 in_range
 
-Checks if `<dataType>` is between startTime and endTime, inclusive.
-Regardless of endTime value, it is always considered to be equal to, but less
-than 24 hours greater than startTime. If no `<dataType>` zone is specified
-for `<dataType>,` the default `<dataType>` zone is used. If no `<dataType>`
-zone is specified for startTime or endTime, the `<dataType>` zone of
-`<dataType>` is used.
+Checks if `<dataType>` is between startTime and endTime, inclusive. Regardless
+of endTime value, it is always considered to be equal to, but less than 24
+hours greater than startTime. If no `<dataType>` zone is specified for
+`<dataType>,` the default `<dataType>` zone is used. If no `<dataType>` zone
+is specified for startTime or endTime, the `<dataType>` zone of `<dataType>`
+is used.
 Checks if time in range
 
 =head4 Parameters
@@ -406,8 +406,8 @@ Checks if time in range
 
 =head3 includes
 
-Checks whether the `<dataType>` value includes a string and return the
-boolean result.
+Checks whether the `<dataType>` value includes a string and return the boolean
+result.
 Checks whether the <dataType> value includes a string
 
 =head4 Parameters
@@ -446,8 +446,8 @@ Optional start index for search if different than start of string.
 
 =head3 intersection
 
-Returns an array of `<dataType>` with the values that are common to both
-array of `<dataType>` array1 and array2.
+Returns an array of `<dataType>` with the values that are common to both array
+of `<dataType>` array1 and array2.
 Returns intersection of two arrays
 
 =head4 Parameters
@@ -487,8 +487,8 @@ Checks whether a value is in an array
 
 =head3 last_index_of
 
-Returns the zero-based index into `<dataType>` value of the last occurrence
-of a subString. If subString is not found, -1 is returned.
+Returns the zero-based index into `<dataType>` value of the last occurrence of
+a subString. If subString is not found, -1 is returned.
 Returns index of last occurrence
 
 =head4 Parameters
@@ -863,8 +863,8 @@ The second array.
 =head3 substring
 
 Returns the `<dataType>` substring of value beginning at zero-based position
-integer startIndex and ending at the position before integer endIndex.
-Specify -1 or omitting endIndex to return up to end of `<dataType>`.
+integer startIndex and ending at the position before integer endIndex. Specify
+-1 or omitting endIndex to return up to end of `<dataType>`.
 Extract a substring
 
 =head4 Parameters
@@ -1022,8 +1022,8 @@ Converts string to rfc822Name
 
 =head3 to_string
 
-Converts `<dataType>` value to string. For array values, the to_string()
-value for each entry is returned separated with commas.
+Converts `<dataType>` value to string. For array values, the to_string() value
+for each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters
@@ -1083,8 +1083,8 @@ URI encode
 
     $unencoded
 
-URL encode a single value. See the url_encode method for the data type of
-more details.
+URL encode a single value. See the url_encode method for the data type of more
+details.
 
 =cut
 

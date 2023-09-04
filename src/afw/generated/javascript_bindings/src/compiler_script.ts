@@ -35,12 +35,12 @@ export function afwAssign(client : any, name : string, value : any) : any {
 }
 
 /**
- * This is a special function that can be called to break out of the body of
- * a loop. If called outside of a loop body, an error is thrown.
+ * This is a special function that can be called to break out of the body of a
+ * loop. If called outside of a loop body, an error is thrown.
  * 
  * @param {} value - The value to evaluate that the enclosing loop will
- *     return. If not specified, the last evaluated value or a null value
- *     will be returned.
+ *     return. If not specified, the last evaluated value or a null value will
+ *     be returned.
  * 
  * @returns {} This function returns from the body of a loop with the last
  *     evaluated value.
@@ -151,8 +151,8 @@ export function afwDoWhile(client : any, condition : boolean, body : any[]) : an
  *     evaluated in order until the end of the array or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.
  * 
- * @returns {} The last value evaluated in body or null if condition
- *     evaluates to false the first time.
+ * @returns {} The last value evaluated in body or null if condition evaluates
+ *     to false the first time.
  */
 export function afwFor(client : any, initial? : any[], condition? : boolean, increment? : any[], body? : any[]) : any {
 
@@ -193,8 +193,8 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
  *     evaluated in order until the end of the array or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.
  * 
- * @returns {} The last value evaluated in body or null if condition
- *     evaluates to false the first time.
+ * @returns {} The last value evaluated in body or null if condition evaluates
+ *     to false the first time.
  */
 export function afwForOf(client : any, name : any[], value : any, body? : any[]) : any {
 
@@ -274,8 +274,8 @@ export function afwLet(client : any, name : any[], value? : any, type? : object)
 }
 
 /**
- * This is a special function that can be called to rethrow an error inside
- * of a catch block. If called outside of a catch body, an error is thrown.
+ * This is a special function that can be called to rethrow an error inside of
+ * a catch block. If called outside of a catch body, an error is thrown.
  * 
  * @returns {} This function rethrows the current error in a catch block.
  */
@@ -294,8 +294,8 @@ export function afwRethrow(client : any) : any {
  * function. If called outside of a structured block, an error is thrown.
  * 
  * @param {} value - The value to evaluate that the outermost block will
- *     return. If not specified, the last evaluated value or a null value
- *     will be returned.
+ *     return. If not specified, the last evaluated value or a null value will
+ *     be returned.
  * 
  * @returns {} This function returns from the outermost structured block with
  *     the last evaluated value.
@@ -319,21 +319,19 @@ export function afwReturn(client : any, value? : any) : any {
  *     must return a boolean. The first parameter passed is the evaluated
  *     value of the value1 parameter and the second is the value2 from a case
  *     clause. This predicate will often be 'eqx' to use the exactly equal
- *     function but can also be any other function such as 'regexp_match' or
- *     a lambda function.
+ *     function but can also be any other function such as 'regexp_match' or a
+ *     lambda function.
  * 
  * @param {} value1 - The first parameter passed to the predicate.
  * 
- * @param {} case_clause - This is one or more case clauses which are pairs
- *     of a value2 parameter followed by a statement list or undefined
- *     parameter. One value2 can be undefined to indicate the default case
- *     clause.
- *     
- *     For the first value2 that is undefined or calling the predicate
- *     returns true, the statement list followed by any statement lists of
- *     subsequent case clauses are executed until a break or return is
- *     encountered. The predicate is called with value1 and the case clause's
- *     value2.
+ * @param {} case_clause - This is one or more case clauses which are pairs of
+ *     a value2 parameter followed by a statement list or undefined parameter.
+ *     One value2 can be undefined to indicate the default case clause.
+ * 
+ *     For the first value2 that is undefined or calling the predicate returns
+ *     true, the statement list followed by any statement lists of subsequent
+ *     case clauses are executed until a break or return is encountered. The
+ *     predicate is called with value1 and the case clause's value2.
  * 
  * @returns {}
  */
@@ -351,9 +349,9 @@ export function afwSwitch(client : any, predicate : any, value1 : any, case_clau
 
 /**
  * This throws an error that can be caught by a try/catch block. An error
- * object of object type _AdaptiveError_ will be available in the catch
- * block. Its 'id' property will be set to 'throw'. The other properties set
- * based on the parameters specified and where this function is called.
+ * object of object type _AdaptiveError_ will be available in the catch block.
+ * Its 'id' property will be set to 'throw'. The other properties set based on
+ * the parameters specified and where this function is called.
  * 
  * @param {string} message - This is the message that will be included in the
  *     _AdaptiveError_ error object available in the catch block.
@@ -397,9 +395,9 @@ export function afwThrow(client : any, message : string, additional? : any) : an
  *     encountered.
  * 
  * @param {array} _catch - This is an array of values (statements) that are
- *     evaluated when an error is thrown while evaluating the body. Each
- *     value in body is evaluated in order until the end of the list or until
- *     a 'break', 'continue', 'return' or 'throw' function is encountered.
+ *     evaluated when an error is thrown while evaluating the body. Each value
+ *     in body is evaluated in order until the end of the list or until a
+ *     'break', 'continue', 'return' or 'throw' function is encountered.
  * 
  * @param {object} error - The error object thrown. This is only available in
  *     the catch block. See adaptive object type _AdaptiveObjectType_ for
@@ -430,10 +428,9 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
  * This creates a new structured block with a new nested variable scope.
  * 
  * This function will evaluate an array of values (statements) while a
- * condition is true. The condition is tested at the beginning of the loop.
- * If the condition is false for the first iteration, the loop returns a null
- * value. See the related functions 'break', 'continue', 'return' and
- * 'throw'.
+ * condition is true. The condition is tested at the beginning of the loop. If
+ * the condition is false for the first iteration, the loop returns a null
+ * value. See the related functions 'break', 'continue', 'return' and 'throw'.
  * 
  * @param {boolean} condition - While this condition is true, the loop will
  *     continue. This is evaluated in the loop's scope.
@@ -443,8 +440,8 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
  *     evaluated in order until the end of the list or until a 'break',
  *     'continue', 'return' or 'throw' function is encountered.
  * 
- * @returns {} The last value evaluated in body or null if condition
- *     evaluates to false the first time.
+ * @returns {} The last value evaluated in body or null if condition evaluates
+ *     to false the first time.
  */
 export function afwWhile(client : any, condition : boolean, body : any[]) : any {
 

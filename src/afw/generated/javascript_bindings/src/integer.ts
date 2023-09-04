@@ -104,8 +104,7 @@ export function afwBagSizeInteger(client : any, value : any[]) : any {
 }
 
 /**
- * Divide integer dividend by integer divisor and return the integer
- * quotient.
+ * Divide integer dividend by integer divisor and return the integer quotient.
  * 
  * @param {integer} dividend -
  * 
@@ -126,9 +125,8 @@ export function afwDivideInteger(client : any, dividend : number, divisor : numb
 
 /**
  * Determine if integer arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {integer} arg1 -
  * 
@@ -149,8 +147,8 @@ export function afwEqInteger(client : any, arg1 : number, arg2 : any) : any {
 
 /**
  * Determine if for integer arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {integer} arg1 -
  * 
@@ -170,8 +168,8 @@ export function afwEqxInteger(client : any, arg1 : number, arg2 : any) : any {
 }
 
 /**
- * Checks for integer arg1 is greater than or equal to integer arg2 and
- * return the boolean result.
+ * Checks for integer arg1 is greater than or equal to integer arg2 and return
+ * the boolean result.
  * 
  * @param {integer} arg1 -
  * 
@@ -191,8 +189,8 @@ export function afwGeInteger(client : any, arg1 : number, arg2 : number) : any {
 }
 
 /**
- * Checks for integer arg1 is greater than integer arg2 and return the
- * boolean result.
+ * Checks for integer arg1 is greater than integer arg2 and return the boolean
+ * result.
  * 
  * @param {integer} arg1 -
  * 

@@ -29,8 +29,7 @@ AFW_BEGIN_DECLARES
  * afw_data_type.
  *
  * You can find a skeleton for using this #include file in the corresponding
- * source directory in file
- * generated/interface_closet/skeleton_afw_data_type.c.
+ * source directory in file generated/interface_closet/skeleton_afw_data_type.c.
  *
  * Mutiple *_impl.declares.h can be included in each c source file, but only
  * one for each interface name.

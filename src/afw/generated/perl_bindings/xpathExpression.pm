@@ -70,8 +70,8 @@ xpathExpression string to compile
 If specified, a compiler listing is produced instead of an unevaluated
 expression value.
 
-This parameter can be an integer between 0 and 10 of a string that is used
-for indentation. If 0 is specified, no whitespace is added to the resulting
+This parameter can be an integer between 0 and 10 of a string that is used for
+indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 eq_xpathExpression

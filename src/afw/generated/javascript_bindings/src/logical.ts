@@ -72,8 +72,8 @@ export function afwNot(client : any, condition : boolean) : any {
 }
 
 /**
- * Evaluates 0 or more boolean conditions returning boolean false if there
- * are no conditions and boolean true if any condition evaluate to true. All
+ * Evaluates 0 or more boolean conditions returning boolean false if there are
+ * no conditions and boolean true if any condition evaluate to true. All
  * conditions after the first true remain unevaluated.
  * 
  * @param {boolean} conditions -

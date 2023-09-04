@@ -73,13 +73,13 @@ def compile_xpathExpression(session, source, listing=None):
     Args:
         source (object): xpathExpression string to compile
 
-        listing (object): If specified, a compiler listing is produced
-        instead of an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced instead
+        of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        used for indentation. If 0 is specified, no whitespace is added to the
+        resulting string. If 1 through 10 is specified, that number of spaces
+        is used.
 
     Returns:
         object:
@@ -108,9 +108,9 @@ def eq_xpathExpression(session, arg1, arg2):
     Checks for equal
 
     Determine if xpathExpression arg1 is equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use 'eqx'
-    ('===') instead if you want false to be returned if arg1 and arg2's data
-    type don't match.
+    to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+    instead if you want false to be returned if arg1 and arg2's data type
+    don't match.
 
     Args:
         arg1 (object):
@@ -180,12 +180,11 @@ def evaluate_xpathExpression(session, source, additionalUntrustedQualifiedVariab
         source (object): xpathExpression string to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         object:

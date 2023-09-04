@@ -145,13 +145,12 @@ class compiler_script
      *                           continue. This is evaluated in the loop's
      *                           scope.
      * @param array $body This is an array of values (statements) that are
-     *                    evaluated for each iteration of the loop. Each
-     *                    value in body is evaluated in order until the end
-     *                    of the array or until a 'break', 'continue',
-     *                    'return' or 'throw' function is encountered.
+     *                    evaluated for each iteration of the loop. Each value
+     *                    in body is evaluated in order until the end of the
+     *                    array or until a 'break', 'continue', 'return' or
+     *                    'throw' function is encountered.
      *
-     * @return  The last value evaluated in body or null if the body is
-     *          empty.
+     * @return  The last value evaluated in body or null if the body is empty.
      */
     public function do_while(, $condition, $body)
     {
@@ -185,10 +184,10 @@ class compiler_script
      *                         values will normally be a call to the 'assign'
      *                         function.
      * @param array $body This is an array of values (statements) that are
-     *                    evaluated for each iteration of the loop. Each
-     *                    value in body is evaluated in order until the end
-     *                    of the array or until a 'break', 'continue',
-     *                    'return' or 'throw' function is encountered.
+     *                    evaluated for each iteration of the loop. Each value
+     *                    in body is evaluated in order until the end of the
+     *                    array or until a 'break', 'continue', 'return' or
+     *                    'throw' function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
@@ -231,10 +230,10 @@ class compiler_script
      * @param array $name Variable name(s).
      * @param  $value Any array, object or single value.
      * @param array $body This is an array of values (statements) that are
-     *                    evaluated for each iteration of the loop. Each
-     *                    value in body is evaluated in order until the end
-     *                    of the array or until a 'break', 'continue',
-     *                    'return' or 'throw' function is encountered.
+     *                    evaluated for each iteration of the loop. Each value
+     *                    in body is evaluated in order until the end of the
+     *                    array or until a 'break', 'continue', 'return' or
+     *                    'throw' function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
@@ -266,13 +265,13 @@ class compiler_script
      *                           evaluated.
      * @param array $then This is the body of a structured block that is
      *                    evaluated if 'condition' is true. See the 'body'
-     *                    parameter of the 'block' function for information
-     *                    on how the body is processed.
+     *                    parameter of the 'block' function for information on
+     *                    how the body is processed.
      * @param array $else This is the body of a structured block that is
      *                    evaluated if 'condition' is false. If not specified
      *                    and condition is false, a null value is returned.
-     *                    See the 'body' parameter of the 'block' function
-     *                    for information on how the body is processed.
+     *                    See the 'body' parameter of the 'block' function for
+     *                    information on how the body is processed.
      *
      * @return  The result of evaluating 'then' or 'else'
      */
@@ -297,12 +296,12 @@ class compiler_script
      * let()
      *
      * Declare one or more statically scoped variable locations local to the
-     * current script block and optionally assign them an initial value.
-     * These variables can be accessed and assigned different values from the
+     * current script block and optionally assign them an initial value. These
+     * variables can be accessed and assigned different values from the
      * current block and inner blocks.
      *
-     * @param array $name The name of one or more variables to declared in
-     *                    the current block.
+     * @param array $name The name of one or more variables to declared in the
+     *                    current block.
      * @param  $value This is the initial value of the variable(s). If not
      *                specified, the variable will have a value of undefined.
      * @param object $type The type of the variable(s).
@@ -332,8 +331,8 @@ class compiler_script
      * rethrow()
      *
      * This is a special function that can be called to rethrow an error
-     * inside of a catch block. If called outside of a catch body, an error
-     * is thrown.
+     * inside of a catch block. If called outside of a catch body, an error is
+     * thrown.
      *
      *
      * @return  This function rethrows the current error in a catch block.
@@ -362,8 +361,8 @@ class compiler_script
      *                return. If not specified, the last evaluated value or a
      *                null value will be returned.
      *
-     * @return  This function returns from the outermost structured block
-     *          with the last evaluated value.
+     * @return  This function returns from the outermost structured block with
+     *          the last evaluated value.
      */
     public function return(, $value = null)
     {
@@ -395,16 +394,16 @@ class compiler_script
      *                            'regexp_match' or a lambda function.
      * @param  $value1 The first parameter passed to the predicate.
      * @param  $case_clause This is one or more case clauses which are pairs
-     *                      of a value2 parameter followed by a statement
-     *                      list or undefined parameter. One value2 can be
+     *                      of a value2 parameter followed by a statement list
+     *                      or undefined parameter. One value2 can be
      *                      undefined to indicate the default case clause.
-     *                      
+     * 
      *                      For the first value2 that is undefined or calling
      *                      the predicate returns true, the statement list
-     *                      followed by any statement lists of subsequent
-     *                      case clauses are executed until a break or return
-     *                      is encountered. The predicate is called with
-     *                      value1 and the case clause's value2.
+     *                      followed by any statement lists of subsequent case
+     *                      clauses are executed until a break or return is
+     *                      encountered. The predicate is called with value1
+     *                      and the case clause's value2.
      *
      * @return
      */
@@ -432,9 +431,9 @@ class compiler_script
      * set based on the parameters specified and where this function is
      * called.
      *
-     * @param string $message This is the message that will be included in
-     *                        the _AdaptiveError_ error object available in
-     *                        the catch block.
+     * @param string $message This is the message that will be included in the
+     *                        _AdaptiveError_ error object available in the
+     *                        catch block.
      * @param  $additional Optional additional information that will be
      *                     available as a 'additional' property in the error
      *                     object.
@@ -474,8 +473,8 @@ class compiler_script
      *                    'continue', 'return' or 'throw' function is
      *                    encountered.
      * @param array $finally This is an array of values (statements) that are
-     *                       evaluated after the try and catch statements
-     *                       even if an error occurs. Each value in body is
+     *                       evaluated after the try and catch statements even
+     *                       if an error occurs. Each value in body is
      *                       evaluated in order until the end of the list or
      *                       until a 'break', 'continue', 'return' or 'throw'
      *                       function is encountered.
@@ -485,8 +484,8 @@ class compiler_script
      *                     until the end of the list or until a 'break',
      *                     'continue', 'return' or 'throw' function is
      *                     encountered.
-     * @param object $error The error object thrown. This is only available
-     *                      in the catch block. See adaptive object type
+     * @param object $error The error object thrown. This is only available in
+     *                      the catch block. See adaptive object type
      *                      _AdaptiveObjectType_ for details.
      *
      * @return  The last value evaluated in body.
@@ -528,10 +527,10 @@ class compiler_script
      *                           continue. This is evaluated in the loop's
      *                           scope.
      * @param array $body This is an array of values (statements) that are
-     *                    evaluated for each iteration of the loop. Each
-     *                    value in body is evaluated in order until the end
-     *                    of the list or until a 'break', 'continue',
-     *                    'return' or 'throw' function is encountered.
+     *                    evaluated for each iteration of the loop. Each value
+     *                    in body is evaluated in order until the end of the
+     *                    list or until a 'break', 'continue', 'return' or
+     *                    'throw' function is encountered.
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.

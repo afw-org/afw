@@ -12,8 +12,7 @@ interface IAnyObject {
 }
 
 /**
- * Checks whether value is dataType unevaluated and return the boolean
- * result.
+ * Checks whether value is dataType unevaluated and return the boolean result.
  * 
  * @param {} value - Value to check
  * 

@@ -458,8 +458,8 @@ def last_index_of_anyURI(session, value, subString, startIndex=None):
     """
     Returns index of last occurrence
 
-    Returns the zero-based index into anyURI value of the last occurrence of
-    a subString. If subString is not found, -1 is returned.
+    Returns the zero-based index into anyURI value of the last occurrence of a
+    subString. If subString is not found, -1 is returned.
 
     Args:
         value (object): The anyURI value to search.
@@ -496,8 +496,8 @@ def le_anyURI(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for anyURI arg1 is less than or equal to anyURI arg2 and return
-    the boolean result.
+    Checks for anyURI arg1 is less than or equal to anyURI arg2 and return the
+    boolean result.
 
     Args:
         arg1 (object):
@@ -593,8 +593,8 @@ def ne_anyURI(session, arg1, arg2):
 
     Determine if anyURI arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -934,8 +934,8 @@ def starts_with_anyURI(session, value, subString):
     """
     Checks whether value starts with a string
 
-    Checks whether anyURI value starts with a subString and return the
-    boolean result.
+    Checks whether anyURI value starts with a subString and return the boolean
+    result.
 
     Args:
         value (object):

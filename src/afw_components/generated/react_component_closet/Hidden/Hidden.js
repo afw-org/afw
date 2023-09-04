@@ -20,10 +20,10 @@ import {ctx} from "@afw/react";
  * 
  * A component that hides content under screen breakpoint conditions.
  * 
- * This is a utility component that gives a layout the ability to hide
- * content under screen size conditions. This is necessary for responsive
- * layouts to provide both complex or simply designs that are accessible and
- * usable from a variety of screen devices.
+ * This is a utility component that gives a layout the ability to hide content
+ * under screen size conditions. This is necessary for responsive layouts to
+ * provide both complex or simply designs that are accessible and usable from
+ * a variety of screen devices.
  * 
  */
 export const Hidden = (props) => {

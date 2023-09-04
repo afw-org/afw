@@ -34,9 +34,9 @@ Logical and
 =head3 n_of
 
 integer n specifies the number of boolean conditions that follow that must
-evaluate to true for boolean true to be returned. If n is 0, true is
-returned. Once n conditions evaluate to true, true is returned and the
-remaining conditions remain unevaluated.
+evaluate to true for boolean true to be returned. If n is 0, true is returned.
+Once n conditions evaluate to true, true is returned and the remaining
+conditions remain unevaluated.
 Check for n true values
 
 =head4 Parameters
@@ -60,9 +60,9 @@ Logical not
 
 =head3 or
 
-Evaluates 0 or more boolean conditions returning boolean false if there are
-no conditions and boolean true if any condition evaluate to true. All
-conditions after the first true remain unevaluated.
+Evaluates 0 or more boolean conditions returning boolean false if there are no
+conditions and boolean true if any condition evaluate to true. All conditions
+after the first true remain unevaluated.
 Logical or
 
 =head4 Parameters

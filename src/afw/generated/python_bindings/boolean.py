@@ -9,8 +9,8 @@ def at_least_one_member_of_boolean(session, array1, array2):
     """
     Checks for at least one value in common
 
-    Returns boolean true if at least one value in boolean array1 is in
-    boolean array2.
+    Returns boolean true if at least one value in boolean array1 is in boolean
+    array2.
 
     Args:
         array1 (list): The first array.
@@ -416,8 +416,8 @@ def ne_boolean(session, arg1, arg2):
 
     Determine if boolean arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (bool):

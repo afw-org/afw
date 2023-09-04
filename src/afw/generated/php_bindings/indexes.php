@@ -35,8 +35,8 @@ class indexes
      * @param string $filter Expression to determine if this index applies to
      *                       a particular object.
      * @param string $options Indexing options.
-     * @param boolean $retroactive Retroactively generate indexes for
-     *                             existing objects.
+     * @param boolean $retroactive Retroactively generate indexes for existing
+     *                             objects.
      * @param boolean $test Test create (don't actually perform).
      *
      * @return object Object response from the indexing process

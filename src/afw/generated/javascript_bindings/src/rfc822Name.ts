@@ -69,10 +69,9 @@ export function afwBagSizeRfc822Name(client : any, value : any[]) : any {
 }
 
 /**
- * Determine if rfc822Name arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * Determine if rfc822Name arg1 is equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {rfc822Name} arg1 -
  * 
@@ -177,8 +176,8 @@ export function afwIntersectionRfc822Name(client : any, array1 : any[], array2 :
 }
 
 /**
- * Checks whether rfc822Name value is in array of rfc822Name array and
- * returns the boolean result.
+ * Checks whether rfc822Name value is in array of rfc822Name array and returns
+ * the boolean result.
  * 
  * @param {rfc822Name} value -
  * 
@@ -278,8 +277,8 @@ export function afwMatchRfc822Name(client : any, arg1 : any, arg2 : string) : an
 }
 
 /**
- * Determine if rfc822Name arg1 is not equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+ * Determine if rfc822Name arg1 is not equal to the value of arg2 converted to
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  * 
@@ -379,8 +378,8 @@ export function afwRfc822Name(client : any, value : any) : any {
 }
 
 /**
- * Returns boolean true if rfc822Name array1 and rfc822Name array2 are
- * subsets of each other and return the boolean result.
+ * Returns boolean true if rfc822Name array1 and rfc822Name array2 are subsets
+ * of each other and return the boolean result.
  * 
  * @param {array} array1 -
  * 

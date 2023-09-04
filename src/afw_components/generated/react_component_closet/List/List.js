@@ -20,8 +20,8 @@ import {ctx} from "@afw/react";
  * 
  * A layout container that renders a list of components.
  * 
- * This component is a simple container component that renders its contents
- * in a sequential, scrollable list.
+ * This component is a simple container component that renders its contents in
+ * a sequential, scrollable list.
  * 
  */
 export const List = (props) => {

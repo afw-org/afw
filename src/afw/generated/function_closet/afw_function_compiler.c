@@ -86,7 +86,7 @@ afw_function_execute_assert(
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated JSON value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -134,7 +134,7 @@ afw_function_execute_compile_json(
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated relaxed JSON value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -182,10 +182,10 @@ afw_function_execute_compile_relaxed_json(
  *   hybrid - (string) The hybrid to convert.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10
- *       or a string that is used for indentation. If 0 is specified, no
- *       whitespace is added to the resulting string. If 1 through 10 is
- *       specified, that number of spaces is used.
+ *       present and not 0. This parameter can be an integer between 0 and 10 or
+ *       a string that is used for indentation. If 0 is specified, no whitespace
+ *       is added to the resulting string. If 1 through 10 is specified, that
+ *       number of spaces is used.
  *
  * Returns:
  *
@@ -227,10 +227,10 @@ afw_function_execute_convert_syntax_hybrid_to_expression(
  *   value - (any dataType) Value to decompile.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10
- *       or a string that is used for indentation. If 0 is specified, no
- *       whitespace is added to the resulting string. If 1 through 10 is
- *       specified, that number of spaces is used.
+ *       present and not 0. This parameter can be an integer between 0 and 10 or
+ *       a string that is used for indentation. If 0 is specified, no whitespace
+ *       is added to the resulting string. If 1 through 10 is specified, that
+ *       number of spaces is used.
  *
  * Returns:
  *
@@ -388,9 +388,9 @@ afw_function_execute_qualifier(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function allows the active qualifiers to be accessed as properties of
- * an object. The value of each of these properties is an object whose
- * properties are the variables for the corresponding qualifier.
+ * This function allows the active qualifiers to be accessed as properties of an
+ * object. The value of each of these properties is an object whose properties
+ * are the variables for the corresponding qualifier.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -433,8 +433,8 @@ afw_function_execute_qualifiers(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the evaluated adaptive value. If an exception occurs, return
- * evaluated error instead.
+ * Return the evaluated adaptive value. If an exception occurs, return evaluated
+ * error instead.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -452,8 +452,8 @@ afw_function_execute_qualifiers(
  *
  *   value - (any dataType) Value to evaluated.
  *
- *   error - (any dataType) Value to evaluate and return if exception occurs.
- *       If an error occurs evaluating this value, the exception will continue.
+ *   error - (any dataType) Value to evaluate and return if exception occurs. If
+ *       an error occurs evaluating this value, the exception will continue.
  *
  * Returns:
  *
@@ -499,10 +499,10 @@ afw_function_execute_safe_evaluate(
  *   replacer - (optional any dataType) Optional replacer function.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10
- *       or a string that is used for indentation. If 0 is specified, no
- *       whitespace is added to the resulting string. If 1 through 10 is
- *       specified, that number of spaces is used.
+ *       present and not 0. This parameter can be an integer between 0 and 10 or
+ *       a string that is used for indentation. If 0 is specified, no whitespace
+ *       is added to the resulting string. If 1 through 10 is specified, that
+ *       number of spaces is used.
  *
  * Returns:
  *
@@ -754,8 +754,8 @@ afw_function_execute_test_template(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate an adaptive value and compare it to an expected value. Return
- * object with the test's results.
+ * Evaluate an adaptive value and compare it to an expected value. Return object
+ * with the test's results.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

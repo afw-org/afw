@@ -133,9 +133,9 @@ def eqx_x500Name(session, arg1, arg2):
     """
     Checks for equal and type
 
-    Determine if for x500Name arg1 is equal to the value and data type of
-    arg2 then return the boolean result. Use 'eq' ('==') instead if you want
-    arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for x500Name arg1 is equal to the value and data type of arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
+    to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):
@@ -230,8 +230,8 @@ def intersection_x500Name(session, array1, array2):
     """
     Returns intersection of two arrays
 
-    Returns an array of x500Name with the values that are common to both
-    array of x500Name array1 and array2.
+    Returns an array of x500Name with the values that are common to both array
+    of x500Name array1 and array2.
 
     Args:
         array1 (list): The first array.
@@ -322,8 +322,8 @@ def le_x500Name(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for x500Name arg1 is less than or equal to x500Name arg2 and
-    return the boolean result.
+    Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
+    the boolean result.
 
     Args:
         arg1 (object):
@@ -354,8 +354,8 @@ def lt_x500Name(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for x500Name arg1 is less that x500Name arg2 and return the
-    boolean result.
+    Checks for x500Name arg1 is less that x500Name arg2 and return the boolean
+    result.
 
     Args:
         arg1 (object):
@@ -386,8 +386,8 @@ def match_x500Name(session, arg1, arg2):
     """
     Checks if x500Name matches
 
-    Returns true if arg1 matches some terminal sequence of RDNs from arg2
-    when compared using equal_x500Name.
+    Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
+    compared using equal_x500Name.
 
     Args:
         arg1 (object):
@@ -420,8 +420,8 @@ def ne_x500Name(session, arg1, arg2):
 
     Determine if x500Name arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -546,8 +546,8 @@ def set_equals_x500Name(session, array1, array2):
     """
     Checks whether two arrays are subsets of each other
 
-    Returns boolean true if x500Name array1 and x500Name array2 are subsets
-    of each other and return the boolean result.
+    Returns boolean true if x500Name array1 and x500Name array2 are subsets of
+    each other and return the boolean result.
 
     Args:
         array1 (list):
@@ -610,8 +610,8 @@ def to_string_x500Name(session, value):
     """
     Converts value to string
 
-    Converts x500Name value to string. For array values, the to_string()
-    value for each entry is returned separated with commas.
+    Converts x500Name value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Args:
         value (object): A x500Name value.

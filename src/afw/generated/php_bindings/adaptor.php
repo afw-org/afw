@@ -35,9 +35,9 @@ class adaptor
      * @param any $userData This is the value of the userData parameter when
      *                      objectCallback was called.
      *
-     * @return boolean Return true if this callback should not be called
-     *                 again for any reason such a limit exceeded or the
-     *                 desired object being found.
+     * @return boolean Return true if this callback should not be called again
+     *                 for any reason such a limit exceeded or the desired
+     *                 object being found.
      */
     public function adaptor_objectCallback_signature(, $object, $userData = null)
     {
@@ -73,18 +73,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_add_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+     * 
      *                                    where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -124,27 +123,26 @@ class adaptor
      *
      * @param anyURI $uri URI of object to add. If a URI begins with a single
      *                    slash ('/'), it is the local object path. In the
-     *                    case of a local path, an optional preferred
-     *                    objectId of object can be including in URI which
-     *                    the adaptor may ignore.
+     *                    case of a local path, an optional preferred objectId
+     *                    of object can be including in URI which the adaptor
+     *                    may ignore.
      * @param object $object Object to add.
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_add_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -180,29 +178,29 @@ class adaptor
      * @param object $queryCriteria An object type _AdaptiveQueryCriteria_
      *                              object.
      * @param string $adaptorId This is the adaptorId of adaptor containing
-     *                          the objectType for validating and mapping
-     *                          this query. If not specified, no validation
-     *                          or mapping will occur.
+     *                          the objectType for validating and mapping this
+     *                          query. If not specified, no validation or
+     *                          mapping will occur.
      * @param string $objectType This is the objectType used in conjunction
      *                           with the adaptorId parameter. This parameter
      *                           is only allowed and is required if the
      *                           adaptorId parameter is specified.
      * @param integer $style The style of the query string produced. All of
      *                       the styles are appropriately url encoded.
-     *                       
+     * 
      *                       0 - 'name=op=value' where '=op=' will be '==',
      *                       '!=', '=ge=', etc. with conjunctions '&' (and)
      *                       and '|' (or). Parentheses are placed around each
      *                       group of like conjunctions except for outer '&'.
      *                       (default)
-     *                       
-     *                       1 - the same as 1 with '=gte=' instead of
-     *                       '=ge=', '=lte=' instead of '=le=', '=eq='
-     *                       instead of '=', and '=ne=' instead of '!='.
-     *                       
+     * 
+     *                       1 - the same as 1 with '=gte=' instead of '=ge=',
+     *                       '=lte=' instead of '=le=', '=eq=' instead of '=',
+     *                       and '=ne=' instead of '!='.
+     * 
      *                       2 - similar to 1 with ';' for '&' and ',' for
      *                       '|'.
-     *                       
+     * 
      *                       3 - comparisons 'op(name,value)' where 'op' will
      *                       be 'eq', 'ne', 'ge', ..., plus conjunctions
      *                       'and(list)' and 'or(list)' where 'array' is a
@@ -241,9 +239,9 @@ class adaptor
      *
      * @param string $queryString The query string to convert.
      * @param string $adaptorId This is the adaptorId of adaptor containing
-     *                          the objectType for validating and mapping
-     *                          this query. If not specified, no validation
-     *                          or mapping will occur.
+     *                          the objectType for validating and mapping this
+     *                          query. If not specified, no validation or
+     *                          mapping will occur.
      * @param string $objectType This is the objectType used in conjunction
      *                           with the adaptorId parameter. This parameter
      *                           is only allowed and is required if the
@@ -285,18 +283,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_delete_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+     * 
      *                                    where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -337,18 +334,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_delete_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+     * 
      *                                    where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -385,20 +381,19 @@ class adaptor
      *                           retrieve.
      * @param string $objectId Id of object to retrieve.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_get_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -435,20 +430,19 @@ class adaptor
      * @param anyURI $uri URI of object to retrieve. If a URI begins with a
      *                    single slash ('/'), it is the local object path.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_get_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+     * 
      *                                    where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -483,50 +477,37 @@ class adaptor
      *                           modify.
      * @param string $objectId Id of object to modify.
      * @param array $entries List of modifications. Entries are of the form:
-     *                       
-     *                       [
-     *                       'add_value',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
-     *                       
-     *                       [
-     *                       'remove_property',
-     *                       'property name' or ['property name', ...
-     *                       ]
-     *                       ]
-     *                       
-     *                       [
-     *                       'remove_value',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
-     *                       
-     *                       [
-     *                       'set_property',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
+     * 
+     *                           [         'add_value',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
+     * 
+     *                           [         'remove_property',        
+     *                       'property name' or ['property name', ... ]     ]
+     * 
+     *                           [         'remove_value',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
+     * 
+     *                           [         'set_property',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_modify_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -563,52 +544,39 @@ class adaptor
      *
      * @param anyURI $uri URI of object to modify. If a URI begins with a
      *                    single slash ('/'), it is the local object path.
-     * @param array $entries List of asserts and modifications. Entries are
-     *                       of the form:
-     *                       
-     *                       [
-     *                       'add_value',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
-     *                       
-     *                       [
-     *                       'remove_property',
-     *                       'property name' or ['property name', ...
-     *                       ]
-     *                       ]
-     *                       
-     *                       [
-     *                       'remove_value',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
-     *                       
-     *                       [
-     *                       'set_property',
-     *                       'property name' or ['property name', ...
-     *                       ],
-     *                       value
-     *                       ]
+     * @param array $entries List of asserts and modifications. Entries are of
+     *                       the form:
+     * 
+     *                           [         'add_value',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
+     * 
+     *                           [         'remove_property',        
+     *                       'property name' or ['property name', ... ]     ]
+     * 
+     *                           [         'remove_value',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
+     * 
+     *                           [         'set_property',         'property
+     *                       name' or ['property name', ... ],         value  
+     *                         ]
      * @param object $journal The properties of this object will be added to
      *                        the associated journal entry. Refer to
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_modify_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -681,18 +649,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_replace_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -735,18 +702,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_replace_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -791,20 +757,19 @@ class adaptor
      *                              be retrieved. If not specified, all
      *                              objects will be retrieved.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -855,8 +820,8 @@ class adaptor
      *                                 return array. Parameter object will be
      *                                 an object retrieved or undefined if
      *                                 there are no more objects. This
-     *                                 function should return true if it
-     *                                 wants to abort the retrieve request.
+     *                                 function should return true if it wants
+     *                                 to abort the retrieve request.
      * @param  $userData This value is passed to the objectCallback function
      *                   in the userData parameter.
      * @param string $adaptorId Id of adaptor containing objects to retrieve.
@@ -866,21 +831,19 @@ class adaptor
      *                              be retrieved. If not specified, all
      *                              objects will be retrieved.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects_to_callback
-     *                                    
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callback
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -919,9 +882,9 @@ class adaptor
      * This function retrieves adaptive objects from an adaptor, specified by
      * adaptorId, which match the type specified by objectType.
      * 
-     * This function is only allowed when called during a request with
-     * content type 'application/x-afw'. An '_AdaptiveResponse_' object is
-     * written to the request's response as each object is retrieved. This
+     * This function is only allowed when called during a request with content
+     * type 'application/x-afw'. An '_AdaptiveResponse_' object is written to
+     * the request's response as each object is retrieved. This
      * '_AdaptiveResponse_' object has a 'result' property containing the
      * retrieved object and a 'intermediate' property set to true.
      * 
@@ -938,20 +901,19 @@ class adaptor
      *                              be retrieved. If not specified, all
      *                              objects will be retrieved.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1005,20 +967,19 @@ class adaptor
      *                              be retrieved. If not specified, all
      *                              objects will be retrieved.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1065,20 +1026,19 @@ class adaptor
      *                    single slash ('/'), it is the local object path. A
      *                    query string can be specified.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1122,28 +1082,27 @@ class adaptor
      *                                 return array. Parameter object will be
      *                                 an object retrieved or undefined if
      *                                 there are no more objects. This
-     *                                 function should return true if it
-     *                                 wants to abort the retrieve request.
+     *                                 function should return true if it wants
+     *                                 to abort the retrieve request.
      * @param any $userData This is the value passed to the objectCallback
      *                      function in the userData parameter.
      * @param anyURI $uri URI of objects to retrieve. If a URI begins with a
      *                    single slash ('/'), it is the local object path. A
      *                    query string can be specified.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1175,9 +1134,9 @@ class adaptor
      *
      * This function retrieves adaptive objects with a given URI.
      * 
-     * This function is only allowed when called during a request with
-     * content type 'application/x-afw'. An '_AdaptiveResponse_' object is
-     * written to the request's response as each object is retrieved. This
+     * This function is only allowed when called during a request with content
+     * type 'application/x-afw'. An '_AdaptiveResponse_' object is written to
+     * the request's response as each object is retrieved. This
      * '_AdaptiveResponse_' object has a 'result' property containing the
      * retrieved object and a 'partial' property set to true.
      * 
@@ -1191,20 +1150,19 @@ class adaptor
      *                    single slash ('/'), it is the local object path. A
      *                    query string can be specified.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1248,20 +1206,19 @@ class adaptor
      *                    single slash ('/'), it is the local object path. A
      *                    query string can be specified.
      * @param object $options Object view options. See
-     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions
-     *                        _ for more information.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     *                        /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
+     *                        for more information.
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_retrieve_objects
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1306,18 +1263,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_modify_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *
@@ -1364,18 +1320,17 @@ class adaptor
      *                        /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_
      *                        for property names to avoid and for ones that
      *                        have specific semantics.
-     * @param object $adaptorTypeSpecific This is an optional object
-     *                                    parameter with an objectType
-     *                                    determined by the adaptorType
-     *                                    associated with the adaptorId
-     *                                    parameter. If the adaptorType
-     *                                    supports this parameter, adaptor
-     *                                    afw will have an adaptive object
-     *                                    type with an id of:
+     * @param object $adaptorTypeSpecific This is an optional object parameter
+     *                                    with an objectType determined by the
+     *                                    adaptorType associated with the
+     *                                    adaptorId parameter. If the
+     *                                    adaptorType supports this parameter,
+     *                                    adaptor afw will have an adaptive
+     *                                    object type with an id of:
+     * 
      *                                    
-     *                                    _AdaptiveAdaptorTypeSpecific_${adapt
-     *                                    orType}_modify_object
-     *                                    
+     *                                    _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+     * 
      *                                    Where ${adaptorType} is the adaptor
      *                                    type id.
      *

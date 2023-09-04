@@ -26,8 +26,8 @@ class compiler_expression
     /**
      * nullish_coalescing()
      *
-     * Returns the first value of values that is not null or undefined
-     * leaving the remaining values unevaluated.
+     * Returns the first value of values that is not null or undefined leaving
+     * the remaining values unevaluated.
      *
      * @param  $values
      *
@@ -49,8 +49,8 @@ class compiler_expression
     /**
      * optional_chaining()
      *
-     * Returns undefined if arg1 is null or undefined without evaluating
-     * arg2, but otherwise returns evaluated value of arg2.
+     * Returns undefined if arg1 is null or undefined without evaluating arg2,
+     * but otherwise returns evaluated value of arg2.
      *
      * @param  $arg1
      * @param  $arg2

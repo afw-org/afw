@@ -16,9 +16,9 @@ def all_of(session, predicate, values):
         first array in values or until false is returned. If no calls return
         false, the result is true.
 
-        values (object): These are the parameters passed to predicate with
-        the exception that the first array is passed one value at a time. At
-        least one array is required.
+        values (object): These are the parameters passed to predicate with the
+        exception that the first array is passed one value at a time. At least
+        one array is required.
 
     Returns:
         bool:
@@ -124,9 +124,9 @@ def any_of(session, predicate, values):
         first array in values or until true is returned. If no calls return
         true, the result is false.
 
-        values (object): These are the parameters passed to predicate with
-        the exception that the first array is passed one value at a time. At
-        least one array is required.
+        values (object): These are the parameters passed to predicate with the
+        exception that the first array is passed one value at a time. At least
+        one array is required.
 
     Returns:
         bool:
@@ -225,16 +225,16 @@ def filter(session, predicate, values):
     """
     Filter an array
 
-    This produces an array containing only values from another array that
-    pass a predicate test.
+    This produces an array containing only values from another array that pass
+    a predicate test.
 
     Args:
         predicate (object): This is a boolean function that is called to
         determine if an array entry should be included in the returned array.
 
-        values (object): These are the values passed to the predicate with
-        the exception that the first array is passed as the single current
-        value from the array. At least one array is required.
+        values (object): These are the values passed to the predicate with the
+        exception that the first array is passed as the single current value
+        from the array. At least one array is required.
 
     Returns:
         list: This is the resulting filtered array.
@@ -267,9 +267,9 @@ def find(session, predicate, values):
         predicate (object): This is a boolean function that is called to
         determine if an array entry passes the test.
 
-        values (object): These are the values passed to the predicate with
-        the exception that the first array is passed as the single current
-        value from the array. At least one array is required.
+        values (object): These are the values passed to the predicate with the
+        exception that the first array is passed as the single current value
+        from the array. At least one array is required.
 
     Returns:
         object: The first value that passes the test is returned.
@@ -295,15 +295,15 @@ def map(session, functor, values):
     """
     Maps values of an array
 
-    This function creates an array of the results of calling functor with
-    each value of the first array in values
+    This function creates an array of the results of calling functor with each
+    value of the first array in values
 
     Args:
         functor (object):
 
         values (object): These are the parameters passed to functor with the
-        exception that the first array is passed one value at a time. At
-        least one array is required.
+        exception that the first array is passed one value at a time. At least
+        one array is required.
 
     Returns:
         list:
@@ -375,9 +375,9 @@ def sort(session, compareFunction, array):
 
     This produces an array with values sorted based on result of
     compareFunction. The compareFunction is passed two values from the array
-    and must return an integer less than 0 if the first value is less than
-    the second value, 0 if they are equal, and a integer greater than 0 if
-    the first value is greater than the second value.
+    and must return an integer less than 0 if the first value is less than the
+    second value, 0 if they are equal, and a integer greater than 0 if the
+    first value is greater than the second value.
 
     Args:
         compareFunction (object): This function is called with two value from

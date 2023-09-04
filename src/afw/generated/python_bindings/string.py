@@ -582,8 +582,8 @@ def last_index_of_string(session, value, subString, startIndex=None):
     """
     Returns index of last occurrence
 
-    Returns the zero-based index into string value of the last occurrence of
-    a subString. If subString is not found, -1 is returned.
+    Returns the zero-based index into string value of the last occurrence of a
+    subString. If subString is not found, -1 is returned.
 
     Args:
         value (str): The string value to search.
@@ -620,8 +620,8 @@ def le_string(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for string arg1 is less than or equal to string arg2 and return
-    the boolean result.
+    Checks for string arg1 is less than or equal to string arg2 and return the
+    boolean result.
 
     Args:
         arg1 (str):
@@ -773,8 +773,8 @@ def ne_string(session, arg1, arg2):
 
     Determine if string arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (str):
@@ -1170,8 +1170,8 @@ def starts_with_string(session, value, subString):
     """
     Checks whether value starts with a string
 
-    Checks whether string value starts with a subString and return the
-    boolean result.
+    Checks whether string value starts with a subString and return the boolean
+    result.
 
     Args:
         value (str):

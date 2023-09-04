@@ -121,8 +121,8 @@ class polymorphic
     /**
      * at_least_one_member_of()
      *
-     * Returns boolean true if at least one value in `<dataType>` array1 is
-     * in `<dataType>` array2.
+     * Returns boolean true if at least one value in `<dataType>` array1 is in
+     * `<dataType>` array2.
      *
      * @param array $array1 The first array.
      * @param array $array2 The second array.
@@ -243,9 +243,9 @@ class polymorphic
      * @param  $source `<dataType>` string to compile
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated expression value.
-     *                  
-     *                  This parameter can be an integer between 0 and 10 of
-     *                  a string that is used for indentation. If 0 is
+     * 
+     *                  This parameter can be an integer between 0 and 10 of a
+     *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
      *                  spaces is used.
@@ -475,12 +475,11 @@ class polymorphic
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -658,8 +657,8 @@ class polymorphic
      *
      * @param  $value The `<dataType>` value to search.
      * @param string $subString Substring to search for.
-     * @param integer $startIndex Optional start index for search if
-     *                            different than start of string.
+     * @param integer $startIndex Optional start index for search if different
+     *                            than start of string.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -731,8 +730,8 @@ class polymorphic
     /**
      * is_in()
      *
-     * Checks whether `<dataType>` value is in array of `<dataType>` array
-     * and returns the boolean result.
+     * Checks whether `<dataType>` value is in array of `<dataType>` array and
+     * returns the boolean result.
      *
      * @param  $value
      * @param array $array
@@ -761,8 +760,8 @@ class polymorphic
      *
      * @param  $value The `<dataType>` value to search.
      * @param string $subString Substring to search for.
-     * @param integer $startIndex Optional start index for search if
-     *                            different than start of string.
+     * @param integer $startIndex Optional start index for search if different
+     *                            than start of string.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -786,8 +785,8 @@ class polymorphic
     /**
      * le()
      *
-     * Checks for `<dataType>` arg1 is less than or equal to `<dataType>`
-     * arg2 and return the boolean result.
+     * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2
+     * and return the boolean result.
      *
      * @param  $arg1
      * @param  $arg2
@@ -815,8 +814,8 @@ class polymorphic
      * supported data types. Return the integer number of entries in datatype
      * array or codepoints in others.
      *
-     * @param  $value Returns the number of entries in an array or code
-     *                points in others.
+     * @param  $value Returns the number of entries in an array or code points
+     *                in others.
      *
      * @return integer
      */
@@ -909,8 +908,7 @@ class polymorphic
     /**
      * min()
      *
-     * Return the `<dataType>` value that is less than or equal to the
-     * others.
+     * Return the `<dataType>` value that is less than or equal to the others.
      *
      * @param  $values
      *
@@ -1030,8 +1028,8 @@ class polymorphic
      * nex()
      *
      * Determine if for `<dataType>` arg1 is not equal to the value or data
-     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead
-     * if you want arg2 to be converted to the data type of arg1 before
+     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
+     * you want arg2 to be converted to the data type of arg1 before
      * comparison.
      *
      * @param  $arg1
@@ -1150,8 +1148,8 @@ class polymorphic
     /**
      * regexp_index_of()
      *
-     * Search `<dataType>` value for a regular expression and return index.
-     * If not found, -1 is returned.
+     * Search `<dataType>` value for a regular expression and return index. If
+     * not found, -1 is returned.
      *
      * @param  $value The `<dataType>` value to search.
      * @param string $regexp A regular expression to use for search.
@@ -1175,8 +1173,8 @@ class polymorphic
     /**
      * regexp_match()
      *
-     * Checks whether `<dataType>` value matches the regular expression
-     * regexp and return the boolean result.
+     * Checks whether `<dataType>` value matches the regular expression regexp
+     * and return the boolean result.
      *
      * @param  $value
      * @param string $regexp
@@ -1206,9 +1204,8 @@ class polymorphic
      * @param  $value The original `<dataType>` value.
      * @param string $regexp A regular expression to use for search.
      * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The
-     *                       default is 1. Specify -1 to replace all
-     *                       occurrences.
+     * @param integer $limit This is the maximum times to replace. The default
+     *                       is 1. Specify -1 to replace all occurrences.
      *
      * @return  A `<dataType>` value with the matched string(s) replaced.
      */
@@ -1262,9 +1259,8 @@ class polymorphic
      * @param  $value The original `<dataType>` value.
      * @param string $match The string to replace.
      * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The
-     *                       default is 1. Specify -1 to replace all
-     *                       occurrences.
+     * @param integer $limit This is the maximum times to replace. The default
+     *                       is 1. Specify -1 to replace all occurrences.
      *
      * @return  A `<dataType>` value with the matched string(s) replaced.
      */
@@ -1312,8 +1308,8 @@ class polymorphic
     /**
      * set_equals()
      *
-     * Returns boolean true if `<dataType>` array1 and `<dataType>` array2
-     * are subsets of each other and return the boolean result.
+     * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
+     * subsets of each other and return the boolean result.
      *
      * @param array $array1
      * @param array $array2
@@ -1861,8 +1857,8 @@ class polymorphic
      *
      * URL encode a value or bag of values.
      *
-     * @param  $unencoded URL encode a single value. See the url_encode
-     *                    method for the data type of more details.
+     * @param  $unencoded URL encode a single value. See the url_encode method
+     *                    for the data type of more details.
      *
      * @return string URI encoded string.
      */

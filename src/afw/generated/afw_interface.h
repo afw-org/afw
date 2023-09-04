@@ -40,12 +40,9 @@ AFW_BEGIN_DECLARES
 /**
  * @addtogroup afw_extension_interface afw_extension
  *
- * 
- * Interface returned from afw_extension_initialize() of an
- * Adaptive Framework environment extension module. Additional
- * information about an extension is found in object
- * `/afw/_AdaptiveManifest_/<extension_id>`.
- * 
+ * Interface returned from afw_extension_initialize() of an       Adaptive
+ * Framework environment extension module. Additional       information about an
+ * extension is found in object       `/afw/_AdaptiveManifest_/<extension_id>`.
  *
  * @{
  */
@@ -182,9 +179,7 @@ struct afw_adaptor_factory_inf_s {
 /**
  * @addtogroup afw_adaptor_interface afw_adaptor
  *
- * 
  * Adaptor interface.
- * 
  *
  * @{
  */
@@ -287,10 +282,8 @@ struct afw_adaptor_inf_s {
 /**
  * @addtogroup afw_adaptor_object_type_cache_interface afw_adaptor_object_type_cache
  *
- * 
- * Adaptor object type cache interface. This interface is used by
+ * Adaptor object type cache interface. This interface is used by      
  * afw_adaptor_get_object_type().
- * 
  *
  * @{
  */
@@ -376,9 +369,7 @@ struct afw_adaptor_object_type_cache_inf_s {
 /**
  * @addtogroup afw_adaptor_session_interface afw_adaptor_session
  *
- * 
  * Adaptor session interface.
- * 
  *
  * @{
  */
@@ -539,15 +530,15 @@ struct afw_adaptor_session_inf_s {
  *     afw_adaptor_impl_request_*() functions.          See afw_adaptor_impl.h
  *     for more information.
  * @param object_type_id The object type of objects to be retrieved.
- * @param criteria Query criteria. Use member filter or normalized, whichever
- *     is easier,          to filter the objects retrieved. See
+ * @param criteria Query criteria. Use member filter or normalized, whichever is
+ *     easier,          to filter the objects retrieved. See
  *     afw_query_criteria.h for more          information.          The other
  *     members should be ignored.
  * @param context Pointer passed to callback routine.
  * @param callback Callback function will be called each time an object is
- *     retrieved and once          with a NULL object pointer when finished.   
- *           The callback function will call afw_object_release() on the object
- *              when finished with it. If you want to have the object last past
+ *     retrieved and once          with a NULL object pointer when finished.    
+ *          The callback function will call afw_object_release() on the object  
+ *            when finished with it. If you want to have the object last past
  *     the          callback, call afw_object_get_reference() on the object
  *     before calling          the callback.
  * @param adaptor_type_specific This is an adaptor type specific object
@@ -594,9 +585,9 @@ struct afw_adaptor_session_inf_s {
  * @param callback Callback function will be called once with either the object
  *     retrieved          or a NULL object pointer if not found.          The
  *     callback function will call afw_object_release() on the object         
- *     when finished with it. If you want to have the object last past the     
- *         callback, call afw_object_get_reference() on the object before
- *     calling          the callback.
+ *     when finished with it. If you want to have the object last past the      
+ *        callback, call afw_object_get_reference() on the object before calling
+ *              the callback.
  * @param adaptor_type_specific This is an adaptor type specific object
  *     parameter or NULL.          If the adaptor type supports this parameter,
  *     the object type of the          object is available via the afw adaptor
@@ -643,14 +634,14 @@ struct afw_adaptor_session_inf_s {
  * @param object Object to add.          Unless documented otherwise by
  *     non-default options, this object only needs          to exist for the
  *     life of the add_object() call. Some adaptors have options          that
- *     require longer lifetimes for these objects. For example, a memory       
- *       adaptor can be created with the option to not clone an object when
- *     added          to memory store. In this case, it's the caller
- *     responsibility to create          the object in a pool that has the
- *     minimal lifetime of the memory adaptor          itself. For instance,
- *     the adaptor's pool can be used during object create.          The memory
- *     adaptor then uses the object's pool's get_reference() and release()     
- *         methods to manage the lifetime of the object.
+ *     require longer lifetimes for these objects. For example, a memory        
+ *      adaptor can be created with the option to not clone an object when added
+ *              to memory store. In this case, it's the caller responsibility to
+ *     create          the object in a pool that has the minimal lifetime of the
+ *     memory adaptor          itself. For instance, the adaptor's pool can be
+ *     used during object create.          The memory adaptor then uses the
+ *     object's pool's get_reference() and release()          methods to manage
+ *     the lifetime of the object.
  * @param adaptor_type_specific This is an adaptor type specific object
  *     parameter or NULL.          If the adaptor type supports this parameter,
  *     the object type of the          object is available via the afw adaptor
@@ -727,8 +718,8 @@ struct afw_adaptor_session_inf_s {
  *     parameter or NULL.          If the adaptor type supports this parameter,
  *     the object type of the          object is available via the afw adaptor
  *     with an object type id of:         
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object         
- *     where ${adaptorType} is the adaptor type id.
+ *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object          where
+ *     ${adaptorType} is the adaptor type id.
  * @param xctx This is the caller's xctx.
  */
 #define afw_adaptor_session_replace_object( \
@@ -859,9 +850,7 @@ struct afw_adaptor_session_inf_s {
 /**
  * @addtogroup afw_adaptor_transaction_interface afw_adaptor_transaction
  *
- * 
  * Adaptor session transaction interface.
- * 
  *
  * @{
  */
@@ -928,9 +917,7 @@ struct afw_adaptor_transaction_inf_s {
 /**
  * @addtogroup afw_adaptor_impl_index_cursor_interface afw_adaptor_impl_index_cursor
  *
- * 
  * Adaptor implementation index cursor interface.
- * 
  *
  * @{
  */
@@ -1006,8 +993,7 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method get_next_object of interface
- *     afw_adaptor_impl_index_cursor
+ * @brief Call method get_next_object of interface afw_adaptor_impl_index_cursor
  * @param instance Pointer to this adaptor impl index cursor instance.
  * @param pool Memory pool to allocate resources in.
  * @param xctx This is the caller's xctx.
@@ -1024,8 +1010,7 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method contains_object of interface
- *     afw_adaptor_impl_index_cursor
+ * @brief Call method contains_object of interface afw_adaptor_impl_index_cursor
  * @param instance Pointer to this adaptor impl index cursor instance.
  * @param object Pointer to object we need to determine is in this cursor.
  * @param xctx This is the caller's xctx.
@@ -1080,9 +1065,7 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 /**
  * @addtogroup afw_adaptor_key_value_interface afw_adaptor_key_value
  *
- * 
  * Adaptor implementation of key value interface.
- * 
  *
  * @{
  */
@@ -1198,8 +1181,8 @@ struct afw_adaptor_key_value_inf_s {
  * @param namespace Namespace for key.
  * @param key Key.
  * @param value Value the key must have or NULL if it doesn't matter.
- * @param must_exist It is an error if value does not exist. If must_exist is  
- *            false, the keyed value will be added if it doesn't exist.
+ * @param must_exist It is an error if value does not exist. If must_exist is   
+ *           false, the keyed value will be added if it doesn't exist.
  * @param xctx This is the caller's xctx.
  */
 #define afw_adaptor_key_value_replace( \
@@ -1244,9 +1227,7 @@ struct afw_adaptor_key_value_inf_s {
 /**
  * @addtogroup afw_adaptor_impl_index_interface afw_adaptor_impl_index
  *
- * 
  * Adaptor implementation index interface.
- * 
  *
  * @{
  */
@@ -1374,9 +1355,9 @@ struct afw_adaptor_impl_index_inf_s {
  * @brief Call method open of interface afw_adaptor_impl_index
  * @param instance Pointer to this adaptor impl index instance.
  * @param object_type_id Object type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine
- *     the target table or database to store the index. NULL means all
- *     objectTypes are applicable.
+ *     that we are indexing. This may be useful for the adaptor to determine the
+ *     target table or database to store the index. NULL means all objectTypes
+ *     are applicable.
  * @param key Index key associated with the index value we are creating.
  * @param integer Should index values be stored as integer values.
  * @param unique Should generated index values be unique.
@@ -1455,8 +1436,8 @@ struct afw_adaptor_impl_index_inf_s {
  * @brief Call method add of interface afw_adaptor_impl_index
  * @param instance Pointer to this adaptor impl index instance.
  * @param object_type_id Object type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine
- *     the target table or database to store the index.
+ *     that we are indexing. This may be useful for the adaptor to determine the
+ *     target table or database to store the index.
  * @param object_id Object id for the object associated with the property and
  *     value that we are indexing. This should be used by the adaptor as a
  *     reference to the primary entry.
@@ -1495,8 +1476,8 @@ struct afw_adaptor_impl_index_inf_s {
  *     of the index we are removing. This may be useful for the adaptor to
  *     determine the target table or database to store the index.
  * @param object_id Object id for the object associated with the property and
- *     value of the index we are removing. This should be used by the adaptor
- *     as a reference to the primary entry.
+ *     value of the index we are removing. This should be used by the adaptor as
+ *     a reference to the primary entry.
  * @param key Index key associated with the index value we are deleting.
  * @param value Index value associated with the index we are deleting. This
  *     should be used by the adaptor as the key to the index entry.
@@ -1526,8 +1507,8 @@ struct afw_adaptor_impl_index_inf_s {
  * @brief Call method replace of interface afw_adaptor_impl_index
  * @param instance Pointer to this adaptor impl index instance.
  * @param object_type_id Object type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine
- *     the target table or database to store the index.
+ *     that we are indexing. This may be useful for the adaptor to determine the
+ *     target table or database to store the index.
  * @param object_id Object id for the object associated with the property and
  *     value that we are indexing. This should be used by the adaptor as a
  *     reference to the primary entry.
@@ -1589,8 +1570,8 @@ struct afw_adaptor_impl_index_inf_s {
  * @brief Call method open_cursor of interface afw_adaptor_impl_index
  * @param instance Pointer to this adaptor impl index instance.
  * @param object_type_id Object type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine
- *     the target table or database to find the index.
+ *     that we are indexing. This may be useful for the adaptor to determine the
+ *     target table or database to find the index.
  * @param index_key Key associated with the index we are replacing.
  * @param operator Query criteria operator.
  * @param value Index value associated with the index we are querying. This
@@ -1931,16 +1912,16 @@ struct afw_content_type_inf_s {
  * @brief Call method write_value of interface afw_content_type
  * @param instance Pointer to this content type instance.
  * @param value Adaptive value to convert and write.
- * @param options These options can determine if none, some, or all object meta
- *              information should be included in output.          See
+ * @param options These options can determine if none, some, or all object meta 
+ *             information should be included in output.          See
  *     afw_object_options_t for more information. Only options flagged         
- *     for use by content type processing are honored. All other options       
- *       are ignored. For instance, a call to afw_object_view_create() with    
- *          the composite option is needed before calling a content type write 
- *             function if inherited properties should be included in output.
+ *     for use by content type processing are honored. All other options        
+ *      are ignored. For instance, a call to afw_object_view_create() with      
+ *        the composite option is needed before calling a content type write    
+ *          function if inherited properties should be included in output.
  * @param context Pointer passed to callback routine.
- * @param callback Callback function that will be called to write multiple
- *     times to write          the raw representation of the value.
+ * @param callback Callback function that will be called to write multiple times
+ *     to write          the raw representation of the value.
  * @param p Pool to use.
  * @param xctx This is the caller's xctx.
  */
@@ -1966,13 +1947,13 @@ struct afw_content_type_inf_s {
 /**
  * @brief Call method create_object_list_writer of interface afw_content_type
  * @param instance Pointer to this content type instance.
- * @param options These options can determine if none, some, or all object meta
- *              information should be included in output.          See
+ * @param options These options can determine if none, some, or all object meta 
+ *             information should be included in output.          See
  *     afw_object_options_t for more information. Only options flagged         
- *     for use by content type processing are honored. All other options       
- *       are ignored. For instance, a call to afw_object_view_create() with    
- *          the composite option is needed before calling a content type write 
- *             function if inherited properties should be included in output.
+ *     for use by content type processing are honored. All other options        
+ *      are ignored. For instance, a call to afw_object_view_create() with      
+ *        the composite option is needed before calling a content type write    
+ *          function if inherited properties should be included in output.
  * @param context Pointer passed to callback routine.
  * @param callback Callback function that will be called each time the object
  *     list          writer has something to write.
@@ -2208,8 +2189,8 @@ struct afw_data_type_inf_s {
 /**
  * @brief Call method utf8_to_internal of interface afw_data_type
  * @param instance Pointer to this data type instance.
- * @param to_internal The address of the place to return result. This place
- *     must be the correct size          based on data type (c_type_size).
+ * @param to_internal The address of the place to return result. This place must
+ *     be the correct size          based on data type (c_type_size).
  * @param from_utf8 NFC UTF-8 representation for of this data type.
  * @param p Pool to use to hold returned value.
  * @param xctx This is the caller's xctx.
@@ -2252,8 +2233,8 @@ struct afw_data_type_inf_s {
 /**
  * @brief Call method convert_internal of interface afw_data_type
  * @param instance Pointer to this data type instance.
- * @param to_internal The address of the place to return result. This place
- *     must be the correct size          based on data type (c_type_size) of
+ * @param to_internal The address of the place to return result. This place must
+ *     be the correct size          based on data type (c_type_size) of
  *     to_data_type.
  * @param from_internal Value of correct cType to of this data type to convert.
  * @param to_data_type Data type of to value.
@@ -2280,8 +2261,8 @@ struct afw_data_type_inf_s {
 /**
  * @brief Call method clone_internal of interface afw_data_type
  * @param instance Pointer to this data type instance.
- * @param to_internal The address of the place to return result. This place
- *     must be the correct size          based on data type (c_type_size) of
+ * @param to_internal The address of the place to return result. This place must
+ *     be the correct size          based on data type (c_type_size) of
  *     to_data_type.
  * @param from_internal Value of correct cType to of this data type to convert.
  * @param p Pool to use to hold returned value.
@@ -2347,9 +2328,7 @@ struct afw_data_type_inf_s {
 /**
  * @addtogroup afw_array_setter_interface afw_array_setter
  *
- * 
  * Adaptive array setter interface.
- * 
  *
  * @{
  */
@@ -2638,9 +2617,7 @@ struct afw_array_setter_inf_s {
 /**
  * @addtogroup afw_array_interface afw_array
  *
- * 
  * Adaptive value array interface.
- * 
  *
  * @{
  */
@@ -2876,8 +2853,8 @@ struct afw_array_inf_s {
  * @param instance Pointer to this value array instance.
  * @param iterator Address of iterator pointer.
  * @param data_type Place to put data type pointer or NULL.
- * @param internal Place to put data_type->cType pointer to next internal.     
- *         This will be set to NULL if there is no next internal.
+ * @param internal Place to put data_type->cType pointer to next internal.      
+ *        This will be set to NULL if there is no next internal.
  * @param xctx This is the caller's xctx.
  */
 #define afw_array_get_next_internal( \
@@ -2934,9 +2911,7 @@ struct afw_array_inf_s {
 /**
  * @addtogroup afw_log_factory_interface afw_log_factory
  *
- * 
  * Log factory.
- * 
  *
  * @{
  */
@@ -2993,9 +2968,7 @@ struct afw_log_factory_inf_s {
 /**
  * @addtogroup afw_log_interface afw_log
  *
- * 
  * Log.
- * 
  *
  * @{
  */
@@ -3105,12 +3078,8 @@ struct afw_log_inf_s {
 /**
  * @addtogroup afw_object_setter_interface afw_object_setter
  *
- * 
- * This is interface used to set properties and meta of an adaptive
- * object.
- * See interface afw_object method get_object_setter for more
- * information.
- * 
+ * This is interface used to set properties and meta of an adaptive object.     
+ *  See interface afw_object method get_object_setter for more information.
  *
  * @{
  */
@@ -3186,9 +3155,7 @@ struct afw_object_setter_inf_s {
 /**
  * @addtogroup afw_object_interface afw_object
  *
- * 
  * This is interface used to access the properties of an adaptive object.
- * 
  *
  * @{
  */
@@ -3550,8 +3517,8 @@ struct afw_server_inf_s {
 /**
  * @addtogroup afw_service_type_interface afw_service_type
  *
- * Adaptive framework service type interface. Each instance is registered in
- * the environment with type of "service_type" and id of the service type id.
+ * Adaptive framework service type interface. Each instance is registered in the
+ * environment with type of "service_type" and id of the service type id.
  *
  * @{
  */
@@ -3631,9 +3598,9 @@ struct afw_service_type_inf_s {
  * @brief Call method start_cede_p of interface afw_service_type
  * @param instance Pointer to this adaptive service type instance.
  * @param properties Properties for start. This object will already be checked
- *     to insure          the appropriate id and subtype property is present
- *     for the          type. Other than that, these properties need to be
- *     validated using         
+ *     to insure          the appropriate id and subtype property is present for
+ *     the          type. Other than that, these properties need to be validated
+ *     using         
  *     `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
  * @param p Pool to cede to start.
  * @param xctx This is the caller's xctx.
@@ -3672,9 +3639,9 @@ struct afw_service_type_inf_s {
  * @brief Call method restart_cede_p of interface afw_service_type
  * @param instance Pointer to this adaptive service type instance.
  * @param properties Properties for start. This object will already be checked
- *     to insure          the appropriate id and subtype property is present
- *     for the          type. Other than that, these properties need to be
- *     validated using         
+ *     to insure          the appropriate id and subtype property is present for
+ *     the          type. Other than that, these properties need to be validated
+ *     using         
  *     `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
  * @param p Pool to cede to start.
  * @param xctx This is the caller's xctx.
@@ -3697,9 +3664,7 @@ struct afw_service_type_inf_s {
 /**
  * @addtogroup afw_object_associative_array_interface afw_object_associative_array
  *
- * 
  * This is interface for an object associative array.
- * 
  *
  * @{
  */
@@ -4304,28 +4269,18 @@ struct afw_request_inf_s {
 /**
  * @addtogroup afw_xctx_interface afw_xctx
  *
+ * Adaptive Framework Execution Context (xctx) interface.              An
+ * execution context holds common information related to a unit of work in      
+ * Adaptive Framework. This unit of work runs in a single thread of a      
+ * single-threaded or multi-threaded process. In a multi-threaded process,      
+ * the main thread has the global execution context. Other threads have their   
+ *    own execution context and required the appropriate mutexes or queued work 
+ *      to access memory in the global execution context.
  * 
- * Adaptive Framework Execution Context (xctx) interface.
- * 
- * An execution context holds common information related to a unit of
- * work in
- * Adaptive Framework. This unit of work runs in a single thread of a
- * single-threaded or multi-threaded process. In a multi-threaded
- * process,
- * the main thread has the global execution context. Other threads have
- * their
- * own execution context and required the appropriate mutexes or queued
- * work
- * to access memory in the global execution context.
- * 
- * The type of execution contexts can be "server", "request_session',
- * etc. A
- * execution context's pool, properties, and object cache will last for
- * the
- * life of the execution context. An execution context's parent will
- * always
- * have a longer life.
- * 
+ *       The type of execution contexts can be "server", "request_session', etc.
+ * A       execution context's pool, properties, and object cache will last for
+ * the       life of the execution context. An execution context's parent will
+ * always       have a longer life.
  *
  * @{
  */
@@ -4530,9 +4485,7 @@ struct afw_stream_inf_s {
 /**
  * @addtogroup afw_pool_interface afw_pool
  *
- * 
  * Adaptive framework pool interface.
- * 
  *
  * @{
  */
@@ -5103,8 +5056,8 @@ struct afw_adaptor_journal_inf_s {
  * @param impl_request Pass this as first parameter of
  *     afw_adaptor_impl_request_*() functions.          See afw_adaptor_impl.h
  *     for more information.
- * @param option Get entry option. See afw_adaptor_journal_option_t for        
- *      more information.
+ * @param option Get entry option. See afw_adaptor_journal_option_t for         
+ *     more information.
  * @param consumer_id Peer id of consumer of event of NULL. See         
  *     afw_adaptor_journal_option_t for information on how this         
  *     parameter is used or ignored.
@@ -5114,10 +5067,9 @@ struct afw_adaptor_journal_inf_s {
  * @param limit Limit or 0. See          afw_adaptor_journal_option_t for
  *     information on how this          parameter is used or ignored.
  * @param response This is an existing response object that can have properties
- *     already          set. Depending on the option specified, get_entry()
- *     will set          additional properties. See
- *     afw_adaptor_journal_option_t          for information on which
- *     properties are set and under what condition.
+ *     already          set. Depending on the option specified, get_entry() will
+ *     set          additional properties. See afw_adaptor_journal_option_t     
+ *         for information on which properties are set and under what condition.
  * @param xctx This is the caller's xctx.
  */
 #define afw_adaptor_journal_get_entry( \
@@ -5147,8 +5099,8 @@ struct afw_adaptor_journal_inf_s {
  * @param impl_request Pass this as first parameter of
  *     afw_adaptor_impl_request_*() functions.          See afw_adaptor_impl.h
  *     for more information.
- * @param consumer_id Get entry option. See afw_adaptor_journal_option_t for   
- *           more information.
+ * @param consumer_id Get entry option. See afw_adaptor_journal_option_t for    
+ *          more information.
  * @param entry_cursor Token of the event to mark consumed.
  * @param xctx This is the caller's xctx.
  */

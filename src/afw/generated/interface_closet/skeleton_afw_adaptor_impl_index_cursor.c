@@ -18,8 +18,7 @@
 #include "afw_adaptor_impl_index_cursor_impl_declares.h"
 
 /*
- * Implementation of method release for interface
- * afw_adaptor_impl_index_cursor.
+ * Implementation of method release for interface afw_adaptor_impl_index_cursor.
  */
 void
 impl_afw_adaptor_impl_index_cursor_release(

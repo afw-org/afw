@@ -32,8 +32,7 @@ export function afwAddDayTimeDurationDateTime(client : any, arg1 : any, arg2 : a
 }
 
 /**
- * Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime
- * result.
+ * Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime result.
  * 
  * @param {dateTime} arg1 -
  * 
@@ -128,9 +127,8 @@ export function afwDateTime(client : any, value : any) : any {
 
 /**
  * Determine if dateTime arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {dateTime} arg1 -
  * 
@@ -151,8 +149,8 @@ export function afwEqDateTime(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for dateTime arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {dateTime} arg1 -
  * 
@@ -258,8 +256,8 @@ export function afwIsDateTime(client : any, value : any) : any {
 }
 
 /**
- * Checks whether dateTime value is in array of dateTime array and returns
- * the boolean result.
+ * Checks whether dateTime value is in array of dateTime array and returns the
+ * boolean result.
  * 
  * @param {dateTime} value -
  * 

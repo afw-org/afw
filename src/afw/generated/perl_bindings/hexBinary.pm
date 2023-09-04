@@ -38,8 +38,8 @@ The following functions are exported by default
 
 =head3 at_least_one_member_of_hexBinary
 
-Returns boolean true if at least one value in hexBinary array1 is in
-hexBinary array2.
+Returns boolean true if at least one value in hexBinary array1 is in hexBinary
+array2.
 Checks for at least one value in common
 
 =head4 Parameters
@@ -87,8 +87,8 @@ The hexBinary value to decode.
 =head3 eq_hexBinary
 
 Determine if hexBinary arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+you want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -102,8 +102,8 @@ Checks for equal
 =head3 eqx_hexBinary
 
 Determine if for hexBinary arg1 is equal to the value and data type of arg2
-then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -155,8 +155,8 @@ Value to convert
 
 =head3 intersection_hexBinary
 
-Returns an array of hexBinary with the values that are common to both array
-of hexBinary array1 and array2.
+Returns an array of hexBinary with the values that are common to both array of
+hexBinary array1 and array2.
 Returns intersection of two arrays
 
 =head4 Parameters
@@ -224,10 +224,9 @@ Checks for less than
 
 =head3 ne_hexBinary
 
-Determine if hexBinary arg1 is not equal to the value of arg2 converted to
-the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-instead if you want true to be returned if arg1 and arg2's data type don't
-match.
+Determine if hexBinary arg1 is not equal to the value of arg2 converted to the
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -240,9 +239,9 @@ Checks for not equal
 
 =head3 nex_hexBinary
 
-Determine if for hexBinary arg1 is not equal to the value or data type of
-arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
-to be converted to the data type of arg1 before comparison.
+Determine if for hexBinary arg1 is not equal to the value or data type of arg2
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -255,8 +254,8 @@ Checks for not equal value or type
 
 =head3 one_and_only_hexBinary
 
-This converts an array of hexBinary values that contains one value to a
-single hexBinary value.
+This converts an array of hexBinary values that contains one value to a single
+hexBinary value.
 Converts a one value array to a hexBinary value
 
 =head4 Parameters
@@ -308,8 +307,8 @@ A hexBinary value.
 
 =head3 union_hexBinary
 
-Returns an array of hexBinary contains all of the unique values in two or
-more array of hexBinary values.
+Returns an array of hexBinary contains all of the unique values in two or more
+array of hexBinary values.
 Returns union of two or more string arrays
 
 =head4 Parameters

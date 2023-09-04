@@ -108,9 +108,8 @@ export function afwEndsWithAnyURI(client : any, value : any, subString : string)
 
 /**
  * Determine if anyURI arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {anyURI} arg1 -
  * 
@@ -131,8 +130,8 @@ export function afwEqAnyURI(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for anyURI arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {anyURI} arg1 -
  * 
@@ -249,8 +248,8 @@ export function afwIndexOfAnyURI(client : any, value : any, subString : string, 
 }
 
 /**
- * Returns an array of anyURI with the values that are common to both array
- * of anyURI array1 and array2.
+ * Returns an array of anyURI with the values that are common to both array of
+ * anyURI array1 and array2.
  * 
  * @param {array} array1 - The first array.
  * 
@@ -397,10 +396,9 @@ export function afwLtAnyURI(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if anyURI arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if anyURI arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {anyURI} arg1 -
  * 
@@ -420,9 +418,9 @@ export function afwNeAnyURI(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for anyURI arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for anyURI arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {anyURI} arg1 -
  * 
@@ -442,8 +440,8 @@ export function afwNexAnyURI(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * This converts an array of anyURI values that contains one value to a
- * single anyURI value.
+ * This converts an array of anyURI values that contains one value to a single
+ * anyURI value.
  * 
  * @param {array} array -
  * 
@@ -580,8 +578,8 @@ export function afwReplaceAnyURI(client : any, value : any, match : string, repl
 }
 
 /**
- * Returns boolean true if anyURI array1 and anyURI array2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if anyURI array1 and anyURI array2 are subsets of each
+ * other and return the boolean result.
  * 
  * @param {array} array1 -
  * 
@@ -718,8 +716,8 @@ export function afwToStringAnyURI(client : any, value : any) : any {
 }
 
 /**
- * Returns an array of anyURI contains all of the unique values in two or
- * more array of anyURI values.
+ * Returns an array of anyURI contains all of the unique values in two or more
+ * array of anyURI values.
  * 
  * @param {array} arrays - Two or more arrays.
  * 

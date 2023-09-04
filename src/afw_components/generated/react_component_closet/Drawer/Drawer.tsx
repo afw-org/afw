@@ -19,8 +19,8 @@ import {ctx} from "@afw/react";
  * Implementation Id : Drawer
  * Category          : containers
  * 
- * A component that renders content inside a side sheet anchored to one of
- * the edges.
+ * A component that renders content inside a side sheet anchored to one of the
+ * edges.
  * 
  * This component, which contains other content, is anchored to one of the
  * edges of the main window. It's often animated to slide into view when an

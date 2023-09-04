@@ -61,8 +61,8 @@ ignored.
 
 =head3 debug
 
-Conditionally, based on the detail parameter, write a value as a string to
-the debug file descriptor (usually stderr).
+Conditionally, based on the detail parameter, write a value as a string to the
+debug file descriptor (usually stderr).
 Conditionally write a debug value
 
 =head4 Parameters
@@ -74,8 +74,8 @@ written. An undefined value is represented by `<undefined>`.
 
     $detail
 
-If true, the string will only written if the debug:function_active:detail
-flag is on. If false or not specified, the string will only written if the
+If true, the string will only written if the debug:function_active:detail flag
+is on. If false or not specified, the string will only written if the
 debug:function_active flag is on.
 
 =head3 execution_start_time_local
@@ -161,8 +161,8 @@ URI to parse
 
     $isValuePath
 
-The URI is an adaptive value path. If the path begins with a single slash
-'/', the URI will be parsed as an adaptive value path (example:
+The URI is an adaptive value path. If the path begins with a single slash '/',
+the URI will be parsed as an adaptive value path (example:
 /adaptorId/objectType/objectId.propertyNames)
 
     $currentPath
@@ -217,8 +217,8 @@ qualifier followed by '::'.
 
 =head3 variable_get
 
-Return the value of a variable. If variable is not available, return a
-default or null value.
+Return the value of a variable. If variable is not available, return a default
+or null value.
 Get a variable value
 
 =head4 Parameters

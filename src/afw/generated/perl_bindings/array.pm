@@ -215,8 +215,8 @@ Checks for less than or equal
 =head3 length_array
 
 This is a polymorphic function where array can be any of the supported data
-types. Return the integer number of entries in datatype array or codepoints
-in others.
+types. Return the integer number of entries in datatype array or codepoints in
+others.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
@@ -241,8 +241,8 @@ Checks for less than
 =head3 ne_array
 
 Determine if array arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -256,8 +256,8 @@ Checks for not equal
 =head3 nex_array
 
 Determine if for array arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters

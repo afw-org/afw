@@ -93,33 +93,29 @@ def open_file(session, streamId, path, mode, autoFlush=None):
     This will open a file stream.
 
     Args:
-        streamId (str): This is the streamId that will be associated with
-        this open file stream.
+        streamId (str): This is the streamId that will be associated with this
+        open file stream.
 
-        path (str): This is the path to the file to open. The rootDirectory
-        of the path is defined in the application object.
+        path (str): This is the path to the file to open. The rootDirectory of
+        the path is defined in the application object.
 
-        mode (str): This is the access mode string. Values can be:
-        r - Open an existing file text file for read.
-        w - Open a text file for writing. If the file does not exist, it
-        will be created.
-        a - Open a text file for writing additional data to the end. If the
-        file does not exist, it will be created.
-        r+ - Open a text file for both reading and writing.
-        w+ - Open a text file for both reading and writing. If the file
-        exists, it will be overwritten. If the file does not exist, it will
-        be created.
-        a+ - Open a text file for both reading and writing. Reading will
-        begin at the start of the file while writing will be appended to the
-        end.
+        mode (str): This is the access mode string. Values can be:   r - Open
+        an existing file text file for read.   w - Open a text file for
+        writing. If the file does not exist, it will be created.   a - Open a
+        text file for writing additional data to the end. If the file does not
+        exist, it will be created.   r+ - Open a text file for both reading
+        and writing.   w+ - Open a text file for both reading and writing. If
+        the file exists, it will be overwritten. If the file does not exist,
+        it will be created.   a+ - Open a text file for both reading and
+        writing. Reading will begin at the start of the file while writing
+        will be appended to the end.
         
-        All of these modes expect data type string. If you are using data
-        type base64Binary or hexBinary you can use corresponding binary
-        modes, 'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and
-        'a+b'.
+        All of these modes expect data type string. If you are using data type
+        base64Binary or hexBinary you can use corresponding binary modes,
+        'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
 
-        autoFlush (bool): If specified and true, this will automatically
-        flush the stream's buffers after every write.
+        autoFlush (bool): If specified and true, this will automatically flush
+        the stream's buffers after every write.
 
     Returns:
         int: The streamNumber for the streamId or -1 if there was an error.
@@ -154,11 +150,11 @@ def open_response(session, streamId, autoFlush=None):
     the http response.
 
     Args:
-        streamId (str): This is the streamId that will be associated with
-        this open response stream.
+        streamId (str): This is the streamId that will be associated with this
+        open response stream.
 
-        autoFlush (bool): If specified and true, this will automatically
-        flush the stream's buffers after every write.
+        autoFlush (bool): If specified and true, this will automatically flush
+        the stream's buffers after every write.
 
     Returns:
         int: The streamNumber for the streamId or -1 if there was an error.
@@ -190,16 +186,16 @@ def open_uri(session, streamId, uri, mode, autoFlush=None):
     This will open a read or write stream for a URI.
 
     Args:
-        streamId (str): This is the streamId that will be associated with
-        this open URI stream.
+        streamId (str): This is the streamId that will be associated with this
+        open URI stream.
 
         uri (str): This is the URI of the stream to open.
 
-        mode (str): This is the access mode string. Values can be 'r' for
-        read or 'w' for write.
+        mode (str): This is the access mode string. Values can be 'r' for read
+        or 'w' for write.
 
-        autoFlush (bool): If specified and true, this will automatically
-        flush the stream's buffers after every write.
+        autoFlush (bool): If specified and true, this will automatically flush
+        the stream's buffers after every write.
 
     Returns:
         int: The streamNumber for the streamId or -1 if there was an error.
@@ -230,8 +226,8 @@ def print(session, values):
     """
     Print value
 
-    Evaluate and convert 0 or more values to its string value, then write
-    them to stdout. An undefined value is represented by `<undefined>`.
+    Evaluate and convert 0 or more values to its string value, then write them
+    to stdout. An undefined value is represented by `<undefined>`.
 
     Args:
         values (object): Values to print.
@@ -448,8 +444,8 @@ def write(session, streamNumber, value):
     """
     Write values to stream as sting
 
-    Evaluate and convert 0 or more values to its string value, then write
-    them to stream. An value with an undefined value is represented by
+    Evaluate and convert 0 or more values to its string value, then write them
+    to stream. An value with an undefined value is represented by
     `<undefined>`.
 
     Args:
@@ -513,9 +509,9 @@ def writeln(session, streamNumber, value):
     """
     Write values to stream as string followed by '\n'
 
-    Evaluate and convert 0 or more values to its string value, then write
-    them to stream. A newline character ('\n') is written after the last
-    value. An undefined value is represented by `<undefined>`.
+    Evaluate and convert 0 or more values to its string value, then write them
+    to stream. A newline character ('\n') is written after the last value. An
+    undefined value is represented by `<undefined>`.
 
     Args:
         streamNumber (int): The streamNumber for the stream to write.

@@ -88,9 +88,8 @@ export function afwDecodeToStringHexBinary(client : any, value : any) : any {
 
 /**
  * Determine if hexBinary arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {hexBinary} arg1 -
  * 
@@ -110,9 +109,9 @@ export function afwEqHexBinary(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for hexBinary arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for hexBinary arg1 is equal to the value and data type of arg2
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {hexBinary} arg1 -
  * 
@@ -191,8 +190,8 @@ export function afwHexBinary(client : any, value : any) : any {
 }
 
 /**
- * Returns an array of hexBinary with the values that are common to both
- * array of hexBinary array1 and array2.
+ * Returns an array of hexBinary with the values that are common to both array
+ * of hexBinary array1 and array2.
  * 
  * @param {array} array1 - The first array.
  * 
@@ -397,8 +396,8 @@ export function afwSubsetHexBinary(client : any, array1 : any[], array2 : any[])
 }
 
 /**
- * Converts hexBinary value to string. For array values, the to_string()
- * value for each entry is returned separated with commas.
+ * Converts hexBinary value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  * 
  * @param {hexBinary} value - A hexBinary value.
  * 

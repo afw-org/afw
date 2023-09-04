@@ -101,8 +101,8 @@ afw_function_execute_add_entries(
  *   values - (0 or more any dataType) A value can refer to any adaptable value
  *       belonging to any data type or an array expression. In the case of an
  *       array expression, indicated by '...' followed by an expression that
- *       results in an array, every element within that array is included in
- *       the newly created array.
+ *       results in an array, every element within that array is included in the
+ *       newly created array.
  *
  * Returns:
  *
@@ -423,8 +423,8 @@ afw_function_execute_reverse(
  *   endIndex - (optional integer) This is the zero based ending index. If
  *       positive, this is one more than the index of the last value to include
  *       in the array. If negative, the index is from the end of the array. If
- *       not specified, the slice is from startIndex up to and including the
- *       end of the array.
+ *       not specified, the slice is from startIndex up to and including the end
+ *       of the array.
  *
  * Returns:
  *

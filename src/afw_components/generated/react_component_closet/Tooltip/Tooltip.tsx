@@ -21,9 +21,9 @@ import {ctx} from "@afw/react";
  * 
  * A component that surrounds content with a tooltip.
  * 
- * This component renders a small popup with text when the user hovers over
- * an element for a specific amount of time. This may provide helpful hints
- * to explain to the user what they are looking at.
+ * This component renders a small popup with text when the user hovers over an
+ * element for a specific amount of time. This may provide helpful hints to
+ * explain to the user what they are looking at.
  * 
  */
 export const Tooltip : React.FunctionComponent<ITooltipProps> = (props) => {

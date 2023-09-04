@@ -74,8 +74,8 @@ The following functions are exported by default
 
 =head3 add_string
 
-Add (concatenate) a string with 1 or more values of any data type converted
-to their string value and return the string result.
+Add (concatenate) a string with 1 or more values of any data type converted to
+their string value and return the string result.
 Add (concatenate) strings
 
 =head4 Parameters
@@ -137,8 +137,8 @@ Value to convert
 
 =head3 encode_as_base64Binary_string
 
-Encode a value as a base64Binary. The effect is to create a base64Binary
-value with an internal value of the value passed.
+Encode a value as a base64Binary. The effect is to create a base64Binary value
+with an internal value of the value passed.
 Encode to a base64Binary value
 
 =head4 Parameters
@@ -362,8 +362,8 @@ Checks for less than or equal
 =head3 length_string
 
 This is a polymorphic function where string can be any of the supported data
-types. Return the integer number of entries in datatype array or codepoints
-in others.
+types. Return the integer number of entries in datatype array or codepoints in
+others.
 Returns number of codepoints or entries in value
 
 =head4 Parameters
@@ -374,8 +374,7 @@ Returns the number of entries in an array or code points in others.
 
 =head3 lt_string
 
-Checks for string arg1 is less that string arg2 and return the boolean
-result.
+Checks for string arg1 is less that string arg2 and return the boolean result.
 Checks for less than
 
 =head4 Parameters
@@ -409,8 +408,8 @@ Minimum value
 =head3 ne_string
 
 Determine if string arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -424,8 +423,8 @@ Checks for not equal
 =head3 nex_string
 
 Determine if for string arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -639,9 +638,9 @@ The second array.
 
 =head3 substring_string
 
-Returns the string substring of value beginning at zero-based position
-integer startIndex and ending at the position before integer endIndex.
-Specify -1 or omitting endIndex to return up to end of string.
+Returns the string substring of value beginning at zero-based position integer
+startIndex and ending at the position before integer endIndex. Specify -1 or
+omitting endIndex to return up to end of string.
 Extract a substring
 
 =head4 Parameters
@@ -829,8 +828,8 @@ URI encode
 
     $unencoded
 
-URL encode a single value. See the url_encode method for the data type of
-more details.
+URL encode a single value. See the url_encode method for the data type of more
+details.
 
 =cut
 

@@ -217,8 +217,8 @@ class string
     /**
      * eq_ignore_case_string()
      *
-     * Checks for string arg1 is equal to string arg2 ignoring case and
-     * return the boolean result.
+     * Checks for string arg1 is equal to string arg2 ignoring case and return
+     * the boolean result.
      *
      * @param string $arg1
      * @param string $arg2
@@ -242,10 +242,10 @@ class string
     /**
      * eq_string()
      *
-     * Determine if string arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if string arg1 is equal to the value of arg2 converted to the
+     * data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param string $arg1
      * @param  $arg2
@@ -381,8 +381,8 @@ class string
      *
      * @param string $value The string value to search.
      * @param string $subString Substring to search for.
-     * @param integer $startIndex Optional start index for search if
-     *                            different than start of string.
+     * @param integer $startIndex Optional start index for search if different
+     *                            than start of string.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -431,8 +431,8 @@ class string
     /**
      * is_in_string()
      *
-     * Checks whether string value is in array of string array and returns
-     * the boolean result.
+     * Checks whether string value is in array of string array and returns the
+     * boolean result.
      *
      * @param string $value
      * @param array $array
@@ -483,8 +483,8 @@ class string
      *
      * @param string $value The string value to search.
      * @param string $subString Substring to search for.
-     * @param integer $startIndex Optional start index for search if
-     *                            different than start of string.
+     * @param integer $startIndex Optional start index for search if different
+     *                            than start of string.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -533,9 +533,9 @@ class string
     /**
      * length_string()
      *
-     * This is a polymorphic function where string can be any of the
-     * supported data types. Return the integer number of entries in datatype
-     * array or codepoints in others.
+     * This is a polymorphic function where string can be any of the supported
+     * data types. Return the integer number of entries in datatype array or
+     * codepoints in others.
      *
      * @param string $value Returns the number of entries in an array or code
      *                      points in others.
@@ -627,10 +627,10 @@ class string
     /**
      * ne_string()
      *
-     * Determine if string arg1 is not equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if string arg1 is not equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param string $arg1
      * @param  $arg2
@@ -802,9 +802,8 @@ class string
      * @param string $value The original string value.
      * @param string $regexp A regular expression to use for search.
      * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The
-     *                       default is 1. Specify -1 to replace all
-     *                       occurrences.
+     * @param integer $limit This is the maximum times to replace. The default
+     *                       is 1. Specify -1 to replace all occurrences.
      *
      * @return string A string value with the matched string(s) replaced.
      */
@@ -858,9 +857,8 @@ class string
      * @param string $value The original string value.
      * @param string $match The string to replace.
      * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The
-     *                       default is 1. Specify -1 to replace all
-     *                       occurrences.
+     * @param integer $limit This is the maximum times to replace. The default
+     *                       is 1. Specify -1 to replace all occurrences.
      *
      * @return string A string value with the matched string(s) replaced.
      */

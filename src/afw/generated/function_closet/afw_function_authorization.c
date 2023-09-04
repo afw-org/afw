@@ -58,8 +58,8 @@
  *       this value in authorization policies.
  *
  *   enforce - (optional boolean) This specifies whether an error is thrown if
- *       access is denied. If false or not specified, an error is not thrown
- *       and the decision can be checked in the returned object.
+ *       access is denied. If false or not specified, an error is not thrown and
+ *       the decision can be checked in the returned object.
  *
  * Returns:
  *

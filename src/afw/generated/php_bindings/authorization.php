@@ -44,8 +44,8 @@ class authorization
      * @param object $object Variable current::object can be used to access
      *                       this value in authorization policies.
      * @param boolean $enforce This specifies whether an error is thrown if
-     *                         access is denied. If false or not specified,
-     *                         an error is not thrown and the decision can be
+     *                         access is denied. If false or not specified, an
+     *                         error is not thrown and the decision can be
      *                         checked in the returned object.
      *
      * @return object The authorization result.

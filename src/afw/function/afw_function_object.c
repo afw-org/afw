@@ -112,8 +112,7 @@ afw_function_execute_add_properties(
  *   object - (object) Object used to produce result.
  *
  *   options - (optional object _AdaptiveObjectOptions_) Object options. See
- *       /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *       information.
+ *       /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  *
  * Returns:
  *

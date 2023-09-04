@@ -22,8 +22,8 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluates 0 or more boolean conditions returning boolean true if there are
- * no conditions and boolean false if any condition evaluate to false. All
+ * Evaluates 0 or more boolean conditions returning boolean true if there are no
+ * conditions and boolean false if any condition evaluate to false. All
  * conditions after the first false remain unevaluated.
  *
  * This function is pure, so it will always return the same result

@@ -128,9 +128,9 @@ export function afwEqDate(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for date arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * Determine if for date arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  * 
  * @param {date} arg1 -
  * 
@@ -236,8 +236,8 @@ export function afwIsDate(client : any, value : any) : any {
 }
 
 /**
- * Checks whether date value is in array of date array and returns the
- * boolean result.
+ * Checks whether date value is in array of date array and returns the boolean
+ * result.
  * 
  * @param {date} value -
  * 
@@ -345,9 +345,8 @@ export function afwMinDate(client : any, values : any) : any {
 
 /**
  * Determine if date arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {date} arg1 -
  * 
@@ -368,8 +367,8 @@ export function afwNeDate(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for date arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use 'ne' ('!=') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {date} arg1 -
  * 

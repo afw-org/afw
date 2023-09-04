@@ -47,8 +47,7 @@ The following functions are exported by default
 
 =head3 abs_integer
 
-Compute the absolute value of the integer value and return the integer
-result.
+Compute the absolute value of the integer value and return the integer result.
 Absolute value
 
 =head4 Parameters
@@ -132,9 +131,9 @@ Checks for equal
 
 =head3 eqx_integer
 
-Determine if for integer arg1 is equal to the value and data type of arg2
-then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+Determine if for integer arg1 is equal to the value and data type of arg2 then
+return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -299,8 +298,8 @@ Multiply numbers
 =head3 ne_integer
 
 Determine if integer arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -324,8 +323,8 @@ Negative of a number
 =head3 nex_integer
 
 Determine if for integer arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -363,8 +362,8 @@ Checks whether two arrays are subsets of each other
 
 =head3 subset_integer
 
-Returns boolean true if the unique values in integer array1 are all in
-integer array2.
+Returns boolean true if the unique values in integer array1 are all in integer
+array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters

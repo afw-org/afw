@@ -33,8 +33,8 @@ class administrative
      * @param string $extension_id This is the object id of a
      *                             /afw/_AdaptiveManifest_/ object.
      *
-     * @return boolean If false the extension was already loaded. If true,
-     *                 the extension was successfully loaded which might have
+     * @return boolean If false the extension was already loaded. If true, the
+     *                 extension was successfully loaded which might have
      *                 caused side effects such as environment registry
      *                 changes. An error is thrown if there is a problem.
      */
@@ -54,14 +54,13 @@ class administrative
     /**
      * extension_load_by_module_path()
      *
-     * Load an extension by its module path. Loading an AFW package's
-     * manifest extension will register the manifest of all extensions in the
-     * package.
+     * Load an extension by its module path. Loading an AFW package's manifest
+     * extension will register the manifest of all extensions in the package.
      *
      * @param string $module_path This is the path to the dso containing the
      *                            extension. If the extension is installed in
-     *                            the normal place, the library name without
-     *                            a file extension (.so) will suffice.
+     *                            the normal place, the library name without a
+     *                            file extension (.so) will suffice.
      *
      * @return string The extension id of the extension loaded.
      */
@@ -132,8 +131,8 @@ class administrative
      * the active default flags.
      *
      *
-     * @return array This is an array of the flagId of flags used to
-     *               determine the default active flags.
+     * @return array This is an array of the flagId of flags used to determine
+     *               the default active flags.
      */
     public function flag_get_defaults()
     {
@@ -150,16 +149,16 @@ class administrative
     /**
      * flag_modify_defaults()
      *
-     * Add or remove flags from the array of the flagId of flags that are
-     * used to determine the default active flags when an execution context
-     * (xctx) is created. This array can contain the flagId of flags that
-     * have not yet been registered. These flags and the flags they include
-     * are set as the active default flags.
+     * Add or remove flags from the array of the flagId of flags that are used
+     * to determine the default active flags when an execution context (xctx)
+     * is created. This array can contain the flagId of flags that have not
+     * yet been registered. These flags and the flags they include are set as
+     * the active default flags.
      * 
-     * This change only lasts for the life of the current adaptive
-     * environment (e.g. until the adaptive server or afw command ends). If
-     * you want the change to persist, change the defaultFlags property in
-     * the application config.
+     * This change only lasts for the life of the current adaptive environment
+     * (e.g. until the adaptive server or afw command ends). If you want the
+     * change to persist, change the defaultFlags property in the application
+     * config.
      *
      * @param array $flagId The flagId of flags to be added or removed.
      * @param boolean $add Specify true to add and false to remove flags. If
@@ -192,13 +191,13 @@ class administrative
      * been registered. These flags and the flags they include are set as the
      * active default flags.
      * 
-     * This change only lasts for the life of the current adaptive
-     * environment (e.g. until the adaptive server or afw command ends). If
-     * you want the change to persist, change the defaultFlags property in
-     * the application config.
+     * This change only lasts for the life of the current adaptive environment
+     * (e.g. until the adaptive server or afw command ends). If you want the
+     * change to persist, change the defaultFlags property in the application
+     * config.
      *
-     * @param array $flagId The array of the flagId of flags used to
-     *                      determine the default active flags.
+     * @param array $flagId The array of the flagId of flags used to determine
+     *                      the default active flags.
      *
      * @return void
      */
@@ -258,8 +257,8 @@ class administrative
      *                               parameter will cause the associated
      *                               extension to be loaded if needed.
      *
-     * @return boolean If false the extension was already loaded. If true,
-     *                 the extension was successfully loaded which might have
+     * @return boolean If false the extension was already loaded. If true, the
+     *                 extension was successfully loaded which might have
      *                 caused side effects such as environment registry
      *                 changes. An error is thrown if there is a problem.
      */

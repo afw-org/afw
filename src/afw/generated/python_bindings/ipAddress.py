@@ -67,8 +67,8 @@ def eq_ipAddress(session, arg1, arg2):
     """
     Checks for equal
 
-    Determine if ipAddress arg1 is equal to the value of arg2 converted to
-    the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+    Determine if ipAddress arg1 is equal to the value of arg2 converted to the
+    data type of arg1 then return the boolean result. Use 'eqx' ('===')
     instead if you want false to be returned if arg1 and arg2's data type
     don't match.
 
@@ -350,10 +350,10 @@ def ne_ipAddress(session, arg1, arg2):
     """
     Checks for not equal
 
-    Determine if ipAddress arg1 is not equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use 'nex'
-    ('!==') instead if you want true to be returned if arg1 and arg2's data
-    type don't match.
+    Determine if ipAddress arg1 is not equal to the value of arg2 converted to
+    the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):

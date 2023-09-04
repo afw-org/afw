@@ -101,9 +101,9 @@ def eqx_function(session, arg1, arg2):
     """
     Checks for equal and type
 
-    Determine if for function arg1 is equal to the value and data type of
-    arg2 then return the boolean result. Use 'eq' ('==') instead if you want
-    arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for function arg1 is equal to the value and data type of arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
+    to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):
@@ -254,8 +254,8 @@ def le_function(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for function arg1 is less than or equal to function arg2 and
-    return the boolean result.
+    Checks for function arg1 is less than or equal to function arg2 and return
+    the boolean result.
 
     Args:
         arg1 (object):
@@ -286,8 +286,8 @@ def lt_function(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for function arg1 is less that function arg2 and return the
-    boolean result.
+    Checks for function arg1 is less that function arg2 and return the boolean
+    result.
 
     Args:
         arg1 (object):
@@ -320,8 +320,8 @@ def ne_function(session, arg1, arg2):
 
     Determine if function arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):

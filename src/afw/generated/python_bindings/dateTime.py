@@ -224,9 +224,9 @@ def eqx_dateTime(session, arg1, arg2):
     """
     Checks for equal and type
 
-    Determine if for dateTime arg1 is equal to the value and data type of
-    arg2 then return the boolean result. Use 'eq' ('==') instead if you want
-    arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for dateTime arg1 is equal to the value and data type of arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
+    to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):
@@ -327,8 +327,8 @@ def intersection_dateTime(session, array1, array2):
     """
     Returns intersection of two arrays
 
-    Returns an array of dateTime with the values that are common to both
-    array of dateTime array1 and array2.
+    Returns an array of dateTime with the values that are common to both array
+    of dateTime array1 and array2.
 
     Args:
         array1 (list): The first array.
@@ -419,8 +419,8 @@ def le_dateTime(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for dateTime arg1 is less than or equal to dateTime arg2 and
-    return the boolean result.
+    Checks for dateTime arg1 is less than or equal to dateTime arg2 and return
+    the boolean result.
     
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
@@ -454,8 +454,8 @@ def lt_dateTime(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for dateTime arg1 is less that dateTime arg2 and return the
-    boolean result.
+    Checks for dateTime arg1 is less that dateTime arg2 and return the boolean
+    result.
     
     If a dateTime value does not include a time-zone value, then the local
     time-zone value will be assigned.
@@ -553,8 +553,8 @@ def ne_dateTime(session, arg1, arg2):
 
     Determine if dateTime arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -647,8 +647,8 @@ def set_equals_dateTime(session, array1, array2):
     """
     Checks whether two arrays are subsets of each other
 
-    Returns boolean true if dateTime array1 and dateTime array2 are subsets
-    of each other and return the boolean result.
+    Returns boolean true if dateTime array1 and dateTime array2 are subsets of
+    each other and return the boolean result.
 
     Args:
         array1 (list):
@@ -743,8 +743,8 @@ def subtract_yearMonthDuration_dateTime(session, arg1, arg2):
     """
     Subtract numbers
 
-    Subtract yearMonthDuration arg2 from dateTime arg1 and return the
-    dateTime result.
+    Subtract yearMonthDuration arg2 from dateTime arg1 and return the dateTime
+    result.
 
     Args:
         arg1 (object):
@@ -775,8 +775,8 @@ def to_string_dateTime(session, value):
     """
     Converts value to string
 
-    Converts dateTime value to string. For array values, the to_string()
-    value for each entry is returned separated with commas.
+    Converts dateTime value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Args:
         value (object): A dateTime value.

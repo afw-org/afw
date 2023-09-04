@@ -23,8 +23,8 @@ import {ctx} from "@afw/react";
  * shimmer to indicate that an actual component is waiting to be loaded.
  * 
  * The Skeleton is a feedback utility component, similar to the Spinner, but
- * it takes on a shape that gives the user the perspective that data is
- * nearly ready and the component is attempting to render. It's a component
+ * it takes on a shape that gives the user the perspective that data is nearly
+ * ready and the component is attempting to render. It's a component
  * placeholder, which often animates or shimmers.
  * 
  */

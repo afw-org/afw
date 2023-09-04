@@ -68,8 +68,8 @@ export function afwAddDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
 }
 
 /**
- * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the
- * `<dataType>` result.
+ * Add `<dataType>` arg1 to yearMonthDuration arg2 and return the `<dataType>`
+ * result.
  * 
  * @param {} arg1 -
  * 
@@ -186,9 +186,9 @@ export function afwClone(client : any, value : any) : any {
  * 
  * @param {} source - `<dataType>` string to compile
  * 
- * @param {} listing - If specified, a compiler listing is produced instead
- *     of an unevaluated expression value.
- *     
+ * @param {} listing - If specified, a compiler listing is produced instead of
+ *     an unevaluated expression value.
+ * 
  *     This parameter can be an integer between 0 and 10 of a string that is
  *     used for indentation. If 0 is specified, no whitespace is added to the
  *     resulting string. If 1 through 10 is specified, that number of spaces
@@ -210,8 +210,8 @@ export function afwCompile(client : any, source : any, listing? : any) : any {
 }
 
 /**
- * Decode `<dataType>` value to string. An error is thrown if decoded value
- * is not valid UTF-8.
+ * Decode `<dataType>` value to string. An error is thrown if decoded value is
+ * not valid UTF-8.
  * 
  * @param {} value - The `<dataType>` value to decode.
  * 
@@ -308,8 +308,8 @@ export function afwEndsWith(client : any, value : any, subString : string) : any
 /**
  * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * instead if you want false to be returned if arg1 and arg2's data type don't
+ * match.
  * 
  * @param {} arg1 -
  * 
@@ -379,9 +379,9 @@ export function afwEqx(client : any, arg1 : any, arg2 : any) : any {
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {unevaluated}
  */
@@ -602,8 +602,8 @@ export function afwIsIn(client : any, value : any, array : any[]) : any {
 }
 
 /**
- * Returns the zero-based index into `<dataType>` value of the last
- * occurrence of a subString. If subString is not found, -1 is returned.
+ * Returns the zero-based index into `<dataType>` value of the last occurrence
+ * of a subString. If subString is not found, -1 is returned.
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
@@ -629,8 +629,8 @@ export function afwLastIndexOf(client : any, value : any, subString : string, st
 }
 
 /**
- * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2
- * and return the boolean result.
+ * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
+ * return the boolean result.
  * 
  * @param {} arg1 -
  * 
@@ -825,8 +825,8 @@ export function afwNegative(client : any, value : any) : any {
 
 /**
  * Determine if for `<dataType>` arg1 is not equal to the value or data type
- * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
- * want arg2 to be converted to the data type of arg1 before comparison.
+ * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
+ * arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {} arg1 -
  * 
@@ -863,8 +863,7 @@ export function afwNormalizeSpace(client : any, string : any) : any {
 }
 
 /**
- * Normalize `<dataType>` value to lower case and returns `<dataType>`
- * result.
+ * Normalize `<dataType>` value to lower case and returns `<dataType>` result.
  * 
  * @param {} string -
  * 
@@ -899,8 +898,8 @@ export function afwOneAndOnly(client : any, array : any[]) : any {
 }
 
 /**
- * This returns the value of base raised to a power. Multiple exponents can
- * be specified to raise the previous exponent to the power of the latter
+ * This returns the value of base raised to a power. Multiple exponents can be
+ * specified to raise the previous exponent to the power of the latter
  * exponent.
  * 
  * @param {} base - Base value.
@@ -921,8 +920,8 @@ export function afwPow(client : any, base : any, exponent : any) : any {
 }
 
 /**
- * Search `<dataType>` value for a regular expression and return index. If
- * not found, -1 is returned.
+ * Search `<dataType>` value for a regular expression and return index. If not
+ * found, -1 is returned.
  * 
  * @param {} value - The `<dataType>` value to search.
  * 
@@ -942,8 +941,8 @@ export function afwRegexpIndexOf(client : any, value : any, regexp : string) : a
 }
 
 /**
- * Checks whether `<dataType>` value matches the regular expression regexp
- * and return the boolean result.
+ * Checks whether `<dataType>` value matches the regular expression regexp and
+ * return the boolean result.
  * 
  * @param {} value -
  * 
@@ -1131,8 +1130,8 @@ export function afwStartsWith(client : any, value : any, subString : string) : a
 }
 
 /**
- * Returns boolean true if the unique values in `<dataType>` array1 are all
- * in `<dataType>` array2.
+ * Returns boolean true if the unique values in `<dataType>` array1 are all in
+ * `<dataType>` array2.
  * 
  * @param {array} array1 - The first array.
  * 

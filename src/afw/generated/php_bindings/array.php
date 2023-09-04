@@ -53,8 +53,8 @@ class array
      * Construct an array with 0 or more elements.
      *
      * @param  $values A value can refer to any adaptable value belonging to
-     *                 any data type or an array expression. In the case of
-     *                 an array expression, indicated by '...' followed by an
+     *                 any data type or an array expression. In the case of an
+     *                 array expression, indicated by '...' followed by an
      *                 expression that results in an array, every element
      *                 within that array is included in the newly created
      *                 array.
@@ -172,9 +172,9 @@ class array
     /**
      * eqx_array()
      *
-     * Determine if for array arg1 is equal to the value and data type of
-     * arg2 then return the boolean result. Use 'eq' ('==') instead if you
-     * want arg2 to be converted to the data type of arg1 before comparison.
+     * Determine if for array arg1 is equal to the value and data type of arg2
+     * then return the boolean result. Use 'eq' ('==') instead if you want
+     * arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param array $arg1
      * @param  $arg2
@@ -198,8 +198,8 @@ class array
     /**
      * ge_array()
      *
-     * Checks for array arg1 is greater than or equal to array arg2 and
-     * return the boolean result.
+     * Checks for array arg1 is greater than or equal to array arg2 and return
+     * the boolean result.
      *
      * @param array $arg1
      * @param array $arg2
@@ -223,8 +223,8 @@ class array
     /**
      * gt_array()
      *
-     * Checks for array arg1 is greater than array arg2 and return the
-     * boolean result.
+     * Checks for array arg1 is greater than array arg2 and return the boolean
+     * result.
      *
      * @param array $arg1
      * @param array $arg2
@@ -402,9 +402,9 @@ class array
      * ne_array()
      *
      * Determine if array arg1 is not equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param array $arg1
      * @param  $arg2
@@ -481,9 +481,9 @@ class array
      *
      * @param array $array The array to slice.
      * @param integer $startIndex This is the zero based starting index. Use
-     *                            negative number to index from the end of
-     *                            the array. If not specified, an index of 0
-     *                            is assumed.
+     *                            negative number to index from the end of the
+     *                            array. If not specified, an index of 0 is
+     *                            assumed.
      * @param integer $endIndex This is the zero based ending index. If
      *                          positive, this is one more than the index of
      *                          the last value to include in the array. If
@@ -493,8 +493,8 @@ class array
      *                          array.
      *
      * @return array An array containing the selected values. If all of the
-     *               values are the same data type, the array will be an
-     *               array of that data type.
+     *               values are the same data type, the array will be an array
+     *               of that data type.
      */
     public function slice(, $array, $startIndex = null, $endIndex = null)
     {
@@ -518,8 +518,8 @@ class array
     /**
      * to_string_array()
      *
-     * Converts array value to string. For array values, the to_string()
-     * value for each entry is returned separated with commas.
+     * Converts array value to string. For array values, the to_string() value
+     * for each entry is returned separated with commas.
      *
      * @param array $value A array value.
      *

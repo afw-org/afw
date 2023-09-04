@@ -73,9 +73,9 @@ class ipAddress
      * eq_ipAddress()
      *
      * Determine if ipAddress arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param ipAddress $arg1
      * @param  $arg2
@@ -150,8 +150,8 @@ class ipAddress
     /**
      * gt_ipAddress()
      *
-     * Checks for ipAddress arg1 is greater than ipAddress arg2 and return
-     * the boolean result.
+     * Checks for ipAddress arg1 is greater than ipAddress arg2 and return the
+     * boolean result.
      *
      * @param ipAddress $arg1
      * @param ipAddress $arg2
@@ -295,10 +295,10 @@ class ipAddress
     /**
      * ne_ipAddress()
      *
-     * Determine if ipAddress arg1 is not equal to the value of arg2
-     * converted to the data type of arg1 then return the boolean result. Use
-     * 'nex' ('!==') instead if you want true to be returned if arg1 and
-     * arg2's data type don't match.
+     * Determine if ipAddress arg1 is not equal to the value of arg2 converted
+     * to the data type of arg1 then return the boolean result. Use 'nex'
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param ipAddress $arg1
      * @param  $arg2
@@ -348,8 +348,8 @@ class ipAddress
     /**
      * one_and_only_ipAddress()
      *
-     * This converts an array of ipAddress values that contains one value to
-     * a single ipAddress value.
+     * This converts an array of ipAddress values that contains one value to a
+     * single ipAddress value.
      *
      * @param array $array
      *

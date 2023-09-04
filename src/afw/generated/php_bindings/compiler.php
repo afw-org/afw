@@ -62,15 +62,15 @@ class compiler
      * @param string $json JSON string to compile.
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated JSON value.
-     *                  
-     *                  This parameter can be an integer between 0 and 10 of
-     *                  a string that is used for indentation. If 0 is
+     * 
+     *                  This parameter can be an integer between 0 and 10 of a
+     *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
      *                  spaces is used.
      *
-     * @return  An unevaluated JSON value ready for use by function
-     *          evaluate() or a string containing the compiler listing.
+     * @return  An unevaluated JSON value ready for use by function evaluate()
+     *          or a string containing the compiler listing.
      */
     public function compile_json(, $json, $listing = null)
     {
@@ -97,9 +97,9 @@ class compiler
      * @param string $json Adaptive relaxed JSON syntax string to compile.
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated relaxed JSON value.
-     *                  
-     *                  This parameter can be an integer between 0 and 10 of
-     *                  a string that is used for indentation. If 0 is
+     * 
+     *                  This parameter can be an integer between 0 and 10 of a
+     *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
      *                  spaces is used.
@@ -197,12 +197,11 @@ class compiler
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -274,8 +273,8 @@ class compiler
      *                            will be suitable to pass as the
      *                            additionalUntrustedQualifiedVariables
      *                            parameter of evaluate*() functions. This is
-     *                            intended for testing purposes and should
-     *                            not be used in production.
+     *                            intended for testing purposes and should not
+     *                            be used in production.
      *
      * @return object Each property is the name of a variable with the value
      *                influenced by the forTesting property.
@@ -299,17 +298,16 @@ class compiler
     /**
      * qualifiers()
      *
-     * This function allows the active qualifiers to be accessed as
-     * properties of an object. The value of each of these properties is an
-     * object whose properties are the variables for the corresponding
-     * qualifier.
+     * This function allows the active qualifiers to be accessed as properties
+     * of an object. The value of each of these properties is an object whose
+     * properties are the variables for the corresponding qualifier.
      *
      * @param boolean $forTesting If specified and true, the object returned
      *                            will be suitable to pass as the
      *                            additionalUntrustedQualifiedVariables
      *                            parameter of evaluate*() functions. This is
-     *                            intended for testing purposes and should
-     *                            not be used in production.
+     *                            intended for testing purposes and should not
+     *                            be used in production.
      *
      * @return object Each property is the name of a qualifier with a value
      *                that is an object whose properties are the variables of
@@ -408,12 +406,11 @@ class compiler
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -457,9 +454,8 @@ class compiler
      * test_hybrid()
      *
      * Compile and evaluate a string containing adaptive hybrid syntax which
-     * can be an adaptive template or adaptive expression and then compare
-     * the results to an expected value. Return object with the test's
-     * results.
+     * can be an adaptive template or adaptive expression and then compare the
+     * results to an expected value. Return object with the test's results.
      *
      * @param string $id Id of test
      * @param string $description Description of test
@@ -469,12 +465,11 @@ class compiler
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -528,12 +523,11 @@ class compiler
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -576,8 +570,8 @@ class compiler
     /**
      * test_template()
      *
-     * Compile and evaluate an adaptive template and compare the results to
-     * an expected value. Return object with the test's results.
+     * Compile and evaluate an adaptive template and compare the results to an
+     * expected value. Return object with the test's results.
      *
      * @param string $id Id of test
      * @param string $description Description of test
@@ -587,12 +581,11 @@ class compiler
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -646,12 +639,11 @@ class compiler
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified

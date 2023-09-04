@@ -455,8 +455,8 @@ def one_and_only_yearMonthDuration(session, array):
     """
     Converts a one value array to a yearMonthDuration value
 
-    This converts an array of yearMonthDuration values that contains one
-    value to a single yearMonthDuration value.
+    This converts an array of yearMonthDuration values that contains one value
+    to a single yearMonthDuration value.
 
     Args:
         array (list):
@@ -577,8 +577,8 @@ def union_yearMonthDuration(session, arrays):
     """
     Returns union of two or more string arrays
 
-    Returns an array of yearMonthDuration contains all of the unique values
-    in two or more array of yearMonthDuration values.
+    Returns an array of yearMonthDuration contains all of the unique values in
+    two or more array of yearMonthDuration values.
 
     Args:
         arrays (list): Two or more arrays.

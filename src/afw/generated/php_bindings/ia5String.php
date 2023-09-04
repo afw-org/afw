@@ -73,9 +73,9 @@ class ia5String
      * eq_ia5String()
      *
      * Determine if ia5String arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param ia5String $arg1
      * @param  $arg2
@@ -150,8 +150,8 @@ class ia5String
     /**
      * gt_ia5String()
      *
-     * Checks for ia5String arg1 is greater than ia5String arg2 and return
-     * the boolean result.
+     * Checks for ia5String arg1 is greater than ia5String arg2 and return the
+     * boolean result.
      *
      * @param ia5String $arg1
      * @param ia5String $arg2
@@ -270,10 +270,10 @@ class ia5String
     /**
      * ne_ia5String()
      *
-     * Determine if ia5String arg1 is not equal to the value of arg2
-     * converted to the data type of arg1 then return the boolean result. Use
-     * 'nex' ('!==') instead if you want true to be returned if arg1 and
-     * arg2's data type don't match.
+     * Determine if ia5String arg1 is not equal to the value of arg2 converted
+     * to the data type of arg1 then return the boolean result. Use 'nex'
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param ia5String $arg1
      * @param  $arg2

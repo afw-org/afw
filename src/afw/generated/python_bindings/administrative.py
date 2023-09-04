@@ -9,9 +9,9 @@ def extension_load(session, extension_id):
     """
     Load extension by id
 
-    Load an extension by its extension id if it is not already loaded.
-    Loading an AFW package's manifest extension will register the manifest of
-    all extensions in the package.
+    Load an extension by its extension id if it is not already loaded. Loading
+    an AFW package's manifest extension will register the manifest of all
+    extensions in the package.
 
     Args:
         extension_id (str): This is the object id of a
@@ -19,9 +19,9 @@ def extension_load(session, extension_id):
 
     Returns:
         bool: If false the extension was already loaded. If true, the
-        extension was successfully loaded which might have caused side
-        effects such as environment registry changes. An error is thrown if
-        there is a problem.
+        extension was successfully loaded which might have caused side effects
+        such as environment registry changes. An error is thrown if there is a
+        problem.
     """
 
     request = session.Request()
@@ -158,11 +158,11 @@ def flag_modify_defaults(session, flagId, add=None):
     """
     Add or remove flags used to determine the default active flags
 
-    Add or remove flags from the array of the flagId of flags that are used
-    to determine the default active flags when an execution context (xctx) is
-    created. This array can contain the flagId of flags that have not yet
-    been registered. These flags and the flags they include are set as the
-    active default flags.
+    Add or remove flags from the array of the flagId of flags that are used to
+    determine the default active flags when an execution context (xctx) is
+    created. This array can contain the flagId of flags that have not yet been
+    registered. These flags and the flags they include are set as the active
+    default flags.
     
     This change only lasts for the life of the current adaptive environment
     (e.g. until the adaptive server or afw command ends). If you want the
@@ -203,9 +203,9 @@ def flag_replace_defaults(session, flagId):
 
     Completely replace the array of the flagId of flags that are used to
     determine the default active flags when an execution context (xctx) is
-    created. This array can contain the flagId of flags that have not yet
-    been registered. These flags and the flags they include are set as the
-    active default flags.
+    created. This array can contain the flagId of flags that have not yet been
+    registered. These flags and the flags they include are set as the active
+    default flags.
     
     This change only lasts for the life of the current adaptive environment
     (e.g. until the adaptive server or afw command ends). If you want the
@@ -283,14 +283,14 @@ def registry_key_check(session, registryType, key, loadExtension=None):
         key (str): This is a key to check for existence in the specified
         registryType.
 
-        loadExtension (bool): Specifying true for this optional parameter
-        will cause the associated extension to be loaded if needed.
+        loadExtension (bool): Specifying true for this optional parameter will
+        cause the associated extension to be loaded if needed.
 
     Returns:
         bool: If false the extension was already loaded. If true, the
-        extension was successfully loaded which might have caused side
-        effects such as environment registry changes. An error is thrown if
-        there is a problem.
+        extension was successfully loaded which might have caused side effects
+        such as environment registry changes. An error is thrown if there is a
+        problem.
     """
 
     request = session.Request()

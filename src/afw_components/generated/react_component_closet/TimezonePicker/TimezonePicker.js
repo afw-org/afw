@@ -20,8 +20,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that allows a timezone to be chosen.
  * 
- * This component allows a timezone to be chosen, typically from a dropdown
- * of timezones, or from a world map.
+ * This component allows a timezone to be chosen, typically from a dropdown of
+ * timezones, or from a world map.
  * 
  */
 export const TimezonePicker = (props) => {

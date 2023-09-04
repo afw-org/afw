@@ -120,9 +120,9 @@ class boolean
      * eq_boolean()
      *
      * Determine if boolean arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param boolean $arg1
      * @param  $arg2
@@ -247,8 +247,7 @@ class boolean
     /**
      * is_boolean()
      *
-     * Checks whether value is dataType boolean and return the boolean
-     * result.
+     * Checks whether value is dataType boolean and return the boolean result.
      *
      * @param  $value Value to check
      *
@@ -347,8 +346,8 @@ class boolean
      *
      * Determine if boolean arg1 is not equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param boolean $arg1
      * @param  $arg2
@@ -372,8 +371,8 @@ class boolean
     /**
      * nex_boolean()
      *
-     * Determine if for boolean arg1 is not equal to the value or data type
-     * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+     * Determine if for boolean arg1 is not equal to the value or data type of
+     * arg2 then return the boolean result. Use 'ne' ('!=') instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param boolean $arg1
@@ -494,8 +493,8 @@ class boolean
     /**
      * union_boolean()
      *
-     * Returns an array of boolean contains all of the unique values in two
-     * or more array of boolean values.
+     * Returns an array of boolean contains all of the unique values in two or
+     * more array of boolean values.
      *
      * @param array $arrays Two or more arrays.
      *

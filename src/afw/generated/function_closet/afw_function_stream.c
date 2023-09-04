@@ -160,8 +160,8 @@ afw_function_execute_get_stream_error(
  *
  *   mode - (string) This is the access mode string. Values can be:
  *         r - Open an existing file text file for read.
- *         w - Open a text file for writing. If the file does not exist, it
- *       will be created.
+ *         w - Open a text file for writing. If the file does not exist, it will
+ *       be created.
  *         a - Open a text file for writing additional data to the end. If the
  *       file does not exist, it will be created.
  *         r+ - Open a text file for both reading and writing.
@@ -171,10 +171,10 @@ afw_function_execute_get_stream_error(
  *         a+ - Open a text file for both reading and writing. Reading will
  *       begin at the start of the file while writing will be appended to the
  *       end.
- *       
+ * 
  *       All of these modes expect data type string. If you are using data type
- *       base64Binary or hexBinary you can use corresponding binary modes,
- *       'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
+ *       base64Binary or hexBinary you can use corresponding binary modes, 'rb',
+ *       'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
  *
  *   autoFlush - (optional boolean) If specified and true, this will
  *       automatically flush the stream's buffers after every write.
@@ -297,8 +297,8 @@ afw_function_execute_open_uri(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate and convert 0 or more values to its string value, then write them
- * to stdout. An undefined value is represented by `<undefined>`.
+ * Evaluate and convert 0 or more values to its string value, then write them to
+ * stdout. An undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -442,8 +442,8 @@ afw_function_execute_read(
  *
  * Returns:
  *
- *   (base64Binary) The base64Binary value read. Check the size of this value
- *       to determine the actual number of octets read.
+ *   (base64Binary) The base64Binary value read. Check the size of this value to
+ *       determine the actual number of octets read.
  */
 const afw_value_t *
 afw_function_execute_read_to_base64Binary(
@@ -585,8 +585,8 @@ afw_function_execute_stream(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate and convert 0 or more values to its string value, then write them
- * to stream. An value with an undefined value is represented by `<undefined>`.
+ * Evaluate and convert 0 or more values to its string value, then write them to
+ * stream. An value with an undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -669,8 +669,8 @@ afw_function_execute_write_internal(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate and convert 0 or more values to its string value, then write them
- * to stream. A newline character ('\n') is written after the last value. An
+ * Evaluate and convert 0 or more values to its string value, then write them to
+ * stream. A newline character ('\n') is written after the last value. An
  * undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result

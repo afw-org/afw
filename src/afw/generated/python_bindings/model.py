@@ -13,8 +13,8 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
     performed if a onAdd parameter is not specified on the associated
     _AdaptiveModelObjectType_. The action is not performed, but be aware that
     functions called while producing the _AdaptiveAction_ object may cause
-    side effects. This function can be called as part of a onAdd expression
-    or for testing.
+    side effects. This function can be called as part of a onAdd expression or
+    for testing.
 
     Args:
         adaptorId (str): This is the adaptorId of a model adaptor. Variable
@@ -22,8 +22,8 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
         expressions.
 
         objectType (str): This is the adaptive object type of object being
-        added. Variable custom::objectType can be used to access this value
-        in model expressions.
+        added. Variable custom::objectType can be used to access this value in
+        model expressions.
 
         object (dict): This is the object to add. Variable custom::object can
         be used to access this value in model expressions.
@@ -75,11 +75,11 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
     Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor.
 
     This function returns a _AdaptiveAction_ object for the default action
-    performed if a onDeleteObject parameter is not specified on the
-    associated _AdaptiveModelObjectType_. The action is not performed, but be
-    aware that functions called while producing the _AdaptiveAction_ object
-    may cause side effects. This function can be called as part of a onDelete
-    expression or for testing.
+    performed if a onDeleteObject parameter is not specified on the associated
+    _AdaptiveModelObjectType_. The action is not performed, but be aware that
+    functions called while producing the _AdaptiveAction_ object may cause
+    side effects. This function can be called as part of a onDelete expression
+    or for testing.
 
     Args:
         adaptorId (str): This is the adaptorId of a model adaptor. Variable
@@ -133,11 +133,11 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
     Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.
 
     This function returns a _AdaptiveAction_ object for the default action
-    performed if a onModifyObject parameter is not specified on the
-    associated _AdaptiveModelObjectType_. The action is not performed, but be
-    aware that functions called while producing the _AdaptiveAction_ object
-    may cause side effects. This function can be called as part of a onModify
-    expression or for testing.
+    performed if a onModifyObject parameter is not specified on the associated
+    _AdaptiveModelObjectType_. The action is not performed, but be aware that
+    functions called while producing the _AdaptiveAction_ object may cause
+    side effects. This function can be called as part of a onModify expression
+    or for testing.
 
     Args:
         adaptorId (str): This is the adaptorId of a model adaptor. Variable
@@ -145,39 +145,28 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
         expressions.
 
         objectType (str): This is the adaptive object type of object being
-        modified. Variable custom::objectType can be used to access this
-        value in model expressions.
+        modified. Variable custom::objectType can be used to access this value
+        in model expressions.
 
         objectId (str): This is the objectId of object to modify. Variable
         custom::objectId can be used to access this value in model
         expressions.
 
         entries (list): This is an array of modifications. Variable
-        custom::actions can be used to access this value in model
-        expressions. Entries are of the form:
+        custom::actions can be used to access this value in model expressions.
+        Entries are of the form:
         
-        [
-        'add_value',
-        'property name' or ['property name', ... ],
-        value
-        ]
+            [         'add_value',         'property name' or ['property
+        name', ... ],         value     ]
         
-        [
-        'remove_property',
-        'property name' or ['property name', ... ]
-        ]
+            [         'remove_property',         'property name' or ['property
+        name', ... ]     ]
         
-        [
-        'remove_value',
-        'property name' or ['property name', ... ],
-        value
-        ]
+            [         'remove_value',         'property name' or ['property
+        name', ... ],         value     ]
         
-        [
-        'set_property',
-        'property name' or ['property name', ... ],
-        value
-        ]
+            [         'set_property',         'property name' or ['property
+        name', ... ],         value     ]
 
         modelId (str): This specifics a modelId of model to use for producing
         results. If not specified, the adaptor's current model will be used.
@@ -223,8 +212,8 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
     performed if a onReplaceObject parameter is not specified on the
     associated _AdaptiveModelObjectType_. The action is not performed, but be
     aware that functions called while producing the _AdaptiveAction_ object
-    may cause side effects. This function can be called as part of a
-    onReplace expression or for testing.
+    may cause side effects. This function can be called as part of a onReplace
+    expression or for testing.
 
     Args:
         adaptorId (str): This is the adaptorId of a model adaptor. Variable
@@ -232,8 +221,8 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
         expressions.
 
         objectType (str): This is the adaptive object type of object being
-        replaced. Variable custom::objectType can be used to access this
-        value in model expressions.
+        replaced. Variable custom::objectType can be used to access this value
+        in model expressions.
 
         objectId (str): The objectId of object to replace. Variable
         custom::objectId can be used to access this value in model
@@ -283,15 +272,14 @@ def model_mapBackObject_signature(session, mappedObject):
     Signature used for current:mapBackObject()
 
     This is the function signature for current:mapBackObject used by
-    onGetObjects and onRetrieveObjects. Calling this directly will throw a
-    'Do not call directly' error.
+    onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
+    not call directly' error.
 
     Args:
         mappedObject (dict): This is the object to map back.
 
     Returns:
-        dict: This is the mappedObject mapped back from mapped adaptor
-        object.
+        dict: This is the mappedObject mapped back from mapped adaptor object.
     """
 
     request = session.Request()
@@ -314,8 +302,8 @@ def model_mapObject_signature(session, object):
     Signature used for current:mapObject()
 
     This is the function signature for current:mapObject used by onAddObject.
-    onDeleteObject, onModifyObject, and onReplaceObject. Calling this
-    directly will throw a 'Do not call directly' error.
+    onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
+    will throw a 'Do not call directly' error.
 
     Args:
         object (dict): This is the object to map.
@@ -344,8 +332,8 @@ def model_returnObject_signature(session, object, userData=None):
     Signature used for current:returnObject()
 
     This is the function signature for current:returnObject used by
-    onGetObjects and onRetrieveObjects. Calling this directly will throw a
-    'Do not call directly' error.
+    onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
+    not call directly' error.
 
     Args:
         object (dict): This is the object to return.
@@ -355,8 +343,8 @@ def model_returnObject_signature(session, object, userData=None):
         type.
 
     Returns:
-        bool: This will return true if no more objects can be returned for
-        any reason including a limit exceeded, connection closed, or server
+        bool: This will return true if no more objects can be returned for any
+        reason including a limit exceeded, connection closed, or server
         stopping.
     """
 

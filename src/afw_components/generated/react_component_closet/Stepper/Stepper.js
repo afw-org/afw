@@ -21,9 +21,8 @@ import {ctx} from "@afw/react";
  * A component that displays a Stepper indicating a list of steps and the
  * current one you are on.
  * 
- * This component is useful for creating a step-by-step wizard, with each
- * step providing a title, its contents, and a Next button to get to the next
- * step.
+ * This component is useful for creating a step-by-step wizard, with each step
+ * providing a title, its contents, and a Next button to get to the next step.
  * 
  */
 export const Stepper = (props) => {

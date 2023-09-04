@@ -106,10 +106,9 @@ export function afwCloneArray(client : any, value : any[]) : any {
 }
 
 /**
- * Determine if array arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * Determine if array arg1 is equal to the value of arg2 converted to the data
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+ * you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {array} arg1 -
  * 
@@ -130,8 +129,8 @@ export function afwEqArray(client : any, arg1 : any[], arg2 : any) : any {
 
 /**
  * Determine if for array arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {array} arg1 -
  * 
@@ -151,8 +150,8 @@ export function afwEqxArray(client : any, arg1 : any[], arg2 : any) : any {
 }
 
 /**
- * Checks for array arg1 is greater than or equal to array arg2 and return
- * the boolean result.
+ * Checks for array arg1 is greater than or equal to array arg2 and return the
+ * boolean result.
  * 
  * @param {array} arg1 -
  * 
@@ -235,13 +234,12 @@ export function afwIsArray(client : any, value : any) : any {
 }
 
 /**
- * Concatenate the string values of the elements of an array with a
- * separator.
+ * Concatenate the string values of the elements of an array with a separator.
  * 
  * @param {array} value - An array of values (statements) of any data type.
  * 
- * @param {string} separator - The separator to use. If not specified, a
- *     comma (,) is used.
+ * @param {string} separator - The separator to use. If not specified, a comma
+ *     (,) is used.
  * 
  * @returns {string} Joined array values.
  */
@@ -280,9 +278,9 @@ export function afwLeArray(client : any, arg1 : any[], arg2 : any) : any {
 }
 
 /**
- * This is a polymorphic function where array can be any of the supported
- * data types. Return the integer number of entries in datatype array or
- * codepoints in others.
+ * This is a polymorphic function where array can be any of the supported data
+ * types. Return the integer number of entries in datatype array or codepoints
+ * in others.
  * 
  * @param {array} value - Returns the number of entries in an array or code
  *     points in others.
@@ -322,9 +320,8 @@ export function afwLtArray(client : any, arg1 : any[], arg2 : any[]) : any {
 
 /**
  * Determine if array arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {array} arg1 -
  * 
@@ -345,8 +342,8 @@ export function afwNeArray(client : any, arg1 : any[], arg2 : any) : any {
 
 /**
  * Determine if for array arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use 'ne' ('!=') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {array} arg1 -
  * 
@@ -395,8 +392,8 @@ export function afwReverse(client : any, array : any[]) : any {
  * @param {integer} endIndex - This is the zero based ending index. If
  *     positive, this is one more than the index of the last value to include
  *     in the array. If negative, the index is from the end of the array. If
- *     not specified, the slice is from startIndex up to and including the
- *     end of the array.
+ *     not specified, the slice is from startIndex up to and including the end
+ *     of the array.
  * 
  * @returns {array} An array containing the selected values. If all of the
  *     values are the same data type, the array will be an array of that data
@@ -419,8 +416,8 @@ export function afwSlice(client : any, array : any[], startIndex? : number, endI
 }
 
 /**
- * Converts array value to string. For array values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts array value to string. For array values, the to_string() value for
+ * each entry is returned separated with commas.
  * 
  * @param {array} value - A array value.
  * 

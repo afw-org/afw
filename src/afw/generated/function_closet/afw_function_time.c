@@ -23,10 +23,10 @@
  * See afw_function_bindings.h for more information.
  *
  * Checks if time is between startTime and endTime, inclusive. Regardless of
- * endTime value, it is always considered to be equal to, but less than 24
- * hours greater than startTime. If no time zone is specified for time, the
- * default time zone is used. If no time zone is specified for startTime or
- * endTime, the time zone of time is used.
+ * endTime value, it is always considered to be equal to, but less than 24 hours
+ * greater than startTime. If no time zone is specified for time, the default
+ * time zone is used. If no time zone is specified for startTime or endTime, the
+ * time zone of time is used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

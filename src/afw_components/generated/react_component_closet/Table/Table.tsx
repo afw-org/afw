@@ -21,8 +21,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that displays data in a table format.
  * 
- * This component arranges data into rows and columns, which can be
- * optionally sorted, selected and edited through actions.
+ * This component arranges data into rows and columns, which can be optionally
+ * sorted, selected and edited through actions.
  * 
  */
 export const Table : React.FunctionComponent<ITableProps> = (props) => {

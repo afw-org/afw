@@ -67,8 +67,8 @@ Object used to produce result.
 
     $options
 
-Object options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
-more information.
+Object options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
+information.
 
 =head3 bag_object
 
@@ -210,8 +210,7 @@ Object id for object.
 
 =head3 lt_object
 
-Checks for object arg1 is less that object arg2 and return the boolean
-result.
+Checks for object arg1 is less that object arg2 and return the boolean result.
 Checks for less than
 
 =head4 Parameters
@@ -225,8 +224,8 @@ Checks for less than
 =head3 ne_object
 
 Determine if object arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -240,8 +239,8 @@ Checks for not equal
 =head3 nex_object
 
 Determine if for object arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters

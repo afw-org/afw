@@ -89,8 +89,8 @@ export function afwDayTimeDuration(client : any, value : any) : any {
 /**
  * Determine if dayTimeDuration arg1 is equal to the value of arg2 converted
  * to the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * instead if you want false to be returned if arg1 and arg2's data type don't
+ * match.
  * 
  * @param {dayTimeDuration} arg1 -
  * 
@@ -111,8 +111,8 @@ export function afwEqDayTimeDuration(client : any, arg1 : any, arg2 : any) : any
 
 /**
  * Determine if for dayTimeDuration arg1 is equal to the value and data type
- * of arg2 then return the boolean result. Use 'eq' ('==') instead if you
- * want arg2 to be converted to the data type of arg1 before comparison.
+ * of arg2 then return the boolean result. Use 'eq' ('==') instead if you want
+ * arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {dayTimeDuration} arg1 -
  * 
@@ -132,8 +132,8 @@ export function afwEqxDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
 }
 
 /**
- * Checks for dayTimeDuration arg1 is greater than or equal to
- * dayTimeDuration arg2 and return the boolean result.
+ * Checks for dayTimeDuration arg1 is greater than or equal to dayTimeDuration
+ * arg2 and return the boolean result.
  * 
  * @param {dayTimeDuration} arg1 -
  * 
@@ -174,8 +174,8 @@ export function afwGtDayTimeDuration(client : any, arg1 : any, arg2 : any) : any
 }
 
 /**
- * Returns an array of dayTimeDuration with the values that are common to
- * both array of dayTimeDuration array1 and array2.
+ * Returns an array of dayTimeDuration with the values that are common to both
+ * array of dayTimeDuration array1 and array2.
  * 
  * @param {array} array1 - The first array.
  * 
@@ -300,8 +300,8 @@ export function afwNeDayTimeDuration(client : any, arg1 : any, arg2 : any) : any
 
 /**
  * Determine if for dayTimeDuration arg1 is not equal to the value or data
- * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
- * you want arg2 to be converted to the data type of arg1 before comparison.
+ * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+ * want arg2 to be converted to the data type of arg1 before comparison.
  * 
  * @param {dayTimeDuration} arg1 -
  * 
@@ -321,8 +321,8 @@ export function afwNexDayTimeDuration(client : any, arg1 : any, arg2 : any) : an
 }
 
 /**
- * This converts an array of dayTimeDuration values that contains one value
- * to a single dayTimeDuration value.
+ * This converts an array of dayTimeDuration values that contains one value to
+ * a single dayTimeDuration value.
  * 
  * @param {array} array -
  * 
@@ -360,8 +360,8 @@ export function afwSetEqualsDayTimeDuration(client : any, array1 : any[], array2
 }
 
 /**
- * Returns boolean true if the unique values in dayTimeDuration array1 are
- * all in dayTimeDuration array2.
+ * Returns boolean true if the unique values in dayTimeDuration array1 are all
+ * in dayTimeDuration array2.
  * 
  * @param {array} array1 - The first array.
  * 
@@ -381,8 +381,8 @@ export function afwSubsetDayTimeDuration(client : any, array1 : any[], array2 : 
 }
 
 /**
- * Converts dayTimeDuration value to string. For array values, the
- * to_string() value for each entry is returned separated with commas.
+ * Converts dayTimeDuration value to string. For array values, the to_string()
+ * value for each entry is returned separated with commas.
  * 
  * @param {dayTimeDuration} value - A dayTimeDuration value.
  * 

@@ -49,9 +49,8 @@ export function afwBagSizeIpAddress(client : any, value : any[]) : any {
 
 /**
  * Determine if ipAddress arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {ipAddress} arg1 -
  * 
@@ -71,9 +70,9 @@ export function afwEqIpAddress(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for ipAddress arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for ipAddress arg1 is equal to the value and data type of arg2
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {ipAddress} arg1 -
  * 
@@ -316,8 +315,8 @@ export function afwRegexpMatchIpAddress(client : any, value : any, regexp : stri
 }
 
 /**
- * Converts ipAddress value to string. For array values, the to_string()
- * value for each entry is returned separated with commas.
+ * Converts ipAddress value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  * 
  * @param {ipAddress} value - A ipAddress value.
  * 

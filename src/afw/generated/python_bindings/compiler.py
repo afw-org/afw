@@ -51,17 +51,17 @@ def compile_json(session, json, listing=None):
     Args:
         json (str): JSON string to compile.
 
-        listing (object): If specified, a compiler listing is produced
-        instead of an unevaluated JSON value.
+        listing (object): If specified, a compiler listing is produced instead
+        of an unevaluated JSON value.
         
         This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        used for indentation. If 0 is specified, no whitespace is added to the
+        resulting string. If 1 through 10 is specified, that number of spaces
+        is used.
 
     Returns:
-        object: An unevaluated JSON value ready for use by function
-        evaluate() or a string containing the compiler listing.
+        object: An unevaluated JSON value ready for use by function evaluate()
+        or a string containing the compiler listing.
     """
 
     request = session.Request()
@@ -92,13 +92,13 @@ def compile_relaxed_json(session, json, listing=None):
     Args:
         json (str): Adaptive relaxed JSON syntax string to compile.
 
-        listing (object): If specified, a compiler listing is produced
-        instead of an unevaluated relaxed JSON value.
+        listing (object): If specified, a compiler listing is produced instead
+        of an unevaluated relaxed JSON value.
         
         This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        used for indentation. If 0 is specified, no whitespace is added to the
+        resulting string. If 1 through 10 is specified, that number of spaces
+        is used.
 
     Returns:
         object: An unevaluated relaxed JSON value ready for use by function
@@ -133,11 +133,11 @@ def convert_syntax_hybrid_to_expression(session, hybrid, whitespace=None):
     Args:
         hybrid (str): The hybrid to convert.
 
-        whitespace (object): Add whitespace for readability if present and
-        not 0. This parameter can be an integer between 0 and 10 or a string
-        that is used for indentation. If 0 is specified, no whitespace is
-        added to the resulting string. If 1 through 10 is specified, that
-        number of spaces is used.
+        whitespace (object): Add whitespace for readability if present and not
+        0. This parameter can be an integer between 0 and 10 or a string that
+        is used for indentation. If 0 is specified, no whitespace is added to
+        the resulting string. If 1 through 10 is specified, that number of
+        spaces is used.
 
     Returns:
         object: The converted value in adaptive expression syntax.
@@ -170,11 +170,11 @@ def decompile(session, value, whitespace=None):
     Args:
         value (object): Value to decompile.
 
-        whitespace (object): Add whitespace for readability if present and
-        not 0. This parameter can be an integer between 0 and 10 or a string
-        that is used for indentation. If 0 is specified, no whitespace is
-        added to the resulting string. If 1 through 10 is specified, that
-        number of spaces is used.
+        whitespace (object): Add whitespace for readability if present and not
+        0. This parameter can be an integer between 0 and 10 or a string that
+        is used for indentation. If 0 is specified, no whitespace is added to
+        the resulting string. If 1 through 10 is specified, that number of
+        spaces is used.
 
     Returns:
         str: Decompiled value.
@@ -208,12 +208,11 @@ def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
         value (object):
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         object: Evaluated adaptive value.
@@ -311,8 +310,8 @@ def qualifiers(session, forTesting=None):
     """
     Access qualifiers as an object
 
-    This function allows the active qualifiers to be accessed as properties
-    of an object. The value of each of these properties is an object whose
+    This function allows the active qualifiers to be accessed as properties of
+    an object. The value of each of these properties is an object whose
     properties are the variables for the corresponding qualifier.
 
     Args:
@@ -322,10 +321,9 @@ def qualifiers(session, forTesting=None):
         purposes and should not be used in production.
 
     Returns:
-        dict: Each property is the name of a qualifier with a value that is
-        an object whose properties are the variables of that qualifier. The
-        value of the variable properties is influenced by the forTesting
-        property.
+        dict: Each property is the name of a qualifier with a value that is an
+        object whose properties are the variables of that qualifier. The value
+        of the variable properties is influenced by the forTesting property.
     """
 
     request = session.Request()
@@ -390,11 +388,11 @@ def stringify(session, value, replacer=None, whitespace=None):
 
         replacer (object): Optional replacer function.
 
-        whitespace (object): Add whitespace for readability if present and
-        not 0. This parameter can be an integer between 0 and 10 or a string
-        that is used for indentation. If 0 is specified, no whitespace is
-        added to the resulting string. If 1 through 10 is specified, that
-        number of spaces is used.
+        whitespace (object): Add whitespace for readability if present and not
+        0. This parameter can be an integer between 0 and 10 or a string that
+        is used for indentation. If 0 is specified, no whitespace is added to
+        the resulting string. If 1 through 10 is specified, that number of
+        spaces is used.
 
     Returns:
         str: Evaluated and decompiled value.
@@ -438,12 +436,11 @@ def test_expression(session, id, description, expression, expected=None, additio
         expected (object): Expected result.
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         dict: Test results.
@@ -490,12 +487,11 @@ def test_hybrid(session, id, description, hybrid, expected=None, additionalUntru
         expected (object): Expected evaluated result.
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         dict: Test results.
@@ -541,12 +537,11 @@ def test_script(session, id, description, script, expected=None, additionalUntru
         expected (object): Expected result.
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         dict: Test results.
@@ -592,12 +587,11 @@ def test_template(session, id, description, template, expected=None, additionalU
         expected (object): Expected evaluated result.
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         dict: Test results.
@@ -643,12 +637,11 @@ def test_value(session, id, description, value, expected=None, additionalUntrust
         expected (object): Expected result.
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         dict: Test results.

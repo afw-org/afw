@@ -70,9 +70,8 @@ export function afwBagX500Name(client : any, values? : any[]) : any {
 
 /**
  * Determine if x500Name arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {x500Name} arg1 -
  * 
@@ -93,8 +92,8 @@ export function afwEqX500Name(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for x500Name arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {x500Name} arg1 -
  * 
@@ -177,8 +176,8 @@ export function afwIntersectionX500Name(client : any, array1 : any[], array2 : a
 }
 
 /**
- * Checks whether x500Name value is in array of x500Name array and returns
- * the boolean result.
+ * Checks whether x500Name value is in array of x500Name array and returns the
+ * boolean result.
  * 
  * @param {x500Name} value -
  * 

@@ -91,9 +91,9 @@ export function afwEqTime(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for time arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * Determine if for time arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  * 
  * @param {time} arg1 -
  * 
@@ -117,8 +117,7 @@ export function afwEqxTime(client : any, arg1 : any, arg2 : any) : any {
  * boolean result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be
- * used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  * 
  * @param {time} arg1 -
  * 
@@ -142,8 +141,7 @@ export function afwGeTime(client : any, arg1 : any, arg2 : any) : any {
  * result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be
- * used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  * 
  * @param {time} arg1 -
  * 
@@ -211,8 +209,8 @@ export function afwIntersectionTime(client : any, array1 : any[], array2 : any[]
 }
 
 /**
- * Checks whether time value is in array of time array and returns the
- * boolean result.
+ * Checks whether time value is in array of time array and returns the boolean
+ * result.
  * 
  * @param {time} value -
  * 
@@ -253,8 +251,7 @@ export function afwIsTime(client : any, value : any) : any {
  * boolean result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be
- * used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  * 
  * @param {time} arg1 -
  * 
@@ -277,8 +274,7 @@ export function afwLeTime(client : any, arg1 : any, arg2 : any) : any {
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be
- * used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  * 
  * @param {time} arg1 -
  * 
@@ -301,8 +297,7 @@ export function afwLtTime(client : any, arg1 : any, arg2 : any) : any {
  * Return the time value that is greater than or equal to the others.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be
- * used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  * 
  * @param {time} values -
  * 
@@ -322,8 +317,7 @@ export function afwMaxTime(client : any, values : any) : any {
  * Return the time value that is less than or equal to the others.
  * 
  * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be
- * used.
+ * that does not. In such cases, the `in_range<time>` function should be used.
  * 
  * @param {time} values -
  * 
@@ -341,9 +335,8 @@ export function afwMinTime(client : any, values : any) : any {
 
 /**
  * Determine if time arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {time} arg1 -
  * 
@@ -364,8 +357,8 @@ export function afwNeTime(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for time arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use 'ne' ('!=') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {time} arg1 -
  * 

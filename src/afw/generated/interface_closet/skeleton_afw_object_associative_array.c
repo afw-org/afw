@@ -70,8 +70,7 @@ impl_afw_object_associative_array_get_associated_object_reference(
 }
 
 /*
- * Implementation of method for_each for interface
- * afw_object_associative_array.
+ * Implementation of method for_each for interface afw_object_associative_array.
  */
 void
 impl_afw_object_associative_array_for_each(

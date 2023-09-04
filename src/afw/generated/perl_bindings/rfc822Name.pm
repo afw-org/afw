@@ -76,8 +76,8 @@ Returns the number of values in a bag
 =head3 eq_rfc822Name
 
 Determine if rfc822Name arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+you want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -91,8 +91,8 @@ Checks for equal
 =head3 eqx_rfc822Name
 
 Determine if for rfc822Name arg1 is equal to the value and data type of arg2
-then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -174,8 +174,8 @@ Value to check
 
 =head3 le_rfc822Name
 
-Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
-return the boolean result.
+Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and return
+the boolean result.
 Checks for less than or equal
 
 =head4 Parameters
@@ -188,8 +188,8 @@ Checks for less than or equal
 
 =head3 lt_rfc822Name
 
-Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the
-boolean result.
+Checks for rfc822Name arg1 is less that rfc822Name arg2 and return the boolean
+result.
 Checks for less than
 
 =head4 Parameters
@@ -283,8 +283,8 @@ Value to convert
 
 =head3 set_equals_rfc822Name
 
-Returns boolean true if rfc822Name array1 and rfc822Name array2 are subsets
-of each other and return the boolean result.
+Returns boolean true if rfc822Name array1 and rfc822Name array2 are subsets of
+each other and return the boolean result.
 Checks whether two arrays are subsets of each other
 
 =head4 Parameters

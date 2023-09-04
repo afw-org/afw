@@ -20,8 +20,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that renders a rich text editor.
  * 
- * This component displays a rich text editor that allows the user to
- * manually edit the source code for a particular piece of data.
+ * This component displays a rich text editor that allows the user to manually
+ * edit the source code for a particular piece of data.
  * 
  */
 export const CodeEditor = (props) => {

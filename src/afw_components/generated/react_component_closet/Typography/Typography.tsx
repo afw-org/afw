@@ -21,8 +21,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that renders a text label.
  * 
- * This component is a very simple one, which renders text into a static
- * label with specified color, size or style..
+ * This component is a very simple one, which renders text into a static label
+ * with specified color, size or style..
  * 
  */
 export const Typography : React.FunctionComponent<ITypographyProps> = (props) => {

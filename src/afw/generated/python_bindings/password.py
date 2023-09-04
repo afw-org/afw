@@ -101,9 +101,9 @@ def eqx_password(session, arg1, arg2):
     """
     Checks for equal and type
 
-    Determine if for password arg1 is equal to the value and data type of
-    arg2 then return the boolean result. Use 'eq' ('==') instead if you want
-    arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for password arg1 is equal to the value and data type of arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
+    to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):
@@ -226,8 +226,8 @@ def le_password(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for password arg1 is less than or equal to password arg2 and
-    return the boolean result.
+    Checks for password arg1 is less than or equal to password arg2 and return
+    the boolean result.
 
     Args:
         arg1 (object):
@@ -258,8 +258,8 @@ def lt_password(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for password arg1 is less that password arg2 and return the
-    boolean result.
+    Checks for password arg1 is less that password arg2 and return the boolean
+    result.
 
     Args:
         arg1 (object):
@@ -292,8 +292,8 @@ def ne_password(session, arg1, arg2):
 
     Determine if password arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -385,8 +385,8 @@ def to_string_password(session, value):
     """
     Converts value to string
 
-    Converts password value to string. For array values, the to_string()
-    value for each entry is returned separated with commas.
+    Converts password value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Args:
         value (object): A password value.

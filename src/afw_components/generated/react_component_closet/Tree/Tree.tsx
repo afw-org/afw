@@ -21,9 +21,9 @@ import {ctx} from "@afw/react";
  * 
  * A component that renders data in a Tree structure.
  * 
- * This component helps to organize content into a Tree structure, where
- * nodes can be selected, expanded, or collapsed to allow the user to
- * navigate more complex nested data or component structures.
+ * This component helps to organize content into a Tree structure, where nodes
+ * can be selected, expanded, or collapsed to allow the user to navigate more
+ * complex nested data or component structures.
  * 
  */
 export const Tree : React.FunctionComponent<ITreeProps> = (props) => {

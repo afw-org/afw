@@ -23,8 +23,8 @@ const BoxItem = {
      * Ability to grow
      * This defines the ability for a flex item to grow if necessary. It
      * accepts a unitless value that serves as a proportion. It dictates what
-     * amount of the available space inside the flex container the item
-     * should take up.
+     * amount of the available space inside the flex container the item should
+     * take up.
      * 
      * If all items have flex-grow set to 1, the remaining space in the
      * container will be distributed equally to all children. If one of the
@@ -71,8 +71,8 @@ export const propTypes = {
      * Data Type: (string)
      * 
      * Alignment along the cross axis
-     * This defines the default behavior for how flex items are laid out
-     * along the cross axis on the current line. Think of it as the 'Justify
+     * This defines the default behavior for how flex items are laid out along
+     * the cross axis on the current line. Think of it as the 'Justify
      * Content' version for the cross axis (perpendicular to the main-axis).
      */
     alignItems:                         PropTypes.string,
@@ -100,8 +100,8 @@ export const propTypes = {
      * This defines the alignment along the main axis. It helps distribute
      * extra free space leftover when either all the flex items on a line are
      * inflexible, or are flexible but have reached their maximum size. It
-     * also exerts some control over the alignment of items when they
-     * overflow the line.
+     * also exerts some control over the alignment of items when they overflow
+     * the line.
      */
     justifyContent:                     PropTypes.string,
     /**

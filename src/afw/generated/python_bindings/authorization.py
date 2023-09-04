@@ -28,8 +28,8 @@ def authorization_check(session, requestId, resourceId, actionId, object=None, e
         object (dict): Variable current::object can be used to access this
         value in authorization policies.
 
-        enforce (bool): This specifies whether an error is thrown if access
-        is denied. If false or not specified, an error is not thrown and the
+        enforce (bool): This specifies whether an error is thrown if access is
+        denied. If false or not specified, an error is not thrown and the
         decision can be checked in the returned object.
 
     Returns:

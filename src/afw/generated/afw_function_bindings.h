@@ -79,8 +79,8 @@ afw_function_definition_adaptor_objectCallback_signature;
  *
  * Parameters:
  *
- *   object - (object) This is the object from adaptor or undefined if there
- *       are no more objects to return.
+ *   object - (object) This is the object from adaptor or undefined if there are
+ *       no more objects to return.
  *
  *   userData - (optional any) This is the value of the userData parameter when
  *       objectCallback was called.
@@ -141,11 +141,10 @@ afw_function_definition_add_object;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
- *       
+ * 
  *       where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -185,8 +184,8 @@ afw_function_definition_add_object_with_uri;
  *
  *   uri - (anyURI) URI of object to add. If a URI begins with a single slash
  *       ('/'), it is the local object path. In the case of a local path, an
- *       optional preferred objectId of object can be including in URI which
- *       the adaptor may ignore.
+ *       optional preferred objectId of object can be including in URI which the
+ *       adaptor may ignore.
  *
  *   object - (object) Object to add.
  *
@@ -198,11 +197,10 @@ afw_function_definition_add_object_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -244,8 +242,8 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *       _AdaptiveQueryCriteria_ object.
  *
  *   adaptorId - (optional string) This is the adaptorId of adaptor containing
- *       the objectType for validating and mapping this query. If not
- *       specified, no validation or mapping will occur.
+ *       the objectType for validating and mapping this query. If not specified,
+ *       no validation or mapping will occur.
  *
  *   objectType - (optional string) This is the objectType used in conjunction
  *       with the adaptorId parameter. This parameter is only allowed and is
@@ -253,16 +251,16 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *
  *   style - (optional integer) The style of the query string produced. All of
  *       the styles are appropriately url encoded.
- *       
+ * 
  *       0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with
- *       conjunctions '&' (and) and '|' (or). Parentheses are placed around
- *       each group of like conjunctions except for outer '&'. (default)
- *       
+ *       conjunctions '&' (and) and '|' (or). Parentheses are placed around each
+ *       group of like conjunctions except for outer '&'. (default)
+ * 
  *       1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of
  *       '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.
- *       
+ * 
  *       2 - similar to 1 with ';' for '&' and ',' for '|'.
- *       
+ * 
  *       3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
  *       ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
  *       comma separated list of any comparison or conjunction.
@@ -303,8 +301,8 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
  *   queryString - (string) The query string to convert.
  *
  *   adaptorId - (optional string) This is the adaptorId of adaptor containing
- *       the objectType for validating and mapping this query. If not
- *       specified, no validation or mapping will occur.
+ *       the objectType for validating and mapping this query. If not specified,
+ *       no validation or mapping will occur.
  *
  *   objectType - (optional string) This is the objectType used in conjunction
  *       with the adaptorId parameter. This parameter is only allowed and is
@@ -360,11 +358,10 @@ afw_function_definition_delete_object;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
- *       
+ * 
  *       where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -400,8 +397,8 @@ afw_function_definition_delete_object_with_uri;
  *
  * Parameters:
  *
- *   uri - (anyURI) URI of object to delete. If a URI begins with a single
- *       slash ('/'), it is the local object path.
+ *   uri - (anyURI) URI of object to delete. If a URI begins with a single slash
+ *       ('/'), it is the local object path.
  *
  *   journal - (optional object) The properties of this object will be added to
  *       the associated journal entry. Refer to
@@ -411,11 +408,10 @@ afw_function_definition_delete_object_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
- *       
+ * 
  *       where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -468,11 +464,10 @@ afw_function_definition_get_object;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -518,11 +513,10 @@ afw_function_definition_get_object_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
- *       
+ * 
  *       where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -568,24 +562,24 @@ afw_function_definition_modify_object;
  *   objectId - (string) Id of object to modify.
  *
  *   entries - (array) List of modifications. Entries are of the form:
- *       
+ * 
  *           [
  *               'add_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'remove_property',
  *               'property name' or ['property name', ... ]
  *           ]
- *       
+ * 
  *           [
  *               'remove_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'set_property',
  *               'property name' or ['property name', ... ],
@@ -600,11 +594,10 @@ afw_function_definition_modify_object;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -641,29 +634,29 @@ afw_function_definition_modify_object_with_uri;
  *
  * Parameters:
  *
- *   uri - (anyURI) URI of object to modify. If a URI begins with a single
- *       slash ('/'), it is the local object path.
+ *   uri - (anyURI) URI of object to modify. If a URI begins with a single slash
+ *       ('/'), it is the local object path.
  *
  *   entries - (array) List of asserts and modifications. Entries are of the
  *       form:
- *       
+ * 
  *           [
  *               'add_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'remove_property',
  *               'property name' or ['property name', ... ]
  *           ]
- *       
+ * 
  *           [
  *               'remove_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'set_property',
  *               'property name' or ['property name', ... ],
@@ -678,11 +671,10 @@ afw_function_definition_modify_object_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -719,8 +711,8 @@ afw_function_definition_reconcile_object;
  *
  *   object - (object) An object that has been retrieved with object options
  *       reconcilable, and whose properties have been modified. A modify_object
- *       request will be produced reflecting the difference between the
- *       original object and this unmodified object.
+ *       request will be produced reflecting the difference between the original
+ *       object and this unmodified object.
  *
  *   checkOnly - (optional boolean) Produce the modify_object request but don't
  *       execute it. The returned journal enter will contain the modify_object
@@ -778,11 +770,10 @@ afw_function_definition_replace_object;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -832,11 +823,10 @@ afw_function_definition_replace_object_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -884,9 +874,9 @@ afw_function_definition_retrieve_objects;
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
- *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the
- *       query criteria for objects to be retrieved. If not specified, all
- *       objects will be retrieved.
+ *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the query
+ *       criteria for objects to be retrieved. If not specified, all objects
+ *       will be retrieved.
  *
  *   options - (optional object _AdaptiveObjectOptions_) Object view options.
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
@@ -895,11 +885,10 @@ afw_function_definition_retrieve_objects;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -961,9 +950,9 @@ afw_function_definition_retrieve_objects_to_callback;
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
- *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the
- *       query criteria for objects to be retrieved. If not specified, all
- *       objects will be retrieved.
+ *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the query
+ *       criteria for objects to be retrieved. If not specified, all objects
+ *       will be retrieved.
  *
  *   options - (optional object _AdaptiveObjectOptions_) Object view options.
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
@@ -972,12 +961,11 @@ afw_function_definition_retrieve_objects_to_callback;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callbac
- *       k
- *       
+ *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callback
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1031,9 +1019,9 @@ afw_function_definition_retrieve_objects_to_response;
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
- *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the
- *       query criteria for objects to be retrieved. If not specified, all
- *       objects will be retrieved.
+ *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the query
+ *       criteria for objects to be retrieved. If not specified, all objects
+ *       will be retrieved.
  *
  *   options - (optional object _AdaptiveObjectOptions_) Object view options.
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
@@ -1042,11 +1030,10 @@ afw_function_definition_retrieve_objects_to_response;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1100,9 +1087,9 @@ afw_function_definition_retrieve_objects_to_stream;
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
- *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the
- *       query criteria for objects to be retrieved. If not specified, all
- *       objects will be retrieved.
+ *   queryCriteria - (optional object _AdaptiveQueryCriteria_) This is the query
+ *       criteria for objects to be retrieved. If not specified, all objects
+ *       will be retrieved.
  *
  *   options - (optional object _AdaptiveObjectOptions_) Object view options.
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
@@ -1111,11 +1098,10 @@ afw_function_definition_retrieve_objects_to_stream;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1167,11 +1153,10 @@ afw_function_definition_retrieve_objects_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1223,8 +1208,8 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *       objects. This function should return true if it wants to abort the
  *       retrieve request.
  *
- *   userData - (any) This is the value passed to the objectCallback function
- *       in the userData parameter.
+ *   userData - (any) This is the value passed to the objectCallback function in
+ *       the userData parameter.
  *
  *   uri - (anyURI) URI of objects to retrieve. If a URI begins with a single
  *       slash ('/'), it is the local object path. A query string can be
@@ -1237,11 +1222,10 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1299,11 +1283,10 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1361,11 +1344,10 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1423,11 +1405,10 @@ afw_function_definition_update_object;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1464,8 +1445,8 @@ afw_function_definition_update_object_with_uri;
  *
  * Parameters:
  *
- *   uri - (anyURI) URI of object to update. If a URI begins with a single
- *       slash ('/'), it is the local object path.
+ *   uri - (anyURI) URI of object to update. If a URI begins with a single slash
+ *       ('/'), it is the local object path.
  *
  *   object - (object) Object containing properties to replace in existing
  *       object. You can use object_modify instead to update properties of
@@ -1480,11 +1461,10 @@ afw_function_definition_update_object_with_uri;
  *   adaptorTypeSpecific - (optional object) This is an optional object
  *       parameter with an objectType determined by the adaptorType associated
  *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id
- *       of:
- *       
+ *       parameter, adaptor afw will have an adaptive object type with an id of:
+ * 
  *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *       
+ * 
  *       Where ${adaptorType} is the adaptor type id.
  *
  * Returns:
@@ -1513,9 +1493,9 @@ afw_function_definition_extension_load;
  * @brief Adaptive Function `extension_load`
  * @param x function execute parameter.
  *
- * Load an extension by its extension id if it is not already loaded. Loading
- * an AFW package's manifest extension will register the manifest of all
- * extensions in the package.
+ * Load an extension by its extension id if it is not already loaded. Loading an
+ * AFW package's manifest extension will register the manifest of all extensions
+ * in the package.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1530,15 +1510,14 @@ afw_function_definition_extension_load;
  *
  * Parameters:
  *
- *   extension_id - (string) This is the object id of a
- *       /afw/_AdaptiveManifest_/ object.
+ *   extension_id - (string) This is the object id of a /afw/_AdaptiveManifest_/
+ *       object.
  *
  * Returns:
  *
- *   (boolean) If false the extension was already loaded. If true, the
- *       extension was successfully loaded which might have caused side effects
- *       such as environment registry changes. An error is thrown if there is a
- *       problem.
+ *   (boolean) If false the extension was already loaded. If true, the extension
+ *       was successfully loaded which might have caused side effects such as
+ *       environment registry changes. An error is thrown if there is a problem.
  */
 const afw_value_t *
 afw_function_execute_extension_load(
@@ -1695,9 +1674,9 @@ afw_function_definition_flag_modify_defaults;
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
- * This change only lasts for the life of the current adaptive environment
- * (e.g. until the adaptive server or afw command ends). If you want the change
- * to persist, change the defaultFlags property in the application config.
+ * This change only lasts for the life of the current adaptive environment (e.g.
+ * until the adaptive server or afw command ends). If you want the change to
+ * persist, change the defaultFlags property in the application config.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1740,9 +1719,9 @@ afw_function_definition_flag_replace_defaults;
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
- * This change only lasts for the life of the current adaptive environment
- * (e.g. until the adaptive server or afw command ends). If you want the change
- * to persist, change the defaultFlags property in the application config.
+ * This change only lasts for the life of the current adaptive environment (e.g.
+ * until the adaptive server or afw command ends). If you want the change to
+ * persist, change the defaultFlags property in the application config.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1813,8 +1792,8 @@ afw_function_definition_registry_key_check;
  * @brief Adaptive Function `registry_key_check`
  * @param x function execute parameter.
  *
- * This will check to see if a registry key exists for a specified registry
- * type and optionally load it's associated extension if needed.
+ * This will check to see if a registry key exists for a specified registry type
+ * and optionally load it's associated extension if needed.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -1842,10 +1821,9 @@ afw_function_definition_registry_key_check;
  *
  * Returns:
  *
- *   (boolean) If false the extension was already loaded. If true, the
- *       extension was successfully loaded which might have caused side effects
- *       such as environment registry changes. An error is thrown if there is a
- *       problem.
+ *   (boolean) If false the extension was already loaded. If true, the extension
+ *       was successfully loaded which might have caused side effects such as
+ *       environment registry changes. An error is thrown if there is a problem.
  */
 const afw_value_t *
 afw_function_execute_registry_key_check(
@@ -2157,8 +2135,7 @@ afw_function_definition_ends_with_anyURI;
  * @brief Adaptive Function `ends_with<anyURI>`
  * @param x function execute parameter.
  *
- * Checks whether anyURI value ends with a anyURI and return the boolean
- * result.
+ * Checks whether anyURI value ends with a anyURI and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2196,8 +2173,8 @@ afw_function_definition_eq_anyURI;
  * @param x function execute parameter.
  *
  * Determine if anyURI arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2238,9 +2215,9 @@ afw_function_definition_eqx_anyURI;
  * @brief Adaptive Function `eqx<anyURI>`
  * @param x function execute parameter.
  *
- * Determine if for anyURI arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for anyURI arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2277,8 +2254,8 @@ afw_function_definition_ge_anyURI;
  * @brief Adaptive Function `ge<anyURI>`
  * @param x function execute parameter.
  *
- * Checks for anyURI arg1 is greater than or equal to anyURI arg2 and return
- * the boolean result.
+ * Checks for anyURI arg1 is greater than or equal to anyURI arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3399,8 +3376,8 @@ afw_function_definition_array;
  *   values - (0 or more any dataType) A value can refer to any adaptable value
  *       belonging to any data type or an array expression. In the case of an
  *       array expression, indicated by '...' followed by an expression that
- *       results in an array, every element within that array is included in
- *       the newly created array.
+ *       results in an array, every element within that array is included in the
+ *       newly created array.
  *
  * Returns:
  *
@@ -3525,8 +3502,8 @@ afw_function_definition_eq_array;
  * @param x function execute parameter.
  *
  * Determine if array arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3848,8 +3825,8 @@ afw_function_definition_length_array;
  *
  * Parameters:
  *
- *   value - (array) Returns the number of entries in an array or code points
- *       in others.
+ *   value - (array) Returns the number of entries in an array or code points in
+ *       others.
  *
  * Returns:
  *
@@ -4047,8 +4024,8 @@ afw_function_definition_slice;
  *   endIndex - (optional integer) This is the zero based ending index. If
  *       positive, this is one more than the index of the last value to include
  *       in the array. If negative, the index is from the end of the array. If
- *       not specified, the slice is from startIndex up to and including the
- *       end of the array.
+ *       not specified, the slice is from startIndex up to and including the end
+ *       of the array.
  *
  * Returns:
  *
@@ -4148,8 +4125,8 @@ afw_function_definition_authorization_check;
  *       this value in authorization policies.
  *
  *   enforce - (optional boolean) This specifies whether an error is thrown if
- *       access is denied. If false or not specified, an error is not thrown
- *       and the decision can be checked in the returned object.
+ *       access is denied. If false or not specified, an error is not thrown and
+ *       the decision can be checked in the returned object.
  *
  * Returns:
  *
@@ -4355,10 +4332,9 @@ afw_function_definition_eq_base64Binary;
  * @brief Adaptive Function `eq<base64Binary>`
  * @param x function execute parameter.
  *
- * Determine if base64Binary arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if base64Binary arg1 is equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4400,8 +4376,8 @@ afw_function_definition_eqx_base64Binary;
  * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4476,8 +4452,8 @@ afw_function_definition_gt_base64Binary;
  * @brief Adaptive Function `gt<base64Binary>`
  * @param x function execute parameter.
  *
- * Checks for base64Binary arg1 is greater than base64Binary arg2 and return
- * the boolean result.
+ * Checks for base64Binary arg1 is greater than base64Binary arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -4700,8 +4676,8 @@ afw_function_definition_ne_base64Binary;
  * @brief Adaptive Function `ne<base64Binary>`
  * @param x function execute parameter.
  *
- * Determine if base64Binary arg1 is not equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+ * Determine if base64Binary arg1 is not equal to the value of arg2 converted to
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -4745,8 +4721,8 @@ afw_function_definition_nex_base64Binary;
  * @param x function execute parameter.
  *
  * Determine if for base64Binary arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5124,9 +5100,9 @@ afw_function_definition_eq_boolean;
  * @brief Adaptive Function `eq<boolean>`
  * @param x function execute parameter.
  *
- * Determine if boolean arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
- * if you want false to be returned if arg1 and arg2's data type don't match.
+ * Determine if boolean arg1 is equal to the value of arg2 converted to the data
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5589,8 +5565,8 @@ afw_function_definition_set_equals_boolean;
  * @brief Adaptive Function `set_equals<boolean>`
  * @param x function execute parameter.
  *
- * Returns boolean true if boolean array1 and boolean array2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if boolean array1 and boolean array2 are subsets of each
+ * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5665,8 +5641,8 @@ afw_function_definition_to_string_boolean;
  * @brief Adaptive Function `to_string<boolean>`
  * @param x function execute parameter.
  *
- * Converts boolean value to string. For array values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts boolean value to string. For array values, the to_string() value for
+ * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -5865,8 +5841,8 @@ afw_function_definition_assign;
  * @brief Adaptive Function `assign`
  * @param x function execute parameter.
  *
- * Assign a value to the innermost structured block definition of a variable.
- * If the variable is not defined, the variable is defined in the innermost
+ * Assign a value to the innermost structured block definition of a variable. If
+ * the variable is not defined, the variable is defined in the innermost
  * structured block. An error is thrown if not called from an array of values
  * (statements) in a structured function.
  *
@@ -6036,8 +6012,8 @@ afw_function_definition_do_while;
  *
  * Parameters:
  *
- *   condition - (boolean) While this condition is true, the loop will
- *       continue. This is evaluated in the loop's scope.
+ *   condition - (boolean) While this condition is true, the loop will continue.
+ *       This is evaluated in the loop's scope.
  *
  *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
@@ -6117,10 +6093,10 @@ afw_function_definition_for_of;
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate an array of values (statements) while a
- * condition is true with initial and increment values. The condition is tested
- * at the beginning of the loop. If the condition is false for the first
- * iteration, the loop returns a null value. This supports for-of statement.
+ * This function will evaluate an array of values (statements) while a condition
+ * is true with initial and increment values. The condition is tested at the
+ * beginning of the loop. If the condition is false for the first iteration, the
+ * loop returns a null value. This supports for-of statement.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6180,8 +6156,8 @@ afw_function_definition_if;
  *
  * Parameters:
  *
- *   condition - (boolean) If true, parameter 'then' is evaluated for result.
- *       If false, parameter 'else' is evaluated.
+ *   condition - (boolean) If true, parameter 'then' is evaluated for result. If
+ *       false, parameter 'else' is evaluated.
  *
  *   then - (array) This is the body of a structured block that is evaluated if
  *       'condition' is true. See the 'body' parameter of the 'block' function
@@ -6208,10 +6184,10 @@ afw_function_definition_let;
  * @brief Adaptive Function `let`
  * @param x function execute parameter.
  *
- * Declare one or more statically scoped variable locations local to the
- * current script block and optionally assign them an initial value. These
- * variables can be accessed and assigned different values from the current
- * block and inner blocks.
+ * Declare one or more statically scoped variable locations local to the current
+ * script block and optionally assign them an initial value. These variables can
+ * be accessed and assigned different values from the current block and inner
+ * blocks.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6253,8 +6229,8 @@ afw_function_definition_rethrow;
  * @brief Adaptive Function `rethrow`
  * @param x function execute parameter.
  *
- * This is a special function that can be called to rethrow an error inside of
- * a catch block. If called outside of a catch body, an error is thrown.
+ * This is a special function that can be called to rethrow an error inside of a
+ * catch block. If called outside of a catch body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6303,8 +6279,8 @@ afw_function_definition_return;
  * Parameters:
  *
  *   value - (optional any dataType) The value to evaluate that the outermost
- *       block will return. If not specified, the last evaluated value or a
- *       null value will be returned.
+ *       block will return. If not specified, the last evaluated value or a null
+ *       value will be returned.
  *
  * Returns:
  *
@@ -6343,11 +6319,11 @@ afw_function_definition_switch;
  * Parameters:
  *
  *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters and must return a boolean. The
- *       first parameter passed is the evaluated value of the value1 parameter
- *       and the second is the value2 from a case clause. This predicate will
- *       often be 'eqx' to use the exactly equal function but can also be any
- *       other function such as 'regexp_match' or a lambda function.
+ *       predicate is passed two parameters and must return a boolean. The first
+ *       parameter passed is the evaluated value of the value1 parameter and the
+ *       second is the value2 from a case clause. This predicate will often be
+ *       'eqx' to use the exactly equal function but can also be any other
+ *       function such as 'regexp_match' or a lambda function.
  *
  *   value1 - (any dataType) The first parameter passed to the predicate.
  *
@@ -6355,12 +6331,11 @@ afw_function_definition_switch;
  *       which are pairs of a value2 parameter followed by a statement list or
  *       undefined parameter. One value2 can be undefined to indicate the
  *       default case clause.
- *       
- *       For the first value2 that is undefined or calling the predicate
- *       returns true, the statement list followed by any statement lists of
- *       subsequent case clauses are executed until a break or return is
- *       encountered. The predicate is called with value1 and the case clause's
- *       value2.
+ * 
+ *       For the first value2 that is undefined or calling the predicate returns
+ *       true, the statement list followed by any statement lists of subsequent
+ *       case clauses are executed until a break or return is encountered. The
+ *       predicate is called with value1 and the case clause's value2.
  *
  * Returns:
  *
@@ -6378,10 +6353,10 @@ afw_function_definition_throw;
  * @brief Adaptive Function `throw`
  * @param x function execute parameter.
  *
- * This throws an error that can be caught by a try/catch block. An error
- * object of object type _AdaptiveError_ will be available in the catch block.
- * Its 'id' property will be set to 'throw'. The other properties set based on
- * the parameters specified and where this function is called.
+ * This throws an error that can be caught by a try/catch block. An error object
+ * of object type _AdaptiveError_ will be available in the catch block. Its 'id'
+ * property will be set to 'throw'. The other properties set based on the
+ * parameters specified and where this function is called.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6448,16 +6423,16 @@ afw_function_definition_try;
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   finally - (optional array) This is an array of values (statements) that
- *       are evaluated after the try and catch statements even if an error
- *       occurs. Each value in body is evaluated in order until the end of the
- *       list or until a 'break', 'continue', 'return' or 'throw' function is
+ *   finally - (optional array) This is an array of values (statements) that are
+ *       evaluated after the try and catch statements even if an error occurs.
+ *       Each value in body is evaluated in order until the end of the list or
+ *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
  *   catch - (optional array) This is an array of values (statements) that are
- *       evaluated when an error is thrown while evaluating the body. Each
- *       value in body is evaluated in order until the end of the list or until
- *       a 'break', 'continue', 'return' or 'throw' function is encountered.
+ *       evaluated when an error is thrown while evaluating the body. Each value
+ *       in body is evaluated in order until the end of the list or until a
+ *       'break', 'continue', 'return' or 'throw' function is encountered.
  *
  *   error - (optional object _AdaptiveObjectType_) The error object thrown.
  *       This is only available in the catch block. See adaptive object type
@@ -6481,10 +6456,10 @@ afw_function_definition_while;
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate an array of values (statements) while a
- * condition is true. The condition is tested at the beginning of the loop. If
- * the condition is false for the first iteration, the loop returns a null
- * value. See the related functions 'break', 'continue', 'return' and 'throw'.
+ * This function will evaluate an array of values (statements) while a condition
+ * is true. The condition is tested at the beginning of the loop. If the
+ * condition is false for the first iteration, the loop returns a null value.
+ * See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6500,8 +6475,8 @@ afw_function_definition_while;
  *
  * Parameters:
  *
- *   condition - (boolean) While this condition is true, the loop will
- *       continue. This is evaluated in the loop's scope.
+ *   condition - (boolean) While this condition is true, the loop will continue.
+ *       This is evaluated in the loop's scope.
  *
  *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
@@ -6642,7 +6617,7 @@ afw_function_definition_compile_json;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated JSON value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -6685,7 +6660,7 @@ afw_function_definition_compile_relaxed_json;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated relaxed JSON value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -6728,10 +6703,10 @@ afw_function_definition_convert_syntax_hybrid_to_expression;
  *   hybrid - (string) The hybrid to convert.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10
- *       or a string that is used for indentation. If 0 is specified, no
- *       whitespace is added to the resulting string. If 1 through 10 is
- *       specified, that number of spaces is used.
+ *       present and not 0. This parameter can be an integer between 0 and 10 or
+ *       a string that is used for indentation. If 0 is specified, no whitespace
+ *       is added to the resulting string. If 1 through 10 is specified, that
+ *       number of spaces is used.
  *
  * Returns:
  *
@@ -6768,10 +6743,10 @@ afw_function_definition_decompile;
  *   value - (any dataType) Value to decompile.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10
- *       or a string that is used for indentation. If 0 is specified, no
- *       whitespace is added to the resulting string. If 1 through 10 is
- *       specified, that number of spaces is used.
+ *       present and not 0. This parameter can be an integer between 0 and 10 or
+ *       a string that is used for indentation. If 0 is specified, no whitespace
+ *       is added to the resulting string. If 1 through 10 is specified, that
+ *       number of spaces is used.
  *
  * Returns:
  *
@@ -6909,9 +6884,9 @@ afw_function_definition_qualifiers;
  * @brief Adaptive Function `qualifiers`
  * @param x function execute parameter.
  *
- * This function allows the active qualifiers to be accessed as properties of
- * an object. The value of each of these properties is an object whose
- * properties are the variables for the corresponding qualifier.
+ * This function allows the active qualifiers to be accessed as properties of an
+ * object. The value of each of these properties is an object whose properties
+ * are the variables for the corresponding qualifier.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -6949,8 +6924,8 @@ afw_function_definition_safe_evaluate;
  * @brief Adaptive Function `safe_evaluate`
  * @param x function execute parameter.
  *
- * Return the evaluated adaptive value. If an exception occurs, return
- * evaluated error instead.
+ * Return the evaluated adaptive value. If an exception occurs, return evaluated
+ * error instead.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -6968,8 +6943,8 @@ afw_function_definition_safe_evaluate;
  *
  *   value - (any dataType) Value to evaluated.
  *
- *   error - (any dataType) Value to evaluate and return if exception occurs.
- *       If an error occurs evaluating this value, the exception will continue.
+ *   error - (any dataType) Value to evaluate and return if exception occurs. If
+ *       an error occurs evaluating this value, the exception will continue.
  *
  * Returns:
  *
@@ -7010,10 +6985,10 @@ afw_function_definition_stringify;
  *   replacer - (optional any dataType) Optional replacer function.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10
- *       or a string that is used for indentation. If 0 is specified, no
- *       whitespace is added to the resulting string. If 1 through 10 is
- *       specified, that number of spaces is used.
+ *       present and not 0. This parameter can be an integer between 0 and 10 or
+ *       a string that is used for indentation. If 0 is specified, no whitespace
+ *       is added to the resulting string. If 1 through 10 is specified, that
+ *       number of spaces is used.
  *
  * Returns:
  *
@@ -7240,8 +7215,8 @@ afw_function_definition_test_value;
  * @brief Adaptive Function `test_value`
  * @param x function execute parameter.
  *
- * Evaluate an adaptive value and compare it to an expected value. Return
- * object with the test's results.
+ * Evaluate an adaptive value and compare it to an expected value. Return object
+ * with the test's results.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -7600,8 +7575,8 @@ afw_function_definition_ge_dateTime;
  * @brief Adaptive Function `ge<dateTime>`
  * @param x function execute parameter.
  *
- * Checks for dateTime arg1 is greater than or equal to dateTime arg2 and
- * return the boolean result.
+ * Checks for dateTime arg1 is greater than or equal to dateTime arg2 and return
+ * the boolean result.
  * 
  * If a dateTime value does not include a time-zone value, then the local
  * time-zone value will be assigned.
@@ -7641,8 +7616,8 @@ afw_function_definition_gt_dateTime;
  * @brief Adaptive Function `gt<dateTime>`
  * @param x function execute parameter.
  *
- * Checks for dateTime arg1 is greater than dateTime arg2 and return the
- * boolean result.
+ * Checks for dateTime arg1 is greater than dateTime arg2 and return the boolean
+ * result.
  * 
  * If a dateTime value does not include a time-zone value, then the local
  * time-zone value will be assigned.
@@ -7682,8 +7657,8 @@ afw_function_definition_intersection_dateTime;
  * @brief Adaptive Function `intersection<dateTime>`
  * @param x function execute parameter.
  *
- * Returns an array of dateTime with the values that are common to both array
- * of dateTime array1 and array2.
+ * Returns an array of dateTime with the values that are common to both array of
+ * dateTime array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7950,10 +7925,9 @@ afw_function_definition_ne_dateTime;
  * @brief Adaptive Function `ne<dateTime>`
  * @param x function execute parameter.
  *
- * Determine if dateTime arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if dateTime arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -7994,9 +7968,9 @@ afw_function_definition_nex_dateTime;
  * @brief Adaptive Function `nex<dateTime>`
  * @param x function execute parameter.
  *
- * Determine if for dateTime arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for dateTime arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8033,8 +8007,8 @@ afw_function_definition_one_and_only_dateTime;
  * @brief Adaptive Function `one_and_only<dateTime>`
  * @param x function execute parameter.
  *
- * This converts an array of dateTime values that contains one value to a
- * single dateTime value.
+ * This converts an array of dateTime values that contains one value to a single
+ * dateTime value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8257,8 +8231,8 @@ afw_function_definition_union_dateTime;
  * @brief Adaptive Function `union<dateTime>`
  * @param x function execute parameter.
  *
- * Returns an array of dateTime contains all of the unique values in two or
- * more array of dateTime values.
+ * Returns an array of dateTime contains all of the unique values in two or more
+ * array of dateTime values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8484,8 +8458,8 @@ afw_function_definition_eq_date;
  * @param x function execute parameter.
  *
  * Determine if date arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -8606,8 +8580,7 @@ afw_function_definition_gt_date;
  * @brief Adaptive Function `gt<date>`
  * @param x function execute parameter.
  *
- * Checks for date arg1 is greater than date arg2 and return the boolean
- * result.
+ * Checks for date arg1 is greater than date arg2 and return the boolean result.
  * 
  * If a date value does not include a time-zone value, then the local time-zone
  * value will be assigned.
@@ -9035,8 +9008,8 @@ afw_function_definition_set_equals_date;
  * @brief Adaptive Function `set_equals<date>`
  * @param x function execute parameter.
  *
- * Returns boolean true if date array1 and date array2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if date array1 and date array2 are subsets of each other
+ * and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9335,8 +9308,7 @@ afw_function_definition_dayTimeDuration;
  * @brief Adaptive Function `dayTimeDuration`
  * @param x function execute parameter.
  *
- * Converts value to data type dayTimeDuration returning dayTimeDuration
- * result.
+ * Converts value to data type dayTimeDuration returning dayTimeDuration result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9419,8 +9391,8 @@ afw_function_definition_eqx_dayTimeDuration;
  * @param x function execute parameter.
  *
  * Determine if for dayTimeDuration arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9606,8 +9578,8 @@ afw_function_definition_is_in_dayTimeDuration;
  * @brief Adaptive Function `is_in<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Checks whether dayTimeDuration value is in array of dayTimeDuration array
- * and returns the boolean result.
+ * Checks whether dayTimeDuration value is in array of dayTimeDuration array and
+ * returns the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9644,8 +9616,8 @@ afw_function_definition_le_dayTimeDuration;
  * @brief Adaptive Function `le<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Checks for dayTimeDuration arg1 is less than or equal to dayTimeDuration
- * arg2 and return the boolean result.
+ * Checks for dayTimeDuration arg1 is less than or equal to dayTimeDuration arg2
+ * and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9720,10 +9692,10 @@ afw_function_definition_ne_dayTimeDuration;
  * @brief Adaptive Function `ne<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Determine if dayTimeDuration arg1 is not equal to the value of arg2
- * converted to the data type of arg1 then return the boolean result. Use 'nex'
- * ('!==') instead if you want true to be returned if arg1 and arg2's data type
- * don't match.
+ * Determine if dayTimeDuration arg1 is not equal to the value of arg2 converted
+ * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+ * instead if you want true to be returned if arg1 and arg2's data type don't
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9803,8 +9775,8 @@ afw_function_definition_one_and_only_dayTimeDuration;
  * @brief Adaptive Function `one_and_only<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * This converts an array of dayTimeDuration values that contains one value to
- * a single dayTimeDuration value.
+ * This converts an array of dayTimeDuration values that contains one value to a
+ * single dayTimeDuration value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -9842,8 +9814,8 @@ afw_function_definition_set_equals_dayTimeDuration;
  * @brief Adaptive Function `set_equals<dayTimeDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2
- * are subsets of each other and return the boolean result.
+ * Returns boolean true if dayTimeDuration array1 and dayTimeDuration array2 are
+ * subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10106,9 +10078,9 @@ afw_function_definition_eq_dnsName;
  * @brief Adaptive Function `eq<dnsName>`
  * @param x function execute parameter.
  *
- * Determine if dnsName arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
- * if you want false to be returned if arg1 and arg2's data type don't match.
+ * Determine if dnsName arg1 is equal to the value of arg2 converted to the data
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10533,8 +10505,8 @@ afw_function_definition_regexp_match_dnsName;
  * @brief Adaptive Function `regexp_match<dnsName>`
  * @param x function execute parameter.
  *
- * Checks whether dnsName value matches the regular expression regexp and
- * return the boolean result.
+ * Checks whether dnsName value matches the regular expression regexp and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10571,8 +10543,8 @@ afw_function_definition_to_string_dnsName;
  * @brief Adaptive Function `to_string<dnsName>`
  * @param x function execute parameter.
  *
- * Converts dnsName value to string. For array values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts dnsName value to string. For array values, the to_string() value for
+ * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10899,8 +10871,8 @@ afw_function_definition_eq_double;
  * @param x function execute parameter.
  *
  * Determine if double arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -10941,9 +10913,9 @@ afw_function_definition_eqx_double;
  * @brief Adaptive Function `eqx<double>`
  * @param x function execute parameter.
  *
- * Determine if for double arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for double arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11014,8 +10986,8 @@ afw_function_definition_ge_double;
  * @brief Adaptive Function `ge<double>`
  * @param x function execute parameter.
  *
- * Checks for double arg1 is greater than or equal to double arg2 and return
- * the boolean result.
+ * Checks for double arg1 is greater than or equal to double arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11603,8 +11575,7 @@ afw_function_definition_pow_double;
  * @param x function execute parameter.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
- * specified to raise the previous exponent to the power of the latter
- * exponent.
+ * specified to raise the previous exponent to the power of the latter exponent.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11970,8 +11941,8 @@ afw_function_definition_compile_expression;
  * @brief Adaptive Function `compile<expression>`
  * @param x function execute parameter.
  *
- * Compile expression value and return either an unevaluated adaptive value or
- * a string containing the compiler listing.
+ * Compile expression value and return either an unevaluated adaptive value or a
+ * string containing the compiler listing.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -11991,7 +11962,7 @@ afw_function_definition_compile_expression;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -12406,8 +12377,8 @@ afw_function_definition_nex_expression;
  * @param x function execute parameter.
  *
  * Determine if for expression arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12677,8 +12648,8 @@ afw_function_definition_ge_function;
  * @brief Adaptive Function `ge<function>`
  * @param x function execute parameter.
  *
- * Checks for function arg1 is greater than or equal to function arg2 and
- * return the boolean result.
+ * Checks for function arg1 is greater than or equal to function arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12715,8 +12686,8 @@ afw_function_definition_gt_function;
  * @brief Adaptive Function `gt<function>`
  * @param x function execute parameter.
  *
- * Checks for function arg1 is greater than function arg2 and return the
- * boolean result.
+ * Checks for function arg1 is greater than function arg2 and return the boolean
+ * result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12863,10 +12834,9 @@ afw_function_definition_ne_function;
  * @brief Adaptive Function `ne<function>`
  * @param x function execute parameter.
  *
- * Determine if function arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if function arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -12907,9 +12877,9 @@ afw_function_definition_nex_function;
  * @brief Adaptive Function `nex<function>`
  * @param x function execute parameter.
  *
- * Determine if for function arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for function arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13364,8 +13334,8 @@ afw_function_definition_is_in_hexBinary;
  * @brief Adaptive Function `is_in<hexBinary>`
  * @param x function execute parameter.
  *
- * Checks whether hexBinary value is in array of hexBinary array and returns
- * the boolean result.
+ * Checks whether hexBinary value is in array of hexBinary array and returns the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13523,8 +13493,8 @@ afw_function_definition_nex_hexBinary;
  * @param x function execute parameter.
  *
  * Determine if for hexBinary arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13776,8 +13746,8 @@ afw_function_definition_all_of;
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first array in values or until false is
- *       returned. If no calls return false, the result is true.
+ *       for each value in the first array in values or until false is returned.
+ *       If no calls return false, the result is true.
  *
  *   values - (1 or more any dataType) These are the parameters passed to
  *       predicate with the exception that the first array is passed one value
@@ -13841,9 +13811,9 @@ afw_function_definition_all_of_any;
  * @brief Adaptive Function `all_of_any`
  * @param x function execute parameter.
  *
- * This function returns true if the result of calling predicate with all of
- * the combination of values from array1 and any of the values of array2
- * returns true.
+ * This function returns true if the result of calling predicate with all of the
+ * combination of values from array1 and any of the values of array2 returns
+ * true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13860,9 +13830,9 @@ afw_function_definition_all_of_any;
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from array1 and the
- *       second is a value from array2.
+ *   predicate - (function (value1: any, value2: any): boolean) The predicate is
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
  *   array1 - (array)
  *
@@ -13967,8 +13937,8 @@ afw_function_definition_any_of_any;
  * @brief Adaptive Function `any_of_any`
  * @param x function execute parameter.
  *
- * This function returns true if the result of calling predicate with any of
- * the combination of values from array1 and array2 returns true.
+ * This function returns true if the result of calling predicate with any of the
+ * combination of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13985,9 +13955,9 @@ afw_function_definition_any_of_any;
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from array1 and the
- *       second is a value from array2.
+ *   predicate - (function (value1: any, value2: any): boolean) The predicate is
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
  *   array1 - (array)
  *
@@ -14070,8 +14040,7 @@ afw_function_definition_find;
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if an array entry passes the
- *       test.
+ *       function that is called to determine if an array entry passes the test.
  *
  *   values - (1 or more any dataType) These are the values passed to the
  *       predicate with the exception that the first array is passed as the
@@ -14133,12 +14102,11 @@ afw_function_definition_reduce;
  * @brief Adaptive Function `reduce`
  * @param x function execute parameter.
  *
- * Reduce calls functor for each value in array with two parameters,
- * accumulator and value, and must return a value of any dataType. Parameter
- * accumulator is the reduce() accumulator parameter value on first call and
- * the return value of previous functor() call on subsequent calls. The
- * dataType of the return value should normally be the same as accumulator, but
- * this is not required.
+ * Reduce calls functor for each value in array with two parameters, accumulator
+ * and value, and must return a value of any dataType. Parameter accumulator is
+ * the reduce() accumulator parameter value on first call and the return value
+ * of previous functor() call on subsequent calls. The dataType of the return
+ * value should normally be the same as accumulator, but this is not required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14159,9 +14127,9 @@ afw_function_definition_reduce;
  *       called for each value in an array. The returned value is passed as the
  *       accumulator parameter on the next call to functor().
  *
- *   accumulator - (any dataType) This is an initial accumulator value passed
- *       to functor(). Normally, the dataType of accumulator will be the
- *       dataTape for the reduce() return value, but this is not required.
+ *   accumulator - (any dataType) This is an initial accumulator value passed to
+ *       functor(). Normally, the dataType of accumulator will be the dataTape
+ *       for the reduce() return value, but this is not required.
  *
  *   array - (array) This is an array to be reduced.
  *
@@ -14182,11 +14150,11 @@ afw_function_definition_sort;
  * @brief Adaptive Function `sort`
  * @param x function execute parameter.
  *
- * This produces an array with values sorted based on result of
- * compareFunction. The compareFunction is passed two values from the array and
- * must return an integer less than 0 if the first value is less than the
- * second value, 0 if they are equal, and a integer greater than 0 if the first
- * value is greater than the second value.
+ * This produces an array with values sorted based on result of compareFunction.
+ * The compareFunction is passed two values from the array and must return an
+ * integer less than 0 if the first value is less than the second value, 0 if
+ * they are equal, and a integer greater than 0 if the first value is greater
+ * than the second value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14322,7 +14290,7 @@ afw_function_definition_compile_hybrid;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -14345,8 +14313,8 @@ afw_function_definition_eq_hybrid;
  * @param x function execute parameter.
  *
  * Determine if hybrid arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14387,9 +14355,9 @@ afw_function_definition_eqx_hybrid;
  * @brief Adaptive Function `eqx<hybrid>`
  * @param x function execute parameter.
  *
- * Determine if for hybrid arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for hybrid arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -14468,8 +14436,8 @@ afw_function_definition_ge_hybrid;
  * @brief Adaptive Function `ge<hybrid>`
  * @param x function execute parameter.
  *
- * Checks for hybrid arg1 is greater than or equal to hybrid arg2 and return
- * the boolean result.
+ * Checks for hybrid arg1 is greater than or equal to hybrid arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15238,8 +15206,8 @@ afw_function_definition_nex_ia5String;
  * @param x function execute parameter.
  *
  * Determine if for ia5String arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -15351,8 +15319,8 @@ afw_function_definition_index_create;
  *
  *   objectType - (optional string) Object Type(s) this index may apply to.
  *
- *   filter - (optional string) Expression to determine if this index applies
- *       to a particular object.
+ *   filter - (optional string) Expression to determine if this index applies to
+ *       a particular object.
  *
  *   options - (optional string) Indexing options.
  *
@@ -15670,9 +15638,9 @@ afw_function_definition_eq_integer;
  * @brief Adaptive Function `eq<integer>`
  * @param x function execute parameter.
  *
- * Determine if integer arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
- * if you want false to be returned if arg1 and arg2's data type don't match.
+ * Determine if integer arg1 is equal to the value of arg2 converted to the data
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16347,8 +16315,8 @@ afw_function_definition_set_equals_integer;
  * @brief Adaptive Function `set_equals<integer>`
  * @param x function execute parameter.
  *
- * Returns boolean true if integer array1 and integer array2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if integer array1 and integer array2 are subsets of each
+ * other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16497,8 +16465,8 @@ afw_function_definition_to_string_integer;
  * @brief Adaptive Function `to_string<integer>`
  * @param x function execute parameter.
  *
- * Converts integer value to string. For array values, the to_string() value
- * for each entry is returned separated with commas.
+ * Converts integer value to string. For array values, the to_string() value for
+ * each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16843,8 +16811,8 @@ afw_function_definition_is_in_ipAddress;
  * @brief Adaptive Function `is_in<ipAddress>`
  * @param x function execute parameter.
  *
- * Checks whether ipAddress value is in array of ipAddress array and returns
- * the boolean result.
+ * Checks whether ipAddress value is in array of ipAddress array and returns the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17036,8 +17004,8 @@ afw_function_definition_nex_ipAddress;
  * @param x function execute parameter.
  *
  * Determine if for ipAddress arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17206,16 +17174,15 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
- * applicable.
+ * The consumerFilter expression is used to determine if an entry is applicable.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
  * advanceCursor property. If the advanceCursor property is not present, the
  * scan begins after the cursor in currentCursor. If neither are present, the
  * scan begins at the start of the journal.
  * 
- * If an new applicable entry is found or if the limit is met, the
- * advanceCursor property is set to the currently scanned entry's cursor.
+ * If an new applicable entry is found or if the limit is met, the advanceCursor
+ * property is set to the currently scanned entry's cursor.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -17385,8 +17352,7 @@ afw_function_definition_journal_get_next_for_consumer;
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
- * applicable.
+ * The consumerFilter expression is used to determine if an entry is applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
  * immediately with a 'reissue' property added and set to true.
@@ -17443,8 +17409,8 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  * @brief Adaptive Function `journal_get_next_for_consumer_after_cursor`
  * @param x function execute parameter.
  *
- * Get the next journal entry for a consumer referenced by the consumer_id
- * after the one specified by the entry_cursor parameter. The limit parameter
+ * Get the next journal entry for a consumer referenced by the consumer_id after
+ * the one specified by the entry_cursor parameter. The limit parameter
  * specifies the maximum number of entries to scan for an applicable entry for
  * consumer before returning.
  * 
@@ -17454,8 +17420,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
- * applicable.
+ * The consumerFilter expression is used to determine if an entry is applicable.
  * 
  * Unlike option get_next_for_consumer, no other properties are referenced or
  * modified.
@@ -17553,8 +17518,8 @@ afw_function_definition_and;
  * @brief Adaptive Function `and`
  * @param x function execute parameter.
  *
- * Evaluates 0 or more boolean conditions returning boolean true if there are
- * no conditions and boolean false if any condition evaluate to false. All
+ * Evaluates 0 or more boolean conditions returning boolean true if there are no
+ * conditions and boolean false if any condition evaluate to false. All
  * conditions after the first false remain unevaluated.
  *
  * This function is pure, so it will always return the same result
@@ -17728,20 +17693,19 @@ afw_function_definition_compare_uri;
  *
  * Parameters:
  *
- *   uri1 - (string) First URI for compare. This URI can not contain an
- *       asterisk ('*').
+ *   uri1 - (string) First URI for compare. This URI can not contain an asterisk
+ *       ('*').
  *
- *   uri2 - (string) Second URI for compare. This URI can contain asterisk
- *       ('*') for substitution if isValuePath is true and currentPath2 is
- *       specified.
+ *   uri2 - (string) Second URI for compare. This URI can contain asterisk ('*')
+ *       for substitution if isValuePath is true and currentPath2 is specified.
  *
  *   isValuePath - (optional boolean) The URIs are adaptive value paths. If one
  *       of the URIs begins with a single slash '/', both must, and each URI
  *       will be parsed as an adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
- *   currentPath - (optional string) If isValuePath is true, this is the
- *       current path that is used to resolve a relative path in the URIs. If
+ *   currentPath - (optional string) If isValuePath is true, this is the current
+ *       path that is used to resolve a relative path in the URIs. If
  *       isValuePath is not true, this parameter is ignored.
  *
  * Returns:
@@ -17778,12 +17742,12 @@ afw_function_definition_debug;
  * Parameters:
  *
  *   value - (any dataType) This is the value that will be converted to its
- *       string representation and written. An undefined value is represented
- *       by `<undefined>`.
+ *       string representation and written. An undefined value is represented by
+ *       `<undefined>`.
  *
  *   detail - (optional boolean) If true, the string will only written if the
- *       debug:function_active:detail flag is on. If false or not specified,
- *       the string will only written if the debug:function_active flag is on.
+ *       debug:function_active:detail flag is on. If false or not specified, the
+ *       string will only written if the debug:function_active flag is on.
  *
  * Returns:
  *
@@ -17833,8 +17797,8 @@ afw_function_definition_execution_start_time_utc;
  * @brief Adaptive Function `execution_start_time_utc`
  * @param x function execute parameter.
  *
- * Return UTC dateTime when the execution context was created. This will
- * usually be the start of request time.
+ * Return UTC dateTime when the execution context was created. This will usually
+ * be the start of request time.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -18081,9 +18045,9 @@ afw_function_definition_parse_uri;
  *       adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
- *   currentPath - (optional string) If isValuePath is true, this is the
- *       current path that is used to resolve relative paths. If isValuePath is
- *       not true, this parameter is ignored.
+ *   currentPath - (optional string) If isValuePath is true, this is the current
+ *       path that is used to resolve relative paths. If isValuePath is not
+ *       true, this parameter is ignored.
  *
  * Returns:
  *
@@ -18159,9 +18123,8 @@ afw_function_definition_trace;
  *   filter - (optional boolean) If this optional filter is false, nothing will
  *       be written to the trace log. The default is true.
  *
- *   number - (optional integer) This is an optional number between 1 and 8
- *       that is appended to 'trace' to identify the trace log. The default is
- *       1.
+ *   number - (optional integer) This is an optional number between 1 and 8 that
+ *       is appended to 'trace' to identify the trace log. The default is 1.
  *
  * Returns:
  *
@@ -18329,8 +18292,8 @@ afw_function_definition_model_default_add_object_action;
  *       added. Variable custom::objectType can be used to access this value in
  *       model expressions.
  *
- *   object - (object) This is the object to add. Variable custom::object can
- *       be used to access this value in model expressions.
+ *   object - (object) This is the object to add. Variable custom::object can be
+ *       used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
  *       object to add. The adaptor may ignore this. Variable custom::objectId
@@ -18340,8 +18303,8 @@ afw_function_definition_model_default_add_object_action;
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -18398,8 +18361,8 @@ afw_function_definition_model_default_delete_object_action;
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -18451,30 +18414,29 @@ afw_function_definition_model_default_modify_object_action;
  *       in model expressions.
  *
  *   objectId - (string) This is the objectId of object to modify. Variable
- *       custom::objectId can be used to access this value in model
- *       expressions.
+ *       custom::objectId can be used to access this value in model expressions.
  *
  *   entries - (array) This is an array of modifications. Variable
  *       custom::actions can be used to access this value in model expressions.
  *       Entries are of the form:
- *       
+ * 
  *           [
  *               'add_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'remove_property',
  *               'property name' or ['property name', ... ]
  *           ]
- *       
+ * 
  *           [
  *               'remove_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'set_property',
  *               'property name' or ['property name', ... ],
@@ -18485,8 +18447,8 @@ afw_function_definition_model_default_modify_object_action;
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -18508,8 +18470,8 @@ afw_function_definition_model_default_replace_object_action;
  * performed if a onReplaceObject parameter is not specified on the associated
  * _AdaptiveModelObjectType_. The action is not performed, but be aware that
  * functions called while producing the _AdaptiveAction_ object may cause side
- * effects. This function can be called as part of a onReplace expression or
- * for testing.
+ * effects. This function can be called as part of a onReplace expression or for
+ * testing.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -18538,8 +18500,7 @@ afw_function_definition_model_default_replace_object_action;
  *       in model expressions.
  *
  *   objectId - (string) The objectId of object to replace. Variable
- *       custom::objectId can be used to access this value in model
- *       expressions.
+ *       custom::objectId can be used to access this value in model expressions.
  *
  *   object - (object) This is the object to replace. Variable custom::object
  *       can be used to access this value in model expressions.
@@ -18548,8 +18509,8 @@ afw_function_definition_model_default_replace_object_action;
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -18567,9 +18528,9 @@ afw_function_definition_model_mapBackObject_signature;
  * @brief Adaptive Function `model_mapBackObject_signature`
  * @param x function execute parameter.
  *
- * This is the function signature for current:mapBackObject used by
- * onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
- * not call directly' error.
+ * This is the function signature for current:mapBackObject used by onGetObjects
+ * and onRetrieveObjects. Calling this directly will throw a 'Do not call
+ * directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -19024,8 +18985,8 @@ afw_function_definition_ge_objectId;
  * @brief Adaptive Function `ge<objectId>`
  * @param x function execute parameter.
  *
- * Checks for objectId arg1 is greater than or equal to objectId arg2 and
- * return the boolean result.
+ * Checks for objectId arg1 is greater than or equal to objectId arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19062,8 +19023,8 @@ afw_function_definition_gt_objectId;
  * @brief Adaptive Function `gt<objectId>`
  * @param x function execute parameter.
  *
- * Checks for objectId arg1 is greater than objectId arg2 and return the
- * boolean result.
+ * Checks for objectId arg1 is greater than objectId arg2 and return the boolean
+ * result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19210,10 +19171,9 @@ afw_function_definition_ne_objectId;
  * @brief Adaptive Function `ne<objectId>`
  * @param x function execute parameter.
  *
- * Determine if objectId arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if objectId arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19254,9 +19214,9 @@ afw_function_definition_nex_objectId;
  * @brief Adaptive Function `nex<objectId>`
  * @param x function execute parameter.
  *
- * Determine if for objectId arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for objectId arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19757,8 +19717,8 @@ afw_function_definition_nex_objectPath;
  * @param x function execute parameter.
  *
  * Determine if for objectPath arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19937,8 +19897,7 @@ afw_function_definition_apply_object_options;
  *   object - (object) Object used to produce result.
  *
  *   options - (optional object _AdaptiveObjectOptions_) Object options. See
- *       /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *       information.
+ *       /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  *
  * Returns:
  *
@@ -20059,8 +20018,8 @@ afw_function_definition_eq_object;
  * @param x function execute parameter.
  *
  * Determine if object arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20101,9 +20060,9 @@ afw_function_definition_eqx_object;
  * @brief Adaptive Function `eqx<object>`
  * @param x function execute parameter.
  *
- * Determine if for object arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for object arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20140,8 +20099,8 @@ afw_function_definition_ge_object;
  * @brief Adaptive Function `ge<object>`
  * @param x function execute parameter.
  *
- * Checks for object arg1 is greater than or equal to object arg2 and return
- * the boolean result.
+ * Checks for object arg1 is greater than or equal to object arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20867,8 +20826,8 @@ afw_function_definition_ge_password;
  * @brief Adaptive Function `ge<password>`
  * @param x function execute parameter.
  *
- * Checks for password arg1 is greater than or equal to password arg2 and
- * return the boolean result.
+ * Checks for password arg1 is greater than or equal to password arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20905,8 +20864,8 @@ afw_function_definition_gt_password;
  * @brief Adaptive Function `gt<password>`
  * @param x function execute parameter.
  *
- * Checks for password arg1 is greater than password arg2 and return the
- * boolean result.
+ * Checks for password arg1 is greater than password arg2 and return the boolean
+ * result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21053,10 +21012,9 @@ afw_function_definition_ne_password;
  * @brief Adaptive Function `ne<password>`
  * @param x function execute parameter.
  *
- * Determine if password arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if password arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21097,9 +21055,9 @@ afw_function_definition_nex_password;
  * @brief Adaptive Function `nex<password>`
  * @param x function execute parameter.
  *
- * Determine if for password arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for password arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21586,8 +21544,8 @@ afw_function_definition_compile;
  * @brief Adaptive Function `compile`
  * @param x function execute parameter.
  *
- * Compile `<dataType>` value and return either an unevaluated adaptive value
- * or a string containing the compiler listing.
+ * Compile `<dataType>` value and return either an unevaluated adaptive value or
+ * a string containing the compiler listing.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21611,7 +21569,7 @@ afw_function_definition_compile;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -21754,8 +21712,8 @@ afw_function_definition_encode_as_hexBinary;
  * @brief Adaptive Function `encode_as_hexBinary`
  * @param x function execute parameter.
  *
- * Encode a value as a hexBinary. The effect is to create a hexBinary value
- * with an internal value of the value passed.
+ * Encode a value as a hexBinary. The effect is to create a hexBinary value with
+ * an internal value of the value passed.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21835,10 +21793,9 @@ afw_function_definition_eq;
  * @brief Adaptive Function `eq`
  * @param x function execute parameter.
  *
- * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -21930,8 +21887,8 @@ afw_function_definition_eqx;
  * @param x function execute parameter.
  *
  * Determine if for `<dataType>` arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22108,8 +22065,8 @@ afw_function_definition_gt;
  * @brief Adaptive Function `gt`
  * @param x function execute parameter.
  *
- * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
- * the boolean result.
+ * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22155,11 +22112,11 @@ afw_function_definition_in_range;
  * @param x function execute parameter.
  *
  * Checks if `<dataType>` is between startTime and endTime, inclusive.
- * Regardless of endTime value, it is always considered to be equal to, but
- * less than 24 hours greater than startTime. If no `<dataType>` zone is
- * specified for `<dataType>,` the default `<dataType>` zone is used. If no
- * `<dataType>` zone is specified for startTime or endTime, the `<dataType>`
- * zone of `<dataType>` is used.
+ * Regardless of endTime value, it is always considered to be equal to, but less
+ * than 24 hours greater than startTime. If no `<dataType>` zone is specified
+ * for `<dataType>,` the default `<dataType>` zone is used. If no `<dataType>`
+ * zone is specified for startTime or endTime, the `<dataType>` zone of
+ * `<dataType>` is used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22516,9 +22473,9 @@ afw_function_definition_length;
  * @brief Adaptive Function `length`
  * @param x function execute parameter.
  *
- * This is a polymorphic function where `<dataType>` can be any of the
- * supported data types. Return the integer number of entries in datatype array
- * or codepoints in others.
+ * This is a polymorphic function where `<dataType>` can be any of the supported
+ * data types. Return the integer number of entries in datatype array or
+ * codepoints in others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22805,8 +22762,8 @@ afw_function_definition_ne;
  * @brief Adaptive Function `ne`
  * @param x function execute parameter.
  *
- * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+ * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted to
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -22896,8 +22853,8 @@ afw_function_definition_nex;
  * @param x function execute parameter.
  *
  * Determine if for `<dataType>` arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -23064,8 +23021,7 @@ afw_function_definition_pow;
  * @param x function execute parameter.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
- * specified to raise the previous exponent to the power of the latter
- * exponent.
+ * specified to raise the previous exponent to the power of the latter exponent.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -23592,8 +23548,8 @@ afw_function_definition_subtract;
  * @brief Adaptive Function `subtract`
  * @param x function execute parameter.
  *
- * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the
- * `<dataType>` result.
+ * Subtract `<dataType>` arg2 from `<dataType>` arg1 and return the `<dataType>`
+ * result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24595,7 +24551,7 @@ afw_function_definition_compile_regexp;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -24618,8 +24574,8 @@ afw_function_definition_eq_regexp;
  * @param x function execute parameter.
  *
  * Determine if regexp arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24660,9 +24616,9 @@ afw_function_definition_eqx_regexp;
  * @brief Adaptive Function `eqx<regexp>`
  * @param x function execute parameter.
  *
- * Determine if for regexp arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for regexp arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24699,8 +24655,8 @@ afw_function_definition_ge_regexp;
  * @brief Adaptive Function `ge<regexp>`
  * @param x function execute parameter.
  *
- * Checks for regexp arg1 is greater than or equal to regexp arg2 and return
- * the boolean result.
+ * Checks for regexp arg1 is greater than or equal to regexp arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25513,8 +25469,8 @@ afw_function_definition_nex_rfc822Name;
  * @param x function execute parameter.
  *
  * Determine if for rfc822Name arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25913,7 +25869,7 @@ afw_function_definition_compile_script;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -25936,8 +25892,8 @@ afw_function_definition_eq_script;
  * @param x function execute parameter.
  *
  * Determine if script arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25978,9 +25934,9 @@ afw_function_definition_eqx_script;
  * @brief Adaptive Function `eqx<script>`
  * @param x function execute parameter.
  *
- * Determine if for script arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for script arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26059,8 +26015,8 @@ afw_function_definition_ge_script;
  * @brief Adaptive Function `ge<script>`
  * @param x function execute parameter.
  *
- * Checks for script arg1 is greater than or equal to script arg2 and return
- * the boolean result.
+ * Checks for script arg1 is greater than or equal to script arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26498,8 +26454,8 @@ afw_function_definition_open_file;
  *
  *   mode - (string) This is the access mode string. Values can be:
  *         r - Open an existing file text file for read.
- *         w - Open a text file for writing. If the file does not exist, it
- *       will be created.
+ *         w - Open a text file for writing. If the file does not exist, it will
+ *       be created.
  *         a - Open a text file for writing additional data to the end. If the
  *       file does not exist, it will be created.
  *         r+ - Open a text file for both reading and writing.
@@ -26509,10 +26465,10 @@ afw_function_definition_open_file;
  *         a+ - Open a text file for both reading and writing. Reading will
  *       begin at the start of the file while writing will be appended to the
  *       end.
- *       
+ * 
  *       All of these modes expect data type string. If you are using data type
- *       base64Binary or hexBinary you can use corresponding binary modes,
- *       'rb', 'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
+ *       base64Binary or hexBinary you can use corresponding binary modes, 'rb',
+ *       'wb', 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
  *
  *   autoFlush - (optional boolean) If specified and true, this will
  *       automatically flush the stream's buffers after every write.
@@ -26620,8 +26576,8 @@ afw_function_definition_print;
  * @brief Adaptive Function `print`
  * @param x function execute parameter.
  *
- * Evaluate and convert 0 or more values to its string value, then write them
- * to stdout. An undefined value is represented by `<undefined>`.
+ * Evaluate and convert 0 or more values to its string value, then write them to
+ * stdout. An undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -26750,8 +26706,8 @@ afw_function_definition_read_to_base64Binary;
  *
  * Returns:
  *
- *   (base64Binary) The base64Binary value read. Check the size of this value
- *       to determine the actual number of octets read.
+ *   (base64Binary) The base64Binary value read. Check the size of this value to
+ *       determine the actual number of octets read.
  */
 const afw_value_t *
 afw_function_execute_read_to_base64Binary(
@@ -26873,8 +26829,8 @@ afw_function_definition_write;
  * @brief Adaptive Function `write`
  * @param x function execute parameter.
  *
- * Evaluate and convert 0 or more values to its string value, then write them
- * to stream. An value with an undefined value is represented by `<undefined>`.
+ * Evaluate and convert 0 or more values to its string value, then write them to
+ * stream. An value with an undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -26947,8 +26903,8 @@ afw_function_definition_writeln;
  * @brief Adaptive Function `writeln`
  * @param x function execute parameter.
  *
- * Evaluate and convert 0 or more values to its string value, then write them
- * to stream. A newline character ('\n') is written after the last value. An
+ * Evaluate and convert 0 or more values to its string value, then write them to
+ * stream. A newline character ('\n') is written after the last value. An
  * undefined value is represented by `<undefined>`.
  *
  * This function is not pure, so it may return a different result
@@ -27214,8 +27170,8 @@ afw_function_definition_encode_as_hexBinary_string;
  * @brief Adaptive Function `encode_as_hexBinary<string>`
  * @param x function execute parameter.
  *
- * Encode a value as a hexBinary. The effect is to create a hexBinary value
- * with an internal value of the value passed.
+ * Encode a value as a hexBinary. The effect is to create a hexBinary value with
+ * an internal value of the value passed.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27249,8 +27205,7 @@ afw_function_definition_ends_with_string;
  * @brief Adaptive Function `ends_with<string>`
  * @param x function execute parameter.
  *
- * Checks whether string value ends with a string and return the boolean
- * result.
+ * Checks whether string value ends with a string and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27325,8 +27280,8 @@ afw_function_definition_eq_string;
  * @param x function execute parameter.
  *
  * Determine if string arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27367,9 +27322,9 @@ afw_function_definition_eqx_string;
  * @brief Adaptive Function `eqx<string>`
  * @param x function execute parameter.
  *
- * Determine if for string arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
+ * Determine if for string arg1 is equal to the value and data type of arg2 then
+ * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+ * converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27406,8 +27361,8 @@ afw_function_definition_ge_string;
  * @brief Adaptive Function `ge<string>`
  * @param x function execute parameter.
  *
- * Checks for string arg1 is greater than or equal to string arg2 and return
- * the boolean result.
+ * Checks for string arg1 is greater than or equal to string arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29261,7 +29216,7 @@ afw_function_definition_compile_template;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -29407,8 +29362,8 @@ afw_function_definition_ge_template;
  * @brief Adaptive Function `ge<template>`
  * @param x function execute parameter.
  *
- * Checks for template arg1 is greater than or equal to template arg2 and
- * return the boolean result.
+ * Checks for template arg1 is greater than or equal to template arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29445,8 +29400,8 @@ afw_function_definition_gt_template;
  * @brief Adaptive Function `gt<template>`
  * @param x function execute parameter.
  *
- * Checks for template arg1 is greater than template arg2 and return the
- * boolean result.
+ * Checks for template arg1 is greater than template arg2 and return the boolean
+ * result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29593,10 +29548,9 @@ afw_function_definition_ne_template;
  * @brief Adaptive Function `ne<template>`
  * @param x function execute parameter.
  *
- * Determine if template arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if template arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29637,9 +29591,9 @@ afw_function_definition_nex_template;
  * @brief Adaptive Function `nex<template>`
  * @param x function execute parameter.
  *
- * Determine if for template arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for template arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29865,8 +29819,8 @@ afw_function_definition_eq_time;
  * @param x function execute parameter.
  *
  * Determine if time arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
- * you want false to be returned if arg1 and arg2's data type don't match.
+ * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+ * want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29949,8 +29903,8 @@ afw_function_definition_ge_time;
  * Checks for time arg1 is greater than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * It is illegal to compare a time that includes a time-zone value with one that
+ * does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -29987,11 +29941,10 @@ afw_function_definition_gt_time;
  * @brief Adaptive Function `gt<time>`
  * @param x function execute parameter.
  *
- * Checks for time arg1 is greater than time arg2 and return the boolean
- * result.
+ * Checks for time arg1 is greater than time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * It is illegal to compare a time that includes a time-zone value with one that
+ * does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30029,10 +29982,10 @@ afw_function_definition_in_range_time;
  * @param x function execute parameter.
  *
  * Checks if time is between startTime and endTime, inclusive. Regardless of
- * endTime value, it is always considered to be equal to, but less than 24
- * hours greater than startTime. If no time zone is specified for time, the
- * default time zone is used. If no time zone is specified for startTime or
- * endTime, the time zone of time is used.
+ * endTime value, it is always considered to be equal to, but less than 24 hours
+ * greater than startTime. If no time zone is specified for time, the default
+ * time zone is used. If no time zone is specified for startTime or endTime, the
+ * time zone of time is used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30184,8 +30137,8 @@ afw_function_definition_le_time;
  * Checks for time arg1 is less than or equal to time arg2 and return the
  * boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * It is illegal to compare a time that includes a time-zone value with one that
+ * does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30224,8 +30177,8 @@ afw_function_definition_lt_time;
  *
  * Checks for time arg1 is less that time arg2 and return the boolean result.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * It is illegal to compare a time that includes a time-zone value with one that
+ * does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30264,8 +30217,8 @@ afw_function_definition_max_time;
  *
  * Return the time value that is greater than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * It is illegal to compare a time that includes a time-zone value with one that
+ * does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30302,8 +30255,8 @@ afw_function_definition_min_time;
  *
  * Return the time value that is less than or equal to the others.
  * 
- * It is illegal to compare a time that includes a time-zone value with one
- * that does not. In such cases, the `in_range<time>` function should be used.
+ * It is illegal to compare a time that includes a time-zone value with one that
+ * does not. In such cases, the `in_range<time>` function should be used.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30459,8 +30412,8 @@ afw_function_definition_set_equals_time;
  * @brief Adaptive Function `set_equals<time>`
  * @param x function execute parameter.
  *
- * Returns boolean true if time array1 and time array2 are subsets of each
- * other and return the boolean result.
+ * Returns boolean true if time array1 and time array2 are subsets of each other
+ * and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30721,8 +30674,8 @@ afw_function_definition_meta;
  * Returns:
  *
  *   (object) An object containing the meta information for the adaptive value.
- *       The objectType of this object is normally _AdaptiveValueMeta_ or one
- *       of its descendants.
+ *       The objectType of this object is normally _AdaptiveValueMeta_ or one of
+ *       its descendants.
  */
 const afw_value_t *
 afw_function_execute_meta(
@@ -30736,8 +30689,8 @@ afw_function_definition_metas;
  * @brief Adaptive Function `metas`
  * @param x function execute parameter.
  *
- * This function returns an array of the result of calling meta() for each
- * value in an array or object adaptive value.
+ * This function returns an array of the result of calling meta() for each value
+ * in an array or object adaptive value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -30969,8 +30922,8 @@ afw_function_definition_ge_x500Name;
  * @brief Adaptive Function `ge<x500Name>`
  * @param x function execute parameter.
  *
- * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and
- * return the boolean result.
+ * Checks for x500Name arg1 is greater than or equal to x500Name arg2 and return
+ * the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31007,8 +30960,8 @@ afw_function_definition_gt_x500Name;
  * @brief Adaptive Function `gt<x500Name>`
  * @param x function execute parameter.
  *
- * Checks for x500Name arg1 is greater than x500Name arg2 and return the
- * boolean result.
+ * Checks for x500Name arg1 is greater than x500Name arg2 and return the boolean
+ * result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31045,8 +30998,8 @@ afw_function_definition_intersection_x500Name;
  * @brief Adaptive Function `intersection<x500Name>`
  * @param x function execute parameter.
  *
- * Returns an array of x500Name with the values that are common to both array
- * of x500Name array1 and array2.
+ * Returns an array of x500Name with the values that are common to both array of
+ * x500Name array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31268,10 +31221,9 @@ afw_function_definition_ne_x500Name;
  * @brief Adaptive Function `ne<x500Name>`
  * @param x function execute parameter.
  *
- * Determine if x500Name arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if x500Name arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31312,9 +31264,9 @@ afw_function_definition_nex_x500Name;
  * @brief Adaptive Function `nex<x500Name>`
  * @param x function execute parameter.
  *
- * Determine if for x500Name arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for x500Name arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31351,8 +31303,8 @@ afw_function_definition_one_and_only_x500Name;
  * @brief Adaptive Function `one_and_only<x500Name>`
  * @param x function execute parameter.
  *
- * This converts an array of x500Name values that contains one value to a
- * single x500Name value.
+ * This converts an array of x500Name values that contains one value to a single
+ * x500Name value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31539,8 +31491,8 @@ afw_function_definition_union_x500Name;
  * @brief Adaptive Function `union<x500Name>`
  * @param x function execute parameter.
  *
- * Returns an array of x500Name contains all of the unique values in two or
- * more array of x500Name values.
+ * Returns an array of x500Name contains all of the unique values in two or more
+ * array of x500Name values.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31692,8 +31644,8 @@ afw_function_definition_compile_xpathExpression;
  * @brief Adaptive Function `compile<xpathExpression>`
  * @param x function execute parameter.
  *
- * Compile xpathExpression value and return either an unevaluated adaptive
- * value or a string containing the compiler listing.
+ * Compile xpathExpression value and return either an unevaluated adaptive value
+ * or a string containing the compiler listing.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31713,7 +31665,7 @@ afw_function_definition_compile_xpathExpression;
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
  *       produced instead of an unevaluated expression value.
- *       
+ * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
  *       resulting string. If 1 through 10 is specified, that number of spaces
@@ -31780,8 +31732,8 @@ afw_function_definition_eqx_xpathExpression;
  * @param x function execute parameter.
  *
  * Determine if for xpathExpression arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31971,8 +31923,8 @@ afw_function_definition_le_xpathExpression;
  * @brief Adaptive Function `le<xpathExpression>`
  * @param x function execute parameter.
  *
- * Checks for xpathExpression arg1 is less than or equal to xpathExpression
- * arg2 and return the boolean result.
+ * Checks for xpathExpression arg1 is less than or equal to xpathExpression arg2
+ * and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32047,10 +31999,10 @@ afw_function_definition_ne_xpathExpression;
  * @brief Adaptive Function `ne<xpathExpression>`
  * @param x function execute parameter.
  *
- * Determine if xpathExpression arg1 is not equal to the value of arg2
- * converted to the data type of arg1 then return the boolean result. Use 'nex'
- * ('!==') instead if you want true to be returned if arg1 and arg2's data type
- * don't match.
+ * Determine if xpathExpression arg1 is not equal to the value of arg2 converted
+ * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+ * instead if you want true to be returned if arg1 and arg2's data type don't
+ * match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32165,8 +32117,7 @@ afw_function_definition_xpathExpression;
  * @brief Adaptive Function `xpathExpression`
  * @param x function execute parameter.
  *
- * Converts value to data type xpathExpression returning xpathExpression
- * result.
+ * Converts value to data type xpathExpression returning xpathExpression result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32586,8 +32537,8 @@ afw_function_definition_intersection_yearMonthDuration;
  * @brief Adaptive Function `intersection<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns an array of yearMonthDuration with the values that are common to
- * both array of yearMonthDuration array1 and array2.
+ * Returns an array of yearMonthDuration with the values that are common to both
+ * array of yearMonthDuration array1 and array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32624,8 +32575,8 @@ afw_function_definition_is_in_yearMonthDuration;
  * @brief Adaptive Function `is_in<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Checks whether yearMonthDuration value is in array of yearMonthDuration
- * array and returns the boolean result.
+ * Checks whether yearMonthDuration value is in array of yearMonthDuration array
+ * and returns the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32856,8 +32807,8 @@ afw_function_definition_one_and_only_yearMonthDuration;
  * @brief Adaptive Function `one_and_only<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * This converts an array of yearMonthDuration values that contains one value
- * to a single yearMonthDuration value.
+ * This converts an array of yearMonthDuration values that contains one value to
+ * a single yearMonthDuration value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32895,8 +32846,8 @@ afw_function_definition_set_equals_yearMonthDuration;
  * @brief Adaptive Function `set_equals<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if yearMonthDuration array1 and yearMonthDuration
- * array2 are subsets of each other and return the boolean result.
+ * Returns boolean true if yearMonthDuration array1 and yearMonthDuration array2
+ * are subsets of each other and return the boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32933,8 +32884,8 @@ afw_function_definition_subset_yearMonthDuration;
  * @brief Adaptive Function `subset<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Returns boolean true if the unique values in yearMonthDuration array1 are
- * all in yearMonthDuration array2.
+ * Returns boolean true if the unique values in yearMonthDuration array1 are all
+ * in yearMonthDuration array2.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32971,8 +32922,8 @@ afw_function_definition_to_string_yearMonthDuration;
  * @brief Adaptive Function `to_string<yearMonthDuration>`
  * @param x function execute parameter.
  *
- * Converts yearMonthDuration value to string. For array values, the
- * to_string() value for each entry is returned separated with commas.
+ * Converts yearMonthDuration value to string. For array values, the to_string()
+ * value for each entry is returned separated with commas.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

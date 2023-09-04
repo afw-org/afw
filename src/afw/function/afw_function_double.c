@@ -391,8 +391,7 @@ afw_function_execute_is_NaN(
  * See afw_function_bindings.h for more information.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
- * specified to raise the previous exponent to the power of the latter
- * exponent.
+ * specified to raise the previous exponent to the power of the latter exponent.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

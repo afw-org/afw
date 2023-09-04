@@ -73,8 +73,8 @@ This is the streamId that will be associated with this open file stream.
 
     $path
 
-This is the path to the file to open. The rootDirectory of the path is
-defined in the application object.
+This is the path to the file to open. The rootDirectory of the path is defined
+in the application object.
 
     $mode
 
@@ -215,8 +215,8 @@ The maximum number of octets to read.
 
 =head3 readln
 
-Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an
-error is thrown.
+Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an error
+is thrown.
 Read from a UTF-8 text stream line
 
 =head4 Parameters

@@ -39,10 +39,8 @@ AFW_BEGIN_DECLARES
  *
  * 1. declarations will exist for all of the interfaces methods with names of
  *    impl_afw_adaptor_object_type_cache_ followed by the method name.
- * 2. rti will be defined with a name of
- *    impl_afw_adaptor_object_type_cache_rti.
- * 3. inf will be defined with a name of
- *    impl_afw_adaptor_object_type_cache_inf.
+ * 2. rti will be defined with a name of impl_afw_adaptor_object_type_cache_rti.
+ * 3. inf will be defined with a name of impl_afw_adaptor_object_type_cache_inf.
  *
  * Before including, define the following symbols:
  *

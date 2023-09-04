@@ -72,15 +72,15 @@ class hybrid
     /**
      * compile_hybrid()
      *
-     * Compile hybrid value and return either an unevaluated adaptive value
-     * or a string containing the compiler listing.
+     * Compile hybrid value and return either an unevaluated adaptive value or
+     * a string containing the compiler listing.
      *
      * @param hybrid $source hybrid string to compile
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated expression value.
-     *                  
-     *                  This parameter can be an integer between 0 and 10 of
-     *                  a string that is used for indentation. If 0 is
+     * 
+     *                  This parameter can be an integer between 0 and 10 of a
+     *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
      *                  spaces is used.
@@ -106,10 +106,10 @@ class hybrid
     /**
      * eq_hybrid()
      *
-     * Determine if hybrid arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if hybrid arg1 is equal to the value of arg2 converted to the
+     * data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param hybrid $arg1
      * @param  $arg2
@@ -166,12 +166,11 @@ class hybrid
      *                                                      supplies
      *                                                      additional
      *                                                      qualified
-     *                                                      variables that
-     *                                                      can be accessed
-     *                                                      during
+     *                                                      variables that can
+     *                                                      be accessed during
      *                                                      evaluation. These
-     *                                                      variables will
-     *                                                      not be used by
+     *                                                      variables will not
+     *                                                      be used by
      *                                                      anything that
      *                                                      needs to ensure
      *                                                      its qualified
@@ -353,10 +352,10 @@ class hybrid
     /**
      * ne_hybrid()
      *
-     * Determine if hybrid arg1 is not equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if hybrid arg1 is not equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param hybrid $arg1
      * @param  $arg2

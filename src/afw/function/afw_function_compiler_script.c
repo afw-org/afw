@@ -22,8 +22,8 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Assign a value to the innermost structured block definition of a variable.
- * If the variable is not defined, the variable is defined in the innermost
+ * Assign a value to the innermost structured block definition of a variable. If
+ * the variable is not defined, the variable is defined in the innermost
  * structured block. An error is thrown if not called from an array of values
  * (statements) in a structured function.
  *
@@ -212,8 +212,8 @@ afw_function_execute_continue(
  *
  * Parameters:
  *
- *   condition - (boolean) While this condition is true, the loop will
- *       continue. This is evaluated in the loop's scope.
+ *   condition - (boolean) While this condition is true, the loop will continue.
+ *       This is evaluated in the loop's scope.
  *
  *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in
@@ -319,10 +319,10 @@ afw_function_execute_for(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate an array of values (statements) while a
- * condition is true with initial and increment values. The condition is tested
- * at the beginning of the loop. If the condition is false for the first
- * iteration, the loop returns a null value. This supports for-of statement.
+ * This function will evaluate an array of values (statements) while a condition
+ * is true with initial and increment values. The condition is tested at the
+ * beginning of the loop. If the condition is false for the first iteration, the
+ * loop returns a null value. This supports for-of statement.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -395,8 +395,8 @@ afw_function_execute_for_of(
  *
  * Parameters:
  *
- *   condition - (boolean) If true, parameter 'then' is evaluated for result.
- *       If false, parameter 'else' is evaluated.
+ *   condition - (boolean) If true, parameter 'then' is evaluated for result. If
+ *       false, parameter 'else' is evaluated.
  *
  *   then - (array) This is the body of a structured block that is evaluated if
  *       'condition' is true. See the 'body' parameter of the 'block' function
@@ -436,10 +436,10 @@ afw_function_execute_if(
  *
  * See afw_function_bindings.h for more information.
  *
- * Declare one or more statically scoped variable locations local to the
- * current script block and optionally assign them an initial value. These
- * variables can be accessed and assigned different values from the current
- * block and inner blocks.
+ * Declare one or more statically scoped variable locations local to the current
+ * script block and optionally assign them an initial value. These variables can
+ * be accessed and assigned different values from the current block and inner
+ * blocks.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -486,8 +486,8 @@ afw_function_execute_let(
  *
  * See afw_function_bindings.h for more information.
  *
- * This is a special function that can be called to rethrow an error inside of
- * a catch block. If called outside of a catch body, an error is thrown.
+ * This is a special function that can be called to rethrow an error inside of a
+ * catch block. If called outside of a catch body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -541,8 +541,8 @@ afw_function_execute_rethrow(
  * Parameters:
  *
  *   value - (optional any dataType) The value to evaluate that the outermost
- *       block will return. If not specified, the last evaluated value or a
- *       null value will be returned.
+ *       block will return. If not specified, the last evaluated value or a null
+ *       value will be returned.
  *
  * Returns:
  *
@@ -586,11 +586,11 @@ afw_function_execute_return(
  * Parameters:
  *
  *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters and must return a boolean. The
- *       first parameter passed is the evaluated value of the value1 parameter
- *       and the second is the value2 from a case clause. This predicate will
- *       often be 'eqx' to use the exactly equal function but can also be any
- *       other function such as 'regexp_match' or a lambda function.
+ *       predicate is passed two parameters and must return a boolean. The first
+ *       parameter passed is the evaluated value of the value1 parameter and the
+ *       second is the value2 from a case clause. This predicate will often be
+ *       'eqx' to use the exactly equal function but can also be any other
+ *       function such as 'regexp_match' or a lambda function.
  *
  *   value1 - (any dataType) The first parameter passed to the predicate.
  *
@@ -598,12 +598,11 @@ afw_function_execute_return(
  *       which are pairs of a value2 parameter followed by a statement list or
  *       undefined parameter. One value2 can be undefined to indicate the
  *       default case clause.
- *       
- *       For the first value2 that is undefined or calling the predicate
- *       returns true, the statement list followed by any statement lists of
- *       subsequent case clauses are executed until a break or return is
- *       encountered. The predicate is called with value1 and the case clause's
- *       value2.
+ * 
+ *       For the first value2 that is undefined or calling the predicate returns
+ *       true, the statement list followed by any statement lists of subsequent
+ *       case clauses are executed until a break or return is encountered. The
+ *       predicate is called with value1 and the case clause's value2.
  *
  * Returns:
  *
@@ -633,10 +632,10 @@ afw_function_execute_switch(
  *
  * See afw_function_bindings.h for more information.
  *
- * This throws an error that can be caught by a try/catch block. An error
- * object of object type _AdaptiveError_ will be available in the catch block.
- * Its 'id' property will be set to 'throw'. The other properties set based on
- * the parameters specified and where this function is called.
+ * This throws an error that can be caught by a try/catch block. An error object
+ * of object type _AdaptiveError_ will be available in the catch block. Its 'id'
+ * property will be set to 'throw'. The other properties set based on the
+ * parameters specified and where this function is called.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -715,16 +714,16 @@ afw_function_execute_throw(
  *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
- *   finally - (optional array) This is an array of values (statements) that
- *       are evaluated after the try and catch statements even if an error
- *       occurs. Each value in body is evaluated in order until the end of the
- *       list or until a 'break', 'continue', 'return' or 'throw' function is
+ *   finally - (optional array) This is an array of values (statements) that are
+ *       evaluated after the try and catch statements even if an error occurs.
+ *       Each value in body is evaluated in order until the end of the list or
+ *       until a 'break', 'continue', 'return' or 'throw' function is
  *       encountered.
  *
  *   catch - (optional array) This is an array of values (statements) that are
- *       evaluated when an error is thrown while evaluating the body. Each
- *       value in body is evaluated in order until the end of the list or until
- *       a 'break', 'continue', 'return' or 'throw' function is encountered.
+ *       evaluated when an error is thrown while evaluating the body. Each value
+ *       in body is evaluated in order until the end of the list or until a
+ *       'break', 'continue', 'return' or 'throw' function is encountered.
  *
  *   error - (optional object _AdaptiveObjectType_) The error object thrown.
  *       This is only available in the catch block. See adaptive object type
@@ -761,10 +760,10 @@ afw_function_execute_try(
  *
  * This creates a new structured block with a new nested variable scope.
  * 
- * This function will evaluate an array of values (statements) while a
- * condition is true. The condition is tested at the beginning of the loop. If
- * the condition is false for the first iteration, the loop returns a null
- * value. See the related functions 'break', 'continue', 'return' and 'throw'.
+ * This function will evaluate an array of values (statements) while a condition
+ * is true. The condition is tested at the beginning of the loop. If the
+ * condition is false for the first iteration, the loop returns a null value.
+ * See the related functions 'break', 'continue', 'return' and 'throw'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -780,8 +779,8 @@ afw_function_execute_try(
  *
  * Parameters:
  *
- *   condition - (boolean) While this condition is true, the loop will
- *       continue. This is evaluated in the loop's scope.
+ *   condition - (boolean) While this condition is true, the loop will continue.
+ *       This is evaluated in the loop's scope.
  *
  *   body - (array) This is an array of values (statements) that are evaluated
  *       for each iteration of the loop. Each value in body is evaluated in

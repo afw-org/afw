@@ -12,8 +12,8 @@ interface IAnyObject {
 }
 
 /**
- * This function returns an object containing meta information for an
- * adaptive value.
+ * This function returns an object containing meta information for an adaptive
+ * value.
  * 
  * @param {} value - This is the adaptive value whose meta object is to be
  *     returned.

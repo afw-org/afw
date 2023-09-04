@@ -323,8 +323,8 @@ def le_object(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for object arg1 is less than or equal to object arg2 and return
-    the boolean result.
+    Checks for object arg1 is less than or equal to object arg2 and return the
+    boolean result.
 
     Args:
         arg1 (dict):
@@ -355,8 +355,8 @@ def local_object_meta_set_ids(session, object, objectType, objectId, adaptorId=N
     """
     Set ids in a local mutable object
 
-    This is used to set the ids in a local mutable object. The ids are used
-    to construct a local path.
+    This is used to set the ids in a local mutable object. The ids are used to
+    construct a local path.
 
     Args:
         object (dict): Object to set ids in.
@@ -429,8 +429,8 @@ def ne_object(session, arg1, arg2):
 
     Determine if object arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (dict):
@@ -613,8 +613,8 @@ def property_get(session, object, name, defaultValue=None):
     """
     Get property value
 
-    Return the value of a property of an object. If property is not
-    available, return a default or null value.
+    Return the value of a property of an object. If property is not available,
+    return a default or null value.
 
     Args:
         object (dict): Object to get property from.

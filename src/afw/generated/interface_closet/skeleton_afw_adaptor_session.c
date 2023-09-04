@@ -157,8 +157,7 @@ impl_afw_adaptor_session_delete_object(
 }
 
 /*
- * Implementation of method begin_transaction for interface
- * afw_adaptor_session.
+ * Implementation of method begin_transaction for interface afw_adaptor_session.
  */
 const afw_adaptor_transaction_t *
 impl_afw_adaptor_session_begin_transaction(

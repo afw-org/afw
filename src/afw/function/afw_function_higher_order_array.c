@@ -291,8 +291,8 @@ impl_bag_of_bag(
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first array in values or until false is
- *       returned. If no calls return false, the result is true.
+ *       for each value in the first array in values or until false is returned.
+ *       If no calls return false, the result is true.
  *
  *   values - (1 or more any dataType) These are the parameters passed to
  *       predicate with the exception that the first array is passed one value
@@ -363,9 +363,9 @@ afw_function_execute_all_of_all(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function returns true if the result of calling predicate with all of
- * the combination of values from array1 and any of the values of array2
- * returns true.
+ * This function returns true if the result of calling predicate with all of the
+ * combination of values from array1 and any of the values of array2 returns
+ * true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -382,9 +382,9 @@ afw_function_execute_all_of_all(
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from array1 and the
- *       second is a value from array2.
+ *   predicate - (function (value1: any, value2: any): boolean) The predicate is
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
  *   array1 - (array)
  *
@@ -501,8 +501,8 @@ afw_function_execute_any_of_all(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function returns true if the result of calling predicate with any of
- * the combination of values from array1 and array2 returns true.
+ * This function returns true if the result of calling predicate with any of the
+ * combination of values from array1 and array2 returns true.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -519,9 +519,9 @@ afw_function_execute_any_of_all(
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate
- *       is passed two parameters, the first is a value from array1 and the
- *       second is a value from array2.
+ *   predicate - (function (value1: any, value2: any): boolean) The predicate is
+ *       passed two parameters, the first is a value from array1 and the second
+ *       is a value from array2.
  *
  *   array1 - (array)
  *
@@ -656,8 +656,7 @@ impl_find_cb(impl_call_over_array_cb_e_t *e)
  * Parameters:
  *
  *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if an array entry passes the
- *       test.
+ *       function that is called to determine if an array entry passes the test.
  *
  *   values - (1 or more any dataType) These are the values passed to the
  *       predicate with the exception that the first array is passed as the
@@ -768,12 +767,11 @@ afw_function_execute_map(
  *
  * See afw_function_bindings.h for more information.
  *
- * Reduce calls functor for each value in array with two parameters,
- * accumulator and value, and must return a value of any dataType. Parameter
- * accumulator is the reduce() accumulator parameter value on first call and
- * the return value of previous functor() call on subsequent calls. The
- * dataType of the return value should normally be the same as accumulator, but
- * this is not required.
+ * Reduce calls functor for each value in array with two parameters, accumulator
+ * and value, and must return a value of any dataType. Parameter accumulator is
+ * the reduce() accumulator parameter value on first call and the return value
+ * of previous functor() call on subsequent calls. The dataType of the return
+ * value should normally be the same as accumulator, but this is not required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -794,9 +792,9 @@ afw_function_execute_map(
  *       called for each value in an array. The returned value is passed as the
  *       accumulator parameter on the next call to functor().
  *
- *   accumulator - (any dataType) This is an initial accumulator value passed
- *       to functor(). Normally, the dataType of accumulator will be the
- *       dataTape for the reduce() return value, but this is not required.
+ *   accumulator - (any dataType) This is an initial accumulator value passed to
+ *       functor(). Normally, the dataType of accumulator will be the dataTape
+ *       for the reduce() return value, but this is not required.
  *
  *   array - (array) This is an array to be reduced.
  *
@@ -917,11 +915,11 @@ impl_quick_sort(
  *
  * See afw_function_bindings.h for more information.
  *
- * This produces an array with values sorted based on result of
- * compareFunction. The compareFunction is passed two values from the array and
- * must return an integer less than 0 if the first value is less than the
- * second value, 0 if they are equal, and a integer greater than 0 if the first
- * value is greater than the second value.
+ * This produces an array with values sorted based on result of compareFunction.
+ * The compareFunction is passed two values from the array and must return an
+ * integer less than 0 if the first value is less than the second value, 0 if
+ * they are equal, and a integer greater than 0 if the first value is greater
+ * than the second value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

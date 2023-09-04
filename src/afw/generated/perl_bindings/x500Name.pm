@@ -75,9 +75,9 @@ Makes an array from values
 
 =head3 eq_x500Name
 
-Determine if x500Name arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+Determine if x500Name arg1 is equal to the value of arg2 converted to the data
+type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -91,8 +91,8 @@ Checks for equal
 =head3 eqx_x500Name
 
 Determine if for x500Name arg1 is equal to the value and data type of arg2
-then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -174,8 +174,8 @@ Value to check
 
 =head3 le_x500Name
 
-Checks for x500Name arg1 is less than or equal to x500Name arg2 and return
-the boolean result.
+Checks for x500Name arg1 is less than or equal to x500Name arg2 and return the
+boolean result.
 Checks for less than or equal
 
 =head4 Parameters
@@ -217,8 +217,8 @@ Checks if x500Name matches
 =head3 ne_x500Name
 
 Determine if x500Name arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -232,8 +232,8 @@ Checks for not equal
 =head3 nex_x500Name
 
 Determine if for x500Name arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -257,8 +257,8 @@ Converts a one value array to a x500Name value
 
 =head3 regexp_match_x500Name
 
-Checks whether x500Name value matches the regular expression regexp and
-return the boolean result.
+Checks whether x500Name value matches the regular expression regexp and return
+the boolean result.
 Search for a match using a regular expression
 
 =head4 Parameters
@@ -301,8 +301,8 @@ The second array.
 
 =head3 to_string_x500Name
 
-Converts x500Name value to string. For array values, the to_string() value
-for each entry is returned separated with commas.
+Converts x500Name value to string. For array values, the to_string() value for
+each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters

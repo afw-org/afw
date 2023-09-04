@@ -277,19 +277,19 @@ def compile(session, source, listing=None):
     """
     Compile <dataType> value
 
-    Compile `<dataType>` value and return either an unevaluated adaptive
-    value or a string containing the compiler listing.
+    Compile `<dataType>` value and return either an unevaluated adaptive value
+    or a string containing the compiler listing.
 
     Args:
         source (object): `<dataType>` string to compile
 
-        listing (object): If specified, a compiler listing is produced
-        instead of an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced instead
+        of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        used for indentation. If 0 is specified, no whitespace is added to the
+        resulting string. If 1 through 10 is specified, that number of spaces
+        is used.
 
     Returns:
         object:
@@ -573,12 +573,11 @@ def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
         source (object): `<dataType>` string to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         object:
@@ -635,8 +634,8 @@ def ge(session, arg1, arg2):
     """
     Checks for greater than or equal
 
-    Checks for `<dataType>` arg1 is greater than or equal to `<dataType>`
-    arg2 and return the boolean result.
+    Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
+    and return the boolean result.
 
     Args:
         arg1 (object):
@@ -1008,8 +1007,8 @@ def lt(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return
-    the boolean result.
+    Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
+    boolean result.
 
     Args:
         arg1 (object):
@@ -1040,8 +1039,8 @@ def match(session, arg1, arg2):
     """
     Checks if x500Name matches
 
-    Returns true if arg1 matches some terminal sequence of RDNs from arg2
-    when compared using `equal_<dataType>`.
+    Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
+    compared using `equal_<dataType>`.
 
     Args:
         arg1 (object):
@@ -1072,8 +1071,7 @@ def max(session, values):
     """
     Maximum value
 
-    Return the `<dataType>` value that is greater than or equal to the
-    others.
+    Return the `<dataType>` value that is greater than or equal to the others.
 
     Args:
         values (object):
@@ -1161,8 +1159,7 @@ def multiply(session, values):
     """
     Multiply numbers
 
-    Multiply 2 or more `<dataType>` values and return the `<dataType>`
-    result.
+    Multiply 2 or more `<dataType>` values and return the `<dataType>` result.
 
     Args:
         values (object):
@@ -1190,10 +1187,10 @@ def ne(session, arg1, arg2):
     """
     Checks for not equal
 
-    Determine if `<dataType>` arg1 is not equal to the value of arg2
-    converted to the data type of arg1 then return the boolean result. Use
-    'nex' ('!==') instead if you want true to be returned if arg1 and arg2's
-    data type don't match.
+    Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
+    to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -1342,8 +1339,8 @@ def one_and_only(session, array):
     """
     Converts a one value array to a <dataType> value
 
-    This converts an array of `<dataType>` values that contains one value to
-    a single `<dataType>` value.
+    This converts an array of `<dataType>` values that contains one value to a
+    single `<dataType>` value.
 
     Args:
         array (list):

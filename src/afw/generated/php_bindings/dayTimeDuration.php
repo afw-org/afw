@@ -26,8 +26,8 @@ class dayTimeDuration
     /**
      * at_least_one_member_of_dayTimeDuration()
      *
-     * Returns boolean true if at least one value in dayTimeDuration array1
-     * is in dayTimeDuration array2.
+     * Returns boolean true if at least one value in dayTimeDuration array1 is
+     * in dayTimeDuration array2.
      *
      * @param array $array1 The first array.
      * @param array $array2 The second array.
@@ -149,8 +149,8 @@ class dayTimeDuration
      * eqx_dayTimeDuration()
      *
      * Determine if for dayTimeDuration arg1 is equal to the value and data
-     * type of arg2 then return the boolean result. Use 'eq' ('==') instead
-     * if you want arg2 to be converted to the data type of arg1 before
+     * type of arg2 then return the boolean result. Use 'eq' ('==') instead if
+     * you want arg2 to be converted to the data type of arg1 before
      * comparison.
      *
      * @param dayTimeDuration $arg1
@@ -250,8 +250,8 @@ class dayTimeDuration
     /**
      * is_dayTimeDuration()
      *
-     * Checks whether value is dataType dayTimeDuration and return the
-     * boolean result.
+     * Checks whether value is dataType dayTimeDuration and return the boolean
+     * result.
      *
      * @param  $value Value to check
      *
@@ -375,10 +375,10 @@ class dayTimeDuration
     /**
      * nex_dayTimeDuration()
      *
-     * Determine if for dayTimeDuration arg1 is not equal to the value or
-     * data type of arg2 then return the boolean result. Use 'ne' ('!=')
-     * instead if you want arg2 to be converted to the data type of arg1
-     * before comparison.
+     * Determine if for dayTimeDuration arg1 is not equal to the value or data
+     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
+     * you want arg2 to be converted to the data type of arg1 before
+     * comparison.
      *
      * @param dayTimeDuration $arg1
      * @param  $arg2
@@ -450,8 +450,8 @@ class dayTimeDuration
     /**
      * subset_dayTimeDuration()
      *
-     * Returns boolean true if the unique values in dayTimeDuration array1
-     * are all in dayTimeDuration array2.
+     * Returns boolean true if the unique values in dayTimeDuration array1 are
+     * all in dayTimeDuration array2.
      *
      * @param array $array1 The first array.
      * @param array $array2 The second array.

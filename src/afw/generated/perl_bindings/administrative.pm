@@ -52,8 +52,8 @@ Load extension by module path
     $module_path
 
 This is the path to the dso containing the extension. If the extension is
-installed in the normal place, the library name without a file extension
-(.so) will suffice.
+installed in the normal place, the library name without a file extension (.so)
+will suffice.
 
 =head3 flag_get_active
 
@@ -107,11 +107,10 @@ added.
 
 =head3 flag_replace_defaults
 
-Completely replace the array of the flagId of flags that are used to
-determine the default active flags when an execution context (xctx) is
-created. This array can contain the flagId of flags that have not yet been
-registered. These flags and the flags they include are set as the active
-default flags.
+Completely replace the array of the flagId of flags that are used to determine
+the default active flags when an execution context (xctx) is created. This
+array can contain the flagId of flags that have not yet been registered. These
+flags and the flags they include are set as the active default flags.
 
 This change only lasts for the life of the current adaptive environment (e.g.
 until the adaptive server or afw command ends). If you want the change to

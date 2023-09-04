@@ -144,10 +144,10 @@ class anyURI
     /**
      * eq_anyURI()
      *
-     * Determine if anyURI arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if anyURI arg1 is equal to the value of arg2 converted to the
+     * data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param anyURI $arg1
      * @param  $arg2
@@ -283,8 +283,8 @@ class anyURI
      *
      * @param anyURI $value The anyURI value to search.
      * @param string $subString Substring to search for.
-     * @param integer $startIndex Optional start index for search if
-     *                            different than start of string.
+     * @param integer $startIndex Optional start index for search if different
+     *                            than start of string.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -355,8 +355,8 @@ class anyURI
     /**
      * is_in_anyURI()
      *
-     * Checks whether anyURI value is in array of anyURI array and returns
-     * the boolean result.
+     * Checks whether anyURI value is in array of anyURI array and returns the
+     * boolean result.
      *
      * @param anyURI $value
      * @param array $array
@@ -385,8 +385,8 @@ class anyURI
      *
      * @param anyURI $value The anyURI value to search.
      * @param string $subString Substring to search for.
-     * @param integer $startIndex Optional start index for search if
-     *                            different than start of string.
+     * @param integer $startIndex Optional start index for search if different
+     *                            than start of string.
      *
      * @return integer Zero-based index of subString or -1 if not found.
      */
@@ -435,9 +435,9 @@ class anyURI
     /**
      * length_anyURI()
      *
-     * This is a polymorphic function where anyURI can be any of the
-     * supported data types. Return the integer number of entries in datatype
-     * array or codepoints in others.
+     * This is a polymorphic function where anyURI can be any of the supported
+     * data types. Return the integer number of entries in datatype array or
+     * codepoints in others.
      *
      * @param anyURI $value Returns the number of entries in an array or code
      *                      points in others.
@@ -485,10 +485,10 @@ class anyURI
     /**
      * ne_anyURI()
      *
-     * Determine if anyURI arg1 is not equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if anyURI arg1 is not equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param anyURI $arg1
      * @param  $arg2
@@ -616,9 +616,8 @@ class anyURI
      * @param anyURI $value The original anyURI value.
      * @param string $regexp A regular expression to use for search.
      * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The
-     *                       default is 1. Specify -1 to replace all
-     *                       occurrences.
+     * @param integer $limit This is the maximum times to replace. The default
+     *                       is 1. Specify -1 to replace all occurrences.
      *
      * @return anyURI A anyURI value with the matched string(s) replaced.
      */
@@ -672,9 +671,8 @@ class anyURI
      * @param anyURI $value The original anyURI value.
      * @param string $match The string to replace.
      * @param string $replacement The replacement string.
-     * @param integer $limit This is the maximum times to replace. The
-     *                       default is 1. Specify -1 to replace all
-     *                       occurrences.
+     * @param integer $limit This is the maximum times to replace. The default
+     *                       is 1. Specify -1 to replace all occurrences.
      *
      * @return anyURI A anyURI value with the matched string(s) replaced.
      */

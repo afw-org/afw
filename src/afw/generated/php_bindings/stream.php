@@ -97,35 +97,30 @@ class stream
      * @param string $path This is the path to the file to open. The
      *                     rootDirectory of the path is defined in the
      *                     application object.
-     * @param string $mode This is the access mode string. Values can be:
-     *                     r - Open an existing file text file for read.
-     *                     w - Open a text file for writing. If the file
-     *                     does not exist, it will be created.
-     *                     a - Open a text file for writing additional data
-     *                     to the end. If the file does not exist, it will be
-     *                     created.
-     *                     r+ - Open a text file for both reading and
-     *                     writing.
-     *                     w+ - Open a text file for both reading and
-     *                     writing. If the file exists, it will be
-     *                     overwritten. If the file does not exist, it will
-     *                     be created.
-     *                     a+ - Open a text file for both reading and
-     *                     writing. Reading will begin at the start of the
-     *                     file while writing will be appended to the end.
-     *                     
+     * @param string $mode This is the access mode string. Values can be:   r
+     *                     - Open an existing file text file for read.   w -
+     *                     Open a text file for writing. If the file does not
+     *                     exist, it will be created.   a - Open a text file
+     *                     for writing additional data to the end. If the file
+     *                     does not exist, it will be created.   r+ - Open a
+     *                     text file for both reading and writing.   w+ - Open
+     *                     a text file for both reading and writing. If the
+     *                     file exists, it will be overwritten. If the file
+     *                     does not exist, it will be created.   a+ - Open a
+     *                     text file for both reading and writing. Reading
+     *                     will begin at the start of the file while writing
+     *                     will be appended to the end.
+     * 
      *                     All of these modes expect data type string. If you
      *                     are using data type base64Binary or hexBinary you
      *                     can use corresponding binary modes, 'rb', 'wb',
-     *                     'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and
-     *                     'a+b'.
+     *                     'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
      * @param boolean $autoFlush If specified and true, this will
      *                           automatically flush the stream's buffers
      *                           after every write.
      *
-     * @return integer The streamNumber for the streamId or -1 if there was
-     *                 an error. Use get_stream_error() for error
-     *                 information.
+     * @return integer The streamNumber for the streamId or -1 if there was an
+     *                 error. Use get_stream_error() for error information.
      */
     public function open_file(, $streamId, $path, $mode, $autoFlush = null)
     {
@@ -157,9 +152,8 @@ class stream
      *                           automatically flush the stream's buffers
      *                           after every write.
      *
-     * @return integer The streamNumber for the streamId or -1 if there was
-     *                 an error. Use get_stream_error() for error
-     *                 information.
+     * @return integer The streamNumber for the streamId or -1 if there was an
+     *                 error. Use get_stream_error() for error information.
      */
     public function open_response(, $streamId, $autoFlush = null)
     {
@@ -191,9 +185,8 @@ class stream
      *                           automatically flush the stream's buffers
      *                           after every write.
      *
-     * @return integer The streamNumber for the streamId or -1 if there was
-     *                 an error. Use get_stream_error() for error
-     *                 information.
+     * @return integer The streamNumber for the streamId or -1 if there was an
+     *                 error. Use get_stream_error() for error information.
      */
     public function open_uri(, $streamId, $uri, $mode, $autoFlush = null)
     {
@@ -239,9 +232,9 @@ class stream
     /**
      * println()
      *
-     * Evaluate and convert 0 or more values to their string value, then
-     * write them to stdout. A newline character ('\n') is written after the
-     * last value. An undefined value is represented by `<undefined>`.
+     * Evaluate and convert 0 or more values to their string value, then write
+     * them to stdout. A newline character ('\n') is written after the last
+     * value. An undefined value is represented by `<undefined>`.
      *
      * @param  $value Values to print.
      *
@@ -263,8 +256,8 @@ class stream
     /**
      * read()
      *
-     * Read a UTF-8 text stream up to a specified number of octets. The
-     * stream must contain valid UTF-8 or an error is thrown.
+     * Read a UTF-8 text stream up to a specified number of octets. The stream
+     * must contain valid UTF-8 or an error is thrown.
      *
      * @param integer $streamNumber Stream number
      * @param  $n The maximum number of octets to read.
@@ -371,9 +364,8 @@ class stream
      *
      * @param string $streamId The id of a stream.
      *
-     * @return integer The streamNumber for the streamId or -1 if there was
-     *                 an error. Use get_stream_error() for error
-     *                 information.
+     * @return integer The streamNumber for the streamId or -1 if there was an
+     *                 error. Use get_stream_error() for error information.
      */
     public function stream(, $streamId)
     {

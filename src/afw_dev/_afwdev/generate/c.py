@@ -33,7 +33,7 @@ def get_copyright(title):
     " * Copyright (c) 2010-2023 Clemson University\n" + \
     " *\n" + \
     " */\n"
- 
+
 
 def write_copyright(fd, title):
     fd.write(get_copyright(title))
@@ -91,10 +91,10 @@ def write_wrapped(fd, max, prefix, s, continue_indent='', last_char='', trim=Fal
     # "description" that contains "plain/text".
     #
     # Doxygen considers strings enclosed in angle brackets to be links. This
-    # attempts put grave symbols around series of characters that contain angle
-    # bracket enclosed substrings. This may need to be adjusted over time but
-    # worked correctly when originally added.
-    # 
+    # attempts to put grave symbols around series of characters that contain
+    # angle bracket enclosed substrings. This may need to be adjusted over time
+    # but worked correctly when originally added.
+    #
     # Enclose strings that contain substrings enclosed with angle brackets in
     # grave symbols. If previously enclosed in single quotes, just enclose in
     # grave symbols. Don't put graves around the open/close parentheses.
@@ -104,45 +104,52 @@ def write_wrapped(fd, max, prefix, s, continue_indent='', last_char='', trim=Fal
     s = re.sub("`'", "`", s)
     s = re.sub("'`", "`", s)
 
-    end_of_line = -1
-    s_len = len(s)
-    use_len = max - len(prefix) - len(last_char) - 1
-    indent = ''
-    while True:
-        beginning_of_line = end_of_line + 1
-        if beginning_of_line >= s_len: break
+    if last_char != '':
+        max -= len(last_char)
 
-        end_of_line = beginning_of_line
-        while end_of_line < beginning_of_line + use_len and end_of_line < s_len and s[end_of_line] != '\n':
-            end_of_line += 1
+    if trim:
+        s = s.strip()
 
-        if end_of_line >= s_len:
-            end_of_line = s_len - 1
-        elif s[end_of_line] != '\n':
-            original_end_of_line = end_of_line
-            while True:
-                if s[end_of_line] == ' ': break
-                end_of_line -= 1
-                if end_of_line <= beginning_of_line:
-                    end_of_line = original_end_of_line
-                    break
+    paragraphs = s.split('\n\n')
+    paragraph_separator = ''
+    for paragraph in paragraphs:
 
-        if s[end_of_line] == '\n' or s[end_of_line] == ' ':
-            line = s[beginning_of_line:end_of_line]
+        if paragraph_separator == '':
+            line_out = prefix
+            paragraph_separator = prefix + '\n'
         else:
-            line = s[beginning_of_line:end_of_line+1]
-        if trim:
-            line = line.strip()
-        w = prefix + indent + line
-        fd.write(w)
-        if last_char is not None and last_char != '':
-            if len(w) < max - 1:
-                fd.write(' ' * (max - len(w) - 1))
-            fd.write(last_char)
+            line_out = prefix + continue_indent
+            fd.write(paragraph_separator)
 
-        fd.write('\n')
-        indent = continue_indent
-        use_len = max - len(prefix) - len(continue_indent) - 1
+        if trim:
+            paragraph = paragraph.replace('\n', ' ')
+
+        lines = paragraph.split('\n')
+        for line in lines:
+            if line == '':
+                continue
+            tokens = line.split(' ')
+            token_separator = ''
+            for token in tokens:
+                if len(line_out) + len(token) >= max:
+                    if (last_char != ''):
+                        fd.write(line_out + (' ' * (max - len(line_out))) + last_char + '\n')
+                    else:
+                        fd.write(line_out + '\n')
+                    line_out = prefix + continue_indent
+                    token_separator = ''
+                else:
+                    line_out += token_separator
+                line_out += token
+                token_separator = ' '
+            if (last_char != ''):
+                fd.write(line_out + (' ' * (max - len(line_out))) + last_char + '\n')
+            else:
+                fd.write(line_out + '\n')
+            line_out = prefix + continue_indent
+            token_separator = ''
+
+
 
 def make_quoted(s):
     r = '"'
@@ -197,7 +204,7 @@ def replace_file_copyright(srcdir_path, src_file) :
     linenumber = 0;
     with nfc.open(file_path, mode='r') as fd:
         while True:
-    
+
             # Read a line. The line might have invalid utf-8, so use try.
             linenumber += 1
             try:
@@ -242,10 +249,10 @@ def replace_file_copyright(srcdir_path, src_file) :
             #  or '//' is also considered to be the end of the copyright since there
             #  are examples in AFW source that do not have an empty line following
             #  the copyright.
-            # 
+            #
             #  This function does not parse block comment begin and end, so a blank
             #  line in the middle of a block comment will mistakenly be recognized
-            #  as the end of the copyright. It is expected that there will at least 
+            #  as the end of the copyright. It is expected that there will at least
             #  an asterisk instead of a totally empty line.
             #
             #  The first line that contains text is used as the title for the

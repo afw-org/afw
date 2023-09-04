@@ -55,8 +55,8 @@
  *       added. Variable custom::objectType can be used to access this value in
  *       model expressions.
  *
- *   object - (object) This is the object to add. Variable custom::object can
- *       be used to access this value in model expressions.
+ *   object - (object) This is the object to add. Variable custom::object can be
+ *       used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
  *       object to add. The adaptor may ignore this. Variable custom::objectId
@@ -66,8 +66,8 @@
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -129,8 +129,8 @@ afw_function_execute_model_default_add_object_action(
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -187,30 +187,29 @@ afw_function_execute_model_default_delete_object_action(
  *       in model expressions.
  *
  *   objectId - (string) This is the objectId of object to modify. Variable
- *       custom::objectId can be used to access this value in model
- *       expressions.
+ *       custom::objectId can be used to access this value in model expressions.
  *
  *   entries - (array) This is an array of modifications. Variable
  *       custom::actions can be used to access this value in model expressions.
  *       Entries are of the form:
- *       
+ * 
  *           [
  *               'add_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'remove_property',
  *               'property name' or ['property name', ... ]
  *           ]
- *       
+ * 
  *           [
  *               'remove_value',
  *               'property name' or ['property name', ... ],
  *               value
  *           ]
- *       
+ * 
  *           [
  *               'set_property',
  *               'property name' or ['property name', ... ],
@@ -221,8 +220,8 @@ afw_function_execute_model_default_delete_object_action(
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -249,8 +248,8 @@ afw_function_execute_model_default_modify_object_action(
  * performed if a onReplaceObject parameter is not specified on the associated
  * _AdaptiveModelObjectType_. The action is not performed, but be aware that
  * functions called while producing the _AdaptiveAction_ object may cause side
- * effects. This function can be called as part of a onReplace expression or
- * for testing.
+ * effects. This function can be called as part of a onReplace expression or for
+ * testing.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -279,8 +278,7 @@ afw_function_execute_model_default_modify_object_action(
  *       in model expressions.
  *
  *   objectId - (string) The objectId of object to replace. Variable
- *       custom::objectId can be used to access this value in model
- *       expressions.
+ *       custom::objectId can be used to access this value in model expressions.
  *
  *   object - (object) This is the object to replace. Variable custom::object
  *       can be used to access this value in model expressions.
@@ -289,8 +287,8 @@ afw_function_execute_model_default_modify_object_action(
  *       producing results. If not specified, the adaptor's current model will
  *       be used.
  *
- *   context - (optional object _AdaptiveContextType_) This specifies
- *       additional context information available to model expressions.
+ *   context - (optional object _AdaptiveContextType_) This specifies additional
+ *       context information available to model expressions.
  *
  * Returns:
  *
@@ -313,9 +311,9 @@ afw_function_execute_model_default_replace_object_action(
  *
  * See afw_function_bindings.h for more information.
  *
- * This is the function signature for current:mapBackObject used by
- * onGetObjects and onRetrieveObjects. Calling this directly will throw a 'Do
- * not call directly' error.
+ * This is the function signature for current:mapBackObject used by onGetObjects
+ * and onRetrieveObjects. Calling this directly will throw a 'Do not call
+ * directly' error.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

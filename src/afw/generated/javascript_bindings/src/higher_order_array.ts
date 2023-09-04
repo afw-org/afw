@@ -14,9 +14,9 @@ interface IAnyObject {
 /**
  * Returns true if all values in an array pass the predicate test.
  * 
- * @param {function} predicate - This function is called for each value in
- *     the first array in values or until false is returned. If no calls
- *     return false, the result is true.
+ * @param {function} predicate - This function is called for each value in the
+ *     first array in values or until false is returned. If no calls return
+ *     false, the result is true.
  * 
  * @param {} values - These are the parameters passed to predicate with the
  *     exception that the first array is passed one value at a time. At least
@@ -36,8 +36,8 @@ export function afwAllOf(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * Returns true if the result of calling predicate with all of the
- * combination of values from array1 and array2 returns true.
+ * Returns true if the result of calling predicate with all of the combination
+ * of values from array1 and array2 returns true.
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
  *     first is a value from array1 and the second is a value from array2.
@@ -89,9 +89,9 @@ export function afwAllOfAny(client : any, predicate : any, array1 : any[], array
 /**
  * Returns true if any value in an array pass the predicate test.
  * 
- * @param {function} predicate - This function is called for each value in
- *     the first array in values or until true is returned. If no calls
- *     return true, the result is false.
+ * @param {function} predicate - This function is called for each value in the
+ *     first array in values or until true is returned. If no calls return
+ *     true, the result is false.
  * 
  * @param {} values - These are the parameters passed to predicate with the
  *     exception that the first array is passed one value at a time. At least
@@ -111,9 +111,8 @@ export function afwAnyOf(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * Returns true if the result of calling predicate with all of the
- * combination of values from array2 and any of the values of array1 returns
- * true.
+ * Returns true if the result of calling predicate with all of the combination
+ * of values from array2 and any of the values of array1 returns true.
  * 
  * @param {function} predicate - The predicate is passed two parameters, the
  *     first is a value from array1 and the second is a value from array2.
@@ -241,8 +240,8 @@ export function afwMap(client : any, functor : any, values : any) : any {
  * but this is not required.
  * 
  * @param {function} functor - This function is called for each value in an
- *     array. The returned value is passed as the accumulator parameter on
- *     the next call to functor().
+ *     array. The returned value is passed as the accumulator parameter on the
+ *     next call to functor().
  * 
  * @param {} accumulator - This is an initial accumulator value passed to
  *     functor(). Normally, the dataType of accumulator will be the dataTape

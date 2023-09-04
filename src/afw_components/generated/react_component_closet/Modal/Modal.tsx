@@ -22,8 +22,8 @@ import {ctx} from "@afw/react";
  * A layout container that displays content inside a popup.
  * 
  * This component container is visible when a target element is clicked. It's
- * used to quickly show or grab input from the user in a popup area and can
- * be dismissed.
+ * used to quickly show or grab input from the user in a popup area and can be
+ * dismissed.
  * 
  */
 export const Modal : React.FunctionComponent<IModalProps> = (props) => {

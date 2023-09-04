@@ -52,8 +52,8 @@
  *
  *   objectType - (optional string) Object Type(s) this index may apply to.
  *
- *   filter - (optional string) Expression to determine if this index applies
- *       to a particular object.
+ *   filter - (optional string) Expression to determine if this index applies to
+ *       a particular object.
  *
  *   options - (optional string) Indexing options.
  *

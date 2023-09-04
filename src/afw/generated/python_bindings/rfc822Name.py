@@ -166,8 +166,8 @@ def ge_rfc822Name(session, arg1, arg2):
     """
     Checks for greater than or equal
 
-    Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2
-    and return the boolean result.
+    Checks for rfc822Name arg1 is greater than or equal to rfc822Name arg2 and
+    return the boolean result.
 
     Args:
         arg1 (object):
@@ -294,8 +294,7 @@ def is_rfc822Name(session, value):
     """
     Checks whether value is dataType rfc822Name
 
-    Checks whether value is dataType rfc822Name and return the boolean
-    result.
+    Checks whether value is dataType rfc822Name and return the boolean result.
 
     Args:
         value (object): Value to check
@@ -387,8 +386,8 @@ def match_rfc822Name(session, arg1, arg2):
     """
     Checks if x500Name matches
 
-    Returns true if arg1 matches some terminal sequence of RDNs from arg2
-    when compared using equal_rfc822Name.
+    Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
+    compared using equal_rfc822Name.
 
     Args:
         arg1 (object):
@@ -420,9 +419,9 @@ def ne_rfc822Name(session, arg1, arg2):
     Checks for not equal
 
     Determine if rfc822Name arg1 is not equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use 'nex'
-    ('!==') instead if you want true to be returned if arg1 and arg2's data
-    type don't match.
+    to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -453,9 +452,9 @@ def nex_rfc822Name(session, arg1, arg2):
     """
     Checks for not equal value or type
 
-    Determine if for rfc822Name arg1 is not equal to the value or data type
-    of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
-    want arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for rfc822Name arg1 is not equal to the value or data type of
+    arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
+    arg2 to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):
@@ -668,8 +667,8 @@ def union_rfc822Name(session, arrays):
     """
     Returns union of two or more string arrays
 
-    Returns an array of rfc822Name contains all of the unique values in two
-    or more array of rfc822Name values.
+    Returns an array of rfc822Name contains all of the unique values in two or
+    more array of rfc822Name values.
 
     Args:
         arrays (list): Two or more arrays.

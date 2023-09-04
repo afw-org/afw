@@ -26,8 +26,8 @@ class base64Binary
     /**
      * at_least_one_member_of_base64Binary()
      *
-     * Returns boolean true if at least one value in base64Binary array1 is
-     * in base64Binary array2.
+     * Returns boolean true if at least one value in base64Binary array1 is in
+     * base64Binary array2.
      *
      * @param array $array1 The first array.
      * @param array $array2 The second array.
@@ -97,8 +97,7 @@ class base64Binary
     /**
      * base64Binary()
      *
-     * Converts value to data type base64Binary returning base64Binary
-     * result.
+     * Converts value to data type base64Binary returning base64Binary result.
      *
      * @param  $value Value to convert
      *
@@ -294,8 +293,8 @@ class base64Binary
     /**
      * is_in_base64Binary()
      *
-     * Checks whether base64Binary value is in array of base64Binary array
-     * and returns the boolean result.
+     * Checks whether base64Binary value is in array of base64Binary array and
+     * returns the boolean result.
      *
      * @param base64Binary $value
      * @param array $array
@@ -319,8 +318,8 @@ class base64Binary
     /**
      * le_base64Binary()
      *
-     * Checks for base64Binary arg1 is less than or equal to base64Binary
-     * arg2 and return the boolean result.
+     * Checks for base64Binary arg1 is less than or equal to base64Binary arg2
+     * and return the boolean result.
      *
      * @param base64Binary $arg1
      * @param  $arg2
@@ -397,8 +396,8 @@ class base64Binary
      * nex_base64Binary()
      *
      * Determine if for base64Binary arg1 is not equal to the value or data
-     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead
-     * if you want arg2 to be converted to the data type of arg1 before
+     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead if
+     * you want arg2 to be converted to the data type of arg1 before
      * comparison.
      *
      * @param base64Binary $arg1
@@ -446,8 +445,8 @@ class base64Binary
     /**
      * set_equals_base64Binary()
      *
-     * Returns boolean true if base64Binary array1 and base64Binary array2
-     * are subsets of each other and return the boolean result.
+     * Returns boolean true if base64Binary array1 and base64Binary array2 are
+     * subsets of each other and return the boolean result.
      *
      * @param array $array1
      * @param array $array2

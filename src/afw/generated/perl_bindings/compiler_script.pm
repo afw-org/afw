@@ -64,8 +64,8 @@ the last evaluated value or a null value will be returned.
 =head3 const
 
 Define one or more statically scoped constants local to the current script
-block with a permanent value. These constants can be accessed from the
-current block and inner blocks, but can not be assigned a different value.
+block with a permanent value. These constants can be accessed from the current
+block and inner blocks, but can not be assigned a different value.
 Define one or more constants in the current block
 
 =head4 Parameters
@@ -85,8 +85,8 @@ The type of the constant(s).
 =head3 continue
 
 This is a special function that can be called in the body of a loop function
-to test the condition and, if true, start evaluating the body again. If
-called outside of a loop body, an error is thrown.
+to test the condition and, if true, start evaluating the body again. If called
+outside of a loop body, an error is thrown.
 Continue at beginning of a loop
 
 =head4 Parameters
@@ -104,8 +104,8 @@ Evaluate an array of values (statements) at least once while a condition is true
 
     $condition
 
-While this condition is true, the loop will continue. This is evaluated in
-the loop's scope.
+While this condition is true, the loop will continue. This is evaluated in the
+loop's scope.
 
     $body
 
@@ -118,8 +118,8 @@ encountered.
 
 This creates a new structured block with a new nested variable scope.
 
-This function loops while condition is true. If the condition is false for
-the first iteration, the loop returns a null value.
+This function loops while condition is true. If the condition is false for the
+first iteration, the loop returns a null value.
 Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
 =head4 Parameters
@@ -252,9 +252,9 @@ All combinations true
     $predicate
 
 The predicate is passed two parameters and must return a boolean. The first
-parameter passed is the evaluated value of the value1 parameter and the
-second is the value2 from a case clause. This predicate will often be 'eqx'
-to use the exactly equal function but can also be any other function such as
+parameter passed is the evaluated value of the value1 parameter and the second
+is the value2 from a case clause. This predicate will often be 'eqx' to use
+the exactly equal function but can also be any other function such as
 'regexp_match' or a lambda function.
 
     $value1
@@ -307,8 +307,8 @@ Evaluate an array of values (statements) as a try block with optional catch and 
 
     $body
 
-This is an array of values (statements) that are evaluated. Each value in
-body is evaluated in order until the end of the list or until a 'break',
+This is an array of values (statements) that are evaluated. Each value in body
+is evaluated in order until the end of the list or until a 'break',
 'continue', 'return' or 'throw' function is encountered.
 
     $finally
@@ -336,16 +336,16 @@ This creates a new structured block with a new nested variable scope.
 
 This function will evaluate an array of values (statements) while a condition
 is true. The condition is tested at the beginning of the loop. If the
-condition is false for the first iteration, the loop returns a null value.
-See the related functions 'break', 'continue', 'return' and 'throw'.
+condition is false for the first iteration, the loop returns a null value. See
+the related functions 'break', 'continue', 'return' and 'throw'.
 Evaluate an array of values (statements) while a condition is true
 
 =head4 Parameters
 
     $condition
 
-While this condition is true, the loop will continue. This is evaluated in
-the loop's scope.
+While this condition is true, the loop will continue. This is evaluated in the
+loop's scope.
 
     $body
 

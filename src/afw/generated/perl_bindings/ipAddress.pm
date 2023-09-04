@@ -54,8 +54,8 @@ Returns the number of values in a bag
 =head3 eq_ipAddress
 
 Determine if ipAddress arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+you want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -69,8 +69,8 @@ Checks for equal
 =head3 eqx_ipAddress
 
 Determine if for ipAddress arg1 is equal to the value and data type of arg2
-then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -175,10 +175,9 @@ Checks for less than
 
 =head3 ne_ipAddress
 
-Determine if ipAddress arg1 is not equal to the value of arg2 converted to
-the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-instead if you want true to be returned if arg1 and arg2's data type don't
-match.
+Determine if ipAddress arg1 is not equal to the value of arg2 converted to the
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -191,9 +190,9 @@ Checks for not equal
 
 =head3 nex_ipAddress
 
-Determine if for ipAddress arg1 is not equal to the value or data type of
-arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
-to be converted to the data type of arg1 before comparison.
+Determine if for ipAddress arg1 is not equal to the value or data type of arg2
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -206,8 +205,8 @@ Checks for not equal value or type
 
 =head3 one_and_only_ipAddress
 
-This converts an array of ipAddress values that contains one value to a
-single ipAddress value.
+This converts an array of ipAddress values that contains one value to a single
+ipAddress value.
 Converts a one value array to a ipAddress value
 
 =head4 Parameters

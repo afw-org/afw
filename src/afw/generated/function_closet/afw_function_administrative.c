@@ -22,9 +22,9 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Load an extension by its extension id if it is not already loaded. Loading
- * an AFW package's manifest extension will register the manifest of all
- * extensions in the package.
+ * Load an extension by its extension id if it is not already loaded. Loading an
+ * AFW package's manifest extension will register the manifest of all extensions
+ * in the package.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -39,15 +39,14 @@
  *
  * Parameters:
  *
- *   extension_id - (string) This is the object id of a
- *       /afw/_AdaptiveManifest_/ object.
+ *   extension_id - (string) This is the object id of a /afw/_AdaptiveManifest_/
+ *       object.
  *
  * Returns:
  *
- *   (boolean) If false the extension was already loaded. If true, the
- *       extension was successfully loaded which might have caused side effects
- *       such as environment registry changes. An error is thrown if there is a
- *       problem.
+ *   (boolean) If false the extension was already loaded. If true, the extension
+ *       was successfully loaded which might have caused side effects such as
+ *       environment registry changes. An error is thrown if there is a problem.
  */
 const afw_value_t *
 afw_function_execute_extension_load(
@@ -229,9 +228,9 @@ afw_function_execute_flag_get_defaults(
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
- * This change only lasts for the life of the current adaptive environment
- * (e.g. until the adaptive server or afw command ends). If you want the change
- * to persist, change the defaultFlags property in the application config.
+ * This change only lasts for the life of the current adaptive environment (e.g.
+ * until the adaptive server or afw command ends). If you want the change to
+ * persist, change the defaultFlags property in the application config.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -279,9 +278,9 @@ afw_function_execute_flag_modify_defaults(
  * registered. These flags and the flags they include are set as the active
  * default flags.
  * 
- * This change only lasts for the life of the current adaptive environment
- * (e.g. until the adaptive server or afw command ends). If you want the change
- * to persist, change the defaultFlags property in the application config.
+ * This change only lasts for the life of the current adaptive environment (e.g.
+ * until the adaptive server or afw command ends). If you want the change to
+ * persist, change the defaultFlags property in the application config.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -362,8 +361,8 @@ afw_function_execute_flag_set(
  *
  * See afw_function_bindings.h for more information.
  *
- * This will check to see if a registry key exists for a specified registry
- * type and optionally load it's associated extension if needed.
+ * This will check to see if a registry key exists for a specified registry type
+ * and optionally load it's associated extension if needed.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -391,10 +390,9 @@ afw_function_execute_flag_set(
  *
  * Returns:
  *
- *   (boolean) If false the extension was already loaded. If true, the
- *       extension was successfully loaded which might have caused side effects
- *       such as environment registry changes. An error is thrown if there is a
- *       problem.
+ *   (boolean) If false the extension was already loaded. If true, the extension
+ *       was successfully loaded which might have caused side effects such as
+ *       environment registry changes. An error is thrown if there is a problem.
  */
 const afw_value_t *
 afw_function_execute_registry_key_check(

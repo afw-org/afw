@@ -40,20 +40,19 @@
  *
  * Parameters:
  *
- *   uri1 - (string) First URI for compare. This URI can not contain an
- *       asterisk ('*').
+ *   uri1 - (string) First URI for compare. This URI can not contain an asterisk
+ *       ('*').
  *
- *   uri2 - (string) Second URI for compare. This URI can contain asterisk
- *       ('*') for substitution if isValuePath is true and currentPath2 is
- *       specified.
+ *   uri2 - (string) Second URI for compare. This URI can contain asterisk ('*')
+ *       for substitution if isValuePath is true and currentPath2 is specified.
  *
  *   isValuePath - (optional boolean) The URIs are adaptive value paths. If one
  *       of the URIs begins with a single slash '/', both must, and each URI
  *       will be parsed as an adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
- *   currentPath - (optional string) If isValuePath is true, this is the
- *       current path that is used to resolve a relative path in the URIs. If
+ *   currentPath - (optional string) If isValuePath is true, this is the current
+ *       path that is used to resolve a relative path in the URIs. If
  *       isValuePath is not true, this parameter is ignored.
  *
  * Returns:
@@ -95,12 +94,12 @@ afw_function_execute_compare_uri(
  * Parameters:
  *
  *   value - (any dataType) This is the value that will be converted to its
- *       string representation and written. An undefined value is represented
- *       by `<undefined>`.
+ *       string representation and written. An undefined value is represented by
+ *       `<undefined>`.
  *
  *   detail - (optional boolean) If true, the string will only written if the
- *       debug:function_active:detail flag is on. If false or not specified,
- *       the string will only written if the debug:function_active flag is on.
+ *       debug:function_active:detail flag is on. If false or not specified, the
+ *       string will only written if the debug:function_active flag is on.
  *
  * Returns:
  *
@@ -160,8 +159,8 @@ afw_function_execute_execution_start_time_local(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return UTC dateTime when the execution context was created. This will
- * usually be the start of request time.
+ * Return UTC dateTime when the execution context was created. This will usually
+ * be the start of request time.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -443,9 +442,9 @@ afw_function_execute_now_utc(
  *       adaptive value path (example:
  *       /adaptorId/objectType/objectId.propertyNames).
  *
- *   currentPath - (optional string) If isValuePath is true, this is the
- *       current path that is used to resolve relative paths. If isValuePath is
- *       not true, this parameter is ignored.
+ *   currentPath - (optional string) If isValuePath is true, this is the current
+ *       path that is used to resolve relative paths. If isValuePath is not
+ *       true, this parameter is ignored.
  *
  * Returns:
  *
@@ -531,9 +530,8 @@ afw_function_execute_perform(
  *   filter - (optional boolean) If this optional filter is false, nothing will
  *       be written to the trace log. The default is true.
  *
- *   number - (optional integer) This is an optional number between 1 and 8
- *       that is appended to 'trace' to identify the trace log. The default is
- *       1.
+ *   number - (optional integer) This is an optional number between 1 and 8 that
+ *       is appended to 'trace' to identify the trace log. The default is 1.
  *
  * Returns:
  *

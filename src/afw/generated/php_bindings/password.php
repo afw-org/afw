@@ -73,9 +73,9 @@ class password
      * eq_password()
      *
      * Determine if password arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param password $arg1
      * @param  $arg2
@@ -250,8 +250,8 @@ class password
      *
      * Determine if password arg1 is not equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param password $arg1
      * @param  $arg2

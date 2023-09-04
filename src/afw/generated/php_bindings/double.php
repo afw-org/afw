@@ -212,10 +212,10 @@ class double
     /**
      * eq_double()
      *
-     * Determine if double arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if double arg1 is equal to the value of arg2 converted to the
+     * data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param double $arg1
      * @param  $arg2
@@ -431,8 +431,8 @@ class double
     /**
      * is_in_double()
      *
-     * Checks whether double value is in array of double array and returns
-     * the boolean result.
+     * Checks whether double value is in array of double array and returns the
+     * boolean result.
      *
      * @param double $value
      * @param array $array
@@ -572,10 +572,10 @@ class double
     /**
      * ne_double()
      *
-     * Determine if double arg1 is not equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if double arg1 is not equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param double $arg1
      * @param  $arg2

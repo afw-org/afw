@@ -11,8 +11,8 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
 
     Update the advance cursor for a consumer referenced by the consumerId
     parameter. The limit parameter specifies the maximum number of entries to
-    scan for an applicable entry for consumer before returning. NULL is
-    always returned.
+    scan for an applicable entry for consumer before returning. NULL is always
+    returned.
     
     There are no response properties set by this function.
     
@@ -24,8 +24,8 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
     
     Journal entries are scanned beginning at the entry at the cursor in the
     advanceCursor property. If the advanceCursor property is not present, the
-    scan begins after the cursor in currentCursor. If neither are present,
-    the scan begins at the start of the journal.
+    scan begins after the cursor in currentCursor. If neither are present, the
+    scan begins at the start of the journal.
     
     If an new applicable entry is found or if the limit is met, the
     advanceCursor property is set to the currently scanned entry's cursor.
@@ -36,8 +36,8 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
         consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
 
-        limit (int): The maximum number of entries that will be scanned for
-        an entry where the consumerFilter expression in the associated
+        limit (int): The maximum number of entries that will be scanned for an
+        entry where the consumerFilter expression in the associated
         _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
@@ -72,8 +72,8 @@ def journal_get_by_cursor(session, cursor, adaptorId=None):
     Get journal entry specified by entry_cursor parameter.
     
     This option will set response properties 'entry' and 'cursor' if there is
-    an entry to retrieve. If an entry with the supplied cursor does not
-    exist, a not_found error is thrown.
+    an entry to retrieve. If an entry with the supplied cursor does not exist,
+    a not_found error is thrown.
 
     Args:
         adaptorId (str): Id of adaptor.
@@ -181,9 +181,9 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
     specifies the maximum number of entries to scan for an applicable entry
     for consumer before returning.
     
-    This option will set response properties 'entry' and 'entryCursor' if an
-    applicable entry is retrieved. Property 'reissue' will be set as
-    described below.
+     This option will set response properties 'entry' and 'entryCursor' if an
+    applicable entry is retrieved. Property 'reissue' will be set as described
+    below.
     
     The properties of the _AdaptiveProvisioningPeer_ object associated with
     the consumer_id are used in the following way:
@@ -196,12 +196,12 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
     
     Journal entries are scanned beginning at the entry at the cursor in the
     advanceCursor property. If the advanceCursor property is not present, the
-    scan begins after the cursor in currentCursor. If neither are present,
-    the scan begins at the start of the journal.
+    scan begins after the cursor in currentCursor. If neither are present, the
+    scan begins at the start of the journal.
     
-    If an applicable entry is found, properties consumeStart and
-    consumeCursor are set, advanceCursor is removed, and the entry is
-    returned. Method mark_entry_consumed() will remove these properties.
+    If an applicable entry is found, properties consumeStart and consumeCursor
+    are set, advanceCursor is removed, and the entry is returned. Method
+    mark_entry_consumed() will remove these properties.
     
     If no applicable entry is found, advanceCursor is set to the last entry
     scanned.
@@ -212,8 +212,8 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
         consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
 
-        limit (int): The maximum number of entries that will be scanned for
-        an entry where the consumerFilter expression in the associated
+        limit (int): The maximum number of entries that will be scanned for an
+        entry where the consumerFilter expression in the associated
         _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:
@@ -246,9 +246,9 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
     Get next journal entry for consumer after cursor
 
     Get the next journal entry for a consumer referenced by the consumer_id
-    after the one specified by the entry_cursor parameter. The limit
-    parameter specifies the maximum number of entries to scan for an
-    applicable entry for consumer before returning.
+    after the one specified by the entry_cursor parameter. The limit parameter
+    specifies the maximum number of entries to scan for an applicable entry
+    for consumer before returning.
     
     This option will set response properties 'entry' and 'cursor' if an
     applicable entry is retrieved.
@@ -259,8 +259,8 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
     The consumerFilter expression is used to determine if an entry is
     applicable.
     
-    Unlike option get_next_for_consumer, no other properties are referenced
-    or modified.
+    Unlike option get_next_for_consumer, no other properties are referenced or
+    modified.
 
     Args:
         adaptorId (str): Id of adaptor.
@@ -270,8 +270,8 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
 
         cursor (str): Journal entry cursor.
 
-        limit (int): The maximum number of entries that will be scanned for
-        an entry where the consumerFilter expression in the associated
+        limit (int): The maximum number of entries that will be scanned for an
+        entry where the consumerFilter expression in the associated
         _AdaptiveProvisioningPeer_ object evaluates to true.
 
     Returns:

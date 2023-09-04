@@ -223,8 +223,8 @@ def ge_base64Binary(session, arg1, arg2):
     """
     Checks for greater than or equal
 
-    Checks for base64Binary arg1 is greater than or equal to base64Binary
-    arg2 and return the boolean result.
+    Checks for base64Binary arg1 is greater than or equal to base64Binary arg2
+    and return the boolean result.
 
     Args:
         arg1 (object):
@@ -412,8 +412,8 @@ def lt_base64Binary(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for base64Binary arg1 is less that base64Binary arg2 and return
-    the boolean result.
+    Checks for base64Binary arg1 is less that base64Binary arg2 and return the
+    boolean result.
 
     Args:
         arg1 (object):
@@ -444,10 +444,10 @@ def ne_base64Binary(session, arg1, arg2):
     """
     Checks for not equal
 
-    Determine if base64Binary arg1 is not equal to the value of arg2
-    converted to the data type of arg1 then return the boolean result. Use
-    'nex' ('!==') instead if you want true to be returned if arg1 and arg2's
-    data type don't match.
+    Determine if base64Binary arg1 is not equal to the value of arg2 converted
+    to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -511,8 +511,8 @@ def one_and_only_base64Binary(session, array):
     """
     Converts a one value array to a base64Binary value
 
-    This converts an array of base64Binary values that contains one value to
-    a single base64Binary value.
+    This converts an array of base64Binary values that contains one value to a
+    single base64Binary value.
 
     Args:
         array (list):

@@ -26,15 +26,15 @@ class regexp
     /**
      * compile_regexp()
      *
-     * Compile regexp value and return either an unevaluated adaptive value
-     * or a string containing the compiler listing.
+     * Compile regexp value and return either an unevaluated adaptive value or
+     * a string containing the compiler listing.
      *
      * @param regexp $source regexp string to compile
      * @param  $listing If specified, a compiler listing is produced instead
      *                  of an unevaluated expression value.
-     *                  
-     *                  This parameter can be an integer between 0 and 10 of
-     *                  a string that is used for indentation. If 0 is
+     * 
+     *                  This parameter can be an integer between 0 and 10 of a
+     *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
      *                  spaces is used.
@@ -60,10 +60,10 @@ class regexp
     /**
      * eq_regexp()
      *
-     * Determine if regexp arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if regexp arg1 is equal to the value of arg2 converted to the
+     * data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param regexp $arg1
      * @param  $arg2
@@ -213,10 +213,10 @@ class regexp
     /**
      * ne_regexp()
      *
-     * Determine if regexp arg1 is not equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if regexp arg1 is not equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+     * instead if you want true to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param regexp $arg1
      * @param  $arg2

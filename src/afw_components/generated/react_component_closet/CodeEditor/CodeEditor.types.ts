@@ -13,8 +13,7 @@ export interface ICodeEditorProps {
      * showGutter
      * Data Type: (boolean)
      * 
-     * Specifies whether the gutter should be visible in CodeEditor
-     * component.
+     * Specifies whether the gutter should be visible in CodeEditor component.
      */
     showGutter?:                        boolean;
     /**

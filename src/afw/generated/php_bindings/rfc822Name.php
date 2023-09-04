@@ -97,10 +97,10 @@ class rfc822Name
     /**
      * eq_rfc822Name()
      *
-     * Determine if rfc822Name arg1 is equal to the value of arg2 converted
-     * to the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * Determine if rfc822Name arg1 is equal to the value of arg2 converted to
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param rfc822Name $arg1
      * @param  $arg2
@@ -124,8 +124,8 @@ class rfc822Name
     /**
      * eqx_rfc822Name()
      *
-     * Determine if for rfc822Name arg1 is equal to the value and data type
-     * of arg2 then return the boolean result. Use 'eq' ('==') instead if you
+     * Determine if for rfc822Name arg1 is equal to the value and data type of
+     * arg2 then return the boolean result. Use 'eq' ('==') instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param rfc822Name $arg1
@@ -273,8 +273,8 @@ class rfc822Name
     /**
      * le_rfc822Name()
      *
-     * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2
-     * and return the boolean result.
+     * Checks for rfc822Name arg1 is less than or equal to rfc822Name arg2 and
+     * return the boolean result.
      *
      * @param rfc822Name $arg1
      * @param  $arg2
@@ -375,10 +375,9 @@ class rfc822Name
     /**
      * nex_rfc822Name()
      *
-     * Determine if for rfc822Name arg1 is not equal to the value or data
-     * type of arg2 then return the boolean result. Use 'ne' ('!=') instead
-     * if you want arg2 to be converted to the data type of arg1 before
-     * comparison.
+     * Determine if for rfc822Name arg1 is not equal to the value or data type
+     * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+     * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param rfc822Name $arg1
      * @param  $arg2
@@ -545,8 +544,8 @@ class rfc822Name
     /**
      * union_rfc822Name()
      *
-     * Returns an array of rfc822Name contains all of the unique values in
-     * two or more array of rfc822Name values.
+     * Returns an array of rfc822Name contains all of the unique values in two
+     * or more array of rfc822Name values.
      *
      * @param array $arrays Two or more arrays.
      *

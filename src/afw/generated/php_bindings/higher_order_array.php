@@ -33,8 +33,8 @@ class higher_order_array
      *                            returned. If no calls return false, the
      *                            result is true.
      * @param  $values These are the parameters passed to predicate with the
-     *                 exception that the first array is passed one value at
-     *                 a time. At least one array is required.
+     *                 exception that the first array is passed one value at a
+     *                 time. At least one array is required.
      *
      * @return boolean
      */
@@ -121,8 +121,8 @@ class higher_order_array
      *                            returned. If no calls return true, the
      *                            result is false.
      * @param  $values These are the parameters passed to predicate with the
-     *                 exception that the first array is passed one value at
-     *                 a time. At least one array is required.
+     *                 exception that the first array is passed one value at a
+     *                 time. At least one array is required.
      *
      * @return boolean
      */
@@ -205,8 +205,8 @@ class higher_order_array
      * This produces an array containing only values from another array that
      * pass a predicate test.
      *
-     * @param function $predicate This is a boolean function that is called
-     *                            to determine if an array entry should be
+     * @param function $predicate This is a boolean function that is called to
+     *                            determine if an array entry should be
      *                            included in the returned array.
      * @param  $values These are the values passed to the predicate with the
      *                 exception that the first array is passed as the single
@@ -235,9 +235,8 @@ class higher_order_array
      * The predicate is called for each value in the first array in values
      * until true is returned, then that value is returned.
      *
-     * @param function $predicate This is a boolean function that is called
-     *                            to determine if an array entry passes the
-     *                            test.
+     * @param function $predicate This is a boolean function that is called to
+     *                            determine if an array entry passes the test.
      * @param  $values These are the values passed to the predicate with the
      *                 exception that the first array is passed as the single
      *                 current value from the array. At least one array is
@@ -267,8 +266,8 @@ class higher_order_array
      *
      * @param function $functor
      * @param  $values These are the parameters passed to functor with the
-     *                 exception that the first array is passed one value at
-     *                 a time. At least one array is required.
+     *                 exception that the first array is passed one value at a
+     *                 time. At least one array is required.
      *
      * @return array
      */
@@ -329,12 +328,12 @@ class higher_order_array
      *
      * This produces an array with values sorted based on result of
      * compareFunction. The compareFunction is passed two values from the
-     * array and must return an integer less than 0 if the first value is
-     * less than the second value, 0 if they are equal, and a integer greater
-     * than 0 if the first value is greater than the second value.
+     * array and must return an integer less than 0 if the first value is less
+     * than the second value, 0 if they are equal, and a integer greater than
+     * 0 if the first value is greater than the second value.
      *
-     * @param function $compareFunction This function is called with two
-     *                                  value from array.
+     * @param function $compareFunction This function is called with two value
+     *                                  from array.
      * @param array $array This is the array to sort.
      *
      * @return array This the the resulting sorted array.

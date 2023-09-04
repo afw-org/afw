@@ -99,10 +99,9 @@ def eq_time(session, arg1, arg2):
     """
     Checks for equal
 
-    Determine if time arg1 is equal to the value of arg2 converted to the
-    data type of arg1 then return the boolean result. Use 'eqx' ('===')
-    instead if you want false to be returned if arg1 and arg2's data type
-    don't match.
+    Determine if time arg1 is equal to the value of arg2 converted to the data
+    type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
+    you want false to be returned if arg1 and arg2's data type don't match.
 
     Args:
         arg1 (object):
@@ -404,8 +403,7 @@ def lt_time(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for time arg1 is less that time arg2 and return the boolean
-    result.
+    Checks for time arg1 is less that time arg2 and return the boolean result.
     
     It is illegal to compare a time that includes a time-zone value with one
     that does not. In such cases, the `in_range<time>` function should be
@@ -506,8 +504,8 @@ def ne_time(session, arg1, arg2):
 
     Determine if time arg1 is not equal to the value of arg2 converted to the
     data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -692,8 +690,8 @@ def to_string_time(session, value):
     """
     Converts value to string
 
-    Converts time value to string. For array values, the to_string() value
-    for each entry is returned separated with commas.
+    Converts time value to string. For array values, the to_string() value for
+    each entry is returned separated with commas.
 
     Args:
         value (object): A time value.

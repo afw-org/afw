@@ -14,8 +14,8 @@ interface IAnyObject {
 /**
  * Assert that a value is true. If not, an assertion_failed error is thrown.
  * 
- * @param {boolean} assertion - This is the assertion to make. If not true,
- *     an assertion_failed error is thrown.
+ * @param {boolean} assertion - This is the assertion to make. If not true, an
+ *     assertion_failed error is thrown.
  * 
  * @param {string} reason - This is an optional reason to include in the
  *     assertion_failed message.
@@ -42,9 +42,9 @@ export function afwAssert(client : any, assertion : boolean, reason? : string) :
  * 
  * @param {string} json - JSON string to compile.
  * 
- * @param {} listing - If specified, a compiler listing is produced instead
- *     of an unevaluated JSON value.
- *     
+ * @param {} listing - If specified, a compiler listing is produced instead of
+ *     an unevaluated JSON value.
+ * 
  *     This parameter can be an integer between 0 and 10 of a string that is
  *     used for indentation. If 0 is specified, no whitespace is added to the
  *     resulting string. If 1 through 10 is specified, that number of spaces
@@ -72,9 +72,9 @@ export function afwCompileJson(client : any, json : string, listing? : any) : an
  * 
  * @param {string} json - Adaptive relaxed JSON syntax string to compile.
  * 
- * @param {} listing - If specified, a compiler listing is produced instead
- *     of an unevaluated relaxed JSON value.
- *     
+ * @param {} listing - If specified, a compiler listing is produced instead of
+ *     an unevaluated relaxed JSON value.
+ * 
  *     This parameter can be an integer between 0 and 10 of a string that is
  *     used for indentation. If 0 is specified, no whitespace is added to the
  *     resulting string. If 1 through 10 is specified, that number of spaces
@@ -102,11 +102,11 @@ export function afwCompileRelaxedJson(client : any, json : string, listing? : an
  * 
  * @param {string} hybrid - The hybrid to convert.
  * 
- * @param {} whitespace - Add whitespace for readability if present and not
- *     0. This parameter can be an integer between 0 and 10 or a string that
- *     is used for indentation. If 0 is specified, no whitespace is added to
- *     the resulting string. If 1 through 10 is specified, that number of
- *     spaces is used.
+ * @param {} whitespace - Add whitespace for readability if present and not 0.
+ *     This parameter can be an integer between 0 and 10 or a string that is
+ *     used for indentation. If 0 is specified, no whitespace is added to the
+ *     resulting string. If 1 through 10 is specified, that number of spaces
+ *     is used.
  * 
  * @returns {expression} The converted value in adaptive expression syntax.
  */
@@ -128,11 +128,11 @@ export function afwConvertSyntaxHybridToExpression(client : any, hybrid : string
  * 
  * @param {} value - Value to decompile.
  * 
- * @param {} whitespace - Add whitespace for readability if present and not
- *     0. This parameter can be an integer between 0 and 10 or a string that
- *     is used for indentation. If 0 is specified, no whitespace is added to
- *     the resulting string. If 1 through 10 is specified, that number of
- *     spaces is used.
+ * @param {} whitespace - Add whitespace for readability if present and not 0.
+ *     This parameter can be an integer between 0 and 10 or a string that is
+ *     used for indentation. If 0 is specified, no whitespace is added to the
+ *     resulting string. If 1 through 10 is specified, that number of spaces
+ *     is used.
  * 
  * @returns {string} Decompiled value.
  */
@@ -157,9 +157,9 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {} Evaluated adaptive value.
  */
@@ -197,11 +197,11 @@ export function afwEvaluateWithRetry(client : any, value : any, limit : number) 
 }
 
 /**
- * This function allows the active variables for a qualifier to be accessed
- * as the properties of an object.
+ * This function allows the active variables for a qualifier to be accessed as
+ * the properties of an object.
  * 
- * @param {string} qualifier - This is the qualifier whose variables are to
- *     be accessed as properties of the returned object.
+ * @param {string} qualifier - This is the qualifier whose variables are to be
+ *     accessed as properties of the returned object.
  * 
  * @param {boolean} forTesting - If specified and true, the object returned
  *     will be suitable to pass as the additionalUntrustedQualifiedVariables
@@ -235,9 +235,9 @@ export function afwQualifier(client : any, qualifier : string, forTesting? : boo
  *     purposes and should not be used in production.
  * 
  * @returns {object} Each property is the name of a qualifier with a value
- *     that is an object whose properties are the variables of that
- *     qualifier. The value of the variable properties is influenced by the
- *     forTesting property.
+ *     that is an object whose properties are the variables of that qualifier.
+ *     The value of the variable properties is influenced by the forTesting
+ *     property.
  */
 export function afwQualifiers(client : any, forTesting? : boolean) : any {
 
@@ -281,11 +281,11 @@ export function afwSafeEvaluate(client : any, value : any, error : any) : any {
  * 
  * @param {} replacer - Optional replacer function.
  * 
- * @param {} whitespace - Add whitespace for readability if present and not
- *     0. This parameter can be an integer between 0 and 10 or a string that
- *     is used for indentation. If 0 is specified, no whitespace is added to
- *     the resulting string. If 1 through 10 is specified, that number of
- *     spaces is used.
+ * @param {} whitespace - Add whitespace for readability if present and not 0.
+ *     This parameter can be an integer between 0 and 10 or a string that is
+ *     used for indentation. If 0 is specified, no whitespace is added to the
+ *     resulting string. If 1 through 10 is specified, that number of spaces
+ *     is used.
  * 
  * @returns {string} Evaluated and decompiled value.
  */
@@ -320,9 +320,9 @@ export function afwStringify(client : any, value : any, replacer? : any, whitesp
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {object} Test results.
  */
@@ -346,8 +346,8 @@ export function afwTestExpression(client : any, id : string, description : strin
 
 /**
  * Compile and evaluate a string containing adaptive hybrid syntax which can
- * be an adaptive template or adaptive expression and then compare the
- * results to an expected value. Return object with the test's results.
+ * be an adaptive template or adaptive expression and then compare the results
+ * to an expected value. Return object with the test's results.
  * 
  * @param {string} id - Id of test
  * 
@@ -360,9 +360,9 @@ export function afwTestExpression(client : any, id : string, description : strin
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {object} Test results.
  */
@@ -399,9 +399,9 @@ export function afwTestHybrid(client : any, id : string, description : string, h
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {object} Test results.
  */
@@ -438,9 +438,9 @@ export function afwTestScript(client : any, id : string, description : string, s
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {object} Test results.
  */
@@ -477,9 +477,9 @@ export function afwTestTemplate(client : any, id : string, description : string,
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
  *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such
- *     as authorization. This parameter is intended to be used for testing
- *     only and should not be used for anything running in production.
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
  * 
  * @returns {object} Test results.
  */

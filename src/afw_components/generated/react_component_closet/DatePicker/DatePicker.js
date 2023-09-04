@@ -20,8 +20,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that allows you to select a date from a calendar.
  * 
- * This component understands date values and allows the user to select a
- * date from a calendar, or enter it in the appropriate format.
+ * This component understands date values and allows the user to select a date
+ * from a calendar, or enter it in the appropriate format.
  * 
  */
 export const DatePicker = (props) => {

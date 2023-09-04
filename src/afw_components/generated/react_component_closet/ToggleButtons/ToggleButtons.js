@@ -18,8 +18,8 @@ import {ctx} from "@afw/react";
  * Implementation Id : ToggleButtons
  * Category          : inputs
  * 
- * A component to display a selectable choice of options, presented as
- * buttons that can be toggled on or off.
+ * A component to display a selectable choice of options, presented as buttons
+ * that can be toggled on or off.
  * 
  * This component provides a list of options, organized as buttons, that may
  * be toggled on or off. They may be inclusive or exclusive.

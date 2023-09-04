@@ -44,8 +44,8 @@
  * Returns:
  *
  *   (object) An object containing the meta information for the adaptive value.
- *       The objectType of this object is normally _AdaptiveValueMeta_ or one
- *       of its descendants.
+ *       The objectType of this object is normally _AdaptiveValueMeta_ or one of
+ *       its descendants.
  */
 const afw_value_t *
 afw_function_execute_meta(
@@ -64,8 +64,8 @@ afw_function_execute_meta(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function returns an array of the result of calling meta() for each
- * value in an array or object adaptive value.
+ * This function returns an array of the result of calling meta() for each value
+ * in an array or object adaptive value.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

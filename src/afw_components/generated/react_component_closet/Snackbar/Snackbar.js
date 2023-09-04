@@ -20,9 +20,9 @@ import {ctx} from "@afw/react";
  * 
  * A component that renders a Snackbar to be displayed.
  * 
- * This component pops up a small bar at the bottom of the screen to alert
- * the user of a recent activity, such as a success or error status,
- * typically following an action that was taken by the user.
+ * This component pops up a small bar at the bottom of the screen to alert the
+ * user of a recent activity, such as a success or error status, typically
+ * following an action that was taken by the user.
  * 
  */
 export const Snackbar = (props) => {

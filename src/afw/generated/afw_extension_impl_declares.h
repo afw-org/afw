@@ -29,8 +29,7 @@ AFW_BEGIN_DECLARES
  * afw_extension.
  *
  * You can find a skeleton for using this #include file in the corresponding
- * source directory in file
- * generated/interface_closet/skeleton_afw_extension.c.
+ * source directory in file generated/interface_closet/skeleton_afw_extension.c.
  *
  * Mutiple *_impl.declares.h can be included in each c source file, but only
  * one for each interface name.

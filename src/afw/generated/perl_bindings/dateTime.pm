@@ -116,9 +116,9 @@ Value to convert
 
 =head3 eq_dateTime
 
-Determine if dateTime arg1 is equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
-if you want false to be returned if arg1 and arg2's data type don't match.
+Determine if dateTime arg1 is equal to the value of arg2 converted to the data
+type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
+want false to be returned if arg1 and arg2's data type don't match.
 Checks for equal
 
 =head4 Parameters
@@ -132,8 +132,8 @@ Checks for equal
 =head3 eqx_dateTime
 
 Determine if for dateTime arg1 is equal to the value and data type of arg2
-then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for equal and type
 
 =head4 Parameters
@@ -221,8 +221,8 @@ Checks whether a value is in an array
 
 =head3 le_dateTime
 
-Checks for dateTime arg1 is less than or equal to dateTime arg2 and return
-the boolean result.
+Checks for dateTime arg1 is less than or equal to dateTime arg2 and return the
+boolean result.
 
 If a dateTime value does not include a time-zone value, then the local
 time-zone value will be assigned.
@@ -282,8 +282,8 @@ Minimum value
 =head3 ne_dateTime
 
 Determine if dateTime arg1 is not equal to the value of arg2 converted to the
-data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
-if you want true to be returned if arg1 and arg2's data type don't match.
+data type of arg1 then return the boolean result. Use 'nex' ('!==') instead if
+you want true to be returned if arg1 and arg2's data type don't match.
 Checks for not equal
 
 =head4 Parameters
@@ -297,8 +297,8 @@ Checks for not equal
 =head3 nex_dateTime
 
 Determine if for dateTime arg1 is not equal to the value or data type of arg2
-then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
-be converted to the data type of arg1 before comparison.
+then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to be
+converted to the data type of arg1 before comparison.
 Checks for not equal value or type
 
 =head4 Parameters
@@ -380,8 +380,8 @@ Subtract numbers
 
 =head3 to_string_dateTime
 
-Converts dateTime value to string. For array values, the to_string() value
-for each entry is returned separated with commas.
+Converts dateTime value to string. For array values, the to_string() value for
+each entry is returned separated with commas.
 Converts value to string
 
 =head4 Parameters

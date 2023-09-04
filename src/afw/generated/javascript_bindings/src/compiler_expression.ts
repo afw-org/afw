@@ -12,8 +12,8 @@ interface IAnyObject {
 }
 
 /**
- * Returns the first value of values that is not null or undefined leaving
- * the remaining values unevaluated.
+ * Returns the first value of values that is not null or undefined leaving the
+ * remaining values unevaluated.
  * 
  * @param {} values -
  * 
@@ -30,8 +30,8 @@ export function afwNullishCoalescing(client : any, values : any) : any {
 }
 
 /**
- * Returns undefined if arg1 is null or undefined without evaluating arg2,
- * but otherwise returns evaluated value of arg2.
+ * Returns undefined if arg1 is null or undefined without evaluating arg2, but
+ * otherwise returns evaluated value of arg2.
  * 
  * @param {} arg1 -
  * 

@@ -21,8 +21,8 @@ import {ctx} from "@afw/react";
  * 
  * A component that displays a checkbox.
  * 
- * This component is simply a checkbox that allows the user to click to
- * enable or disable its value.
+ * This component is simply a checkbox that allows the user to click to enable
+ * or disable its value.
  * 
  */
 export const Checkbox : React.FunctionComponent<ICheckboxProps> = (props) => {

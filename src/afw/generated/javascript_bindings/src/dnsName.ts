@@ -66,9 +66,8 @@ export function afwDnsName(client : any, value : any) : any {
 
 /**
  * Determine if dnsName arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {dnsName} arg1 -
  * 
@@ -89,8 +88,8 @@ export function afwEqDnsName(client : any, arg1 : any, arg2 : any) : any {
 
 /**
  * Determine if for dnsName arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {dnsName} arg1 -
  * 
@@ -110,8 +109,8 @@ export function afwEqxDnsName(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and
- * return the boolean result.
+ * Checks for dnsName arg1 is greater than or equal to dnsName arg2 and return
+ * the boolean result.
  * 
  * @param {dnsName} arg1 -
  * 
@@ -131,8 +130,8 @@ export function afwGeDnsName(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Checks for dnsName arg1 is greater than dnsName arg2 and return the
- * boolean result.
+ * Checks for dnsName arg1 is greater than dnsName arg2 and return the boolean
+ * result.
  * 
  * @param {dnsName} arg1 -
  * 

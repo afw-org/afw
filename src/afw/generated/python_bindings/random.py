@@ -9,8 +9,7 @@ def random_base64Binary(session, numberOfOctets):
     """
     Generate random octets (base64Binary)
 
-    This returns a specified number of random octets as dataType
-    base64Binary.
+    This returns a specified number of random octets as dataType base64Binary.
 
     Args:
         numberOfOctets (int): The number of random octets to generate.

@@ -269,8 +269,8 @@ Checks whether two arrays are subsets of each other
 
 =head3 subset_dayTimeDuration
 
-Returns boolean true if the unique values in dayTimeDuration array1 are all
-in dayTimeDuration array2.
+Returns boolean true if the unique values in dayTimeDuration array1 are all in
+dayTimeDuration array2.
 Determines if the first array is a subset of second array
 
 =head4 Parameters

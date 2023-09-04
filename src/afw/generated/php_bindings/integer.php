@@ -168,9 +168,9 @@ class integer
      * eq_integer()
      *
      * Determine if integer arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param integer $arg1
      * @param  $arg2
@@ -342,8 +342,7 @@ class integer
     /**
      * is_integer()
      *
-     * Checks whether value is dataType integer and return the boolean
-     * result.
+     * Checks whether value is dataType integer and return the boolean result.
      *
      * @param  $value Value to check
      *
@@ -508,8 +507,8 @@ class integer
      *
      * Determine if integer arg1 is not equal to the value of arg2 converted
      * to the data type of arg1 then return the boolean result. Use 'nex'
-     * ('!==') instead if you want true to be returned if arg1 and arg2's
-     * data type don't match.
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param integer $arg1
      * @param  $arg2
@@ -555,8 +554,8 @@ class integer
     /**
      * nex_integer()
      *
-     * Determine if for integer arg1 is not equal to the value or data type
-     * of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
+     * Determine if for integer arg1 is not equal to the value or data type of
+     * arg2 then return the boolean result. Use 'ne' ('!=') instead if you
      * want arg2 to be converted to the data type of arg1 before comparison.
      *
      * @param integer $arg1
@@ -723,8 +722,8 @@ class integer
     /**
      * union_integer()
      *
-     * Returns an array of integer contains all of the unique values in two
-     * or more array of integer values.
+     * Returns an array of integer contains all of the unique values in two or
+     * more array of integer values.
      *
      * @param array $arrays Two or more arrays.
      *

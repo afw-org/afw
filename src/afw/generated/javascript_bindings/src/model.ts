@@ -15,9 +15,9 @@ interface IAnyObject {
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onAdd parameter is not specified on the associated
  * _AdaptiveModelObjectType_. The action is not performed, but be aware that
- * functions called while producing the _AdaptiveAction_ object may cause
- * side effects. This function can be called as part of a onAdd expression or
- * for testing.
+ * functions called while producing the _AdaptiveAction_ object may cause side
+ * effects. This function can be called as part of a onAdd expression or for
+ * testing.
  * 
  * @param {string} adaptorId - This is the adaptorId of a model adaptor.
  *     Variable custom::adaptorId can be used to access this value in model
@@ -27,8 +27,8 @@ interface IAnyObject {
  *     being added. Variable custom::objectType can be used to access this
  *     value in model expressions.
  * 
- * @param {object} object - This is the object to add. Variable
- *     custom::object can be used to access this value in model expressions.
+ * @param {object} object - This is the object to add. Variable custom::object
+ *     can be used to access this value in model expressions.
  * 
  * @param {string} objectId - This is the optional preferred objectId of
  *     object to add. The adaptor may ignore this. Variable custom::objectId
@@ -70,9 +70,9 @@ export function afwModelDefaultAddObjectAction(client : any, objectType : string
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onDeleteObject parameter is not specified on the associated
  * _AdaptiveModelObjectType_. The action is not performed, but be aware that
- * functions called while producing the _AdaptiveAction_ object may cause
- * side effects. This function can be called as part of a onDelete expression
- * or for testing.
+ * functions called while producing the _AdaptiveAction_ object may cause side
+ * effects. This function can be called as part of a onDelete expression or
+ * for testing.
  * 
  * @param {string} adaptorId - This is the adaptorId of a model adaptor.
  *     Variable custom::adaptorId can be used to access this value in model
@@ -119,9 +119,9 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onModifyObject parameter is not specified on the associated
  * _AdaptiveModelObjectType_. The action is not performed, but be aware that
- * functions called while producing the _AdaptiveAction_ object may cause
- * side effects. This function can be called as part of a onModify expression
- * or for testing.
+ * functions called while producing the _AdaptiveAction_ object may cause side
+ * effects. This function can be called as part of a onModify expression or
+ * for testing.
  * 
  * @param {string} adaptorId - This is the adaptorId of a model adaptor.
  *     Variable custom::adaptorId can be used to access this value in model
@@ -138,29 +138,18 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  * @param {array} entries - This is an array of modifications. Variable
  *     custom::actions can be used to access this value in model expressions.
  *     Entries are of the form:
- *     
- *     [
- *     'add_value',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
- *     
- *     [
- *     'remove_property',
- *     'property name' or ['property name', ... ]
- *     ]
- *     
- *     [
- *     'remove_value',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
- *     
- *     [
- *     'set_property',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
+ * 
+ *         [         'add_value',         'property name' or ['property name',
+ *     ... ],         value     ]
+ * 
+ *         [         'remove_property',         'property name' or ['property
+ *     name', ... ]     ]
+ * 
+ *         [         'remove_value',         'property name' or ['property
+ *     name', ... ],         value     ]
+ * 
+ *         [         'set_property',         'property name' or ['property
+ *     name', ... ],         value     ]
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
  *     producing results. If not specified, the adaptor's current model will
@@ -194,11 +183,11 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
 
 /**
  * This function returns a _AdaptiveAction_ object for the default action
- * performed if a onReplaceObject parameter is not specified on the
- * associated _AdaptiveModelObjectType_. The action is not performed, but be
- * aware that functions called while producing the _AdaptiveAction_ object
- * may cause side effects. This function can be called as part of a onReplace
- * expression or for testing.
+ * performed if a onReplaceObject parameter is not specified on the associated
+ * _AdaptiveModelObjectType_. The action is not performed, but be aware that
+ * functions called while producing the _AdaptiveAction_ object may cause side
+ * effects. This function can be called as part of a onReplace expression or
+ * for testing.
  * 
  * @param {string} adaptorId - This is the adaptorId of a model adaptor.
  *     Variable custom::adaptorId can be used to access this value in model
@@ -209,8 +198,7 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
  *     value in model expressions.
  * 
  * @param {string} objectId - The objectId of object to replace. Variable
- *     custom::objectId can be used to access this value in model
- *     expressions.
+ *     custom::objectId can be used to access this value in model expressions.
  * 
  * @param {object} object - This is the object to replace. Variable
  *     custom::object can be used to access this value in model expressions.
@@ -291,13 +279,13 @@ export function afwModelMapObjectSignature(client : any, object : object) : any 
  * 
  * @param {object} object - This is the object to return.
  * 
- * @param {boolean} userData - If this is present and true, the object will
- *     be mapped its mapped adaptor's object type to the model adaptor's
- *     object type.
+ * @param {boolean} userData - If this is present and true, the object will be
+ *     mapped its mapped adaptor's object type to the model adaptor's object
+ *     type.
  * 
- * @returns {boolean} This will return true if no more objects can be
- *     returned for any reason including a limit exceeded, connection closed,
- *     or server stopping.
+ * @returns {boolean} This will return true if no more objects can be returned
+ *     for any reason including a limit exceeded, connection closed, or server
+ *     stopping.
  */
 export function afwModelReturnObjectSignature(client : any, object : object, userData? : boolean) : any {
 

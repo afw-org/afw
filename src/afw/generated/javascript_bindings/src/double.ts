@@ -160,9 +160,8 @@ export function afwDouble(client : any, value : any) : any {
 
 /**
  * Determine if double arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {double} arg1 -
  * 
@@ -183,8 +182,8 @@ export function afwEqDouble(client : any, arg1 : number, arg2 : any) : any {
 
 /**
  * Determine if for double arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {double} arg1 -
  * 
@@ -264,8 +263,8 @@ export function afwGtDouble(client : any, arg1 : number, arg2 : number) : any {
 }
 
 /**
- * Returns an array of double with the values that are common to both array
- * of double array1 and array2.
+ * Returns an array of double with the values that are common to both array of
+ * double array1 and array2.
  * 
  * @param {array} array1 - The first array.
  * 
@@ -451,10 +450,9 @@ export function afwMultiplyDouble(client : any, values : number) : any {
 }
 
 /**
- * Determine if double arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if double arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {double} arg1 -
  * 
@@ -491,9 +489,9 @@ export function afwNegativeDouble(client : any, value : number) : any {
 }
 
 /**
- * Determine if for double arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for double arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {double} arg1 -
  * 
@@ -513,8 +511,8 @@ export function afwNexDouble(client : any, arg1 : number, arg2 : any) : any {
 }
 
 /**
- * This converts an array of double values that contains one value to a
- * single double value.
+ * This converts an array of double values that contains one value to a single
+ * double value.
  * 
  * @param {array} array -
  * 
@@ -531,8 +529,8 @@ export function afwOneAndOnlyDouble(client : any, array : any[]) : any {
 }
 
 /**
- * This returns the value of base raised to a power. Multiple exponents can
- * be specified to raise the previous exponent to the power of the latter
+ * This returns the value of base raised to a power. Multiple exponents can be
+ * specified to raise the previous exponent to the power of the latter
  * exponent.
  * 
  * @param {double} base - Base value.
@@ -553,8 +551,7 @@ export function afwPowDouble(client : any, base : number, exponent : number) : a
 }
 
 /**
- * Determine the integer closest to double value and return the double
- * result.
+ * Determine the integer closest to double value and return the double result.
  * 
  * @param {double} number -
  * 
@@ -571,8 +568,8 @@ export function afwRoundDouble(client : any, number : number) : any {
 }
 
 /**
- * Returns boolean true if double array1 and double array2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if double array1 and double array2 are subsets of each
+ * other and return the boolean result.
  * 
  * @param {array} array1 -
  * 
@@ -668,8 +665,8 @@ export function afwToStringDouble(client : any, value : number) : any {
 }
 
 /**
- * Returns an array of double contains all of the unique values in two or
- * more array of double values.
+ * Returns an array of double contains all of the unique values in two or more
+ * array of double values.
  * 
  * @param {array} arrays - Two or more arrays.
  * 

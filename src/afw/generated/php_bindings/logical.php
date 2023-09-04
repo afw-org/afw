@@ -27,8 +27,8 @@ class logical
      * and()
      *
      * Evaluates 0 or more boolean conditions returning boolean true if there
-     * are no conditions and boolean false if any condition evaluate to
-     * false. All conditions after the first false remain unevaluated.
+     * are no conditions and boolean false if any condition evaluate to false.
+     * All conditions after the first false remain unevaluated.
      *
      * @param boolean $conditions
      *
@@ -100,9 +100,9 @@ class logical
     /**
      * or()
      *
-     * Evaluates 0 or more boolean conditions returning boolean false if
-     * there are no conditions and boolean true if any condition evaluate to
-     * true. All conditions after the first true remain unevaluated.
+     * Evaluates 0 or more boolean conditions returning boolean false if there
+     * are no conditions and boolean true if any condition evaluate to true.
+     * All conditions after the first true remain unevaluated.
      *
      * @param boolean $conditions
      *

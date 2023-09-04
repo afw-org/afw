@@ -49,9 +49,8 @@ export function afwBagSizeIa5String(client : any, value : any[]) : any {
 
 /**
  * Determine if ia5String arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {ia5String} arg1 -
  * 
@@ -71,9 +70,9 @@ export function afwEqIa5String(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Determine if for ia5String arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for ia5String arg1 is equal to the value and data type of arg2
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {ia5String} arg1 -
  * 
@@ -256,8 +255,8 @@ export function afwNexIa5String(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts ia5String value to string. For array values, the to_string()
- * value for each entry is returned separated with commas.
+ * Converts ia5String value to string. For array values, the to_string() value
+ * for each entry is returned separated with commas.
  * 
  * @param {ia5String} value - A ia5String value.
  * 

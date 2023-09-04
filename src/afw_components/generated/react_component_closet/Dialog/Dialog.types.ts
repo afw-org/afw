@@ -14,8 +14,7 @@ export interface IDialogProps {
      * footer
      * Data Type: (object, _AdaptiveLayoutComponent_)
      * 
-     * Any contents that needs to be rendered inside the Dialog's footer
-     * area.
+     * Any contents that needs to be rendered inside the Dialog's footer area.
      */
     footer?:                            any;
     /**

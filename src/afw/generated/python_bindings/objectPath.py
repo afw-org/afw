@@ -134,8 +134,8 @@ def ge_objectPath(session, arg1, arg2):
     """
     Checks for greater than or equal
 
-    Checks for objectPath arg1 is greater than or equal to objectPath arg2
-    and return the boolean result.
+    Checks for objectPath arg1 is greater than or equal to objectPath arg2 and
+    return the boolean result.
 
     Args:
         arg1 (object):
@@ -198,8 +198,7 @@ def is_objectPath(session, value):
     """
     Checks whether value is dataType objectPath
 
-    Checks whether value is dataType objectPath and return the boolean
-    result.
+    Checks whether value is dataType objectPath and return the boolean result.
 
     Args:
         value (object): Value to check
@@ -292,9 +291,9 @@ def ne_objectPath(session, arg1, arg2):
     Checks for not equal
 
     Determine if objectPath arg1 is not equal to the value of arg2 converted
-    to the data type of arg1 then return the boolean result. Use 'nex'
-    ('!==') instead if you want true to be returned if arg1 and arg2's data
-    type don't match.
+    to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -325,9 +324,9 @@ def nex_objectPath(session, arg1, arg2):
     """
     Checks for not equal value or type
 
-    Determine if for objectPath arg1 is not equal to the value or data type
-    of arg2 then return the boolean result. Use 'ne' ('!=') instead if you
-    want arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for objectPath arg1 is not equal to the value or data type of
+    arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
+    arg2 to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):

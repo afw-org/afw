@@ -87,11 +87,10 @@ export function afwFlagGetActiveDefaults(client : any) : any {
 }
 
 /**
- * Get the array of the flagId of flags that are used to determine the
- * default active flags when an execution context (xctx) is created. This
- * array can contain the flagId of flags that have not yet been registered.
- * Each of these flags and the flags they include are set as the active
- * default flags.
+ * Get the array of the flagId of flags that are used to determine the default
+ * active flags when an execution context (xctx) is created. This array can
+ * contain the flagId of flags that have not yet been registered. Each of
+ * these flags and the flags they include are set as the active default flags.
  * 
  * @returns {array} This is an array of the flagId of flags used to determine
  *     the default active flags.
@@ -194,8 +193,8 @@ export function afwFlagSet(client : any, flagId : any[], setTo? : boolean) : any
  * @param {string} registryType - This is the registry type, which is the
  *     object id of a /afw/_AdaptiveEnvironmentRegistryType_/ object.
  * 
- * @param {string} key - This is a key to check for existence in the
- *     specified registryType.
+ * @param {string} key - This is a key to check for existence in the specified
+ *     registryType.
  * 
  * @param {boolean} loadExtension - Specifying true for this optional
  *     parameter will cause the associated extension to be loaded if needed.

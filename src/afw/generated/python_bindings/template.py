@@ -73,13 +73,13 @@ def compile_template(session, source, listing=None):
     Args:
         source (object): template string to compile
 
-        listing (object): If specified, a compiler listing is produced
-        instead of an unevaluated expression value.
+        listing (object): If specified, a compiler listing is produced instead
+        of an unevaluated expression value.
         
         This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to
-        the resulting string. If 1 through 10 is specified, that number of
-        spaces is used.
+        used for indentation. If 0 is specified, no whitespace is added to the
+        resulting string. If 1 through 10 is specified, that number of spaces
+        is used.
 
     Returns:
         object:
@@ -141,9 +141,9 @@ def eqx_template(session, arg1, arg2):
     """
     Checks for equal and type
 
-    Determine if for template arg1 is equal to the value and data type of
-    arg2 then return the boolean result. Use 'eq' ('==') instead if you want
-    arg2 to be converted to the data type of arg1 before comparison.
+    Determine if for template arg1 is equal to the value and data type of arg2
+    then return the boolean result. Use 'eq' ('==') instead if you want arg2
+    to be converted to the data type of arg1 before comparison.
 
     Args:
         arg1 (object):
@@ -180,12 +180,11 @@ def evaluate_template(session, source, additionalUntrustedQualifiedVariables=Non
         source (object): template string to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
-        additional qualified variables that can be accessed during
-        evaluation. These variables will not be used by anything that needs
-        to ensure its qualified variables must come from a trusted source,
-        such as authorization. This parameter is intended to be used for
-        testing only and should not be used for anything running in
-        production.
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
 
     Returns:
         object:
@@ -305,8 +304,8 @@ def le_template(session, arg1, arg2):
     """
     Checks for less than or equal
 
-    Checks for template arg1 is less than or equal to template arg2 and
-    return the boolean result.
+    Checks for template arg1 is less than or equal to template arg2 and return
+    the boolean result.
 
     Args:
         arg1 (object):
@@ -337,8 +336,8 @@ def lt_template(session, arg1, arg2):
     """
     Checks for less than
 
-    Checks for template arg1 is less that template arg2 and return the
-    boolean result.
+    Checks for template arg1 is less that template arg2 and return the boolean
+    result.
 
     Args:
         arg1 (object):
@@ -371,8 +370,8 @@ def ne_template(session, arg1, arg2):
 
     Determine if template arg1 is not equal to the value of arg2 converted to
     the data type of arg1 then return the boolean result. Use 'nex' ('!==')
-    instead if you want true to be returned if arg1 and arg2's data type
-    don't match.
+    instead if you want true to be returned if arg1 and arg2's data type don't
+    match.
 
     Args:
         arg1 (object):
@@ -464,8 +463,8 @@ def to_string_template(session, value):
     """
     Converts value to string
 
-    Converts template value to string. For array values, the to_string()
-    value for each entry is returned separated with commas.
+    Converts template value to string. For array values, the to_string() value
+    for each entry is returned separated with commas.
 
     Args:
         value (object): A template value.

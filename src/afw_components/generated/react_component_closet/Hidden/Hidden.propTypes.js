@@ -44,8 +44,7 @@ export const propTypes = {
      * xlDown
      * Data Type: (boolean)
      * 
-     * This content will only be displayed on extra large displays or
-     * smaller.
+     * This content will only be displayed on extra large displays or smaller.
      */
     xlDown:                             PropTypes.bool,
     /**

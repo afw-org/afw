@@ -246,8 +246,8 @@ afw_function_execute_encode_as_base64Binary(
  *
  * See afw_function_bindings.h for more information.
  *
- * Encode a value as a hexBinary. The effect is to create a hexBinary value
- * with an internal value of the value passed.
+ * Encode a value as a hexBinary. The effect is to create a hexBinary value with
+ * an internal value of the value passed.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -335,10 +335,9 @@ afw_function_execute_ends_with(
  *
  * See afw_function_bindings.h for more information.
  *
- * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -392,8 +391,8 @@ afw_function_execute_eq(
  * See afw_function_bindings.h for more information.
  *
  * Determine if for `<dataType>` arg1 is equal to the value and data type of
- * arg2 then return the boolean result. Use 'eq' ('==') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -492,8 +491,8 @@ afw_function_execute_ge(
  *
  * See afw_function_bindings.h for more information.
  *
- * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return
- * the boolean result.
+ * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return the
+ * boolean result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -883,9 +882,9 @@ afw_function_execute_le(
  *
  * See afw_function_bindings.h for more information.
  *
- * This is a polymorphic function where `<dataType>` can be any of the
- * supported data types. Return the integer number of entries in datatype array
- * or codepoints in others.
+ * This is a polymorphic function where `<dataType>` can be any of the supported
+ * data types. Return the integer number of entries in datatype array or
+ * codepoints in others.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1064,8 +1063,8 @@ afw_function_execute_min(
  *
  * See afw_function_bindings.h for more information.
  *
- * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted
- * to the data type of arg1 then return the boolean result. Use 'nex' ('!==')
+ * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted to
+ * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
  * instead if you want true to be returned if arg1 and arg2's data type don't
  * match.
  *
@@ -1121,8 +1120,8 @@ afw_function_execute_ne(
  * See afw_function_bindings.h for more information.
  *
  * Determine if for `<dataType>` arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
+ * to be converted to the data type of arg1 before comparison.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

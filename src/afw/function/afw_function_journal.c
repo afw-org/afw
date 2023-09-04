@@ -32,16 +32,15 @@
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
- * applicable.
+ * The consumerFilter expression is used to determine if an entry is applicable.
  * 
  * Journal entries are scanned beginning at the entry at the cursor in the
  * advanceCursor property. If the advanceCursor property is not present, the
  * scan begins after the cursor in currentCursor. If neither are present, the
  * scan begins at the start of the journal.
  * 
- * If an new applicable entry is found or if the limit is met, the
- * advanceCursor property is set to the currently scanned entry's cursor.
+ * If an new applicable entry is found or if the limit is met, the advanceCursor
+ * property is set to the currently scanned entry's cursor.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -268,8 +267,7 @@ afw_function_execute_journal_get_next_after_cursor(
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
- * applicable.
+ * The consumerFilter expression is used to determine if an entry is applicable.
  * 
  * If consumeCursor property exists, return that entry at that cursor again
  * immediately with a 'reissue' property added and set to true.
@@ -346,8 +344,8 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * See afw_function_bindings.h for more information.
  *
- * Get the next journal entry for a consumer referenced by the consumer_id
- * after the one specified by the entry_cursor parameter. The limit parameter
+ * Get the next journal entry for a consumer referenced by the consumer_id after
+ * the one specified by the entry_cursor parameter. The limit parameter
  * specifies the maximum number of entries to scan for an applicable entry for
  * consumer before returning.
  * 
@@ -357,8 +355,7 @@ afw_function_execute_journal_get_next_for_consumer(
  * The properties of the _AdaptiveProvisioningPeer_ object associated with the
  * consumer_id are used in the following way:
  * 
- * The consumerFilter expression is used to determine if an entry is
- * applicable.
+ * The consumerFilter expression is used to determine if an entry is applicable.
  * 
  * Unlike option get_next_for_consumer, no other properties are referenced or
  * modified.

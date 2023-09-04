@@ -13,8 +13,7 @@ interface IAnyObject {
 
 /**
  * This is the function signature for the objectCallback parameter in adaptor
- * functions. Calling this directly will throw a 'Do not call directly'
- * error.
+ * functions. Calling this directly will throw a 'Do not call directly' error.
  * 
  * @param {object} object - This is the object from adaptor or undefined if
  *     there are no more objects to return.
@@ -23,8 +22,7 @@ interface IAnyObject {
  *     objectCallback was called.
  * 
  * @returns {boolean} Return true if this callback should not be called again
- *     for any reason such a limit exceeded or the desired object being
- *     found.
+ *     for any reason such a limit exceeded or the desired object being found.
  */
 export function afwAdaptorObjectCallbackSignature(client : any, object : object, userData? : any) : any {
 
@@ -63,9 +61,9 @@ export function afwAdaptorObjectCallbackSignature(client : any, object : object,
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
- *     
+ * 
  *     where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry. Property 'objectId' is the
@@ -113,9 +111,9 @@ export function afwAddObject(client : any, objectType : string, object : object,
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry. Property 'objectId' is the
@@ -139,32 +137,31 @@ export function afwAddObjectWithUri(client : any, uri : any, object : object, jo
 }
 
 /**
- * This function converts an _AdaptiveQueryCriteria_ object to a query
- * string.
+ * This function converts an _AdaptiveQueryCriteria_ object to a query string.
  * 
  * @param {object} queryCriteria - An object type _AdaptiveQueryCriteria_
  *     object.
  * 
- * @param {string} adaptorId - This is the adaptorId of adaptor containing
- *     the objectType for validating and mapping this query. If not
- *     specified, no validation or mapping will occur.
+ * @param {string} adaptorId - This is the adaptorId of adaptor containing the
+ *     objectType for validating and mapping this query. If not specified, no
+ *     validation or mapping will occur.
  * 
  * @param {string} objectType - This is the objectType used in conjunction
  *     with the adaptorId parameter. This parameter is only allowed and is
  *     required if the adaptorId parameter is specified.
  * 
- * @param {integer} style - The style of the query string produced. All of
- *     the styles are appropriately url encoded.
- *     
+ * @param {integer} style - The style of the query string produced. All of the
+ *     styles are appropriately url encoded.
+ * 
  *     0 - 'name=op=value' where '=op=' will be '==', '!=', '=ge=', etc. with
- *     conjunctions '&' (and) and '|' (or). Parentheses are placed around
- *     each group of like conjunctions except for outer '&'. (default)
- *     
+ *     conjunctions '&' (and) and '|' (or). Parentheses are placed around each
+ *     group of like conjunctions except for outer '&'. (default)
+ * 
  *     1 - the same as 1 with '=gte=' instead of '=ge=', '=lte=' instead of
  *     '=le=', '=eq=' instead of '=', and '=ne=' instead of '!='.
- *     
+ * 
  *     2 - similar to 1 with ';' for '&' and ',' for '|'.
- *     
+ * 
  *     3 - comparisons 'op(name,value)' where 'op' will be 'eq', 'ne', 'ge',
  *     ..., plus conjunctions 'and(list)' and 'or(list)' where 'array' is a
  *     comma separated list of any comparison or conjunction.
@@ -191,14 +188,13 @@ export function afwConvertAdaptiveQueryCriteriaToQueryString(client : any, query
 }
 
 /**
- * This function converts a query string to an _AdaptiveQueryCriteria_
- * object.
+ * This function converts a query string to an _AdaptiveQueryCriteria_ object.
  * 
  * @param {string} queryString - The query string to convert.
  * 
- * @param {string} adaptorId - This is the adaptorId of adaptor containing
- *     the objectType for validating and mapping this query. If not
- *     specified, no validation or mapping will occur.
+ * @param {string} adaptorId - This is the adaptorId of adaptor containing the
+ *     objectType for validating and mapping this query. If not specified, no
+ *     validation or mapping will occur.
  * 
  * @param {string} objectType - This is the objectType used in conjunction
  *     with the adaptorId parameter. This parameter is only allowed and is
@@ -242,9 +238,9 @@ export function afwConvertQueryStringToAdaptiveQueryCriteria(client : any, query
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
- *     
+ * 
  *     where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -284,9 +280,9 @@ export function afwDeleteObject(client : any, objectType : string, objectId : st
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
- *     
+ * 
  *     where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -308,9 +304,9 @@ export function afwDeleteObjectWithUri(client : any, uri : any, journal? : objec
 }
 
 /**
- * Get an adaptive object from the adaptor, specified by adaptorId,
- * objectType and objectId. Optional view options and adaptor-specific
- * options may be supplied to influence how the object is returned.
+ * Get an adaptive object from the adaptor, specified by adaptorId, objectType
+ * and objectId. Optional view options and adaptor-specific options may be
+ * supplied to influence how the object is returned.
  * 
  * @param {string} adaptorId - Id of adaptor containing object to retrieve.
  * 
@@ -320,16 +316,15 @@ export function afwDeleteObjectWithUri(client : any, uri : any, journal? : objec
  * @param {string} objectId - Id of object to retrieve.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Object retrieved or NULL if not found.
@@ -361,16 +356,15 @@ export function afwGetObject(client : any, objectType : string, objectId : strin
  *     single slash ('/'), it is the local object path.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
- *     
+ * 
  *     where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Object retrieved or NULL if not found.
@@ -402,29 +396,18 @@ export function afwGetObjectWithUri(client : any, uri : any, options? : object, 
  * @param {string} objectId - Id of object to modify.
  * 
  * @param {array} entries - List of modifications. Entries are of the form:
- *     
- *     [
- *     'add_value',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
- *     
- *     [
- *     'remove_property',
- *     'property name' or ['property name', ... ]
- *     ]
- *     
- *     [
- *     'remove_value',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
- *     
- *     [
- *     'set_property',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
+ * 
+ *         [         'add_value',         'property name' or ['property name',
+ *     ... ],         value     ]
+ * 
+ *         [         'remove_property',         'property name' or ['property
+ *     name', ... ]     ]
+ * 
+ *         [         'remove_value',         'property name' or ['property
+ *     name', ... ],         value     ]
+ * 
+ *         [         'set_property',         'property name' or ['property
+ *     name', ... ],         value     ]
  * 
  * @param {object} journal - The properties of this object will be added to
  *     the associated journal entry. Refer to
@@ -435,9 +418,9 @@ export function afwGetObjectWithUri(client : any, uri : any, options? : object, 
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -471,29 +454,18 @@ export function afwModifyObject(client : any, objectType : string, objectId : st
  * 
  * @param {array} entries - List of asserts and modifications. Entries are of
  *     the form:
- *     
- *     [
- *     'add_value',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
- *     
- *     [
- *     'remove_property',
- *     'property name' or ['property name', ... ]
- *     ]
- *     
- *     [
- *     'remove_value',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
- *     
- *     [
- *     'set_property',
- *     'property name' or ['property name', ... ],
- *     value
- *     ]
+ * 
+ *         [         'add_value',         'property name' or ['property name',
+ *     ... ],         value     ]
+ * 
+ *         [         'remove_property',         'property name' or ['property
+ *     name', ... ]     ]
+ * 
+ *         [         'remove_value',         'property name' or ['property
+ *     name', ... ],         value     ]
+ * 
+ *         [         'set_property',         'property name' or ['property
+ *     name', ... ],         value     ]
  * 
  * @param {object} journal - The properties of this object will be added to
  *     the associated journal entry. Refer to
@@ -504,9 +476,9 @@ export function afwModifyObject(client : any, objectType : string, objectId : st
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -576,9 +548,9 @@ export function afwReconcileObject(client : any, object : object, checkOnly? : b
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -621,9 +593,9 @@ export function afwReplaceObject(client : any, objectType : string, objectId : s
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -649,9 +621,8 @@ export function afwReplaceObjectWithUri(client : any, uri : any, object : object
  * This function retrieves adaptive objects from an adaptor, specified by
  * adaptorId, which match the type specified by objectType.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
@@ -664,16 +635,15 @@ export function afwReplaceObjectWithUri(client : any, uri : any, object : object
  *     be retrieved. If not specified, all objects will be retrieved.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {array} This is the array of objects retrieved.
@@ -706,9 +676,8 @@ export function afwRetrieveObjects(client : any, objectType : string, adaptorId?
  * 
  * Each object is passed to the callback as it's retrieved.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
@@ -718,8 +687,8 @@ export function afwRetrieveObjects(client : any, objectType : string, adaptorId?
  *     undefined if there are no more objects. This function should return
  *     true if it wants to abort the retrieve request.
  * 
- * @param {} userData - This value is passed to the objectCallback function
- *     in the userData parameter.
+ * @param {} userData - This value is passed to the objectCallback function in
+ *     the userData parameter.
  * 
  * @param {string} adaptorId - Id of adaptor containing objects to retrieve.
  * 
@@ -730,17 +699,16 @@ export function afwRetrieveObjects(client : any, objectType : string, adaptorId?
  *     be retrieved. If not specified, all objects will be retrieved.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
+ * 
  *     
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callbac
- *     k
- *     
+ *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callback
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {void}
@@ -779,9 +747,8 @@ export function afwRetrieveObjectsToCallback(client : any, objectCallback : any,
  * object has a 'result' property containing the retrieved object and a
  * 'intermediate' property set to true.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
@@ -794,16 +761,15 @@ export function afwRetrieveObjectsToCallback(client : any, objectCallback : any,
  *     be retrieved. If not specified, all objects will be retrieved.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {void}
@@ -836,14 +802,13 @@ export function afwRetrieveObjectsToResponse(client : any, objectType : string, 
  * 
  * Each object is written to the 'streamId' stream as it's retrieved.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
- * @param {integer} streamNumber - Stream number objects will be written to
- *     as they are retrieved.
+ * @param {integer} streamNumber - Stream number objects will be written to as
+ *     they are retrieved.
  * 
  * @param {string} adaptorId - Id of adaptor containing objects to retrieve.
  * 
@@ -854,16 +819,15 @@ export function afwRetrieveObjectsToResponse(client : any, objectType : string, 
  *     be retrieved. If not specified, all objects will be retrieved.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {void}
@@ -894,9 +858,8 @@ export function afwRetrieveObjectsToStream(client : any, streamNumber : number, 
 /**
  * Retrieve adaptive objects with a given URI.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
@@ -905,16 +868,15 @@ export function afwRetrieveObjectsToStream(client : any, streamNumber : number, 
  *     specified.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {array} This is the array of objects retrieved.
@@ -940,9 +902,8 @@ export function afwRetrieveObjectsWithUri(client : any, uri : any, options? : ob
  * 
  * Each object is passed to the callback as it's retrieved.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
@@ -960,16 +921,15 @@ export function afwRetrieveObjectsWithUri(client : any, uri : any, options? : ob
  *     specified.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {void}
@@ -1001,9 +961,8 @@ export function afwRetrieveObjectsWithUriToCallback(client : any, objectCallback
  * object has a 'result' property containing the retrieved object and a
  * 'partial' property set to true.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
@@ -1012,16 +971,15 @@ export function afwRetrieveObjectsWithUriToCallback(client : any, objectCallback
  *     specified.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {void}
@@ -1047,30 +1005,28 @@ export function afwRetrieveObjectsWithUriToResponse(client : any, uri : any, opt
  * 
  * Each object is written to the 'streamId' stream as it's retrieved.
  * 
- * The optional queryCriteria is used to filter the adaptive objects
- * returned. Use the objectOptions parameter to influence how the objects are
- * viewed.
+ * The optional queryCriteria is used to filter the adaptive objects returned.
+ * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adaptorId, can be optionally supplied.
  * 
- * @param {integer} streamNumber - Stream number objects will be written to
- *     as they are retrieved.
+ * @param {integer} streamNumber - Stream number objects will be written to as
+ *     they are retrieved.
  * 
  * @param {anyURI} uri - URI of objects to retrieve. If a URI begins with a
  *     single slash ('/'), it is the local object path. A query string can be
  *     specified.
  * 
  * @param {object} options - Object view options. See
- *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
- *     information.
+ *     /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more information.
  * 
  * @param {object} adaptorTypeSpecific - This is an optional object parameter
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {void}
@@ -1103,9 +1059,9 @@ export function afwRetrieveObjectsWithUriToStream(client : any, streamNumber : n
  * @param {string} objectId - Id of object to update.
  * 
  * @param {object} object - Object containing properties to replace in
- *     existing object. You can use object_modify instead to update
- *     properties of embedded objects and arrays, as well as to modify
- *     individual values of the object.
+ *     existing object. You can use object_modify instead to update properties
+ *     of embedded objects and arrays, as well as to modify individual values
+ *     of the object.
  * 
  * @param {object} journal - The properties of this object will be added to
  *     the associated journal entry. Refer to
@@ -1116,9 +1072,9 @@ export function afwRetrieveObjectsWithUriToStream(client : any, streamNumber : n
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.
@@ -1151,9 +1107,9 @@ export function afwUpdateObject(client : any, objectType : string, objectId : st
  *     single slash ('/'), it is the local object path.
  * 
  * @param {object} object - Object containing properties to replace in
- *     existing object. You can use object_modify instead to update
- *     properties of embedded objects and arrays, as well as to modify
- *     individual values of the object.
+ *     existing object. You can use object_modify instead to update properties
+ *     of embedded objects and arrays, as well as to modify individual values
+ *     of the object.
  * 
  * @param {object} journal - The properties of this object will be added to
  *     the associated journal entry. Refer to
@@ -1164,9 +1120,9 @@ export function afwUpdateObject(client : any, objectType : string, objectId : st
  *     with an objectType determined by the adaptorType associated with the
  *     adaptorId parameter. If the adaptorType supports this parameter,
  *     adaptor afw will have an adaptive object type with an id of:
- *     
+ * 
  *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
- *     
+ * 
  *     Where ${adaptorType} is the adaptor type id.
  * 
  * @returns {object} Resulting journal entry.

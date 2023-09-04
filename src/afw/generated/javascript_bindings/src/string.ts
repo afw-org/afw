@@ -12,8 +12,8 @@ interface IAnyObject {
 }
 
 /**
- * Add (concatenate) a string with 1 or more values of any data type
- * converted to their string value and return the string result.
+ * Add (concatenate) a string with 1 or more values of any data type converted
+ * to their string value and return the string result.
  * 
  * @param {string} string -
  * 
@@ -166,8 +166,8 @@ export function afwEndsWithString(client : any, value : string, subString : stri
 }
 
 /**
- * Checks for string arg1 is equal to string arg2 ignoring case and return
- * the boolean result.
+ * Checks for string arg1 is equal to string arg2 ignoring case and return the
+ * boolean result.
  * 
  * @param {string} arg1 -
  * 
@@ -188,9 +188,8 @@ export function afwEqIgnoreCaseString(client : any, arg1 : string, arg2 : string
 
 /**
  * Determine if string arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===')
- * instead if you want false to be returned if arg1 and arg2's data type
- * don't match.
+ * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
+ * if you want false to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {string} arg1 -
  * 
@@ -211,8 +210,8 @@ export function afwEqString(client : any, arg1 : string, arg2 : any) : any {
 
 /**
  * Determine if for string arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
+ * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {string} arg1 -
  * 
@@ -329,8 +328,8 @@ export function afwIndexOfString(client : any, value : string, subString : strin
 }
 
 /**
- * Returns an array of string with the values that are common to both array
- * of string array1 and array2.
+ * Returns an array of string with the values that are common to both array of
+ * string array1 and array2.
  * 
  * @param {array} array1 - The first array.
  * 
@@ -511,10 +510,9 @@ export function afwMinString(client : any, values : string) : any {
 }
 
 /**
- * Determine if string arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
+ * Determine if string arg1 is not equal to the value of arg2 converted to the
+ * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
+ * if you want true to be returned if arg1 and arg2's data type don't match.
  * 
  * @param {string} arg1 -
  * 
@@ -534,9 +532,9 @@ export function afwNeString(client : any, arg1 : string, arg2 : any) : any {
 }
 
 /**
- * Determine if for string arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want
- * arg2 to be converted to the data type of arg1 before comparison.
+ * Determine if for string arg1 is not equal to the value or data type of arg2
+ * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
+ * be converted to the data type of arg1 before comparison.
  * 
  * @param {string} arg1 -
  * 
@@ -590,8 +588,8 @@ export function afwNormalizeToLowerCaseString(client : any, string : string) : a
 }
 
 /**
- * This converts an array of string values that contains one value to a
- * single string value.
+ * This converts an array of string values that contains one value to a single
+ * string value.
  * 
  * @param {array} array -
  * 
@@ -728,8 +726,8 @@ export function afwReplaceString(client : any, value : string, match : string, r
 }
 
 /**
- * Returns boolean true if string array1 and string array2 are subsets of
- * each other and return the boolean result.
+ * Returns boolean true if string array1 and string array2 are subsets of each
+ * other and return the boolean result.
  * 
  * @param {array} array1 -
  * 
@@ -1106,8 +1104,8 @@ export function afwToYearMonthDurationString(client : any, value : string) : any
 }
 
 /**
- * Returns an array of string contains all of the unique values in two or
- * more array of string values.
+ * Returns an array of string contains all of the unique values in two or more
+ * array of string values.
  * 
  * @param {array} arrays - Two or more arrays.
  * 

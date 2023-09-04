@@ -121,9 +121,9 @@ class hexBinary
      * eq_hexBinary()
      *
      * Determine if hexBinary arg1 is equal to the value of arg2 converted to
-     * the data type of arg1 then return the boolean result. Use 'eqx'
-     * ('===') instead if you want false to be returned if arg1 and arg2's
-     * data type don't match.
+     * the data type of arg1 then return the boolean result. Use 'eqx' ('===')
+     * instead if you want false to be returned if arg1 and arg2's data type
+     * don't match.
      *
      * @param hexBinary $arg1
      * @param  $arg2
@@ -198,8 +198,8 @@ class hexBinary
     /**
      * gt_hexBinary()
      *
-     * Checks for hexBinary arg1 is greater than hexBinary arg2 and return
-     * the boolean result.
+     * Checks for hexBinary arg1 is greater than hexBinary arg2 and return the
+     * boolean result.
      *
      * @param hexBinary $arg1
      * @param hexBinary $arg2
@@ -368,10 +368,10 @@ class hexBinary
     /**
      * ne_hexBinary()
      *
-     * Determine if hexBinary arg1 is not equal to the value of arg2
-     * converted to the data type of arg1 then return the boolean result. Use
-     * 'nex' ('!==') instead if you want true to be returned if arg1 and
-     * arg2's data type don't match.
+     * Determine if hexBinary arg1 is not equal to the value of arg2 converted
+     * to the data type of arg1 then return the boolean result. Use 'nex'
+     * ('!==') instead if you want true to be returned if arg1 and arg2's data
+     * type don't match.
      *
      * @param hexBinary $arg1
      * @param  $arg2
@@ -421,8 +421,8 @@ class hexBinary
     /**
      * one_and_only_hexBinary()
      *
-     * This converts an array of hexBinary values that contains one value to
-     * a single hexBinary value.
+     * This converts an array of hexBinary values that contains one value to a
+     * single hexBinary value.
      *
      * @param array $array
      *

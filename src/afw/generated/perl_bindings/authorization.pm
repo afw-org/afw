@@ -27,8 +27,7 @@ Perform authorization check
     $requestId
 
 This is a request id to associate with the authorization request. Variable
-current::requestId can be used to access this value in authorization
-policies.
+current::requestId can be used to access this value in authorization policies.
 
     $resourceId
 
@@ -47,8 +46,8 @@ policies.
 
     $enforce
 
-This specifies whether an error is thrown if access is denied. If false or
-not specified, an error is not thrown and the decision can be checked in the
+This specifies whether an error is thrown if access is denied. If false or not
+specified, an error is not thrown and the decision can be checked in the
 returned object.
 
 =cut

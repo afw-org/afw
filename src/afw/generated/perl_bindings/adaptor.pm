@@ -91,8 +91,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
 
@@ -108,8 +108,8 @@ Add adaptive object with URI
     $uri
 
 URI of object to add. If a URI begins with a single slash ('/'), it is the
-local object path. In the case of a local path, an optional preferred
-objectId of object can be including in URI which the adaptor may ignore.
+local object path. In the case of a local path, an optional preferred objectId
+of object can be including in URI which the adaptor may ignore.
 
     $object
 
@@ -125,8 +125,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
 
@@ -223,8 +223,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
 
@@ -252,8 +252,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
 
@@ -282,15 +282,15 @@ Id of object to retrieve.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
 
@@ -310,15 +310,15 @@ the local object path.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
 
@@ -380,8 +380,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
 
@@ -436,8 +436,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
 
@@ -495,8 +495,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
 
@@ -511,8 +511,8 @@ Replace adaptive object with URI
 
     $uri
 
-URI of object to replace. If a URI begins with a single slash ('/'), it is
-the local object path.
+URI of object to replace. If a URI begins with a single slash ('/'), it is the
+local object path.
 
     $object
 
@@ -528,8 +528,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
 
@@ -563,15 +563,15 @@ objects will be retrieved.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -601,8 +601,7 @@ should return true if it wants to abort the retrieve request.
 
     $userData
 
-This value is passed to the objectCallback function in the userData
-parameter.
+This value is passed to the objectCallback function in the userData parameter.
 
     $adaptorId
 
@@ -619,15 +618,15 @@ objects will be retrieved.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callback
 
@@ -667,15 +666,15 @@ objects will be retrieved.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -715,15 +714,15 @@ objects will be retrieved.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -748,15 +747,15 @@ the local object path. A query string can be specified.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -795,15 +794,15 @@ the local object path. A query string can be specified.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -816,8 +815,8 @@ This function retrieves adaptive objects with a given URI.
 This function is only allowed when called during a request with content type
 'application/x-afw'. An '_AdaptiveResponse_' object is written to the
 request's response as each object is retrieved. This '_AdaptiveResponse_'
-object has a 'result' property containing the retrieved object and a
-'partial' property set to true.
+object has a 'result' property containing the retrieved object and a 'partial'
+property set to true.
 
 The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.
@@ -834,15 +833,15 @@ the local object path. A query string can be specified.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -873,15 +872,15 @@ the local object path. A query string can be specified.
 
     $options
 
-Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_
-for more information.
+Object view options. See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for
+more information.
 
     $adaptorTypeSpecific
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
 
@@ -922,8 +921,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
 
@@ -957,8 +956,8 @@ to avoid and for ones that have specific semantics.
 
 This is an optional object parameter with an objectType determined by the
 adaptorType associated with the adaptorId parameter. If the adaptorType
-supports this parameter, adaptor afw will have an adaptive object type with
-an id of:
+supports this parameter, adaptor afw will have an adaptive object type with an
+id of:
 
 _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
 
