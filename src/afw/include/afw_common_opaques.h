@@ -801,11 +801,14 @@ afw_value_block_t;
  * here.
  */
 typedef enum {
-    afw_value_block_statement_flow_sequential,
-    afw_value_block_statement_flow_break,
-    afw_value_block_statement_flow_continue,
-    afw_value_block_statement_flow_rethrow,
-    afw_value_block_statement_flow_return
+    afw_value_block_statement_flow_sequential         = 0,
+    afw_value_block_statement_flow_continue           = 1,
+
+    /* Greater than or equal 2 should always break out of loops. */
+    afw_value_block_statement_flow_ge_break_out       = 2,
+    afw_value_block_statement_flow_break              = 2,
+    afw_value_block_statement_flow_rethrow            = 3,
+    afw_value_block_statement_flow_return             = 4
 } afw_value_block_statement_flow_t;
 
 /**
