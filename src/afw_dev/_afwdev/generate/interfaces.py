@@ -43,7 +43,7 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('/**\n * @addtogroup ' + interface_name + '_interface ' +  interface_name + '\n')
             fd.write(' *\n')
             for description in interface.findall('description'):
-                c.write_wrapped(fd, 80, ' * ', description.text, trim=True)
+                c.write_wrapped(fd, 80, ' * ', ' '.join(description.text.split()), trim=True)
             fd.write(' *\n')
             fd.write(' * @{\n')
             fd.write(' */\n\n')
@@ -53,6 +53,11 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('struct ' + interface_name + '_s {\n')
             fd.write('    const ' + interface_name + '_inf_t *inf;\n')
             for variable in interface.findall('variable'):
+                if variable.findall('description'):
+                    fd.write('\n    /**\n')
+                    for description in variable.findall('description'):
+                        c.write_wrapped(fd, 80, '     * ', ' '.join(description.text.split()), trim=True)
+                    fd.write('     */\n')
                 fd.write('    ' + variable.get('type') + ' ' + variable.get('name') + ';\n')
             for c_public in interface.findall('c_public'):
                 fd.write(c_public.text)
@@ -86,6 +91,11 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
                 method_name = method.get('name')
                 fd.write('    ' + interface_name + '_' + method_name + '_t ' + method_name + ';\n')
             for variable in interface.findall('inf_variable'):
+                if variable.findall('description'):
+                    fd.write('\n    /**\n')
+                    for description in variable.findall('description'):
+                        c.write_wrapped(fd, 80, '     * ', ' '.join(description.text.split()), trim=True)
+                    fd.write('     */\n')
                 fd.write('    ' + variable.get('type') + ' ' + variable.get('name') + ';\n')
             fd.write('};\n')
 
@@ -104,7 +114,7 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
                         param = '@param ...'
                     for description in parameter.findall('description'):
                         if description.text is not None:
-                            param = param + ' ' + description.text.strip().replace('\n', '')
+                            param = param + ' ' + ' '.join(description.text.split())
                     c.write_wrapped(fd, 80, ' * ', param, '    ')
 
                 fd.write(' */\n')
