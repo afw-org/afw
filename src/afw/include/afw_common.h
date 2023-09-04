@@ -1412,209 +1412,6 @@ typedef struct afw_thread_attr_s afw_thread_attr_t;
 /** @brief Default for afw_environment_t evaluation_stack_maximum_count. */
 #define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT 200
 
-/** @brief Struct for typedef afw_environment_t defined in afw_common.h. */
-struct afw_environment_s {
-
-    /** @brief Pool used to hold environment. */
-    const afw_pool_t *p;
-
-    /** @brief Program name. */
-    union {
-        afw_utf8_t program_name;
-        const afw_utf8_z_t * program_name_z;
-    };
-
-    /** @brief Environment variables at environment create. */
-    const afw_object_t *initial_environment_variables;
-
-    /** @brief Adaptive framework core adaptor. */
-    const afw_adaptor_t *afw_adaptor;
-
-    /** @brief Adaptor for application.confAdaptorId or NULL. */
-    const afw_adaptor_t *conf_adaptor;
-
-    /** @brief The id of the application. */
-    afw_utf8_t application_id;
-
-    /** @brief Application object - /afw/_AdaptiveApplication_/current. */
-    const afw_object_t *application_object;
-
-    /** brief Application qualified variables objects of compiled variables. */
-    const afw_object_t *application_qualified_variables;
-    
-    /** @brief  rootFilePaths - /afw/_AdaptiveApplication_/current/rootFilePaths. */
-    const afw_object_t *root_file_paths;
-
-    /** @brief Custom layout adaptor or NULL. */
-    const afw_utf8_t *layout_adaptor_id;
-
-    /** @brief Director log.  This log will direct to other logs. */
-    const afw_log_t *log;
-
-    /** @brief Open file descriptor used for debug writes. Default stderr. */
-    FILE *debug_fd;
-
-    /** @brief Open file descriptor used for writing error output. Default stderr. */
-    FILE *stderr_fd;
-
-    /** @brief Open file descriptor used for writing standard output. Default stdout. */
-    FILE *stdout_fd;
-
-    /** @brief Double infinity */
-    afw_double_t infinity;
-
-    /** @brief Double infinity value */
-    const afw_value_t *infinity_value;
-
-    /** @brief Double minus infinity */
-    afw_double_t minus_infinity;
-
-    /** @brief Double minus infinity value */
-    const afw_value_t *minus_infinity_value;
-
-    /** @brief Double NaN */
-    afw_double_t NaN;
-
-    /** @brief Double NaN value */
-    const afw_value_t *NaN_value;
-
-    /** @brief Used by authorization. */
-    const afw_authorization_control_t *authorization_control;
-
-    /** @brief Used by function execution. */
-    const afw_function_environment_t *function_environment;
-
-    /** @brief initial_count used to create xctx's evaluation stack. */
-    afw_size_t evaluation_stack_initial_count;
-
-    /** @brief maximum_count used to create xctx's evaluation stack. */
-    afw_size_t evaluation_stack_maximum_count;
-
-    /** @brief Copy of director log's mask for short circuit tests. */
-    afw_log_priority_mask_t log_mask;
-
-    /** @brief Used to give unique number for pool. */
-    AFW_ATOMIC afw_integer_t pool_number;
-
-    /** @brief Indicates that environment is terminating. */
-    afw_boolean_t terminating;
-
-
-    /*---------- LOCKS ----------*/
-
-    /** @brief Lock for whole environment. */
-    const afw_lock_t *environment_lock;
-    
-    /** @brief Lock used internal to afw_pool.c. */
-    const afw_lock_t *multithreaded_pool_lock;
-    
-    /** @brief Lock for protecting changes to adaptor id anchors. */
-    const afw_lock_t *adaptor_id_anchor_lock;
-    
-    /**
-     * @brief Lock for protecting changes to authorization handler id
-     *     anchors.
-     *
-     * Read/write lock is needed because anchor chain can be reordered
-     * while processing handlers.
-     */
-    const afw_lock_rw_t *authorization_handler_id_anchor_rw_lock;
-
-    /**
-     * @brief Lock for protecting changes to active log list.
-     */
-    const afw_lock_t *active_log_list_lock;
-
-    /**
-     * @brief Lock for protecting changes to flags (internal to afw_flag.c).
-     */
-    const afw_lock_t *flags_lock;
-
-
-    /*---------- FLAGS ----------*/
-
-    /** @brief The number of flags allocated in global_flags. */
-    AFW_ATOMIC afw_size_t flags_count_allocated;
-
-    /** @brief The number of flags registered. */
-    AFW_ATOMIC afw_size_t flags_count_registered;
-
-    /**
-     * @brief Default flags array indexed by flag_index.
-     *
-     * Always get a copy of flag_count_registered and/or flag_count_allocated
-     * first.  This may change to a larger set of flags if allocated is not
-     * large enough to hold a new flag registration.
-     *
-     * Normally this will not be accessed directly since this pointer is copied
-     * to xctx->flags.
-     */
-    AFW_ATOMIC const afw_boolean_t *default_flags;
-
-    /**
-     * @brief Flag struct indexed by flag_index.
-     *
-     * Always get a copy of flag_count_registered and/or flag_count_allocated
-     * first.  This may change to a larger set of flags if allocated is not
-     * large enough to hold a new flag registration.
-     */
-    const afw_flag_t * AFW_ATOMIC const *flag_by_index;
-
-    /** @brief Flag index of compile:noImplicitAny. */
-    afw_size_t flag_index_compile_noImplicitAny_active;
-
-    /** @brief Flag index of compile:noOptimize. */
-    afw_size_t flag_index_compile_noOptimize_active;
-
-    /** @brief Flag index of debug:function_active. */
-    afw_size_t flag_index_debug_function_active;
-
-    /** @brief Flag index of debug:function_active:detail. */
-    afw_size_t flag_index_debug_function_active_detail;
-
-    /** @brief Flag index of debug:pool. */
-    afw_size_t flag_index_debug_pool;
-
-    /** @brief Flag index of debug:pool:detail. */
-    afw_size_t flag_index_debug_pool_detail;
-
-    /** @brief Flag index of response:error:backtrace. */
-    afw_size_t flag_index_response_error_backtrace;
-
-    /** @brief Flag index of response:error:backtraceEvaluation. */
-    afw_size_t flag_index_response_error_backtraceEvaluation;
-
-    /** @brief Flag index of response:error:contextual. */
-    afw_size_t flag_index_response_error_contextual;
-
-    /** @brief Flag index of response:error:hasAdditionalDetail. */
-    afw_size_t flag_index_response_error_hasAdditionalDetail;
-
-    /** @brief Flag index of trace:authorization:check. */
-    afw_size_t flag_index_trace_authorization_check;
-
-    /** @brief Flag index of trace:authorization:check:bypass. */
-    afw_size_t flag_index_trace_authorization_check_bypass;
-
-    /** @brief Flag index of trace:authorization:check:detail. */
-    afw_size_t flag_index_trace_authorization_check_detail;
-
-    /** @brief Flag index of trace:authorization:decision. */
-    afw_size_t flag_index_trace_authorization_decision;
-
-    /** @brief Flag index of trace:authorization:decision:detail. */
-    afw_size_t flag_index_trace_authorization_decision_detail;
-
-    /** @brief Flag index of trace:evaluation:detail. */
-    afw_size_t flag_index_trace_evaluation_detail;
-
-    /** @brief Flag index of trace:request. */
-    afw_size_t flag_index_trace_request;
-
-    /** @brief Flag index of trace:request:detail. */
-    afw_size_t flag_index_trace_request_detail;
-
-};
 
 /** @brief Typedef for union of all cType. */
 typedef union afw_c_types_u {
@@ -1828,6 +1625,374 @@ typedef void
 typedef void
 (*afw_service_wrapper_stop_cb)(
     void *data, afw_xctx_t *xctx);
+
+
+/** @brief Struct for typedef afw_environment_t defined in afw_common.h. */
+struct afw_environment_s {
+
+    /** @brief Pool used to hold environment. */
+    const afw_pool_t *p;
+
+    /** @brief Program name. */
+    union {
+        afw_utf8_t program_name;
+        const afw_utf8_z_t * program_name_z;
+    };
+
+    /** @brief Environment variables at environment create. */
+    const afw_object_t *initial_environment_variables;
+
+    /** @brief Adaptive framework core adaptor. */
+    const afw_adaptor_t *afw_adaptor;
+
+    /** @brief Adaptor for application.confAdaptorId or NULL. */
+    const afw_adaptor_t *conf_adaptor;
+
+    /** @brief The id of the application. */
+    afw_utf8_t application_id;
+
+    /** @brief Application object - /afw/_AdaptiveApplication_/current. */
+    const afw_object_t *application_object;
+
+    /** brief Application qualified variables objects of compiled variables. */
+    const afw_object_t *application_qualified_variables;
+    
+    /** @brief  rootFilePaths - /afw/_AdaptiveApplication_/current/rootFilePaths. */
+    const afw_object_t *root_file_paths;
+
+    /** @brief Custom layout adaptor or NULL. */
+    const afw_utf8_t *layout_adaptor_id;
+
+    /** @brief Director log.  This log will direct to other logs. */
+    const afw_log_t *log;
+
+    /** @brief Open file descriptor used for debug writes. Default stderr. */
+    FILE *debug_fd;
+
+    /** @brief Open file descriptor used for writing error output. Default stderr. */
+    FILE *stderr_fd;
+
+    /** @brief Open file descriptor used for writing standard output. Default stdout. */
+    FILE *stdout_fd;
+
+    /** @brief Double infinity */
+    afw_double_t infinity;
+
+    /** @brief Double infinity value */
+    const afw_value_t *infinity_value;
+
+    /** @brief Double minus infinity */
+    afw_double_t minus_infinity;
+
+    /** @brief Double minus infinity value */
+    const afw_value_t *minus_infinity_value;
+
+    /** @brief Double NaN */
+    afw_double_t NaN;
+
+    /** @brief Double NaN value */
+    const afw_value_t *NaN_value;
+
+    /** @brief Used by authorization. */
+    const afw_authorization_control_t *authorization_control;
+
+    /** @brief Used by function execution. */
+    const afw_function_environment_t *function_environment;
+
+    /** @brief initial_count used to create xctx's evaluation stack. */
+    afw_size_t evaluation_stack_initial_count;
+
+    /** @brief maximum_count used to create xctx's evaluation stack. */
+    afw_size_t evaluation_stack_maximum_count;
+
+    /** @brief Copy of director log's mask for short circuit tests. */
+    afw_log_priority_mask_t log_mask;
+
+    /** @brief Used to give unique number for pool. */
+    AFW_ATOMIC afw_integer_t pool_number;
+
+    /** @brief Indicates that environment is terminating. */
+    afw_boolean_t terminating;
+
+
+    /*---------- LOCKS ----------*/
+
+    /** @brief Lock for whole environment. */
+    const afw_lock_t *environment_lock;
+    
+    /** @brief Lock used internal to afw_pool.c. */
+    const afw_lock_t *multithreaded_pool_lock;
+    
+    /** @brief Lock for protecting changes to adaptor id anchors. */
+    const afw_lock_t *adaptor_id_anchor_lock;
+    
+    /**
+     * @brief Lock for protecting changes to authorization handler id
+     *     anchors.
+     *
+     * Read/write lock is needed because anchor chain can be reordered
+     * while processing handlers.
+     */
+    const afw_lock_rw_t *authorization_handler_id_anchor_rw_lock;
+
+    /**
+     * @brief Lock for protecting changes to active log list.
+     */
+    const afw_lock_t *active_log_list_lock;
+
+    /**
+     * @brief Lock for protecting changes to flags (internal to afw_flag.c).
+     */
+    const afw_lock_t *flags_lock;
+
+
+    /*---------- FLAGS ----------*/
+
+    /** @brief The number of flags allocated in global_flags. */
+    AFW_ATOMIC afw_size_t flags_count_allocated;
+
+    /** @brief The number of flags registered. */
+    AFW_ATOMIC afw_size_t flags_count_registered;
+
+    /**
+     * @brief Default flags array indexed by flag_index.
+     *
+     * Always get a copy of flag_count_registered and/or flag_count_allocated
+     * first.  This may change to a larger set of flags if allocated is not
+     * large enough to hold a new flag registration.
+     *
+     * Normally this will not be accessed directly since this pointer is copied
+     * to xctx->flags.
+     */
+    AFW_ATOMIC const afw_boolean_t *default_flags;
+
+    /**
+     * @brief Flag struct indexed by flag_index.
+     *
+     * Always get a copy of flag_count_registered and/or flag_count_allocated
+     * first.  This may change to a larger set of flags if allocated is not
+     * large enough to hold a new flag registration.
+     */
+    const afw_flag_t * AFW_ATOMIC const *flag_by_index;
+
+    /** @brief Flag index of compile:noImplicitAny. */
+    afw_size_t flag_index_compile_noImplicitAny_active;
+
+    /** @brief Flag index of compile:noOptimize. */
+    afw_size_t flag_index_compile_noOptimize_active;
+
+    /** @brief Flag index of debug:function_active. */
+    afw_size_t flag_index_debug_function_active;
+
+    /** @brief Flag index of debug:function_active:detail. */
+    afw_size_t flag_index_debug_function_active_detail;
+
+    /** @brief Flag index of debug:pool. */
+    afw_size_t flag_index_debug_pool;
+
+    /** @brief Flag index of debug:pool:detail. */
+    afw_size_t flag_index_debug_pool_detail;
+
+    /** @brief Flag index of response:error:backtrace. */
+    afw_size_t flag_index_response_error_backtrace;
+
+    /** @brief Flag index of response:error:backtraceEvaluation. */
+    afw_size_t flag_index_response_error_backtraceEvaluation;
+
+    /** @brief Flag index of response:error:contextual. */
+    afw_size_t flag_index_response_error_contextual;
+
+    /** @brief Flag index of response:error:hasAdditionalDetail. */
+    afw_size_t flag_index_response_error_hasAdditionalDetail;
+
+    /** @brief Flag index of trace:authorization:check. */
+    afw_size_t flag_index_trace_authorization_check;
+
+    /** @brief Flag index of trace:authorization:check:bypass. */
+    afw_size_t flag_index_trace_authorization_check_bypass;
+
+    /** @brief Flag index of trace:authorization:check:detail. */
+    afw_size_t flag_index_trace_authorization_check_detail;
+
+    /** @brief Flag index of trace:authorization:decision. */
+    afw_size_t flag_index_trace_authorization_decision;
+
+    /** @brief Flag index of trace:authorization:decision:detail. */
+    afw_size_t flag_index_trace_authorization_decision_detail;
+
+    /** @brief Flag index of trace:evaluation:detail. */
+    afw_size_t flag_index_trace_evaluation_detail;
+
+    /** @brief Flag index of trace:request. */
+    afw_size_t flag_index_trace_request;
+
+    /** @brief Flag index of trace:request:detail. */
+    afw_size_t flag_index_trace_request_detail;
+
+};
+
+
+/** @brief Struct for typedef afw_xctx_t defined in afw_common.h. */
+struct afw_xctx_s {
+
+    /**
+     * Default pool or execution context (xctx).
+     */
+    const afw_pool_t * p;
+
+    /**
+     * The execution context (xctx) name or type.
+     */
+    const afw_utf8_t * name;
+
+    /**
+     * The execution context (xctx) parent xctx.
+     */
+    afw_xctx_t * parent;
+
+    /**
+     * Adaptive Framework Environment. This points to the same environment as
+     * all other execution contexts in the same Adaptive Framework application.
+     */
+    const afw_environment_t * env;
+
+    /**
+     * Thread associate with xctx or NULL if base xctx.
+     */
+    const afw_thread_t * thread;
+
+    /**
+     * Request instance associated with xctx or NULL.
+     */
+    const afw_request_t * request;
+
+    /**
+     * A UUID to identify this xctx.
+     */
+    const afw_utf8_t * uuid;
+
+    /**
+     * The execution context (xctx) properties. This is an untyped object.
+     */
+    const afw_object_t * properties;
+
+    /**
+     * Authorization mode value. This contains the value from one of the
+     * afw_authorization_mode_id_*_value variables from afw_authorization_h.
+     */
+    const afw_value_t * mode;
+
+    /**
+     * Anchor for steams available in xctx. See afw_stream.h.
+     */
+    const afw_stream_anchor_t * stream_anchor;
+
+    /**
+     * A counter writers can increment and use to help identify the sequence
+     * of writes.
+     */
+    afw_integer_t write_sequence;
+
+    /**
+     * Private data used by xctx implementation.
+     */
+    void * priv;
+
+    /**
+     * Error.
+     */
+    afw_error_t * error;
+
+    /**
+     * Current try.
+     */
+    afw_try_t * current_try;
+
+    /**
+     * Runtime objects for xctx.
+     */
+    const afw_runtime_objects_t * runtime_objects;
+
+    /**
+     * The number of the scopes created.
+     */
+    afw_size_t scope_count;
+
+    /**
+     * The execution context (xctx) runtime scope stack. Entries are
+     * const afw_xctx_scope_t *.
+     */
+    apr_array_header_t * scope_stack;
+
+    /**
+     * This is set each time a result is produced while evaluated an adaptive
+     * script. Once evaluate of a script is complete, this is the final
+     * return value.
+     */
+    const afw_value_t * evaluation_result;
+
+    /**
+     * The execution context (xctx) evaluation stack.
+     */
+    afw_xctx_evaluation_stack_t * evaluation_stack;
+
+    /**
+     * The execution context (xctx) qualifier stack. Entries are
+     * const afw_xctx_qualifier_stack_entry_t *.
+     */
+    const afw_xctx_qualifier_stack_t * qualifier_stack;
+
+    /**
+     * Internal struct used by adaptors for this xctx. May be NULL.
+     */
+    afw_adaptor_xctx_internal_t * adaptor_xctx_internal;
+
+    /**
+     * The execution context (xctx) cache.
+     */
+    afw_adaptor_internal_cache_t * cache;
+
+    /**
+     * The local dateTime when execution context was created.
+     */
+    afw_dateTime_t local_dateTime_when_created;
+
+    /**
+     * The UTC/Zulu dateTime when execution context was created.
+     */
+    afw_dateTime_t utc_dateTime_when_created;
+
+    /**
+     * The number of flags.
+     */
+    afw_size_t flags_count;
+
+    /**
+     * Array of boolean flags. The size is flag_count.
+     */
+    const afw_boolean_t * flags;
+
+    /**
+     * This indicates that xctx->flags is a mutable copy for env->flags.
+     * 
+     * During xctx create, xctx->flags is set to env->flags. If flags change
+     * for an xctx, xctx->flags is set to a mutable copy of env->flags and this
+     * variable is set to true.
+     */
+    afw_boolean_t flags_is_mutable_copy;
+
+    /**
+     * Error function for libxml2.
+     */
+    void * libxml2_error_func;
+
+    /**
+     * If true, evaluates should only used secure context variables.
+     * Use AFW_XCTX_SECURE_BEGIN and AFW_XCTX_SECURE_END for afw_xctx.h to
+     * modify this variable.
+     */
+    afw_boolean_t secure;
+};
 
 
 AFW_END_DECLARES

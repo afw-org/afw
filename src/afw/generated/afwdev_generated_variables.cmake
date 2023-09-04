@@ -143,7 +143,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_variable_handler_impl_declares.h
     generated/afw_version_info.h
     generated/afw_writer_impl_declares.h
-    generated/afw_xctx_impl_declares.h
     include/afw.h
     include/afw_common.h
     include/afw_common_opaques.h

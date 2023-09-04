@@ -15,7 +15,19 @@
  * @defgroup afw_xctx Execution context (xctx)
  * @ingroup afw_c_api_public
  *
- * Adaptive Framework Execution Context (xctx).
+ * Adaptive Framework Execution Context (xctx) interface.
+ * 
+ * An execution context holds common information related to a unit of work in
+ * Adaptive Framework. This unit of work runs in a single thread of a
+ * single-threaded or multi-threaded process. In a multi-threaded process,
+ * the main thread has the global execution context. Other threads have their
+ * own execution context and required the appropriate mutexes or queued work
+ * to access memory in the global execution context.
+ * 
+ * The type of execution contexts can be "server", "request_session', etc. A
+ * execution context's pool, properties, and object cache will last for the
+ * life of the execution context. An execution context's parent will always
+ * have a longer life.
  *
  * @{
  */
@@ -24,6 +36,7 @@
  * @file afw_xctx.h
  * @brief Adaptive Framework Execution Context (xctx) Implementation Header.
  */
+
 
 AFW_BEGIN_DECLARES
 
@@ -45,6 +58,14 @@ AFW_BEGIN_DECLARES
 /** Name of request session xctx. */
 #define AFW_XCTX_s_NAME_REQUEST_SESSION afw_s_request_session
 
+
+/**
+ * @brief Release xctx.
+ * @param instance of xctx.
+ * @param xctx of caller.
+ */
+
+
 /**
  * @brief Create an Adaptive Framework xctx.
  * @param name of xctx.
@@ -64,6 +85,19 @@ AFW_BEGIN_DECLARES
 AFW_DECLARE(afw_xctx_t *)
 afw_xctx_create(
     const afw_utf8_t *name, afw_integer_t number, afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Release an Adaptive Framework xctx.
+ * @param instance of xctx.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_xctx_release(
+    const afw_xctx_t *instance,
+    afw_xctx_t *xctx);
+
 
 
 /**

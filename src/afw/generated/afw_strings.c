@@ -2645,11 +2645,6 @@ const afw_value_string_t afw_v_afw_writer = {
     AFW_UTF8_LITERAL("afw_writer")
 };
 
-const afw_value_string_t afw_v_afw_xctx = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("afw_xctx")
-};
-
 const afw_value_string_t afw_v_afw_yaml = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("afw_yaml")

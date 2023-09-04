@@ -7365,20 +7365,6 @@ extern const afw_value_string_t afw_v_afw_writer;
 
 
 
-/** @brief define for quoted string "afw_xctx" */
-#define AFW_Q_afw_xctx "afw_xctx"
-
-/** @brief 'afw_utf8_t' for string "afw_xctx" */
-#define afw_s_afw_xctx (afw_v_afw_xctx.internal)
-
-/** @brief 'afw_value_string_t' for string "afw_xctx" */
-extern const afw_value_string_t afw_v_afw_xctx;
-
-/** @brief 'afw_utf8_z_t *' for string "afw_xctx" */
-#define afw_z_afw_xctx (afw_v_afw_xctx.internal.s)
-
-
-
 /** @brief define for quoted string "afw_yaml" */
 #define AFW_Q_afw_yaml "afw_yaml"
 

@@ -1,4 +1,0 @@
-{
-    "name": "afw_xctx",
-    "description": "Adaptive Framework Execution Context (xctx) interface.\n      \n      An execution context holds common information related to a unit of work in\n      Adaptive Framework. This unit of work runs in a single thread of a\n      single-threaded or multi-threaded process. In a multi-threaded process,\n      the main thread has the global execution context. Other threads have their\n      own execution context and required the appropriate mutexes or queued work\n      to access memory in the global execution context.\n\n      The type of execution contexts can be \"server\", \"request_session', etc. A\n      execution context's pool, properties, and object cache will last for the\n      life of the execution context. An execution context's parent will always\n      have a longer life."
-}

@@ -193,12 +193,6 @@ afw_request_t;
 typedef struct afw_request_inf_s
 afw_request_inf_t;
 
-typedef struct afw_xctx_s
-afw_xctx_t;
-
-typedef struct afw_xctx_inf_s
-afw_xctx_inf_t;
-
 typedef struct afw_stream_s
 afw_stream_t;
 

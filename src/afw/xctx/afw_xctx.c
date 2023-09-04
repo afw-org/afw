@@ -12,11 +12,6 @@
  */
 
 #include "afw_internal.h"
-
-
-/* Declares and rti/inf defines for interface afw_xctx */
-#define AFW_IMPLEMENTATION_ID "core"
-#include "afw_xctx_impl_declares.h"
 #include <libxml/xmlregexp.h>
 
 
@@ -51,7 +46,6 @@ afw_xctx_internal_create_initialize(
         AFW_THROW_UNHANDLED_ERROR(unhandled_error, error, general,
             na, 0, "apr_pcalloc() failed");
     }
-    self->inf = &impl_afw_xctx_inf;
     self->p = p;
     self->mode = afw_authorization_mode_id_user_value;
     self->current_try = unhandled_error;
@@ -493,12 +487,10 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 
 
 
-/*
- * Implementation of method release of interface afw_xctx.
- */
-void
-impl_afw_xctx_release(
-    const afw_xctx_t * instance,
+/* Release an Adaptive Framework xctx. */
+AFW_DEFINE(void)
+afw_xctx_release(
+    const afw_xctx_t *instance,
     afw_xctx_t *xctx)
 {  
     /* Release streams. */
