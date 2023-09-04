@@ -795,12 +795,18 @@ typedef struct afw_value_block_s
 afw_value_block_t;
 
 /**
- * Opaque typedef for afw_value_block_frame_t.
+ * Enum typedef for afw_value_block_statement_flow_t.
  *
- * See afw_value_internal.h for struct and more information.
+ * This is used in afw_value_internal.h struct and afw_xctx.h so it has to be
+ * here.
  */
-typedef struct afw_value_block_frame_s
-afw_value_block_frame_t;
+typedef enum {
+    afw_value_block_statement_flow_sequential,
+    afw_value_block_statement_flow_break,
+    afw_value_block_statement_flow_continue,
+    afw_value_block_statement_flow_rethrow,
+    afw_value_block_statement_flow_return
+} afw_value_block_statement_flow_t;
 
 /**
  * Opaque typedef for afw_value_block_symbol_t.

@@ -205,6 +205,7 @@ struct afw_xctx_scope_s {
     const afw_xctx_scope_t *parent_lexical_scope;
     afw_size_t reference_count;
     afw_size_t scope_number;
+    afw_value_block_statement_flow_t block_statement_flow;
     /*
      * When this struct is created by afw_xctx_scope_create(), it will be
      * allocated large enough to hold block->symbol_count symbol_values.

@@ -53,15 +53,6 @@ AFW_BEGIN_DECLARES
     } \
     else
 
-typedef enum {
-    afw_value_block_statement_type_sequential,
-    afw_value_block_statement_type_break,
-    afw_value_block_statement_type_continue,
-    afw_value_block_statement_type_rethrow,
-    afw_value_block_statement_type_return
-} afw_value_block_statement_type_t;
-
-
 
 /** @brief Struct for assignment target value. */
 struct afw_value_assignment_target_s {
@@ -105,20 +96,10 @@ struct afw_value_block_s {
 
 
 
-/**
- * @brief struct for afw_value_block_frame_t
- *
- * This is the frame for an invocation of a block
- */
-struct afw_value_block_frame_s {
-    const afw_pool_t *p;                     // Pool for this block frame
-    const afw_value_block_t *block;          // Associated block value.
-    const afw_value_block_frame_t *previous; // Previous block frame
-    const afw_object_t *variables;           // Runtime variables for this block
-    afw_value_block_statement_type_t type;
-    afw_boolean_t allow_return;
-    afw_boolean_t is_loop;    
-};
+#define afw_value_block_statement_flow_set(type) \
+    (((const afw_xctx_scope_t **)xctx->scope_stack->elts) \
+        [xctx->scope_stack->nelts - 1])->block_statement_flow = \
+            afw_value_block_statement_flow ## type  
 
 
 
@@ -790,7 +771,7 @@ afw_value_compiler_listing_name_and_type(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_boolean_t allow_return,
     afw_boolean_t is_loop,
     const afw_value_t *block,
@@ -800,7 +781,7 @@ afw_value_block_evaluate_statement(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     const afw_value_block_t *self,
     afw_boolean_t is_loop,
     const afw_pool_t *p,
@@ -809,7 +790,7 @@ afw_value_block_evaluate_block(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_for(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -818,7 +799,7 @@ afw_value_block_evaluate_for(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_for_of(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t *const *argv,
     const afw_pool_t *p,
@@ -827,7 +808,7 @@ afw_value_block_evaluate_for_of(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_do_while(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t *const *argv,
     const afw_pool_t *p,
@@ -836,7 +817,7 @@ afw_value_block_evaluate_do_while(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_if(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     afw_boolean_t is_loop,
@@ -846,7 +827,7 @@ afw_value_block_evaluate_if(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_switch(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -855,7 +836,7 @@ afw_value_block_evaluate_switch(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_throw(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -864,7 +845,7 @@ afw_value_block_evaluate_throw(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_try(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -873,7 +854,7 @@ afw_value_block_evaluate_try(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_while(
     afw_function_execute_t *x,
-    afw_value_block_statement_type_t *type,
+    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
