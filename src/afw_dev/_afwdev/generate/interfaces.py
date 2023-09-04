@@ -43,7 +43,9 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('/**\n * @addtogroup ' + interface_name + '_interface ' +  interface_name + '\n')
             fd.write(' *\n')
             for description in interface.findall('description'):
-                c.write_wrapped(fd, 80, ' * ', ' '.join(description.text.split()), trim=True)
+                lines = [line.strip() for line in description.text.strip().split('\n')]
+                text = '\n'.join(('' if not line else line) for line in lines)
+                c.write_wrapped(fd, 80, ' * ', text)
             fd.write(' *\n')
             fd.write(' * @{\n')
             fd.write(' */\n\n')
@@ -56,7 +58,9 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
                 if variable.findall('description'):
                     fd.write('\n    /**\n')
                     for description in variable.findall('description'):
-                        c.write_wrapped(fd, 80, '     * ', ' '.join(description.text.split()), trim=True)
+                        lines = [line.strip() for line in description.text.strip().split('\n')]
+                        text = '\n'.join(('' if not line else line) for line in lines)
+                        c.write_wrapped(fd, 80, '     * ', text)
                     fd.write('     */\n')
                 fd.write('    ' + variable.get('type') + ' ' + variable.get('name') + ';\n')
             for c_public in interface.findall('c_public'):
@@ -94,7 +98,9 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
                 if variable.findall('description'):
                     fd.write('\n    /**\n')
                     for description in variable.findall('description'):
-                        c.write_wrapped(fd, 80, '     * ', ' '.join(description.text.split()), trim=True)
+                        lines = [line.strip() for line in description.text.strip().split('\n')]
+                        text = '\n'.join(('' if not line else line) for line in lines)
+                        c.write_wrapped(fd, 80, '     * ', text)
                     fd.write('     */\n')
                 fd.write('    ' + variable.get('type') + ' ' + variable.get('name') + ';\n')
             fd.write('};\n')
@@ -114,7 +120,8 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
                         param = '@param ...'
                     for description in parameter.findall('description'):
                         if description.text is not None:
-                            param = param + ' ' + ' '.join(description.text.split())
+                            lines = [line.strip() for line in description.text.strip().split('\n')]
+                            param += '\n'.join(('' if not line else line) for line in lines)
                     c.write_wrapped(fd, 80, ' * ', param, '    ')
 
                 fd.write(' */\n')
