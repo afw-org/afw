@@ -1838,70 +1838,69 @@ struct afw_xctx_s {
     /**
      * Default pool or execution context (xctx).
      */
-    const afw_pool_t * p;
+    const afw_pool_t *p;
 
     /**
      * The execution context (xctx) name or type.
      */
-    const afw_utf8_t * name;
+    const afw_utf8_t *name;
 
     /**
      * The execution context (xctx) parent xctx.
      */
-    afw_xctx_t * parent;
+    afw_xctx_t *parent;
 
     /**
      * Adaptive Framework Environment. This points to the same environment as
      * all other execution contexts in the same Adaptive Framework application.
      */
-    const afw_environment_t * env;
+    const afw_environment_t *env;
 
     /**
      * Thread associate with xctx or NULL if base xctx.
      */
-    const afw_thread_t * thread;
+    const afw_thread_t *thread;
 
     /**
      * Request instance associated with xctx or NULL.
      */
-    const afw_request_t * request;
+    const afw_request_t *request;
 
     /**
      * A UUID to identify this xctx.
      */
-    const afw_utf8_t * uuid;
+    const afw_utf8_t *uuid;
 
     /**
      * The execution context (xctx) properties. This is an untyped object.
      */
-    const afw_object_t * properties;
+    const afw_object_t *properties;
 
     /**
      * Authorization mode value. This contains the value from one of the
      * afw_authorization_mode_id_*_value variables from afw_authorization_h.
      */
-    const afw_value_t * mode;
+    const afw_value_t *mode;
 
     /**
      * Anchor for steams available in xctx. See afw_stream.h.
      */
-    const afw_stream_anchor_t * stream_anchor;
+    const afw_stream_anchor_t *stream_anchor;
 
     /**
-     * A counter writers can increment and use to help identify the sequence
-     * of writes.
+     * Error function for libxml2.
      */
-    afw_integer_t write_sequence;
+    void *libxml2_error_func;
 
     /**
      * Private data used by xctx implementation.
      */
-    void * priv;
+    void *priv;
 
     /**
      * Error.
      */
-    afw_error_t * error;
+    afw_error_t *error;
 
     /**
      * Current try.
@@ -1911,7 +1910,7 @@ struct afw_xctx_s {
     /**
      * Runtime objects for xctx.
      */
-    const afw_runtime_objects_t * runtime_objects;
+    const afw_runtime_objects_t *runtime_objects;
 
     /**
      * The number of the scopes created.
@@ -1922,35 +1921,35 @@ struct afw_xctx_s {
      * The execution context (xctx) runtime scope stack. Entries are
      * const afw_xctx_scope_t *.
      */
-    apr_array_header_t * scope_stack;
+    apr_array_header_t *scope_stack;
 
     /**
      * This is set each time a result is produced while evaluated an adaptive
      * script. Once evaluate of a script is complete, this is the final
      * return value.
      */
-    const afw_value_t * evaluation_result;
+    const afw_value_t *evaluation_result;
 
     /**
      * The execution context (xctx) evaluation stack.
      */
-    afw_xctx_evaluation_stack_t * evaluation_stack;
+    afw_xctx_evaluation_stack_t *evaluation_stack;
 
     /**
      * The execution context (xctx) qualifier stack. Entries are
      * const afw_xctx_qualifier_stack_entry_t *.
      */
-    const afw_xctx_qualifier_stack_t * qualifier_stack;
+    const afw_xctx_qualifier_stack_t *qualifier_stack;
 
     /**
      * Internal struct used by adaptors for this xctx. May be NULL.
      */
-    afw_adaptor_xctx_internal_t * adaptor_xctx_internal;
+    afw_adaptor_xctx_internal_t *adaptor_xctx_internal;
 
     /**
      * The execution context (xctx) cache.
      */
-    afw_adaptor_internal_cache_t * cache;
+    afw_adaptor_internal_cache_t *cache;
 
     /**
      * The local dateTime when execution context was created.
@@ -1963,6 +1962,12 @@ struct afw_xctx_s {
     afw_dateTime_t utc_dateTime_when_created;
 
     /**
+     * A counter writers can increment and use to help identify the sequence
+     * of writes.
+     */
+    afw_integer_t write_sequence;
+
+    /**
      * The number of flags.
      */
     afw_size_t flags_count;
@@ -1970,7 +1975,7 @@ struct afw_xctx_s {
     /**
      * Array of boolean flags. The size is flag_count.
      */
-    const afw_boolean_t * flags;
+    const afw_boolean_t *flags;
 
     /**
      * This indicates that xctx->flags is a mutable copy for env->flags.
@@ -1982,16 +1987,17 @@ struct afw_xctx_s {
     afw_boolean_t flags_is_mutable_copy;
 
     /**
-     * Error function for libxml2.
-     */
-    void * libxml2_error_func;
-
-    /**
      * If true, evaluates should only used secure context variables.
      * Use AFW_XCTX_SECURE_BEGIN and AFW_XCTX_SECURE_END for afw_xctx.h to
      * modify this variable.
      */
     afw_boolean_t secure;
+
+    /**
+     * Block statement flow type used while evaluate adaptive script.
+     */
+    afw_value_block_statement_flow_t block_statement_flow;
+
 };
 
 
