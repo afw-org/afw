@@ -764,8 +764,6 @@ afw_value_compiler_listing_name_and_type(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
-    afw_boolean_t allow_return,
-    afw_boolean_t is_loop,
     const afw_value_t *block,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -774,72 +772,6 @@ AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
-    afw_boolean_t is_loop,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_for(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_for_of(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t *const *argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_do_while(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t *const *argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_if(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
-    afw_boolean_t is_loop,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_switch(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_throw(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_try(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_value_block_evaluate_while(
-    afw_function_execute_t *x,
-    afw_size_t argc,
-    const afw_value_t * const * argv,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
