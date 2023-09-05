@@ -230,13 +230,12 @@ afw_function_execute_do_while(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_do_while(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
 
     return result;
 }
@@ -297,13 +296,12 @@ afw_function_execute_for(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_for(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
  
     return result;
 }
@@ -358,13 +356,12 @@ afw_function_execute_for_of(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_for_of(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
 
     return result;
 }
@@ -416,13 +413,12 @@ afw_function_execute_if(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_if(x,
-        &type, x->argc, x->argv, false, x->p, x->xctx);
+        x->argc, x->argv, false, x->p, x->xctx);
 
     return result;
 }
@@ -613,13 +609,12 @@ afw_function_execute_switch(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_switch(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
 
     return result;
 }
@@ -665,12 +660,11 @@ const afw_value_t *
 afw_function_execute_throw(
     afw_function_execute_t *x)
 {
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     afw_value_block_evaluate_throw(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
 
     /* Return undefined for void. */
     return afw_value_undefined;
@@ -738,13 +732,12 @@ afw_function_execute_try(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_try(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
 
     return result;
 }
@@ -797,13 +790,12 @@ afw_function_execute_while(
     afw_function_execute_t *x)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
 
-    type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, x->xctx);
 
     /* Can be called outside of a block, but usually part of a block value. */
     result = afw_value_block_evaluate_while(x,
-        &type, x->argc, x->argv, x->p, x->xctx);
+        x->argc, x->argv, x->p, x->xctx);
 
     return result;
 }

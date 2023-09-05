@@ -1996,7 +1996,7 @@ struct afw_xctx_s {
     /**
      * Block statement flow type used while evaluate adaptive script.
      */
-    afw_value_block_statement_flow_t block_statement_flow;
+    afw_xctx_statement_flow_t statement_flow;
 
 };
 

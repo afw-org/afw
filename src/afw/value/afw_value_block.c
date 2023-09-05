@@ -435,7 +435,6 @@ impl_evaluate_one_or_more_values(
     const afw_value_t *result;
     const afw_value_t *value;
     const afw_iterator_t *iterator;
-    afw_value_block_statement_flow_t type;
 
     result = NULL;
     if (afw_value_is_array(values)) {
@@ -447,14 +446,14 @@ impl_evaluate_one_or_more_values(
             if (!value) {
                 break;
             }
-            result = afw_value_block_evaluate_statement(x, &type,
-                false, false, value, p, xctx);
+            result = afw_value_block_evaluate_statement(
+                x, false, false, value, p, xctx);
         }
     }
 
     else {
-        result = afw_value_block_evaluate_statement(x, &type,
-            false, false, values, p, xctx);
+        result = afw_value_block_evaluate_statement(
+            x, false, false, values, p, xctx);
     }
 
     return result;
@@ -465,7 +464,6 @@ impl_evaluate_one_or_more_values(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     const afw_value_block_t *self,
     afw_boolean_t is_loop,
     const afw_pool_t *p,
@@ -487,10 +485,9 @@ afw_value_block_evaluate_block(
     afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
-            result = afw_value_block_evaluate_statement(x, type,
-                true, is_loop, self->statements[i], p, xctx);
-            if (*type != afw_value_block_statement_flow_sequential)
-            {
+            result = afw_value_block_evaluate_statement(
+                x, true, is_loop, self->statements[i], p, xctx);
+            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
                 break;
             }
         }
@@ -512,7 +509,6 @@ afw_value_block_evaluate_block(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_for(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -556,12 +552,9 @@ afw_value_block_evaluate_for(
             }
 
             if (body) {
-                result = afw_value_block_evaluate_statement(x, type,
-                    true, true, body, p, xctx);
-                if (*type == afw_value_block_statement_flow_break ||
-                    *type == afw_value_block_statement_flow_rethrow ||
-                    *type == afw_value_block_statement_flow_return)
-                {
+                result = afw_value_block_evaluate_statement(
+                    x, true, true, body, p, xctx);
+                if (afw_xctx_statement_flow_is_leave(xctx)) {
                     break;
                 }
             }
@@ -584,10 +577,10 @@ afw_value_block_evaluate_for(
     }
     AFW_FINALLY{
         /* We don't want continue/break outside of this loop */
-        if (*type == afw_value_block_statement_flow_continue || 
-            *type == afw_value_block_statement_flow_break) 
+        if (afw_xctx_statement_flow_is_type(continue, xctx) || 
+            afw_xctx_statement_flow_is_type(break, xctx)) 
         {
-            *type = afw_value_block_statement_flow_sequential;
+            afw_xctx_statement_flow_set_type(sequential, xctx);
         }
 
         /* Release final increment scope. */
@@ -604,7 +597,6 @@ afw_value_block_evaluate_for(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_for_of(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t *const *argv,
     const afw_pool_t *p,
@@ -631,22 +623,19 @@ afw_value_block_evaluate_for_of(
             }
             impl_assign(argv[1], value, assignment_type, p, xctx);
             assignment_type = afw_compile_assignment_type_assign_only;
-            result = afw_value_block_evaluate_statement(x, type,
-                true, true, argv[3], p, xctx);
-            if (*type == afw_value_block_statement_flow_break ||
-                *type == afw_value_block_statement_flow_rethrow ||
-                *type == afw_value_block_statement_flow_return)
-            {
+            result = afw_value_block_evaluate_statement(
+                x, true, true, argv[3], p, xctx);
+            if (afw_xctx_statement_flow_is_leave(xctx)) {
                 break;
             }
         }
     }
     AFW_FINALLY{
         /* We don't want continue/break outside of this loop */
-        if (*type == afw_value_block_statement_flow_continue || 
-            *type == afw_value_block_statement_flow_break) 
+        if (afw_xctx_statement_flow_is_type(continue, xctx) || 
+            afw_xctx_statement_flow_is_type(break, xctx)) 
         {
-            *type = afw_value_block_statement_flow_sequential;
+            afw_xctx_statement_flow_set_type(sequential, xctx);
         }
     }
     AFW_ENDTRY;
@@ -659,7 +648,6 @@ afw_value_block_evaluate_for_of(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_do_while(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t *const *argv,
     const afw_pool_t *p,
@@ -671,12 +659,9 @@ afw_value_block_evaluate_do_while(
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
     for (;;) {
-        result = afw_value_block_evaluate_statement(x, type,
-            true, true, argv[2], p, xctx);
-        if (*type == afw_value_block_statement_flow_break ||
-            *type == afw_value_block_statement_flow_rethrow ||
-            *type == afw_value_block_statement_flow_return)
-        {
+        result = afw_value_block_evaluate_statement(
+            x, true, true, argv[2], p, xctx);
+        if (afw_xctx_statement_flow_is_leave(xctx)) {
             break;
         }
         AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
@@ -686,10 +671,10 @@ afw_value_block_evaluate_do_while(
     }
 
     /* We don't want continue/break outside of this loop */
-    if (*type == afw_value_block_statement_flow_continue || 
-        *type == afw_value_block_statement_flow_break) 
+    if (afw_xctx_statement_flow_is_type(continue, xctx) || 
+        afw_xctx_statement_flow_is_type(break, xctx)) 
     {
-        *type = afw_value_block_statement_flow_sequential;
+        afw_xctx_statement_flow_set_type(sequential, xctx);
     }
 
     return result;
@@ -699,7 +684,6 @@ afw_value_block_evaluate_do_while(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_if(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     afw_boolean_t is_loop,
@@ -716,12 +700,12 @@ afw_value_block_evaluate_if(
     AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
     result = afw_value_undefined;
     if (condition->internal) {
-        result = afw_value_block_evaluate_statement(x, type,
-            true, is_loop, argv[2], p, xctx);
+        result = afw_value_block_evaluate_statement(
+            x, true, is_loop, argv[2], p, xctx);
     }
     else if (x->argc == 3) {
-        result = afw_value_block_evaluate_statement(x, type,
-            true, is_loop, argv[3], p, xctx);
+        result = afw_value_block_evaluate_statement(
+            x, true, is_loop, argv[3], p, xctx);
     }
 
     return result;
@@ -731,7 +715,6 @@ afw_value_block_evaluate_if(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_switch(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -818,19 +801,13 @@ afw_value_block_evaluate_switch(
                 if (!statement) {
                     break;
                 }
-                result = afw_value_block_evaluate_statement(x, type,
-                    true, true, statement, p, xctx);
-                if (*type == afw_value_block_statement_flow_break ||
-                    *type == afw_value_block_statement_flow_rethrow ||
-                    *type == afw_value_block_statement_flow_return)
-                {
+                result = afw_value_block_evaluate_statement(
+                    x, true, true, statement, p, xctx);
+                if (afw_xctx_statement_flow_is_leave(xctx)) {
                     break;
                 }
             }
-            if (*type == afw_value_block_statement_flow_break ||
-                *type == afw_value_block_statement_flow_rethrow ||
-                *type == afw_value_block_statement_flow_return)
-            {
+            if (afw_xctx_statement_flow_is_leave(xctx)) {
                 break;
             }
         }
@@ -843,7 +820,6 @@ afw_value_block_evaluate_switch(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_throw(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -869,7 +845,6 @@ afw_value_block_evaluate_throw(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_try(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -881,19 +856,19 @@ afw_value_block_evaluate_try(
     const afw_object_t *error_object;
     const afw_value_t *error_value;
     const afw_xctx_scope_t *scope_at_entry;
-    afw_value_block_statement_flow_t use_type;
+    afw_xctx_statement_flow_t use_type;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
 
     result = afw_value_undefined;
-    use_type = *type;
+    use_type = afw_xctx_statement_flow_get(xctx);
 
     scope_at_entry = afw_xctx_scope_current(xctx);
     AFW_TRY {
-        result = afw_value_block_evaluate_statement(x, type,
-            true, true, argv[1], p, xctx);
-        use_type = *type;
+        result = afw_value_block_evaluate_statement(
+            x, true, true, argv[1], p, xctx);
+        use_type = afw_xctx_statement_flow_get(xctx);
     }
 
     AFW_CATCH_UNHANDLED {
@@ -908,45 +883,45 @@ afw_value_block_evaluate_try(
  /// some of the code from afw_value_block_evaluate_block that had to be
  /// copied here so that the error object can be set in scope after the
  /// scope is created.
-    const afw_xctx_scope_t *scope;
-    const afw_value_block_t *block = (const afw_value_block_t *)argv[3];
-    scope = afw_xctx_scope_create(block, afw_xctx_scope_current(xctx), xctx);
-    afw_xctx_scope_activate(scope, xctx);
-    AFW_TRY{
-        impl_assign_value(argv[4], error_value,
-            afw_compile_assignment_type_let, p, xctx);
-        this_result = afw_value_undefined;        
-        for (int i = 0; i < block->statement_count; i++) {
-            this_result = afw_value_block_evaluate_statement(x, type,
-                true, true, block->statements[i], p, xctx);
-            if (*type != afw_value_block_statement_flow_sequential)
-            {
-                break;
-            }
-        }
-    }
-    AFW_FINALLY{
-        afw_xctx_scope_deactivate(scope, xctx);
-    }
-    AFW_ENDTRY;
+                const afw_xctx_scope_t *scope;
+                const afw_value_block_t *block =
+                    (const afw_value_block_t *)argv[3];
+                scope = afw_xctx_scope_create(
+                    block, afw_xctx_scope_current(xctx), xctx);
+                afw_xctx_scope_activate(scope, xctx);
+                AFW_TRY{
+                    impl_assign_value(argv[4], error_value,
+                        afw_compile_assignment_type_let, p, xctx);
+                    this_result = afw_value_undefined;        
+                    for (int i = 0; i < block->statement_count; i++) {
+                        this_result = afw_value_block_evaluate_statement(
+                            x, true, true, block->statements[i], p, xctx);
+                        if (!afw_xctx_statement_flow_is_type(sequential, xctx))
+                        {
+                            break;
+                        }
+                    }
+                }
+                AFW_FINALLY{
+                    afw_xctx_scope_deactivate(scope, xctx);
+                }
+                AFW_ENDTRY;
 // --------------------------------------------------------------------
             }
             else {
-                this_result = afw_value_block_evaluate_statement(x, type,
-                    true, true, argv[3], p, xctx);
+                this_result = afw_value_block_evaluate_statement(
+                    x, true, true, argv[3], p, xctx);
             }
-            if (*type == afw_value_block_statement_flow_break ||
-                *type == afw_value_block_statement_flow_continue)
+            if (afw_xctx_statement_flow_is_type(break, xctx) ||
+                afw_xctx_statement_flow_is_type(continue, xctx))
             {
-                use_type = *type;
+                use_type = afw_xctx_statement_flow_get(xctx);
             }
-            else if (*type == afw_value_block_statement_flow_return)
-            {
-                use_type = afw_value_block_statement_flow_return;
+            else if (afw_xctx_statement_flow_is_type(return, xctx)) {
+                use_type = afw_xctx_statement_flow_return;
                 result = this_result;
             }
-            else if (*type == afw_value_block_statement_flow_rethrow)
-            {
+            else if (afw_xctx_statement_flow_is_type(rethrow, xctx)) {
                 AFW_ERROR_RETHROW;
             }
         }
@@ -958,30 +933,30 @@ afw_value_block_evaluate_try(
     AFW_FINALLY {
         afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(2) {
-            this_result = afw_value_block_evaluate_statement(x, type,
-                true, true, argv[2], p, xctx);
-            if (*type == afw_value_block_statement_flow_break ||
-                *type == afw_value_block_statement_flow_continue)
+            this_result = afw_value_block_evaluate_statement(
+                x, true, true, argv[2], p, xctx);
+            if (afw_xctx_statement_flow_is_type(break, xctx) ||
+                afw_xctx_statement_flow_is_type(continue, xctx))
             {
-                use_type = *type;
+                use_type = afw_xctx_statement_flow_get(xctx);
                 AFW_ERROR_MARK_CAUGHT;
             }
-            else if (*type == afw_value_block_statement_flow_return)
+            else if (afw_xctx_statement_flow_is_type(return, xctx))
             {
-                use_type = afw_value_block_statement_flow_return;
+                use_type = afw_xctx_statement_flow_return;
                 result = this_result;
                 AFW_ERROR_MARK_CAUGHT;
             }
-            else if (*type == afw_value_block_statement_flow_rethrow)
+            else if (afw_xctx_statement_flow_is_type(rethrow, xctx))
             {
-                use_type = afw_value_block_statement_flow_sequential;
+                use_type = afw_xctx_statement_flow_sequential;
             }
         }
     }
 
     AFW_ENDTRY;
 
-    *type = use_type;
+    afw_xctx_statement_flow_set(use_type, xctx);
     return result;
 }
 
@@ -989,7 +964,6 @@ afw_value_block_evaluate_try(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_while(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_size_t argc,
     const afw_value_t * const * argv,
     const afw_pool_t *p,
@@ -1006,21 +980,19 @@ afw_value_block_evaluate_while(
         if (!condition->internal) {
             break;
         }
-        result = afw_value_block_evaluate_statement(x, type,
-            true, true, argv[2], p, xctx);
-        if (*type == afw_value_block_statement_flow_break ||
-            *type == afw_value_block_statement_flow_rethrow ||
-            *type == afw_value_block_statement_flow_return)
+        result = afw_value_block_evaluate_statement(
+            x, true, true, argv[2], p, xctx);
+        if (afw_xctx_statement_flow_is_leave(xctx))
         {
             break;
         }
     }
 
     /* We don't want continue/break outside of this loop */
-    if (*type == afw_value_block_statement_flow_continue || 
-        *type == afw_value_block_statement_flow_break) 
+    if (afw_xctx_statement_flow_is_type(continue, xctx) || 
+        afw_xctx_statement_flow_is_type(break, xctx))
     {
-        *type = afw_value_block_statement_flow_sequential;
+        afw_xctx_statement_flow_set_type(sequential, xctx);
     }
 
     return result;
@@ -1030,7 +1002,6 @@ afw_value_block_evaluate_while(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
-    afw_value_block_statement_flow_t *type,
     afw_boolean_t allow_return,
     afw_boolean_t is_loop,
     const afw_value_t *statement,
@@ -1052,12 +1023,12 @@ afw_value_block_evaluate_statement(
 
 
     result = afw_value_undefined;
-    *type = afw_value_block_statement_flow_sequential;
+    afw_xctx_statement_flow_set_type(sequential, xctx);
 
     /* If statement is block, handle special. */
     if (afw_value_is_block(statement)) {
-        result = afw_value_block_evaluate_block(x, type,
-            (const afw_value_block_t *)statement, is_loop, p, xctx);
+        result = afw_value_block_evaluate_block(
+            x, (const afw_value_block_t *)statement, is_loop, p, xctx);
     }
 
     /* If statement is special call, handle special. */
@@ -1095,7 +1066,7 @@ afw_value_block_evaluate_statement(
             modified_x.argv = call->args.argv;
             modified_x.function = &afw_function_definition_break;
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
-            *type = afw_value_block_statement_flow_break;
+            afw_xctx_statement_flow_set_type(break, xctx);
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
                 result = afw_function_evaluate_required_parameter(
                         &modified_x, 1, NULL);
@@ -1134,8 +1105,7 @@ afw_value_block_evaluate_statement(
             modified_x.argc = call->args.argc;
             modified_x.function = &afw_function_definition_continue;
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(0);
-
-            *type = afw_value_block_statement_flow_continue;
+            afw_xctx_statement_flow_set_type(continue, xctx);
             break;
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_DO_WHILE:
@@ -1143,9 +1113,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_do_while(x, type,
-                call->args.argc, call->args.argv,
-                p, xctx);
+            result = afw_value_block_evaluate_do_while(
+                x, call->args.argc, call->args.argv, p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -1156,8 +1125,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_for(x, type,
-                call->args.argc, call->args.argv,
+            result = afw_value_block_evaluate_for(
+                x, call->args.argc, call->args.argv,
                 p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
@@ -1169,9 +1138,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_for_of(x, type,
-                call->args.argc, call->args.argv,
-                p, xctx);
+            result = afw_value_block_evaluate_for_of(
+                x, call->args.argc, call->args.argv, p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -1182,9 +1150,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_if(x, type,
-                call->args.argc, call->args.argv, is_loop,
-                p, xctx);
+            result = afw_value_block_evaluate_if(
+                x, call->args.argc, call->args.argv, is_loop, p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -1218,11 +1185,10 @@ afw_value_block_evaluate_statement(
             modified_x.argv = call->args.argv;
             modified_x.function = &afw_function_definition_rethrow;
             AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
-            *type = afw_value_block_statement_flow_rethrow;
+            afw_xctx_statement_flow_set_type(rethrow, xctx);
             break;
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN:
-            *type = afw_value_block_statement_flow_return;
             modified_x.argc = call->args.argc;
             modified_x.argv = call->args.argv;
             modified_x.function = &afw_function_definition_return;
@@ -1240,6 +1206,7 @@ afw_value_block_evaluate_statement(
                         p, xctx);
                 }
             }
+            afw_xctx_statement_flow_set_type(return, xctx);
             break;
 
         case AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW:
@@ -1247,9 +1214,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_throw(x, type,
-                call->args.argc, call->args.argv,
-                p, xctx);
+            result = afw_value_block_evaluate_throw(
+                x, call->args.argc, call->args.argv, p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -1260,9 +1226,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_try(x, type,
-                call->args.argc, call->args.argv,
-                p, xctx);
+            result = afw_value_block_evaluate_try(
+                x, call->args.argc, call->args.argv, p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -1273,9 +1238,8 @@ afw_value_block_evaluate_statement(
             saved_contextual = xctx->error->contextual;
             xctx->error->contextual = call->args.contextual;
 
-            result = afw_value_block_evaluate_while(x, type,
-                call->args.argc, call->args.argv,
-                p, xctx);
+            result = afw_value_block_evaluate_while(
+                x, call->args.argc, call->args.argv, p, xctx);
 
             afw_xctx_evaluation_stack_pop_value(xctx);
             xctx->error->contextual = saved_contextual;
@@ -1377,7 +1341,6 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
-    afw_value_block_statement_flow_t type;
     afw_function_execute_t x;
 
     /** @todo temporary */
@@ -1385,8 +1348,8 @@ impl_afw_value_optional_evaluate(
     x.xctx = xctx;
 
     /* Evaluate block. */
-    result = afw_value_block_evaluate_block(&x, &type, 
-        (const afw_value_block_t *)instance, false, p, xctx);
+    result = afw_value_block_evaluate_block(
+        &x, (const afw_value_block_t *)instance, false, p, xctx);
 
     return result;
 }

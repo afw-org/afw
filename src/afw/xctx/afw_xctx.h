@@ -534,9 +534,37 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 /* ----------------------------------------------------------------------------
 
-    Execution Context (xctx) Evaluation Stack
+    Execution Context (xctx) statement flow.
     
 ---------------------------------------------------------------------------- */
+
+
+#define afw_xctx_statement_flow_set(flow, xctx) \
+    ((afw_xctx_t *)xctx)->statement_flow = (flow)
+
+#define afw_xctx_statement_flow_set_type(type, xctx) \
+    ((afw_xctx_t *)xctx)->statement_flow = \
+        afw_xctx_statement_flow_ ## type
+
+#define afw_xctx_statement_flow_get(xctx) \
+    (((afw_xctx_t *)xctx)->statement_flow)
+
+#define afw_xctx_statement_flow_is_type(type, xctx) \
+    (((afw_xctx_t *)xctx)->statement_flow == \
+        afw_xctx_statement_flow_ ## type)
+
+#define afw_xctx_statement_flow_is_leave(xctx) \
+    (((afw_xctx_t *)xctx)->statement_flow >= \
+        afw_xctx_statement_flow_ge_is_leave)
+
+
+
+/* ----------------------------------------------------------------------------
+
+    Execution Context (xctx) Evaluation stack.
+    
+---------------------------------------------------------------------------- */
+
 
 /**
  * @brief Set the xctx evaluation result.
@@ -656,7 +684,7 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
 
 /* ----------------------------------------------------------------------------
 
-    Execution Context (xctx) Qualifier and Qualified Variables
+    Execution Context (xctx) Qualifiers and Qualified Variables
     
 ---------------------------------------------------------------------------- */
 

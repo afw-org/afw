@@ -250,6 +250,12 @@ impl_afw_value_optional_evaluate(
         else {
             afw_xctx_scope_deactivate(enclosing_lexical_scope, xctx);
         }
+
+        /* Statement flow should be sequential unless rethrowing error. */
+        if (!afw_xctx_statement_flow_is_type(rethrow, xctx))
+        {
+            afw_xctx_statement_flow_set_type(sequential, xctx);
+        }
     }
 
     AFW_ENDTRY;
