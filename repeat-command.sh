@@ -4,6 +4,12 @@
 # each iteration. If the command takes longer than the specified timeout value,
 # it is killed and the iteration is counted as a kill.
 
+stop_on_timeout=false
+if [ "$1" == "--stop" ]; then
+  stop_on_timeout=true
+  shift
+fi
+
 command_to_run=$1
 timeout_value=${2:-120}
 counter=0
@@ -24,8 +30,8 @@ handle_interrupt() {
 
 trap handle_interrupt SIGINT
 
-if [ -z "$1" ]; then
-  echo "Usage: $0 <command> [timeout_in_seconds]"
+if [ -z "$command_to_run" ]; then
+  echo "Usage: $0 [--stop] <command> [timeout_in_seconds]"
   exit 1
 fi
 
@@ -51,6 +57,11 @@ while true; do
   if [ $exit_status -eq 124 ]; then
     ((kill_counter++))
     echo "Command killed due to timeout on iteration: $counter"
+    
+    if $stop_on_timeout; then
+      echo "Stopping script due to --stop argument and command timeout."
+      exit 1
+    fi
   fi
   
   current_pid=0
