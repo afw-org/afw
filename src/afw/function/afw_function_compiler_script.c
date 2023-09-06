@@ -698,12 +698,8 @@ afw_function_execute_do_while(
         }
     }
 
-    /* We don't want continue/break outside of this loop */
-    if (afw_xctx_statement_flow_is_type(continue, xctx) || 
-        afw_xctx_statement_flow_is_type(break, xctx)) 
-    {
-        afw_xctx_statement_flow_set_type(sequential, xctx);
-    }
+    /* We don't want break/continue outside of this loop */
+    afw_xctx_statement_flow_reset_break_and_continue(xctx);
 
     return result;
 }
@@ -825,12 +821,9 @@ afw_function_execute_for(
         }
     }
     AFW_FINALLY{
-        /* We don't want continue/break outside of this loop */
-        if (afw_xctx_statement_flow_is_type(continue, xctx) || 
-            afw_xctx_statement_flow_is_type(break, xctx)) 
-        {
-            afw_xctx_statement_flow_set_type(sequential, xctx);
-        }
+
+        /* We don't want break/continue outside of this loop */
+        afw_xctx_statement_flow_reset_break_and_continue(xctx);
 
         /* Release final increment scope. */
         if (previous_iterator_scope) {
@@ -922,12 +915,10 @@ afw_function_execute_for_of(
         }
     }
     AFW_FINALLY{
-        /* We don't want continue/break outside of this loop */
-        if (afw_xctx_statement_flow_is_type(continue, xctx) || 
-            afw_xctx_statement_flow_is_type(break, xctx)) 
-        {
-            afw_xctx_statement_flow_set_type(sequential, xctx);
-        }
+
+        /* We don't want break/continue outside of this loop */
+        afw_xctx_statement_flow_reset_break_and_continue(xctx);
+
     }
     AFW_ENDTRY;
 
@@ -1309,6 +1300,9 @@ afw_function_execute_switch(
         }
     }
 
+    /* We don't want break/continue outside of this switch */
+    afw_xctx_statement_flow_reset_break_and_continue(xctx);
+
     return result;
 }
 
@@ -1606,12 +1600,8 @@ afw_function_execute_while(
         }
     }
 
-    /* We don't want continue/break outside of this loop */
-    if (afw_xctx_statement_flow_is_type(continue, xctx) || 
-        afw_xctx_statement_flow_is_type(break, xctx))
-    {
-        afw_xctx_statement_flow_set_type(sequential, xctx);
-    }
+    /* We don't want break/continue outside of this loop */
+    afw_xctx_statement_flow_reset_break_and_continue(xctx);
 
     return result;
 }

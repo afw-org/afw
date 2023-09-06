@@ -1410,7 +1410,7 @@ typedef struct afw_thread_attr_s afw_thread_attr_t;
 #define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_INITIAL_COUNT 100
 
 /** @brief Default for afw_environment_t evaluation_stack_maximum_count. */
-#define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT 200
+#define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT 500
 
 
 /** @brief Typedef for union of all cType. */
