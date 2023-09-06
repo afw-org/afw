@@ -191,6 +191,11 @@ afw_stack_extend_impl(
     }
     else {
         if (count >= self->maximum_count) {
+            /*
+             * Make this adjustment so that evaluation backtrace will not
+             * calculate top index to be past end.
+             */
+            self->pub.top = (afw_octet_t *)self->pub.top - self->entry_size;
             AFW_THROW_ERROR_Z(general, "Stack max_count exceeded", xctx);
         }
         new_count = count * 2;
