@@ -420,7 +420,8 @@ afw_function_execute_evaluate_value(
     else {
         value = afw_value_evaluate(x->argv[0], x->p, x->xctx);
     }
-
+  
+    afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }
 
@@ -495,6 +496,7 @@ afw_function_execute_evaluate_with_retry(
             "Evaluation produced an undefined result", xctx);
     }
 
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     return value;
 }
 
@@ -555,6 +557,8 @@ afw_function_execute_safe_evaluate(
         AFW_THROW_ERROR_Z(general,
             "Evaluation produced an undefined result", xctx);
     }
+      
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     return value;
 }
 
@@ -756,7 +760,8 @@ afw_function_execute_test_expression(
     }
 
     AFW_ENDTRY;
-
+  
+    afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return afw_value_create_object(result, x->p, x->xctx);
 }
 
@@ -884,7 +889,8 @@ afw_function_execute_test_hybrid(
     }
 
     AFW_ENDTRY;
-
+  
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     return afw_value_create_object(result, x->p, xctx);
 }
 
@@ -1012,6 +1018,7 @@ afw_function_execute_test_script(
 
     AFW_ENDTRY;
 
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     return afw_value_create_object(result, x->p, xctx);
 }
 
@@ -1138,7 +1145,8 @@ afw_function_execute_test_template(
     }
 
     AFW_ENDTRY;
-
+  
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     return afw_value_create_object(result, x->p, xctx);
 }
 
@@ -1264,7 +1272,8 @@ afw_function_execute_test_value(
     }
 
     AFW_ENDTRY;
-
+  
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     return afw_value_create_object(result, x->p, xctx);
 }
 

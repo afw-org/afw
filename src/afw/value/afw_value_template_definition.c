@@ -132,6 +132,8 @@ impl_afw_value_optional_evaluate(
         result = afw_value_make_single_string(concat, len, p, xctx);
     }
 
+    afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
+
     /* Pop value from evaluation stack and return result. */
     afw_xctx_evaluation_stack_pop_value(xctx);
     xctx->error->contextual = saved_contextual;

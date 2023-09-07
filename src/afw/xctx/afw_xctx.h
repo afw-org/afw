@@ -593,6 +593,20 @@ afw_xctx_scope_symbol_set_value_by_name(
         afw_xctx_statement_flow_ge_is_leave) \
             afw_xctx_statement_flow_set_type(sequential, xctx)
 
+/**
+ * @brief Reset xctx statement flow except rethrow to sequential
+ * @param xctx of caller.
+ * 
+ * This should be used at the end of script function evaluation, template
+ * evaluation, and all evaluate() adaptive functions.
+ */
+#define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
+    if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \
+        afw_xctx_statement_flow_set_type(sequential, xctx); \
+    }
+
+
+
 /* ----------------------------------------------------------------------------
 
     Execution Context (xctx) Evaluation stack.

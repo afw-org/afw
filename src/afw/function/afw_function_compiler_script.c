@@ -1086,7 +1086,7 @@ afw_function_execute_rethrow(
 {
     afw_xctx_t *xctx = x->xctx;
 
-    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(0);
     afw_xctx_statement_flow_set_type(rethrow, xctx);
 
     return afw_value_undefined;

@@ -142,5 +142,6 @@ afw_function_execute_evaluate_hybrid(
         value = afw_value_evaluate(compiled,  x->p,  x->xctx);
     }
 
+    afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }
