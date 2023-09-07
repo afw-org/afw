@@ -821,7 +821,7 @@ afw_log_impl_create_cede_p(
     hybrid = afw_object_old_get_property_as_string(properties,
         &afw_s_filter, xctx);
     if (hybrid) {
-        impl->filter = afw_compile_hybrid_source(hybrid,
+        impl->filter = afw_compile_template_source(hybrid,
             self->source_location, NULL, NULL, p, xctx);
     }  
 
@@ -829,7 +829,7 @@ afw_log_impl_create_cede_p(
     hybrid = afw_object_old_get_property_as_string(properties,
         &afw_s_format, xctx);
     if (hybrid) {
-        impl->format = afw_compile_hybrid_source(hybrid,
+        impl->format = afw_compile_template_source(hybrid,
             self->source_location, NULL, NULL, p, xctx);
     }
 

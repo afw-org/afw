@@ -2,8 +2,7 @@
     "$defs": {
         "_AdaptiveHybridProperties_": {
             "additionalProperties": {
-                "description": "Each property is a hybrid value.",
-                "type": "string"
+                "description": "Each property is a hybrid value."
             },
             "anyOf": [
                 {
@@ -59,8 +58,7 @@
                 },
                 "onGetInitialObjectId": {
                     "description": "This optional hybrid value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.",
-                    "title": "On Get Initial ObjectId",
-                    "type": "string"
+                    "title": "On Get Initial ObjectId"
                 },
                 "onGetObject": {
                     "description": "This can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified.",
@@ -146,23 +144,19 @@
                 },
                 "method": {
                     "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in adaptive script syntax.",
-                    "title": "Method",
-                    "type": "string"
+                    "title": "Method"
                 },
                 "onGetInitialValue": {
                     "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
-                    "title": "On Get Initial Value",
-                    "type": "string"
+                    "title": "On Get Initial Value"
                 },
                 "onGetProperty": {
                     "description": "This hybrid is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
-                    "title": "On Get Property",
-                    "type": "string"
+                    "title": "On Get Property"
                 },
                 "onSetProperty": {
                     "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
-                    "title": "On Set Property",
-                    "type": "string"
+                    "title": "On Set Property"
                 },
                 "transitory": {
                     "description": "Indicates that this property is transitory and will not be persisted by the adaptor. The value can be produced by setValue or supplied in the request.",
@@ -507,8 +501,7 @@
             "properties": {
                 "additionalConstraints": {
                     "description": "Additional constraint for the value.",
-                    "title": "Additional Constraints",
-                    "type": "string"
+                    "title": "Additional Constraints"
                 },
                 "allowQuery": {
                     "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",

@@ -231,26 +231,6 @@ typedef struct afw_value_double_s
 /** @} */
 
 /**
- * @addtogroup afw_c_api_data_type_expression
- * @{
- */
-
-/** @brief Typedef for data type expression internal. */
-typedef afw_utf8_t afw_data_type_expression_internal_t;
-
-/** @brief Typedef for data type expression parameter. */
-typedef const afw_utf8_t * afw_data_type_expression_parameter_t;
-
-/** @brief Typedef for data type expression return. */
-typedef const afw_utf8_t * afw_data_type_expression_return_t;
-
-/** @brief Typedef for data type expression evaluated value. */
-typedef struct afw_value_expression_s
-    afw_value_expression_t;
-
-/** @} */
-
-/**
  * @addtogroup afw_c_api_data_type_function
  * @{
  */
@@ -287,26 +267,6 @@ typedef const afw_memory_t * afw_data_type_hexBinary_return_t;
 /** @brief Typedef for data type hexBinary evaluated value. */
 typedef struct afw_value_hexBinary_s
     afw_value_hexBinary_t;
-
-/** @} */
-
-/**
- * @addtogroup afw_c_api_data_type_hybrid
- * @{
- */
-
-/** @brief Typedef for data type hybrid internal. */
-typedef afw_utf8_t afw_data_type_hybrid_internal_t;
-
-/** @brief Typedef for data type hybrid parameter. */
-typedef const afw_utf8_t * afw_data_type_hybrid_parameter_t;
-
-/** @brief Typedef for data type hybrid return. */
-typedef const afw_utf8_t * afw_data_type_hybrid_return_t;
-
-/** @brief Typedef for data type hybrid evaluated value. */
-typedef struct afw_value_hybrid_s
-    afw_value_hybrid_t;
 
 /** @} */
 

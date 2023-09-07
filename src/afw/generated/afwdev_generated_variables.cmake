@@ -93,10 +93,8 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_dayTimeDuration_binding.h
     generated/afw_data_type_dnsName_binding.h
     generated/afw_data_type_double_binding.h
-    generated/afw_data_type_expression_binding.h
     generated/afw_data_type_function_binding.h
     generated/afw_data_type_hexBinary_binding.h
-    generated/afw_data_type_hybrid_binding.h
     generated/afw_data_type_ia5String_binding.h
     generated/afw_data_type_impl_declares.h
     generated/afw_data_type_integer_binding.h
@@ -318,10 +316,8 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_date.c
     function/afw_function_dateTime.c
     function/afw_function_double.c
-    function/afw_function_expression.c
     function/afw_function_hexBinary.c
     function/afw_function_higher_order_array.c
-    function/afw_function_hybrid.c
     function/afw_function_indexes.c
     function/afw_function_integer.c
     function/afw_function_journal.c
@@ -353,10 +349,8 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_dayTimeDuration_binding.c
     generated/afw_data_type_dnsName_binding.c
     generated/afw_data_type_double_binding.c
-    generated/afw_data_type_expression_binding.c
     generated/afw_data_type_function_binding.c
     generated/afw_data_type_hexBinary_binding.c
-    generated/afw_data_type_hybrid_binding.c
     generated/afw_data_type_ia5String_binding.c
     generated/afw_data_type_integer_binding.c
     generated/afw_data_type_ipAddress_binding.c

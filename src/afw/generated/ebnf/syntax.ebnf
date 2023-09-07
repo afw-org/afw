@@ -41,17 +41,17 @@
 /*                                                                            */
 
 /* From afw_compile_parse.c                                                   */
-/* Hybrid is used to parse data type hybrid.                                  */
+FIXME FIXME Remove this when conversion complete
+/* Hybrid is used to parse data type template.                                */
 /*                                                                            */
-/* A hybrid is parsed as a Script, Template, or an evaluated                  */
+ .# To help with conversion, Template will temporarily honor shebang for script.
+/* A template is parsed as a Script, Template, or an evaluated                */
 /* string as follows:                                                         */
 /*                                                                            */
 /*     1) If it begins with a '#!', it is parsed as a Script.                 */
 /*     2) Otherwise, it is parsed as a Template.  Note that if the            */
 /*        template does not contain '${', it produces an evaluated string.    */
 /*                                                                            */
-
-Hybrid ::= Script | Template
 
 /* From afw_compile_parse_assignment_target.c                                 */
 

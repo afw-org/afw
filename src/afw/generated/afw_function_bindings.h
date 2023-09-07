@@ -6675,47 +6675,6 @@ const afw_value_t *
 afw_function_execute_compile_relaxed_json(
     afw_function_execute_t *x);
 
-/** @brief Function definition convert_syntax_hybrid_to_expression */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_convert_syntax_hybrid_to_expression;
-
-/**
- * @brief Adaptive Function `convert_syntax_hybrid_to_expression`
- * @param x function execute parameter.
- *
- * Convert a string containing adaptive hybrid syntax, which can be an adaptive
- * template or adaptive expression, to adaptive expression syntax.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function convert_syntax_hybrid_to_expression(
- *       hybrid: string,
- *       whitespace?: any
- *   ): expression;
- * ```
- *
- * Parameters:
- *
- *   hybrid - (string) The hybrid to convert.
- *
- *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10 or
- *       a string that is used for indentation. If 0 is specified, no whitespace
- *       is added to the resulting string. If 1 through 10 is specified, that
- *       number of spaces is used.
- *
- * Returns:
- *
- *   (expression) The converted value in adaptive expression syntax.
- */
-const afw_value_t *
-afw_function_execute_convert_syntax_hybrid_to_expression(
-    afw_function_execute_t *x);
-
 /** @brief Function definition decompile */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_decompile;
@@ -6996,111 +6955,6 @@ afw_function_definition_stringify;
  */
 const afw_value_t *
 afw_function_execute_stringify(
-    afw_function_execute_t *x);
-
-/** @brief Function definition test_expression */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_test_expression;
-
-/**
- * @brief Adaptive Function `test_expression`
- * @param x function execute parameter.
- *
- * Compile and evaluate an adaptive expression and compare the results to an
- * expected value. Return object with the test's results.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function test_expression(
- *       id: string,
- *       description: string,
- *       expression: string,
- *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): object;
- * ```
- *
- * Parameters:
- *
- *   id - (string) Id of test.
- *
- *   description - (string) Description of test.
- *
- *   expression - (string) Expression to compile and evaluate.
- *
- *   expected - (optional any dataType) Expected result.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (object) Test results.
- */
-const afw_value_t *
-afw_function_execute_test_expression(
-    afw_function_execute_t *x);
-
-/** @brief Function definition test_hybrid */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_test_hybrid;
-
-/**
- * @brief Adaptive Function `test_hybrid`
- * @param x function execute parameter.
- *
- * Compile and evaluate a string containing adaptive hybrid syntax which can be
- * an adaptive template or adaptive expression and then compare the results to
- * an expected value. Return object with the test's results.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function test_hybrid(
- *       id: string,
- *       description: string,
- *       hybrid: string,
- *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): object;
- * ```
- *
- * Parameters:
- *
- *   id - (string) Id of test.
- *
- *   description - (string) Description of test.
- *
- *   hybrid - (string) Hybrid to compile and evaluate.
- *
- *   expected - (optional any dataType) Expected evaluated result.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (object) Test results.
- */
-const afw_value_t *
-afw_function_execute_test_hybrid(
     afw_function_execute_t *x);
 
 /** @brief Function definition test_script */
@@ -11858,593 +11712,6 @@ afw_function_definition_union_double;
 /** @} */
 
 
-/** @addtogroup afw_functions_expression expression functions
- *
- * expression adaptive functions.
- *
- * @{
- */
-
-/** @brief Function definition bag<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_expression;
-
-/**
- * @brief Adaptive Function `bag<expression>`
- * @param x function execute parameter.
- *
- * Takes any number of expression values and returns an array of array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<expression>(
- *       ...values: (array of (array expression))
- *   ): (array expression);
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more array expression)
- *
- * Returns:
- *
- *   (array expression)
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_size_expression;
-
-/**
- * @brief Adaptive Function `bag_size<expression>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<expression>(
- *       value: (array expression)
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (array expression)
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition compile<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_compile_expression;
-
-/**
- * @brief Adaptive Function `compile<expression>`
- * @param x function execute parameter.
- *
- * Compile expression value and return either an unevaluated adaptive value or a
- * string containing the compiler listing.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function compile<expression>(
- *       source: expression,
- *       listing?: any
- *   ): unevaluated;
- * ```
- *
- * Parameters:
- *
- *   source - (expression) expression string to compile.
- *
- *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
- * 
- *       This parameter can be an integer between 0 and 10 of a string that is
- *       used for indentation. If 0 is specified, no whitespace is added to the
- *       resulting string. If 1 through 10 is specified, that number of spaces
- *       is used.
- *
- * Returns:
- *
- *   (unevaluated)
- */
-const afw_value_t *
-afw_function_execute_compile_expression(
-    afw_function_execute_t *x);
-
-/** @brief Function definition eq<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eq_expression;
-
-/**
- * @brief Adaptive Function `eq<expression>`
- * @param x function execute parameter.
- *
- * Determine if expression arg1 is equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
- * if you want false to be returned if arg1 and arg2's data type don't match.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function eq<expression>(
- *       arg1: expression,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   conversion - arg2 cannot be converted to the data type of arg1.
- *
- * Implemented by afw_function_execute_eq()
- *
- * __________
- */
-
-/** @brief Function definition eqx<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eqx_expression;
-
-/**
- * @brief Adaptive Function `eqx<expression>`
- * @param x function execute parameter.
- *
- * Determine if for expression arg1 is equal to the value and data type of arg2
- * then return the boolean result. Use 'eq' ('==') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function eqx<expression>(
- *       arg1: expression,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_eqx()
- *
- * __________
- */
-
-/** @brief Function definition evaluate<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_expression;
-
-/**
- * @brief Adaptive Function `evaluate<expression>`
- * @param x function execute parameter.
- *
- * Compile and evaluate expression value.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function evaluate<expression>(
- *       source: expression,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): unevaluated;
- * ```
- *
- * Parameters:
- *
- *   source - (expression) expression string to compile and evaluate.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (unevaluated)
- */
-const afw_value_t *
-afw_function_execute_evaluate_expression(
-    afw_function_execute_t *x);
-
-/** @brief Function definition expression */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_expression;
-
-/**
- * @brief Adaptive Function `expression`
- * @param x function execute parameter.
- *
- * Converts value to data type expression returning expression result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function expression(
- *       value: any
- *   ): expression;
- * ```
- *
- * Parameters:
- *
- *   value - (any dataType) Value to convert.
- *
- * Returns:
- *
- *   (expression) Converted value.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
-/** @brief Function definition ge<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ge_expression;
-
-/**
- * @brief Adaptive Function `ge<expression>`
- * @param x function execute parameter.
- *
- * Checks for expression arg1 is greater than or equal to expression arg2 and
- * return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<expression>(
- *       arg1: expression,
- *       arg2: expression
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (expression)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_gt_expression;
-
-/**
- * @brief Adaptive Function `gt<expression>`
- * @param x function execute parameter.
- *
- * Checks for expression arg1 is greater than expression arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<expression>(
- *       arg1: expression,
- *       arg2: expression
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (expression)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
-/** @brief Function definition is<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_is_expression;
-
-/**
- * @brief Adaptive Function `is<expression>`
- * @param x function execute parameter.
- *
- * Checks whether value is dataType expression and return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function is<expression>(
- *       value: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   value - (any dataType) Value to check.
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_is()
- *
- * __________
- */
-
-/** @brief Function definition le<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_le_expression;
-
-/**
- * @brief Adaptive Function `le<expression>`
- * @param x function execute parameter.
- *
- * Checks for expression arg1 is less than or equal to expression arg2 and
- * return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<expression>(
- *       arg1: expression,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition lt<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_lt_expression;
-
-/**
- * @brief Adaptive Function `lt<expression>`
- * @param x function execute parameter.
- *
- * Checks for expression arg1 is less that expression arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<expression>(
- *       arg1: expression,
- *       arg2: expression
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (expression)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
- *
- * __________
- */
-
-/** @brief Function definition ne<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ne_expression;
-
-/**
- * @brief Adaptive Function `ne<expression>`
- * @param x function execute parameter.
- *
- * Determine if expression arg1 is not equal to the value of arg2 converted to
- * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
- * instead if you want true to be returned if arg1 and arg2's data type don't
- * match.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ne<expression>(
- *       arg1: expression,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   conversion - arg2 cannot be converted to the data type of arg1.
- *
- * Implemented by afw_function_execute_ne()
- *
- * __________
- */
-
-/** @brief Function definition nex<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_nex_expression;
-
-/**
- * @brief Adaptive Function `nex<expression>`
- * @param x function execute parameter.
- *
- * Determine if for expression arg1 is not equal to the value or data type of
- * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
- * to be converted to the data type of arg1 before comparison.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function nex<expression>(
- *       arg1: expression,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (expression)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition to_string<expression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_to_string_expression;
-
-/**
- * @brief Adaptive Function `to_string<expression>`
- * @param x function execute parameter.
- *
- * Converts expression value to string. For array values, the to_string() value
- * for each entry is returned separated with commas.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function to_string<expression>(
- *       value: expression
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   value - (expression) A expression value.
- *
- * Returns:
- *
- *   (string) The string representation of the value.
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
-/** @} */
-
-
 /** @addtogroup afw_functions_function function functions
  *
  * function adaptive functions.
@@ -14182,592 +13449,6 @@ afw_function_definition_sort;
 const afw_value_t *
 afw_function_execute_sort(
     afw_function_execute_t *x);
-
-/** @} */
-
-
-/** @addtogroup afw_functions_hybrid hybrid functions
- *
- * hybrid adaptive functions.
- *
- * @{
- */
-
-/** @brief Function definition bag<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_hybrid;
-
-/**
- * @brief Adaptive Function `bag<hybrid>`
- * @param x function execute parameter.
- *
- * Takes any number of hybrid values and returns an array of array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag<hybrid>(
- *       ...values: (array of (array hybrid))
- *   ): (array hybrid);
- * ```
- *
- * Parameters:
- *
- *   values - (0 or more array hybrid)
- *
- * Returns:
- *
- *   (array hybrid)
- *
- * Implemented by afw_function_execute_bag()
- *
- * __________
- */
-
-/** @brief Function definition bag_size<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_bag_size_hybrid;
-
-/**
- * @brief Adaptive Function `bag_size<hybrid>`
- * @param x function execute parameter.
- *
- * This returns the integer number of values in array.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function bag_size<hybrid>(
- *       value: (array hybrid)
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   value - (array hybrid)
- *
- * Returns:
- *
- *   (integer)
- *
- * Implemented by afw_function_execute_bag_size()
- *
- * __________
- */
-
-/** @brief Function definition compile<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_compile_hybrid;
-
-/**
- * @brief Adaptive Function `compile<hybrid>`
- * @param x function execute parameter.
- *
- * Compile hybrid value and return either an unevaluated adaptive value or a
- * string containing the compiler listing.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function compile<hybrid>(
- *       source: hybrid,
- *       listing?: any
- *   ): unevaluated;
- * ```
- *
- * Parameters:
- *
- *   source - (hybrid) hybrid string to compile.
- *
- *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
- * 
- *       This parameter can be an integer between 0 and 10 of a string that is
- *       used for indentation. If 0 is specified, no whitespace is added to the
- *       resulting string. If 1 through 10 is specified, that number of spaces
- *       is used.
- *
- * Returns:
- *
- *   (unevaluated)
- */
-const afw_value_t *
-afw_function_execute_compile_hybrid(
-    afw_function_execute_t *x);
-
-/** @brief Function definition eq<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eq_hybrid;
-
-/**
- * @brief Adaptive Function `eq<hybrid>`
- * @param x function execute parameter.
- *
- * Determine if hybrid arg1 is equal to the value of arg2 converted to the data
- * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if you
- * want false to be returned if arg1 and arg2's data type don't match.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function eq<hybrid>(
- *       arg1: hybrid,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   conversion - arg2 cannot be converted to the data type of arg1.
- *
- * Implemented by afw_function_execute_eq()
- *
- * __________
- */
-
-/** @brief Function definition eqx<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_eqx_hybrid;
-
-/**
- * @brief Adaptive Function `eqx<hybrid>`
- * @param x function execute parameter.
- *
- * Determine if for hybrid arg1 is equal to the value and data type of arg2 then
- * return the boolean result. Use 'eq' ('==') instead if you want arg2 to be
- * converted to the data type of arg1 before comparison.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function eqx<hybrid>(
- *       arg1: hybrid,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_eqx()
- *
- * __________
- */
-
-/** @brief Function definition evaluate<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_hybrid;
-
-/**
- * @brief Adaptive Function `evaluate<hybrid>`
- * @param x function execute parameter.
- *
- * Compile and evaluate hybrid value.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function evaluate<hybrid>(
- *       source: hybrid,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
- *   ): unevaluated;
- * ```
- *
- * Parameters:
- *
- *   source - (hybrid) hybrid string to compile and evaluate.
- *
- *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
- *       qualified variables that can be accessed during evaluation. These
- *       variables will not be used by anything that needs to ensure its
- *       qualified variables must come from a trusted source, such as
- *       authorization. This parameter is intended to be used for testing only
- *       and should not be used for anything running in production.
- *
- * Returns:
- *
- *   (unevaluated)
- */
-const afw_value_t *
-afw_function_execute_evaluate_hybrid(
-    afw_function_execute_t *x);
-
-/** @brief Function definition ge<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ge_hybrid;
-
-/**
- * @brief Adaptive Function `ge<hybrid>`
- * @param x function execute parameter.
- *
- * Checks for hybrid arg1 is greater than or equal to hybrid arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ge<hybrid>(
- *       arg1: hybrid,
- *       arg2: hybrid
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (hybrid)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_ge()
- *
- * __________
- */
-
-/** @brief Function definition gt<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_gt_hybrid;
-
-/**
- * @brief Adaptive Function `gt<hybrid>`
- * @param x function execute parameter.
- *
- * Checks for hybrid arg1 is greater than hybrid arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function gt<hybrid>(
- *       arg1: hybrid,
- *       arg2: hybrid
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (hybrid)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_gt()
- *
- * __________
- */
-
-/** @brief Function definition hybrid */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_hybrid;
-
-/**
- * @brief Adaptive Function `hybrid`
- * @param x function execute parameter.
- *
- * Converts value to data type hybrid returning hybrid result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function hybrid(
- *       value: any
- *   ): hybrid;
- * ```
- *
- * Parameters:
- *
- *   value - (any dataType) Value to convert.
- *
- * Returns:
- *
- *   (hybrid) Converted value.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
-/** @brief Function definition is<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_is_hybrid;
-
-/**
- * @brief Adaptive Function `is<hybrid>`
- * @param x function execute parameter.
- *
- * Checks whether value is dataType hybrid and return the boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function is<hybrid>(
- *       value: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   value - (any dataType) Value to check.
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_is()
- *
- * __________
- */
-
-/** @brief Function definition le<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_le_hybrid;
-
-/**
- * @brief Adaptive Function `le<hybrid>`
- * @param x function execute parameter.
- *
- * Checks for hybrid arg1 is less than or equal to hybrid arg2 and return the
- * boolean result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function le<hybrid>(
- *       arg1: hybrid,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_le()
- *
- * __________
- */
-
-/** @brief Function definition lt<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_lt_hybrid;
-
-/**
- * @brief Adaptive Function `lt<hybrid>`
- * @param x function execute parameter.
- *
- * Checks for hybrid arg1 is less that hybrid arg2 and return the boolean
- * result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function lt<hybrid>(
- *       arg1: hybrid,
- *       arg2: hybrid
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (hybrid)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_lt()
- *
- * __________
- */
-
-/** @brief Function definition ne<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_ne_hybrid;
-
-/**
- * @brief Adaptive Function `ne<hybrid>`
- * @param x function execute parameter.
- *
- * Determine if hybrid arg1 is not equal to the value of arg2 converted to the
- * data type of arg1 then return the boolean result. Use 'nex' ('!==') instead
- * if you want true to be returned if arg1 and arg2's data type don't match.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function ne<hybrid>(
- *       arg1: hybrid,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Errors thrown:
- *
- *   conversion - arg2 cannot be converted to the data type of arg1.
- *
- * Implemented by afw_function_execute_ne()
- *
- * __________
- */
-
-/** @brief Function definition nex<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_nex_hybrid;
-
-/**
- * @brief Adaptive Function `nex<hybrid>`
- * @param x function execute parameter.
- *
- * Determine if for hybrid arg1 is not equal to the value or data type of arg2
- * then return the boolean result. Use 'ne' ('!=') instead if you want arg2 to
- * be converted to the data type of arg1 before comparison.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function nex<hybrid>(
- *       arg1: hybrid,
- *       arg2: any
- *   ): boolean;
- * ```
- *
- * Parameters:
- *
- *   arg1 - (hybrid)
- *
- *   arg2 - (any dataType)
- *
- * Returns:
- *
- *   (boolean)
- *
- * Implemented by afw_function_execute_nex()
- *
- * __________
- */
-
-/** @brief Function definition to_string<hybrid> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_to_string_hybrid;
-
-/**
- * @brief Adaptive Function `to_string<hybrid>`
- * @param x function execute parameter.
- *
- * Converts hybrid value to string. For array values, the to_string() value for
- * each entry is returned separated with commas.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function to_string<hybrid>(
- *       value: hybrid
- *   ): string;
- * ```
- *
- * Parameters:
- *
- *   value - (hybrid) A hybrid value.
- *
- * Returns:
- *
- *   (string) The string representation of the value.
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
 
 /** @} */
 
@@ -21391,10 +20072,9 @@ afw_function_definition_bag;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, null, object, objectId, objectPath, password,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
+ *   object, objectId, objectPath, password, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -21433,10 +20113,9 @@ afw_function_definition_bag_size;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, null, object, objectId, objectPath, password,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
+ *   object, objectId, objectPath, password, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -21552,7 +20231,7 @@ afw_function_definition_compile;
  *
  * Supported `<dataType>`:
  *
- *   expression, hybrid, regexp, script, template, xpathExpression.
+ *   regexp, script, template, xpathExpression.
  *
  * Declaration:
  *
@@ -21568,7 +20247,7 @@ afw_function_definition_compile;
  *   source - (``<Type>``) `<dataType>` string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
+ *       produced instead of an unevaluated compiled value.
  * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
@@ -21803,10 +20482,9 @@ afw_function_definition_eq;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -21896,10 +20574,9 @@ afw_function_definition_eqx;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -21940,7 +20617,7 @@ afw_function_definition_evaluate;
  *
  * Supported `<dataType>`:
  *
- *   expression, hybrid, script, template, xpathExpression.
+ *   script, template, xpathExpression.
  *
  * Declaration:
  *
@@ -22028,10 +20705,9 @@ afw_function_definition_ge;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22074,10 +20750,9 @@ afw_function_definition_gt;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22303,10 +20978,9 @@ afw_function_definition_is;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, null, object, objectId, objectPath, password,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration, unevaluated.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
+ *   object, objectId, objectPath, password, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration, unevaluated.
  *
  * Declaration:
  *
@@ -22436,10 +21110,9 @@ afw_function_definition_le;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22523,10 +21196,9 @@ afw_function_definition_lt;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22773,10 +21445,9 @@ afw_function_definition_ne;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -22862,10 +21533,9 @@ afw_function_definition_nex;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, rfc822Name,
- *   regexp, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, rfc822Name, regexp, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -24099,9 +22769,9 @@ afw_function_definition_to_string;
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, hexBinary, hybrid, ia5String, integer,
- *   ipAddress, null, object, objectId, objectPath, password, rfc822Name,
- *   string, template, time, x500Name, xpathExpression, yearMonthDuration.
+ *   dnsName, double, hexBinary, ia5String, integer, ipAddress, null, object,
+ *   objectId, objectPath, password, rfc822Name, string, template, time,
+ *   x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -24550,7 +23220,7 @@ afw_function_definition_compile_regexp;
  *   source - (regexp) regexp string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
+ *       produced instead of an unevaluated compiled value.
  * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
@@ -25868,7 +24538,7 @@ afw_function_definition_compile_script;
  *   source - (script) script string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
+ *       produced instead of an unevaluated compiled value.
  * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
@@ -29215,7 +27885,7 @@ afw_function_definition_compile_template;
  *   source - (template) template string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
+ *       produced instead of an unevaluated compiled value.
  * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
@@ -31664,7 +30334,7 @@ afw_function_definition_compile_xpathExpression;
  *   source - (xpathExpression) xpathExpression string to compile.
  *
  *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated expression value.
+ *       produced instead of an unevaluated compiled value.
  * 
  *       This parameter can be an integer between 0 and 10 of a string that is
  *       used for indentation. If 0 is specified, no whitespace is added to the
@@ -33083,13 +31753,13 @@ afw_function_definition_yearMonthDuration;
     XX(round)                                                                  \
     XX(subtract)                                                               \
     XX(to_integer)                                                             \
-    XX(compile)                                                                \
-    XX(evaluate)                                                               \
     XX(mod)                                                                    \
     XX(to_double)                                                              \
+    XX(compile)                                                                \
     XX(encode_as_base64Binary)                                                 \
     XX(encode_as_hexBinary)                                                    \
     XX(eq_ignore_case)                                                         \
+    XX(evaluate)                                                               \
     XX(in_range)                                                               \
     XX(match)                                                                  \
     XX(normalize_space)                                                        \
@@ -33240,10 +31910,8 @@ afw_function_execute_at_least_one_member_of(
  * bag<dayTimeDuration>
  * bag<dnsName>
  * bag<double>
- * bag<expression>
  * bag<function>
  * bag<hexBinary>
- * bag<hybrid>
  * bag<ia5String>
  * bag<integer>
  * bag<ipAddress>
@@ -33279,10 +31947,8 @@ afw_function_execute_bag(
  * bag_size<dayTimeDuration>
  * bag_size<dnsName>
  * bag_size<double>
- * bag_size<expression>
  * bag_size<function>
  * bag_size<hexBinary>
- * bag_size<hybrid>
  * bag_size<ia5String>
  * bag_size<integer>
  * bag_size<ipAddress>
@@ -33338,13 +32004,9 @@ afw_function_execute_clone(
  * to_string<dnsName>
  * double
  * to_string<double>
- * expression
- * to_string<expression>
  * function
  * hexBinary
  * to_string<hexBinary>
- * hybrid
- * to_string<hybrid>
  * ia5String
  * to_string<ia5String>
  * integer
@@ -33442,10 +32104,8 @@ afw_function_execute_ends_with(
  * eq<dayTimeDuration>
  * eq<dnsName>
  * eq<double>
- * eq<expression>
  * eq<function>
  * eq<hexBinary>
- * eq<hybrid>
  * eq<ia5String>
  * eq<integer>
  * eq<ipAddress>
@@ -33482,10 +32142,8 @@ afw_function_execute_eq(
  * eqx<dayTimeDuration>
  * eqx<dnsName>
  * eqx<double>
- * eqx<expression>
  * eqx<function>
  * eqx<hexBinary>
- * eqx<hybrid>
  * eqx<ia5String>
  * eqx<integer>
  * eqx<ipAddress>
@@ -33522,10 +32180,8 @@ afw_function_execute_eqx(
  * ge<dayTimeDuration>
  * ge<dnsName>
  * ge<double>
- * ge<expression>
  * ge<function>
  * ge<hexBinary>
- * ge<hybrid>
  * ge<ia5String>
  * ge<integer>
  * ge<ipAddress>
@@ -33561,10 +32217,8 @@ afw_function_execute_ge(
  * gt<dayTimeDuration>
  * gt<dnsName>
  * gt<double>
- * gt<expression>
  * gt<function>
  * gt<hexBinary>
- * gt<hybrid>
  * gt<ia5String>
  * gt<integer>
  * gt<ipAddress>
@@ -33659,10 +32313,8 @@ afw_function_execute_intersection(
  * is<dayTimeDuration>
  * is<dnsName>
  * is<double>
- * is<expression>
  * is<function>
  * is<hexBinary>
- * is<hybrid>
  * is<ia5String>
  * is<integer>
  * is<ipAddress>
@@ -33738,10 +32390,8 @@ afw_function_execute_last_index_of(
  * le<dayTimeDuration>
  * le<dnsName>
  * le<double>
- * le<expression>
  * le<function>
  * le<hexBinary>
- * le<hybrid>
  * le<ia5String>
  * le<integer>
  * le<ipAddress>
@@ -33790,10 +32440,8 @@ afw_function_execute_length(
  * lt<dayTimeDuration>
  * lt<dnsName>
  * lt<double>
- * lt<expression>
  * lt<function>
  * lt<hexBinary>
- * lt<hybrid>
  * lt<ia5String>
  * lt<integer>
  * lt<ipAddress>
@@ -33861,10 +32509,8 @@ afw_function_execute_min(
  * ne<dayTimeDuration>
  * ne<dnsName>
  * ne<double>
- * ne<expression>
  * ne<function>
  * ne<hexBinary>
- * ne<hybrid>
  * ne<ia5String>
  * ne<integer>
  * ne<ipAddress>
@@ -33901,10 +32547,8 @@ afw_function_execute_ne(
  * nex<dayTimeDuration>
  * nex<dnsName>
  * nex<double>
- * nex<expression>
  * nex<function>
  * nex<hexBinary>
- * nex<hybrid>
  * nex<ia5String>
  * nex<integer>
  * nex<ipAddress>

@@ -397,9 +397,9 @@ afw_object_old_get_property_as_array_of_strings(
 
 
 
-/* Return a compiled hybrid property value. */
+/* Return a compiled template property value. */
 AFW_DEFINE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_hybrid(
+afw_object_old_get_property_as_compiled_template(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,
     const afw_utf8_t *source_location,
@@ -423,7 +423,7 @@ afw_object_old_get_property_as_compiled_hybrid(
             AFW_UTF8_FMT_ARG(property_name));
     }
 
-    result = afw_compile_hybrid(result,
+    result = afw_compile_template(result,
         source_location, NULL, shared, p, xctx);
 
     return result;

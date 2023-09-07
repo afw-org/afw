@@ -598,7 +598,7 @@ afw_object_old_get_property_as_array_of_strings(
  * it's just returned.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_hybrid(
+afw_object_old_get_property_as_compiled_template(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,
     const afw_utf8_t *source_location,

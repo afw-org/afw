@@ -264,8 +264,7 @@
             "properties": {
                 "additionalConstraints": {
                     "description": "Additional constraint for the value.",
-                    "title": "Additional Constraints",
-                    "type": "string"
+                    "title": "Additional Constraints"
                 },
                 "allowQuery": {
                     "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",

@@ -35,10 +35,8 @@
 #include "afw_data_type_dayTimeDuration_binding.h"
 #include "afw_data_type_dnsName_binding.h"
 #include "afw_data_type_double_binding.h"
-#include "afw_data_type_expression_binding.h"
 #include "afw_data_type_function_binding.h"
 #include "afw_data_type_hexBinary_binding.h"
-#include "afw_data_type_hybrid_binding.h"
 #include "afw_data_type_ia5String_binding.h"
 #include "afw_data_type_integer_binding.h"
 #include "afw_data_type_ipAddress_binding.h"
@@ -74,10 +72,8 @@
     XX(dayTimeDuration) \
     XX(dnsName) \
     XX(double) \
-    XX(expression) \
     XX(function) \
     XX(hexBinary) \
-    XX(hybrid) \
     XX(ia5String) \
     XX(integer) \
     XX(ipAddress) \

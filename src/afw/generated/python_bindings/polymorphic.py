@@ -284,7 +284,7 @@ def compile(session, source, listing=None):
         source (object): `<dataType>` string to compile
 
         listing (object): If specified, a compiler listing is produced instead
-        of an unevaluated expression value.
+        of an unevaluated compiled value.
         
         This parameter can be an integer between 0 and 10 of a string that is
         used for indentation. If 0 is specified, no whitespace is added to the

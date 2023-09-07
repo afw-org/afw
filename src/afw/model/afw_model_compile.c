@@ -63,7 +63,7 @@ impl_compile_custom(
             AFW_UTF8_FMT "/custom/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(path),
             AFW_UTF8_FMT_ARG(property_name));
-        value = afw_compile_hybrid_source(s, source_location,
+        value = afw_compile_template_source(s, source_location,
             NULL, model->shared, NULL, xctx);
         afw_object_set_property(result, property_name, value, xctx);
     }
@@ -163,7 +163,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/defaultValue",
             AFW_UTF8_FMT_ARG(path));
-        pt->default_value = afw_compile_hybrid_source(
+        pt->default_value = afw_compile_template_source(
             s,source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -183,7 +183,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetProperty",
             AFW_UTF8_FMT_ARG(path));
-        pt->onGetProperty = afw_compile_hybrid_source(
+        pt->onGetProperty = afw_compile_template_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -194,7 +194,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialValue",
             AFW_UTF8_FMT_ARG(path));
-        pt->onGetInitialValue = afw_compile_hybrid_source(
+        pt->onGetInitialValue = afw_compile_template_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -205,7 +205,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onSetProperty",
             AFW_UTF8_FMT_ARG(path));
-        pt->onSetProperty = afw_compile_hybrid_source(
+        pt->onSetProperty = afw_compile_template_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -634,7 +634,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialObjectId",
             AFW_UTF8_FMT_ARG(path));
-        ot->onGetInitialObjectId = afw_compile_hybrid_source(s,
+        ot->onGetInitialObjectId = afw_compile_template_source(s,
             source_location,
             NULL, model->shared, NULL, xctx);
     }
@@ -702,7 +702,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onAddObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onAddObject = afw_compile_hybrid_source(
+        ot->onAddObject = afw_compile_template_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -713,7 +713,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onDeleteObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onDeleteObject = afw_compile_hybrid_source(
+        ot->onDeleteObject = afw_compile_template_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -724,7 +724,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onGetObject = afw_compile_hybrid_source(
+        ot->onGetObject = afw_compile_template_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -735,7 +735,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onModifyObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onModifyObject = afw_compile_hybrid_source(
+        ot->onModifyObject = afw_compile_template_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -746,7 +746,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onReplaceObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onReplaceObject = afw_compile_hybrid_source(s,
+        ot->onReplaceObject = afw_compile_template_source(s,
             source_location, NULL, shared, p, xctx);
     }
 
@@ -757,7 +757,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onRetrieveObjects",
             AFW_UTF8_FMT_ARG(path));
-        ot->onRetrieveObjects = afw_compile_hybrid_source(
+        ot->onRetrieveObjects = afw_compile_template_source(
             s, source_location, NULL, shared, p, xctx);
     }
 

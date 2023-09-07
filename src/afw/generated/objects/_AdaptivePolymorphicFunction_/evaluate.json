@@ -23,8 +23,6 @@
     ],
     "polymorphic": true,
     "polymorphicDataTypes": [
-        "expression",
-        "hybrid",
         "script",
         "template",
         "xpathExpression"

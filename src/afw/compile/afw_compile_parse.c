@@ -412,27 +412,27 @@ afw_compile_parse_check_symbol(
 
 
 /*ebnf>>>
- *
- *# Hybrid is used to parse data type hybrid.
+ *FIXME FIXME Remove this when conversion complete
+ *# Hybrid is used to parse data type template.
  *#
- *# A hybrid is parsed as a Script, Template, or an evaluated
+ .# To help with conversion, Template will temporarily honor shebang for script.
+ *# A template is parsed as a Script, Template, or an evaluated
  *# string as follows:
  *#
  *#     1) If it begins with a '#!', it is parsed as a Script.
  *#     2) Otherwise, it is parsed as a Template.  Note that if the
  *#        template does not contain '${', it produces an evaluated string.
  *#
- *
- * Hybrid ::= Script | Template
+
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
+afw_compile_parse_TemporaryTemplate(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp;
     afw_utf8_t line;
 
-    /* Note: if full_source_type is hybrid (top call), make it more specific. */
+    /* Note: if full_source_type is template (top call), make it more specific. */
 
     /* If starts with shebang, this is an adaptive script. */
     if (afw_compile_next_raw_starts_with_z("#!")) {
@@ -446,9 +446,7 @@ afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
                 "recognized as an adaptive script in a hybrid value");
         }
 
-        if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-            parser->compiled_value->full_source_type = &afw_s_script;
-        }
+        parser->compiled_value->full_source_type = &afw_s_script;
 
         return afw_compile_parse_StatementList(parser,
             NULL, false, false, true);
@@ -459,9 +457,6 @@ afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
 
     /* If no input, return empty string. */
     if (cp < 0) {
-        if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-            parser->compiled_value->full_source_type = &afw_s_string;
-        }
         return afw_value_empty_string;
     }
 
@@ -471,8 +466,6 @@ afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
      */
     parser->residual_check = afw_compile_residual_check_none;
     parser->callback = NULL;
-    if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-        parser->compiled_value->full_source_type = &afw_s_template;
-    }
+    parser->compiled_value->full_source_type = &afw_s_template;
     return afw_compile_parse_Template(parser);
 }

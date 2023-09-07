@@ -8611,20 +8611,6 @@ extern const afw_value_string_t afw_v_bag_double;
 
 
 
-/** @brief define for quoted string "bag_expression" */
-#define AFW_Q_bag_expression "bag_expression"
-
-/** @brief 'afw_utf8_t' for string "bag_expression" */
-#define afw_s_bag_expression (afw_v_bag_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "bag_expression" */
-extern const afw_value_string_t afw_v_bag_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "bag_expression" */
-#define afw_z_bag_expression (afw_v_bag_expression.internal.s)
-
-
-
 /** @brief define for quoted string "bag_function" */
 #define AFW_Q_bag_function "bag_function"
 
@@ -8650,20 +8636,6 @@ extern const afw_value_string_t afw_v_bag_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "bag_hexBinary" */
 #define afw_z_bag_hexBinary (afw_v_bag_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "bag_hybrid" */
-#define AFW_Q_bag_hybrid "bag_hybrid"
-
-/** @brief 'afw_utf8_t' for string "bag_hybrid" */
-#define afw_s_bag_hybrid (afw_v_bag_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "bag_hybrid" */
-extern const afw_value_string_t afw_v_bag_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "bag_hybrid" */
-#define afw_z_bag_hybrid (afw_v_bag_hybrid.internal.s)
 
 
 
@@ -8947,20 +8919,6 @@ extern const afw_value_string_t afw_v_bag_size_double;
 
 
 
-/** @brief define for quoted string "bag_size_expression" */
-#define AFW_Q_bag_size_expression "bag_size_expression"
-
-/** @brief 'afw_utf8_t' for string "bag_size_expression" */
-#define afw_s_bag_size_expression (afw_v_bag_size_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "bag_size_expression" */
-extern const afw_value_string_t afw_v_bag_size_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "bag_size_expression" */
-#define afw_z_bag_size_expression (afw_v_bag_size_expression.internal.s)
-
-
-
 /** @brief define for quoted string "bag_size_function" */
 #define AFW_Q_bag_size_function "bag_size_function"
 
@@ -8986,20 +8944,6 @@ extern const afw_value_string_t afw_v_bag_size_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "bag_size_hexBinary" */
 #define afw_z_bag_size_hexBinary (afw_v_bag_size_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "bag_size_hybrid" */
-#define AFW_Q_bag_size_hybrid "bag_size_hybrid"
-
-/** @brief 'afw_utf8_t' for string "bag_size_hybrid" */
-#define afw_s_bag_size_hybrid (afw_v_bag_size_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "bag_size_hybrid" */
-extern const afw_value_string_t afw_v_bag_size_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "bag_size_hybrid" */
-#define afw_z_bag_size_hybrid (afw_v_bag_size_hybrid.internal.s)
 
 
 
@@ -9857,34 +9801,6 @@ extern const afw_value_string_t afw_v_compileType;
 
 
 
-/** @brief define for quoted string "compile_expression" */
-#define AFW_Q_compile_expression "compile_expression"
-
-/** @brief 'afw_utf8_t' for string "compile_expression" */
-#define afw_s_compile_expression (afw_v_compile_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "compile_expression" */
-extern const afw_value_string_t afw_v_compile_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "compile_expression" */
-#define afw_z_compile_expression (afw_v_compile_expression.internal.s)
-
-
-
-/** @brief define for quoted string "compile_hybrid" */
-#define AFW_Q_compile_hybrid "compile_hybrid"
-
-/** @brief 'afw_utf8_t' for string "compile_hybrid" */
-#define afw_s_compile_hybrid (afw_v_compile_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "compile_hybrid" */
-extern const afw_value_string_t afw_v_compile_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "compile_hybrid" */
-#define afw_z_compile_hybrid (afw_v_compile_hybrid.internal.s)
-
-
-
 /** @brief define for quoted string "compile_json" */
 #define AFW_Q_compile_json "compile_json"
 
@@ -10428,20 +10344,6 @@ extern const afw_value_string_t afw_v_convert_query_string_to_AdaptiveQueryCrite
 
 /** @brief 'afw_utf8_z_t *' for string "convert_query_string_to_AdaptiveQueryCriteria" */
 #define afw_z_convert_query_string_to_AdaptiveQueryCriteria (afw_v_convert_query_string_to_AdaptiveQueryCriteria.internal.s)
-
-
-
-/** @brief define for quoted string "convert_syntax_hybrid_to_expression" */
-#define AFW_Q_convert_syntax_hybrid_to_expression "convert_syntax_hybrid_to_expression"
-
-/** @brief 'afw_utf8_t' for string "convert_syntax_hybrid_to_expression" */
-#define afw_s_convert_syntax_hybrid_to_expression (afw_v_convert_syntax_hybrid_to_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "convert_syntax_hybrid_to_expression" */
-extern const afw_value_string_t afw_v_convert_syntax_hybrid_to_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "convert_syntax_hybrid_to_expression" */
-#define afw_z_convert_syntax_hybrid_to_expression (afw_v_convert_syntax_hybrid_to_expression.internal.s)
 
 
 
@@ -11607,20 +11509,6 @@ extern const afw_value_string_t afw_v_eq_double;
 
 
 
-/** @brief define for quoted string "eq_expression" */
-#define AFW_Q_eq_expression "eq_expression"
-
-/** @brief 'afw_utf8_t' for string "eq_expression" */
-#define afw_s_eq_expression (afw_v_eq_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "eq_expression" */
-extern const afw_value_string_t afw_v_eq_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "eq_expression" */
-#define afw_z_eq_expression (afw_v_eq_expression.internal.s)
-
-
-
 /** @brief define for quoted string "eq_function" */
 #define AFW_Q_eq_function "eq_function"
 
@@ -11646,20 +11534,6 @@ extern const afw_value_string_t afw_v_eq_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "eq_hexBinary" */
 #define afw_z_eq_hexBinary (afw_v_eq_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "eq_hybrid" */
-#define AFW_Q_eq_hybrid "eq_hybrid"
-
-/** @brief 'afw_utf8_t' for string "eq_hybrid" */
-#define afw_s_eq_hybrid (afw_v_eq_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "eq_hybrid" */
-extern const afw_value_string_t afw_v_eq_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "eq_hybrid" */
-#define afw_z_eq_hybrid (afw_v_eq_hybrid.internal.s)
 
 
 
@@ -12055,20 +11929,6 @@ extern const afw_value_string_t afw_v_eqx_double;
 
 
 
-/** @brief define for quoted string "eqx_expression" */
-#define AFW_Q_eqx_expression "eqx_expression"
-
-/** @brief 'afw_utf8_t' for string "eqx_expression" */
-#define afw_s_eqx_expression (afw_v_eqx_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "eqx_expression" */
-extern const afw_value_string_t afw_v_eqx_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "eqx_expression" */
-#define afw_z_eqx_expression (afw_v_eqx_expression.internal.s)
-
-
-
 /** @brief define for quoted string "eqx_function" */
 #define AFW_Q_eqx_function "eqx_function"
 
@@ -12094,20 +11954,6 @@ extern const afw_value_string_t afw_v_eqx_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "eqx_hexBinary" */
 #define afw_z_eqx_hexBinary (afw_v_eqx_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "eqx_hybrid" */
-#define AFW_Q_eqx_hybrid "eqx_hybrid"
-
-/** @brief 'afw_utf8_t' for string "eqx_hybrid" */
-#define afw_s_eqx_hybrid (afw_v_eqx_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "eqx_hybrid" */
-extern const afw_value_string_t afw_v_eqx_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "eqx_hybrid" */
-#define afw_z_eqx_hybrid (afw_v_eqx_hybrid.internal.s)
 
 
 
@@ -12458,34 +12304,6 @@ extern const afw_value_string_t afw_v_evaluate;
 
 /** @brief 'afw_utf8_z_t *' for string "evaluate" */
 #define afw_z_evaluate (afw_v_evaluate.internal.s)
-
-
-
-/** @brief define for quoted string "evaluate_expression" */
-#define AFW_Q_evaluate_expression "evaluate_expression"
-
-/** @brief 'afw_utf8_t' for string "evaluate_expression" */
-#define afw_s_evaluate_expression (afw_v_evaluate_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "evaluate_expression" */
-extern const afw_value_string_t afw_v_evaluate_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "evaluate_expression" */
-#define afw_z_evaluate_expression (afw_v_evaluate_expression.internal.s)
-
-
-
-/** @brief define for quoted string "evaluate_hybrid" */
-#define AFW_Q_evaluate_hybrid "evaluate_hybrid"
-
-/** @brief 'afw_utf8_t' for string "evaluate_hybrid" */
-#define afw_s_evaluate_hybrid (afw_v_evaluate_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "evaluate_hybrid" */
-extern const afw_value_string_t afw_v_evaluate_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "evaluate_hybrid" */
-#define afw_z_evaluate_hybrid (afw_v_evaluate_hybrid.internal.s)
 
 
 
@@ -13539,20 +13357,6 @@ extern const afw_value_string_t afw_v_ge_double;
 
 
 
-/** @brief define for quoted string "ge_expression" */
-#define AFW_Q_ge_expression "ge_expression"
-
-/** @brief 'afw_utf8_t' for string "ge_expression" */
-#define afw_s_ge_expression (afw_v_ge_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "ge_expression" */
-extern const afw_value_string_t afw_v_ge_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "ge_expression" */
-#define afw_z_ge_expression (afw_v_ge_expression.internal.s)
-
-
-
 /** @brief define for quoted string "ge_function" */
 #define AFW_Q_ge_function "ge_function"
 
@@ -13578,20 +13382,6 @@ extern const afw_value_string_t afw_v_ge_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "ge_hexBinary" */
 #define afw_z_ge_hexBinary (afw_v_ge_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "ge_hybrid" */
-#define AFW_Q_ge_hybrid "ge_hybrid"
-
-/** @brief 'afw_utf8_t' for string "ge_hybrid" */
-#define afw_s_ge_hybrid (afw_v_ge_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "ge_hybrid" */
-extern const afw_value_string_t afw_v_ge_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "ge_hybrid" */
-#define afw_z_ge_hybrid (afw_v_ge_hybrid.internal.s)
 
 
 
@@ -14085,20 +13875,6 @@ extern const afw_value_string_t afw_v_gt_double;
 
 
 
-/** @brief define for quoted string "gt_expression" */
-#define AFW_Q_gt_expression "gt_expression"
-
-/** @brief 'afw_utf8_t' for string "gt_expression" */
-#define afw_s_gt_expression (afw_v_gt_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "gt_expression" */
-extern const afw_value_string_t afw_v_gt_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "gt_expression" */
-#define afw_z_gt_expression (afw_v_gt_expression.internal.s)
-
-
-
 /** @brief define for quoted string "gt_function" */
 #define AFW_Q_gt_function "gt_function"
 
@@ -14124,20 +13900,6 @@ extern const afw_value_string_t afw_v_gt_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "gt_hexBinary" */
 #define afw_z_gt_hexBinary (afw_v_gt_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "gt_hybrid" */
-#define AFW_Q_gt_hybrid "gt_hybrid"
-
-/** @brief 'afw_utf8_t' for string "gt_hybrid" */
-#define afw_s_gt_hybrid (afw_v_gt_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "gt_hybrid" */
-extern const afw_value_string_t afw_v_gt_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "gt_hybrid" */
-#define afw_z_gt_hybrid (afw_v_gt_hybrid.internal.s)
 
 
 
@@ -15611,20 +15373,6 @@ extern const afw_value_string_t afw_v_is_double;
 
 
 
-/** @brief define for quoted string "is_expression" */
-#define AFW_Q_is_expression "is_expression"
-
-/** @brief 'afw_utf8_t' for string "is_expression" */
-#define afw_s_is_expression (afw_v_is_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "is_expression" */
-extern const afw_value_string_t afw_v_is_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "is_expression" */
-#define afw_z_is_expression (afw_v_is_expression.internal.s)
-
-
-
 /** @brief define for quoted string "is_finite" */
 #define AFW_Q_is_finite "is_finite"
 
@@ -15664,20 +15412,6 @@ extern const afw_value_string_t afw_v_is_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "is_hexBinary" */
 #define afw_z_is_hexBinary (afw_v_is_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "is_hybrid" */
-#define AFW_Q_is_hybrid "is_hybrid"
-
-/** @brief 'afw_utf8_t' for string "is_hybrid" */
-#define afw_s_is_hybrid (afw_v_is_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "is_hybrid" */
-extern const afw_value_string_t afw_v_is_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "is_hybrid" */
-#define afw_z_is_hybrid (afw_v_is_hybrid.internal.s)
 
 
 
@@ -16661,20 +16395,6 @@ extern const afw_value_string_t afw_v_le_double;
 
 
 
-/** @brief define for quoted string "le_expression" */
-#define AFW_Q_le_expression "le_expression"
-
-/** @brief 'afw_utf8_t' for string "le_expression" */
-#define afw_s_le_expression (afw_v_le_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "le_expression" */
-extern const afw_value_string_t afw_v_le_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "le_expression" */
-#define afw_z_le_expression (afw_v_le_expression.internal.s)
-
-
-
 /** @brief define for quoted string "le_function" */
 #define AFW_Q_le_function "le_function"
 
@@ -16700,20 +16420,6 @@ extern const afw_value_string_t afw_v_le_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "le_hexBinary" */
 #define afw_z_le_hexBinary (afw_v_le_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "le_hybrid" */
-#define AFW_Q_le_hybrid "le_hybrid"
-
-/** @brief 'afw_utf8_t' for string "le_hybrid" */
-#define afw_s_le_hybrid (afw_v_le_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "le_hybrid" */
-extern const afw_value_string_t afw_v_le_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "le_hybrid" */
-#define afw_z_le_hybrid (afw_v_le_hybrid.internal.s)
 
 
 
@@ -17347,20 +17053,6 @@ extern const afw_value_string_t afw_v_lt_double;
 
 
 
-/** @brief define for quoted string "lt_expression" */
-#define AFW_Q_lt_expression "lt_expression"
-
-/** @brief 'afw_utf8_t' for string "lt_expression" */
-#define afw_s_lt_expression (afw_v_lt_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "lt_expression" */
-extern const afw_value_string_t afw_v_lt_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "lt_expression" */
-#define afw_z_lt_expression (afw_v_lt_expression.internal.s)
-
-
-
 /** @brief define for quoted string "lt_function" */
 #define AFW_Q_lt_function "lt_function"
 
@@ -17386,20 +17078,6 @@ extern const afw_value_string_t afw_v_lt_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "lt_hexBinary" */
 #define afw_z_lt_hexBinary (afw_v_lt_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "lt_hybrid" */
-#define AFW_Q_lt_hybrid "lt_hybrid"
-
-/** @brief 'afw_utf8_t' for string "lt_hybrid" */
-#define afw_s_lt_hybrid (afw_v_lt_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "lt_hybrid" */
-extern const afw_value_string_t afw_v_lt_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "lt_hybrid" */
-#define afw_z_lt_hybrid (afw_v_lt_hybrid.internal.s)
 
 
 
@@ -18957,20 +18635,6 @@ extern const afw_value_string_t afw_v_ne_double;
 
 
 
-/** @brief define for quoted string "ne_expression" */
-#define AFW_Q_ne_expression "ne_expression"
-
-/** @brief 'afw_utf8_t' for string "ne_expression" */
-#define afw_s_ne_expression (afw_v_ne_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "ne_expression" */
-extern const afw_value_string_t afw_v_ne_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "ne_expression" */
-#define afw_z_ne_expression (afw_v_ne_expression.internal.s)
-
-
-
 /** @brief define for quoted string "ne_function" */
 #define AFW_Q_ne_function "ne_function"
 
@@ -18996,20 +18660,6 @@ extern const afw_value_string_t afw_v_ne_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "ne_hexBinary" */
 #define afw_z_ne_hexBinary (afw_v_ne_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "ne_hybrid" */
-#define AFW_Q_ne_hybrid "ne_hybrid"
-
-/** @brief 'afw_utf8_t' for string "ne_hybrid" */
-#define afw_s_ne_hybrid (afw_v_ne_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "ne_hybrid" */
-extern const afw_value_string_t afw_v_ne_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "ne_hybrid" */
-#define afw_z_ne_hybrid (afw_v_ne_hybrid.internal.s)
 
 
 
@@ -19419,20 +19069,6 @@ extern const afw_value_string_t afw_v_nex_double;
 
 
 
-/** @brief define for quoted string "nex_expression" */
-#define AFW_Q_nex_expression "nex_expression"
-
-/** @brief 'afw_utf8_t' for string "nex_expression" */
-#define afw_s_nex_expression (afw_v_nex_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "nex_expression" */
-extern const afw_value_string_t afw_v_nex_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "nex_expression" */
-#define afw_z_nex_expression (afw_v_nex_expression.internal.s)
-
-
-
 /** @brief define for quoted string "nex_function" */
 #define AFW_Q_nex_function "nex_function"
 
@@ -19458,20 +19094,6 @@ extern const afw_value_string_t afw_v_nex_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "nex_hexBinary" */
 #define afw_z_nex_hexBinary (afw_v_nex_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "nex_hybrid" */
-#define AFW_Q_nex_hybrid "nex_hybrid"
-
-/** @brief 'afw_utf8_t' for string "nex_hybrid" */
-#define afw_s_nex_hybrid (afw_v_nex_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "nex_hybrid" */
-extern const afw_value_string_t afw_v_nex_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "nex_hybrid" */
-#define afw_z_nex_hybrid (afw_v_nex_hybrid.internal.s)
 
 
 
@@ -25061,34 +24683,6 @@ extern const afw_value_string_t afw_v_testScript;
 
 
 
-/** @brief define for quoted string "test_expression" */
-#define AFW_Q_test_expression "test_expression"
-
-/** @brief 'afw_utf8_t' for string "test_expression" */
-#define afw_s_test_expression (afw_v_test_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "test_expression" */
-extern const afw_value_string_t afw_v_test_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "test_expression" */
-#define afw_z_test_expression (afw_v_test_expression.internal.s)
-
-
-
-/** @brief define for quoted string "test_hybrid" */
-#define AFW_Q_test_hybrid "test_hybrid"
-
-/** @brief 'afw_utf8_t' for string "test_hybrid" */
-#define afw_s_test_hybrid (afw_v_test_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "test_hybrid" */
-extern const afw_value_string_t afw_v_test_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "test_hybrid" */
-#define afw_z_test_hybrid (afw_v_test_hybrid.internal.s)
-
-
-
 /** @brief define for quoted string "test_script" */
 #define AFW_Q_test_script "test_script"
 
@@ -25691,20 +25285,6 @@ extern const afw_value_string_t afw_v_to_string_double;
 
 
 
-/** @brief define for quoted string "to_string_expression" */
-#define AFW_Q_to_string_expression "to_string_expression"
-
-/** @brief 'afw_utf8_t' for string "to_string_expression" */
-#define afw_s_to_string_expression (afw_v_to_string_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "to_string_expression" */
-extern const afw_value_string_t afw_v_to_string_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "to_string_expression" */
-#define afw_z_to_string_expression (afw_v_to_string_expression.internal.s)
-
-
-
 /** @brief define for quoted string "to_string_hexBinary" */
 #define AFW_Q_to_string_hexBinary "to_string_hexBinary"
 
@@ -25716,20 +25296,6 @@ extern const afw_value_string_t afw_v_to_string_hexBinary;
 
 /** @brief 'afw_utf8_z_t *' for string "to_string_hexBinary" */
 #define afw_z_to_string_hexBinary (afw_v_to_string_hexBinary.internal.s)
-
-
-
-/** @brief define for quoted string "to_string_hybrid" */
-#define AFW_Q_to_string_hybrid "to_string_hybrid"
-
-/** @brief 'afw_utf8_t' for string "to_string_hybrid" */
-#define afw_s_to_string_hybrid (afw_v_to_string_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "to_string_hybrid" */
-extern const afw_value_string_t afw_v_to_string_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "to_string_hybrid" */
-#define afw_z_to_string_hybrid (afw_v_to_string_hybrid.internal.s)
 
 
 

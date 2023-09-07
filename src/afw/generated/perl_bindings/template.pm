@@ -65,7 +65,7 @@ template string to compile
     $listing
 
 If specified, a compiler listing is produced instead of an unevaluated
-expression value.
+compiled value.
 
 This parameter can be an integer between 0 and 10 of a string that is used for
 indentation. If 0 is specified, no whitespace is added to the resulting

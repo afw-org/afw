@@ -120,7 +120,7 @@ afw_boolean_t afw_adaptor_impl_index_filter_applicable(
         indexDefinition, &afw_s_filter, xctx);
     if (filter) {
         filterValue = afw_compile_to_value(filter,  NULL,
-            afw_compile_type_expression, NULL, NULL, object->p, xctx);
+            afw_compile_type_script, NULL, NULL, object->p, xctx);
     } else {
         /* No filter means it always passes */
         return true;
@@ -333,7 +333,7 @@ afw_boolean_t afw_adaptor_impl_index_try(
     if (value_expression) 
     {
         value = afw_compile_to_value(value_expression, NULL,
-            afw_compile_type_expression, NULL, NULL, object->p, xctx);
+            afw_compile_type_script, NULL, NULL, object->p, xctx);
 
         /* Add variables for the filter and value expressions to use */
         /** @fixme These need to be current:: variables. See issue #54. */

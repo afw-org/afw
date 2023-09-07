@@ -1194,6 +1194,11 @@ afw_compile_parse_Template(afw_compile_parser_t *parser);
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_TemporaryTemplate(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_TemplateString(afw_compile_parser_t *parser);
 
 
@@ -1217,10 +1222,6 @@ afw_compile_parse_Type(afw_compile_parser_t *parser);
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Value(afw_compile_parser_t *parser);
 
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_Hybrid(afw_compile_parser_t *parser);
 
 
 AFW_DEFINE_INTERNAL(const afw_value_symbol_reference_t *)
