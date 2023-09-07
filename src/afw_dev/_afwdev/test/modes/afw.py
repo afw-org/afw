@@ -2,7 +2,6 @@
 
 import os
 import subprocess
-import time
 
 from _afwdev.common import msg, nfc
 
@@ -42,10 +41,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                     afw_cmd.append('afw.conf')
         
             msg.debug("Running test script: %s" % test)
-            start = time.time() 
             p = subprocess.run(afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
-            end = time.time()
-            msg.debug("Test script %s took %s ms to run." % (test, round((end - start) * 1000)))
 
         debug = p.stderr.decode("utf-8")
         stdout = p.stdout.decode("utf-8")         

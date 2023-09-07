@@ -44,6 +44,8 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
         msg.debug("Using test environment: " + testEnvironment['name'] + ', cwd = ' + testEnvironment['cwd'])        
 
     try:
+        test_group_start = time.time()
+
         # switch to working directory for this environment
         if testEnvironment:            
             os.chdir(testEnvironment['cwd'])
@@ -77,8 +79,10 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
             passed += numPassed
             skipped += numSkipped            
 
-            if error != None:                      
-                msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(test, pwd), round((end - start) * 1000)))  
+            if msg.is_debug_mode() and (debug or error):
+                msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(test, pwd), round((end - start) * 1000))) 
+
+            if error != None:                       
                 if error:
                     # The error could be from a Python exception, or an afw error object
                     # The best solution will be to make separate Exception classes for
@@ -88,8 +92,9 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
                         str = nfc.json_loads(error).get('message')
                     except:
                         str = error
-                    msg.error("\n    \u2717 {}\n".format(str))                   
-            if debug:
+                    msg.error("\n    \u2717 {}\n".format(str))   
+
+            if msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
@@ -123,6 +128,11 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
     finally:
         # always switch back to original working directory        
         os.chdir(pwd)
+
+    test_group_end = time.time()
+
+    if msg.is_debug_mode():
+        msg.highlighted_info("Test group {} took {}ms".format(root, round((test_group_end - test_group_start) * 1000)))
 
     return testGroup, passed, skipped, failed
 
