@@ -373,7 +373,7 @@ impl_evaluation_backtrace(
                 afw_writer_write_z(w, "---Source <None>", xctx);
                 afw_writer_write_eol(w, xctx);
                 afw_writer_write_eol(w, xctx);
-                afw_writer_write_z(w, "---Backtrace", xctx);
+                afw_writer_write_z(w, "---Evaluation Backtrace", xctx);
                 afw_writer_write_eol(w, xctx);
             }
 
@@ -485,7 +485,7 @@ impl_evaluation_backtrace(
                 }
 
                 afw_writer_write_eol(w, xctx);
-                afw_writer_write_z(w, "---Backtrace", xctx);
+                afw_writer_write_z(w, "---Evaluation Backtrace", xctx);
                 afw_writer_write_eol(w, xctx);
             }
         }
