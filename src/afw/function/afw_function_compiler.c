@@ -1239,7 +1239,8 @@ afw_function_execute_test_value(
 
         /* If additional context, evaluate with context ahead of time. */
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
-            value = afw_value_evaluate_with_additional_untrusted_qualified_variables(
+            value =
+            afw_value_evaluate_with_additional_untrusted_qualified_variables(
                 value, x->argv[5], x->p, xctx);
         }
 
