@@ -89,10 +89,8 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
                     except:
                         str = error
                     msg.error("\n    \u2717 {}\n".format(str))                   
-                if debug:
-                    # replace newlines with newlines and indentation
-                    debug = debug.replace('\n', '\n      ')
-                    msg.error("      {}\n".format(debug))
+            if debug:
+                msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
 

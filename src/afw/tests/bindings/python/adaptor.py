@@ -15,7 +15,6 @@ def run():
         "description": "Test python bindings for adaptor",
         "tests": []
     }
-    sys.stderr.write('run()..\n')
 
     try:    
         session = Session("local")
@@ -52,12 +51,9 @@ def run():
                 "passed": passed,
             })
     finally:
-        sys.stderr.write('closing session..\n')
         # always make sure to close the session, or afw will hang around
         if session:
             session.close()
 
     # return the test results for the afwdev test runner
-
-    sys.stderr.write('Returning response..\n')
     return response
