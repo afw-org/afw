@@ -71,6 +71,9 @@ impl_afw_value_optional_evaluate(
     }
     AFW_ENDTRY;
 
+    /* Always set execution flow back to sequential after compiled unit. */
+    afw_xctx_statement_flow_set_type(sequential, xctx);
+    
     /* Return the result of calling root value's evaluate(). */
     return result;
 }

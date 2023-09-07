@@ -795,23 +795,6 @@ typedef struct afw_value_block_s
 afw_value_block_t;
 
 /**
- * Enum typedef for afw_value_block_statement_flow_t.
- *
- * This is used in afw_value_internal.h struct and afw_xctx.h so it has to be
- * here.
- */
-typedef enum {
-    afw_value_block_statement_flow_sequential         = 0,
-    afw_value_block_statement_flow_continue           = 1,
-
-    /* Greater than or equal 2 should always break out of loops. */
-    afw_value_block_statement_flow_ge_break_out       = 2,
-    afw_value_block_statement_flow_break              = 2,
-    afw_value_block_statement_flow_rethrow            = 3,
-    afw_value_block_statement_flow_return             = 4
-} afw_value_block_statement_flow_t;
-
-/**
  * Opaque typedef for afw_value_block_symbol_t.
  *
  * See afw_value_internal.h for struct and more information.
@@ -1026,6 +1009,22 @@ afw_xctx_t;
  */
 typedef struct afw_xctx_scope_s
 afw_xctx_scope_t;
+
+/**
+ * Enum typedef for afw_xctx_statement_flow_t.
+ *
+ * This is used in some headers, so has to be here.
+ */
+typedef enum {
+    afw_xctx_statement_flow_sequential         = 0,
+    afw_xctx_statement_flow_continue           = 1,
+
+    /* Greater than or equal 2 should always leave loops. */
+    afw_xctx_statement_flow_ge_is_leave        = 2,
+    afw_xctx_statement_flow_break              = 2,
+    afw_xctx_statement_flow_rethrow            = 3,
+    afw_xctx_statement_flow_return             = 4
+} afw_xctx_statement_flow_t;
 
 
 /** @} */

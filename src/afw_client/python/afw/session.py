@@ -7,6 +7,7 @@ from .request import HttpRequest, LocalRequest
 import shlex, subprocess
 import os, tempfile
 import sys
+import time
 
 class Session(object):
     """
@@ -55,6 +56,9 @@ class Session(object):
 
             # make sure it is running
             if self._localSession.poll() is None:
+                #FIXME Temporary fix to allow afw time to start up, but this
+                # needs to be fixed in a better way.
+                time.sleep(0.5)
                 self._fifo = open(self._filename, "r")
 
             # read the version information and any preliminary text output

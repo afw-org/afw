@@ -1410,7 +1410,7 @@ typedef struct afw_thread_attr_s afw_thread_attr_t;
 #define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_INITIAL_COUNT 100
 
 /** @brief Default for afw_environment_t evaluation_stack_maximum_count. */
-#define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT 200
+#define AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_MAXIMUM_COUNT 500
 
 
 /** @brief Typedef for union of all cType. */
@@ -1996,7 +1996,7 @@ struct afw_xctx_s {
     /**
      * Block statement flow type used while evaluate adaptive script.
      */
-    afw_value_block_statement_flow_t block_statement_flow;
+    afw_xctx_statement_flow_t statement_flow;
 
 };
 

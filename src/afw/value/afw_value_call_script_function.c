@@ -250,6 +250,8 @@ impl_afw_value_optional_evaluate(
         else {
             afw_xctx_scope_deactivate(enclosing_lexical_scope, xctx);
         }
+
+        afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
     }
 
     AFW_ENDTRY;

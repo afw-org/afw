@@ -534,9 +534,85 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 /* ----------------------------------------------------------------------------
 
-    Execution Context (xctx) Evaluation Stack
+    Execution Context (xctx) statement flow.
     
 ---------------------------------------------------------------------------- */
+
+/**
+ * @brief Set the xctx statement flow.
+ * @param flow to set.
+ * @param xctx of caller.
+ */
+#define afw_xctx_statement_flow_set(flow, xctx) \
+    ((afw_xctx_t *)xctx)->statement_flow = (flow)
+
+/**
+ * @brief Set the xctx statement flow to <type>
+ * @param type is afw_xctx_statement_flow_<type> of flow to set.
+ * @param xctx of caller.
+ */
+#define afw_xctx_statement_flow_set_type(type, xctx) \
+    ((afw_xctx_t *)xctx)->statement_flow = \
+        afw_xctx_statement_flow_ ## type
+/**
+ * @brief Get the xctx statement flow
+ * @param xctx of caller.
+ * @return flow.
+ */
+#define afw_xctx_statement_flow_get(xctx) \
+    (((afw_xctx_t *)xctx)->statement_flow)
+
+/**
+ * @brief Test if xctx statement flow <type>
+ * @param type is afw_xctx_statement_flow_<type> of flow to set.
+ * @param xctx of caller.
+ * @return boolean result of test.
+ */
+#define afw_xctx_statement_flow_is_type(type, xctx) \
+    (((afw_xctx_t *)xctx)->statement_flow == \
+        afw_xctx_statement_flow_ ## type)
+
+/**
+ * @brief Test if xctx statement flow is one that should leave loop or switch
+ * @param xctx of caller.
+ * @return boolean result of test.
+ * 
+ * This is true if the statement flow is break, return, and rethrow but false
+ * for continue and sequential.
+ */
+#define afw_xctx_statement_flow_is_leave(xctx) \
+    (((afw_xctx_t *)xctx)->statement_flow >= \
+        afw_xctx_statement_flow_ge_is_leave)
+
+/**
+ * @brief Reset xctx statement flow break and continue to sequential
+ * @param xctx of caller.
+ */
+#define afw_xctx_statement_flow_reset_break_and_continue(xctx) \
+    if (((afw_xctx_t *)xctx)->statement_flow <= \
+        afw_xctx_statement_flow_ge_is_leave) \
+            afw_xctx_statement_flow_set_type(sequential, xctx)
+
+/**
+ * @brief Reset xctx statement flow except rethrow to sequential
+ * @param xctx of caller.
+ * 
+ * This should be used at the end of script function evaluation, template
+ * evaluation, and all evaluate() adaptive functions.
+ */
+#define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
+    if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \
+        afw_xctx_statement_flow_set_type(sequential, xctx); \
+    }
+
+
+
+/* ----------------------------------------------------------------------------
+
+    Execution Context (xctx) Evaluation stack.
+    
+---------------------------------------------------------------------------- */
+
 
 /**
  * @brief Set the xctx evaluation result.
@@ -656,7 +732,7 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
 
 /* ----------------------------------------------------------------------------
 
-    Execution Context (xctx) Qualifier and Qualified Variables
+    Execution Context (xctx) Qualifiers and Qualified Variables
     
 ---------------------------------------------------------------------------- */
 
