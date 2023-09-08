@@ -51,10 +51,7 @@
             "detail": "Runs the full build process for both Core and Web Services.",
             "group": "build",
             "type": "shell",
-            "dependsOn": [
-                "Build:  Core (afwdev build --cdev)",
-                "Build:  Administrative Web Application"
-            ],
+            "command": "./afwdev build --cdev --cmake --js --docs",
             "problemMatcher": [],
             "icon": {
                 "id": "tools"
@@ -115,7 +112,7 @@
         },
         {
             "label": "Run:  afwdev build --install",
-            "detail": "Runs \"afwdev build --install\".",
+            "detail": "Runs \"./afwdev build --install\".",
             "type": "shell",
             "group": "build",
             "command": "./afwdev build --install",
@@ -126,7 +123,7 @@
         },
         {
             "label": "Clean:  afwdev build --clean",
-            "detail": "Runs a \"afwdev build --clean\".",
+            "detail": "Runs a \"./afwdev build --clean\".",
             "type": "shell",
             "group": "build",
             "command": "./afwdev build --clean",
@@ -175,9 +172,6 @@
             "group": "build",
             "type": "shell",
             "command": "./afwdev build --js",
-            "dependsOn": [
-                "Build:  Javascript Packages"
-            ],
             "problemMatcher": [],
             "icon": {
                 "id": "tools"
@@ -195,20 +189,6 @@
             "icon": {
                 "id": "run",
                 "color": "terminal.ansiGreen"
-            }
-        },
-        {
-            "label": "Build:  Javascript Packages",
-            "detail": "Builds the Components for React (@afw/client, @afw/react, @afw/react-material-ui, @afw/react-monaco)",
-            "group": "build",
-            "type": "shell",
-            "command": "cd ${workspaceFolder} && npm run build-p:packages",
-            "dependsOn": [
-                "Run:  Bootstrap node_modules"
-            ],
-            "problemMatcher": [],
-            "icon": {
-                "id": "tools"
             }
         },
         {
@@ -236,26 +216,13 @@
             "detail": "Runs tests for the React Component extensions.",
             "group": "test",
             "type": "shell",
-            "command": "cd ${workspaceFolder} && npm run test",
+            "command": "./afwdev test --js",
             "runOptions": {
                 "instanceLimit": 1
             },
-            "dependsOn": [
-                "Run:  Bootstrap node_modules"
-            ],
             "problemMatcher": [],
             "icon": {
                 "id": "check"
-            }
-        },
-        {
-            "label": "Run:  Bootstrap node_modules",
-            "detail": "Installs all common node_modules for building, development and testing, if the directory is missing.",
-            "type": "shell",
-            "command": "((test ! -e node_modules && npm install) || true)",
-            "problemMatcher": [],
-            "icon": {
-                "id": "package"
             }
         },
         {

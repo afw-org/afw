@@ -86,6 +86,9 @@ def run(options):
             msg.error_exit("Generate failed " + str(rc))
 
     # call the appropriate build function for each build context
+    if options.get('build_cmake', False):
+        cmake.build(options)
+        
     if options.get('build_docs', False):
         docs.build(options)
 
@@ -94,6 +97,3 @@ def run(options):
 
     if options.get('build_js', False):
         js.build(options)
-
-    if options.get('build_cmake', False):
-        cmake.build(options)
