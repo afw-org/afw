@@ -216,7 +216,7 @@ afw_compile_to_value_with_callback(
 
 /**
  * @brief Compile template.
- * @param string containing template to compile.
+ * @param value containing hybrid to compile.
  * @param source_location to associate with compiled string or NULL.
  * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
@@ -260,11 +260,11 @@ AFW_DECLARE(const afw_object_t *)
 afw_compile_to_object(
     const afw_utf8_t *string,
     const afw_utf8_t *source_location,
-    const afw_utf8_t * adaptor_id,
-    const afw_utf8_t * object_type_id,
-    const afw_utf8_t * object_id,
+    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
     afw_boolean_t cede_p,
-    const afw_pool_t * p,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
