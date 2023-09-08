@@ -9,7 +9,6 @@
 //? description: Check null === null
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1

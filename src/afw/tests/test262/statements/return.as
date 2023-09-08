@@ -9,7 +9,6 @@
 //? description: a return statement without an expression may have a newline before semi-colon
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 return
 ;
@@ -20,7 +19,6 @@ return 0;
 //? description: Code after return is not evaluated
 //? expect: 1
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 1;
 return x;
@@ -30,7 +28,6 @@ x = x + 1;
 //? description: Code after return is not evaluated (2)
 //? expect: 1
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 1;
 return x;
@@ -41,7 +38,6 @@ return x;
 //? description: return with line terminators
 //? expect: 1
 //? source: ...
-#!/usr/bin/env afw
 
 return
 1;

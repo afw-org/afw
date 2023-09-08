@@ -8,7 +8,6 @@
 //? description: Test 0 decimal literal
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 return 0;
 
@@ -16,7 +15,6 @@ return 0;
 //? description: Test +0 decimal literal
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 return +0;
 
@@ -24,7 +22,6 @@ return +0;
 //? description: Test -0 decimal literal
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 return -0;
 
@@ -33,7 +30,6 @@ return -0;
 //? description: Test minimum decimal literal
 //? expect: -9223372036854775808
 //? source: ...
-#!/usr/bin/env afw
 
 return -9223372036854775808;
 
@@ -41,7 +37,6 @@ return -9223372036854775808;
 //? description: Test normal decimal literal
 //? expect: 123456789
 //? source: ...
-#!/usr/bin/env afw
 
 return 123456789;
 
@@ -49,7 +44,6 @@ return 123456789;
 //? description: Test minimum decimal literal
 //? expect: 9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return 9223372036854775807;
 
@@ -57,7 +51,6 @@ return 9223372036854775807;
 //? description: Test too small decimal literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return -9223372036854775809;
 
@@ -65,7 +58,6 @@ return -9223372036854775809;
 //? description: Test too large decimal literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return 9223372036854775808;
 
@@ -73,7 +65,6 @@ return 9223372036854775808;
 //? description: Test normal binary literal
 //? expect: 123456789
 //? source: ...
-#!/usr/bin/env afw
 
 return 0b0111010110111100110100010101;
 
@@ -82,7 +73,6 @@ return 0b0111010110111100110100010101;
 //? description: Test minimum hex literal (one more than binary min)
 //? expect: -9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return -0b111111111111111111111111111111111111111111111111111111111111111;
 
@@ -90,7 +80,6 @@ return -0b111111111111111111111111111111111111111111111111111111111111111;
 //? description: Test minimum binary literal
 //? expect: 9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return 0b111111111111111111111111111111111111111111111111111111111111111;
 
@@ -98,7 +87,6 @@ return 0b111111111111111111111111111111111111111111111111111111111111111;
 //? description: Test too small binary literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return -0b1111111111111111111111111111111111111111111111111111111111111111;
 
@@ -106,7 +94,6 @@ return -0b1111111111111111111111111111111111111111111111111111111111111111;
 //? description: Test too large binary literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return 0b1111111111111111111111111111111111111111111111111111111111111111;
 
@@ -114,7 +101,6 @@ return 0b1111111111111111111111111111111111111111111111111111111111111111;
 //? description: Test normal hex literal
 //? expect: 123456789
 //? source: ...
-#!/usr/bin/env afw
 
 return 0X75BCD15;
 
@@ -123,7 +109,6 @@ return 0X75BCD15;
 //? description: Test minimum hex literal (one more than decimal min)
 //? expect: -9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return -0x7fffffffffffffff;
 
@@ -131,7 +116,6 @@ return -0x7fffffffffffffff;
 //? description: Test minimum hex literal
 //? expect: 9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return 0x7fffffffffffffff;
 
@@ -139,7 +123,6 @@ return 0x7fffffffffffffff;
 //? description: Test too small hex literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return -0xffffffffffffffff;
 
@@ -147,7 +130,6 @@ return -0xffffffffffffffff;
 //? description: Test too large hex literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return 0xffffffffffffffff;
 
@@ -155,7 +137,6 @@ return 0xffffffffffffffff;
 //? description: Test normal octal literal
 //? expect: 123456789
 //? source: ...
-#!/usr/bin/env afw
 
 return 0o726746425;
 
@@ -164,7 +145,6 @@ return 0o726746425;
 //? description: Test minimum octal literal (one more than decimal min)
 //? expect: -9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return -0o777777777777777777777;
 
@@ -172,7 +152,6 @@ return -0o777777777777777777777;
 //? description: Test minimum octal literal
 //? expect: 9223372036854775807
 //? source: ...
-#!/usr/bin/env afw
 
 return 0o777777777777777777777;
 
@@ -180,7 +159,6 @@ return 0o777777777777777777777;
 //? description: Test too small octal literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return -0o7777777777777777777771;
 
@@ -188,7 +166,6 @@ return -0o7777777777777777777771;
 //? description: Test too large octal literal
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 return 0o7777777777777777777771;
 

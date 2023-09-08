@@ -9,7 +9,6 @@
 //? description: Checking scope chain containing function declarations
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 0;
@@ -31,7 +30,6 @@ if(!(f1() === 1)){
 //? description: Checking scope chain containing function declarations
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 0;
@@ -52,7 +50,6 @@ if(!(f1() === 0)){
 //? description: Checking scope chain containing function declarations
 //? expect: error:#1: Scope chain disturbed
 //? source: ...
-#!/usr/bin/env afw
 
 /* This test originally used 'var' which is not supported by afw 
    Furthermore, ECMAScript "hoists" variables to the top of the 

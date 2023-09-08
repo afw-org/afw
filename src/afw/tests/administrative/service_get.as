@@ -10,7 +10,6 @@
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(
     safe_evaluate(
@@ -27,7 +26,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let service: object = service_get("adaptor-afw");
 

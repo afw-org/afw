@@ -9,6 +9,5 @@
 //? description: Test test_script_runtime_support without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 test_script_runtime_support();

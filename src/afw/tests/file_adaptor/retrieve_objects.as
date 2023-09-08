@@ -10,7 +10,6 @@
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("file", "TestObjectType1");
 
@@ -28,7 +27,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("file", "TestObjectType1", {
     "filter": {
@@ -53,7 +51,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("file", "TestObjectType1", {
     "filter": {
@@ -77,7 +74,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("file", "TestObjectType1", {
     "filter": {

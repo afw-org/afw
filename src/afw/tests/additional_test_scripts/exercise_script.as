@@ -9,7 +9,6 @@
 //? description: Script test with asserts.
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 
 // There are still parts of this script that needs to be converted to assert()

@@ -9,7 +9,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x - y) = 1;
 
@@ -18,7 +17,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 - 2) = 1;
 
@@ -27,7 +25,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true - false) = 1;
 
@@ -36,7 +33,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x + y) = 1;
 
@@ -45,7 +41,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 + 2) = 1;
 
@@ -54,7 +49,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true + false) = 1;
 
@@ -63,7 +57,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (() => {}) = 1;
 
@@ -72,7 +65,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (() => ({})) = 1;
 
@@ -81,7 +73,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x => x)) = 1;
 
@@ -90,7 +81,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (((x) => x)) = 1;
 
@@ -99,7 +89,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((() => 1)) = 1;
 
@@ -108,7 +97,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((() => true)) = 1;
 
@@ -117,7 +105,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((() => 1)) = 1;
 
@@ -126,7 +113,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x & y) = 1;
 
@@ -135,7 +121,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 & 2) = 1;
 
@@ -144,7 +129,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true & false) = 1;
 
@@ -153,7 +137,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x | y) = 1;
 
@@ -162,7 +145,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 | 2) = 1;
 
@@ -171,7 +153,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true | false) = 1;
 
@@ -180,7 +161,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x ^ y) = 1;
 
@@ -189,7 +169,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 ^ 2) = 1;
 
@@ -198,7 +177,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true ^ false) = 1;
 
@@ -207,7 +185,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (f()) = 1;
 
@@ -216,7 +193,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (f()``) = 1;
 
@@ -225,7 +201,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x ?? y) = 1;
 
@@ -234,7 +209,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 ?? 2) = 1;
 
@@ -243,7 +217,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true ?? false) = 1;
 
@@ -252,7 +225,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x == y) = 1;
 
@@ -261,7 +233,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 == 2) = 1;
 
@@ -270,7 +241,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true == false) = 1;
 
@@ -279,7 +249,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x != y) = 1;
 
@@ -288,7 +257,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 != 2) = 1;
 
@@ -297,7 +265,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true != false) = 1;
 
@@ -306,7 +273,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x == y) = 1;
 
@@ -315,7 +281,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 == 2) = 1;
 
@@ -324,7 +289,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true == false) = 1;
 
@@ -333,7 +297,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x !== y) = 1;
 
@@ -342,7 +305,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 !== 2) = 1;
 
@@ -351,7 +313,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true !== false) = 1;
 
@@ -360,7 +321,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x, y = z)) = 1;
 
@@ -369,7 +329,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x, y = 1)) = 1;
 
@@ -378,7 +337,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x, y = true)) = 1;
 
@@ -387,7 +345,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (import.meta) = 1;
 
@@ -396,7 +353,6 @@
 //? description: description: If LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral, the following Early Error rule is applied, It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x = y)) = 1;
 
@@ -405,7 +361,6 @@
 //? description: description: If LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral, the following Early Error rule is applied, It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x = 1)) = 1;
 
@@ -414,7 +369,6 @@
 //? description: description: If LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral, the following Early Error rule is applied, It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x = true)) = 1;
 
@@ -423,7 +377,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ??= y)) = 1;
 
@@ -432,7 +385,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ??= 1)) = 1;
 
@@ -441,7 +393,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ??= true)) = 1;
 
@@ -450,7 +401,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x &&= y)) = 1;
 
@@ -459,7 +409,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x &&= 1)) = 1;
 
@@ -468,7 +417,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x &&= true)) = 1;
 
@@ -477,7 +425,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ||= y)) = 1;
 
@@ -486,7 +433,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ||= 1)) = 1;
 
@@ -495,7 +441,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ||= true)) = 1;
 
@@ -504,7 +449,6 @@
 //? description: description: It is an early Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x--) = 1;
 
@@ -513,7 +457,6 @@
 //? description: description: It is an early Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x++) = 1;
 
@@ -522,7 +465,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x && y) = 1;
 
@@ -531,7 +473,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 && 2) = 1;
 
@@ -540,7 +481,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true && false) = 1;
 
@@ -549,7 +489,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x || y) = 1;
 
@@ -558,7 +497,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 || 2) = 1;
 
@@ -567,7 +505,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true || false) = 1;
 
@@ -576,7 +513,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (o.f()``) = 1;
 
@@ -585,7 +521,6 @@
 //? description: description: It is an early Syntax Error if AssignmentTargetType of UnaryExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (--x) = 1;
 
@@ -594,7 +529,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x * y) = 1;
 
@@ -603,7 +537,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 * 2) = 1;
 
@@ -612,7 +545,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true * false) = 1;
 
@@ -621,7 +553,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x / y) = 1;
 
@@ -630,7 +561,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 / 2) = 1;
 
@@ -639,7 +569,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true / false) = 1;
 
@@ -648,7 +577,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x?.y) = 1;
 
@@ -657,7 +585,6 @@
 //? description: description: It is an early Syntax Error if AssignmentTargetType of UnaryExpression is not simple. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (++x) = 1;
 
@@ -667,7 +594,6 @@
 //? description: description: PrimaryExpression FunctionExpression, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (function() {}) = 1;
 
@@ -676,7 +602,6 @@
 //? description: description: PrimaryExpression Literal BooleanLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true) = 1;
 
@@ -685,7 +610,6 @@
 //? description: description: PrimaryExpression Literal NullLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (null) = 1;
 
@@ -694,7 +618,6 @@
 //? description: description: PrimaryExpression Literal NumericLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (0) = 1;
 
@@ -703,7 +626,6 @@
 //? description: description: PrimaryExpression Literal StringLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ('') = 1;
 
@@ -712,7 +634,6 @@
 //? description: description: PrimaryExpression ObjectLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ({}) = 1;
 
@@ -721,7 +642,6 @@
 //? description: description: PrimaryExpression RegularExpressionLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (/1/) = 1;
 
@@ -730,7 +650,6 @@
 //? description: description: PrimaryExpression TemplateLiteral; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (``) = 1;
 
@@ -739,7 +658,6 @@
 //? description: description: PrimaryExpression this; Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (this) = 1;
 
@@ -748,7 +666,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x >= y) = 1;
 
@@ -757,7 +674,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 >= 2) = 1;
 
@@ -766,7 +682,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true >= false) = 1;
 
@@ -775,7 +690,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x > y) = 1;
 
@@ -784,7 +698,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 > 2) = 1;
 
@@ -793,7 +706,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true > false) = 1;
 
@@ -802,7 +714,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x in y) = 1;
 
@@ -811,7 +722,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 in 2) = 1;
 
@@ -820,7 +730,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true in false) = 1;
 
@@ -829,7 +738,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x instanceof y) = 1;
 
@@ -838,7 +746,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 instanceof 2) = 1;
 
@@ -847,7 +754,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true instanceof false) = 1;
 
@@ -856,7 +762,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x <= y) = 1;
 
@@ -865,7 +770,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 <= 2) = 1;
 
@@ -874,7 +778,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true <= false) = 1;
 
@@ -883,7 +786,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x < y) = 1;
 
@@ -892,7 +794,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 < 2) = 1;
 
@@ -901,7 +802,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((x ? y : z)) = 1;
 
@@ -910,7 +810,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((1 ? 2 : 3)) = 1;
 
@@ -919,7 +818,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 ((true ? false : true)) = 1;
 
@@ -928,7 +826,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (delete x.y) = 1;
 
@@ -937,7 +834,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (!x) = 1;
 
@@ -946,7 +842,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (!1) = 1;
 
@@ -955,7 +850,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (!true) = 1;
 
@@ -964,7 +858,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (-x) = 1;
 
@@ -973,7 +866,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (-1) = 1;
 
@@ -982,7 +874,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (-true) = 1;
 
@@ -991,7 +882,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (+x) = 1;
 
@@ -1000,7 +890,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (+1) = 1;
 
@@ -1009,7 +898,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (+true) = 1;
 
@@ -1018,7 +906,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (~x) = 1;
 
@@ -1027,7 +914,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (~1) = 1;
 
@@ -1036,7 +922,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (~true) = 1;
 
@@ -1045,7 +930,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (typeof x) = 1;
 
@@ -1054,7 +938,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (typeof 1) = 1;
 
@@ -1063,7 +946,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (typeof true) = 1;
 
@@ -1072,7 +954,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (void x) = 1;
 
@@ -1081,7 +962,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (void 1) = 1;
 
@@ -1090,7 +970,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (void true) = 1;
 
@@ -1099,7 +978,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (x ** y) = 1;
 
@@ -1108,7 +986,6 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (1 ** 2) = 1;
 
@@ -1117,6 +994,5 @@
 //? description: description: Static Semantics AssignmentTargetType, Return invalid. (ParenthesizedExpression)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 (true ** false) = 1;

@@ -9,7 +9,6 @@
 //? description: Checks for "hasErrors" reported by object type definitions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objectTypeObjects: object = retrieve_objects("afw", "_AdaptiveObjectType_");
 for (const objectTypeObject: object of objectTypeObjects) {        

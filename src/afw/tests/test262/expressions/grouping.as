@@ -9,7 +9,6 @@
 //? description: White Space and Line Terminator inside "grouping" operator are allowed
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (evaluate(script("(\u00091\u0009)")) != 1) {
     assert("#1: (\\u00091\\u0009) === 1");
@@ -57,7 +56,6 @@ if (evaluate(script("(\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291\u0
 //? description: Applying grouping operator to boolean
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((true) !== true) {
     assert("#1: (true) === true");
@@ -69,7 +67,6 @@ if ((true) !== true) {
 //? description: Applying grouping operator to integer
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((1) !== 1) {
     assert("#1: (1) === 1");
@@ -81,7 +78,6 @@ if ((1) !== 1) {
 //? description: Applying grouping operator to string
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (("1") !== "1") {
     assert("#1: (\"1\") === \"1\"");
@@ -97,7 +93,6 @@ if (("x") !== "x") {
 //? description: Applying grouping operator to undefined/null
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((undefined) !== undefined) {
     assert("#1: (undefined) === undefined");

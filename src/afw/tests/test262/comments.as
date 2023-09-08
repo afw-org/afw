@@ -9,7 +9,6 @@
 //? description: Create comments with any code
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 //CHECK#1
 // throw "#1: Correct interpretation of single line comments"
@@ -37,7 +36,6 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 //? description: Simple test, create empty comment: ///
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 //CHECK#1
 ///
@@ -47,7 +45,6 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 //? description: Create comments with any code
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 /* throw "#1: Correct interpretation of multi line comments"; 
@@ -102,7 +99,6 @@ assert(string2 === "/*var y = 0", "The value of 'string2' is expected to equal '
 //? description: Try use /*CHECK#1/. This is not closed multi line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1/
 
@@ -111,7 +107,6 @@ assert(string2 === "/*var y = 0", "The value of 'string2' is expected to equal '
 //? description: Try use nested comments
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -126,7 +121,6 @@ let
 //? description: Try use 2 close comment tags
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -138,7 +132,6 @@ x*/
 //? description: Fist Multi line comment, then Single line comment
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -150,7 +143,6 @@ x*/
 //? description: Insert Single line comment into Multi line comment
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -163,7 +155,6 @@ x*/
 //? description: Try to open Multi line comment at the end of Single comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -175,7 +166,6 @@ x*/
 //? description: Insert Multi line comment into Single line comment
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -186,7 +176,6 @@ x*/
 //? description: Insert Multi line comment with two closed tags into Single line comment
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -196,7 +185,6 @@ x*/
 //? description: Insert Multi line comment into Single line comments
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 /*CHECK#1*/
 
@@ -209,7 +197,6 @@ x*/
 //? description: //var " + xx + "yy = -1", insert instead of xx all Unicode characters
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
 for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
@@ -237,7 +224,6 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
 //? description: "\"var\"+ yy+ \"xx = 1\", insert instead of yy all Unicode characters"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let hex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
 for (let i1 = 0; i1 < 14; i1 = i1 + 1) {

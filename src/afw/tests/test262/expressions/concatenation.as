@@ -9,7 +9,6 @@
 //? description: result of string conversion from undefined value is "<undefined>"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 // When using "+" operator which calls polymorphic function "add", the first
 // parameter must be integer, double, or string. Because of this, "string"
@@ -25,7 +24,6 @@ if (concat(string(undefined) + "") !== "<undefined>") {
 //? description: result of string conversion from null value is "null"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (concat(null, "") !== "null") {
     throw "null + \"\" === \"null\"";
@@ -37,7 +35,6 @@ if (concat(null, "") !== "null") {
 //? description: result of string conversion from boolean value is "true" if the argument is "true", else is "false"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (concat(false, "") !== "false") {
     throw "false + \"\" === \"false\"";
@@ -53,7 +50,6 @@ if (concat(true, "") !== "true") {
 //? description: result of string conversion from string value is input argument (no conversion)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x1: string = "abc";
 if (concat(x1, "") !== x1) {

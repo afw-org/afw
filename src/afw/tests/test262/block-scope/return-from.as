@@ -9,7 +9,6 @@
 //? description: return from block
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn() {
     const u = 3;
@@ -24,7 +23,6 @@ assert(fn() === 9);
 //? description: return from block
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn() {
     let x = 3;

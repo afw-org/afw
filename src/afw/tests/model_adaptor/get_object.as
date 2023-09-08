@@ -10,7 +10,6 @@
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 // get the mapped object
 let obj: object = get_object("model", "MyObjectType1", "Test1");
@@ -29,7 +28,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 // get an object that does not exist
 assert(
@@ -48,7 +46,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj: object;
 

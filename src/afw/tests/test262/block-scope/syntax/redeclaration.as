@@ -9,7 +9,6 @@
 //? description: redeclaration with FunctionDeclaration (LexicalDeclaration (const) in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { const f = 0; function f() {} }
 
@@ -18,7 +17,6 @@
 //? description: redeclaration with let-LexicalDeclaration (LexicalDeclaration (const) in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { const f = 0; let f; }
 
@@ -27,7 +25,6 @@
 //? description: redeclaration with const-LexicalDeclaration (FunctionDeclaration in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { function f() {}; const f = 0; }
 
@@ -36,7 +33,6 @@
 //? description: redeclaration with FunctionDeclaration (FunctionDeclaration in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { function f() {}; function f() {}; }
 
@@ -45,7 +41,6 @@
 //? description: redeclaration with let-LexicalDeclaration (FunctionDeclaration in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { function f() {}; let f; }
 
@@ -54,7 +49,6 @@
 //? description: redeclaration with const-LexicalDeclaration (LexicalDeclaration (let) in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { let f; const f = 0; }
 
@@ -63,7 +57,6 @@
 //? description: redeclaration with FunctionDeclaration (LexicalDeclaration (let) in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { let f; function f() {}; }
 
@@ -72,6 +65,5 @@
 //? description: redeclaration with let-LexicalDeclaration (LexicalDeclaration (let) in BlockStatement)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 { let f; let f; }

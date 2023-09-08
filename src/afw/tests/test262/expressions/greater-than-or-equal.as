@@ -9,7 +9,6 @@
 //? description: Operator x >= y
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (1 >= 1 !== true) {
     throw "1 >= 1 === true";
@@ -37,7 +36,6 @@ if (x >= y !== true) {
 //? description: Undeclared variable
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 x >= 1;
 
@@ -45,7 +43,6 @@ x >= 1;
 //? description: Undeclared variable 2
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 1 >= y;
 
@@ -54,7 +51,6 @@ x >= 1;
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 1;
 if ((x = 0) >= x !== true) {
@@ -72,7 +68,6 @@ if (x >= (x = 1) !== false) {
 //? description: Checking with undeclared variables
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if ((y = 1) >= y !== true) {
     throw "y >= y === true";
@@ -82,7 +77,6 @@ if ((y = 1) >= y !== true) {
 //? description: Compare x >= y (boolean)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (true >= true !== true) {
     throw "true >= true === true";
@@ -94,7 +88,6 @@ if (true >= true !== true) {
 //? description: Compare x >= y (integer)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (1 >= 1 !== true) {
     throw "1 >= 1 === true";
@@ -107,7 +100,6 @@ if (1 >= 1 !== true) {
 //? description: Compare x >= y (string, integer)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /* can't mix types in AFW */
 if ("1" >= 1 !== true) {
@@ -132,7 +124,6 @@ if (1 >= "x" !== false) {
 //? description: Compare x >= y (boolean, string)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /* can't mix types in AFW */
 if (true >= "1" !== true) {
@@ -149,7 +140,6 @@ if ("1" >= true !== true) {
 //? description: Compare x >= y (null, string)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /* can't mix types in AFW */
 if ("1" >= null !== true) {
@@ -166,7 +156,6 @@ if (null >= "1" !== false) {
 //? description: Compare x >= y (string, string)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ("1" >= "1" !== true) {
     throw "'1' >= '1' === true";
@@ -178,7 +167,6 @@ if ("1" >= "1" !== true) {
 //? description: If x is NaN, return false
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((NaN >= 0.0) !== false) {
     throw "NaN >= 0.0 === false";
@@ -211,7 +199,6 @@ if ((NaN >= -Infinity) !== false) {
 //? description: If x is a prefix of y and x !== y, return false
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (("x" >= "x ") !== false) {
     throw "'x' >= 'x ' === false";
@@ -244,7 +231,6 @@ if ((x >= (x + "y")) !== false) {
 //? description: If y is a prefix of x, return true
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (("x" >= "x") !== true) {
     throw "'x' >= 'x ' === true";
@@ -285,7 +271,6 @@ if ((" x" >= "x") !== false) {
 //? description: If neither x, nor y is a prefix of each other, return result of strings comparison applies a simple lexicographic ordering to the sequences of code point value values
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (("xy" >= "xx") !== true) {
     throw "'xy' >= 'xx' === true";
@@ -321,7 +306,6 @@ if (("aa" >= "aB") !== true) {
 //? description: If neither x, nor y is a prefix of each other, return result of strings comparison applies a simple lexicographic ordering to the sequences of code point value values
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (("x" >= "0") !== true) {
     throw "'x' >= '0' === true";
@@ -357,7 +341,6 @@ if (("1e-10" >= "1") !== true) {
 //? description: If y is NaN, return false
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((double(0) >= NaN) !== false) {
     throw "0 >= NaN === false";
@@ -389,7 +372,6 @@ if ((-Infinity >= NaN) !== false) {
 //? description: If x and y are the same number value, return true
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((1 >= 1) !== true) {
     throw "1 >= 1 === true";
@@ -417,7 +399,6 @@ if ((+Infinity >= +Infinity) !== true) {
 //? description: If either x or y is +0 and the other is -0, return true
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((0 >= 0) !== true) {
     throw "0 >= 0 === true";
@@ -441,7 +422,6 @@ if ((-0 >= +0) !== true) {
 //? description: If x is +Infinity, return true
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((+Infinity >= double(0)) !== true) {
     throw "'+Infinity' >= 0 === true";
@@ -465,7 +445,6 @@ if ((+Infinity >= -Infinity) !== true) {
 //? description: If y is +Infinity and x !== y, return false
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((double(0) >= +Infinity) !== false) {
     throw "0 >= '+Infinity' === false";
@@ -489,7 +468,6 @@ if ((-Infinity >= +Infinity) !== false) {
 //? description: If x is -Infinity and x !== y, return false
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((-Infinity >= 0.0) !== false) {
     throw "'-Infinity' >= 0.0 === false";
@@ -513,7 +491,6 @@ if ((-Infinity >= +Infinity) !== false) {
 //? description: If y is -Infinity, return true
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((0.0 >= -Infinity) !== true) {
     throw "0.0 >= '-Infinity' === true";
@@ -537,7 +514,6 @@ if ((+Infinity >= -Infinity) !== true) {
 //? description: If x is greater or equal than y and these values are both finite non-zero, return true; otherwise, return false
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((double(1) >= 1.1) !== false) {
     throw "1 >= 1.1 === false";

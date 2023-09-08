@@ -9,7 +9,6 @@
 //? description: Clone an object
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj1: object = {
     "a": 1,
@@ -33,7 +32,6 @@ return 0;
 //? description: Clone an array
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let list1: array = [0, 1, 2];
 let list2: array = clone(list1);

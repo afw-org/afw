@@ -9,7 +9,6 @@
 //? description: Test assert without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 assert();
 
@@ -17,7 +16,6 @@ assert();
 //? description: Test assert with true
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(true);
 
@@ -27,7 +25,6 @@ return 0;
 //? description: Test assert with false
 //? expect: error:Assertion failed
 //? source: ...
-#!/usr/bin/env afw
 
 assert(false);
 

@@ -9,7 +9,6 @@
 //? description: Checking if execution of "break=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let break = 1;
 
@@ -18,7 +17,6 @@ let break = 1;
 //? description: Checking if execution of "case=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let case = 1;
 
@@ -27,7 +25,6 @@ let case = 1;
 //? description: Checking if execution of "catch=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let catch = 1;
 
@@ -36,7 +33,6 @@ let catch = 1;
 //? description: Checking if execution of "continue=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let continue = 1;
 
@@ -45,7 +41,6 @@ let continue = 1;
 //? description: Checking if execution of "default=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let default = 1;
 
@@ -55,7 +50,6 @@ let default = 1;
 //? description: Checking if execution of "do=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let do = 1;
 
@@ -64,7 +58,6 @@ let do = 1;
 //? description: Checking if execution of "else=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let else = 1;
 
@@ -73,7 +66,6 @@ let else = 1;
 //? description: Checking if execution of "finally=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let finally = 1;
 
@@ -82,7 +74,6 @@ let finally = 1;
 //? description: Checking if execution of "for=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let for = 1;
 
@@ -91,7 +82,6 @@ let for = 1;
 //? description: Checking if execution of "function=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let function = 1;
 
@@ -100,7 +90,6 @@ let function = 1;
 //? description: Checking if execution of "if=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let if = 1;
 
@@ -109,7 +98,6 @@ let if = 1;
 //? description: Checking if execution of "in=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let in = 1;
 
@@ -118,7 +106,6 @@ let in = 1;
 //? description: Checking if execution of "instanceof=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let instanceof = 1;
 
@@ -128,7 +115,6 @@ let instanceof = 1;
 //? description: Checking if execution of "return=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let return = 1;
 
@@ -137,7 +123,6 @@ let return = 1;
 //? description: Checking if execution of "switch=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let switch = 1;
 
@@ -146,7 +131,6 @@ let switch = 1;
 //? description: Checking if execution of "throw=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let throw = 1;
 
@@ -155,7 +139,6 @@ let throw = 1;
 //? description: Checking if execution of "try=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let try = 1;
 
@@ -164,7 +147,6 @@ let try = 1;
 //? description: Checking if execution of "typeof=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let typeof = 1;
 
@@ -173,7 +155,6 @@ let typeof = 1;
 //? description: Checking if execution of "var=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let let = 1;
 
@@ -182,6 +163,5 @@ let let = 1;
 //? description: Checking if execution of "while=1" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let while = 1;

@@ -9,7 +9,6 @@
 //? description: 7.3 - ES5 recognize <BOM> (\uFFFF) as a whitespace character
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
         let prop = "a\uFFFFa";
@@ -25,7 +24,6 @@ assert(prop !== "aa", 'prop');
     string literal
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
         let prop = "66\u2028123";
@@ -41,7 +39,6 @@ assert(length(prop) === 6, 'prop.length');
     string literal
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
         let prop = "66\u2029123";
@@ -55,7 +52,6 @@ assert(length(prop) === 6,  'prop.length');
 //? description: Insert real CARRIAGE RETURN between tokens of let x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let
@@ -72,7 +68,6 @@ if (x !== 1) {
 //? description: Insert real LINE FEED between tokens of let x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let
@@ -87,7 +82,6 @@ assert(x ===  1);
 //? description: Insert LINE SEPARATOR (\u2028) between tokens of let x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 1 ;
@@ -99,7 +93,6 @@ assert(x ===  1);
 //? description: Insert PARAGRAPH SEPARATOR (\u2029) between tokens of let x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 1 ;
@@ -111,7 +104,6 @@ assert(x === 1);
 //? description: Insert real CARRIAGE RETURN into multi line comment
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 0;
@@ -127,7 +119,6 @@ if (x !== 0) {
 //? description: Insert real LINE FEED into multi line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -153,7 +144,6 @@ if (x === 0) {
 //? description: Insert LINE SEPARATOR (U+2028) into multi line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -177,7 +167,6 @@ if (x === 0) {
 //? description: Insert real PARAGRAPH SEPARATOR into multi line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -201,7 +190,6 @@ if (x === 0) {
 //? description: Insert CARRIAGE RETURN (U+000D) into the end of single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -220,7 +208,6 @@ assert(false);
 //? description: Insert LINE FEED (\u000A) into single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -239,7 +226,6 @@ assert(false);
 //? description: Insert LINE SEPARATOR (U+2028) into the end of single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -259,7 +245,6 @@ assert(false);
     comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 // Because this test concerns the interpretation of non-executable character
@@ -277,7 +262,6 @@ assert(false);
 //? description: Insert CARRIAGE RETURN (\u000D) into begin of single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -290,7 +274,6 @@ assert(false);
 //? description: Insert real LINE FEED into single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -304,7 +287,6 @@ line comment
 //? description: Insert LINE SEPARATOR (\u2028) into single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -316,7 +298,6 @@ line comment
 //? description: Insert PARAGRAPH SEPARATOR (\u2029) into single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -330,7 +311,6 @@ line comment
     regular expression literals
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -345,7 +325,6 @@ line comment
     regular expression literals
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -360,7 +339,6 @@ line comment
     regular expression literals
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -374,7 +352,6 @@ line comment
     regular expression literals
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -387,7 +364,6 @@ line comment
 //? expect: error
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -401,7 +377,6 @@ line comment
 //? expect: error
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -414,7 +389,6 @@ line comment
 //? description: Use real LINE FEED into string
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -430,7 +404,6 @@ ing
 //? description: Insert real CARRIAGE RETURN into string
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -446,7 +419,6 @@ ing
 //? description: Insert CARRIAGE RETURN (\u000D) into single line comment
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -459,7 +431,6 @@ ing
 //? description: Insert PARAGRAPH SEPARATOR (U+2029) into multi line comment
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -474,7 +445,6 @@ if (x !== 0) {
 //? description: Insert LINE FEED (U+000A) in let x
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -486,7 +456,6 @@ let\u000Ax;
 //? description: Insert CARRIAGE RETURN (U+000D) in let x
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -498,7 +467,6 @@ let\u000Dx;
 //? description: Insert LINE SEPARATOR (U+2028) in let x
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -510,7 +478,6 @@ let\u2028x;
 //? description: Insert PARAGRAPH SEPARATOR (U+2029) in let x
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -522,7 +489,6 @@ let\u2029x;
 //? description: Insert Line Terminator in let x=y+z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -558,7 +524,6 @@ if (x !== 5) {
 //? description: Insert Line Terminator in let x=y-z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -594,7 +559,6 @@ if (x !== 1) {
 //? description: Insert Line Terminator in let x=y*z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -630,7 +594,6 @@ if (x !== 6) {
 //? description: Insert Line Terminator in let x=y/z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -666,7 +629,6 @@ if (x !== 6) {
 //? description: Insert Line Terminator in let x=y%z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -704,7 +666,6 @@ if (x !== 6) {
 //? description: Insert Line Terminator in let x=y<z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1

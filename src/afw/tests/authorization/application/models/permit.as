@@ -9,7 +9,6 @@
 //? description: Test get_object succeeds
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 // get the mapped object
 let obj = get_object("model", "MyObjectType1", "Test1");

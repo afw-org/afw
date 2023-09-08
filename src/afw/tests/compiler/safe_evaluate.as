@@ -9,6 +9,5 @@
 //? description: Test safe_evaluate without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 safe_evaluate();

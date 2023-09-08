@@ -9,7 +9,6 @@
 //? description: Call random_number() with no arguments
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: double;
 
@@ -26,7 +25,6 @@ return 0;
 //? description: Call random_number() with arguments
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: double;
 
@@ -43,7 +41,6 @@ return 0;
 //? description: Call random_number() in a loop
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: double;
 
@@ -62,7 +59,6 @@ return 0;
 //? description: Call random_base64Binary() with 16 octets
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: base64Binary;
 
@@ -77,7 +73,6 @@ return 0;
 //? description: Call random_digits() from 1-18 digits
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: string;
 
@@ -94,7 +89,6 @@ return 0;
 //? description: Call random_digits() with 19 digits
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: string;
 
@@ -113,7 +107,6 @@ return 0;
 //? description: Call random_hexBinary() with 16 octets
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: hexBinary;
 
@@ -128,7 +121,6 @@ return 0;
 //? description: Call random_integer() between 5 and 10
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let rand: integer;
 

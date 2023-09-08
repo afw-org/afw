@@ -9,7 +9,6 @@
 //? description: Test test_script without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 test_script();
 
@@ -17,7 +16,6 @@ test_script();
 //? description: Expects an error and it passes
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-error-pass", 
@@ -32,7 +30,6 @@ assert(result.passed === true);
 //? description: Expects an error and it passes
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-error-pass", 
@@ -47,7 +44,6 @@ assert(result.passed === true);
 //? description: Expects an error and it fails
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-error-fails", 
@@ -62,7 +58,6 @@ assert(result.passed === false);
 //? description: Expects an error and it returns undefined
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-error-fails-undefined", 
@@ -77,7 +72,6 @@ assert(result.passed === false);
 //? description: Expects an error and it returns undefined
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 // this test may actually fail in the future, so we should 
 // change or remove it later, if we implement it
@@ -94,7 +88,6 @@ assert(result.passed === false);
 //? description: Expects an integer and it passes
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-integer-pass", 
@@ -109,7 +102,6 @@ assert(result.passed === true);
 //? description: Expects an integer and it fails
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-integer-fail", 
@@ -124,7 +116,6 @@ assert(result.passed === false);
 //? description: Expects an undefined and it passes
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-undefined-pass", 
@@ -139,7 +130,6 @@ assert(result.passed === true);
 //? description: Expects an undefined and it returns error
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-undefined-fails-error", 
@@ -154,7 +144,6 @@ assert(result.passed === false);
 //? description: Expects an undefined and it returns parse error
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 const result = test_script(
     "expect-undefined-fails-error", 

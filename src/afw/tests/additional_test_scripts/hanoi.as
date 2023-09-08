@@ -9,7 +9,6 @@
 //? description: Solve Towers of Hanoi.
 //? expect: "Move disk from post 1 to 3\nMove disk from post 1 to 2\nMove disk from post 3 to 2\nMove disk from post 1 to 3\nMove disk from post 2 to 1\nMove disk from post 2 to 3\nMove disk from post 1 to 3\n"
 //? source: ...
-#!/usr/bin/env afw
 
 (function hanoi(num, s, i, d)
      {
@@ -28,7 +27,6 @@
 //? description: Solve Towers of Hanoi test with types.
 //? expect: "Move disk from post 1 to 3\nMove disk from post 1 to 2\nMove disk from post 3 to 2\nMove disk from post 1 to 3\nMove disk from post 2 to 1\nMove disk from post 2 to 3\nMove disk from post 1 to 3\n"
 //? source: ...
-#!/usr/bin/env afw
 
 (function hanoi(num: integer, s: string, i: string, d: string): string
      {

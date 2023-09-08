@@ -9,7 +9,6 @@
 //? description: Test declaring variables inside a block
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 1;
 {
@@ -26,7 +25,6 @@ return 0;
 //? description: Test declaring variables inside a block
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 {
     let x: integer = 3;
@@ -42,7 +40,6 @@ return 0;
 //? description:x before continue
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 do {
     let x: integer = 4;

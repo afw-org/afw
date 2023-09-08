@@ -9,7 +9,6 @@
 //? description: Test variable_exists()
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const myvar: string = "abc";
 
@@ -23,7 +22,6 @@ return 0;
 //? description: Test variable_get()
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const myvar: string = "def";
 
@@ -36,7 +34,6 @@ return 0;
 //? description: Test variable_is_not_null()
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const myvar: string = "def";
 let myvar2: any;

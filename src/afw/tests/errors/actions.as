@@ -10,7 +10,6 @@
 //? expect: "minArgs must be on last parameter"
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 /* \fixme */
 
@@ -19,7 +18,6 @@
 //? description: If arg is NULL and not optional, throw error
 //? expect: "Missing parameter 'arg2'"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     function: "subtract",
@@ -36,7 +34,6 @@ return result.error.message;
 //? expect: "Function %s returned a value that is not evaluated. (%s)"
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 /* \fixme */
 
@@ -45,7 +42,6 @@ return result.error.message;
 //? description: Either actions or function property must be specified
 //? expect: "Either actions or function property must be specified"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     arg1: 3
@@ -60,7 +56,6 @@ return result.error.message;
 //? description: Unknown function specified
 //? expect: "Unknown function 'blah'"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     function: "blah"
@@ -75,7 +70,6 @@ return result.error.message;
 //? description: Property of actions is missing or invalid
 //? expect: "Property 'actions' of actions is missing or invalid"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     actions: "blah"
@@ -90,7 +84,6 @@ return result.error.message;
 //? description: Entries in actions array must be objects
 //? expect: "Entries in actions list must be objects"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     actions: [
@@ -107,7 +100,6 @@ return result.error.message;
 //? description: Property of action is missing or invalid
 //? expect: "Property 'function' of action 1 is missing or invalid"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     actions: [
@@ -126,7 +118,6 @@ return result.error.message;
 //? description: Unknown function in action
 //? expect: "Unknown function 'blah' in action 1"
 //? source: ...
-#!/usr/bin/env afw
 
 const result = perform({
     actions: [

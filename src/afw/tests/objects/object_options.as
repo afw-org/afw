@@ -9,7 +9,6 @@
 //? description: Tests the checkRequired property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { checkRequired: true });
 return meta(obj).dataType;
@@ -18,7 +17,6 @@ return meta(obj).dataType;
 //? description: Tests the composite property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { composite: true });
 return meta(obj).dataType;
@@ -28,7 +26,6 @@ return meta(obj).dataType;
 //? expect: string("object")
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 // fixme not sure this was implemented
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { debug: true });
@@ -38,7 +35,6 @@ return meta(obj).dataType;
 //? description: Tests the includeDefaultValues property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { includeDefaultValues: true });
 return meta(obj).dataType;
@@ -47,7 +43,6 @@ return meta(obj).dataType;
 //? description: Tests the includeDescendentObjectTypes property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { includeDescendentObjectTypes: true });
 return meta(obj).dataType;
@@ -56,7 +51,6 @@ return meta(obj).dataType;
 //? description: Tests the inheritedFrom property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { inheritedFrom: true });
 return meta(obj).dataType;
@@ -65,7 +59,6 @@ return meta(obj).dataType;
 //? description: Tests the integersAsString property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { integersAsString: true });
 return meta(obj).dataType;
@@ -74,7 +67,6 @@ return meta(obj).dataType;
 //? description: Tests the largeIntegersAsString property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { largeIntegersAsString: true });
 return meta(obj).dataType;
@@ -83,7 +75,6 @@ return meta(obj).dataType;
 //? description: Tests the metaFull property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { metaFull: true });
 return meta(obj).dataType;
@@ -92,7 +83,6 @@ return meta(obj).dataType;
 //? description: Tests the metaLimited property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { metaLimited: true });
 return meta(obj).dataType;
@@ -101,7 +91,6 @@ return meta(obj).dataType;
 //? description: Tests the normalize property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { normalize: true });
 return meta(obj).dataType;
@@ -110,7 +99,6 @@ return meta(obj).dataType;
 //? description: Tests the objectId property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { objectId: true });
 return meta(obj).dataType;
@@ -119,7 +107,6 @@ return meta(obj).dataType;
 //? description: Tests the objectType property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { objectType: true });
 return meta(obj).dataType;
@@ -128,7 +115,6 @@ return meta(obj).dataType;
 //? description: Tests the objectTypes property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { objectTypes: true });
 return meta(obj).dataType;
@@ -137,7 +123,6 @@ return meta(obj).dataType;
 //? description: Tests the path property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { path: true });
 return meta(obj).dataType;
@@ -146,7 +131,6 @@ return meta(obj).dataType;
 //? description: Tests the pathEmbedded property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { pathEmbedded: true });
 return meta(obj).dataType;
@@ -155,7 +139,6 @@ return meta(obj).dataType;
 //? description: Tests the reconcilable property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { reconcilable: true });
 return meta(obj).dataType;
@@ -164,7 +147,6 @@ return meta(obj).dataType;
 //? description: Tests the resolvedParentPaths property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { resolvedParentPaths: true });
 return meta(obj).dataType;
@@ -173,7 +155,6 @@ return meta(obj).dataType;
 //? description: Tests the typedValues property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { typedValues: true });
 return meta(obj).dataType;
@@ -182,7 +163,6 @@ return meta(obj).dataType;
 //? description: Tests the whitespace property 
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveFunction_", "add", { whitespace: true });
 return meta(obj).dataType;
@@ -191,7 +171,6 @@ return meta(obj).dataType;
 //? description: Tests all the options together
 //? expect: error:Object immutable
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { 
     checkRequired: true,
@@ -220,7 +199,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except checkRequired
 //? expect: error:Object immutable
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
     composite: true,
@@ -248,7 +226,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except composite
 //? expect: error:Object immutable
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
     checkRequired: true,
@@ -276,7 +253,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except includeDefaultValues
 //? expect: error:Object must have a pool
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
     checkRequired: true,
@@ -304,7 +280,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except includeDescendentObjectTypes
 //? expect: error:Object immutable
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
     checkRequired: true,
@@ -332,7 +307,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except inheritedFrom
 //? expect: error:Object immutable
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
     checkRequired: true,
@@ -360,7 +334,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except inheritedFrom
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {         
     composite: true,
@@ -373,7 +346,6 @@ return meta(obj).dataType;
 //? description: Tests all the options except inheritedFrom
 //? expect: string("object")
 //? source: ...
-#!/usr/bin/env afw
 
 const obj = get_object("file", "_AdaptiveObjectType_", "TestObjectType2", {         
     composite: true,

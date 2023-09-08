@@ -9,7 +9,6 @@
 //? description: Line terminator between the operands of a division operator
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 18
@@ -31,7 +30,6 @@ assert(x ===  1);
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 let of = 4;
@@ -46,7 +44,6 @@ assert(notRegExp ===  .1);
 //? description: No ASI happening in identifier used as operands
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let instance = 60;
@@ -63,7 +60,6 @@ assert(notRegExp ===  5);
 //? description: Checking by using eval
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -121,7 +117,6 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029/\u0
 //? description: Either Type is not Reference or GetBase is not null
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -154,7 +149,6 @@ if (x / y !== 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -174,7 +168,6 @@ catch (e) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -194,7 +187,6 @@ catch (e) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -218,7 +210,6 @@ try {
 //? description: Type(x) and Type(y) vary between primitive number and Number object
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -232,7 +223,6 @@ if (1 / 1 !== 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -261,7 +251,6 @@ if (is_NaN(null / null) !== true) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -290,7 +279,6 @@ if (is_NaN({} / {}) !== true) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -320,7 +308,6 @@ if (is_NaN(undefined / new String("1")) !== true) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -376,7 +363,6 @@ if (Number.MIN_VALUE / -1.1 !== -Number.MIN_VALUE) {
 //? description: If left operand is NaN, the result is NaN
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -426,7 +412,6 @@ if (is_NaN(NaN / 1.0) !== true) {
 //? description: If right operand is NaN, the result is NaN
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -476,7 +461,6 @@ if (is_NaN(1.0 / NaN) !== true) {
 //? description: The sign of the result is positive if both operands have the same sign, negative if the operands have different signs
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -504,7 +488,6 @@ if (-1 / -1 !== 1) {
 //? description: Division of an infinity by a zero results in an infinity of appropriate sign
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -533,7 +516,6 @@ if (Infinity / -0.0 !== -Infinity) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -562,7 +544,6 @@ if (is_NaN(Infinity / -Infinity) !== true) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -600,7 +581,6 @@ if (-Infinity / Number.MIN_VALUE !== -Infinity) {
 //? description: Division of a finite value by an infinity results in zero of appropriate sign throw new Test262Error('#1.2: 1 / -Infinity === - 0. Actual: +0'); throw new Test262Error('#2.2: -1 / -Infinity === + 0. Actual: -0'); throw new Test262Error('#3.2: 1 / Infinity === + 0. Actual: -0'); throw new Test262Error('#4.2: -1 / Infinity === - 0. Actual: +0');
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -644,7 +624,6 @@ if (-1.0 / Infinity !== -0.0) {
 //? description: Division of a zero by a zero results in NaN
 //? expect: error:Integer divide by zero error
 //? source: ...
-#!/usr/bin/env afw
 
 /* In JS, these result in NaN, but in AS they throw exceptions, because they can't return NaN (double) */
 
@@ -674,7 +653,6 @@ if (is_NaN(-0 / -0) !== true) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -737,7 +715,6 @@ if (-0 / Number.MIN_VALUE !== -0) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1

@@ -9,7 +9,6 @@
 //? description: catch parameter shadowing catch parameter
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn() {
   let c = 1;
@@ -35,7 +34,6 @@ fn(1);
 //? description: catch parameter shadowing function parameter name
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(a) {
   try {
@@ -54,7 +52,6 @@ fn(1);
 //? description: catch parameter shadowing let declaration
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 {
   let a = 3;
@@ -74,7 +71,6 @@ fn(1);
 //? description: catch parameter shadowing var variable
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn() {
   let a = 1;
@@ -93,7 +89,6 @@ fn();
 //? description: const declaration shadowing catch parameter
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn() {
   let a = 1;
@@ -116,7 +111,6 @@ fn();
 //? description: const declarations shadowing parameter name, let, const and var variables
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(a) {
   let b = 1;
@@ -144,7 +138,6 @@ fn(1);
 //? description: dynamic lookup from closure
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(one) {
   //var x = one + 1;
@@ -171,7 +164,6 @@ fn(1);
 //? description: dynamic lookup in and through block contexts
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(one) {
   //var x = one + 1;
@@ -195,7 +187,6 @@ fn(1);
 //? description: let declaration shadowing catch parameter
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 try {
   throw 'stuff1';
@@ -212,7 +203,6 @@ try {
 //? description: let declarations shadowing parameter name, let, const and var
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(a) {
   let b = 1;
@@ -236,7 +226,6 @@ fn(1);
 //? description: lookup from closure
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function f5(one) {
   //var x = one + 1;
@@ -263,7 +252,6 @@ f5(1);
 //? description: lookup in and through block contexts
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(one) {
   //var x = one + 1;
@@ -287,7 +275,6 @@ fn(1);
 //? description: parameter name shadowing catch parameter
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 // can't do this function decl/call syntax
 function fn() {
@@ -310,7 +297,6 @@ fn();
 //? description: parameter name shadowing parameter name, let, const and var
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 function fn(a) {
   let b = 1;

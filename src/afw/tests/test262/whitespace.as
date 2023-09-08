@@ -9,7 +9,6 @@
 //? description: Insert real FORM FEED between tokens of var x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 letx=1;
@@ -21,7 +20,6 @@ assert(x === 1);
 //? description: Insert real HORIZONTAL TAB between tokens of var x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 	let  x	=	1	;
@@ -33,7 +31,6 @@ assert(x === 1);
 //? description: Insert real NO-BREAK SPACE between tokens of var x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
  let x = 2 ;
@@ -45,7 +42,6 @@ assert(x === 2);
 //? description: Insert real SPACE between tokens of var x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
  let x = 2 ;
@@ -57,7 +53,6 @@ assert(x === 2);
 //? description: Insert real VERTICAL TAB between tokens of var x=1
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 letx=1;
@@ -69,7 +64,6 @@ assert(x === 1);
 //? description: Use FORM FEED(\u000C)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -87,7 +81,6 @@ if (x !== 0) {
 //? description: Use HORIZONTAL TAB(\u0009)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -105,7 +98,6 @@ if (x !== 0) {
 //? description: Use NO-BREAK SPACE(\u00A0)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -123,7 +115,6 @@ if (x !== 0) {
 //? description: Use SPACE(\u0020)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -141,7 +132,6 @@ if (x !== 0) {
 //? description: Use VERTICAL TAB(\u000B)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -159,7 +149,6 @@ if (x !== 0) {
 //? description: Use FORM FEED(\u000C)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -177,7 +166,6 @@ if (x !== 0) {
 //? description: Use HORIZONTAL TAB(\u0009)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -195,7 +183,6 @@ if (x !== 0) {
 //? description: Use NO-BREAK SPACE(\u00A0)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -213,7 +200,6 @@ if (x !== 0) {
 //? description: Use SPACE(\u0020)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -231,7 +217,6 @@ if (x !== 0) {
 //? description: Use VERTICAL TAB(\u000B)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -250,7 +235,6 @@ if (x !== 0) {
 //? description: mongolian-vowel-separator
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 // U+180E between "let" and "foo"; UTF8(0x180E) = 0xE1 0xA0 0x8E
 let᠎foo;
@@ -260,7 +244,6 @@ let᠎foo;
 //? description: Use real HORIZONTAL TAB
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -273,7 +256,6 @@ if ("	str	ing	" !== "\u0009str\u0009ing\u0009") {
 //? description: Use real VERTICAL TAB
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -286,7 +268,6 @@ if ("string" !== "\u000Bstr\u000Bing\u000B") {
 //? description: Use real FORM FEED
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -299,7 +280,6 @@ if ("string" !== "\u000Cstr\u000Cing\u000C") {
 //? description: Use real SPACE
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -312,7 +292,6 @@ if (" str ing " !== "\u0020str\u0020ing\u0020") {
 //? description: Use real NO-BREAK SPACE
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -325,7 +304,6 @@ if (" str ing " !== "\u00A0str\u00A0ing\u00A0") {
 //? description: Use real HORIZONTAL TAB
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -340,7 +318,6 @@ if (x !== 0) {
 //? description: Use real VERTICAL TAB
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -355,7 +332,6 @@ if (x !== 0) {
 //? description: Use real FORM FEED
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -370,7 +346,6 @@ if (x !== 0) {
 //? description: Use real SPACE
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -385,7 +360,6 @@ if (x !== 0) {
 //? description: Use real NO-BREAK SPACE
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -400,7 +374,6 @@ if (x !== 0) {
 //? description: Use real HORIZONTAL TAB
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 /*CHECK#1*/
@@ -415,7 +388,6 @@ if (x !== 0) {
 //? description: Use real VERTICAL TAB
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 /*CHECK#1*/
@@ -430,7 +402,6 @@ if (x !== 0) {
 //? description: Use real FORM FEED
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 /*CHECK#1*/
@@ -445,7 +416,6 @@ if (x !== 0) {
 //? description: Use real SPACE
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 /*CHECK#1*/
@@ -460,7 +430,6 @@ if (x !== 0) {
 //? description: Use real NO-BREAK SPACE
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 /*CHECK#1*/
@@ -475,7 +444,6 @@ if (x !== 0) {
 //? description: Use TAB (U+0009)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -487,7 +455,6 @@ let\u0009x;
 //? description: Use VERTICAL TAB (U+000B)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -499,7 +466,6 @@ let\u000Bx;
 //? description: Use FORM FEED (U+000C)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -511,7 +477,6 @@ let\u000Cx;
 //? description: Use SPACE (U+0020)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -523,7 +488,6 @@ let\u0020x;
 //? description: Use NO-BREAK SPACE (U+00A0)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -535,7 +499,6 @@ let\u00A0x;
 //? description: Use FORM FEED(\u000C and \f)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -553,7 +516,6 @@ if (evaluate(script("'\fstr\fing\f'")) !== "\fstr\fing\f") {
 //? description: Use HORIZONTAL TAB(\u0009 and \t)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -571,7 +533,6 @@ if (evaluate(script("'\tstr\ting\t'")) !== "\tstr\ting\t") {
 //? description: Use NO-BREAK SPACE(\u00A0)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -584,7 +545,6 @@ if (evaluate(script("'\u00A0str\u00A0ing\u00A0'")) !== "\u00A0str\u00A0ing\u00A0
 //? description: Use SPACE(\u0020)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -602,7 +562,6 @@ if (evaluate(script("' str ing '")) !== " str ing ") {
 //? description: Use VERTICAL TAB(\u000B and \v)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1

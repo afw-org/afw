@@ -9,6 +9,5 @@
 //? description: Test qualifier without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 qualifier();

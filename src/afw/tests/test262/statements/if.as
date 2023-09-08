@@ -9,7 +9,6 @@
 //? description: testing falsy values
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if (false)
     throw "if false should be false";
@@ -21,7 +20,6 @@ return 0;
 //? description: test if/else
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let c: integer = 1;
 if (false)
@@ -37,7 +35,6 @@ return 0;
 //? description: Using embedded "if/else" into "if/else" constructions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if (true)
     if (false)
@@ -90,7 +87,6 @@ return 0;
 //? description: Using embedded "if/else" into "if/else" block constructions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if(true){
   if (false)
@@ -135,7 +131,6 @@ return 0;
 //? description: Using embedded "if/else" into "if" constructions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if(true)
   if (false)
@@ -167,7 +162,6 @@ return 0;
 //? description: Using embedded "if" into "if" constructions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if(true)
   if (false)
@@ -195,7 +189,6 @@ return 0;
 //? description: Using "if" without "else" construction
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 
 if (!(true))
@@ -208,7 +201,6 @@ return 0;
 //? description: Using "if/else" construction
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let c: integer = 1;
 if(!(true))
@@ -223,7 +215,6 @@ return 0;
 //? description: Checking if execution of "if()" fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if ();
 
@@ -231,7 +222,6 @@ if ();
 //? description: In the "if" statement, empty statement is allowed.
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if (true);
 
@@ -241,7 +231,6 @@ return 0;
 //? description: In the "if" statement, the statement can be broken up by newlines
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if (true) let x
 : integer;

@@ -9,7 +9,6 @@
 //? description: checking length property of the empty array
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [];
 
@@ -21,7 +20,6 @@ return 0;
 //? description: checking length property and elements of an array
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [1,2,3,4,5];
 
@@ -38,7 +36,6 @@ return 0;
 //? description: create multi dimensional array
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let array: array = [[1,2], [3], []];
 assert(length(array) === 3, "length(array) != 3");
@@ -62,7 +59,6 @@ return 0;
 //? description: object spread operator results in error when using an unresolvable reference (array initializer)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [{a: 0, ...unresolvableReference}];
 
@@ -72,7 +68,6 @@ return 0;
 //? description: spread operator following other arguments when reference is unresolvable (array initializer)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [0, ...unresolvableReference];
 
@@ -83,7 +78,6 @@ return 0;
 //? description: spread operator applied to the only argument when reference is unresolvable (array initializer)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [...unresolvableReference];
 
@@ -93,7 +87,6 @@ return 0;
 //? description: object spread operator results in error when using an unresolvable reference (array initializer)
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [{...unresolvableReference}];
 
@@ -103,7 +96,6 @@ return 0;
 //? description: spread operator following other arguments when no iteration occurs (array initializer)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [1, 2, 3, ...[]];
 
@@ -118,7 +110,6 @@ return 0;
 //? description: spread operator applied to assignment expression following other elements (array initializer)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [5, ...[6, 7, 8], 9];
 assert(length(a) === 5, "length(a) != 5");
@@ -134,7 +125,6 @@ return 0;
 //? description: multiple object spread operation (array initializer)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let o: object = {a: 2, b: 3};
 let o2: object = {c: 4, d: 5};
@@ -152,7 +142,6 @@ return 0;
 //? description: Spread operator applied to the only argument when no iteration occurs (array initializer)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [...[]];
 assert(length(a) === 0, "length(a) != 0");
@@ -163,7 +152,6 @@ return 0;
 //? description: spread operator applied to array literal as only element (array initializer)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let a: array = [...[3, 4, 5]];
 assert(length(a) === 3, "length(a) != 3");

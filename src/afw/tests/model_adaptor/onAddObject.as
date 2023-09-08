@@ -9,7 +9,6 @@
 //? description: Test using current::useDefaultProcessing
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let result: object;
 
@@ -34,7 +33,6 @@ return 0;
 //? description: Overrides the objectId with a custom value
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let result: object;
 

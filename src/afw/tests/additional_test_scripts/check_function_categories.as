@@ -9,7 +9,6 @@
 //? description: Check each function's category against an array of _AdaptiveFunctionCategory_ objects.
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 // retrieve our categories
 const categories: object = retrieve_objects("dev", "_AdaptiveFunctionCategory_");

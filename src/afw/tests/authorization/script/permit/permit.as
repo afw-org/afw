@@ -9,7 +9,6 @@
 //? description: Test get_object succeeds
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const o: object = get_object("afw", "_AdaptiveAdaptor_", "afw");
 

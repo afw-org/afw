@@ -9,7 +9,6 @@
 //? description: "IdentifierStart :: _"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let _ = 1;
@@ -29,7 +28,6 @@ assert(__ === 4);
 //? description: "IdentifierStart :: UnicodeLetter"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x = 1;
@@ -50,7 +48,6 @@ assert(x_ === 4);
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let case = 123;
 
@@ -61,7 +58,6 @@ let case = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let catch = 123;
 
@@ -71,7 +67,6 @@ let catch = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let const = 123;
 
@@ -82,7 +77,6 @@ let const = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let continue = 123;
 
@@ -93,7 +87,6 @@ let continue = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let else = 123;
 
@@ -104,7 +97,6 @@ let else = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 let false = 123;
@@ -116,7 +108,6 @@ let false = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 let finally = 123;
@@ -128,7 +119,6 @@ let finally = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let for = 123;
 
@@ -139,7 +129,6 @@ let for = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let function = 123;
 
@@ -150,7 +139,6 @@ let function = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let if = 123;
 
@@ -160,7 +148,6 @@ let if = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let in = 123;
 
@@ -170,7 +157,6 @@ let in = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let null = 123;
 
@@ -180,7 +166,6 @@ let null = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let return = 123;
 
@@ -189,7 +174,6 @@ let return = 123;
 //? description: Check ENGLISH SMALL ALPHABET
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let a = 1;
@@ -303,7 +287,6 @@ if (z !== 1) {
 //? description: Check ENGLISH CAPITAL ALPHABET
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let A = 1;
@@ -391,7 +374,6 @@ assert(Z === 1);
 //? description: Check RUSSIAN SMALL ALPHABET
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let а = 1;
@@ -501,7 +483,6 @@ assert(ё === 1);
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let throw = 123;
 
@@ -511,7 +492,6 @@ let throw = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let true = 123;
 
@@ -521,7 +501,6 @@ let true = 123;
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let try = 123;
 
@@ -531,7 +510,6 @@ let try = 123;
 //? description: Create variable _
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -546,7 +524,6 @@ assert(_ === 1);
     SyntaxError expected: reserved words used as Identifier
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 
 let let = 123;

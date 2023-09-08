@@ -9,7 +9,6 @@
 //? description: Test is_nullish with booleans
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(is_nullish(true) === false);
 assert(is_nullish(false) === false);
@@ -20,7 +19,6 @@ return 0;
 //? description: Test is_nullish with integers
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(is_nullish(0) === false);
 assert(is_nullish(1) === false);
@@ -31,7 +29,6 @@ return 0;
 //? description: Test is_nullish with strings
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(is_nullish("abc") === false);
 assert(is_nullish("") === false);
@@ -42,7 +39,6 @@ return 0;
 //? description: Test is_nullish with objects
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(is_nullish({}) === false);
 assert(is_nullish({"x":"y"}) === false);
@@ -53,7 +49,6 @@ return 0;
 //? description: Test is_nullish with lists
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(is_nullish(["abc"]) === false);
 assert(is_nullish(["abc","def"]) === false);
@@ -66,7 +61,6 @@ return 0;
 //? description: Test is_nullish with null
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 assert(is_nullish(null) === true);
 
@@ -76,7 +70,6 @@ return 0;
 //? description: Test is_nullish with undefined
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer;
 

@@ -9,7 +9,6 @@
 //? description: White Space and Line Terminator between relational expression and ">" are allowed
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (evaluate(script("0\u0009>\u00091")) !== false) {
     throw "0\u0009>\u00091 !== false";
@@ -57,7 +56,6 @@ if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>=\u
 //? description: Operator x > y
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (2 > 1 !== true) {
     throw "2 > 1 !== true";
@@ -85,7 +83,6 @@ if (x > 1 !== true) {
 //? description: x reference error
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 x > 1;
 
@@ -93,7 +90,6 @@ x > 1;
 //? description: y reference error
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 1 > y;
 
@@ -102,7 +98,6 @@ x > 1;
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 0;
 if ((x = 1) > x !== false) {
@@ -120,7 +115,6 @@ if (x > (x = 0) !== true) {
 //? description: first expression is evaluated first, then second expression: checking with assert
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x1: integer = 0;
 let y1: integer = 0;
@@ -149,7 +143,6 @@ assert(y1 === 0, "y1 !== 0");
 //? description: compare booleans
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (true > true !== false) {
     throw "true > true !== false";
@@ -161,7 +154,6 @@ if (true > true !== false) {
 //? description: compare integers
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (1 > 1 !== false) {
     throw "1 > 1 !== false";
@@ -173,7 +165,6 @@ if (1 > 1 !== false) {
 //? description: compare integers and booleans
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (true > 1 !== false) {
     throw "true > 1 !== false";
@@ -189,7 +180,6 @@ if (1 > true !== false) {
 //? description: compare strings and integers
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 /* mixing types won't work in AFW */
 if ("1" > 1 !== false) {

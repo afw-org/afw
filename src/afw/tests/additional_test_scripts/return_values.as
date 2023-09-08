@@ -9,7 +9,6 @@
 //? description: Returns true
 //? expect: true
 //? source: ...
-#!/usr/bin/env afw
 
 return true;
 
@@ -17,7 +16,6 @@ return true;
 //? description: Returns false
 //? expect: false
 //? source: ...
-#!/usr/bin/env afw
 
 return false;
 
@@ -25,7 +23,6 @@ return false;
 //? description: Returns 0
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 return 0;
 
@@ -33,7 +30,6 @@ return 0;
 //? description: Returns 1
 //? expect: 1
 //? source: ...
-#!/usr/bin/env afw
 
 return 1;
 
@@ -46,7 +42,6 @@ array([
     "c" 
 ])
 //? source: ...
-#!/usr/bin/env afw
 
 return array([
     "a", 
@@ -59,7 +54,6 @@ return array([
 //? expect: ...
 object({})
 //? source: ...
-#!/usr/bin/env afw
 
 return {};
 
@@ -67,6 +61,5 @@ return {};
 //? description: Returns string
 //? expect: "abc"
 //? source: ...
-#!/usr/bin/env afw
 
 return "abc";

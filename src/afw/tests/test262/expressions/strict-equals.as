@@ -9,7 +9,6 @@
 //? description: White Space and Line Terminator between EqualityExpression and "===" or between "===" and RelationalExpression are allowed
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 if (!(evaluate(script("1\u0009===\u00091")))) {
     throw "#1: 1\\u0009===\\u00091";

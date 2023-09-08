@@ -10,7 +10,6 @@
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("model", "MyObjectType1");
 

@@ -10,7 +10,6 @@
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let result: string;
 
@@ -27,7 +26,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let result: string;
 
@@ -50,7 +48,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let result: string;
 
@@ -67,7 +64,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let result: string;
 
@@ -87,7 +83,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj: object;
 let result: string;
@@ -108,7 +103,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj: object;
 let result: string;

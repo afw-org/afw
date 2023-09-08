@@ -9,7 +9,6 @@
 //? description: "BooleanLiteral :: true"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1
@@ -22,7 +21,6 @@ if (true !== true) {
 //? description: "BooleanLiteral :: false"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 //CHECK#1

@@ -9,7 +9,6 @@
 //? description: checking boolean conditions
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 assert((true ? false : true) === false, "true ? false : true !== false");
 assert((false ? false : true) === true, "false ? false : true !== true");
@@ -44,7 +43,6 @@ if ((x ? y : z) !== z) {
 //? description: undeclared reference in first argument throws error
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (x ? true : false) {
     throw "x ? true : false";
@@ -55,7 +53,6 @@ if (x ? true : false) {
 //? description: undeclared reference in second argument throws error
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (true ? y : false) {
     throw "true ? y : false";
@@ -66,7 +63,6 @@ if (true ? y : false) {
 //? description: undeclared reference in third argument throws error
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (false ? true : z) {
     throw "false ? true : z";
@@ -77,7 +73,6 @@ if (false ? true : z) {
 //? description: If x is false, return z (booleans)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((false ? false : true) !== true) {
     throw "false ? false : true !== true";
@@ -93,7 +88,6 @@ if ((false ? true : z) !== z) {
 //? description: If boolean(x) is false, return z
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((false ? true : undefined) !== undefined) {
     throw "false ? true : undefined";
@@ -108,7 +102,6 @@ if ((false ? true : null) !== null) {
 //? description: If x is true, return y (boolean)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((true ? false : true) !== false) {
     throw "true ? false : true !== false";
@@ -124,7 +117,6 @@ if ((true ? y : false) !== y) {
 //? description: If x is true, return y (null/undefined)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if ((true ? undefined : true) !== undefined) {
     throw "true ? undefined : true !== undefined";
@@ -139,7 +131,6 @@ if ((true ? null : true) !== null) {
 //? description: short-circut expression in the conditional expression (? :)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer;
 x = undefined ?? true ? 0 : 42;

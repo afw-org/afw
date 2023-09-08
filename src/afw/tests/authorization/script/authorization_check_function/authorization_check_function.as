@@ -12,7 +12,6 @@ authorizationCheck that only makes a 'permit' decision on resourceId
 //? description: Test authorization_check decisionId permit.
 //? expect: "permit"
 //? source: ...
-#!/usr/bin/env afw
 
 let result;
 
@@ -35,7 +34,6 @@ return result.decisionId;
 //? description: Test authorization_check decisionId deny enforced
 //? expect: "maluba"
 //? source: ...
-#!/usr/bin/env afw
 
 let result;
 
@@ -59,7 +57,6 @@ return result.decisionId;
 //? description: Test authorization_check decisionId deny enforced false
 //? expect: "deny"
 //? source: ...
-#!/usr/bin/env afw
 
 let result;
 
@@ -84,7 +81,6 @@ return result.decisionId;
 //? description: Test authorization_check decisionId deny enforced missing
 //? expect: "deny"
 //? source: ...
-#!/usr/bin/env afw
 
 let result;
 

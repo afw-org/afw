@@ -9,6 +9,5 @@
 //? description: Test test_value without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 test_value();

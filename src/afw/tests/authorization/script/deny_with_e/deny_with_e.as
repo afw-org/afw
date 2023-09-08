@@ -9,7 +9,6 @@
 //? description: Test get_object is denied
 //? expect: "query"
 //? source: ...
-#!/usr/bin/env afw
 
 try {
     const o: object = get_object("afw", "_AdaptiveAdaptor_", "afw");

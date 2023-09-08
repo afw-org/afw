@@ -9,6 +9,5 @@
 //? description: Test test_template without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 test_template();

@@ -9,7 +9,6 @@
 //? description: Runs a get_object against a non-existent adaptor
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 get_object("blah", "xyz", "abc");
 
@@ -18,7 +17,6 @@ get_object("blah", "xyz", "abc");
 //? description: Runs a get_object against a afw adaptor with invalid object type
 //? expect: error:Not found
 //? source: ...
-#!/usr/bin/env afw
 
 get_object("afw", "xyz", "abc");
 
@@ -27,7 +25,6 @@ get_object("afw", "xyz", "abc");
 //? description: Runs a get_object against a afw adaptor with invalid object id
 //? expect: error:Not found
 //? source: ...
-#!/usr/bin/env afw
 
 get_object("afw", "_AdaptiveObjectType_", "abc");
 
@@ -36,7 +33,6 @@ get_object("afw", "_AdaptiveObjectType_", "abc");
 //? description: get_object expects 3 required parameters
 //? expect: error:'get_object' expects 3 required parameters
 //? source: ...
-#!/usr/bin/env afw
 
 get_object("afw", "_AdaptiveObjectType_");
 
@@ -46,6 +42,5 @@ get_object("afw", "_AdaptiveObjectType_");
 //? expect: error:Invalid path
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 /* \fixme */

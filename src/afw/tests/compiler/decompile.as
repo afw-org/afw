@@ -9,6 +9,5 @@
 //? description: Test decompile without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 decompile();

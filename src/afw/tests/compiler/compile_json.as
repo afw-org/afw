@@ -9,7 +9,6 @@
 //? description: Test compiling json with comments
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 compile_json([/* comment * 1, 2]);
 
@@ -17,6 +16,5 @@ compile_json([/* comment * 1, 2]);
 //? description: Test compiling json with comments
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 compile_json([1, 2]);

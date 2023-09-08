@@ -9,7 +9,6 @@
 //? description:If abs(base) < 1 and exponent is −∞, the result is +∞.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let exponent = -Infinity;
@@ -33,7 +32,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If base is +∞ and exponent > 0, the result is +∞.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -56,7 +54,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is +∞ and exponent < 0, the result is +0.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -79,7 +76,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −∞ and exponent > 0 and exponent is an odd integer, the result is −∞.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -102,7 +98,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -126,7 +121,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −∞ and exponent < 0 and exponent is an odd integer, the result is −0.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -147,7 +141,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -171,7 +164,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is +0 and exponent > 0, the result is +0.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -194,7 +186,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is +0 and exponent < 0, the result is +∞.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -217,7 +208,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −0 and exponent > 0 and exponent is an odd integer, the result is −0.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -237,7 +227,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If exponent is NaN, the result is NaN.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let exponent = NaN;
@@ -266,7 +255,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -290,7 +278,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −0 and exponent < 0 and exponent is an odd integer, the result is −∞.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -313,7 +300,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -338,7 +324,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -375,7 +360,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description: If exponent is +0, the result is 1, even if base is NaN. throw new Test262Error("(" + bases[i] + " **  " + exponent + ") !== 1");
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -403,7 +387,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description: If exponent is −0, the result is 1, even if base is NaN. throw new Test262Error("(" + bases[i] + " ** -0) !== 1");
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -431,7 +414,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If base is NaN and exponent is nonzero, the result is NaN.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let base = NaN;
 let exponents = [
@@ -456,7 +438,6 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If abs(base) > 1 and exponent is +∞, the result is +∞.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -481,7 +462,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If abs(base) > 1 and exponent is −∞, the result is +0.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 
@@ -506,7 +486,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If abs(base) is 1 and exponent is +∞, the result is NaN.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let exponent = +Infinity;
 let bases = [
@@ -526,7 +505,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If abs(base) is 1 and exponent is −∞, the result is NaN.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let exponent = -Infinity;
 let bases = [
@@ -546,7 +524,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If abs(base) < 1 and exponent is +∞, the result is +0.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let exponent = +Infinity;
@@ -571,7 +548,6 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 let capture = [];
@@ -592,7 +568,6 @@ assert(capture[3] ===  "rightValue", "Expected the 4th element captured to be 'r
 //? description: Performs exponential calculation on operands. Same algorithm as %MathPow%(base, exponent)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let exponent = 2.0;
@@ -611,7 +586,6 @@ assert(16.0 / 2.0 ** 2.0 ===  4.0, "(16 / 2 ** 2) === 4");
 //? description:Exponentiation Operator expression precedence of unary operators
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 assert(-(3.0 ** 2.0) === -9.0, "-(3 ** 2) === -9");
@@ -646,7 +620,6 @@ assert(2.0 ** -n ===  0.25, "-s -> -2 -> -2 -> ToNumber(-2) -> -2");
 //? description:Exponentiation Expression syntax error, `!` UnaryExpression
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 !1 ** 2;
 
@@ -655,7 +628,6 @@ assert(2.0 ** -n ===  0.25, "-s -> -2 -> -2 -> ToNumber(-2) -> -2");
 //? description:Exponentiation Expression syntax error, `-` UnaryExpression
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 -3 ** 2;
 
@@ -664,7 +636,6 @@ assert(2.0 ** -n ===  0.25, "-s -> -2 -> -2 -> ToNumber(-2) -> -2");
 //? description:Exponentiation Expression syntax error, `+` UnaryExpression
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 +1 ** 2;
 
@@ -673,7 +644,6 @@ assert(2.0 ** -n ===  0.25, "-s -> -2 -> -2 -> ToNumber(-2) -> -2");
 //? description:Exponentiation Expression syntax error, `typeof` UnaryExpression
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 typeof 1 ** 2;
 
@@ -682,7 +652,6 @@ typeof 1 ** 2;
 //? description: Using -(2**31) as exponent with the exponentiation operator should behave as expected. "2**-(gonzo huge exponent > 1074) should be +0 because " + "2**-1074 is the smallest positive IEEE-754 number"); "1**-(gonzo huge exponent > 1074) should be 1");
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 const INT32_MIN = -2147483648.0;
@@ -700,7 +669,6 @@ assert(1.0**INT32_MIN === 1.0,
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 
 function MyError() {}

@@ -9,7 +9,6 @@
 //? description: Test using current::useDefaultProcessing
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("model", "MyObjectType2");
 
@@ -26,7 +25,6 @@ return 0;
 //? description: Test onRetrieveObject by overriding the object type
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("model", "MyObjectType3");
 
@@ -43,7 +41,6 @@ return 0;
 //? description: Test onRetrieveObject by overriding the queryCriteria
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const objects: array = retrieve_objects("model", "MyObjectType4");
 

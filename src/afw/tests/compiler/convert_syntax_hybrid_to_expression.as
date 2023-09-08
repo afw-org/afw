@@ -9,6 +9,5 @@
 //? description: Test convert_syntax_hybrid_to_expression without any parameters
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 convert_syntax_hybrid_to_expression();

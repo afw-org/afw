@@ -9,7 +9,6 @@
 //? description: simple tests.
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 const foo: string = null ?? "default string";
 assert(foo === "default string", "nullish coalescing operator did not work against null.");
@@ -23,7 +22,6 @@ return 0;
 //? description: If the coalescing head is undefined/null, follow return the right-side value. Otherwise, return the left-side value.
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer;
 
@@ -45,7 +43,6 @@ return 0;
 //? description: short circuit if the coalescing head is not undefined or null (0)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer;
 
@@ -99,7 +96,6 @@ return 0;
 //? description: short circuit if the coalescing head is not undefined or null (42)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer;
 
@@ -153,7 +149,6 @@ return 0;
 //? description: short circuit if the coalescing head is not undefined or null (the empty string)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: string;
 let str: string = '';
@@ -208,7 +203,6 @@ return 0;
 //? description: short circuit if the coalescing head is not undefined or null (false)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: boolean;
 
@@ -263,7 +257,6 @@ return 0;
 //? description: short circuit if the coalescing head is not undefined or null (true)
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let x: boolean;
 
@@ -318,7 +311,6 @@ return 0;
 //? description: short circuit can prevent evaluation of the right-side expressions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 function poison(): any{
     throw "should not evaluate poison";

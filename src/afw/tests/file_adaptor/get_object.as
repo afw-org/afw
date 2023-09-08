@@ -10,7 +10,6 @@
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj: object = get_object("file", "TestObjectType1", "Test1");
 
@@ -28,7 +27,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 // get an object that does not exist
 assert(
@@ -47,7 +45,6 @@ return 0;
 //? skip: false
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj: object;
 

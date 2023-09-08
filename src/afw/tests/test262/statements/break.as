@@ -9,7 +9,6 @@
 //? description: Break statement without an identifier may have a line terminator before the semi-colon
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let sum: integer = 0;
 for (let i: integer = 1; i <= 10; i = i + 1) {
@@ -29,7 +28,6 @@ return 0;
 //? description: Checking if break statement with no loop fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 1;
 break;
@@ -41,7 +39,6 @@ return 0;
 //? description: Checking if break statement with no loop, placed into a block, fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 {
     let x: integer = 1;

@@ -9,7 +9,6 @@
 //? description: Script to test continue
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let s: string = "";
 let x: integer = 0;
@@ -35,7 +34,6 @@ return 0;
 //? description: a continue statement without an identifier may have a line terminator before the semi-colon
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let sum: integer = 0;
 for (let i: integer = 1; i <= 10; i = i + 1) {
@@ -53,7 +51,6 @@ return 0;
 //? description: checking if execution of single continue without any iteration fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 let x: integer = 1;
 continue;
@@ -65,7 +62,6 @@ return 0;
 //? description: checking if execution of continue with no iteration, placed into a block, fails
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 {
     let x: integer = 1;
@@ -79,7 +75,6 @@ return 0;
 //? description: nested let bound for loops inner continue
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let count: integer = 0;
 for (let x: integer = 0; x < 10;) {
@@ -99,7 +94,6 @@ return 0;
 //? description: nested let bound for loops outer continue
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let count: integer = 0;
 for (let x: integer = 0; x < 10;) {
@@ -119,7 +113,6 @@ return 0;
 //? description: shadowing loop variable in same scope as continue
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let count: integer = 0;
 for (let x: integer = 0; x < 10;) {

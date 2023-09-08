@@ -9,7 +9,6 @@
 //? description: Test using current::useDefaultProcessing
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let obj: object;
 let result: object;

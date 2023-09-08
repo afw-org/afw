@@ -10,7 +10,6 @@
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 let caught = false;
 
@@ -29,7 +28,6 @@ assert(caught);
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 let caught = false;
 flag_set('response:error');

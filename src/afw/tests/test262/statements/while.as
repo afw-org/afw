@@ -9,7 +9,6 @@
 //? description: evaluating various expressions
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let in_while: integer;
 
@@ -23,7 +22,6 @@ return 0;
 //? description: "break" within a "while" statement
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let in_do_before_break: integer;
 let in_do_after_break: integer;

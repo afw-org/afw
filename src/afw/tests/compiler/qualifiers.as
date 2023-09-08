@@ -10,6 +10,5 @@
 //? expect: error
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 qualifiers();

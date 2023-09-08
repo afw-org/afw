@@ -10,7 +10,6 @@
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 // It's not entirely clear why x is used in this test
 
@@ -42,7 +41,6 @@ assert.throws(Test262Error, function() {
 //? description: Cannot immediately contain, or be contained within, an && or || operation.
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 0 && 0 ?? true;
 
@@ -51,7 +49,6 @@ assert.throws(Test262Error, function() {
 //? description: Cannot immediately contain, or be contained within, an && or || operation.
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 0 || 0 ?? true;
 
@@ -61,7 +58,6 @@ assert.throws(Test262Error, function() {
 //? expect: error
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 0 ?? 0 && true;
 
@@ -71,7 +67,6 @@ assert.throws(Test262Error, function() {
 //? expect: error
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 0 ?? 0 || true;
 
@@ -79,7 +74,6 @@ assert.throws(Test262Error, function() {
 //? description: If the CoalesceExpressionHead is null, follow return the right-side eval.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 
@@ -100,7 +94,6 @@ assert(x === false, 'null ?? false');
 //? description: If the CoalesceExpressionHead is undefined, follow return the right-side eval.
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 
@@ -121,7 +114,6 @@ assert(x === false, 'undefined ?? false');
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (0)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 
@@ -170,7 +162,6 @@ assert(x === 0, 'undefined ?? 0 ?? undefined');
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (42)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 
@@ -223,7 +214,6 @@ assert(x === 42, 'undefined ?? 42 ?? undefined');
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (the empty string)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let x;
@@ -278,7 +268,6 @@ assert(x === str, 'undefined ?? str ?? undefined');
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (false)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 
@@ -331,7 +320,6 @@ assert(x === false, 'undefined ?? false ?? undefined');
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (true)
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 
@@ -384,7 +372,6 @@ assert(x === true, 'undefined ?? true ?? undefined');
 //? description: Short circuit can prevent evaluation of the right-side expressions
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 let x;
 function poison() {
@@ -409,7 +396,6 @@ assert(x === 42);
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 // We do not currently support tail-call optimization
 
@@ -430,7 +416,6 @@ assert(callCount === 1);
 //? expect: undefined
 //? skip: true
 //? source: ...
-#!/usr/bin/env afw
 
 // We do not currently support tail-call optimization
 

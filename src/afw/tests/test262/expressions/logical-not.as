@@ -9,7 +9,6 @@
 //? description: White Space and Line Terminator between "!" and unary expression are allowed
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (evaluate(script("!\u0009true")) !== false) {
     throw "#1 !\\u009true === false";
@@ -57,7 +56,6 @@ if (evaluate(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true
 //? description: Operator !x
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (!true !== false) {
     throw "#1 !true !== false";
@@ -83,7 +81,6 @@ if (!(!x) !== true) {
 //? description: x is boolean primitive
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 if (!false !== true) {
     throw "#1 !false !== true";
@@ -95,7 +92,6 @@ if (!false !== true) {
 //? description: x is number
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (!0.1 !== false) {
     throw "#1 !0.1 !== false";
@@ -119,7 +115,6 @@ if (!Infinity !== false) {
 //? description: Result of boolean conversion from number value is false if the argument is +0, -0, or NaN; otherwise, is true
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (!(+0) !== true) {
     throw "#1 !(+0) !== true";
@@ -139,7 +134,6 @@ if (!(NaN) !== true) {
 //? description: Result of boolean conversion from number value is false if the argument is +0, -0, or NaN; otherwise, is true
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (!(+Infinity) !== false) {
     throw "#1 !(+Infinity) !== false";
@@ -171,7 +165,6 @@ if (!(-1.3) !== false) {
 //? description:  Result of boolean conversion from nonempty string value (length is not zero) is true; from empty String (length is zero) is false
 //? expect: error
 //? source: ...
-#!/usr/bin/env afw
 
 if (!("") !== true) {
     throw "#1 !(\"\") !== true";

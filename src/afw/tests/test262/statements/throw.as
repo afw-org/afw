@@ -9,7 +9,6 @@
 //? description: Trying to throw exception with "throw"
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 let inCatch = false;
@@ -28,7 +27,6 @@ assert(inCatch === true);
 //? description: Throwing string
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -54,7 +52,6 @@ catch(e){
 //? description: Evaluating string expression
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -83,7 +80,6 @@ catch(e){
 //? description: Evaluating equation expression
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
@@ -102,7 +98,6 @@ catch(e){
 //? description: Evaluating functions
 //? expect: undefined
 //? source: ...
-#!/usr/bin/env afw
 
 
 // CHECK#1
