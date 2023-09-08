@@ -303,7 +303,6 @@ queryCriteria
 useDefaultProcessing
 a_dash_s_test_script=--s test_script
 a_dash_dash_syntax_test_script=--syntax test_script
-parenthesized_expression
 relaxed_json
 a_compile_expect_error=Compile expect error
 a_evaluate_expect_error=Evaluate expect error

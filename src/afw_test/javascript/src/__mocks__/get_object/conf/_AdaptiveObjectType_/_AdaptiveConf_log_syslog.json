@@ -63,7 +63,7 @@
                 },
                 "allowQuery": true,
                 "brief": "Filter expression",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "dataTypeParameter": "boolean",
                 "defaultValue": true,
                 "description": "Filter expression used to determine whether to log a particular message.",
@@ -72,7 +72,7 @@
             "format": {
                 "allowQuery": true,
                 "brief": "Log format",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "dataTypeParameter": "string",
                 "description": "Log format.",
                 "label": "Format"

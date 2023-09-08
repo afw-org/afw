@@ -7415,11 +7415,6 @@ const afw_value_string_t afw_v_parentPaths = {
     AFW_UTF8_LITERAL("parentPaths")
 };
 
-const afw_value_string_t afw_v_parenthesized_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("parenthesized_expression")
-};
-
 const afw_value_string_t afw_v_parse_uri = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("parse_uri")

@@ -3,7 +3,7 @@
 //? testScript: functions/integer_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<integer>-1
 //? description: ...

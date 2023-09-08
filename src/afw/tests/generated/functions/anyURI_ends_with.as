@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_ends_with.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ends_with<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ends_with<anyURI>-1
 //? description: x

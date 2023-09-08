@@ -3,7 +3,7 @@
 //? testScript: functions/date_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<date>-1
 //? description: duplicates

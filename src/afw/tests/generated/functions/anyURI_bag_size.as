@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<anyURI>-1
 //? description: x

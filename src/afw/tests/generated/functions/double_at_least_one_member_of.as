@@ -3,7 +3,7 @@
 //? testScript: functions/double_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<double>-1
 //? description: ...

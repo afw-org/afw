@@ -3,7 +3,7 @@
 //? testScript: functions/time_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<time>-1
 //? description: x

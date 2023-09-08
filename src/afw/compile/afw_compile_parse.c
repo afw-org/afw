@@ -443,7 +443,8 @@ afw_compile_parse_TemporaryTemplate(afw_compile_parser_t *parser)
         {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Shebang line must contain 'afw' to be "
-                "recognized as an adaptive script in a hybrid value");
+                "recognized as an adaptive script in "
+                "a temporary template value");
         }
 
         parser->compiled_value->full_source_type = &afw_s_script;

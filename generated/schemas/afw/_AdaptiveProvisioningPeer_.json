@@ -24,7 +24,8 @@
                 },
                 "consumeFilter": {
                     "description": "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer.",
-                    "title": "Consume Filter"
+                    "title": "Consume Filter",
+                    "type": "string"
                 },
                 "consumeStartTime": {
                     "description": "The time that get_entry() next_for_consumer began. This property will only exist if cursorBeingConsumed property exists.",

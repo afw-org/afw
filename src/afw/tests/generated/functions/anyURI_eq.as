@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<anyURI>-1
 //? description: Compare two identical URIs

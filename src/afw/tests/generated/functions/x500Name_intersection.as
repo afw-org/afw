@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<x500Name>-1
 //? description: x

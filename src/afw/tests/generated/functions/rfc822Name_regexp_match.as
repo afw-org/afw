@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_regexp_match.as
 //? customPurpose: Part of core function tests
 //? description: Tests for regexp_match<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: regexp_match<rfc822Name>-1
 //? description: Matches

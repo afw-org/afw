@@ -3,7 +3,7 @@
 //? testScript: functions/find.as
 //? customPurpose: Part of core function tests
 //? description: Tests for find function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: find-1
 //? description: Test find function with integers.

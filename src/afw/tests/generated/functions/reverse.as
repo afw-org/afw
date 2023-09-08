@@ -3,7 +3,7 @@
 //? testScript: functions/reverse.as
 //? customPurpose: Part of core function tests
 //? description: Tests for reverse function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: reverse-1
 //? description: Test reverse function with integers.

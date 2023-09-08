@@ -20721,20 +20721,6 @@ extern const afw_value_string_t afw_v_parentPaths;
 
 
 
-/** @brief define for quoted string "parenthesized_expression" */
-#define AFW_Q_parenthesized_expression "parenthesized_expression"
-
-/** @brief 'afw_utf8_t' for string "parenthesized_expression" */
-#define afw_s_parenthesized_expression (afw_v_parenthesized_expression.internal)
-
-/** @brief 'afw_value_string_t' for string "parenthesized_expression" */
-extern const afw_value_string_t afw_v_parenthesized_expression;
-
-/** @brief 'afw_utf8_z_t *' for string "parenthesized_expression" */
-#define afw_z_parenthesized_expression (afw_v_parenthesized_expression.internal.s)
-
-
-
 /** @brief define for quoted string "parse_uri" */
 #define AFW_Q_parse_uri "parse_uri"
 

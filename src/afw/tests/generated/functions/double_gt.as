@@ -3,7 +3,7 @@
 //? testScript: functions/double_gt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for gt<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: gt<double>-1
 //? description: 6 > 5 is true

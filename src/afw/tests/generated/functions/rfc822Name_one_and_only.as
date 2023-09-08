@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<rfc822Name>-1
 //? description: x

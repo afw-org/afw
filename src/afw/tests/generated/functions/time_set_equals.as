@@ -3,7 +3,7 @@
 //? testScript: functions/time_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<time>-1
 //? description: True

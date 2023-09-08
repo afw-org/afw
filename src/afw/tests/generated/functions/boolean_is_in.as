@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<boolean>-1
 //? description: Boolean true in empty bag.

@@ -3,7 +3,7 @@
 //? testScript: functions/time_ge.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ge<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ge<time>-1
 //? description: x

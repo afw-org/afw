@@ -3,7 +3,7 @@
 //? testScript: functions/bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for polymorphic functions.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag-1
 //? description: BAG with integers

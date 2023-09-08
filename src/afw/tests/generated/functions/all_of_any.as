@@ -3,7 +3,7 @@
 //? testScript: functions/all_of_any.as
 //? customPurpose: Part of core function tests
 //? description: Tests for all_of_any function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: all_of_any-1
 //? description: ...

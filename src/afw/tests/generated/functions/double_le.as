@@ -3,7 +3,7 @@
 //? testScript: functions/double_le.as
 //? customPurpose: Part of core function tests
 //? description: Tests for le<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: le<double>-1
 //? description: 109 less than 1.09e2

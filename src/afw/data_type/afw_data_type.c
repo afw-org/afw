@@ -2141,16 +2141,6 @@ IMPL_DATA_TYPE_INF(
     double)               /* as expression     */
 
 IMPL_DATA_TYPE_INF(
-    expression,           /* data type id      */
-    utf8,                 /* to utf8           */
-    utf8,                 /* to internal       */
-    utf8,                 /* compare           */
-    from_utf8,            /* conversion        */
-    utf8,                 /* clone             */
-    utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
-
-IMPL_DATA_TYPE_INF(
     function,             /* data type id      */
     function,             /* to utf8           */
     function,             /* to internal       */
@@ -2174,16 +2164,6 @@ IMPL_DATA_TYPE_INF(
     ia5String,            /* data type id      */
     utf8,                 /* to utf8           */
     ia5String,            /* to internal       */
-    utf8,                 /* compare           */
-    from_utf8,            /* conversion        */
-    utf8,                 /* clone             */
-    utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
-
-IMPL_DATA_TYPE_INF(
-    hybrid,               /* data type id      */
-    utf8,                 /* to utf8           */
-    utf8,                 /* to internal       */
     utf8,                 /* compare           */
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */

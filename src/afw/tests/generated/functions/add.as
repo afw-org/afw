@@ -3,7 +3,7 @@
 //? testScript: functions/add.as
 //? customPurpose: Part of core function tests
 //? description: Tests for polymorphic functions.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: add-1
 //? description: ADD with integers

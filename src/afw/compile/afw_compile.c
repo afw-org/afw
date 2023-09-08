@@ -346,7 +346,7 @@ afw_compile_to_object(
 }
 
 
-/* Compile hybrid. */
+/* Compile template. */
 AFW_DEFINE(const afw_value_t *)
 afw_compile_template(
     const afw_value_t *value,
@@ -471,7 +471,7 @@ afw_compile_object_all_template_properties(
             !afw_utf8_equal(&value_data_type->cType, &afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_FMT " is not a hybrid",
+                AFW_UTF8_FMT " is not a template",
                 AFW_UTF8_FMT_ARG(detail_source_location));
         }
         compiled_value = afw_compile_template_source(

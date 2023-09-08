@@ -6813,7 +6813,7 @@
                 "minArgs": -1,
                 "details": "This function returns an expression value.",
                 "description": "The converted value in adaptive expression syntax.",
-                "dataType": "expression"
+                "dataType": "script"
             },
             "pure": true,
             "polymorphic": false,
@@ -10763,7 +10763,7 @@
                     "minArgs": -1,
                     "details": "This parameter is an expression value.",
                     "description": "A expression value.",
-                    "dataType": "expression"
+                    "dataType": "script"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -10773,7 +10773,7 @@
             "description": "Converts expression arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
             "deprecated": false,
             "dataTypeMethodNumber": 26,
-            "dataType": "expression",
+            "dataType": "script",
             "category": "expression",
             "camelCaseFunctionLabel": "toStringExpression",
             "brief": "Converts value to string",
@@ -18013,7 +18013,7 @@
                 "minArgs": -1,
                 "details": "This function returns an expression value.",
                 "description": "Converted value",
-                "dataType": "expression"
+                "dataType": "script"
             },
             "pure": true,
             "polymorphic": false,
@@ -24453,7 +24453,7 @@
                     "minArgs": -1,
                     "details": "This parameter is a hybrid value.",
                     "description": "A hybrid value.",
-                    "dataType": "hybrid"
+                    "dataType": "template"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
@@ -24463,7 +24463,7 @@
             "description": "Converts hybrid arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
             "deprecated": false,
             "dataTypeMethodNumber": 26,
-            "dataType": "hybrid",
+            "dataType": "template",
             "category": "hybrid",
             "camelCaseFunctionLabel": "toStringHybrid",
             "brief": "Converts value to string",
@@ -32496,7 +32496,7 @@
                 "minArgs": -1,
                 "details": "This function returns a hybrid value.",
                 "description": "Converted value",
-                "dataType": "hybrid"
+                "dataType": "template"
             },
             "pure": true,
             "polymorphic": false,

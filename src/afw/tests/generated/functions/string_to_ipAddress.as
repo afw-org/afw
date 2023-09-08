@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_ipAddress.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_ipAddress<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_ipAddress<string>-1
 //? description: x

@@ -111,7 +111,7 @@ struct afw_value_type_s {
         /** @brief string, base64Binary, hexBinary. */
         const afw_utf8_t *media_type;
 
-        /** @brief expression, hybrid, script and template. */
+        /** @brief script and template. */
         const afw_value_type_t *return_type;
 
         /** @brief function. */

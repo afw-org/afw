@@ -3,7 +3,7 @@
 //? testScript: functions/double_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<double>-1
 //? description: Equal

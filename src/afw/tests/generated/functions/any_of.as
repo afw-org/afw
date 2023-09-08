@@ -3,7 +3,7 @@
 //? testScript: functions/any_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for any_of function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: any_of-1
 //? description: ...

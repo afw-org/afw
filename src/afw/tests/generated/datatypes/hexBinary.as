@@ -3,7 +3,7 @@
 //? testScript: datatypes/hexBinary.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for hexBinary dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: hexBinary-1
 //? description: Test 1 for hexBinary dataType.

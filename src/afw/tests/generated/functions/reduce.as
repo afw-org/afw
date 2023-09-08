@@ -3,7 +3,7 @@
 //? testScript: functions/reduce.as
 //? customPurpose: Part of core function tests
 //? description: Tests for reduce function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: reduce-1
 //? description: Test reduce function with integers.

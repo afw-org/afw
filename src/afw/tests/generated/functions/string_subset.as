@@ -3,7 +3,7 @@
 //? testScript: functions/string_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<string>-1
 //? description: ...

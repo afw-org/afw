@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_includes.as
 //? customPurpose: Part of core function tests
 //? description: Tests for includes<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: includes<anyURI>-1
 //? description: x

@@ -1,6 +1,0 @@
-{
-    "brief": "Data type expression related functions",
-    "category": "expression",
-    "dataTypeCategory": true,
-    "description": "These function are related to data type expression.\n\nThe '<expression>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-}

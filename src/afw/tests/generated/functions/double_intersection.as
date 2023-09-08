@@ -3,7 +3,7 @@
 //? testScript: functions/double_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<double>-1
 //? description: ...

@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<dayTimeDuration>-1
 //? description: true

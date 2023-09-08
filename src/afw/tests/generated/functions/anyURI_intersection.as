@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<anyURI>-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<hexBinary>-1
 //? description: x

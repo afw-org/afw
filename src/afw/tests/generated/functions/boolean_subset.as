@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<boolean>-1
 //? description: ...

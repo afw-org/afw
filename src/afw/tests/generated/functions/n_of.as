@@ -3,7 +3,7 @@
 //? testScript: functions/n_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for n_of function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: n_of-1
 //? description: x

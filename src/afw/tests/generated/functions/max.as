@@ -3,7 +3,7 @@
 //? testScript: functions/max.as
 //? customPurpose: Part of core function tests
 //? description: Tests for max function (polymorphic).
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: max-1
 //? description: String

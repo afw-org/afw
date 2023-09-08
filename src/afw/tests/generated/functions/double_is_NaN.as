@@ -3,7 +3,7 @@
 //? testScript: functions/double_is_NaN.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_NaN function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_NaN-1
 //? description: Is 'Infinity' NaN

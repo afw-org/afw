@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<base64Binary>-1
 //? description: x

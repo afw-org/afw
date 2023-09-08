@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<dayTimeDuration>-1
 //? description: Two values

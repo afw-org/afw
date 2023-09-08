@@ -3,7 +3,7 @@
 //? testScript: functions/integer_lt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for lt<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: lt<integer>-1
 //? description: 0 less than 0

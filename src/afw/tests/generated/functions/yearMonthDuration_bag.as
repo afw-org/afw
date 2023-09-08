@@ -3,7 +3,7 @@
 //? testScript: functions/yearMonthDuration_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<yearMonthDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<yearMonthDuration>-1
 //? description: duplicates

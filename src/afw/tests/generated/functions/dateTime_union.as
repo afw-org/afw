@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<dateTime>-1
 //? description: Union

@@ -3,7 +3,7 @@
 //? testScript: functions/date_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<date>-1
 //? description: Five

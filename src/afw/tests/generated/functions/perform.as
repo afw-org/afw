@@ -3,7 +3,7 @@
 //? testScript: functions/perform.as
 //? customPurpose: Part of core function tests
 //? description: Tests for perform function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: perform-1
 //? description: Test perform function with single top-level action.

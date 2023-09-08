@@ -3,7 +3,7 @@
 //? testScript: functions/and.as
 //? customPurpose: Part of core function tests
 //? description: Tests for and function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: and-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/double_to_string.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_string<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_string<double>-1
 //? description: string from double test 1.3

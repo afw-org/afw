@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<base64Binary>-1
 //? description: ...

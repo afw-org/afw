@@ -3,7 +3,7 @@
 //? testScript: functions/time_gt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for gt<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: gt<time>-1
 //? description: x

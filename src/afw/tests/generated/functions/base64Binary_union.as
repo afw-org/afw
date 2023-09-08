@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<base64Binary>-1
 //? description: x

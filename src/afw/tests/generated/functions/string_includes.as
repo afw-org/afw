@@ -3,7 +3,7 @@
 //? testScript: functions/string_includes.as
 //? customPurpose: Part of core function tests
 //? description: Tests for includes<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: includes<string>-1
 //? description: true

@@ -3,7 +3,7 @@
 //? testScript: datatypes/integer.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for integer dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: integer-1
 //? description: Test 1 for integer dataType.

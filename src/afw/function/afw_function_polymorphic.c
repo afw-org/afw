@@ -337,7 +337,7 @@ afw_function_execute_clone(
  *
  * Supported <Type>:
  *
- * expression, function, hybrid, script, template, xpathExpression.
+ * function, script, template, xpathExpression.
  *
  * Parameters:
  *     source - (<Type>) <Type> string to compile.

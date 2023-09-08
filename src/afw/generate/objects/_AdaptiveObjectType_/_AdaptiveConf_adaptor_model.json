@@ -23,7 +23,7 @@
         "mappedAdaptorId": {
             "allowQuery": true,
             "brief": "This is the default mappedAdaptorId value",
-            "dataType": "hybrid",
+            "dataType": "template",
             "description": "This is the default mappedAdaptorId value.",
             "label": "Mapped Adaptor",
             "required": true
@@ -31,7 +31,7 @@
         "modelId": {
             "allowQuery": true,
             "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor",
-            "dataType": "hybrid",
+            "dataType": "template",
             "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor.",
             "label": "Model",
             "required": true
@@ -39,7 +39,7 @@
         "modelLocationAdaptorId": {
             "allowQuery": true,
             "brief": "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects",
-            "dataType": "hybrid",
+            "dataType": "template",
             "description": "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects.",
             "label": "Model Adaptor",
             "required": true

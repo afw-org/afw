@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_regexp_match.as
 //? customPurpose: Part of core function tests
 //? description: Tests for regexp_match<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: regexp_match<x500Name>-1
 //? description: Matches

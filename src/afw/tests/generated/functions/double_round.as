@@ -3,7 +3,7 @@
 //? testScript: functions/double_round.as
 //? customPurpose: Part of core function tests
 //? description: Tests for round<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: round<double>-1
 //? description: x

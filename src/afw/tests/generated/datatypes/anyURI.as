@@ -3,7 +3,7 @@
 //? testScript: datatypes/anyURI.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for anyURI dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: anyURI-1
 //? description: Test 1 for anyURI dataType.

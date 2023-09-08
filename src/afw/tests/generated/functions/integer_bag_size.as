@@ -3,7 +3,7 @@
 //? testScript: functions/integer_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<integer>-1
 //? description: Integer bag size of 0.

@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<boolean>-1
 //? description: ...

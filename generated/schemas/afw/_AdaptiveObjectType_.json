@@ -264,7 +264,8 @@
             "properties": {
                 "additionalConstraints": {
                     "description": "Additional constraint for the value.",
-                    "title": "Additional Constraints"
+                    "title": "Additional Constraints",
+                    "type": "string"
                 },
                 "allowQuery": {
                     "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
@@ -390,7 +391,7 @@
                     "type": "object"
                 },
                 "skeleton": {
-                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type hybrid value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
                     "title": "Skeleton"
                 },
                 "tags": {

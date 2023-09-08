@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<x500Name>-1
 //? description: x

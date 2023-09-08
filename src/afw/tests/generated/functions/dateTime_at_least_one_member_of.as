@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<dateTime>-1
 //? description: False

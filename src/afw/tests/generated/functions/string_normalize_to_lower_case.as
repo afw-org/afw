@@ -3,7 +3,7 @@
 //? testScript: functions/string_normalize_to_lower_case.as
 //? customPurpose: Part of core function tests
 //? description: Tests for normalize_to_lower_case<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: normalize_to_lower_case<string>-1
 //? description: aBCDEFghijkLMNOpqrsTUVwxyz

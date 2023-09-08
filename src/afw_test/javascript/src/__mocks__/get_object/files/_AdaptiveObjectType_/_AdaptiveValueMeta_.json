@@ -277,7 +277,7 @@
                 },
                 "label": "Additional Constraints",
                 "description": "Additional constraint for the value.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "brief": "Additional constraint for the value",
                 "allowQuery": true
             }

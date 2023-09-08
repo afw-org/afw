@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<rfc822Name>-1
 //? description: x

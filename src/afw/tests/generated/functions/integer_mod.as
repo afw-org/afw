@@ -3,7 +3,7 @@
 //? testScript: functions/integer_mod.as
 //? customPurpose: Part of core function tests
 //? description: Tests for mod<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: mod<integer>-1
 //? description: 15 mod 5

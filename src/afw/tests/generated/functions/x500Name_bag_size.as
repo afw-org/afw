@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<x500Name>-1
 //? description: x

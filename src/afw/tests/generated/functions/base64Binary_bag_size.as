@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<base64Binary>-1
 //? description: x

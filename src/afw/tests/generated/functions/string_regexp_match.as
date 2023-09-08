@@ -3,7 +3,7 @@
 //? testScript: functions/string_regexp_match.as
 //? customPurpose: Part of core function tests
 //? description: Tests for regexp_match<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: regexp_match<string>-1
 //? description: Matches

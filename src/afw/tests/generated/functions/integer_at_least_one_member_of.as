@@ -3,7 +3,7 @@
 //? testScript: functions/integer_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<integer>-1
 //? description: ...

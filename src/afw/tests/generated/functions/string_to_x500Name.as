@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_x500Name.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_x500Name<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_x500Name<string>-1
 //? description: Convert string to x500Name

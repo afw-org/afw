@@ -3,7 +3,7 @@
 //? testScript: functions/ipAddress_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<ipAddress> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<ipAddress>-1
 //? description: x

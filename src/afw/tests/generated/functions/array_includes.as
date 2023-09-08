@@ -3,7 +3,7 @@
 //? testScript: functions/array_includes.as
 //? customPurpose: Part of core function tests
 //? description: Tests for includes<array> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: includes<array>-1
 //? description: ...

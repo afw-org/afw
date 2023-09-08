@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_subtract_dayTimeDuration.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subtract_dayTimeDuration<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subtract_dayTimeDuration<dateTime>-1
 //? description: Subtract a day

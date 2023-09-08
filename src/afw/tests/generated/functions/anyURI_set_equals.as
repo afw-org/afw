@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<anyURI>-1
 //? description: x

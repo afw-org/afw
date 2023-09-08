@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_subtract_yearMonthDuration.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subtract_yearMonthDuration<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subtract_yearMonthDuration<dateTime>-1
 //? description: Sub

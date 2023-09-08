@@ -3,7 +3,7 @@
 //? testScript: functions/integer_le.as
 //? customPurpose: Part of core function tests
 //? description: Tests for le<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: le<integer>-1
 //? description: 0 less than or equal 0

@@ -29,7 +29,8 @@
                 },
                 "initialAuthorizationCheck": {
                     "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
-                    "title": "Initial Check"
+                    "title": "Initial Check",
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -155,7 +156,7 @@
                 },
                 "qualifiedVariables": {
                     "$ref": "#/$defs/_AdaptiveHybridPropertiesObjects_",
-                    "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+                    "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
                     "title": "Qualified Variables",
                     "type": "object"
                 },
@@ -184,7 +185,7 @@
                     "$ref": "#/$defs/_AdaptiveHybridPropertiesObjects_.propertyTypes"
                 }
             ],
-            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are hybrid values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
             "title": "Qualified Variables",
             "type": "object"
         },
@@ -194,14 +195,15 @@
         },
         "_AdaptiveHybridProperties_": {
             "additionalProperties": {
-                "description": "Each property is a hybrid value."
+                "description": "Each property is a template value.",
+                "type": "string"
             },
             "anyOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveHybridProperties_.propertyTypes"
                 }
             ],
-            "description": "Each property is a hybrid value.",
+            "description": "Each property is a template value.",
             "type": "object"
         },
         "_AdaptiveHybridProperties_.propertyTypes": {

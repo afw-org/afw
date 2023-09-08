@@ -3,7 +3,7 @@
 //? testScript: functions/string_lt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for lt<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: lt<string>-1
 //? description: one

@@ -3,7 +3,7 @@
 //? testScript: functions/double_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<double>-1
 //? description: Double bag size of 0.

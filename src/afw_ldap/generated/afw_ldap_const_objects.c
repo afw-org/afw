@@ -254,7 +254,7 @@ impl_6_property_dataType = {
     "dataType",
     {
         .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "hybrid"
+        .string = "template"
     }
 };
 

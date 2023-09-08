@@ -3,7 +3,7 @@
 //? testScript: functions/ipAddress_to_string.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_string<ipAddress> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_string<ipAddress>-1
 //? description: 204.11.3.4

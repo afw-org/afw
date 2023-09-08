@@ -3,7 +3,7 @@
 //? testScript: functions/date_lt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for lt<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: lt<date>-1
 //? description: true

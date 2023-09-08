@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<dayTimeDuration>-1
 //? description: P3DT10H30M is in bag

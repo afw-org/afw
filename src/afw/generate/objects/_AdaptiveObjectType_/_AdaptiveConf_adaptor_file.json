@@ -51,8 +51,8 @@
         "root": {
             "allowQuery": true,
             "brief": "Path to the directory holding object type directories",
-            "dataType": "hybrid",
-            "description": "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis hybrid value is evaluated at the time the adaptor is started.",
+            "dataType": "template",
+            "description": "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template value is evaluated at the time the adaptor is started.",
             "label": "Root",
             "required": true
         }

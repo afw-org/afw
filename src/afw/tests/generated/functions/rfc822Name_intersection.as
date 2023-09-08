@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<rfc822Name>-1
 //? description: x

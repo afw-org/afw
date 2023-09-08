@@ -121,7 +121,7 @@
                 "label": "Authorization Check",
                 "description": "This is hybrid is evaluated to determine whether to allow the requested access to the specified resourceId and/or object.",
                 "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "authorizationCheck",
                 "brief": "Hybrid to determine whether to allow access to the specified resourceId and/or object",
                 "allowQuery": true

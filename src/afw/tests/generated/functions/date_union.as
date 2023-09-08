@@ -3,7 +3,7 @@
 //? testScript: functions/date_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<date>-1
 //? description: test 1

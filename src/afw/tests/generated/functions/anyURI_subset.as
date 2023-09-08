@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<anyURI>-1
 //? description: x

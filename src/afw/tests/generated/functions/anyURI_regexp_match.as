@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_regexp_match.as
 //? customPurpose: Part of core function tests
 //? description: Tests for regexp_match<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: regexp_match<anyURI>-1
 //? description: Matches

@@ -3,7 +3,7 @@
 //? testScript: functions/string_starts_with.as
 //? customPurpose: Part of core function tests
 //? description: Tests for starts_with<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: starts_with<string>-1
 //? description: string starts with test abc abcd

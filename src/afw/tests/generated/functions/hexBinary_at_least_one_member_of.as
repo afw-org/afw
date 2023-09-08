@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<hexBinary>-1
 //? description: x

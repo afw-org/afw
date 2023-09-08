@@ -28,15 +28,15 @@
         "onGetProperty": {
             "brief": "Evaluated when getting an object property",
             "contextType": "modelGetProperty",
-            "dataType": "hybrid",
-            "description": "This hybrid is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+            "dataType": "template",
+            "description": "This template is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
             "label": "On Get Property"
         },
         "onGetInitialValue": {
             "brief": "Get initial value to for this property",
             "contextType": "modelGetProperty",
-            "dataType": "hybrid",
-            "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+            "dataType": "template",
+            "description": "This is a template value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
             "label": "On Get Initial Value"
         },
         "mappedPropertyName": {
@@ -47,15 +47,15 @@
         },
         "method": {
             "brief": "This executes when this property is called as a method",
-            "dataType": "hybrid",
-            "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in adaptive script syntax.",
+            "dataType": "template",
+            "description": "This is a method for this object that can be called in expressions. This template value must be a lambda function expressed in adaptive script syntax.",
             "label": "Method"
         },
         "onSetProperty": {
             "brief": "Evaluated when setting an object property",
             "contextType": "modelSetProperty",
-            "dataType": "hybrid",
-            "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+            "dataType": "template",
+            "description": "This template is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
             "label": "On Set Property"
         },
         "transitory": {

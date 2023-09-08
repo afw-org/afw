@@ -3,7 +3,7 @@
 //? testScript: functions/dnsName_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<dnsName> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<dnsName>-1
 //? description: x

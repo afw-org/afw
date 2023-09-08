@@ -3,7 +3,7 @@
 //? testScript: functions/string_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<string>-1
 //? description: ...

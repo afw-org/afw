@@ -194,7 +194,7 @@
             "additionalConstraints": {
                 "label": "Additional Constraints",
                 "description": "Additional constraint for the value.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "brief": "Additional constraint for the value",
                 "allowQuery": true
             },
@@ -221,14 +221,14 @@
             "setProperty": {
                 "label": "Set Value",
                 "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests.  If initialValue is specified, setProperty is ignored for add object requests.  If setProperty is not specified and the property exists in the current object, that value is used.  If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelSetProperty",
                 "brief": "Evaluated when setting an object property"
             },
             "method": {
                 "label": "Method",
                 "description": "This is a method for this object that can be called in expressions.  This hybrid value must be a lambda function expressed in either expression or expressionTuple syntax.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "brief": "This executes when this property is called as a method"
             },
             "mappedPropertyName": {
@@ -240,13 +240,13 @@
             "initialValue": {
                 "label": "Initial Value",
                 "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "brief": "Initial value to for this property"
             },
             "getProperty": {
                 "label": "Get Value",
                 "description": "This hybrid is evaluated to produce the value of this property when getting an object.  If a value of null is returned, the property will not be included in the resulting object.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelGetProperty",
                 "brief": "Evaluated when getting an object property"
             },

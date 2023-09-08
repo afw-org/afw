@@ -3,7 +3,7 @@
 //? testScript: functions/time_to_string.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_string<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_string<time>-1
 //? description: x

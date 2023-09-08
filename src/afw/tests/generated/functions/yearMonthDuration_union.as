@@ -3,7 +3,7 @@
 //? testScript: functions/yearMonthDuration_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<yearMonthDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<yearMonthDuration>-1
 //? description: x

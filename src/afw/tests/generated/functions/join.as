@@ -3,7 +3,7 @@
 //? testScript: functions/join.as
 //? customPurpose: Part of core function tests
 //? description: Tests for join function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: join-1
 //? description: Test join function with integers.

@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<x500Name>-1
 //? description: x

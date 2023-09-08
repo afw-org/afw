@@ -1673,11 +1673,12 @@ afw_compile_parse_Script(
     if (afw_compile_next_raw_starts_with_z("#!")) {
         afw_compile_get_raw_line(&line);
         if (!afw_utf8_contains(&line, &afw_s_afw) &&
-            !afw_utf8_contains(&line, &afw_s_maluba)) /* Easter egg */
+            !afw_utf8_contains(&line, &afw_s_maluba) &&     /* Easter egg */
+            !afw_utf8_contains(&line, &afw_s_JeremyScript)) /* Easter egg */
         {
             AFW_COMPILE_THROW_ERROR_Z(
-                "Shebang line must contain afw to be recognized as an "
-                "adaptive script in a hybrid value");
+                "Shebang line must contain 'afw' to be recognized as an "
+                "adaptive script");
         }
         if (afw_utf8_contains(&line, &afw_s_a_dash_s_test_script) ||
             afw_utf8_contains(&line, &afw_s_a_dash_dash_syntax_test_script))
@@ -1914,9 +1915,7 @@ impl_test_script_get_next_key_value(
  *
  *# Default is script or the one specified in TestScriptDefinition
  * TestSourceType ::= TestScriptLineStart 'source_type:'
- *     ( 'expression' | 'hybrid' | 'json' |
- *       'parenthesized_expression' | 'relaxed_json' | 'script' |
- *       'template' )
+ *     ( 'json' | 'relaxed_json' | 'script' | 'template' )
  *
  * TestSource ::= TestScriptLineStart 'source:' TestScriptValue
  *
@@ -1954,7 +1953,8 @@ afw_compile_parse_TestScript(
     if (afw_compile_next_raw_starts_with_z("#!")) {
         afw_compile_get_raw_line(&line);
         if ((!afw_utf8_contains(&line, &afw_s_afw) &&
-            !afw_utf8_contains(&line, &afw_s_maluba)) /* Easter egg */ ||
+            !afw_utf8_contains(&line, &afw_s_JeremyScript) && /* Easter egg */
+            !afw_utf8_contains(&line, &afw_s_maluba))   /* Easter egg */ ||
             (!afw_utf8_contains(&line, &afw_s_a_dash_s_test_script) &&
             !afw_utf8_contains(&line, &afw_s_a_dash_dash_syntax_test_script)))
         {

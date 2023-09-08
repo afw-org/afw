@@ -3,7 +3,7 @@
 //? testScript: functions/min.as
 //? customPurpose: Part of core function tests
 //? description: Tests for min function (polymorphic).
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: min-1
 //? description: String

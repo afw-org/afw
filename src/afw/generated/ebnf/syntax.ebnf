@@ -125,7 +125,6 @@ DataType ::=
    'expression' |
    'function' |
    'hexBinary' |
-   'hybrid' |
    'ia5String' |
    'integer' |
    'ipAddress' |
@@ -287,7 +286,7 @@ ArrayOf ::= ( 'of' 'array' )* ( 'of' Type )
 
 DataTypeWithParameter ::= '('
               ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
-              ( ( 'expression' | 'hybrid' | 'script' | 'template' ) ReturnType ) |
+              ( ( 'script' | 'template' ) ReturnType ) |
               ( 'function' FunctionSignature ) |
               ( 'array' ArrayOf ) |
               ( ( 'object' | 'objectId' ) ObjectType ) |
@@ -615,9 +614,7 @@ TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
 /* Default is script or the one specified in TestScriptDefinition             */
 
 TestSourceType ::= TestScriptLineStart 'source_type:'
-    ( 'expression' | 'hybrid' | 'json' |
-      'parenthesized_expression' | 'relaxed_json' | 'script' |
-      'template' )
+    ( 'json' | 'relaxed_json' | 'script' | 'template' )
 
 TestSource ::= TestScriptLineStart 'source:' TestScriptValue
 

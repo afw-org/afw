@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_boolean.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_boolean<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_boolean<string>-1
 //? description: Boolean False from string '' (empty string)

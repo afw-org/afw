@@ -3,7 +3,7 @@
 //? testScript: functions/yearMonthDuration_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<yearMonthDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<yearMonthDuration>-1
 //? description: x

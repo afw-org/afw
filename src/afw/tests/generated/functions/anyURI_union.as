@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<anyURI>-1
 //? description: Union set of 4 with set of 3.

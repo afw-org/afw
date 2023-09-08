@@ -3,7 +3,7 @@
 //? testScript: functions/ipAddress_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<ipAddress> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<ipAddress>-1
 //? description: x

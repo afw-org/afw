@@ -3,7 +3,7 @@
 //? testScript: datatypes/rfc822Name.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for rfc822Name dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: rfc822Name-1
 //? description: Test 1 for rfc822Name dataType.

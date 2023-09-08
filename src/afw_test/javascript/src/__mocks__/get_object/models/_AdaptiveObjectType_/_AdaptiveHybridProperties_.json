@@ -7,7 +7,7 @@
         "allowChange": true,
         "allowAdd": true,
         "otherProperties": {
-            "dataType": "hybrid"
+            "dataType": "template"
         },
         "objectType": "_AdaptiveHybridProperties_",
         "description": "Each property is a hybrid value.",

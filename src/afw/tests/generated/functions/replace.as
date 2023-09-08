@@ -3,7 +3,7 @@
 //? testScript: functions/replace.as
 //? customPurpose: Part of core function tests
 //? description: Tests for replace function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: replace-1
 //? description: Test replace function - limit not specified

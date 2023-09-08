@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<dateTime>-1
 //? description: true

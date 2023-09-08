@@ -3,7 +3,7 @@
 //? testScript: functions/or.as
 //? customPurpose: Part of core function tests
 //? description: Tests for or function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: or-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/date_ge.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ge<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ge<date>-1
 //? description: true

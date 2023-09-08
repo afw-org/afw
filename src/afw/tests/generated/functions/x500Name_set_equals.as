@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<x500Name>-1
 //? description: x

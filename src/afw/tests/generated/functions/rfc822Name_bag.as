@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<rfc822Name>-1
 //? description: x

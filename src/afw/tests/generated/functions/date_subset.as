@@ -3,7 +3,7 @@
 //? testScript: functions/date_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<date>-1
 //? description: x

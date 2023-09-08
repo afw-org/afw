@@ -33,7 +33,6 @@
  *    'expression' |
  *    'function' |
  *    'hexBinary' |
- *    'hybrid' |
  *    'ia5String' |
  *    'integer' |
  *    'ipAddress' |
@@ -847,7 +846,7 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
  * 
  * DataTypeWithParameter ::= '('
  *               ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
- *               ( ( 'expression' | 'hybrid' | 'script' | 'template' ) ReturnType ) |
+ *               ( ( 'script' | 'template' ) ReturnType ) |
  *               ( 'function' FunctionSignature ) |
  *               ( 'array' ArrayOf ) |
  *               ( ( 'object' | 'objectId' ) ObjectType ) |
@@ -922,8 +921,6 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
 
                 /* ReturnType */
                 else if (
-                    afw_utf8_equal(dataType, &afw_s_expression) ||
-                    afw_utf8_equal(dataType, &afw_s_hybrid) ||
                     afw_utf8_equal(dataType, &afw_s_script) ||
                     afw_utf8_equal(dataType, &afw_s_template))
                 {

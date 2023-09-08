@@ -3,7 +3,7 @@
 //? testScript: functions/date_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<date>-1
 //? description: False

@@ -3,7 +3,7 @@
 //? testScript: functions/string_normalize_space.as
 //? customPurpose: Part of core function tests
 //? description: Tests for normalize_space<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: normalize_space<string>-1
 //? description: One
