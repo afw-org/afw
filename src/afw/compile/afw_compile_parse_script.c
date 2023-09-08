@@ -1661,7 +1661,8 @@ afw_compile_parse_StatementList(
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Script(
-    afw_compile_parser_t *parser)
+    afw_compile_parser_t *parser,
+    afw_boolean_t end_is_close_brace)
 {
     const afw_value_t *result;
     afw_utf8_t line;
@@ -1689,7 +1690,7 @@ afw_compile_parse_Script(
 
     /* Parse statements and return. */
     result = afw_compile_parse_StatementList(parser,
-        NULL, false, false, true);
+        NULL, end_is_close_brace, false, true);
     return result;
 }
 
