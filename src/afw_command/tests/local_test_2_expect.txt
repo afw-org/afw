@@ -6,7 +6,7 @@ Local mode.
 15
 1 188 response
 188
-{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"118","ACCEPT":"application/x-afw"},"resultDataType":"object","status":"success"}1
+{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"114","ACCEPT":"application/x-afw"},"resultDataType":"object","status":"success"}1
 27
  0 end
 0
