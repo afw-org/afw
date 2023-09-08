@@ -215,7 +215,6 @@ afw_compile_to_value_with_callback(
             else if (compile_type == afw_compile_type_template) {
                 parser->compiled_value->full_source_type = &afw_s_template;
                 *interim = afw_compile_parse_Template(parser);
-                //FIXME REMOVE *interim = afw_compile_parse_TemporaryTemplate(parser);
             }
 
             else if (compile_type == afw_compile_type_test_script) {

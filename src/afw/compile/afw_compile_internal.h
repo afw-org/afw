@@ -1195,11 +1195,6 @@ afw_compile_parse_Template(afw_compile_parser_t *parser);
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_TemporaryTemplate(afw_compile_parser_t *parser);
-
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_TemplateString(afw_compile_parser_t *parser);
 
 
