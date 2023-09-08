@@ -105,11 +105,11 @@ export const monarchLanguage = {
 
     /*! \fixme these should be fetched from dataTypes? */
     typeKeywords: [
-        "anyUri", "base64Binary", "boolean", "date", "dateTime", "dayTimeDuration", 
-        "dnsName", "double", "expression", "hexBinary", "hybrid", 
-        "ia5String", "integer", "ipAddress", "array", "null", "object", "objectId",
-        "objectPath", "password", "rfc822Name", "string", "template", "time", "x500Name",
-        "xPathExpression", "yearMonthDuration",
+        "anyUri", "base64Binary", "boolean", "date", "dateTime", 
+        "dayTimeDuration", "dnsName", "double", "hexBinary","ia5String", 
+        "integer", "ipAddress", "array", "null", "object", "objectId",
+        "objectPath", "password", "rfc822Name", "string", "template", "time", 
+        "x500Name", "xPathExpression", "yearMonthDuration",
     ],
 
     operators: [

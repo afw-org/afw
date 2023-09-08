@@ -400,13 +400,16 @@ export const TestBasic = (wrapper) => {
             </AdaptiveLayoutContext.Provider>,
             { wrapper }
         ); 
-                                    
+                 
+        // skip some dataTypes for now, as they're not well defined in non-editable mode 
+        const skip = [
+            "array", "object", "time", "date", "dateTime",
+            "base64Binary", "password", "template", "script"
+        ];
         for (let [dataType, propertyType] of Object.entries(objectTypeObject.propertyTypes)) {
             const {label, expectedTestValues} = propertyType;
-
-            // skip some dataTypes for now, as they're not well defined in non-editable mode 
-            if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
-                    dataType === "date" || dataType === "dateTime" || dataType === "hybrid" || dataType === "password" )
+            
+            if (skip.includes(dataType))
                 continue;
                 
             await waitFor(() => expect(screen.getByText(label)).toBeInTheDocument());

@@ -33,21 +33,19 @@ export const Template = (props) => {
                     editable && label &&
                         <Typography style={{ marginBottom: theme.spacing(0.5) }} size="2" color="textSecondary" text={label} />
                 }
-                <div style={{ flex: 1, height: "100%", minHeight: "300px" }}>
-                    <CodeEditor 
-                        style={{ flex: 1, height: "100%" }}
-                        id={id}
-                        label={label}
-                        // eslint-disable-next-line jsx-a11y/no-autofocus
-                        autoFocus={true}
-                        readOnly={!editable}
-                        source={value}
-                        language="afw"
-                        wordWrap={true}
-                        showMinimap={false}
-                        onChanged={onChanged}
-                    />
-                </div>
+                <CodeEditor 
+                    style={{ flex: 1, height: "100%" }}
+                    id={id}
+                    label={label}
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
+                    autoFocus={true}
+                    readOnly={!editable}
+                    source={value}
+                    language="afw"
+                    wordWrap={true}
+                    showMinimap={false}
+                    onChanged={onChanged}
+                />
                 {
                     editable && brief &&
                         <Typography style={{ marginTop: theme.spacing(0.5) }} size="1" text={brief} />

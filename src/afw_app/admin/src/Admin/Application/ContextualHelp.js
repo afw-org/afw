@@ -40,8 +40,166 @@ const HelpText = ({ text }) => {
     );
 };
 
-const ObjectHelp = ({ header, filterProperties, object, isLoading, error }) => {
+const PossibleValuesHelp = ({ propertyType }) => {
+
+    return propertyType.possibleValues ? (
+        <>
+            <HelpText text="Possible Values: " />
+            <ul>
+                {
+                    propertyType.possibleValues.map(v =>
+                        <li key={v}>{ v }</li>
+                    )
+                }
+            </ul>                                                                                        
+        </>
+    ) : null;
+};
+
+const PropertyScriptReturnsHelp = ({ propertyType, objectTypeObject }) => {
+
     const theme = useTheme();
+
+    return (
+        <div style={{ marginLeft: theme.spacing(3) }} key={propertyType}>                                               
+            <Typography color="primary" size="5" text={propertyType.label} />
+            <HelpText text={propertyType.description} />         
+            <HelpText text="This property returns an Object with the following properties:" />         
+            {
+                Object.entries(objectTypeObject.propertyTypes).map(([_scriptPropertyName, _scriptPropertyType]) => {
+                    if (_scriptPropertyName === "_meta_")
+                        return null;
+
+                    return (
+                        <div style={{ marginLeft: theme.spacing(3) }} key={_scriptPropertyName}>
+                            <Typography color="primary" size="5" text={_scriptPropertyType.label} />
+                            <HelpText text={_scriptPropertyType.description} />
+                            <PossibleValuesHelp propertyType={_scriptPropertyType} />
+                        </div>
+                    );
+                })
+            }                                                                                     
+        </div>
+    );
+};
+
+const PropertyScriptHelp = ({ object, property }) => {
+
+    const [, scriptObjectType] = property.getDataTypeParameter().split(" ");
+    const adaptorId = object.getAdaptorId();
+    const model = object.getModel();
+    const theme = useTheme();
+
+    const objectTypeObject = model.getObjectTypeObject({ adaptorId, objectTypeId: scriptObjectType });
+
+    return (
+        <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>                            
+            <Typography color="primary" size="5" text={property.getLabel()} />
+            <HelpText text={property.getDescription()} />
+            <Typography color="primary" size="5" text="Returns" />
+            {
+                scriptObjectType && (
+                    <div style={{ marginLeft: theme.spacing(3) }}>
+                        {
+                            objectTypeObject.propertyTypes && Object.entries(objectTypeObject.propertyTypes).map(([_propertyName, _propertyType]) => {
+                                return (
+                                    <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>
+                                        <Typography color="primary" size="5" text={_propertyType.label} />
+                                        <HelpText text={_propertyType.description} />
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                )
+            }
+        </div>
+    );
+};
+
+const PropertyObjectHelp = ({ object, property }) => {
+
+    const theme = useTheme();
+
+    const objectTypeObject = property.getObjectTypeObject();
+    return (
+        <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>
+            <Typography color="primary" size="5" text={property.getLabel()} />
+            <HelpText text={property.getDescription()} />
+            {
+                objectTypeObject.propertyTypes && Object.entries(objectTypeObject.propertyTypes).map(([_propertyName, _propertyType]) => {
+                    if (_propertyName === "_meta_")
+                        return null;
+
+                    if (_propertyType.dataType === "script" && _propertyType.dataTypeParameter) {
+                        const [, scriptObjectType] = _propertyType.dataTypeParameter.split(" ");
+                        const adaptorId = object.getAdaptorId();
+                        const model = object.getModel();
+
+                        if (scriptObjectType) {
+                            const scriptObjectTypeObject = model.getObjectTypeObject({ 
+                                adaptorId, objectTypeId: scriptObjectType 
+                            });
+                            if (scriptObjectTypeObject) {
+                                return (
+                                    <PropertyScriptReturnsHelp 
+                                        propertyType={_propertyType} 
+                                        objectTypeObject={scriptObjectTypeObject} 
+                                    />
+                                );                                     
+                            }
+                        } 
+
+                        return (
+                            <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>                                               
+                                <Typography color="primary" size="5" text={_propertyType.label} />
+                                <HelpText text={_propertyType.description} />  
+                                <PossibleValuesHelp propertyType={_propertyType} />                                                  
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>                                               
+                                <Typography color="primary" size="5" text={_propertyType.label} />
+                                <HelpText text={_propertyType.description} />   
+                                <PossibleValuesHelp propertyType={_propertyType} />                                                
+                            </div>
+                        );
+                    }                                        
+                    
+                })
+            }    
+        </div>
+    );
+};
+
+const PropertyHelp = ({ object, property }) => {
+
+    const theme = useTheme();
+
+    if (property.getDataType() === "object")
+    {
+        return <PropertyObjectHelp object={object} property={property} />;
+    }
+
+    else if (property.getDataType() === "script" && property.getDataTypeParameter()) 
+    {
+        return <PropertyScriptHelp object={object} property={property} />;
+    }
+
+    else 
+    {
+        return (
+            <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>                            
+                <Typography color="primary" size="5" text={property.getLabel()} />
+                <HelpText text={property.getDescription()} />
+            </div>
+        );
+    }
+
+};
+
+const ObjectHelp = ({ header, filterProperties, object, isLoading, error }) => {
 
     if (isLoading)
         return <Spinner />;
@@ -52,154 +210,19 @@ const ObjectHelp = ({ header, filterProperties, object, isLoading, error }) => {
     if (!object) 
         return null;
 
-    const properties = object.getProperties().filter(p => {
-        if (!filterProperties)
-            return true;
-
-        return filterProperties.includes(p.getName());
-    });
+    const properties = object.getProperties().filter(p => 
+        filterProperties ? filterProperties.includes(p.getName()) : true);
 
     return (
         <>
             <Typography color="primary" size="6" text={header} />
             {
-                properties.map(property => {                   
-
-                    if (property.getDataType() === "object")
-                    {
-                        const objectTypeObject = property.getObjectTypeObject();
-                        return (
-                            <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>
-                                <Typography color="primary" size="5" text={property.getLabel()} />
-                                <HelpText text={property.getDescription()} />
-                                {
-                                    objectTypeObject.propertyTypes && Object.entries(objectTypeObject.propertyTypes).map(([_propertyName, _propertyType]) => {
-                                        if (_propertyName === "_meta_")
-                                            return null;
-
-                                        if (_propertyType.dataType === "hybrid" && _propertyType.dataTypeParameter) {
-                                            const [, hybridObjectType] = _propertyType.dataTypeParameter.split(" ");
-                                            const adaptorId = object.getAdaptorId();
-                                            const model = object.getModel();
-
-                                            if (hybridObjectType) {
-                                                const hybridObjectTypeObject = model.getObjectTypeObject({ adaptorId, objectTypeId: hybridObjectType });
-                                                if (hybridObjectTypeObject) {
-                                                    return (
-                                                        <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>                                               
-                                                            <Typography color="primary" size="5" text={_propertyType.label} />
-                                                            <HelpText text={_propertyType.description} />         
-                                                            <HelpText text="This property returns an Object with the following properties:" />         
-                                                            {
-                                                                Object.entries(hybridObjectTypeObject.propertyTypes).map(([_hybridPropertyName, _hybridPropertyType]) => {
-                                                                    if (_hybridPropertyName === "_meta_")
-                                                                        return null;
-            
-                                                                    return (
-                                                                        <div style={{ marginLeft: theme.spacing(3) }} key={_hybridPropertyName}>
-                                                                            <Typography color="primary" size="5" text={_hybridPropertyType.label} />
-                                                                            <HelpText text={_hybridPropertyType.description} />
-                                                                            {
-                                                                                _hybridPropertyType.possibleValues && (
-                                                                                    <>
-                                                                                        <HelpText text={"Possible Values: "} />
-                                                                                        <ul>
-                                                                                            {
-                                                                                                _hybridPropertyType.possibleValues.map(v =>
-                                                                                                    <li key={v}>{ v }</li>
-                                                                                                )
-                                                                                            }
-                                                                                        </ul>                                                                                        
-                                                                                    </>
-                                                                                )
-                                                                            }
-                                                                        </div>
-                                                                    );
-                                                                })
-                                                            }                                                                                     
-                                                        </div>
-                                                    );                                                    
-                                                }
-                                            } 
-
-                                            return (
-                                                <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>                                               
-                                                    <Typography color="primary" size="5" text={_propertyType.label} />
-                                                    <HelpText text={_propertyType.description} />  
-                                                    {  
-                                                        _propertyType.possibleValues && (
-                                                            <>                                                                
-                                                                <HelpText text={"Possible Values: "} />
-                                                                <ul>
-                                                                    {
-                                                                        _propertyType.possibleValues.map(v =>
-                                                                            <li key={v}>{ v }</li>
-                                                                        )
-                                                                    }
-                                                                </ul>                                                                                        
-                                                            </>                                                            
-                                                        )                                                                                          
-                                                    }                                                    
-                                                </div>
-                                            );
-                                        } else {
-                                            return (
-                                                <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>                                               
-                                                    <Typography color="primary" size="5" text={_propertyType.label} />
-                                                    <HelpText text={_propertyType.description} />                                                  
-                                                </div>
-                                            );
-                                        }                                        
-                                        
-                                    })
-                                }    
-                            </div>
-                        );
-                    }
-
-                    else if (property.getDataType() === "hybrid" && property.getDataTypeParameter()) 
-                    {
-                        const [, hybridObjectType] = property.getDataTypeParameter().split(" ");
-                        const adaptorId = object.getAdaptorId();
-                        const model = object.getModel();
-
-                        const objectTypeObject = model.getObjectTypeObject({ adaptorId, objectTypeId: hybridObjectType });
-
-                        return (
-                            <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>                            
-                                <Typography color="primary" size="5" text={property.getLabel()} />
-                                <HelpText text={property.getDescription()} />
-                                <Typography color="primary" size="5" text="Returns" />
-                                {
-                                    hybridObjectType && (
-                                        <div style={{ marginLeft: theme.spacing(3) }}>
-                                            {
-                                                objectTypeObject.propertyTypes && Object.entries(objectTypeObject.propertyTypes).map(([_propertyName, _propertyType]) => {
-                                                    return (
-                                                        <div style={{ marginLeft: theme.spacing(3) }} key={_propertyName}>
-                                                            <Typography color="primary" size="5" text={_propertyType.label} />
-                                                            <HelpText text={_propertyType.description} />
-                                                        </div>
-                                                    );
-                                                })
-                                            }
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        );
-                    }
-
-                    else 
-                    {
-                        return (
-                            <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>                            
-                                <Typography color="primary" size="5" text={property.getLabel()} />
-                                <HelpText text={property.getDescription()} />
-                            </div>
-                        );
-                    }
-                })
+                properties.map(property => 
+                    <PropertyHelp 
+                        key={property.getName()} 
+                        object={object} 
+                        property={property} 
+                    />)
             }
         </>
     );

@@ -2457,19 +2457,6 @@
                 "relationalCompares": false,
                 "scalar": true
             },
-            "hybrid": {
-                "brief": "A hybrid value",
-                "cType": "const afw_value_t *",
-                "dataType": "template",
-                "dataTypeParameterType": "SourceParameter",
-                "description": "Data type hybrid can be a string containing the source for an adaptive expression tuple, an adaptive script, or an adaptive template.  It can also be a literal (evaluated value) such as boolean, double, integer, list, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple.  If the value is a string that begins with a shebang ('#!'), the string is the source for a script.  If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template.  In other cases, the string is a string literal.",
-                "directReturn": true,
-                "evaluated": true,
-                "jsonImpliesDataType": false,
-                "jsonPrimitive": "varies",
-                "relationalCompares": false,
-                "scalar": false
-            },
             "any": {
                 "brief": "Any value is allowed",
                 "cType": "const afw_value_t *",
@@ -2766,20 +2753,6 @@
                 "jsonImpliesDataType": false,
                 "jsonPrimitive": "string",
                 "ldapOid": "1.3.6.1.4.1.1466.115.121.1.24",
-                "relationalCompares": true,
-                "scalar": true
-            },
-            "expression": {
-                "brief": "An adaptive expression",
-                "cType": "afw_utf8_t",
-                "dataType": "script",
-                "dataTypeParameterType": "SourceParameter",
-                "description": "Data type expression holds the source for an adaptive expression.",
-                "directReturn": false,
-                "evaluated": true,
-                "jsonImpliesDataType": false,
-                "jsonPrimitive": "string",
-                "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
                 "relationalCompares": true,
                 "scalar": true
             }
@@ -4735,8 +4708,6 @@
                 ],
                 "polymorphic": true,
                 "polymorphicDataTypes": [
-                    "expression",
-                    "hybrid",
                     "script",
                     "template",
                     "xpathExpression"
@@ -6755,77 +6726,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "test_expression_tuple": {
-                "afwCamelCaseFunctionLabel": "afwTestExpressionTuple",
-                "brief": "Test expression tuple",
-                "camelCaseFunctionLabel": "testExpressionTuple",
-                "category": "compiler",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Compile and evaluate an adaptive expression tuple and compare the results to an expected value.  Return object with the test's results.",
-                "functionId": "test_expression_tuple",
-                "functionLabel": "test_expression_tuple",
-                "functionSignature": "object(string id, string description, string expression, any expected, (object _AdaptiveContextType_) additionalContext?)",
-                "functionDeclaration": "/* Test expression tuple */\nobject (\n    string id,\n    string description,\n    string expression,\n    any expected,\n    (object _AdaptiveContextType_) additionalContext?)",
-                "parameters": [
-                    {
-                        "dataType": "string",
-                        "description": "Id of test",
-                        "minArgs": -1,
-                        "name": "id",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "string",
-                        "description": "Description of test",
-                        "minArgs": -1,
-                        "name": "description",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "string",
-                        "description": "Expression tuple to compile and evaluate.",
-                        "minArgs": -1,
-                        "name": "expression",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "description": "Expected result.",
-                        "minArgs": -1,
-                        "name": "expected",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveContextType_",
-                        "description": "Additional context to use first during evaluation.",
-                        "minArgs": -1,
-                        "name": "additionalContext",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": false,
-                "returns": {
-                    "dataType": "object",
-                    "description": "Test results.",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "eqx_x500Name": {
                 "afwCamelCaseFunctionLabel": "afwEqxX500Name",
                 "brief": "Checks for equal and type",
@@ -7348,40 +7248,6 @@
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveJournalEntry_",
                     "description": "Resulting journal entry.",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
-            "is_expression": {
-                "afwCamelCaseFunctionLabel": "afwIsExpression",
-                "brief": "Checks whether value is dataType expression",
-                "camelCaseFunctionLabel": "isExpression",
-                "category": "expression",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Test arg returning boolean True if it is data type expression.  Use is_list_of_expression() instead to test for a list of expression.",
-                "functionId": "is<expression>",
-                "functionLabel": "is_expression",
-                "functionSignature": "boolean(any arg)",
-                "functionDeclaration": "/* Checks whether value is dataType expression */\nboolean (\n    any arg)",
-                "parameters": [
-                    {
-                        "description": "Value to check",
-                        "minArgs": -1,
-                        "name": "arg",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "boolean",
-                    "description": "True if arg is expression.",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -12779,53 +12645,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "evaluate_expression": {
-                "afwCamelCaseFunctionLabel": "afwEvaluateExpression",
-                "brief": "Evaluate expression value",
-                "camelCaseFunctionLabel": "evaluateExpression",
-                "category": "expression",
-                "dataType": "script",
-                "dataTypeMethodNumber": 52,
-                "deprecated": false,
-                "description": "Compile and evaluate expression value.",
-                "functionId": "evaluate<expression>",
-                "functionLabel": "evaluate_expression",
-                "functionSignature": "unevaluated(expression source, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate expression value */\nunevaluated (\n    expression source                                             /* Source to evaluate */,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext? /* Additional context */)",
-                "parameters": [
-                    {
-                        "brief": "Source to evaluate",
-                        "dataType": "script",
-                        "description": "expression string to compile and evaluate",
-                        "minArgs": -1,
-                        "name": "source",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "brief": "Additional context",
-                        "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
-                        "description": "Additional context to use first during evaluation.",
-                        "minArgs": -1,
-                        "name": "additionalContext",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "unevaluated",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "add_dayTimeDuration_dateTime": {
                 "afwCamelCaseFunctionLabel": "afwAddDayTimeDurationDateTime",
                 "brief": "Add duration",
@@ -15580,96 +15399,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "evaluate_hybrid": {
-                "afwCamelCaseFunctionLabel": "afwEvaluateHybrid",
-                "brief": "Evaluate hybrid value",
-                "camelCaseFunctionLabel": "evaluateHybrid",
-                "category": "hybrid",
-                "dataType": "template",
-                "dataTypeMethodNumber": 52,
-                "deprecated": false,
-                "description": "Compile and evaluate hybrid value.",
-                "functionId": "evaluate<hybrid>",
-                "functionLabel": "evaluate_hybrid",
-                "functionSignature": "unevaluated(hybrid source, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate hybrid value */\nunevaluated (\n    hybrid source                                                 /* Source to evaluate */,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext? /* Additional context */)",
-                "parameters": [
-                    {
-                        "brief": "Source to evaluate",
-                        "dataType": "template",
-                        "description": "hybrid string to compile and evaluate",
-                        "minArgs": -1,
-                        "name": "source",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "brief": "Additional context",
-                        "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
-                        "description": "Additional context to use first during evaluation.",
-                        "minArgs": -1,
-                        "name": "additionalContext",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "unevaluated",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
-            "convert_syntax_hybrid_to_expression": {
-                "afwCamelCaseFunctionLabel": "afwConvertSyntaxHybridToExpression",
-                "brief": "Convert a hybrid to a expression.",
-                "camelCaseFunctionLabel": "convertSyntaxHybridToExpression",
-                "category": "compiler",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Convert a string containing adaptive hybrid syntax, which can be an adaptive template or adaptive expression tuple, to adaptive expression syntax.",
-                "functionId": "convert_syntax_hybrid_to_expression",
-                "functionLabel": "convert_syntax_hybrid_to_expression",
-                "functionSignature": "expression(string hybrid, any whitespace?)",
-                "functionDeclaration": "/* Convert a hybrid to a expression. */\nexpression (\n    string hybrid,\n    any whitespace?)",
-                "parameters": [
-                    {
-                        "dataType": "string",
-                        "description": "The hybrid to convert.",
-                        "minArgs": -1,
-                        "name": "hybrid",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "description": "Add whitespace for readability if present and not 0.  This parameter can be an integer between 0 and 10 or a string that is used for indentation.  If 0 is specified, no whitespace is added to the resulting string.  If 1 through 10 is specified, that number of spaces is used.",
-                        "minArgs": -1,
-                        "name": "whitespace",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "script",
-                    "description": "The converted value in adaptive expression syntax.",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "service_start": {
                 "afwCamelCaseFunctionLabel": "afwServiceStart",
                 "brief": "Start service",
@@ -16784,8 +16513,6 @@
                 ],
                 "polymorphic": true,
                 "polymorphicDataTypes": [
-                    "expression",
-                    "hybrid",
                     "script",
                     "template",
                     "xpathExpression"
@@ -18197,40 +17924,6 @@
                     "Target list is modified."
                 ]
             },
-            "hybrid": {
-                "afwCamelCaseFunctionLabel": "afwHybrid",
-                "brief": "Convert to data type hybrid",
-                "camelCaseFunctionLabel": "hybrid",
-                "category": "hybrid",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Converts arg to data type hybrid returning hybrid result.",
-                "functionId": "hybrid",
-                "functionLabel": "hybrid",
-                "functionSignature": "hybrid(any arg)",
-                "functionDeclaration": "/* Convert to data type hybrid */\nhybrid (\n    any arg)",
-                "parameters": [
-                    {
-                        "description": "Value to convert",
-                        "minArgs": -1,
-                        "name": "arg",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "template",
-                    "description": "Converted value",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "set_equals_dateTime": {
                 "afwCamelCaseFunctionLabel": "afwSetEqualsDateTime",
                 "brief": "Checks whether two lists are subsets of each other",
@@ -19069,42 +18762,6 @@
                 "pure": true,
                 "returns": {
                     "dataType": "anyURI",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
-            "to_string_hybrid": {
-                "afwCamelCaseFunctionLabel": "afwToStringHybrid",
-                "brief": "Converts value to string",
-                "camelCaseFunctionLabel": "toStringHybrid",
-                "category": "hybrid",
-                "dataType": "template",
-                "dataTypeMethodNumber": 26,
-                "deprecated": false,
-                "description": "Converts hybrid arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
-                "functionId": "to_string<hybrid>",
-                "functionLabel": "to_string_hybrid",
-                "functionSignature": "string(hybrid arg)",
-                "functionDeclaration": "/* Converts value to string */\nstring (\n    hybrid arg)",
-                "parameters": [
-                    {
-                        "dataType": "template",
-                        "description": "A hybrid value.",
-                        "minArgs": -1,
-                        "name": "arg",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "string",
-                    "description": "The string representation of the value.",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -20134,40 +19791,6 @@
                 "returns": {
                     "dataType": "string",
                     "description": "The string representation of the value.",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
-            "is_hybrid": {
-                "afwCamelCaseFunctionLabel": "afwIsHybrid",
-                "brief": "Checks whether value is dataType hybrid",
-                "camelCaseFunctionLabel": "isHybrid",
-                "category": "hybrid",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Test arg returning boolean True if it is data type hybrid.  Use is_list_of_hybrid() instead to test for a list of hybrid.",
-                "functionId": "is<hybrid>",
-                "functionLabel": "is_hybrid",
-                "functionSignature": "boolean(any arg)",
-                "functionDeclaration": "/* Checks whether value is dataType hybrid */\nboolean (\n    any arg)",
-                "parameters": [
-                    {
-                        "description": "Value to check",
-                        "minArgs": -1,
-                        "name": "arg",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "boolean",
-                    "description": "True if arg is hybrid.",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -21496,40 +21119,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "expression": {
-                "afwCamelCaseFunctionLabel": "afwExpression",
-                "brief": "Convert to data type expression",
-                "camelCaseFunctionLabel": "expression",
-                "category": "expression",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Converts arg to data type expression returning expression result.",
-                "functionId": "expression",
-                "functionLabel": "expression",
-                "functionSignature": "expression(any arg)",
-                "functionDeclaration": "/* Convert to data type expression */\nexpression (\n    any arg)",
-                "parameters": [
-                    {
-                        "description": "Value to convert",
-                        "minArgs": -1,
-                        "name": "arg",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "script",
-                    "description": "Converted value",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "is_in_boolean": {
                 "afwCamelCaseFunctionLabel": "afwIsInBoolean",
                 "brief": "Checks whether a value is in a list",
@@ -22222,42 +21811,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "to_string_expression": {
-                "afwCamelCaseFunctionLabel": "afwToStringExpression",
-                "brief": "Converts value to string",
-                "camelCaseFunctionLabel": "toStringExpression",
-                "category": "expression",
-                "dataType": "script",
-                "dataTypeMethodNumber": 26,
-                "deprecated": false,
-                "description": "Converts expression arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
-                "functionId": "to_string<expression>",
-                "functionLabel": "to_string_expression",
-                "functionSignature": "string(expression arg)",
-                "functionDeclaration": "/* Converts value to string */\nstring (\n    expression arg)",
-                "parameters": [
-                    {
-                        "dataType": "script",
-                        "description": "A expression value.",
-                        "minArgs": -1,
-                        "name": "arg",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "string",
-                    "description": "The string representation of the value.",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "gt_time": {
                 "afwCamelCaseFunctionLabel": "afwGtTime",
                 "brief": "Checks for greater than",
@@ -22890,9 +22443,7 @@
                     "dayTimeDuration",
                     "dnsName",
                     "double",
-                    "expression",
                     "hexBinary",
-                    "hybrid",
                     "ia5String",
                     "integer",
                     "ipAddress",
@@ -27943,51 +27494,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "compile_hybrid": {
-                "afwCamelCaseFunctionLabel": "afwCompileHybrid",
-                "brief": "Compile hybrid value",
-                "camelCaseFunctionLabel": "compileHybrid",
-                "category": "hybrid",
-                "dataType": "template",
-                "dataTypeMethodNumber": 51,
-                "deprecated": false,
-                "description": "Compile hybrid value and return either an unevaluated adaptive value or a string containing the compiler listing.",
-                "functionId": "compile<hybrid>",
-                "functionLabel": "compile_hybrid",
-                "functionSignature": "unevaluated(hybrid source, any listing?)",
-                "functionDeclaration": "/* Compile hybrid value */\nunevaluated (\n    hybrid source /* Source to compile */,\n    any listing?  /* Listing option */)",
-                "parameters": [
-                    {
-                        "brief": "Source to compile",
-                        "dataType": "template",
-                        "description": "hybrid string to compile",
-                        "minArgs": -1,
-                        "name": "source",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "brief": "Listing option",
-                        "description": "If specified, a compiler listing is produced instead of an unevaluated expression value.\n\nThis parameter can be an integer between 0 and 10 of a string that is used for indentation.  If 0 is specified, no whitespace is added to the resulting string.  If 1 through 10 is specified, that number of spaces is used.",
-                        "minArgs": -1,
-                        "name": "listing",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "unevaluated",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "at_least_one_member_of_dayTimeDuration": {
                 "afwCamelCaseFunctionLabel": "afwAtLeastOneMemberOfDayTimeDuration",
                 "brief": "Checks for at least one value in common",
@@ -28027,77 +27533,6 @@
                 "pure": true,
                 "returns": {
                     "dataType": "boolean",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
-            "test_expression": {
-                "afwCamelCaseFunctionLabel": "afwTestExpression",
-                "brief": "Test expression",
-                "camelCaseFunctionLabel": "testExpression",
-                "category": "compiler",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Compile and evaluate an adaptive expression and compare the results to an expected value.  Return object with the test's results.",
-                "functionId": "test_expression",
-                "functionLabel": "test_expression",
-                "functionSignature": "object(string id, string description, string expression, any expected, (object _AdaptiveContextType_) additionalContext?)",
-                "functionDeclaration": "/* Test expression */\nobject (\n    string id,\n    string description,\n    string expression,\n    any expected,\n    (object _AdaptiveContextType_) additionalContext?)",
-                "parameters": [
-                    {
-                        "dataType": "string",
-                        "description": "Id of test",
-                        "minArgs": -1,
-                        "name": "id",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "string",
-                        "description": "Description of test",
-                        "minArgs": -1,
-                        "name": "description",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "string",
-                        "description": "Expression to compile and evaluate.",
-                        "minArgs": -1,
-                        "name": "expression",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "description": "Expected result.",
-                        "minArgs": -1,
-                        "name": "expected",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveContextType_",
-                        "description": "Additional context to use first during evaluation.",
-                        "minArgs": -1,
-                        "name": "additionalContext",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": false,
-                "returns": {
-                    "dataType": "object",
-                    "description": "Test results.",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -28602,77 +28037,6 @@
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": true,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
-            "test_hybrid": {
-                "afwCamelCaseFunctionLabel": "afwTestHybrid",
-                "brief": "Test hybrid",
-                "camelCaseFunctionLabel": "testHybrid",
-                "category": "compiler",
-                "dataTypeMethodNumber": 0,
-                "deprecated": false,
-                "description": "Compile and evaluate a string containing adaptive hybrid syntax which can be an adaptive template or adaptive expression tuple and then compare the results to an expected value.  Return object with the test's results.",
-                "functionId": "test_hybrid",
-                "functionLabel": "test_hybrid",
-                "functionSignature": "object(string id, string description, string hybrid, any expected, (object _AdaptiveContextType_) additionalContext?)",
-                "functionDeclaration": "/* Test hybrid */\nobject (\n    string id,\n    string description,\n    string hybrid,\n    any expected,\n    (object _AdaptiveContextType_) additionalContext?)",
-                "parameters": [
-                    {
-                        "dataType": "string",
-                        "description": "Id of test",
-                        "minArgs": -1,
-                        "name": "id",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "string",
-                        "description": "Description of test",
-                        "minArgs": -1,
-                        "name": "description",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "string",
-                        "description": "Hybrid to compile and evaluate.",
-                        "minArgs": -1,
-                        "name": "hybrid",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "description": "Expected evaluated result.",
-                        "minArgs": -1,
-                        "name": "expected",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveContextType_",
-                        "description": "Additional context to use first during evaluation.",
-                        "minArgs": -1,
-                        "name": "additionalContext",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": false,
-                "returns": {
-                    "dataType": "object",
-                    "description": "Test results.",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
                     "polymorphicDataTypeParameter": false
                 },
                 "scriptSupportNumber": 0
@@ -31328,51 +30692,6 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "compile_expression": {
-                "afwCamelCaseFunctionLabel": "afwCompileExpression",
-                "brief": "Compile expression value",
-                "camelCaseFunctionLabel": "compileExpression",
-                "category": "expression",
-                "dataType": "script",
-                "dataTypeMethodNumber": 51,
-                "deprecated": false,
-                "description": "Compile expression value and return either an unevaluated adaptive value or a string containing the compiler listing.",
-                "functionId": "compile<expression>",
-                "functionLabel": "compile_expression",
-                "functionSignature": "unevaluated(expression source, any listing?)",
-                "functionDeclaration": "/* Compile expression value */\nunevaluated (\n    expression source /* Source to compile */,\n    any listing?      /* Listing option */)",
-                "parameters": [
-                    {
-                        "brief": "Source to compile",
-                        "dataType": "script",
-                        "description": "expression string to compile",
-                        "minArgs": -1,
-                        "name": "source",
-                        "optional": false,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    },
-                    {
-                        "brief": "Listing option",
-                        "description": "If specified, a compiler listing is produced instead of an unevaluated expression value.\n\nThis parameter can be an integer between 0 and 10 of a string that is used for indentation.  If 0 is specified, no whitespace is added to the resulting string.  If 1 through 10 is specified, that number of spaces is used.",
-                        "minArgs": -1,
-                        "name": "listing",
-                        "optional": true,
-                        "polymorphicDataType": false,
-                        "polymorphicDataTypeParameter": false
-                    }
-                ],
-                "polymorphic": false,
-                "pure": true,
-                "returns": {
-                    "dataType": "unevaluated",
-                    "minArgs": -1,
-                    "optional": false,
-                    "polymorphicDataType": false,
-                    "polymorphicDataTypeParameter": false
-                },
-                "scriptSupportNumber": 0
-            },
             "normalize_space": {
                 "afwCamelCaseFunctionLabel": "afwNormalizeSpace",
                 "brief": "Trims whitespace from beginning and end",
@@ -32047,9 +31366,6 @@
             },
             "evaluated_boolean": {
                 "key": "evaluated_boolean"
-            },
-            "evaluated_hybrid": {
-                "key": "evaluated_hybrid"
             },
             "evaluated_unknown": {
                 "key": "evaluated_unknown"
