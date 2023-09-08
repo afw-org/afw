@@ -3,7 +3,7 @@
 //? testScript: functions/string_ends_with.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ends_with<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ends_with<string>-1
 //? description: ends with true

@@ -12,7 +12,7 @@
             ]
         },
         "bindParameters": {
-            "dataType": "hybrid",
+            "dataType": "template",
             "dataTypeParameter": "object _AdaptiveConf_adaptor_ldap_bind",
             "description": "Bind parameters for this LDAP adaptor.",
             "label": "Bind Parameters",

@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<hexBinary>-1
 //? description: x

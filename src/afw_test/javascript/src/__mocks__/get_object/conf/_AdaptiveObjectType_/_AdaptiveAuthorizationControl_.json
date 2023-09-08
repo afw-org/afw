@@ -9,7 +9,7 @@
                 "label": "Initial Check",
                 "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object.  A result of permit or deny is the final decision.  If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed.  Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
                 "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "authorizationCheck",
                 "brief": "Initial Authorization Check"
             },
@@ -39,7 +39,7 @@
                 "label": "Core Check",
                 "description": "This is evaluated for authorization checks when running in core mode.  If not specified, access is permitted.  Be very careful when specifying this parameter because an error can cause the application to fail.",
                 "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "authorizationCheck",
                 "brief": "Core Authorization Check"
             },

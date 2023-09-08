@@ -285,11 +285,6 @@ const afw_value_string_t afw_ldap_v_dn = {
     AFW_UTF8_LITERAL("dn")
 };
 
-const afw_value_string_t afw_ldap_v_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("hybrid")
-};
-
 const afw_value_string_t afw_ldap_v_indirect = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("indirect")
@@ -393,6 +388,11 @@ const afw_value_string_t afw_ldap_v_string = {
 const afw_value_string_t afw_ldap_v_subschemaSubentry = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("subschemaSubentry")
+};
+
+const afw_value_string_t afw_ldap_v_template = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("template")
 };
 
 const afw_value_string_t afw_ldap_v_unique = {

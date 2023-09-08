@@ -3,7 +3,7 @@
 //? testScript: functions/double_is_finite.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_finite function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_finite-1
 //? description: Is 'Infinity' finite

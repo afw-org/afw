@@ -3,7 +3,7 @@
 //? testScript: functions/integer_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<integer>-1
 //? description: ...

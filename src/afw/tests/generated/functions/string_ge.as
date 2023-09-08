@@ -3,7 +3,7 @@
 //? testScript: functions/string_ge.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ge<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ge<string>-1
 //? description: one

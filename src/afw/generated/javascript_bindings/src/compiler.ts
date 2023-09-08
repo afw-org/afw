@@ -97,33 +97,6 @@ export function afwCompileRelaxedJson(client : any, json : string, listing? : an
 }
 
 /**
- * Convert a string containing adaptive hybrid syntax, which can be an
- * adaptive template or adaptive expression, to adaptive expression syntax.
- * 
- * @param {string} hybrid - The hybrid to convert.
- * 
- * @param {} whitespace - Add whitespace for readability if present and not 0.
- *     This parameter can be an integer between 0 and 10 or a string that is
- *     used for indentation. If 0 is specified, no whitespace is added to the
- *     resulting string. If 1 through 10 is specified, that number of spaces
- *     is used.
- * 
- * @returns {expression} The converted value in adaptive expression syntax.
- */
-export function afwConvertSyntaxHybridToExpression(client : any, hybrid : string, whitespace? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "convert_syntax_hybrid_to_expression";
-    _action["hybrid"] = hybrid;
-
-    if (whitespace !== undefined)
-        _action["whitespace"] = whitespace;
-
-    return client.perform(_action);
-}
-
-/**
  * Decompile an adaptive value to string.
  * 
  * @param {} value - Value to decompile.
@@ -301,85 +274,6 @@ export function afwStringify(client : any, value : any, replacer? : any, whitesp
 
     if (whitespace !== undefined)
         _action["whitespace"] = whitespace;
-
-    return client.perform(_action);
-}
-
-/**
- * Compile and evaluate an adaptive expression and compare the results to an
- * expected value. Return object with the test's results.
- * 
- * @param {string} id - Id of test
- * 
- * @param {string} description - Description of test
- * 
- * @param {string} expression - Expression to compile and evaluate.
- * 
- * @param {} expected - Expected result.
- * 
- * @param {object} additionalUntrustedQualifiedVariables - This parameter
- *     supplies additional qualified variables that can be accessed during
- *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such as
- *     authorization. This parameter is intended to be used for testing only
- *     and should not be used for anything running in production.
- * 
- * @returns {object} Test results.
- */
-export function afwTestExpression(client : any, id : string, description : string, expression : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "test_expression";
-    _action["id"] = id;
-    _action["description"] = description;
-    _action["expression"] = expression;
-
-    if (expected !== undefined)
-        _action["expected"] = expected;
-
-    if (additionalUntrustedQualifiedVariables !== undefined)
-        _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
-
-    return client.perform(_action);
-}
-
-/**
- * Compile and evaluate a string containing adaptive hybrid syntax which can
- * be an adaptive template or adaptive expression and then compare the results
- * to an expected value. Return object with the test's results.
- * 
- * @param {string} id - Id of test
- * 
- * @param {string} description - Description of test
- * 
- * @param {string} hybrid - Hybrid to compile and evaluate.
- * 
- * @param {} expected - Expected evaluated result.
- * 
- * @param {object} additionalUntrustedQualifiedVariables - This parameter
- *     supplies additional qualified variables that can be accessed during
- *     evaluation. These variables will not be used by anything that needs to
- *     ensure its qualified variables must come from a trusted source, such as
- *     authorization. This parameter is intended to be used for testing only
- *     and should not be used for anything running in production.
- * 
- * @returns {object} Test results.
- */
-export function afwTestHybrid(client : any, id : string, description : string, hybrid : string, expected? : any, additionalUntrustedQualifiedVariables? : object) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "test_hybrid";
-    _action["id"] = id;
-    _action["description"] = description;
-    _action["hybrid"] = hybrid;
-
-    if (expected !== undefined)
-        _action["expected"] = expected;
-
-    if (additionalUntrustedQualifiedVariables !== undefined)
-        _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
 
     return client.perform(_action);
 }

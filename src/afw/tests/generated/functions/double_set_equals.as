@@ -3,7 +3,7 @@
 //? testScript: functions/double_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<double>-1
 //? description: ...

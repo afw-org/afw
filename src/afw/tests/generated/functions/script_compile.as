@@ -3,7 +3,7 @@
 //? testScript: functions/script_compile.as
 //? customPurpose: Part of core function tests
 //? description: Tests for compile<script> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: compile<script>-1
 //? skip: true

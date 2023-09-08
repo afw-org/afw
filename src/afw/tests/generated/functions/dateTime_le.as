@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_le.as
 //? customPurpose: Part of core function tests
 //? description: Tests for le<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: le<dateTime>-1
 //? description: less than

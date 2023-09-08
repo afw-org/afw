@@ -3,7 +3,7 @@
 //? testScript: functions/map.as
 //? customPurpose: Part of core function tests
 //? description: Tests for map function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: map-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: datatypes/dayTimeDuration.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for dayTimeDuration dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: dayTimeDuration-1
 //? description: Test 1 for dayTimeDuration dataType.

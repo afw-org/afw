@@ -3,7 +3,7 @@
 //? testScript: datatypes/base64Binary.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for base64Binary dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: base64Binary-1
 //? description: Test 1 for base64Binary dataType.

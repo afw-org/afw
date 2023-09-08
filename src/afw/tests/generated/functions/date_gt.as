@@ -3,7 +3,7 @@
 //? testScript: functions/date_gt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for gt<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: gt<date>-1
 //? description: true

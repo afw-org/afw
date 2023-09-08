@@ -3,7 +3,7 @@
 //? testScript: functions/double_abs.as
 //? customPurpose: Part of core function tests
 //? description: Tests for abs<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: abs<double>-1
 //? description: 3.1416

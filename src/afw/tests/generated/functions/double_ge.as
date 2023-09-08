@@ -3,7 +3,7 @@
 //? testScript: functions/double_ge.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ge<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ge<double>-1
 //? description: 6 > 5 is true

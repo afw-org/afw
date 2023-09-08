@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<x500Name>-1
 //? description: x

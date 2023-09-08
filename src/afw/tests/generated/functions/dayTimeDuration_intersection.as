@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<dayTimeDuration>-1
 //? description: x

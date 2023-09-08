@@ -1386,7 +1386,7 @@
                             "objectType": "_AdaptivePropertyTypes_"
                         },
                         "y": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         }
                     }
                 }
@@ -2159,34 +2159,34 @@
                             "objectType": "_AdaptivePropertyTypes_"
                         },
                         "subjectId": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "vaultApiKey": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "primaryAffiliation": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "mail": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "nickname": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "fullName": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "givenName": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "displayName": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },                        
                         "affiliation": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },                        
                         "edirgroup": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         }
                     },
                     "environment": {
@@ -2194,13 +2194,13 @@
                             "objectType": "_AdaptivePropertyTypes_"
                         },
                         "sslClientVerify": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "remoteAddr": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         },
                         "authType": {
-                            "dataType": "hybrid"
+                            "dataType": "template"
                         }
                     }
                 }
@@ -2460,7 +2460,7 @@
             "hybrid": {
                 "brief": "A hybrid value",
                 "cType": "const afw_value_t *",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "dataTypeParameterType": "SourceParameter",
                 "description": "Data type hybrid can be a string containing the source for an adaptive expression tuple, an adaptive script, or an adaptive template.  It can also be a literal (evaluated value) such as boolean, double, integer, list, object, or string.\n\nIf the value is a string that begins with a square bracket ('['), the string is the source for an expressionTuple.  If the value is a string that begins with a shebang ('#!'), the string is the source for a script.  If not either of these, but the string contains a substitution ( ${...} ), the string is a source for a template.  In other cases, the string is a string literal.",
                 "directReturn": true,
@@ -2772,7 +2772,7 @@
             "expression": {
                 "brief": "An adaptive expression",
                 "cType": "afw_utf8_t",
-                "dataType": "expression",
+                "dataType": "script",
                 "dataTypeParameterType": "SourceParameter",
                 "description": "Data type expression holds the source for an adaptive expression.",
                 "directReturn": false,
@@ -12784,7 +12784,7 @@
                 "brief": "Evaluate expression value",
                 "camelCaseFunctionLabel": "evaluateExpression",
                 "category": "expression",
-                "dataType": "expression",
+                "dataType": "script",
                 "dataTypeMethodNumber": 52,
                 "deprecated": false,
                 "description": "Compile and evaluate expression value.",
@@ -12795,7 +12795,7 @@
                 "parameters": [
                     {
                         "brief": "Source to evaluate",
-                        "dataType": "expression",
+                        "dataType": "script",
                         "description": "expression string to compile and evaluate",
                         "minArgs": -1,
                         "name": "source",
@@ -15585,7 +15585,7 @@
                 "brief": "Evaluate hybrid value",
                 "camelCaseFunctionLabel": "evaluateHybrid",
                 "category": "hybrid",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "dataTypeMethodNumber": 52,
                 "deprecated": false,
                 "description": "Compile and evaluate hybrid value.",
@@ -15596,7 +15596,7 @@
                 "parameters": [
                     {
                         "brief": "Source to evaluate",
-                        "dataType": "hybrid",
+                        "dataType": "template",
                         "description": "hybrid string to compile and evaluate",
                         "minArgs": -1,
                         "name": "source",
@@ -15661,7 +15661,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "expression",
+                    "dataType": "script",
                     "description": "The converted value in adaptive expression syntax.",
                     "minArgs": -1,
                     "optional": false,
@@ -18222,7 +18222,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "description": "Converted value",
                     "minArgs": -1,
                     "optional": false,
@@ -19081,7 +19081,7 @@
                 "brief": "Converts value to string",
                 "camelCaseFunctionLabel": "toStringHybrid",
                 "category": "hybrid",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "dataTypeMethodNumber": 26,
                 "deprecated": false,
                 "description": "Converts hybrid arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
@@ -19091,7 +19091,7 @@
                 "functionDeclaration": "/* Converts value to string */\nstring (\n    hybrid arg)",
                 "parameters": [
                     {
-                        "dataType": "hybrid",
+                        "dataType": "template",
                         "description": "A hybrid value.",
                         "minArgs": -1,
                         "name": "arg",
@@ -21521,7 +21521,7 @@
                 "polymorphic": false,
                 "pure": true,
                 "returns": {
-                    "dataType": "expression",
+                    "dataType": "script",
                     "description": "Converted value",
                     "minArgs": -1,
                     "optional": false,
@@ -22227,7 +22227,7 @@
                 "brief": "Converts value to string",
                 "camelCaseFunctionLabel": "toStringExpression",
                 "category": "expression",
-                "dataType": "expression",
+                "dataType": "script",
                 "dataTypeMethodNumber": 26,
                 "deprecated": false,
                 "description": "Converts expression arg to string.  For list values, the to_string() value for each entry is returned separated with commas.",
@@ -22237,7 +22237,7 @@
                 "functionDeclaration": "/* Converts value to string */\nstring (\n    expression arg)",
                 "parameters": [
                     {
-                        "dataType": "expression",
+                        "dataType": "script",
                         "description": "A expression value.",
                         "minArgs": -1,
                         "name": "arg",
@@ -27948,7 +27948,7 @@
                 "brief": "Compile hybrid value",
                 "camelCaseFunctionLabel": "compileHybrid",
                 "category": "hybrid",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "dataTypeMethodNumber": 51,
                 "deprecated": false,
                 "description": "Compile hybrid value and return either an unevaluated adaptive value or a string containing the compiler listing.",
@@ -27959,7 +27959,7 @@
                 "parameters": [
                     {
                         "brief": "Source to compile",
-                        "dataType": "hybrid",
+                        "dataType": "template",
                         "description": "hybrid string to compile",
                         "minArgs": -1,
                         "name": "source",
@@ -31333,7 +31333,7 @@
                 "brief": "Compile expression value",
                 "camelCaseFunctionLabel": "compileExpression",
                 "category": "expression",
-                "dataType": "expression",
+                "dataType": "script",
                 "dataTypeMethodNumber": 51,
                 "deprecated": false,
                 "description": "Compile expression value and return either an unevaluated adaptive value or a string containing the compiler listing.",
@@ -31344,7 +31344,7 @@
                 "parameters": [
                     {
                         "brief": "Source to compile",
-                        "dataType": "expression",
+                        "dataType": "script",
                         "description": "expression string to compile",
                         "minArgs": -1,
                         "name": "source",

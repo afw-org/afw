@@ -3,7 +3,7 @@
 //? testScript: datatypes/dateTime.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for dateTime dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: dateTime-1
 //? description: Test 1 for dateTime dataType.

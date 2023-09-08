@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_integer.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_integer<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_integer<string>-1
 //? description: integer from string test 123

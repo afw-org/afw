@@ -3,7 +3,7 @@
 //? testScript: functions/time_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<time>-1
 //? description: x

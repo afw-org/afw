@@ -3,7 +3,7 @@
 //? testScript: functions/date_le.as
 //? customPurpose: Part of core function tests
 //? description: Tests for le<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: le<date>-1
 //? description: true

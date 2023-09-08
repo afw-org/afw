@@ -3,7 +3,7 @@
 //? testScript: functions/integer_multiply.as
 //? customPurpose: Part of core function tests
 //? description: Tests for multiply<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: multiply<integer>-1
 //? description: 5 x 4 x 3 x 2 x 1

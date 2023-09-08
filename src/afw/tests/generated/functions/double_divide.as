@@ -3,7 +3,7 @@
 //? testScript: functions/double_divide.as
 //? customPurpose: Part of core function tests
 //? description: Tests for divide<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: divide<double>-1
 //? description: Divide by self

@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<hexBinary>-1
 //? description: x

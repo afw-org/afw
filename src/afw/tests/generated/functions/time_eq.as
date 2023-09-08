@@ -3,7 +3,7 @@
 //? testScript: functions/time_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<time>-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<boolean>-1
 //? description: True equals False test.

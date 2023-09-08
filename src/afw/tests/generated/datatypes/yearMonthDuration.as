@@ -3,7 +3,7 @@
 //? testScript: datatypes/yearMonthDuration.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for yearMonthDuration dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: yearMonthDuration-1
 //? description: Test 1 for yearMonthDuration dataType.

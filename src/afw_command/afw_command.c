@@ -66,9 +66,6 @@ static const char * impl_additional_help_text =
     "The syntax option (-s) determines how input will be parsed:\n"
     "\n"
     "  -s expression        - The input is an adaptive expression.\n"
-    "  -s hybrid            - The input is an adaptive hybrid.\n"
-    "  -s parentheses       - The input is an adaptive expression enclose in\n"
-    "                         parentheses.\n"
     "  -s script            - The input is an adaptive script.\n"
     "  -s template          - The input is an adaptive template.\n"
     "  -s test_script       - The input is an adaptive test script.\n"
@@ -250,9 +247,7 @@ impl_evaluate(
                 }
                 if (line->len != 0 && !afw_utf8_equal_utf8_z(line, "\n")) {
                     /* If this is a template, remove trailing \n. */
-                    if (self->compile_option == afw_compile_type_template ||
-                        (self->compile_option == afw_compile_type_hybrid &&
-                        *line->s != '['))
+                    if (self->compile_option == afw_compile_type_template)
                     {
                         if (line->s[line->len - 1] == '\n') {
                             line->len--;
@@ -433,23 +428,11 @@ process_args_getopt(afw_command_self_t *self, int argc, const char * const *argv
             break;
 
         case 's':
-            
+
             if (afw_utf8_z_equal(option_arg, "expression"))
             {
-                self->compile_option = afw_compile_type_expression;
+                self->compile_option = afw_compile_type_script;
                 self->can_span_lines = false;
-            }
-
-            else if (afw_utf8_z_equal(option_arg, "hybrid"))
-            {
-                self->compile_option = afw_compile_type_hybrid;
-                self->can_span_lines = true;
-            }
-
-            else if (afw_utf8_z_equal(option_arg, "parenthesized"))
-            {
-                self->compile_option = afw_compile_type_parenthesized_expression;
-                self->can_span_lines = true;
             }
 
             else if (afw_utf8_z_equal(option_arg, "script"))
@@ -564,12 +547,13 @@ process_args(afw_command_self_t *self, int argc, const char * const *argv,
         goto error;
     }
 
-    /* Default -s is script if [IN] specified and e if not. */
+    /* Default -s is script. If no [IN], set can_span_lines to false. */
     if (self->compile_option == afw_compile_type_error)
     {
-        self->compile_option = (self->in_z)
-            ? afw_compile_type_script
-            : afw_compile_type_expression;
+        self->compile_option = afw_compile_type_script;
+        if (!self->in_z) {
+            self->can_span_lines = false;
+        }
     }
 
     /* Interactive mode if not -x or [IN]. */
@@ -811,8 +795,13 @@ main(int argc, const char * const *argv) {
         }
 
         /* If script, only evaluate once. */
-        if (self->compile_option == afw_compile_type_script ||
-            self->compile_option == afw_compile_type_test_script)
+        if (
+                (
+                    self->compile_option == afw_compile_type_script &&
+                    self->can_span_lines
+                ) ||
+                self->compile_option == afw_compile_type_test_script
+            )
         {
             self->read_full = true;
             self->callback = impl_octet_get_cb;

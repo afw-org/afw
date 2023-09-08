@@ -3,7 +3,7 @@
 //? testScript: functions/time_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<time>-1
 //? description: x

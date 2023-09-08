@@ -3,7 +3,7 @@
 //? testScript: functions/double_floor.as
 //? customPurpose: Part of core function tests
 //? description: Tests for floor<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: floor<double>-1
 //? description: 2.8

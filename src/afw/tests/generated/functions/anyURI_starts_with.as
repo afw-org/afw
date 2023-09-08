@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_starts_with.as
 //? customPurpose: Part of core function tests
 //? description: Tests for starts_with<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: starts_with<anyURI>-1
 //? description: x

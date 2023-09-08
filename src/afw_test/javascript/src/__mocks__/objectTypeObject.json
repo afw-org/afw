@@ -113,7 +113,7 @@
             ]
         },
         "expression": {
-            "dataType": "expression",
+            "dataType": "script",
             "label": "Expression Label",
             "brief": "This is a expression",
             "testValues": [
@@ -152,7 +152,7 @@
             ]
         },
         "hybrid": {
-            "dataType": "hybrid",
+            "dataType": "template",
             "label": "Hybrid Label",
             "brief": "This is a hybrid",
             "testValues": [

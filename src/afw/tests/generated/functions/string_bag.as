@@ -3,7 +3,7 @@
 //? testScript: functions/string_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<string>-1
 //? description: Create empty string bag.

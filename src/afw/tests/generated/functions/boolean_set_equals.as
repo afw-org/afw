@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<boolean>-1
 //? description: ...

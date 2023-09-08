@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<base64Binary>-1
 //? description: x

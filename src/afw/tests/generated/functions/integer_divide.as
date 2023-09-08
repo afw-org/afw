@@ -3,7 +3,7 @@
 //? testScript: functions/integer_divide.as
 //? customPurpose: Part of core function tests
 //? description: Tests for divide<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: divide<integer>-1
 //? description: Divide 200 by 5

@@ -3,7 +3,7 @@
 //? testScript: functions/integer_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<integer>-1
 //? description: ...

@@ -3,7 +3,7 @@
 //? testScript: functions/compiler_assert.as
 //? customPurpose: Part of core function tests
 //? description: Tests for assert.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: assert-1
 //? description: Assertion on true

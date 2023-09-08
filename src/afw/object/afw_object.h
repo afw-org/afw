@@ -584,21 +584,21 @@ afw_object_old_get_property_as_array_of_strings(
 
 
 /**
- * @brief Return a compiled hybrid property value.
+ * @brief Return a compiled template property value.
  * @param instance of object.
  * @param property_name of property.  See afw_object_get_property().
  * @param source_location to associate with compiled string or NULL.
  * @param shared struct for shared compile resources or NULL.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return the value representation of a compiled hybrid property.
+ * @return the value representation of a compiled template property.
  *
  * The property value must be an evaluated value.  If the value is
- * data type hybrid or string, it is compiled as a hybrid; otherwise,
+ * data type template or string, it is compiled as a template; otherwise,
  * it's just returned.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_object_old_get_property_as_compiled_hybrid(
+afw_object_old_get_property_as_compiled_template(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,
     const afw_utf8_t *source_location,

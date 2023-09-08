@@ -3,7 +3,7 @@
 //? testScript: functions/gt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for polymorphic functions.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: gt-1
 //? description: GT with integers

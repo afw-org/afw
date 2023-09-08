@@ -3,7 +3,7 @@
 //? testScript: functions/string_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<string>-1
 //? description: ...

@@ -78,7 +78,7 @@ class xpathExpression
      *
      * @param xpathExpression $source xpathExpression string to compile
      * @param  $listing If specified, a compiler listing is produced instead
-     *                  of an unevaluated expression value.
+     *                  of an unevaluated compiled value.
      * 
      *                  This parameter can be an integer between 0 and 10 of a
      *                  string that is used for indentation. If 0 is

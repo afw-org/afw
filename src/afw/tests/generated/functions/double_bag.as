@@ -3,7 +3,7 @@
 //? testScript: functions/double_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<double>-1
 //? description: Create empty double bag.

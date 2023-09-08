@@ -3,7 +3,7 @@
 //? testScript: functions/integer_add.as
 //? customPurpose: Part of core function tests
 //? description: Tests for add<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: add<integer>-1
 //? description: Add 67 and -1

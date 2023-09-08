@@ -3,7 +3,7 @@
 //? testScript: functions/split.as
 //? customPurpose: Part of core function tests
 //? description: Tests for split function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: split-1
 //? description: Test split function with no optional parameters

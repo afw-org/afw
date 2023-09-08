@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_to_string.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_string<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_string<x500Name>-1
 //? description: x

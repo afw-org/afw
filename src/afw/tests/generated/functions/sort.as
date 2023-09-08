@@ -3,7 +3,7 @@
 //? testScript: functions/sort.as
 //? customPurpose: Part of core function tests
 //? description: Tests for sort function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: sort-1
 //? description: Test sort function with integers.

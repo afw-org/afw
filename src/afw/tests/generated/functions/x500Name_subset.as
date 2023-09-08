@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<x500Name>-1
 //? description: x

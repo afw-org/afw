@@ -3,7 +3,7 @@
 //? testScript: functions/string_gt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for gt<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: gt<string>-1
 //? description: one

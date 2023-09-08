@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<rfc822Name>-1
 //? description: x

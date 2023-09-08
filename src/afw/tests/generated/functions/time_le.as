@@ -3,7 +3,7 @@
 //? testScript: functions/time_le.as
 //? customPurpose: Part of core function tests
 //? description: Tests for le<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: le<time>-1
 //? description: x

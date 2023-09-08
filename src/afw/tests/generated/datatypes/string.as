@@ -3,7 +3,7 @@
 //? testScript: datatypes/string.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for string dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: string-1
 //? description: Test 1 for string dataType.

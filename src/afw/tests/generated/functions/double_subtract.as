@@ -3,7 +3,7 @@
 //? testScript: functions/double_subtract.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subtract<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subtract<double>-1
 //? description: INF minus INF

@@ -192,11 +192,9 @@ afw_compile_to_value_with_callback(
         source_location, compile_type, afw_compile_residual_check_to_full, \
         parent, shared, p, xctx)
 
-
-
 /**
- * @brief Compile expression.
- * @param string containing expression to compile.
+ * @brief Compile template.
+ * @param string containing template source to compile.
  * @param source_location to associate with compiled string or NULL.
  * @param parent compiled value for contextual and shared resource or NULL.
  * @param shared struct for shared compile resources or NULL.
@@ -207,17 +205,17 @@ afw_compile_to_value_with_callback(
  * Either shared, parent, or p must be specified.  The p used by the parser
  * is shared->p, parent->p, or p as available in that order.
  */
-#define afw_compile_expression(string, source_location, parent, shared, \
+#define afw_compile_template_source(string, source_location, parent, shared, \
     p, xctx) \
     afw_compile_to_value_with_callback(string, NULL, NULL, \
-        source_location, afw_compile_type_expression, \
+        source_location, afw_compile_type_template, \
         afw_compile_residual_check_to_full, \
         parent, shared, p, xctx)
 
 
 
 /**
- * @brief Compile hybrid.
+ * @brief Compile template.
  * @param value containing hybrid to compile.
  * @param source_location to associate with compiled string or NULL.
  * @param parent compiled value for contextual and shared resource or NULL.
@@ -230,58 +228,13 @@ afw_compile_to_value_with_callback(
  * is shared->p, parent->p, or p as available in that order.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_compile_hybrid(
+afw_compile_template(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
     const afw_value_compiled_value_t *parent,
     const afw_compile_shared_t *shared,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Compile hybrid.
- * @param string containing hybrid source to compile.
- * @param source_location to associate with compiled string or NULL.
- * @param parent compiled value for contextual and shared resource or NULL.
- * @param shared struct for shared compile resources or NULL.
- * @param p to use for result or NULL.
- * @param xctx of caller.
- * @return value
- *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
- */
-#define afw_compile_hybrid_source(string, source_location, parent, shared, \
-    p, xctx) \
-    afw_compile_to_value_with_callback(string, NULL, NULL, \
-        source_location, afw_compile_type_hybrid, \
-        afw_compile_residual_check_to_full, \
-        parent, shared, p, xctx)
-
-
-
-/**
- * @brief Compile template.
- * @param string containing template to compile.
- * @param source_location to associate with compiled string or NULL.
- * @param parent compiled value for contextual and shared resource or NULL.
- * @param shared struct for shared compile resources or NULL.
- * @param p to use for result or NULL.
- * @param xctx of caller.
- * @return value
- *
- * Either shared, parent, or p must be specified.  The p used by the parser
- * is shared->p, parent->p, or p as available in that order.
- */
-#define afw_compile_template(string, source_location, parent, shared, \
-    p, xctx) \
-    afw_compile_to_value_with_callback(string, NULL, NULL, \
-        source_location, afw_compile_type_template, \
-        afw_compile_residual_check_to_full, \
-        parent, shared, p, xctx)
-
 
 
 /**
@@ -307,11 +260,11 @@ AFW_DECLARE(const afw_object_t *)
 afw_compile_to_object(
     const afw_utf8_t *string,
     const afw_utf8_t *source_location,
-    const afw_utf8_t * adaptor_id,
-    const afw_utf8_t * object_type_id,
-    const afw_utf8_t * object_id,
+    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *object_type_id,
+    const afw_utf8_t *object_id,
     afw_boolean_t cede_p,
-    const afw_pool_t * p,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
@@ -333,16 +286,16 @@ afw_compile_to_object(
  * " property " followed by the property name will be appended to the
  * source_location when appropriate.
  *
- * All single data type expression, template, and hybrid values in
- * object will be replaced with the their compiled value.
+ * All single data type template values in object will be replaced with the
+ * their compiled value.
  *
- * The compiled value will be evaluated each time the property in the object
- * is accessed in the context of that access.
+ * The compiled value will be evaluated each time the property in the object is
+ * accessed in the context of that access.
  *
  * This function is called for each conf and map object.
  */
 AFW_DECLARE(void)
-afw_compile_expressions_templates_and_hybrids(
+afw_compile_templates(
     const afw_object_t *object,
     const afw_utf8_t *source_location,
     afw_boolean_t recursive,
@@ -352,7 +305,7 @@ afw_compile_expressions_templates_and_hybrids(
 
 
 /**
- * @brief Compile an object with all hybrid properties.
+ * @brief Compile an object with all template properties.
  * @param object to process.
  * @param source_location to associate with compiled string or NULL.
  * @param shared struct for shared compile resources or NULL.
@@ -366,7 +319,7 @@ afw_compile_expressions_templates_and_hybrids(
  * values.  See afw_xctx_qualifier_stack_qualifier_object_push().  
  */
 AFW_DECLARE(const afw_object_t *)
-afw_compile_object_all_hybrid_properties(
+afw_compile_object_all_template_properties(
     const afw_object_t *object,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,

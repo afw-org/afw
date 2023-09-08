@@ -77,10 +77,9 @@ afw_function_execute_at_least_one_member_of(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, null, object, objectId, objectPath, password,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
+ *   object, objectId, objectPath, password, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -123,10 +122,9 @@ afw_function_execute_bag(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, null, object, objectId, objectPath, password,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
+ *   object, objectId, objectPath, password, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -345,10 +343,9 @@ afw_function_execute_ends_with(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -400,10 +397,9 @@ afw_function_execute_eq(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -450,10 +446,9 @@ afw_function_execute_eqx(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -500,10 +495,9 @@ afw_function_execute_ge(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -696,10 +690,9 @@ afw_function_execute_intersection(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, null, object, objectId, objectPath, password,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration, unevaluated.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress, null,
+ *   object, objectId, objectPath, password, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration, unevaluated.
  *
  * Declaration:
  *
@@ -841,10 +834,9 @@ afw_function_execute_last_index_of(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -936,10 +928,9 @@ afw_function_execute_length(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -1074,10 +1065,9 @@ afw_function_execute_min(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, regexp,
- *   rfc822Name, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, regexp, rfc822Name, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *
@@ -1129,10 +1119,9 @@ afw_function_execute_ne(
  * Supported `<dataType>`:
  *
  *   anyURI, array, base64Binary, boolean, date, dateTime, dayTimeDuration,
- *   dnsName, double, expression, function, hexBinary, hybrid, ia5String,
- *   integer, ipAddress, object, objectId, objectPath, password, rfc822Name,
- *   regexp, script, string, template, time, x500Name, xpathExpression,
- *   yearMonthDuration.
+ *   dnsName, double, function, hexBinary, ia5String, integer, ipAddress,
+ *   object, objectId, objectPath, password, rfc822Name, regexp, script, string,
+ *   template, time, x500Name, xpathExpression, yearMonthDuration.
  *
  * Declaration:
  *

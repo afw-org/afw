@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<base64Binary>-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/double_add.as
 //? customPurpose: Part of core function tests
 //? description: Tests for add<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: add<double>-1
 //? description: Add an array

@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<dayTimeDuration>-1
 //? description: true

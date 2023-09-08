@@ -3,7 +3,7 @@
 //? testScript: functions/yearMonthDuration_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<yearMonthDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<yearMonthDuration>-1
 //? description: x

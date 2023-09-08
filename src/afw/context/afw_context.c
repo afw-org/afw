@@ -502,7 +502,7 @@ afw_context_variable_definitions_compile_and_add_based_on_object(
         AFW_UTF8_FMT "/" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(source_location),
         AFW_UTF8_FMT_ARG(qualifier_id));
-    afw_compile_expressions_templates_and_hybrids(object,
+    afw_compile_templates(object,
         detail_source_location, false, NULL, xctx);
     variable_definitions_object =
         afw_context_type_insure_variable_definitions_object_exists(

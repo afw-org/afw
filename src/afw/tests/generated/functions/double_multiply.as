@@ -3,7 +3,7 @@
 //? testScript: functions/double_multiply.as
 //? customPurpose: Part of core function tests
 //? description: Tests for multiply<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: multiply<double>-1
 //? description: NaN times anything is NaN

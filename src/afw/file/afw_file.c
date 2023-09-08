@@ -321,7 +321,7 @@ afw_file_adaptor_create_cede_p(
     /* Get root from parameters and make it full path. */
     value = afw_object_get_property_compile_and_evaluate_as(
         properties,  &afw_s_root, adaptor->source_location,
-        afw_compile_type_hybrid, p, xctx);
+        afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         afw_adaptor_impl_throw_property_invalid(adaptor,
             &afw_s_root, xctx);

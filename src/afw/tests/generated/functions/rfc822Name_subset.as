@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<rfc822Name>-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<boolean>-1
 //? description: Create empty boolean bag.

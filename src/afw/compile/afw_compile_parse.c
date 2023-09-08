@@ -42,10 +42,6 @@
  *# A parameter passed to the adaptive compiler determines the first
  *# production used for parse.
  *#
- *# Expression - afw_compile_type_expression
- *#
- *# Hybrid - afw_compile_type_hybrid
- *#
  *# Json - afw_compile_type_json and afw_compile_type_relaxed_json
  *#
  *# ParenthesizedExpression - afw_compile_type_parenthesized_expression
@@ -407,72 +403,4 @@ afw_compile_parse_check_symbol(
     afw_size_t symbol_cursor)
 {
 
-}
-
-
-
-/*ebnf>>>
- *
- *# Hybrid is used to parse data type hybrid.
- *#
- *# A hybrid is parsed as a Script, Template, or an evaluated
- *# string as follows:
- *#
- *#     1) If it begins with a '#!', it is parsed as a Script.
- *#     2) Otherwise, it is parsed as a Template.  Note that if the
- *#        template does not contain '${', it produces an evaluated string.
- *#
- *
- * Hybrid ::= Script | Template
- *
- *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_Hybrid(afw_compile_parser_t *parser)
-{
-    afw_code_point_t cp;
-    afw_utf8_t line;
-
-    /* Note: if full_source_type is hybrid (top call), make it more specific. */
-
-    /* If starts with shebang, this is an adaptive script. */
-    if (afw_compile_next_raw_starts_with_z("#!")) {
-        afw_compile_get_raw_line(&line);
-        if (!afw_utf8_contains(&line, &afw_s_afw) &&
-            !afw_utf8_contains(&line, &afw_s_maluba) &&
-            !afw_utf8_contains(&line, &afw_s_JeremyScript))
-        {
-            AFW_COMPILE_THROW_ERROR_Z(
-                "Shebang line must contain 'afw' to be "
-                "recognized as an adaptive script in a hybrid value");
-        }
-
-        if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-            parser->compiled_value->full_source_type = &afw_s_script;
-        }
-
-        return afw_compile_parse_StatementList(parser,
-            NULL, false, false, true);
-    }
-
-    /* Get first codepoint. */
-    cp = afw_compile_peek_code_point(parser);
-
-    /* If no input, return empty string. */
-    if (cp < 0) {
-        if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-            parser->compiled_value->full_source_type = &afw_s_string;
-        }
-        return afw_value_empty_string;
-    }
-
-    /*
-     * Otherwise, return parser template.  Template is always one line, so
-     * force residual check to none and callback to NULL.
-     */
-    parser->residual_check = afw_compile_residual_check_none;
-    parser->callback = NULL;
-    if (parser->compiled_value->full_source_type == &afw_s_hybrid) {
-        parser->compiled_value->full_source_type = &afw_s_template;
-    }
-    return afw_compile_parse_Template(parser);
 }

@@ -3,7 +3,7 @@
 //? testScript: functions/not.as
 //? customPurpose: Part of core function tests
 //? description: Tests for not function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: not-1
 //? description: x

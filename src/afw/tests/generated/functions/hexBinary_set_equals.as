@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<hexBinary>-1
 //? description: x

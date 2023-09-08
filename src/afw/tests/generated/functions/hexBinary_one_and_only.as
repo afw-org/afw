@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<hexBinary>-1
 //? description: x

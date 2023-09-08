@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_dateTime.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_dateTime<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_dateTime<string>-1
 //? description: 2004-04-12T13:20:00

@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<base64Binary>-1
 //? description: x

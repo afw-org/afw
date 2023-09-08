@@ -3,7 +3,7 @@
 //? testScript: functions/string_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<string>-1
 //? description: ...

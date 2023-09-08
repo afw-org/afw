@@ -2,7 +2,7 @@
     "$defs": {
         "_AdaptiveHybridProperties_": {
             "additionalProperties": {
-                "description": "Each property is a hybrid value.",
+                "description": "Each property is a template value.",
                 "type": "string"
             },
             "anyOf": [
@@ -58,7 +58,7 @@
                     "type": "string"
                 },
                 "onGetInitialObjectId": {
-                    "description": "This optional hybrid value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.",
+                    "description": "This optional template value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.",
                     "title": "On Get Initial ObjectId",
                     "type": "string"
                 },
@@ -145,22 +145,22 @@
                     "type": "string"
                 },
                 "method": {
-                    "description": "This is a method for this object that can be called in expressions. This hybrid value must be a lambda function expressed in adaptive script syntax.",
+                    "description": "This is a method for this object that can be called in expressions. This template value must be a lambda function expressed in adaptive script syntax.",
                     "title": "Method",
                     "type": "string"
                 },
                 "onGetInitialValue": {
-                    "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+                    "description": "This is a template value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
                     "title": "On Get Initial Value",
                     "type": "string"
                 },
                 "onGetProperty": {
-                    "description": "This hybrid is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+                    "description": "This template is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
                     "title": "On Get Property",
                     "type": "string"
                 },
                 "onSetProperty": {
-                    "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+                    "description": "This template is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
                     "title": "On Set Property",
                     "type": "string"
                 },
@@ -634,7 +634,7 @@
                     "type": "object"
                 },
                 "skeleton": {
-                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type hybrid value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
                     "title": "Skeleton"
                 },
                 "tags": {

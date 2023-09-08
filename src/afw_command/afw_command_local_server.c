@@ -379,7 +379,7 @@ impl_read_and_process_request(
                     p, xctx);
                 action_object = afw_object_create(p, xctx);
                 afw_object_set_property_as_string(action_object,
-                    &afw_s_function, &afw_s_evaluate_expression, xctx);
+                    &afw_s_function, &afw_s_evaluate_script, xctx);
                 afw_object_set_property_as_string(action_object,
                     &afw_s_source, string, xctx);
                 response_object = afw_action_perform(
@@ -498,7 +498,7 @@ afw_command_local_server_create(
     self->mode = afw_command_local_server_mode_evaluate_direct;
 
     /** @todo these should be able to be changed. */
-    self->evaluate_function_id = &afw_s_evaluate_expression;
+    self->evaluate_function_id = &afw_s_evaluate_script;
     self->content_type = command_self->content_type_in;
    
     /* Create and set runtime object for server. */

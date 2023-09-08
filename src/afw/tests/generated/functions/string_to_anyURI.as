@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_anyURI.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_anyURI<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_anyURI<string>-1
 //? description: x

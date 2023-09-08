@@ -3,7 +3,7 @@
 //? testScript: datatypes/x500Name.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for x500Name dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: x500Name-1
 //? description: Test 1 for x500Name dataType.

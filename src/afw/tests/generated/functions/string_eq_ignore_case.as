@@ -3,7 +3,7 @@
 //? testScript: functions/string_eq_ignore_case.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq_ignore_case<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq_ignore_case<string>-1
 //? description: true

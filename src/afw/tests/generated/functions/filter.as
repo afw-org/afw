@@ -3,7 +3,7 @@
 //? testScript: functions/filter.as
 //? customPurpose: Part of core function tests
 //? description: Tests for filter function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: filter-1
 //? description: Test filter function with integers.

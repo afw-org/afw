@@ -3,7 +3,7 @@
 //? testScript: functions/integer_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<integer>-1
 //? description: -9223372036854775807 equal

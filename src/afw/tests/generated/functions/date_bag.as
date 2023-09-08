@@ -3,7 +3,7 @@
 //? testScript: functions/date_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<date>-1
 //? description: One

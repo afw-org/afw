@@ -3,7 +3,7 @@
 //? testScript: datatypes/boolean.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for boolean dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: boolean-1
 //? description: Test 1 for boolean dataType.

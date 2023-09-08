@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_yearMonthDuration.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_yearMonthDuration<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_yearMonthDuration<string>-1
 //? description: P2Y6M

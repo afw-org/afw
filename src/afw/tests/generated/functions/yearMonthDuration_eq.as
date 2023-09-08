@@ -3,7 +3,7 @@
 //? testScript: functions/yearMonthDuration_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<yearMonthDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<yearMonthDuration>-1
 //? description: x

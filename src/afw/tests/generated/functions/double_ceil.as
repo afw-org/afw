@@ -3,7 +3,7 @@
 //? testScript: functions/double_ceil.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ceil<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ceil<double>-1
 //? description: 2.8

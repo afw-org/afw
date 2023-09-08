@@ -3,7 +3,7 @@
 //? testScript: functions/date_add_yearMonthDuration.as
 //? customPurpose: Part of core function tests
 //? description: Tests for add_yearMonthDuration<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: add_yearMonthDuration<date>-1
 //? description: One

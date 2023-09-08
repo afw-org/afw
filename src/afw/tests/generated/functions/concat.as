@@ -3,7 +3,7 @@
 //? testScript: functions/concat.as
 //? customPurpose: Part of core function tests
 //? description: Tests for concat function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: concat-1
 //? description: string concatenate test a bc def 

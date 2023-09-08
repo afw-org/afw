@@ -3,7 +3,7 @@
 //? testScript: functions/anyURI_substring.as
 //? customPurpose: Part of core function tests
 //? description: Tests for substring<anyURI> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: substring<anyURI>-1
 //? description: string substring test http://www.clemson.edu 0 5

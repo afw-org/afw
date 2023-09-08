@@ -3,7 +3,7 @@
 //? testScript: functions/date_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<date> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<date>-1
 //? description: x

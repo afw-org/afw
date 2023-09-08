@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<dayTimeDuration>-1
 //? description: equals

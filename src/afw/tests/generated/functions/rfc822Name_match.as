@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_match.as
 //? customPurpose: Part of core function tests
 //? description: Tests for match<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: match<rfc822Name>-1
 //? skip: true

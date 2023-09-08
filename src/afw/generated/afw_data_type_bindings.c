@@ -106,12 +106,6 @@ afw_register_data_type_infs(
         &afw_value_evaluated_double_inf,
         xctx);
 
-    /* Register value inf id evaluated_expression */
-    afw_environment_register_value_inf(
-        &afw_value_evaluated_expression_inf.rti.implementation_id,
-        &afw_value_evaluated_expression_inf,
-        xctx);
-
     /* Register value inf id evaluated_function */
     afw_environment_register_value_inf(
         &afw_value_evaluated_function_inf.rti.implementation_id,
@@ -122,12 +116,6 @@ afw_register_data_type_infs(
     afw_environment_register_value_inf(
         &afw_value_evaluated_hexBinary_inf.rti.implementation_id,
         &afw_value_evaluated_hexBinary_inf,
-        xctx);
-
-    /* Register value inf id evaluated_hybrid */
-    afw_environment_register_value_inf(
-        &afw_value_evaluated_hybrid_inf.rti.implementation_id,
-        &afw_value_evaluated_hybrid_inf,
         xctx);
 
     /* Register value inf id evaluated_ia5String */

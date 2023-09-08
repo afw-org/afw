@@ -23,7 +23,7 @@
         "consumeFilter": {
             "allowQuery": true,
             "brief": "Expression that determines if a journal entry is applicable to be consumed by this peer",
-            "dataType": "expression",
+            "dataType": "script",
             "defaultValue": "true",
             "description": "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer.",
             "label": "Consume Filter"

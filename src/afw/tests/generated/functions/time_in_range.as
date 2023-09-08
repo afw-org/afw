@@ -3,7 +3,7 @@
 //? testScript: functions/time_in_range.as
 //? customPurpose: Part of core function tests
 //? description: Tests for in_range<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: in_range<time>-1
 //? description: x

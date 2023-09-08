@@ -3,7 +3,7 @@
 //? testScript: functions/string_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<string>-1
 //? description: ...

@@ -3,7 +3,7 @@
 //? testScript: functions/integer_ge.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ge<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ge<integer>-1
 //? description: 9223372036854775807 >= 9223372036854775807

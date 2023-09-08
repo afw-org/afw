@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<hexBinary>-1
 //? description: x

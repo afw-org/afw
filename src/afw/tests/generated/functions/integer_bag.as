@@ -3,7 +3,7 @@
 //? testScript: functions/integer_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<integer>-1
 //? description: Create empty integer bag.

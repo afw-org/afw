@@ -3,7 +3,7 @@
 //? testScript: functions/integer_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<integer>-1
 //? description: 0 is not in bag

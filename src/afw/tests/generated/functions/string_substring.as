@@ -3,7 +3,7 @@
 //? testScript: functions/string_substring.as
 //? customPurpose: Part of core function tests
 //? description: Tests for substring<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: substring<string>-1
 //? description: string substring test abc 0 1

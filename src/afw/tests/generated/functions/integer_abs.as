@@ -3,7 +3,7 @@
 //? testScript: functions/integer_abs.as
 //? customPurpose: Part of core function tests
 //? description: Tests for abs<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: abs<integer>-1
 //? description: Absolute value of -45.6

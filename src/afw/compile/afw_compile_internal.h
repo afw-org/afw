@@ -1171,7 +1171,8 @@ afw_compile_parse_Reference(afw_compile_parser_t *parser);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Script(
-    afw_compile_parser_t *parser);
+    afw_compile_parser_t *parser,
+    afw_boolean_t end_is_close_brace);
 
 
 
@@ -1217,10 +1218,6 @@ afw_compile_parse_Type(afw_compile_parser_t *parser);
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Value(afw_compile_parser_t *parser);
 
-
-
-AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_Hybrid(afw_compile_parser_t *parser);
 
 
 AFW_DEFINE_INTERNAL(const afw_value_symbol_reference_t *)

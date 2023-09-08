@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_add_dayTimeDuration.as
 //? customPurpose: Part of core function tests
 //? description: Tests for add_dayTimeDuration<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: add_dayTimeDuration<dateTime>-1
 //? description: Add a day

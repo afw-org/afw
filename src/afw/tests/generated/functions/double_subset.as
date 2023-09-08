@@ -3,7 +3,7 @@
 //? testScript: functions/double_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<double>-1
 //? description: ...

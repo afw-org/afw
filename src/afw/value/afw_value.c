@@ -568,7 +568,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
                 ((const afw_value_object_t *)untrusted_qualified_variables)->internal,
                 &iterator, &property_name, xctx)))
             {
-                qualifier_object = afw_compile_object_all_hybrid_properties(
+                qualifier_object = afw_compile_object_all_template_properties(
                     object, NULL, NULL, p, xctx);
                 afw_xctx_qualifier_stack_qualifier_object_push(property_name, qualifier_object,
                     false, p, xctx);

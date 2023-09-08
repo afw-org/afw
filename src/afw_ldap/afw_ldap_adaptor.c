@@ -55,7 +55,7 @@ afw_ldap_internal_adaptor_create_cede_p(
     }
 
     /* Get compiled bindParameter. */
-    self->bind_parameters = afw_object_old_get_property_as_compiled_hybrid(
+    self->bind_parameters = afw_object_old_get_property_as_compiled_template(
         properties, &afw_ldap_s_bindParameters,
         adaptor->impl->source_location, NULL, adaptor->p, xctx);
 

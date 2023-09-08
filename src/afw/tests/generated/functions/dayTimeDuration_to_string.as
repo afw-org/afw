@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_to_string.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_string<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_string<dayTimeDuration>-1
 //? description: x

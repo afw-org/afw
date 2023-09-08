@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_match.as
 //? customPurpose: Part of core function tests
 //? description: Tests for match<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: match<x500Name>-1
 //? skip: true

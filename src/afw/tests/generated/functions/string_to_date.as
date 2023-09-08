@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_date.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_date<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_date<string>-1
 //? description: One

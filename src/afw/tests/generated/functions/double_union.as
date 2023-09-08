@@ -3,7 +3,7 @@
 //? testScript: functions/double_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<double>-1
 //? description: ...

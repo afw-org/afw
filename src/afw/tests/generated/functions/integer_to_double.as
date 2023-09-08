@@ -3,7 +3,7 @@
 //? testScript: functions/integer_to_double.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_double<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_double<integer>-1
 //? description: 9223372036854775807

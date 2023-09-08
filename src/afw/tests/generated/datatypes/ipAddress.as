@@ -3,7 +3,7 @@
 //? testScript: datatypes/ipAddress.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for ipAddress dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ipAddress-1
 //? description: Test 1 for ipAddress dataType.

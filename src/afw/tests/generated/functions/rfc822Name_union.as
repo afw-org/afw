@@ -3,7 +3,7 @@
 //? testScript: functions/rfc822Name_union.as
 //? customPurpose: Part of core function tests
 //? description: Tests for union<rfc822Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: union<rfc822Name>-1
 //? description: x

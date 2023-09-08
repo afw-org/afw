@@ -144,7 +144,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -378,7 +378,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -597,7 +597,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -807,7 +807,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -1338,7 +1338,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -1589,7 +1589,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -1800,7 +1800,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -2027,7 +2027,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -2246,7 +2246,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -2464,7 +2464,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -2896,7 +2896,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -3129,7 +3129,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {
@@ -3527,7 +3527,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "application": {
@@ -3839,7 +3839,7 @@
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "dataType": "hybrid"
+                        "dataType": "template"
                     }
                 },
                 "current": {

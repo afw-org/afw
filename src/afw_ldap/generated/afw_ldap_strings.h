@@ -757,20 +757,6 @@ extern const afw_value_string_t afw_ldap_v_dn;
 
 
 
-/** @brief define for quoted string "hybrid" */
-#define AFW_LDAP_Q_hybrid "hybrid"
-
-/** @brief 'afw_utf8_t' for string "hybrid" */
-#define afw_ldap_s_hybrid (afw_ldap_v_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "hybrid" */
-extern const afw_value_string_t afw_ldap_v_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "hybrid" */
-#define afw_ldap_z_hybrid (afw_ldap_v_hybrid.internal.s)
-
-
-
 /** @brief define for quoted string "indirect" */
 #define AFW_LDAP_Q_indirect "indirect"
 
@@ -1062,6 +1048,20 @@ extern const afw_value_string_t afw_ldap_v_subschemaSubentry;
 
 /** @brief 'afw_utf8_z_t *' for string "subschemaSubentry" */
 #define afw_ldap_z_subschemaSubentry (afw_ldap_v_subschemaSubentry.internal.s)
+
+
+
+/** @brief define for quoted string "template" */
+#define AFW_LDAP_Q_template "template"
+
+/** @brief 'afw_utf8_t' for string "template" */
+#define afw_ldap_s_template (afw_ldap_v_template.internal)
+
+/** @brief 'afw_value_string_t' for string "template" */
+extern const afw_value_string_t afw_ldap_v_template;
+
+/** @brief 'afw_utf8_z_t *' for string "template" */
+#define afw_ldap_z_template (afw_ldap_v_template.internal.s)
 
 
 

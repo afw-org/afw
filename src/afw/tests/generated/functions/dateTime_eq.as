@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<dateTime>-1
 //? description: x

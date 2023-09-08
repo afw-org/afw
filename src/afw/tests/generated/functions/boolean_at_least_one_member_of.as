@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<boolean>-1
 //? description: ...

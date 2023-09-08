@@ -209,33 +209,12 @@ afw_compile_to_value_with_callback(
             /* Process based on compile option. */
             if (compile_type == afw_compile_type_script) {
                 parser->compiled_value->full_source_type = &afw_s_script;
-                *interim = afw_compile_parse_Script(parser);
+                *interim = afw_compile_parse_Script(parser, false);
             }
 
             else if (compile_type == afw_compile_type_template) {
                 parser->compiled_value->full_source_type = &afw_s_template;
                 *interim = afw_compile_parse_Template(parser);
-            }
-
-            else if (compile_type == afw_compile_type_expression) {
-                parser->compiled_value->full_source_type = &afw_s_expression;
-                *interim = afw_compile_parse_Expression(parser);
-            }
-
-            else if (compile_type == afw_compile_type_parenthesized_expression) {
-                parser->compiled_value->full_source_type = &afw_s_expression;
-                afw_compile_skip_ws(parser);
-                if (afw_compile_is_at_eof()) {
-                    result = NULL;
-                    break;
-                }
-                *interim = afw_compile_parse_ParenthesizedExpression(parser);
-            }
-
-            else if (compile_type == afw_compile_type_hybrid) {
-                parser->compiled_value->full_source_type = &afw_s_hybrid;
-                afw_compile_skip_ws(parser);
-                *interim = afw_compile_parse_Hybrid(parser);
             }
 
             else if (compile_type == afw_compile_type_test_script) {
@@ -367,9 +346,9 @@ afw_compile_to_object(
 }
 
 
-/* Compile hybrid. */
+/* Compile template. */
 AFW_DEFINE(const afw_value_t *)
-afw_compile_hybrid(
+afw_compile_template(
     const afw_value_t *value,
     const afw_utf8_t *source_location,
     const afw_value_compiled_value_t *parent,
@@ -386,7 +365,7 @@ afw_compile_hybrid(
     }
 
     source = afw_value_as_utf8(value, p, xctx);
-    result = afw_compile_hybrid_source(source,
+    result = afw_compile_template_source(source,
         source_location, parent, shared, p, xctx);
     return result;
 }
@@ -395,7 +374,7 @@ afw_compile_hybrid(
 
 /* Compile object's expressions and templates properties. */
 AFW_DEFINE(void)
-afw_compile_expressions_templates_and_hybrids(
+afw_compile_templates(
     const afw_object_t *object,
     const afw_utf8_t *source_location,
     afw_boolean_t recursive,
@@ -425,22 +404,8 @@ afw_compile_expressions_templates_and_hybrids(
                 &iterator,  &property_name, xctx);
         if (!value) break;
 
-        /* If this is an expression value, compile it. */
-        if (afw_value_is_expression(value)) {
-            detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(property_name));
-            value = afw_compile_to_value(
-                &((afw_value_expression_t *)value)->internal,
-                detail_source_location,
-                afw_compile_type_expression,
-                NULL, shared, NULL, xctx);
-            afw_object_set_property(object, property_name, value, xctx);
-        }
-
         /* If this is a template value, compile it. */
-        else if (afw_value_is_template(value)) {
+       if (afw_value_is_template(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
                 AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
@@ -453,25 +418,13 @@ afw_compile_expressions_templates_and_hybrids(
             afw_object_set_property(object, property_name, value, xctx);
         }
 
-        /* If this is a hybrid value, compile it. */
-        else if (afw_value_is_hybrid(value)) {
-            detail_source_location = afw_utf8_printf(object->p, xctx,
-                AFW_UTF8_FMT "/" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(source_location),
-                AFW_UTF8_FMT_ARG(property_name));
-            value = afw_compile_hybrid(
-                value, detail_source_location,
-                NULL, shared, NULL, xctx);
-            afw_object_set_property(object, property_name, value, xctx);
-        }
-
         /* Recursively process objects. */
         else if (recursive && afw_value_is_object(value)) {
             detail_source_location = afw_utf8_printf(object->p, xctx,
                 AFW_UTF8_FMT "/" AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(source_location),
                 AFW_UTF8_FMT_ARG(property_name));
-            afw_compile_expressions_templates_and_hybrids(
+            afw_compile_templates(
                 ((const afw_value_object_t *)value)->internal,
                 detail_source_location, true, shared, xctx);
         }
@@ -481,9 +434,9 @@ afw_compile_expressions_templates_and_hybrids(
 }
 
 
-/* Compile an object with all hybrid properties. */
+/* Compile an object with all template properties. */
 AFW_DEFINE(const afw_object_t *)
-afw_compile_object_all_hybrid_properties(
+afw_compile_object_all_template_properties(
     const afw_object_t *object,
     const afw_utf8_t *source_location,
     const afw_compile_shared_t *shared,
@@ -518,10 +471,10 @@ afw_compile_object_all_hybrid_properties(
             !afw_utf8_equal(&value_data_type->cType, &afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
-                AFW_UTF8_FMT " is not a hybrid",
+                AFW_UTF8_FMT " is not a template",
                 AFW_UTF8_FMT_ARG(detail_source_location));
         }
-        compiled_value = afw_compile_hybrid_source(
+        compiled_value = afw_compile_template_source(
             &((const afw_value_string_t *)value)->internal,
             detail_source_location, NULL, shared, p, xctx);
         afw_object_set_property(result, property_name, compiled_value, xctx);

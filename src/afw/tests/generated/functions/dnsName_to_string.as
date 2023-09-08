@@ -3,7 +3,7 @@
 //? testScript: functions/dnsName_to_string.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_string<dnsName> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_string<dnsName>-1
 //? description: example.org

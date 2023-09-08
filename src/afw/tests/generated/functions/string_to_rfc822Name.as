@@ -3,7 +3,7 @@
 //? testScript: functions/string_to_rfc822Name.as
 //? customPurpose: Part of core function tests
 //? description: Tests for to_rfc822Name<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: to_rfc822Name<string>-1
 //? description: x

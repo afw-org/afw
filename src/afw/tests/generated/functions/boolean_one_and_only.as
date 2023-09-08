@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<boolean>-1
 //? description: ...

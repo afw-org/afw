@@ -4261,7 +4261,7 @@
                     },
                     "label": "On retrieve_objects",
                     "description": "This can be specified to override default retrieve_objects() processing.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelRetrieveObjects",
                     "brief": "Hybrid to execute on retrieve_objects()"
                 },
@@ -4271,7 +4271,7 @@
                     },
                     "label": "On replace_object",
                     "description": "This can be specified to override default replace_object() processing.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelReplaceObject",
                     "brief": "Hybrid to execute on replace_object()"
                 },
@@ -4281,7 +4281,7 @@
                     },
                     "label": "On modify_object",
                     "description": "This can be specified to override default modify_object() processing.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelModifyObject",
                     "brief": "Hybrid to execute on modify_object()"
                 },
@@ -4291,7 +4291,7 @@
                     },
                     "label": "On get_object",
                     "description": "This can be specified to override default get_object() processing.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelGetObject",
                     "brief": "Hybrid to execute on get_object()"
                 },
@@ -4301,7 +4301,7 @@
                     },
                     "label": "On delete_object",
                     "description": "This can be specified to override default delete_object() processing.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelDeleteObject",
                     "brief": "Hybrid to execute on delete_object()"
                 },
@@ -4311,7 +4311,7 @@
                     },
                     "label": "On add_object",
                     "description": "This can be specified to override default add_object() processing.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelAddObject",
                     "brief": "Hybrid to execute on add_object()"
                 },
@@ -4330,7 +4330,7 @@
                     },
                     "label": "Initial Object Id",
                     "description": "This optional hybrid value is evaluated to determine the objectId on add requests.  If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one.  Even if specified, the adaptor is free to ignore this.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelInitialObjectId",
                     "brief": "Optional hybrid value is evaluated to determine the objectId on add requests"
                 },
@@ -5449,7 +5449,7 @@
                     "label": "Bind Parameters",
                     "description": "Bind parameters for this LDAP adaptor.",
                     "dataTypeParameter": "object _AdaptiveConf_adaptor_ldap_bind",
-                    "dataType": "hybrid"
+                    "dataType": "template"
                 }
             },
             "objectType": "_AdaptiveConf_adaptor_ldap",
@@ -10243,7 +10243,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Filter expression",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "boolean",
                     "defaultValue": true,
                     "description": "Filter expression used to determine whether to log a particular message.",
@@ -10255,7 +10255,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Log format",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "string",
                     "description": "Log format.",
                     "label": "Format"
@@ -10766,7 +10766,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Filter expression",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "boolean",
                     "defaultValue": true,
                     "description": "Filter expression used to determine whether to log a particular message.",
@@ -10778,7 +10778,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Log format",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "string",
                     "description": "Log format.",
                     "label": "Format"
@@ -11309,7 +11309,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Filter expression",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "boolean",
                     "defaultValue": true,
                     "description": "Filter expression used to determine whether to log a particular message.",
@@ -11321,7 +11321,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Log format",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "string",
                     "description": "Log format.",
                     "label": "Format"
@@ -12236,7 +12236,7 @@
                     "label": "Initial Check",
                     "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object.  A result of permit or deny is the final decision.  If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed.  Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
                     "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "authorizationCheck",
                     "brief": "Initial Authorization Check"
                 },
@@ -12270,7 +12270,7 @@
                     "label": "Core Check",
                     "description": "This is evaluated for authorization checks when running in core mode.  If not specified, access is permitted.  Be very careful when specifying this parameter because an error can cause the application to fail.",
                     "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "authorizationCheck",
                     "brief": "Core Authorization Check"
                 },
@@ -12387,7 +12387,7 @@
                     "label": "Consume Filter",
                     "description": "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer.",
                     "defaultValue": "true",
-                    "dataType": "expression",
+                    "dataType": "script",
                     "brief": "Expression that determines if a journal entry is applicable to be consumed by this peer",
                     "allowQuery": true
                 },
@@ -13667,7 +13667,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Additional constraint for the value",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "description": "Additional constraint for the value.",
                     "label": "Additional Constraints"
                 },
@@ -17577,7 +17577,7 @@
                     },
                     "label": "Additional Constraints",
                     "description": "Additional constraint for the value.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "Additional constraint for the value",
                     "allowQuery": true
                 }
@@ -18225,7 +18225,7 @@
                     "label": "Authorization Check",
                     "description": "This is hybrid is evaluated to determine whether to allow the requested access to the specified resourceId and/or object.",
                     "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "authorizationCheck",
                     "brief": "Hybrid to determine whether to allow access to the specified resourceId and/or object",
                     "allowQuery": true
@@ -18478,7 +18478,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Additional constraint for the value",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "description": "Additional constraint for the value.",
                     "label": "Additional Constraints"
                 },
@@ -18795,7 +18795,7 @@
                 "_meta_": {
                     "objectType": "_AdaptiveValueMeta_"
                 },
-                "dataType": "hybrid"
+                "dataType": "template"
             },
             "objectType": "_AdaptiveHybridProperties_",
             "description": "Each property is a hybrid value.",
@@ -18955,7 +18955,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Additional constraint for the value",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "description": "Additional constraint for the value.",
                     "label": "Additional Constraints"
                 },
@@ -19248,7 +19248,7 @@
                     },
                     "label": "Set Value",
                     "description": "This hybrid is evaluated to produce the value of this property for add/modify/replace object requests.  If initialValue is specified, setProperty is ignored for add object requests.  If setProperty is not specified and the property exists in the current object, that value is used.  If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelSetProperty",
                     "brief": "Evaluated when setting an object property"
                 },
@@ -19258,7 +19258,7 @@
                     },
                     "label": "Method",
                     "description": "This is a method for this object that can be called in expressions.  This hybrid value must be a lambda function expressed in either expression or expressionTuple syntax.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "This executes when this property is called as a method"
                 },
                 "mappedPropertyName": {
@@ -19276,7 +19276,7 @@
                     },
                     "label": "Initial Value",
                     "description": "This is a hybrid value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "Initial value to for this property"
                 },
                 "getProperty": {
@@ -19285,7 +19285,7 @@
                     },
                     "label": "Get Value",
                     "description": "This hybrid is evaluated to produce the value of this property when getting an object.  If a value of null is returned, the property will not be included in the resulting object.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "contextType": "modelGetProperty",
                     "brief": "Evaluated when getting an object property"
                 },
@@ -22726,7 +22726,7 @@
                     "required": true,
                     "label": "Model Adaptor",
                     "description": "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects",
                     "allowQuery": true
                 },
@@ -22737,7 +22737,7 @@
                     "required": true,
                     "label": "Model",
                     "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor",
                     "allowQuery": true
                 },
@@ -22748,7 +22748,7 @@
                     "required": true,
                     "label": "Mapped Adaptor",
                     "description": "This is the default mappedAdaptorId value.",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "This is the default mappedAdaptorId value",
                     "allowQuery": true
                 },
@@ -25690,7 +25690,7 @@
                     "label": "Format",
                     "description": "Log format.",
                     "dataTypeParameter": "string",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "Log format",
                     "allowQuery": true
                 },
@@ -25713,7 +25713,7 @@
                     "description": "Filter expression used to determine whether to log a particular message.",
                     "defaultValue": true,
                     "dataTypeParameter": "boolean",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "brief": "Filter expression",
                     "allowQuery": true
                 },
@@ -26401,7 +26401,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Filter expression",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "boolean",
                     "defaultValue": true,
                     "description": "Filter expression used to determine whether to log a particular message.",
@@ -26413,7 +26413,7 @@
                     },
                     "allowQuery": true,
                     "brief": "Log format",
-                    "dataType": "hybrid",
+                    "dataType": "template",
                     "dataTypeParameter": "string",
                     "description": "Log format.",
                     "label": "Format"

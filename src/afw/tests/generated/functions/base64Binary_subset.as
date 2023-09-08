@@ -3,7 +3,7 @@
 //? testScript: functions/base64Binary_subset.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subset<base64Binary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subset<base64Binary>-1
 //? description: x

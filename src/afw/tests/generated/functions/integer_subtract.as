@@ -3,7 +3,7 @@
 //? testScript: functions/integer_subtract.as
 //? customPurpose: Part of core function tests
 //? description: Tests for subtract<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: subtract<integer>-1
 //? description: Subtract 67 and 1

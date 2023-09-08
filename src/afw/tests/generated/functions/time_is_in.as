@@ -3,7 +3,7 @@
 //? testScript: functions/time_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<time>-1
 //? description: x

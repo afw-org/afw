@@ -3,7 +3,7 @@
 //? testScript: functions/integer_gt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for gt<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: gt<integer>-1
 //? description: 9223372036854775807 > 9223372036854775807

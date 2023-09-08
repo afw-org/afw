@@ -3,7 +3,7 @@
 //? testScript: functions/hexBinary_intersection.as
 //? customPurpose: Part of core function tests
 //? description: Tests for intersection<hexBinary> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: intersection<hexBinary>-1
 //? description: x

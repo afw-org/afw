@@ -275,7 +275,7 @@
                     "type": "object"
                 },
                 "skeleton": {
-                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type hybrid value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
                     "title": "Skeleton"
                 },
                 "tags": {

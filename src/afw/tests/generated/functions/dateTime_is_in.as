@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<dateTime>-1
 //? description: true

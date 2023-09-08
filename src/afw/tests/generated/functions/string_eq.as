@@ -3,7 +3,7 @@
 //? testScript: functions/string_eq.as
 //? customPurpose: Part of core function tests
 //? description: Tests for eq<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: eq<string>-1
 //? description: true

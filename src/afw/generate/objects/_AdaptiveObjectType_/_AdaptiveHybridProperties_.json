@@ -3,9 +3,9 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Each property is a hybrid value.",
+    "description": "Each property is a template value.",
     "objectType": "_AdaptiveHybridProperties_",
     "otherProperties": {
-        "dataType": "hybrid"
+        "dataType": "template"
     }
 }

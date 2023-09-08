@@ -3,7 +3,7 @@
 //? testScript: functions/double_pow.as
 //? customPurpose: Part of core function tests
 //? description: Tests for pow<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: pow<double>-1
 //? description: 2.0 cubed

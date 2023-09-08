@@ -3,7 +3,7 @@
 //? testScript: functions/ipAddress_bag.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag<ipAddress> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag<ipAddress>-1
 //? description: bag does not remove duplicates

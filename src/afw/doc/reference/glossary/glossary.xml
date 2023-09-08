@@ -167,12 +167,6 @@
             </definition>
         </term>
         <term>
-            <identifier>Adaptive Hybrid</identifier>
-            <definition>
-                A data type whose value may contain either a script or template.
-            </definition>
-        </term>
-        <term>
             <identifier>Adaptive Script</identifier>
             <definition>
                 A language that can be executed by core, which contains both functional and procedural

@@ -3,7 +3,7 @@
 //? testScript: functions/double_lt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for lt<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: lt<double>-1
 //? description: 109 less than 1.09e2

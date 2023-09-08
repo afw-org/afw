@@ -3,7 +3,7 @@
 //? testScript: functions/dayTimeDuration_at_least_one_member_of.as
 //? customPurpose: Part of core function tests
 //? description: Tests for at_least_one_member_of<dayTimeDuration> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: at_least_one_member_of<dayTimeDuration>-1
 //? description: 3 days, 10 hours, and 30 minutes

@@ -182,42 +182,42 @@
             "onRetrieveObjects": {
                 "label": "On retrieve_objects",
                 "description": "This can be specified to override default retrieve_objects() processing.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelRetrieveObjects",
                 "brief": "Hybrid to execute on retrieve_objects()"
             },
             "onReplaceObject": {
                 "label": "On replace_object",
                 "description": "This can be specified to override default replace_object() processing.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelReplaceObject",
                 "brief": "Hybrid to execute on replace_object()"
             },
             "onModifyObject": {
                 "label": "On modify_object",
                 "description": "This can be specified to override default modify_object() processing.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelModifyObject",
                 "brief": "Hybrid to execute on modify_object()"
             },
             "onGetObject": {
                 "label": "On get_object",
                 "description": "This can be specified to override default get_object() processing.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelGetObject",
                 "brief": "Hybrid to execute on get_object()"
             },
             "onDeleteObject": {
                 "label": "On delete_object",
                 "description": "This can be specified to override default delete_object() processing.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelDeleteObject",
                 "brief": "Hybrid to execute on delete_object()"
             },
             "onAddObject": {
                 "label": "On add_object",
                 "description": "This can be specified to override default add_object() processing.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelAddObject",
                 "brief": "Hybrid to execute on add_object()"
             },
@@ -230,7 +230,7 @@
             "initialObjectId": {
                 "label": "Initial Object Id",
                 "description": "This optional hybrid value is evaluated to determine the objectId on add requests.  If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one.  Even if specified, the adaptor is free to ignore this.",
-                "dataType": "hybrid",
+                "dataType": "template",
                 "contextType": "modelInitialObjectId",
                 "brief": "Optional hybrid value is evaluated to determine the objectId on add requests"
             },

@@ -3,7 +3,7 @@
 //? testScript: functions/string_le.as
 //? customPurpose: Part of core function tests
 //? description: Tests for le<string> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: le<string>-1
 //? description: one

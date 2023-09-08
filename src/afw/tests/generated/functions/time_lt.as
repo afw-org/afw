@@ -3,7 +3,7 @@
 //? testScript: functions/time_lt.as
 //? customPurpose: Part of core function tests
 //? description: Tests for lt<time> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: lt<time>-1
 //? description: x

@@ -3,7 +3,7 @@
 //? testScript: functions/boolean_bag_size.as
 //? customPurpose: Part of core function tests
 //? description: Tests for bag_size<boolean> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: bag_size<boolean>-1
 //? description: Boolean bag size of 2

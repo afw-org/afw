@@ -3,7 +3,7 @@
 //? testScript: functions/double_one_and_only.as
 //? customPurpose: Part of core function tests
 //? description: Tests for one_and_only<double> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: one_and_only<double>-1
 //? description: ...

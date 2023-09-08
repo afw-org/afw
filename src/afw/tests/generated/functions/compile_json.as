@@ -3,7 +3,7 @@
 //? testScript: functions/compile_json.as
 //? customPurpose: Part of core function tests
 //? description: Tests for compile_json function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: compile_json-1
 //? description: Test compile_json with an integer.

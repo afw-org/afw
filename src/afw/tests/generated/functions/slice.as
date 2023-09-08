@@ -3,7 +3,7 @@
 //? testScript: functions/slice.as
 //? customPurpose: Part of core function tests
 //? description: Tests for slice function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: slice-1
 //? description: Test slice function with integers, no other parms.

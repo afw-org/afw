@@ -3,7 +3,7 @@
 //? testScript: datatypes/dnsName.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for dnsName dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: dnsName-1
 //? description: Test 1 for dnsName dataType.

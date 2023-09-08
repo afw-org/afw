@@ -8,7 +8,6 @@ our @EXPORT_OK = qw(
     assert 
     compile_json 
     compile_relaxed_json 
-    convert_syntax_hybrid_to_expression 
     decompile 
     evaluate_value 
     evaluate_with_retry 
@@ -16,8 +15,6 @@ our @EXPORT_OK = qw(
     qualifiers 
     safe_evaluate 
     stringify 
-    test_expression 
-    test_hybrid 
     test_script 
     test_template 
     test_value 
@@ -87,25 +84,6 @@ JSON value.
 This parameter can be an integer between 0 and 10 of a string that is used for
 indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
-
-=head3 convert_syntax_hybrid_to_expression
-
-Convert a string containing adaptive hybrid syntax, which can be an adaptive
-template or adaptive expression, to adaptive expression syntax.
-Convert a hybrid to a expression.
-
-=head4 Parameters
-
-    $hybrid
-
-The hybrid to convert.
-
-    $whitespace
-
-Add whitespace for readability if present and not 0. This parameter can be an
-integer between 0 and 10 or a string that is used for indentation. If 0 is
-specified, no whitespace is added to the resulting string. If 1 through 10 is
-specified, that number of spaces is used.
 
 =head3 decompile
 
@@ -231,71 +209,6 @@ Add whitespace for readability if present and not 0. This parameter can be an
 integer between 0 and 10 or a string that is used for indentation. If 0 is
 specified, no whitespace is added to the resulting string. If 1 through 10 is
 specified, that number of spaces is used.
-
-=head3 test_expression
-
-Compile and evaluate an adaptive expression and compare the results to an
-expected value. Return object with the test's results.
-Test expression
-
-=head4 Parameters
-
-    $id
-
-Id of test
-
-    $description
-
-Description of test
-
-    $expression
-
-Expression to compile and evaluate.
-
-    $expected
-
-Expected result.
-
-    $additionalUntrustedQualifiedVariables
-
-This parameter supplies additional qualified variables that can be accessed
-during evaluation. These variables will not be used by anything that needs to
-ensure its qualified variables must come from a trusted source, such as
-authorization. This parameter is intended to be used for testing only and
-should not be used for anything running in production.
-
-=head3 test_hybrid
-
-Compile and evaluate a string containing adaptive hybrid syntax which can be
-an adaptive template or adaptive expression and then compare the results to an
-expected value. Return object with the test's results.
-Test hybrid
-
-=head4 Parameters
-
-    $id
-
-Id of test
-
-    $description
-
-Description of test
-
-    $hybrid
-
-Hybrid to compile and evaluate.
-
-    $expected
-
-Expected evaluated result.
-
-    $additionalUntrustedQualifiedVariables
-
-This parameter supplies additional qualified variables that can be accessed
-during evaluation. These variables will not be used by anything that needs to
-ensure its qualified variables must come from a trusted source, such as
-authorization. This parameter is intended to be used for testing only and
-should not be used for anything running in production.
 
 =head3 test_script
 
@@ -437,20 +350,6 @@ sub compile_relaxed_json {
     return $request->getResult();
 }
 
-sub convert_syntax_hybrid_to_expression {
-    my ($hybrid, $whitespace) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "convert_syntax_hybrid_to_expression");
-    $request->set("hybrid", $hybrid);
-
-    if (defined $whitespace)
-        $request->set("whitespace", $whitespace);
-
-    return $request->getResult();
-}
-
 sub decompile {
     my ($value, $whitespace) = @_;
 
@@ -543,44 +442,6 @@ sub stringify {
 
     if (defined $whitespace)
         $request->set("whitespace", $whitespace);
-
-    return $request->getResult();
-}
-
-sub test_expression {
-    my ($id, $description, $expression, $expected, $additionalUntrustedQualifiedVariables) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "test_expression");
-    $request->set("id", $id);
-    $request->set("description", $description);
-    $request->set("expression", $expression);
-
-    if (defined $expected)
-        $request->set("expected", $expected);
-
-    if (defined $additionalUntrustedQualifiedVariables)
-        $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
-
-    return $request->getResult();
-}
-
-sub test_hybrid {
-    my ($id, $description, $hybrid, $expected, $additionalUntrustedQualifiedVariables) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "test_hybrid");
-    $request->set("id", $id);
-    $request->set("description", $description);
-    $request->set("hybrid", $hybrid);
-
-    if (defined $expected)
-        $request->set("expected", $expected);
-
-    if (defined $additionalUntrustedQualifiedVariables)
-        $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
 
     return $request->getResult();
 }

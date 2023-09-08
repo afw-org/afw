@@ -3090,11 +3090,6 @@ const afw_value_string_t afw_v_bag_double = {
     AFW_UTF8_LITERAL("bag_double")
 };
 
-const afw_value_string_t afw_v_bag_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("bag_expression")
-};
-
 const afw_value_string_t afw_v_bag_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("bag_function")
@@ -3103,11 +3098,6 @@ const afw_value_string_t afw_v_bag_function = {
 const afw_value_string_t afw_v_bag_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("bag_hexBinary")
-};
-
-const afw_value_string_t afw_v_bag_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("bag_hybrid")
 };
 
 const afw_value_string_t afw_v_bag_ia5String = {
@@ -3210,11 +3200,6 @@ const afw_value_string_t afw_v_bag_size_double = {
     AFW_UTF8_LITERAL("bag_size_double")
 };
 
-const afw_value_string_t afw_v_bag_size_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("bag_size_expression")
-};
-
 const afw_value_string_t afw_v_bag_size_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("bag_size_function")
@@ -3223,11 +3208,6 @@ const afw_value_string_t afw_v_bag_size_function = {
 const afw_value_string_t afw_v_bag_size_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("bag_size_hexBinary")
-};
-
-const afw_value_string_t afw_v_bag_size_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("bag_size_hybrid")
 };
 
 const afw_value_string_t afw_v_bag_size_ia5String = {
@@ -3535,16 +3515,6 @@ const afw_value_string_t afw_v_compileType = {
     AFW_UTF8_LITERAL("compileType")
 };
 
-const afw_value_string_t afw_v_compile_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("compile_expression")
-};
-
-const afw_value_string_t afw_v_compile_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("compile_hybrid")
-};
-
 const afw_value_string_t afw_v_compile_json = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("compile_json")
@@ -3738,11 +3708,6 @@ const afw_value_string_t afw_v_convert_AdaptiveQueryCriteria_to_query_string = {
 const afw_value_string_t afw_v_convert_query_string_to_AdaptiveQueryCriteria = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("convert_query_string_to_AdaptiveQueryCriteria")
-};
-
-const afw_value_string_t afw_v_convert_syntax_hybrid_to_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("convert_syntax_hybrid_to_expression")
 };
 
 const afw_value_string_t afw_v_core = {
@@ -4160,11 +4125,6 @@ const afw_value_string_t afw_v_eq_double = {
     AFW_UTF8_LITERAL("eq_double")
 };
 
-const afw_value_string_t afw_v_eq_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("eq_expression")
-};
-
 const afw_value_string_t afw_v_eq_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("eq_function")
@@ -4173,11 +4133,6 @@ const afw_value_string_t afw_v_eq_function = {
 const afw_value_string_t afw_v_eq_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("eq_hexBinary")
-};
-
-const afw_value_string_t afw_v_eq_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("eq_hybrid")
 };
 
 const afw_value_string_t afw_v_eq_ia5String = {
@@ -4320,11 +4275,6 @@ const afw_value_string_t afw_v_eqx_double = {
     AFW_UTF8_LITERAL("eqx_double")
 };
 
-const afw_value_string_t afw_v_eqx_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("eqx_expression")
-};
-
 const afw_value_string_t afw_v_eqx_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("eqx_function")
@@ -4333,11 +4283,6 @@ const afw_value_string_t afw_v_eqx_function = {
 const afw_value_string_t afw_v_eqx_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("eqx_hexBinary")
-};
-
-const afw_value_string_t afw_v_eqx_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("eqx_hybrid")
 };
 
 const afw_value_string_t afw_v_eqx_ia5String = {
@@ -4463,16 +4408,6 @@ const afw_value_string_t afw_v_errorsThrown = {
 const afw_value_string_t afw_v_evaluate = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("evaluate")
-};
-
-const afw_value_string_t afw_v_evaluate_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("evaluate_expression")
-};
-
-const afw_value_string_t afw_v_evaluate_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("evaluate_hybrid")
 };
 
 const afw_value_string_t afw_v_evaluate_script = {
@@ -4850,11 +4785,6 @@ const afw_value_string_t afw_v_ge_double = {
     AFW_UTF8_LITERAL("ge_double")
 };
 
-const afw_value_string_t afw_v_ge_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ge_expression")
-};
-
 const afw_value_string_t afw_v_ge_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("ge_function")
@@ -4863,11 +4793,6 @@ const afw_value_string_t afw_v_ge_function = {
 const afw_value_string_t afw_v_ge_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("ge_hexBinary")
-};
-
-const afw_value_string_t afw_v_ge_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ge_hybrid")
 };
 
 const afw_value_string_t afw_v_ge_ia5String = {
@@ -5045,11 +4970,6 @@ const afw_value_string_t afw_v_gt_double = {
     AFW_UTF8_LITERAL("gt_double")
 };
 
-const afw_value_string_t afw_v_gt_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("gt_expression")
-};
-
 const afw_value_string_t afw_v_gt_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("gt_function")
@@ -5058,11 +4978,6 @@ const afw_value_string_t afw_v_gt_function = {
 const afw_value_string_t afw_v_gt_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("gt_hexBinary")
-};
-
-const afw_value_string_t afw_v_gt_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("gt_hybrid")
 };
 
 const afw_value_string_t afw_v_gt_ia5String = {
@@ -5178,11 +5093,6 @@ const afw_value_string_t afw_v_homePageUrl = {
 const afw_value_string_t afw_v_host = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("host")
-};
-
-const afw_value_string_t afw_v_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("hybrid")
 };
 
 const afw_value_string_t afw_v_ia5String = {
@@ -5590,11 +5500,6 @@ const afw_value_string_t afw_v_is_double = {
     AFW_UTF8_LITERAL("is_double")
 };
 
-const afw_value_string_t afw_v_is_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("is_expression")
-};
-
 const afw_value_string_t afw_v_is_finite = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("is_finite")
@@ -5608,11 +5513,6 @@ const afw_value_string_t afw_v_is_function = {
 const afw_value_string_t afw_v_is_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("is_hexBinary")
-};
-
-const afw_value_string_t afw_v_is_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("is_hybrid")
 };
 
 const afw_value_string_t afw_v_is_ia5String = {
@@ -5965,11 +5865,6 @@ const afw_value_string_t afw_v_le_double = {
     AFW_UTF8_LITERAL("le_double")
 };
 
-const afw_value_string_t afw_v_le_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("le_expression")
-};
-
 const afw_value_string_t afw_v_le_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("le_function")
@@ -5978,11 +5873,6 @@ const afw_value_string_t afw_v_le_function = {
 const afw_value_string_t afw_v_le_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("le_hexBinary")
-};
-
-const afw_value_string_t afw_v_le_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("le_hybrid")
 };
 
 const afw_value_string_t afw_v_le_ia5String = {
@@ -6210,11 +6100,6 @@ const afw_value_string_t afw_v_lt_double = {
     AFW_UTF8_LITERAL("lt_double")
 };
 
-const afw_value_string_t afw_v_lt_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("lt_expression")
-};
-
 const afw_value_string_t afw_v_lt_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("lt_function")
@@ -6223,11 +6108,6 @@ const afw_value_string_t afw_v_lt_function = {
 const afw_value_string_t afw_v_lt_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("lt_hexBinary")
-};
-
-const afw_value_string_t afw_v_lt_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("lt_hybrid")
 };
 
 const afw_value_string_t afw_v_lt_ia5String = {
@@ -6785,11 +6665,6 @@ const afw_value_string_t afw_v_ne_double = {
     AFW_UTF8_LITERAL("ne_double")
 };
 
-const afw_value_string_t afw_v_ne_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ne_expression")
-};
-
 const afw_value_string_t afw_v_ne_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("ne_function")
@@ -6798,11 +6673,6 @@ const afw_value_string_t afw_v_ne_function = {
 const afw_value_string_t afw_v_ne_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("ne_hexBinary")
-};
-
-const afw_value_string_t afw_v_ne_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ne_hybrid")
 };
 
 const afw_value_string_t afw_v_ne_ia5String = {
@@ -6950,11 +6820,6 @@ const afw_value_string_t afw_v_nex_double = {
     AFW_UTF8_LITERAL("nex_double")
 };
 
-const afw_value_string_t afw_v_nex_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("nex_expression")
-};
-
 const afw_value_string_t afw_v_nex_function = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("nex_function")
@@ -6963,11 +6828,6 @@ const afw_value_string_t afw_v_nex_function = {
 const afw_value_string_t afw_v_nex_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("nex_hexBinary")
-};
-
-const afw_value_string_t afw_v_nex_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("nex_hybrid")
 };
 
 const afw_value_string_t afw_v_nex_ia5String = {
@@ -7548,11 +7408,6 @@ const afw_value_string_t afw_v_parameters = {
 const afw_value_string_t afw_v_parentPaths = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("parentPaths")
-};
-
-const afw_value_string_t afw_v_parenthesized_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("parenthesized_expression")
 };
 
 const afw_value_string_t afw_v_parse_uri = {
@@ -8965,16 +8820,6 @@ const afw_value_string_t afw_v_testScript = {
     AFW_UTF8_LITERAL("testScript")
 };
 
-const afw_value_string_t afw_v_test_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("test_expression")
-};
-
-const afw_value_string_t afw_v_test_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("test_hybrid")
-};
-
 const afw_value_string_t afw_v_test_script = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("test_script")
@@ -9190,19 +9035,9 @@ const afw_value_string_t afw_v_to_string_double = {
     AFW_UTF8_LITERAL("to_string_double")
 };
 
-const afw_value_string_t afw_v_to_string_expression = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("to_string_expression")
-};
-
 const afw_value_string_t afw_v_to_string_hexBinary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("to_string_hexBinary")
-};
-
-const afw_value_string_t afw_v_to_string_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("to_string_hybrid")
 };
 
 const afw_value_string_t afw_v_to_string_ia5String = {

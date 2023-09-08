@@ -3,7 +3,7 @@
 //? testScript: functions/dateTime_ge.as
 //? customPurpose: Part of core function tests
 //? description: Tests for ge<dateTime> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: ge<dateTime>-1
 //? description: greater than

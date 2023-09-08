@@ -3,7 +3,7 @@
 //? testScript: functions/x500Name_is_in.as
 //? customPurpose: Part of core function tests
 //? description: Tests for is_in<x500Name> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: is_in<x500Name>-1
 //? description: x

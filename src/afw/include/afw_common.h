@@ -444,29 +444,10 @@ typedef _Bool afw_boolean_t;
         string, NULL,                                                           \
         "This is an error")                                                     \
                                                                                 \
-    XX(expression,                                                              \
-        expression,                                                             \
-        &afw_function_definition_compile_expression,                            \
-        "See production Expression in src/afw/doc/syntax/index.html or "        \
-        "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
-                                                                                \
-    XX(hybrid,                                                                  \
-        hybrid,                                                                 \
-        &afw_function_definition_compile_hybrid,                                \
-        "See production Hybrid in src/afw/doc/syntax/index.html or "            \
-        "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
-                                                                                \
     XX(json,                                                                    \
         string,                                                                 \
         &afw_function_definition_compile_json,                                  \
         "Compile strict json")                                                  \
-                                                                                \
-    XX(parenthesized_expression,                                                \
-        expression,                                                             \
-        &afw_function_definition_compile_expression,                            \
-        "See production ParenthesizedExpression in "                            \
-        "src/afw/doc/syntax/index.html "                                        \
-        "or src/afw/generated/ebnf/syntax.ebnf for syntax.")                    \
                                                                                 \
     XX(regexp,                                                                  \
         regexp,                                                                 \
@@ -482,7 +463,7 @@ typedef _Bool afw_boolean_t;
         "2) Allows property names to be unquoted if they start with '_',\n"     \
         "   '$', 'a-z', 'A-Z', or char > 127 followed by any of those or\n"     \
         "   '0' - '9'.\n"                                                       \
-        "3) Allows Infinity, -Infinity, NaN, and -NaN for number values.\n"    \
+        "3) Allows Infinity, -Infinity, NaN, and -NaN for number values.\n"     \
         "4) Allows a trailing comma in Object and List.")                       \
                                                                                 \
     XX(script,                                                                  \

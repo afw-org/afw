@@ -3,7 +3,7 @@
 //? testScript: functions/integer_set_equals.as
 //? customPurpose: Part of core function tests
 //? description: Tests for set_equals<integer> function.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: set_equals<integer>-1
 //? description: ...

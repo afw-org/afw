@@ -3,7 +3,7 @@
 //? testScript: datatypes/double.as
 //? customPurpose: Part of core dataType tests
 //? description: Tests for double dataType.
-//? sourceType: expression
+//? sourceType: script
 //?
 //? test: double-1
 //? description: Test 1 for double dataType.
