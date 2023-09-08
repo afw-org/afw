@@ -271,10 +271,12 @@ describe("Application Tests", () => {
         fireEvent.click(screen.getByLabelText("Check Intermediate"));        
         fireEvent.click(screen.getByLabelText("Deny If Not Applicable"));        
             
-        const coreCheckInput = await screen.findByLabelText("Core Check", { selector: "input" });     
+        //const coreCheckInput = await screen.findByLabelText("Core Check", { selector: "input" }); 
+        const coreCheckInput = await screen.findByRole("textbox", { name: "Core Check" });    
         fireEvent.change(coreCheckInput, { target: { value: "return true;" } });        
 
-        const initialCheckInput = await screen.findByLabelText("Initial Check", { selector: "input" });     
+        //const initialCheckInput = await screen.findByLabelText("Initial Check", { selector: "input" });  
+        const initialCheckInput = await screen.findByRole("textbox", { name: "Initial Check" });     
         fireEvent.change(initialCheckInput, { target: { value: "return false;" } });        
         
         const saveBtn = screen.getByLabelText("Save");
@@ -305,7 +307,8 @@ describe("Application Tests", () => {
         const [/*qualifier*/, variables] = Object.entries(qualifiedVariables)[1];
         const [variable, value] = Object.entries(variables)[1];        
 
-        const initialCheckInput = await screen.findByLabelText(variable, { selector: "input" });     
+        //const initialCheckInput = await screen.findByLabelText(variable, { selector: "input" });     
+        const initialCheckInput = await screen.findByRole("textbox", { name: variable });
         fireEvent.change(initialCheckInput, { target: { value: "new qualified variable value" } });        
         
         const saveBtn = screen.getByLabelText("Save");

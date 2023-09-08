@@ -17,5 +17,18 @@ def run(options, srcdirs):
         msg.highlighted_info('Building package dependencies.')
         os.system('npm run build:packages')
 
-    # npm run test
-    os.system('npm run test')
+    # determine if running in parallel
+    cmd = 'npm run test'
+    if options.get('build_make_jobs') == 0:
+        cmd = 'npm run test-p'
+        
+    # setup verbosity
+    if msg.is_verbose_mode():
+        os.environ['DEBUG_PRINT_LIMIT'] = '100000'
+        cmd += ' -- --verbose'
+    else:
+        os.environ['DEBUG_PRINT_LIMIT'] = '0'
+
+    # run the tests
+    msg.highlighted_info('Running javascript tests.')
+    os.system(cmd)

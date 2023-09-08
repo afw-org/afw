@@ -13,6 +13,7 @@ import {
     useTheme,
 } from "@afw/react";
 
+import {ExpandableComponent} from "../../../utils";
 
 /*
  * Handles dataType=template
@@ -25,16 +26,16 @@ export const Template = (props) => {
     const {id, value, valueMeta = {}, onChanged} = props;
     const {label, brief} = valueMeta;
 
-    if (editable) {
-        return (
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    return (
+        <ExpandableComponent>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: "300px" }}>
                 {
-                    label &&
+                    editable && label &&
                         <Typography style={{ marginBottom: theme.spacing(0.5) }} size="2" color="textSecondary" text={label} />
                 }
                 <div style={{ flex: 1, height: "100%", minHeight: "300px" }}>
                     <CodeEditor 
-                        style={{ height: "100%" }}
+                        style={{ flex: 1, height: "100%" }}
                         id={id}
                         label={label}
                         // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -48,14 +49,12 @@ export const Template = (props) => {
                     />
                 </div>
                 {
-                    brief &&
+                    editable && brief &&
                         <Typography style={{ marginTop: theme.spacing(0.5) }} size="1" text={brief} />
                 }
             </div>
-        );
-    } else {
-        return <Typography text={value ? value : ""} />;
-    }
+        </ExpandableComponent>
+    );
 };
 
 Template.displayName = "Template";

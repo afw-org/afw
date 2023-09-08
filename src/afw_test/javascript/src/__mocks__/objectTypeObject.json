@@ -112,19 +112,6 @@
                 "100000"
             ]
         },
-        "expression": {
-            "dataType": "script",
-            "label": "Expression Label",
-            "brief": "This is a expression",
-            "testValues": [
-                "1 + 1",
-                "x * 2"
-            ],
-            "expectedTestValues": [
-                "1 + 1",
-                "x * 2"
-            ]
-        },
         "function": {
             "dataType": "function",
             "label": "Function Label",
@@ -149,19 +136,6 @@
             "expectedTestValues": [
                 "FFFFFFFF",
                 "ABCD1234"
-            ]
-        },
-        "hybrid": {
-            "dataType": "template",
-            "label": "Hybrid Label",
-            "brief": "This is a hybrid",
-            "testValues": [
-                "[\"v\", \"var1\"]",
-                "[\"f\", \"func\"]"
-            ],
-            "expectedTestValues": [
-                "[\"v\", \"var1\"]",
-                "[\"f\", \"func\"]"
             ]
         },
         "integer": {

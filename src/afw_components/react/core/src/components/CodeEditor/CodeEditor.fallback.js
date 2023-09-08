@@ -4,6 +4,7 @@ export const CodeEditor = ({ id, "data-testid": dataTestId, label, source, onCha
         <label htmlFor={id}>{label}</label>
         <textarea 
             id={id} 
+            aria-label={label}
             data-testid={dataTestId} 
             value={source}             
             onChange={e => onChanged(e.target.value)}></textarea>

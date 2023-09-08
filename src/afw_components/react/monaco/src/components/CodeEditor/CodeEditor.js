@@ -46,6 +46,7 @@ export const CodeEditor = React.forwardRef((props, ref) => {
         style = defaultStyle,
         autoFocus, 
         foldingStrategy,
+        label,
         language, 
         source, 
         showLineNumbers, 
@@ -87,7 +88,8 @@ export const CodeEditor = React.forwardRef((props, ref) => {
                     enabled: showMinimap
                 },
                 fixedOverflowWidgets: true,
-                "bracketPairColorization.enabled": true,                
+                "bracketPairColorization.enabled": true,       
+                ariaLabel: label,         
             });
             if (ref) ref.current = containerRef.current;
             editorRef.current = editor;
