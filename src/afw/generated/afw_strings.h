@@ -14225,20 +14225,6 @@ extern const afw_value_string_t afw_v_host;
 
 
 
-/** @brief define for quoted string "hybrid" */
-#define AFW_Q_hybrid "hybrid"
-
-/** @brief 'afw_utf8_t' for string "hybrid" */
-#define afw_s_hybrid (afw_v_hybrid.internal)
-
-/** @brief 'afw_value_string_t' for string "hybrid" */
-extern const afw_value_string_t afw_v_hybrid;
-
-/** @brief 'afw_utf8_z_t *' for string "hybrid" */
-#define afw_z_hybrid (afw_v_hybrid.internal.s)
-
-
-
 /** @brief define for quoted string "ia5String" */
 #define AFW_Q_ia5String "ia5String"
 

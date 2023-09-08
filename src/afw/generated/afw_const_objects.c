@@ -6271,7 +6271,7 @@ impl_67_property_contextType = {
 static const afw_value_string_t
 impl_67_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("hybrid")
+    AFW_UTF8_LITERAL("template")
 };
 
 static const afw_runtime_property_t

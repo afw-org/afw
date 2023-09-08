@@ -20,7 +20,8 @@
                 },
                 "coreAuthorizationCheck": {
                     "description": "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
-                    "title": "Core Check"
+                    "title": "Core Check",
+                    "type": "string"
                 },
                 "denyIfNotApplicable": {
                     "description": "Specify true to deny access to resources when notApplicable is the final result of other checks.",

@@ -20,7 +20,7 @@
         "coreAuthorizationCheck": {
             "brief": "Core Authorization Check",
             "contextType": "authorizationCheck",
-            "dataType": "hybrid",
+            "dataType": "template",
             "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
             "description": "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
             "label": "Core Check",

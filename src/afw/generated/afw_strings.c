@@ -5095,11 +5095,6 @@ const afw_value_string_t afw_v_host = {
     AFW_UTF8_LITERAL("host")
 };
 
-const afw_value_string_t afw_v_hybrid = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("hybrid")
-};
-
 const afw_value_string_t afw_v_ia5String = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("ia5String")
