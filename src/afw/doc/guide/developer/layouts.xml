@@ -612,9 +612,7 @@
             <item>DayTimeDuration</item>
             <item>DnsName</item>
             <item>Double</item>
-            <item>Expression</item>
             <item>HexBinary</item>
-            <item>Hybrid</item>
             <item>Ia5String</item>
             <item>Integer</item>
             <item>IpAddress</item>

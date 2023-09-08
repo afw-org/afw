@@ -14,7 +14,7 @@
         },
         "authorizationCheck": {
             "allowQuery": true,
-            "brief": "Hybrid to determine whether to allow access to the specified resourceId and/or object",
+            "brief": "Template to determine whether to allow access to the specified resourceId and/or object",
             "contextType": "authorizationCheck",
             "dataType": "template",
             "dataTypeParameter": "object _AdaptiveAuthorizationResult_",

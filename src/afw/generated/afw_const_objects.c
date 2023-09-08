@@ -20427,7 +20427,7 @@ impl_196_property_allowQuery = {
 static const afw_value_string_t
 impl_196_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Hybrid to determine whether to allow access to the specified resourceId and/or object")
+    AFW_UTF8_LITERAL("Template to determine whether to allow access to the specified resourceId and/or object")
 };
 
 static const afw_runtime_property_t

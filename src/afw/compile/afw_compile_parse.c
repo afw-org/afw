@@ -42,10 +42,6 @@
  *# A parameter passed to the adaptive compiler determines the first
  *# production used for parse.
  *#
- *# Expression - afw_compile_type_expression
- *#
- *# Hybrid - afw_compile_type_hybrid
- *#
  *# Json - afw_compile_type_json and afw_compile_type_relaxed_json
  *#
  *# ParenthesizedExpression - afw_compile_type_parenthesized_expression
@@ -411,21 +407,20 @@ afw_compile_parse_check_symbol(
 
 
 
-/*ebnf>>>
+/*
  *FIXME FIXME Remove this when conversion complete
- *# Hybrid is used to parse data type template.
- *#
- .# To help with conversion, Template will temporarily honor shebang for script.
- *# A template is parsed as a Script, Template, or an evaluated
- *# string as follows:
- *#
- *#     1) If it begins with a '#!', it is parsed as a Script.
- *#     2) Otherwise, it is parsed as a Template.  Note that if the
- *#        template does not contain '${', it produces an evaluated string.
- *#
-
+ * TemporaryTemplate is used to parse data type template.
  *
- *<<<ebnf*/
+ * To help with conversion, Template will temporarily honor shebang for script.
+ * A template is parsed as a Script, Template, or an evaluated
+ * string as follows:
+ *
+ *     1) If it begins with a '#!', it is parsed as a Script.
+ *     2) Otherwise, it is parsed as a Template.  Note that if the
+ *        template does not contain '${', it produces an evaluated string.
+ *
+ *
+ */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_TemporaryTemplate(afw_compile_parser_t *parser)
 {
