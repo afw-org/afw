@@ -67,8 +67,6 @@ const statusFormat = (format) => {
     switch (format) {
     case "script":
         return "Adaptive Script";
-    case "expression":
-        return "Adaptive Expression";
     case "template":
         return "Adaptive Template";
     case "json":

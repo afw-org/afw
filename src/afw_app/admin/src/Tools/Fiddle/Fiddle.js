@@ -24,9 +24,7 @@ import {
 } from "@afw/react";
 
 import {
-    afwEvaluateExpression, 
     afwEvaluateTemplate,
-    afwCompileExpression,
     afwCompileScript,
     afwCompileTemplate,
     afwGetObjectWithUri,
@@ -737,10 +735,6 @@ export const Fiddle = () => {
                 ({ result, resultDataType } = 
                     await onEvaluateScript(input, additionalUntrustedQualifiedVariables));
 
-            else if (activeTabInputFormat === "expression") {                
-                result = await afwEvaluateExpression(client.current, input, additionalUntrustedQualifiedVariables).result();                
-            }
-
             else if (activeTabInputFormat === "template") {
                 result = await afwEvaluateTemplate(client.current, input, additionalUntrustedQualifiedVariables).result();                
             }
@@ -782,10 +776,6 @@ export const Fiddle = () => {
 
             if (activeTabInputFormat === "script") {
                 result = await afwCompileScript(client.current, input, 4).result();                
-            }
-
-            else if (activeTabInputFormat === "expression") {
-                result = await afwCompileExpression(client.current, input, 4).result();
             }
 
             else if (activeTabInputFormat === "template") {
