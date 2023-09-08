@@ -906,7 +906,8 @@ _info_test = {
         _info_test_jobs,
         _info_test_env_mode,
         _info_test_output,
-        _info_test_js
+        _info_test_js,
+        _info_tmpdir
     ]
 }
 

@@ -56,10 +56,29 @@ def is_test_file(file):
         return True
     return False
 
-# For a given testGroup and a list of all testEnvironments, this routine will
-# return the matching test environment, if any.
-def get_test_environment(path, testEnvironments, testGroupConfig, test_working_directory):
+# This routine checks a directory to determine if all of the files
+# belong to a single test group. Test groups have multiple test files
+# with common configuration or environments, which may even share 
+# databases. The expectation is that a test group should not be split 
+# apart and run in parallel.
+def is_test_group(dir):
 
+    # just check of a config.py exists
+    if exists(dir + '/config.py'):
+        return True
+    
+    return False
+
+
+# For a given testGroupConfig and a list of all testEnvironments, this routine 
+# will return the matching test environment. If one does not exist, then 
+# a default one will be created to setup the proper working directory.
+#
+# It will also prime the working directory with any files and configurations 
+# that the test may need.
+def get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix):
+
+    _, root, _ = testGroup
     testEnv = None
     
     if testEnvironments and testGroupConfig:
@@ -69,33 +88,37 @@ def get_test_environment(path, testEnvironments, testGroupConfig, test_working_d
                 if env['name'] == environment:
                     testEnv = env
 
-    # get the directory path, relative to srcdir path    
-    relpath = os.path.relpath(path, os.getcwd() + "/src")
+    # get the directory path, relative to srcdir/src path    
+    relpath = os.path.relpath(root, os.getcwd() + "/src")
 
-    if not testEnv:        
+    if not testEnv:
         # if we don't have a configured test environment, create a default one
         testEnv = {
             'name': relpath,
-            'path': path
+            'path': root
         }
+    print(testEnv)
 
     # set the output working directory
+    #
     # Note: The relpath gets "flattened" by subbing '/' for '.'
     #       this is because the test runner will create a directory
     #       for each test group, and we want to make sure that the
     #       directory names do not overlap.
-    testEnv['cwd'] = test_working_directory + "/" + relpath.replace("/", ".")
+    work_dir = work_dir_prefix + "/" + relpath.replace("/", ".")
+    testEnv['work_dir'] = work_dir
 
     # check if we've created a directory for this testEnv yet    
-    if testEnv and not os.path.isdir(testEnv['cwd']):
-        msg.debug("Creating test environment directory: " + testEnv['cwd'])        
+    if not os.path.isdir(work_dir):
+        msg.debug("Creating test environment directory: " + work_dir)        
 
-        os.makedirs(testEnv['cwd'])        
+        # make the working directory structure
+        os.makedirs(work_dir)        
 
-        # copy everything from testEnv['path'] to testEnv['cwd']
+        # copy everything from testEnv['path'] to work_dir
         if testEnv.get('path'):
             msg.debug("Copying test environment files from: " + testEnv['path'])
-            os.system("cp -r " + testEnv['path'] + "/* " + testEnv['cwd'])    
+            os.system("cp -r " + testEnv['path'] + "/* " + work_dir)    
 
     return testEnv
 
@@ -148,8 +171,16 @@ def load_test_group_config(root):
         }                        
         
         return groupConfig
-        
 
+# For a given folder, find all tests 
+def find_tests(root, files):
+    tests = []
+
+    for f in files:
+        if is_test_file(f):
+            tests.append(os.path.join(root, f))
+
+    return tests
 
 # Within a <srcdir>/tests/ directory, this routine will find all test groups
 # and return a list of test groups. Each test group is a tuple containing
@@ -161,14 +192,11 @@ def find_test_groups(srcdir, tests_dir):
         # exclude subdirectory environments 
         dirs[:] = [d for d in dirs if d != 'environments']
 
-        tests = []
-        containsTests = False    
-        for f in files:            
-            if is_test_file(f):
-                containsTests = True
-                tests.append(os.path.join(root, f))
+        if is_test_group(root):
+            pass
 
-        if containsTests:
+        tests = find_tests(root, files)
+        if len(tests) > 0:
             testGroups.append(
                 (srcdir, root, tests)
             )

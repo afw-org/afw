@@ -14,7 +14,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     debug = None
     syntax = None
     p = None
-    cwd = None
+    work_dir = None
 
     if not test.endswith(".as"):
         msg.debug("Skipping test script (not adaptive script): %s" % test)
@@ -31,17 +31,17 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             if '--syntax' in afw_cmd:
                 # get the next part after --syntax
                 syntax = afw_cmd[afw_cmd.index('--syntax') + 1]   
-            cwd = os.path.dirname(test)   
+            work_dir = os.path.dirname(test)   
 
             # if we have a testGroupConfig, use it
             if testEnvironment:                
-                cwd = testEnvironment['cwd']
+                work_dir = testEnvironment['work_dir']
                 if testEnvironment.get('afw_conf'):
                     afw_cmd.append('--conf')
                     afw_cmd.append('afw.conf')
         
             msg.debug("Running test script: %s" % test)
-            p = subprocess.run(afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.run(afw_cmd + [test], cwd=work_dir, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 
         debug = p.stderr.decode("utf-8")
         stdout = p.stdout.decode("utf-8")         

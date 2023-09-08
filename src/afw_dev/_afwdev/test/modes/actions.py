@@ -21,15 +21,15 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
         return None, None, None
 
     try:        
-        cwd = os.path.dirname(test)        
+        work_dir = os.path.dirname(test)        
         if testEnvironment:
-            cwd = testEnvironment['cwd']
+            work_dir = testEnvironment['work_dir']
 
-        # change to cwd
-        os.chdir(cwd)        
+        # change to work_dir
+        os.chdir(work_dir)        
 
         # check if file afw.conf exists in current directory
-        afw_conf = os.path.join(cwd, 'afw.conf')
+        afw_conf = os.path.join(work_dir, 'afw.conf')
         if os.path.exists(afw_conf):
             session = Session("local", config="afw.conf", stdout=stdout[1], stderr=stderr[1])
         else:

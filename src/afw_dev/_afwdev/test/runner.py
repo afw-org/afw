@@ -4,7 +4,6 @@ import os
 import sys
 import time
 import multiprocessing
-import random
 from functools import partial
 
 from _afwdev.common import msg, nfc
@@ -15,7 +14,7 @@ from _afwdev.test.common import \
 
 
 # This routine runs all tests that belong to a test group
-def run_test_group(testGroup, options, testEnvironments, test_working_directory):
+def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
 
     failed = 0
     skipped = 0
@@ -36,19 +35,19 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
     pwd = os.getcwd()
 
     # get the test environment for this test group
-    testEnvironment = get_test_environment(root, testEnvironments, testGroupConfig, test_working_directory)    
+    testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    
     if testEnvironment:
-        if not testEnvironment.get('cwd'):
-            msg.error("Test environment '" + testEnvironment['name'] + "' has no 'cwd' set")            
+        if not testEnvironment.get('work_dir'):
+            msg.error("Test environment '" + testEnvironment['name'] + "' has no 'work_dir' set")            
             return None
-        msg.debug("Using test environment: " + testEnvironment['name'] + ', cwd = ' + testEnvironment['cwd'])        
+        msg.debug("Using test environment: " + testEnvironment['name'] + ', work_dir = ' + testEnvironment['work_dir'])        
+
+    test_group_start = time.time()
 
     try:
-        test_group_start = time.time()
-
         # switch to working directory for this environment
         if testEnvironment:            
-            os.chdir(testEnvironment['cwd'])
+            os.chdir(testEnvironment['work_dir'])
 
         before_all(root, testGroupConfig, testEnvironment)
             
@@ -138,9 +137,11 @@ def run_test_group(testGroup, options, testEnvironments, test_working_directory)
 
 
 # Creates a known, temporary folder to persist test output
-def allocate_working_directory():
+def allocate_working_directory(options):
 
-    working_directory = "/tmp/afwdev_test_output"
+    # use a temporary directory for test output
+    tmpdir = options.get('tmpdir')
+    working_directory = tmpdir + "/afwdev_test_output"
 
     # if folder already exists, remove it first
     if os.path.exists(working_directory):
@@ -178,7 +179,7 @@ def run(options, srcdirs):
         # append full path to sys.path, so python test modules can import directly
         sys.path.append(os.path.abspath('src/afw/generated'))    
 
-    test_working_directory = allocate_working_directory()
+    work_dir_prefix = allocate_working_directory(options)
 
     # for each srcdir find all tests    
     for srcdir, srcdirPath, _, manual_tests in srcdirs:
@@ -224,7 +225,7 @@ def run(options, srcdirs):
             partial(run_test_group, 
                 options=options, 
                 testEnvironments=testEnvironments, 
-                test_working_directory=test_working_directory
+                work_dir_prefix=work_dir_prefix
             ), allTestGroups
         )
         pool.close()
@@ -271,7 +272,7 @@ def run(options, srcdirs):
                     testGroup, 
                     options, 
                     testEnvironments, 
-                    test_working_directory
+                    work_dir_prefix
                 )
                 _srcdir = testGroup[0]
 

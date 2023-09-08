@@ -14,7 +14,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     stderr = None
     syntax = True
     p = None
-    cwd = None
+    work_dir = None
     
     try:
         response = error = stdout = stderr = p = None
@@ -27,11 +27,11 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             if '--syntax' in afw_cmd:
                 # get the next part after --syntax
                 syntax = afw_cmd[afw_cmd.index('--syntax') + 1]   
-            cwd = os.path.dirname(test)   
+            work_dir = os.path.dirname(test)   
 
             # if we have a testGroupConfig, use it
             if testEnvironment:                
-                cwd = testEnvironment['cwd']
+                work_dir = testEnvironment['work_dir']
                 if testEnvironment.get('afw_conf') and test.endswith(".as"):
                     afw_cmd.append('--conf')
                     afw_cmd.append('afw.conf')
@@ -52,10 +52,10 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 '--xml=yes', 
                 '--xml-fd=2', 
                 '--show-possibly-lost=no'
-                ] + afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+                ] + afw_cmd + [test], cwd=work_dir, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
         else:
             msg.debug("Running test: %s" % test)            
-            p = subprocess.run(afw_cmd + [test], cwd=cwd, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.run(afw_cmd + [test], cwd=work_dir, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
 
         if p.returncode < 0:
             raise Exception("Process was terminated with return code {}".format(p.returncode))
