@@ -1,5 +1,0 @@
-{
-    "brief": "Adaptive compiler runtime support for test script",
-    "category": "compiler_test_script",
-    "description": "These are functions that support compiled test scripts at runtime. These are not intended to be called directly."
-}

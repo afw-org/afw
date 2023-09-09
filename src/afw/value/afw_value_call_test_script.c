@@ -1,58 +1,68 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for test script runtime
+ * Interface afw_value Implementation for call_test_script
  *
  * Copyright (c) 2010-2023 Clemson University
  *
  */
 
+
 /**
- * @file afw_function_runtime_test_script.c
- * @brief afw_function_execute_* functions for test script runtime.
+ * @file afw_value_call_test_script.c
+ * @brief Implementation of afw_value interface for call_test_script
  */
 
 #include "afw_internal.h"
 
 
+#define impl_afw_value_optional_release NULL
+#define impl_afw_value_get_reference NULL
+
+#define impl_afw_value_get_evaluated_meta \
+    afw_value_internal_get_evaluated_meta_default
+
+#define impl_afw_value_get_evaluated_metas \
+    afw_value_internal_get_evaluated_metas_default
+
+/* Declares and rti/inf defines for interface afw_value */
+#define AFW_IMPLEMENTATION_ID "call_test_script"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_call_test_script_inf
+#include "afw_value_impl_declares.h"
+
+
+
+/* Create function for call value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_call_test_script_create(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_object_t *test_script,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_call_test_script_t *self;
+
+    self = afw_pool_calloc_type(p, afw_value_call_test_script_t, xctx);
+    self->inf = &afw_value_call_test_script_inf;
+    self->contextual = contextual;
+    self->test_script = test_script;
+
+    return (const afw_value_t *)self;
+}
+
+
+
 /*
- * Adaptive function: test_script_runtime_support
- *
- * afw_function_execute_test_script_runtime_support
- *
- * See afw_function_bindings.h for more information.
- *
- * This is a function called internally as the result of a test_script compile.
- * This function is not intended to be called directly.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * Declaration:
- *
- * ```
- *   function test_script_runtime_support(
- *       testScriptObject: (object _AdaptiveTestScriptResult_)
- *   ): (object _AdaptiveTestScriptResult_);
- * ```
- *
- * Parameters:
- *
- *   testScriptObject - (object _AdaptiveTestScriptResult_) A test script
- *       results object with the required evaluation result properties missing.
- *       The sources will be evaluated and the corresponding test result
- *       properties will be set.
- *
- * Returns:
- *
- *   (object _AdaptiveTestScriptResult_) The testScriptObject object with test
- *       result properties set.
+ * Implementation of method optional_evaluate for interface afw_value.
  */
 const afw_value_t *
-afw_function_execute_test_script_runtime_support(
-    afw_function_execute_t *x)
+impl_afw_value_optional_evaluate(
+    const afw_value_t * instance,
+    const afw_pool_t * p,
+    afw_xctx_t *xctx)
 {
-    afw_xctx_t *xctx = x->xctx;
-    const afw_value_object_t *testScriptObject;
+    const afw_value_call_test_script_t *self =
+        (const afw_value_call_test_script_t *)instance;
     const afw_iterator_t *iterator;
     const afw_array_t *tests;
     const afw_object_t *test;
@@ -64,7 +74,6 @@ afw_function_execute_test_script_runtime_support(
     const afw_value_t *expected_value;
     const afw_value_t *compiled_value;
     const afw_value_t *evaluated_value;
-    const afw_object_t *test_script;
     const afw_value_t *passed_value;
     const afw_utf8_t *errorReason;
     const afw_compile_type_info_t *info;
@@ -86,19 +95,15 @@ afw_function_execute_test_script_runtime_support(
 
     afw_boolean_t found;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(testScriptObject,
-        1, object);
-
-    test_script = testScriptObject->internal;
-    tests = afw_object_old_get_property_as_array(test_script,
-        &afw_s_tests, xctx);
+    tests = afw_object_old_get_property_as_array(
+        self->test_script, &afw_s_tests, xctx);
     default_source_type = afw_object_old_get_property_as_string(
-        test_script, &afw_s_sourceType, xctx);
+        self->test_script, &afw_s_sourceType, xctx);
     if (!default_source_type) {
         default_source_type = &afw_s_script;
     }
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(tests, &iterator, x->p, xctx);
+        value = afw_array_get_next_value(tests, &iterator, p, xctx);
         if (!value) {
             break;
         }
@@ -168,42 +173,39 @@ afw_function_execute_test_script_runtime_support(
             else {
                 error_in = error_in_compile_expect;
                 (void)error_in; /* In catch. Avoid "not used" error. */
-                contextual = afw_pool_calloc_type(x->p,
+                contextual = afw_pool_calloc_type(p,
                     afw_compile_value_contextual_t, xctx);
-                afw_memory_copy(contextual, x->self->args.contextual);
+                afw_memory_copy(contextual, self->contextual);
                 contextual->value_offset = afw_safe_cast_integer_to_size(
                     expectUTF8OctetOffsetInTestScript, xctx);
                 contextual->value_size = afw_safe_cast_integer_to_size(
                     expectUTF8OctetLengthInTestScript, xctx);
-                value = afw_value_create_string(expect, x->p, xctx);
+                value = afw_value_create_string(expect, p, xctx);
                 argv[0] = (const afw_value_t *)info->compile_function;
                 argv[1] = afw_value_convert(value, info->data_type, true,
-                    x->p, xctx);
+                    p, xctx);
                 compiled_value = afw_value_call_built_in_function(
-                    contextual, info->compile_function, 1, argv, x->p, xctx);
-                expected_value = afw_value_evaluate(compiled_value,
-                    x->p, xctx);
+                    contextual, info->compile_function, 1, argv, p, xctx);
+                expected_value = afw_value_evaluate(compiled_value, p, xctx);
             }
 
             error_in = error_in_compile_source;
             (void)error_in; /* In catch. Avoid "not used" error. */
-            contextual = afw_pool_calloc_type(x->p,
-                afw_compile_value_contextual_t, xctx);
-            afw_memory_copy(contextual, x->self->args.contextual);
+            contextual = afw_pool_calloc_type(
+                p, afw_compile_value_contextual_t, xctx);
+            afw_memory_copy(contextual, self->contextual);
             contextual->value_offset = afw_safe_cast_integer_to_size(
                 sourceUTF8OctetOffsetInTestScript, xctx);
             contextual->value_size = afw_safe_cast_integer_to_size(
                 sourceUTF8OctetLengthInTestScript, xctx);
-            value = afw_value_create_string(source, x->p, xctx);
+            value = afw_value_create_string(source, p, xctx);
             argv[0] = (const afw_value_t *)info->compile_function;
-            argv[1] = afw_value_convert(value, info->data_type, true,
-                x->p, xctx);
+            argv[1] = afw_value_convert(value, info->data_type, true, p, xctx);
             compiled_value = afw_value_call_built_in_function(
-                contextual, info->compile_function, 1, argv, x->p, xctx);
+                contextual, info->compile_function, 1, argv, p, xctx);
             error_in = error_in_evaluate_source;
             (void)error_in; /* In catch. Avoid "not used" error. */
-            evaluated_value = afw_value_evaluate(compiled_value,
-                x->p, xctx);
+            evaluated_value = afw_value_evaluate(compiled_value, p, xctx);
             error_in = error_in_other;
             (void)error_in; /* In catch. Avoid "not used" error. */
 
@@ -225,8 +227,7 @@ afw_function_execute_test_script_runtime_support(
                 )
                 ? afw_value_true
                 : afw_value_false;
-            afw_object_set_property(test, &afw_s_passed, passed_value,
-                xctx);
+            afw_object_set_property(test, &afw_s_passed, passed_value, xctx);
         }
 
         AFW_CATCH_UNHANDLED{
@@ -242,7 +243,9 @@ afw_function_execute_test_script_runtime_support(
                 else {
                     expect_message.s = expect->s + afw_s_error.len + 1;
                     expect_message.len = expect->len - afw_s_error.len - 1;
-                    if (strlen(AFW_ERROR_THROWN->message_z) == expect_message.len &&
+                    if (strlen(AFW_ERROR_THROWN->message_z) ==
+                        expect_message.len
+                        &&
                         memcmp(expect_message.s, AFW_ERROR_THROWN->message_z,
                             expect_message.len) == 0)
                     {
@@ -285,11 +288,121 @@ afw_function_execute_test_script_runtime_support(
 
             /* Set error property. */
             afw_object_set_property_as_object(test, &afw_s_error,
-                afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
+                afw_error_to_object(AFW_ERROR_THROWN, p, xctx), xctx);
         }
 
         AFW_ENDTRY;
     }
 
-    return (const afw_value_t *)testScriptObject;
+    return afw_value_create_object(self->test_script, p, xctx);
+}
+
+
+/*
+ * Implementation of method get_data_type for interface afw_value.
+ */
+const afw_data_type_t *
+impl_afw_value_get_data_type(
+    const afw_value_t * instance,
+    afw_xctx_t *xctx)
+{
+    return NULL;
+}
+
+
+/*
+ * Implementation of method decompile for interface afw_value.
+ */
+void
+impl_afw_value_produce_compiler_listing(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    const afw_value_call_test_script_t *self =
+        (const afw_value_call_test_script_t *)instance;
+
+    afw_value_compiler_listing_begin_value(writer, instance,
+        self->contextual, xctx);
+    afw_writer_write_z(writer, ": [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+
+    // if (self->evaluated_data_type) {
+    //     afw_writer_write_z(writer, "evaluated_data_type: ", xctx);
+    //     afw_writer_write_utf8(writer,
+    //         &self->evaluated_data_type->data_type_id, xctx);
+    //     afw_writer_write_eol(writer, xctx);
+    // }
+
+    // if (self->optimized_value != instance) {
+    //     afw_writer_write_z(writer, "optimized_value: ", xctx);
+    //     afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
+    //     afw_writer_write_eol(writer, xctx);
+    // }
+
+    // afw_value_compiler_listing_value(self->args.argv[0], writer, xctx);
+
+    // afw_writer_write_z(writer, "arguments : [", xctx);
+    // afw_writer_write_eol(writer, xctx);
+    // afw_writer_increment_indent(writer, xctx);
+    // for (afw_size_t i = 1; i <= self->args.argc; i++) {
+    //     afw_value_compiler_listing_value(self->args.argv[i], writer, xctx);
+    // }
+    // afw_writer_decrement_indent(writer, xctx);
+    // afw_writer_write_z(writer, "]", xctx);
+    // afw_writer_write_eol(writer, xctx);
+
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
+}
+
+
+
+/*
+ * Implementation of method decompile for interface afw_value.
+ */
+void
+impl_afw_value_decompile(
+    const afw_value_t * instance,
+    const afw_writer_t * writer,
+    afw_xctx_t *xctx)
+{
+    /*FIXME
+
+    const afw_value_call_test_script_t *self =
+        (const afw_value_call_test_script_t *)instance;
+
+    if (self->qualifier.len > 0) {
+        afw_writer_write_utf8(writer, &self->qualifier, xctx);
+        afw_writer_write_z(writer, "::", xctx);
+    }
+    afw_writer_write_utf8(writer, &self->name, xctx);
+    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
+     */
+}
+
+
+/*
+ * Implementation of method get_info for interface afw_value.
+ */
+void
+impl_afw_value_get_info(
+    const afw_value_t *instance,
+    afw_value_info_t *info,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_call_test_script_t *self =
+        (const afw_value_call_test_script_t *)instance;
+
+    afw_memory_clear(info);
+    info->detail = &afw_s_test_script;
+    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->contextual = self->contextual;
+    info->evaluated_data_type = afw_data_type_object;
+    info->optimized_value = instance;
+
+    /* Note: Maybe something can be done for optimized_value_data_type. */
 }

@@ -133898,13 +133898,13 @@ static const afw_runtime_const_object_instance_t
 impl_1320;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/compiler_test_script
+ * /afw/_AdaptiveAuthorizationMode_/core
  */
 
 static const afw_value_string_t
 impl_1320_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive compiler runtime support for test script")
+    AFW_UTF8_LITERAL("Core mode")
 };
 
 static const afw_runtime_property_t
@@ -133914,21 +133914,9 @@ impl_1320_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1320_property_value_category = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("compiler_test_script")
-};
-
-static const afw_runtime_property_t
-impl_1320_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1320_property_value_category
-};
-
-static const afw_value_string_t
 impl_1320_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These are functions that support compiled test scripts at runtime. These are not intended to be called directly.")
+    AFW_UTF8_LITERAL("This authorization mode is used for trusted internal code that does not generally require additional authorization.")
 };
 
 static const afw_runtime_property_t
@@ -133937,11 +133925,23 @@ impl_1320_property_description = {
     (const afw_value_t *)&impl_1320_property_value_description
 };
 
+static const afw_value_string_t
+impl_1320_property_value_modeId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("core")
+};
+
+static const afw_runtime_property_t
+impl_1320_property_modeId = {
+    &afw_s_modeId,
+    (const afw_value_t *)&impl_1320_property_value_modeId
+};
+
 static const afw_runtime_property_t *
 impl_1320_properties[] = {
     &impl_1320_property_brief,
-    &impl_1320_property_category,
     &impl_1320_property_description,
+    &impl_1320_property_modeId,
     NULL
 };
 
@@ -133956,18 +133956,18 @@ impl_1320_meta_object = {
 
 static const afw_utf8_t
 impl_1320_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/compiler_test_script");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationMode_/core");
 
 static const afw_runtime_const_object_instance_t
 impl_1320 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationMode_,
         NULL,
         {
             (const afw_object_t *)&impl_1320_meta_object,
             NULL,
-            &afw_s_compiler_test_script,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_core,
+            &afw_s__AdaptiveAuthorizationMode_,
             &impl_1320_meta_path
         }
     },
@@ -133978,25 +133978,13 @@ static const afw_runtime_const_object_instance_t
 impl_1321;
 
 /*
- * /afw/_AdaptiveAuthorizationMode_/core
+ * /afw/_AdaptiveCollection_/core
  */
-
-static const afw_value_string_t
-impl_1321_property_value_brief = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Core mode")
-};
-
-static const afw_runtime_property_t
-impl_1321_property_brief = {
-    &afw_s_brief,
-    (const afw_value_t *)&impl_1321_property_value_brief
-};
 
 static const afw_value_string_t
 impl_1321_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This authorization mode is used for trusted internal code that does not generally require additional authorization.")
+    AFW_UTF8_LITERAL("Adaptive Framework core collection.")
 };
 
 static const afw_runtime_property_t
@@ -134006,22 +133994,21 @@ impl_1321_property_description = {
 };
 
 static const afw_value_string_t
-impl_1321_property_value_modeId = {
+impl_1321_property_value_objectId = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("core")
 };
 
 static const afw_runtime_property_t
-impl_1321_property_modeId = {
-    &afw_s_modeId,
-    (const afw_value_t *)&impl_1321_property_value_modeId
+impl_1321_property_objectId = {
+    &afw_s_objectId,
+    (const afw_value_t *)&impl_1321_property_value_objectId
 };
 
 static const afw_runtime_property_t *
 impl_1321_properties[] = {
-    &impl_1321_property_brief,
     &impl_1321_property_description,
-    &impl_1321_property_modeId,
+    &impl_1321_property_objectId,
     NULL
 };
 
@@ -134036,18 +134023,18 @@ impl_1321_meta_object = {
 
 static const afw_utf8_t
 impl_1321_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationMode_/core");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core");
 
 static const afw_runtime_const_object_instance_t
 impl_1321 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationMode_,
+        &afw_runtime_inf__AdaptiveCollection_,
         NULL,
         {
             (const afw_object_t *)&impl_1321_meta_object,
             NULL,
             &afw_s_core,
-            &afw_s__AdaptiveAuthorizationMode_,
+            &afw_s__AdaptiveCollection_,
             &impl_1321_meta_path
         }
     },
@@ -134058,13 +134045,49 @@ static const afw_runtime_const_object_instance_t
 impl_1322;
 
 /*
- * /afw/_AdaptiveCollection_/core
+ * /afw/_AdaptiveFunctionCategory_/date
  */
+
+static const afw_value_string_t
+impl_1322_property_value_brief = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("Data type date related functions")
+};
+
+static const afw_runtime_property_t
+impl_1322_property_brief = {
+    &afw_s_brief,
+    (const afw_value_t *)&impl_1322_property_value_brief
+};
+
+static const afw_value_string_t
+impl_1322_property_value_category = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("date")
+};
+
+static const afw_runtime_property_t
+impl_1322_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1322_property_value_category
+};
+
+static const afw_value_boolean_t
+impl_1322_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1322_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1322_property_value_dataTypeCategory
+};
 
 static const afw_value_string_t
 impl_1322_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive Framework core collection.")
+    AFW_UTF8_LITERAL("These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134073,22 +134096,12 @@ impl_1322_property_description = {
     (const afw_value_t *)&impl_1322_property_value_description
 };
 
-static const afw_value_string_t
-impl_1322_property_value_objectId = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("core")
-};
-
-static const afw_runtime_property_t
-impl_1322_property_objectId = {
-    &afw_s_objectId,
-    (const afw_value_t *)&impl_1322_property_value_objectId
-};
-
 static const afw_runtime_property_t *
 impl_1322_properties[] = {
+    &impl_1322_property_brief,
+    &impl_1322_property_category,
+    &impl_1322_property_dataTypeCategory,
     &impl_1322_property_description,
-    &impl_1322_property_objectId,
     NULL
 };
 
@@ -134103,18 +134116,18 @@ impl_1322_meta_object = {
 
 static const afw_utf8_t
 impl_1322_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/date");
 
 static const afw_runtime_const_object_instance_t
 impl_1322 = {
     {
-        &afw_runtime_inf__AdaptiveCollection_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1322_meta_object,
             NULL,
-            &afw_s_core,
-            &afw_s__AdaptiveCollection_,
+            &afw_s_date,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1322_meta_path
         }
     },
@@ -134125,13 +134138,13 @@ static const afw_runtime_const_object_instance_t
 impl_1323;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/date
+ * /afw/_AdaptiveFunctionCategory_/dateTime
  */
 
 static const afw_value_string_t
 impl_1323_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type date related functions")
+    AFW_UTF8_LITERAL("Data type dateTime related functions")
 };
 
 static const afw_runtime_property_t
@@ -134143,7 +134156,7 @@ impl_1323_property_brief = {
 static const afw_value_string_t
 impl_1323_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("date")
+    AFW_UTF8_LITERAL("dateTime")
 };
 
 static const afw_runtime_property_t
@@ -134167,7 +134180,7 @@ impl_1323_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1323_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134196,7 +134209,7 @@ impl_1323_meta_object = {
 
 static const afw_utf8_t
 impl_1323_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/date");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/dateTime");
 
 static const afw_runtime_const_object_instance_t
 impl_1323 = {
@@ -134206,7 +134219,7 @@ impl_1323 = {
         {
             (const afw_object_t *)&impl_1323_meta_object,
             NULL,
-            &afw_s_date,
+            &afw_s_dateTime,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1323_meta_path
         }
@@ -134218,13 +134231,13 @@ static const afw_runtime_const_object_instance_t
 impl_1324;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/dateTime
+ * /afw/_AdaptiveFunctionCategory_/dayTimeDuration
  */
 
 static const afw_value_string_t
 impl_1324_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type dateTime related functions")
+    AFW_UTF8_LITERAL("Data type dayTimeDuration related functions")
 };
 
 static const afw_runtime_property_t
@@ -134236,7 +134249,7 @@ impl_1324_property_brief = {
 static const afw_value_string_t
 impl_1324_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("dateTime")
+    AFW_UTF8_LITERAL("dayTimeDuration")
 };
 
 static const afw_runtime_property_t
@@ -134260,7 +134273,7 @@ impl_1324_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1324_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134289,7 +134302,7 @@ impl_1324_meta_object = {
 
 static const afw_utf8_t
 impl_1324_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/dateTime");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/dayTimeDuration");
 
 static const afw_runtime_const_object_instance_t
 impl_1324 = {
@@ -134299,7 +134312,7 @@ impl_1324 = {
         {
             (const afw_object_t *)&impl_1324_meta_object,
             NULL,
-            &afw_s_dateTime,
+            &afw_s_dayTimeDuration,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1324_meta_path
         }
@@ -134311,13 +134324,13 @@ static const afw_runtime_const_object_instance_t
 impl_1325;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/dayTimeDuration
+ * /afw/_AdaptiveAuthorizationDecision_/deny
  */
 
 static const afw_value_string_t
 impl_1325_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type dayTimeDuration related functions")
+    AFW_UTF8_LITERAL("Deny")
 };
 
 static const afw_runtime_property_t
@@ -134327,33 +134340,21 @@ impl_1325_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1325_property_value_category = {
+impl_1325_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("dayTimeDuration")
+    AFW_UTF8_LITERAL("deny")
 };
 
 static const afw_runtime_property_t
-impl_1325_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1325_property_value_category
-};
-
-static const afw_value_boolean_t
-impl_1325_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1325_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1325_property_value_dataTypeCategory
+impl_1325_property_decisionId = {
+    &afw_s_decisionId,
+    (const afw_value_t *)&impl_1325_property_value_decisionId
 };
 
 static const afw_value_string_t
 impl_1325_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("Decision is deny.")
 };
 
 static const afw_runtime_property_t
@@ -134365,8 +134366,7 @@ impl_1325_property_description = {
 static const afw_runtime_property_t *
 impl_1325_properties[] = {
     &impl_1325_property_brief,
-    &impl_1325_property_category,
-    &impl_1325_property_dataTypeCategory,
+    &impl_1325_property_decisionId,
     &impl_1325_property_description,
     NULL
 };
@@ -134382,18 +134382,18 @@ impl_1325_meta_object = {
 
 static const afw_utf8_t
 impl_1325_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/dayTimeDuration");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/deny");
 
 static const afw_runtime_const_object_instance_t
 impl_1325 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
         {
             (const afw_object_t *)&impl_1325_meta_object,
             NULL,
-            &afw_s_dayTimeDuration,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_deny,
+            &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1325_meta_path
         }
     },
@@ -134404,13 +134404,13 @@ static const afw_runtime_const_object_instance_t
 impl_1326;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/deny
+ * /afw/_AdaptiveFunctionCategory_/dnsName
  */
 
 static const afw_value_string_t
 impl_1326_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Deny")
+    AFW_UTF8_LITERAL("Data type dnsName related functions")
 };
 
 static const afw_runtime_property_t
@@ -134420,21 +134420,33 @@ impl_1326_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1326_property_value_decisionId = {
+impl_1326_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("deny")
+    AFW_UTF8_LITERAL("dnsName")
 };
 
 static const afw_runtime_property_t
-impl_1326_property_decisionId = {
-    &afw_s_decisionId,
-    (const afw_value_t *)&impl_1326_property_value_decisionId
+impl_1326_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1326_property_value_category
+};
+
+static const afw_value_boolean_t
+impl_1326_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1326_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1326_property_value_dataTypeCategory
 };
 
 static const afw_value_string_t
 impl_1326_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is deny.")
+    AFW_UTF8_LITERAL("These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134446,7 +134458,8 @@ impl_1326_property_description = {
 static const afw_runtime_property_t *
 impl_1326_properties[] = {
     &impl_1326_property_brief,
-    &impl_1326_property_decisionId,
+    &impl_1326_property_category,
+    &impl_1326_property_dataTypeCategory,
     &impl_1326_property_description,
     NULL
 };
@@ -134462,18 +134475,18 @@ impl_1326_meta_object = {
 
 static const afw_utf8_t
 impl_1326_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/deny");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/dnsName");
 
 static const afw_runtime_const_object_instance_t
 impl_1326 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1326_meta_object,
             NULL,
-            &afw_s_deny,
-            &afw_s__AdaptiveAuthorizationDecision_,
+            &afw_s_dnsName,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1326_meta_path
         }
     },
@@ -134484,13 +134497,13 @@ static const afw_runtime_const_object_instance_t
 impl_1327;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/dnsName
+ * /afw/_AdaptiveFunctionCategory_/double
  */
 
 static const afw_value_string_t
 impl_1327_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type dnsName related functions")
+    AFW_UTF8_LITERAL("Data type double related functions")
 };
 
 static const afw_runtime_property_t
@@ -134502,7 +134515,7 @@ impl_1327_property_brief = {
 static const afw_value_string_t
 impl_1327_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("dnsName")
+    AFW_UTF8_LITERAL("double")
 };
 
 static const afw_runtime_property_t
@@ -134526,7 +134539,7 @@ impl_1327_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1327_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134555,7 +134568,7 @@ impl_1327_meta_object = {
 
 static const afw_utf8_t
 impl_1327_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/dnsName");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/double");
 
 static const afw_runtime_const_object_instance_t
 impl_1327 = {
@@ -134565,7 +134578,7 @@ impl_1327 = {
         {
             (const afw_object_t *)&impl_1327_meta_object,
             NULL,
-            &afw_s_dnsName,
+            &afw_s_double,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1327_meta_path
         }
@@ -134577,13 +134590,13 @@ static const afw_runtime_const_object_instance_t
 impl_1328;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/double
+ * /afw/_AdaptiveFunctionCategory_/function
  */
 
 static const afw_value_string_t
 impl_1328_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type double related functions")
+    AFW_UTF8_LITERAL("Data type function related functions")
 };
 
 static const afw_runtime_property_t
@@ -134595,7 +134608,7 @@ impl_1328_property_brief = {
 static const afw_value_string_t
 impl_1328_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("double")
+    AFW_UTF8_LITERAL("function")
 };
 
 static const afw_runtime_property_t
@@ -134619,7 +134632,7 @@ impl_1328_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1328_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134648,7 +134661,7 @@ impl_1328_meta_object = {
 
 static const afw_utf8_t
 impl_1328_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/double");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/function");
 
 static const afw_runtime_const_object_instance_t
 impl_1328 = {
@@ -134658,7 +134671,7 @@ impl_1328 = {
         {
             (const afw_object_t *)&impl_1328_meta_object,
             NULL,
-            &afw_s_double,
+            &afw_s_function,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1328_meta_path
         }
@@ -134670,13 +134683,13 @@ static const afw_runtime_const_object_instance_t
 impl_1329;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/function
+ * /afw/_AdaptiveFunctionCategory_/hexBinary
  */
 
 static const afw_value_string_t
 impl_1329_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type function related functions")
+    AFW_UTF8_LITERAL("Data type hexBinary related functions")
 };
 
 static const afw_runtime_property_t
@@ -134688,7 +134701,7 @@ impl_1329_property_brief = {
 static const afw_value_string_t
 impl_1329_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("function")
+    AFW_UTF8_LITERAL("hexBinary")
 };
 
 static const afw_runtime_property_t
@@ -134712,7 +134725,7 @@ impl_1329_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1329_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134741,7 +134754,7 @@ impl_1329_meta_object = {
 
 static const afw_utf8_t
 impl_1329_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/function");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/hexBinary");
 
 static const afw_runtime_const_object_instance_t
 impl_1329 = {
@@ -134751,7 +134764,7 @@ impl_1329 = {
         {
             (const afw_object_t *)&impl_1329_meta_object,
             NULL,
-            &afw_s_function,
+            &afw_s_hexBinary,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1329_meta_path
         }
@@ -134763,13 +134776,13 @@ static const afw_runtime_const_object_instance_t
 impl_1330;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/hexBinary
+ * /afw/_AdaptiveFunctionCategory_/higher_order_array
  */
 
 static const afw_value_string_t
 impl_1330_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type hexBinary related functions")
+    AFW_UTF8_LITERAL("Higher-order array functions")
 };
 
 static const afw_runtime_property_t
@@ -134781,7 +134794,7 @@ impl_1330_property_brief = {
 static const afw_value_string_t
 impl_1330_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("hexBinary")
+    AFW_UTF8_LITERAL("higher_order_array")
 };
 
 static const afw_runtime_property_t
@@ -134790,22 +134803,10 @@ impl_1330_property_category = {
     (const afw_value_t *)&impl_1330_property_value_category
 };
 
-static const afw_value_boolean_t
-impl_1330_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1330_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1330_property_value_dataTypeCategory
-};
-
 static const afw_value_string_t
 impl_1330_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("Higher-order array functions.")
 };
 
 static const afw_runtime_property_t
@@ -134818,7 +134819,6 @@ static const afw_runtime_property_t *
 impl_1330_properties[] = {
     &impl_1330_property_brief,
     &impl_1330_property_category,
-    &impl_1330_property_dataTypeCategory,
     &impl_1330_property_description,
     NULL
 };
@@ -134834,7 +134834,7 @@ impl_1330_meta_object = {
 
 static const afw_utf8_t
 impl_1330_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/hexBinary");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/higher_order_array");
 
 static const afw_runtime_const_object_instance_t
 impl_1330 = {
@@ -134844,7 +134844,7 @@ impl_1330 = {
         {
             (const afw_object_t *)&impl_1330_meta_object,
             NULL,
-            &afw_s_hexBinary,
+            &afw_s_higher_order_array,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1330_meta_path
         }
@@ -134856,13 +134856,13 @@ static const afw_runtime_const_object_instance_t
 impl_1331;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/higher_order_array
+ * /afw/_AdaptiveFunctionCategory_/ia5String
  */
 
 static const afw_value_string_t
 impl_1331_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Higher-order array functions")
+    AFW_UTF8_LITERAL("Data type ia5String related functions")
 };
 
 static const afw_runtime_property_t
@@ -134874,7 +134874,7 @@ impl_1331_property_brief = {
 static const afw_value_string_t
 impl_1331_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("higher_order_array")
+    AFW_UTF8_LITERAL("ia5String")
 };
 
 static const afw_runtime_property_t
@@ -134883,10 +134883,22 @@ impl_1331_property_category = {
     (const afw_value_t *)&impl_1331_property_value_category
 };
 
+static const afw_value_boolean_t
+impl_1331_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1331_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1331_property_value_dataTypeCategory
+};
+
 static const afw_value_string_t
 impl_1331_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Higher-order array functions.")
+    AFW_UTF8_LITERAL("These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -134899,6 +134911,7 @@ static const afw_runtime_property_t *
 impl_1331_properties[] = {
     &impl_1331_property_brief,
     &impl_1331_property_category,
+    &impl_1331_property_dataTypeCategory,
     &impl_1331_property_description,
     NULL
 };
@@ -134914,7 +134927,7 @@ impl_1331_meta_object = {
 
 static const afw_utf8_t
 impl_1331_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/higher_order_array");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/ia5String");
 
 static const afw_runtime_const_object_instance_t
 impl_1331 = {
@@ -134924,7 +134937,7 @@ impl_1331 = {
         {
             (const afw_object_t *)&impl_1331_meta_object,
             NULL,
-            &afw_s_higher_order_array,
+            &afw_s_ia5String,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1331_meta_path
         }
@@ -134936,13 +134949,13 @@ static const afw_runtime_const_object_instance_t
 impl_1332;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/ia5String
+ * /afw/_AdaptiveAuthorizationDecision_/indeterminate
  */
 
 static const afw_value_string_t
 impl_1332_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type ia5String related functions")
+    AFW_UTF8_LITERAL("Indeterminate")
 };
 
 static const afw_runtime_property_t
@@ -134952,33 +134965,21 @@ impl_1332_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1332_property_value_category = {
+impl_1332_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ia5String")
+    AFW_UTF8_LITERAL("indeterminate")
 };
 
 static const afw_runtime_property_t
-impl_1332_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1332_property_value_category
-};
-
-static const afw_value_boolean_t
-impl_1332_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1332_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1332_property_value_dataTypeCategory
+impl_1332_property_decisionId = {
+    &afw_s_decisionId,
+    (const afw_value_t *)&impl_1332_property_value_decisionId
 };
 
 static const afw_value_string_t
 impl_1332_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("Decision is indeterminate.")
 };
 
 static const afw_runtime_property_t
@@ -134990,8 +134991,7 @@ impl_1332_property_description = {
 static const afw_runtime_property_t *
 impl_1332_properties[] = {
     &impl_1332_property_brief,
-    &impl_1332_property_category,
-    &impl_1332_property_dataTypeCategory,
+    &impl_1332_property_decisionId,
     &impl_1332_property_description,
     NULL
 };
@@ -135007,18 +135007,18 @@ impl_1332_meta_object = {
 
 static const afw_utf8_t
 impl_1332_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/ia5String");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminate");
 
 static const afw_runtime_const_object_instance_t
 impl_1332 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
         {
             (const afw_object_t *)&impl_1332_meta_object,
             NULL,
-            &afw_s_ia5String,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_indeterminate,
+            &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1332_meta_path
         }
     },
@@ -135029,13 +135029,13 @@ static const afw_runtime_const_object_instance_t
 impl_1333;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/indeterminate
+ * /afw/_AdaptiveAuthorizationDecision_/indeterminateD
  */
 
 static const afw_value_string_t
 impl_1333_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Indeterminate")
+    AFW_UTF8_LITERAL("Indeterminate{D}")
 };
 
 static const afw_runtime_property_t
@@ -135047,7 +135047,7 @@ impl_1333_property_brief = {
 static const afw_value_string_t
 impl_1333_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indeterminate")
+    AFW_UTF8_LITERAL("indeterminateD")
 };
 
 static const afw_runtime_property_t
@@ -135059,7 +135059,7 @@ impl_1333_property_decisionId = {
 static const afw_value_string_t
 impl_1333_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is indeterminate.")
+    AFW_UTF8_LITERAL("Decision is indeterminate{D}.")
 };
 
 static const afw_runtime_property_t
@@ -135068,11 +135068,24 @@ impl_1333_property_description = {
     (const afw_value_t *)&impl_1333_property_value_description
 };
 
+static const afw_value_boolean_t
+impl_1333_property_value_intermediateOnly = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1333_property_intermediateOnly = {
+    &afw_s_intermediateOnly,
+    (const afw_value_t *)&impl_1333_property_value_intermediateOnly
+};
+
 static const afw_runtime_property_t *
 impl_1333_properties[] = {
     &impl_1333_property_brief,
     &impl_1333_property_decisionId,
     &impl_1333_property_description,
+    &impl_1333_property_intermediateOnly,
     NULL
 };
 
@@ -135087,7 +135100,7 @@ impl_1333_meta_object = {
 
 static const afw_utf8_t
 impl_1333_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminate");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminateD");
 
 static const afw_runtime_const_object_instance_t
 impl_1333 = {
@@ -135097,7 +135110,7 @@ impl_1333 = {
         {
             (const afw_object_t *)&impl_1333_meta_object,
             NULL,
-            &afw_s_indeterminate,
+            &afw_s_indeterminateD,
             &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1333_meta_path
         }
@@ -135109,13 +135122,13 @@ static const afw_runtime_const_object_instance_t
 impl_1334;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/indeterminateD
+ * /afw/_AdaptiveAuthorizationDecision_/indeterminateDP
  */
 
 static const afw_value_string_t
 impl_1334_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Indeterminate{D}")
+    AFW_UTF8_LITERAL("Indeterminate{DP}")
 };
 
 static const afw_runtime_property_t
@@ -135127,7 +135140,7 @@ impl_1334_property_brief = {
 static const afw_value_string_t
 impl_1334_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indeterminateD")
+    AFW_UTF8_LITERAL("indeterminateDP")
 };
 
 static const afw_runtime_property_t
@@ -135139,7 +135152,7 @@ impl_1334_property_decisionId = {
 static const afw_value_string_t
 impl_1334_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is indeterminate{D}.")
+    AFW_UTF8_LITERAL("Decision is indeterminate{DP}.")
 };
 
 static const afw_runtime_property_t
@@ -135180,7 +135193,7 @@ impl_1334_meta_object = {
 
 static const afw_utf8_t
 impl_1334_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminateD");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminateDP");
 
 static const afw_runtime_const_object_instance_t
 impl_1334 = {
@@ -135190,7 +135203,7 @@ impl_1334 = {
         {
             (const afw_object_t *)&impl_1334_meta_object,
             NULL,
-            &afw_s_indeterminateD,
+            &afw_s_indeterminateDP,
             &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1334_meta_path
         }
@@ -135202,13 +135215,13 @@ static const afw_runtime_const_object_instance_t
 impl_1335;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/indeterminateDP
+ * /afw/_AdaptiveAuthorizationDecision_/indeterminateP
  */
 
 static const afw_value_string_t
 impl_1335_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Indeterminate{DP}")
+    AFW_UTF8_LITERAL("Indeterminate{P}")
 };
 
 static const afw_runtime_property_t
@@ -135220,7 +135233,7 @@ impl_1335_property_brief = {
 static const afw_value_string_t
 impl_1335_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indeterminateDP")
+    AFW_UTF8_LITERAL("indeterminateP")
 };
 
 static const afw_runtime_property_t
@@ -135232,7 +135245,7 @@ impl_1335_property_decisionId = {
 static const afw_value_string_t
 impl_1335_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is indeterminate{DP}.")
+    AFW_UTF8_LITERAL("Decision is indeterminate{P}.")
 };
 
 static const afw_runtime_property_t
@@ -135273,7 +135286,7 @@ impl_1335_meta_object = {
 
 static const afw_utf8_t
 impl_1335_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminateDP");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminateP");
 
 static const afw_runtime_const_object_instance_t
 impl_1335 = {
@@ -135283,7 +135296,7 @@ impl_1335 = {
         {
             (const afw_object_t *)&impl_1335_meta_object,
             NULL,
-            &afw_s_indeterminateDP,
+            &afw_s_indeterminateP,
             &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1335_meta_path
         }
@@ -135295,13 +135308,13 @@ static const afw_runtime_const_object_instance_t
 impl_1336;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/indeterminateP
+ * /afw/_AdaptiveFunctionCategory_/indexes
  */
 
 static const afw_value_string_t
 impl_1336_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Indeterminate{P}")
+    AFW_UTF8_LITERAL("Index related functions that act on adaptive objects")
 };
 
 static const afw_runtime_property_t
@@ -135311,21 +135324,21 @@ impl_1336_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1336_property_value_decisionId = {
+impl_1336_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indeterminateP")
+    AFW_UTF8_LITERAL("indexes")
 };
 
 static const afw_runtime_property_t
-impl_1336_property_decisionId = {
-    &afw_s_decisionId,
-    (const afw_value_t *)&impl_1336_property_value_decisionId
+impl_1336_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1336_property_value_category
 };
 
 static const afw_value_string_t
 impl_1336_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is indeterminate{P}.")
+    AFW_UTF8_LITERAL("Index related functions that act on adaptive objects.")
 };
 
 static const afw_runtime_property_t
@@ -135334,24 +135347,11 @@ impl_1336_property_description = {
     (const afw_value_t *)&impl_1336_property_value_description
 };
 
-static const afw_value_boolean_t
-impl_1336_property_value_intermediateOnly = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1336_property_intermediateOnly = {
-    &afw_s_intermediateOnly,
-    (const afw_value_t *)&impl_1336_property_value_intermediateOnly
-};
-
 static const afw_runtime_property_t *
 impl_1336_properties[] = {
     &impl_1336_property_brief,
-    &impl_1336_property_decisionId,
+    &impl_1336_property_category,
     &impl_1336_property_description,
-    &impl_1336_property_intermediateOnly,
     NULL
 };
 
@@ -135366,18 +135366,18 @@ impl_1336_meta_object = {
 
 static const afw_utf8_t
 impl_1336_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/indeterminateP");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/indexes");
 
 static const afw_runtime_const_object_instance_t
 impl_1336 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1336_meta_object,
             NULL,
-            &afw_s_indeterminateP,
-            &afw_s__AdaptiveAuthorizationDecision_,
+            &afw_s_indexes,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1336_meta_path
         }
     },
@@ -135388,13 +135388,13 @@ static const afw_runtime_const_object_instance_t
 impl_1337;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/indexes
+ * /afw/_AdaptiveFunctionCategory_/integer
  */
 
 static const afw_value_string_t
 impl_1337_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Index related functions that act on adaptive objects")
+    AFW_UTF8_LITERAL("Data type integer related functions")
 };
 
 static const afw_runtime_property_t
@@ -135406,7 +135406,7 @@ impl_1337_property_brief = {
 static const afw_value_string_t
 impl_1337_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indexes")
+    AFW_UTF8_LITERAL("integer")
 };
 
 static const afw_runtime_property_t
@@ -135415,10 +135415,22 @@ impl_1337_property_category = {
     (const afw_value_t *)&impl_1337_property_value_category
 };
 
+static const afw_value_boolean_t
+impl_1337_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1337_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1337_property_value_dataTypeCategory
+};
+
 static const afw_value_string_t
 impl_1337_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Index related functions that act on adaptive objects.")
+    AFW_UTF8_LITERAL("These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -135431,6 +135443,7 @@ static const afw_runtime_property_t *
 impl_1337_properties[] = {
     &impl_1337_property_brief,
     &impl_1337_property_category,
+    &impl_1337_property_dataTypeCategory,
     &impl_1337_property_description,
     NULL
 };
@@ -135446,7 +135459,7 @@ impl_1337_meta_object = {
 
 static const afw_utf8_t
 impl_1337_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/indexes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/integer");
 
 static const afw_runtime_const_object_instance_t
 impl_1337 = {
@@ -135456,7 +135469,7 @@ impl_1337 = {
         {
             (const afw_object_t *)&impl_1337_meta_object,
             NULL,
-            &afw_s_indexes,
+            &afw_s_integer,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1337_meta_path
         }
@@ -135468,13 +135481,13 @@ static const afw_runtime_const_object_instance_t
 impl_1338;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/integer
+ * /afw/_AdaptiveAuthorizationMode_/intermediate
  */
 
 static const afw_value_string_t
 impl_1338_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type integer related functions")
+    AFW_UTF8_LITERAL("Intermediate mode")
 };
 
 static const afw_runtime_property_t
@@ -135484,33 +135497,9 @@ impl_1338_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1338_property_value_category = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("integer")
-};
-
-static const afw_runtime_property_t
-impl_1338_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1338_property_value_category
-};
-
-static const afw_value_boolean_t
-impl_1338_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1338_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1338_property_value_dataTypeCategory
-};
-
-static const afw_value_string_t
 impl_1338_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adaptors when doing model processing.")
 };
 
 static const afw_runtime_property_t
@@ -135519,12 +135508,23 @@ impl_1338_property_description = {
     (const afw_value_t *)&impl_1338_property_value_description
 };
 
+static const afw_value_string_t
+impl_1338_property_value_modeId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("intermediate")
+};
+
+static const afw_runtime_property_t
+impl_1338_property_modeId = {
+    &afw_s_modeId,
+    (const afw_value_t *)&impl_1338_property_value_modeId
+};
+
 static const afw_runtime_property_t *
 impl_1338_properties[] = {
     &impl_1338_property_brief,
-    &impl_1338_property_category,
-    &impl_1338_property_dataTypeCategory,
     &impl_1338_property_description,
+    &impl_1338_property_modeId,
     NULL
 };
 
@@ -135539,18 +135539,18 @@ impl_1338_meta_object = {
 
 static const afw_utf8_t
 impl_1338_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/integer");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationMode_/intermediate");
 
 static const afw_runtime_const_object_instance_t
 impl_1338 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationMode_,
         NULL,
         {
             (const afw_object_t *)&impl_1338_meta_object,
             NULL,
-            &afw_s_integer,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_intermediate,
+            &afw_s__AdaptiveAuthorizationMode_,
             &impl_1338_meta_path
         }
     },
@@ -135561,13 +135561,13 @@ static const afw_runtime_const_object_instance_t
 impl_1339;
 
 /*
- * /afw/_AdaptiveAuthorizationMode_/intermediate
+ * /afw/_AdaptiveFunctionCategory_/ipAddress
  */
 
 static const afw_value_string_t
 impl_1339_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Intermediate mode")
+    AFW_UTF8_LITERAL("Data type ipAddress related functions")
 };
 
 static const afw_runtime_property_t
@@ -135577,9 +135577,33 @@ impl_1339_property_brief = {
 };
 
 static const afw_value_string_t
+impl_1339_property_value_category = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("ipAddress")
+};
+
+static const afw_runtime_property_t
+impl_1339_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1339_property_value_category
+};
+
+static const afw_value_boolean_t
+impl_1339_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1339_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1339_property_value_dataTypeCategory
+};
+
+static const afw_value_string_t
 impl_1339_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adaptors when doing model processing.")
+    AFW_UTF8_LITERAL("These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -135588,23 +135612,12 @@ impl_1339_property_description = {
     (const afw_value_t *)&impl_1339_property_value_description
 };
 
-static const afw_value_string_t
-impl_1339_property_value_modeId = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("intermediate")
-};
-
-static const afw_runtime_property_t
-impl_1339_property_modeId = {
-    &afw_s_modeId,
-    (const afw_value_t *)&impl_1339_property_value_modeId
-};
-
 static const afw_runtime_property_t *
 impl_1339_properties[] = {
     &impl_1339_property_brief,
+    &impl_1339_property_category,
+    &impl_1339_property_dataTypeCategory,
     &impl_1339_property_description,
-    &impl_1339_property_modeId,
     NULL
 };
 
@@ -135619,18 +135632,18 @@ impl_1339_meta_object = {
 
 static const afw_utf8_t
 impl_1339_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationMode_/intermediate");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/ipAddress");
 
 static const afw_runtime_const_object_instance_t
 impl_1339 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationMode_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1339_meta_object,
             NULL,
-            &afw_s_intermediate,
-            &afw_s__AdaptiveAuthorizationMode_,
+            &afw_s_ipAddress,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1339_meta_path
         }
     },
@@ -135641,13 +135654,13 @@ static const afw_runtime_const_object_instance_t
 impl_1340;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/ipAddress
+ * /afw/_AdaptiveFunctionCategory_/journal
  */
 
 static const afw_value_string_t
 impl_1340_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type ipAddress related functions")
+    AFW_UTF8_LITERAL("Functions related to adaptive journal")
 };
 
 static const afw_runtime_property_t
@@ -135659,7 +135672,7 @@ impl_1340_property_brief = {
 static const afw_value_string_t
 impl_1340_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ipAddress")
+    AFW_UTF8_LITERAL("journal")
 };
 
 static const afw_runtime_property_t
@@ -135668,22 +135681,10 @@ impl_1340_property_category = {
     (const afw_value_t *)&impl_1340_property_value_category
 };
 
-static const afw_value_boolean_t
-impl_1340_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1340_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1340_property_value_dataTypeCategory
-};
-
 static const afw_value_string_t
 impl_1340_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("Functions related to adaptive journal.")
 };
 
 static const afw_runtime_property_t
@@ -135696,7 +135697,6 @@ static const afw_runtime_property_t *
 impl_1340_properties[] = {
     &impl_1340_property_brief,
     &impl_1340_property_category,
-    &impl_1340_property_dataTypeCategory,
     &impl_1340_property_description,
     NULL
 };
@@ -135712,7 +135712,7 @@ impl_1340_meta_object = {
 
 static const afw_utf8_t
 impl_1340_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/ipAddress");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/journal");
 
 static const afw_runtime_const_object_instance_t
 impl_1340 = {
@@ -135722,7 +135722,7 @@ impl_1340 = {
         {
             (const afw_object_t *)&impl_1340_meta_object,
             NULL,
-            &afw_s_ipAddress,
+            &afw_s_journal,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1340_meta_path
         }
@@ -135734,13 +135734,13 @@ static const afw_runtime_const_object_instance_t
 impl_1341;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/journal
+ * /afw/_AdaptiveFunctionCategory_/logical
  */
 
 static const afw_value_string_t
 impl_1341_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Functions related to adaptive journal")
+    AFW_UTF8_LITERAL("Logical Boolean functions")
 };
 
 static const afw_runtime_property_t
@@ -135752,7 +135752,7 @@ impl_1341_property_brief = {
 static const afw_value_string_t
 impl_1341_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("journal")
+    AFW_UTF8_LITERAL("logical")
 };
 
 static const afw_runtime_property_t
@@ -135764,7 +135764,7 @@ impl_1341_property_category = {
 static const afw_value_string_t
 impl_1341_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Functions related to adaptive journal.")
+    AFW_UTF8_LITERAL("Logical Boolean functions.")
 };
 
 static const afw_runtime_property_t
@@ -135792,7 +135792,7 @@ impl_1341_meta_object = {
 
 static const afw_utf8_t
 impl_1341_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/journal");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/logical");
 
 static const afw_runtime_const_object_instance_t
 impl_1341 = {
@@ -135802,7 +135802,7 @@ impl_1341 = {
         {
             (const afw_object_t *)&impl_1341_meta_object,
             NULL,
-            &afw_s_journal,
+            &afw_s_logical,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1341_meta_path
         }
@@ -135814,13 +135814,13 @@ static const afw_runtime_const_object_instance_t
 impl_1342;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/logical
+ * /afw/_AdaptiveFunctionCategory_/miscellaneous
  */
 
 static const afw_value_string_t
 impl_1342_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Logical Boolean functions")
+    AFW_UTF8_LITERAL("Miscellaneous functions.")
 };
 
 static const afw_runtime_property_t
@@ -135832,7 +135832,7 @@ impl_1342_property_brief = {
 static const afw_value_string_t
 impl_1342_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("logical")
+    AFW_UTF8_LITERAL("miscellaneous")
 };
 
 static const afw_runtime_property_t
@@ -135844,7 +135844,7 @@ impl_1342_property_category = {
 static const afw_value_string_t
 impl_1342_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Logical Boolean functions.")
+    AFW_UTF8_LITERAL("Miscellaneous functions.")
 };
 
 static const afw_runtime_property_t
@@ -135872,7 +135872,7 @@ impl_1342_meta_object = {
 
 static const afw_utf8_t
 impl_1342_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/logical");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/miscellaneous");
 
 static const afw_runtime_const_object_instance_t
 impl_1342 = {
@@ -135882,7 +135882,7 @@ impl_1342 = {
         {
             (const afw_object_t *)&impl_1342_meta_object,
             NULL,
-            &afw_s_logical,
+            &afw_s_miscellaneous,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1342_meta_path
         }
@@ -135894,13 +135894,13 @@ static const afw_runtime_const_object_instance_t
 impl_1343;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/miscellaneous
+ * /afw/_AdaptiveFunctionCategory_/model
  */
 
 static const afw_value_string_t
 impl_1343_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Miscellaneous functions.")
+    AFW_UTF8_LITERAL("Model related functions")
 };
 
 static const afw_runtime_property_t
@@ -135912,7 +135912,7 @@ impl_1343_property_brief = {
 static const afw_value_string_t
 impl_1343_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("miscellaneous")
+    AFW_UTF8_LITERAL("model")
 };
 
 static const afw_runtime_property_t
@@ -135924,7 +135924,7 @@ impl_1343_property_category = {
 static const afw_value_string_t
 impl_1343_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Miscellaneous functions.")
+    AFW_UTF8_LITERAL("Model related functions.")
 };
 
 static const afw_runtime_property_t
@@ -135952,7 +135952,7 @@ impl_1343_meta_object = {
 
 static const afw_utf8_t
 impl_1343_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/miscellaneous");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/model");
 
 static const afw_runtime_const_object_instance_t
 impl_1343 = {
@@ -135962,7 +135962,7 @@ impl_1343 = {
         {
             (const afw_object_t *)&impl_1343_meta_object,
             NULL,
-            &afw_s_miscellaneous,
+            &afw_s_model,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1343_meta_path
         }
@@ -135974,13 +135974,13 @@ static const afw_runtime_const_object_instance_t
 impl_1344;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/model
+ * /afw/_AdaptiveAuthorizationDecision_/notApplicable
  */
 
 static const afw_value_string_t
 impl_1344_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Model related functions")
+    AFW_UTF8_LITERAL("Not applicable")
 };
 
 static const afw_runtime_property_t
@@ -135990,21 +135990,21 @@ impl_1344_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1344_property_value_category = {
+impl_1344_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("model")
+    AFW_UTF8_LITERAL("notApplicable")
 };
 
 static const afw_runtime_property_t
-impl_1344_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1344_property_value_category
+impl_1344_property_decisionId = {
+    &afw_s_decisionId,
+    (const afw_value_t *)&impl_1344_property_value_decisionId
 };
 
 static const afw_value_string_t
 impl_1344_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Model related functions.")
+    AFW_UTF8_LITERAL("Decision is not applicable.")
 };
 
 static const afw_runtime_property_t
@@ -136016,7 +136016,7 @@ impl_1344_property_description = {
 static const afw_runtime_property_t *
 impl_1344_properties[] = {
     &impl_1344_property_brief,
-    &impl_1344_property_category,
+    &impl_1344_property_decisionId,
     &impl_1344_property_description,
     NULL
 };
@@ -136032,18 +136032,18 @@ impl_1344_meta_object = {
 
 static const afw_utf8_t
 impl_1344_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/model");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/notApplicable");
 
 static const afw_runtime_const_object_instance_t
 impl_1344 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
         {
             (const afw_object_t *)&impl_1344_meta_object,
             NULL,
-            &afw_s_model,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_notApplicable,
+            &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1344_meta_path
         }
     },
@@ -136054,13 +136054,13 @@ static const afw_runtime_const_object_instance_t
 impl_1345;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/notApplicable
+ * /afw/_AdaptiveFunctionCategory_/null
  */
 
 static const afw_value_string_t
 impl_1345_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Not applicable")
+    AFW_UTF8_LITERAL("Data type null related functions")
 };
 
 static const afw_runtime_property_t
@@ -136070,21 +136070,33 @@ impl_1345_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1345_property_value_decisionId = {
+impl_1345_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("notApplicable")
+    AFW_UTF8_LITERAL("null")
 };
 
 static const afw_runtime_property_t
-impl_1345_property_decisionId = {
-    &afw_s_decisionId,
-    (const afw_value_t *)&impl_1345_property_value_decisionId
+impl_1345_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1345_property_value_category
+};
+
+static const afw_value_boolean_t
+impl_1345_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1345_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1345_property_value_dataTypeCategory
 };
 
 static const afw_value_string_t
 impl_1345_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is not applicable.")
+    AFW_UTF8_LITERAL("These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136096,7 +136108,8 @@ impl_1345_property_description = {
 static const afw_runtime_property_t *
 impl_1345_properties[] = {
     &impl_1345_property_brief,
-    &impl_1345_property_decisionId,
+    &impl_1345_property_category,
+    &impl_1345_property_dataTypeCategory,
     &impl_1345_property_description,
     NULL
 };
@@ -136112,18 +136125,18 @@ impl_1345_meta_object = {
 
 static const afw_utf8_t
 impl_1345_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/notApplicable");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/null");
 
 static const afw_runtime_const_object_instance_t
 impl_1345 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1345_meta_object,
             NULL,
-            &afw_s_notApplicable,
-            &afw_s__AdaptiveAuthorizationDecision_,
+            &afw_s_null,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1345_meta_path
         }
     },
@@ -136134,13 +136147,13 @@ static const afw_runtime_const_object_instance_t
 impl_1346;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/null
+ * /afw/_AdaptiveFunctionCategory_/object
  */
 
 static const afw_value_string_t
 impl_1346_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type null related functions")
+    AFW_UTF8_LITERAL("Data type object related functions")
 };
 
 static const afw_runtime_property_t
@@ -136152,7 +136165,7 @@ impl_1346_property_brief = {
 static const afw_value_string_t
 impl_1346_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("null")
+    AFW_UTF8_LITERAL("object")
 };
 
 static const afw_runtime_property_t
@@ -136176,7 +136189,7 @@ impl_1346_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1346_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136205,7 +136218,7 @@ impl_1346_meta_object = {
 
 static const afw_utf8_t
 impl_1346_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/null");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/object");
 
 static const afw_runtime_const_object_instance_t
 impl_1346 = {
@@ -136215,7 +136228,7 @@ impl_1346 = {
         {
             (const afw_object_t *)&impl_1346_meta_object,
             NULL,
-            &afw_s_null,
+            &afw_s_object,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1346_meta_path
         }
@@ -136227,13 +136240,13 @@ static const afw_runtime_const_object_instance_t
 impl_1347;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/object
+ * /afw/_AdaptiveFunctionCategory_/objectId
  */
 
 static const afw_value_string_t
 impl_1347_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type object related functions")
+    AFW_UTF8_LITERAL("Data type objectId related functions")
 };
 
 static const afw_runtime_property_t
@@ -136245,7 +136258,7 @@ impl_1347_property_brief = {
 static const afw_value_string_t
 impl_1347_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("object")
+    AFW_UTF8_LITERAL("objectId")
 };
 
 static const afw_runtime_property_t
@@ -136269,7 +136282,7 @@ impl_1347_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1347_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136298,7 +136311,7 @@ impl_1347_meta_object = {
 
 static const afw_utf8_t
 impl_1347_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/object");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/objectId");
 
 static const afw_runtime_const_object_instance_t
 impl_1347 = {
@@ -136308,7 +136321,7 @@ impl_1347 = {
         {
             (const afw_object_t *)&impl_1347_meta_object,
             NULL,
-            &afw_s_object,
+            &afw_s_objectId,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1347_meta_path
         }
@@ -136320,13 +136333,13 @@ static const afw_runtime_const_object_instance_t
 impl_1348;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/objectId
+ * /afw/_AdaptiveFunctionCategory_/objectPath
  */
 
 static const afw_value_string_t
 impl_1348_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type objectId related functions")
+    AFW_UTF8_LITERAL("Data type objectPath related functions")
 };
 
 static const afw_runtime_property_t
@@ -136338,7 +136351,7 @@ impl_1348_property_brief = {
 static const afw_value_string_t
 impl_1348_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("objectId")
+    AFW_UTF8_LITERAL("objectPath")
 };
 
 static const afw_runtime_property_t
@@ -136362,7 +136375,7 @@ impl_1348_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1348_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136391,7 +136404,7 @@ impl_1348_meta_object = {
 
 static const afw_utf8_t
 impl_1348_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/objectId");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/objectPath");
 
 static const afw_runtime_const_object_instance_t
 impl_1348 = {
@@ -136401,7 +136414,7 @@ impl_1348 = {
         {
             (const afw_object_t *)&impl_1348_meta_object,
             NULL,
-            &afw_s_objectId,
+            &afw_s_objectPath,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1348_meta_path
         }
@@ -136413,13 +136426,13 @@ static const afw_runtime_const_object_instance_t
 impl_1349;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/objectPath
+ * /afw/_AdaptiveFunctionCategory_/password
  */
 
 static const afw_value_string_t
 impl_1349_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type objectPath related functions")
+    AFW_UTF8_LITERAL("Data type password related functions")
 };
 
 static const afw_runtime_property_t
@@ -136431,7 +136444,7 @@ impl_1349_property_brief = {
 static const afw_value_string_t
 impl_1349_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("objectPath")
+    AFW_UTF8_LITERAL("password")
 };
 
 static const afw_runtime_property_t
@@ -136455,7 +136468,7 @@ impl_1349_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1349_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136484,7 +136497,7 @@ impl_1349_meta_object = {
 
 static const afw_utf8_t
 impl_1349_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/objectPath");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/password");
 
 static const afw_runtime_const_object_instance_t
 impl_1349 = {
@@ -136494,7 +136507,7 @@ impl_1349 = {
         {
             (const afw_object_t *)&impl_1349_meta_object,
             NULL,
-            &afw_s_objectPath,
+            &afw_s_password,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1349_meta_path
         }
@@ -136506,13 +136519,13 @@ static const afw_runtime_const_object_instance_t
 impl_1350;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/password
+ * /afw/_AdaptiveAuthorizationDecision_/permit
  */
 
 static const afw_value_string_t
 impl_1350_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type password related functions")
+    AFW_UTF8_LITERAL("Permit")
 };
 
 static const afw_runtime_property_t
@@ -136522,33 +136535,21 @@ impl_1350_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1350_property_value_category = {
+impl_1350_property_value_decisionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("password")
+    AFW_UTF8_LITERAL("permit")
 };
 
 static const afw_runtime_property_t
-impl_1350_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1350_property_value_category
-};
-
-static const afw_value_boolean_t
-impl_1350_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1350_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1350_property_value_dataTypeCategory
+impl_1350_property_decisionId = {
+    &afw_s_decisionId,
+    (const afw_value_t *)&impl_1350_property_value_decisionId
 };
 
 static const afw_value_string_t
 impl_1350_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("Decision is permit.")
 };
 
 static const afw_runtime_property_t
@@ -136560,8 +136561,7 @@ impl_1350_property_description = {
 static const afw_runtime_property_t *
 impl_1350_properties[] = {
     &impl_1350_property_brief,
-    &impl_1350_property_category,
-    &impl_1350_property_dataTypeCategory,
+    &impl_1350_property_decisionId,
     &impl_1350_property_description,
     NULL
 };
@@ -136577,18 +136577,18 @@ impl_1350_meta_object = {
 
 static const afw_utf8_t
 impl_1350_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/password");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/permit");
 
 static const afw_runtime_const_object_instance_t
 impl_1350 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
         {
             (const afw_object_t *)&impl_1350_meta_object,
             NULL,
-            &afw_s_password,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_permit,
+            &afw_s__AdaptiveAuthorizationDecision_,
             &impl_1350_meta_path
         }
     },
@@ -136599,13 +136599,13 @@ static const afw_runtime_const_object_instance_t
 impl_1351;
 
 /*
- * /afw/_AdaptiveAuthorizationDecision_/permit
+ * /afw/_AdaptiveFunctionCategory_/polymorphic
  */
 
 static const afw_value_string_t
 impl_1351_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Permit")
+    AFW_UTF8_LITERAL("Polymorphic functions")
 };
 
 static const afw_runtime_property_t
@@ -136615,21 +136615,21 @@ impl_1351_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1351_property_value_decisionId = {
+impl_1351_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("permit")
+    AFW_UTF8_LITERAL("polymorphic")
 };
 
 static const afw_runtime_property_t
-impl_1351_property_decisionId = {
-    &afw_s_decisionId,
-    (const afw_value_t *)&impl_1351_property_value_decisionId
+impl_1351_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1351_property_value_category
 };
 
 static const afw_value_string_t
 impl_1351_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Decision is permit.")
+    AFW_UTF8_LITERAL("Functions that are used by more than one <Type>.")
 };
 
 static const afw_runtime_property_t
@@ -136641,7 +136641,7 @@ impl_1351_property_description = {
 static const afw_runtime_property_t *
 impl_1351_properties[] = {
     &impl_1351_property_brief,
-    &impl_1351_property_decisionId,
+    &impl_1351_property_category,
     &impl_1351_property_description,
     NULL
 };
@@ -136657,18 +136657,18 @@ impl_1351_meta_object = {
 
 static const afw_utf8_t
 impl_1351_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationDecision_/permit");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/polymorphic");
 
 static const afw_runtime_const_object_instance_t
 impl_1351 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationDecision_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1351_meta_object,
             NULL,
-            &afw_s_permit,
-            &afw_s__AdaptiveAuthorizationDecision_,
+            &afw_s_polymorphic,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1351_meta_path
         }
     },
@@ -136679,13 +136679,13 @@ static const afw_runtime_const_object_instance_t
 impl_1352;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/polymorphic
+ * /afw/_AdaptiveFunctionCategory_/random
  */
 
 static const afw_value_string_t
 impl_1352_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Polymorphic functions")
+    AFW_UTF8_LITERAL("Random functions.")
 };
 
 static const afw_runtime_property_t
@@ -136697,7 +136697,7 @@ impl_1352_property_brief = {
 static const afw_value_string_t
 impl_1352_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("polymorphic")
+    AFW_UTF8_LITERAL("random")
 };
 
 static const afw_runtime_property_t
@@ -136709,7 +136709,7 @@ impl_1352_property_category = {
 static const afw_value_string_t
 impl_1352_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Functions that are used by more than one <Type>.")
+    AFW_UTF8_LITERAL("Random functions.")
 };
 
 static const afw_runtime_property_t
@@ -136737,7 +136737,7 @@ impl_1352_meta_object = {
 
 static const afw_utf8_t
 impl_1352_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/polymorphic");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/random");
 
 static const afw_runtime_const_object_instance_t
 impl_1352 = {
@@ -136747,7 +136747,7 @@ impl_1352 = {
         {
             (const afw_object_t *)&impl_1352_meta_object,
             NULL,
-            &afw_s_polymorphic,
+            &afw_s_random,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1352_meta_path
         }
@@ -136759,13 +136759,13 @@ static const afw_runtime_const_object_instance_t
 impl_1353;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/random
+ * /afw/_AdaptiveFunctionCategory_/regexp
  */
 
 static const afw_value_string_t
 impl_1353_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Random functions.")
+    AFW_UTF8_LITERAL("Data type regexp related functions")
 };
 
 static const afw_runtime_property_t
@@ -136777,7 +136777,7 @@ impl_1353_property_brief = {
 static const afw_value_string_t
 impl_1353_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("random")
+    AFW_UTF8_LITERAL("regexp")
 };
 
 static const afw_runtime_property_t
@@ -136786,10 +136786,22 @@ impl_1353_property_category = {
     (const afw_value_t *)&impl_1353_property_value_category
 };
 
+static const afw_value_boolean_t
+impl_1353_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1353_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1353_property_value_dataTypeCategory
+};
+
 static const afw_value_string_t
 impl_1353_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Random functions.")
+    AFW_UTF8_LITERAL("These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136802,6 +136814,7 @@ static const afw_runtime_property_t *
 impl_1353_properties[] = {
     &impl_1353_property_brief,
     &impl_1353_property_category,
+    &impl_1353_property_dataTypeCategory,
     &impl_1353_property_description,
     NULL
 };
@@ -136817,7 +136830,7 @@ impl_1353_meta_object = {
 
 static const afw_utf8_t
 impl_1353_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/random");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/regexp");
 
 static const afw_runtime_const_object_instance_t
 impl_1353 = {
@@ -136827,7 +136840,7 @@ impl_1353 = {
         {
             (const afw_object_t *)&impl_1353_meta_object,
             NULL,
-            &afw_s_random,
+            &afw_s_regexp,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1353_meta_path
         }
@@ -136839,13 +136852,13 @@ static const afw_runtime_const_object_instance_t
 impl_1354;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/regexp
+ * /afw/_AdaptiveFunctionCategory_/rfc822Name
  */
 
 static const afw_value_string_t
 impl_1354_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type regexp related functions")
+    AFW_UTF8_LITERAL("Data type rfc822Name related functions")
 };
 
 static const afw_runtime_property_t
@@ -136857,7 +136870,7 @@ impl_1354_property_brief = {
 static const afw_value_string_t
 impl_1354_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("regexp")
+    AFW_UTF8_LITERAL("rfc822Name")
 };
 
 static const afw_runtime_property_t
@@ -136881,7 +136894,7 @@ impl_1354_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1354_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -136910,7 +136923,7 @@ impl_1354_meta_object = {
 
 static const afw_utf8_t
 impl_1354_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/regexp");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/rfc822Name");
 
 static const afw_runtime_const_object_instance_t
 impl_1354 = {
@@ -136920,7 +136933,7 @@ impl_1354 = {
         {
             (const afw_object_t *)&impl_1354_meta_object,
             NULL,
-            &afw_s_regexp,
+            &afw_s_rfc822Name,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1354_meta_path
         }
@@ -136932,13 +136945,13 @@ static const afw_runtime_const_object_instance_t
 impl_1355;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/rfc822Name
+ * /afw/_AdaptiveFunctionCategory_/script
  */
 
 static const afw_value_string_t
 impl_1355_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type rfc822Name related functions")
+    AFW_UTF8_LITERAL("Script functions")
 };
 
 static const afw_runtime_property_t
@@ -136950,7 +136963,7 @@ impl_1355_property_brief = {
 static const afw_value_string_t
 impl_1355_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("rfc822Name")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -136974,7 +136987,7 @@ impl_1355_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1355_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These functions support adaptive scripts.")
 };
 
 static const afw_runtime_property_t
@@ -137003,7 +137016,7 @@ impl_1355_meta_object = {
 
 static const afw_utf8_t
 impl_1355_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/rfc822Name");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/script");
 
 static const afw_runtime_const_object_instance_t
 impl_1355 = {
@@ -137013,7 +137026,7 @@ impl_1355 = {
         {
             (const afw_object_t *)&impl_1355_meta_object,
             NULL,
-            &afw_s_rfc822Name,
+            &afw_s_script,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1355_meta_path
         }
@@ -137025,13 +137038,13 @@ static const afw_runtime_const_object_instance_t
 impl_1356;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/script
+ * /afw/_AdaptiveFunctionCategory_/stream
  */
 
 static const afw_value_string_t
 impl_1356_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Script functions")
+    AFW_UTF8_LITERAL("Stream functions")
 };
 
 static const afw_runtime_property_t
@@ -137043,7 +137056,7 @@ impl_1356_property_brief = {
 static const afw_value_string_t
 impl_1356_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("script")
+    AFW_UTF8_LITERAL("stream")
 };
 
 static const afw_runtime_property_t
@@ -137052,22 +137065,10 @@ impl_1356_property_category = {
     (const afw_value_t *)&impl_1356_property_value_category
 };
 
-static const afw_value_boolean_t
-impl_1356_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1356_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1356_property_value_dataTypeCategory
-};
-
 static const afw_value_string_t
 impl_1356_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These functions support adaptive scripts.")
+    AFW_UTF8_LITERAL("These functions access adaptive streams.")
 };
 
 static const afw_runtime_property_t
@@ -137080,7 +137081,6 @@ static const afw_runtime_property_t *
 impl_1356_properties[] = {
     &impl_1356_property_brief,
     &impl_1356_property_category,
-    &impl_1356_property_dataTypeCategory,
     &impl_1356_property_description,
     NULL
 };
@@ -137096,7 +137096,7 @@ impl_1356_meta_object = {
 
 static const afw_utf8_t
 impl_1356_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/script");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/stream");
 
 static const afw_runtime_const_object_instance_t
 impl_1356 = {
@@ -137106,7 +137106,7 @@ impl_1356 = {
         {
             (const afw_object_t *)&impl_1356_meta_object,
             NULL,
-            &afw_s_script,
+            &afw_s_stream,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1356_meta_path
         }
@@ -137118,13 +137118,13 @@ static const afw_runtime_const_object_instance_t
 impl_1357;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/stream
+ * /afw/_AdaptiveFunctionCategory_/string
  */
 
 static const afw_value_string_t
 impl_1357_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Stream functions")
+    AFW_UTF8_LITERAL("Data type string related functions")
 };
 
 static const afw_runtime_property_t
@@ -137136,7 +137136,7 @@ impl_1357_property_brief = {
 static const afw_value_string_t
 impl_1357_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("stream")
+    AFW_UTF8_LITERAL("string")
 };
 
 static const afw_runtime_property_t
@@ -137145,10 +137145,22 @@ impl_1357_property_category = {
     (const afw_value_t *)&impl_1357_property_value_category
 };
 
+static const afw_value_boolean_t
+impl_1357_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1357_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1357_property_value_dataTypeCategory
+};
+
 static const afw_value_string_t
 impl_1357_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These functions access adaptive streams.")
+    AFW_UTF8_LITERAL("These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -137161,6 +137173,7 @@ static const afw_runtime_property_t *
 impl_1357_properties[] = {
     &impl_1357_property_brief,
     &impl_1357_property_category,
+    &impl_1357_property_dataTypeCategory,
     &impl_1357_property_description,
     NULL
 };
@@ -137176,7 +137189,7 @@ impl_1357_meta_object = {
 
 static const afw_utf8_t
 impl_1357_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/stream");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/string");
 
 static const afw_runtime_const_object_instance_t
 impl_1357 = {
@@ -137186,7 +137199,7 @@ impl_1357 = {
         {
             (const afw_object_t *)&impl_1357_meta_object,
             NULL,
-            &afw_s_stream,
+            &afw_s_string,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1357_meta_path
         }
@@ -137198,13 +137211,13 @@ static const afw_runtime_const_object_instance_t
 impl_1358;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/string
+ * /afw/_AdaptiveFunctionCategory_/template
  */
 
 static const afw_value_string_t
 impl_1358_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type string related functions")
+    AFW_UTF8_LITERAL("Data type template related functions")
 };
 
 static const afw_runtime_property_t
@@ -137216,7 +137229,7 @@ impl_1358_property_brief = {
 static const afw_value_string_t
 impl_1358_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("string")
+    AFW_UTF8_LITERAL("template")
 };
 
 static const afw_runtime_property_t
@@ -137240,7 +137253,7 @@ impl_1358_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1358_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -137269,7 +137282,7 @@ impl_1358_meta_object = {
 
 static const afw_utf8_t
 impl_1358_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/string");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/template");
 
 static const afw_runtime_const_object_instance_t
 impl_1358 = {
@@ -137279,7 +137292,7 @@ impl_1358 = {
         {
             (const afw_object_t *)&impl_1358_meta_object,
             NULL,
-            &afw_s_string,
+            &afw_s_template,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1358_meta_path
         }
@@ -137291,13 +137304,13 @@ static const afw_runtime_const_object_instance_t
 impl_1359;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/template
+ * /afw/_AdaptiveFunctionCategory_/time
  */
 
 static const afw_value_string_t
 impl_1359_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type template related functions")
+    AFW_UTF8_LITERAL("Data type time related functions")
 };
 
 static const afw_runtime_property_t
@@ -137309,7 +137322,7 @@ impl_1359_property_brief = {
 static const afw_value_string_t
 impl_1359_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("time")
 };
 
 static const afw_runtime_property_t
@@ -137333,7 +137346,7 @@ impl_1359_property_dataTypeCategory = {
 static const afw_value_string_t
 impl_1359_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -137362,7 +137375,7 @@ impl_1359_meta_object = {
 
 static const afw_utf8_t
 impl_1359_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/template");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/time");
 
 static const afw_runtime_const_object_instance_t
 impl_1359 = {
@@ -137372,7 +137385,7 @@ impl_1359 = {
         {
             (const afw_object_t *)&impl_1359_meta_object,
             NULL,
-            &afw_s_template,
+            &afw_s_time,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1359_meta_path
         }
@@ -137384,13 +137397,13 @@ static const afw_runtime_const_object_instance_t
 impl_1360;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/time
+ * /afw/_AdaptiveAuthorizationMode_/user
  */
 
 static const afw_value_string_t
 impl_1360_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type time related functions")
+    AFW_UTF8_LITERAL("User mode")
 };
 
 static const afw_runtime_property_t
@@ -137400,33 +137413,9 @@ impl_1360_property_brief = {
 };
 
 static const afw_value_string_t
-impl_1360_property_value_category = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("time")
-};
-
-static const afw_runtime_property_t
-impl_1360_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1360_property_value_category
-};
-
-static const afw_value_boolean_t
-impl_1360_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1360_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1360_property_value_dataTypeCategory
-};
-
-static const afw_value_string_t
 impl_1360_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("This authorization mode is used when checking authorization from external sources.")
 };
 
 static const afw_runtime_property_t
@@ -137435,12 +137424,23 @@ impl_1360_property_description = {
     (const afw_value_t *)&impl_1360_property_value_description
 };
 
+static const afw_value_string_t
+impl_1360_property_value_modeId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("user")
+};
+
+static const afw_runtime_property_t
+impl_1360_property_modeId = {
+    &afw_s_modeId,
+    (const afw_value_t *)&impl_1360_property_value_modeId
+};
+
 static const afw_runtime_property_t *
 impl_1360_properties[] = {
     &impl_1360_property_brief,
-    &impl_1360_property_category,
-    &impl_1360_property_dataTypeCategory,
     &impl_1360_property_description,
+    &impl_1360_property_modeId,
     NULL
 };
 
@@ -137455,18 +137455,18 @@ impl_1360_meta_object = {
 
 static const afw_utf8_t
 impl_1360_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/time");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationMode_/user");
 
 static const afw_runtime_const_object_instance_t
 impl_1360 = {
     {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        &afw_runtime_inf__AdaptiveAuthorizationMode_,
         NULL,
         {
             (const afw_object_t *)&impl_1360_meta_object,
             NULL,
-            &afw_s_time,
-            &afw_s__AdaptiveFunctionCategory_,
+            &afw_s_user,
+            &afw_s__AdaptiveAuthorizationMode_,
             &impl_1360_meta_path
         }
     },
@@ -137477,13 +137477,13 @@ static const afw_runtime_const_object_instance_t
 impl_1361;
 
 /*
- * /afw/_AdaptiveAuthorizationMode_/user
+ * /afw/_AdaptiveFunctionCategory_/value
  */
 
 static const afw_value_string_t
 impl_1361_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("User mode")
+    AFW_UTF8_LITERAL("Adaptive value functions")
 };
 
 static const afw_runtime_property_t
@@ -137493,9 +137493,21 @@ impl_1361_property_brief = {
 };
 
 static const afw_value_string_t
+impl_1361_property_value_category = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("value")
+};
+
+static const afw_runtime_property_t
+impl_1361_property_category = {
+    &afw_s_category,
+    (const afw_value_t *)&impl_1361_property_value_category
+};
+
+static const afw_value_string_t
 impl_1361_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This authorization mode is used when checking authorization from external sources.")
+    AFW_UTF8_LITERAL("These are function that work on all adaptive values and their associated meta.")
 };
 
 static const afw_runtime_property_t
@@ -137504,23 +137516,11 @@ impl_1361_property_description = {
     (const afw_value_t *)&impl_1361_property_value_description
 };
 
-static const afw_value_string_t
-impl_1361_property_value_modeId = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("user")
-};
-
-static const afw_runtime_property_t
-impl_1361_property_modeId = {
-    &afw_s_modeId,
-    (const afw_value_t *)&impl_1361_property_value_modeId
-};
-
 static const afw_runtime_property_t *
 impl_1361_properties[] = {
     &impl_1361_property_brief,
+    &impl_1361_property_category,
     &impl_1361_property_description,
-    &impl_1361_property_modeId,
     NULL
 };
 
@@ -137535,18 +137535,18 @@ impl_1361_meta_object = {
 
 static const afw_utf8_t
 impl_1361_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveAuthorizationMode_/user");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/value");
 
 static const afw_runtime_const_object_instance_t
 impl_1361 = {
     {
-        &afw_runtime_inf__AdaptiveAuthorizationMode_,
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
         {
             (const afw_object_t *)&impl_1361_meta_object,
             NULL,
-            &afw_s_user,
-            &afw_s__AdaptiveAuthorizationMode_,
+            &afw_s_value,
+            &afw_s__AdaptiveFunctionCategory_,
             &impl_1361_meta_path
         }
     },
@@ -137557,13 +137557,13 @@ static const afw_runtime_const_object_instance_t
 impl_1362;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/value
+ * /afw/_AdaptiveFunctionCategory_/x500Name
  */
 
 static const afw_value_string_t
 impl_1362_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Adaptive value functions")
+    AFW_UTF8_LITERAL("Data type x500Name related functions")
 };
 
 static const afw_runtime_property_t
@@ -137575,7 +137575,7 @@ impl_1362_property_brief = {
 static const afw_value_string_t
 impl_1362_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("value")
+    AFW_UTF8_LITERAL("x500Name")
 };
 
 static const afw_runtime_property_t
@@ -137584,10 +137584,22 @@ impl_1362_property_category = {
     (const afw_value_t *)&impl_1362_property_value_category
 };
 
+static const afw_value_boolean_t
+impl_1362_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1362_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1362_property_value_dataTypeCategory
+};
+
 static const afw_value_string_t
 impl_1362_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These are function that work on all adaptive values and their associated meta.")
+    AFW_UTF8_LITERAL("These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -137600,6 +137612,7 @@ static const afw_runtime_property_t *
 impl_1362_properties[] = {
     &impl_1362_property_brief,
     &impl_1362_property_category,
+    &impl_1362_property_dataTypeCategory,
     &impl_1362_property_description,
     NULL
 };
@@ -137615,7 +137628,7 @@ impl_1362_meta_object = {
 
 static const afw_utf8_t
 impl_1362_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/value");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/x500Name");
 
 static const afw_runtime_const_object_instance_t
 impl_1362 = {
@@ -137625,7 +137638,7 @@ impl_1362 = {
         {
             (const afw_object_t *)&impl_1362_meta_object,
             NULL,
-            &afw_s_value,
+            &afw_s_x500Name,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1362_meta_path
         }
@@ -137637,13 +137650,13 @@ static const afw_runtime_const_object_instance_t
 impl_1363;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/x500Name
+ * /afw/_AdaptiveFunctionCategory_/xpath
  */
 
 static const afw_value_string_t
 impl_1363_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type x500Name related functions")
+    AFW_UTF8_LITERAL("xpath related functions")
 };
 
 static const afw_runtime_property_t
@@ -137655,7 +137668,7 @@ impl_1363_property_brief = {
 static const afw_value_string_t
 impl_1363_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("x500Name")
+    AFW_UTF8_LITERAL("xpath")
 };
 
 static const afw_runtime_property_t
@@ -137664,22 +137677,10 @@ impl_1363_property_category = {
     (const afw_value_t *)&impl_1363_property_value_category
 };
 
-static const afw_value_boolean_t
-impl_1363_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1363_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1363_property_value_dataTypeCategory
-};
-
 static const afw_value_string_t
 impl_1363_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
+    AFW_UTF8_LITERAL("Functions on path expressions used to navigate in XML documents.")
 };
 
 static const afw_runtime_property_t
@@ -137692,7 +137693,6 @@ static const afw_runtime_property_t *
 impl_1363_properties[] = {
     &impl_1363_property_brief,
     &impl_1363_property_category,
-    &impl_1363_property_dataTypeCategory,
     &impl_1363_property_description,
     NULL
 };
@@ -137708,7 +137708,7 @@ impl_1363_meta_object = {
 
 static const afw_utf8_t
 impl_1363_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/x500Name");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/xpath");
 
 static const afw_runtime_const_object_instance_t
 impl_1363 = {
@@ -137718,7 +137718,7 @@ impl_1363 = {
         {
             (const afw_object_t *)&impl_1363_meta_object,
             NULL,
-            &afw_s_x500Name,
+            &afw_s_xpath,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1363_meta_path
         }
@@ -137730,13 +137730,13 @@ static const afw_runtime_const_object_instance_t
 impl_1364;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/xpath
+ * /afw/_AdaptiveFunctionCategory_/xpathExpression
  */
 
 static const afw_value_string_t
 impl_1364_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("xpath related functions")
+    AFW_UTF8_LITERAL("xpathExpression related functions")
 };
 
 static const afw_runtime_property_t
@@ -137748,7 +137748,7 @@ impl_1364_property_brief = {
 static const afw_value_string_t
 impl_1364_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("xpath")
+    AFW_UTF8_LITERAL("xpathExpression")
 };
 
 static const afw_runtime_property_t
@@ -137788,7 +137788,7 @@ impl_1364_meta_object = {
 
 static const afw_utf8_t
 impl_1364_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/xpath");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/xpathExpression");
 
 static const afw_runtime_const_object_instance_t
 impl_1364 = {
@@ -137798,7 +137798,7 @@ impl_1364 = {
         {
             (const afw_object_t *)&impl_1364_meta_object,
             NULL,
-            &afw_s_xpath,
+            &afw_s_xpathExpression,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1364_meta_path
         }
@@ -137810,13 +137810,13 @@ static const afw_runtime_const_object_instance_t
 impl_1365;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/xpathExpression
+ * /afw/_AdaptiveFunctionCategory_/yearMonthDuration
  */
 
 static const afw_value_string_t
 impl_1365_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("xpathExpression related functions")
+    AFW_UTF8_LITERAL("Data type yearMonthDuration related functions")
 };
 
 static const afw_runtime_property_t
@@ -137828,7 +137828,7 @@ impl_1365_property_brief = {
 static const afw_value_string_t
 impl_1365_property_value_category = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("xpathExpression")
+    AFW_UTF8_LITERAL("yearMonthDuration")
 };
 
 static const afw_runtime_property_t
@@ -137837,10 +137837,22 @@ impl_1365_property_category = {
     (const afw_value_t *)&impl_1365_property_value_category
 };
 
+static const afw_value_boolean_t
+impl_1365_property_value_dataTypeCategory = {
+    &afw_value_permanent_boolean_inf,
+    true
+};
+
+static const afw_runtime_property_t
+impl_1365_property_dataTypeCategory = {
+    &afw_s_dataTypeCategory,
+    (const afw_value_t *)&impl_1365_property_value_dataTypeCategory
+};
+
 static const afw_value_string_t
 impl_1365_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Functions on path expressions used to navigate in XML documents.")
+    AFW_UTF8_LITERAL("These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
 };
 
 static const afw_runtime_property_t
@@ -137853,6 +137865,7 @@ static const afw_runtime_property_t *
 impl_1365_properties[] = {
     &impl_1365_property_brief,
     &impl_1365_property_category,
+    &impl_1365_property_dataTypeCategory,
     &impl_1365_property_description,
     NULL
 };
@@ -137868,7 +137881,7 @@ impl_1365_meta_object = {
 
 static const afw_utf8_t
 impl_1365_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/xpathExpression");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/yearMonthDuration");
 
 static const afw_runtime_const_object_instance_t
 impl_1365 = {
@@ -137878,105 +137891,12 @@ impl_1365 = {
         {
             (const afw_object_t *)&impl_1365_meta_object,
             NULL,
-            &afw_s_xpathExpression,
+            &afw_s_yearMonthDuration,
             &afw_s__AdaptiveFunctionCategory_,
             &impl_1365_meta_path
         }
     },
     &impl_1365_properties[0]
-};
-
-static const afw_runtime_const_object_instance_t
-impl_1366;
-
-/*
- * /afw/_AdaptiveFunctionCategory_/yearMonthDuration
- */
-
-static const afw_value_string_t
-impl_1366_property_value_brief = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Data type yearMonthDuration related functions")
-};
-
-static const afw_runtime_property_t
-impl_1366_property_brief = {
-    &afw_s_brief,
-    (const afw_value_t *)&impl_1366_property_value_brief
-};
-
-static const afw_value_string_t
-impl_1366_property_value_category = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("yearMonthDuration")
-};
-
-static const afw_runtime_property_t
-impl_1366_property_category = {
-    &afw_s_category,
-    (const afw_value_t *)&impl_1366_property_value_category
-};
-
-static const afw_value_boolean_t
-impl_1366_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
-    true
-};
-
-static const afw_runtime_property_t
-impl_1366_property_dataTypeCategory = {
-    &afw_s_dataTypeCategory,
-    (const afw_value_t *)&impl_1366_property_value_dataTypeCategory
-};
-
-static const afw_value_string_t
-impl_1366_property_value_description = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter.")
-};
-
-static const afw_runtime_property_t
-impl_1366_property_description = {
-    &afw_s_description,
-    (const afw_value_t *)&impl_1366_property_value_description
-};
-
-static const afw_runtime_property_t *
-impl_1366_properties[] = {
-    &impl_1366_property_brief,
-    &impl_1366_property_category,
-    &impl_1366_property_dataTypeCategory,
-    &impl_1366_property_description,
-    NULL
-};
-
-static const afw_runtime_const_object_meta_object_t
-impl_1366_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf
-    },
-    &impl_1366,
-    NULL
-};
-
-static const afw_utf8_t
-impl_1366_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/yearMonthDuration");
-
-static const afw_runtime_const_object_instance_t
-impl_1366 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionCategory_,
-        NULL,
-        {
-            (const afw_object_t *)&impl_1366_meta_object,
-            NULL,
-            &afw_s_yearMonthDuration,
-            &afw_s__AdaptiveFunctionCategory_,
-            &impl_1366_meta_path
-        }
-    },
-    &impl_1366_properties[0]
 };
 
 /* NULL terminated list of objects. */
@@ -138199,7 +138119,6 @@ impl_const_objects[] = {
     (const afw_object_t *)&impl_1363,
     (const afw_object_t *)&impl_1364,
     (const afw_object_t *)&impl_1365,
-    (const afw_object_t *)&impl_1366,
     NULL
 };
 

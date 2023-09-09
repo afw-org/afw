@@ -3565,11 +3565,6 @@ const afw_value_string_t afw_v_compiler_script = {
     AFW_UTF8_LITERAL("compiler_script")
 };
 
-const afw_value_string_t afw_v_compiler_test_script = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("compiler_test_script")
-};
-
 const afw_value_string_t afw_v_componentType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("componentType")
@@ -8823,11 +8818,6 @@ const afw_value_string_t afw_v_testScript = {
 const afw_value_string_t afw_v_test_script = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("test_script")
-};
-
-const afw_value_string_t afw_v_test_script_runtime_support = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("test_script_runtime_support")
 };
 
 const afw_value_string_t afw_v_test_template = {

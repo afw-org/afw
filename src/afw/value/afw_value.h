@@ -1358,6 +1358,23 @@ afw_value_call_script_function_create(
 
 
 /**
+ * @brief Create function for call_test_script value.
+ * @param contextual information for test script call.
+ * @param test_script testScriptObject object<_AdaptiveTestScriptResult>.
+ * @param p pool used for value.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_call_test_script_create(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_object_t *test_script,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create a function thunk value.
  * @param name to be associated with thunk.
  * @param like_function_value for thunk.

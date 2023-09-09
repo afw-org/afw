@@ -9941,20 +9941,6 @@ extern const afw_value_string_t afw_v_compiler_script;
 
 
 
-/** @brief define for quoted string "compiler_test_script" */
-#define AFW_Q_compiler_test_script "compiler_test_script"
-
-/** @brief 'afw_utf8_t' for string "compiler_test_script" */
-#define afw_s_compiler_test_script (afw_v_compiler_test_script.internal)
-
-/** @brief 'afw_value_string_t' for string "compiler_test_script" */
-extern const afw_value_string_t afw_v_compiler_test_script;
-
-/** @brief 'afw_utf8_z_t *' for string "compiler_test_script" */
-#define afw_z_compiler_test_script (afw_v_compiler_test_script.internal.s)
-
-
-
 /** @brief define for quoted string "componentType" */
 #define AFW_Q_componentType "componentType"
 
@@ -24666,20 +24652,6 @@ extern const afw_value_string_t afw_v_test_script;
 
 /** @brief 'afw_utf8_z_t *' for string "test_script" */
 #define afw_z_test_script (afw_v_test_script.internal.s)
-
-
-
-/** @brief define for quoted string "test_script_runtime_support" */
-#define AFW_Q_test_script_runtime_support "test_script_runtime_support"
-
-/** @brief 'afw_utf8_t' for string "test_script_runtime_support" */
-#define afw_s_test_script_runtime_support (afw_v_test_script_runtime_support.internal)
-
-/** @brief 'afw_value_string_t' for string "test_script_runtime_support" */
-extern const afw_value_string_t afw_v_test_script_runtime_support;
-
-/** @brief 'afw_utf8_z_t *' for string "test_script_runtime_support" */
-#define afw_z_test_script_runtime_support (afw_v_test_script_runtime_support.internal.s)
 
 
 

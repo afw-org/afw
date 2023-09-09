@@ -97,7 +97,6 @@ def get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_
             'name': relpath,
             'path': root
         }
-    print(testEnv)
 
     # set the output working directory
     #

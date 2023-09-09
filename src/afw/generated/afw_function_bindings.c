@@ -22620,128 +22620,6 @@ afw_function_definition_while = {
     false
 };
 
-/* ---------- test_script_runtime_support ---------- */
-
-static const afw_utf8_t
-impl_object_path__test_script_runtime_support =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/test_script_runtime_support");
-
-static const afw_runtime_object_indirect_t
-impl_object__test_script_runtime_support = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            &afw_s_test_script_runtime_support,
-            &afw_s__AdaptiveFunction_,
-            &impl_object_path__test_script_runtime_support
-        }
-    },
-    (void *)&afw_function_definition_test_script_runtime_support
-};
-
-static const afw_value_function_parameter_t
-impl_test_script_runtime_support_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_"),
-    AFW_UTF8_LITERAL(""),
-    AFW_UTF8_LITERAL("Completed test_script object"),
-    AFW_UTF8_LITERAL("The testScriptObject object with test result properties set."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t
-impl_test_script_runtime_support_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_object_direct,
-    AFW_UTF8_LITERAL("object"),
-    AFW_UTF8_LITERAL("_AdaptiveTestScriptResult_"),
-    AFW_UTF8_LITERAL("testScriptObject"),
-    AFW_UTF8_LITERAL("test_script object"),
-    AFW_UTF8_LITERAL("A test script results object with the required evaluation result properties missing. The sources will be evaluated and the corresponding test result properties will be set."),
-    -1,
-    false,
-    false,
-    false,
-    false,
-};
-
-static const afw_value_function_parameter_t *
-impl_test_script_runtime_support_parameters[] = {
-    &impl_test_script_runtime_support_parameter_1,
-    NULL
-};
-
-static const afw_utf8_t
-impl_test_script_runtime_support_sideEffects[] = {
-    AFW_UTF8_LITERAL("testScriptObject object modified."),
-    { NULL }
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_test_script_runtime_support = {
-    &afw_value_function_definition_inf,
-    (const afw_object_t *)&impl_object__test_script_runtime_support,
-    AFW_UTF8_LITERAL("compiler_test_script"),
-    AFW_UTF8_LITERAL("test_script_runtime_support"),
-    AFW_UTF8_LITERAL("test_script_runtime_support"),
-    AFW_UTF8_LITERAL("test_script_runtime_support"),
-    AFW_UTF8_LITERAL("testScriptRuntimeSupport"),
-    AFW_UTF8_LITERAL("afwTestScriptRuntimeSupport"),
-    AFW_UTF8_LITERAL("Internal test script runtime support"),
-    AFW_UTF8_LITERAL("This is a function called internally as the result of a test_script compile. This function is not intended to be called directly."),
-    AFW_UTF8_LITERAL("(testScriptObject: (object _AdaptiveTestScriptResult_)): (object _AdaptiveTestScriptResult_)"),
-    AFW_UTF8_LITERAL("/* Internal test script runtime support */\nfunction test_script_runtime_support (\n    testScriptObject: (object _AdaptiveTestScriptResult_) /* test_script object */\n): (object _AdaptiveTestScriptResult_); /* Completed test_script object */\n"),
-    AFW_UTF8_LITERAL(""),
-    afw_function_execute_test_script_runtime_support,
-    NULL,
-    1,
-    1,
-    &impl_test_script_runtime_support_parameters[0],
-    1,
-    &impl_test_script_runtime_support_returns,
-    NULL,
-    NULL,
-    AFW_UTF8_LITERAL(""),
-    NULL,
-    &impl_test_script_runtime_support_sideEffects[0],
-    0, /* Not a data type method. */
-    0,
-    false,
-    false,
-    false,
-    false,
-    false
-};
-
 /* ---------- assert ---------- */
 
 static const afw_utf8_t
@@ -111072,7 +110950,6 @@ impl_function_bindings[] = {
     &afw_function_definition_throw,
     &afw_function_definition_try,
     &afw_function_definition_while,
-    &afw_function_definition_test_script_runtime_support,
     &afw_function_definition_assert,
     &afw_function_definition_compile_json,
     &afw_function_definition_compile_relaxed_json,

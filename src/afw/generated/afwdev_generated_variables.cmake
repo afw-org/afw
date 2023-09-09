@@ -312,7 +312,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_compiler.c
     function/afw_function_compiler_expression.c
     function/afw_function_compiler_script.c
-    function/afw_function_compiler_test_script.c
     function/afw_function_date.c
     function/afw_function_dateTime.c
     function/afw_function_double.c
@@ -444,6 +443,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_call.c
     value/afw_value_call_built_in_function.c
     value/afw_value_call_script_function.c
+    value/afw_value_call_test_script.c
     value/afw_value_closure_binding.c
     value/afw_value_compiled_value.c
     value/afw_value_compiler_listing.c

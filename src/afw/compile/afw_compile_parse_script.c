@@ -1933,7 +1933,6 @@ afw_compile_parse_TestScript(
     const afw_utf8_t *key;
     const afw_utf8_t *string;
     const afw_utf8_t *global_source_type;
-    const afw_value_t **argv;
     const afw_utf8_t *source_location;
     const afw_utf8_t *expect_location;
 
@@ -2161,15 +2160,9 @@ afw_compile_parse_TestScript(
     afw_object_set_property_as_string(test_script_object,
         &afw_s_source, string, parser->xctx);
 
-    /* Result is call to test_script_runtime_support() with testScriptObject. */
-    argv = afw_pool_malloc(parser->p,
-        sizeof(afw_value_t *) * 2, parser->xctx);
-    argv[0] = (const afw_value_t *)
-        &afw_function_definition_test_script_runtime_support;
-    argv[1] = afw_value_create_object(test_script_object,
-        parser->p, parser->xctx);
-    result = afw_value_call_built_in_function_create(
+    /* Result is a call_test_script value. */
+    result = afw_value_call_test_script_create(
         afw_compile_create_contextual_to_cursor(start_offset),
-        1, argv, true, parser->p, parser->xctx);
+        test_script_object, parser->p, parser->xctx);
     return result;
 }

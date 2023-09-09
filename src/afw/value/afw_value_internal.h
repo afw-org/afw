@@ -291,6 +291,16 @@ struct afw_value_call_script_function_s {
 
 
 /**
+ * @brief Struct for call test script value.
+ */
+struct afw_value_call_test_script_s {
+    const afw_value_inf_t *inf;
+    const afw_compile_value_contextual_t *contextual;
+    const afw_object_t *test_script;
+};
+
+
+/**
  * @brief Struct for closure binding value.
  *
  * This is a closure binding.
