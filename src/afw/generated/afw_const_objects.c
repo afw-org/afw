@@ -6271,7 +6271,7 @@ impl_67_property_contextType = {
 static const afw_value_string_t
 impl_67_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -6522,7 +6522,7 @@ impl_69_property_contextType = {
 static const afw_value_string_t
 impl_69_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -20451,7 +20451,7 @@ impl_196_property_contextType = {
 static const afw_value_string_t
 impl_196_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -20475,7 +20475,7 @@ impl_196_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_196_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is template to evaluate to determine whether to allow the requested access to the specified resourceId and/or object.")
+    AFW_UTF8_LITERAL("This is script to evaluate to determine whether to allow the requested access to the specified resourceId and/or object.")
 };
 
 static const afw_runtime_property_t
@@ -21961,7 +21961,7 @@ impl_210_property_brief = {
 static const afw_value_string_t
 impl_210_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -21997,7 +21997,7 @@ impl_210_property_defaultValue = {
 static const afw_value_string_t
 impl_210_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Filter expression used to determine whether to log a particular message.")
+    AFW_UTF8_LITERAL("Filter script used to determine whether to log a particular message.")
 };
 
 static const afw_runtime_property_t
@@ -80291,7 +80291,7 @@ impl_803;
 static const afw_value_string_t
 impl_803_property_value_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Optional template value is evaluated to determine the objectId on add requests")
+    AFW_UTF8_LITERAL("Optional script value is evaluated to determine the objectId on add requests")
 };
 
 static const afw_runtime_property_t
@@ -80315,7 +80315,7 @@ impl_803_property_contextType = {
 static const afw_value_string_t
 impl_803_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -80339,7 +80339,7 @@ impl_803_property_dataTypeParameter = {
 static const afw_value_string_t
 impl_803_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This optional template value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.")
+    AFW_UTF8_LITERAL("This optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.")
 };
 
 static const afw_runtime_property_t
@@ -81882,7 +81882,7 @@ impl_816_property_brief = {
 static const afw_value_string_t
 impl_816_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -81894,7 +81894,7 @@ impl_816_property_dataType = {
 static const afw_value_string_t
 impl_816_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a method for this object that can be called in expressions. This template value must be a lambda function expressed in adaptive script syntax.")
+    AFW_UTF8_LITERAL("This is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.")
 };
 
 static const afw_runtime_property_t
@@ -81987,7 +81987,7 @@ impl_817_property_contextType = {
 static const afw_value_string_t
 impl_817_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -81999,7 +81999,7 @@ impl_817_property_dataType = {
 static const afw_value_string_t
 impl_817_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This is a template value is evaluated to set the value of this property when producing an instance of this object for add object requests.")
+    AFW_UTF8_LITERAL("This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.")
 };
 
 static const afw_runtime_property_t
@@ -82093,7 +82093,7 @@ impl_818_property_contextType = {
 static const afw_value_string_t
 impl_818_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -82105,7 +82105,7 @@ impl_818_property_dataType = {
 static const afw_value_string_t
 impl_818_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This template is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.")
+    AFW_UTF8_LITERAL("This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.")
 };
 
 static const afw_runtime_property_t
@@ -82199,7 +82199,7 @@ impl_819_property_contextType = {
 static const afw_value_string_t
 impl_819_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t
@@ -82211,7 +82211,7 @@ impl_819_property_dataType = {
 static const afw_value_string_t
 impl_819_property_value_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This template is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.")
+    AFW_UTF8_LITERAL("This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.")
 };
 
 static const afw_runtime_property_t
@@ -121074,7 +121074,7 @@ impl_1196_property_brief = {
 static const afw_value_string_t
 impl_1196_property_value_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL("script")
 };
 
 static const afw_runtime_property_t

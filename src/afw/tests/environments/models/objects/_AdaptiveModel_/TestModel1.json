@@ -12,13 +12,13 @@
         },
         "MyObjectType2": {
             "mappedObjectType": "TestObjectType2",
-            "onRetrieveObjects": "${#! JeremyScript\n\nreturn current::useDefaultProcessing;}",
-            "onAddObject": "${return current::useDefaultProcessing;}",
-            "onDeleteObject": "${return current::useDefaultProcessing;}",
-            "onGetInitialObjectId": "${return current::objectId;}",
-            "onGetObject": "${return current::useDefaultProcessing;}",
-            "onModifyObject": "${return current::useDefaultProcessing;}",
-            "onReplaceObject": "${return current::useDefaultProcessing;}",            
+            "onRetrieveObjects": "#! JeremyScript\n\nreturn current::useDefaultProcessing;",
+            "onAddObject": "#! afw\nreturn current::useDefaultProcessing;",
+            "onDeleteObject": "#! afw\nreturn current::useDefaultProcessing;",
+            "onGetInitialObjectId": "#! afw\nreturn current::objectId;",
+            "onGetObject": "#! afw\nreturn current::useDefaultProcessing;",
+            "onModifyObject": "#! afw\nreturn current::useDefaultProcessing;",
+            "onReplaceObject": "#! afw\nreturn current::useDefaultProcessing;",            
             "propertyTypes": {
                 "MyTestString1": {
                     "dataType": "string",
@@ -27,8 +27,8 @@
             }
         },
         "MyObjectType3": {  
-            "onRetrieveObjects": "${retrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,\"TestObjectType1\",current::queryCriteria,current::objectOptions);\nreturn null;}",
-            "onAddObject": "${const add_result: (object '_AdaptiveResponse_') = add_object(current::mappedAdaptorId,\"TestObjectType1\",current::object,\"TestObject3\");\nreturn add_result.objectId;}",
+            "onRetrieveObjects": "#! afw\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,\"TestObjectType1\",current::queryCriteria,current::objectOptions);\nreturn null;",
+            "onAddObject": "#! afw\nconst add_result: (object '_AdaptiveResponse_') = add_object(current::mappedAdaptorId,\"TestObjectType1\",current::object,\"TestObject3\");\nreturn add_result.objectId;",
             "propertyTypes": {
                 "MyTestString1": {
                     "dataType": "string",
@@ -38,7 +38,7 @@
         },
         "MyObjectType4": { 
             "mappedObjectType": "TestObjectType2",  
-            "onRetrieveObjects": "${let  newCriteria: object = { filter: { op: \"eq\", property: \"TestString1\", value: \"This is a test string.\"} };\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,current::mappedObjectType,newCriteria,current::objectOptions);\nreturn null;}",
+            "onRetrieveObjects": "#! afw\nlet  newCriteria: object = { filter: { op: \"eq\", property: \"TestString1\", value: \"This is a test string.\"} };\nretrieve_objects_to_callback(current::returnObject,true,current::mappedAdaptorId,current::mappedObjectType,newCriteria,current::objectOptions);\nreturn null;",
             "propertyTypes": {
                 "MyTestString1": {
                     "dataType": "string",
@@ -47,7 +47,7 @@
             }
         },
         "MyObjectType5": {              
-            "onAddObject": "${const add_action: (object '_AdaptiveAction_') = model_default_add_object_action(current::adaptorId,current::objectType,current::object,\"TestObject4\");\nassert(add_action.function === \"add_object\",\"model_default_add_action() did not return a request\");\nreturn \"fake\";}",
+            "onAddObject": "#! afw\nconst add_action: (object '_AdaptiveAction_') = model_default_add_object_action(current::adaptorId,current::objectType,current::object,\"TestObject4\");\nassert(add_action.function === \"add_object\",\"model_default_add_action() did not return a request\");\nreturn \"fake\";",
             "propertyTypes": {
                 "MyTestString1": {
                     "dataType": "string",
@@ -59,8 +59,8 @@
             "propertyTypes": {
                 "TestOnPropertyList": {
                     "dataType": "array",
-                    "onGetProperty": "${let  l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;}",
-                    "onSetProperty": "${//let x = current::value[0];\nreturn \"x\";}"
+                    "onGetProperty": "#! afw\nlet  l = [];\n\nadd_entries(l, current::mappedValue);\n\nreturn l;",
+                    "onSetProperty": "#! afw\n//let x = current::value[0];\nreturn \"x\";"
                 }
             }
         }

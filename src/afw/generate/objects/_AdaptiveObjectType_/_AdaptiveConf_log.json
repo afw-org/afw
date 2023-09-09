@@ -58,10 +58,10 @@
         "filter": {
             "allowQuery": true,
             "brief": "Filter expression",
-            "dataType": "template",
+            "dataType": "script",
             "dataTypeParameter": "boolean",
             "defaultValue": true,
-            "description": "Filter expression used to determine whether to log a particular message.",
+            "description": "Filter script used to determine whether to log a particular message.",
             "label": "Filter"
         },
         "format": {

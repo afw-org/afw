@@ -76,7 +76,7 @@ afw_authorization_handler_type_script_create_cede_p(
         AFW_UTF8_FMT "/authorizationCheck",
         AFW_UTF8_FMT_ARG(self->pub.source_location));
     self->authorization_check =
-        afw_object_old_get_property_as_compiled_template(
+        afw_object_old_get_property_as_compiled_script(
             self->pub.properties,
             &afw_s_authorizationCheck,
             detail_source_location, NULL, p, xctx);

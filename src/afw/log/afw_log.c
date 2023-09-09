@@ -774,7 +774,6 @@ afw_log_impl_create_cede_p(
     afw_log_t *self;
     afw_log_impl_t *impl;
     const afw_log_priority_id_map_entry_t *e;
-    const afw_utf8_t *template;
     const afw_utf8_t *s;
     afw_boolean_t b;
     afw_boolean_t found;
@@ -818,20 +817,12 @@ afw_log_impl_create_cede_p(
     }
 
     /* Compile filter, if it exists. */
-    template = afw_object_old_get_property_as_string(properties,
-        &afw_s_filter, xctx);
-    if (template) {
-        impl->filter = afw_compile_template_source(template,
-            self->source_location, NULL, NULL, p, xctx);
-    }  
+    impl->filter = afw_object_old_get_property_as_compiled_script(
+        properties, &afw_s_filter, self->source_location, NULL, p, xctx); 
 
     /* Compile format, if it exists. */
-    template = afw_object_old_get_property_as_string(properties,
-        &afw_s_format, xctx);
-    if (template) {
-        impl->format = afw_compile_template_source(template,
-            self->source_location, NULL, NULL, p, xctx);
-    }
+    impl->format = afw_object_old_get_property_as_compiled_template(
+        properties, &afw_s_format, self->source_location, NULL, p, xctx); 
 
     /* Return new log. */
     return self;

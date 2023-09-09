@@ -399,6 +399,40 @@ afw_object_old_get_property_as_array_of_strings(
 
 /* Return a compiled template property value. */
 AFW_DEFINE(const afw_value_t *)
+afw_object_old_get_property_as_compiled_script(
+    const afw_object_t *instance,
+    const afw_utf8_t *property_name,
+    const afw_utf8_t *source_location,
+    const afw_compile_shared_t *shared,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_value_t *result;
+
+    /* Get value. Return NULL if it isn't present. */
+    result = afw_object_get_property(instance, property_name, xctx);
+    if (!result) {
+        return NULL;
+    }
+
+    /* Only evaluated values are supported. */
+    if (!afw_value_is_defined_and_evaluated(result)) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_UTF8_FMT " " AFW_UTF8_FMT_Q
+            " is not an evaluated value",
+            AFW_UTF8_FMT_OPTIONAL_ARG(source_location),
+            AFW_UTF8_FMT_ARG(property_name));
+    }
+
+    result = afw_compile_script(result,
+        source_location, NULL, shared, p, xctx);
+
+    return result;
+}
+
+
+
+/* Return a compiled template property value. */
+AFW_DEFINE(const afw_value_t *)
 afw_object_old_get_property_as_compiled_template(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,

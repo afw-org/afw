@@ -183,7 +183,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetProperty",
             AFW_UTF8_FMT_ARG(path));
-        pt->onGetProperty = afw_compile_template_source(
+        pt->onGetProperty = afw_compile_script_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -194,7 +194,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialValue",
             AFW_UTF8_FMT_ARG(path));
-        pt->onGetInitialValue = afw_compile_template_source(
+        pt->onGetInitialValue = afw_compile_script_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -205,7 +205,7 @@ impl_compile_property_type(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onSetProperty",
             AFW_UTF8_FMT_ARG(path));
-        pt->onSetProperty = afw_compile_template_source(
+        pt->onSetProperty = afw_compile_script_source(
             s, source_location, NULL, model->shared, NULL, xctx);
     }
 
@@ -263,6 +263,7 @@ impl_harvest_property_type(
     afw_object_meta_set_object_type_id(result,
         &afw_s__AdaptiveValueMeta_, xctx);
 
+    /** @fixme This should be a script. */
     /* additionalConstraints */
     value = afw_object_get_property(object,
         &afw_s_additionalConstraints, xctx);
@@ -634,7 +635,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialObjectId",
             AFW_UTF8_FMT_ARG(path));
-        ot->onGetInitialObjectId = afw_compile_template_source(s,
+        ot->onGetInitialObjectId = afw_compile_script_source(s,
             source_location,
             NULL, model->shared, NULL, xctx);
     }
@@ -702,7 +703,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onAddObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onAddObject = afw_compile_template_source(
+        ot->onAddObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -713,7 +714,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onDeleteObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onDeleteObject = afw_compile_template_source(
+        ot->onDeleteObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -724,7 +725,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onGetObject = afw_compile_template_source(
+        ot->onGetObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -735,7 +736,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onModifyObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onModifyObject = afw_compile_template_source(
+        ot->onModifyObject = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
 
@@ -746,7 +747,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onReplaceObject",
             AFW_UTF8_FMT_ARG(path));
-        ot->onReplaceObject = afw_compile_template_source(s,
+        ot->onReplaceObject = afw_compile_script_source(s,
             source_location, NULL, shared, p, xctx);
     }
 
@@ -757,7 +758,7 @@ impl_object_type_compile(
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onRetrieveObjects",
             AFW_UTF8_FMT_ARG(path));
-        ot->onRetrieveObjects = afw_compile_template_source(
+        ot->onRetrieveObjects = afw_compile_script_source(
             s, source_location, NULL, shared, p, xctx);
     }
 

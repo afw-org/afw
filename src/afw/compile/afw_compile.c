@@ -346,6 +346,28 @@ afw_compile_to_object(
 }
 
 
+
+/* Compile template. */
+AFW_DEFINE(const afw_value_t *)
+afw_compile_script(
+    const afw_value_t *value,
+    const afw_utf8_t *source_location,
+    const afw_value_compiled_value_t *parent,
+    const afw_compile_shared_t *shared,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *source;
+    const afw_value_t *result;
+    
+    source = afw_value_as_utf8(value, p, xctx);
+    result = afw_compile_script_source(source,
+        source_location, parent, shared, p, xctx);
+    return result;
+}
+
+
+
 /* Compile template. */
 AFW_DEFINE(const afw_value_t *)
 afw_compile_template(
@@ -372,7 +394,7 @@ afw_compile_template(
 
 
 
-/* Compile object's expressions and templates properties. */
+/* Compile object's template properties. */
 AFW_DEFINE(void)
 afw_compile_templates(
     const afw_object_t *object,

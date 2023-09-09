@@ -364,12 +364,12 @@ afw_authorization_internal_set_control(
     /* Set control from config object if, present. */
     if (object) {
         self->core_authorization_check =
-            afw_object_old_get_property_as_compiled_template(object,
+            afw_object_old_get_property_as_compiled_script(object,
                 &afw_s_coreAuthorizationCheck,
                 &afw_s_internal, NULL, p, xctx);
 
         self->initial_authorization_check =
-            afw_object_old_get_property_as_compiled_template(object,
+            afw_object_old_get_property_as_compiled_script(object,
                 &afw_s_initialAuthorizationCheck,
                 &afw_s_internal, NULL, p, xctx);
 

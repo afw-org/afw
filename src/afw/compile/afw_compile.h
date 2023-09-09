@@ -192,6 +192,55 @@ afw_compile_to_value_with_callback(
         source_location, compile_type, afw_compile_residual_check_to_full, \
         parent, shared, p, xctx)
 
+
+
+/**
+ * @brief Compile script.
+ * @param string containing script source to compile.
+ * @param source_location to associate with compiled string or NULL.
+ * @param parent compiled value for contextual and shared resource or NULL.
+ * @param shared struct for shared compile resources or NULL.
+ * @param p to use for result or NULL.
+ * @param xctx of caller.
+ * @return value
+ *
+ * Either shared, parent, or p must be specified.  The p used by the parser
+ * is shared->p, parent->p, or p as available in that order.
+ */
+#define afw_compile_script_source(string, source_location, parent, shared, \
+    p, xctx) \
+    afw_compile_to_value_with_callback(string, NULL, NULL, \
+        source_location, afw_compile_type_script, \
+        afw_compile_residual_check_to_full, \
+        parent, shared, p, xctx)
+
+
+
+/**
+ * @brief Compile script.
+ * @param value containing hybrid to compile.
+ * @param source_location to associate with compiled string or NULL.
+ * @param parent compiled value for contextual and shared resource or NULL.
+ * @param shared struct for shared compile resources or NULL.
+ * @param p to use for result or NULL.
+ * @param xctx of caller.
+ * @return value
+ *
+ * Either shared, parent, or p must be specified.  The p used by the parser
+ * is shared->p, parent->p, or p as available in that order.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_compile_script(
+    const afw_value_t *value,
+    const afw_utf8_t *source_location,
+    const afw_value_compiled_value_t *parent,
+    const afw_compile_shared_t *shared,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+
 /**
  * @brief Compile template.
  * @param string containing template source to compile.

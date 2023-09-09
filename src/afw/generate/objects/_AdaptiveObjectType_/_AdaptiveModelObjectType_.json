@@ -44,11 +44,11 @@
             "skeleton": "#! afw\n\n/** FIXME Add skeleton */"
         },
         "onGetInitialObjectId": {
-            "brief": "Optional template value is evaluated to determine the objectId on add requests",
+            "brief": "Optional script value is evaluated to determine the objectId on add requests",
             "contextType": "modelInitialObjectId",
-            "dataType": "template",
+            "dataType": "script",
             "dataTypeParameter": "objectId",
-            "description": "This optional template value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.",
+            "description": "This optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this.",
             "label": "On Get Initial ObjectId"
         },
         "onGetObject": {

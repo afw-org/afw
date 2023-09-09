@@ -9,7 +9,7 @@
         "additionalConstraints": {
             "allowQuery": true,
             "brief": "Additional constraint for the value",
-            "dataType": "template",
+            "dataType": "script",
             "description": "Additional constraint for the value.",
             "label": "Additional Constraints"
         },

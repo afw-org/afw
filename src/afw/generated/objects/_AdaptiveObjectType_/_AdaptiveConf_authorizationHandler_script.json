@@ -16,9 +16,9 @@
             "allowQuery": true,
             "brief": "Template to determine whether to allow access to the specified resourceId and/or object",
             "contextType": "authorizationCheck",
-            "dataType": "template",
+            "dataType": "script",
             "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
-            "description": "This is template to evaluate to determine whether to allow the requested access to the specified resourceId and/or object.",
+            "description": "This is script to evaluate to determine whether to allow the requested access to the specified resourceId and/or object.",
             "label": "Authorization Check",
             "required": true
         },
