@@ -71,7 +71,7 @@ const FiddleHelpMoreOptions = () => {
             <div style={{ height: theme.spacing(2) }} />
 
             <div className={table}>
-                <MoreOptionsOption command="New" description="Creates a New Script, Template or Expression" />      
+                <MoreOptionsOption command="New" description="Creates a New Script or Template" />      
                 <MoreOptionsOption command="Open" description="Opens a previously saved script, template or expression, stored in local storage" />                
                 <MoreOptionsOption command="Save" description="Save the current script, template or expression to local storage" />                
                 <MoreOptionsOption command="Save As" description="Save the current script, template or expression with a given identifier" />                

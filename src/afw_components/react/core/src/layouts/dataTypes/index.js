@@ -8,7 +8,6 @@ export * from "./DateTime";
 export * from "./DayTimeDuration";
 export * from "./DnsName";
 export * from "./Double";
-export * from "./Expression";
 export * from "./Function";
 export * from "./HexBinary";
 export * from "./Hybrid";

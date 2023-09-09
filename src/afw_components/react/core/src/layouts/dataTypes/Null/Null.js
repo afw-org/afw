@@ -22,7 +22,7 @@ export const Null = (props) => {
     const {brief, label, description} = valueMeta;
     
     if (!editable) {
-        return <Typography text="(null)" />;
+        return <Typography text="null" />;
     } else {
         return (
             <TextField 
@@ -30,7 +30,7 @@ export const Null = (props) => {
                 label={label}
                 description={brief ? brief : description}                
                 type="text"
-                value="(null)"
+                value="null"
                 disabled
             />
         );

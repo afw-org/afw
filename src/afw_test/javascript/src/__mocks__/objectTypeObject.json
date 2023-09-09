@@ -189,7 +189,7 @@
                 null
             ],
             "expectedTestValues": [
-                "(null)"
+                "null"
             ],
             "expectedReadonlyTestValues": [
                 "null"

@@ -238,7 +238,7 @@ export const FiddleToolbar = (props) => {
             <div style={{ marginRight: theme.spacing(0.5) }}>
                 <Button          
                     type={isMobile ? "icon": undefined}
-                    tooltip="Evaluate the Expression"    
+                    tooltip="Evaluate the Script"    
                     variant="text"            
                     color="primary"
                     label="Evaluate"
