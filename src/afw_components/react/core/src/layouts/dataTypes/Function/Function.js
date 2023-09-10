@@ -23,7 +23,7 @@ export const _Function = (props) => {
     const {brief, description} = valueMeta;
 
     if (editable) {
-        /*! \fixme return a Hybrid with restrictions */
+        /*! \fixme return a Script with restrictions? */
         return (
             <TextField 
                 id={id}
