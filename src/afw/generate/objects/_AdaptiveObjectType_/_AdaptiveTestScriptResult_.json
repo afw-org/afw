@@ -44,6 +44,12 @@
             "description": "This is an array of the test results.",
             "label": "Tests",
             "required": true
+        },
+        "upToTestsUTF8OctetOffsetInTestScript": {
+            "brief": "Offset up to 'tests:' in UTF-8 octets",
+            "dataType": "integer",
+            "description": "This is the offset of UTF-8 octets in the full source up to where the first test begins.",
+            "label": "Offset Up To Tests"
         }
     }
 }

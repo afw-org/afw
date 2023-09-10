@@ -1940,6 +1940,7 @@ afw_compile_parse_TestScript(
     afw_size_t source_column;
 
     afw_size_t start_offset;
+    afw_size_t up_to_tests_offset;
 
     afw_size_t string_offset;
     afw_size_t string_length;
@@ -1948,6 +1949,7 @@ afw_compile_parse_TestScript(
 
     /* Save starting cursor. */
     afw_compile_save_cursor(start_offset);
+    afw_compile_save_cursor(up_to_tests_offset);
 
     /* Shebang line must contain afw and -s test_script. */
     if (afw_compile_next_raw_starts_with_z("#!")) {
@@ -1973,6 +1975,8 @@ afw_compile_parse_TestScript(
     /* Process TestScriptDefinition */
     for (global_source_type = NULL, test_script_id = NULL;;)
     {
+        afw_compile_save_cursor(up_to_tests_offset);
+
         impl_test_script_get_next_key_value(parser,
             &key, &string, &string_offset, &string_length);
         if (afw_utf8_equal(key, &afw_s_testScript)) {
@@ -2014,6 +2018,10 @@ afw_compile_parse_TestScript(
         afw_object_set_property_as_string(test_script_object,
             &afw_s_sourceType, global_source_type, parser->xctx);
     }
+    afw_object_set_property_as_integer(test_script_object,
+        &afw_s_upToTestsUTF8OctetOffsetInTestScript,
+            afw_safe_cast_size_to_integer(up_to_tests_offset, parser->xctx),
+            parser->xctx);
 
     /* Process TestDefinition */
     for (test_object = NULL; ;) {

@@ -342,15 +342,28 @@ impl_afw_value_produce_compiler_listing(
     afw_compile_value_contextual_t contextual;
     afw_integer_t sourceUTF8OctetOffsetInTestScript;
     afw_integer_t sourceUTF8OctetLengthInTestScript;
+    afw_integer_t upToTestsUTF8OctetOffsetInTestScript;
     afw_boolean_t found;
     afw_boolean_t test_begin;
 
     p = writer->p; // Use writer's pool.
     test_script_object = self->test_script_object_value->internal;
-    afw_memory_copy(&contextual, self->contextual);
+    tests = afw_object_old_get_property_as_array(
+        test_script_object, &afw_s_tests, xctx);
 
-    afw_value_compiler_listing_begin_value(writer, instance,
-        &contextual, xctx);
+    /* Make copy of contextual and prime offset up to first test. */
+    afw_memory_copy(&contextual, self->contextual);
+    upToTestsUTF8OctetOffsetInTestScript =
+        afw_object_old_get_property_as_integer(
+            test_script_object, &afw_s_upToTestsUTF8OctetOffsetInTestScript,
+            &found, xctx);
+    if (found) {
+        contextual.value_offset = afw_safe_cast_integer_to_size(
+            upToTestsUTF8OctetOffsetInTestScript, xctx);
+    }
+
+    /* Begin listing for test script. */
+    afw_value_compiler_listing_begin_value(writer, instance, &contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
@@ -373,14 +386,14 @@ impl_afw_value_produce_compiler_listing(
 
     afw_writer_write_eol(writer, xctx);
 
-    tests = afw_object_old_get_property_as_array(
-        test_script_object, &afw_s_tests, xctx);
     default_source_type = afw_object_old_get_property_as_string(
         self->test_script_object_value->internal, &afw_s_sourceType, xctx);
     if (!default_source_type) {
         default_source_type = &afw_s_script;
     }
-    for (iterator = NULL;;) {
+
+    /* Process each test. */
+    if (tests) for (iterator = NULL;;) {
         test_object_value = afw_array_get_next_value(tests, &iterator, p, xctx);
         if (!test_object_value) {
             break;

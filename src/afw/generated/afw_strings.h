@@ -26111,6 +26111,20 @@ extern const afw_value_string_t afw_v_untypedFunctionId;
 
 
 
+/** @brief define for quoted string "upToTestsUTF8OctetOffsetInTestScript" */
+#define AFW_Q_upToTestsUTF8OctetOffsetInTestScript "upToTestsUTF8OctetOffsetInTestScript"
+
+/** @brief 'afw_utf8_t' for string "upToTestsUTF8OctetOffsetInTestScript" */
+#define afw_s_upToTestsUTF8OctetOffsetInTestScript (afw_v_upToTestsUTF8OctetOffsetInTestScript.internal)
+
+/** @brief 'afw_value_string_t' for string "upToTestsUTF8OctetOffsetInTestScript" */
+extern const afw_value_string_t afw_v_upToTestsUTF8OctetOffsetInTestScript;
+
+/** @brief 'afw_utf8_z_t *' for string "upToTestsUTF8OctetOffsetInTestScript" */
+#define afw_z_upToTestsUTF8OctetOffsetInTestScript (afw_v_upToTestsUTF8OctetOffsetInTestScript.internal.s)
+
+
+
 /** @brief define for quoted string "update" */
 #define AFW_Q_update "update"
 

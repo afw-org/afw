@@ -9340,6 +9340,11 @@ const afw_value_string_t afw_v_untypedFunctionId = {
     AFW_UTF8_LITERAL("untypedFunctionId")
 };
 
+const afw_value_string_t afw_v_upToTestsUTF8OctetOffsetInTestScript = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL("upToTestsUTF8OctetOffsetInTestScript")
+};
+
 const afw_value_string_t afw_v_update = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("update")
