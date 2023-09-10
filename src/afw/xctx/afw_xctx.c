@@ -498,8 +498,6 @@ afw_xctx_release(
 
     /* Release xctx's pool. */
     if (instance->p) {
-        // printf("\nxctx release\n");
-        // afw_pool_print_debug_info(0, instance->p, xctx);
         afw_pool_destroy(instance->p, xctx);
     }
 }
