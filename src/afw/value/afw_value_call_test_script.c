@@ -328,7 +328,7 @@ impl_afw_value_produce_compiler_listing(
     const afw_array_t *tests;
     const afw_object_t *test;
     const afw_object_t *test_script_object;
-    const afw_value_t *value;
+    const afw_value_t *test_object_value;
     const afw_utf8_t *source;
     const afw_utf8_t *default_source_type;
     const afw_utf8_t *source_type;
@@ -337,55 +337,29 @@ impl_afw_value_produce_compiler_listing(
     const afw_compile_type_info_t *info;
     const afw_value_t *compiled_value;
     const afw_utf8_t *test_name;
-    const afw_utf8_t *s;
-    afw_size_t offset;
     afw_size_t line_number;
     afw_size_t column_number;
+    afw_compile_value_contextual_t contextual;
     afw_integer_t sourceUTF8OctetOffsetInTestScript;
+    afw_integer_t sourceUTF8OctetLengthInTestScript;
     afw_boolean_t found;
+    afw_boolean_t test_begin;
 
     p = writer->p; // Use writer's pool.
     test_script_object = self->test_script_object_value->internal;
+    afw_memory_copy(&contextual, self->contextual);
 
     afw_value_compiler_listing_begin_value(writer, instance,
-        self->contextual, xctx);
+        &contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
 
-    
-    s = afw_object_old_get_property_as_string(
-        test_script_object, &afw_s_testScript, xctx);
-    if (s) {
-        afw_writer_write_z(writer, "testScript: ", xctx);
-        afw_writer_write_utf8(writer, s, xctx);
-        afw_writer_write_eol(writer, xctx);
-    }
+    afw_writer_write_z(writer, "test script ", xctx);
+    afw_data_type_object_value_compiler_listing(
+        writer, (const afw_value_t *)self->test_script_object_value,
+        true, xctx);
 
-    s = afw_object_old_get_property_as_string(
-        test_script_object, &afw_s_description, xctx);
-    if (s) {
-        afw_writer_write_z(writer, "description: ", xctx);
-        afw_writer_write_utf8(writer, s, xctx);
-        afw_writer_write_eol(writer, xctx);
-    }
-
-    s = afw_object_old_get_property_as_string(
-        test_script_object, &afw_s_sourceType, xctx);
-    if (s) {
-        afw_writer_write_z(writer, "sourceType: ", xctx);
-        afw_writer_write_utf8(writer, s, xctx);
-        afw_writer_write_eol(writer, xctx);
-    }
-
-    // afw_writer_write_z(writer, "test_script_", xctx);
-    // afw_value_produce_compiler_listing(
-    //     (const afw_value_t *)self->test_script_object_value,
-    //     writer, xctx);
-
-    afw_writer_decrement_indent(writer, xctx);
-    afw_writer_write_z(writer, "]", xctx);
-    afw_writer_write_eol(writer, xctx);
     afw_writer_write_eol(writer, xctx);
 
     tests = afw_object_old_get_property_as_array(
@@ -396,15 +370,15 @@ impl_afw_value_produce_compiler_listing(
         default_source_type = &afw_s_script;
     }
     for (iterator = NULL;;) {
-        value = afw_array_get_next_value(tests, &iterator, p, xctx);
-        if (!value) {
+        test_object_value = afw_array_get_next_value(tests, &iterator, p, xctx);
+        if (!test_object_value) {
             break;
         }
         AFW_TRY{
 
+            test_begin = false;
             test_name = NULL;
-
-            test = afw_value_as_object(value, xctx);
+            test = afw_value_as_object(test_object_value, xctx);
 
             test_name = afw_object_old_get_property_as_string(
                 test, &afw_s_test, xctx);
@@ -412,11 +386,45 @@ impl_afw_value_produce_compiler_listing(
                 AFW_THROW_ERROR_Z(general, "test required", xctx);
             }
 
+            sourceUTF8OctetOffsetInTestScript =
+                afw_object_old_get_property_as_integer(
+                    test, &afw_s_sourceUTF8OctetOffsetInTestScript,
+                    &found, xctx);
+            if (!found) {
+                AFW_THROW_ERROR_Z(code,
+                    "sourceUTF8OctetOffsetInTestScript missing",
+                    xctx);
+            }
+            contextual.value_offset = afw_safe_cast_integer_to_size(
+                sourceUTF8OctetOffsetInTestScript, xctx);
+
+            sourceUTF8OctetLengthInTestScript =
+                afw_object_old_get_property_as_integer(
+                    test, &afw_s_sourceUTF8OctetLengthInTestScript,
+                    &found, xctx);
+            if (!found) {
+                AFW_THROW_ERROR_Z(code,
+                    "sourceUTF8OctetLengthInTestScript missing",
+                    xctx);
+            }
+            contextual.value_size = afw_safe_cast_integer_to_size(
+                sourceUTF8OctetLengthInTestScript, xctx);
+
+            afw_writer_write_z(writer, "test ", xctx);
+            afw_value_compiler_listing_begin_value(
+                writer, test_object_value, &contextual, xctx);
+            test_begin = true;
+            afw_writer_write_z(writer, ": [", xctx);
+            afw_writer_write_eol(writer, xctx);
+            afw_writer_increment_indent(writer, xctx);
+            afw_value_produce_compiler_listing(
+                test_object_value, writer, xctx);
+
             /* Skip processing test is requested. */
             if (afw_object_old_get_property_as_boolean(test,
                 &afw_s_skip, &found, xctx))
             {
-                afw_writer_write_z(writer, "\n\n---Test ", xctx);
+                afw_writer_write_z(writer, "// Test ", xctx);
                 afw_writer_write_utf8(writer, test_name, xctx);
                 afw_writer_write_z(writer, " skipped", xctx);
                 afw_writer_write_eol(writer, xctx);
@@ -437,26 +445,16 @@ impl_afw_value_produce_compiler_listing(
                 AFW_THROW_ERROR_Z(general, "source required", xctx);
             }
 
-            sourceUTF8OctetOffsetInTestScript =
-                afw_object_old_get_property_as_integer(
-                    test, &afw_s_sourceUTF8OctetOffsetInTestScript,
-                    &found, xctx);
-            if (!found) {
-                AFW_THROW_ERROR_Z(code, "Internal error", xctx);
-            }
-
             if (info->compile_type == afw_compile_type_error) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "source_type=" AFW_UTF8_FMT_Q " is invalid",
                     AFW_UTF8_FMT_ARG(source_type));
             }
 
-            offset = afw_safe_cast_integer_to_size(
-                sourceUTF8OctetOffsetInTestScript, xctx);
             afw_utf8_line_column_of_offset(
                 &line_number, &column_number,
                 self->contextual->compiled_value->full_source,
-                offset, 4, xctx);
+                contextual.value_offset, 4, xctx);
             source_location = afw_utf8_printf(p, xctx,
                 AFW_UTF8_FMT
                 "+" AFW_SIZE_T_FMT
@@ -464,7 +462,7 @@ impl_afw_value_produce_compiler_listing(
                 ":" AFW_SIZE_T_FMT ")"
                 " test: " AFW_UTF8_FMT,
                 AFW_UTF8_FMT_ARG(self->contextual->source_location),
-                offset, line_number, column_number,
+                contextual.value_offset, line_number, column_number,
                 AFW_UTF8_FMT_ARG(test_name));
             compiled_value = afw_compile_to_value(
                 source, source_location, info->compile_type, NULL, NULL,
@@ -488,12 +486,24 @@ impl_afw_value_produce_compiler_listing(
             afw_writer_write_utf8(
                 writer, afw_error_to_utf8(AFW_ERROR_THROWN, p, xctx), xctx);
             afw_writer_write_z(
-                    writer, "\n\n---", xctx);
+                    writer, "\n\n---\n", xctx);
             afw_writer_write_eol(writer, xctx);
+        }
+
+        AFW_FINALLY {
+            if (test_begin) {
+                afw_writer_decrement_indent(writer, xctx);
+                afw_writer_write_z(writer, "]", xctx);
+                afw_writer_write_eol(writer, xctx);
+            }
         }
 
         AFW_ENDTRY;
     }
+
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 }
 
 

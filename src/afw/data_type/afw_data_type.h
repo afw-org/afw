@@ -62,6 +62,24 @@ afw_data_type_object_create_clone_to_managed_object(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Directly call value_compiler_listing() for data type 'object'.
+ * @param writer instance.
+ * @param object_value of object.
+ * @param scalar_only true if only scalar properties should be listed.
+ * @param xctx of caller.
+ *
+ * This will use afw_object_create_managed() to create the
+ * cloned object.
+ */
+AFW_DECLARE(void)
+afw_data_type_object_value_compiler_listing(
+    const afw_writer_t *writer,
+    const afw_value_t *object_value,
+    afw_boolean_t scalar_only,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */

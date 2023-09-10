@@ -1696,11 +1696,11 @@ impl_afw_data_type_array_value_compiler_listing(
 }
 
 
-static void
-impl_afw_data_type_object_value_compiler_listing(
-    const afw_data_type_t *instance,
+AFW_DEFINE(void)
+afw_data_type_object_value_compiler_listing(
     const afw_writer_t *writer,
-    const afw_value_t *value,
+    const afw_value_t *object_value,
+    afw_boolean_t scalar_only,
     afw_xctx_t *xctx)
 {
     const afw_object_t *object;
@@ -1708,8 +1708,8 @@ impl_afw_data_type_object_value_compiler_listing(
     const afw_value_t *pv;
     const afw_utf8_t *property_name;
  
-    object = ((const afw_value_object_t *)value)->internal;
-    afw_value_compiler_listing_begin_value(writer, value, NULL, xctx);
+    object = afw_value_as_object(object_value, xctx);
+    afw_value_compiler_listing_begin_value(writer, object_value, NULL, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
@@ -1718,7 +1718,12 @@ impl_afw_data_type_object_value_compiler_listing(
     {
         pv = afw_object_get_next_property(object,
             &iterator, &property_name, xctx);
-        if (!pv) break;
+        if (!pv) {
+            break;
+        }
+        if (scalar_only && !afw_value_is_scalar(pv, xctx)) {
+            continue;
+        }
         afw_writer_write_z(writer, "property ", xctx);
         afw_writer_write_utf8(writer, property_name, xctx);
         afw_writer_write_z(writer, " ", xctx);
@@ -1728,6 +1733,18 @@ impl_afw_data_type_object_value_compiler_listing(
     afw_writer_decrement_indent(writer, xctx);
     afw_writer_write_z(writer, "]", xctx);
     afw_writer_write_eol(writer, xctx);
+}
+
+
+
+static void
+impl_afw_data_type_object_value_compiler_listing(
+    const afw_data_type_t *instance,
+    const afw_writer_t *writer,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_data_type_object_value_compiler_listing(writer, value, false, xctx);
 }
 
 

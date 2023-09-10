@@ -111,8 +111,11 @@ impl_afw_value_produce_compiler_listing(
 
     afw_value_compiler_listing_begin_value(writer, instance,
         self->contextual, xctx);
-    afw_writer_write_z(writer, " See ---CompiledValue ", xctx);
+    afw_writer_write_z(writer,
+        " // See listing below beginning with: '---CompiledValue ",
+        xctx);
     afw_writer_write_utf8(writer, reference_id, xctx);
+    afw_writer_write_z(writer, "'", xctx);
     afw_writer_write_eol(writer, xctx);
 }
 
