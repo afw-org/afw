@@ -355,7 +355,18 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
 
-    afw_writer_write_z(writer, "test script ", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_write_z(writer,
+        "// 'test-script-object:' is the test script object without "
+        "the 'tests'.",
+        xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_write_z(writer,
+        "// There is one 'test-object:' for each test.",
+        xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_write_z(writer, "test-script-", xctx);
     afw_data_type_object_value_compiler_listing(
         writer, (const afw_value_t *)self->test_script_object_value,
         true, xctx);
@@ -410,7 +421,8 @@ impl_afw_value_produce_compiler_listing(
             contextual.value_size = afw_safe_cast_integer_to_size(
                 sourceUTF8OctetLengthInTestScript, xctx);
 
-            afw_writer_write_z(writer, "test ", xctx);
+            afw_writer_write_eol(writer, xctx);
+            afw_writer_write_z(writer, "test-", xctx);
             afw_value_compiler_listing_begin_value(
                 writer, test_object_value, &contextual, xctx);
             test_begin = true;
@@ -424,6 +436,7 @@ impl_afw_value_produce_compiler_listing(
             if (afw_object_old_get_property_as_boolean(test,
                 &afw_s_skip, &found, xctx))
             {
+                afw_writer_write_eol(writer, xctx);
                 afw_writer_write_z(writer, "// Test ", xctx);
                 afw_writer_write_utf8(writer, test_name, xctx);
                 afw_writer_write_z(writer, " skipped", xctx);

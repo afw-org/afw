@@ -548,17 +548,7 @@ afw_value_compiler_listing_to_string_instance(
     impl_symbol_listing(writer, self->compiled_value->top_block, xctx);
     afw_writer_write_eol(writer, xctx);
 
-    /* Literals. */
-    afw_writer_write_z(writer, "\n", xctx);
-    afw_writer_write_z(writer, "\n", xctx);
-    afw_writer_write_z(writer, "---Literals ", xctx);
-    afw_writer_write_utf8(writer, self->reference_id, xctx);
-    afw_writer_write_eol(writer, xctx);
-    afw_writer_write_z(writer, "Literals coming soon", xctx);
-    afw_writer_write_eol(writer, xctx);
-
     /* Write --- for end. */
-    afw_writer_write_z(writer, "\n", xctx);
     afw_writer_write_z(writer, "\n", xctx);
     afw_writer_write_z(writer, "---", xctx);
     afw_writer_write_eol(writer, xctx);
