@@ -398,10 +398,10 @@ impl_afw_value_produce_compiler_listing(
         if (!test_object_value) {
             break;
         }
+        test_name = NULL;
+        test_begin = false;
         AFW_TRY{
 
-            test_begin = false;
-            test_name = NULL;
             test = afw_value_as_object(test_object_value, xctx);
 
             test_name = afw_object_old_get_property_as_string(
