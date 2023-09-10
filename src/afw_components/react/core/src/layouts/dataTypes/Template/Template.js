@@ -28,7 +28,7 @@ export const Template = (props) => {
 
     return (
         <ExpandableComponent>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: "300px" }}>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: "100px" }}>
                 {
                     editable && label &&
                         <Typography style={{ marginBottom: theme.spacing(0.5) }} size="2" color="textSecondary" text={label} />
@@ -45,6 +45,7 @@ export const Template = (props) => {
                     wordWrap={true}
                     showMinimap={false}
                     onChanged={onChanged}
+                    showGutter={false}
                 />
                 {
                     editable && brief &&

@@ -10,7 +10,7 @@ import {
     Typography,
 } from "@afw/react";
 
-import {Hybrid} from "../../dataTypes/Hybrid";
+import {Template} from "../../dataTypes/Template";
 import {useOperational, useEventId} from "@afw/react";
 
 
@@ -104,7 +104,7 @@ export const CustomVariableEditor = (props) => {
                     </div>
                     <div style={{ height: "24px "}} />
                     <div>
-                        <Hybrid   
+                        <Template   
                             label="Variable Value"
                             property={variable}       
                             value={variable ? variable.getValue() : undefined}
