@@ -5471,22 +5471,24 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     <inf_variable name="data_type" type="const afw_data_type_t *">
       <description>
-        This is the data type of the value if already evaluated or know before evaluation.
+        This is the data type of the value if already evaluated or know before
+        evaluation.
       </description>
     </inf_variable>
 
-    <inf_variable name="is_evaluated_of_data_type" type="const afw_data_type_t *">
+    <inf_variable name="is_evaluated_of_data_type" type="const afw_data_type_t
+    *">
       <description>
-        This is the data type of the value if it's already evaluated. If the value
-        is not evaluated, this value will be NULL.
+        This is the data type of the value if it's already evaluated. If the
+        value is not evaluated, this value will be NULL.
       </description>
     </inf_variable>
 
     <method name="optional_release">
 
       <description>
-        This is an optional method that exists if the value's memory is managed. Constant values
-        that are compiled into object code are not managed.
+        This is an optional method that exists if the value's memory is managed.
+        Constant values that are compiled into object code are not managed.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
@@ -5505,31 +5507,46 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="clone_or_reference">
 
       <description>
-        This will get a reference to this value. There are 3 possible results:
+        If this is a non-managed or permanent value the instance is returned
+        asis. Otherwise, this will return a clone of the instance or instance
+        with its reference count incremented.
         
-        1) If the value is managed and the value's internal value has an get_reference method,
-        the result of calling get_reference is returned.
+        There are 3 possible results:
         
-        2) If the value is managed and the value's internal value does not have an get_reference method,
-        a clone of the value in the supplied pool (p) is returned.
+        1) If the value is managed and the value's internal value has an
+        get_reference() method, the result of calling the value's internal
+        get_reference() is returned.
+        
+        2) If the value is managed and the value's internal value does not have
+        an get_reference method, a clone of the value in the supplied pool (p)
+        is returned.
 
-        3) If the value is not managed or permanent, the instance is returned asis.
+        3) If the value is not managed or permanent, the instance is returned
+        asis.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
-        <description>Pointer to this adaptive value instance.</description>
+        <description>
+          Pointer to this adaptive value instance.
+        </description>
       </parameter>
 
       <parameter name="p" type="const afw_pool_t *">
-        <description>Pool for result.</description>
+        <description>
+          Pool for result.
+        </description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-        <description>This is the caller's xctx.</description>
+        <description>
+          This is the caller's xctx.
+        </description>
       </parameter>
 
       <return type="const afw_value_t *">
-        <description>Reference to this adaptive value.</description>
+        <description>
+          The result as described in the method description.
+      </description>
       </return>
 
     </method>
@@ -5602,7 +5619,8 @@ AFW_DEFINE(const afw_request_handler_t *)
         <description>
           Pointer to this adaptive value instance.
           
-          IMPORTANT: Do not evaluate instance before calling since meta is harvested from the value's inf.
+          IMPORTANT: Do not evaluate instance before calling since meta is
+          harvested from the value's inf.
         </description>
       </parameter>
 
@@ -5616,7 +5634,8 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <return type="const afw_value_t *">
         <description>
-          The this is an evaluated object value that can be used to access the value's meta.
+          The this is an evaluated object value that can be used to access the
+          value's meta.
         </description>
       </return>
 
@@ -5625,16 +5644,18 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="get_evaluated_metas">
 
       <description>
-        This method returns an array value of with the result of calling afw_value_get_evaluated_meta()
-        for each entry in a value instance. If this is not a value instance with an iterator,
-        such as object or array, an array value with a single value is returned.
+        This method returns an array value of with the result of calling
+        afw_value_get_evaluated_meta() for each entry in a value instance. If
+        this is not a value instance with an iterator, such as object or array,
+        an array value with a single value is returned.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
         <description>
           Pointer to this adaptive value instance.
           
-          NOTE: Always evaluate instance before calling so that right value inf is used.
+          NOTE: Always evaluate instance before calling so that right value inf
+          is used.
         </description>
       </parameter>
 
@@ -5648,7 +5669,8 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <return type="const afw_value_t *">
         <description>
-          The this is an evaluated array value that can be used to access the value's entry meta.
+          The this is an evaluated array value that can be used to access the
+          value's entry meta.
         </description>
       </return>
 
@@ -5657,7 +5679,8 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="produce_compiler_listing">
 
       <description>
-        This produces the compiler listing for a value and calls writer with the result.
+        This produces the compiler listing for a value and calls writer with the
+        result.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
@@ -5740,7 +5763,8 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_variable_handler_t *">
-        <description>Pointer to this adaptive variable handler instance.</description>
+        <description>Pointer to this adaptive variable handler
+        instance.</description>
       </parameter>
 
       <parameter name="qualifier" type="const afw_utf8_t *">
@@ -5756,7 +5780,9 @@ AFW_DEFINE(const afw_request_handler_t *)
       </parameter>
 
       <return type="const afw_value_t *">
-        <description>Variable's adaptive value or NULL if not found.</description>
+        <description>
+          Variable's adaptive value or NULL if not found.
+        </description>
       </return>
 
     </method>
@@ -5768,7 +5794,9 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_variable_handler_t *">
-        <description>Pointer to this adaptive variable handler instance.</description>
+        <description>
+          Pointer to this adaptive variable handler instance.
+        </description>
       </parameter>
 
       <parameter name="qualifier" type="const afw_utf8_t *">
@@ -5788,7 +5816,9 @@ AFW_DEFINE(const afw_request_handler_t *)
       </parameter>
 
       <return type="afw_boolean_t">
-        <description>True if this variable is handled by this variable handler.</description>
+        <description>
+          True if this variable is handled by this variable handler.
+        </description>
       </return>
 
     </method>
@@ -5808,11 +5838,10 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     <variable name="write_raw_cb" type="afw_write_cb_t">
       <description>
-        This can be passed to functions that expect an afw_write_cb_t
-        callback. The first parameter passed to the callback must be this
-        afw_writer instance. This is a raw write, so indentation is ignored
-        and the buffer written must be compatible with the afw_writer
-        instance's content.
+        This can be passed to functions that expect an afw_write_cb_t callback.
+        The first parameter passed to the callback must be this afw_writer
+        instance. This is a raw write, so indentation is ignored and the buffer
+        written must be compatible with the afw_writer instance's content.
       </description>
     </variable>
 
@@ -5824,17 +5853,18 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     <variable name="tab" type="const afw_utf8_t *">
       <description>
-        If not NULL, whitespace is added as appropriate. Calls to method write_eol
-        will cause \\n to be written.
-        This tab strings is used as needed to produce the appropriate indent. For
-        example, "\\t" can be specified to cause the number of tab characters needed
-        for the current indent.
+        If not NULL, whitespace is added as appropriate. Calls to method
+        write_eol will cause \\n to be written. This tab strings is used as
+        needed to produce the appropriate indent. For example, "\\t" can be
+        specified to cause the number of tab characters needed for the current
+        indent.
       </description>
     </variable>
 
     <method name="release">
 
-      <description>Call flush and release resources associated with this writer.</description>
+      <description>Call flush and release resources associated with this
+      writer.</description>
 
       <parameter name="instance" type="const afw_writer_t *">
         <description>Pointer to this writer instance.</description>
@@ -5850,7 +5880,10 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     <method name="flush">
 
-      <description>This will flush the writer's buffers. The writer implementation will do nothing if it doesn't support this concept.</description>
+      <description>
+        This will flush the writer's buffers. The writer implementation will do
+        nothing if it doesn't support this concept.
+      </description>
 
       <parameter name="instance" type="const afw_writer_t *">
         <description>Pointer to this writer instance.</description>

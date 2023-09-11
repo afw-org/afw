@@ -5754,10 +5754,9 @@ struct afw_value_inf_s {
 
     /**
      * This is the data type of the value if it's already evaluated. If the
-     * value
-     * is not evaluated, this value will be NULL.
+     * value is not evaluated, this value will be NULL.
      */
-    const afw_data_type_t * is_evaluated_of_data_type;
+    const afw_data_type_t     * is_evaluated_of_data_type;
 };
 
 /**
@@ -5846,8 +5845,8 @@ struct afw_value_inf_s {
  * @brief Call method get_evaluated_metas of interface afw_value
  * @param instancePointer to this adaptive value instance.
  * 
- *     NOTE: Always evaluate instance before calling so that right value inf is
- *     used.
+ *     NOTE: Always evaluate instance before calling so that right value inf
+ *     is used.
  * @param pPool to use for result.
  * @param xctxThis is the caller's xctx.
  */
@@ -5963,7 +5962,8 @@ struct afw_variable_handler_inf_s {
 
 /**
  * @brief Call method get_variable of interface afw_variable_handler
- * @param instancePointer to this adaptive variable handler instance.
+ * @param instancePointer to this adaptive variable handler
+ *     instance.
  * @param qualifierQualifier or NULL.
  * @param nameVariable name.
  * @param xctxThis is the caller's xctx.
@@ -6025,11 +6025,10 @@ struct afw_writer_s {
     const afw_pool_t * p;
 
     /**
-     * This can be passed to functions that expect an afw_write_cb_t
-     * callback. The first parameter passed to the callback must be this
-     * afw_writer instance. This is a raw write, so indentation is ignored
-     * and the buffer written must be compatible with the afw_writer
-     * instance's content.
+     * This can be passed to functions that expect an afw_write_cb_t callback.
+     * The first parameter passed to the callback must be this afw_writer
+     * instance. This is a raw write, so indentation is ignored and the buffer
+     * written must be compatible with the afw_writer instance's content.
      */
     afw_write_cb_t write_raw_cb;
 
@@ -6040,12 +6039,10 @@ struct afw_writer_s {
 
     /**
      * If not NULL, whitespace is added as appropriate. Calls to method
-     * write_eol
-     * will cause \\n to be written.
-     * This tab strings is used as needed to produce the appropriate indent. For
-     * example, "\\t" can be specified to cause the number of tab characters
-     * needed
-     * for the current indent.
+     * write_eol will cause \\n to be written. This tab strings is used as
+     * needed to produce the appropriate indent. For example, "\\t" can be
+     * specified to cause the number of tab characters needed for the current
+     * indent.
      */
     const afw_utf8_t * tab;
 };
