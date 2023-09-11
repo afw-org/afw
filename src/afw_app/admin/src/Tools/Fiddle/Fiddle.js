@@ -1,6 +1,5 @@
 // See the 'COPYING' file in the project root for licensing information.
 import {    
-    useState, 
     useEffect, 
     useReducer, 
     useRef, 
@@ -11,7 +10,6 @@ import {Prompt} from "react-router";
 import {
     Button,
     Dialog,
-    HybridBuilder,
     QualifiersProvider,
     Spinner,
     Typography,   
@@ -19,8 +17,6 @@ import {
     useFunctions,
     useContextTypes,
     useClipboard,
-    OperationalContext,
-    OperationalMode
 } from "@afw/react";
 
 import {
@@ -60,7 +56,6 @@ const initialState = {
         "response:stderr:stream",
         "response:console:stream"
     ],
-    selectedEditor:         "source",
     dirty:                  false,
     counter:                1,
     selectedContextTypes:   [],
@@ -472,12 +467,6 @@ const reducer = (state, action) => {
             selectedContextTypes: action.selectedContextTypes,
         });
 
-    case "SET_SELECTED_EDITOR":
-        return ({
-            ...state,
-            selectedEditor: action.selectedEditor,
-        });
-
     default:
         return state;
     }
@@ -616,8 +605,6 @@ export const Fiddle = () => {
     const client                                        = useRef();
     const editorRef                                     = useRef();
     const splitPaneRef                                  = useRef();
-     
-    const [hybrid, setHybrid]                           = useState();  
 
     const theme                                         = useTheme();
     const {functions, error: errorFunctions}            = useFunctions();
@@ -1113,8 +1100,6 @@ export const Fiddle = () => {
                         }}
                         selectedFlags={state.selectedFlags}
                         setSelectedFlags={selectedFlags => dispatch({ type: "SET_SELECTED_FLAGS", selectedFlags })}
-                        selectedEditor={state.selectedEditor}
-                        onSelectEditor={selectedEditor => dispatch({ type: "SET_SELECTED_EDITOR", selectedEditor })}
                         inputLabel={activeTabLabel}                        
                         onNewFile={onNewFile}                        
                         onOpenRecent={onOpenRecentFile}
@@ -1135,39 +1120,29 @@ export const Fiddle = () => {
                     />                                       
                     <QualifiersProvider contextTypes={state.selectedContextTypes}>
                         <div style={{ flex: 1, height: "calc(100% - 64px)", width: "100%", marginBottom: theme.spacing(0.5), marginTop: theme.spacing(0.5) }}>
-                            {
-                                (state.selectedEditor === "source") ?     
-                                    <TabbedCodeEditor 
-                                        ref={editorRef}
-                                        // eslint-disable-next-line jsx-a11y/no-autofocus
-                                        autoFocus={true}
-                                        tabs={state.tabs}
-                                        activeTab={state.activeTab}
-                                        onNewTab={onNewFile}
-                                        onTabSwitch={(activeTab) => dispatch({ type: "TAB_SWITCH", activeTab })}
-                                        onSourceChanged={(newValue) => {
-                                            dispatch({ type: "SOURCE_CHANGED", newValue });
-                                        }}
-                                        onTabClose={onTabClose}
-                                        onSaveSource={onSaveFile}
-                                        additionalActionMenuOptions={[
-                                            {
-                                                id: "copy_action",
-                                                label: "Copy Action Request",
-                                                contextMenuGroupId: "copy",
-                                                contextMenuOrder: 1.1,
-                                                run: onCopyAction
-                                            },
-                                        ]}
-                                    />
-                                    :
-                                    <OperationalContext.Provider value={OperationalMode.Editable}>
-                                        <HybridBuilder                                    
-                                            hybrid={hybrid ? JSON.parse(hybrid) : undefined}
-                                            onChanged={hybrid => setHybrid(JSON.stringify(hybrid))}
-                                        />
-                                    </OperationalContext.Provider>                                
-                            }
+                            <TabbedCodeEditor 
+                                ref={editorRef}
+                                // eslint-disable-next-line jsx-a11y/no-autofocus
+                                autoFocus={true}
+                                tabs={state.tabs}
+                                activeTab={state.activeTab}
+                                onNewTab={onNewFile}
+                                onTabSwitch={(activeTab) => dispatch({ type: "TAB_SWITCH", activeTab })}
+                                onSourceChanged={(newValue) => {
+                                    dispatch({ type: "SOURCE_CHANGED", newValue });
+                                }}
+                                onTabClose={onTabClose}
+                                onSaveSource={onSaveFile}
+                                additionalActionMenuOptions={[
+                                    {
+                                        id: "copy_action",
+                                        label: "Copy Action Request",
+                                        contextMenuGroupId: "copy",
+                                        contextMenuOrder: 1.1,
+                                        run: onCopyAction
+                                    },
+                                ]}
+                            />  
                         </div>
                     </QualifiersProvider>         
                 </div>                       

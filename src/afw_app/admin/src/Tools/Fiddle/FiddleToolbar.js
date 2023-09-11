@@ -27,7 +27,6 @@ export const FiddleToolbar = (props) => {
         canDelete,
         onDeleteScript,
         onOpen,
-        selectedEditor,   
         inputLabel,         
         input,
         inputFormat,
@@ -39,8 +38,7 @@ export const FiddleToolbar = (props) => {
         selectedFlags,
         setSelectedFlags,
         contextTypes,
-        contextVariables,        
-        onSelectEditor,
+        contextVariables,       
         setContextVariables,
         onTabClose,
         onTabCloseAll,
@@ -183,28 +181,6 @@ export const FiddleToolbar = (props) => {
                             }
                         },
                         {
-                            key: "Editor",
-                            label: "Editor",
-                            subMenu: {
-                                items: [
-                                    {
-                                        key: "source",
-                                        label: "Source",
-                                        canCheck: true,
-                                        checked: (selectedEditor === "source"),
-                                        onClick: onMenuOption(() => onSelectEditor("source"))
-                                    },
-                                    {
-                                        key: "builder",
-                                        label: "Builder",
-                                        canCheck: true,
-                                        checked: (selectedEditor === "builder"),
-                                        onClick: onMenuOption(() => onSelectEditor("builder"))
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             key: "divider2",
                             type: "divider",
                         },
@@ -280,7 +256,7 @@ export const FiddleToolbar = (props) => {
                 onDismiss={() => setShowContext(false)}
                 contextVariables={contextVariables}
                 contextTypes={contextTypes}
-                onSave={(contextVariables, selectedContextTypes) => { 
+                onApply={(contextVariables, selectedContextTypes) => { 
                     setContextVariables(contextVariables);
                     setSelectedContextTypes(selectedContextTypes);
                     setShowContext(false);

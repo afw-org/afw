@@ -37,7 +37,7 @@ export const ContextEditor = (props) => {
     const [editSource, setEditorSource] = useState(false);
 
     const theme = useTheme();
-    const {contextTypes, open, onSave} = props;
+    const {contextTypes, open, onApply} = props;
 
     const onDismiss = () => {
         setContextVariables([]);
@@ -279,7 +279,7 @@ export const ContextEditor = (props) => {
                             <Button 
                                 color="primary"
                                 label="Apply"                            
-                                onClick={() => onSave(contextVariables, selectedContextTypes)}
+                                onClick={() => onApply(contextVariables, selectedContextTypes)}
                             />
                         </div>
                         <div style={{ marginRight: theme.spacing(1) }}>

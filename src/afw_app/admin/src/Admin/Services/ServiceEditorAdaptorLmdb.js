@@ -6,7 +6,6 @@ import {
     Checkbox,
     CustomVariables,
     Dialog,
-    HybridBuilder,
     ObjectResponsive,
     PropertyResponsive,
     Picker,
@@ -16,7 +15,8 @@ import {
     TextField,
     Typography,
     useOperational,
-    useForceUpdate
+    useForceUpdate,
+    layoutByDataType
 } from "@afw/react";
 
 import {
@@ -80,6 +80,7 @@ export const ServiceEditorAdaptorLmdbIndex = (props) => {
     const theme = useTheme();
     const forceUpdate = useForceUpdate();
     const {client} = useApplication();
+    const ScriptComponent = layoutByDataType["script"];
 
     const {open, onDismiss} = props;
 
@@ -173,7 +174,7 @@ export const ServiceEditorAdaptorLmdbIndex = (props) => {
                                 },
                                 contains:
                                     <div style={{ paddingBottom: theme.spacing(2) }}>
-                                        <HybridBuilder 
+                                        <ScriptComponent 
                                             label="Filter"                                                                                                  
                                             description="An optional filter condition to determine if an index is applicable to a particular value."
                                             value={filter}                                    
@@ -187,7 +188,7 @@ export const ServiceEditorAdaptorLmdbIndex = (props) => {
                                 },
                                 contains:
                                     <div style={{ paddingBottom: theme.spacing(2) }}>
-                                        <HybridBuilder 
+                                        <ScriptComponent 
                                             label="Value"                                                                                                  
                                             description="An expression to compute the indexed value.  Omit this value to use the property value described by the index name."
                                             value={value}                                    
