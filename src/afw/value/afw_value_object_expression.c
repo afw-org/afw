@@ -15,7 +15,7 @@
 
 
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_get_reference NULL
+#define impl_afw_value_clone_or_reference NULL
 
 #define impl_afw_value_get_evaluated_meta \
     afw_value_internal_get_evaluated_meta_for_object

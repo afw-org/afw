@@ -5502,7 +5502,7 @@ AFW_DEFINE(const afw_request_handler_t *)
     </method>
 
 
-    <method name="get_reference">
+    <method name="clone_or_reference">
 
       <description>
         This will get a reference to this value. There are 3 possible results:
@@ -5511,9 +5511,9 @@ AFW_DEFINE(const afw_request_handler_t *)
         the result of calling get_reference is returned.
         
         2) If the value is managed and the value's internal value does not have an get_reference method,
-        a copy of the value in the supplied pool (p) is returned.
+        a clone of the value in the supplied pool (p) is returned.
 
-        3) If the value is not managed, the instance is returned asis.
+        3) If the value is not managed or permanent, the instance is returned asis.
       </description>
 
       <parameter name="instance" type="const afw_value_t *">

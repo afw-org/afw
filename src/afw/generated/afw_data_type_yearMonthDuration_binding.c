@@ -81,12 +81,12 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_yearMonthDuration_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_get_reference impl_afw_value_unmanaged_get_reference
+#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_get_reference
+#undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
 /* This is the inf for managed yearMonthDuration values. For this one */
@@ -94,13 +94,13 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_ID "managed_yearMonthDuration"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_yearMonthDuration_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_get_reference impl_afw_value_managed_get_reference
+#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_get_reference
+#undef impl_afw_value_clone_or_reference
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
@@ -109,13 +109,13 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_ID "permanent_yearMonthDuration"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_yearMonthDuration_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_get_reference impl_afw_value_permanent_get_reference
+#define impl_afw_value_clone_or_reference impl_afw_value_permanent_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
-#undef impl_afw_value_get_reference
+#undef impl_afw_value_clone_or_reference
 #undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t

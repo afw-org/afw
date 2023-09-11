@@ -63,7 +63,7 @@ impl_afw_value_optional_release(
  * Implementation of method get_reference for interface afw_value.
  */
 const afw_value_t *
-impl_afw_value_get_reference(
+impl_afw_value_clone_or_reference(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t * xctx)

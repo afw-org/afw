@@ -5677,9 +5677,9 @@ typedef void
     const afw_value_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_value_get_reference() */
+/** @sa afw_value_clone_or_reference() */
 typedef const afw_value_t *
-(*afw_value_get_reference_t)(
+(*afw_value_clone_or_reference_t)(
     const afw_value_t * instance,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -5737,7 +5737,7 @@ typedef void
 struct afw_value_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_value_optional_release_t optional_release;
-    afw_value_get_reference_t get_reference;
+    afw_value_clone_or_reference_t clone_or_reference;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
     afw_value_get_evaluated_meta_t get_evaluated_meta;
@@ -5775,17 +5775,17 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method get_reference of interface afw_value
+ * @brief Call method clone_or_reference of interface afw_value
  * @param instancePointer to this adaptive value instance.
  * @param pPool for result.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_value_get_reference( \
+#define afw_value_clone_or_reference( \
     instance, \
     p, \
     xctx \
 ) \
-(instance)->inf->get_reference( \
+(instance)->inf->clone_or_reference( \
     (instance), \
     (p), \
     (xctx) \

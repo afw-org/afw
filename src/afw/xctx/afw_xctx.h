@@ -625,7 +625,7 @@ afw_xctx_scope_symbol_set_value_by_name(
  *
  * This function will call the afw_value_release() of the previous
  * xctx->evaluation_result. If you need to keep the previous evaluation_result,
- * call afw_value_get_reference() to get a reference to it before calling this
+ * call afw_value_clone_or_reference() to get a reference to it before calling this
  * function.
  */
 AFW_DECLARE(void)

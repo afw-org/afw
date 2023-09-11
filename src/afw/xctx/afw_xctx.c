@@ -806,6 +806,6 @@ afw_xctx_evaluation_result_set(
     afw_xctx_t *xctx,
     const afw_value_t *value)
 {
-    /** @fixme Change to use afw_value_get_reference() when that is in place. */
+    /** @fixme Change to use afw_value_clone_or_reference() when that is in place. */
     ((afw_xctx_t *)xctx)->evaluation_result = value;
 }
