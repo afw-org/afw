@@ -10,7 +10,6 @@ export * from "./DnsName";
 export * from "./Double";
 export * from "./Function";
 export * from "./HexBinary";
-export * from "./Hybrid";
 export * from "./Ia5String";
 export * from "./Integer";
 export * from "./IpAddress";

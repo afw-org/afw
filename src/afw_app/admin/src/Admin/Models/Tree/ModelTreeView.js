@@ -8,7 +8,6 @@ import {
     Divider,
     ObjectResponsive,
     PropertyResponsive,
-    HybridBuilder,
     Link,
     Typography,
     QualifiersProvider,
@@ -519,59 +518,38 @@ const ActionMainContent = ({ model, propertyName }) => {
         return null;
     
     const propertyType = property.getEmbeddingObject().getParent();
-    const dataType = property.getDataType();
     const contextType = property.getContextType();
 
     let mainContent = null;
     if (tab && tab.format) {
-        if (dataType === "hybrid") {
-            
-            mainContent = 
-                <div style={{ padding: theme.spacing(2) }}>
+        mainContent =
+            <RemovableComponent 
+                removeTitle="Remove onFunction"
+                removeText="Remove this onFunction?"
+                component={
                     <QualifiersProvider contextTypes={[ contextType ]}>
-                        <HybridBuilder 
-                            style={{ height: "100%" }}
-                            hybrid={tab.source} 
-                            onChanged={hybrid => {                        
-                                property.setValue(hybrid);
+                        <CodeEditor 
+                            tab={tab}
+                            editable={editable}                        
+                            onSaveSource={() => {
+                                /*! \fixme when a user requests to save the source from a Ctl-S inside the editor */                                    
+                            }}
+                            onSourceChanged={(newValue) => {    
+                                property.setValue(newValue);
 
-                                tab.source = hybrid ? hybrid : "";
+                                tab.source = newValue ? newValue : "";
                                 setTab({...tab});
                             }}
                         />
                     </QualifiersProvider>
-                </div>;
-        }
+                }
+                onRemove={() => {
+                    property.setValue();
+                    tab.source = tab.format = undefined;
 
-        else
-            mainContent =
-                <RemovableComponent 
-                    removeTitle="Remove onFunction"
-                    removeText="Remove this onFunction?"
-                    component={
-                        <QualifiersProvider contextTypes={[ contextType ]}>
-                            <CodeEditor 
-                                tab={tab}
-                                editable={editable}                        
-                                onSaveSource={() => {
-                                    /*! \fixme when a user requests to save the source from a Ctl-S inside the editor */                                    
-                                }}
-                                onSourceChanged={(newValue) => {    
-                                    property.setValue(newValue);
-
-                                    tab.source = newValue ? newValue : "";
-                                    setTab({...tab});
-                                }}
-                            />
-                        </QualifiersProvider>
-                    }
-                    onRemove={() => {
-                        property.setValue();
-                        tab.source = tab.format = undefined;
-
-                        setTab({ ...tab });
-                    }}
-                />;
+                    setTab({ ...tab });
+                }}
+            />;
     } 
     
     else 

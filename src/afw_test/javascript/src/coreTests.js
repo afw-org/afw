@@ -79,10 +79,7 @@ import AdaptorDropdown from "./layouts/propertyTypes/AdaptorDropdown/AdaptorDrop
 import ObjectTypeDropdown from "./layouts/propertyTypes/ObjectTypeDropdown/ObjectTypeDropdown.test";
 import PropertyTypeDropdown from "./layouts/propertyTypes/PropertyTypeDropdown/PropertyTypeDropdown.test";
 import DataTypeDropdown from "./layouts/propertyTypes/DataTypeDropdown/DataTypeDropdown.test";
-
 import ValueLayout from "./layouts/ValueLayout/ValueLayout.test";
-
-import HybridBuilder from "./layouts/dataTypes/Hybrid/HybridBuilder.test";
 
 import {AdaptiveProvider} from "@afw/react";
 import {AfwClient} from "@afw/client";
@@ -142,7 +139,6 @@ export const ComponentTestRunners = {
 };
 
 export const LayoutTestRunners = {
-    HybridBuilder,
     PropertyResponsive,
     ArrayResponsive,
     ObjectResponsive,
@@ -256,7 +252,6 @@ export {
     Spinner,
     Stepper,
     Tooltip,
-    HybridBuilder,
     PropertyResponsive,
     ArrayResponsive,
     ObjectResponsive,

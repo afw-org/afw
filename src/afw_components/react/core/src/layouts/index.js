@@ -5,8 +5,6 @@ export * from "./ObjectLayout";
 
 export {default as ValueLayout} from "./ValueLayout";
 export * from "./ValueLayout";
-
-export {HybridBuilder} from "./dataTypes";
 export * from "./objectTypes";
 export * from "./propertyTypes";
 
