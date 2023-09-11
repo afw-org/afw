@@ -82,7 +82,6 @@ import DataTypeDropdown from "./layouts/propertyTypes/DataTypeDropdown/DataTypeD
 
 import ValueLayout from "./layouts/ValueLayout/ValueLayout.test";
 
-import HybridEditor from "./layouts/dataTypes/Hybrid/HybridEditor.test";
 import HybridBuilder from "./layouts/dataTypes/Hybrid/HybridBuilder.test";
 
 import {AdaptiveProvider} from "@afw/react";
@@ -144,7 +143,6 @@ export const ComponentTestRunners = {
 
 export const LayoutTestRunners = {
     HybridBuilder,
-    HybridEditor,
     PropertyResponsive,
     ArrayResponsive,
     ObjectResponsive,
@@ -259,7 +257,6 @@ export {
     Stepper,
     Tooltip,
     HybridBuilder,
-    HybridEditor,
     PropertyResponsive,
     ArrayResponsive,
     ObjectResponsive,

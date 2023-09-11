@@ -7,9 +7,9 @@ import {
     CodeEditor,
     Dialog,    
     EditableLabel,
-    HybridEditor,
     Menu,
     Table,    
+    TextField,
     Typography,
     OperationalMode,
     OperationalContext,
@@ -210,7 +210,7 @@ export const ContextEditor = (props) => {
                                                 return (
                                                     // eslint-disable-next-line
                                                     <div onClick={e => e.stopPropagation()}>
-                                                        <HybridEditor 
+                                                        <TextField 
                                                             placeholder="[Value]"
                                                             value={contextVar.value} 
                                                             onChanged={(value) => {
