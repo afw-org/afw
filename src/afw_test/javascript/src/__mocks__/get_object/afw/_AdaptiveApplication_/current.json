@@ -28,11 +28,11 @@
         ],
         "qualifiedVariables": {
             "_meta_": {
-                "objectType": "_AdaptiveHybridPropertiesObjects_"
+                "objectType": "_AdaptiveTemplatePropertiesObjects_"
             },
             "environment": {
                 "_meta_": {
-                    "objectType": "_AdaptiveHybridProperties_"
+                    "objectType": "_AdaptiveTemplateProperties_"
                 },
                 "authType": "${variable_get(\"request::AUTH_TYPE\", \"\")}",
                 "remoteAddr": "${variable_get(\"request::REMOTE_ADDR\", \"\")}",
@@ -40,7 +40,7 @@
             },
             "subject": {
                 "_meta_": {
-                    "objectType": "_AdaptiveHybridProperties_"
+                    "objectType": "_AdaptiveTemplateProperties_"
                 },                
                 "subjectId": "${variable_get(\"request::REMOTE_USER\", null)}"
             }

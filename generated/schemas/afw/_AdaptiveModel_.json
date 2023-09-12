@@ -1,23 +1,5 @@
 {
     "$defs": {
-        "_AdaptiveHybridProperties_": {
-            "additionalProperties": {
-                "description": "Each property is a template value.",
-                "type": "string"
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveHybridProperties_.propertyTypes"
-                }
-            ],
-            "description": "Qualifier custom:: variables available to model expressions.",
-            "title": "Custom",
-            "type": "object"
-        },
-        "_AdaptiveHybridProperties_.propertyTypes": {
-            "properties": {},
-            "type": "object"
-        },
         "_AdaptiveModelObjectType_": {
             "anyOf": [
                 {
@@ -37,7 +19,7 @@
                     "title": " Meta "
                 },
                 "custom": {
-                    "$ref": "#/$defs/_AdaptiveHybridProperties_",
+                    "$ref": "#/$defs/_AdaptiveTemplateProperties_",
                     "description": "Object type level qualifier custom:: variables available to model expressions.",
                     "title": "Custom",
                     "type": "object"
@@ -134,7 +116,7 @@
                     "type": "boolean"
                 },
                 "custom": {
-                    "$ref": "#/$defs/_AdaptiveHybridProperties_",
+                    "$ref": "#/$defs/_AdaptiveTemplateProperties_",
                     "description": "Property type level qualifier custom:: variables available to model expressions.",
                     "title": "Custom",
                     "type": "object"
@@ -215,7 +197,7 @@
                     "type": "array"
                 },
                 "custom": {
-                    "$ref": "#/$defs/_AdaptiveHybridProperties_",
+                    "$ref": "#/$defs/_AdaptiveTemplateProperties_",
                     "description": "Qualifier custom:: variables available to model expressions.",
                     "title": "Custom",
                     "type": "object"
@@ -490,6 +472,24 @@
                     "type": "boolean"
                 }
             },
+            "type": "object"
+        },
+        "_AdaptiveTemplateProperties_": {
+            "additionalProperties": {
+                "description": "Each property is a template value.",
+                "type": "string"
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveTemplateProperties_.propertyTypes"
+                }
+            ],
+            "description": "Qualifier custom:: variables available to model expressions.",
+            "title": "Custom",
+            "type": "object"
+        },
+        "_AdaptiveTemplateProperties_.propertyTypes": {
+            "properties": {},
             "type": "object"
         },
         "_AdaptiveValueMeta_": {

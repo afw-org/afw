@@ -98,7 +98,7 @@ afw_function_execute_compile_template(
  * ```
  *   function evaluate<template>(
  *       source: template,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
  * ```
  *
@@ -107,7 +107,7 @@ afw_function_execute_compile_template(
  *   source - (template) template string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as

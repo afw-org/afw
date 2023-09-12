@@ -4,7 +4,7 @@
             "path": "/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script",
             "objectId": "authorizationHandler-auth-script",
             "objectType": "_AdaptiveServiceConf_",
-            "reconcilable": "{\"_meta_\":{\"path\":\"/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script\"},\"conf\":{\"_meta_\":{\"objectType\":\"_AdaptiveConf_authorizationHandler_script\"},\"qualifiedVariables\":{\"_meta_\":{\"objectType\":\"_AdaptiveHybridPropertiesObjects_\"},\"x\":{\"_meta_\":{\"objectType\":\"_AdaptiveHybridProperties_\"},\"y\":\"fds\"}},\"authorizationCheck\":\"loc decision;\\n\\ntrace(\\\"Got into auth script..\\\\n\\\");\\n\\ndecision = {\\n    \\\"decisionId\\\": \\\"notApplicable\\\"\\n};\\n\\n//trace(x::y);\\n\\nreturn {\\n    \\\"decisionId\\\": \\\"permit\\\"\\n};\",\"description\":\"Handles authorization using an adaptive script.\",\"type\":\"authorizationHandler\",\"authorizationHandlerType\":\"script\",\"authorizationHandlerId\":\"auth-script\"},\"serviceId\":\"authorizationHandler-auth-script\",\"startup\":\"immediate\"}"
+            "reconcilable": "{\"_meta_\":{\"path\":\"/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script\"},\"conf\":{\"_meta_\":{\"objectType\":\"_AdaptiveConf_authorizationHandler_script\"},\"qualifiedVariables\":{\"_meta_\":{\"objectType\":\"_AdaptiveTemplatePropertiesObjects_\"},\"x\":{\"_meta_\":{\"objectType\":\"_AdaptiveTemplateProperties_\"},\"y\":\"fds\"}},\"authorizationCheck\":\"loc decision;\\n\\ntrace(\\\"Got into auth script..\\\\n\\\");\\n\\ndecision = {\\n    \\\"decisionId\\\": \\\"notApplicable\\\"\\n};\\n\\n//trace(x::y);\\n\\nreturn {\\n    \\\"decisionId\\\": \\\"permit\\\"\\n};\",\"description\":\"Handles authorization using an adaptive script.\",\"type\":\"authorizationHandler\",\"authorizationHandlerType\":\"script\",\"authorizationHandlerId\":\"auth-script\"},\"serviceId\":\"authorizationHandler-auth-script\",\"startup\":\"immediate\"}"
         },
         "conf": {
             "_meta_": {
@@ -12,11 +12,11 @@
             },
             "qualifiedVariables": {
                 "_meta_": {
-                    "objectType": "_AdaptiveHybridPropertiesObjects_"
+                    "objectType": "_AdaptiveTemplatePropertiesObjects_"
                 },
                 "x": {
                     "_meta_": {
-                        "objectType": "_AdaptiveHybridProperties_"
+                        "objectType": "_AdaptiveTemplateProperties_"
                     },
                     "y": "fds"
                 }

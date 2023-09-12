@@ -1,0 +1,12 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Each property is a _AdaptiveTemplateProperties_ object.",
+    "objectType": "_AdaptiveTemplatePropertiesObjects_",
+    "otherProperties": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveTemplateProperties_"
+    }
+}

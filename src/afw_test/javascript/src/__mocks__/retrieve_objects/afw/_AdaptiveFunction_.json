@@ -2415,9 +2415,9 @@
                     "optional": true,
                     "name": "additionalContext",
                     "minArgs": -1,
-                    "details": "This parameter is an object _AdaptiveHybridPropertiesObjects_ value that is optional.",
+                    "details": "This parameter is an object _AdaptiveTemplatePropertiesObjects_ value that is optional.",
                     "description": "Additional context to use first during evaluation.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object"
                 }
             ],
@@ -16643,9 +16643,9 @@
                     "optional": true,
                     "name": "additionalContext",
                     "minArgs": -1,
-                    "details": "This parameter is an object _AdaptiveHybridPropertiesObjects_ value that is optional.",
+                    "details": "This parameter is an object _AdaptiveTemplatePropertiesObjects_ value that is optional.",
                     "description": "Additional context to use first during evaluation.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object"
                 }
             ],
@@ -24269,9 +24269,9 @@
                     "optional": true,
                     "name": "additionalContext",
                     "minArgs": -1,
-                    "details": "This parameter is an object _AdaptiveHybridPropertiesObjects_ value that is optional.",
+                    "details": "This parameter is an object _AdaptiveTemplatePropertiesObjects_ value that is optional.",
                     "description": "Additional context to use first during evaluation.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object"
                 }
             ],
@@ -28699,9 +28699,9 @@
                     "optional": true,
                     "name": "additionalContext",
                     "minArgs": -1,
-                    "details": "This parameter is an object _AdaptiveHybridPropertiesObjects_ value that is optional.",
+                    "details": "This parameter is an object _AdaptiveTemplatePropertiesObjects_ value that is optional.",
                     "description": "Additional context to use first during evaluation.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object"
                 }
             ],
@@ -29507,9 +29507,9 @@
                     "optional": true,
                     "name": "additionalContext",
                     "minArgs": -1,
-                    "details": "This parameter is an object _AdaptiveHybridPropertiesObjects_ value that is optional.",
+                    "details": "This parameter is an object _AdaptiveTemplatePropertiesObjects_ value that is optional.",
                     "description": "Additional context to use first during evaluation.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object"
                 }
             ],
@@ -32200,9 +32200,9 @@
                     "optional": true,
                     "name": "additionalContext",
                     "minArgs": -1,
-                    "details": "This parameter is an object _AdaptiveHybridPropertiesObjects_ value that is optional.",
+                    "details": "This parameter is an object _AdaptiveTemplatePropertiesObjects_ value that is optional.",
                     "description": "Additional context to use first during evaluation.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object"
                 }
             ],

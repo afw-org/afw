@@ -93,7 +93,7 @@
             </row>
             <row>
                 <column><literal>onGetInitialObjectId</literal></column>
-                <column>Optional hybrid value is evaluated to determine the objectId on add requests</column>
+                <column>Optional script value that is evaluated to determine the objectId on add requests</column>
             </row>
             <row>
                 <column><literal>onGetInitialValue</literal></column>

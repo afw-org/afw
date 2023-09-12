@@ -1641,7 +1641,7 @@
         "description": "TIER Core Schema for Systems of Record (SoR) and Entity Registry",
         "custom": {
             "_meta_": {
-                "objectType": "_AdaptiveHybridProperties_"
+                "objectType": "_AdaptiveTemplateProperties_"
             }
         }
     },

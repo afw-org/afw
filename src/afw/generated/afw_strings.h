@@ -4601,42 +4601,6 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _AdaptiveHybridPropertiesObjects_ */
-#define AFW_Q__AdaptiveHybridPropertiesObjects_ \
-    "_AdaptiveHybridPropertiesObjects_"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__AdaptiveHybridPropertiesObjects_ */
-#define afw_s__AdaptiveHybridPropertiesObjects_ \
-    (afw_v__AdaptiveHybridPropertiesObjects_.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__AdaptiveHybridPropertiesObjects_ */
-extern const afw_value_string_t \
-    afw_v__AdaptiveHybridPropertiesObjects_;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__AdaptiveHybridPropertiesObjects_ */
-#define afw_z__AdaptiveHybridPropertiesObjects_ \
-    (afw_v__AdaptiveHybridPropertiesObjects_.internal.s)
-
-
-
-/** @brief define for quoted string _AdaptiveHybridProperties_ */
-#define AFW_Q__AdaptiveHybridProperties_ \
-    "_AdaptiveHybridProperties_"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__AdaptiveHybridProperties_ */
-#define afw_s__AdaptiveHybridProperties_ \
-    (afw_v__AdaptiveHybridProperties_.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__AdaptiveHybridProperties_ */
-extern const afw_value_string_t \
-    afw_v__AdaptiveHybridProperties_;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__AdaptiveHybridProperties_ */
-#define afw_z__AdaptiveHybridProperties_ \
-    (afw_v__AdaptiveHybridProperties_.internal.s)
-
-
-
 /** @brief define for quoted string _AdaptiveInterface_ */
 #define AFW_Q__AdaptiveInterface_ \
     "_AdaptiveInterface_"
@@ -5804,6 +5768,42 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_Q__AdaptiveTag_ */
 #define afw_z__AdaptiveTag_ \
     (afw_v__AdaptiveTag_.internal.s)
+
+
+
+/** @brief define for quoted string _AdaptiveTemplatePropertiesObjects_ */
+#define AFW_Q__AdaptiveTemplatePropertiesObjects_ \
+    "_AdaptiveTemplatePropertiesObjects_"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__AdaptiveTemplatePropertiesObjects_ */
+#define afw_s__AdaptiveTemplatePropertiesObjects_ \
+    (afw_v__AdaptiveTemplatePropertiesObjects_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__AdaptiveTemplatePropertiesObjects_ */
+extern const afw_value_string_t \
+    afw_v__AdaptiveTemplatePropertiesObjects_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__AdaptiveTemplatePropertiesObjects_ */
+#define afw_z__AdaptiveTemplatePropertiesObjects_ \
+    (afw_v__AdaptiveTemplatePropertiesObjects_.internal.s)
+
+
+
+/** @brief define for quoted string _AdaptiveTemplateProperties_ */
+#define AFW_Q__AdaptiveTemplateProperties_ \
+    "_AdaptiveTemplateProperties_"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__AdaptiveTemplateProperties_ */
+#define afw_s__AdaptiveTemplateProperties_ \
+    (afw_v__AdaptiveTemplateProperties_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__AdaptiveTemplateProperties_ */
+extern const afw_value_string_t \
+    afw_v__AdaptiveTemplateProperties_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__AdaptiveTemplateProperties_ */
+#define afw_z__AdaptiveTemplateProperties_ \
+    (afw_v__AdaptiveTemplateProperties_.internal.s)
 
 
 
@@ -25121,21 +25121,21 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__Each_property_is_a__AdaptiveHybridProperties__object_ */
-#define AFW_Q__g__Each_property_is_a__AdaptiveHybridProperties__object_ \
-    "Each property is a _AdaptiveHybridProperties_ object."
+/** @brief define for quoted string _g__Each_property_is_a__AdaptiveTemplateProperties__object_ */
+#define AFW_Q__g__Each_property_is_a__AdaptiveTemplateProperties__object_ \
+    "Each property is a _AdaptiveTemplateProperties_ object."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__Each_property_is_a__AdaptiveHybridProperties__object_ */
-#define afw_s__g__Each_property_is_a__AdaptiveHybridProperties__object_ \
-    (afw_v__g__Each_property_is_a__AdaptiveHybridProperties__object_.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__Each_property_is_a__AdaptiveTemplateProperties__object_ */
+#define afw_s__g__Each_property_is_a__AdaptiveTemplateProperties__object_ \
+    (afw_v__g__Each_property_is_a__AdaptiveTemplateProperties__object_.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__Each_property_is_a__AdaptiveHybridProperties__object_ */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__Each_property_is_a__AdaptiveTemplateProperties__object_ */
 extern const afw_value_string_t \
-    afw_v__g__Each_property_is_a__AdaptiveHybridProperties__object_;
+    afw_v__g__Each_property_is_a__AdaptiveTemplateProperties__object_;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__Each_property_is_a__AdaptiveHybridProperties__object_ */
-#define afw_z__g__Each_property_is_a__AdaptiveHybridProperties__object_ \
-    (afw_v__g__Each_property_is_a__AdaptiveHybridProperties__object_.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__Each_property_is_a__AdaptiveTemplateProperties__object_ */
+#define afw_z__g__Each_property_is_a__AdaptiveTemplateProperties__object_ \
+    (afw_v__g__Each_property_is_a__AdaptiveTemplateProperties__object_.internal.s)
 
 
 

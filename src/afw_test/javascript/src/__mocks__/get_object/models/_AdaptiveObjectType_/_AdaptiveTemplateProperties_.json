@@ -1,7 +1,7 @@
 {
     "result": {
         "_meta_": {
-            "path": "/models/_AdaptiveObjectType_/_AdaptiveHybridProperties_"
+            "path": "/models/_AdaptiveObjectType_/_AdaptiveTemplateProperties_"
         },
         "allowDelete": true,
         "allowChange": true,
@@ -9,7 +9,7 @@
         "otherProperties": {
             "dataType": "template"
         },
-        "objectType": "_AdaptiveHybridProperties_",
+        "objectType": "_AdaptiveTemplateProperties_",
         "description": "Each property is a hybrid value.",
         "collectionURIs": [
             "/afw/_AdaptiveCollection_/core"

@@ -156,7 +156,7 @@
                     "type": "string"
                 },
                 "qualifiedVariables": {
-                    "$ref": "#/$defs/_AdaptiveHybridPropertiesObjects_",
+                    "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_",
                     "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
                     "title": "Qualified Variables",
                     "type": "object"
@@ -175,42 +175,6 @@
             },
             "type": "object"
         },
-        "_AdaptiveHybridPropertiesObjects_": {
-            "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveHybridProperties_",
-                "description": "Each property is a _AdaptiveHybridProperties_ object.",
-                "type": "object"
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveHybridPropertiesObjects_.propertyTypes"
-                }
-            ],
-            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
-            "title": "Qualified Variables",
-            "type": "object"
-        },
-        "_AdaptiveHybridPropertiesObjects_.propertyTypes": {
-            "properties": {},
-            "type": "object"
-        },
-        "_AdaptiveHybridProperties_": {
-            "additionalProperties": {
-                "description": "Each property is a template value.",
-                "type": "string"
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveHybridProperties_.propertyTypes"
-                }
-            ],
-            "description": "Each property is a template value.",
-            "type": "object"
-        },
-        "_AdaptiveHybridProperties_.propertyTypes": {
-            "properties": {},
-            "type": "object"
-        },
         "_AdaptiveRootFilePaths_": {
             "additionalProperties": {
                 "description": "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system.",
@@ -226,6 +190,42 @@
             "type": "object"
         },
         "_AdaptiveRootFilePaths_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        },
+        "_AdaptiveTemplatePropertiesObjects_": {
+            "additionalProperties": {
+                "$ref": "#/$defs/_AdaptiveTemplateProperties_",
+                "description": "Each property is a _AdaptiveTemplateProperties_ object.",
+                "type": "object"
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_.propertyTypes"
+                }
+            ],
+            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "title": "Qualified Variables",
+            "type": "object"
+        },
+        "_AdaptiveTemplatePropertiesObjects_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        },
+        "_AdaptiveTemplateProperties_": {
+            "additionalProperties": {
+                "description": "Each property is a template value.",
+                "type": "string"
+            },
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveTemplateProperties_.propertyTypes"
+                }
+            ],
+            "description": "Each property is a template value.",
+            "type": "object"
+        },
+        "_AdaptiveTemplateProperties_.propertyTypes": {
             "properties": {},
             "type": "object"
         }

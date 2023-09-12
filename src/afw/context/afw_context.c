@@ -486,7 +486,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
 
 
 
-/* Compile and add variable definitions (_AdaptiveHybridProperties_) */
+/* Compile and add variable definitions (_AdaptiveTemplateProperties_) */
 AFW_DEFINE(void)
 afw_context_variable_definitions_compile_and_add_based_on_object(
     const afw_object_t *context_type_object,
@@ -512,7 +512,7 @@ afw_context_variable_definitions_compile_and_add_based_on_object(
 }
 
 
-/* Compile and add variable definitions (_AdaptiveHybridProperties_) */
+/* Compile and add variable definitions (_AdaptiveTemplateProperties_) */
 AFW_DEFINE(void)
 afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     const afw_object_t *context_type_object,

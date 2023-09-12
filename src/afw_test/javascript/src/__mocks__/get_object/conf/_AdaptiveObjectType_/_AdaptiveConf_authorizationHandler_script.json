@@ -112,7 +112,7 @@
             "qualifiedVariables": {
                 "label": "Qualified Variables",
                 "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler.  The qualifier can be an empty string for unqualified variables.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables while processing this authorization handler.  These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.",
-                "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                 "dataType": "object",
                 "brief": "Qualified variables associated with this authorization handler"
             },

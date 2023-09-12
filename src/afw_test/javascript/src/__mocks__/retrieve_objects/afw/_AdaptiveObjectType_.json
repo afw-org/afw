@@ -4340,7 +4340,7 @@
                     },
                     "label": "Custom",
                     "description": "Object type level qualifier custom:: variables available to model expressions.",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "dataType": "object",
                     "brief": "Custom variables accessed throughout this Object Type"
                 }
@@ -5852,19 +5852,19 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveHybridPropertiesObjects_",
-                "objectId": "_AdaptiveHybridPropertiesObjects_",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveTemplatePropertiesObjects_",
+                "objectId": "_AdaptiveTemplatePropertiesObjects_",
                 "objectType": "_AdaptiveObjectType_"
             },
             "otherProperties": {
                 "_meta_": {
                     "objectType": "_AdaptiveValueMeta_"
                 },
-                "dataTypeParameter": "_AdaptiveHybridProperties_",
+                "dataTypeParameter": "_AdaptiveTemplateProperties_",
                 "dataType": "object"
             },
-            "objectType": "_AdaptiveHybridPropertiesObjects_",
-            "description": "Each property is a _AdaptiveHybridProperties_ object.",
+            "objectType": "_AdaptiveTemplatePropertiesObjects_",
+            "description": "Each property is a _AdaptiveTemplateProperties_ object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -7974,7 +7974,7 @@
                     },
                     "label": "Custom",
                     "description": "Qualifier custom:: variables available to model expressions.",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "dataType": "object",
                     "brief": "Custom variables available to model expressions"
                 },
@@ -10192,7 +10192,7 @@
                     "allowQuery": true,
                     "brief": "Custom Variables available to log expressions",
                     "dataType": "object",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "description": "Qualifier custom:: variables available in log expressions.",
                     "label": "Custom"
                 },
@@ -10715,7 +10715,7 @@
                     "allowQuery": true,
                     "brief": "Custom Variables available to log expressions",
                     "dataType": "object",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "description": "Qualifier custom:: variables available in log expressions.",
                     "label": "Custom"
                 },
@@ -11258,7 +11258,7 @@
                     "allowQuery": true,
                     "brief": "Custom Variables available to log expressions",
                     "dataType": "object",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "description": "Qualifier custom:: variables available in log expressions.",
                     "label": "Custom"
                 },
@@ -12671,7 +12671,7 @@
                     },
                     "brief": "Qualified set of variables",
                     "dataType": "object",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application.  The qualifier can not be an empty string.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables.  These variables are evaluated once per scope as they are accessed.\n\nSome qualifiers are restricted.",
                     "label": "Qualified Variables"
                 },
@@ -18213,7 +18213,7 @@
                     },
                     "label": "Qualified Variables",
                     "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler.  The qualifier can be an empty string for unqualified variables.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables while processing this authorization handler.  These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object",
                     "brief": "Qualified variables associated with this authorization handler"
                 },
@@ -18787,8 +18787,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveHybridProperties_",
-                "objectId": "_AdaptiveHybridProperties_",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveTemplateProperties_",
+                "objectId": "_AdaptiveTemplateProperties_",
                 "objectType": "_AdaptiveObjectType_"
             },
             "otherProperties": {
@@ -18797,7 +18797,7 @@
                 },
                 "dataType": "template"
             },
-            "objectType": "_AdaptiveHybridProperties_",
+            "objectType": "_AdaptiveTemplateProperties_",
             "description": "Each property is a hybrid value.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
@@ -19295,7 +19295,7 @@
                     },
                     "label": "Custom",
                     "description": "Property type level qualifier custom:: variables available to model expressions.",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "dataType": "object",
                     "brief": "Custom variables available to the model"
                 },
@@ -22226,7 +22226,7 @@
                     },
                     "label": "Qualified Variables",
                     "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application.  The qualifier can not be an empty string.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables.  These variables are evaluated once per scope as they are accessed.\n\nSome qualifiers are restricted.",
-                    "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                    "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                     "dataType": "object",
                     "brief": "Qualified set of variables"
                 },
@@ -22758,7 +22758,7 @@
                     },
                     "label": "Custom",
                     "description": "Qualifier custom:: variables available to model expressions.",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "dataType": "object",
                     "brief": "Qualifier custom:: variables available to model expressions",
                     "allowQuery": true
@@ -25753,7 +25753,7 @@
                     },
                     "label": "Custom",
                     "description": "Qualifier custom:: variables available in log expressions.",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "dataType": "object",
                     "brief": "Custom Variables available to log expressions",
                     "allowQuery": true
@@ -26350,7 +26350,7 @@
                     "allowQuery": true,
                     "brief": "Custom Variables available to log expressions",
                     "dataType": "object",
-                    "dataTypeParameter": "_AdaptiveHybridProperties_",
+                    "dataTypeParameter": "_AdaptiveTemplateProperties_",
                     "description": "Qualifier custom:: variables available in log expressions.",
                     "label": "Custom"
                 },

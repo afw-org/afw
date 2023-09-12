@@ -211,7 +211,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
             &afw_s__AdaptiveConf_application, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
-            &afw_s__AdaptiveHybridProperties_, false, true, xctx);
+            &afw_s__AdaptiveTemplateProperties_, false, true, xctx);
     }
 
     /* Get optional applicationId and default to "application". */

@@ -77,11 +77,11 @@
                 },
                 "qualifiedVariables": {
                     "_meta_": {
-                        "objectType": "_AdaptiveHybridPropertiesObjects_"
+                        "objectType": "_AdaptiveTemplatePropertiesObjects_"
                     },
                     "x": {
                         "_meta_": {
-                            "objectType": "_AdaptiveHybridProperties_"
+                            "objectType": "_AdaptiveTemplateProperties_"
                         },
                         "y": "fds"
                     }

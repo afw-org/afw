@@ -1918,36 +1918,6 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveFunction_);
 
 
-/* Runtime object map properties for _AdaptiveHybridPropertiesObjects_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveHybridPropertiesObjects_ = {
-    &afw_s__AdaptiveHybridPropertiesObjects_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveHybridPropertiesObjects_, 
-    impl_runtime_meta__AdaptiveHybridPropertiesObjects_);
-
-
-/* Runtime object map properties for _AdaptiveHybridProperties_ objects. */
-
-static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveHybridProperties_ = {
-    &afw_s__AdaptiveHybridProperties_,
-    NULL,
-    offsetof(afw_runtime_const_object_instance_t, properties),
-    false,
-};
-
-AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveHybridProperties_, 
-    impl_runtime_meta__AdaptiveHybridProperties_);
-
-
 /* Runtime object map properties for _AdaptiveInterface_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -4474,6 +4444,36 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveTag_);
 
 
+/* Runtime object map properties for _AdaptiveTemplatePropertiesObjects_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveTemplatePropertiesObjects_ = {
+    &afw_s__AdaptiveTemplatePropertiesObjects_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveTemplatePropertiesObjects_, 
+    impl_runtime_meta__AdaptiveTemplatePropertiesObjects_);
+
+
+/* Runtime object map properties for _AdaptiveTemplateProperties_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveTemplateProperties_ = {
+    &afw_s__AdaptiveTemplateProperties_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveTemplateProperties_, 
+    impl_runtime_meta__AdaptiveTemplateProperties_);
+
+
 /* Runtime object map properties for _AdaptiveTestScriptResult_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -4633,8 +4633,6 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveFunctionGenerate_,
     &afw_runtime_inf__AdaptiveFunctionParameter_,
     &afw_runtime_inf__AdaptiveFunction_,
-    &afw_runtime_inf__AdaptiveHybridPropertiesObjects_,
-    &afw_runtime_inf__AdaptiveHybridProperties_,
     &afw_runtime_inf__AdaptiveInterface_,
     &afw_runtime_inf__AdaptiveJournalEntryRequest_,
     &afw_runtime_inf__AdaptiveJournalEntrySource_,
@@ -4700,6 +4698,8 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveSingleton_,
     &afw_runtime_inf__AdaptiveSystemInfo_,
     &afw_runtime_inf__AdaptiveTag_,
+    &afw_runtime_inf__AdaptiveTemplatePropertiesObjects_,
+    &afw_runtime_inf__AdaptiveTemplateProperties_,
     &afw_runtime_inf__AdaptiveTestScriptResult_,
     &afw_runtime_inf__AdaptiveTestScriptTestResult_,
     &afw_runtime_inf__AdaptiveValueInf_,

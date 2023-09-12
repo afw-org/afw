@@ -309,18 +309,6 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveFunction_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveHybridPropertiesObjects_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveHybridPropertiesObjects_;
-
-/**
- * @brief Runtime object inf for object type _AdaptiveHybridProperties_
- */
-AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveHybridProperties_;
-
-/**
  * @brief Runtime object inf for object type _AdaptiveInterface_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
@@ -709,6 +697,18 @@ afw_runtime_inf__AdaptiveSystemInfo_;
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveTag_;
+
+/**
+ * @brief Runtime object inf for object type _AdaptiveTemplatePropertiesObjects_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveTemplatePropertiesObjects_;
+
+/**
+ * @brief Runtime object inf for object type _AdaptiveTemplateProperties_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveTemplateProperties_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveTestScriptResult_

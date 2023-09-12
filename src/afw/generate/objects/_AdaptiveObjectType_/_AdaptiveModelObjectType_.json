@@ -15,7 +15,7 @@
         "custom": {
             "brief": "Custom variables accessed throughout this Object Type",
             "dataType": "object",
-            "dataTypeParameter": "_AdaptiveHybridProperties_",
+            "dataTypeParameter": "_AdaptiveTemplateProperties_",
             "description": "Object type level qualifier custom:: variables available to model expressions.",
             "label": "Custom"
         },

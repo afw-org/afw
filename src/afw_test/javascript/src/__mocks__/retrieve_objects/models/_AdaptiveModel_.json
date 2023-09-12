@@ -1323,7 +1323,7 @@
             "description": "TIER Core Schema for Systems of Record (SoR) and Entity Registry",
             "custom": {
                 "_meta_": {
-                    "objectType": "_AdaptiveHybridProperties_",
+                    "objectType": "_AdaptiveTemplateProperties_",
                     "path": "/models/_AdaptiveModel_/TIER%20Core%20Schema/custom"
                 }
             }

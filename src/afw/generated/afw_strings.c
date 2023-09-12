@@ -1295,16 +1295,6 @@ const afw_value_string_t afw_v__AdaptiveFunction_ = {
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunction_)
 };
 
-const afw_value_string_t afw_v__AdaptiveHybridPropertiesObjects_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_Q__AdaptiveHybridPropertiesObjects_)
-};
-
-const afw_value_string_t afw_v__AdaptiveHybridProperties_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_Q__AdaptiveHybridProperties_)
-};
-
 const afw_value_string_t afw_v__AdaptiveInterface_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveInterface_)
@@ -1628,6 +1618,16 @@ const afw_value_string_t afw_v__AdaptiveSystemInfo_ = {
 const afw_value_string_t afw_v__AdaptiveTag_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveTag_)
+};
+
+const afw_value_string_t afw_v__AdaptiveTemplatePropertiesObjects_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_Q__AdaptiveTemplatePropertiesObjects_)
+};
+
+const afw_value_string_t afw_v__AdaptiveTemplateProperties_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_Q__AdaptiveTemplateProperties_)
 };
 
 const afw_value_string_t afw_v__AdaptiveTestScriptResult_ = {
@@ -6995,9 +6995,9 @@ const afw_value_string_t afw_v__g__Each_of_the_objectType_objects_used_by_this_o
     AFW_UTF8_LITERAL(AFW_Q__g__Each_of_the_objectType_objects_used_by_this_object)
 };
 
-const afw_value_string_t afw_v__g__Each_property_is_a__AdaptiveHybridProperties__object_ = {
+const afw_value_string_t afw_v__g__Each_property_is_a__AdaptiveTemplateProperties__object_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_Q__g__Each_property_is_a__AdaptiveHybridProperties__object_)
+    AFW_UTF8_LITERAL(AFW_Q__g__Each_property_is_a__AdaptiveTemplateProperties__object_)
 };
 
 const afw_value_string_t afw_v__g__Each_property_is_a_template_value_ = {

@@ -241,7 +241,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
 
 /**
  * @brief Compile and add variable definitions based on
- *    _AdaptiveHybridProperties_ object.
+ *    _AdaptiveTemplateProperties_ object.
  * @param context_type_object.
  * @param object used as basis for new definitions.
  * @param qualifier_id.
@@ -259,7 +259,7 @@ afw_context_variable_definitions_compile_and_add_based_on_object(
 
 /**
  * @brief Compile and add variable definitions based on
- *    _AdaptiveHybridProperties_ object.
+ *    _AdaptiveTemplateProperties_ object.
  * @param context_type_object.
  * @param objects used as basis for new definitions.
  * @param source_location to associate with compiled string or NULL.

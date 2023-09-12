@@ -644,11 +644,11 @@
                     "sourceLocation": "/conf/_AdaptiveServiceConf_/authorizationHandler-auth-script/conf",
                     "qualifiedVariables": {
                         "_meta_": {
-                            "objectType": "_AdaptiveHybridPropertiesObjects_"
+                            "objectType": "_AdaptiveTemplatePropertiesObjects_"
                         },
                         "x": {
                             "_meta_": {
-                                "objectType": "_AdaptiveHybridProperties_"
+                                "objectType": "_AdaptiveTemplateProperties_"
                             },
                             "y": "fds"
                         }
@@ -1363,7 +1363,7 @@
                         "qualifiedVariables": {
                             "label": "Qualified Variables",
                             "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler.  The qualifier can be an empty string for unqualified variables.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables while processing this authorization handler.  These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted.",
-                            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                            "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                             "dataType": "object",
                             "brief": "Qualified variables associated with this authorization handler"
                         }
@@ -2102,7 +2102,7 @@
                         "qualifiedVariables": {
                             "brief": "Qualified set of variables",
                             "dataType": "object",
-                            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                            "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                             "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application.  The qualifier can not be an empty string.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables.  These variables are evaluated once per scope as they are accessed.\n\nSome qualifiers are restricted.",
                             "label": "Qualified Variables"
                         },
@@ -4682,8 +4682,8 @@
                 "description": "Compile and evaluate <Type> value.",
                 "functionId": "evaluate",
                 "functionLabel": "evaluate",
-                "functionSignature": "<Type> unevaluated(Type source, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate <Type> value */\n<Type> unevaluated (\n    Type source                                                   /* Source to evaluate */,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext? /* Additional context */)",
+                "functionSignature": "<Type> unevaluated(Type source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
+                "functionDeclaration": "/* Evaluate <Type> value */\n<Type> unevaluated (\n    Type source                                                   /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [
                     {
                         "brief": "Source to evaluate",
@@ -4697,7 +4697,7 @@
                     {
                         "brief": "Additional context",
                         "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                        "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                         "description": "Additional context to use first during evaluation.",
                         "minArgs": -1,
                         "name": "additionalContext",
@@ -7614,8 +7614,8 @@
                 "description": "Evaluate an adaptive value.",
                 "functionId": "evaluate_value",
                 "functionLabel": "evaluate_value",
-                "functionSignature": "any(any value, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate value */\nany (\n    any value,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
+                "functionSignature": "any(any value, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
+                "functionDeclaration": "/* Evaluate value */\nany (\n    any value,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
                 "parameters": [
                     {
                         "minArgs": -1,
@@ -7626,7 +7626,7 @@
                     },
                     {
                         "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                        "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                         "description": "Additional context to use first during evaluation.",
                         "minArgs": -1,
                         "name": "additionalContext",
@@ -10199,8 +10199,8 @@
                 "description": "Compile and evaluate xpathExpression value.",
                 "functionId": "evaluate<xpathExpression>",
                 "functionLabel": "evaluate_xpathExpression",
-                "functionSignature": "unevaluated(xpathExpression source, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate xpathExpression value */\nunevaluated (\n    xpathExpression source                                        /* Source to evaluate */,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext? /* Additional context */)",
+                "functionSignature": "unevaluated(xpathExpression source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
+                "functionDeclaration": "/* Evaluate xpathExpression value */\nunevaluated (\n    xpathExpression source                                        /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [
                     {
                         "brief": "Source to evaluate",
@@ -10215,7 +10215,7 @@
                     {
                         "brief": "Additional context",
                         "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                        "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                         "description": "Additional context to use first during evaluation.",
                         "minArgs": -1,
                         "name": "additionalContext",
@@ -19182,8 +19182,8 @@
                 "description": "Compile and evaluate script value.",
                 "functionId": "evaluate<script>",
                 "functionLabel": "evaluate_script",
-                "functionSignature": "unevaluated(script source, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate script value */\nunevaluated (\n    script source                                                 /* Source to evaluate */,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext? /* Additional context */)",
+                "functionSignature": "unevaluated(script source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
+                "functionDeclaration": "/* Evaluate script value */\nunevaluated (\n    script source                                                 /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [
                     {
                         "brief": "Source to evaluate",
@@ -19198,7 +19198,7 @@
                     {
                         "brief": "Additional context",
                         "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                        "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                         "description": "Additional context to use first during evaluation.",
                         "minArgs": -1,
                         "name": "additionalContext",
@@ -25584,8 +25584,8 @@
                 "description": "Compile a string containing adaptive expression tuple syntax and then evaluate the result.",
                 "functionId": "evaluate_expression_tuple",
                 "functionLabel": "evaluate_expression_tuple",
-                "functionSignature": "any(string expression_tuple, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate expression tuple */\nany (\n    string expression_tuple,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
+                "functionSignature": "any(string expression_tuple, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
+                "functionDeclaration": "/* Evaluate expression tuple */\nany (\n    string expression_tuple,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
                 "parameters": [
                     {
                         "dataType": "string",
@@ -25598,7 +25598,7 @@
                     },
                     {
                         "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                        "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                         "description": "Additional context to use first during evaluation.",
                         "minArgs": -1,
                         "name": "additionalContext",
@@ -28633,8 +28633,8 @@
                 "description": "Compile and evaluate template value.",
                 "functionId": "evaluate<template>",
                 "functionLabel": "evaluate_template",
-                "functionSignature": "unevaluated(template source, (object _AdaptiveHybridPropertiesObjects_) additionalContext?)",
-                "functionDeclaration": "/* Evaluate template value */\nunevaluated (\n    template source                                               /* Source to evaluate */,\n    (object _AdaptiveHybridPropertiesObjects_) additionalContext? /* Additional context */)",
+                "functionSignature": "unevaluated(template source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
+                "functionDeclaration": "/* Evaluate template value */\nunevaluated (\n    template source                                               /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [
                     {
                         "brief": "Source to evaluate",
@@ -28649,7 +28649,7 @@
                     {
                         "brief": "Additional context",
                         "dataType": "object",
-                        "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+                        "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
                         "description": "Additional context to use first during evaluation.",
                         "minArgs": -1,
                         "name": "additionalContext",

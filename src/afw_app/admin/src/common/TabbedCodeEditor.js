@@ -297,7 +297,7 @@ export const CodeEditor = forwardRef((props, ref) => {
                     glyphMargin={true}
                     source={tab.source}
                     onChanged={onSourceChanged}
-                    language={(tab.format === "hybrid" || tab.format === "json") ? "json": (tab.format === "plaintext") ? "plaintext" : (tab.format === "xml") ? "xml" : "afw"}
+                    language={(tab.format === "json") ? "json": (tab.format === "plaintext") ? "plaintext" : (tab.format === "xml") ? "xml" : "afw"}
                     wordWrap={true}
                     errorOffset={tab.errorOffset}
                     errorHoverMessage={tab.errorHoverMessage}

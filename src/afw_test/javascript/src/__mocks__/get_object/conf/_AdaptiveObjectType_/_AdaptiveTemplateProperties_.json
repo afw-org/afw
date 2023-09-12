@@ -1,7 +1,7 @@
 {
     "_meta_": {
-        "path": "/conf/_AdaptiveObjectType_/_AdaptiveHybridProperties_",
-        "objectId": "_AdaptiveHybridProperties_",
+        "path": "/conf/_AdaptiveObjectType_/_AdaptiveTemplateProperties_",
+        "objectId": "_AdaptiveTemplateProperties_",
         "objectType": "_AdaptiveObjectType_"
     },
     "allowDelete": true,
@@ -13,8 +13,8 @@
         },
         "dataType": "template"
     },
-    "objectType": "_AdaptiveHybridProperties_",
-    "description": "Each property is a hybrid value.",
+    "objectType": "_AdaptiveTemplateProperties_",
+    "description": "Each property is a template value.",
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],

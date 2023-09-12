@@ -393,7 +393,7 @@ afw_adaptor_impl_create_cede_p(
     if (b) {
         impl->model_location = afw_model_location_create(adaptor, p, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveHybridProperties_, false, true, xctx);
+            &afw_s__AdaptiveTemplateProperties_, false, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
             &afw_s__AdaptiveModel_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
@@ -435,7 +435,7 @@ afw_adaptor_impl_create_cede_p(
             &afw_s__AdaptiveAuthorizationRule_, false, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveHybridProperties_, false, true, xctx);
+            &afw_s__AdaptiveTemplateProperties_, false, true, xctx);
     }
      */
 

@@ -1,0 +1,18 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveTemplatePropertiesObjects_"
+        },
+        "otherProperties": {
+            "dataTypeParameter": "_AdaptiveTemplateProperties_",
+            "dataType": "object"
+        },
+        "objectType": "_AdaptiveTemplatePropertiesObjects_",
+        "description": "Each property is a _AdaptiveTemplateProperties_ object.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": true
+    },
+    "status": "success"
+}

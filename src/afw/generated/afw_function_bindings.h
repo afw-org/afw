@@ -6685,7 +6685,7 @@ afw_function_definition_evaluate_value;
  * ```
  *   function evaluate_value(
  *       value: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): any;
  * ```
  *
@@ -6694,7 +6694,7 @@ afw_function_definition_evaluate_value;
  *   value - (any dataType)
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -6931,7 +6931,7 @@ afw_function_definition_test_script;
  *       description: string,
  *       script: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): object;
  * ```
  *
@@ -6946,7 +6946,7 @@ afw_function_definition_test_script;
  *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -6983,7 +6983,7 @@ afw_function_definition_test_template;
  *       description: string,
  *       template: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): object;
  * ```
  *
@@ -6998,7 +6998,7 @@ afw_function_definition_test_template;
  *   expected - (optional any dataType) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -7035,7 +7035,7 @@ afw_function_definition_test_value;
  *       description: string,
  *       value: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): object;
  * ```
  *
@@ -7050,7 +7050,7 @@ afw_function_definition_test_value;
  *   expected - (optional any dataType) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -20576,7 +20576,7 @@ afw_function_definition_evaluate;
  * ```
  *   function evaluate <dataType>(
  *       source: dataType,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
  * ```
  *
@@ -20585,7 +20585,7 @@ afw_function_definition_evaluate;
  *   source - (``<Type>``) `<dataType>` string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -24605,7 +24605,7 @@ afw_function_definition_evaluate_script;
  * ```
  *   function evaluate<script>(
  *       source: script,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
  * ```
  *
@@ -24614,7 +24614,7 @@ afw_function_definition_evaluate_script;
  *   source - (script) script string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -27952,7 +27952,7 @@ afw_function_definition_evaluate_template;
  * ```
  *   function evaluate<template>(
  *       source: template,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
  * ```
  *
@@ -27961,7 +27961,7 @@ afw_function_definition_evaluate_template;
  *   source - (template) template string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as
@@ -30402,7 +30402,7 @@ afw_function_definition_evaluate_xpathExpression;
  * ```
  *   function evaluate<xpathExpression>(
  *       source: xpathExpression,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveHybridPropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
  * ```
  *
@@ -30411,7 +30411,7 @@ afw_function_definition_evaluate_xpathExpression;
  *   source - (xpathExpression) xpathExpression string to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
- *       _AdaptiveHybridPropertiesObjects_) This parameter supplies additional
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
  *       qualified variables that can be accessed during evaluation. These
  *       variables will not be used by anything that needs to ensure its
  *       qualified variables must come from a trusted source, such as

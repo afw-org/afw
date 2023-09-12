@@ -104,7 +104,7 @@
         "qualifiedVariables": {
             "brief": "Qualified set of variables",
             "dataType": "object",
-            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+            "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
             "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
             "label": "Qualified Variables"
         },

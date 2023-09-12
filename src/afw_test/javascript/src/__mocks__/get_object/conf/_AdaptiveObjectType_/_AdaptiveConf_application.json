@@ -49,7 +49,7 @@
             },
             "label": "Qualified Variables",
             "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application.  The qualifier can not be an empty string.  The properties of these \"qualifier objects\" are hybrid values that are accessible as qualified variables.  These variables are evaluated once per scope as they are accessed.\n\nSome qualifiers are restricted.",
-            "dataTypeParameter": "_AdaptiveHybridPropertiesObjects_",
+            "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
             "dataType": "object",
             "brief": "Qualified set of variables"
         },
