@@ -12695,6 +12695,11 @@ const afw_value_string_t afw_v__g___Service_type__title_ = {
     AFW_UTF8_LITERAL(AFW_Q__g___Service_type__title_)
 };
 
+const afw_value_string_t afw_v__g______FIXME_Add_skeleton___ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_Q__g______FIXME_Add_skeleton___)
+};
+
 const afw_value_string_t afw_v__g_______values__any___any = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q__g_______values__any___any)
@@ -12703,11 +12708,6 @@ const afw_value_string_t afw_v__g_______values__any___any = {
 const afw_value_string_t afw_v__g_______values__any___boolean = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q__g_______values__any___boolean)
-};
-
-const afw_value_string_t afw_v__g_____afw______FIXME_Add_skeleton___ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_Q__g_____afw______FIXME_Add_skeleton___)
 };
 
 const afw_value_string_t afw_v__g___accumulator__any__value__any___any = {

@@ -67546,7 +67546,7 @@ impl_807_property_label = {
 static const afw_runtime_property_t
 impl_807_property_skeleton = {
     &afw_s_skeleton,
-    (const afw_value_t *)&afw_v__g_____afw______FIXME_Add_skeleton___
+    (const afw_value_t *)&afw_v__g______FIXME_Add_skeleton___
 };
 
 static const afw_runtime_property_t *
@@ -67719,7 +67719,7 @@ impl_809_property_label = {
 static const afw_runtime_property_t
 impl_809_property_skeleton = {
     &afw_s_skeleton,
-    (const afw_value_t *)&afw_v__g_____afw______FIXME_Add_skeleton___
+    (const afw_value_t *)&afw_v__g______FIXME_Add_skeleton___
 };
 
 static const afw_runtime_property_t *
@@ -67809,7 +67809,7 @@ impl_810_property_label = {
 static const afw_runtime_property_t
 impl_810_property_skeleton = {
     &afw_s_skeleton,
-    (const afw_value_t *)&afw_v__g_____afw______FIXME_Add_skeleton___
+    (const afw_value_t *)&afw_v__g______FIXME_Add_skeleton___
 };
 
 static const afw_runtime_property_t *
@@ -67899,7 +67899,7 @@ impl_811_property_label = {
 static const afw_runtime_property_t
 impl_811_property_skeleton = {
     &afw_s_skeleton,
-    (const afw_value_t *)&afw_v__g_____afw______FIXME_Add_skeleton___
+    (const afw_value_t *)&afw_v__g______FIXME_Add_skeleton___
 };
 
 static const afw_runtime_property_t *
@@ -67989,7 +67989,7 @@ impl_812_property_label = {
 static const afw_runtime_property_t
 impl_812_property_skeleton = {
     &afw_s_skeleton,
-    (const afw_value_t *)&afw_v__g_____afw______FIXME_Add_skeleton___
+    (const afw_value_t *)&afw_v__g______FIXME_Add_skeleton___
 };
 
 static const afw_runtime_property_t *

@@ -11497,7 +11497,7 @@ extern const afw_value_string_t \
 
 /** @brief define for quoted string _g__375 */
 #define AFW_Q__g__375 \
-    "#! afw\n\n/**\n * onAddObject\n * \n * This can be specified to override default add_object() processing.\n * \n * Some notable context variables are: \n *     current::adaptorId\n *     current::objectType\n *     current::object\n *     current::objectId\n * \n * An _AdaptiveAction_ object should be returned.\n */\n\n/*\n * Special handling for specific objects.\n *\n * For example, to handle objectType MySpecialType a special way:\n */\n/*\nif (objectType == 'MySpecialType') {\n    let (object '_AdaptiveAction_') action = {};\n\n    // Handle special by setting properties in the action object or by\n    // doing the action directly.\n\n    return action;\n}\n*/\n\n/*\n * To handle objects that don't need special handling, call the default handler.\n */\nreturn model_default_add_object_action(\n    current::adaptorId,\n    current::objectType,\n    current::object,\n    current::objectId );\n    "
+    "/**\n * onAddObject\n * \n * This can be specified to override default add_object() processing.\n * \n * Some notable context variables are: \n *     current::adaptorId\n *     current::objectType\n *     current::object\n *     current::objectId\n * \n * An _AdaptiveAction_ object should be returned.\n */\n\n/*\n * Special handling for specific objects.\n *\n * For example, to handle objectType MySpecialType a special way:\n */\n/*\nif (objectType == 'MySpecialType') {\n    let (object '_AdaptiveAction_') action = {};\n\n    // Handle special by setting properties in the action object or by\n    // doing the action directly.\n\n    return action;\n}\n*/\n\n/*\n * To handle objects that don't need special handling, call the default handler.\n */\nreturn model_default_add_object_action(\n    current::adaptorId,\n    current::objectType,\n    current::object,\n    current::objectId );\n    "
 
 /** @brief 'afw_utf8_t' for string AFW_Q__g__375 */
 #define afw_s__g__375 \
@@ -45641,6 +45641,24 @@ extern const afw_value_string_t \
 
 
 
+/** @brief define for quoted string _g______FIXME_Add_skeleton___ */
+#define AFW_Q__g______FIXME_Add_skeleton___ \
+    "/** FIXME Add skeleton */"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g______FIXME_Add_skeleton___ */
+#define afw_s__g______FIXME_Add_skeleton___ \
+    (afw_v__g______FIXME_Add_skeleton___.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g______FIXME_Add_skeleton___ */
+extern const afw_value_string_t \
+    afw_v__g______FIXME_Add_skeleton___;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g______FIXME_Add_skeleton___ */
+#define afw_z__g______FIXME_Add_skeleton___ \
+    (afw_v__g______FIXME_Add_skeleton___.internal.s)
+
+
+
 /** @brief define for quoted string _g_______values__any___any */
 #define AFW_Q__g_______values__any___any \
     "(... values: any): any"
@@ -45674,24 +45692,6 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_Q__g_______values__any___boolean */
 #define afw_z__g_______values__any___boolean \
     (afw_v__g_______values__any___boolean.internal.s)
-
-
-
-/** @brief define for quoted string _g_____afw______FIXME_Add_skeleton___ */
-#define AFW_Q__g_____afw______FIXME_Add_skeleton___ \
-    "#! afw\n\n/** FIXME Add skeleton */"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g_____afw______FIXME_Add_skeleton___ */
-#define afw_s__g_____afw______FIXME_Add_skeleton___ \
-    (afw_v__g_____afw______FIXME_Add_skeleton___.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g_____afw______FIXME_Add_skeleton___ */
-extern const afw_value_string_t \
-    afw_v__g_____afw______FIXME_Add_skeleton___;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g_____afw______FIXME_Add_skeleton___ */
-#define afw_z__g_____afw______FIXME_Add_skeleton___ \
-    (afw_v__g_____afw______FIXME_Add_skeleton___.internal.s)
 
 
 
