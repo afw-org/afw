@@ -80633,4 +80633,52 @@ extern const afw_value_string_t \
 
 
 
+/** @brief 'afw_value_boolean_t' for boolean false */
+extern const afw_value_boolean_t \
+    afw_boolean_v_false;
+
+
+
+/** @brief 'afw_value_boolean_t' for boolean true */
+extern const afw_value_boolean_t \
+    afw_boolean_v_true;
+
+
+
+/** @brief 'afw_value_integer_t' for integer 1 */
+extern const afw_value_integer_t \
+    afw_integer_v_one;
+
+
+
+/** @brief 'afw_value_integer_t' for integer 0 */
+extern const afw_value_integer_t \
+    afw_integer_v_zero;
+
+
+
+/** @brief 'afw_value_double_t' for double 1.0e1 */
+extern const afw_value_double_t \
+    afw_double_v_1raisedto1;
+
+
+
+/** @brief define for quoted string example */
+#define AFW_ANYURI_Q_example \
+    "www.example.com"
+
+/** @brief 'afw_utf8_t' for string AFW_ANYURI_Q_example */
+#define afw_anyURI_s_example \
+    (afw_anyURI_v_example.internal)
+
+/** @brief 'afw_value_anyURI_t' for anyURI AFW_ANYURI_Q_example */
+extern const afw_value_anyURI_t \
+    afw_anyURI_v_example;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_ANYURI_Q_example */
+#define afw_anyURI_z_example \
+    (afw_anyURI_v_example.internal.s)
+
+
+
 #endif /* __AFW_STRINGS_H__ */

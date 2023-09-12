@@ -16,11 +16,25 @@
 #   sign up to the end of the line.  The value can contain valid c escape
 #   characters such as \n.  By convention, name should start with a_ to
 #   distinguish it from name where name and value are the same.
+#   If the name contains '::', what's before the '::' can be one of the 
+#   supported dataTypes and what's after is the name. The supported dataTypes
+#   are: boolean, double, integer, and any data type that has a "cType" equal
+#   to "afw_utf8_t".
 #
 # Duplicate string definitions are ignored.  Avoid assigning the same name
 # with different values since all but one will be ignored.
 #
 
+
+# some strings that have non-string values
+boolean::true=true
+boolean::false=false
+integer::zero=0
+integer::one=1
+double::1raisedto1=1.0e1
+anyURI::example=www.example.com
+
+# miscellaneous
 afw
 afw_runtime
 

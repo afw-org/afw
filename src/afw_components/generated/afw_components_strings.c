@@ -25,2477 +25,2972 @@
 #include "afw.h"
 #include "afw_components_strings.h"
 
-const afw_value_string_t afw_components_v_Autocomplete = {
+const afw_value_string_t
+afw_components_v_Autocomplete = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Autocomplete)
 };
 
-const afw_value_string_t afw_components_v_Box = {
+const afw_value_string_t
+afw_components_v_Box = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Box)
 };
 
-const afw_value_string_t afw_components_v_Breadcrumb = {
+const afw_value_string_t
+afw_components_v_Breadcrumb = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Breadcrumb)
 };
 
-const afw_value_string_t afw_components_v_Button = {
+const afw_value_string_t
+afw_components_v_Button = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Button)
 };
 
-const afw_value_string_t afw_components_v_Callout = {
+const afw_value_string_t
+afw_components_v_Callout = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Callout)
 };
 
-const afw_value_string_t afw_components_v_Chart = {
+const afw_value_string_t
+afw_components_v_Chart = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Chart)
 };
 
-const afw_value_string_t afw_components_v_Checkbox = {
+const afw_value_string_t
+afw_components_v_Checkbox = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Checkbox)
 };
 
-const afw_value_string_t afw_components_v_ChoiceGroup = {
+const afw_value_string_t
+afw_components_v_ChoiceGroup = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_ChoiceGroup)
 };
 
-const afw_value_string_t afw_components_v_CodeEditor = {
+const afw_value_string_t
+afw_components_v_CodeEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_CodeEditor)
 };
 
-const afw_value_string_t afw_components_v_Collapsible = {
+const afw_value_string_t
+afw_components_v_Collapsible = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Collapsible)
 };
 
-const afw_value_string_t afw_components_v_DatePicker = {
+const afw_value_string_t
+afw_components_v_DatePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_DatePicker)
 };
 
-const afw_value_string_t afw_components_v_DateTimePicker = {
+const afw_value_string_t
+afw_components_v_DateTimePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_DateTimePicker)
 };
 
-const afw_value_string_t afw_components_v_Dialog = {
+const afw_value_string_t
+afw_components_v_Dialog = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Dialog)
 };
 
-const afw_value_string_t afw_components_v_DiffEditor = {
+const afw_value_string_t
+afw_components_v_DiffEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_DiffEditor)
 };
 
-const afw_value_string_t afw_components_v_Divider = {
+const afw_value_string_t
+afw_components_v_Divider = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Divider)
 };
 
-const afw_value_string_t afw_components_v_Drawer = {
+const afw_value_string_t
+afw_components_v_Drawer = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Drawer)
 };
 
-const afw_value_string_t afw_components_v_Dropdown = {
+const afw_value_string_t
+afw_components_v_Dropdown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Dropdown)
 };
 
-const afw_value_string_t afw_components_v_DropdownEditor = {
+const afw_value_string_t
+afw_components_v_DropdownEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_DropdownEditor)
 };
 
-const afw_value_string_t afw_components_v_EditableCallout = {
+const afw_value_string_t
+afw_components_v_EditableCallout = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_EditableCallout)
 };
 
-const afw_value_string_t afw_components_v_EditableLabel = {
+const afw_value_string_t
+afw_components_v_EditableLabel = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_EditableLabel)
 };
 
-const afw_value_string_t afw_components_v_Hidden = {
+const afw_value_string_t
+afw_components_v_Hidden = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Hidden)
 };
 
-const afw_value_string_t afw_components_v_Icon = {
+const afw_value_string_t
+afw_components_v_Icon = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Icon)
 };
 
-const afw_value_string_t afw_components_v_Image = {
+const afw_value_string_t
+afw_components_v_Image = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Image)
 };
 
-const afw_value_string_t afw_components_v_Link = {
+const afw_value_string_t
+afw_components_v_Link = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Link)
 };
 
-const afw_value_string_t afw_components_v_List = {
+const afw_value_string_t
+afw_components_v_List = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_List)
 };
 
-const afw_value_string_t afw_components_v_ListEditor = {
+const afw_value_string_t
+afw_components_v_ListEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_ListEditor)
 };
 
-const afw_value_string_t afw_components_v_Menu = {
+const afw_value_string_t
+afw_components_v_Menu = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Menu)
 };
 
-const afw_value_string_t afw_components_v_Message = {
+const afw_value_string_t
+afw_components_v_Message = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Message)
 };
 
-const afw_value_string_t afw_components_v_Modal = {
+const afw_value_string_t
+afw_components_v_Modal = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Modal)
 };
 
-const afw_value_string_t afw_components_v_Native = {
+const afw_value_string_t
+afw_components_v_Native = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Native)
 };
 
-const afw_value_string_t afw_components_v_Nav = {
+const afw_value_string_t
+afw_components_v_Nav = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Nav)
 };
 
-const afw_value_string_t afw_components_v_Paper = {
+const afw_value_string_t
+afw_components_v_Paper = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Paper)
 };
 
-const afw_value_string_t afw_components_v_Picker = {
+const afw_value_string_t
+afw_components_v_Picker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Picker)
 };
 
-const afw_value_string_t afw_components_v_Responsive = {
+const afw_value_string_t
+afw_components_v_Responsive = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Responsive)
 };
 
-const afw_value_string_t afw_components_v_Skeleton = {
+const afw_value_string_t
+afw_components_v_Skeleton = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Skeleton)
 };
 
-const afw_value_string_t afw_components_v_Slider = {
+const afw_value_string_t
+afw_components_v_Slider = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Slider)
 };
 
-const afw_value_string_t afw_components_v_Snackbar = {
+const afw_value_string_t
+afw_components_v_Snackbar = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Snackbar)
 };
 
-const afw_value_string_t afw_components_v_SpinButton = {
+const afw_value_string_t
+afw_components_v_SpinButton = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_SpinButton)
 };
 
-const afw_value_string_t afw_components_v_Spinner = {
+const afw_value_string_t
+afw_components_v_Spinner = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Spinner)
 };
 
-const afw_value_string_t afw_components_v_Stepper = {
+const afw_value_string_t
+afw_components_v_Stepper = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Stepper)
 };
 
-const afw_value_string_t afw_components_v_Table = {
+const afw_value_string_t
+afw_components_v_Table = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Table)
 };
 
-const afw_value_string_t afw_components_v_Tabs = {
+const afw_value_string_t
+afw_components_v_Tabs = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Tabs)
 };
 
-const afw_value_string_t afw_components_v_TextField = {
+const afw_value_string_t
+afw_components_v_TextField = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_TextField)
 };
 
-const afw_value_string_t afw_components_v_TimeDuration = {
+const afw_value_string_t
+afw_components_v_TimeDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_TimeDuration)
 };
 
-const afw_value_string_t afw_components_v_TimePicker = {
+const afw_value_string_t
+afw_components_v_TimePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_TimePicker)
 };
 
-const afw_value_string_t afw_components_v_TimezonePicker = {
+const afw_value_string_t
+afw_components_v_TimezonePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_TimezonePicker)
 };
 
-const afw_value_string_t afw_components_v_Toggle = {
+const afw_value_string_t
+afw_components_v_Toggle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Toggle)
 };
 
-const afw_value_string_t afw_components_v_ToggleButtons = {
+const afw_value_string_t
+afw_components_v_ToggleButtons = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_ToggleButtons)
 };
 
-const afw_value_string_t afw_components_v_Toolbar = {
+const afw_value_string_t
+afw_components_v_Toolbar = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Toolbar)
 };
 
-const afw_value_string_t afw_components_v_Tooltip = {
+const afw_value_string_t
+afw_components_v_Tooltip = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Tooltip)
 };
 
-const afw_value_string_t afw_components_v_Tree = {
+const afw_value_string_t
+afw_components_v_Tree = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Tree)
 };
 
-const afw_value_string_t afw_components_v_Typography = {
+const afw_value_string_t
+afw_components_v_Typography = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_Typography)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentTypeCategory_ = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentTypeCategory_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Autocomplete = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Autocomplete = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Box = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Box = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_BoxItem = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_BoxItem = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Breadcrumb = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Breadcrumb = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Button = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Button = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Callout = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Callout = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Chart = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Chart = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Chart_Data = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Chart_Data = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Checkbox = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Checkbox = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_CodeEditor = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_CodeEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Collapsible = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Collapsible = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Common = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Common = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DatePicker = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_DatePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DateTimePicker = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_DateTimePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dialog = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Dialog = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DiffEditor = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_DiffEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Divider = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Divider = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Drawer = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Drawer = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dropdown = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Dropdown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_DropdownEditor = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_DropdownEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_EditableCallout = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_EditableCallout = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_EditableLabel = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_EditableLabel = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Hidden = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Hidden = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Icon = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Icon = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Image = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Image = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Label = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Label = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Link = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Link = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_List = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_List = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ListEditor = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ListEditor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Menu = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Menu = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Menu_Item = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Menu_Item = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Message = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Message = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Modal = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Modal = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Native = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Native = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Nav = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Nav = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Nav_Item = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Nav_Item = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Paper = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Paper = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Picker = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Picker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Picker_Item = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Picker_Item = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Responsive = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Responsive = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Skeleton = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Skeleton = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Slider = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Slider = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Snackbar = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Snackbar = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_SpinButton = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_SpinButton = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Spinner = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Spinner = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Stepper = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Stepper = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Style = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Style = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Table = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table_Column = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Table_Column = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Table_Row = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Table_Row = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tabs = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Tabs = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TextField = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_TextField = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimeDuration = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_TimeDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimePicker = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_TimePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_TimezonePicker = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_TimezonePicker = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Toggle = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Toggle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_ToggleButtons = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_ToggleButtons = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Toolbar = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Toolbar = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tooltip = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Tooltip = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tree = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Tree = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Tree_Node = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Tree_Node = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayoutComponentType_Typography = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayoutComponentType_Typography = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayout_ObjectResponsive = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_embedded = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayout_ObjectResponsive_embedded = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions = {
+const afw_value_string_t
+afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions)
 };
 
-const afw_value_string_t afw_components_v__AdaptiveObjectType_ = {
+const afw_value_string_t
+afw_components_v__AdaptiveObjectType_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__AdaptiveObjectType_)
 };
 
-const afw_value_string_t afw_components_v__meta_ = {
+const afw_value_string_t
+afw_components_v__meta_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q__meta_)
 };
 
-const afw_value_string_t afw_components_v_a_aria_label = {
+const afw_value_string_t
+afw_components_v_a_aria_label = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_a_aria_label)
 };
 
-const afw_value_string_t afw_components_v_a_aria_labelledby = {
+const afw_value_string_t
+afw_components_v_a_aria_labelledby = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_a_aria_labelledby)
 };
 
-const afw_value_string_t afw_components_v_activeStep = {
+const afw_value_string_t
+afw_components_v_activeStep = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_activeStep)
 };
 
-const afw_value_string_t afw_components_v_alignContent = {
+const afw_value_string_t
+afw_components_v_alignContent = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_alignContent)
 };
 
-const afw_value_string_t afw_components_v_alignItems = {
+const afw_value_string_t
+afw_components_v_alignItems = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_alignItems)
 };
 
-const afw_value_string_t afw_components_v_alignSelf = {
+const afw_value_string_t
+afw_components_v_alignSelf = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_alignSelf)
 };
 
-const afw_value_string_t afw_components_v_allowAdd = {
+const afw_value_string_t
+afw_components_v_allowAdd = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_allowAdd)
 };
 
-const afw_value_string_t afw_components_v_allowChange = {
+const afw_value_string_t
+afw_components_v_allowChange = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_allowChange)
 };
 
-const afw_value_string_t afw_components_v_allowDelete = {
+const afw_value_string_t
+afw_components_v_allowDelete = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_allowDelete)
 };
 
-const afw_value_string_t afw_components_v_allowEntity = {
+const afw_value_string_t
+afw_components_v_allowEntity = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_allowEntity)
 };
 
-const afw_value_string_t afw_components_v_allowWrite = {
+const afw_value_string_t
+afw_components_v_allowWrite = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_allowWrite)
 };
 
-const afw_value_string_t afw_components_v_allowedValues = {
+const afw_value_string_t
+afw_components_v_allowedValues = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_allowedValues)
 };
 
-const afw_value_string_t afw_components_v_anchor = {
+const afw_value_string_t
+afw_components_v_anchor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_anchor)
 };
 
-const afw_value_string_t afw_components_v_animateDuration = {
+const afw_value_string_t
+afw_components_v_animateDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animateDuration)
 };
 
-const afw_value_string_t afw_components_v_animation = {
+const afw_value_string_t
+afw_components_v_animation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animation)
 };
 
-const afw_value_string_t afw_components_v_animationDelay = {
+const afw_value_string_t
+afw_components_v_animationDelay = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationDelay)
 };
 
-const afw_value_string_t afw_components_v_animationDirection = {
+const afw_value_string_t
+afw_components_v_animationDirection = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationDirection)
 };
 
-const afw_value_string_t afw_components_v_animationDuration = {
+const afw_value_string_t
+afw_components_v_animationDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationDuration)
 };
 
-const afw_value_string_t afw_components_v_animationFillMode = {
+const afw_value_string_t
+afw_components_v_animationFillMode = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationFillMode)
 };
 
-const afw_value_string_t afw_components_v_animationIterationCount = {
+const afw_value_string_t
+afw_components_v_animationIterationCount = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationIterationCount)
 };
 
-const afw_value_string_t afw_components_v_animationName = {
+const afw_value_string_t
+afw_components_v_animationName = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationName)
 };
 
-const afw_value_string_t afw_components_v_animationPlayState = {
+const afw_value_string_t
+afw_components_v_animationPlayState = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationPlayState)
 };
 
-const afw_value_string_t afw_components_v_animationTimingFunction = {
+const afw_value_string_t
+afw_components_v_animationTimingFunction = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_animationTimingFunction)
 };
 
-const afw_value_string_t afw_components_v_array = {
+const afw_value_string_t
+afw_components_v_array = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_array)
 };
 
-const afw_value_string_t afw_components_v_backfaceVisibility = {
+const afw_value_string_t
+afw_components_v_backfaceVisibility = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backfaceVisibility)
 };
 
-const afw_value_string_t afw_components_v_background = {
+const afw_value_string_t
+afw_components_v_background = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_background)
 };
 
-const afw_value_string_t afw_components_v_backgroundAttachment = {
+const afw_value_string_t
+afw_components_v_backgroundAttachment = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundAttachment)
 };
 
-const afw_value_string_t afw_components_v_backgroundClip = {
+const afw_value_string_t
+afw_components_v_backgroundClip = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundClip)
 };
 
-const afw_value_string_t afw_components_v_backgroundColor = {
+const afw_value_string_t
+afw_components_v_backgroundColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundColor)
 };
 
-const afw_value_string_t afw_components_v_backgroundImage = {
+const afw_value_string_t
+afw_components_v_backgroundImage = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundImage)
 };
 
-const afw_value_string_t afw_components_v_backgroundOrigin = {
+const afw_value_string_t
+afw_components_v_backgroundOrigin = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundOrigin)
 };
 
-const afw_value_string_t afw_components_v_backgroundPosition = {
+const afw_value_string_t
+afw_components_v_backgroundPosition = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundPosition)
 };
 
-const afw_value_string_t afw_components_v_backgroundRepeat = {
+const afw_value_string_t
+afw_components_v_backgroundRepeat = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundRepeat)
 };
 
-const afw_value_string_t afw_components_v_backgroundSize = {
+const afw_value_string_t
+afw_components_v_backgroundSize = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_backgroundSize)
 };
 
-const afw_value_string_t afw_components_v_badge = {
+const afw_value_string_t
+afw_components_v_badge = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_badge)
 };
 
-const afw_value_string_t afw_components_v_boolean = {
+const afw_value_string_t
+afw_components_v_boolean = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_boolean)
 };
 
-const afw_value_string_t afw_components_v_border = {
+const afw_value_string_t
+afw_components_v_border = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_border)
 };
 
-const afw_value_string_t afw_components_v_borderBottom = {
+const afw_value_string_t
+afw_components_v_borderBottom = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderBottom)
 };
 
-const afw_value_string_t afw_components_v_borderBottomColor = {
+const afw_value_string_t
+afw_components_v_borderBottomColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderBottomColor)
 };
 
-const afw_value_string_t afw_components_v_borderBottomLeftRadius = {
+const afw_value_string_t
+afw_components_v_borderBottomLeftRadius = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderBottomLeftRadius)
 };
 
-const afw_value_string_t afw_components_v_borderBottomRightRadius = {
+const afw_value_string_t
+afw_components_v_borderBottomRightRadius = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderBottomRightRadius)
 };
 
-const afw_value_string_t afw_components_v_borderBottomStyle = {
+const afw_value_string_t
+afw_components_v_borderBottomStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderBottomStyle)
 };
 
-const afw_value_string_t afw_components_v_borderBottomWidth = {
+const afw_value_string_t
+afw_components_v_borderBottomWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderBottomWidth)
 };
 
-const afw_value_string_t afw_components_v_borderCollapse = {
+const afw_value_string_t
+afw_components_v_borderCollapse = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderCollapse)
 };
 
-const afw_value_string_t afw_components_v_borderColor = {
+const afw_value_string_t
+afw_components_v_borderColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderColor)
 };
 
-const afw_value_string_t afw_components_v_borderImage = {
+const afw_value_string_t
+afw_components_v_borderImage = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderImage)
 };
 
-const afw_value_string_t afw_components_v_borderImageOutset = {
+const afw_value_string_t
+afw_components_v_borderImageOutset = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderImageOutset)
 };
 
-const afw_value_string_t afw_components_v_borderImageRepeat = {
+const afw_value_string_t
+afw_components_v_borderImageRepeat = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderImageRepeat)
 };
 
-const afw_value_string_t afw_components_v_borderImageSlice = {
+const afw_value_string_t
+afw_components_v_borderImageSlice = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderImageSlice)
 };
 
-const afw_value_string_t afw_components_v_borderImageSource = {
+const afw_value_string_t
+afw_components_v_borderImageSource = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderImageSource)
 };
 
-const afw_value_string_t afw_components_v_borderImageWidth = {
+const afw_value_string_t
+afw_components_v_borderImageWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderImageWidth)
 };
 
-const afw_value_string_t afw_components_v_borderLeft = {
+const afw_value_string_t
+afw_components_v_borderLeft = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderLeft)
 };
 
-const afw_value_string_t afw_components_v_borderLeftColor = {
+const afw_value_string_t
+afw_components_v_borderLeftColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderLeftColor)
 };
 
-const afw_value_string_t afw_components_v_borderLeftStyle = {
+const afw_value_string_t
+afw_components_v_borderLeftStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderLeftStyle)
 };
 
-const afw_value_string_t afw_components_v_borderLeftWidth = {
+const afw_value_string_t
+afw_components_v_borderLeftWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderLeftWidth)
 };
 
-const afw_value_string_t afw_components_v_borderRadius = {
+const afw_value_string_t
+afw_components_v_borderRadius = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderRadius)
 };
 
-const afw_value_string_t afw_components_v_borderRight = {
+const afw_value_string_t
+afw_components_v_borderRight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderRight)
 };
 
-const afw_value_string_t afw_components_v_borderRightColor = {
+const afw_value_string_t
+afw_components_v_borderRightColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderRightColor)
 };
 
-const afw_value_string_t afw_components_v_borderRightStyle = {
+const afw_value_string_t
+afw_components_v_borderRightStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderRightStyle)
 };
 
-const afw_value_string_t afw_components_v_borderRightWidth = {
+const afw_value_string_t
+afw_components_v_borderRightWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderRightWidth)
 };
 
-const afw_value_string_t afw_components_v_borderSpacing = {
+const afw_value_string_t
+afw_components_v_borderSpacing = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderSpacing)
 };
 
-const afw_value_string_t afw_components_v_borderStyle = {
+const afw_value_string_t
+afw_components_v_borderStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderStyle)
 };
 
-const afw_value_string_t afw_components_v_borderTop = {
+const afw_value_string_t
+afw_components_v_borderTop = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderTop)
 };
 
-const afw_value_string_t afw_components_v_borderTopColor = {
+const afw_value_string_t
+afw_components_v_borderTopColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderTopColor)
 };
 
-const afw_value_string_t afw_components_v_borderTopLeftRadius = {
+const afw_value_string_t
+afw_components_v_borderTopLeftRadius = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderTopLeftRadius)
 };
 
-const afw_value_string_t afw_components_v_borderTopRightRadius = {
+const afw_value_string_t
+afw_components_v_borderTopRightRadius = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderTopRightRadius)
 };
 
-const afw_value_string_t afw_components_v_borderTopStyle = {
+const afw_value_string_t
+afw_components_v_borderTopStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderTopStyle)
 };
 
-const afw_value_string_t afw_components_v_borderTopWidth = {
+const afw_value_string_t
+afw_components_v_borderTopWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderTopWidth)
 };
 
-const afw_value_string_t afw_components_v_borderWidth = {
+const afw_value_string_t
+afw_components_v_borderWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_borderWidth)
 };
 
-const afw_value_string_t afw_components_v_bottom = {
+const afw_value_string_t
+afw_components_v_bottom = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_bottom)
 };
 
-const afw_value_string_t afw_components_v_boxDecorationBreak = {
+const afw_value_string_t
+afw_components_v_boxDecorationBreak = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_boxDecorationBreak)
 };
 
-const afw_value_string_t afw_components_v_boxShadow = {
+const afw_value_string_t
+afw_components_v_boxShadow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_boxShadow)
 };
 
-const afw_value_string_t afw_components_v_boxSide = {
+const afw_value_string_t
+afw_components_v_boxSide = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_boxSide)
 };
 
-const afw_value_string_t afw_components_v_boxSizing = {
+const afw_value_string_t
+afw_components_v_boxSizing = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_boxSizing)
 };
 
-const afw_value_string_t afw_components_v_breakpoints = {
+const afw_value_string_t
+afw_components_v_breakpoints = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_breakpoints)
 };
 
-const afw_value_string_t afw_components_v_brief = {
+const afw_value_string_t
+afw_components_v_brief = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_brief)
 };
 
-const afw_value_string_t afw_components_v_canDismiss = {
+const afw_value_string_t
+afw_components_v_canDismiss = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_canDismiss)
 };
 
-const afw_value_string_t afw_components_v_captionSide = {
+const afw_value_string_t
+afw_components_v_captionSide = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_captionSide)
 };
 
-const afw_value_string_t afw_components_v_category = {
+const afw_value_string_t
+afw_components_v_category = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_category)
 };
 
-const afw_value_string_t afw_components_v_children = {
+const afw_value_string_t
+afw_components_v_children = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_children)
 };
 
-const afw_value_string_t afw_components_v_className = {
+const afw_value_string_t
+afw_components_v_className = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_className)
 };
 
-const afw_value_string_t afw_components_v_clear = {
+const afw_value_string_t
+afw_components_v_clear = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_clear)
 };
 
-const afw_value_string_t afw_components_v_clip = {
+const afw_value_string_t
+afw_components_v_clip = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_clip)
 };
 
-const afw_value_string_t afw_components_v_collectionURIs = {
+const afw_value_string_t
+afw_components_v_collectionURIs = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_collectionURIs)
 };
 
-const afw_value_string_t afw_components_v_color = {
+const afw_value_string_t
+afw_components_v_color = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_color)
 };
 
-const afw_value_string_t afw_components_v_columnCount = {
+const afw_value_string_t
+afw_components_v_columnCount = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnCount)
 };
 
-const afw_value_string_t afw_components_v_columnFill = {
+const afw_value_string_t
+afw_components_v_columnFill = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnFill)
 };
 
-const afw_value_string_t afw_components_v_columnGap = {
+const afw_value_string_t
+afw_components_v_columnGap = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnGap)
 };
 
-const afw_value_string_t afw_components_v_columnRule = {
+const afw_value_string_t
+afw_components_v_columnRule = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnRule)
 };
 
-const afw_value_string_t afw_components_v_columnRuleColor = {
+const afw_value_string_t
+afw_components_v_columnRuleColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnRuleColor)
 };
 
-const afw_value_string_t afw_components_v_columnRuleStyle = {
+const afw_value_string_t
+afw_components_v_columnRuleStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnRuleStyle)
 };
 
-const afw_value_string_t afw_components_v_columnRuleWidth = {
+const afw_value_string_t
+afw_components_v_columnRuleWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnRuleWidth)
 };
 
-const afw_value_string_t afw_components_v_columnSpan = {
+const afw_value_string_t
+afw_components_v_columnSpan = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnSpan)
 };
 
-const afw_value_string_t afw_components_v_columnWidth = {
+const afw_value_string_t
+afw_components_v_columnWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columnWidth)
 };
 
-const afw_value_string_t afw_components_v_columns = {
+const afw_value_string_t
+afw_components_v_columns = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_columns)
 };
 
-const afw_value_string_t afw_components_v_compact = {
+const afw_value_string_t
+afw_components_v_compact = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_compact)
 };
 
-const afw_value_string_t afw_components_v_component = {
+const afw_value_string_t
+afw_components_v_component = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_component)
 };
 
-const afw_value_string_t afw_components_v_componentProps = {
+const afw_value_string_t
+afw_components_v_componentProps = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_componentProps)
 };
 
-const afw_value_string_t afw_components_v_componentType = {
+const afw_value_string_t
+afw_components_v_componentType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_componentType)
 };
 
-const afw_value_string_t afw_components_v_containers = {
+const afw_value_string_t
+afw_components_v_containers = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_containers)
 };
 
-const afw_value_string_t afw_components_v_contains = {
+const afw_value_string_t
+afw_components_v_contains = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_contains)
 };
 
-const afw_value_string_t afw_components_v_content = {
+const afw_value_string_t
+afw_components_v_content = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_content)
 };
 
-const afw_value_string_t afw_components_v_counterIncrement = {
+const afw_value_string_t
+afw_components_v_counterIncrement = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_counterIncrement)
 };
 
-const afw_value_string_t afw_components_v_counterReset = {
+const afw_value_string_t
+afw_components_v_counterReset = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_counterReset)
 };
 
-const afw_value_string_t afw_components_v_cssFloat = {
+const afw_value_string_t
+afw_components_v_cssFloat = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_cssFloat)
 };
 
-const afw_value_string_t afw_components_v_cursor = {
+const afw_value_string_t
+afw_components_v_cursor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_cursor)
 };
 
-const afw_value_string_t afw_components_v_data = {
+const afw_value_string_t
+afw_components_v_data = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_data)
 };
 
-const afw_value_string_t afw_components_v_dataType = {
+const afw_value_string_t
+afw_components_v_dataType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_dataType)
 };
 
-const afw_value_string_t afw_components_v_dataTypeParameter = {
+const afw_value_string_t
+afw_components_v_dataTypeParameter = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_dataTypeParameter)
 };
 
-const afw_value_string_t afw_components_v_dateTime = {
+const afw_value_string_t
+afw_components_v_dateTime = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_dateTime)
 };
 
-const afw_value_string_t afw_components_v_dayTimeDuration = {
+const afw_value_string_t
+afw_components_v_dayTimeDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_dayTimeDuration)
 };
 
-const afw_value_string_t afw_components_v_default = {
+const afw_value_string_t
+afw_components_v_default = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_default)
 };
 
-const afw_value_string_t afw_components_v_defaultValue = {
+const afw_value_string_t
+afw_components_v_defaultValue = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_defaultValue)
 };
 
-const afw_value_string_t afw_components_v_delay = {
+const afw_value_string_t
+afw_components_v_delay = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_delay)
 };
 
-const afw_value_string_t afw_components_v_dense = {
+const afw_value_string_t
+afw_components_v_dense = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_dense)
 };
 
-const afw_value_string_t afw_components_v_description = {
+const afw_value_string_t
+afw_components_v_description = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_description)
 };
 
-const afw_value_string_t afw_components_v_designMode = {
+const afw_value_string_t
+afw_components_v_designMode = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_designMode)
 };
 
-const afw_value_string_t afw_components_v_direction = {
+const afw_value_string_t
+afw_components_v_direction = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_direction)
 };
 
-const afw_value_string_t afw_components_v_disabled = {
+const afw_value_string_t
+afw_components_v_disabled = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_disabled)
 };
 
-const afw_value_string_t afw_components_v_display = {
+const afw_value_string_t
+afw_components_v_display = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_display)
 };
 
-const afw_value_string_t afw_components_v_dropdown = {
+const afw_value_string_t
+afw_components_v_dropdown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_dropdown)
 };
 
-const afw_value_string_t afw_components_v_duration = {
+const afw_value_string_t
+afw_components_v_duration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_duration)
 };
 
-const afw_value_string_t afw_components_v_editable = {
+const afw_value_string_t
+afw_components_v_editable = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_editable)
 };
 
-const afw_value_string_t afw_components_v_editors = {
+const afw_value_string_t
+afw_components_v_editors = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_editors)
 };
 
-const afw_value_string_t afw_components_v_elevation = {
+const afw_value_string_t
+afw_components_v_elevation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_elevation)
 };
 
-const afw_value_string_t afw_components_v_embedded = {
+const afw_value_string_t
+afw_components_v_embedded = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_embedded)
 };
 
-const afw_value_string_t afw_components_v_emptyCells = {
+const afw_value_string_t
+afw_components_v_emptyCells = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_emptyCells)
 };
 
-const afw_value_string_t afw_components_v_exclusive = {
+const afw_value_string_t
+afw_components_v_exclusive = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_exclusive)
 };
 
-const afw_value_string_t afw_components_v_expandedKeys = {
+const afw_value_string_t
+afw_components_v_expandedKeys = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_expandedKeys)
 };
 
-const afw_value_string_t afw_components_v_fieldName = {
+const afw_value_string_t
+afw_components_v_fieldName = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fieldName)
 };
 
-const afw_value_string_t afw_components_v_filter = {
+const afw_value_string_t
+afw_components_v_filter = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filter)
 };
 
-const afw_value_string_t afw_components_v_filterCondAndProperties = {
+const afw_value_string_t
+afw_components_v_filterCondAndProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterCondAndProperties)
 };
 
-const afw_value_string_t afw_components_v_filterCondOrProperties = {
+const afw_value_string_t
+afw_components_v_filterCondOrProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterCondOrProperties)
 };
 
-const afw_value_string_t afw_components_v_filterExcludeEmbeddedProperties = {
+const afw_value_string_t
+afw_components_v_filterExcludeEmbeddedProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties)
 };
 
-const afw_value_string_t afw_components_v_filterExcludeProperties = {
+const afw_value_string_t
+afw_components_v_filterExcludeProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterExcludeProperties)
 };
 
-const afw_value_string_t afw_components_v_filterOptions = {
+const afw_value_string_t
+afw_components_v_filterOptions = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterOptions)
 };
 
-const afw_value_string_t afw_components_v_filterProperties = {
+const afw_value_string_t
+afw_components_v_filterProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterProperties)
 };
 
-const afw_value_string_t afw_components_v_filterRequiredProperties = {
+const afw_value_string_t
+afw_components_v_filterRequiredProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterRequiredProperties)
 };
 
-const afw_value_string_t afw_components_v_filterValuedProperties = {
+const afw_value_string_t
+afw_components_v_filterValuedProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_filterValuedProperties)
 };
 
-const afw_value_string_t afw_components_v_flex = {
+const afw_value_string_t
+afw_components_v_flex = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flex)
 };
 
-const afw_value_string_t afw_components_v_flexBasis = {
+const afw_value_string_t
+afw_components_v_flexBasis = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flexBasis)
 };
 
-const afw_value_string_t afw_components_v_flexDirection = {
+const afw_value_string_t
+afw_components_v_flexDirection = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flexDirection)
 };
 
-const afw_value_string_t afw_components_v_flexFlow = {
+const afw_value_string_t
+afw_components_v_flexFlow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flexFlow)
 };
 
-const afw_value_string_t afw_components_v_flexGrow = {
+const afw_value_string_t
+afw_components_v_flexGrow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flexGrow)
 };
 
-const afw_value_string_t afw_components_v_flexShrink = {
+const afw_value_string_t
+afw_components_v_flexShrink = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flexShrink)
 };
 
-const afw_value_string_t afw_components_v_flexWrap = {
+const afw_value_string_t
+afw_components_v_flexWrap = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_flexWrap)
 };
 
-const afw_value_string_t afw_components_v_font = {
+const afw_value_string_t
+afw_components_v_font = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_font)
 };
 
-const afw_value_string_t afw_components_v_fontFamily = {
+const afw_value_string_t
+afw_components_v_fontFamily = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontFamily)
 };
 
-const afw_value_string_t afw_components_v_fontSize = {
+const afw_value_string_t
+afw_components_v_fontSize = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontSize)
 };
 
-const afw_value_string_t afw_components_v_fontSizeAdjust = {
+const afw_value_string_t
+afw_components_v_fontSizeAdjust = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontSizeAdjust)
 };
 
-const afw_value_string_t afw_components_v_fontStretch = {
+const afw_value_string_t
+afw_components_v_fontStretch = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontStretch)
 };
 
-const afw_value_string_t afw_components_v_fontStyle = {
+const afw_value_string_t
+afw_components_v_fontStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontStyle)
 };
 
-const afw_value_string_t afw_components_v_fontVariant = {
+const afw_value_string_t
+afw_components_v_fontVariant = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontVariant)
 };
 
-const afw_value_string_t afw_components_v_fontWeight = {
+const afw_value_string_t
+afw_components_v_fontWeight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fontWeight)
 };
 
-const afw_value_string_t afw_components_v_footer = {
+const afw_value_string_t
+afw_components_v_footer = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_footer)
 };
 
-const afw_value_string_t afw_components_v_for = {
+const afw_value_string_t
+afw_components_v_for = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_for)
 };
 
-const afw_value_string_t afw_components_v_fullScreen = {
+const afw_value_string_t
+afw_components_v_fullScreen = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_fullScreen)
 };
 
-const afw_value_string_t afw_components_v_gapSpace = {
+const afw_value_string_t
+afw_components_v_gapSpace = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_gapSpace)
 };
 
-const afw_value_string_t afw_components_v_grow = {
+const afw_value_string_t
+afw_components_v_grow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_grow)
 };
 
-const afw_value_string_t afw_components_v_hangingPunctuation = {
+const afw_value_string_t
+afw_components_v_hangingPunctuation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_hangingPunctuation)
 };
 
-const afw_value_string_t afw_components_v_headerItems = {
+const afw_value_string_t
+afw_components_v_headerItems = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_headerItems)
 };
 
-const afw_value_string_t afw_components_v_headerOptions = {
+const afw_value_string_t
+afw_components_v_headerOptions = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_headerOptions)
 };
 
-const afw_value_string_t afw_components_v_height = {
+const afw_value_string_t
+afw_components_v_height = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_height)
 };
 
-const afw_value_string_t afw_components_v_hyphens = {
+const afw_value_string_t
+afw_components_v_hyphens = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_hyphens)
 };
 
-const afw_value_string_t afw_components_v_icon = {
+const afw_value_string_t
+afw_components_v_icon = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_icon)
 };
 
-const afw_value_string_t afw_components_v_iconName = {
+const afw_value_string_t
+afw_components_v_iconName = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_iconName)
 };
 
-const afw_value_string_t afw_components_v_id = {
+const afw_value_string_t
+afw_components_v_id = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_id)
 };
 
-const afw_value_string_t afw_components_v_imageOrientation = {
+const afw_value_string_t
+afw_components_v_imageOrientation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_imageOrientation)
 };
 
-const afw_value_string_t afw_components_v_implementationId = {
+const afw_value_string_t
+afw_components_v_implementationId = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_implementationId)
 };
 
-const afw_value_string_t afw_components_v_indirect = {
+const afw_value_string_t
+afw_components_v_indirect = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_indirect)
 };
 
-const afw_value_string_t afw_components_v_inputs = {
+const afw_value_string_t
+afw_components_v_inputs = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_inputs)
 };
 
-const afw_value_string_t afw_components_v_instanceObjectType = {
+const afw_value_string_t
+afw_components_v_instanceObjectType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_instanceObjectType)
 };
 
-const afw_value_string_t afw_components_v_integer = {
+const afw_value_string_t
+afw_components_v_integer = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_integer)
 };
 
-const afw_value_string_t afw_components_v_isBlocking = {
+const afw_value_string_t
+afw_components_v_isBlocking = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isBlocking)
 };
 
-const afw_value_string_t afw_components_v_isCollapsed = {
+const afw_value_string_t
+afw_components_v_isCollapsed = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isCollapsed)
 };
 
-const afw_value_string_t afw_components_v_isExpanded = {
+const afw_value_string_t
+afw_components_v_isExpanded = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isExpanded)
 };
 
-const afw_value_string_t afw_components_v_isHeaderVisible = {
+const afw_value_string_t
+afw_components_v_isHeaderVisible = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isHeaderVisible)
 };
 
-const afw_value_string_t afw_components_v_isLoading = {
+const afw_value_string_t
+afw_components_v_isLoading = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isLoading)
 };
 
-const afw_value_string_t afw_components_v_isMultiline = {
+const afw_value_string_t
+afw_components_v_isMultiline = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isMultiline)
 };
 
-const afw_value_string_t afw_components_v_isResizable = {
+const afw_value_string_t
+afw_components_v_isResizable = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isResizable)
 };
 
-const afw_value_string_t afw_components_v_isolation = {
+const afw_value_string_t
+afw_components_v_isolation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_isolation)
 };
 
-const afw_value_string_t afw_components_v_items = {
+const afw_value_string_t
+afw_components_v_items = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_items)
 };
 
-const afw_value_string_t afw_components_v_justify = {
+const afw_value_string_t
+afw_components_v_justify = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_justify)
 };
 
-const afw_value_string_t afw_components_v_justifyContent = {
+const afw_value_string_t
+afw_components_v_justifyContent = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_justifyContent)
 };
 
-const afw_value_string_t afw_components_v_key = {
+const afw_value_string_t
+afw_components_v_key = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_key)
 };
 
-const afw_value_string_t afw_components_v_label = {
+const afw_value_string_t
+afw_components_v_label = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_label)
 };
 
-const afw_value_string_t afw_components_v_large = {
+const afw_value_string_t
+afw_components_v_large = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_large)
 };
 
-const afw_value_string_t afw_components_v_left = {
+const afw_value_string_t
+afw_components_v_left = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_left)
 };
 
-const afw_value_string_t afw_components_v_letterSpacing = {
+const afw_value_string_t
+afw_components_v_letterSpacing = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_letterSpacing)
 };
 
-const afw_value_string_t afw_components_v_lgDown = {
+const afw_value_string_t
+afw_components_v_lgDown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_lgDown)
 };
 
-const afw_value_string_t afw_components_v_lineHeight = {
+const afw_value_string_t
+afw_components_v_lineHeight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_lineHeight)
 };
 
-const afw_value_string_t afw_components_v_listStyle = {
+const afw_value_string_t
+afw_components_v_listStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_listStyle)
 };
 
-const afw_value_string_t afw_components_v_listStyleImage = {
+const afw_value_string_t
+afw_components_v_listStyleImage = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_listStyleImage)
 };
 
-const afw_value_string_t afw_components_v_listStylePosition = {
+const afw_value_string_t
+afw_components_v_listStylePosition = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_listStylePosition)
 };
 
-const afw_value_string_t afw_components_v_listStyleType = {
+const afw_value_string_t
+afw_components_v_listStyleType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_listStyleType)
 };
 
-const afw_value_string_t afw_components_v_margin = {
+const afw_value_string_t
+afw_components_v_margin = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_margin)
 };
 
-const afw_value_string_t afw_components_v_marginBottom = {
+const afw_value_string_t
+afw_components_v_marginBottom = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_marginBottom)
 };
 
-const afw_value_string_t afw_components_v_marginLeft = {
+const afw_value_string_t
+afw_components_v_marginLeft = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_marginLeft)
 };
 
-const afw_value_string_t afw_components_v_marginRight = {
+const afw_value_string_t
+afw_components_v_marginRight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_marginRight)
 };
 
-const afw_value_string_t afw_components_v_marginTop = {
+const afw_value_string_t
+afw_components_v_marginTop = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_marginTop)
 };
 
-const afw_value_string_t afw_components_v_max = {
+const afw_value_string_t
+afw_components_v_max = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_max)
 };
 
-const afw_value_string_t afw_components_v_maxHeight = {
+const afw_value_string_t
+afw_components_v_maxHeight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_maxHeight)
 };
 
-const afw_value_string_t afw_components_v_maxWidth = {
+const afw_value_string_t
+afw_components_v_maxWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_maxWidth)
 };
 
-const afw_value_string_t afw_components_v_mdDown = {
+const afw_value_string_t
+afw_components_v_mdDown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_mdDown)
 };
 
-const afw_value_string_t afw_components_v_medium = {
+const afw_value_string_t
+afw_components_v_medium = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_medium)
 };
 
-const afw_value_string_t afw_components_v_message = {
+const afw_value_string_t
+afw_components_v_message = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_message)
 };
 
-const afw_value_string_t afw_components_v_min = {
+const afw_value_string_t
+afw_components_v_min = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_min)
 };
 
-const afw_value_string_t afw_components_v_minHeight = {
+const afw_value_string_t
+afw_components_v_minHeight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_minHeight)
 };
 
-const afw_value_string_t afw_components_v_minWidth = {
+const afw_value_string_t
+afw_components_v_minWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_minWidth)
 };
 
-const afw_value_string_t afw_components_v_modified = {
+const afw_value_string_t
+afw_components_v_modified = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_modified)
 };
 
-const afw_value_string_t afw_components_v_multiline = {
+const afw_value_string_t
+afw_components_v_multiline = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_multiline)
 };
 
-const afw_value_string_t afw_components_v_multiselect = {
+const afw_value_string_t
+afw_components_v_multiselect = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_multiselect)
 };
 
-const afw_value_string_t afw_components_v_name = {
+const afw_value_string_t
+afw_components_v_name = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_name)
 };
 
-const afw_value_string_t afw_components_v_navDown = {
+const afw_value_string_t
+afw_components_v_navDown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_navDown)
 };
 
-const afw_value_string_t afw_components_v_navIndex = {
+const afw_value_string_t
+afw_components_v_navIndex = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_navIndex)
 };
 
-const afw_value_string_t afw_components_v_navLeft = {
+const afw_value_string_t
+afw_components_v_navLeft = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_navLeft)
 };
 
-const afw_value_string_t afw_components_v_navRight = {
+const afw_value_string_t
+afw_components_v_navRight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_navRight)
 };
 
-const afw_value_string_t afw_components_v_navUp = {
+const afw_value_string_t
+afw_components_v_navUp = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_navUp)
 };
 
-const afw_value_string_t afw_components_v_navigation = {
+const afw_value_string_t
+afw_components_v_navigation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_navigation)
 };
 
-const afw_value_string_t afw_components_v_nestingDepth = {
+const afw_value_string_t
+afw_components_v_nestingDepth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_nestingDepth)
 };
 
-const afw_value_string_t afw_components_v_object = {
+const afw_value_string_t
+afw_components_v_object = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_object)
 };
 
-const afw_value_string_t afw_components_v_objectFit = {
+const afw_value_string_t
+afw_components_v_objectFit = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_objectFit)
 };
 
-const afw_value_string_t afw_components_v_objectIdPropertyName = {
+const afw_value_string_t
+afw_components_v_objectIdPropertyName = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_objectIdPropertyName)
 };
 
-const afw_value_string_t afw_components_v_objectPosition = {
+const afw_value_string_t
+afw_components_v_objectPosition = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_objectPosition)
 };
 
-const afw_value_string_t afw_components_v_objectType = {
+const afw_value_string_t
+afw_components_v_objectType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_objectType)
 };
 
-const afw_value_string_t afw_components_v_offText = {
+const afw_value_string_t
+afw_components_v_offText = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_offText)
 };
 
-const afw_value_string_t afw_components_v_onText = {
+const afw_value_string_t
+afw_components_v_onText = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_onText)
 };
 
-const afw_value_string_t afw_components_v_opacity = {
+const afw_value_string_t
+afw_components_v_opacity = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_opacity)
 };
 
-const afw_value_string_t afw_components_v_open = {
+const afw_value_string_t
+afw_components_v_open = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_open)
 };
 
-const afw_value_string_t afw_components_v_options = {
+const afw_value_string_t
+afw_components_v_options = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_options)
 };
 
-const afw_value_string_t afw_components_v_order = {
+const afw_value_string_t
+afw_components_v_order = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_order)
 };
 
-const afw_value_string_t afw_components_v_orientation = {
+const afw_value_string_t
+afw_components_v_orientation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_orientation)
 };
 
-const afw_value_string_t afw_components_v_original = {
+const afw_value_string_t
+afw_components_v_original = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_original)
 };
 
-const afw_value_string_t afw_components_v_orphans = {
+const afw_value_string_t
+afw_components_v_orphans = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_orphans)
 };
 
-const afw_value_string_t afw_components_v_otherProperties = {
+const afw_value_string_t
+afw_components_v_otherProperties = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_otherProperties)
 };
 
-const afw_value_string_t afw_components_v_outline = {
+const afw_value_string_t
+afw_components_v_outline = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_outline)
 };
 
-const afw_value_string_t afw_components_v_outlineColor = {
+const afw_value_string_t
+afw_components_v_outlineColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_outlineColor)
 };
 
-const afw_value_string_t afw_components_v_outlineOffset = {
+const afw_value_string_t
+afw_components_v_outlineOffset = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_outlineOffset)
 };
 
-const afw_value_string_t afw_components_v_outlineStyle = {
+const afw_value_string_t
+afw_components_v_outlineStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_outlineStyle)
 };
 
-const afw_value_string_t afw_components_v_outlineWidth = {
+const afw_value_string_t
+afw_components_v_outlineWidth = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_outlineWidth)
 };
 
-const afw_value_string_t afw_components_v_overflow = {
+const afw_value_string_t
+afw_components_v_overflow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_overflow)
 };
 
-const afw_value_string_t afw_components_v_overflowX = {
+const afw_value_string_t
+afw_components_v_overflowX = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_overflowX)
 };
 
-const afw_value_string_t afw_components_v_overflowY = {
+const afw_value_string_t
+afw_components_v_overflowY = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_overflowY)
 };
 
-const afw_value_string_t afw_components_v_padding = {
+const afw_value_string_t
+afw_components_v_padding = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_padding)
 };
 
-const afw_value_string_t afw_components_v_paddingBottom = {
+const afw_value_string_t
+afw_components_v_paddingBottom = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_paddingBottom)
 };
 
-const afw_value_string_t afw_components_v_paddingLeft = {
+const afw_value_string_t
+afw_components_v_paddingLeft = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_paddingLeft)
 };
 
-const afw_value_string_t afw_components_v_paddingRight = {
+const afw_value_string_t
+afw_components_v_paddingRight = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_paddingRight)
 };
 
-const afw_value_string_t afw_components_v_paddingTop = {
+const afw_value_string_t
+afw_components_v_paddingTop = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_paddingTop)
 };
 
-const afw_value_string_t afw_components_v_pageBreakAfter = {
+const afw_value_string_t
+afw_components_v_pageBreakAfter = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_pageBreakAfter)
 };
 
-const afw_value_string_t afw_components_v_pageBreakBefore = {
+const afw_value_string_t
+afw_components_v_pageBreakBefore = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_pageBreakBefore)
 };
 
-const afw_value_string_t afw_components_v_pageBreakInside = {
+const afw_value_string_t
+afw_components_v_pageBreakInside = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_pageBreakInside)
 };
 
-const afw_value_string_t afw_components_v_parentPaths = {
+const afw_value_string_t
+afw_components_v_parentPaths = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_parentPaths)
 };
 
-const afw_value_string_t afw_components_v_perspective = {
+const afw_value_string_t
+afw_components_v_perspective = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_perspective)
 };
 
-const afw_value_string_t afw_components_v_perspectiveOrigin = {
+const afw_value_string_t
+afw_components_v_perspectiveOrigin = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_perspectiveOrigin)
 };
 
-const afw_value_string_t afw_components_v_pickers = {
+const afw_value_string_t
+afw_components_v_pickers = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_pickers)
 };
 
-const afw_value_string_t afw_components_v_placeholder = {
+const afw_value_string_t
+afw_components_v_placeholder = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_placeholder)
 };
 
-const afw_value_string_t afw_components_v_position = {
+const afw_value_string_t
+afw_components_v_position = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_position)
 };
 
-const afw_value_string_t afw_components_v_possibleValues = {
+const afw_value_string_t
+afw_components_v_possibleValues = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_possibleValues)
 };
 
-const afw_value_string_t afw_components_v_preferredComponents = {
+const afw_value_string_t
+afw_components_v_preferredComponents = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_preferredComponents)
 };
 
-const afw_value_string_t afw_components_v_propertyName = {
+const afw_value_string_t
+afw_components_v_propertyName = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_propertyName)
 };
 
-const afw_value_string_t afw_components_v_propertyTypes = {
+const afw_value_string_t
+afw_components_v_propertyTypes = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_propertyTypes)
 };
 
-const afw_value_string_t afw_components_v_quotes = {
+const afw_value_string_t
+afw_components_v_quotes = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_quotes)
 };
 
-const afw_value_string_t afw_components_v_readOnly = {
+const afw_value_string_t
+afw_components_v_readOnly = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_readOnly)
 };
 
-const afw_value_string_t afw_components_v_readOnlyOrientation = {
+const afw_value_string_t
+afw_components_v_readOnlyOrientation = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_readOnlyOrientation)
 };
 
-const afw_value_string_t afw_components_v_recurse = {
+const afw_value_string_t
+afw_components_v_recurse = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_recurse)
 };
 
-const afw_value_string_t afw_components_v_required = {
+const afw_value_string_t
+afw_components_v_required = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_required)
 };
 
-const afw_value_string_t afw_components_v_resize = {
+const afw_value_string_t
+afw_components_v_resize = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_resize)
 };
 
-const afw_value_string_t afw_components_v_right = {
+const afw_value_string_t
+afw_components_v_right = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_right)
 };
 
-const afw_value_string_t afw_components_v_role = {
+const afw_value_string_t
+afw_components_v_role = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_role)
 };
 
-const afw_value_string_t afw_components_v_rows = {
+const afw_value_string_t
+afw_components_v_rows = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_rows)
 };
 
-const afw_value_string_t afw_components_v_secondary = {
+const afw_value_string_t
+afw_components_v_secondary = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_secondary)
 };
 
-const afw_value_string_t afw_components_v_secondaryText = {
+const afw_value_string_t
+afw_components_v_secondaryText = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_secondaryText)
 };
 
-const afw_value_string_t afw_components_v_selectable = {
+const afw_value_string_t
+afw_components_v_selectable = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_selectable)
 };
 
-const afw_value_string_t afw_components_v_selected = {
+const afw_value_string_t
+afw_components_v_selected = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_selected)
 };
 
-const afw_value_string_t afw_components_v_selectedKey = {
+const afw_value_string_t
+afw_components_v_selectedKey = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_selectedKey)
 };
 
-const afw_value_string_t afw_components_v_selectedKeys = {
+const afw_value_string_t
+afw_components_v_selectedKeys = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_selectedKeys)
 };
 
-const afw_value_string_t afw_components_v_selectionMode = {
+const afw_value_string_t
+afw_components_v_selectionMode = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_selectionMode)
 };
 
-const afw_value_string_t afw_components_v_showClose = {
+const afw_value_string_t
+afw_components_v_showClose = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showClose)
 };
 
-const afw_value_string_t afw_components_v_showCollapse = {
+const afw_value_string_t
+afw_components_v_showCollapse = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showCollapse)
 };
 
-const afw_value_string_t afw_components_v_showDescriptions = {
+const afw_value_string_t
+afw_components_v_showDescriptions = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showDescriptions)
 };
 
-const afw_value_string_t afw_components_v_showGutter = {
+const afw_value_string_t
+afw_components_v_showGutter = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showGutter)
 };
 
-const afw_value_string_t afw_components_v_showLabels = {
+const afw_value_string_t
+afw_components_v_showLabels = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showLabels)
 };
 
-const afw_value_string_t afw_components_v_showLineNumbers = {
+const afw_value_string_t
+afw_components_v_showLineNumbers = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showLineNumbers)
 };
 
-const afw_value_string_t afw_components_v_showMeta = {
+const afw_value_string_t
+afw_components_v_showMeta = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showMeta)
 };
 
-const afw_value_string_t afw_components_v_showNumber = {
+const afw_value_string_t
+afw_components_v_showNumber = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showNumber)
 };
 
-const afw_value_string_t afw_components_v_showPrintMargin = {
+const afw_value_string_t
+afw_components_v_showPrintMargin = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_showPrintMargin)
 };
 
-const afw_value_string_t afw_components_v_shrink = {
+const afw_value_string_t
+afw_components_v_shrink = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_shrink)
 };
 
-const afw_value_string_t afw_components_v_size = {
+const afw_value_string_t
+afw_components_v_size = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_size)
 };
 
-const afw_value_string_t afw_components_v_smDown = {
+const afw_value_string_t
+afw_components_v_smDown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_smDown)
 };
 
-const afw_value_string_t afw_components_v_small = {
+const afw_value_string_t
+afw_components_v_small = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_small)
 };
 
-const afw_value_string_t afw_components_v_sortByDataType = {
+const afw_value_string_t
+afw_components_v_sortByDataType = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_sortByDataType)
 };
 
-const afw_value_string_t afw_components_v_sortByPropertyName = {
+const afw_value_string_t
+afw_components_v_sortByPropertyName = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_sortByPropertyName)
 };
 
-const afw_value_string_t afw_components_v_sortByRequired = {
+const afw_value_string_t
+afw_components_v_sortByRequired = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_sortByRequired)
 };
 
-const afw_value_string_t afw_components_v_sortOptions = {
+const afw_value_string_t
+afw_components_v_sortOptions = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_sortOptions)
 };
 
-const afw_value_string_t afw_components_v_source = {
+const afw_value_string_t
+afw_components_v_source = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_source)
 };
 
-const afw_value_string_t afw_components_v_spacing = {
+const afw_value_string_t
+afw_components_v_spacing = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_spacing)
 };
 
-const afw_value_string_t afw_components_v_square = {
+const afw_value_string_t
+afw_components_v_square = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_square)
 };
 
-const afw_value_string_t afw_components_v_src = {
+const afw_value_string_t
+afw_components_v_src = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_src)
 };
 
-const afw_value_string_t afw_components_v_status = {
+const afw_value_string_t
+afw_components_v_status = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_status)
 };
 
-const afw_value_string_t afw_components_v_step = {
+const afw_value_string_t
+afw_components_v_step = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_step)
 };
 
-const afw_value_string_t afw_components_v_steps = {
+const afw_value_string_t
+afw_components_v_steps = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_steps)
 };
 
-const afw_value_string_t afw_components_v_string = {
+const afw_value_string_t
+afw_components_v_string = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_string)
 };
 
-const afw_value_string_t afw_components_v_structured = {
+const afw_value_string_t
+afw_components_v_structured = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_structured)
 };
 
-const afw_value_string_t afw_components_v_style = {
+const afw_value_string_t
+afw_components_v_style = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_style)
 };
 
-const afw_value_string_t afw_components_v_subText = {
+const afw_value_string_t
+afw_components_v_subText = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_subText)
 };
 
-const afw_value_string_t afw_components_v_tabSize = {
+const afw_value_string_t
+afw_components_v_tabSize = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_tabSize)
 };
 
-const afw_value_string_t afw_components_v_tableLayout = {
+const afw_value_string_t
+afw_components_v_tableLayout = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_tableLayout)
 };
 
-const afw_value_string_t afw_components_v_tabs = {
+const afw_value_string_t
+afw_components_v_tabs = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_tabs)
 };
 
-const afw_value_string_t afw_components_v_tag = {
+const afw_value_string_t
+afw_components_v_tag = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_tag)
 };
 
-const afw_value_string_t afw_components_v_target = {
+const afw_value_string_t
+afw_components_v_target = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_target)
 };
 
-const afw_value_string_t afw_components_v_targetPosition = {
+const afw_value_string_t
+afw_components_v_targetPosition = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_targetPosition)
 };
 
-const afw_value_string_t afw_components_v_testDataParameter = {
+const afw_value_string_t
+afw_components_v_testDataParameter = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_testDataParameter)
 };
 
-const afw_value_string_t afw_components_v_text = {
+const afw_value_string_t
+afw_components_v_text = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_text)
 };
 
-const afw_value_string_t afw_components_v_textAlign = {
+const afw_value_string_t
+afw_components_v_textAlign = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textAlign)
 };
 
-const afw_value_string_t afw_components_v_textAlignLast = {
+const afw_value_string_t
+afw_components_v_textAlignLast = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textAlignLast)
 };
 
-const afw_value_string_t afw_components_v_textDecoration = {
+const afw_value_string_t
+afw_components_v_textDecoration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textDecoration)
 };
 
-const afw_value_string_t afw_components_v_textDecorationColor = {
+const afw_value_string_t
+afw_components_v_textDecorationColor = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textDecorationColor)
 };
 
-const afw_value_string_t afw_components_v_textDecorationLine = {
+const afw_value_string_t
+afw_components_v_textDecorationLine = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textDecorationLine)
 };
 
-const afw_value_string_t afw_components_v_textDecorationStyle = {
+const afw_value_string_t
+afw_components_v_textDecorationStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textDecorationStyle)
 };
 
-const afw_value_string_t afw_components_v_textIndent = {
+const afw_value_string_t
+afw_components_v_textIndent = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textIndent)
 };
 
-const afw_value_string_t afw_components_v_textJustify = {
+const afw_value_string_t
+afw_components_v_textJustify = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textJustify)
 };
 
-const afw_value_string_t afw_components_v_textOverflow = {
+const afw_value_string_t
+afw_components_v_textOverflow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textOverflow)
 };
 
-const afw_value_string_t afw_components_v_textShadow = {
+const afw_value_string_t
+afw_components_v_textShadow = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textShadow)
 };
 
-const afw_value_string_t afw_components_v_textTransform = {
+const afw_value_string_t
+afw_components_v_textTransform = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_textTransform)
 };
 
-const afw_value_string_t afw_components_v_title = {
+const afw_value_string_t
+afw_components_v_title = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_title)
 };
 
-const afw_value_string_t afw_components_v_tooltip = {
+const afw_value_string_t
+afw_components_v_tooltip = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_tooltip)
 };
 
-const afw_value_string_t afw_components_v_top = {
+const afw_value_string_t
+afw_components_v_top = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_top)
 };
 
-const afw_value_string_t afw_components_v_transform = {
+const afw_value_string_t
+afw_components_v_transform = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transform)
 };
 
-const afw_value_string_t afw_components_v_transformOrigin = {
+const afw_value_string_t
+afw_components_v_transformOrigin = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transformOrigin)
 };
 
-const afw_value_string_t afw_components_v_transformStyle = {
+const afw_value_string_t
+afw_components_v_transformStyle = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transformStyle)
 };
 
-const afw_value_string_t afw_components_v_transition = {
+const afw_value_string_t
+afw_components_v_transition = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transition)
 };
 
-const afw_value_string_t afw_components_v_transitionDelay = {
+const afw_value_string_t
+afw_components_v_transitionDelay = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transitionDelay)
 };
 
-const afw_value_string_t afw_components_v_transitionDuration = {
+const afw_value_string_t
+afw_components_v_transitionDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transitionDuration)
 };
 
-const afw_value_string_t afw_components_v_transitionProperty = {
+const afw_value_string_t
+afw_components_v_transitionProperty = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transitionProperty)
 };
 
-const afw_value_string_t afw_components_v_transitionTimingFunction = {
+const afw_value_string_t
+afw_components_v_transitionTimingFunction = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_transitionTimingFunction)
 };
 
-const afw_value_string_t afw_components_v_type = {
+const afw_value_string_t
+afw_components_v_type = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_type)
 };
 
-const afw_value_string_t afw_components_v_unicodeBidi = {
+const afw_value_string_t
+afw_components_v_unicodeBidi = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_unicodeBidi)
 };
 
-const afw_value_string_t afw_components_v_url = {
+const afw_value_string_t
+afw_components_v_url = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_url)
 };
 
-const afw_value_string_t afw_components_v_userSelect = {
+const afw_value_string_t
+afw_components_v_userSelect = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_userSelect)
 };
 
-const afw_value_string_t afw_components_v_utilities = {
+const afw_value_string_t
+afw_components_v_utilities = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_utilities)
 };
 
-const afw_value_string_t afw_components_v_value = {
+const afw_value_string_t
+afw_components_v_value = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_value)
 };
 
-const afw_value_string_t afw_components_v_variant = {
+const afw_value_string_t
+afw_components_v_variant = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_variant)
 };
 
-const afw_value_string_t afw_components_v_vertical = {
+const afw_value_string_t
+afw_components_v_vertical = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_vertical)
 };
 
-const afw_value_string_t afw_components_v_verticalAlign = {
+const afw_value_string_t
+afw_components_v_verticalAlign = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_verticalAlign)
 };
 
-const afw_value_string_t afw_components_v_visibility = {
+const afw_value_string_t
+afw_components_v_visibility = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_visibility)
 };
 
-const afw_value_string_t afw_components_v_whiteSpace = {
+const afw_value_string_t
+afw_components_v_whiteSpace = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_whiteSpace)
 };
 
-const afw_value_string_t afw_components_v_widows = {
+const afw_value_string_t
+afw_components_v_widows = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_widows)
 };
 
-const afw_value_string_t afw_components_v_width = {
+const afw_value_string_t
+afw_components_v_width = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_width)
 };
 
-const afw_value_string_t afw_components_v_wordBreak = {
+const afw_value_string_t
+afw_components_v_wordBreak = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_wordBreak)
 };
 
-const afw_value_string_t afw_components_v_wordSpacing = {
+const afw_value_string_t
+afw_components_v_wordSpacing = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_wordSpacing)
 };
 
-const afw_value_string_t afw_components_v_wordWrap = {
+const afw_value_string_t
+afw_components_v_wordWrap = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_wordWrap)
 };
 
-const afw_value_string_t afw_components_v_wrap = {
+const afw_value_string_t
+afw_components_v_wrap = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_wrap)
 };
 
-const afw_value_string_t afw_components_v_x = {
+const afw_value_string_t
+afw_components_v_x = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_x)
 };
 
-const afw_value_string_t afw_components_v_xl = {
+const afw_value_string_t
+afw_components_v_xl = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_xl)
 };
 
-const afw_value_string_t afw_components_v_xlDown = {
+const afw_value_string_t
+afw_components_v_xlDown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_xlDown)
 };
 
-const afw_value_string_t afw_components_v_xsDown = {
+const afw_value_string_t
+afw_components_v_xsDown = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_xsDown)
 };
 
-const afw_value_string_t afw_components_v_xxl = {
+const afw_value_string_t
+afw_components_v_xxl = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_xxl)
 };
 
-const afw_value_string_t afw_components_v_xxxl = {
+const afw_value_string_t
+afw_components_v_xxxl = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_xxxl)
 };
 
-const afw_value_string_t afw_components_v_y = {
+const afw_value_string_t
+afw_components_v_y = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_y)
 };
 
-const afw_value_string_t afw_components_v_yearMonthDuration = {
+const afw_value_string_t
+afw_components_v_yearMonthDuration = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_yearMonthDuration)
 };
 
-const afw_value_string_t afw_components_v_zIndex = {
+const afw_value_string_t
+afw_components_v_zIndex = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_zIndex)
 };

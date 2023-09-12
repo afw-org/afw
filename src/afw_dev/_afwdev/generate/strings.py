@@ -7,6 +7,25 @@ from _afwdev.common import msg, nfc
 generated_string_number = 0
 
 
+supported_dataTypes = {
+    'anyURI'     : 'AFW_UTF8_LITERAL',
+    'boolean'    : '',
+    'dnsName'    : 'AFW_UTF8_LITERAL',
+    'double'     : '',
+    'ia5String'  : 'AFW_UTF8_LITERAL',
+    'integer'    : '',
+    'ipAddress'  : 'AFW_UTF8_LITERAL',
+    'objectId'   : 'AFW_UTF8_LITERAL',
+    'objectPath' : 'AFW_UTF8_LITERAL',
+    'regexp'     : 'AFW_UTF8_LITERAL',
+    'rfc822Name' : 'AFW_UTF8_LITERAL',
+    'script'     : 'AFW_UTF8_LITERAL',
+    'string'     : 'AFW_UTF8_LITERAL',
+    'template'   : 'AFW_UTF8_LITERAL',
+    'x500Name'   : 'AFW_UTF8_LITERAL'
+}
+
+
 
 # @brief Get the string label for a given string.
 # @param[in] prefix The prefix for the string label.
@@ -25,22 +44,31 @@ generated_string_number = 0
 # 'v'  for a afw_value_string_t label.
 # '*v' for a afw_value_string_t label that is a pointer.
 # '*z' for an afw_utf8_z_t zero-terminated string label that is a pointer.
-def get_string_label(options, string, type, labelPreference=None):
+def get_string_label(
+        options, string, type, labelPreference=None, dataType='string'):
     global generated_string_number
+
+    if dataType not in supported_dataTypes:
+        msg.error_exit('Unsupported dataType: ' + dataType)
+
+    strings = options['const'].get(dataType)
+    if strings is None:
+        options['const'][dataType] = dict()
+        strings = options['const'][dataType]
     
     determined = False
     if labelPreference is not None:
-        if labelPreference in options['extra_strings']:
-            if options['extra_strings'][labelPreference] != string:
+        if labelPreference in strings:
+            if strings[labelPreference] != string:
                 msg.warn('Multiple different values for string label: ' +
                     labelPreference)
         label = labelPreference  
-        options['extra_strings'][label] = string     
+        strings[label] = string     
         determined = True 
 
     if not determined:
         label = None
-        for key, value in options['extra_strings'].items():
+        for key, value in options['const']['string'].items():
             if value == string:
                 label = key
                 break
@@ -55,25 +83,31 @@ def get_string_label(options, string, type, labelPreference=None):
                         generated_string_number += 1
                         label = str(generated_string_number)
                     label = '_g__' + re.sub(r'[^a-zA-Z0-9_]', '_', label)
-            options['extra_strings'][label] = string
+            options['const']['string'][label] = string
+
+
+    use_prefix = options['prefix']
+    if dataType != 'string':
+        use_prefix += dataType + '_'
 
     if type == 'Q':
-        return options['prefix'].upper() + 'Q_' + label
-    if type == 's':
-        return options['prefix'] + 's_' + label
-    if type == '*s':
-        return '&' + options['prefix'] + 's_' + label
+        return use_prefix.upper() + 'Q_' + label
     if type == 'v':
-        return options['prefix'] + 'v_' + label
+        return use_prefix + 'v_' + label
     if type == '*v':
-        return '&' + options['prefix'] + 'v_' + label
-    if type == '*z':
-       return options['prefix'] + 'z_' + label
+        return '&' + use_prefix + 'v_' + label
+    if dataType == 'string' and type == 's':       
+        if type == 's':
+            return use_prefix + 's_' + label
+        if type == '*s':
+            return '&' + use_prefix + 's_' + label
+        if type == '*z':
+            return use_prefix+ 'z_' + label
     msg.error_exit('Invalid string type: ' + type)
 
 
 
-def generate_h(generated_by, prefix, strings, generated_dir_path):
+def generate_h(options, generated_by, prefix, generated_dir_path):
 
     declare_data = prefix.upper() + 'DECLARE_CONST_DATA'
 
@@ -86,31 +120,40 @@ def generate_h(generated_by, prefix, strings, generated_dir_path):
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
 
-        for name, value in sorted(strings.items()):
-            fd.write('\n')
+        for dataType, strings in options['const'].items():
+            use_prefix = prefix
+            if dataType != 'string':
+                use_prefix += dataType + '_'
 
-            fd.write('\n/** @brief define for quoted string ' + name + ' */\n')
-            q_name = prefix.upper() + 'Q_' + name 
-            fd.write('#define ' + q_name + ' \\\n')
-            # for line in break_into_substrings(repr(value)[1:-1].replace('"', '\\"')):
-            #     fd.write('    "' + line + '" \\\n')
-            line = repr(value)[1:-1].replace('"', '\\"')
-            fd.write('    "' + line + '"\n')
+            for name, value in sorted(strings.items()):
+                fd.write('\n')
+ 
+                if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
+                    fd.write('\n/** @brief define for quoted string ' + name + ' */\n')
+                    q_name = use_prefix.upper() + 'Q_' + name 
+                    fd.write('#define ' + q_name + ' \\\n')
+                    line = repr(value)[1:-1].replace('"', '\\"')
+                    fd.write('    "' + line + '"\n')
+                    fd.write('\n/** @brief \'afw_utf8_t\' for string ' + q_name + ' */\n')
+                    fd.write('#define ' + use_prefix + 's_' + name + ' \\\n    (' +  use_prefix + 'v_' + name + '.internal)\n')
+                    fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + dataType + ' ' + q_name + ' */\n')
+                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'v_' + name + ';\n')
+                    fd.write('\n/** @brief \'afw_utf8_z_t *\' for string ' + q_name + ' */\n')
+                    fd.write('#define ' + use_prefix + 'z_' + name + ' \\\n    (' +  use_prefix + 'v_' + name + '.internal.s)\n')              
+                elif supported_dataTypes[dataType] == '':
+                    fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + dataType + ' ' + value + ' */\n')
+                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'v_' + name + ';\n')
+                else:
+                    msg.error_exit(
+                        'Unsupported supported_dataTypes[\'' +
+                         dataType +
+                         '\']: ' + supported_dataTypes[dataType])
 
-            fd.write('\n/** @brief \'afw_utf8_t\' for string ' + q_name + ' */\n')
-            fd.write('#define ' + prefix + 's_' + name + ' \\\n    (' +  prefix + 'v_' + name + '.internal)\n')
-            
-            fd.write('\n/** @brief \'afw_value_string_t\' for string ' + q_name + ' */\n')
-            fd.write('extern const afw_value_string_t \\\n    ' + prefix + 'v_' + name + ';\n')
-
-            fd.write('\n/** @brief \'afw_utf8_z_t *\' for string ' + q_name + ' */\n')
-            fd.write('#define ' + prefix + 'z_' + name + ' \\\n    (' +  prefix + 'v_' + name + '.internal.s)\n')
-            
-            fd.write('\n')
+                fd.write('\n')
 
         c.write_h_epilogue(fd, filename)
 
-def generate_c(options, generated_by, prefix, strings, generated_dir_path):
+def generate_c(options, generated_by, prefix, generated_dir_path):
 
     define_data = prefix.upper() + 'DEFINE_CONST_DATA'
 
@@ -123,12 +166,33 @@ def generate_c(options, generated_by, prefix, strings, generated_dir_path):
         fd.write('#include "afw.h"\n')
         fd.write('#include "' + prefix + 'strings.h"\n')        
 
-        for name, value in sorted(strings.items()):
-            fd.write('\n')
-            fd.write('const afw_value_string_t ' + prefix + 'v_' + name + ' = {\n')
-            fd.write('    &afw_value_permanent_string_inf,\n')
-            fd.write('    AFW_UTF8_LITERAL(' + get_string_label(options, value, 'Q') + ')\n')
-            fd.write('};\n')
+        for dataType, strings in options['const'].items():
+            use_prefix = prefix
+            if dataType != 'string':
+                use_prefix += dataType + '_'
+
+            for name, value in sorted(strings.items()):
+                fd.write('\n')
+
+                if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
+                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'v_' + name + ' = {\n')
+                    fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
+                    fd.write(
+                        '    AFW_UTF8_LITERAL(' +
+                        get_string_label(options, value, 'Q', dataType=dataType, labelPreference=name) +
+                        ')\n')
+                    fd.write('};\n')
+                elif supported_dataTypes[dataType] == '':
+                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'v_' + name + ' = {\n')
+                    fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
+                    fd.write('    ' + value + '\n')
+                    fd.write('};\n')
+                else:
+                    msg.error_exit(
+                        'Unsupported supported_dataTypes[\'' +
+                         dataType +
+                         '\']: ' + supported_dataTypes[dataType])
+
 
 def add_object_strings(options, obj):
     for name in obj.keys():
@@ -145,7 +209,7 @@ def add_object_strings(options, obj):
                 get_string_label(
                     options, obj[name], 'Q', labelPreference=obj[name])
 
-def generate(options, generated_by, prefix, strings_dir_path, object_dir_path, generated_dir_path, extra_strings ):
+def generate(options, generated_by, prefix, strings_dir_path, object_dir_path, generated_dir_path):
 
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
@@ -187,19 +251,20 @@ def generate(options, generated_by, prefix, strings_dir_path, object_dir_path, g
                     for line in fd:
                         if len(line.strip()) == 0 or line[0] == '#': continue
                         if '=' in line:
-                            parts = line.partition('=')
+                            label, op, value = line.partition('=')
+                            dataType = 'string'
+                            if '::' in label:
+                                dataType, op, label = label.partition('::')
                             get_string_label(
-                                options, parts[2].strip(),
-                                'Q', labelPreference=parts[0])
+                                options, value.strip(),
+                                'Q', labelPreference=label,
+                                dataType=dataType)                        
                         else:
                             get_string_label(
                                 options, line.strip(),
                                 'Q', labelPreference=line.strip())
 
 
-    generate_h(
-        generated_by, prefix, options['extra_strings'], generated_dir_path)
+    generate_h(options, generated_by, prefix, generated_dir_path)
 
-    generate_c(
-        options, generated_by, prefix, options['extra_strings'],
-        generated_dir_path)
+    generate_c(options, generated_by, prefix, generated_dir_path)
