@@ -27,45 +27,45 @@
 
 const afw_value_string_t afw_yaml_v__AdaptiveManifest_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveManifest_")
+    AFW_UTF8_LITERAL(AFW_YAML_Q__AdaptiveManifest_)
 };
 
 const afw_value_string_t afw_yaml_v_afw_yaml = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("afw_yaml")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_afw_yaml)
 };
 
 const afw_value_string_t afw_yaml_v_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("brief")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_brief)
 };
 
 const afw_value_string_t afw_yaml_v_default = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("default")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_default)
 };
 
 const afw_value_string_t afw_yaml_v_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("description")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_description)
 };
 
 const afw_value_string_t afw_yaml_v_extensionId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("extensionId")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_extensionId)
 };
 
 const afw_value_string_t afw_yaml_v_indirect = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indirect")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_indirect)
 };
 
 const afw_value_string_t afw_yaml_v_modulePath = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("modulePath")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_modulePath)
 };
 
 const afw_value_string_t afw_yaml_v_registers = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("registers")
+    AFW_UTF8_LITERAL(AFW_YAML_Q_registers)
 };

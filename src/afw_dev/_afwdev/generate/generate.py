@@ -285,8 +285,9 @@ def generate(passed_options):
         }
     )
 
-    # Extra strings can be set in the is. key is string name and value is string (often the same)
-    extra_strings = dict()
+    # Extra strings can be set in the is. key is string name and value is
+    # string (often the same)
+    options['extra_strings'] = dict()
 
     # Get afw package
     afw_package = package.get_afw_package(options)
@@ -550,8 +551,8 @@ def generate(passed_options):
                 os.makedirs(options['objects_dir_path'] + '_AdaptiveManifest_/', exist_ok=True)
                 with nfc.open(options['objects_dir_path'] + '_AdaptiveManifest_/' + srcdir + '.json', mode='w') as fd:
                     nfc.json_dump(manifest, fd, sort_keys=True, indent=4)
-                extra_strings['_AdaptiveManifest_'] = '_AdaptiveManifest_'
-                extra_strings[srcdir] = srcdir
+                options['extra_strings']['_AdaptiveManifest_'] = '_AdaptiveManifest_'
+                options['extra_strings'][srcdir] = srcdir
 
         if has_more_than_readme(options['objects_dir_path'] + '_AdaptiveManifest_/'):
             include_object_type__AdaptiveManifest_ = True
@@ -631,10 +632,10 @@ def generate(passed_options):
         runtime_object_maps.generate(generated_by, options)
 
     # Generate optional strings.
-    if len(extra_strings) > 0:
+    if len(options['extra_strings']) > 0:
         options['strings'] = True
     if options['strings']:
-        strings.generate(generated_by, options['prefix'], options['strings_dir_path'], options['objects_dir_path'], options['generated_dir_path'], extra_strings )
+        strings.generate(options, generated_by, options['prefix'], options['strings_dir_path'], options['objects_dir_path'], options['generated_dir_path'], options['extra_strings'] )
 
     # Generate optional React components.
     if options['react_components']:

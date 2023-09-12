@@ -27,115 +27,115 @@
 
 const afw_value_string_t afw_server_fcgi_v__AdaptiveCollection_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveCollection_")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q__AdaptiveCollection_)
 };
 
 const afw_value_string_t afw_server_fcgi_v__AdaptiveServer_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveServer_")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q__AdaptiveServer_)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("trace:server")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Server related flags")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_brief)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This includes all trace:server related flags.")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_description)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("trace:server:request")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_request)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Trace server request")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_request_brief)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This includes all trace:server:request related flags.")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_request_description)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_process = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("trace:server:request:process")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_process_brief = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("Trace process request begin and end")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_brief)
 };
 
 const afw_value_string_t afw_server_fcgi_v_a_flag_trace_server_request_process_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("This traces the begin and end of processing for requests.")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_description)
 };
 
 const afw_value_string_t afw_server_fcgi_v_afw_server_fcgi = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("afw_server_fcgi")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_afw_server_fcgi)
 };
 
 const afw_value_string_t afw_server_fcgi_v_concurrent = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("concurrent")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_concurrent)
 };
 
 const afw_value_string_t afw_server_fcgi_v_default = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("default")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_default)
 };
 
 const afw_value_string_t afw_server_fcgi_v_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("description")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_description)
 };
 
 const afw_value_string_t afw_server_fcgi_v_indirect = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indirect")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_indirect)
 };
 
 const afw_value_string_t afw_server_fcgi_v_integer = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("integer")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_integer)
 };
 
 const afw_value_string_t afw_server_fcgi_v_max_concurrent = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("max_concurrent")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_max_concurrent)
 };
 
 const afw_value_string_t afw_server_fcgi_v_objectId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("objectId")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_objectId)
 };
 
 const afw_value_string_t afw_server_fcgi_v_request_count = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("request_count")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_request_count)
 };
 
 const afw_value_string_t afw_server_fcgi_v_single = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("single")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_single)
 };
 
 const afw_value_string_t afw_server_fcgi_v_thread_count = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("thread_count")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_thread_count)
 };
 
 const afw_value_string_t afw_server_fcgi_v_uint32 = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("uint32")
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_uint32)
 };

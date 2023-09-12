@@ -27,10 +27,10 @@
 
 const afw_value_string_t afw_ubjson_v_default = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("default")
+    AFW_UTF8_LITERAL(AFW_UBJSON_Q_default)
 };
 
 const afw_value_string_t afw_ubjson_v_indirect = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indirect")
+    AFW_UTF8_LITERAL(AFW_UBJSON_Q_indirect)
 };

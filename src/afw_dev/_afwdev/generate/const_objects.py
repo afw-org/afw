@@ -5,6 +5,7 @@ from _afwdev.generate import property_type
 from _afwdev.common import msg, nfc
 from _afwdev.generate import c
 from _afwdev.common import direct
+from _afwdev.generate.strings import get_string_label
 
 def new_label():
     global label_counter
@@ -16,7 +17,7 @@ def new_label():
 def sort_use_id_cb(obj):
     return obj['_meta_']['objectId']
 
-def write_const_core_c(fd, prefix, obj, path, embedder):
+def write_const_core_c(options, fd, prefix, obj, path, embedder):
     s_ = '&' + prefix + 's_'
     propnames = sorted(list(iter(obj)))
     meta = obj.get('_meta_', {})
@@ -90,11 +91,12 @@ def write_const_core_c(fd, prefix, obj, path, embedder):
             fd.write('Error>>>\n')
             return
 
-        fd.write('\nstatic const afw_value_' + dataType + '_t\n' +
-            obj['_meta_']['_label_'] + '_property_value_' + tag_propname + ' = {\n')
-        fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
-        fd.write('    ' + value + '\n')
-        fd.write('};\n')
+        if dataType != 'string':
+            fd.write('\nstatic const afw_value_' + dataType + '_t\n' +
+                obj['_meta_']['_label_'] + '_property_value_' + tag_propname + ' = {\n')
+            fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
+            fd.write('    ' + value + '\n')
+            fd.write('};\n')
 
         fd.write('\nstatic const afw_runtime_property_t\n')
         fd.write(obj['_meta_']['_label_'] + '_property_' + tag_propname + ' = {\n')
@@ -102,7 +104,11 @@ def write_const_core_c(fd, prefix, obj, path, embedder):
             fd.write('    ' + s_ + 'a_' + tag_propname + ',\n')
         else:
             fd.write('    ' + s_ + propname + ',\n')
-        fd.write('    (const afw_value_t *)&' + obj['_meta_']['_label_'] + '_property_value_' + tag_propname + '\n')
+
+        if dataType == 'string':
+            fd.write('    (const afw_value_t *)' + get_string_label(options, prop, '*v') + '\n')
+        else:
+            fd.write('    (const afw_value_t *)&' + obj['_meta_']['_label_'] + '_property_value_' + tag_propname + '\n')
         fd.write('};\n')
 
     fd.write('\nstatic const afw_runtime_property_t *\n')
@@ -326,7 +332,7 @@ def write_const_unresolved_c(fd, prefix, obj, path, embedder):
             fd.write('    &' + meta.get('_label_') + '_parentPaths_array[0]\n')
         fd.write('};\n')
 
-def write_const_c(fd, prefix, obj, resolved=False, path=None, embedder=None, pt=None):
+def write_const_c(options, fd, prefix, obj, resolved=False, path=None, embedder=None, pt=None):
     propnames = sorted(list(iter(obj)))
     meta = obj.get('_meta_', {})
     if '_meta_' in propnames:
@@ -368,7 +374,7 @@ def write_const_c(fd, prefix, obj, resolved=False, path=None, embedder=None, pt=
                 prop['_meta_']['objectType'] = pt.get('objectType','')
             prop['_meta_']['_label_'] = new_label()
             prop['_meta_']['propname'] = propname
-            write_const_c(fd, prefix, prop, resolved, path + '/' + propname, obj, pt)
+            write_const_c(options, fd, prefix, prop, resolved, path + '/' + propname, obj, pt)
     
     # Object        
     fd.write('\n/*\n')
@@ -376,7 +382,7 @@ def write_const_c(fd, prefix, obj, resolved=False, path=None, embedder=None, pt=
     fd.write(' */\n')
 
     if resolved == True:
-        write_const_core_c(fd, prefix, obj, path, embedder)
+        write_const_core_c(options, fd, prefix, obj, path, embedder)
     else:
         write_const_unresolved_c(fd, prefix, obj, path, embedder)
 
@@ -460,5 +466,5 @@ def generate(generated_by, prefix, object_dir_path,
 
         for obj in list:
             obj['_meta_']['_label_'] = new_label()           
-            write_const_c(fd, prefix, obj, resolved);
+            write_const_c(options, fd, prefix, obj, resolved);
         write_object_pointer_list(fd, prefix, list, resolved)

@@ -29,129 +29,165 @@
 #include "afw_yaml_declare_helpers.h"
 
 
-/** @brief define for quoted string "_AdaptiveManifest_" */
-#define AFW_YAML_Q__AdaptiveManifest_ "_AdaptiveManifest_"
+/** @brief define for quoted string _AdaptiveManifest_ */
+#define AFW_YAML_Q__AdaptiveManifest_ \
+    "_AdaptiveManifest_"
 
-/** @brief 'afw_utf8_t' for string "_AdaptiveManifest_" */
-#define afw_yaml_s__AdaptiveManifest_ (afw_yaml_v__AdaptiveManifest_.internal)
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q__AdaptiveManifest_ */
+#define afw_yaml_s__AdaptiveManifest_ \
+    (afw_yaml_v__AdaptiveManifest_.internal)
 
-/** @brief 'afw_value_string_t' for string "_AdaptiveManifest_" */
-extern const afw_value_string_t afw_yaml_v__AdaptiveManifest_;
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q__AdaptiveManifest_ */
+extern const afw_value_string_t \
+    afw_yaml_v__AdaptiveManifest_;
 
-/** @brief 'afw_utf8_z_t *' for string "_AdaptiveManifest_" */
-#define afw_yaml_z__AdaptiveManifest_ (afw_yaml_v__AdaptiveManifest_.internal.s)
-
-
-
-/** @brief define for quoted string "afw_yaml" */
-#define AFW_YAML_Q_afw_yaml "afw_yaml"
-
-/** @brief 'afw_utf8_t' for string "afw_yaml" */
-#define afw_yaml_s_afw_yaml (afw_yaml_v_afw_yaml.internal)
-
-/** @brief 'afw_value_string_t' for string "afw_yaml" */
-extern const afw_value_string_t afw_yaml_v_afw_yaml;
-
-/** @brief 'afw_utf8_z_t *' for string "afw_yaml" */
-#define afw_yaml_z_afw_yaml (afw_yaml_v_afw_yaml.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q__AdaptiveManifest_ */
+#define afw_yaml_z__AdaptiveManifest_ \
+    (afw_yaml_v__AdaptiveManifest_.internal.s)
 
 
 
-/** @brief define for quoted string "brief" */
-#define AFW_YAML_Q_brief "brief"
+/** @brief define for quoted string afw_yaml */
+#define AFW_YAML_Q_afw_yaml \
+    "afw_yaml"
 
-/** @brief 'afw_utf8_t' for string "brief" */
-#define afw_yaml_s_brief (afw_yaml_v_brief.internal)
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_afw_yaml */
+#define afw_yaml_s_afw_yaml \
+    (afw_yaml_v_afw_yaml.internal)
 
-/** @brief 'afw_value_string_t' for string "brief" */
-extern const afw_value_string_t afw_yaml_v_brief;
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_afw_yaml */
+extern const afw_value_string_t \
+    afw_yaml_v_afw_yaml;
 
-/** @brief 'afw_utf8_z_t *' for string "brief" */
-#define afw_yaml_z_brief (afw_yaml_v_brief.internal.s)
-
-
-
-/** @brief define for quoted string "default" */
-#define AFW_YAML_Q_default "default"
-
-/** @brief 'afw_utf8_t' for string "default" */
-#define afw_yaml_s_default (afw_yaml_v_default.internal)
-
-/** @brief 'afw_value_string_t' for string "default" */
-extern const afw_value_string_t afw_yaml_v_default;
-
-/** @brief 'afw_utf8_z_t *' for string "default" */
-#define afw_yaml_z_default (afw_yaml_v_default.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_afw_yaml */
+#define afw_yaml_z_afw_yaml \
+    (afw_yaml_v_afw_yaml.internal.s)
 
 
 
-/** @brief define for quoted string "description" */
-#define AFW_YAML_Q_description "description"
+/** @brief define for quoted string brief */
+#define AFW_YAML_Q_brief \
+    "brief"
 
-/** @brief 'afw_utf8_t' for string "description" */
-#define afw_yaml_s_description (afw_yaml_v_description.internal)
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_brief */
+#define afw_yaml_s_brief \
+    (afw_yaml_v_brief.internal)
 
-/** @brief 'afw_value_string_t' for string "description" */
-extern const afw_value_string_t afw_yaml_v_description;
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_brief */
+extern const afw_value_string_t \
+    afw_yaml_v_brief;
 
-/** @brief 'afw_utf8_z_t *' for string "description" */
-#define afw_yaml_z_description (afw_yaml_v_description.internal.s)
-
-
-
-/** @brief define for quoted string "extensionId" */
-#define AFW_YAML_Q_extensionId "extensionId"
-
-/** @brief 'afw_utf8_t' for string "extensionId" */
-#define afw_yaml_s_extensionId (afw_yaml_v_extensionId.internal)
-
-/** @brief 'afw_value_string_t' for string "extensionId" */
-extern const afw_value_string_t afw_yaml_v_extensionId;
-
-/** @brief 'afw_utf8_z_t *' for string "extensionId" */
-#define afw_yaml_z_extensionId (afw_yaml_v_extensionId.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_brief */
+#define afw_yaml_z_brief \
+    (afw_yaml_v_brief.internal.s)
 
 
 
-/** @brief define for quoted string "indirect" */
-#define AFW_YAML_Q_indirect "indirect"
+/** @brief define for quoted string default */
+#define AFW_YAML_Q_default \
+    "default"
 
-/** @brief 'afw_utf8_t' for string "indirect" */
-#define afw_yaml_s_indirect (afw_yaml_v_indirect.internal)
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_default */
+#define afw_yaml_s_default \
+    (afw_yaml_v_default.internal)
 
-/** @brief 'afw_value_string_t' for string "indirect" */
-extern const afw_value_string_t afw_yaml_v_indirect;
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_default */
+extern const afw_value_string_t \
+    afw_yaml_v_default;
 
-/** @brief 'afw_utf8_z_t *' for string "indirect" */
-#define afw_yaml_z_indirect (afw_yaml_v_indirect.internal.s)
-
-
-
-/** @brief define for quoted string "modulePath" */
-#define AFW_YAML_Q_modulePath "modulePath"
-
-/** @brief 'afw_utf8_t' for string "modulePath" */
-#define afw_yaml_s_modulePath (afw_yaml_v_modulePath.internal)
-
-/** @brief 'afw_value_string_t' for string "modulePath" */
-extern const afw_value_string_t afw_yaml_v_modulePath;
-
-/** @brief 'afw_utf8_z_t *' for string "modulePath" */
-#define afw_yaml_z_modulePath (afw_yaml_v_modulePath.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_default */
+#define afw_yaml_z_default \
+    (afw_yaml_v_default.internal.s)
 
 
 
-/** @brief define for quoted string "registers" */
-#define AFW_YAML_Q_registers "registers"
+/** @brief define for quoted string description */
+#define AFW_YAML_Q_description \
+    "description"
 
-/** @brief 'afw_utf8_t' for string "registers" */
-#define afw_yaml_s_registers (afw_yaml_v_registers.internal)
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_description */
+#define afw_yaml_s_description \
+    (afw_yaml_v_description.internal)
 
-/** @brief 'afw_value_string_t' for string "registers" */
-extern const afw_value_string_t afw_yaml_v_registers;
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_description */
+extern const afw_value_string_t \
+    afw_yaml_v_description;
 
-/** @brief 'afw_utf8_z_t *' for string "registers" */
-#define afw_yaml_z_registers (afw_yaml_v_registers.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_description */
+#define afw_yaml_z_description \
+    (afw_yaml_v_description.internal.s)
+
+
+
+/** @brief define for quoted string extensionId */
+#define AFW_YAML_Q_extensionId \
+    "extensionId"
+
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_extensionId */
+#define afw_yaml_s_extensionId \
+    (afw_yaml_v_extensionId.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_extensionId */
+extern const afw_value_string_t \
+    afw_yaml_v_extensionId;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_extensionId */
+#define afw_yaml_z_extensionId \
+    (afw_yaml_v_extensionId.internal.s)
+
+
+
+/** @brief define for quoted string indirect */
+#define AFW_YAML_Q_indirect \
+    "indirect"
+
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_indirect */
+#define afw_yaml_s_indirect \
+    (afw_yaml_v_indirect.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_indirect */
+extern const afw_value_string_t \
+    afw_yaml_v_indirect;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_indirect */
+#define afw_yaml_z_indirect \
+    (afw_yaml_v_indirect.internal.s)
+
+
+
+/** @brief define for quoted string modulePath */
+#define AFW_YAML_Q_modulePath \
+    "modulePath"
+
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_modulePath */
+#define afw_yaml_s_modulePath \
+    (afw_yaml_v_modulePath.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_modulePath */
+extern const afw_value_string_t \
+    afw_yaml_v_modulePath;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_modulePath */
+#define afw_yaml_z_modulePath \
+    (afw_yaml_v_modulePath.internal.s)
+
+
+
+/** @brief define for quoted string registers */
+#define AFW_YAML_Q_registers \
+    "registers"
+
+/** @brief 'afw_utf8_t' for string AFW_YAML_Q_registers */
+#define afw_yaml_s_registers \
+    (afw_yaml_v_registers.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_YAML_Q_registers */
+extern const afw_value_string_t \
+    afw_yaml_v_registers;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_YAML_Q_registers */
+#define afw_yaml_z_registers \
+    (afw_yaml_v_registers.internal.s)
 
 
 

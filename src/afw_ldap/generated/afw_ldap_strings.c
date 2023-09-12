@@ -27,380 +27,380 @@
 
 const afw_value_string_t afw_ldap_v_ABSTRACT = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ABSTRACT")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_ABSTRACT)
 };
 
 const afw_value_string_t afw_ldap_v_AUXILIARY = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("AUXILIARY")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_AUXILIARY)
 };
 
 const afw_value_string_t afw_ldap_v_DESC = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("DESC")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_DESC)
 };
 
 const afw_value_string_t afw_ldap_v_MAY = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("MAY")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_MAY)
 };
 
 const afw_value_string_t afw_ldap_v_MUST = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("MUST")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_MUST)
 };
 
 const afw_value_string_t afw_ldap_v_NAME = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("NAME")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_NAME)
 };
 
 const afw_value_string_t afw_ldap_v_SINGLE_VALUE = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("SINGLE_VALUE")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_SINGLE_VALUE)
 };
 
 const afw_value_string_t afw_ldap_v_STRUCTURAL = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("STRUCTURAL")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_STRUCTURAL)
 };
 
 const afw_value_string_t afw_ldap_v_SUP = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("SUP")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_SUP)
 };
 
 const afw_value_string_t afw_ldap_v_SYNTAX = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("SYNTAX")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_SYNTAX)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveCollection_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveCollection_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveCollection_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveConf_adaptor_ldap = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_ldap")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveConf_adaptor_ldap)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveConf_adaptor_ldap_bind = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveConf_adaptor_ldap_bind")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapAttributeType_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapAttributeType_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapAttributeType_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapMatchingRuleUse_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapMatchingRuleUse_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapMatchingRuleUse_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapMatchingRule_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapMatchingRule_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapMatchingRule_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapObjectClass_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapObjectClass_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapObjectClass_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapRootDse_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapRootDse_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapRootDse_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapSchema_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapSchema_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapSchema_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveLdapSyntax_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveLdapSyntax_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveLdapSyntax_)
 };
 
 const afw_value_string_t afw_ldap_v__AdaptiveObjectType_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_AdaptiveObjectType_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveObjectType_)
 };
 
 const afw_value_string_t afw_ldap_v__meta_ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("_meta_")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__meta_)
 };
 
 const afw_value_string_t afw_ldap_v_a_NO_USER_MODIFICATION = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("NO-USER-MODIFICATION")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_NO_USER_MODIFICATION)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_FILTERED_REQUIRED = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_FILTERED_REQUIRED")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_FILTERED_REQUIRED)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_HIDDEN = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_HIDDEN")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_HIDDEN)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_LOWER_BOUND = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_LOWER_BOUND")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_LOWER_BOUND)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_NAME = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_NAME")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_NAME)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_NONREMOVABLE = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_NONREMOVABLE")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_NONREMOVABLE)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_NOT_SCHED_SYNC_IMMEDIATE")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_PUBLIC_READ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_PUBLIC_READ")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_PUBLIC_READ)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_READ_FILTERED = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_READ_FILTERED")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_READ_FILTERED)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_SERVER_READ = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_SERVER_READ")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_SERVER_READ)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_SYNTAX = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_SYNTAX")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_SYNTAX)
 };
 
 const afw_value_string_t afw_ldap_v_a_X_NDS_UPPER_BOUND = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("X-NDS_UPPER_BOUND")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_X_NDS_UPPER_BOUND)
 };
 
 const afw_value_string_t afw_ldap_v_a_single_dash_value = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("SINGLE-VALUE")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_a_single_dash_value)
 };
 
 const afw_value_string_t afw_ldap_v_allowAdd = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("allowAdd")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_allowAdd)
 };
 
 const afw_value_string_t afw_ldap_v_allowChange = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("allowChange")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_allowChange)
 };
 
 const afw_value_string_t afw_ldap_v_allowDelete = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("allowDelete")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_allowDelete)
 };
 
 const afw_value_string_t afw_ldap_v_allowEntity = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("allowEntity")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_allowEntity)
 };
 
 const afw_value_string_t afw_ldap_v_allowQuery = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("allowQuery")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_allowQuery)
 };
 
 const afw_value_string_t afw_ldap_v_array = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("array")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_array)
 };
 
 const afw_value_string_t afw_ldap_v_attributeTypes = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("attributeTypes")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_attributeTypes)
 };
 
 const afw_value_string_t afw_ldap_v_base = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("base")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_base)
 };
 
 const afw_value_string_t afw_ldap_v_bindParameters = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("bindParameters")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_bindParameters)
 };
 
 const afw_value_string_t afw_ldap_v_boolean = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("boolean")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_boolean)
 };
 
 const afw_value_string_t afw_ldap_v_collectionURIs = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("collectionURIs")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_collectionURIs)
 };
 
 const afw_value_string_t afw_ldap_v_dataType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("dataType")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_dataType)
 };
 
 const afw_value_string_t afw_ldap_v_dataTypeParameter = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("dataTypeParameter")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_dataTypeParameter)
 };
 
 const afw_value_string_t afw_ldap_v_default = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("default")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_default)
 };
 
 const afw_value_string_t afw_ldap_v_description = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("description")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_description)
 };
 
 const afw_value_string_t afw_ldap_v_dn = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("dn")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_dn)
 };
 
 const afw_value_string_t afw_ldap_v_indirect = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("indirect")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_indirect)
 };
 
 const afw_value_string_t afw_ldap_v_label = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("label")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_label)
 };
 
 const afw_value_string_t afw_ldap_v_ldap = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ldap")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_ldap)
 };
 
 const afw_value_string_t afw_ldap_v_ldapAttributeType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ldapAttributeType")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_ldapAttributeType)
 };
 
 const afw_value_string_t afw_ldap_v_ldapSyntax = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ldapSyntax")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_ldapSyntax)
 };
 
 const afw_value_string_t afw_ldap_v_ldapSyntaxes = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ldapSyntaxes")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_ldapSyntaxes)
 };
 
 const afw_value_string_t afw_ldap_v_ldap_extension = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("ldap_extension")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_ldap_extension)
 };
 
 const afw_value_string_t afw_ldap_v_matchingRuleUse = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("matchingRuleUse")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_matchingRuleUse)
 };
 
 const afw_value_string_t afw_ldap_v_matchingRules = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("matchingRules")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_matchingRules)
 };
 
 const afw_value_string_t afw_ldap_v_numericoid = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("numericoid")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_numericoid)
 };
 
 const afw_value_string_t afw_ldap_v_objectClasses = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("objectClasses")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_objectClasses)
 };
 
 const afw_value_string_t afw_ldap_v_objectId = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("objectId")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_objectId)
 };
 
 const afw_value_string_t afw_ldap_v_objectType = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("objectType")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_objectType)
 };
 
 const afw_value_string_t afw_ldap_v_otherProperties = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("otherProperties")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_otherProperties)
 };
 
 const afw_value_string_t afw_ldap_v_parentPaths = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("parentPaths")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_parentPaths)
 };
 
 const afw_value_string_t afw_ldap_v_password = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("password")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_password)
 };
 
 const afw_value_string_t afw_ldap_v_preventVerifyCert = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("preventVerifyCert")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_preventVerifyCert)
 };
 
 const afw_value_string_t afw_ldap_v_propertyTypes = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("propertyTypes")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_propertyTypes)
 };
 
 const afw_value_string_t afw_ldap_v_required = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("required")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_required)
 };
 
 const afw_value_string_t afw_ldap_v_string = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("string")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_string)
 };
 
 const afw_value_string_t afw_ldap_v_subschemaSubentry = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("subschemaSubentry")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_subschemaSubentry)
 };
 
 const afw_value_string_t afw_ldap_v_template = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("template")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_template)
 };
 
 const afw_value_string_t afw_ldap_v_unique = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("unique")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_unique)
 };
 
 const afw_value_string_t afw_ldap_v_url = {
     &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("url")
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_url)
 };
