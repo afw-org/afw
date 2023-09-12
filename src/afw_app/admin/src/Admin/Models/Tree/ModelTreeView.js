@@ -12,7 +12,7 @@ import {
     Typography,
     QualifiersProvider,
     useOperational,
-    isHybridScript
+    isAdaptiveScript
 } from "@afw/react";
 
 
@@ -506,7 +506,7 @@ const ActionMainContent = ({ model, propertyName }) => {
                 setTab({
                     source: value,
                     key: property.getName(),            
-                    format: value ? isHybridScript(value) ? "script" : "template" : undefined,            
+                    format: value ? isAdaptiveScript(value) ? "script" : "template" : undefined,            
                     label: property.getName(),
                 });
             }

@@ -204,7 +204,7 @@ const Test = (wrapper) => {
 
                 // skip some dataTypes for now, as they're not well defined in non-editable mode 
                 if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
-                    dataType === "date" || dataType === "dateTime" || dataType === "hybrid" || dataType === "password" )
+                    dataType === "date" || dataType === "dateTime" || dataType === "password" )
                     continue;
 
                 if (dataType === "null")
@@ -247,7 +247,7 @@ const Test = (wrapper) => {
 
                 // skip some dataTypes for now, as they're not well defined in non-editable mode 
                 if (dataType === "array" || dataType === "object" || dataType === "time" || dataType === "base64Binary" || 
-                    dataType === "date" || dataType === "dateTime" || dataType === "hybrid" || dataType === "password" )
+                    dataType === "date" || dataType === "dateTime" || dataType === "password" )
                     continue;
 
                 if (dataType === "null")

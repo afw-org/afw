@@ -29,11 +29,11 @@ export function isFunction(value) {
     return (value && typeof value === "function");
 }
 
-export function isHybridScript(hybrid) {
-    if (!hybrid || typeof hybrid !== "string")
+export function isAdaptiveScript(value) {
+    if (!value || typeof value !== "string")
         return false;
 
-    const lines = hybrid.split("\n");
+    const lines = value.split("\n");
     if (lines && lines.length > 0) {
         if (lines[0].startsWith("#!"))
             return true;
@@ -42,34 +42,14 @@ export function isHybridScript(hybrid) {
     return false;
 }
 
-export function isHybridTemplate(hybrid) {
-    if (!hybrid || typeof hybrid !== "string")
+export function isAdaptiveTemplate(value) {
+    if (!value || typeof value !== "string")
         return false;
 
-    if (hybrid.indexOf("${") >= 0)
+    if (value.indexOf("${") >= 0)
         return true;
 
     return false;
-}
-
-export function isHybridLiteral(hybrid) {
-
-    if (isObject(hybrid))
-        return true;
-
-    else if (isArray(hybrid))
-        return true;
-
-    else if (typeof(hybrid) === "number")
-        return true;
-
-    else if (typeof(hybrid) === "boolean")
-        return true;
-
-    else if (typeof(hybrid) === "string") {
-        /* if it's a string, it could be a template or script */
-        return !(isHybridScript(hybrid) || isHybridTemplate(hybrid));
-    }
 }
 
 export function ctx(props, componentType) {
