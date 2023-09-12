@@ -43,6 +43,51 @@ const computedProperties = [
     "onRetrieveObjects",
 ];
 
+const ModelCustomVariablesReadonly = ({ custom }) => {
+
+    const theme = useTheme();
+
+    if (custom) {
+        return ( 
+            <>
+                <div style={{ height: theme.spacing(5) }} />
+                <Typography 
+                    size="6"
+                    text="Custom Variables"
+                />
+                <div style={{ height: theme.spacing(2) }} />
+                <Table 
+                    aria-label="Custom Variables"
+                    compact={true}
+                    rows={custom.getProperties().map(property => property.getName())}
+                    columns={[
+                        {
+                            key: "Variable",
+                            name: "Variable",
+                            onRender: (variable) => (
+                                <Tooltip 
+                                    content={custom.getPropertyValue(variable)}
+                                    delay={500}
+                                    target={
+                                        <div>
+                                            <Typography text={variable} />
+                                        </div>
+                                    }
+                                />                                            
+                            ),
+                            minWidth: 100,
+                            maxWidth: 200,
+                            isResizable: true,
+                            width: "20%"
+                        }
+                    ]}
+                    selectionMode="none"
+                />
+            </>
+        );
+    } else return null;
+};
+
 export const ModelObjectTypeOverviewEditable = (props) => {
 
     const [selectedTab, setSelectedTab] = useState(0);   
@@ -139,6 +184,113 @@ export const ModelObjectTypeOverviewEditable = (props) => {
     );
 };
 
+const ModelPropertyTypesTableReadonly = (props) => {
+
+    const { 
+        adaptorId, 
+        modelId, 
+        objectType,
+        propertyTypes,
+        propertyTypesSorted
+    } = props;
+
+    const theme = useTheme();
+
+    return (
+        <Table 
+            aria-label="Property Types"
+            rows={propertyTypesSorted.filter(() => {                        
+                //if (inherited === false && propertyTypes.getPropertyValue(prop).getInheritedFrom())
+                //    return false;                        
+
+                return true;
+            })}
+            columns={[
+                {
+                    key: "PropertyType",
+                    name: "Property Type",
+                    minWidth: 100,
+                    maxWidth: 200,
+                    isResizable: true,
+                    onRender: (propertyType) => 
+                        <Link 
+                            url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyType + "#overview"} 
+                            text={propertyType} 
+                        />                            
+                },
+                {
+                    key: "DataType",
+                    name: "Data Type",
+                    minWidth: 100,
+                    maxWidth: 200,
+                    isResizable: true,
+                    onRender: (propertyType) => {
+                        const dataType = propertyTypes.getPropertyValue([propertyType, "dataType"]);
+                        const dataTypeParameter = propertyTypes.getPropertyValue([propertyType, "dataTypeParameter"]);
+
+                        if (dataType === "object" && dataTypeParameter) {
+                            return (
+                                <Link 
+                                    url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
+                                    text={dataTypeParameter}
+                                />
+                            );
+                        } else if (dataType === "objectId" && dataTypeParameter) {
+                            return (
+                                <div style={{ display: "flex" }}>
+                                    <Link 
+                                        style={{ marginRight: theme.spacing(1) }}
+                                        url={"/Documentation/Reference/DataTypes/" + dataType}
+                                        text={dataType}
+                                    />
+                                    <Link 
+                                        url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
+                                        text={" (" + dataTypeParameter + ")"}
+                                    />
+                                </div>
+                            );                                
+                        } else if (dataTypeParameter) {
+                            return (
+                                <div style={{ display: "flex" }}>
+                                    <Link 
+                                        style={{ marginRight: theme.spacing(1) }}
+                                        url={"/Documentation/Reference/DataTypes/" + dataType}
+                                        text={dataType}
+                                    />
+                                    <Link 
+                                        url={"/Documentation/Reference/DataTypes/" + dataTypeParameter}
+                                        text={" (" + dataTypeParameter + ")"}
+                                    />
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <Link 
+                                    url={"/Documentation/Reference/DataTypes/" + dataType}
+                                    text={dataType}
+                                />
+                            );                                
+                        }
+                    }                                
+                },                        
+                {
+                    key: "Description",
+                    name: "Description",
+                    minWidth: 200,
+                    maxWidth: 600,
+                    isResizable: true,
+                    isMultiline: true,
+                    onRender: (propertyType) => 
+                        <Typography 
+                            text={propertyTypes.getPropertyValue([propertyType, "description"]) || ""}
+                        />
+                } 
+            ]}
+            selectionMode="none"
+        />
+    );
+};
+
 export const ModelObjectTypeOverviewReadonly = (props) => {
 
     const {adaptorId, model, objectType, objectTypeObject} = props;
@@ -149,19 +301,17 @@ export const ModelObjectTypeOverviewReadonly = (props) => {
     const {modelId, objectTypes} = model.getPropertyValues();
     
     const propertyTypes = objectTypeObject.getPropertyValue("propertyTypes");
-    const propertyTypesSorted = propertyTypes ? propertyTypes.getProperties().map(property => property.getName()).sort((A, B) => {
+    const propertyTypesSorted = propertyTypes ? propertyTypes.getProperties().map(p => p.getName()).sort((A, B) => {
         return (A.toLowerCase().localeCompare(B.toLowerCase()));
     }) : [];
 
     const custom = objectTypeObject.getPropertyValue("custom");
 
     /* determine if this objectType has any computed properties */
-    let hasComputed = false;
-    if (objectTypeObject) {
-        for (const p of computedProperties)
-            if (objectTypeObject.getPropertyValue(p))
-                hasComputed = true;        
-    }
+    let hasComputed = objectTypeObject ? 
+        computedProperties.some(p => 
+            objectTypeObject.getPropertyValue(p)
+        ) : false;
 
     return (
         <div>
@@ -207,189 +357,14 @@ export const ModelObjectTypeOverviewReadonly = (props) => {
                 size="6"
                 text="Property Types"
             />
-            <Table 
-                aria-label="Property Types"
-                rows={propertyTypesSorted.filter(() => {                        
-                    //if (inherited === false && propertyTypes.getPropertyValue(prop).getInheritedFrom())
-                    //    return false;                        
-
-                    return true;
-                })}
-                columns={[
-                    {
-                        key: "PropertyType",
-                        name: "Property Type",
-                        minWidth: 100,
-                        maxWidth: 200,
-                        isResizable: true,
-                        onRender: (propertyType) => 
-                            <Link 
-                                url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyType + "#overview"} 
-                                text={propertyType} 
-                            />                            
-                    },
-                    {
-                        key: "DataType",
-                        name: "Data Type",
-                        minWidth: 100,
-                        maxWidth: 200,
-                        isResizable: true,
-                        onRender: (propertyType) => {
-                            const dataType = propertyTypes.getPropertyValue([propertyType, "dataType"]);
-                            const dataTypeParameter = propertyTypes.getPropertyValue([propertyType, "dataTypeParameter"]);
-
-                            if (dataType === "object" && dataTypeParameter) {
-                                return (
-                                    <Link 
-                                        url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
-                                        text={dataTypeParameter}
-                                    />
-                                );
-                            } else if (dataType === "objectId" && dataTypeParameter) {
-                                return (
-                                    <div style={{ display: "flex" }}>
-                                        <Link 
-                                            style={{ marginRight: theme.spacing(1) }}
-                                            url={"/Documentation/Reference/DataTypes/" + dataType}
-                                            text={dataType}
-                                        />
-                                        <Link 
-                                            url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
-                                            text={" (" + dataTypeParameter + ")"}
-                                        />
-                                    </div>
-                                );                                
-                            } else if (dataTypeParameter) {
-                                return (
-                                    <div style={{ display: "flex" }}>
-                                        <Link 
-                                            style={{ marginRight: theme.spacing(1) }}
-                                            url={"/Documentation/Reference/DataTypes/" + dataType}
-                                            text={dataType}
-                                        />
-                                        <Link 
-                                            url={"/Documentation/Reference/DataTypes/" + dataTypeParameter}
-                                            text={" (" + dataTypeParameter + ")"}
-                                        />
-                                    </div>
-                                );
-                            } else {
-                                return (
-                                    <Link 
-                                        url={"/Documentation/Reference/DataTypes/" + dataType}
-                                        text={dataType}
-                                    />
-                                );                                
-                            }
-                        }                                
-                    },                        
-                    {
-                        key: "Description",
-                        name: "Description",
-                        minWidth: 200,
-                        maxWidth: 600,
-                        isResizable: true,
-                        isMultiline: true,
-                        onRender: (propertyType) => 
-                            <Typography 
-                                text={propertyTypes.getPropertyValue([propertyType, "description"]) || ""}
-                            />
-                    } 
-                ]}
-                selectionMode="none"
+            <ModelPropertyTypesTableReadonly 
+                adaptorId={adaptorId}
+                modelId={modelId}
+                objectType={objectType}
+                propertyTypes={propertyTypes}
+                propertyTypesSorted={propertyTypesSorted}
             />
-            {
-                custom && 
-                    <>
-                        <div style={{ height: theme.spacing(5) }} />
-                        <Typography 
-                            size="6"
-                            text="Custom Variables"
-                        />
-                        <div style={{ height: theme.spacing(2) }} />
-                        <Table 
-                            aria-label="Custom Variables"
-                            compact={true}
-                            rows={custom.getProperties().map(property => property.getName())}
-                            columns={[
-                                {
-                                    key: "Variable",
-                                    name: "Variable",
-                                    onRender: (variable) => (
-                                        <Tooltip 
-                                            content={custom.getPropertyValue(variable)}
-                                            delay={500}
-                                            target={
-                                                <div>
-                                                    <Typography text={variable} />
-                                                </div>
-                                            }
-                                        />                                            
-                                    ),
-                                    minWidth: 100,
-                                    maxWidth: 200,
-                                    isResizable: true,
-                                    width: "20%"
-                                },
-                                {
-                                    key: "DataType",
-                                    name: "Data Type",
-                                    onRender: (variable) => {                                
-                                        const value = custom.getPropertyValue(variable);
-
-                                        try {
-                                            const hybrid = JSON.parse(value);
-                                            if (hybrid && hybrid.constructor === Array) {
-                                                if (hybrid[0] && typeof(hybrid[0]) === "object") {
-                                                    const dataType = hybrid[0].dataType;
-                                                    return (
-                                                        <Link url={"/Documentation/Reference/DataTypes/" + dataType} text={dataType} />
-                                                    );
-                                                }
-                                            }
-                                        } catch (error) {   
-                                            return <Typography text={error} color="error" />;                                                                
-                                        }                                
-
-                                        return null;                                
-                                    },
-                                    minWidth: 100,
-                                    maxWidth: 200,
-                                    isResizable: true,
-                                    width: "20%"
-                                },
-                                {
-                                    key: "Description",
-                                    name: "Description",
-                                    onRender: (variable) => {
-                                        const value = custom.getPropertyValue(variable);
-
-                                        try {
-                                            const hybrid = JSON.parse(value);
-                                            if (hybrid && hybrid.constructor === Array) {
-                                                if (hybrid[0] && typeof(hybrid[0]) === "object") {
-                                                    const description = hybrid[0].description;
-                                                    return (
-                                                        <Typography text={description ? description : ""} />
-                                                    );
-                                                }
-                                            }
-                                        } catch (error) {   
-                                            return <Typography text={error} color="error" />;                                                                     
-                                        }                                
-
-                                        return null;        
-                                    },
-                                    minWidth: 200,
-                                    maxWidth: 600,
-                                    isResizable: true,
-                                    isMultiline: true,
-                                }
-                            ]}
-                            selectionMode="none"
-                        />
-                    </>
-            }   
+            <ModelCustomVariablesReadonly custom={custom} /> 
             <>
                 <div style={{ height: theme.spacing(5) }} />
                 <Typography 

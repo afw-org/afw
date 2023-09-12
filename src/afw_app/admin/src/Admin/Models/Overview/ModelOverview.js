@@ -216,60 +216,6 @@ export const ModelOverviewReadonly = (props) => {
                                     maxWidth: 200,
                                     isResizable: true,
                                     width: "20%"                       
-                                },
-                                {
-                                    key: "DataType",
-                                    name: "Data Type",
-                                    onRender: (variable) => {                                
-                                        const value = custom.getPropertyValue(variable);
-
-                                        try {
-                                            const hybrid = JSON.parse(value);
-                                            if (hybrid && hybrid.constructor === Array) {
-                                                if (hybrid[0] && typeof(hybrid[0]) === "object") {
-                                                    const dataType = hybrid[0].dataType;
-                                                    return (
-                                                        <Link url={"/Documentation/Reference/DataTypes/" + dataType} text={dataType} />
-                                                    );
-                                                }
-                                            }
-                                        } catch (error) {        
-                                            //eslint-disable-next-line                                                                
-                                        }                                
-
-                                        return null;                                
-                                    },
-                                    minWidth: 100,
-                                    maxWidth: 200,
-                                    isResizable: true,
-                                    width: "20%"
-                                },
-                                {
-                                    key: "Description",
-                                    name: "Description",
-                                    onRender: (variable) => {
-                                        const value = custom.getPropertyValue(variable);
-
-                                        try {
-                                            const hybrid = JSON.parse(value);
-                                            if (hybrid && hybrid.constructor === Array) {
-                                                if (hybrid[0] && typeof(hybrid[0]) === "object") {
-                                                    const description = hybrid[0].description;
-                                                    return (
-                                                        <Typography text={description ? description : ""} />
-                                                    );
-                                                }
-                                            }
-                                        } catch (error) {      
-                                            //eslint-disable-next-line                                                                  
-                                        }                                
-
-                                        return null;        
-                                    },
-                                    minWidth: 200,
-                                    maxWidth: 600,
-                                    isResizable: true,
-                                    isMultiline: true,
                                 }
                             ]}
                             selectionMode="none"

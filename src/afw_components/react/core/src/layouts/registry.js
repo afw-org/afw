@@ -66,7 +66,7 @@ import {
     AdaptiveQualifierDefinitions,
     AdaptiveValueMeta,    
     ObjectResponsive,
-    AdaptiveHybridPropertiesObjects,
+    AdaptiveTemplatePropertiesObjects,
 } from "./objectTypes";
 
 /* components that can be derived by their dataType only */
@@ -184,14 +184,14 @@ const propertyLayoutRegistry = [
         dataType: "string"
     },
     
-    /* _AdaptiveHybridPropertiesObjects_ property */
+    /* _AdaptiveTemplatePropertiesObjects_ property */
     {
         component: QualifiedVariables,
         objectTypeId: isAdaptiveObjectType,
         propertyName: "qualifiedVariables",
         operational: OperationalMode.NotEditable,
         dataType: "object",
-        dataTypeParameter: "_AdaptiveHybridPropertiesObjects_"
+        dataTypeParameter: "_AdaptiveTemplatePropertiesObjects_"
     },
 
     /* properties with allowedValues */
@@ -276,8 +276,8 @@ const objectLayoutRegistry = [
     },
 
     {
-        component: AdaptiveHybridPropertiesObjects,
-        objectTypeId: "_AdaptiveHybridPropertiesObjects_"
+        component: AdaptiveTemplatePropertiesObjects,
+        objectTypeId: "_AdaptiveTemplatePropertiesObjects_"
     },
 
     /* default layout for any object */

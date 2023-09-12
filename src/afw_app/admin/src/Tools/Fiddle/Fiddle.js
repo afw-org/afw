@@ -79,7 +79,6 @@ const getInitialSource = (format, subformat) => {
 //? description: This is the first test
 //? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 
 return 0;`

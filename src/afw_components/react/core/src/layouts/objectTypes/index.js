@@ -10,4 +10,4 @@ export * from "./AdaptiveMeta";
 export * from "./AdaptiveValueMeta";
 export * from "./AdaptiveObjectType";
 export * from "./AdaptiveQualifierDefinitions";
-export * from "./AdaptiveHybridPropertiesObjects";
+export * from "./AdaptiveTemplatePropertiesObjects";

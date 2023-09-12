@@ -573,9 +573,7 @@ const ActionMainContent = ({ model, propertyName }) => {
                             variant="outlined"
                             onClick={() => {
                                 tab.format = "script";
-                                tab.source = "#! afw\n";
-
-                                tab.source += "\n/**\n";
+                                tab.source = "\n/**\n";
                                 tab.source += " * " + property.getName();
 
                                 if (property.getSkeleton()) {

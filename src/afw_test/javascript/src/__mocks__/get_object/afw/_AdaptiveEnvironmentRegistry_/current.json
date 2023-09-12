@@ -653,7 +653,7 @@
                             "y": "fds"
                         }
                     },
-                    "authorizationCheck": "#! afw\n\nloc object decision;\n\ntrace(\"Got into auth script..\\n\");\n\ndecision = {\n    \"decisionId\": \"notApplicable\"\n};\n\n//trace(x::y);\n\nreturn {\n    \"decisionId\": \"permit\"\n};",
+                    "authorizationCheck": "loc object decision;\n\ntrace(\"Got into auth script..\\n\");\n\ndecision = {\n    \"decisionId\": \"notApplicable\"\n};\n\n//trace(x::y);\n\nreturn {\n    \"decisionId\": \"permit\"\n};",
                     "description": "Handles authorization using an adaptive script.",
                     "type": "authorizationHandler",
                     "authorizationHandlerType": "script",

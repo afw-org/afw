@@ -31,14 +31,16 @@ export const RemovableComponent = ({ component, onRemove, removeTitle, removeTex
     return (
         <>
             <div style={{ display: "flex", height: "100%", width: "100%" }}>
-                <Button 
-                    style={{ color: "red" }}
-                    type="icon"
-                    icon="close"
-                    tooltip={removeTitle}
-                    label={removeTitle}
-                    onClick={() => setShowConfirm(true)}
-                />
+                <div>
+                    <Button 
+                        style={{ color: "red" }}
+                        type="icon"
+                        icon="close"
+                        tooltip={removeTitle}
+                        label={removeTitle}
+                        onClick={() => setShowConfirm(true)}
+                    />
+                </div>
                 <div style={{ flex: 1 }}>
                     { component }
                 </div>
