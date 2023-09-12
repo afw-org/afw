@@ -5897,276 +5897,6 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__00134043_b409_4749_b835_74d0838d7c77 */
-#define AFW_Q__g__00134043_b409_4749_b835_74d0838d7c77 \
-    "This is the name of the tarball produced by make dist. It's used in the tarname parameter of AC_INIT in configure.ac.\n\nThis is the full package name. It defaults to package-name with ‘GNU ’ stripped, lower-cased, and all characters other than alphanumerics and underscores are changed to ‘-’. "
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__00134043_b409_4749_b835_74d0838d7c77 */
-#define afw_s__g__00134043_b409_4749_b835_74d0838d7c77 \
-    (afw_v__g__00134043_b409_4749_b835_74d0838d7c77.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__00134043_b409_4749_b835_74d0838d7c77 */
-extern const afw_value_string_t \
-    afw_v__g__00134043_b409_4749_b835_74d0838d7c77;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__00134043_b409_4749_b835_74d0838d7c77 */
-#define afw_z__g__00134043_b409_4749_b835_74d0838d7c77 \
-    (afw_v__g__00134043_b409_4749_b835_74d0838d7c77.internal.s)
-
-
-
-/** @brief define for quoted string _g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 */
-#define AFW_Q__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 \
-    "The adaptive object type of all adaptive model object type objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 */
-#define afw_s__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 \
-    (afw_v__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 */
-extern const afw_value_string_t \
-    afw_v__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 */
-#define afw_z__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184 \
-    (afw_v__g__00f48dd8_67ea_4b40_beb1_7eefd00f0184.internal.s)
-
-
-
-/** @brief define for quoted string _g__026efe01_f889_4adb_84d1_7dd5c8c398ff */
-#define AFW_Q__g__026efe01_f889_4adb_84d1_7dd5c8c398ff \
-    "If specified, this is the property type for properties that are not explicitly specified. If otherProperties is not specified, only explicitly specified properties are allowed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__026efe01_f889_4adb_84d1_7dd5c8c398ff */
-#define afw_s__g__026efe01_f889_4adb_84d1_7dd5c8c398ff \
-    (afw_v__g__026efe01_f889_4adb_84d1_7dd5c8c398ff.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__026efe01_f889_4adb_84d1_7dd5c8c398ff */
-extern const afw_value_string_t \
-    afw_v__g__026efe01_f889_4adb_84d1_7dd5c8c398ff;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__026efe01_f889_4adb_84d1_7dd5c8c398ff */
-#define afw_z__g__026efe01_f889_4adb_84d1_7dd5c8c398ff \
-    (afw_v__g__026efe01_f889_4adb_84d1_7dd5c8c398ff.internal.s)
-
-
-
-/** @brief define for quoted string _g__02920e3b_feb1_45c6_b753_77acf6614c25 */
-#define AFW_Q__g__02920e3b_feb1_45c6_b753_77acf6614c25 \
-    "Layout Component Type category id. The layout component type category groups similar layout component types together logically."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__02920e3b_feb1_45c6_b753_77acf6614c25 */
-#define afw_s__g__02920e3b_feb1_45c6_b753_77acf6614c25 \
-    (afw_v__g__02920e3b_feb1_45c6_b753_77acf6614c25.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__02920e3b_feb1_45c6_b753_77acf6614c25 */
-extern const afw_value_string_t \
-    afw_v__g__02920e3b_feb1_45c6_b753_77acf6614c25;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__02920e3b_feb1_45c6_b753_77acf6614c25 */
-#define afw_z__g__02920e3b_feb1_45c6_b753_77acf6614c25 \
-    (afw_v__g__02920e3b_feb1_45c6_b753_77acf6614c25.internal.s)
-
-
-
-/** @brief define for quoted string _g__02a5c669_352d_444d_87e5_4cbc538b7443 */
-#define AFW_Q__g__02a5c669_352d_444d_87e5_4cbc538b7443 \
-    "This is the function's declaration with whitespace and brief comments."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__02a5c669_352d_444d_87e5_4cbc538b7443 */
-#define afw_s__g__02a5c669_352d_444d_87e5_4cbc538b7443 \
-    (afw_v__g__02a5c669_352d_444d_87e5_4cbc538b7443.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__02a5c669_352d_444d_87e5_4cbc538b7443 */
-extern const afw_value_string_t \
-    afw_v__g__02a5c669_352d_444d_87e5_4cbc538b7443;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__02a5c669_352d_444d_87e5_4cbc538b7443 */
-#define afw_z__g__02a5c669_352d_444d_87e5_4cbc538b7443 \
-    (afw_v__g__02a5c669_352d_444d_87e5_4cbc538b7443.internal.s)
-
-
-
-/** @brief define for quoted string _g__03f3724f_6160_4170_973f_5459d62d3c5a */
-#define AFW_Q__g__03f3724f_6160_4170_973f_5459d62d3c5a \
-    "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__03f3724f_6160_4170_973f_5459d62d3c5a */
-#define afw_s__g__03f3724f_6160_4170_973f_5459d62d3c5a \
-    (afw_v__g__03f3724f_6160_4170_973f_5459d62d3c5a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__03f3724f_6160_4170_973f_5459d62d3c5a */
-extern const afw_value_string_t \
-    afw_v__g__03f3724f_6160_4170_973f_5459d62d3c5a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__03f3724f_6160_4170_973f_5459d62d3c5a */
-#define afw_z__g__03f3724f_6160_4170_973f_5459d62d3c5a \
-    (afw_v__g__03f3724f_6160_4170_973f_5459d62d3c5a.internal.s)
-
-
-
-/** @brief define for quoted string _g__0415a108_864f_4ea6_84c1_2a882c66d010 */
-#define AFW_Q__g__0415a108_864f_4ea6_84c1_2a882c66d010 \
-    "If this parameter is true, a decision of deny by this authorization handler will override a decision of permit by a previous authorization handler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0415a108_864f_4ea6_84c1_2a882c66d010 */
-#define afw_s__g__0415a108_864f_4ea6_84c1_2a882c66d010 \
-    (afw_v__g__0415a108_864f_4ea6_84c1_2a882c66d010.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0415a108_864f_4ea6_84c1_2a882c66d010 */
-extern const afw_value_string_t \
-    afw_v__g__0415a108_864f_4ea6_84c1_2a882c66d010;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0415a108_864f_4ea6_84c1_2a882c66d010 */
-#define afw_z__g__0415a108_864f_4ea6_84c1_2a882c66d010 \
-    (afw_v__g__0415a108_864f_4ea6_84c1_2a882c66d010.internal.s)
-
-
-
-/** @brief define for quoted string _g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 */
-#define AFW_Q__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 \
-    "Adaptive framework service type interface. Each instance is registered in the environment with type of \"service_type\" and id of the service type id."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 */
-#define afw_s__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 \
-    (afw_v__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 */
-extern const afw_value_string_t \
-    afw_v__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 */
-#define afw_z__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70 \
-    (afw_v__g__06bf3c8b_d3bf_46f0_bb0b_3140c8ac2c70.internal.s)
-
-
-
-/** @brief define for quoted string _g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 */
-#define AFW_Q__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 \
-    "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 */
-#define afw_s__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 \
-    (afw_v__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 */
-extern const afw_value_string_t \
-    afw_v__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 */
-#define afw_z__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765 \
-    (afw_v__g__06f1e0c7_575f_4964_b9f0_38a63a4a3765.internal.s)
-
-
-
-/** @brief define for quoted string _g__071a51ec_7bed_425c_8f24_c472790658e7 */
-#define AFW_Q__g__071a51ec_7bed_425c_8f24_c472790658e7 \
-    "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__071a51ec_7bed_425c_8f24_c472790658e7 */
-#define afw_s__g__071a51ec_7bed_425c_8f24_c472790658e7 \
-    (afw_v__g__071a51ec_7bed_425c_8f24_c472790658e7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__071a51ec_7bed_425c_8f24_c472790658e7 */
-extern const afw_value_string_t \
-    afw_v__g__071a51ec_7bed_425c_8f24_c472790658e7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__071a51ec_7bed_425c_8f24_c472790658e7 */
-#define afw_z__g__071a51ec_7bed_425c_8f24_c472790658e7 \
-    (afw_v__g__071a51ec_7bed_425c_8f24_c472790658e7.internal.s)
-
-
-
-/** @brief define for quoted string _g__071f3457_f429_4f65_8e5b_7f414a399c6a */
-#define AFW_Q__g__071f3457_f429_4f65_8e5b_7f414a399c6a \
-    "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__071f3457_f429_4f65_8e5b_7f414a399c6a */
-#define afw_s__g__071f3457_f429_4f65_8e5b_7f414a399c6a \
-    (afw_v__g__071f3457_f429_4f65_8e5b_7f414a399c6a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__071f3457_f429_4f65_8e5b_7f414a399c6a */
-extern const afw_value_string_t \
-    afw_v__g__071f3457_f429_4f65_8e5b_7f414a399c6a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__071f3457_f429_4f65_8e5b_7f414a399c6a */
-#define afw_z__g__071f3457_f429_4f65_8e5b_7f414a399c6a \
-    (afw_v__g__071f3457_f429_4f65_8e5b_7f414a399c6a.internal.s)
-
-
-
-/** @brief define for quoted string _g__086c41a4_eba6_45cb_af06_8c3ad126cd73 */
-#define AFW_Q__g__086c41a4_eba6_45cb_af06_8c3ad126cd73 \
-    "Interface returned from afw_extension_initialize() of an\n      Adaptive Framework environment extension module. Additional\n      information about an extension is found in object\n      /afw/_AdaptiveManifest_/<extension_id>."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__086c41a4_eba6_45cb_af06_8c3ad126cd73 */
-#define afw_s__g__086c41a4_eba6_45cb_af06_8c3ad126cd73 \
-    (afw_v__g__086c41a4_eba6_45cb_af06_8c3ad126cd73.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__086c41a4_eba6_45cb_af06_8c3ad126cd73 */
-extern const afw_value_string_t \
-    afw_v__g__086c41a4_eba6_45cb_af06_8c3ad126cd73;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__086c41a4_eba6_45cb_af06_8c3ad126cd73 */
-#define afw_z__g__086c41a4_eba6_45cb_af06_8c3ad126cd73 \
-    (afw_v__g__086c41a4_eba6_45cb_af06_8c3ad126cd73.internal.s)
-
-
-
-/** @brief define for quoted string _g__091336ab_7eb2_47fe_8607_941d9aea5c5b */
-#define AFW_Q__g__091336ab_7eb2_47fe_8607_941d9aea5c5b \
-    "This is an array of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is an array of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__091336ab_7eb2_47fe_8607_941d9aea5c5b */
-#define afw_s__g__091336ab_7eb2_47fe_8607_941d9aea5c5b \
-    (afw_v__g__091336ab_7eb2_47fe_8607_941d9aea5c5b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__091336ab_7eb2_47fe_8607_941d9aea5c5b */
-extern const afw_value_string_t \
-    afw_v__g__091336ab_7eb2_47fe_8607_941d9aea5c5b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__091336ab_7eb2_47fe_8607_941d9aea5c5b */
-#define afw_z__g__091336ab_7eb2_47fe_8607_941d9aea5c5b \
-    (afw_v__g__091336ab_7eb2_47fe_8607_941d9aea5c5b.internal.s)
-
-
-
-/** @brief define for quoted string _g__092f7849_985e_4278_8f1f_b4276e8536fd */
-#define AFW_Q__g__092f7849_985e_4278_8f1f_b4276e8536fd \
-    "This is the object type for the queryCriteria parameter of retrieve object functions."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__092f7849_985e_4278_8f1f_b4276e8536fd */
-#define afw_s__g__092f7849_985e_4278_8f1f_b4276e8536fd \
-    (afw_v__g__092f7849_985e_4278_8f1f_b4276e8536fd.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__092f7849_985e_4278_8f1f_b4276e8536fd */
-extern const afw_value_string_t \
-    afw_v__g__092f7849_985e_4278_8f1f_b4276e8536fd;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__092f7849_985e_4278_8f1f_b4276e8536fd */
-#define afw_z__g__092f7849_985e_4278_8f1f_b4276e8536fd \
-    (afw_v__g__092f7849_985e_4278_8f1f_b4276e8536fd.internal.s)
-
-
-
-/** @brief define for quoted string _g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 */
-#define AFW_Q__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 \
-    "These are function that work on all adaptive values and their associated meta."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 */
-#define afw_s__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 \
-    (afw_v__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 */
-extern const afw_value_string_t \
-    afw_v__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 */
-#define afw_z__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6 \
-    (afw_v__g__0975971a_267a_4e1c_ae8c_cfe57699f0b6.internal.s)
-
-
-
 /** @brief define for quoted string _g__0_9_0 */
 #define AFW_Q__g__0_9_0 \
     "0.9.0"
@@ -6185,4881 +5915,8769 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a */
-#define AFW_Q__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a \
-    "The revision of the Common Gateway Interface that the server uses"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a */
-#define afw_s__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a \
-    (afw_v__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a */
-extern const afw_value_string_t \
-    afw_v__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a */
-#define afw_z__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a \
-    (afw_v__g__0bc17b5e_5ca0_421d_9cc2_95178a38d20a.internal.s)
-
-
-
-/** @brief define for quoted string _g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 */
-#define AFW_Q__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 \
-    "If specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 */
-#define afw_s__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 \
-    (afw_v__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 */
-extern const afw_value_string_t \
-    afw_v__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 */
-#define afw_z__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6 \
-    (afw_v__g__0dd15478_fe81_4b75_bd95_9d54ab4b4ab6.internal.s)
-
-
-
-/** @brief define for quoted string _g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a */
-#define AFW_Q__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a \
-    "The functionLabel prefixed with 'afw' and converted to camel case"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a */
-#define afw_s__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a \
-    (afw_v__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a */
-extern const afw_value_string_t \
-    afw_v__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a */
-#define afw_z__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a \
-    (afw_v__g__0dd1bfdb_fdf3_4a31_b016_67775e2c1c3a.internal.s)
-
-
-
-/** @brief define for quoted string _g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 */
-#define AFW_Q__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 \
-    "All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 */
-#define afw_s__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 \
-    (afw_v__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 */
-extern const afw_value_string_t \
-    afw_v__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 */
-#define afw_z__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8 \
-    (afw_v__g__0dfc543a_83fa_4fd8_a8e3_34275de3b8d8.internal.s)
-
-
-
-/** @brief define for quoted string _g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c */
-#define AFW_Q__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c \
-    "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c */
-#define afw_s__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c \
-    (afw_v__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c */
-extern const afw_value_string_t \
-    afw_v__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c */
-#define afw_z__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c \
-    (afw_v__g__0e1ba49a_30c9_4fa0_b484_139f2ef4392c.internal.s)
-
-
-
-/** @brief define for quoted string _g__0e38de5e_8a97_4703_aca8_d17d700ad57a */
-#define AFW_Q__g__0e38de5e_8a97_4703_aca8_d17d700ad57a \
-    "This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0e38de5e_8a97_4703_aca8_d17d700ad57a */
-#define afw_s__g__0e38de5e_8a97_4703_aca8_d17d700ad57a \
-    (afw_v__g__0e38de5e_8a97_4703_aca8_d17d700ad57a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0e38de5e_8a97_4703_aca8_d17d700ad57a */
-extern const afw_value_string_t \
-    afw_v__g__0e38de5e_8a97_4703_aca8_d17d700ad57a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0e38de5e_8a97_4703_aca8_d17d700ad57a */
-#define afw_z__g__0e38de5e_8a97_4703_aca8_d17d700ad57a \
-    (afw_v__g__0e38de5e_8a97_4703_aca8_d17d700ad57a.internal.s)
-
-
-
-/** @brief define for quoted string _g__0e45bbb2_6203_47cb_944c_cdbc800819a8 */
-#define AFW_Q__g__0e45bbb2_6203_47cb_944c_cdbc800819a8 \
-    "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0e45bbb2_6203_47cb_944c_cdbc800819a8 */
-#define afw_s__g__0e45bbb2_6203_47cb_944c_cdbc800819a8 \
-    (afw_v__g__0e45bbb2_6203_47cb_944c_cdbc800819a8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0e45bbb2_6203_47cb_944c_cdbc800819a8 */
-extern const afw_value_string_t \
-    afw_v__g__0e45bbb2_6203_47cb_944c_cdbc800819a8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0e45bbb2_6203_47cb_944c_cdbc800819a8 */
-#define afw_z__g__0e45bbb2_6203_47cb_944c_cdbc800819a8 \
-    (afw_v__g__0e45bbb2_6203_47cb_944c_cdbc800819a8.internal.s)
-
-
-
-/** @brief define for quoted string _g__0e99ea5d_2079_476f_9141_efe38712b50c */
-#define AFW_Q__g__0e99ea5d_2079_476f_9141_efe38712b50c \
-    "The name and version of the server software that is answering the client request"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0e99ea5d_2079_476f_9141_efe38712b50c */
-#define afw_s__g__0e99ea5d_2079_476f_9141_efe38712b50c \
-    (afw_v__g__0e99ea5d_2079_476f_9141_efe38712b50c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0e99ea5d_2079_476f_9141_efe38712b50c */
-extern const afw_value_string_t \
-    afw_v__g__0e99ea5d_2079_476f_9141_efe38712b50c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0e99ea5d_2079_476f_9141_efe38712b50c */
-#define afw_z__g__0e99ea5d_2079_476f_9141_efe38712b50c \
-    (afw_v__g__0e99ea5d_2079_476f_9141_efe38712b50c.internal.s)
-
-
-
-/** @brief define for quoted string _g__0f0a3f8e_0563_4d74_a713_e0639de762c8 */
-#define AFW_Q__g__0f0a3f8e_0563_4d74_a713_e0639de762c8 \
-    "This is the runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptor_'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__0f0a3f8e_0563_4d74_a713_e0639de762c8 */
-#define afw_s__g__0f0a3f8e_0563_4d74_a713_e0639de762c8 \
-    (afw_v__g__0f0a3f8e_0563_4d74_a713_e0639de762c8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__0f0a3f8e_0563_4d74_a713_e0639de762c8 */
-extern const afw_value_string_t \
-    afw_v__g__0f0a3f8e_0563_4d74_a713_e0639de762c8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__0f0a3f8e_0563_4d74_a713_e0639de762c8 */
-#define afw_z__g__0f0a3f8e_0563_4d74_a713_e0639de762c8 \
-    (afw_v__g__0f0a3f8e_0563_4d74_a713_e0639de762c8.internal.s)
-
-
-
-/** @brief define for quoted string _g__101ed961_0013_4845_be5e_9071ce14bfa8 */
-#define AFW_Q__g__101ed961_0013_4845_be5e_9071ce14bfa8 \
-    "(\\n   object object /* The object to return. */\\n): boolean /* true if no more objects can be returned. */"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__101ed961_0013_4845_be5e_9071ce14bfa8 */
-#define afw_s__g__101ed961_0013_4845_be5e_9071ce14bfa8 \
-    (afw_v__g__101ed961_0013_4845_be5e_9071ce14bfa8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__101ed961_0013_4845_be5e_9071ce14bfa8 */
-extern const afw_value_string_t \
-    afw_v__g__101ed961_0013_4845_be5e_9071ce14bfa8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__101ed961_0013_4845_be5e_9071ce14bfa8 */
-#define afw_z__g__101ed961_0013_4845_be5e_9071ce14bfa8 \
-    (afw_v__g__101ed961_0013_4845_be5e_9071ce14bfa8.internal.s)
-
-
-
-/** @brief define for quoted string _g__109ba76d_a193_4ba3_b09e_4ce00d976949 */
-#define AFW_Q__g__109ba76d_a193_4ba3_b09e_4ce00d976949 \
-    "The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__109ba76d_a193_4ba3_b09e_4ce00d976949 */
-#define afw_s__g__109ba76d_a193_4ba3_b09e_4ce00d976949 \
-    (afw_v__g__109ba76d_a193_4ba3_b09e_4ce00d976949.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__109ba76d_a193_4ba3_b09e_4ce00d976949 */
-extern const afw_value_string_t \
-    afw_v__g__109ba76d_a193_4ba3_b09e_4ce00d976949;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__109ba76d_a193_4ba3_b09e_4ce00d976949 */
-#define afw_z__g__109ba76d_a193_4ba3_b09e_4ce00d976949 \
-    (afw_v__g__109ba76d_a193_4ba3_b09e_4ce00d976949.internal.s)
-
-
-
-/** @brief define for quoted string _g__11863448_19e2_405a_82b2_b37e1202ed3f */
-#define AFW_Q__g__11863448_19e2_405a_82b2_b37e1202ed3f \
-    "Adaptive Framework configuration component for type=log logType=standard. This type of log writes log messages to stdout."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__11863448_19e2_405a_82b2_b37e1202ed3f */
-#define afw_s__g__11863448_19e2_405a_82b2_b37e1202ed3f \
-    (afw_v__g__11863448_19e2_405a_82b2_b37e1202ed3f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__11863448_19e2_405a_82b2_b37e1202ed3f */
-extern const afw_value_string_t \
-    afw_v__g__11863448_19e2_405a_82b2_b37e1202ed3f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__11863448_19e2_405a_82b2_b37e1202ed3f */
-#define afw_z__g__11863448_19e2_405a_82b2_b37e1202ed3f \
-    (afw_v__g__11863448_19e2_405a_82b2_b37e1202ed3f.internal.s)
-
-
-
-/** @brief define for quoted string _g__123001f1_f63a_46d6_aff8_389d2b35e872 */
-#define AFW_Q__g__123001f1_f63a_46d6_aff8_389d2b35e872 \
-    "This is interface used to set properties and meta of an adaptive object.\n      See interface afw_object method get_object_setter for more information."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__123001f1_f63a_46d6_aff8_389d2b35e872 */
-#define afw_s__g__123001f1_f63a_46d6_aff8_389d2b35e872 \
-    (afw_v__g__123001f1_f63a_46d6_aff8_389d2b35e872.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__123001f1_f63a_46d6_aff8_389d2b35e872 */
-extern const afw_value_string_t \
-    afw_v__g__123001f1_f63a_46d6_aff8_389d2b35e872;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__123001f1_f63a_46d6_aff8_389d2b35e872 */
-#define afw_z__g__123001f1_f63a_46d6_aff8_389d2b35e872 \
-    (afw_v__g__123001f1_f63a_46d6_aff8_389d2b35e872.internal.s)
-
-
-
-/** @brief define for quoted string _g__12d00478_3604_4777_a363_647eb9e76da5 */
-#define AFW_Q__g__12d00478_3604_4777_a363_647eb9e76da5 \
-    "These function are related to data type array.\n\nThe '<array>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__12d00478_3604_4777_a363_647eb9e76da5 */
-#define afw_s__g__12d00478_3604_4777_a363_647eb9e76da5 \
-    (afw_v__g__12d00478_3604_4777_a363_647eb9e76da5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__12d00478_3604_4777_a363_647eb9e76da5 */
-extern const afw_value_string_t \
-    afw_v__g__12d00478_3604_4777_a363_647eb9e76da5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__12d00478_3604_4777_a363_647eb9e76da5 */
-#define afw_z__g__12d00478_3604_4777_a363_647eb9e76da5 \
-    (afw_v__g__12d00478_3604_4777_a363_647eb9e76da5.internal.s)
-
-
-
-/** @brief define for quoted string _g__131e3415_675c_4aa6_aea1_656c2dea1df3 */
-#define AFW_Q__g__131e3415_675c_4aa6_aea1_656c2dea1df3 \
-    "This is minimum length of the to_string() for this value. If not specified, there is no minimum length."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__131e3415_675c_4aa6_aea1_656c2dea1df3 */
-#define afw_s__g__131e3415_675c_4aa6_aea1_656c2dea1df3 \
-    (afw_v__g__131e3415_675c_4aa6_aea1_656c2dea1df3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__131e3415_675c_4aa6_aea1_656c2dea1df3 */
-extern const afw_value_string_t \
-    afw_v__g__131e3415_675c_4aa6_aea1_656c2dea1df3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__131e3415_675c_4aa6_aea1_656c2dea1df3 */
-#define afw_z__g__131e3415_675c_4aa6_aea1_656c2dea1df3 \
-    (afw_v__g__131e3415_675c_4aa6_aea1_656c2dea1df3.internal.s)
-
-
-
-/** @brief define for quoted string _g__1321f7d6_7186_4554_994b_59a0e8a2b372 */
-#define AFW_Q__g__1321f7d6_7186_4554_994b_59a0e8a2b372 \
-    "The revision of the Common Gateway Interface that the server uses."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1321f7d6_7186_4554_994b_59a0e8a2b372 */
-#define afw_s__g__1321f7d6_7186_4554_994b_59a0e8a2b372 \
-    (afw_v__g__1321f7d6_7186_4554_994b_59a0e8a2b372.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1321f7d6_7186_4554_994b_59a0e8a2b372 */
-extern const afw_value_string_t \
-    afw_v__g__1321f7d6_7186_4554_994b_59a0e8a2b372;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1321f7d6_7186_4554_994b_59a0e8a2b372 */
-#define afw_z__g__1321f7d6_7186_4554_994b_59a0e8a2b372 \
-    (afw_v__g__1321f7d6_7186_4554_994b_59a0e8a2b372.internal.s)
-
-
-
-/** @brief define for quoted string _g__143d10aa_544f_47c3_9f09_727a5547a936 */
-#define AFW_Q__g__143d10aa_544f_47c3_9f09_727a5547a936 \
-    "This is the object type of the labels property of _AdaptiveRuntimeObject_."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__143d10aa_544f_47c3_9f09_727a5547a936 */
-#define afw_s__g__143d10aa_544f_47c3_9f09_727a5547a936 \
-    (afw_v__g__143d10aa_544f_47c3_9f09_727a5547a936.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__143d10aa_544f_47c3_9f09_727a5547a936 */
-extern const afw_value_string_t \
-    afw_v__g__143d10aa_544f_47c3_9f09_727a5547a936;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__143d10aa_544f_47c3_9f09_727a5547a936 */
-#define afw_z__g__143d10aa_544f_47c3_9f09_727a5547a936 \
-    (afw_v__g__143d10aa_544f_47c3_9f09_727a5547a936.internal.s)
-
-
-
-/** @brief define for quoted string _g__14902767_fd3f_4c46_a867_c5ef49b31527 */
-#define AFW_Q__g__14902767_fd3f_4c46_a867_c5ef49b31527 \
-    "The name of the property that is used as the 'description' meta property"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__14902767_fd3f_4c46_a867_c5ef49b31527 */
-#define afw_s__g__14902767_fd3f_4c46_a867_c5ef49b31527 \
-    (afw_v__g__14902767_fd3f_4c46_a867_c5ef49b31527.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__14902767_fd3f_4c46_a867_c5ef49b31527 */
-extern const afw_value_string_t \
-    afw_v__g__14902767_fd3f_4c46_a867_c5ef49b31527;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__14902767_fd3f_4c46_a867_c5ef49b31527 */
-#define afw_z__g__14902767_fd3f_4c46_a867_c5ef49b31527 \
-    (afw_v__g__14902767_fd3f_4c46_a867_c5ef49b31527.internal.s)
-
-
-
-/** @brief define for quoted string _g__14945a89_e8e2_43cc_9613_2ec71c6af3ec */
-#define AFW_Q__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec \
-    "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec */
-#define afw_s__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec \
-    (afw_v__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec */
-extern const afw_value_string_t \
-    afw_v__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec */
-#define afw_z__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec \
-    (afw_v__g__14945a89_e8e2_43cc_9613_2ec71c6af3ec.internal.s)
-
-
-
-/** @brief define for quoted string _g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca */
-#define AFW_Q__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca \
-    "This is the relative path in the repository for this source directory. This defaults to the corresponding 'srcdirs' property name."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca */
-#define afw_s__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca \
-    (afw_v__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca */
-extern const afw_value_string_t \
-    afw_v__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca */
-#define afw_z__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca \
-    (afw_v__g__155566da_6b7a_4c5a_8ce0_12b2a1ba89ca.internal.s)
-
-
-
-/** @brief define for quoted string _g__16b51cf6_f79a_4407_beab_3f2462cb1f4d */
-#define AFW_Q__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d \
-    "If this property is specified, a '/' followed by adaptorId is prepended to the path passed to process request if it does not already have that prefix."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d */
-#define afw_s__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d \
-    (afw_v__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d */
-extern const afw_value_string_t \
-    afw_v__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d */
-#define afw_z__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d \
-    (afw_v__g__16b51cf6_f79a_4407_beab_3f2462cb1f4d.internal.s)
-
-
-
-/** @brief define for quoted string _g__16b91576_050f_4cc9_9b0c_4de3ee20c125 */
-#define AFW_Q__g__16b91576_050f_4cc9_9b0c_4de3ee20c125 \
-    "This is the label in the C source of the polymorphic execute function used for this function."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__16b91576_050f_4cc9_9b0c_4de3ee20c125 */
-#define afw_s__g__16b91576_050f_4cc9_9b0c_4de3ee20c125 \
-    (afw_v__g__16b91576_050f_4cc9_9b0c_4de3ee20c125.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__16b91576_050f_4cc9_9b0c_4de3ee20c125 */
-extern const afw_value_string_t \
-    afw_v__g__16b91576_050f_4cc9_9b0c_4de3ee20c125;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__16b91576_050f_4cc9_9b0c_4de3ee20c125 */
-#define afw_z__g__16b91576_050f_4cc9_9b0c_4de3ee20c125 \
-    (afw_v__g__16b91576_050f_4cc9_9b0c_4de3ee20c125.internal.s)
-
-
-
-/** @brief define for quoted string _g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 */
-#define AFW_Q__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 \
-    "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 */
-#define afw_s__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 \
-    (afw_v__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 */
-extern const afw_value_string_t \
-    afw_v__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 */
-#define afw_z__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5 \
-    (afw_v__g__19573a2b_e5ba_4280_8b9a_91d9eff47de5.internal.s)
-
-
-
-/** @brief define for quoted string _g__19d14044_9ccd_40a1_956d_703288f3904d */
-#define AFW_Q__g__19d14044_9ccd_40a1_956d_703288f3904d \
-    "If false this object can not be deleted. If true, the object can be deleted unless denied by authorization policy or by the adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__19d14044_9ccd_40a1_956d_703288f3904d */
-#define afw_s__g__19d14044_9ccd_40a1_956d_703288f3904d \
-    (afw_v__g__19d14044_9ccd_40a1_956d_703288f3904d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__19d14044_9ccd_40a1_956d_703288f3904d */
-extern const afw_value_string_t \
-    afw_v__g__19d14044_9ccd_40a1_956d_703288f3904d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__19d14044_9ccd_40a1_956d_703288f3904d */
-#define afw_z__g__19d14044_9ccd_40a1_956d_703288f3904d \
-    (afw_v__g__19d14044_9ccd_40a1_956d_703288f3904d.internal.s)
-
-
-
-/** @brief define for quoted string _g__1a06400a_2e17_4436_a636_bcd9deb71272 */
-#define AFW_Q__g__1a06400a_2e17_4436_a636_bcd9deb71272 \
-    "This is essential information that is needed for this AFW package by afwdev and related development tools."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1a06400a_2e17_4436_a636_bcd9deb71272 */
-#define afw_s__g__1a06400a_2e17_4436_a636_bcd9deb71272 \
-    (afw_v__g__1a06400a_2e17_4436_a636_bcd9deb71272.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1a06400a_2e17_4436_a636_bcd9deb71272 */
-extern const afw_value_string_t \
-    afw_v__g__1a06400a_2e17_4436_a636_bcd9deb71272;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1a06400a_2e17_4436_a636_bcd9deb71272 */
-#define afw_z__g__1a06400a_2e17_4436_a636_bcd9deb71272 \
-    (afw_v__g__1a06400a_2e17_4436_a636_bcd9deb71272.internal.s)
-
-
-
-/** @brief define for quoted string _g__1a90a109_b938_4b66_9c10_87e463f9598e */
-#define AFW_Q__g__1a90a109_b938_4b66_9c10_87e463f9598e \
-    "This strings represents a stateful token, used by the reconcile_object() method, to perform a reconcile request on an object that has been obtained in reconcilable mode."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1a90a109_b938_4b66_9c10_87e463f9598e */
-#define afw_s__g__1a90a109_b938_4b66_9c10_87e463f9598e \
-    (afw_v__g__1a90a109_b938_4b66_9c10_87e463f9598e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1a90a109_b938_4b66_9c10_87e463f9598e */
-extern const afw_value_string_t \
-    afw_v__g__1a90a109_b938_4b66_9c10_87e463f9598e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1a90a109_b938_4b66_9c10_87e463f9598e */
-#define afw_z__g__1a90a109_b938_4b66_9c10_87e463f9598e \
-    (afw_v__g__1a90a109_b938_4b66_9c10_87e463f9598e.internal.s)
-
-
-
-/** @brief define for quoted string _g__1abbe166_6bf1_4da4_8b57_12704e6d668e */
-#define AFW_Q__g__1abbe166_6bf1_4da4_8b57_12704e6d668e \
-    "This is only valid for runtime object types. These are objects that are accessed with adaptorId afw. See afw_runtime.h for more information."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1abbe166_6bf1_4da4_8b57_12704e6d668e */
-#define afw_s__g__1abbe166_6bf1_4da4_8b57_12704e6d668e \
-    (afw_v__g__1abbe166_6bf1_4da4_8b57_12704e6d668e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1abbe166_6bf1_4da4_8b57_12704e6d668e */
-extern const afw_value_string_t \
-    afw_v__g__1abbe166_6bf1_4da4_8b57_12704e6d668e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1abbe166_6bf1_4da4_8b57_12704e6d668e */
-#define afw_z__g__1abbe166_6bf1_4da4_8b57_12704e6d668e \
-    (afw_v__g__1abbe166_6bf1_4da4_8b57_12704e6d668e.internal.s)
-
-
-
-/** @brief define for quoted string _g__1ad123d3_5260_40be_8e85_64f645e7fa68 */
-#define AFW_Q__g__1ad123d3_5260_40be_8e85_64f645e7fa68 \
-    "Indicates that meta path should be included for entity objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1ad123d3_5260_40be_8e85_64f645e7fa68 */
-#define afw_s__g__1ad123d3_5260_40be_8e85_64f645e7fa68 \
-    (afw_v__g__1ad123d3_5260_40be_8e85_64f645e7fa68.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1ad123d3_5260_40be_8e85_64f645e7fa68 */
-extern const afw_value_string_t \
-    afw_v__g__1ad123d3_5260_40be_8e85_64f645e7fa68;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1ad123d3_5260_40be_8e85_64f645e7fa68 */
-#define afw_z__g__1ad123d3_5260_40be_8e85_64f645e7fa68 \
-    (afw_v__g__1ad123d3_5260_40be_8e85_64f645e7fa68.internal.s)
-
-
-
-/** @brief define for quoted string _g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf */
-#define AFW_Q__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf \
-    "Indicates that parameter can be undefined (NULL) even if not optional."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf */
-#define afw_s__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf \
-    (afw_v__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf */
-extern const afw_value_string_t \
-    afw_v__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf */
-#define afw_z__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf \
-    (afw_v__g__1ae24d1b_f15f_4007_b4d7_0ebd20941daf.internal.s)
-
-
-
-/** @brief define for quoted string _g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 */
-#define AFW_Q__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 \
-    "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 */
-#define afw_s__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 \
-    (afw_v__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 */
-extern const afw_value_string_t \
-    afw_v__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 */
-#define afw_z__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167 \
-    (afw_v__g__1b6a3318_5ce9_4dcd_b6a6_28301d13d167.internal.s)
-
-
-
-/** @brief define for quoted string _g__1c412066_c456_4f91_8ae6_6dffa3b874ca */
-#define AFW_Q__g__1c412066_c456_4f91_8ae6_6dffa3b874ca \
-    "These are functions that support compiled scripts at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1c412066_c456_4f91_8ae6_6dffa3b874ca */
-#define afw_s__g__1c412066_c456_4f91_8ae6_6dffa3b874ca \
-    (afw_v__g__1c412066_c456_4f91_8ae6_6dffa3b874ca.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1c412066_c456_4f91_8ae6_6dffa3b874ca */
-extern const afw_value_string_t \
-    afw_v__g__1c412066_c456_4f91_8ae6_6dffa3b874ca;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1c412066_c456_4f91_8ae6_6dffa3b874ca */
-#define afw_z__g__1c412066_c456_4f91_8ae6_6dffa3b874ca \
-    (afw_v__g__1c412066_c456_4f91_8ae6_6dffa3b874ca.internal.s)
-
-
-
-/** @brief define for quoted string _g__1cb63a65_d456_4705_9033_48165a3063f1 */
-#define AFW_Q__g__1cb63a65_d456_4705_9033_48165a3063f1 \
-    "Id used to identify this peer. This may also be referred to as the consumerId or producerId, depending on the perspective."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1cb63a65_d456_4705_9033_48165a3063f1 */
-#define afw_s__g__1cb63a65_d456_4705_9033_48165a3063f1 \
-    (afw_v__g__1cb63a65_d456_4705_9033_48165a3063f1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1cb63a65_d456_4705_9033_48165a3063f1 */
-extern const afw_value_string_t \
-    afw_v__g__1cb63a65_d456_4705_9033_48165a3063f1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1cb63a65_d456_4705_9033_48165a3063f1 */
-#define afw_z__g__1cb63a65_d456_4705_9033_48165a3063f1 \
-    (afw_v__g__1cb63a65_d456_4705_9033_48165a3063f1.internal.s)
-
-
-
-/** @brief define for quoted string _g__1cbc085f_3c2d_409b_a177_0be544a89ad3 */
-#define AFW_Q__g__1cbc085f_3c2d_409b_a177_0be544a89ad3 \
-    "Indicates that meta path should be included for embedded objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1cbc085f_3c2d_409b_a177_0be544a89ad3 */
-#define afw_s__g__1cbc085f_3c2d_409b_a177_0be544a89ad3 \
-    (afw_v__g__1cbc085f_3c2d_409b_a177_0be544a89ad3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1cbc085f_3c2d_409b_a177_0be544a89ad3 */
-extern const afw_value_string_t \
-    afw_v__g__1cbc085f_3c2d_409b_a177_0be544a89ad3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1cbc085f_3c2d_409b_a177_0be544a89ad3 */
-#define afw_z__g__1cbc085f_3c2d_409b_a177_0be544a89ad3 \
-    (afw_v__g__1cbc085f_3c2d_409b_a177_0be544a89ad3.internal.s)
-
-
-
-/** @brief define for quoted string _g__1ce96df5_4760_42ac_883c_fff034c1a5a0 */
-#define AFW_Q__g__1ce96df5_4760_42ac_883c_fff034c1a5a0 \
-    "This will cause the errors in object meta to include additional debug information. If not specified, only the message will be included."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1ce96df5_4760_42ac_883c_fff034c1a5a0 */
-#define afw_s__g__1ce96df5_4760_42ac_883c_fff034c1a5a0 \
-    (afw_v__g__1ce96df5_4760_42ac_883c_fff034c1a5a0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1ce96df5_4760_42ac_883c_fff034c1a5a0 */
-extern const afw_value_string_t \
-    afw_v__g__1ce96df5_4760_42ac_883c_fff034c1a5a0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1ce96df5_4760_42ac_883c_fff034c1a5a0 */
-#define afw_z__g__1ce96df5_4760_42ac_883c_fff034c1a5a0 \
-    (afw_v__g__1ce96df5_4760_42ac_883c_fff034c1a5a0.internal.s)
-
-
-
-/** @brief define for quoted string _g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 */
-#define AFW_Q__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 \
-    "This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adaptors when doing model processing."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 */
-#define afw_s__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 \
-    (afw_v__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 */
-extern const afw_value_string_t \
-    afw_v__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 */
-#define afw_z__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410 \
-    (afw_v__g__1d0595e4_4a6c_43f3_84ba_93e5913ae410.internal.s)
-
-
-
-/** @brief define for quoted string _g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 */
-#define AFW_Q__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 \
-    "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template value is evaluated at the time the adaptor is started."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 */
-#define afw_s__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 \
-    (afw_v__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 */
-extern const afw_value_string_t \
-    afw_v__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 */
-#define afw_z__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6 \
-    (afw_v__g__1d0d0a14_cee2_4436_ad7e_16b291b49fa6.internal.s)
-
-
-
-/** @brief define for quoted string _g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d */
-#define AFW_Q__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d \
-    "If true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d */
-#define afw_s__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d \
-    (afw_v__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d */
-extern const afw_value_string_t \
-    afw_v__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d */
-#define afw_z__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d \
-    (afw_v__g__1dd3424e_7ac2_480e_a20c_2f14f8b56b5d.internal.s)
-
-
-
-/** @brief define for quoted string _g__1e5350c5_e19c_4926_a1e8_76e014caf384 */
-#define AFW_Q__g__1e5350c5_e19c_4926_a1e8_76e014caf384 \
-    "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1e5350c5_e19c_4926_a1e8_76e014caf384 */
-#define afw_s__g__1e5350c5_e19c_4926_a1e8_76e014caf384 \
-    (afw_v__g__1e5350c5_e19c_4926_a1e8_76e014caf384.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1e5350c5_e19c_4926_a1e8_76e014caf384 */
-extern const afw_value_string_t \
-    afw_v__g__1e5350c5_e19c_4926_a1e8_76e014caf384;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1e5350c5_e19c_4926_a1e8_76e014caf384 */
-#define afw_z__g__1e5350c5_e19c_4926_a1e8_76e014caf384 \
-    (afw_v__g__1e5350c5_e19c_4926_a1e8_76e014caf384.internal.s)
-
-
-
-/** @brief define for quoted string _g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 */
-#define AFW_Q__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 \
-    "Optional message associated with status. In the case of status=error, this is the error message."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 */
-#define afw_s__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 \
-    (afw_v__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 */
-extern const afw_value_string_t \
-    afw_v__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 */
-#define afw_z__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3 \
-    (afw_v__g__1e779d83_8c27_481d_9ff8_6bc09b1378d3.internal.s)
-
-
-
-/** @brief define for quoted string _g__1e785149_5985_44ff_b638_af6a6debe713 */
-#define AFW_Q__g__1e785149_5985_44ff_b638_af6a6debe713 \
-    "Object type for adaptive request properties. This includes most of the environment variables that are supplied by the associated server."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__1e785149_5985_44ff_b638_af6a6debe713 */
-#define afw_s__g__1e785149_5985_44ff_b638_af6a6debe713 \
-    (afw_v__g__1e785149_5985_44ff_b638_af6a6debe713.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__1e785149_5985_44ff_b638_af6a6debe713 */
-extern const afw_value_string_t \
-    afw_v__g__1e785149_5985_44ff_b638_af6a6debe713;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1e785149_5985_44ff_b638_af6a6debe713 */
-#define afw_z__g__1e785149_5985_44ff_b638_af6a6debe713 \
-    (afw_v__g__1e785149_5985_44ff_b638_af6a6debe713.internal.s)
-
-
-
-/** @brief define for quoted string _g__2047d985_d212_4ab6_b757_a920a540092d */
-#define AFW_Q__g__2047d985_d212_4ab6_b757_a920a540092d \
-    "Adaptive Framework configuration component for type=log. This object type is the parent of an _AdaptiveObjectType_ that contains logType specific properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2047d985_d212_4ab6_b757_a920a540092d */
-#define afw_s__g__2047d985_d212_4ab6_b757_a920a540092d \
-    (afw_v__g__2047d985_d212_4ab6_b757_a920a540092d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2047d985_d212_4ab6_b757_a920a540092d */
-extern const afw_value_string_t \
-    afw_v__g__2047d985_d212_4ab6_b757_a920a540092d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2047d985_d212_4ab6_b757_a920a540092d */
-#define afw_z__g__2047d985_d212_4ab6_b757_a920a540092d \
-    (afw_v__g__2047d985_d212_4ab6_b757_a920a540092d.internal.s)
-
-
-
-/** @brief define for quoted string _g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 */
-#define AFW_Q__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 \
-    "Optional adaptorId of the running adaptor that contains configuration related objects"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 */
-#define afw_s__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 \
-    (afw_v__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 */
-extern const afw_value_string_t \
-    afw_v__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 */
-#define afw_z__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2 \
-    (afw_v__g__210f65ca_d38e_4eca_bc80_ddcfd7bb7ba2.internal.s)
-
-
-
-/** @brief define for quoted string _g__212b88be_0bf3_429f_adf9_3cd4752f8762 */
-#define AFW_Q__g__212b88be_0bf3_429f_adf9_3cd4752f8762 \
-    "Specify true to deny access to resources when notApplicable is the final result of other checks."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__212b88be_0bf3_429f_adf9_3cd4752f8762 */
-#define afw_s__g__212b88be_0bf3_429f_adf9_3cd4752f8762 \
-    (afw_v__g__212b88be_0bf3_429f_adf9_3cd4752f8762.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__212b88be_0bf3_429f_adf9_3cd4752f8762 */
-extern const afw_value_string_t \
-    afw_v__g__212b88be_0bf3_429f_adf9_3cd4752f8762;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__212b88be_0bf3_429f_adf9_3cd4752f8762 */
-#define afw_z__g__212b88be_0bf3_429f_adf9_3cd4752f8762 \
-    (afw_v__g__212b88be_0bf3_429f_adf9_3cd4752f8762.internal.s)
-
-
-
-/** @brief define for quoted string _g__22926da9_a843_4081_8eef_2c7a8586b1dd */
-#define AFW_Q__g__22926da9_a843_4081_8eef_2c7a8586b1dd \
-    "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__22926da9_a843_4081_8eef_2c7a8586b1dd */
-#define afw_s__g__22926da9_a843_4081_8eef_2c7a8586b1dd \
-    (afw_v__g__22926da9_a843_4081_8eef_2c7a8586b1dd.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__22926da9_a843_4081_8eef_2c7a8586b1dd */
-extern const afw_value_string_t \
-    afw_v__g__22926da9_a843_4081_8eef_2c7a8586b1dd;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__22926da9_a843_4081_8eef_2c7a8586b1dd */
-#define afw_z__g__22926da9_a843_4081_8eef_2c7a8586b1dd \
-    (afw_v__g__22926da9_a843_4081_8eef_2c7a8586b1dd.internal.s)
-
-
-
-/** @brief define for quoted string _g__22c90792_9823_4cc7_9233_430e98339ee9 */
-#define AFW_Q__g__22c90792_9823_4cc7_9233_430e98339ee9 \
-    "These are errors that can possibly be thrown by this function."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__22c90792_9823_4cc7_9233_430e98339ee9 */
-#define afw_s__g__22c90792_9823_4cc7_9233_430e98339ee9 \
-    (afw_v__g__22c90792_9823_4cc7_9233_430e98339ee9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__22c90792_9823_4cc7_9233_430e98339ee9 */
-extern const afw_value_string_t \
-    afw_v__g__22c90792_9823_4cc7_9233_430e98339ee9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__22c90792_9823_4cc7_9233_430e98339ee9 */
-#define afw_z__g__22c90792_9823_4cc7_9233_430e98339ee9 \
-    (afw_v__g__22c90792_9823_4cc7_9233_430e98339ee9.internal.s)
-
-
-
-/** @brief define for quoted string _g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 */
-#define AFW_Q__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 \
-    "A provisioning peer consumes and/or produces adaptive journal entries."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 */
-#define afw_s__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 \
-    (afw_v__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 */
-extern const afw_value_string_t \
-    afw_v__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 */
-#define afw_z__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35 \
-    (afw_v__g__230aeb44_b6b2_4410_b2b4_6d247ce55c35.internal.s)
-
-
-
-/** @brief define for quoted string _g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 */
-#define AFW_Q__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 \
-    "The URL path (e.g., /cgi/program.cgi) of the script being executed"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 */
-#define afw_s__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 \
-    (afw_v__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 */
-extern const afw_value_string_t \
-    afw_v__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 */
-#define afw_z__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677 \
-    (afw_v__g__23b5ba22_d37e_4edb_8757_3b8fb11ef677.internal.s)
-
-
-
-/** @brief define for quoted string _g__24d7602e_1dde_4c26_aae4_2802f72c330a */
-#define AFW_Q__g__24d7602e_1dde_4c26_aae4_2802f72c330a \
-    "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__24d7602e_1dde_4c26_aae4_2802f72c330a */
-#define afw_s__g__24d7602e_1dde_4c26_aae4_2802f72c330a \
-    (afw_v__g__24d7602e_1dde_4c26_aae4_2802f72c330a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__24d7602e_1dde_4c26_aae4_2802f72c330a */
-extern const afw_value_string_t \
-    afw_v__g__24d7602e_1dde_4c26_aae4_2802f72c330a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__24d7602e_1dde_4c26_aae4_2802f72c330a */
-#define afw_z__g__24d7602e_1dde_4c26_aae4_2802f72c330a \
-    (afw_v__g__24d7602e_1dde_4c26_aae4_2802f72c330a.internal.s)
-
-
-
-/** @brief define for quoted string _g__24f70aa0_766c_429c_8b49_85ca6c3a490f */
-#define AFW_Q__g__24f70aa0_766c_429c_8b49_85ca6c3a490f \
-    "Given exactly the same parameter values, this function will always return the same result"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__24f70aa0_766c_429c_8b49_85ca6c3a490f */
-#define afw_s__g__24f70aa0_766c_429c_8b49_85ca6c3a490f \
-    (afw_v__g__24f70aa0_766c_429c_8b49_85ca6c3a490f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__24f70aa0_766c_429c_8b49_85ca6c3a490f */
-extern const afw_value_string_t \
-    afw_v__g__24f70aa0_766c_429c_8b49_85ca6c3a490f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__24f70aa0_766c_429c_8b49_85ca6c3a490f */
-#define afw_z__g__24f70aa0_766c_429c_8b49_85ca6c3a490f \
-    (afw_v__g__24f70aa0_766c_429c_8b49_85ca6c3a490f.internal.s)
-
-
-
-/** @brief define for quoted string _g__25427aad_9f63_430b_902d_a6781a486937 */
-#define AFW_Q__g__25427aad_9f63_430b_902d_a6781a486937 \
-    "This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__25427aad_9f63_430b_902d_a6781a486937 */
-#define afw_s__g__25427aad_9f63_430b_902d_a6781a486937 \
-    (afw_v__g__25427aad_9f63_430b_902d_a6781a486937.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__25427aad_9f63_430b_902d_a6781a486937 */
-extern const afw_value_string_t \
-    afw_v__g__25427aad_9f63_430b_902d_a6781a486937;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__25427aad_9f63_430b_902d_a6781a486937 */
-#define afw_z__g__25427aad_9f63_430b_902d_a6781a486937 \
-    (afw_v__g__25427aad_9f63_430b_902d_a6781a486937.internal.s)
-
-
-
-/** @brief define for quoted string _g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d */
-#define AFW_Q__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d \
-    "This object can be changed, unless denied by authorization policy or by the adaptor"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d */
-#define afw_s__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d \
-    (afw_v__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d */
-extern const afw_value_string_t \
-    afw_v__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d */
-#define afw_z__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d \
-    (afw_v__g__25ab75cf_0fdb_4a23_a84a_73f65272ba4d.internal.s)
-
-
-
-/** @brief define for quoted string _g__270d1595_2dbd_4183_a50c_618dd71b78f3 */
-#define AFW_Q__g__270d1595_2dbd_4183_a50c_618dd71b78f3 \
-    "This is the function's description, used for documentation purposes."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__270d1595_2dbd_4183_a50c_618dd71b78f3 */
-#define afw_s__g__270d1595_2dbd_4183_a50c_618dd71b78f3 \
-    (afw_v__g__270d1595_2dbd_4183_a50c_618dd71b78f3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__270d1595_2dbd_4183_a50c_618dd71b78f3 */
-extern const afw_value_string_t \
-    afw_v__g__270d1595_2dbd_4183_a50c_618dd71b78f3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__270d1595_2dbd_4183_a50c_618dd71b78f3 */
-#define afw_z__g__270d1595_2dbd_4183_a50c_618dd71b78f3 \
-    (afw_v__g__270d1595_2dbd_4183_a50c_618dd71b78f3.internal.s)
-
-
-
-/** @brief define for quoted string _g__27ba83a9_c560_493c_987e_20f1449cf8ba */
-#define AFW_Q__g__27ba83a9_c560_493c_987e_20f1449cf8ba \
-    "This is a object with a property with a name of the objectType for each _AdaptiveObjectType_ used by this object and all of its embedded objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__27ba83a9_c560_493c_987e_20f1449cf8ba */
-#define afw_s__g__27ba83a9_c560_493c_987e_20f1449cf8ba \
-    (afw_v__g__27ba83a9_c560_493c_987e_20f1449cf8ba.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__27ba83a9_c560_493c_987e_20f1449cf8ba */
-extern const afw_value_string_t \
-    afw_v__g__27ba83a9_c560_493c_987e_20f1449cf8ba;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__27ba83a9_c560_493c_987e_20f1449cf8ba */
-#define afw_z__g__27ba83a9_c560_493c_987e_20f1449cf8ba \
-    (afw_v__g__27ba83a9_c560_493c_987e_20f1449cf8ba.internal.s)
-
-
-
-/** @brief define for quoted string _g__2895c944_2779_48ac_9102_7653279f480c */
-#define AFW_Q__g__2895c944_2779_48ac_9102_7653279f480c \
-    "When the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2895c944_2779_48ac_9102_7653279f480c */
-#define afw_s__g__2895c944_2779_48ac_9102_7653279f480c \
-    (afw_v__g__2895c944_2779_48ac_9102_7653279f480c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2895c944_2779_48ac_9102_7653279f480c */
-extern const afw_value_string_t \
-    afw_v__g__2895c944_2779_48ac_9102_7653279f480c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2895c944_2779_48ac_9102_7653279f480c */
-#define afw_z__g__2895c944_2779_48ac_9102_7653279f480c \
-    (afw_v__g__2895c944_2779_48ac_9102_7653279f480c.internal.s)
-
-
-
-/** @brief define for quoted string _g__29d823c5_e8a7_4b25_8c7a_783b18430a47 */
-#define AFW_Q__g__29d823c5_e8a7_4b25_8c7a_783b18430a47 \
-    "These function are related to data type anyURI.\n\nThe '<anyURI>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__29d823c5_e8a7_4b25_8c7a_783b18430a47 */
-#define afw_s__g__29d823c5_e8a7_4b25_8c7a_783b18430a47 \
-    (afw_v__g__29d823c5_e8a7_4b25_8c7a_783b18430a47.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__29d823c5_e8a7_4b25_8c7a_783b18430a47 */
-extern const afw_value_string_t \
-    afw_v__g__29d823c5_e8a7_4b25_8c7a_783b18430a47;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__29d823c5_e8a7_4b25_8c7a_783b18430a47 */
-#define afw_z__g__29d823c5_e8a7_4b25_8c7a_783b18430a47 \
-    (afw_v__g__29d823c5_e8a7_4b25_8c7a_783b18430a47.internal.s)
-
-
-
-/** @brief define for quoted string _g__2a28ef6a_983a_44af_bfe8_602f8a58d799 */
-#define AFW_Q__g__2a28ef6a_983a_44af_bfe8_602f8a58d799 \
-    "The most recent tag that is reachable from the current Git commit"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2a28ef6a_983a_44af_bfe8_602f8a58d799 */
-#define afw_s__g__2a28ef6a_983a_44af_bfe8_602f8a58d799 \
-    (afw_v__g__2a28ef6a_983a_44af_bfe8_602f8a58d799.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2a28ef6a_983a_44af_bfe8_602f8a58d799 */
-extern const afw_value_string_t \
-    afw_v__g__2a28ef6a_983a_44af_bfe8_602f8a58d799;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2a28ef6a_983a_44af_bfe8_602f8a58d799 */
-#define afw_z__g__2a28ef6a_983a_44af_bfe8_602f8a58d799 \
-    (afw_v__g__2a28ef6a_983a_44af_bfe8_602f8a58d799.internal.s)
-
-
-
-/** @brief define for quoted string _g__2a485f02_d164_419f_a13b_3b038c687593 */
-#define AFW_Q__g__2a485f02_d164_419f_a13b_3b038c687593 \
-    "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2a485f02_d164_419f_a13b_3b038c687593 */
-#define afw_s__g__2a485f02_d164_419f_a13b_3b038c687593 \
-    (afw_v__g__2a485f02_d164_419f_a13b_3b038c687593.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2a485f02_d164_419f_a13b_3b038c687593 */
-extern const afw_value_string_t \
-    afw_v__g__2a485f02_d164_419f_a13b_3b038c687593;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2a485f02_d164_419f_a13b_3b038c687593 */
-#define afw_z__g__2a485f02_d164_419f_a13b_3b038c687593 \
-    (afw_v__g__2a485f02_d164_419f_a13b_3b038c687593.internal.s)
-
-
-
-/** @brief define for quoted string _g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 */
-#define AFW_Q__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 \
-    "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 */
-#define afw_s__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 \
-    (afw_v__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 */
-extern const afw_value_string_t \
-    afw_v__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 */
-#define afw_z__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82 \
-    (afw_v__g__2a489e60_4d1f_4022_9ae0_f7894c0eaf82.internal.s)
-
-
-
-/** @brief define for quoted string _g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 */
-#define AFW_Q__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 \
-    "Defines a Property Type within this Adaptive Model Object Type definition."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 */
-#define afw_s__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 \
-    (afw_v__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 */
-extern const afw_value_string_t \
-    afw_v__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 */
-#define afw_z__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37 \
-    (afw_v__g__2b134cab_dba8_4dfe_b14b_df4bbe1bbf37.internal.s)
-
-
-
-/** @brief define for quoted string _g__2b39181f_962e_4a6a_a790_e242595c2d75 */
-#define AFW_Q__g__2b39181f_962e_4a6a_a790_e242595c2d75 \
-    "The name of the property in an instance that is used as the 'description' property in the meta for instances of this object type. If not specified, no description will be available."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2b39181f_962e_4a6a_a790_e242595c2d75 */
-#define afw_s__g__2b39181f_962e_4a6a_a790_e242595c2d75 \
-    (afw_v__g__2b39181f_962e_4a6a_a790_e242595c2d75.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2b39181f_962e_4a6a_a790_e242595c2d75 */
-extern const afw_value_string_t \
-    afw_v__g__2b39181f_962e_4a6a_a790_e242595c2d75;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2b39181f_962e_4a6a_a790_e242595c2d75 */
-#define afw_z__g__2b39181f_962e_4a6a_a790_e242595c2d75 \
-    (afw_v__g__2b39181f_962e_4a6a_a790_e242595c2d75.internal.s)
-
-
-
-/** @brief define for quoted string _g__2b5ce94b_67fe_4747_8a07_00227f565b63 */
-#define AFW_Q__g__2b5ce94b_67fe_4747_8a07_00227f565b63 \
-    "This is the value of appropriate conf subtype property based on the conf type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2b5ce94b_67fe_4747_8a07_00227f565b63 */
-#define afw_s__g__2b5ce94b_67fe_4747_8a07_00227f565b63 \
-    (afw_v__g__2b5ce94b_67fe_4747_8a07_00227f565b63.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2b5ce94b_67fe_4747_8a07_00227f565b63 */
-extern const afw_value_string_t \
-    afw_v__g__2b5ce94b_67fe_4747_8a07_00227f565b63;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2b5ce94b_67fe_4747_8a07_00227f565b63 */
-#define afw_z__g__2b5ce94b_67fe_4747_8a07_00227f565b63 \
-    (afw_v__g__2b5ce94b_67fe_4747_8a07_00227f565b63.internal.s)
-
-
-
-/** @brief define for quoted string _g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 */
-#define AFW_Q__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 \
-    "This is the URI that adaptive framework considers the normalized form of the URI. If the URI starts with a single slash, the URI is a local path within the associated AFW instance; otherwise, it is a full URI."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 */
-#define afw_s__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 \
-    (afw_v__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 */
-extern const afw_value_string_t \
-    afw_v__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 */
-#define afw_z__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47 \
-    (afw_v__g__2bd0f03b_8f14_4bca_870f_f8efbf37de47.internal.s)
-
-
-
-/** @brief define for quoted string _g__2cc87bf8_2630_4564_a1bd_58465ee1b898 */
-#define AFW_Q__g__2cc87bf8_2630_4564_a1bd_58465ee1b898 \
-    "The reference count is the total number of references that are currently being used for this adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2cc87bf8_2630_4564_a1bd_58465ee1b898 */
-#define afw_s__g__2cc87bf8_2630_4564_a1bd_58465ee1b898 \
-    (afw_v__g__2cc87bf8_2630_4564_a1bd_58465ee1b898.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2cc87bf8_2630_4564_a1bd_58465ee1b898 */
-extern const afw_value_string_t \
-    afw_v__g__2cc87bf8_2630_4564_a1bd_58465ee1b898;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2cc87bf8_2630_4564_a1bd_58465ee1b898 */
-#define afw_z__g__2cc87bf8_2630_4564_a1bd_58465ee1b898 \
-    (afw_v__g__2cc87bf8_2630_4564_a1bd_58465ee1b898.internal.s)
-
-
-
-/** @brief define for quoted string _g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 */
-#define AFW_Q__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 \
-    "This is the URI where this value is inherited from. This property is added by object option composite."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 */
-#define afw_s__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 \
-    (afw_v__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 */
-extern const afw_value_string_t \
-    afw_v__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 */
-#define afw_z__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1 \
-    (afw_v__g__2dfa06f7_c9f3_4afa_8c0e_1ae885108df1.internal.s)
-
-
-
-/** @brief define for quoted string _g__2ebed3db_66b1_41c9_857c_6f8951ec2581 */
-#define AFW_Q__g__2ebed3db_66b1_41c9_857c_6f8951ec2581 \
-    "The SSL client certificate verification result. May be NONE, SUCCESS, GENEROUS or FAILED:reason."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2ebed3db_66b1_41c9_857c_6f8951ec2581 */
-#define afw_s__g__2ebed3db_66b1_41c9_857c_6f8951ec2581 \
-    (afw_v__g__2ebed3db_66b1_41c9_857c_6f8951ec2581.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2ebed3db_66b1_41c9_857c_6f8951ec2581 */
-extern const afw_value_string_t \
-    afw_v__g__2ebed3db_66b1_41c9_857c_6f8951ec2581;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2ebed3db_66b1_41c9_857c_6f8951ec2581 */
-#define afw_z__g__2ebed3db_66b1_41c9_857c_6f8951ec2581 \
-    (afw_v__g__2ebed3db_66b1_41c9_857c_6f8951ec2581.internal.s)
-
-
-
-/** @brief define for quoted string _g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 */
-#define AFW_Q__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 \
-    "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 */
-#define afw_s__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 \
-    (afw_v__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 */
-extern const afw_value_string_t \
-    afw_v__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 */
-#define afw_z__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9 \
-    (afw_v__g__2f0e70a5_db0c_4318_999f_2721e7aee9b9.internal.s)
-
-
-
-/** @brief define for quoted string _g__30b1839d_acda_4d7c_b729_98311d623f62 */
-#define AFW_Q__g__30b1839d_acda_4d7c_b729_98311d623f62 \
-    "Indicates that only requested and essential (parentPaths) meta is returned."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__30b1839d_acda_4d7c_b729_98311d623f62 */
-#define afw_s__g__30b1839d_acda_4d7c_b729_98311d623f62 \
-    (afw_v__g__30b1839d_acda_4d7c_b729_98311d623f62.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__30b1839d_acda_4d7c_b729_98311d623f62 */
-extern const afw_value_string_t \
-    afw_v__g__30b1839d_acda_4d7c_b729_98311d623f62;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__30b1839d_acda_4d7c_b729_98311d623f62 */
-#define afw_z__g__30b1839d_acda_4d7c_b729_98311d623f62 \
-    (afw_v__g__30b1839d_acda_4d7c_b729_98311d623f62.internal.s)
-
-
-
-/** @brief define for quoted string _g__311cd81c_d337_4cd8_8473_09e1ccc7321b */
-#define AFW_Q__g__311cd81c_d337_4cd8_8473_09e1ccc7321b \
-    "Indicates that the value accessor is called with a pointer to the struct and a 0 offset."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__311cd81c_d337_4cd8_8473_09e1ccc7321b */
-#define afw_s__g__311cd81c_d337_4cd8_8473_09e1ccc7321b \
-    (afw_v__g__311cd81c_d337_4cd8_8473_09e1ccc7321b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__311cd81c_d337_4cd8_8473_09e1ccc7321b */
-extern const afw_value_string_t \
-    afw_v__g__311cd81c_d337_4cd8_8473_09e1ccc7321b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__311cd81c_d337_4cd8_8473_09e1ccc7321b */
-#define afw_z__g__311cd81c_d337_4cd8_8473_09e1ccc7321b \
-    (afw_v__g__311cd81c_d337_4cd8_8473_09e1ccc7321b.internal.s)
-
-
-
-/** @brief define for quoted string _g__316299d3_dd10_49ae_9b4e_0879b4db2544 */
-#define AFW_Q__g__316299d3_dd10_49ae_9b4e_0879b4db2544 \
-    "This is the subtype property name for instances of this conf type.  For adaptor, this is 'adaptorType'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__316299d3_dd10_49ae_9b4e_0879b4db2544 */
-#define afw_s__g__316299d3_dd10_49ae_9b4e_0879b4db2544 \
-    (afw_v__g__316299d3_dd10_49ae_9b4e_0879b4db2544.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__316299d3_dd10_49ae_9b4e_0879b4db2544 */
-extern const afw_value_string_t \
-    afw_v__g__316299d3_dd10_49ae_9b4e_0879b4db2544;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__316299d3_dd10_49ae_9b4e_0879b4db2544 */
-#define afw_z__g__316299d3_dd10_49ae_9b4e_0879b4db2544 \
-    (afw_v__g__316299d3_dd10_49ae_9b4e_0879b4db2544.internal.s)
-
-
-
-/** @brief define for quoted string _g__31f4f6aa_acd1_4f38_8bda_59304970095c */
-#define AFW_Q__g__31f4f6aa_acd1_4f38_8bda_59304970095c \
-    "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__31f4f6aa_acd1_4f38_8bda_59304970095c */
-#define afw_s__g__31f4f6aa_acd1_4f38_8bda_59304970095c \
-    (afw_v__g__31f4f6aa_acd1_4f38_8bda_59304970095c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__31f4f6aa_acd1_4f38_8bda_59304970095c */
-extern const afw_value_string_t \
-    afw_v__g__31f4f6aa_acd1_4f38_8bda_59304970095c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__31f4f6aa_acd1_4f38_8bda_59304970095c */
-#define afw_z__g__31f4f6aa_acd1_4f38_8bda_59304970095c \
-    (afw_v__g__31f4f6aa_acd1_4f38_8bda_59304970095c.internal.s)
-
-
-
-/** @brief define for quoted string _g__3328f906_bc61_43a1_8216_af11a99fcce1 */
-#define AFW_Q__g__3328f906_bc61_43a1_8216_af11a99fcce1 \
-    "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3328f906_bc61_43a1_8216_af11a99fcce1 */
-#define afw_s__g__3328f906_bc61_43a1_8216_af11a99fcce1 \
-    (afw_v__g__3328f906_bc61_43a1_8216_af11a99fcce1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3328f906_bc61_43a1_8216_af11a99fcce1 */
-extern const afw_value_string_t \
-    afw_v__g__3328f906_bc61_43a1_8216_af11a99fcce1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3328f906_bc61_43a1_8216_af11a99fcce1 */
-#define afw_z__g__3328f906_bc61_43a1_8216_af11a99fcce1 \
-    (afw_v__g__3328f906_bc61_43a1_8216_af11a99fcce1.internal.s)
-
-
-
-/** @brief define for quoted string _g__3406b47e_9515_4780_8e39_1f52f5d48080 */
-#define AFW_Q__g__3406b47e_9515_4780_8e39_1f52f5d48080 \
-    "This object contains some of properties from the associated conf object plus other runtime properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3406b47e_9515_4780_8e39_1f52f5d48080 */
-#define afw_s__g__3406b47e_9515_4780_8e39_1f52f5d48080 \
-    (afw_v__g__3406b47e_9515_4780_8e39_1f52f5d48080.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3406b47e_9515_4780_8e39_1f52f5d48080 */
-extern const afw_value_string_t \
-    afw_v__g__3406b47e_9515_4780_8e39_1f52f5d48080;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3406b47e_9515_4780_8e39_1f52f5d48080 */
-#define afw_z__g__3406b47e_9515_4780_8e39_1f52f5d48080 \
-    (afw_v__g__3406b47e_9515_4780_8e39_1f52f5d48080.internal.s)
-
-
-
-/** @brief define for quoted string _g__3423d584_ccec_481a_b28f_7be8f2a13e5e */
-#define AFW_Q__g__3423d584_ccec_481a_b28f_7be8f2a13e5e \
-    "Type of request handler that will process requests directed to this handler"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3423d584_ccec_481a_b28f_7be8f2a13e5e */
-#define afw_s__g__3423d584_ccec_481a_b28f_7be8f2a13e5e \
-    (afw_v__g__3423d584_ccec_481a_b28f_7be8f2a13e5e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3423d584_ccec_481a_b28f_7be8f2a13e5e */
-extern const afw_value_string_t \
-    afw_v__g__3423d584_ccec_481a_b28f_7be8f2a13e5e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3423d584_ccec_481a_b28f_7be8f2a13e5e */
-#define afw_z__g__3423d584_ccec_481a_b28f_7be8f2a13e5e \
-    (afw_v__g__3423d584_ccec_481a_b28f_7be8f2a13e5e.internal.s)
-
-
-
-/** @brief define for quoted string _g__345bbbed_c326_48df_abd9_406ea66a60dc */
-#define AFW_Q__g__345bbbed_c326_48df_abd9_406ea66a60dc \
-    "First parameter evaluate deferred to polymorphicExecuteFunction"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__345bbbed_c326_48df_abd9_406ea66a60dc */
-#define afw_s__g__345bbbed_c326_48df_abd9_406ea66a60dc \
-    (afw_v__g__345bbbed_c326_48df_abd9_406ea66a60dc.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__345bbbed_c326_48df_abd9_406ea66a60dc */
-extern const afw_value_string_t \
-    afw_v__g__345bbbed_c326_48df_abd9_406ea66a60dc;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__345bbbed_c326_48df_abd9_406ea66a60dc */
-#define afw_z__g__345bbbed_c326_48df_abd9_406ea66a60dc \
-    (afw_v__g__345bbbed_c326_48df_abd9_406ea66a60dc.internal.s)
-
-
-
-/** @brief define for quoted string _g__36e59e93_5e79_4513_9d2e_8aac4713f226 */
-#define AFW_Q__g__36e59e93_5e79_4513_9d2e_8aac4713f226 \
-    "If false this object is read only. If true, the object can be changed unless denied by authorization policy or by the adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__36e59e93_5e79_4513_9d2e_8aac4713f226 */
-#define afw_s__g__36e59e93_5e79_4513_9d2e_8aac4713f226 \
-    (afw_v__g__36e59e93_5e79_4513_9d2e_8aac4713f226.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__36e59e93_5e79_4513_9d2e_8aac4713f226 */
-extern const afw_value_string_t \
-    afw_v__g__36e59e93_5e79_4513_9d2e_8aac4713f226;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__36e59e93_5e79_4513_9d2e_8aac4713f226 */
-#define afw_z__g__36e59e93_5e79_4513_9d2e_8aac4713f226 \
-    (afw_v__g__36e59e93_5e79_4513_9d2e_8aac4713f226.internal.s)
-
-
-
-/** @brief define for quoted string _g__3744fdd2_92c8_481b_83ac_774adc13ad75 */
-#define AFW_Q__g__3744fdd2_92c8_481b_83ac_774adc13ad75 \
-    "Indicates that the objectId in the associated struct is a pointer."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3744fdd2_92c8_481b_83ac_774adc13ad75 */
-#define afw_s__g__3744fdd2_92c8_481b_83ac_774adc13ad75 \
-    (afw_v__g__3744fdd2_92c8_481b_83ac_774adc13ad75.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3744fdd2_92c8_481b_83ac_774adc13ad75 */
-extern const afw_value_string_t \
-    afw_v__g__3744fdd2_92c8_481b_83ac_774adc13ad75;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3744fdd2_92c8_481b_83ac_774adc13ad75 */
-#define afw_z__g__3744fdd2_92c8_481b_83ac_774adc13ad75 \
-    (afw_v__g__3744fdd2_92c8_481b_83ac_774adc13ad75.internal.s)
-
-
-
-/** @brief define for quoted string _g__375e557d_d4ae_478a_ae11_4d9b6a914025 */
-#define AFW_Q__g__375e557d_d4ae_478a_ae11_4d9b6a914025 \
-    "This is a predicate for the function category with the first letter capitalized and without a trailing period."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__375e557d_d4ae_478a_ae11_4d9b6a914025 */
-#define afw_s__g__375e557d_d4ae_478a_ae11_4d9b6a914025 \
-    (afw_v__g__375e557d_d4ae_478a_ae11_4d9b6a914025.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__375e557d_d4ae_478a_ae11_4d9b6a914025 */
-extern const afw_value_string_t \
-    afw_v__g__375e557d_d4ae_478a_ae11_4d9b6a914025;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__375e557d_d4ae_478a_ae11_4d9b6a914025 */
-#define afw_z__g__375e557d_d4ae_478a_ae11_4d9b6a914025 \
-    (afw_v__g__375e557d_d4ae_478a_ae11_4d9b6a914025.internal.s)
-
-
-
-/** @brief define for quoted string _g__38980c63_24b8_47ab_9965_a6ba4cb8636d */
-#define AFW_Q__g__38980c63_24b8_47ab_9965_a6ba4cb8636d \
-    "Open the connection immediately (normally, the connection is opened when the first message is logged)."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__38980c63_24b8_47ab_9965_a6ba4cb8636d */
-#define afw_s__g__38980c63_24b8_47ab_9965_a6ba4cb8636d \
-    (afw_v__g__38980c63_24b8_47ab_9965_a6ba4cb8636d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__38980c63_24b8_47ab_9965_a6ba4cb8636d */
-extern const afw_value_string_t \
-    afw_v__g__38980c63_24b8_47ab_9965_a6ba4cb8636d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__38980c63_24b8_47ab_9965_a6ba4cb8636d */
-#define afw_z__g__38980c63_24b8_47ab_9965_a6ba4cb8636d \
-    (afw_v__g__38980c63_24b8_47ab_9965_a6ba4cb8636d.internal.s)
-
-
-
-/** @brief define for quoted string _g__38e3a796_47d4_49e6_a188_8aecc72a9af3 */
-#define AFW_Q__g__38e3a796_47d4_49e6_a188_8aecc72a9af3 \
-    "Describes this flag briefly, starting with an uppercase letter and ending without a period."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__38e3a796_47d4_49e6_a188_8aecc72a9af3 */
-#define afw_s__g__38e3a796_47d4_49e6_a188_8aecc72a9af3 \
-    (afw_v__g__38e3a796_47d4_49e6_a188_8aecc72a9af3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__38e3a796_47d4_49e6_a188_8aecc72a9af3 */
-extern const afw_value_string_t \
-    afw_v__g__38e3a796_47d4_49e6_a188_8aecc72a9af3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__38e3a796_47d4_49e6_a188_8aecc72a9af3 */
-#define afw_z__g__38e3a796_47d4_49e6_a188_8aecc72a9af3 \
-    (afw_v__g__38e3a796_47d4_49e6_a188_8aecc72a9af3.internal.s)
-
-
-
-/** @brief define for quoted string _g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 */
-#define AFW_Q__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 \
-    "The HTML string that may be embedded in the page to identify this host"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 */
-#define afw_s__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 \
-    (afw_v__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 */
-extern const afw_value_string_t \
-    afw_v__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 */
-#define afw_z__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3 \
-    (afw_v__g__391bd8e6_a89d_4da3_97a9_0cd31c0a5bd3.internal.s)
-
-
-
-/** @brief define for quoted string _g__39841a88_e0e8_4905_8923_8d972925ac26 */
-#define AFW_Q__g__39841a88_e0e8_4905_8923_8d972925ac26 \
-    "This option can be optionally supported by a content type implementation. In the case of JSON, this indicates that newline, space, and tab characters should be included to make the output more readable."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__39841a88_e0e8_4905_8923_8d972925ac26 */
-#define afw_s__g__39841a88_e0e8_4905_8923_8d972925ac26 \
-    (afw_v__g__39841a88_e0e8_4905_8923_8d972925ac26.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__39841a88_e0e8_4905_8923_8d972925ac26 */
-extern const afw_value_string_t \
-    afw_v__g__39841a88_e0e8_4905_8923_8d972925ac26;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__39841a88_e0e8_4905_8923_8d972925ac26 */
-#define afw_z__g__39841a88_e0e8_4905_8923_8d972925ac26 \
-    (afw_v__g__39841a88_e0e8_4905_8923_8d972925ac26.internal.s)
-
-
-
-/** @brief define for quoted string _g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b */
-#define AFW_Q__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b \
-    "This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding 'srcdirs' property name followed by an underscore ('_'), which is also its default."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b */
-#define afw_s__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b \
-    (afw_v__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b */
-extern const afw_value_string_t \
-    afw_v__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b */
-#define afw_z__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b \
-    (afw_v__g__3a6b4f8a_4c9b_4ffe_86ef_ae92f0f1f87b.internal.s)
-
-
-
-/** @brief define for quoted string _g__3a7df80a_eb27_4d52_82e2_09fc8056436c */
-#define AFW_Q__g__3a7df80a_eb27_4d52_82e2_09fc8056436c \
-    "The time that get_entry() next_for_consumer began. This property will only exist if cursorBeingConsumed property exists."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3a7df80a_eb27_4d52_82e2_09fc8056436c */
-#define afw_s__g__3a7df80a_eb27_4d52_82e2_09fc8056436c \
-    (afw_v__g__3a7df80a_eb27_4d52_82e2_09fc8056436c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3a7df80a_eb27_4d52_82e2_09fc8056436c */
-extern const afw_value_string_t \
-    afw_v__g__3a7df80a_eb27_4d52_82e2_09fc8056436c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3a7df80a_eb27_4d52_82e2_09fc8056436c */
-#define afw_z__g__3a7df80a_eb27_4d52_82e2_09fc8056436c \
-    (afw_v__g__3a7df80a_eb27_4d52_82e2_09fc8056436c.internal.s)
-
-
-
-/** @brief define for quoted string _g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 */
-#define AFW_Q__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 \
-    "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 */
-#define afw_s__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 \
-    (afw_v__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 */
-extern const afw_value_string_t \
-    afw_v__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 */
-#define afw_z__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6 \
-    (afw_v__g__3b0e5f2d_5d03_4748_b855_e60d4b61c4c6.internal.s)
-
-
-
-/** @brief define for quoted string _g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 */
-#define AFW_Q__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 \
-    "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 */
-#define afw_s__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 \
-    (afw_v__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 */
-extern const afw_value_string_t \
-    afw_v__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 */
-#define afw_z__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65 \
-    (afw_v__g__3bb90fd3_daab_4ee2_af9b_f133edff1e65.internal.s)
-
-
-
-/** @brief define for quoted string _g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d */
-#define AFW_Q__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d \
-    "Object id including each property name preceded by a dot if embedded object reference."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d */
-#define afw_s__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d \
-    (afw_v__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d */
-extern const afw_value_string_t \
-    afw_v__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d */
-#define afw_z__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d \
-    (afw_v__g__3ca4cdda_3e23_4b30_b2b3_677838d0c90d.internal.s)
-
-
-
-/** @brief define for quoted string _g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb */
-#define AFW_Q__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb \
-    "Write directly to system console if there is an error while sending to system logger."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb */
-#define afw_s__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb \
-    (afw_v__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb */
-extern const afw_value_string_t \
-    afw_v__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb */
-#define afw_z__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb \
-    (afw_v__g__3d9764e6_b6b2_497e_b1fe_750b0ef908bb.internal.s)
-
-
-
-/** @brief define for quoted string _g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 */
-#define AFW_Q__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 \
-    "Description of function category in more detail, for documentation purposes."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 */
-#define afw_s__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 \
-    (afw_v__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 */
-extern const afw_value_string_t \
-    afw_v__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 */
-#define afw_z__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11 \
-    (afw_v__g__3dd8395d_d21c_42c2_bddf_fb05e2a76b11.internal.s)
-
-
-
-/** @brief define for quoted string _g__3fabcea4_c52a_4830_a2f0_a66c21791ccc */
-#define AFW_Q__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc \
-    "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, the is ignored and runtime structure is always indirect."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc */
-#define afw_s__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc \
-    (afw_v__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc */
-extern const afw_value_string_t \
-    afw_v__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc */
-#define afw_z__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc \
-    (afw_v__g__3fabcea4_c52a_4830_a2f0_a66c21791ccc.internal.s)
-
-
-
-/** @brief define for quoted string _g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 */
-#define AFW_Q__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 \
-    "These are functions that support compiled expressions at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 */
-#define afw_s__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 \
-    (afw_v__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 */
-extern const afw_value_string_t \
-    afw_v__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 */
-#define afw_z__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26 \
-    (afw_v__g__3fb09fbc_6aa1_4ec3_8b6a_50bb6b967c26.internal.s)
-
-
-
-/** @brief define for quoted string _g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 */
-#define AFW_Q__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 \
-    "The length of the data (in bytes) passed to the CGI program via standard input."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 */
-#define afw_s__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 \
-    (afw_v__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 */
-extern const afw_value_string_t \
-    afw_v__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 */
-#define afw_z__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7 \
-    (afw_v__g__4057a4ad_7d0a_4b00_8fa3_310fe984c4e7.internal.s)
-
-
-
-/** @brief define for quoted string _g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f */
-#define AFW_Q__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f \
-    "The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f */
-#define afw_s__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f \
-    (afw_v__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f */
-extern const afw_value_string_t \
-    afw_v__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f */
-#define afw_z__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f \
-    (afw_v__g__40dbf68e_4a80_4161_8ff3_5703ea7bc66f.internal.s)
-
-
-
-/** @brief define for quoted string _g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 */
-#define AFW_Q__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 \
-    "Each entry is the path of an afw adaptor object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 */
-#define afw_s__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 \
-    (afw_v__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 */
-extern const afw_value_string_t \
-    afw_v__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 */
-#define afw_z__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37 \
-    (afw_v__g__414f2f1d_b688_4f47_a36e_70c0d00ceb37.internal.s)
-
-
-
-/** @brief define for quoted string _g__41eadbe0_2162_4f47_bf8a_6d35a368f22c */
-#define AFW_Q__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c \
-    "This is the column number in the line of the full source for the test script where this test's 'source' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c */
-#define afw_s__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c \
-    (afw_v__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c */
-extern const afw_value_string_t \
-    afw_v__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c */
-#define afw_z__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c \
-    (afw_v__g__41eadbe0_2162_4f47_bf8a_6d35a368f22c.internal.s)
-
-
-
-/** @brief define for quoted string _g__427ae0fb_de6a_4f12_b4b3_df4a722f755f */
-#define AFW_Q__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f \
-    "This is the value of 'sourceType:'. It is used as the default for tests that do not have one specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f */
-#define afw_s__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f \
-    (afw_v__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f */
-extern const afw_value_string_t \
-    afw_v__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f */
-#define afw_z__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f \
-    (afw_v__g__427ae0fb_de6a_4f12_b4b3_df4a722f755f.internal.s)
-
-
-
-/** @brief define for quoted string _g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 */
-#define AFW_Q__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 \
-    "This is the registry type for instances of this conf type. For adaptor, this is 'adaptor_id'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 */
-#define afw_s__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 \
-    (afw_v__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 */
-extern const afw_value_string_t \
-    afw_v__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 */
-#define afw_z__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098 \
-    (afw_v__g__429b72b2_3b68_43cc_8fd4_f1fa4de28098.internal.s)
-
-
-
-/** @brief define for quoted string _g__429c2e23_386c_4b30_9e0e_c22d72471803 */
-#define AFW_Q__g__429c2e23_386c_4b30_9e0e_c22d72471803 \
-    "The role component sets the role the Web server expects the application to play. The currently-defined roles are:  RESPONDER, AUTHORIZER, FILTER."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__429c2e23_386c_4b30_9e0e_c22d72471803 */
-#define afw_s__g__429c2e23_386c_4b30_9e0e_c22d72471803 \
-    (afw_v__g__429c2e23_386c_4b30_9e0e_c22d72471803.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__429c2e23_386c_4b30_9e0e_c22d72471803 */
-extern const afw_value_string_t \
-    afw_v__g__429c2e23_386c_4b30_9e0e_c22d72471803;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__429c2e23_386c_4b30_9e0e_c22d72471803 */
-#define afw_z__g__429c2e23_386c_4b30_9e0e_c22d72471803 \
-    (afw_v__g__429c2e23_386c_4b30_9e0e_c22d72471803.internal.s)
-
-
-
-/** @brief define for quoted string _g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 */
-#define AFW_Q__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 \
-    "This adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 */
-#define afw_s__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 \
-    (afw_v__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 */
-extern const afw_value_string_t \
-    afw_v__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 */
-#define afw_z__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0 \
-    (afw_v__g__42f9226a_4bf5_4b4b_970b_0b0288c877c0.internal.s)
-
-
-
-/** @brief define for quoted string _g__43b7bea6_49e2_434c_854c_f3690ee351de */
-#define AFW_Q__g__43b7bea6_49e2_434c_854c_f3690ee351de \
-    "This is maximum length of the to_string() for this value. If not specified, there is no maximum length."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__43b7bea6_49e2_434c_854c_f3690ee351de */
-#define afw_s__g__43b7bea6_49e2_434c_854c_f3690ee351de \
-    (afw_v__g__43b7bea6_49e2_434c_854c_f3690ee351de.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__43b7bea6_49e2_434c_854c_f3690ee351de */
-extern const afw_value_string_t \
-    afw_v__g__43b7bea6_49e2_434c_854c_f3690ee351de;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__43b7bea6_49e2_434c_854c_f3690ee351de */
-#define afw_z__g__43b7bea6_49e2_434c_854c_f3690ee351de \
-    (afw_v__g__43b7bea6_49e2_434c_854c_f3690ee351de.internal.s)
-
-
-
-/** @brief define for quoted string _g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 */
-#define AFW_Q__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 \
-    "Path to locate the module. This is required if extensionsId is not registered."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 */
-#define afw_s__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 \
-    (afw_v__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 */
-extern const afw_value_string_t \
-    afw_v__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 */
-#define afw_z__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1 \
-    (afw_v__g__44ff85d4_8d61_4bd2_80c3_368c9ab8b5d1.internal.s)
-
-
-
-/** @brief define for quoted string _g__450736ca_5aba_4d61_aa9f_431e616aada7 */
-#define AFW_Q__g__450736ca_5aba_4d61_aa9f_431e616aada7 \
-    "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__450736ca_5aba_4d61_aa9f_431e616aada7 */
-#define afw_s__g__450736ca_5aba_4d61_aa9f_431e616aada7 \
-    (afw_v__g__450736ca_5aba_4d61_aa9f_431e616aada7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__450736ca_5aba_4d61_aa9f_431e616aada7 */
-extern const afw_value_string_t \
-    afw_v__g__450736ca_5aba_4d61_aa9f_431e616aada7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__450736ca_5aba_4d61_aa9f_431e616aada7 */
-#define afw_z__g__450736ca_5aba_4d61_aa9f_431e616aada7 \
-    (afw_v__g__450736ca_5aba_4d61_aa9f_431e616aada7.internal.s)
-
-
-
-/** @brief define for quoted string _g__4562673e_8179_4605_9594_9e5c71bde798 */
-#define AFW_Q__g__4562673e_8179_4605_9594_9e5c71bde798 \
-    "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4562673e_8179_4605_9594_9e5c71bde798 */
-#define afw_s__g__4562673e_8179_4605_9594_9e5c71bde798 \
-    (afw_v__g__4562673e_8179_4605_9594_9e5c71bde798.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4562673e_8179_4605_9594_9e5c71bde798 */
-extern const afw_value_string_t \
-    afw_v__g__4562673e_8179_4605_9594_9e5c71bde798;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4562673e_8179_4605_9594_9e5c71bde798 */
-#define afw_z__g__4562673e_8179_4605_9594_9e5c71bde798 \
-    (afw_v__g__4562673e_8179_4605_9594_9e5c71bde798.internal.s)
-
-
-
-/** @brief define for quoted string _g__459d913b_0d97_4c55_b0d7_2645390681ed */
-#define AFW_Q__g__459d913b_0d97_4c55_b0d7_2645390681ed \
-    "Indicates that this property is transitory and will not be persisted by the adaptor. The value can be produced by setValue or supplied in the request."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__459d913b_0d97_4c55_b0d7_2645390681ed */
-#define afw_s__g__459d913b_0d97_4c55_b0d7_2645390681ed \
-    (afw_v__g__459d913b_0d97_4c55_b0d7_2645390681ed.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__459d913b_0d97_4c55_b0d7_2645390681ed */
-extern const afw_value_string_t \
-    afw_v__g__459d913b_0d97_4c55_b0d7_2645390681ed;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__459d913b_0d97_4c55_b0d7_2645390681ed */
-#define afw_z__g__459d913b_0d97_4c55_b0d7_2645390681ed \
-    (afw_v__g__459d913b_0d97_4c55_b0d7_2645390681ed.internal.s)
-
-
-
-/** @brief define for quoted string _g__47552f2c_2d0c_4af1_b4f1_d20297b8733a */
-#define AFW_Q__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a \
-    "The parser cursor's line number where the syntax error occurred."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a */
-#define afw_s__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a \
-    (afw_v__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a */
-extern const afw_value_string_t \
-    afw_v__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a */
-#define afw_z__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a \
-    (afw_v__g__47552f2c_2d0c_4af1_b4f1_d20297b8733a.internal.s)
-
-
-
-/** @brief define for quoted string _g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 */
-#define AFW_Q__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 \
-    "Indicates that the value accessor is called with a pointer to the struct and a 0 offset"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 */
-#define afw_s__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 \
-    (afw_v__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 */
-extern const afw_value_string_t \
-    afw_v__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 */
-#define afw_z__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37 \
-    (afw_v__g__47aa3bca_e4b4_4eec_859b_f5889ed54e37.internal.s)
-
-
-
-/** @brief define for quoted string _g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b */
-#define AFW_Q__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b \
-    "When locating file objects, this adaptor will use this suffix to append to the objectId in order to resolve the filename."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b */
-#define afw_s__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b \
-    (afw_v__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b */
-extern const afw_value_string_t \
-    afw_v__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b */
-#define afw_z__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b \
-    (afw_v__g__47b2240c_bc2a_4dd2_8a40_9622ac4a0d0b.internal.s)
-
-
-
-/** @brief define for quoted string _g__47c65f0a_973a_4692_9784_caded38be00b */
-#define AFW_Q__g__47c65f0a_973a_4692_9784_caded38be00b \
-    "This is the Adaptive Framework (AFW) base which includes library libafw, the afw and afwdev commands, the core UI support, the AFW Administration application, plus a base set of extensions and server implementations."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__47c65f0a_973a_4692_9784_caded38be00b */
-#define afw_s__g__47c65f0a_973a_4692_9784_caded38be00b \
-    (afw_v__g__47c65f0a_973a_4692_9784_caded38be00b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__47c65f0a_973a_4692_9784_caded38be00b */
-extern const afw_value_string_t \
-    afw_v__g__47c65f0a_973a_4692_9784_caded38be00b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__47c65f0a_973a_4692_9784_caded38be00b */
-#define afw_z__g__47c65f0a_973a_4692_9784_caded38be00b \
-    (afw_v__g__47c65f0a_973a_4692_9784_caded38be00b.internal.s)
-
-
-
-/** @brief define for quoted string _g__4813bdb3_419a_493c_8b1e_43b0dd49b755 */
-#define AFW_Q__g__4813bdb3_419a_493c_8b1e_43b0dd49b755 \
-    "These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4813bdb3_419a_493c_8b1e_43b0dd49b755 */
-#define afw_s__g__4813bdb3_419a_493c_8b1e_43b0dd49b755 \
-    (afw_v__g__4813bdb3_419a_493c_8b1e_43b0dd49b755.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4813bdb3_419a_493c_8b1e_43b0dd49b755 */
-extern const afw_value_string_t \
-    afw_v__g__4813bdb3_419a_493c_8b1e_43b0dd49b755;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4813bdb3_419a_493c_8b1e_43b0dd49b755 */
-#define afw_z__g__4813bdb3_419a_493c_8b1e_43b0dd49b755 \
-    (afw_v__g__4813bdb3_419a_493c_8b1e_43b0dd49b755.internal.s)
-
-
-
-/** @brief define for quoted string _g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 */
-#define AFW_Q__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 \
-    "This is the name of the property in the 'srcdirs' property of the AFW extension, that when loaded at runtime, will register the repository's manifest."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 */
-#define afw_s__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 \
-    (afw_v__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 */
-extern const afw_value_string_t \
-    afw_v__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 */
-#define afw_z__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15 \
-    (afw_v__g__4907b3fb_448b_49ab_a8f2_ad00554fdd15.internal.s)
-
-
-
-/** @brief define for quoted string _g__491bea26_bc93_40fd_8154_761f775e1a2d */
-#define AFW_Q__g__491bea26_bc93_40fd_8154_761f775e1a2d \
-    "This is an array of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__491bea26_bc93_40fd_8154_761f775e1a2d */
-#define afw_s__g__491bea26_bc93_40fd_8154_761f775e1a2d \
-    (afw_v__g__491bea26_bc93_40fd_8154_761f775e1a2d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__491bea26_bc93_40fd_8154_761f775e1a2d */
-extern const afw_value_string_t \
-    afw_v__g__491bea26_bc93_40fd_8154_761f775e1a2d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__491bea26_bc93_40fd_8154_761f775e1a2d */
-#define afw_z__g__491bea26_bc93_40fd_8154_761f775e1a2d \
-    (afw_v__g__491bea26_bc93_40fd_8154_761f775e1a2d.internal.s)
-
-
-
-/** @brief define for quoted string _g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 */
-#define AFW_Q__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 \
-    "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 */
-#define afw_s__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 \
-    (afw_v__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 */
-extern const afw_value_string_t \
-    afw_v__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 */
-#define afw_z__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608 \
-    (afw_v__g__4a6e3e59_d369_47f4_a4a9_3b434dc76608.internal.s)
-
-
-
-/** @brief define for quoted string _g__4aa277a0_7934_4f99_8ca7_f49af530a850 */
-#define AFW_Q__g__4aa277a0_7934_4f99_8ca7_f49af530a850 \
-    "These function are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4aa277a0_7934_4f99_8ca7_f49af530a850 */
-#define afw_s__g__4aa277a0_7934_4f99_8ca7_f49af530a850 \
-    (afw_v__g__4aa277a0_7934_4f99_8ca7_f49af530a850.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4aa277a0_7934_4f99_8ca7_f49af530a850 */
-extern const afw_value_string_t \
-    afw_v__g__4aa277a0_7934_4f99_8ca7_f49af530a850;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4aa277a0_7934_4f99_8ca7_f49af530a850 */
-#define afw_z__g__4aa277a0_7934_4f99_8ca7_f49af530a850 \
-    (afw_v__g__4aa277a0_7934_4f99_8ca7_f49af530a850.internal.s)
-
-
-
-/** @brief define for quoted string _g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 */
-#define AFW_Q__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 \
-    "These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 */
-#define afw_s__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 \
-    (afw_v__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 */
-extern const afw_value_string_t \
-    afw_v__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 */
-#define afw_z__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50 \
-    (afw_v__g__4ad9f177_ec8e_4523_a2bc_e93eae8e0f50.internal.s)
-
-
-
-/** @brief define for quoted string _g__4b6be303_24ae_476c_a409_1cb319b0bb8a */
-#define AFW_Q__g__4b6be303_24ae_476c_a409_1cb319b0bb8a \
-    "The member name of this property in the runtime struct if other than the property name."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4b6be303_24ae_476c_a409_1cb319b0bb8a */
-#define afw_s__g__4b6be303_24ae_476c_a409_1cb319b0bb8a \
-    (afw_v__g__4b6be303_24ae_476c_a409_1cb319b0bb8a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4b6be303_24ae_476c_a409_1cb319b0bb8a */
-extern const afw_value_string_t \
-    afw_v__g__4b6be303_24ae_476c_a409_1cb319b0bb8a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4b6be303_24ae_476c_a409_1cb319b0bb8a */
-#define afw_z__g__4b6be303_24ae_476c_a409_1cb319b0bb8a \
-    (afw_v__g__4b6be303_24ae_476c_a409_1cb319b0bb8a.internal.s)
-
-
-
-/** @brief define for quoted string _g__4c70e306_d617_4384_8ee0_0911e717e89a */
-#define AFW_Q__g__4c70e306_d617_4384_8ee0_0911e717e89a \
-    "These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4c70e306_d617_4384_8ee0_0911e717e89a */
-#define afw_s__g__4c70e306_d617_4384_8ee0_0911e717e89a \
-    (afw_v__g__4c70e306_d617_4384_8ee0_0911e717e89a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4c70e306_d617_4384_8ee0_0911e717e89a */
-extern const afw_value_string_t \
-    afw_v__g__4c70e306_d617_4384_8ee0_0911e717e89a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4c70e306_d617_4384_8ee0_0911e717e89a */
-#define afw_z__g__4c70e306_d617_4384_8ee0_0911e717e89a \
-    (afw_v__g__4c70e306_d617_4384_8ee0_0911e717e89a.internal.s)
-
-
-
-/** @brief define for quoted string _g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b */
-#define AFW_Q__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b \
-    "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b */
-#define afw_s__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b \
-    (afw_v__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b */
-extern const afw_value_string_t \
-    afw_v__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b */
-#define afw_z__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b \
-    (afw_v__g__4ca1ccae_8be0_4a6e_94c7_56e111495b7b.internal.s)
-
-
-
-/** @brief define for quoted string _g__4cb9c540_6a3d_451e_9fa1_939ce848af2a */
-#define AFW_Q__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a \
-    "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a */
-#define afw_s__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a \
-    (afw_v__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a */
-extern const afw_value_string_t \
-    afw_v__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a */
-#define afw_z__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a \
-    (afw_v__g__4cb9c540_6a3d_451e_9fa1_939ce848af2a.internal.s)
-
-
-
-/** @brief define for quoted string _g__4df6c444_6c17_4d68_8afd_79028331dcca */
-#define AFW_Q__g__4df6c444_6c17_4d68_8afd_79028331dcca \
-    "This extension loads Object Type definitions for Adaptive Layout Components, the building blocks for creating Adaptive Layouts."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4df6c444_6c17_4d68_8afd_79028331dcca */
-#define afw_s__g__4df6c444_6c17_4d68_8afd_79028331dcca \
-    (afw_v__g__4df6c444_6c17_4d68_8afd_79028331dcca.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4df6c444_6c17_4d68_8afd_79028331dcca */
-extern const afw_value_string_t \
-    afw_v__g__4df6c444_6c17_4d68_8afd_79028331dcca;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4df6c444_6c17_4d68_8afd_79028331dcca */
-#define afw_z__g__4df6c444_6c17_4d68_8afd_79028331dcca \
-    (afw_v__g__4df6c444_6c17_4d68_8afd_79028331dcca.internal.s)
-
-
-
-/** @brief define for quoted string _g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 */
-#define AFW_Q__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 \
-    "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 */
-#define afw_s__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 \
-    (afw_v__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 */
-extern const afw_value_string_t \
-    afw_v__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 */
-#define afw_z__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4 \
-    (afw_v__g__4e2f10f8_cfd3_4e8a_b067_62fab1ba66b4.internal.s)
-
-
-
-/** @brief define for quoted string _g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 */
-#define AFW_Q__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 \
-    "This can be specified to override default modify_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onModifyObject was not specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 */
-#define afw_s__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 \
-    (afw_v__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 */
-extern const afw_value_string_t \
-    afw_v__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 */
-#define afw_z__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7 \
-    (afw_v__g__4e58d5f3_b30b_45b0_a13c_9c235e2b13e7.internal.s)
-
-
-
-/** @brief define for quoted string _g__4f339644_894d_41f7_8cbb_6d64c2f9f358 */
-#define AFW_Q__g__4f339644_894d_41f7_8cbb_6d64c2f9f358 \
-    "This is usually the AFW package id with dashes changed to underscores for use in places where dashes are not allowed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4f339644_894d_41f7_8cbb_6d64c2f9f358 */
-#define afw_s__g__4f339644_894d_41f7_8cbb_6d64c2f9f358 \
-    (afw_v__g__4f339644_894d_41f7_8cbb_6d64c2f9f358.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4f339644_894d_41f7_8cbb_6d64c2f9f358 */
-extern const afw_value_string_t \
-    afw_v__g__4f339644_894d_41f7_8cbb_6d64c2f9f358;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4f339644_894d_41f7_8cbb_6d64c2f9f358 */
-#define afw_z__g__4f339644_894d_41f7_8cbb_6d64c2f9f358 \
-    (afw_v__g__4f339644_894d_41f7_8cbb_6d64c2f9f358.internal.s)
-
-
-
-/** @brief define for quoted string _g__4f34ef5c_aefa_4acf_b737_81084b64853c */
-#define AFW_Q__g__4f34ef5c_aefa_4acf_b737_81084b64853c \
-    "This defines how authorization checking occurs in this application."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4f34ef5c_aefa_4acf_b737_81084b64853c */
-#define afw_s__g__4f34ef5c_aefa_4acf_b737_81084b64853c \
-    (afw_v__g__4f34ef5c_aefa_4acf_b737_81084b64853c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4f34ef5c_aefa_4acf_b737_81084b64853c */
-extern const afw_value_string_t \
-    afw_v__g__4f34ef5c_aefa_4acf_b737_81084b64853c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4f34ef5c_aefa_4acf_b737_81084b64853c */
-#define afw_z__g__4f34ef5c_aefa_4acf_b737_81084b64853c \
-    (afw_v__g__4f34ef5c_aefa_4acf_b737_81084b64853c.internal.s)
-
-
-
-/** @brief define for quoted string _g__4f466c05_fa43_4341_8e24_2d541da746ec */
-#define AFW_Q__g__4f466c05_fa43_4341_8e24_2d541da746ec \
-    "This is the current version of the package. The form must be <MAJOR>.<MINOR>.<PATCH> as defined at http://semver.org."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4f466c05_fa43_4341_8e24_2d541da746ec */
-#define afw_s__g__4f466c05_fa43_4341_8e24_2d541da746ec \
-    (afw_v__g__4f466c05_fa43_4341_8e24_2d541da746ec.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4f466c05_fa43_4341_8e24_2d541da746ec */
-extern const afw_value_string_t \
-    afw_v__g__4f466c05_fa43_4341_8e24_2d541da746ec;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4f466c05_fa43_4341_8e24_2d541da746ec */
-#define afw_z__g__4f466c05_fa43_4341_8e24_2d541da746ec \
-    (afw_v__g__4f466c05_fa43_4341_8e24_2d541da746ec.internal.s)
-
-
-
-/** @brief define for quoted string _g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 */
-#define AFW_Q__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 \
-    "This the id of the associated object's object type within the object's adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 */
-#define afw_s__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 \
-    (afw_v__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 */
-extern const afw_value_string_t \
-    afw_v__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 */
-#define afw_z__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445 \
-    (afw_v__g__4f657fa6_c916_4ecb_bca4_5b9fe2d58445.internal.s)
-
-
-
-/** @brief define for quoted string _g__4fc51908_18b0_4e20_9a56_774b5e31edb2 */
-#define AFW_Q__g__4fc51908_18b0_4e20_9a56_774b5e31edb2 \
-    "The URL path (e.g., /cgi/program.cgi) of the script being executed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4fc51908_18b0_4e20_9a56_774b5e31edb2 */
-#define afw_s__g__4fc51908_18b0_4e20_9a56_774b5e31edb2 \
-    (afw_v__g__4fc51908_18b0_4e20_9a56_774b5e31edb2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4fc51908_18b0_4e20_9a56_774b5e31edb2 */
-extern const afw_value_string_t \
-    afw_v__g__4fc51908_18b0_4e20_9a56_774b5e31edb2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4fc51908_18b0_4e20_9a56_774b5e31edb2 */
-#define afw_z__g__4fc51908_18b0_4e20_9a56_774b5e31edb2 \
-    (afw_v__g__4fc51908_18b0_4e20_9a56_774b5e31edb2.internal.s)
-
-
-
-/** @brief define for quoted string _g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 */
-#define AFW_Q__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 \
-    "This is the subtype registry type for instances of this conf type. For adaptor, this is 'adaptor_type'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 */
-#define afw_s__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 \
-    (afw_v__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 */
-extern const afw_value_string_t \
-    afw_v__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 */
-#define afw_z__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3 \
-    (afw_v__g__4fe195c4_c764_4497_8ec9_76ceebecc8f3.internal.s)
-
-
-
-/** @brief define for quoted string _g__50770a03_fab0_42d7_b615_ab13c4a05ac5 */
-#define AFW_Q__g__50770a03_fab0_42d7_b615_ab13c4a05ac5 \
-    "Configuration object. The object must have type and id property where type is a supported value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__50770a03_fab0_42d7_b615_ab13c4a05ac5 */
-#define afw_s__g__50770a03_fab0_42d7_b615_ab13c4a05ac5 \
-    (afw_v__g__50770a03_fab0_42d7_b615_ab13c4a05ac5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__50770a03_fab0_42d7_b615_ab13c4a05ac5 */
-extern const afw_value_string_t \
-    afw_v__g__50770a03_fab0_42d7_b615_ab13c4a05ac5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__50770a03_fab0_42d7_b615_ab13c4a05ac5 */
-#define afw_z__g__50770a03_fab0_42d7_b615_ab13c4a05ac5 \
-    (afw_v__g__50770a03_fab0_42d7_b615_ab13c4a05ac5.internal.s)
-
-
-
-/** @brief define for quoted string _g__50ae9046_a5e2_4415_8725_d71d917fbcc2 */
-#define AFW_Q__g__50ae9046_a5e2_4415_8725_d71d917fbcc2 \
-    "This is the id property name for instances of this conf type. For adaptor, this is 'adaptorId'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__50ae9046_a5e2_4415_8725_d71d917fbcc2 */
-#define afw_s__g__50ae9046_a5e2_4415_8725_d71d917fbcc2 \
-    (afw_v__g__50ae9046_a5e2_4415_8725_d71d917fbcc2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__50ae9046_a5e2_4415_8725_d71d917fbcc2 */
-extern const afw_value_string_t \
-    afw_v__g__50ae9046_a5e2_4415_8725_d71d917fbcc2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__50ae9046_a5e2_4415_8725_d71d917fbcc2 */
-#define afw_z__g__50ae9046_a5e2_4415_8725_d71d917fbcc2 \
-    (afw_v__g__50ae9046_a5e2_4415_8725_d71d917fbcc2.internal.s)
-
-
-
-/** @brief define for quoted string _g__50b163ed_a1d6_41fc_bbc4_334f20a53907 */
-#define AFW_Q__g__50b163ed_a1d6_41fc_bbc4_334f20a53907 \
-    "This is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__50b163ed_a1d6_41fc_bbc4_334f20a53907 */
-#define afw_s__g__50b163ed_a1d6_41fc_bbc4_334f20a53907 \
-    (afw_v__g__50b163ed_a1d6_41fc_bbc4_334f20a53907.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__50b163ed_a1d6_41fc_bbc4_334f20a53907 */
-extern const afw_value_string_t \
-    afw_v__g__50b163ed_a1d6_41fc_bbc4_334f20a53907;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__50b163ed_a1d6_41fc_bbc4_334f20a53907 */
-#define afw_z__g__50b163ed_a1d6_41fc_bbc4_334f20a53907 \
-    (afw_v__g__50b163ed_a1d6_41fc_bbc4_334f20a53907.internal.s)
-
-
-
-/** @brief define for quoted string _g__52a6a153_131c_42ac_86e9_5e3ac86b307f */
-#define AFW_Q__g__52a6a153_131c_42ac_86e9_5e3ac86b307f \
-    "This is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__52a6a153_131c_42ac_86e9_5e3ac86b307f */
-#define afw_s__g__52a6a153_131c_42ac_86e9_5e3ac86b307f \
-    (afw_v__g__52a6a153_131c_42ac_86e9_5e3ac86b307f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__52a6a153_131c_42ac_86e9_5e3ac86b307f */
-extern const afw_value_string_t \
-    afw_v__g__52a6a153_131c_42ac_86e9_5e3ac86b307f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__52a6a153_131c_42ac_86e9_5e3ac86b307f */
-#define afw_z__g__52a6a153_131c_42ac_86e9_5e3ac86b307f \
-    (afw_v__g__52a6a153_131c_42ac_86e9_5e3ac86b307f.internal.s)
-
-
-
-/** @brief define for quoted string _g__53327126_4066_404c_8ecf_f00e1aef6ed0 */
-#define AFW_Q__g__53327126_4066_404c_8ecf_f00e1aef6ed0 \
-    "This is the home page for the package/repository. It's used in the url parameter of AC_INIT in configure.ac."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__53327126_4066_404c_8ecf_f00e1aef6ed0 */
-#define afw_s__g__53327126_4066_404c_8ecf_f00e1aef6ed0 \
-    (afw_v__g__53327126_4066_404c_8ecf_f00e1aef6ed0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__53327126_4066_404c_8ecf_f00e1aef6ed0 */
-extern const afw_value_string_t \
-    afw_v__g__53327126_4066_404c_8ecf_f00e1aef6ed0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__53327126_4066_404c_8ecf_f00e1aef6ed0 */
-#define afw_z__g__53327126_4066_404c_8ecf_f00e1aef6ed0 \
-    (afw_v__g__53327126_4066_404c_8ecf_f00e1aef6ed0.internal.s)
-
-
-
-/** @brief define for quoted string _g__5375f0eb_88ae_4989_bfca_48b77ca0e166 */
-#define AFW_Q__g__5375f0eb_88ae_4989_bfca_48b77ca0e166 \
-    "The partial/full source available when the syntax error occurred"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5375f0eb_88ae_4989_bfca_48b77ca0e166 */
-#define afw_s__g__5375f0eb_88ae_4989_bfca_48b77ca0e166 \
-    (afw_v__g__5375f0eb_88ae_4989_bfca_48b77ca0e166.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5375f0eb_88ae_4989_bfca_48b77ca0e166 */
-extern const afw_value_string_t \
-    afw_v__g__5375f0eb_88ae_4989_bfca_48b77ca0e166;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5375f0eb_88ae_4989_bfca_48b77ca0e166 */
-#define afw_z__g__5375f0eb_88ae_4989_bfca_48b77ca0e166 \
-    (afw_v__g__5375f0eb_88ae_4989_bfca_48b77ca0e166.internal.s)
-
-
-
-/** @brief define for quoted string _g__53778d58_24d1_49f2_90bb_c7cb01db4db1 */
-#define AFW_Q__g__53778d58_24d1_49f2_90bb_c7cb01db4db1 \
-    "Property type objects that can be inherited by propertyTypes in objectTypes."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__53778d58_24d1_49f2_90bb_c7cb01db4db1 */
-#define afw_s__g__53778d58_24d1_49f2_90bb_c7cb01db4db1 \
-    (afw_v__g__53778d58_24d1_49f2_90bb_c7cb01db4db1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__53778d58_24d1_49f2_90bb_c7cb01db4db1 */
-extern const afw_value_string_t \
-    afw_v__g__53778d58_24d1_49f2_90bb_c7cb01db4db1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__53778d58_24d1_49f2_90bb_c7cb01db4db1 */
-#define afw_z__g__53778d58_24d1_49f2_90bb_c7cb01db4db1 \
-    (afw_v__g__53778d58_24d1_49f2_90bb_c7cb01db4db1.internal.s)
-
-
-
-/** @brief define for quoted string _g__538434eb_8067_4e74_a99f_96d1061845c5 */
-#define AFW_Q__g__538434eb_8067_4e74_a99f_96d1061845c5 \
-    "This is information about subdirectories in this repository's src/ directory."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__538434eb_8067_4e74_a99f_96d1061845c5 */
-#define afw_s__g__538434eb_8067_4e74_a99f_96d1061845c5 \
-    (afw_v__g__538434eb_8067_4e74_a99f_96d1061845c5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__538434eb_8067_4e74_a99f_96d1061845c5 */
-extern const afw_value_string_t \
-    afw_v__g__538434eb_8067_4e74_a99f_96d1061845c5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__538434eb_8067_4e74_a99f_96d1061845c5 */
-#define afw_z__g__538434eb_8067_4e74_a99f_96d1061845c5 \
-    (afw_v__g__538434eb_8067_4e74_a99f_96d1061845c5.internal.s)
-
-
-
-/** @brief define for quoted string _g__54020f4c_ff48_4c56_9ebc_de6878348bed */
-#define AFW_Q__g__54020f4c_ff48_4c56_9ebc_de6878348bed \
-    "These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__54020f4c_ff48_4c56_9ebc_de6878348bed */
-#define afw_s__g__54020f4c_ff48_4c56_9ebc_de6878348bed \
-    (afw_v__g__54020f4c_ff48_4c56_9ebc_de6878348bed.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__54020f4c_ff48_4c56_9ebc_de6878348bed */
-extern const afw_value_string_t \
-    afw_v__g__54020f4c_ff48_4c56_9ebc_de6878348bed;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__54020f4c_ff48_4c56_9ebc_de6878348bed */
-#define afw_z__g__54020f4c_ff48_4c56_9ebc_de6878348bed \
-    (afw_v__g__54020f4c_ff48_4c56_9ebc_de6878348bed.internal.s)
-
-
-
-/** @brief define for quoted string _g__55390c39_6292_43b0_904d_7a56e02dff97 */
-#define AFW_Q__g__55390c39_6292_43b0_904d_7a56e02dff97 \
-    "The number of threads to create at startup to process client requests."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__55390c39_6292_43b0_904d_7a56e02dff97 */
-#define afw_s__g__55390c39_6292_43b0_904d_7a56e02dff97 \
-    (afw_v__g__55390c39_6292_43b0_904d_7a56e02dff97.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__55390c39_6292_43b0_904d_7a56e02dff97 */
-extern const afw_value_string_t \
-    afw_v__g__55390c39_6292_43b0_904d_7a56e02dff97;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__55390c39_6292_43b0_904d_7a56e02dff97 */
-#define afw_z__g__55390c39_6292_43b0_904d_7a56e02dff97 \
-    (afw_v__g__55390c39_6292_43b0_904d_7a56e02dff97.internal.s)
-
-
-
-/** @brief define for quoted string _g__55453da4_179b_421a_aca7_ca985dcbf648 */
-#define AFW_Q__g__55453da4_179b_421a_aca7_ca985dcbf648 \
-    "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__55453da4_179b_421a_aca7_ca985dcbf648 */
-#define afw_s__g__55453da4_179b_421a_aca7_ca985dcbf648 \
-    (afw_v__g__55453da4_179b_421a_aca7_ca985dcbf648.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__55453da4_179b_421a_aca7_ca985dcbf648 */
-extern const afw_value_string_t \
-    afw_v__g__55453da4_179b_421a_aca7_ca985dcbf648;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__55453da4_179b_421a_aca7_ca985dcbf648 */
-#define afw_z__g__55453da4_179b_421a_aca7_ca985dcbf648 \
-    (afw_v__g__55453da4_179b_421a_aca7_ca985dcbf648.internal.s)
-
-
-
-/** @brief define for quoted string _g__55a3418b_54ea_44fb_a77b_40e32c643951 */
-#define AFW_Q__g__55a3418b_54ea_44fb_a77b_40e32c643951 \
-    "This is an array of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__55a3418b_54ea_44fb_a77b_40e32c643951 */
-#define afw_s__g__55a3418b_54ea_44fb_a77b_40e32c643951 \
-    (afw_v__g__55a3418b_54ea_44fb_a77b_40e32c643951.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__55a3418b_54ea_44fb_a77b_40e32c643951 */
-extern const afw_value_string_t \
-    afw_v__g__55a3418b_54ea_44fb_a77b_40e32c643951;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__55a3418b_54ea_44fb_a77b_40e32c643951 */
-#define afw_z__g__55a3418b_54ea_44fb_a77b_40e32c643951 \
-    (afw_v__g__55a3418b_54ea_44fb_a77b_40e32c643951.internal.s)
-
-
-
-/** @brief define for quoted string _g__575d5823_f16a_400b_8b2c_1b860f83c0de */
-#define AFW_Q__g__575d5823_f16a_400b_8b2c_1b860f83c0de \
-    "List of keywords and terms associated with values with this meta"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__575d5823_f16a_400b_8b2c_1b860f83c0de */
-#define afw_s__g__575d5823_f16a_400b_8b2c_1b860f83c0de \
-    (afw_v__g__575d5823_f16a_400b_8b2c_1b860f83c0de.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__575d5823_f16a_400b_8b2c_1b860f83c0de */
-extern const afw_value_string_t \
-    afw_v__g__575d5823_f16a_400b_8b2c_1b860f83c0de;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__575d5823_f16a_400b_8b2c_1b860f83c0de */
-#define afw_z__g__575d5823_f16a_400b_8b2c_1b860f83c0de \
-    (afw_v__g__575d5823_f16a_400b_8b2c_1b860f83c0de.internal.s)
-
-
-
-/** @brief define for quoted string _g__584d55e7_3f0b_496d_80a8_39cd5897d872 */
-#define AFW_Q__g__584d55e7_3f0b_496d_80a8_39cd5897d872 \
-    "This is where the 'expect' for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__584d55e7_3f0b_496d_80a8_39cd5897d872 */
-#define afw_s__g__584d55e7_3f0b_496d_80a8_39cd5897d872 \
-    (afw_v__g__584d55e7_3f0b_496d_80a8_39cd5897d872.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__584d55e7_3f0b_496d_80a8_39cd5897d872 */
-extern const afw_value_string_t \
-    afw_v__g__584d55e7_3f0b_496d_80a8_39cd5897d872;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__584d55e7_3f0b_496d_80a8_39cd5897d872 */
-#define afw_z__g__584d55e7_3f0b_496d_80a8_39cd5897d872 \
-    (afw_v__g__584d55e7_3f0b_496d_80a8_39cd5897d872.internal.s)
-
-
-
-/** @brief define for quoted string _g__5868e761_94f7_495a_af40_17b327eb9d35 */
-#define AFW_Q__g__5868e761_94f7_495a_af40_17b327eb9d35 \
-    "This is a predicate for this modeId value with the first letter capitalized and without a trailing period."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5868e761_94f7_495a_af40_17b327eb9d35 */
-#define afw_s__g__5868e761_94f7_495a_af40_17b327eb9d35 \
-    (afw_v__g__5868e761_94f7_495a_af40_17b327eb9d35.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5868e761_94f7_495a_af40_17b327eb9d35 */
-extern const afw_value_string_t \
-    afw_v__g__5868e761_94f7_495a_af40_17b327eb9d35;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5868e761_94f7_495a_af40_17b327eb9d35 */
-#define afw_z__g__5868e761_94f7_495a_af40_17b327eb9d35 \
-    (afw_v__g__5868e761_94f7_495a_af40_17b327eb9d35.internal.s)
-
-
-
-/** @brief define for quoted string _g__593fefc2_f51b_48a2_89ce_181a2159622b */
-#define AFW_Q__g__593fefc2_f51b_48a2_89ce_181a2159622b \
-    "This is the value produced by compiling and evaluating the source."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__593fefc2_f51b_48a2_89ce_181a2159622b */
-#define afw_s__g__593fefc2_f51b_48a2_89ce_181a2159622b \
-    (afw_v__g__593fefc2_f51b_48a2_89ce_181a2159622b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__593fefc2_f51b_48a2_89ce_181a2159622b */
-extern const afw_value_string_t \
-    afw_v__g__593fefc2_f51b_48a2_89ce_181a2159622b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__593fefc2_f51b_48a2_89ce_181a2159622b */
-#define afw_z__g__593fefc2_f51b_48a2_89ce_181a2159622b \
-    (afw_v__g__593fefc2_f51b_48a2_89ce_181a2159622b.internal.s)
-
-
-
-/** @brief define for quoted string _g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc */
-#define AFW_Q__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc \
-    "This is the line number in the full source for the test script where this test's 'expect' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc */
-#define afw_s__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc \
-    (afw_v__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc */
-extern const afw_value_string_t \
-    afw_v__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc */
-#define afw_z__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc \
-    (afw_v__g__5a0bd1c2_2aac_4ca2_ab8e_e32703b23dcc.internal.s)
-
-
-
-/** @brief define for quoted string _g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 */
-#define AFW_Q__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 \
-    "The properties of this object are the root file paths used by open_file()."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 */
-#define afw_s__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 \
-    (afw_v__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 */
-extern const afw_value_string_t \
-    afw_v__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 */
-#define afw_z__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98 \
-    (afw_v__g__5a7d5f67_f817_46fd_b442_b1aa42f5fb98.internal.s)
-
-
-
-/** @brief define for quoted string _g__5a95dd25_a5ef_4622_82ba_76eacc727f7c */
-#define AFW_Q__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c \
-    "This version represents the compiled version of the Adaptive Framework server code."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c */
-#define afw_s__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c \
-    (afw_v__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c */
-extern const afw_value_string_t \
-    afw_v__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c */
-#define afw_z__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c \
-    (afw_v__g__5a95dd25_a5ef_4622_82ba_76eacc727f7c.internal.s)
-
-
-
-/** @brief define for quoted string _g__5ae407f8_7575_4622_a28e_d410528ad676 */
-#define AFW_Q__g__5ae407f8_7575_4622_a28e_d410528ad676 \
-    "Indicates that meta reconcilable should be included in entity's meta. If this is specified on a get_object or retrieve_objects request and a retrieved object is changed, calling reconcile_object() with the changed object will use the information in meta reconcilable to produce a modify request for only the changes. The reconcilable option assumes the path option and possibly other options as needed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5ae407f8_7575_4622_a28e_d410528ad676 */
-#define afw_s__g__5ae407f8_7575_4622_a28e_d410528ad676 \
-    (afw_v__g__5ae407f8_7575_4622_a28e_d410528ad676.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5ae407f8_7575_4622_a28e_d410528ad676 */
-extern const afw_value_string_t \
-    afw_v__g__5ae407f8_7575_4622_a28e_d410528ad676;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5ae407f8_7575_4622_a28e_d410528ad676 */
-#define afw_z__g__5ae407f8_7575_4622_a28e_d410528ad676 \
-    (afw_v__g__5ae407f8_7575_4622_a28e_d410528ad676.internal.s)
-
-
-
-/** @brief define for quoted string _g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede */
-#define AFW_Q__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede \
-    "If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType 'afwmake', either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the 'id' property with 'afw_' removed if present and underscores ('_') replaced with dashes ('-')."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede */
-#define afw_s__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede \
-    (afw_v__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede */
-extern const afw_value_string_t \
-    afw_v__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede */
-#define afw_z__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede \
-    (afw_v__g__5b42fd70_1bb7_4a0b_94e0_012cb3d51ede.internal.s)
-
-
-
-/** @brief define for quoted string _g__5d548f13_1046_41b7_aa68_aeee148d533d */
-#define AFW_Q__g__5d548f13_1046_41b7_aa68_aeee148d533d \
-    "These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5d548f13_1046_41b7_aa68_aeee148d533d */
-#define afw_s__g__5d548f13_1046_41b7_aa68_aeee148d533d \
-    (afw_v__g__5d548f13_1046_41b7_aa68_aeee148d533d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5d548f13_1046_41b7_aa68_aeee148d533d */
-extern const afw_value_string_t \
-    afw_v__g__5d548f13_1046_41b7_aa68_aeee148d533d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5d548f13_1046_41b7_aa68_aeee148d533d */
-#define afw_z__g__5d548f13_1046_41b7_aa68_aeee148d533d \
-    (afw_v__g__5d548f13_1046_41b7_aa68_aeee148d533d.internal.s)
-
-
-
-/** @brief define for quoted string _g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 */
-#define AFW_Q__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 \
-    "The translated version of the path given by the variable PATH_INFO."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 */
-#define afw_s__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 \
-    (afw_v__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 */
-extern const afw_value_string_t \
-    afw_v__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 */
-#define afw_z__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415 \
-    (afw_v__g__5e3c4569_2d0a_4890_941e_c81bb4cc4415.internal.s)
-
-
-
-/** @brief define for quoted string _g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff */
-#define AFW_Q__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff \
-    "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff */
-#define afw_s__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff \
-    (afw_v__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff */
-extern const afw_value_string_t \
-    afw_v__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff */
-#define afw_z__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff \
-    (afw_v__g__5e3e4a60_dd8f_401d_9339_814b87d6d1ff.internal.s)
-
-
-
-/** @brief define for quoted string _g__5f090487_a70a_4661_9ec4_f26562f0d103 */
-#define AFW_Q__g__5f090487_a70a_4661_9ec4_f26562f0d103 \
-    "Prefix of URIs that will be directed to this request handler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5f090487_a70a_4661_9ec4_f26562f0d103 */
-#define afw_s__g__5f090487_a70a_4661_9ec4_f26562f0d103 \
-    (afw_v__g__5f090487_a70a_4661_9ec4_f26562f0d103.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5f090487_a70a_4661_9ec4_f26562f0d103 */
-extern const afw_value_string_t \
-    afw_v__g__5f090487_a70a_4661_9ec4_f26562f0d103;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5f090487_a70a_4661_9ec4_f26562f0d103 */
-#define afw_z__g__5f090487_a70a_4661_9ec4_f26562f0d103 \
-    (afw_v__g__5f090487_a70a_4661_9ec4_f26562f0d103.internal.s)
-
-
-
-/** @brief define for quoted string _g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 */
-#define AFW_Q__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 \
-    "This is a runtime property that is the implementation id of the value interface"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 */
-#define afw_s__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 \
-    (afw_v__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 */
-extern const afw_value_string_t \
-    afw_v__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 */
-#define afw_z__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125 \
-    (afw_v__g__5f2b18c7_ff0c_4b50_882f_9051ffa76125.internal.s)
-
-
-
-/** @brief define for quoted string _g__5fc1b181_a327_4da8_b0da_3c172db3fff7 */
-#define AFW_Q__g__5fc1b181_a327_4da8_b0da_3c172db3fff7 \
-    "The name and revision of the request protocol, e.g., 'HTTP/1.1'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__5fc1b181_a327_4da8_b0da_3c172db3fff7 */
-#define afw_s__g__5fc1b181_a327_4da8_b0da_3c172db3fff7 \
-    (afw_v__g__5fc1b181_a327_4da8_b0da_3c172db3fff7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__5fc1b181_a327_4da8_b0da_3c172db3fff7 */
-extern const afw_value_string_t \
-    afw_v__g__5fc1b181_a327_4da8_b0da_3c172db3fff7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5fc1b181_a327_4da8_b0da_3c172db3fff7 */
-#define afw_z__g__5fc1b181_a327_4da8_b0da_3c172db3fff7 \
-    (afw_v__g__5fc1b181_a327_4da8_b0da_3c172db3fff7.internal.s)
-
-
-
-/** @brief define for quoted string _g__6008c3db_f13a_434e_b2b6_0200d429819c */
-#define AFW_Q__g__6008c3db_f13a_434e_b2b6_0200d429819c \
-    "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler. The qualifier can be an empty string for unqualified variables. The properties of these 'qualifier objects' are template values that are accessible as qualified variables while processing this authorization handler. These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6008c3db_f13a_434e_b2b6_0200d429819c */
-#define afw_s__g__6008c3db_f13a_434e_b2b6_0200d429819c \
-    (afw_v__g__6008c3db_f13a_434e_b2b6_0200d429819c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6008c3db_f13a_434e_b2b6_0200d429819c */
-extern const afw_value_string_t \
-    afw_v__g__6008c3db_f13a_434e_b2b6_0200d429819c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6008c3db_f13a_434e_b2b6_0200d429819c */
-#define afw_z__g__6008c3db_f13a_434e_b2b6_0200d429819c \
-    (afw_v__g__6008c3db_f13a_434e_b2b6_0200d429819c.internal.s)
-
-
-
-/** @brief define for quoted string _g__612a91d5_ef30_4133_a323_7f9bc4987e09 */
-#define AFW_Q__g__612a91d5_ef30_4133_a323_7f9bc4987e09 \
-    "The parameters for this component. The object type of this object is determined by the implementation of the component type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__612a91d5_ef30_4133_a323_7f9bc4987e09 */
-#define afw_s__g__612a91d5_ef30_4133_a323_7f9bc4987e09 \
-    (afw_v__g__612a91d5_ef30_4133_a323_7f9bc4987e09.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__612a91d5_ef30_4133_a323_7f9bc4987e09 */
-extern const afw_value_string_t \
-    afw_v__g__612a91d5_ef30_4133_a323_7f9bc4987e09;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__612a91d5_ef30_4133_a323_7f9bc4987e09 */
-#define afw_z__g__612a91d5_ef30_4133_a323_7f9bc4987e09 \
-    (afw_v__g__612a91d5_ef30_4133_a323_7f9bc4987e09.internal.s)
-
-
-
-/** @brief define for quoted string _g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 */
-#define AFW_Q__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 \
-    "The line number in the adaptive value source of the error. This is only available if source contains line breaks."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 */
-#define afw_s__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 \
-    (afw_v__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 */
-extern const afw_value_string_t \
-    afw_v__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 */
-#define afw_z__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2 \
-    (afw_v__g__622d0f81_6cdd_4cef_a275_6b12e87db0b2.internal.s)
-
-
-
-/** @brief define for quoted string _g__6266370a_5733_453b_851e_26bcf8693f02 */
-#define AFW_Q__g__6266370a_5733_453b_851e_26bcf8693f02 \
-    "This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form 'AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_' followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6266370a_5733_453b_851e_26bcf8693f02 */
-#define afw_s__g__6266370a_5733_453b_851e_26bcf8693f02 \
-    (afw_v__g__6266370a_5733_453b_851e_26bcf8693f02.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6266370a_5733_453b_851e_26bcf8693f02 */
-extern const afw_value_string_t \
-    afw_v__g__6266370a_5733_453b_851e_26bcf8693f02;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6266370a_5733_453b_851e_26bcf8693f02 */
-#define afw_z__g__6266370a_5733_453b_851e_26bcf8693f02 \
-    (afw_v__g__6266370a_5733_453b_851e_26bcf8693f02.internal.s)
-
-
-
-/** @brief define for quoted string _g__627caec1_b3aa_4b2d_a4c2_51a349386e9b */
-#define AFW_Q__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b \
-    "This is the object type of objects in the _AdaptiveTestScriptResult_ 'tests' list property."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b */
-#define afw_s__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b \
-    (afw_v__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b */
-extern const afw_value_string_t \
-    afw_v__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b */
-#define afw_z__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b \
-    (afw_v__g__627caec1_b3aa_4b2d_a4c2_51a349386e9b.internal.s)
-
-
-
-/** @brief define for quoted string _g__62baa5f2_9285_482c_99c6_1dd83c30226a */
-#define AFW_Q__g__62baa5f2_9285_482c_99c6_1dd83c30226a \
-    "#! afw\n\n/**\n * onAddObject\n * \n * This can be specified to override default add_object() processing.\n * \n * Some notable context variables are: \n *     current::adaptorId\n *     current::objectType\n *     current::object\n *     current::objectId\n * \n * An _AdaptiveAction_ object should be returned.\n */\n\n/*\n * Special handling for specific objects.\n *\n * For example, to handle objectType MySpecialType a special way:\n */\n/*\nif (objectType == 'MySpecialType') {\n    let (object '_AdaptiveAction_') action = {};\n\n    // Handle special by setting properties in the action object or by\n    // doing the action directly.\n\n    return action;\n}\n*/\n\n/*\n * To handle objects that don't need special handling, call the default handler.\n */\nreturn model_default_add_object_action(\n    current::adaptorId,\n    current::objectType,\n    current::object,\n    current::objectId );\n    "
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__62baa5f2_9285_482c_99c6_1dd83c30226a */
-#define afw_s__g__62baa5f2_9285_482c_99c6_1dd83c30226a \
-    (afw_v__g__62baa5f2_9285_482c_99c6_1dd83c30226a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__62baa5f2_9285_482c_99c6_1dd83c30226a */
-extern const afw_value_string_t \
-    afw_v__g__62baa5f2_9285_482c_99c6_1dd83c30226a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__62baa5f2_9285_482c_99c6_1dd83c30226a */
-#define afw_z__g__62baa5f2_9285_482c_99c6_1dd83c30226a \
-    (afw_v__g__62baa5f2_9285_482c_99c6_1dd83c30226a.internal.s)
-
-
-
-/** @brief define for quoted string _g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 */
-#define AFW_Q__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 \
-    "The query information from requested URL (i.e., the data following '?')."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 */
-#define afw_s__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 \
-    (afw_v__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 */
-extern const afw_value_string_t \
-    afw_v__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 */
-#define afw_z__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18 \
-    (afw_v__g__63208a7f_378a_4a98_9cf8_0f961c7ffa18.internal.s)
-
-
-
-/** @brief define for quoted string _g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad */
-#define AFW_Q__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad \
-    "Id associated with the implementation for this component type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad */
-#define afw_s__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad \
-    (afw_v__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad */
-extern const afw_value_string_t \
-    afw_v__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad */
-#define afw_z__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad \
-    (afw_v__g__6337e0c8_6971_4390_afdd_8c3cb5ef62ad.internal.s)
-
-
-
-/** @brief define for quoted string _g__63f837e4_9964_4a73_886a_10bbb87668be */
-#define AFW_Q__g__63f837e4_9964_4a73_886a_10bbb87668be \
+/** @brief define for quoted string _g__1 */
+#define AFW_Q__g__1 \
     "This is an array of flagId of flags to set in the execution context (xctx) while the function is being executed. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__63f837e4_9964_4a73_886a_10bbb87668be */
-#define afw_s__g__63f837e4_9964_4a73_886a_10bbb87668be \
-    (afw_v__g__63f837e4_9964_4a73_886a_10bbb87668be.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__1 */
+#define afw_s__g__1 \
+    (afw_v__g__1.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__63f837e4_9964_4a73_886a_10bbb87668be */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__1 */
 extern const afw_value_string_t \
-    afw_v__g__63f837e4_9964_4a73_886a_10bbb87668be;
+    afw_v__g__1;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__63f837e4_9964_4a73_886a_10bbb87668be */
-#define afw_z__g__63f837e4_9964_4a73_886a_10bbb87668be \
-    (afw_v__g__63f837e4_9964_4a73_886a_10bbb87668be.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__1 */
+#define afw_z__g__1 \
+    (afw_v__g__1.internal.s)
 
 
 
-/** @brief define for quoted string _g__641bd662_0e6b_44a1_876e_f7577dd29505 */
-#define AFW_Q__g__641bd662_0e6b_44a1_876e_f7577dd29505 \
-    "Service startup condition specifies how the service should be started. Choose 'manual', if you intend to start the service by hand. Choose 'immediate' if the service should be started as soon as it as loaded. Services defined in the main configuration file are 'permanent', which are started immediately and cannot be stopped."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__641bd662_0e6b_44a1_876e_f7577dd29505 */
-#define afw_s__g__641bd662_0e6b_44a1_876e_f7577dd29505 \
-    (afw_v__g__641bd662_0e6b_44a1_876e_f7577dd29505.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__641bd662_0e6b_44a1_876e_f7577dd29505 */
-extern const afw_value_string_t \
-    afw_v__g__641bd662_0e6b_44a1_876e_f7577dd29505;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__641bd662_0e6b_44a1_876e_f7577dd29505 */
-#define afw_z__g__641bd662_0e6b_44a1_876e_f7577dd29505 \
-    (afw_v__g__641bd662_0e6b_44a1_876e_f7577dd29505.internal.s)
-
-
-
-/** @brief define for quoted string _g__652191d1_3745_4f05_bc59_8de8e1f61ba0 */
-#define AFW_Q__g__652191d1_3745_4f05_bc59_8de8e1f61ba0 \
-    "The URI that adaptive framework considers the normalized form of the path with substitutions complete"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__652191d1_3745_4f05_bc59_8de8e1f61ba0 */
-#define afw_s__g__652191d1_3745_4f05_bc59_8de8e1f61ba0 \
-    (afw_v__g__652191d1_3745_4f05_bc59_8de8e1f61ba0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__652191d1_3745_4f05_bc59_8de8e1f61ba0 */
-extern const afw_value_string_t \
-    afw_v__g__652191d1_3745_4f05_bc59_8de8e1f61ba0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__652191d1_3745_4f05_bc59_8de8e1f61ba0 */
-#define afw_z__g__652191d1_3745_4f05_bc59_8de8e1f61ba0 \
-    (afw_v__g__652191d1_3745_4f05_bc59_8de8e1f61ba0.internal.s)
-
-
-
-/** @brief define for quoted string _g__652f2442_c0fc_4e29_aa0a_c105109bc02f */
-#define AFW_Q__g__652f2442_c0fc_4e29_aa0a_c105109bc02f \
-    "The name of the properties in this object corresponds to the property name of an instance of this object type and is its property type object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__652f2442_c0fc_4e29_aa0a_c105109bc02f */
-#define afw_s__g__652f2442_c0fc_4e29_aa0a_c105109bc02f \
-    (afw_v__g__652f2442_c0fc_4e29_aa0a_c105109bc02f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__652f2442_c0fc_4e29_aa0a_c105109bc02f */
-extern const afw_value_string_t \
-    afw_v__g__652f2442_c0fc_4e29_aa0a_c105109bc02f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__652f2442_c0fc_4e29_aa0a_c105109bc02f */
-#define afw_z__g__652f2442_c0fc_4e29_aa0a_c105109bc02f \
-    (afw_v__g__652f2442_c0fc_4e29_aa0a_c105109bc02f.internal.s)
-
-
-
-/** @brief define for quoted string _g__653813c1_0670_49c6_ad3d_b58661d28190 */
-#define AFW_Q__g__653813c1_0670_49c6_ad3d_b58661d28190 \
-    "This is the label in C source of the afw_value_get_evaluated_metas for this data type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__653813c1_0670_49c6_ad3d_b58661d28190 */
-#define afw_s__g__653813c1_0670_49c6_ad3d_b58661d28190 \
-    (afw_v__g__653813c1_0670_49c6_ad3d_b58661d28190.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__653813c1_0670_49c6_ad3d_b58661d28190 */
-extern const afw_value_string_t \
-    afw_v__g__653813c1_0670_49c6_ad3d_b58661d28190;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__653813c1_0670_49c6_ad3d_b58661d28190 */
-#define afw_z__g__653813c1_0670_49c6_ad3d_b58661d28190 \
-    (afw_v__g__653813c1_0670_49c6_ad3d_b58661d28190.internal.s)
-
-
-
-/** @brief define for quoted string _g__65916eb9_05f6_4362_b9b1_cd8303b2175d */
-#define AFW_Q__g__65916eb9_05f6_4362_b9b1_cd8303b2175d \
-    "Adaptor object type cache interface. This interface is used by\n      afw_adaptor_get_object_type()."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__65916eb9_05f6_4362_b9b1_cd8303b2175d */
-#define afw_s__g__65916eb9_05f6_4362_b9b1_cd8303b2175d \
-    (afw_v__g__65916eb9_05f6_4362_b9b1_cd8303b2175d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__65916eb9_05f6_4362_b9b1_cd8303b2175d */
-extern const afw_value_string_t \
-    afw_v__g__65916eb9_05f6_4362_b9b1_cd8303b2175d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__65916eb9_05f6_4362_b9b1_cd8303b2175d */
-#define afw_z__g__65916eb9_05f6_4362_b9b1_cd8303b2175d \
-    (afw_v__g__65916eb9_05f6_4362_b9b1_cd8303b2175d.internal.s)
-
-
-
-/** @brief define for quoted string _g__659c53c6_4346_4590_9698_40c4692f3101 */
-#define AFW_Q__g__659c53c6_4346_4590_9698_40c4692f3101 \
-    "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__659c53c6_4346_4590_9698_40c4692f3101 */
-#define afw_s__g__659c53c6_4346_4590_9698_40c4692f3101 \
-    (afw_v__g__659c53c6_4346_4590_9698_40c4692f3101.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__659c53c6_4346_4590_9698_40c4692f3101 */
-extern const afw_value_string_t \
-    afw_v__g__659c53c6_4346_4590_9698_40c4692f3101;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__659c53c6_4346_4590_9698_40c4692f3101 */
-#define afw_z__g__659c53c6_4346_4590_9698_40c4692f3101 \
-    (afw_v__g__659c53c6_4346_4590_9698_40c4692f3101.internal.s)
-
-
-
-/** @brief define for quoted string _g__661db83a_83f9_4f09_ad63_7c9eebacedce */
-#define AFW_Q__g__661db83a_83f9_4f09_ad63_7c9eebacedce \
-    "This extension provides a content-type handler for Universal Binary JSON (UBJSON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__661db83a_83f9_4f09_ad63_7c9eebacedce */
-#define afw_s__g__661db83a_83f9_4f09_ad63_7c9eebacedce \
-    (afw_v__g__661db83a_83f9_4f09_ad63_7c9eebacedce.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__661db83a_83f9_4f09_ad63_7c9eebacedce */
-extern const afw_value_string_t \
-    afw_v__g__661db83a_83f9_4f09_ad63_7c9eebacedce;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__661db83a_83f9_4f09_ad63_7c9eebacedce */
-#define afw_z__g__661db83a_83f9_4f09_ad63_7c9eebacedce \
-    (afw_v__g__661db83a_83f9_4f09_ad63_7c9eebacedce.internal.s)
-
-
-
-/** @brief define for quoted string _g__679f2c83_b799_45e5_a634_728f74c180c6 */
-#define AFW_Q__g__679f2c83_b799_45e5_a634_728f74c180c6 \
-    "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__679f2c83_b799_45e5_a634_728f74c180c6 */
-#define afw_s__g__679f2c83_b799_45e5_a634_728f74c180c6 \
-    (afw_v__g__679f2c83_b799_45e5_a634_728f74c180c6.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__679f2c83_b799_45e5_a634_728f74c180c6 */
-extern const afw_value_string_t \
-    afw_v__g__679f2c83_b799_45e5_a634_728f74c180c6;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__679f2c83_b799_45e5_a634_728f74c180c6 */
-#define afw_z__g__679f2c83_b799_45e5_a634_728f74c180c6 \
-    (afw_v__g__679f2c83_b799_45e5_a634_728f74c180c6.internal.s)
-
-
-
-/** @brief define for quoted string _g__67d3a0e6_d870_439e_9578_ddaf64712de6 */
-#define AFW_Q__g__67d3a0e6_d870_439e_9578_ddaf64712de6 \
-    "The email address of the user making the request; most browsers do not pass this information, since it is considered an invasion of the user's privacy."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__67d3a0e6_d870_439e_9578_ddaf64712de6 */
-#define afw_s__g__67d3a0e6_d870_439e_9578_ddaf64712de6 \
-    (afw_v__g__67d3a0e6_d870_439e_9578_ddaf64712de6.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__67d3a0e6_d870_439e_9578_ddaf64712de6 */
-extern const afw_value_string_t \
-    afw_v__g__67d3a0e6_d870_439e_9578_ddaf64712de6;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__67d3a0e6_d870_439e_9578_ddaf64712de6 */
-#define afw_z__g__67d3a0e6_d870_439e_9578_ddaf64712de6 \
-    (afw_v__g__67d3a0e6_d870_439e_9578_ddaf64712de6.internal.s)
-
-
-
-/** @brief define for quoted string _g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 */
-#define AFW_Q__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 \
-    "This can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 */
-#define afw_s__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 \
-    (afw_v__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 */
-extern const afw_value_string_t \
-    afw_v__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 */
-#define afw_z__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9 \
-    (afw_v__g__68c2629e_9958_4f3f_9f7d_a8d4a29921d9.internal.s)
-
-
-
-/** @brief define for quoted string _g__6944c030_2576_49b9_b00b_89cb3dd3038d */
-#define AFW_Q__g__6944c030_2576_49b9_b00b_89cb3dd3038d \
-    "These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6944c030_2576_49b9_b00b_89cb3dd3038d */
-#define afw_s__g__6944c030_2576_49b9_b00b_89cb3dd3038d \
-    (afw_v__g__6944c030_2576_49b9_b00b_89cb3dd3038d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6944c030_2576_49b9_b00b_89cb3dd3038d */
-extern const afw_value_string_t \
-    afw_v__g__6944c030_2576_49b9_b00b_89cb3dd3038d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6944c030_2576_49b9_b00b_89cb3dd3038d */
-#define afw_z__g__6944c030_2576_49b9_b00b_89cb3dd3038d \
-    (afw_v__g__6944c030_2576_49b9_b00b_89cb3dd3038d.internal.s)
-
-
-
-/** @brief define for quoted string _g__697696ee_34ea_43a4_88e1_9c17b212e961 */
-#define AFW_Q__g__697696ee_34ea_43a4_88e1_9c17b212e961 \
-    "Indicates that meta resolvedParentPaths should be included with an array of parent paths that have been resolved by the composite option."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__697696ee_34ea_43a4_88e1_9c17b212e961 */
-#define afw_s__g__697696ee_34ea_43a4_88e1_9c17b212e961 \
-    (afw_v__g__697696ee_34ea_43a4_88e1_9c17b212e961.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__697696ee_34ea_43a4_88e1_9c17b212e961 */
-extern const afw_value_string_t \
-    afw_v__g__697696ee_34ea_43a4_88e1_9c17b212e961;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__697696ee_34ea_43a4_88e1_9c17b212e961 */
-#define afw_z__g__697696ee_34ea_43a4_88e1_9c17b212e961 \
-    (afw_v__g__697696ee_34ea_43a4_88e1_9c17b212e961.internal.s)
-
-
-
-/** @brief define for quoted string _g__6a73eaf0_5a36_4520_b228_6180f69f0898 */
-#define AFW_Q__g__6a73eaf0_5a36_4520_b228_6180f69f0898 \
-    "An adaptor may provide metrics to describe the current state of this adaptor instance."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6a73eaf0_5a36_4520_b228_6180f69f0898 */
-#define afw_s__g__6a73eaf0_5a36_4520_b228_6180f69f0898 \
-    (afw_v__g__6a73eaf0_5a36_4520_b228_6180f69f0898.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6a73eaf0_5a36_4520_b228_6180f69f0898 */
-extern const afw_value_string_t \
-    afw_v__g__6a73eaf0_5a36_4520_b228_6180f69f0898;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6a73eaf0_5a36_4520_b228_6180f69f0898 */
-#define afw_z__g__6a73eaf0_5a36_4520_b228_6180f69f0898 \
-    (afw_v__g__6a73eaf0_5a36_4520_b228_6180f69f0898.internal.s)
-
-
-
-/** @brief define for quoted string _g__6bfbd986_da07_4e6e_b9ea_26b3b352754c */
-#define AFW_Q__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c \
-    "This is the total number of requests that have been processed since the server was started."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c */
-#define afw_s__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c \
-    (afw_v__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c */
-extern const afw_value_string_t \
-    afw_v__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c */
-#define afw_z__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c \
-    (afw_v__g__6bfbd986_da07_4e6e_b9ea_26b3b352754c.internal.s)
-
-
-
-/** @brief define for quoted string _g__6c602596_24f0_4efe_a0f6_550541f92300 */
-#define AFW_Q__g__6c602596_24f0_4efe_a0f6_550541f92300 \
-    "Hints that can optionally be used by UI to render this value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6c602596_24f0_4efe_a0f6_550541f92300 */
-#define afw_s__g__6c602596_24f0_4efe_a0f6_550541f92300 \
-    (afw_v__g__6c602596_24f0_4efe_a0f6_550541f92300.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6c602596_24f0_4efe_a0f6_550541f92300 */
-extern const afw_value_string_t \
-    afw_v__g__6c602596_24f0_4efe_a0f6_550541f92300;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6c602596_24f0_4efe_a0f6_550541f92300 */
-#define afw_z__g__6c602596_24f0_4efe_a0f6_550541f92300 \
-    (afw_v__g__6c602596_24f0_4efe_a0f6_550541f92300.internal.s)
-
-
-
-/** @brief define for quoted string _g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 */
-#define AFW_Q__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 \
-    "This is the source location of the error. This is usually a reference to the adaptive value source location."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 */
-#define afw_s__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 \
-    (afw_v__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 */
-extern const afw_value_string_t \
-    afw_v__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 */
-#define afw_z__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93 \
-    (afw_v__g__6c9f5d93_acde_4fbc_b3ba_06cd24b4ad93.internal.s)
-
-
-
-/** @brief define for quoted string _g__6cbd4246_fdf0_41b8_852e_e13fae25932f */
-#define AFW_Q__g__6cbd4246_fdf0_41b8_852e_e13fae25932f \
-    "This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6cbd4246_fdf0_41b8_852e_e13fae25932f */
-#define afw_s__g__6cbd4246_fdf0_41b8_852e_e13fae25932f \
-    (afw_v__g__6cbd4246_fdf0_41b8_852e_e13fae25932f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6cbd4246_fdf0_41b8_852e_e13fae25932f */
-extern const afw_value_string_t \
-    afw_v__g__6cbd4246_fdf0_41b8_852e_e13fae25932f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6cbd4246_fdf0_41b8_852e_e13fae25932f */
-#define afw_z__g__6cbd4246_fdf0_41b8_852e_e13fae25932f \
-    (afw_v__g__6cbd4246_fdf0_41b8_852e_e13fae25932f.internal.s)
-
-
-
-/** @brief define for quoted string _g__6e44fcdf_fd52_4b54_b041_021a9fe93abd */
-#define AFW_Q__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd \
+/** @brief define for quoted string _g__10 */
+#define AFW_Q__g__10 \
     "Do authorization check when running in mode intermediate. If false, the checks will be bypassed."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd */
-#define afw_s__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd \
-    (afw_v__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__10 */
+#define afw_s__g__10 \
+    (afw_v__g__10.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__10 */
 extern const afw_value_string_t \
-    afw_v__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd;
+    afw_v__g__10;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd */
-#define afw_z__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd \
-    (afw_v__g__6e44fcdf_fd52_4b54_b041_021a9fe93abd.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__10 */
+#define afw_z__g__10 \
+    (afw_v__g__10.internal.s)
 
 
 
-/** @brief define for quoted string _g__702cdd28_48b8_4d17_b135_b41a9cb5fbed */
-#define AFW_Q__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed \
-    "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects."
+/** @brief define for quoted string _g__100 */
+#define AFW_Q__g__100 \
+    "This is the context type id. For context types related to conf objects, the id should be the type followed by an optional dash and subtype. For example, the id for conf type log logType standard must be log-standard."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed */
-#define afw_s__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed \
-    (afw_v__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__100 */
+#define afw_s__g__100 \
+    (afw_v__g__100.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__100 */
 extern const afw_value_string_t \
-    afw_v__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed;
+    afw_v__g__100;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed */
-#define afw_z__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed \
-    (afw_v__g__702cdd28_48b8_4d17_b135_b41a9cb5fbed.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__100 */
+#define afw_z__g__100 \
+    (afw_v__g__100.internal.s)
 
 
 
-/** @brief define for quoted string _g__7069367e_682e_47c7_a782_ed7651c5c8d6 */
-#define AFW_Q__g__7069367e_682e_47c7_a782_ed7651c5c8d6 \
-    "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment. The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise."
+/** @brief define for quoted string _g__101 */
+#define AFW_Q__g__101 \
+    "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7069367e_682e_47c7_a782_ed7651c5c8d6 */
-#define afw_s__g__7069367e_682e_47c7_a782_ed7651c5c8d6 \
-    (afw_v__g__7069367e_682e_47c7_a782_ed7651c5c8d6.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__101 */
+#define afw_s__g__101 \
+    (afw_v__g__101.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7069367e_682e_47c7_a782_ed7651c5c8d6 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__101 */
 extern const afw_value_string_t \
-    afw_v__g__7069367e_682e_47c7_a782_ed7651c5c8d6;
+    afw_v__g__101;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7069367e_682e_47c7_a782_ed7651c5c8d6 */
-#define afw_z__g__7069367e_682e_47c7_a782_ed7651c5c8d6 \
-    (afw_v__g__7069367e_682e_47c7_a782_ed7651c5c8d6.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__101 */
+#define afw_z__g__101 \
+    (afw_v__g__101.internal.s)
 
 
 
-/** @brief define for quoted string _g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 */
-#define AFW_Q__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 \
-    "Adaptive Framework configuration component for type=extension."
+/** @brief define for quoted string _g__102 */
+#define AFW_Q__g__102 \
+    "This is the label in C source of the afw_value_get_evaluated_meta for this data type."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 */
-#define afw_s__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 \
-    (afw_v__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__102 */
+#define afw_s__g__102 \
+    (afw_v__g__102.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__102 */
 extern const afw_value_string_t \
-    afw_v__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7;
+    afw_v__g__102;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 */
-#define afw_z__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7 \
-    (afw_v__g__71000fa2_86ea_4da0_8f2a_2960e5a421a7.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__102 */
+#define afw_z__g__102 \
+    (afw_v__g__102.internal.s)
 
 
 
-/** @brief define for quoted string _g__7149be85_7f0d_4b45_a965_d9f89170e1c5 */
-#define AFW_Q__g__7149be85_7f0d_4b45_a965_d9f89170e1c5 \
-    "This indicates that default property values should be included. This option implies the normalize option."
+/** @brief define for quoted string _g__103 */
+#define AFW_Q__g__103 \
+    "This is the label in C source of the afw_value_get_evaluated_metas for this data type."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7149be85_7f0d_4b45_a965_d9f89170e1c5 */
-#define afw_s__g__7149be85_7f0d_4b45_a965_d9f89170e1c5 \
-    (afw_v__g__7149be85_7f0d_4b45_a965_d9f89170e1c5.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__103 */
+#define afw_s__g__103 \
+    (afw_v__g__103.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7149be85_7f0d_4b45_a965_d9f89170e1c5 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__103 */
 extern const afw_value_string_t \
-    afw_v__g__7149be85_7f0d_4b45_a965_d9f89170e1c5;
+    afw_v__g__103;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7149be85_7f0d_4b45_a965_d9f89170e1c5 */
-#define afw_z__g__7149be85_7f0d_4b45_a965_d9f89170e1c5 \
-    (afw_v__g__7149be85_7f0d_4b45_a965_d9f89170e1c5.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__103 */
+#define afw_z__g__103 \
+    (afw_v__g__103.internal.s)
 
 
 
-/** @brief define for quoted string _g__72346858_461a_410d_903d_e34f349deb06 */
-#define AFW_Q__g__72346858_461a_410d_903d_e34f349deb06 \
-    "This is a contextual string added when this configuration object is processed."
+/** @brief define for quoted string _g__104 */
+#define AFW_Q__g__104 \
+    "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__72346858_461a_410d_903d_e34f349deb06 */
-#define afw_s__g__72346858_461a_410d_903d_e34f349deb06 \
-    (afw_v__g__72346858_461a_410d_903d_e34f349deb06.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__104 */
+#define afw_s__g__104 \
+    (afw_v__g__104.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__72346858_461a_410d_903d_e34f349deb06 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__104 */
 extern const afw_value_string_t \
-    afw_v__g__72346858_461a_410d_903d_e34f349deb06;
+    afw_v__g__104;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__72346858_461a_410d_903d_e34f349deb06 */
-#define afw_z__g__72346858_461a_410d_903d_e34f349deb06 \
-    (afw_v__g__72346858_461a_410d_903d_e34f349deb06.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__104 */
+#define afw_z__g__104 \
+    (afw_v__g__104.internal.s)
 
 
 
-/** @brief define for quoted string _g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a */
-#define AFW_Q__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a \
-    "If non-zero, this is an script support function and this is its internal special handling number. See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a */
-#define afw_s__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a \
-    (afw_v__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a */
-extern const afw_value_string_t \
-    afw_v__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a */
-#define afw_z__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a \
-    (afw_v__g__72b988f6_a2ea_4acb_8914_3f9fc14e6b4a.internal.s)
-
-
-
-/** @brief define for quoted string _g__731da5b7_126b_41df_950b_c2e47e2ffd03 */
-#define AFW_Q__g__731da5b7_126b_41df_950b_c2e47e2ffd03 \
-    "This is where the source for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__731da5b7_126b_41df_950b_c2e47e2ffd03 */
-#define afw_s__g__731da5b7_126b_41df_950b_c2e47e2ffd03 \
-    (afw_v__g__731da5b7_126b_41df_950b_c2e47e2ffd03.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__731da5b7_126b_41df_950b_c2e47e2ffd03 */
-extern const afw_value_string_t \
-    afw_v__g__731da5b7_126b_41df_950b_c2e47e2ffd03;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__731da5b7_126b_41df_950b_c2e47e2ffd03 */
-#define afw_z__g__731da5b7_126b_41df_950b_c2e47e2ffd03 \
-    (afw_v__g__731da5b7_126b_41df_950b_c2e47e2ffd03.internal.s)
-
-
-
-/** @brief define for quoted string _g__7454fb40_42a7_46fe_aa04_eab98cced98b */
-#define AFW_Q__g__7454fb40_42a7_46fe_aa04_eab98cced98b \
-    "These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7454fb40_42a7_46fe_aa04_eab98cced98b */
-#define afw_s__g__7454fb40_42a7_46fe_aa04_eab98cced98b \
-    (afw_v__g__7454fb40_42a7_46fe_aa04_eab98cced98b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7454fb40_42a7_46fe_aa04_eab98cced98b */
-extern const afw_value_string_t \
-    afw_v__g__7454fb40_42a7_46fe_aa04_eab98cced98b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7454fb40_42a7_46fe_aa04_eab98cced98b */
-#define afw_z__g__7454fb40_42a7_46fe_aa04_eab98cced98b \
-    (afw_v__g__7454fb40_42a7_46fe_aa04_eab98cced98b.internal.s)
-
-
-
-/** @brief define for quoted string _g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f */
-#define AFW_Q__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f \
-    "The user making the request, as reported by their ident daemon. Only some Unix and IRC users are likely to have this running."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f */
-#define afw_s__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f \
-    (afw_v__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f */
-extern const afw_value_string_t \
-    afw_v__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f */
-#define afw_z__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f \
-    (afw_v__g__74aaf81c_d0a8_43bd_bf9e_ee30cba39e6f.internal.s)
-
-
-
-/** @brief define for quoted string _g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 */
-#define AFW_Q__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 \
-    "The origin URI of this object type. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 */
-#define afw_s__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 \
-    (afw_v__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 */
-extern const afw_value_string_t \
-    afw_v__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 */
-#define afw_z__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34 \
-    (afw_v__g__74ba6439_2c34_4e83_b6ff_5b3085a3fe34.internal.s)
-
-
-
-/** @brief define for quoted string _g__74c94596_d028_43e6_afaa_a2467d3db940 */
-#define AFW_Q__g__74c94596_d028_43e6_afaa_a2467d3db940 \
-    "The translated version of the path given by the variable PATH_INFO"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__74c94596_d028_43e6_afaa_a2467d3db940 */
-#define afw_s__g__74c94596_d028_43e6_afaa_a2467d3db940 \
-    (afw_v__g__74c94596_d028_43e6_afaa_a2467d3db940.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__74c94596_d028_43e6_afaa_a2467d3db940 */
-extern const afw_value_string_t \
-    afw_v__g__74c94596_d028_43e6_afaa_a2467d3db940;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__74c94596_d028_43e6_afaa_a2467d3db940 */
-#define afw_z__g__74c94596_d028_43e6_afaa_a2467d3db940 \
-    (afw_v__g__74c94596_d028_43e6_afaa_a2467d3db940.internal.s)
-
-
-
-/** @brief define for quoted string _g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 */
-#define AFW_Q__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 \
-    "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 */
-#define afw_s__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 \
-    (afw_v__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 */
-extern const afw_value_string_t \
-    afw_v__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 */
-#define afw_z__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895 \
-    (afw_v__g__74cce462_20d8_4e4c_9f0c_7e8bdc825895.internal.s)
-
-
-
-/** @brief define for quoted string _g__74ee651c_d3d4_4a0a_b155_989417603192 */
-#define AFW_Q__g__74ee651c_d3d4_4a0a_b155_989417603192 \
-    "This is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__74ee651c_d3d4_4a0a_b155_989417603192 */
-#define afw_s__g__74ee651c_d3d4_4a0a_b155_989417603192 \
-    (afw_v__g__74ee651c_d3d4_4a0a_b155_989417603192.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__74ee651c_d3d4_4a0a_b155_989417603192 */
-extern const afw_value_string_t \
-    afw_v__g__74ee651c_d3d4_4a0a_b155_989417603192;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__74ee651c_d3d4_4a0a_b155_989417603192 */
-#define afw_z__g__74ee651c_d3d4_4a0a_b155_989417603192 \
-    (afw_v__g__74ee651c_d3d4_4a0a_b155_989417603192.internal.s)
-
-
-
-/** @brief define for quoted string _g__7539fbba_da76_478f_8d9a_51e3c02513a8 */
-#define AFW_Q__g__7539fbba_da76_478f_8d9a_51e3c02513a8 \
-    "This specifies the type of adaptor to use. The value of this field must match an adaptorType that is registered by core or by an extension."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7539fbba_da76_478f_8d9a_51e3c02513a8 */
-#define afw_s__g__7539fbba_da76_478f_8d9a_51e3c02513a8 \
-    (afw_v__g__7539fbba_da76_478f_8d9a_51e3c02513a8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7539fbba_da76_478f_8d9a_51e3c02513a8 */
-extern const afw_value_string_t \
-    afw_v__g__7539fbba_da76_478f_8d9a_51e3c02513a8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7539fbba_da76_478f_8d9a_51e3c02513a8 */
-#define afw_z__g__7539fbba_da76_478f_8d9a_51e3c02513a8 \
-    (afw_v__g__7539fbba_da76_478f_8d9a_51e3c02513a8.internal.s)
-
-
-
-/** @brief define for quoted string _g__75c1e8a6_70ab_4e18_a159_5c74e8501970 */
-#define AFW_Q__g__75c1e8a6_70ab_4e18_a159_5c74e8501970 \
-    "These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__75c1e8a6_70ab_4e18_a159_5c74e8501970 */
-#define afw_s__g__75c1e8a6_70ab_4e18_a159_5c74e8501970 \
-    (afw_v__g__75c1e8a6_70ab_4e18_a159_5c74e8501970.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__75c1e8a6_70ab_4e18_a159_5c74e8501970 */
-extern const afw_value_string_t \
-    afw_v__g__75c1e8a6_70ab_4e18_a159_5c74e8501970;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__75c1e8a6_70ab_4e18_a159_5c74e8501970 */
-#define afw_z__g__75c1e8a6_70ab_4e18_a159_5c74e8501970 \
-    (afw_v__g__75c1e8a6_70ab_4e18_a159_5c74e8501970.internal.s)
-
-
-
-/** @brief define for quoted string _g__760e3d55_c21e_4e3a_b129_d357ff684454 */
-#define AFW_Q__g__760e3d55_c21e_4e3a_b129_d357ff684454 \
-    "The media type of the request body, such as 'application/x-www-form-urlencoded'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__760e3d55_c21e_4e3a_b129_d357ff684454 */
-#define afw_s__g__760e3d55_c21e_4e3a_b129_d357ff684454 \
-    (afw_v__g__760e3d55_c21e_4e3a_b129_d357ff684454.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__760e3d55_c21e_4e3a_b129_d357ff684454 */
-extern const afw_value_string_t \
-    afw_v__g__760e3d55_c21e_4e3a_b129_d357ff684454;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__760e3d55_c21e_4e3a_b129_d357ff684454 */
-#define afw_z__g__760e3d55_c21e_4e3a_b129_d357ff684454 \
-    (afw_v__g__760e3d55_c21e_4e3a_b129_d357ff684454.internal.s)
-
-
-
-/** @brief define for quoted string _g__767f2648_bd64_4150_90fc_92e1957fb9d2 */
-#define AFW_Q__g__767f2648_bd64_4150_90fc_92e1957fb9d2 \
-    "The adaptive object type of all adaptive object type objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__767f2648_bd64_4150_90fc_92e1957fb9d2 */
-#define afw_s__g__767f2648_bd64_4150_90fc_92e1957fb9d2 \
-    (afw_v__g__767f2648_bd64_4150_90fc_92e1957fb9d2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__767f2648_bd64_4150_90fc_92e1957fb9d2 */
-extern const afw_value_string_t \
-    afw_v__g__767f2648_bd64_4150_90fc_92e1957fb9d2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__767f2648_bd64_4150_90fc_92e1957fb9d2 */
-#define afw_z__g__767f2648_bd64_4150_90fc_92e1957fb9d2 \
-    (afw_v__g__767f2648_bd64_4150_90fc_92e1957fb9d2.internal.s)
-
-
-
-/** @brief define for quoted string _g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c */
-#define AFW_Q__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c \
-    "These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c */
-#define afw_s__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c \
-    (afw_v__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c */
-extern const afw_value_string_t \
-    afw_v__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c */
-#define afw_z__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c \
-    (afw_v__g__77aeb0e6_f049_4ced_87fa_82d3a30e5e8c.internal.s)
-
-
-
-/** @brief define for quoted string _g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 */
-#define AFW_Q__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 \
-    "This is the adaptorId chosen by default for user interface select components."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 */
-#define afw_s__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 \
-    (afw_v__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 */
-extern const afw_value_string_t \
-    afw_v__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 */
-#define afw_z__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3 \
-    (afw_v__g__77d3ec30_7904_4c12_994b_e5046e3cc9f3.internal.s)
-
-
-
-/** @brief define for quoted string _g__7966c8d5_2a6a_4af6_8773_d339e469f93b */
-#define AFW_Q__g__7966c8d5_2a6a_4af6_8773_d339e469f93b \
-    "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7966c8d5_2a6a_4af6_8773_d339e469f93b */
-#define afw_s__g__7966c8d5_2a6a_4af6_8773_d339e469f93b \
-    (afw_v__g__7966c8d5_2a6a_4af6_8773_d339e469f93b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7966c8d5_2a6a_4af6_8773_d339e469f93b */
-extern const afw_value_string_t \
-    afw_v__g__7966c8d5_2a6a_4af6_8773_d339e469f93b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7966c8d5_2a6a_4af6_8773_d339e469f93b */
-#define afw_z__g__7966c8d5_2a6a_4af6_8773_d339e469f93b \
-    (afw_v__g__7966c8d5_2a6a_4af6_8773_d339e469f93b.internal.s)
-
-
-
-/** @brief define for quoted string _g__798818b7_937f_4e25_9146_03256a16fd6b */
-#define AFW_Q__g__798818b7_937f_4e25_9146_03256a16fd6b \
-    "This is the column number in the line of the full source for the test script where this test's 'expect' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__798818b7_937f_4e25_9146_03256a16fd6b */
-#define afw_s__g__798818b7_937f_4e25_9146_03256a16fd6b \
-    (afw_v__g__798818b7_937f_4e25_9146_03256a16fd6b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__798818b7_937f_4e25_9146_03256a16fd6b */
-extern const afw_value_string_t \
-    afw_v__g__798818b7_937f_4e25_9146_03256a16fd6b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__798818b7_937f_4e25_9146_03256a16fd6b */
-#define afw_z__g__798818b7_937f_4e25_9146_03256a16fd6b \
-    (afw_v__g__798818b7_937f_4e25_9146_03256a16fd6b.internal.s)
-
-
-
-/** @brief define for quoted string _g__7a162b21_6001_496c_acd6_58ece41852a9 */
-#define AFW_Q__g__7a162b21_6001_496c_acd6_58ece41852a9 \
-    "Property type level qualifier custom:: variables available to model expressions."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7a162b21_6001_496c_acd6_58ece41852a9 */
-#define afw_s__g__7a162b21_6001_496c_acd6_58ece41852a9 \
-    (afw_v__g__7a162b21_6001_496c_acd6_58ece41852a9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7a162b21_6001_496c_acd6_58ece41852a9 */
-extern const afw_value_string_t \
-    afw_v__g__7a162b21_6001_496c_acd6_58ece41852a9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7a162b21_6001_496c_acd6_58ece41852a9 */
-#define afw_z__g__7a162b21_6001_496c_acd6_58ece41852a9 \
-    (afw_v__g__7a162b21_6001_496c_acd6_58ece41852a9.internal.s)
-
-
-
-/** @brief define for quoted string _g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 */
-#define AFW_Q__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 \
-    "This is the order this authorization handler will be processed. If 0, this handler is not active."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 */
-#define afw_s__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 \
-    (afw_v__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 */
-extern const afw_value_string_t \
-    afw_v__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 */
-#define afw_z__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4 \
-    (afw_v__g__7c7e9ad7_d37f_40e8_8fed_cc7a9ba88ce4.internal.s)
-
-
-
-/** @brief define for quoted string _g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 */
-#define AFW_Q__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 \
-    "This indicates that the function is deprecated and may go away at some point."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 */
-#define afw_s__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 \
-    (afw_v__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 */
-extern const afw_value_string_t \
-    afw_v__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 */
-#define afw_z__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1 \
-    (afw_v__g__7ee0c18a_fc3c_4b47_8539_2d90ec3a5fe1.internal.s)
-
-
-
-/** @brief define for quoted string _g__7f4c72a9_4549_4235_8639_113f189aa39a */
-#define AFW_Q__g__7f4c72a9_4549_4235_8639_113f189aa39a \
-    "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__7f4c72a9_4549_4235_8639_113f189aa39a */
-#define afw_s__g__7f4c72a9_4549_4235_8639_113f189aa39a \
-    (afw_v__g__7f4c72a9_4549_4235_8639_113f189aa39a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__7f4c72a9_4549_4235_8639_113f189aa39a */
-extern const afw_value_string_t \
-    afw_v__g__7f4c72a9_4549_4235_8639_113f189aa39a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7f4c72a9_4549_4235_8639_113f189aa39a */
-#define afw_z__g__7f4c72a9_4549_4235_8639_113f189aa39a \
-    (afw_v__g__7f4c72a9_4549_4235_8639_113f189aa39a.internal.s)
-
-
-
-/** @brief define for quoted string _g__80284825_5a12_4983_ad6c_3f0d518aec1f */
-#define AFW_Q__g__80284825_5a12_4983_ad6c_3f0d518aec1f \
+/** @brief define for quoted string _g__105 */
+#define AFW_Q__g__105 \
     "This is a predicate for the data type with the first letter capitalized and without a trailing period."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__80284825_5a12_4983_ad6c_3f0d518aec1f */
-#define afw_s__g__80284825_5a12_4983_ad6c_3f0d518aec1f \
-    (afw_v__g__80284825_5a12_4983_ad6c_3f0d518aec1f.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__105 */
+#define afw_s__g__105 \
+    (afw_v__g__105.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__80284825_5a12_4983_ad6c_3f0d518aec1f */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__105 */
 extern const afw_value_string_t \
-    afw_v__g__80284825_5a12_4983_ad6c_3f0d518aec1f;
+    afw_v__g__105;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__80284825_5a12_4983_ad6c_3f0d518aec1f */
-#define afw_z__g__80284825_5a12_4983_ad6c_3f0d518aec1f \
-    (afw_v__g__80284825_5a12_4983_ad6c_3f0d518aec1f.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__105 */
+#define afw_z__g__105 \
+    (afw_v__g__105.internal.s)
 
 
 
-/** @brief define for quoted string _g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 */
-#define AFW_Q__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 \
-    "Filter script used to determine whether to log a particular message."
+/** @brief define for quoted string _g__106 */
+#define AFW_Q__g__106 \
+    "If specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 */
-#define afw_s__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 \
-    (afw_v__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__106 */
+#define afw_s__g__106 \
+    (afw_v__g__106.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__106 */
 extern const afw_value_string_t \
-    afw_v__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216;
+    afw_v__g__106;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 */
-#define afw_z__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216 \
-    (afw_v__g__805c3d10_28bc_4ed9_9fb2_fbabbc683216.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__106 */
+#define afw_z__g__106 \
+    (afw_v__g__106.internal.s)
 
 
 
-/** @brief define for quoted string _g__80b801f0_1df9_4282_9442_ee886d5be55b */
-#define AFW_Q__g__80b801f0_1df9_4282_9442_ee886d5be55b \
-    "If specified, this adaptor can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adaptor."
+/** @brief define for quoted string _g__107 */
+#define AFW_Q__g__107 \
+    "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__80b801f0_1df9_4282_9442_ee886d5be55b */
-#define afw_s__g__80b801f0_1df9_4282_9442_ee886d5be55b \
-    (afw_v__g__80b801f0_1df9_4282_9442_ee886d5be55b.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__107 */
+#define afw_s__g__107 \
+    (afw_v__g__107.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__80b801f0_1df9_4282_9442_ee886d5be55b */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__107 */
 extern const afw_value_string_t \
-    afw_v__g__80b801f0_1df9_4282_9442_ee886d5be55b;
+    afw_v__g__107;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__80b801f0_1df9_4282_9442_ee886d5be55b */
-#define afw_z__g__80b801f0_1df9_4282_9442_ee886d5be55b \
-    (afw_v__g__80b801f0_1df9_4282_9442_ee886d5be55b.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__107 */
+#define afw_z__g__107 \
+    (afw_v__g__107.internal.s)
 
 
 
-/** @brief define for quoted string _g__80b88145_6897_4e4a_b7e0_34410fd1436c */
-#define AFW_Q__g__80b88145_6897_4e4a_b7e0_34410fd1436c \
-    "This is the srcdir info for the subdirectory of src/ that has the name of this property."
+/** @brief define for quoted string _g__108 */
+#define AFW_Q__g__108 \
+    "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer"
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__80b88145_6897_4e4a_b7e0_34410fd1436c */
-#define afw_s__g__80b88145_6897_4e4a_b7e0_34410fd1436c \
-    (afw_v__g__80b88145_6897_4e4a_b7e0_34410fd1436c.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__108 */
+#define afw_s__g__108 \
+    (afw_v__g__108.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__80b88145_6897_4e4a_b7e0_34410fd1436c */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__108 */
 extern const afw_value_string_t \
-    afw_v__g__80b88145_6897_4e4a_b7e0_34410fd1436c;
+    afw_v__g__108;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__80b88145_6897_4e4a_b7e0_34410fd1436c */
-#define afw_z__g__80b88145_6897_4e4a_b7e0_34410fd1436c \
-    (afw_v__g__80b88145_6897_4e4a_b7e0_34410fd1436c.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__108 */
+#define afw_z__g__108 \
+    (afw_v__g__108.internal.s)
 
 
 
-/** @brief define for quoted string _g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 */
-#define AFW_Q__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 \
-    "Functions on path expressions used to navigate in XML documents."
+/** @brief define for quoted string _g__109 */
+#define AFW_Q__g__109 \
+    "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 */
-#define afw_s__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 \
-    (afw_v__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__109 */
+#define afw_s__g__109 \
+    (afw_v__g__109.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__109 */
 extern const afw_value_string_t \
-    afw_v__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73;
+    afw_v__g__109;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 */
-#define afw_z__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73 \
-    (afw_v__g__80ecea22_144c_4d49_a0db_9dbcb2c70b73.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__109 */
+#define afw_z__g__109 \
+    (afw_v__g__109.internal.s)
 
 
 
-/** @brief define for quoted string _g__80ff5e66_9d60_457e_805d_3a5dca1a109d */
-#define AFW_Q__g__80ff5e66_9d60_457e_805d_3a5dca1a109d \
-    "This property set by get_entry() option advance_cursor_for_consumer. If set, get_entry() option next_for_consumer will removed it and use it as the cursor to begin looking for the next applicable entry. The intent of cursorNext is to be set by a background process/thread that examines journal entries from the cursorNext/cursorCurrent forward looking for a entry that passes the consumer filter. Once cursorNext is used by get_entry() next_for_consumer, the property is removed."
+/** @brief define for quoted string _g__11 */
+#define AFW_Q__g__11 \
+    "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__80ff5e66_9d60_457e_805d_3a5dca1a109d */
-#define afw_s__g__80ff5e66_9d60_457e_805d_3a5dca1a109d \
-    (afw_v__g__80ff5e66_9d60_457e_805d_3a5dca1a109d.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__11 */
+#define afw_s__g__11 \
+    (afw_v__g__11.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__80ff5e66_9d60_457e_805d_3a5dca1a109d */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__11 */
 extern const afw_value_string_t \
-    afw_v__g__80ff5e66_9d60_457e_805d_3a5dca1a109d;
+    afw_v__g__11;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__80ff5e66_9d60_457e_805d_3a5dca1a109d */
-#define afw_z__g__80ff5e66_9d60_457e_805d_3a5dca1a109d \
-    (afw_v__g__80ff5e66_9d60_457e_805d_3a5dca1a109d.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__11 */
+#define afw_z__g__11 \
+    (afw_v__g__11.internal.s)
 
 
 
-/** @brief define for quoted string _g__814ba50b_074d_4bb6_bbe2_4d8046343646 */
-#define AFW_Q__g__814ba50b_074d_4bb6_bbe2_4d8046343646 \
-    "Indicates that object should be checked for missing required properties. This option implies the normalize option."
+/** @brief define for quoted string _g__110 */
+#define AFW_Q__g__110 \
+    "This data type is source that can be compiled and evaluated with the compile() adaptive function."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__814ba50b_074d_4bb6_bbe2_4d8046343646 */
-#define afw_s__g__814ba50b_074d_4bb6_bbe2_4d8046343646 \
-    (afw_v__g__814ba50b_074d_4bb6_bbe2_4d8046343646.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__110 */
+#define afw_s__g__110 \
+    (afw_v__g__110.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__814ba50b_074d_4bb6_bbe2_4d8046343646 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__110 */
 extern const afw_value_string_t \
-    afw_v__g__814ba50b_074d_4bb6_bbe2_4d8046343646;
+    afw_v__g__110;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__814ba50b_074d_4bb6_bbe2_4d8046343646 */
-#define afw_z__g__814ba50b_074d_4bb6_bbe2_4d8046343646 \
-    (afw_v__g__814ba50b_074d_4bb6_bbe2_4d8046343646.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__110 */
+#define afw_z__g__110 \
+    (afw_v__g__110.internal.s)
 
 
 
-/** @brief define for quoted string _g__819593bd_7a3f_416e_af14_88fa6ce17fc9 */
-#define AFW_Q__g__819593bd_7a3f_416e_af14_88fa6ce17fc9 \
-    "This is the object type of objects produced by evaluating a test script."
+/** @brief define for quoted string _g__111 */
+#define AFW_Q__g__111 \
+    "Indicates that dataType needs to be available to fully interpret json value"
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__819593bd_7a3f_416e_af14_88fa6ce17fc9 */
-#define afw_s__g__819593bd_7a3f_416e_af14_88fa6ce17fc9 \
-    (afw_v__g__819593bd_7a3f_416e_af14_88fa6ce17fc9.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__111 */
+#define afw_s__g__111 \
+    (afw_v__g__111.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__819593bd_7a3f_416e_af14_88fa6ce17fc9 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__111 */
 extern const afw_value_string_t \
-    afw_v__g__819593bd_7a3f_416e_af14_88fa6ce17fc9;
+    afw_v__g__111;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__819593bd_7a3f_416e_af14_88fa6ce17fc9 */
-#define afw_z__g__819593bd_7a3f_416e_af14_88fa6ce17fc9 \
-    (afw_v__g__819593bd_7a3f_416e_af14_88fa6ce17fc9.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__111 */
+#define afw_z__g__111 \
+    (afw_v__g__111.internal.s)
 
 
 
-/** @brief define for quoted string _g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 */
-#define AFW_Q__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 \
-    "Any side effects that this function may produce as a result of execution."
+/** @brief define for quoted string _g__112 */
+#define AFW_Q__g__112 \
+    "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 */
-#define afw_s__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 \
-    (afw_v__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__112 */
+#define afw_s__g__112 \
+    (afw_v__g__112.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__112 */
 extern const afw_value_string_t \
-    afw_v__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1;
+    afw_v__g__112;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 */
-#define afw_z__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1 \
-    (afw_v__g__81a9a20d_6c29_4b34_ab53_a5b0083036d1.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__112 */
+#define afw_z__g__112 \
+    (afw_v__g__112.internal.s)
 
 
 
-/** @brief define for quoted string _g__829e61a3_acf5_458d_a320_c2db9435a2ef */
-#define AFW_Q__g__829e61a3_acf5_458d_a320_c2db9435a2ef \
-    "Possible values of this value. This can be the typed value or the string value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__829e61a3_acf5_458d_a320_c2db9435a2ef */
-#define afw_s__g__829e61a3_acf5_458d_a320_c2db9435a2ef \
-    (afw_v__g__829e61a3_acf5_458d_a320_c2db9435a2ef.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__829e61a3_acf5_458d_a320_c2db9435a2ef */
-extern const afw_value_string_t \
-    afw_v__g__829e61a3_acf5_458d_a320_c2db9435a2ef;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__829e61a3_acf5_458d_a320_c2db9435a2ef */
-#define afw_z__g__829e61a3_acf5_458d_a320_c2db9435a2ef \
-    (afw_v__g__829e61a3_acf5_458d_a320_c2db9435a2ef.internal.s)
-
-
-
-/** @brief define for quoted string _g__82a496a6_9855_4152_867f_b9304d269f42 */
-#define AFW_Q__g__82a496a6_9855_4152_867f_b9304d269f42 \
-    "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__82a496a6_9855_4152_867f_b9304d269f42 */
-#define afw_s__g__82a496a6_9855_4152_867f_b9304d269f42 \
-    (afw_v__g__82a496a6_9855_4152_867f_b9304d269f42.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__82a496a6_9855_4152_867f_b9304d269f42 */
-extern const afw_value_string_t \
-    afw_v__g__82a496a6_9855_4152_867f_b9304d269f42;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__82a496a6_9855_4152_867f_b9304d269f42 */
-#define afw_z__g__82a496a6_9855_4152_867f_b9304d269f42 \
-    (afw_v__g__82a496a6_9855_4152_867f_b9304d269f42.internal.s)
-
-
-
-/** @brief define for quoted string _g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e */
-#define AFW_Q__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e \
-    "The member name of this property in the runtime struct if other than the property name"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e */
-#define afw_s__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e \
-    (afw_v__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e */
-extern const afw_value_string_t \
-    afw_v__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e */
-#define afw_z__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e \
-    (afw_v__g__82ee5f9a_88cd_4dc1_808b_1509bfae7b2e.internal.s)
-
-
-
-/** @brief define for quoted string _g__832906ed_cac2_4d4e_950e_06baa8b187fa */
-#define AFW_Q__g__832906ed_cac2_4d4e_950e_06baa8b187fa \
-    "This is the name of the package as known to make. It's used in the package parameter of AC_INIT in configure.ac. This name is used as the subdirectory within the target's include and lib directories. For the repositories in afw-org, this is usually afw<MAJOR> where <MAJOR> is the same as in the version keyword."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__832906ed_cac2_4d4e_950e_06baa8b187fa */
-#define afw_s__g__832906ed_cac2_4d4e_950e_06baa8b187fa \
-    (afw_v__g__832906ed_cac2_4d4e_950e_06baa8b187fa.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__832906ed_cac2_4d4e_950e_06baa8b187fa */
-extern const afw_value_string_t \
-    afw_v__g__832906ed_cac2_4d4e_950e_06baa8b187fa;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__832906ed_cac2_4d4e_950e_06baa8b187fa */
-#define afw_z__g__832906ed_cac2_4d4e_950e_06baa8b187fa \
-    (afw_v__g__832906ed_cac2_4d4e_950e_06baa8b187fa.internal.s)
-
-
-
-/** @brief define for quoted string _g__84794c09_4fa1_4d39_abda_cc2e237b8be1 */
-#define AFW_Q__g__84794c09_4fa1_4d39_abda_cc2e237b8be1 \
-    "Object id including each property name preceded by a dot if embedded object reference"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__84794c09_4fa1_4d39_abda_cc2e237b8be1 */
-#define afw_s__g__84794c09_4fa1_4d39_abda_cc2e237b8be1 \
-    (afw_v__g__84794c09_4fa1_4d39_abda_cc2e237b8be1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__84794c09_4fa1_4d39_abda_cc2e237b8be1 */
-extern const afw_value_string_t \
-    afw_v__g__84794c09_4fa1_4d39_abda_cc2e237b8be1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__84794c09_4fa1_4d39_abda_cc2e237b8be1 */
-#define afw_z__g__84794c09_4fa1_4d39_abda_cc2e237b8be1 \
-    (afw_v__g__84794c09_4fa1_4d39_abda_cc2e237b8be1.internal.s)
-
-
-
-/** @brief define for quoted string _g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 */
-#define AFW_Q__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 \
-    "These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 */
-#define afw_s__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 \
-    (afw_v__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 */
-extern const afw_value_string_t \
-    afw_v__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 */
-#define afw_z__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4 \
-    (afw_v__g__850f86d8_ab44_487b_8454_c9b3e9ec69d4.internal.s)
-
-
-
-/** @brief define for quoted string _g__851db1e8_9ffd_45ff_b5cd_913502e16c43 */
-#define AFW_Q__g__851db1e8_9ffd_45ff_b5cd_913502e16c43 \
-    "These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__851db1e8_9ffd_45ff_b5cd_913502e16c43 */
-#define afw_s__g__851db1e8_9ffd_45ff_b5cd_913502e16c43 \
-    (afw_v__g__851db1e8_9ffd_45ff_b5cd_913502e16c43.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__851db1e8_9ffd_45ff_b5cd_913502e16c43 */
-extern const afw_value_string_t \
-    afw_v__g__851db1e8_9ffd_45ff_b5cd_913502e16c43;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__851db1e8_9ffd_45ff_b5cd_913502e16c43 */
-#define afw_z__g__851db1e8_9ffd_45ff_b5cd_913502e16c43 \
-    (afw_v__g__851db1e8_9ffd_45ff_b5cd_913502e16c43.internal.s)
-
-
-
-/** @brief define for quoted string _g__855dc0e2_c204_428f_9a19_3cd0a8d8313b */
-#define AFW_Q__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b \
-    "The name of the registered value accessor used to access this property"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b */
-#define afw_s__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b \
-    (afw_v__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b */
-extern const afw_value_string_t \
-    afw_v__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b */
-#define afw_z__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b \
-    (afw_v__g__855dc0e2_c204_428f_9a19_3cd0a8d8313b.internal.s)
-
-
-
-/** @brief define for quoted string _g__85793c1b_230a_4988_ad10_56482e9d67ec */
-#define AFW_Q__g__85793c1b_230a_4988_ad10_56482e9d67ec \
-    "These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__85793c1b_230a_4988_ad10_56482e9d67ec */
-#define afw_s__g__85793c1b_230a_4988_ad10_56482e9d67ec \
-    (afw_v__g__85793c1b_230a_4988_ad10_56482e9d67ec.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__85793c1b_230a_4988_ad10_56482e9d67ec */
-extern const afw_value_string_t \
-    afw_v__g__85793c1b_230a_4988_ad10_56482e9d67ec;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__85793c1b_230a_4988_ad10_56482e9d67ec */
-#define afw_z__g__85793c1b_230a_4988_ad10_56482e9d67ec \
-    (afw_v__g__85793c1b_230a_4988_ad10_56482e9d67ec.internal.s)
-
-
-
-/** @brief define for quoted string _g__864aa523_37a5_459f_8979_b7414c2303a9 */
-#define AFW_Q__g__864aa523_37a5_459f_8979_b7414c2303a9 \
-    "This is present if an expected error was produced while compiling and evaluating the source."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__864aa523_37a5_459f_8979_b7414c2303a9 */
-#define afw_s__g__864aa523_37a5_459f_8979_b7414c2303a9 \
-    (afw_v__g__864aa523_37a5_459f_8979_b7414c2303a9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__864aa523_37a5_459f_8979_b7414c2303a9 */
-extern const afw_value_string_t \
-    afw_v__g__864aa523_37a5_459f_8979_b7414c2303a9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__864aa523_37a5_459f_8979_b7414c2303a9 */
-#define afw_z__g__864aa523_37a5_459f_8979_b7414c2303a9 \
-    (afw_v__g__864aa523_37a5_459f_8979_b7414c2303a9.internal.s)
-
-
-
-/** @brief define for quoted string _g__8656cb48_20f4_41c8_b674_71b791f7cb70 */
-#define AFW_Q__g__8656cb48_20f4_41c8_b674_71b791f7cb70 \
-    "If specified, this adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects. The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8656cb48_20f4_41c8_b674_71b791f7cb70 */
-#define afw_s__g__8656cb48_20f4_41c8_b674_71b791f7cb70 \
-    (afw_v__g__8656cb48_20f4_41c8_b674_71b791f7cb70.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8656cb48_20f4_41c8_b674_71b791f7cb70 */
-extern const afw_value_string_t \
-    afw_v__g__8656cb48_20f4_41c8_b674_71b791f7cb70;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8656cb48_20f4_41c8_b674_71b791f7cb70 */
-#define afw_z__g__8656cb48_20f4_41c8_b674_71b791f7cb70 \
-    (afw_v__g__8656cb48_20f4_41c8_b674_71b791f7cb70.internal.s)
-
-
-
-/** @brief define for quoted string _g__86d2cb53_6b72_4ad0_8652_18560bf22480 */
-#define AFW_Q__g__86d2cb53_6b72_4ad0_8652_18560bf22480 \
-    "Decoded fragment of URI. If fragment tokens contain percent encoded reserved characters, fragmentTokens should be used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__86d2cb53_6b72_4ad0_8652_18560bf22480 */
-#define afw_s__g__86d2cb53_6b72_4ad0_8652_18560bf22480 \
-    (afw_v__g__86d2cb53_6b72_4ad0_8652_18560bf22480.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__86d2cb53_6b72_4ad0_8652_18560bf22480 */
-extern const afw_value_string_t \
-    afw_v__g__86d2cb53_6b72_4ad0_8652_18560bf22480;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__86d2cb53_6b72_4ad0_8652_18560bf22480 */
-#define afw_z__g__86d2cb53_6b72_4ad0_8652_18560bf22480 \
-    (afw_v__g__86d2cb53_6b72_4ad0_8652_18560bf22480.internal.s)
-
-
-
-/** @brief define for quoted string _g__8778f758_3ecd_4b07_886d_bb7ff57171fa */
-#define AFW_Q__g__8778f758_3ecd_4b07_886d_bb7ff57171fa \
-    "This is the number of codepoints in the full source for the test script before this test's 'source' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8778f758_3ecd_4b07_886d_bb7ff57171fa */
-#define afw_s__g__8778f758_3ecd_4b07_886d_bb7ff57171fa \
-    (afw_v__g__8778f758_3ecd_4b07_886d_bb7ff57171fa.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8778f758_3ecd_4b07_886d_bb7ff57171fa */
-extern const afw_value_string_t \
-    afw_v__g__8778f758_3ecd_4b07_886d_bb7ff57171fa;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8778f758_3ecd_4b07_886d_bb7ff57171fa */
-#define afw_z__g__8778f758_3ecd_4b07_886d_bb7ff57171fa \
-    (afw_v__g__8778f758_3ecd_4b07_886d_bb7ff57171fa.internal.s)
-
-
-
-/** @brief define for quoted string _g__87874e25_6fee_4617_9227_ee1cbf2ad36c */
-#define AFW_Q__g__87874e25_6fee_4617_9227_ee1cbf2ad36c \
-    "This is the adaptorId chosen by default for user interface select components"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__87874e25_6fee_4617_9227_ee1cbf2ad36c */
-#define afw_s__g__87874e25_6fee_4617_9227_ee1cbf2ad36c \
-    (afw_v__g__87874e25_6fee_4617_9227_ee1cbf2ad36c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__87874e25_6fee_4617_9227_ee1cbf2ad36c */
-extern const afw_value_string_t \
-    afw_v__g__87874e25_6fee_4617_9227_ee1cbf2ad36c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__87874e25_6fee_4617_9227_ee1cbf2ad36c */
-#define afw_z__g__87874e25_6fee_4617_9227_ee1cbf2ad36c \
-    (afw_v__g__87874e25_6fee_4617_9227_ee1cbf2ad36c.internal.s)
-
-
-
-/** @brief define for quoted string _g__886956f7_06a7_4dcc_8126_97aca3326b7f */
-#define AFW_Q__g__886956f7_06a7_4dcc_8126_97aca3326b7f \
-    "This is the UUID of the execution context (xctx) when the error occurred"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__886956f7_06a7_4dcc_8126_97aca3326b7f */
-#define afw_s__g__886956f7_06a7_4dcc_8126_97aca3326b7f \
-    (afw_v__g__886956f7_06a7_4dcc_8126_97aca3326b7f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__886956f7_06a7_4dcc_8126_97aca3326b7f */
-extern const afw_value_string_t \
-    afw_v__g__886956f7_06a7_4dcc_8126_97aca3326b7f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__886956f7_06a7_4dcc_8126_97aca3326b7f */
-#define afw_z__g__886956f7_06a7_4dcc_8126_97aca3326b7f \
-    (afw_v__g__886956f7_06a7_4dcc_8126_97aca3326b7f.internal.s)
-
-
-
-/** @brief define for quoted string _g__89ef8a8e_1a8e_40a9_a908_968d0998b94e */
-#define AFW_Q__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e \
-    "The adaptive object type of all object that contains _AdaptiveModelObjectTypes_ objects as properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e */
-#define afw_s__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e \
-    (afw_v__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e */
-extern const afw_value_string_t \
-    afw_v__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e */
-#define afw_z__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e \
-    (afw_v__g__89ef8a8e_1a8e_40a9_a908_968d0998b94e.internal.s)
-
-
-
-/** @brief define for quoted string _g__8ac56246_0c64_46a1_97d7_5783c48bfcdf */
-#define AFW_Q__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf \
-    "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf */
-#define afw_s__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf \
-    (afw_v__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf */
-extern const afw_value_string_t \
-    afw_v__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf */
-#define afw_z__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf \
-    (afw_v__g__8ac56246_0c64_46a1_97d7_5783c48bfcdf.internal.s)
-
-
-
-/** @brief define for quoted string _g__8aef9f4d_661c_4f41_b4ea_cce496691016 */
-#define AFW_Q__g__8aef9f4d_661c_4f41_b4ea_cce496691016 \
-    "This can be specified to override default delete_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onDeleteObject was not specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8aef9f4d_661c_4f41_b4ea_cce496691016 */
-#define afw_s__g__8aef9f4d_661c_4f41_b4ea_cce496691016 \
-    (afw_v__g__8aef9f4d_661c_4f41_b4ea_cce496691016.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8aef9f4d_661c_4f41_b4ea_cce496691016 */
-extern const afw_value_string_t \
-    afw_v__g__8aef9f4d_661c_4f41_b4ea_cce496691016;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8aef9f4d_661c_4f41_b4ea_cce496691016 */
-#define afw_z__g__8aef9f4d_661c_4f41_b4ea_cce496691016 \
-    (afw_v__g__8aef9f4d_661c_4f41_b4ea_cce496691016.internal.s)
-
-
-
-/** @brief define for quoted string _g__8b1c91b6_dda1_4253_a034_accac59e9e28 */
-#define AFW_Q__g__8b1c91b6_dda1_4253_a034_accac59e9e28 \
-    "This defines how authorization checking occurs in this application"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8b1c91b6_dda1_4253_a034_accac59e9e28 */
-#define afw_s__g__8b1c91b6_dda1_4253_a034_accac59e9e28 \
-    (afw_v__g__8b1c91b6_dda1_4253_a034_accac59e9e28.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8b1c91b6_dda1_4253_a034_accac59e9e28 */
-extern const afw_value_string_t \
-    afw_v__g__8b1c91b6_dda1_4253_a034_accac59e9e28;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8b1c91b6_dda1_4253_a034_accac59e9e28 */
-#define afw_z__g__8b1c91b6_dda1_4253_a034_accac59e9e28 \
-    (afw_v__g__8b1c91b6_dda1_4253_a034_accac59e9e28.internal.s)
-
-
-
-/** @brief define for quoted string _g__8b925eca_5131_4383_a5cd_a8d83d3552f5 */
-#define AFW_Q__g__8b925eca_5131_4383_a5cd_a8d83d3552f5 \
-    "There is one of these for each media type registered for a content type implementation."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8b925eca_5131_4383_a5cd_a8d83d3552f5 */
-#define afw_s__g__8b925eca_5131_4383_a5cd_a8d83d3552f5 \
-    (afw_v__g__8b925eca_5131_4383_a5cd_a8d83d3552f5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8b925eca_5131_4383_a5cd_a8d83d3552f5 */
-extern const afw_value_string_t \
-    afw_v__g__8b925eca_5131_4383_a5cd_a8d83d3552f5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8b925eca_5131_4383_a5cd_a8d83d3552f5 */
-#define afw_z__g__8b925eca_5131_4383_a5cd_a8d83d3552f5 \
-    (afw_v__g__8b925eca_5131_4383_a5cd_a8d83d3552f5.internal.s)
-
-
-
-/** @brief define for quoted string _g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d */
-#define AFW_Q__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d \
-    "Type of request handler that will process requests directed to this handler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d */
-#define afw_s__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d \
-    (afw_v__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d */
-extern const afw_value_string_t \
-    afw_v__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d */
-#define afw_z__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d \
-    (afw_v__g__8bd9ca38_0847_42c1_b63b_c6e4bdc57e9d.internal.s)
-
-
-
-/** @brief define for quoted string _g__8d6513f2_d790_4eee_be86_ad69fe6dce31 */
-#define AFW_Q__g__8d6513f2_d790_4eee_be86_ad69fe6dce31 \
-    "This is interface used to access the properties of an adaptive object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8d6513f2_d790_4eee_be86_ad69fe6dce31 */
-#define afw_s__g__8d6513f2_d790_4eee_be86_ad69fe6dce31 \
-    (afw_v__g__8d6513f2_d790_4eee_be86_ad69fe6dce31.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8d6513f2_d790_4eee_be86_ad69fe6dce31 */
-extern const afw_value_string_t \
-    afw_v__g__8d6513f2_d790_4eee_be86_ad69fe6dce31;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8d6513f2_d790_4eee_be86_ad69fe6dce31 */
-#define afw_z__g__8d6513f2_d790_4eee_be86_ad69fe6dce31 \
-    (afw_v__g__8d6513f2_d790_4eee_be86_ad69fe6dce31.internal.s)
-
-
-
-/** @brief define for quoted string _g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be */
-#define AFW_Q__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be \
-    "This indicates that all meta, including properties that are not part of delta from object type, are to be included. This overrides metaLimited."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be */
-#define afw_s__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be \
-    (afw_v__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be */
-extern const afw_value_string_t \
-    afw_v__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be */
-#define afw_z__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be \
-    (afw_v__g__8dd565fc_1771_43f7_abdc_d0a0fad2d7be.internal.s)
-
-
-
-/** @brief define for quoted string _g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 */
-#define AFW_Q__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 \
-    "This is the functionLabel prefixed with 'afw' and converted to camel case."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 */
-#define afw_s__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 \
-    (afw_v__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 */
-extern const afw_value_string_t \
-    afw_v__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 */
-#define afw_z__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0 \
-    (afw_v__g__8e083d5d_9609_41cb_8c04_9c91dcabccf0.internal.s)
-
-
-
-/** @brief define for quoted string _g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a */
-#define AFW_Q__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a \
-    "This uses the C preprocessor macro __DATE__ at time of compile."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a */
-#define afw_s__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a \
-    (afw_v__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a */
-extern const afw_value_string_t \
-    afw_v__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a */
-#define afw_z__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a \
-    (afw_v__g__8e0f62e9_cbdf_4c00_b640_01415fbfb18a.internal.s)
-
-
-
-/** @brief define for quoted string _g__8fac1bf5_a97b_4122_8697_e262ff095725 */
-#define AFW_Q__g__8fac1bf5_a97b_4122_8697_e262ff095725 \
-    "This optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__8fac1bf5_a97b_4122_8697_e262ff095725 */
-#define afw_s__g__8fac1bf5_a97b_4122_8697_e262ff095725 \
-    (afw_v__g__8fac1bf5_a97b_4122_8697_e262ff095725.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__8fac1bf5_a97b_4122_8697_e262ff095725 */
-extern const afw_value_string_t \
-    afw_v__g__8fac1bf5_a97b_4122_8697_e262ff095725;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8fac1bf5_a97b_4122_8697_e262ff095725 */
-#define afw_z__g__8fac1bf5_a97b_4122_8697_e262ff095725 \
-    (afw_v__g__8fac1bf5_a97b_4122_8697_e262ff095725.internal.s)
-
-
-
-/** @brief define for quoted string _g__900eaab0_cf62_421f_8b72_fe49af680d22 */
-#define AFW_Q__g__900eaab0_cf62_421f_8b72_fe49af680d22 \
-    "This is the number of UTF-8 octets in the full 'source' for the test script before this test's 'source' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__900eaab0_cf62_421f_8b72_fe49af680d22 */
-#define afw_s__g__900eaab0_cf62_421f_8b72_fe49af680d22 \
-    (afw_v__g__900eaab0_cf62_421f_8b72_fe49af680d22.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__900eaab0_cf62_421f_8b72_fe49af680d22 */
-extern const afw_value_string_t \
-    afw_v__g__900eaab0_cf62_421f_8b72_fe49af680d22;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__900eaab0_cf62_421f_8b72_fe49af680d22 */
-#define afw_z__g__900eaab0_cf62_421f_8b72_fe49af680d22 \
-    (afw_v__g__900eaab0_cf62_421f_8b72_fe49af680d22.internal.s)
-
-
-
-/** @brief define for quoted string _g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 */
-#define AFW_Q__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 \
-    "This is additional meta information that overrides and supplements property type information for specific associated object's properties. The property name of properties in this object corresponds to properties with the same name in the associated object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 */
-#define afw_s__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 \
-    (afw_v__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 */
-extern const afw_value_string_t \
-    afw_v__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 */
-#define afw_z__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32 \
-    (afw_v__g__90c0743a_457b_4a77_baf4_9bc4dabc3d32.internal.s)
-
-
-
-/** @brief define for quoted string _g__91718003_cc3a_4137_99ee_8928de13892b */
-#define AFW_Q__g__91718003_cc3a_4137_99ee_8928de13892b \
-    "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__91718003_cc3a_4137_99ee_8928de13892b */
-#define afw_s__g__91718003_cc3a_4137_99ee_8928de13892b \
-    (afw_v__g__91718003_cc3a_4137_99ee_8928de13892b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__91718003_cc3a_4137_99ee_8928de13892b */
-extern const afw_value_string_t \
-    afw_v__g__91718003_cc3a_4137_99ee_8928de13892b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__91718003_cc3a_4137_99ee_8928de13892b */
-#define afw_z__g__91718003_cc3a_4137_99ee_8928de13892b \
-    (afw_v__g__91718003_cc3a_4137_99ee_8928de13892b.internal.s)
-
-
-
-/** @brief define for quoted string _g__91b5fb1a_341e_474f_8f03_141e32f685dd */
-#define AFW_Q__g__91b5fb1a_341e_474f_8f03_141e32f685dd \
+/** @brief define for quoted string _g__113 */
+#define AFW_Q__g__113 \
     "This specifies the JSON primitive type that is used to represent this dataType."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__91b5fb1a_341e_474f_8f03_141e32f685dd */
-#define afw_s__g__91b5fb1a_341e_474f_8f03_141e32f685dd \
-    (afw_v__g__91b5fb1a_341e_474f_8f03_141e32f685dd.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__113 */
+#define afw_s__g__113 \
+    (afw_v__g__113.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__91b5fb1a_341e_474f_8f03_141e32f685dd */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__113 */
 extern const afw_value_string_t \
-    afw_v__g__91b5fb1a_341e_474f_8f03_141e32f685dd;
+    afw_v__g__113;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__91b5fb1a_341e_474f_8f03_141e32f685dd */
-#define afw_z__g__91b5fb1a_341e_474f_8f03_141e32f685dd \
-    (afw_v__g__91b5fb1a_341e_474f_8f03_141e32f685dd.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__113 */
+#define afw_z__g__113 \
+    (afw_v__g__113.internal.s)
 
 
 
-/** @brief define for quoted string _g__921051f4_d23f_495b_b712_aac616088bb9 */
-#define AFW_Q__g__921051f4_d23f_495b_b712_aac616088bb9 \
-    "Minimum number of values that can be specified for this parameter"
+/** @brief define for quoted string _g__114 */
+#define AFW_Q__g__114 \
+    "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__921051f4_d23f_495b_b712_aac616088bb9 */
-#define afw_s__g__921051f4_d23f_495b_b712_aac616088bb9 \
-    (afw_v__g__921051f4_d23f_495b_b712_aac616088bb9.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__114 */
+#define afw_s__g__114 \
+    (afw_v__g__114.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__921051f4_d23f_495b_b712_aac616088bb9 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__114 */
 extern const afw_value_string_t \
-    afw_v__g__921051f4_d23f_495b_b712_aac616088bb9;
+    afw_v__g__114;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__921051f4_d23f_495b_b712_aac616088bb9 */
-#define afw_z__g__921051f4_d23f_495b_b712_aac616088bb9 \
-    (afw_v__g__921051f4_d23f_495b_b712_aac616088bb9.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__114 */
+#define afw_z__g__114 \
+    (afw_v__g__114.internal.s)
 
 
 
-/** @brief define for quoted string _g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 */
-#define AFW_Q__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 \
+/** @brief define for quoted string _g__115 */
+#define AFW_Q__g__115 \
+    "This dataType supports relational compares in addition to equality compares"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__115 */
+#define afw_s__g__115 \
+    (afw_v__g__115.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__115 */
+extern const afw_value_string_t \
+    afw_v__g__115;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__115 */
+#define afw_z__g__115 \
+    (afw_v__g__115.internal.s)
+
+
+
+/** @brief define for quoted string _g__116 */
+#define AFW_Q__g__116 \
+    "If true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__116 */
+#define afw_s__g__116 \
+    (afw_v__g__116.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__116 */
+extern const afw_value_string_t \
+    afw_v__g__116;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__116 */
+#define afw_z__g__116 \
+    (afw_v__g__116.internal.s)
+
+
+
+/** @brief define for quoted string _g__117 */
+#define AFW_Q__g__117 \
+    "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__117 */
+#define afw_s__g__117 \
+    (afw_v__g__117.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__117 */
+extern const afw_value_string_t \
+    afw_v__g__117;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__117 */
+#define afw_z__g__117 \
+    (afw_v__g__117.internal.s)
+
+
+
+/** @brief define for quoted string _g__118 */
+#define AFW_Q__g__118 \
+    "There is an /afw/<objectType>/<key> object for each registered entry."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__118 */
+#define afw_s__g__118 \
+    (afw_v__g__118.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__118 */
+extern const afw_value_string_t \
+    afw_v__g__118;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__118 */
+#define afw_z__g__118 \
+    (afw_v__g__118.internal.s)
+
+
+
+/** @brief define for quoted string _g__119 */
+#define AFW_Q__g__119 \
+    "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__119 */
+#define afw_s__g__119 \
+    (afw_v__g__119.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__119 */
+extern const afw_value_string_t \
+    afw_v__g__119;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__119 */
+#define afw_z__g__119 \
+    (afw_v__g__119.internal.s)
+
+
+
+/** @brief define for quoted string _g__12 */
+#define AFW_Q__g__12 \
+    "Specify true to deny access to resources when notApplicable is the final result of other checks."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__12 */
+#define afw_s__g__12 \
+    (afw_v__g__12.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__12 */
+extern const afw_value_string_t \
+    afw_v__g__12;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__12 */
+#define afw_z__g__12 \
+    (afw_v__g__12.internal.s)
+
+
+
+/** @brief define for quoted string _g__120 */
+#define AFW_Q__g__120 \
+    "If the request has multiple actions, this is the number, starting with 1, of the action that caused the error."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__120 */
+#define afw_s__g__120 \
+    (afw_v__g__120.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__120 */
+extern const afw_value_string_t \
+    afw_v__g__120;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__120 */
+#define afw_z__g__120 \
+    (afw_v__g__120.internal.s)
+
+
+
+/** @brief define for quoted string _g__121 */
+#define AFW_Q__g__121 \
+    "The column in line of the error. This is only available if source contains line breaks."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__121 */
+#define afw_s__g__121 \
+    (afw_v__g__121.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__121 */
+extern const afw_value_string_t \
+    afw_v__g__121;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__121 */
+#define afw_z__g__121 \
+    (afw_v__g__121.internal.s)
+
+
+
+/** @brief define for quoted string _g__122 */
+#define AFW_Q__g__122 \
+    "The line number in the adaptive value source of the error. This is only available if source contains line breaks."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__122 */
+#define afw_s__g__122 \
+    (afw_v__g__122.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__122 */
+extern const afw_value_string_t \
+    afw_v__g__122;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__122 */
+#define afw_z__g__122 \
+    (afw_v__g__122.internal.s)
+
+
+
+/** @brief define for quoted string _g__123 */
+#define AFW_Q__g__123 \
+    "The UTF-8 octet source cursor that the parser at the time the syntax error occurred. This can be used as an offset into parserSource if it is available."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__123 */
+#define afw_s__g__123 \
+    (afw_v__g__123.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__123 */
+extern const afw_value_string_t \
+    afw_v__g__123;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__123 */
+#define afw_z__g__123 \
+    (afw_v__g__123.internal.s)
+
+
+
+/** @brief define for quoted string _g__124 */
+#define AFW_Q__g__124 \
+    "The parser cursor's line number where the syntax error occurred."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__124 */
+#define afw_s__g__124 \
+    (afw_v__g__124.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__124 */
+extern const afw_value_string_t \
+    afw_v__g__124;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__124 */
+#define afw_z__g__124 \
+    (afw_v__g__124.internal.s)
+
+
+
+/** @brief define for quoted string _g__125 */
+#define AFW_Q__g__125 \
+    "The partial/full source available when the syntax error occurred"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__125 */
+#define afw_s__g__125 \
+    (afw_v__g__125.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__125 */
+extern const afw_value_string_t \
+    afw_v__g__125;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__125 */
+#define afw_z__g__125 \
+    (afw_v__g__125.internal.s)
+
+
+
+/** @brief define for quoted string _g__126 */
+#define AFW_Q__g__126 \
+    "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__126 */
+#define afw_s__g__126 \
+    (afw_v__g__126.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__126 */
+extern const afw_value_string_t \
+    afw_v__g__126;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__126 */
+#define afw_z__g__126 \
+    (afw_v__g__126.internal.s)
+
+
+
+/** @brief define for quoted string _g__127 */
+#define AFW_Q__g__127 \
+    "This is the source location of the error. This is usually a reference to the adaptive value source location."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__127 */
+#define afw_s__g__127 \
+    (afw_v__g__127.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__127 */
+extern const afw_value_string_t \
+    afw_v__g__127;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__127 */
+#define afw_z__g__127 \
+    (afw_v__g__127.internal.s)
+
+
+
+/** @brief define for quoted string _g__128 */
+#define AFW_Q__g__128 \
+    "This is the UUID of the execution context (xctx) when the error occurred"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__128 */
+#define afw_s__g__128 \
+    (afw_v__g__128.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__128 */
+extern const afw_value_string_t \
+    afw_v__g__128;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__128 */
+#define afw_z__g__128 \
+    (afw_v__g__128.internal.s)
+
+
+
+/** @brief define for quoted string _g__129 */
+#define AFW_Q__g__129 \
     "This is the UUID of the execution context (xctx) when the error occurred. There is normally one xctx per request. This UUID is included by default in log message, which can be useful for finding messages related to a request."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 */
-#define afw_s__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 \
-    (afw_v__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__129 */
+#define afw_s__g__129 \
+    (afw_v__g__129.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__129 */
 extern const afw_value_string_t \
-    afw_v__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9;
+    afw_v__g__129;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 */
-#define afw_z__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9 \
-    (afw_v__g__923a9aca_8d9c_4745_9c0e_95d1cd28ffc9.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__129 */
+#define afw_z__g__129 \
+    (afw_v__g__129.internal.s)
 
 
 
-/** @brief define for quoted string _g__926a2627_0237_4f4c_8fa9_613c68b35e45 */
-#define AFW_Q__g__926a2627_0237_4f4c_8fa9_613c68b35e45 \
-    "Represents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful."
+/** @brief define for quoted string _g__13 */
+#define AFW_Q__g__13 \
+    "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__926a2627_0237_4f4c_8fa9_613c68b35e45 */
-#define afw_s__g__926a2627_0237_4f4c_8fa9_613c68b35e45 \
-    (afw_v__g__926a2627_0237_4f4c_8fa9_613c68b35e45.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__13 */
+#define afw_s__g__13 \
+    (afw_v__g__13.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__926a2627_0237_4f4c_8fa9_613c68b35e45 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__13 */
 extern const afw_value_string_t \
-    afw_v__g__926a2627_0237_4f4c_8fa9_613c68b35e45;
+    afw_v__g__13;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__926a2627_0237_4f4c_8fa9_613c68b35e45 */
-#define afw_z__g__926a2627_0237_4f4c_8fa9_613c68b35e45 \
-    (afw_v__g__926a2627_0237_4f4c_8fa9_613c68b35e45.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__13 */
+#define afw_z__g__13 \
+    (afw_v__g__13.internal.s)
 
 
 
-/** @brief define for quoted string _g__92caa8c3_8c2d_4286_9327_87ecb967d8df */
-#define AFW_Q__g__92caa8c3_8c2d_4286_9327_87ecb967d8df \
-    "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows)."
+/** @brief define for quoted string _g__130 */
+#define AFW_Q__g__130 \
+    "Describes this flag briefly, starting with an uppercase letter and ending without a period."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__92caa8c3_8c2d_4286_9327_87ecb967d8df */
-#define afw_s__g__92caa8c3_8c2d_4286_9327_87ecb967d8df \
-    (afw_v__g__92caa8c3_8c2d_4286_9327_87ecb967d8df.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__130 */
+#define afw_s__g__130 \
+    (afw_v__g__130.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__92caa8c3_8c2d_4286_9327_87ecb967d8df */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__130 */
 extern const afw_value_string_t \
-    afw_v__g__92caa8c3_8c2d_4286_9327_87ecb967d8df;
+    afw_v__g__130;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__92caa8c3_8c2d_4286_9327_87ecb967d8df */
-#define afw_z__g__92caa8c3_8c2d_4286_9327_87ecb967d8df \
-    (afw_v__g__92caa8c3_8c2d_4286_9327_87ecb967d8df.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__130 */
+#define afw_z__g__130 \
+    (afw_v__g__130.internal.s)
 
 
 
-/** @brief define for quoted string _g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 */
-#define AFW_Q__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 \
+/** @brief define for quoted string _g__131 */
+#define AFW_Q__g__131 \
+    "This is the description of this flag, which may provide more detail for documentation."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__131 */
+#define afw_s__g__131 \
+    (afw_v__g__131.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__131 */
+extern const afw_value_string_t \
+    afw_v__g__131;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__131 */
+#define afw_z__g__131 \
+    (afw_v__g__131.internal.s)
+
+
+
+/** @brief define for quoted string _g__132 */
+#define AFW_Q__g__132 \
+    "This is the key for this flag in registry type flag and the objectId of its _AdaptiveFlag_ runtime object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__132 */
+#define afw_s__g__132 \
+    (afw_v__g__132.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__132 */
+extern const afw_value_string_t \
+    afw_v__g__132;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__132 */
+#define afw_z__g__132 \
+    (afw_v__g__132.internal.s)
+
+
+
+/** @brief define for quoted string _g__133 */
+#define AFW_Q__g__133 \
+    "All of the flags that include this flag. When setting flags in this array, this flag will also be set."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__133 */
+#define afw_s__g__133 \
+    (afw_v__g__133.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__133 */
+extern const afw_value_string_t \
+    afw_v__g__133;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__133 */
+#define afw_z__g__133 \
+    (afw_v__g__133.internal.s)
+
+
+
+/** @brief define for quoted string _g__134 */
+#define AFW_Q__g__134 \
+    "All other flags that this flag includes. When setting this flat, all of the flags in this array will also be set"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__134 */
+#define afw_s__g__134 \
+    (afw_v__g__134.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__134 */
+extern const afw_value_string_t \
+    afw_v__g__134;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__134 */
+#define afw_z__g__134 \
+    (afw_v__g__134.internal.s)
+
+
+
+/** @brief define for quoted string _g__135 */
+#define AFW_Q__g__135 \
+    "This is a predicate for the function category with the first letter capitalized and without a trailing period."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__135 */
+#define afw_s__g__135 \
+    (afw_v__g__135.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__135 */
+extern const afw_value_string_t \
+    afw_v__g__135;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__135 */
+#define afw_z__g__135 \
+    (afw_v__g__135.internal.s)
+
+
+
+/** @brief define for quoted string _g__136 */
+#define AFW_Q__g__136 \
+    "Function category that this function belongs to. Categories group similar functions together logically."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__136 */
+#define afw_s__g__136 \
+    (afw_v__g__136.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__136 */
+extern const afw_value_string_t \
+    afw_v__g__136;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__136 */
+#define afw_z__g__136 \
+    (afw_v__g__136.internal.s)
+
+
+
+/** @brief define for quoted string _g__137 */
+#define AFW_Q__g__137 \
+    "Description of function category in more detail, for documentation purposes."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__137 */
+#define afw_s__g__137 \
+    (afw_v__g__137.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__137 */
+extern const afw_value_string_t \
+    afw_v__g__137;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__137 */
+#define afw_z__g__137 \
+    (afw_v__g__137.internal.s)
+
+
+
+/** @brief define for quoted string _g__138 */
+#define AFW_Q__g__138 \
     "This is a predicate for the function with the first letter capitalized and without a trailing period."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 */
-#define afw_s__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 \
-    (afw_v__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__138 */
+#define afw_s__g__138 \
+    (afw_v__g__138.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__138 */
 extern const afw_value_string_t \
-    afw_v__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7;
+    afw_v__g__138;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 */
-#define afw_z__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7 \
-    (afw_v__g__9367b3e8_6c8c_4b89_97b6_b53be77c86f7.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__138 */
+#define afw_z__g__138 \
+    (afw_v__g__138.internal.s)
 
 
 
-/** @brief define for quoted string _g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 */
-#define AFW_Q__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 \
-    "These function are related to data type base64Binary.\n\nThe '<base64Binary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+/** @brief define for quoted string _g__139 */
+#define AFW_Q__g__139 \
+    "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 */
-#define afw_s__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 \
-    (afw_v__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__139 */
+#define afw_s__g__139 \
+    (afw_v__g__139.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__139 */
 extern const afw_value_string_t \
-    afw_v__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8;
+    afw_v__g__139;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 */
-#define afw_z__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8 \
-    (afw_v__g__939644b2_ece2_4f48_b63a_a24b96cbe1d8.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__139 */
+#define afw_z__g__139 \
+    (afw_v__g__139.internal.s)
 
 
 
-/** @brief define for quoted string _g__939f5294_536d_413e_a077_4b0d0d96bb8a */
-#define AFW_Q__g__939f5294_536d_413e_a077_4b0d0d96bb8a \
-    "Adaptive Framework configuration component for type=authorization. This object type is the parent of an _AdaptiveObjectType_ that contains authorizationType specific properties."
+/** @brief define for quoted string _g__14 */
+#define AFW_Q__g__14 \
+    "This controls how authorization checking occurs in an Adaptive Framework application."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__939f5294_536d_413e_a077_4b0d0d96bb8a */
-#define afw_s__g__939f5294_536d_413e_a077_4b0d0d96bb8a \
-    (afw_v__g__939f5294_536d_413e_a077_4b0d0d96bb8a.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__14 */
+#define afw_s__g__14 \
+    (afw_v__g__14.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__939f5294_536d_413e_a077_4b0d0d96bb8a */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__14 */
 extern const afw_value_string_t \
-    afw_v__g__939f5294_536d_413e_a077_4b0d0d96bb8a;
+    afw_v__g__14;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__939f5294_536d_413e_a077_4b0d0d96bb8a */
-#define afw_z__g__939f5294_536d_413e_a077_4b0d0d96bb8a \
-    (afw_v__g__939f5294_536d_413e_a077_4b0d0d96bb8a.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__14 */
+#define afw_z__g__14 \
+    (afw_v__g__14.internal.s)
 
 
 
-/** @brief define for quoted string _g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 */
-#define AFW_Q__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 \
-    "This extension provides an adaptor for accessing local files through a Virtual File System interface."
+/** @brief define for quoted string _g__140 */
+#define AFW_Q__g__140 \
+    "This function will call the appropriate function when the first parameter is one of these data types."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 */
-#define afw_s__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 \
-    (afw_v__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__140 */
+#define afw_s__g__140 \
+    (afw_v__g__140.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__140 */
 extern const afw_value_string_t \
-    afw_v__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690;
+    afw_v__g__140;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 */
-#define afw_z__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690 \
-    (afw_v__g__93e36c64_0fcc_41a2_bbbd_fab9a454b690.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__140 */
+#define afw_z__g__140 \
+    (afw_v__g__140.internal.s)
 
 
 
-/** @brief define for quoted string _g__94283226_ef73_4289_8383_d75d80b8b32f */
-#define AFW_Q__g__94283226_ef73_4289_8383_d75d80b8b32f \
-    "Qualified variables associated with this authorization handler"
+/** @brief define for quoted string _g__141 */
+#define AFW_Q__g__141 \
+    "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__94283226_ef73_4289_8383_d75d80b8b32f */
-#define afw_s__g__94283226_ef73_4289_8383_d75d80b8b32f \
-    (afw_v__g__94283226_ef73_4289_8383_d75d80b8b32f.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__141 */
+#define afw_s__g__141 \
+    (afw_v__g__141.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__94283226_ef73_4289_8383_d75d80b8b32f */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__141 */
 extern const afw_value_string_t \
-    afw_v__g__94283226_ef73_4289_8383_d75d80b8b32f;
+    afw_v__g__141;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__94283226_ef73_4289_8383_d75d80b8b32f */
-#define afw_z__g__94283226_ef73_4289_8383_d75d80b8b32f \
-    (afw_v__g__94283226_ef73_4289_8383_d75d80b8b32f.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__141 */
+#define afw_z__g__141 \
+    (afw_v__g__141.internal.s)
 
 
 
-/** @brief define for quoted string _g__9558fc00_65de_41fe_a840_807bf841aa71 */
-#define AFW_Q__g__9558fc00_65de_41fe_a840_807bf841aa71 \
-    "A LANG as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation."
+/** @brief define for quoted string _g__142 */
+#define AFW_Q__g__142 \
+    "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9558fc00_65de_41fe_a840_807bf841aa71 */
-#define afw_s__g__9558fc00_65de_41fe_a840_807bf841aa71 \
-    (afw_v__g__9558fc00_65de_41fe_a840_807bf841aa71.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__142 */
+#define afw_s__g__142 \
+    (afw_v__g__142.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9558fc00_65de_41fe_a840_807bf841aa71 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__142 */
 extern const afw_value_string_t \
-    afw_v__g__9558fc00_65de_41fe_a840_807bf841aa71;
+    afw_v__g__142;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9558fc00_65de_41fe_a840_807bf841aa71 */
-#define afw_z__g__9558fc00_65de_41fe_a840_807bf841aa71 \
-    (afw_v__g__9558fc00_65de_41fe_a840_807bf841aa71.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__142 */
+#define afw_z__g__142 \
+    (afw_v__g__142.internal.s)
 
 
 
-/** @brief define for quoted string _g__96506639_d786_4b9b_9d81_66def3bb76c8 */
-#define AFW_Q__g__96506639_d786_4b9b_9d81_66def3bb76c8 \
-    "These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+/** @brief define for quoted string _g__143 */
+#define AFW_Q__g__143 \
+    "The functionLabel prefixed with 'afw' and converted to camel case"
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__96506639_d786_4b9b_9d81_66def3bb76c8 */
-#define afw_s__g__96506639_d786_4b9b_9d81_66def3bb76c8 \
-    (afw_v__g__96506639_d786_4b9b_9d81_66def3bb76c8.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__143 */
+#define afw_s__g__143 \
+    (afw_v__g__143.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__96506639_d786_4b9b_9d81_66def3bb76c8 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__143 */
 extern const afw_value_string_t \
-    afw_v__g__96506639_d786_4b9b_9d81_66def3bb76c8;
+    afw_v__g__143;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__96506639_d786_4b9b_9d81_66def3bb76c8 */
-#define afw_z__g__96506639_d786_4b9b_9d81_66def3bb76c8 \
-    (afw_v__g__96506639_d786_4b9b_9d81_66def3bb76c8.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__143 */
+#define afw_z__g__143 \
+    (afw_v__g__143.internal.s)
 
 
 
-/** @brief define for quoted string _g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b */
-#define AFW_Q__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b \
-    "The id of the associated object's object type, within the object's adaptor"
+/** @brief define for quoted string _g__144 */
+#define AFW_Q__g__144 \
+    "This is the functionLabel prefixed with 'afw' and converted to camel case."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b */
-#define afw_s__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b \
-    (afw_v__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__144 */
+#define afw_s__g__144 \
+    (afw_v__g__144.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__144 */
 extern const afw_value_string_t \
-    afw_v__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b;
+    afw_v__g__144;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b */
-#define afw_z__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b \
-    (afw_v__g__97120a1f_6f1f_4aeb_aec6_c49c8e59356b.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__144 */
+#define afw_z__g__144 \
+    (afw_v__g__144.internal.s)
 
 
 
-/** @brief define for quoted string _g__9803d67e_53b7_4ed4_8b79_7779ddcf349e */
-#define AFW_Q__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e \
-    "The port number of the host on which the server is listening."
+/** @brief define for quoted string _g__145 */
+#define AFW_Q__g__145 \
+    "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::')."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e */
-#define afw_s__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e \
-    (afw_v__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__145 */
+#define afw_s__g__145 \
+    (afw_v__g__145.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__145 */
 extern const afw_value_string_t \
-    afw_v__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e;
+    afw_v__g__145;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e */
-#define afw_z__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e \
-    (afw_v__g__9803d67e_53b7_4ed4_8b79_7779ddcf349e.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__145 */
+#define afw_z__g__145 \
+    (afw_v__g__145.internal.s)
 
 
 
-/** @brief define for quoted string _g__98361d79_fe6f_485b_a544_227c63b8d922 */
-#define AFW_Q__g__98361d79_fe6f_485b_a544_227c63b8d922 \
-    "This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins."
+/** @brief define for quoted string _g__146 */
+#define AFW_Q__g__146 \
+    "This indicates that the function is deprecated and may go away at some point."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__98361d79_fe6f_485b_a544_227c63b8d922 */
-#define afw_s__g__98361d79_fe6f_485b_a544_227c63b8d922 \
-    (afw_v__g__98361d79_fe6f_485b_a544_227c63b8d922.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__146 */
+#define afw_s__g__146 \
+    (afw_v__g__146.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__98361d79_fe6f_485b_a544_227c63b8d922 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__146 */
 extern const afw_value_string_t \
-    afw_v__g__98361d79_fe6f_485b_a544_227c63b8d922;
+    afw_v__g__146;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__98361d79_fe6f_485b_a544_227c63b8d922 */
-#define afw_z__g__98361d79_fe6f_485b_a544_227c63b8d922 \
-    (afw_v__g__98361d79_fe6f_485b_a544_227c63b8d922.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__146 */
+#define afw_z__g__146 \
+    (afw_v__g__146.internal.s)
 
 
 
-/** @brief define for quoted string _g__98977a62_96af_412a_9906_1c597afd8513 */
-#define AFW_Q__g__98977a62_96af_412a_9906_1c597afd8513 \
-    "The facility argument is used to specify what type of program is logging the message. This lets the configuration file specify that messages from different facilities will be handled differently. Valid options are:  auth, authpriv, cron, daemon, ftp, kern, local0 through local7, lpr, mail, news, user, uucp."
+/** @brief define for quoted string _g__147 */
+#define AFW_Q__g__147 \
+    "This is the function's description, used for documentation purposes."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__98977a62_96af_412a_9906_1c597afd8513 */
-#define afw_s__g__98977a62_96af_412a_9906_1c597afd8513 \
-    (afw_v__g__98977a62_96af_412a_9906_1c597afd8513.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__147 */
+#define afw_s__g__147 \
+    (afw_v__g__147.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__98977a62_96af_412a_9906_1c597afd8513 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__147 */
 extern const afw_value_string_t \
-    afw_v__g__98977a62_96af_412a_9906_1c597afd8513;
+    afw_v__g__147;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__98977a62_96af_412a_9906_1c597afd8513 */
-#define afw_z__g__98977a62_96af_412a_9906_1c597afd8513 \
-    (afw_v__g__98977a62_96af_412a_9906_1c597afd8513.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__147 */
+#define afw_z__g__147 \
+    (afw_v__g__147.internal.s)
 
 
 
-/** @brief define for quoted string _g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 */
-#define AFW_Q__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 \
-    "Indicates that at least one errors property exists in the meta."
+/** @brief define for quoted string _g__148 */
+#define AFW_Q__g__148 \
+    "This is a sentence that contains details about the other properties of this function."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 */
-#define afw_s__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 \
-    (afw_v__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__148 */
+#define afw_s__g__148 \
+    (afw_v__g__148.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__148 */
 extern const afw_value_string_t \
-    afw_v__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9;
+    afw_v__g__148;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 */
-#define afw_z__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9 \
-    (afw_v__g__99b67c42_8ad1_4c31_b27b_8e2b78b7aee9.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__148 */
+#define afw_z__g__148 \
+    (afw_v__g__148.internal.s)
 
 
 
-/** @brief define for quoted string _g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 */
-#define AFW_Q__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 \
-    "This can be specified to override default retrieve_objects() processing. This script should call current::returnObject(object) with each object to return. It can also return current::useDefaultProcessing if default processing should occur as if onRetrieveObjects was not specified."
+/** @brief define for quoted string _g__149 */
+#define AFW_Q__g__149 \
+    "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 */
-#define afw_s__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 \
-    (afw_v__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__149 */
+#define afw_s__g__149 \
+    (afw_v__g__149.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__149 */
 extern const afw_value_string_t \
-    afw_v__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546;
+    afw_v__g__149;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 */
-#define afw_z__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546 \
-    (afw_v__g__9a4100c2_542f_41bc_8b88_81c8cc9b9546.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__149 */
+#define afw_z__g__149 \
+    (afw_v__g__149.internal.s)
 
 
 
-/** @brief define for quoted string _g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 */
-#define AFW_Q__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 \
+/** @brief define for quoted string _g__15 */
+#define AFW_Q__g__15 \
+    "This is a predicate for this decisionId value with the first letter capitalized and without a trailing period."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__15 */
+#define afw_s__g__15 \
+    (afw_v__g__15.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__15 */
+extern const afw_value_string_t \
+    afw_v__g__15;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__15 */
+#define afw_z__g__15 \
+    (afw_v__g__15.internal.s)
+
+
+
+/** @brief define for quoted string _g__150 */
+#define AFW_Q__g__150 \
+    "This function will call the appropriate function when the first parameter is one of these data types"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__150 */
+#define afw_s__g__150 \
+    (afw_v__g__150.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__150 */
+extern const afw_value_string_t \
+    afw_v__g__150;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__150 */
+#define afw_z__g__150 \
+    (afw_v__g__150.internal.s)
+
+
+
+/** @brief define for quoted string _g__151 */
+#define AFW_Q__g__151 \
+    "This is the label in the C source of the polymorphic execute function used for this function."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__151 */
+#define afw_s__g__151 \
+    (afw_v__g__151.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__151 */
+extern const afw_value_string_t \
+    afw_v__g__151;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__151 */
+#define afw_z__g__151 \
+    (afw_v__g__151.internal.s)
+
+
+
+/** @brief define for quoted string _g__152 */
+#define AFW_Q__g__152 \
+    "First parameter evaluate deferred to polymorphicExecuteFunction"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__152 */
+#define afw_s__g__152 \
+    (afw_v__g__152.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__152 */
+extern const afw_value_string_t \
+    afw_v__g__152;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__152 */
+#define afw_z__g__152 \
+    (afw_v__g__152.internal.s)
+
+
+
+/** @brief define for quoted string _g__153 */
+#define AFW_Q__g__153 \
+    "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__153 */
+#define afw_s__g__153 \
+    (afw_v__g__153.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__153 */
+extern const afw_value_string_t \
+    afw_v__g__153;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__153 */
+#define afw_z__g__153 \
+    (afw_v__g__153.internal.s)
+
+
+
+/** @brief define for quoted string _g__154 */
+#define AFW_Q__g__154 \
     "This allows overrides, for particular data types, of properties for this function."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 */
-#define afw_s__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 \
-    (afw_v__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__154 */
+#define afw_s__g__154 \
+    (afw_v__g__154.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__154 */
 extern const afw_value_string_t \
-    afw_v__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5;
+    afw_v__g__154;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 */
-#define afw_z__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5 \
-    (afw_v__g__9a4fe607_0b6f_4baa_a9ba_50cceb00b4b5.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__154 */
+#define afw_z__g__154 \
+    (afw_v__g__154.internal.s)
 
 
 
-/** @brief define for quoted string _g__9b637ffc_f2d8_440b_a717_464877be8a9a */
-#define AFW_Q__g__9b637ffc_f2d8_440b_a717_464877be8a9a \
-    "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object."
+/** @brief define for quoted string _g__155 */
+#define AFW_Q__g__155 \
+    "Given exactly the same parameter values, this function will always return the same result"
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9b637ffc_f2d8_440b_a717_464877be8a9a */
-#define afw_s__g__9b637ffc_f2d8_440b_a717_464877be8a9a \
-    (afw_v__g__9b637ffc_f2d8_440b_a717_464877be8a9a.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__155 */
+#define afw_s__g__155 \
+    (afw_v__g__155.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9b637ffc_f2d8_440b_a717_464877be8a9a */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__155 */
 extern const afw_value_string_t \
-    afw_v__g__9b637ffc_f2d8_440b_a717_464877be8a9a;
+    afw_v__g__155;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9b637ffc_f2d8_440b_a717_464877be8a9a */
-#define afw_z__g__9b637ffc_f2d8_440b_a717_464877be8a9a \
-    (afw_v__g__9b637ffc_f2d8_440b_a717_464877be8a9a.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__155 */
+#define afw_z__g__155 \
+    (afw_v__g__155.internal.s)
 
 
 
-/** @brief define for quoted string _g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e */
-#define AFW_Q__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e \
+/** @brief define for quoted string _g__156 */
+#define AFW_Q__g__156 \
+    "This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form 'AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_' followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__156 */
+#define afw_s__g__156 \
+    (afw_v__g__156.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__156 */
+extern const afw_value_string_t \
+    afw_v__g__156;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__156 */
+#define afw_z__g__156 \
+    (afw_v__g__156.internal.s)
+
+
+
+/** @brief define for quoted string _g__157 */
+#define AFW_Q__g__157 \
+    "Any side effects that this function may produce as a result of execution."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__157 */
+#define afw_s__g__157 \
+    (afw_v__g__157.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__157 */
+extern const afw_value_string_t \
+    afw_v__g__157;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__157 */
+#define afw_z__g__157 \
+    (afw_v__g__157.internal.s)
+
+
+
+/** @brief define for quoted string _g__158 */
+#define AFW_Q__g__158 \
+    "This is the label in the C source of the execute function used for this function."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__158 */
+#define afw_s__g__158 \
+    (afw_v__g__158.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__158 */
+extern const afw_value_string_t \
+    afw_v__g__158;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__158 */
+#define afw_z__g__158 \
+    (afw_v__g__158.internal.s)
+
+
+
+/** @brief define for quoted string _g__159 */
+#define AFW_Q__g__159 \
+    "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveFunction_ objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__159 */
+#define afw_s__g__159 \
+    (afw_v__g__159.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__159 */
+extern const afw_value_string_t \
+    afw_v__g__159;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__159 */
+#define afw_z__g__159 \
+    (afw_v__g__159.internal.s)
+
+
+
+/** @brief define for quoted string _g__16 */
+#define AFW_Q__g__16 \
+    "This is meta for a decisionId property value of _AdaptiveAuthorizationResult_."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__16 */
+#define afw_s__g__16 \
+    (afw_v__g__16.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__16 */
+extern const afw_value_string_t \
+    afw_v__g__16;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__16 */
+#define afw_z__g__16 \
+    (afw_v__g__16.internal.s)
+
+
+
+/** @brief define for quoted string _g__160 */
+#define AFW_Q__g__160 \
+    "This is a predicate for the parameter with the first letter capitalized and without a trailing period."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__160 */
+#define afw_s__g__160 \
+    (afw_v__g__160.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__160 */
+extern const afw_value_string_t \
+    afw_v__g__160;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__160 */
+#define afw_z__g__160 \
+    (afw_v__g__160.internal.s)
+
+
+
+/** @brief define for quoted string _g__161 */
+#define AFW_Q__g__161 \
+    "Indicates that parameter can be undefined (NULL) even if not optional."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__161 */
+#define afw_s__g__161 \
+    (afw_v__g__161.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__161 */
+extern const afw_value_string_t \
+    afw_v__g__161;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__161 */
+#define afw_z__g__161 \
+    (afw_v__g__161.internal.s)
+
+
+
+/** @brief define for quoted string _g__162 */
+#define AFW_Q__g__162 \
+    "See the data type's dataTypeParameterType property to determine how to interpret this."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__162 */
+#define afw_s__g__162 \
+    (afw_v__g__162.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__162 */
+extern const afw_value_string_t \
+    afw_v__g__162;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__162 */
+#define afw_z__g__162 \
+    (afw_v__g__162.internal.s)
+
+
+
+/** @brief define for quoted string _g__163 */
+#define AFW_Q__g__163 \
+    "Minimum number of values that can be specified for this parameter"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__163 */
+#define afw_s__g__163 \
+    (afw_v__g__163.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__163 */
+extern const afw_value_string_t \
+    afw_v__g__163;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__163 */
+#define afw_z__g__163 \
+    (afw_v__g__163.internal.s)
+
+
+
+/** @brief define for quoted string _g__164 */
+#define AFW_Q__g__164 \
+    "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__164 */
+#define afw_s__g__164 \
+    (afw_v__g__164.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__164 */
+extern const afw_value_string_t \
+    afw_v__g__164;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__164 */
+#define afw_z__g__164 \
+    (afw_v__g__164.internal.s)
+
+
+
+/** @brief define for quoted string _g__165 */
+#define AFW_Q__g__165 \
+    "This indicates that parameter is optional and can be undefined (NULL)."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__165 */
+#define afw_s__g__165 \
+    (afw_v__g__165.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__165 */
+extern const afw_value_string_t \
+    afw_v__g__165;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__165 */
+#define afw_z__g__165 \
+    (afw_v__g__165.internal.s)
+
+
+
+/** @brief define for quoted string _g__166 */
+#define AFW_Q__g__166 \
+    "This is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__166 */
+#define afw_s__g__166 \
+    (afw_v__g__166.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__166 */
+extern const afw_value_string_t \
+    afw_v__g__166;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__166 */
+#define afw_z__g__166 \
+    (afw_v__g__166.internal.s)
+
+
+
+/** @brief define for quoted string _g__167 */
+#define AFW_Q__g__167 \
+    "These are errors that can possibly be thrown by this function."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__167 */
+#define afw_s__g__167 \
+    (afw_v__g__167.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__167 */
+extern const afw_value_string_t \
+    afw_v__g__167;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__167 */
+#define afw_z__g__167 \
+    (afw_v__g__167.internal.s)
+
+
+
+/** @brief define for quoted string _g__168 */
+#define AFW_Q__g__168 \
+    "This is the function's declaration with whitespace and brief comments."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__168 */
+#define afw_s__g__168 \
+    (afw_v__g__168.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__168 */
+extern const afw_value_string_t \
+    afw_v__g__168;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__168 */
+#define afw_z__g__168 \
+    (afw_v__g__168.internal.s)
+
+
+
+/** @brief define for quoted string _g__169 */
+#define AFW_Q__g__169 \
+    "This is the maximum number of parameters or -1 if there is no maximum."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__169 */
+#define afw_s__g__169 \
+    (afw_v__g__169.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__169 */
+extern const afw_value_string_t \
+    afw_v__g__169;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__169 */
+#define afw_z__g__169 \
+    (afw_v__g__169.internal.s)
+
+
+
+/** @brief define for quoted string _g__17 */
+#define AFW_Q__g__17 \
+    "This is the order this authorization handler will be processed. If 0, this handler is not active."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__17 */
+#define afw_s__g__17 \
+    (afw_v__g__17.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__17 */
+extern const afw_value_string_t \
+    afw_v__g__17;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__17 */
+#define afw_z__g__17 \
+    (afw_v__g__17.internal.s)
+
+
+
+/** @brief define for quoted string _g__170 */
+#define AFW_Q__g__170 \
+    "If non-zero, this is an script support function and this is its internal special handling number. See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__170 */
+#define afw_s__g__170 \
+    (afw_v__g__170.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__170 */
+extern const afw_value_string_t \
+    afw_v__g__170;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__170 */
+#define afw_z__g__170 \
+    (afw_v__g__170.internal.s)
+
+
+
+/** @brief define for quoted string _g__171 */
+#define AFW_Q__g__171 \
+    "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__171 */
+#define afw_s__g__171 \
+    (afw_v__g__171.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__171 */
+extern const afw_value_string_t \
+    afw_v__g__171;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__171 */
+#define afw_z__g__171 \
+    (afw_v__g__171.internal.s)
+
+
+
+/** @brief define for quoted string _g__172 */
+#define AFW_Q__g__172 \
+    "Layout Component Type category id. The layout component type category groups similar layout component types together logically."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__172 */
+#define afw_s__g__172 \
+    (afw_v__g__172.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__172 */
+extern const afw_value_string_t \
+    afw_v__g__172;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__172 */
+#define afw_z__g__172 \
+    (afw_v__g__172.internal.s)
+
+
+
+/** @brief define for quoted string _g__173 */
+#define AFW_Q__g__173 \
+    "Represents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__173 */
+#define afw_s__g__173 \
+    (afw_v__g__173.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__173 */
+extern const afw_value_string_t \
+    afw_v__g__173;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__173 */
+#define afw_z__g__173 \
+    (afw_v__g__173.internal.s)
+
+
+
+/** @brief define for quoted string _g__174 */
+#define AFW_Q__g__174 \
+    "Component type id is the object id for this Layout Component Type."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__174 */
+#define afw_s__g__174 \
+    (afw_v__g__174.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__174 */
+extern const afw_value_string_t \
+    afw_v__g__174;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__174 */
+#define afw_z__g__174 \
+    (afw_v__g__174.internal.s)
+
+
+
+/** @brief define for quoted string _g__175 */
+#define AFW_Q__g__175 \
+    "Id associated with the implementation for this component type."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__175 */
+#define afw_s__g__175 \
+    (afw_v__g__175.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__175 */
+extern const afw_value_string_t \
+    afw_v__g__175;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__175 */
+#define afw_z__g__175 \
+    (afw_v__g__175.internal.s)
+
+
+
+/** @brief define for quoted string _g__176 */
+#define AFW_Q__g__176 \
+    "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__176 */
+#define afw_s__g__176 \
+    (afw_v__g__176.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__176 */
+extern const afw_value_string_t \
+    afw_v__g__176;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__176 */
+#define afw_z__g__176 \
+    (afw_v__g__176.internal.s)
+
+
+
+/** @brief define for quoted string _g__177 */
+#define AFW_Q__g__177 \
+    "The parameters for this component. The object type of this object is determined by the implementation of the component type."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__177 */
+#define afw_s__g__177 \
+    (afw_v__g__177.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__177 */
+extern const afw_value_string_t \
+    afw_v__g__177;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__177 */
+#define afw_z__g__177 \
+    (afw_v__g__177.internal.s)
+
+
+
+/** @brief define for quoted string _g__178 */
+#define AFW_Q__g__178 \
+    "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__178 */
+#define afw_s__g__178 \
+    (afw_v__g__178.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__178 */
+extern const afw_value_string_t \
+    afw_v__g__178;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__178 */
+#define afw_z__g__178 \
+    (afw_v__g__178.internal.s)
+
+
+
+/** @brief define for quoted string _g__179 */
+#define AFW_Q__g__179 \
+    "This is a source location to help determine how this log was defined."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__179 */
+#define afw_s__g__179 \
+    (afw_v__g__179.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__179 */
+extern const afw_value_string_t \
+    afw_v__g__179;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__179 */
+#define afw_z__g__179 \
+    (afw_v__g__179.internal.s)
+
+
+
+/** @brief define for quoted string _g__18 */
+#define AFW_Q__g__18 \
+    "This is a predicate for this modeId value with the first letter capitalized and without a trailing period."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__18 */
+#define afw_s__g__18 \
+    (afw_v__g__18.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__18 */
+extern const afw_value_string_t \
+    afw_v__g__18;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__18 */
+#define afw_z__g__18 \
+    (afw_v__g__18.internal.s)
+
+
+
+/** @brief define for quoted string _g__180 */
+#define AFW_Q__g__180 \
+    "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows)."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__180 */
+#define afw_s__g__180 \
+    (afw_v__g__180.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__180 */
+extern const afw_value_string_t \
+    afw_v__g__180;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__180 */
+#define afw_z__g__180 \
+    (afw_v__g__180.internal.s)
+
+
+
+/** @brief define for quoted string _g__181 */
+#define AFW_Q__g__181 \
+    "Each entry is the path of an afw adaptor object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__181 */
+#define afw_s__g__181 \
+    (afw_v__g__181.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__181 */
+extern const afw_value_string_t \
+    afw_v__g__181;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__181 */
+#define afw_z__g__181 \
+    (afw_v__g__181.internal.s)
+
+
+
+/** @brief define for quoted string _g__182 */
+#define AFW_Q__g__182 \
+    "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__182 */
+#define afw_s__g__182 \
+    (afw_v__g__182.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__182 */
+extern const afw_value_string_t \
+    afw_v__g__182;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__182 */
+#define afw_z__g__182 \
+    (afw_v__g__182.internal.s)
+
+
+
+/** @brief define for quoted string _g__183 */
+#define AFW_Q__g__183 \
+    "If false, this property is read only. If true, the property can be changed unless denied by authorization policy, constraint checking, or the adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__183 */
+#define afw_s__g__183 \
+    (afw_v__g__183.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__183 */
+extern const afw_value_string_t \
+    afw_v__g__183;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__183 */
+#define afw_z__g__183 \
+    (afw_v__g__183.internal.s)
+
+
+
+/** @brief define for quoted string _g__184 */
+#define AFW_Q__g__184 \
+    "This is the URI where this value is inherited from. This property is added by object option composite."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__184 */
+#define afw_s__g__184 \
+    (afw_v__g__184.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__184 */
+extern const afw_value_string_t \
+    afw_v__g__184;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__184 */
+#define afw_z__g__184 \
+    (afw_v__g__184.internal.s)
+
+
+
+/** @brief define for quoted string _g__185 */
+#define AFW_Q__g__185 \
+    "The object type for properties in the 'propertyTypes' property of an object's meta."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__185 */
+#define afw_s__g__185 \
+    (afw_v__g__185.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__185 */
+extern const afw_value_string_t \
+    afw_v__g__185;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__185 */
+#define afw_z__g__185 \
+    (afw_v__g__185.internal.s)
+
+
+
+/** @brief define for quoted string _g__186 */
+#define AFW_Q__g__186 \
+    "This object can be changed, unless denied by authorization policy or by the adaptor"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__186 */
+#define afw_s__g__186 \
+    (afw_v__g__186.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__186 */
+extern const afw_value_string_t \
+    afw_v__g__186;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__186 */
+#define afw_z__g__186 \
+    (afw_v__g__186.internal.s)
+
+
+
+/** @brief define for quoted string _g__187 */
+#define AFW_Q__g__187 \
+    "If false this object is read only. If true, the object can be changed unless denied by authorization policy or by the adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__187 */
+#define afw_s__g__187 \
+    (afw_v__g__187.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__187 */
+extern const afw_value_string_t \
+    afw_v__g__187;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__187 */
+#define afw_z__g__187 \
+    (afw_v__g__187.internal.s)
+
+
+
+/** @brief define for quoted string _g__188 */
+#define AFW_Q__g__188 \
+    "This object can be deleted unless denied by authorization policy or by the adaptor"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__188 */
+#define afw_s__g__188 \
+    (afw_v__g__188.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__188 */
+extern const afw_value_string_t \
+    afw_v__g__188;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__188 */
+#define afw_z__g__188 \
+    (afw_v__g__188.internal.s)
+
+
+
+/** @brief define for quoted string _g__189 */
+#define AFW_Q__g__189 \
+    "If false this object can not be deleted. If true, the object can be deleted unless denied by authorization policy or by the adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__189 */
+#define afw_s__g__189 \
+    (afw_v__g__189.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__189 */
+extern const afw_value_string_t \
+    afw_v__g__189;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__189 */
+#define afw_z__g__189 \
+    (afw_v__g__189.internal.s)
+
+
+
+/** @brief define for quoted string _g__19 */
+#define AFW_Q__g__19 \
+    "This is used to uniquely identify this particular authorization mode."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__19 */
+#define afw_s__g__19 \
+    (afw_v__g__19.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__19 */
+extern const afw_value_string_t \
+    afw_v__g__19;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__19 */
+#define afw_z__g__19 \
+    (afw_v__g__19.internal.s)
+
+
+
+/** @brief define for quoted string _g__190 */
+#define AFW_Q__g__190 \
+    "Indicates that at least one errors property exists in the meta."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__190 */
+#define afw_s__g__190 \
+    (afw_v__g__190.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__190 */
+extern const afw_value_string_t \
+    afw_v__g__190;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__190 */
+#define afw_z__g__190 \
+    (afw_v__g__190.internal.s)
+
+
+
+/** @brief define for quoted string _g__191 */
+#define AFW_Q__g__191 \
+    "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment. The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__191 */
+#define afw_s__g__191 \
+    (afw_v__g__191.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__191 */
+extern const afw_value_string_t \
+    afw_v__g__191;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__191 */
+#define afw_z__g__191 \
+    (afw_v__g__191.internal.s)
+
+
+
+/** @brief define for quoted string _g__192 */
+#define AFW_Q__g__192 \
+    "The id of the associated object's object type, within the object's adaptor"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__192 */
+#define afw_s__g__192 \
+    (afw_v__g__192.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__192 */
+extern const afw_value_string_t \
+    afw_v__g__192;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__192 */
+#define afw_z__g__192 \
+    (afw_v__g__192.internal.s)
+
+
+
+/** @brief define for quoted string _g__193 */
+#define AFW_Q__g__193 \
+    "This the id of the associated object's object type within the object's adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__193 */
+#define afw_s__g__193 \
+    (afw_v__g__193.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__193 */
+extern const afw_value_string_t \
+    afw_v__g__193;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__193 */
+#define afw_z__g__193 \
+    (afw_v__g__193.internal.s)
+
+
+
+/** @brief define for quoted string _g__194 */
+#define AFW_Q__g__194 \
+    "This is a object with a property with a name of the objectType for each _AdaptiveObjectType_ used by this object and all of its embedded objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__194 */
+#define afw_s__g__194 \
+    (afw_v__g__194.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__194 */
+extern const afw_value_string_t \
+    afw_v__g__194;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__194 */
+#define afw_z__g__194 \
+    (afw_v__g__194.internal.s)
+
+
+
+/** @brief define for quoted string _g__195 */
+#define AFW_Q__g__195 \
+    "This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adaptorId/objectType/objectId'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__195 */
+#define afw_s__g__195 \
+    (afw_v__g__195.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__195 */
+extern const afw_value_string_t \
+    afw_v__g__195;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__195 */
+#define afw_z__g__195 \
+    (afw_v__g__195.internal.s)
+
+
+
+/** @brief define for quoted string _g__196 */
+#define AFW_Q__g__196 \
+    "This is additional meta information that overrides and supplements property type information for specific associated object's properties. The property name of properties in this object corresponds to properties with the same name in the associated object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__196 */
+#define afw_s__g__196 \
+    (afw_v__g__196.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__196 */
+extern const afw_value_string_t \
+    afw_v__g__196;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__196 */
+#define afw_z__g__196 \
+    (afw_v__g__196.internal.s)
+
+
+
+/** @brief define for quoted string _g__197 */
+#define AFW_Q__g__197 \
+    "This strings represents a stateful token, used by the reconcile_object() method, to perform a reconcile request on an object that has been obtained in reconcilable mode."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__197 */
+#define afw_s__g__197 \
+    (afw_v__g__197.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__197 */
+extern const afw_value_string_t \
+    afw_v__g__197;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__197 */
+#define afw_z__g__197 \
+    (afw_v__g__197.internal.s)
+
+
+
+/** @brief define for quoted string _g__198 */
+#define AFW_Q__g__198 \
+    "This is the associated object's direct parent paths before they were resolved by object option composite."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__198 */
+#define afw_s__g__198 \
+    (afw_v__g__198.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__198 */
+extern const afw_value_string_t \
+    afw_v__g__198;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__198 */
+#define afw_z__g__198 \
+    (afw_v__g__198.internal.s)
+
+
+
+/** @brief define for quoted string _g__199 */
+#define AFW_Q__g__199 \
+    "The adaptor id of the object being converted to mapped object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__199 */
+#define afw_s__g__199 \
+    (afw_v__g__199.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__199 */
+extern const afw_value_string_t \
+    afw_v__g__199;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__199 */
+#define afw_z__g__199 \
+    (afw_v__g__199.internal.s)
+
+
+
+/** @brief define for quoted string _g__2 */
+#define AFW_Q__g__2 \
+    "This is an array of flagId of flags to set in the execution context (xctx) while the function is being executed. If the 'actions' property is specified, this is the default '_flags_' property for actions. Each flagId must be the objectId of an object in /afw/_AdaptiveFlag_/ and must be a flag that the requester is allowed to set."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__2 */
+#define afw_s__g__2 \
+    (afw_v__g__2.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__2 */
+extern const afw_value_string_t \
+    afw_v__g__2;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__2 */
+#define afw_z__g__2 \
+    (afw_v__g__2.internal.s)
+
+
+
+/** @brief define for quoted string _g__20 */
+#define AFW_Q__g__20 \
+    "This is an array of ids of all policies whose target and condition matched during this check."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__20 */
+#define afw_s__g__20 \
+    (afw_v__g__20.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__20 */
+extern const afw_value_string_t \
+    afw_v__g__20;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__20 */
+#define afw_z__g__20 \
+    (afw_v__g__20.internal.s)
+
+
+
+/** @brief define for quoted string _g__200 */
+#define AFW_Q__g__200 \
+    "The object type of the object being converted to mapped object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__200 */
+#define afw_s__g__200 \
+    (afw_v__g__200.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__200 */
+extern const afw_value_string_t \
+    afw_v__g__200;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__200 */
+#define afw_z__g__200 \
+    (afw_v__g__200.internal.s)
+
+
+
+/** @brief define for quoted string _g__201 */
+#define AFW_Q__g__201 \
+    "(\\n    mappedObject: object /* Object to map back. */\\n): object /* Mapped back object */"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__201 */
+#define afw_s__g__201 \
+    (afw_v__g__201.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__201 */
+extern const afw_value_string_t \
+    afw_v__g__201;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__201 */
+#define afw_z__g__201 \
+    (afw_v__g__201.internal.s)
+
+
+
+/** @brief define for quoted string _g__202 */
+#define AFW_Q__g__202 \
+    "(\\n    object mappedObject /* Object to map back. */\\n): object /* Mapped back object */"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__202 */
+#define afw_s__g__202 \
+    (afw_v__g__202.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__202 */
+extern const afw_value_string_t \
+    afw_v__g__202;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__202 */
+#define afw_z__g__202 \
+    (afw_v__g__202.internal.s)
+
+
+
+/** @brief define for quoted string _g__203 */
+#define AFW_Q__g__203 \
+    "(\\n   object object /* The object to return. */\\n): boolean /* true if no more objects can be returned. */"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__203 */
+#define afw_s__g__203 \
+    (afw_v__g__203.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__203 */
+extern const afw_value_string_t \
+    afw_v__g__203;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__203 */
+#define afw_z__g__203 \
+    (afw_v__g__203.internal.s)
+
+
+
+/** @brief define for quoted string _g__204 */
+#define AFW_Q__g__204 \
+    "Object type level qualifier custom:: variables available to model expressions."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__204 */
+#define afw_s__g__204 \
+    (afw_v__g__204.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__204 */
+extern const afw_value_string_t \
+    afw_v__g__204;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__204 */
+#define afw_z__g__204 \
+    (afw_v__g__204.internal.s)
+
+
+
+/** @brief define for quoted string _g__205 */
+#define AFW_Q__g__205 \
+    "This is the objectType used internally by the adaptor for this object type. It not specified, current::objectType is used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__205 */
+#define afw_s__g__205 \
+    (afw_v__g__205.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__205 */
+extern const afw_value_string_t \
+    afw_v__g__205;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__205 */
+#define afw_z__g__205 \
+    (afw_v__g__205.internal.s)
+
+
+
+/** @brief define for quoted string _g__206 */
+#define AFW_Q__g__206 \
+    "This can be specified to override default add_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onAddObject was not specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__206 */
+#define afw_s__g__206 \
+    (afw_v__g__206.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__206 */
+extern const afw_value_string_t \
+    afw_v__g__206;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__206 */
+#define afw_z__g__206 \
+    (afw_v__g__206.internal.s)
+
+
+
+/** @brief define for quoted string _g__207 */
+#define AFW_Q__g__207 \
+    "#! afw\n\n/**\n * onAddObject\n * \n * This can be specified to override default add_object() processing.\n * \n * Some notable context variables are: \n *     current::adaptorId\n *     current::objectType\n *     current::object\n *     current::objectId\n * \n * An _AdaptiveAction_ object should be returned.\n */\n\n/*\n * Special handling for specific objects.\n *\n * For example, to handle objectType MySpecialType a special way:\n */\n/*\nif (objectType == 'MySpecialType') {\n    let (object '_AdaptiveAction_') action = {};\n\n    // Handle special by setting properties in the action object or by\n    // doing the action directly.\n\n    return action;\n}\n*/\n\n/*\n * To handle objects that don't need special handling, call the default handler.\n */\nreturn model_default_add_object_action(\n    current::adaptorId,\n    current::objectType,\n    current::object,\n    current::objectId );\n    "
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__207 */
+#define afw_s__g__207 \
+    (afw_v__g__207.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__207 */
+extern const afw_value_string_t \
+    afw_v__g__207;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__207 */
+#define afw_z__g__207 \
+    (afw_v__g__207.internal.s)
+
+
+
+/** @brief define for quoted string _g__208 */
+#define AFW_Q__g__208 \
+    "This can be specified to override default delete_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onDeleteObject was not specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__208 */
+#define afw_s__g__208 \
+    (afw_v__g__208.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__208 */
+extern const afw_value_string_t \
+    afw_v__g__208;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__208 */
+#define afw_z__g__208 \
+    (afw_v__g__208.internal.s)
+
+
+
+/** @brief define for quoted string _g__209 */
+#define AFW_Q__g__209 \
+    "Optional script value is evaluated to determine the objectId on add requests"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__209 */
+#define afw_s__g__209 \
+    (afw_v__g__209.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__209 */
+extern const afw_value_string_t \
+    afw_v__g__209;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__209 */
+#define afw_z__g__209 \
+    (afw_v__g__209.internal.s)
+
+
+
+/** @brief define for quoted string _g__21 */
+#define AFW_Q__g__21 \
+    "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__21 */
+#define afw_s__g__21 \
+    (afw_v__g__21.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__21 */
+extern const afw_value_string_t \
+    afw_v__g__21;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__21 */
+#define afw_z__g__21 \
+    (afw_v__g__21.internal.s)
+
+
+
+/** @brief define for quoted string _g__210 */
+#define AFW_Q__g__210 \
+    "This optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one. Even if specified, the adaptor is free to ignore this."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__210 */
+#define afw_s__g__210 \
+    (afw_v__g__210.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__210 */
+extern const afw_value_string_t \
+    afw_v__g__210;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__210 */
+#define afw_z__g__210 \
+    (afw_v__g__210.internal.s)
+
+
+
+/** @brief define for quoted string _g__211 */
+#define AFW_Q__g__211 \
+    "This can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__211 */
+#define afw_s__g__211 \
+    (afw_v__g__211.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__211 */
+extern const afw_value_string_t \
+    afw_v__g__211;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__211 */
+#define afw_z__g__211 \
+    (afw_v__g__211.internal.s)
+
+
+
+/** @brief define for quoted string _g__212 */
+#define AFW_Q__g__212 \
+    "This can be specified to override default modify_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onModifyObject was not specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__212 */
+#define afw_s__g__212 \
+    (afw_v__g__212.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__212 */
+extern const afw_value_string_t \
+    afw_v__g__212;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__212 */
+#define afw_z__g__212 \
+    (afw_v__g__212.internal.s)
+
+
+
+/** @brief define for quoted string _g__213 */
+#define AFW_Q__g__213 \
+    "This can be specified to override default replace_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onReplaceObjects was not specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__213 */
+#define afw_s__g__213 \
+    (afw_v__g__213.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__213 */
+extern const afw_value_string_t \
+    afw_v__g__213;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__213 */
+#define afw_z__g__213 \
+    (afw_v__g__213.internal.s)
+
+
+
+/** @brief define for quoted string _g__214 */
+#define AFW_Q__g__214 \
+    "This can be specified to override default retrieve_objects() processing. This script should call current::returnObject(object) with each object to return. It can also return current::useDefaultProcessing if default processing should occur as if onRetrieveObjects was not specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__214 */
+#define afw_s__g__214 \
+    (afw_v__g__214.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__214 */
+extern const afw_value_string_t \
+    afw_v__g__214;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__214 */
+#define afw_z__g__214 \
+    (afw_v__g__214.internal.s)
+
+
+
+/** @brief define for quoted string _g__215 */
+#define AFW_Q__g__215 \
+    "The name of the properties in this object corresponds to the property name of an instance of this object type and is its property type object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__215 */
+#define afw_s__g__215 \
+    (afw_v__g__215.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__215 */
+extern const afw_value_string_t \
+    afw_v__g__215;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__215 */
+#define afw_z__g__215 \
+    (afw_v__g__215.internal.s)
+
+
+
+/** @brief define for quoted string _g__216 */
+#define AFW_Q__g__216 \
+    "The adaptive object type of all adaptive model object type objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__216 */
+#define afw_s__g__216 \
+    (afw_v__g__216.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__216 */
+extern const afw_value_string_t \
+    afw_v__g__216;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__216 */
+#define afw_z__g__216 \
+    (afw_v__g__216.internal.s)
+
+
+
+/** @brief define for quoted string _g__217 */
+#define AFW_Q__g__217 \
+    "The adaptive object type of all object that contains _AdaptiveModelObjectTypes_ objects as properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__217 */
+#define afw_s__g__217 \
+    (afw_v__g__217.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__217 */
+extern const afw_value_string_t \
+    afw_v__g__217;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__217 */
+#define afw_z__g__217 \
+    (afw_v__g__217.internal.s)
+
+
+
+/** @brief define for quoted string _g__218 */
+#define AFW_Q__g__218 \
+    "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__218 */
+#define afw_s__g__218 \
+    (afw_v__g__218.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__218 */
+extern const afw_value_string_t \
+    afw_v__g__218;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__218 */
+#define afw_z__g__218 \
+    (afw_v__g__218.internal.s)
+
+
+
+/** @brief define for quoted string _g__219 */
+#define AFW_Q__g__219 \
+    "Property type level qualifier custom:: variables available to model expressions."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__219 */
+#define afw_s__g__219 \
+    (afw_v__g__219.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__219 */
+extern const afw_value_string_t \
+    afw_v__g__219;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__219 */
+#define afw_z__g__219 \
+    (afw_v__g__219.internal.s)
+
+
+
+/** @brief define for quoted string _g__22 */
+#define AFW_Q__g__22 \
+    "This is the id property name for instances of this conf type. For adaptor, this is 'adaptorId'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__22 */
+#define afw_s__g__22 \
+    (afw_v__g__22.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__22 */
+extern const afw_value_string_t \
+    afw_v__g__22;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__22 */
+#define afw_z__g__22 \
+    (afw_v__g__22.internal.s)
+
+
+
+/** @brief define for quoted string _g__220 */
+#define AFW_Q__g__220 \
     "This is the property name of this property used internally by an adaptor. If not specified, propertyName is used."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e */
-#define afw_s__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e \
-    (afw_v__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__220 */
+#define afw_s__g__220 \
+    (afw_v__g__220.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__220 */
 extern const afw_value_string_t \
-    afw_v__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e;
+    afw_v__g__220;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e */
-#define afw_z__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e \
-    (afw_v__g__9bbf6d5e_68a9_440b_80f4_d624bc2c486e.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__220 */
+#define afw_z__g__220 \
+    (afw_v__g__220.internal.s)
 
 
 
-/** @brief define for quoted string _g__9bef7ebb_c905_4c98_9a4d_3155705218db */
-#define AFW_Q__g__9bef7ebb_c905_4c98_9a4d_3155705218db \
+/** @brief define for quoted string _g__221 */
+#define AFW_Q__g__221 \
+    "This is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__221 */
+#define afw_s__g__221 \
+    (afw_v__g__221.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__221 */
+extern const afw_value_string_t \
+    afw_v__g__221;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__221 */
+#define afw_z__g__221 \
+    (afw_v__g__221.internal.s)
+
+
+
+/** @brief define for quoted string _g__222 */
+#define AFW_Q__g__222 \
+    "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__222 */
+#define afw_s__g__222 \
+    (afw_v__g__222.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__222 */
+extern const afw_value_string_t \
+    afw_v__g__222;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__222 */
+#define afw_z__g__222 \
+    (afw_v__g__222.internal.s)
+
+
+
+/** @brief define for quoted string _g__223 */
+#define AFW_Q__g__223 \
+    "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__223 */
+#define afw_s__g__223 \
+    (afw_v__g__223.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__223 */
+extern const afw_value_string_t \
+    afw_v__g__223;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__223 */
+#define afw_z__g__223 \
+    (afw_v__g__223.internal.s)
+
+
+
+/** @brief define for quoted string _g__224 */
+#define AFW_Q__g__224 \
+    "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__224 */
+#define afw_s__g__224 \
+    (afw_v__g__224.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__224 */
+extern const afw_value_string_t \
+    afw_v__g__224;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__224 */
+#define afw_z__g__224 \
+    (afw_v__g__224.internal.s)
+
+
+
+/** @brief define for quoted string _g__225 */
+#define AFW_Q__g__225 \
+    "Indicates that this property is transitory and will not be persisted by the adaptor. The value can be produced by setValue or supplied in the request."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__225 */
+#define afw_s__g__225 \
+    (afw_v__g__225.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__225 */
+extern const afw_value_string_t \
+    afw_v__g__225;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__225 */
+#define afw_z__g__225 \
+    (afw_v__g__225.internal.s)
+
+
+
+/** @brief define for quoted string _g__226 */
+#define AFW_Q__g__226 \
+    "The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__226 */
+#define afw_s__g__226 \
+    (afw_v__g__226.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__226 */
+extern const afw_value_string_t \
+    afw_v__g__226;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__226 */
+#define afw_z__g__226 \
+    (afw_v__g__226.internal.s)
+
+
+
+/** @brief define for quoted string _g__227 */
+#define AFW_Q__g__227 \
+    "Defines a Property Type within this Adaptive Model Object Type definition"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__227 */
+#define afw_s__g__227 \
+    (afw_v__g__227.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__227 */
+extern const afw_value_string_t \
+    afw_v__g__227;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__227 */
+#define afw_z__g__227 \
+    (afw_v__g__227.internal.s)
+
+
+
+/** @brief define for quoted string _g__228 */
+#define AFW_Q__g__228 \
+    "Defines a Property Type within this Adaptive Model Object Type definition."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__228 */
+#define afw_s__g__228 \
+    (afw_v__g__228.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__228 */
+extern const afw_value_string_t \
+    afw_v__g__228;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__228 */
+#define afw_z__g__228 \
+    (afw_v__g__228.internal.s)
+
+
+
+/** @brief define for quoted string _g__229 */
+#define AFW_Q__g__229 \
+    "Object type of the propertyTypes property of instances of _AdaptiveModelObjectType_."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__229 */
+#define afw_s__g__229 \
+    (afw_v__g__229.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__229 */
+extern const afw_value_string_t \
+    afw_v__g__229;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__229 */
+#define afw_z__g__229 \
+    (afw_v__g__229.internal.s)
+
+
+
+/** @brief define for quoted string _g__23 */
+#define AFW_Q__g__23 \
+    "This is the registry type for instances of this conf type. For adaptor, this is 'adaptor_id'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__23 */
+#define afw_s__g__23 \
+    (afw_v__g__23.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__23 */
+extern const afw_value_string_t \
+    afw_v__g__23;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__23 */
+#define afw_z__g__23 \
+    (afw_v__g__23.internal.s)
+
+
+
+/** @brief define for quoted string _g__230 */
+#define AFW_Q__g__230 \
+    "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__230 */
+#define afw_s__g__230 \
+    (afw_v__g__230.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__230 */
+extern const afw_value_string_t \
+    afw_v__g__230;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__230 */
+#define afw_z__g__230 \
+    (afw_v__g__230.internal.s)
+
+
+
+/** @brief define for quoted string _g__231 */
+#define AFW_Q__g__231 \
+    "The origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__231 */
+#define afw_s__g__231 \
+    (afw_v__g__231.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__231 */
+extern const afw_value_string_t \
+    afw_v__g__231;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__231 */
+#define afw_z__g__231 \
+    (afw_v__g__231.internal.s)
+
+
+
+/** @brief define for quoted string _g__232 */
+#define AFW_Q__g__232 \
+    "Property type objects that can be inherited by propertyTypes in objectTypes"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__232 */
+#define afw_s__g__232 \
+    (afw_v__g__232.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__232 */
+extern const afw_value_string_t \
+    afw_v__g__232;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__232 */
+#define afw_z__g__232 \
+    (afw_v__g__232.internal.s)
+
+
+
+/** @brief define for quoted string _g__233 */
+#define AFW_Q__g__233 \
+    "Property type objects that can be inherited by propertyTypes in objectTypes."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__233 */
+#define afw_s__g__233 \
+    (afw_v__g__233.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__233 */
+extern const afw_value_string_t \
+    afw_v__g__233;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__233 */
+#define afw_z__g__233 \
+    (afw_v__g__233.internal.s)
+
+
+
+/** @brief define for quoted string _g__234 */
+#define AFW_Q__g__234 \
+    "Indicates that object should be checked for missing required properties. This option implies the normalize option."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__234 */
+#define afw_s__g__234 \
+    (afw_v__g__234.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__234 */
+extern const afw_value_string_t \
+    afw_v__g__234;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__234 */
+#define afw_z__g__234 \
+    (afw_v__g__234.internal.s)
+
+
+
+/** @brief define for quoted string _g__235 */
+#define AFW_Q__g__235 \
+    "Indicates that both direct and embedded inheritance should be performed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__235 */
+#define afw_s__g__235 \
+    (afw_v__g__235.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__235 */
+extern const afw_value_string_t \
+    afw_v__g__235;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__235 */
+#define afw_z__g__235 \
+    (afw_v__g__235.internal.s)
+
+
+
+/** @brief define for quoted string _g__236 */
+#define AFW_Q__g__236 \
+    "This will cause the errors in object meta to include additional debug information. If not specified, only the message will be included."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__236 */
+#define afw_s__g__236 \
+    (afw_v__g__236.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__236 */
+extern const afw_value_string_t \
+    afw_v__g__236;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__236 */
+#define afw_z__g__236 \
+    (afw_v__g__236.internal.s)
+
+
+
+/** @brief define for quoted string _g__237 */
+#define AFW_Q__g__237 \
+    "This indicates that default property values should be included. This option implies the normalize option."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__237 */
+#define afw_s__g__237 \
+    (afw_v__g__237.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__237 */
+extern const afw_value_string_t \
+    afw_v__g__237;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__237 */
+#define afw_z__g__237 \
+    (afw_v__g__237.internal.s)
+
+
+
+/** @brief define for quoted string _g__238 */
+#define AFW_Q__g__238 \
+    "This only applies to retrieve objects requests and indicates that objects with the supplied object type along with objects with any of its descendent object types should be included in the search."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__238 */
+#define afw_s__g__238 \
+    (afw_v__g__238.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__238 */
+extern const afw_value_string_t \
+    afw_v__g__238;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__238 */
+#define afw_z__g__238 \
+    (afw_v__g__238.internal.s)
+
+
+
+/** @brief define for quoted string _g__239 */
+#define AFW_Q__g__239 \
+    "Indicates that the inheritedFrom property in meta propertyTypes.<propertyName>, where <propertyName> is the associated property name, should be set. This option is ignored unless composite option is also set."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__239 */
+#define afw_s__g__239 \
+    (afw_v__g__239.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__239 */
+extern const afw_value_string_t \
+    afw_v__g__239;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__239 */
+#define afw_z__g__239 \
+    (afw_v__g__239.internal.s)
+
+
+
+/** @brief define for quoted string _g__24 */
+#define AFW_Q__g__24 \
+    "This is the runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptor_'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__24 */
+#define afw_s__g__24 \
+    (afw_v__g__24.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__24 */
+extern const afw_value_string_t \
+    afw_v__g__24;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__24 */
+#define afw_z__g__24 \
+    (afw_v__g__24.internal.s)
+
+
+
+/** @brief define for quoted string _g__240 */
+#define AFW_Q__g__240 \
+    "This overrides the largeIntegersAsString option. If neither the integersAsString or large_integer_as_string is specified, integers will remain integers. If this option is specified, all data type integer values will be converted to the string data type.\\n\\nThis options is useful if a content type is used that represents integers as double (floating point) values."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__240 */
+#define afw_s__g__240 \
+    (afw_v__g__240.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__240 */
+extern const afw_value_string_t \
+    afw_v__g__240;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__240 */
+#define afw_z__g__240 \
+    (afw_v__g__240.internal.s)
+
+
+
+/** @brief define for quoted string _g__241 */
+#define AFW_Q__g__241 \
+    "This option is overridden by the integersAsString option.\\n\\nIf this option is specified, all integers that have a magnitude that exceeds plus or minus 9007199254740991 (2^53-1) will be converted to the string data type.\\n\\nThis options is useful if integers of a content type are interpreted as double (floating point) values, but integers are normally small enough to be represented properly. An example is Javascript's use of JSON."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__241 */
+#define afw_s__g__241 \
+    (afw_v__g__241.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__241 */
+extern const afw_value_string_t \
+    afw_v__g__241;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__241 */
+#define afw_z__g__241 \
+    (afw_v__g__241.internal.s)
+
+
+
+/** @brief define for quoted string _g__242 */
+#define AFW_Q__g__242 \
+    "This indicates that all meta, including properties that are not part of delta from object type, are to be included. This overrides metaLimited."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__242 */
+#define afw_s__g__242 \
+    (afw_v__g__242.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__242 */
+extern const afw_value_string_t \
+    afw_v__g__242;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__242 */
+#define afw_z__g__242 \
+    (afw_v__g__242.internal.s)
+
+
+
+/** @brief define for quoted string _g__243 */
+#define AFW_Q__g__243 \
+    "Indicates that only requested and essential (parentPaths) meta is returned."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__243 */
+#define afw_s__g__243 \
+    (afw_v__g__243.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__243 */
+extern const afw_value_string_t \
+    afw_v__g__243;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__243 */
+#define afw_z__g__243 \
+    (afw_v__g__243.internal.s)
+
+
+
+/** @brief define for quoted string _g__244 */
+#define AFW_Q__g__244 \
+    "Indicates that each object's object type should be processed, assigned each embedded object's object type, converting any properties to their correct data type, plus computing values when needed. If there is dataType or dataTypeParameter information available during normalization that is not in the associated _AdaptiveObjectType_, it will be added at the appropriate place in the object's meta.\\n\\nUse the includeDefaultValues option to include default values."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__244 */
+#define afw_s__g__244 \
+    (afw_v__g__244.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__244 */
+extern const afw_value_string_t \
+    afw_v__g__244;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__244 */
+#define afw_z__g__244 \
+    (afw_v__g__244.internal.s)
+
+
+
+/** @brief define for quoted string _g__245 */
+#define AFW_Q__g__245 \
+    "Indicates that objectId property should be included in the meta for entity objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__245 */
+#define afw_s__g__245 \
+    (afw_v__g__245.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__245 */
+extern const afw_value_string_t \
+    afw_v__g__245;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__245 */
+#define afw_z__g__245 \
+    (afw_v__g__245.internal.s)
+
+
+
+/** @brief define for quoted string _g__246 */
+#define AFW_Q__g__246 \
+    "Indicates that objectType property should be included in the meta for entity and embedded objects, if assigned."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__246 */
+#define afw_s__g__246 \
+    (afw_v__g__246.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__246 */
+extern const afw_value_string_t \
+    afw_v__g__246;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__246 */
+#define afw_z__g__246 \
+    (afw_v__g__246.internal.s)
+
+
+
+/** @brief define for quoted string _g__247 */
+#define AFW_Q__g__247 \
+    "Indicates that the objectTypes property should be added to the meta of the entity containing a property of each object type used by the entity and all of its embedded objects. This option implies normalize."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__247 */
+#define afw_s__g__247 \
+    (afw_v__g__247.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__247 */
+extern const afw_value_string_t \
+    afw_v__g__247;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__247 */
+#define afw_z__g__247 \
+    (afw_v__g__247.internal.s)
+
+
+
+/** @brief define for quoted string _g__248 */
+#define AFW_Q__g__248 \
+    "Indicates that meta path should be included for entity objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__248 */
+#define afw_s__g__248 \
+    (afw_v__g__248.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__248 */
+extern const afw_value_string_t \
+    afw_v__g__248;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__248 */
+#define afw_z__g__248 \
+    (afw_v__g__248.internal.s)
+
+
+
+/** @brief define for quoted string _g__249 */
+#define AFW_Q__g__249 \
+    "Indicates that meta path should be included for embedded objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__249 */
+#define afw_s__g__249 \
+    (afw_v__g__249.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__249 */
+extern const afw_value_string_t \
+    afw_v__g__249;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__249 */
+#define afw_z__g__249 \
+    (afw_v__g__249.internal.s)
+
+
+
+/** @brief define for quoted string _g__25 */
+#define AFW_Q__g__25 \
+    "This is the subtype property name for instances of this conf type.  For adaptor, this is 'adaptorType'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__25 */
+#define afw_s__g__25 \
+    (afw_v__g__25.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__25 */
+extern const afw_value_string_t \
+    afw_v__g__25;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__25 */
+#define afw_z__g__25 \
+    (afw_v__g__25.internal.s)
+
+
+
+/** @brief define for quoted string _g__250 */
+#define AFW_Q__g__250 \
+    "Indicates that meta reconcilable should be included in entity's meta. If this is specified on a get_object or retrieve_objects request and a retrieved object is changed, calling reconcile_object() with the changed object will use the information in meta reconcilable to produce a modify request for only the changes. The reconcilable option assumes the path option and possibly other options as needed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__250 */
+#define afw_s__g__250 \
+    (afw_v__g__250.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__250 */
+extern const afw_value_string_t \
+    afw_v__g__250;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__250 */
+#define afw_z__g__250 \
+    (afw_v__g__250.internal.s)
+
+
+
+/** @brief define for quoted string _g__251 */
+#define AFW_Q__g__251 \
+    "Indicates that meta resolvedParentPaths should be included with an array of parent paths that have been resolved by the composite option."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__251 */
+#define afw_s__g__251 \
+    (afw_v__g__251.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__251 */
+extern const afw_value_string_t \
+    afw_v__g__251;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__251 */
+#define afw_z__g__251 \
+    (afw_v__g__251.internal.s)
+
+
+
+/** @brief define for quoted string _g__252 */
+#define AFW_Q__g__252 \
+    "*** EXPERIMENTAL *** This option indicates that a value's type information (valueType, dataType, and objectType) should be included with each value. See the content type to determines how this is represented."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__252 */
+#define afw_s__g__252 \
+    (afw_v__g__252.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__252 */
+extern const afw_value_string_t \
+    afw_v__g__252;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__252 */
+#define afw_z__g__252 \
+    (afw_v__g__252.internal.s)
+
+
+
+/** @brief define for quoted string _g__253 */
+#define AFW_Q__g__253 \
+    "This option can be optionally supported by a content type implementation. In the case of JSON, this indicates that newline, space, and tab characters should be included to make the output more readable."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__253 */
+#define afw_s__g__253 \
+    (afw_v__g__253.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__253 */
+extern const afw_value_string_t \
+    afw_v__g__253;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__253 */
+#define afw_z__g__253 \
+    (afw_v__g__253.internal.s)
+
+
+
+/** @brief define for quoted string _g__254 */
+#define AFW_Q__g__254 \
+    "If false, objects of this type can NEVER be added via an adaptor. If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__254 */
+#define afw_s__g__254 \
+    (afw_v__g__254.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__254 */
+extern const afw_value_string_t \
+    afw_v__g__254;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__254 */
+#define afw_z__g__254 \
+    (afw_v__g__254.internal.s)
+
+
+
+/** @brief define for quoted string _g__255 */
+#define AFW_Q__g__255 \
+    "If false, objects of this type can NEVER be changed via an adaptor. If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__255 */
+#define afw_s__g__255 \
+    (afw_v__g__255.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__255 */
+extern const afw_value_string_t \
+    afw_v__g__255;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__255 */
+#define afw_z__g__255 \
+    (afw_v__g__255.internal.s)
+
+
+
+/** @brief define for quoted string _g__256 */
+#define AFW_Q__g__256 \
+    "If false, objects of this type can NEVER be deleted via an adaptor. If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__256 */
+#define afw_s__g__256 \
+    (afw_v__g__256.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__256 */
+extern const afw_value_string_t \
+    afw_v__g__256;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__256 */
+#define afw_z__g__256 \
+    (afw_v__g__256.internal.s)
+
+
+
+/** @brief define for quoted string _g__257 */
+#define AFW_Q__g__257 \
+    "Instances of this object type can exist as an entity object, not just an embedded object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__257 */
+#define afw_s__g__257 \
+    (afw_v__g__257.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__257 */
+extern const afw_value_string_t \
+    afw_v__g__257;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__257 */
+#define afw_z__g__257 \
+    (afw_v__g__257.internal.s)
+
+
+
+/** @brief define for quoted string _g__258 */
+#define AFW_Q__g__258 \
+    "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__258 */
+#define afw_s__g__258 \
+    (afw_v__g__258.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__258 */
+extern const afw_value_string_t \
+    afw_v__g__258;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__258 */
+#define afw_z__g__258 \
+    (afw_v__g__258.internal.s)
+
+
+
+/** @brief define for quoted string _g__259 */
+#define AFW_Q__g__259 \
+    "The name of the property that is used as the 'description' meta property"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__259 */
+#define afw_s__g__259 \
+    (afw_v__g__259.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__259 */
+extern const afw_value_string_t \
+    afw_v__g__259;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__259 */
+#define afw_z__g__259 \
+    (afw_v__g__259.internal.s)
+
+
+
+/** @brief define for quoted string _g__26 */
+#define AFW_Q__g__26 \
+    "This is the subtype registry type for instances of this conf type. For adaptor, this is 'adaptor_type'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__26 */
+#define afw_s__g__26 \
+    (afw_v__g__26.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__26 */
+extern const afw_value_string_t \
+    afw_v__g__26;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__26 */
+#define afw_z__g__26 \
+    (afw_v__g__26.internal.s)
+
+
+
+/** @brief define for quoted string _g__260 */
+#define AFW_Q__g__260 \
+    "The name of the property in an instance that is used as the 'description' property in the meta for instances of this object type. If not specified, no description will be available."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__260 */
+#define afw_s__g__260 \
+    (afw_v__g__260.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__260 */
+extern const afw_value_string_t \
+    afw_v__g__260;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__260 */
+#define afw_z__g__260 \
+    (afw_v__g__260.internal.s)
+
+
+
+/** @brief define for quoted string _g__261 */
+#define AFW_Q__g__261 \
+    "The name of the property that is used as the 'objectId' meta property"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__261 */
+#define afw_s__g__261 \
+    (afw_v__g__261.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__261 */
+extern const afw_value_string_t \
+    afw_v__g__261;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__261 */
+#define afw_z__g__261 \
+    (afw_v__g__261.internal.s)
+
+
+
+/** @brief define for quoted string _g__262 */
+#define AFW_Q__g__262 \
+    "The name of the property in an instance that is used as the 'objectId' property in the meta for instances of this object type. If not specified, the internal adaptor objectId for an object is used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__262 */
+#define afw_s__g__262 \
+    (afw_v__g__262.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__262 */
+extern const afw_value_string_t \
+    afw_v__g__262;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__262 */
+#define afw_z__g__262 \
+    (afw_v__g__262.internal.s)
+
+
+
+/** @brief define for quoted string _g__263 */
+#define AFW_Q__g__263 \
+    "The origin URI of this object type. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__263 */
+#define afw_s__g__263 \
+    (afw_v__g__263.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__263 */
+extern const afw_value_string_t \
+    afw_v__g__263;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__263 */
+#define afw_z__g__263 \
+    (afw_v__g__263.internal.s)
+
+
+
+/** @brief define for quoted string _g__264 */
+#define AFW_Q__g__264 \
+    "If specified, this is the property type for properties that are not explicitly specified. If otherProperties is not specified, only explicitly specified properties are allowed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__264 */
+#define afw_s__g__264 \
+    (afw_v__g__264.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__264 */
+extern const afw_value_string_t \
+    afw_v__g__264;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__264 */
+#define afw_z__g__264 \
+    (afw_v__g__264.internal.s)
+
+
+
+/** @brief define for quoted string _g__265 */
+#define AFW_Q__g__265 \
+    "An object whose properties contain the _AdaptiveValueMeta_ for properties with corresponding name in instances of this _AdaptiveObjectType_."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__265 */
+#define afw_s__g__265 \
+    (afw_v__g__265.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__265 */
+extern const afw_value_string_t \
+    afw_v__g__265;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__265 */
+#define afw_z__g__265 \
+    (afw_v__g__265.internal.s)
+
+
+
+/** @brief define for quoted string _g__266 */
+#define AFW_Q__g__266 \
+    "This is only valid for runtime object types. These are objects that are accessed with adaptorId afw. See afw_runtime.h for more information."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__266 */
+#define afw_s__g__266 \
+    (afw_v__g__266.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__266 */
+extern const afw_value_string_t \
+    afw_v__g__266;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__266 */
+#define afw_z__g__266 \
+    (afw_v__g__266.internal.s)
+
+
+
+/** @brief define for quoted string _g__267 */
+#define AFW_Q__g__267 \
+    "This is an array of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__267 */
+#define afw_s__g__267 \
+    (afw_v__g__267.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__267 */
+extern const afw_value_string_t \
+    afw_v__g__267;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__267 */
+#define afw_z__g__267 \
+    (afw_v__g__267.internal.s)
+
+
+
+/** @brief define for quoted string _g__268 */
+#define AFW_Q__g__268 \
+    "The adaptive object type of all adaptive object type objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__268 */
+#define afw_s__g__268 \
+    (afw_v__g__268.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__268 */
+extern const afw_value_string_t \
+    afw_v__g__268;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__268 */
+#define afw_z__g__268 \
+    (afw_v__g__268.internal.s)
+
+
+
+/** @brief define for quoted string _g__269 */
+#define AFW_Q__g__269 \
+    "The adaptive object type of all object that contains _AdaptiveObjectType_ objects as properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__269 */
+#define afw_s__g__269 \
+    (afw_v__g__269.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__269 */
+extern const afw_value_string_t \
+    afw_v__g__269;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__269 */
+#define afw_z__g__269 \
+    (afw_v__g__269.internal.s)
+
+
+
+/** @brief define for quoted string _g__27 */
+#define AFW_Q__g__27 \
+    "The subtype runtime object type for instances of this conf type"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__27 */
+#define afw_s__g__27 \
+    (afw_v__g__27.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__27 */
+extern const afw_value_string_t \
+    afw_v__g__27;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__27 */
+#define afw_z__g__27 \
+    (afw_v__g__27.internal.s)
+
+
+
+/** @brief define for quoted string _g__270 */
+#define AFW_Q__g__270 \
+    "A compiler option for the compiler id with this property name."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__270 */
+#define afw_s__g__270 \
+    (afw_v__g__270.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__270 */
+extern const afw_value_string_t \
+    afw_v__g__270;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__270 */
+#define afw_z__g__270 \
+    (afw_v__g__270.internal.s)
+
+
+
+/** @brief define for quoted string _g__271 */
+#define AFW_Q__g__271 \
+    "A LANG as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__271 */
+#define afw_s__g__271 \
+    (afw_v__g__271.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__271 */
+extern const afw_value_string_t \
+    afw_v__g__271;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__271 */
+#define afw_z__g__271 \
+    (afw_v__g__271.internal.s)
+
+
+
+/** @brief define for quoted string _g__272 */
+#define AFW_Q__g__272 \
+    "This is the type of build used for this source directory. Specify 'afwmake' for c source directories."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__272 */
+#define afw_s__g__272 \
+    (afw_v__g__272.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__272 */
+extern const afw_value_string_t \
+    afw_v__g__272;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__272 */
+#define afw_z__g__272 \
+    (afw_v__g__272.internal.s)
+
+
+
+/** @brief define for quoted string _g__273 */
+#define AFW_Q__g__273 \
+    "If specified, processing this source directory is optional and the value of this property is the default. If this property is not specified, this source directory is always processed.\n\nIf this is buildType 'afwmake', either an --enable-<var> or --disable-<var> will be available on ./configure where <var> is the value of the 'id' property with 'afw_' removed if present and underscores ('_') replaced with dashes ('-')."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__273 */
+#define afw_s__g__273 \
+    (afw_v__g__273.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__273 */
+extern const afw_value_string_t \
+    afw_v__g__273;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__273 */
+#define afw_z__g__273 \
+    (afw_v__g__273.internal.s)
+
+
+
+/** @brief define for quoted string _g__274 */
+#define AFW_Q__g__274 \
+    "This is the prefix that is commonly used for source files in this source directory. This is most commonly the corresponding 'srcdirs' property name followed by an underscore ('_'), which is also its default."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__274 */
+#define afw_s__g__274 \
+    (afw_v__g__274.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__274 */
+extern const afw_value_string_t \
+    afw_v__g__274;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__274 */
+#define afw_z__g__274 \
+    (afw_v__g__274.internal.s)
+
+
+
+/** @brief define for quoted string _g__275 */
+#define AFW_Q__g__275 \
+    "This is the name of what this source directory produces as known to the buildType.\n\nFor buildType 'afwmake', this starts with 'lib' for libraries."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__275 */
+#define afw_s__g__275 \
+    (afw_v__g__275.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__275 */
+extern const afw_value_string_t \
+    afw_v__g__275;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__275 */
+#define afw_z__g__275 \
+    (afw_v__g__275.internal.s)
+
+
+
+/** @brief define for quoted string _g__276 */
+#define AFW_Q__g__276 \
+    "This is the relative path in the repository for this source directory. This defaults to the corresponding 'srcdirs' property name."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__276 */
+#define afw_s__g__276 \
+    (afw_v__g__276.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__276 */
+extern const afw_value_string_t \
+    afw_v__g__276;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__276 */
+#define afw_z__g__276 \
+    (afw_v__g__276.internal.s)
+
+
+
+/** @brief define for quoted string _g__277 */
+#define AFW_Q__g__277 \
+    "This is the current version of this srcdir. The default is the package version. The form must be <MAJOR>.<MINOR>.<PATCH> as defined at http://semver.org."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__277 */
+#define afw_s__g__277 \
+    (afw_v__g__277.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__277 */
+extern const afw_value_string_t \
+    afw_v__g__277;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__277 */
+#define afw_z__g__277 \
+    (afw_v__g__277.internal.s)
+
+
+
+/** @brief define for quoted string _g__278 */
+#define AFW_Q__g__278 \
     "This is package information that is needed for a source directory by afwdev and related development tools."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9bef7ebb_c905_4c98_9a4d_3155705218db */
-#define afw_s__g__9bef7ebb_c905_4c98_9a4d_3155705218db \
-    (afw_v__g__9bef7ebb_c905_4c98_9a4d_3155705218db.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__278 */
+#define afw_s__g__278 \
+    (afw_v__g__278.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9bef7ebb_c905_4c98_9a4d_3155705218db */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__278 */
 extern const afw_value_string_t \
-    afw_v__g__9bef7ebb_c905_4c98_9a4d_3155705218db;
+    afw_v__g__278;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9bef7ebb_c905_4c98_9a4d_3155705218db */
-#define afw_z__g__9bef7ebb_c905_4c98_9a4d_3155705218db \
-    (afw_v__g__9bef7ebb_c905_4c98_9a4d_3155705218db.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__278 */
+#define afw_z__g__278 \
+    (afw_v__g__278.internal.s)
 
 
 
-/** @brief define for quoted string _g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 */
-#define AFW_Q__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 \
-    "Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries. The component is automatically define with an adaptorId of 'afw' and can only be redefined to add common adaptor properties such as access control."
+/** @brief define for quoted string _g__279 */
+#define AFW_Q__g__279 \
+    "This is the srcdir info for the subdirectory of src/ that has the name of this property."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 */
-#define afw_s__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 \
-    (afw_v__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__279 */
+#define afw_s__g__279 \
+    (afw_v__g__279.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__279 */
 extern const afw_value_string_t \
-    afw_v__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85;
+    afw_v__g__279;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 */
-#define afw_z__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85 \
-    (afw_v__g__9bf5dc85_175e_4bf3_9238_f1601fb48e85.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__279 */
+#define afw_z__g__279 \
+    (afw_v__g__279.internal.s)
 
 
 
-/** @brief define for quoted string _g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 */
-#define AFW_Q__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 \
-    "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adaptor that allows Adaptive Objects to be retrieved and stored in a LDAP directory."
+/** @brief define for quoted string _g__28 */
+#define AFW_Q__g__28 \
+    "This is the subtype runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptorType_'."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 */
-#define afw_s__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 \
-    (afw_v__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__28 */
+#define afw_s__g__28 \
+    (afw_v__g__28.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__28 */
 extern const afw_value_string_t \
-    afw_v__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3;
+    afw_v__g__28;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 */
-#define afw_z__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3 \
-    (afw_v__g__9bff0530_55dd_4ae8_ae32_78538b88d2d3.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__28 */
+#define afw_z__g__28 \
+    (afw_v__g__28.internal.s)
 
 
 
-/** @brief define for quoted string _g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 */
-#define AFW_Q__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 \
-    "These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+/** @brief define for quoted string _g__280 */
+#define AFW_Q__g__280 \
+    "This is usually the AFW package id with dashes changed to underscores for use in places where dashes are not allowed."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 */
-#define afw_s__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 \
-    (afw_v__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__280 */
+#define afw_s__g__280 \
+    (afw_v__g__280.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__280 */
 extern const afw_value_string_t \
-    afw_v__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552;
+    afw_v__g__280;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 */
-#define afw_z__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552 \
-    (afw_v__g__9c3b77f6_de1d_4d0d_8bb6_d2b648ef7552.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__280 */
+#define afw_z__g__280 \
+    (afw_v__g__280.internal.s)
 
 
 
-/** @brief define for quoted string _g__9da0afd0_1f81_44ad_9929_0335a27139ab */
-#define AFW_Q__g__9da0afd0_1f81_44ad_9929_0335a27139ab \
-    "When there are multiple active authorization handlers, this priority determines order this handler will be checked. Priority 1 is the highest and will be checked first. If multiple handlers have the same priority the order will vary."
+/** @brief define for quoted string _g__281 */
+#define AFW_Q__g__281 \
+    "This is the email to which users should send bug reports. It's used in the bug-report parameter of AC_INIT in configure.ac."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9da0afd0_1f81_44ad_9929_0335a27139ab */
-#define afw_s__g__9da0afd0_1f81_44ad_9929_0335a27139ab \
-    (afw_v__g__9da0afd0_1f81_44ad_9929_0335a27139ab.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__281 */
+#define afw_s__g__281 \
+    (afw_v__g__281.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9da0afd0_1f81_44ad_9929_0335a27139ab */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__281 */
 extern const afw_value_string_t \
-    afw_v__g__9da0afd0_1f81_44ad_9929_0335a27139ab;
+    afw_v__g__281;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9da0afd0_1f81_44ad_9929_0335a27139ab */
-#define afw_z__g__9da0afd0_1f81_44ad_9929_0335a27139ab \
-    (afw_v__g__9da0afd0_1f81_44ad_9929_0335a27139ab.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__281 */
+#define afw_z__g__281 \
+    (afw_v__g__281.internal.s)
 
 
 
-/** @brief define for quoted string _g__9edddb86_5e01_490e_b873_e25bd1582899 */
-#define AFW_Q__g__9edddb86_5e01_490e_b873_e25bd1582899 \
+/** @brief define for quoted string _g__282 */
+#define AFW_Q__g__282 \
+    "This is an array of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is an array of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__282 */
+#define afw_s__g__282 \
+    (afw_v__g__282.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__282 */
+extern const afw_value_string_t \
+    afw_v__g__282;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__282 */
+#define afw_z__g__282 \
+    (afw_v__g__282.internal.s)
+
+
+
+/** @brief define for quoted string _g__283 */
+#define AFW_Q__g__283 \
+    "This is the home page for the package/repository. It's used in the url parameter of AC_INIT in configure.ac."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__283 */
+#define afw_s__g__283 \
+    (afw_v__g__283.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__283 */
+extern const afw_value_string_t \
+    afw_v__g__283;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__283 */
+#define afw_z__g__283 \
+    (afw_v__g__283.internal.s)
+
+
+
+/** @brief define for quoted string _g__284 */
+#define AFW_Q__g__284 \
+    "This is the name of the package as known to make. It's used in the package parameter of AC_INIT in configure.ac. This name is used as the subdirectory within the target's include and lib directories. For the repositories in afw-org, this is usually afw<MAJOR> where <MAJOR> is the same as in the version keyword."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__284 */
+#define afw_s__g__284 \
+    (afw_v__g__284.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__284 */
+extern const afw_value_string_t \
+    afw_v__g__284;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__284 */
+#define afw_z__g__284 \
+    (afw_v__g__284.internal.s)
+
+
+
+/** @brief define for quoted string _g__285 */
+#define AFW_Q__g__285 \
+    "This is the name of the property in the 'srcdirs' property of the AFW extension, that when loaded at runtime, will register the repository's manifest."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__285 */
+#define afw_s__g__285 \
+    (afw_v__g__285.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__285 */
+extern const afw_value_string_t \
+    afw_v__g__285;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__285 */
+#define afw_z__g__285 \
+    (afw_v__g__285.internal.s)
+
+
+
+/** @brief define for quoted string _g__286 */
+#define AFW_Q__g__286 \
+    "This is information about subdirectories in this repository's src/ directory."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__286 */
+#define afw_s__g__286 \
+    (afw_v__g__286.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__286 */
+extern const afw_value_string_t \
+    afw_v__g__286;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__286 */
+#define afw_z__g__286 \
+    (afw_v__g__286.internal.s)
+
+
+
+/** @brief define for quoted string _g__287 */
+#define AFW_Q__g__287 \
+    "This is the name of the tarball produced by make dist. It's used in the tarname parameter of AC_INIT in configure.ac.\n\nThis is the full package name. It defaults to package-name with ‘GNU ’ stripped, lower-cased, and all characters other than alphanumerics and underscores are changed to ‘-’. "
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__287 */
+#define afw_s__g__287 \
+    (afw_v__g__287.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__287 */
+extern const afw_value_string_t \
+    afw_v__g__287;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__287 */
+#define afw_z__g__287 \
+    (afw_v__g__287.internal.s)
+
+
+
+/** @brief define for quoted string _g__288 */
+#define AFW_Q__g__288 \
+    "This is the current version of the package. The form must be <MAJOR>.<MINOR>.<PATCH> as defined at http://semver.org."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__288 */
+#define afw_s__g__288 \
+    (afw_v__g__288.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__288 */
+extern const afw_value_string_t \
+    afw_v__g__288;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__288 */
+#define afw_z__g__288 \
+    (afw_v__g__288.internal.s)
+
+
+
+/** @brief define for quoted string _g__289 */
+#define AFW_Q__g__289 \
+    "This is essential information that is needed for this AFW package by afwdev and related development tools."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__289 */
+#define afw_s__g__289 \
+    (afw_v__g__289.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__289 */
+extern const afw_value_string_t \
+    afw_v__g__289;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__289 */
+#define afw_z__g__289 \
+    (afw_v__g__289.internal.s)
+
+
+
+/** @brief define for quoted string _g__29 */
+#define AFW_Q__g__29 \
+    "Contextual string added when this configuration object is processed"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__29 */
+#define afw_s__g__29 \
+    (afw_v__g__29.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__29 */
+extern const afw_value_string_t \
+    afw_v__g__29;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__29 */
+#define afw_z__g__29 \
+    (afw_v__g__29.internal.s)
+
+
+
+/** @brief define for quoted string _g__290 */
+#define AFW_Q__g__290 \
+    "Decoded fragment of URI. If fragment tokens contain percent encoded reserved characters, fragmentTokens should be used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__290 */
+#define afw_s__g__290 \
+    (afw_v__g__290.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__290 */
+extern const afw_value_string_t \
+    afw_v__g__290;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__290 */
+#define afw_z__g__290 \
+    (afw_v__g__290.internal.s)
+
+
+
+/** @brief define for quoted string _g__291 */
+#define AFW_Q__g__291 \
+    "The URI that adaptive framework considers the normalized form of the URI"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__291 */
+#define afw_s__g__291 \
+    (afw_v__g__291.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__291 */
+extern const afw_value_string_t \
+    afw_v__g__291;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__291 */
+#define afw_z__g__291 \
+    (afw_v__g__291.internal.s)
+
+
+
+/** @brief define for quoted string _g__292 */
+#define AFW_Q__g__292 \
+    "This is the URI that adaptive framework considers the normalized form of the URI. If the URI starts with a single slash, the URI is a local path within the associated AFW instance; otherwise, it is a full URI."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__292 */
+#define afw_s__g__292 \
+    (afw_v__g__292.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__292 */
+extern const afw_value_string_t \
+    afw_v__g__292;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__292 */
+#define afw_z__g__292 \
+    (afw_v__g__292.internal.s)
+
+
+
+/** @brief define for quoted string _g__293 */
+#define AFW_Q__g__293 \
+    "Decoded path of URI. If path tokens contain percent encoded reserved characters, pathTokens should be used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__293 */
+#define afw_s__g__293 \
+    (afw_v__g__293.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__293 */
+extern const afw_value_string_t \
+    afw_v__g__293;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__293 */
+#define afw_z__g__293 \
+    (afw_v__g__293.internal.s)
+
+
+
+/** @brief define for quoted string _g__294 */
+#define AFW_Q__g__294 \
+    "Decoded query of URI. If query tokens contain percent encoded reserved characters, queryTokens should be used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__294 */
+#define afw_s__g__294 \
+    (afw_v__g__294.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__294 */
+extern const afw_value_string_t \
+    afw_v__g__294;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__294 */
+#define afw_z__g__294 \
+    (afw_v__g__294.internal.s)
+
+
+
+/** @brief define for quoted string _g__295 */
+#define AFW_Q__g__295 \
+    "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__295 */
+#define afw_s__g__295 \
+    (afw_v__g__295.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__295 */
+extern const afw_value_string_t \
+    afw_v__g__295;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__295 */
+#define afw_z__g__295 \
+    (afw_v__g__295.internal.s)
+
+
+
+/** @brief define for quoted string _g__296 */
+#define AFW_Q__g__296 \
+    "This property set by get_entry() option advance_cursor_for_consumer. If set, get_entry() option next_for_consumer will removed it and use it as the cursor to begin looking for the next applicable entry. The intent of cursorNext is to be set by a background process/thread that examines journal entries from the cursorNext/cursorCurrent forward looking for a entry that passes the consumer filter. Once cursorNext is used by get_entry() next_for_consumer, the property is removed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__296 */
+#define afw_s__g__296 \
+    (afw_v__g__296.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__296 */
+extern const afw_value_string_t \
+    afw_v__g__296;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__296 */
+#define afw_z__g__296 \
+    (afw_v__g__296.internal.s)
+
+
+
+/** @brief define for quoted string _g__297 */
+#define AFW_Q__g__297 \
+    "This is the current cursor being consumed. This property only exists between a get_entry() option next_for_consumer and the corresponding mark_entry_consumed(). If this property exists, it should have exactly the same value as property cursorCurrent. Anything else is and error."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__297 */
+#define afw_s__g__297 \
+    (afw_v__g__297.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__297 */
+extern const afw_value_string_t \
+    afw_v__g__297;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__297 */
+#define afw_z__g__297 \
+    (afw_v__g__297.internal.s)
+
+
+
+/** @brief define for quoted string _g__298 */
+#define AFW_Q__g__298 \
+    "Expression that determines if a journal entry is applicable to be consumed by this peer"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__298 */
+#define afw_s__g__298 \
+    (afw_v__g__298.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__298 */
+extern const afw_value_string_t \
+    afw_v__g__298;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__298 */
+#define afw_z__g__298 \
+    (afw_v__g__298.internal.s)
+
+
+
+/** @brief define for quoted string _g__299 */
+#define AFW_Q__g__299 \
+    "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__299 */
+#define afw_s__g__299 \
+    (afw_v__g__299.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__299 */
+extern const afw_value_string_t \
+    afw_v__g__299;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__299 */
+#define afw_z__g__299 \
+    (afw_v__g__299.internal.s)
+
+
+
+/** @brief define for quoted string _g__3 */
+#define AFW_Q__g__3 \
+    "This is an array of actions to perform. Either the actions or function property must be specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__3 */
+#define afw_s__g__3 \
+    (afw_v__g__3.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__3 */
+extern const afw_value_string_t \
+    afw_v__g__3;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__3 */
+#define afw_z__g__3 \
+    (afw_v__g__3.internal.s)
+
+
+
+/** @brief define for quoted string _g__30 */
+#define AFW_Q__g__30 \
+    "This is a contextual string added when this configuration object is processed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__30 */
+#define afw_s__g__30 \
+    (afw_v__g__30.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__30 */
+extern const afw_value_string_t \
+    afw_v__g__30;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__30 */
+#define afw_z__g__30 \
+    (afw_v__g__30.internal.s)
+
+
+
+/** @brief define for quoted string _g__300 */
+#define AFW_Q__g__300 \
+    "The time that get_entry() next_for_consumer began. This property will only exist if cursorBeingConsumed property exists."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__300 */
+#define afw_s__g__300 \
+    (afw_v__g__300.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__300 */
+extern const afw_value_string_t \
+    afw_v__g__300;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__300 */
+#define afw_z__g__300 \
+    (afw_v__g__300.internal.s)
+
+
+
+/** @brief define for quoted string _g__301 */
+#define AFW_Q__g__301 \
+    "Id used to identify this peer. This may also be referred to as the consumerId or producerId, depending on the perspective."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__301 */
+#define afw_s__g__301 \
+    (afw_v__g__301.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__301 */
+extern const afw_value_string_t \
+    afw_v__g__301;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__301 */
+#define afw_z__g__301 \
+    (afw_v__g__301.internal.s)
+
+
+
+/** @brief define for quoted string _g__302 */
+#define AFW_Q__g__302 \
+    "A provisioning peer consumes and/or produces adaptive journal entries."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__302 */
+#define afw_s__g__302 \
+    (afw_v__g__302.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__302 */
+extern const afw_value_string_t \
+    afw_v__g__302;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__302 */
+#define afw_z__g__302 \
+    (afw_v__g__302.internal.s)
+
+
+
+/** @brief define for quoted string _g__303 */
+#define AFW_Q__g__303 \
+    "This object type used for qualifier definitions where each property is a _AdaptivePropertyTypes_ object with a qualifier id as a property name."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__303 */
+#define afw_s__g__303 \
+    (afw_v__g__303.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__303 */
+extern const afw_value_string_t \
+    afw_v__g__303;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__303 */
+#define afw_z__g__303 \
+    (afw_v__g__303.internal.s)
+
+
+
+/** @brief define for quoted string _g__304 */
+#define AFW_Q__g__304 \
+    "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__304 */
+#define afw_s__g__304 \
+    (afw_v__g__304.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__304 */
+extern const afw_value_string_t \
+    afw_v__g__304;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__304 */
+#define afw_z__g__304 \
+    (afw_v__g__304.internal.s)
+
+
+
+/** @brief define for quoted string _g__305 */
+#define AFW_Q__g__305 \
+    "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__305 */
+#define afw_s__g__305 \
+    (afw_v__g__305.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__305 */
+extern const afw_value_string_t \
+    afw_v__g__305;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__305 */
+#define afw_z__g__305 \
+    (afw_v__g__305.internal.s)
+
+
+
+/** @brief define for quoted string _g__306 */
+#define AFW_Q__g__306 \
+    "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__306 */
+#define afw_s__g__306 \
+    (afw_v__g__306.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__306 */
+extern const afw_value_string_t \
+    afw_v__g__306;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__306 */
+#define afw_z__g__306 \
+    (afw_v__g__306.internal.s)
+
+
+
+/** @brief define for quoted string _g__307 */
+#define AFW_Q__g__307 \
+    "This is the object type for the filter property of the queryCriteria parameter of retrieve object functions."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__307 */
+#define afw_s__g__307 \
+    (afw_v__g__307.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__307 */
+extern const afw_value_string_t \
+    afw_v__g__307;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__307 */
+#define afw_z__g__307 \
+    (afw_v__g__307.internal.s)
+
+
+
+/** @brief define for quoted string _g__308 */
+#define AFW_Q__g__308 \
+    "This filters the objects that will be returned. If not specified, all objects will be returned."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__308 */
+#define afw_s__g__308 \
+    (afw_v__g__308.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__308 */
+extern const afw_value_string_t \
+    afw_v__g__308;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__308 */
+#define afw_z__g__308 \
+    (afw_v__g__308.internal.s)
+
+
+
+/** @brief define for quoted string _g__309 */
+#define AFW_Q__g__309 \
+    "This is an array of the names of properties to include in result. If not specified, all properties are returned."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__309 */
+#define afw_s__g__309 \
+    (afw_v__g__309.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__309 */
+extern const afw_value_string_t \
+    afw_v__g__309;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__309 */
+#define afw_z__g__309 \
+    (afw_v__g__309.internal.s)
+
+
+
+/** @brief define for quoted string _g__31 */
+#define AFW_Q__g__31 \
+    "This specifies the type of adaptor to use. The value of this field must match an adaptorType that is registered by core or by an extension."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__31 */
+#define afw_s__g__31 \
+    (afw_v__g__31.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__31 */
+extern const afw_value_string_t \
+    afw_v__g__31;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__31 */
+#define afw_z__g__31 \
+    (afw_v__g__31.internal.s)
+
+
+
+/** @brief define for quoted string _g__310 */
+#define AFW_Q__g__310 \
+    "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__310 */
+#define afw_s__g__310 \
+    (afw_v__g__310.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__310 */
+extern const afw_value_string_t \
+    afw_v__g__310;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__310 */
+#define afw_z__g__310 \
+    (afw_v__g__310.internal.s)
+
+
+
+/** @brief define for quoted string _g__311 */
+#define AFW_Q__g__311 \
+    "This is a URL encoded RQL string. This parameter is mutually exclusive with all other properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__311 */
+#define afw_s__g__311 \
+    (afw_v__g__311.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__311 */
+extern const afw_value_string_t \
+    afw_v__g__311;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__311 */
+#define afw_z__g__311 \
+    (afw_v__g__311.internal.s)
+
+
+
+/** @brief define for quoted string _g__312 */
+#define AFW_Q__g__312 \
+    "This is the object type for the queryCriteria parameter of retrieve object functions."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__312 */
+#define afw_s__g__312 \
+    (afw_v__g__312.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__312 */
+extern const afw_value_string_t \
+    afw_v__g__312;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__312 */
+#define afw_z__g__312 \
+    (afw_v__g__312.internal.s)
+
+
+
+/** @brief define for quoted string _g__313 */
+#define AFW_Q__g__313 \
+    "The authentication method used to validate a user. This is blank if the request did not require authentication."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__313 */
+#define afw_s__g__313 \
+    (afw_v__g__313.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__313 */
+extern const afw_value_string_t \
+    afw_v__g__313;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__313 */
+#define afw_z__g__313 \
+    (afw_v__g__313.internal.s)
+
+
+
+/** @brief define for quoted string _g__314 */
+#define AFW_Q__g__314 \
+    "The length of the data (in bytes) passed to the CGI program via standard input"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__314 */
+#define afw_s__g__314 \
+    (afw_v__g__314.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__314 */
+extern const afw_value_string_t \
+    afw_v__g__314;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__314 */
+#define afw_z__g__314 \
+    (afw_v__g__314.internal.s)
+
+
+
+/** @brief define for quoted string _g__315 */
+#define AFW_Q__g__315 \
+    "The length of the data (in bytes) passed to the CGI program via standard input."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__315 */
+#define afw_s__g__315 \
+    (afw_v__g__315.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__315 */
+extern const afw_value_string_t \
+    afw_v__g__315;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__315 */
+#define afw_z__g__315 \
+    (afw_v__g__315.internal.s)
+
+
+
+/** @brief define for quoted string _g__316 */
+#define AFW_Q__g__316 \
+    "The media type of the request body, such as 'application/x-www-form-urlencoded'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__316 */
+#define afw_s__g__316 \
+    (afw_v__g__316.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__316 */
+extern const afw_value_string_t \
+    afw_v__g__316;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__316 */
+#define afw_z__g__316 \
+    (afw_v__g__316.internal.s)
+
+
+
+/** @brief define for quoted string _g__317 */
+#define AFW_Q__g__317 \
+    "The role component sets the role the Web server expects the application to play. The currently-defined roles are:  RESPONDER, AUTHORIZER, FILTER."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__317 */
+#define afw_s__g__317 \
+    (afw_v__g__317.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__317 */
+extern const afw_value_string_t \
+    afw_v__g__317;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__317 */
+#define afw_z__g__317 \
+    (afw_v__g__317.internal.s)
+
+
+
+/** @brief define for quoted string _g__318 */
+#define AFW_Q__g__318 \
+    "The revision of the Common Gateway Interface that the server uses"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__318 */
+#define afw_s__g__318 \
+    (afw_v__g__318.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__318 */
+extern const afw_value_string_t \
+    afw_v__g__318;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__318 */
+#define afw_z__g__318 \
+    (afw_v__g__318.internal.s)
+
+
+
+/** @brief define for quoted string _g__319 */
+#define AFW_Q__g__319 \
+    "The revision of the Common Gateway Interface that the server uses."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__319 */
+#define afw_s__g__319 \
+    (afw_v__g__319.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__319 */
+extern const afw_value_string_t \
+    afw_v__g__319;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__319 */
+#define afw_z__g__319 \
+    (afw_v__g__319.internal.s)
+
+
+
+/** @brief define for quoted string _g__32 */
+#define AFW_Q__g__32 \
+    "Id of authorization handler used to control access to resources in this adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__32 */
+#define afw_s__g__32 \
+    (afw_v__g__32.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__32 */
+extern const afw_value_string_t \
+    afw_v__g__32;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__32 */
+#define afw_z__g__32 \
+    (afw_v__g__32.internal.s)
+
+
+
+/** @brief define for quoted string _g__320 */
+#define AFW_Q__g__320 \
+    "This variable can be used as a flag to indicate whether the connection is secure"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__320 */
+#define afw_s__g__320 \
+    (afw_v__g__320.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__320 */
+extern const afw_value_string_t \
+    afw_v__g__320;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__320 */
+#define afw_z__g__320 \
+    (afw_v__g__320.internal.s)
+
+
+
+/** @brief define for quoted string _g__321 */
+#define AFW_Q__g__321 \
+    "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., 'ON' or 'on' when secure and blank or 'OFF' when not)."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__321 */
+#define afw_s__g__321 \
+    (afw_v__g__321.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__321 */
+extern const afw_value_string_t \
+    afw_v__g__321;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__321 */
+#define afw_z__g__321 \
+    (afw_v__g__321.internal.s)
+
+
+
+/** @brief define for quoted string _g__322 */
+#define AFW_Q__g__322 \
+    "The email address of the user making the request; most browsers do not pass this information, since it is considered an invasion of the user's privacy."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__322 */
+#define afw_s__g__322 \
+    (afw_v__g__322.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__322 */
+extern const afw_value_string_t \
+    afw_v__g__322;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__322 */
+#define afw_z__g__322 \
+    (afw_v__g__322.internal.s)
+
+
+
+/** @brief define for quoted string _g__323 */
+#define AFW_Q__g__323 \
+    "The hostname of the server from the requested URL (this corresponds to the HTTP 1.1 Host field)."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__323 */
+#define afw_s__g__323 \
+    (afw_v__g__323.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__323 */
+extern const afw_value_string_t \
+    afw_v__g__323;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__323 */
+#define afw_z__g__323 \
+    (afw_v__g__323.internal.s)
+
+
+
+/** @brief define for quoted string _g__324 */
+#define AFW_Q__g__324 \
+    "The URL of the document that directed the user to this CGI program"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__324 */
+#define afw_s__g__324 \
+    (afw_v__g__324.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__324 */
+extern const afw_value_string_t \
+    afw_v__g__324;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__324 */
+#define afw_z__g__324 \
+    (afw_v__g__324.internal.s)
+
+
+
+/** @brief define for quoted string _g__325 */
+#define AFW_Q__g__325 \
+    "The URL of the document that directed the user to this CGI program (e.g., via a hyperlink or via a form)."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__325 */
+#define afw_s__g__325 \
+    (afw_v__g__325.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__325 */
+extern const afw_value_string_t \
+    afw_v__g__325;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__325 */
+#define afw_z__g__325 \
+    (afw_v__g__325.internal.s)
+
+
+
+/** @brief define for quoted string _g__326 */
+#define AFW_Q__g__326 \
+    "The translated version of the path given by the variable PATH_INFO"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__326 */
+#define afw_s__g__326 \
+    (afw_v__g__326.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__326 */
+extern const afw_value_string_t \
+    afw_v__g__326;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__326 */
+#define afw_z__g__326 \
+    (afw_v__g__326.internal.s)
+
+
+
+/** @brief define for quoted string _g__327 */
+#define AFW_Q__g__327 \
+    "The translated version of the path given by the variable PATH_INFO."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__327 */
+#define afw_s__g__327 \
+    (afw_v__g__327.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__327 */
+extern const afw_value_string_t \
+    afw_v__g__327;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__327 */
+#define afw_z__g__327 \
+    (afw_v__g__327.internal.s)
+
+
+
+/** @brief define for quoted string _g__328 */
+#define AFW_Q__g__328 \
+    "The query information from requested URL (i.e., the data following '?')."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__328 */
+#define afw_s__g__328 \
+    (afw_v__g__328.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__328 */
+extern const afw_value_string_t \
+    afw_v__g__328;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__328 */
+#define afw_z__g__328 \
+    (afw_v__g__328.internal.s)
+
+
+
+/** @brief define for quoted string _g__329 */
+#define AFW_Q__g__329 \
+    "The remote IP address of the client making the request; this could be the address of an HTTP proxy between the server and the user."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__329 */
+#define afw_s__g__329 \
+    (afw_v__g__329.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__329 */
+extern const afw_value_string_t \
+    afw_v__g__329;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__329 */
+#define afw_z__g__329 \
+    (afw_v__g__329.internal.s)
+
+
+
+/** @brief define for quoted string _g__33 */
+#define AFW_Q__g__33 \
+    "This is the id of an adaptor that provides journal service for this adaptor. This can be this adaptor's own id or a previously defined adaptor's id. If not specified, no journaling will be performed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__33 */
+#define afw_s__g__33 \
+    (afw_v__g__33.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__33 */
+extern const afw_value_string_t \
+    afw_v__g__33;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__33 */
+#define afw_z__g__33 \
+    (afw_v__g__33.internal.s)
+
+
+
+/** @brief define for quoted string _g__330 */
+#define AFW_Q__g__330 \
+    "The remote hostname of the client making the request; this could also be the name of an HTTP proxy between the server and the user."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__330 */
+#define afw_s__g__330 \
+    (afw_v__g__330.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__330 */
+extern const afw_value_string_t \
+    afw_v__g__330;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__330 */
+#define afw_z__g__330 \
+    (afw_v__g__330.internal.s)
+
+
+
+/** @brief define for quoted string _g__331 */
+#define AFW_Q__g__331 \
+    "The user making the request, as reported by their ident daemon"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__331 */
+#define afw_s__g__331 \
+    (afw_v__g__331.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__331 */
+extern const afw_value_string_t \
+    afw_v__g__331;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__331 */
+#define afw_z__g__331 \
+    (afw_v__g__331.internal.s)
+
+
+
+/** @brief define for quoted string _g__332 */
+#define AFW_Q__g__332 \
+    "The user making the request, as reported by their ident daemon. Only some Unix and IRC users are likely to have this running."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__332 */
+#define afw_s__g__332 \
+    (afw_v__g__332.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__332 */
+extern const afw_value_string_t \
+    afw_v__g__332;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__332 */
+#define afw_z__g__332 \
+    (afw_v__g__332.internal.s)
+
+
+
+/** @brief define for quoted string _g__333 */
+#define AFW_Q__g__333 \
+    "The URL path (e.g., /cgi/program.cgi) of the script being executed"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__333 */
+#define afw_s__g__333 \
+    (afw_v__g__333.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__333 */
+extern const afw_value_string_t \
+    afw_v__g__333;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__333 */
+#define afw_z__g__333 \
+    (afw_v__g__333.internal.s)
+
+
+
+/** @brief define for quoted string _g__334 */
+#define AFW_Q__g__334 \
+    "The URL path (e.g., /cgi/program.cgi) of the script being executed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__334 */
+#define afw_s__g__334 \
+    (afw_v__g__334.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__334 */
+extern const afw_value_string_t \
+    afw_v__g__334;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__334 */
+#define afw_z__g__334 \
+    (afw_v__g__334.internal.s)
+
+
+
+/** @brief define for quoted string _g__335 */
+#define AFW_Q__g__335 \
+    "The port number of the host on which the server is listening."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__335 */
+#define afw_s__g__335 \
+    (afw_v__g__335.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__335 */
+extern const afw_value_string_t \
+    afw_v__g__335;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__335 */
+#define afw_z__g__335 \
+    (afw_v__g__335.internal.s)
+
+
+
+/** @brief define for quoted string _g__336 */
+#define AFW_Q__g__336 \
+    "The name and revision of the request protocol, e.g., 'HTTP/1.1'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__336 */
+#define afw_s__g__336 \
+    (afw_v__g__336.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__336 */
+extern const afw_value_string_t \
+    afw_v__g__336;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__336 */
+#define afw_z__g__336 \
+    (afw_v__g__336.internal.s)
+
+
+
+/** @brief define for quoted string _g__337 */
+#define AFW_Q__g__337 \
+    "The HTML string that may be embedded in the page to identify this host"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__337 */
+#define afw_s__g__337 \
+    (afw_v__g__337.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__337 */
+extern const afw_value_string_t \
+    afw_v__g__337;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__337 */
+#define afw_z__g__337 \
+    (afw_v__g__337.internal.s)
+
+
+
+/** @brief define for quoted string _g__338 */
+#define AFW_Q__g__338 \
     "The HTML string that may be embedded in the page to identify this host.\nFor example, <ADDRESS>/Apache/1.3.14 Server at www.zytrax.com Port 80</ADDRESS>"
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9edddb86_5e01_490e_b873_e25bd1582899 */
-#define afw_s__g__9edddb86_5e01_490e_b873_e25bd1582899 \
-    (afw_v__g__9edddb86_5e01_490e_b873_e25bd1582899.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__338 */
+#define afw_s__g__338 \
+    (afw_v__g__338.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9edddb86_5e01_490e_b873_e25bd1582899 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__338 */
 extern const afw_value_string_t \
-    afw_v__g__9edddb86_5e01_490e_b873_e25bd1582899;
+    afw_v__g__338;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9edddb86_5e01_490e_b873_e25bd1582899 */
-#define afw_z__g__9edddb86_5e01_490e_b873_e25bd1582899 \
-    (afw_v__g__9edddb86_5e01_490e_b873_e25bd1582899.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__338 */
+#define afw_z__g__338 \
+    (afw_v__g__338.internal.s)
 
 
 
-/** @brief define for quoted string _g__9fa34025_a48d_427d_b115_b74aad2eb170 */
-#define AFW_Q__g__9fa34025_a48d_427d_b115_b74aad2eb170 \
+/** @brief define for quoted string _g__339 */
+#define AFW_Q__g__339 \
+    "The name and version of the server software that is answering the client request"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__339 */
+#define afw_s__g__339 \
+    (afw_v__g__339.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__339 */
+extern const afw_value_string_t \
+    afw_v__g__339;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__339 */
+#define afw_z__g__339 \
+    (afw_v__g__339.internal.s)
+
+
+
+/** @brief define for quoted string _g__34 */
+#define AFW_Q__g__34 \
+    "Adaptive Framework configuration component for type=adaptor. This object type is the parent of an _AdaptiveObjectType_ that contains adaptorType specific properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__34 */
+#define afw_s__g__34 \
+    (afw_v__g__34.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__34 */
+extern const afw_value_string_t \
+    afw_v__g__34;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__34 */
+#define afw_z__g__34 \
+    (afw_v__g__34.internal.s)
+
+
+
+/** @brief define for quoted string _g__340 */
+#define AFW_Q__g__340 \
+    "The name and version of the server software that is answering the client request."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__340 */
+#define afw_s__g__340 \
+    (afw_v__g__340.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__340 */
+extern const afw_value_string_t \
+    afw_v__g__340;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__340 */
+#define afw_z__g__340 \
+    (afw_v__g__340.internal.s)
+
+
+
+/** @brief define for quoted string _g__341 */
+#define AFW_Q__g__341 \
+    "The SSL client certificate subject component of the DN field."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__341 */
+#define afw_s__g__341 \
+    (afw_v__g__341.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__341 */
+extern const afw_value_string_t \
+    afw_v__g__341;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__341 */
+#define afw_z__g__341 \
+    (afw_v__g__341.internal.s)
+
+
+
+/** @brief define for quoted string _g__342 */
+#define AFW_Q__g__342 \
+    "The SSL client certificate verification result. May be NONE, SUCCESS, GENEROUS or FAILED:reason."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__342 */
+#define afw_s__g__342 \
+    (afw_v__g__342.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__342 */
+extern const afw_value_string_t \
+    afw_v__g__342;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__342 */
+#define afw_z__g__342 \
+    (afw_v__g__342.internal.s)
+
+
+
+/** @brief define for quoted string _g__343 */
+#define AFW_Q__g__343 \
+    "Object type for adaptive request properties. This includes most of the environment variables that are supplied by the associated server."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__343 */
+#define afw_s__g__343 \
+    (afw_v__g__343.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__343 */
+extern const afw_value_string_t \
+    afw_v__g__343;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__343 */
+#define afw_z__g__343 \
+    (afw_v__g__343.internal.s)
+
+
+
+/** @brief define for quoted string _g__344 */
+#define AFW_Q__g__344 \
+    "If response:console flag is set and response:console:stream is not set, this will have any output written to console."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__344 */
+#define afw_s__g__344 \
+    (afw_v__g__344.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__344 */
+extern const afw_value_string_t \
+    afw_v__g__344;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__344 */
+#define afw_z__g__344 \
+    (afw_v__g__344.internal.s)
+
+
+
+/** @brief define for quoted string _g__345 */
+#define AFW_Q__g__345 \
+    "If response:stderr flag is set and response:stderr:stream is not set, this will have any output written to stderr."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__345 */
+#define afw_s__g__345 \
+    (afw_v__g__345.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__345 */
+extern const afw_value_string_t \
+    afw_v__g__345;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__345 */
+#define afw_z__g__345 \
+    (afw_v__g__345.internal.s)
+
+
+
+/** @brief define for quoted string _g__346 */
+#define AFW_Q__g__346 \
+    "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__346 */
+#define afw_s__g__346 \
+    (afw_v__g__346.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__346 */
+extern const afw_value_string_t \
+    afw_v__g__346;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__346 */
+#define afw_z__g__346 \
+    (afw_v__g__346.internal.s)
+
+
+
+/** @brief define for quoted string _g__347 */
+#define AFW_Q__g__347 \
+    "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__347 */
+#define afw_s__g__347 \
+    (afw_v__g__347.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__347 */
+extern const afw_value_string_t \
+    afw_v__g__347;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__347 */
+#define afw_z__g__347 \
+    (afw_v__g__347.internal.s)
+
+
+
+/** @brief define for quoted string _g__348 */
+#define AFW_Q__g__348 \
+    "This is error detail if status is error. This property will not exist for intermediate response objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__348 */
+#define afw_s__g__348 \
+    (afw_v__g__348.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__348 */
+extern const afw_value_string_t \
+    afw_v__g__348;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__348 */
+#define afw_z__g__348 \
+    (afw_v__g__348.internal.s)
+
+
+
+/** @brief define for quoted string _g__349 */
+#define AFW_Q__g__349 \
+    "If true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__349 */
+#define afw_s__g__349 \
+    (afw_v__g__349.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__349 */
+extern const afw_value_string_t \
+    afw_v__g__349;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__349 */
+#define afw_z__g__349 \
+    (afw_v__g__349.internal.s)
+
+
+
+/** @brief define for quoted string _g__35 */
+#define AFW_Q__g__35 \
+    "Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries. The component is automatically define with an adaptorId of 'afw' and can only be redefined to add common adaptor properties such as access control."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__35 */
+#define afw_s__g__35 \
+    (afw_v__g__35.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__35 */
+extern const afw_value_string_t \
+    afw_v__g__35;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__35 */
+#define afw_z__g__35 \
+    (afw_v__g__35.internal.s)
+
+
+
+/** @brief define for quoted string _g__350 */
+#define AFW_Q__g__350 \
+    "The result if this is a single action request and no error occurred"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__350 */
+#define afw_s__g__350 \
+    (afw_v__g__350.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__350 */
+extern const afw_value_string_t \
+    afw_v__g__350;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__350 */
+#define afw_z__g__350 \
+    (afw_v__g__350.internal.s)
+
+
+
+/** @brief define for quoted string _g__351 */
+#define AFW_Q__g__351 \
+    "The result if this is a single action request or intermediate response when no error occurred. If the 'actions' property is present, see that list of objects for results."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__351 */
+#define afw_s__g__351 \
+    (afw_v__g__351.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__351 */
+extern const afw_value_string_t \
+    afw_v__g__351;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__351 */
+#define afw_z__g__351 \
+    (afw_v__g__351.internal.s)
+
+
+
+/** @brief define for quoted string _g__352 */
+#define AFW_Q__g__352 \
+    "Result status. If this value is 'error', see property 'error' for more detail. This property will not exist for intermediate response objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__352 */
+#define afw_s__g__352 \
+    (afw_v__g__352.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__352 */
+extern const afw_value_string_t \
+    afw_v__g__352;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__352 */
+#define afw_z__g__352 \
+    (afw_v__g__352.internal.s)
+
+
+
+/** @brief define for quoted string _g__353 */
+#define AFW_Q__g__353 \
+    "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__353 */
+#define afw_s__g__353 \
+    (afw_v__g__353.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__353 */
+extern const afw_value_string_t \
+    afw_v__g__353;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__353 */
+#define afw_z__g__353 \
+    (afw_v__g__353.internal.s)
+
+
+
+/** @brief define for quoted string _g__354 */
+#define AFW_Q__g__354 \
+    "Indicates that the objectId in the associated struct is a pointer."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__354 */
+#define afw_s__g__354 \
+    (afw_v__g__354.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__354 */
+extern const afw_value_string_t \
+    afw_v__g__354;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__354 */
+#define afw_z__g__354 \
+    (afw_v__g__354.internal.s)
+
+
+
+/** @brief define for quoted string _g__355 */
+#define AFW_Q__g__355 \
+    "This is the object type of the labels property of _AdaptiveRuntimeObject_."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__355 */
+#define afw_s__g__355 \
+    (afw_v__g__355.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__355 */
+extern const afw_value_string_t \
+    afw_v__g__355;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__355 */
+#define afw_z__g__355 \
+    (afw_v__g__355.internal.s)
+
+
+
+/** @brief define for quoted string _g__356 */
+#define AFW_Q__g__356 \
+    "Indicates that the runtime struct is a pointer. If a property of this object type has runtime.onGetValueCFunctionName specified, the is ignored and runtime structure is always indirect."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__356 */
+#define afw_s__g__356 \
+    (afw_v__g__356.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__356 */
+extern const afw_value_string_t \
+    afw_v__g__356;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__356 */
+#define afw_z__g__356 \
+    (afw_v__g__356.internal.s)
+
+
+
+/** @brief define for quoted string _g__357 */
+#define AFW_Q__g__357 \
+    "This is the object type of the runtime property of _AdaptiveObjectType_."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__357 */
+#define afw_s__g__357 \
+    (afw_v__g__357.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__357 */
+extern const afw_value_string_t \
+    afw_v__g__357;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__357 */
+#define afw_z__g__357 \
+    (afw_v__g__357.internal.s)
+
+
+
+/** @brief define for quoted string _g__358 */
+#define AFW_Q__g__358 \
+    "The member name of this property in the runtime struct if other than the property name"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__358 */
+#define afw_s__g__358 \
+    (afw_v__g__358.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__358 */
+extern const afw_value_string_t \
+    afw_v__g__358;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__358 */
+#define afw_z__g__358 \
+    (afw_v__g__358.internal.s)
+
+
+
+/** @brief define for quoted string _g__359 */
+#define AFW_Q__g__359 \
+    "The member name of this property in the runtime struct if other than the property name."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__359 */
+#define afw_s__g__359 \
+    (afw_v__g__359.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__359 */
+extern const afw_value_string_t \
+    afw_v__g__359;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__359 */
+#define afw_z__g__359 \
+    (afw_v__g__359.internal.s)
+
+
+
+/** @brief define for quoted string _g__36 */
+#define AFW_Q__g__36 \
+    "This is the content type to be used for this file adaptor. This must be a content-type that is registered by core or by an extension."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__36 */
+#define afw_s__g__36 \
+    (afw_v__g__36.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__36 */
+extern const afw_value_string_t \
+    afw_v__g__36;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__36 */
+#define afw_z__g__36 \
+    (afw_v__g__36.internal.s)
+
+
+
+/** @brief define for quoted string _g__360 */
+#define AFW_Q__g__360 \
+    "This is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__360 */
+#define afw_s__g__360 \
+    (afw_v__g__360.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__360 */
+extern const afw_value_string_t \
+    afw_v__g__360;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__360 */
+#define afw_z__g__360 \
+    (afw_v__g__360.internal.s)
+
+
+
+/** @brief define for quoted string _g__361 */
+#define AFW_Q__g__361 \
+    "The name of the registered value accessor used to access this property"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__361 */
+#define afw_s__g__361 \
+    (afw_v__g__361.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__361 */
+extern const afw_value_string_t \
+    afw_v__g__361;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__361 */
+#define afw_z__g__361 \
+    (afw_v__g__361.internal.s)
+
+
+
+/** @brief define for quoted string _g__362 */
+#define AFW_Q__g__362 \
+    "The name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__362 */
+#define afw_s__g__362 \
+    (afw_v__g__362.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__362 */
+extern const afw_value_string_t \
+    afw_v__g__362;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__362 */
+#define afw_z__g__362 \
+    (afw_v__g__362.internal.s)
+
+
+
+/** @brief define for quoted string _g__363 */
+#define AFW_Q__g__363 \
+    "Indicates that the value accessor is called with a pointer to the struct and a 0 offset"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__363 */
+#define afw_s__g__363 \
+    (afw_v__g__363.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__363 */
+extern const afw_value_string_t \
+    afw_v__g__363;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__363 */
+#define afw_z__g__363 \
+    (afw_v__g__363.internal.s)
+
+
+
+/** @brief define for quoted string _g__364 */
+#define AFW_Q__g__364 \
+    "Indicates that the value accessor is called with a pointer to the struct and a 0 offset."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__364 */
+#define afw_s__g__364 \
+    (afw_v__g__364.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__364 */
+extern const afw_value_string_t \
+    afw_v__g__364;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__364 */
+#define afw_z__g__364 \
+    (afw_v__g__364.internal.s)
+
+
+
+/** @brief define for quoted string _g__365 */
+#define AFW_Q__g__365 \
+    "This is the object type of the runtime property of _AdaptiveValueMeta_."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__365 */
+#define afw_s__g__365 \
+    (afw_v__g__365.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__365 */
+extern const afw_value_string_t \
+    afw_v__g__365;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__365 */
+#define afw_z__g__365 \
+    (afw_v__g__365.internal.s)
+
+
+
+/** @brief define for quoted string _g__366 */
+#define AFW_Q__g__366 \
+    "The server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__366 */
+#define afw_s__g__366 \
+    (afw_v__g__366.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__366 */
+extern const afw_value_string_t \
+    afw_v__g__366;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__366 */
+#define afw_z__g__366 \
+    (afw_v__g__366.internal.s)
+
+
+
+/** @brief define for quoted string _g__367 */
+#define AFW_Q__g__367 \
+    "When the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__367 */
+#define afw_s__g__367 \
+    (afw_v__g__367.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__367 */
+extern const afw_value_string_t \
+    afw_v__g__367;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__367 */
+#define afw_z__g__367 \
+    (afw_v__g__367.internal.s)
+
+
+
+/** @brief define for quoted string _g__368 */
+#define AFW_Q__g__368 \
+    "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__368 */
+#define afw_s__g__368 \
+    (afw_v__g__368.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__368 */
+extern const afw_value_string_t \
+    afw_v__g__368;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__368 */
+#define afw_z__g__368 \
+    (afw_v__g__368.internal.s)
+
+
+
+/** @brief define for quoted string _g__369 */
+#define AFW_Q__g__369 \
+    "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__369 */
+#define afw_s__g__369 \
+    (afw_v__g__369.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__369 */
+extern const afw_value_string_t \
+    afw_v__g__369;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__369 */
+#define afw_z__g__369 \
+    (afw_v__g__369.internal.s)
+
+
+
+/** @brief define for quoted string _g__37 */
+#define AFW_Q__g__37 \
+    "When locating file objects, this adaptor will use this suffix to append to the objectId in order to resolve the filename."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__37 */
+#define afw_s__g__37 \
+    (afw_v__g__37.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__37 */
+extern const afw_value_string_t \
+    afw_v__g__37;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__37 */
+#define afw_z__g__37 \
+    (afw_v__g__37.internal.s)
+
+
+
+/** @brief define for quoted string _g__370 */
+#define AFW_Q__g__370 \
+    "This is the total number of requests that have been processed since the server was started."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__370 */
+#define afw_s__g__370 \
+    (afw_v__g__370.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__370 */
+extern const afw_value_string_t \
+    afw_v__g__370;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__370 */
+#define afw_z__g__370 \
+    (afw_v__g__370.internal.s)
+
+
+
+/** @brief define for quoted string _g__371 */
+#define AFW_Q__g__371 \
+    "An Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__371 */
+#define afw_s__g__371 \
+    (afw_v__g__371.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__371 */
+extern const afw_value_string_t \
+    afw_v__g__371;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__371 */
+#define afw_z__g__371 \
+    (afw_v__g__371.internal.s)
+
+
+
+/** @brief define for quoted string _g__372 */
+#define AFW_Q__g__372 \
+    "This version represents the compiled version of the Adaptive Framework server code."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__372 */
+#define afw_s__g__372 \
+    (afw_v__g__372.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__372 */
+extern const afw_value_string_t \
+    afw_v__g__372;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__372 */
+#define afw_z__g__372 \
+    (afw_v__g__372.internal.s)
+
+
+
+/** @brief define for quoted string _g__373 */
+#define AFW_Q__g__373 \
+    "The number of threads to create at startup to process client requests."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__373 */
+#define afw_s__g__373 \
+    (afw_v__g__373.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__373 */
+extern const afw_value_string_t \
+    afw_v__g__373;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__373 */
+#define afw_z__g__373 \
+    (afw_v__g__373.internal.s)
+
+
+
+/** @brief define for quoted string _g__374 */
+#define AFW_Q__g__374 \
+    "The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__374 */
+#define afw_s__g__374 \
+    (afw_v__g__374.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__374 */
+extern const afw_value_string_t \
+    afw_v__g__374;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__374 */
+#define afw_z__g__374 \
+    (afw_v__g__374.internal.s)
+
+
+
+/** @brief define for quoted string _g__375 */
+#define AFW_Q__g__375 \
+    "Configuration object. The object must have type and id property where type is a supported value."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__375 */
+#define afw_s__g__375 \
+    (afw_v__g__375.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__375 */
+extern const afw_value_string_t \
+    afw_v__g__375;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__375 */
+#define afw_z__g__375 \
+    (afw_v__g__375.internal.s)
+
+
+
+/** @brief define for quoted string _g__376 */
+#define AFW_Q__g__376 \
+    "Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be 'adaptor-x'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__376 */
+#define afw_s__g__376 \
+    (afw_v__g__376.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__376 */
+extern const afw_value_string_t \
+    afw_v__g__376;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__376 */
+#define afw_z__g__376 \
+    (afw_v__g__376.internal.s)
+
+
+
+/** @brief define for quoted string _g__377 */
+#define AFW_Q__g__377 \
+    "Service startup condition specifies how the service should be started. Choose 'manual', if you intend to start the service by hand. Choose 'immediate' if the service should be started as soon as it as loaded. Services defined in the main configuration file are 'permanent', which are started immediately and cannot be stopped."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__377 */
+#define afw_s__g__377 \
+    (afw_v__g__377.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__377 */
+extern const afw_value_string_t \
+    afw_v__g__377;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__377 */
+#define afw_z__g__377 \
+    (afw_v__g__377.internal.s)
+
+
+
+/** @brief define for quoted string _g__378 */
+#define AFW_Q__g__378 \
+    "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__378 */
+#define afw_s__g__378 \
+    (afw_v__g__378.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__378 */
+extern const afw_value_string_t \
+    afw_v__g__378;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__378 */
+#define afw_z__g__378 \
+    (afw_v__g__378.internal.s)
+
+
+
+/** @brief define for quoted string _g__379 */
+#define AFW_Q__g__379 \
+    "This is the value of appropriate conf subtype property based on the conf type."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__379 */
+#define afw_s__g__379 \
+    (afw_v__g__379.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__379 */
+extern const afw_value_string_t \
+    afw_v__g__379;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__379 */
+#define afw_z__g__379 \
+    (afw_v__g__379.internal.s)
+
+
+
+/** @brief define for quoted string _g__38 */
+#define AFW_Q__g__38 \
+    "This should only be used during Adaptive Framework core and extension development. It allows core object type instances to be written to the directory used by generate.py."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__38 */
+#define afw_s__g__38 \
+    (afw_v__g__38.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__38 */
+extern const afw_value_string_t \
+    afw_v__g__38;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__38 */
+#define afw_z__g__38 \
+    (afw_v__g__38.internal.s)
+
+
+
+/** @brief define for quoted string _g__380 */
+#define AFW_Q__g__380 \
+    "Optional message associated with status. In the case of status=error, this is the error message."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__380 */
+#define afw_s__g__380 \
+    (afw_v__g__380.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__380 */
+extern const afw_value_string_t \
+    afw_v__g__380;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__380 */
+#define afw_z__g__380 \
+    (afw_v__g__380.internal.s)
+
+
+
+/** @brief define for quoted string _g__381 */
+#define AFW_Q__g__381 \
+    "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__381 */
+#define afw_s__g__381 \
+    (afw_v__g__381.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__381 */
+extern const afw_value_string_t \
+    afw_v__g__381;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__381 */
+#define afw_z__g__381 \
+    (afw_v__g__381.internal.s)
+
+
+
+/** @brief define for quoted string _g__382 */
+#define AFW_Q__g__382 \
+    "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__382 */
+#define afw_s__g__382 \
+    (afw_v__g__382.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__382 */
+extern const afw_value_string_t \
+    afw_v__g__382;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__382 */
+#define afw_z__g__382 \
+    (afw_v__g__382.internal.s)
+
+
+
+/** @brief define for quoted string _g__383 */
+#define AFW_Q__g__383 \
+    "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__383 */
+#define afw_s__g__383 \
+    (afw_v__g__383.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__383 */
+extern const afw_value_string_t \
+    afw_v__g__383;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__383 */
+#define afw_z__g__383 \
+    (afw_v__g__383.internal.s)
+
+
+
+/** @brief define for quoted string _g__384 */
+#define AFW_Q__g__384 \
+    "This is a custom key:string specified in the TestScriptHeader."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__384 */
+#define afw_s__g__384 \
+    (afw_v__g__384.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__384 */
+extern const afw_value_string_t \
+    afw_v__g__384;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__384 */
+#define afw_z__g__384 \
+    (afw_v__g__384.internal.s)
+
+
+
+/** @brief define for quoted string _g__385 */
+#define AFW_Q__g__385 \
+    "This is the value of 'sourceType:'. It is used as the default for tests that do not have one specified."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__385 */
+#define afw_s__g__385 \
+    (afw_v__g__385.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__385 */
+extern const afw_value_string_t \
+    afw_v__g__385;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__385 */
+#define afw_z__g__385 \
+    (afw_v__g__385.internal.s)
+
+
+
+/** @brief define for quoted string _g__386 */
+#define AFW_Q__g__386 \
+    "This is the offset of UTF-8 octets in the full source up to where the first test begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__386 */
+#define afw_s__g__386 \
+    (afw_v__g__386.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__386 */
+extern const afw_value_string_t \
+    afw_v__g__386;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__386 */
+#define afw_z__g__386 \
+    (afw_v__g__386.internal.s)
+
+
+
+/** @brief define for quoted string _g__387 */
+#define AFW_Q__g__387 \
+    "This is the object type of objects produced by evaluating a test script."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__387 */
+#define afw_s__g__387 \
+    (afw_v__g__387.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__387 */
+extern const afw_value_string_t \
+    afw_v__g__387;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__387 */
+#define afw_z__g__387 \
+    (afw_v__g__387.internal.s)
+
+
+
+/** @brief define for quoted string _g__388 */
+#define AFW_Q__g__388 \
+    "This is present if an error was produced while compiling and evaluating the source."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__388 */
+#define afw_s__g__388 \
+    (afw_v__g__388.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__388 */
+extern const afw_value_string_t \
+    afw_v__g__388;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__388 */
+#define afw_z__g__388 \
+    (afw_v__g__388.internal.s)
+
+
+
+/** @brief define for quoted string _g__389 */
+#define AFW_Q__g__389 \
+    "This is the number of codepoints in the full source for the test script before this test's 'expect' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__389 */
+#define afw_s__g__389 \
+    (afw_v__g__389.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__389 */
+extern const afw_value_string_t \
+    afw_v__g__389;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__389 */
+#define afw_z__g__389 \
+    (afw_v__g__389.internal.s)
+
+
+
+/** @brief define for quoted string _g__39 */
+#define AFW_Q__g__39 \
+    "If specified, this adaptor can hold _AdaptiveModel_ objects. The appropriate core objects associated with Adaptive Models will be added automatically for this adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__39 */
+#define afw_s__g__39 \
+    (afw_v__g__39.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__39 */
+extern const afw_value_string_t \
+    afw_v__g__39;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__39 */
+#define afw_z__g__39 \
+    (afw_v__g__39.internal.s)
+
+
+
+/** @brief define for quoted string _g__390 */
+#define AFW_Q__g__390 \
+    "This is the column number in the line of the full source for the test script where this test's 'expect' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__390 */
+#define afw_s__g__390 \
+    (afw_v__g__390.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__390 */
+extern const afw_value_string_t \
+    afw_v__g__390;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__390 */
+#define afw_z__g__390 \
+    (afw_v__g__390.internal.s)
+
+
+
+/** @brief define for quoted string _g__391 */
+#define AFW_Q__g__391 \
+    "This is the line number in the full source for the test script where this test's 'expect' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__391 */
+#define afw_s__g__391 \
+    (afw_v__g__391.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__391 */
+extern const afw_value_string_t \
+    afw_v__g__391;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__391 */
+#define afw_z__g__391 \
+    (afw_v__g__391.internal.s)
+
+
+
+/** @brief define for quoted string _g__392 */
+#define AFW_Q__g__392 \
+    "This is where the 'expect' for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__392 */
+#define afw_s__g__392 \
+    (afw_v__g__392.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__392 */
+extern const afw_value_string_t \
+    afw_v__g__392;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__392 */
+#define afw_z__g__392 \
+    (afw_v__g__392.internal.s)
+
+
+
+/** @brief define for quoted string _g__393 */
+#define AFW_Q__g__393 \
+    "This is the number of UTF-8 octets in the full source for the test script before this test's 'expect' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__393 */
+#define afw_s__g__393 \
+    (afw_v__g__393.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__393 */
+extern const afw_value_string_t \
+    afw_v__g__393;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__393 */
+#define afw_z__g__393 \
+    (afw_v__g__393.internal.s)
+
+
+
+/** @brief define for quoted string _g__394 */
+#define AFW_Q__g__394 \
+    "This is present if an expected error was produced while compiling and evaluating the source."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__394 */
+#define afw_s__g__394 \
+    (afw_v__g__394.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__394 */
+extern const afw_value_string_t \
+    afw_v__g__394;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__394 */
+#define afw_z__g__394 \
+    (afw_v__g__394.internal.s)
+
+
+
+/** @brief define for quoted string _g__395 */
+#define AFW_Q__g__395 \
+    "This is the value produced by compiling and evaluating the source."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__395 */
+#define afw_s__g__395 \
+    (afw_v__g__395.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__395 */
+extern const afw_value_string_t \
+    afw_v__g__395;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__395 */
+#define afw_z__g__395 \
+    (afw_v__g__395.internal.s)
+
+
+
+/** @brief define for quoted string _g__396 */
+#define AFW_Q__g__396 \
+    "This is the number of codepoints in the full source for the test script before this test's 'source' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__396 */
+#define afw_s__g__396 \
+    (afw_v__g__396.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__396 */
+extern const afw_value_string_t \
+    afw_v__g__396;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__396 */
+#define afw_z__g__396 \
+    (afw_v__g__396.internal.s)
+
+
+
+/** @brief define for quoted string _g__397 */
+#define AFW_Q__g__397 \
+    "This is the column number in the line of the full source for the test script where this test's 'source' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__397 */
+#define afw_s__g__397 \
+    (afw_v__g__397.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__397 */
+extern const afw_value_string_t \
+    afw_v__g__397;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__397 */
+#define afw_z__g__397 \
+    (afw_v__g__397.internal.s)
+
+
+
+/** @brief define for quoted string _g__398 */
+#define AFW_Q__g__398 \
+    "This is the number of UTF-8 octets in the full source for the test script before this test's 'source' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__398 */
+#define afw_s__g__398 \
+    (afw_v__g__398.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__398 */
+extern const afw_value_string_t \
+    afw_v__g__398;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__398 */
+#define afw_z__g__398 \
+    (afw_v__g__398.internal.s)
+
+
+
+/** @brief define for quoted string _g__399 */
+#define AFW_Q__g__399 \
+    "This is where the source for this test is located. Each test is evaluated separately, so this location needs to be accounted for when determining where an error occurs."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__399 */
+#define afw_s__g__399 \
+    (afw_v__g__399.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__399 */
+extern const afw_value_string_t \
+    afw_v__g__399;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__399 */
+#define afw_z__g__399 \
+    (afw_v__g__399.internal.s)
+
+
+
+/** @brief define for quoted string _g__4 */
+#define AFW_Q__g__4 \
+    "This is a qualified or unqualified function name. If the 'actions' property is not specified, this is the single function to call. If actions is specified, this is the default function name."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__4 */
+#define afw_s__g__4 \
+    (afw_v__g__4.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__4 */
+extern const afw_value_string_t \
+    afw_v__g__4;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__4 */
+#define afw_z__g__4 \
+    (afw_v__g__4.internal.s)
+
+
+
+/** @brief define for quoted string _g__40 */
+#define AFW_Q__g__40 \
+    "This adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__40 */
+#define afw_s__g__40 \
+    (afw_v__g__40.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__40 */
+extern const afw_value_string_t \
+    afw_v__g__40;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__40 */
+#define afw_z__g__40 \
+    (afw_v__g__40.internal.s)
+
+
+
+/** @brief define for quoted string _g__400 */
+#define AFW_Q__g__400 \
+    "This is the value of 'sourceType:'. If not specified, the value of the testScript 'sourceType' property is used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__400 */
+#define afw_s__g__400 \
+    (afw_v__g__400.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__400 */
+extern const afw_value_string_t \
+    afw_v__g__400;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__400 */
+#define afw_z__g__400 \
+    (afw_v__g__400.internal.s)
+
+
+
+/** @brief define for quoted string _g__401 */
+#define AFW_Q__g__401 \
+    "This is the number of UTF-8 octets in the full 'source' for the test script before this test's 'source' begins."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__401 */
+#define afw_s__g__401 \
+    (afw_v__g__401.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__401 */
+extern const afw_value_string_t \
+    afw_v__g__401;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__401 */
+#define afw_z__g__401 \
+    (afw_v__g__401.internal.s)
+
+
+
+/** @brief define for quoted string _g__402 */
+#define AFW_Q__g__402 \
+    "This is the object type of objects in the _AdaptiveTestScriptResult_ 'tests' list property."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__402 */
+#define afw_s__g__402 \
+    (afw_v__g__402.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__402 */
+extern const afw_value_string_t \
+    afw_v__g__402;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__402 */
+#define afw_z__g__402 \
+    (afw_v__g__402.internal.s)
+
+
+
+/** @brief define for quoted string _g__403 */
+#define AFW_Q__g__403 \
+    "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__403 */
+#define afw_s__g__403 \
+    (afw_v__g__403.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__403 */
+extern const afw_value_string_t \
+    afw_v__g__403;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__403 */
+#define afw_z__g__403 \
+    (afw_v__g__403.internal.s)
+
+
+
+/** @brief define for quoted string _g__404 */
+#define AFW_Q__g__404 \
+    "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__404 */
+#define afw_s__g__404 \
+    (afw_v__g__404.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__404 */
+extern const afw_value_string_t \
+    afw_v__g__404;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__404 */
+#define afw_z__g__404 \
+    (afw_v__g__404.internal.s)
+
+
+
+/** @brief define for quoted string _g__405 */
+#define AFW_Q__g__405 \
+    "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__405 */
+#define afw_s__g__405 \
+    (afw_v__g__405.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__405 */
+extern const afw_value_string_t \
+    afw_v__g__405;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__405 */
+#define afw_z__g__405 \
+    (afw_v__g__405.internal.s)
+
+
+
+/** @brief define for quoted string _g__406 */
+#define AFW_Q__g__406 \
+    "This is a predicate for this value, with the first letter capitalized and without a trailing period."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__406 */
+#define afw_s__g__406 \
+    (afw_v__g__406.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__406 */
+extern const afw_value_string_t \
+    afw_v__g__406;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__406 */
+#define afw_z__g__406 \
+    (afw_v__g__406.internal.s)
+
+
+
+/** @brief define for quoted string _g__407 */
+#define AFW_Q__g__407 \
+    "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__407 */
+#define afw_s__g__407 \
+    (afw_v__g__407.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__407 */
+extern const afw_value_string_t \
+    afw_v__g__407;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__407 */
+#define afw_z__g__407 \
+    (afw_v__g__407.internal.s)
+
+
+
+/** @brief define for quoted string _g__408 */
+#define AFW_Q__g__408 \
+    "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__408 */
+#define afw_s__g__408 \
+    (afw_v__g__408.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__408 */
+extern const afw_value_string_t \
+    afw_v__g__408;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__408 */
+#define afw_z__g__408 \
+    (afw_v__g__408.internal.s)
+
+
+
+/** @brief define for quoted string _g__409 */
+#define AFW_Q__g__409 \
+    "The same as dataTypeParameter will possible comments and whitespace"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__409 */
+#define afw_s__g__409 \
+    (afw_v__g__409.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__409 */
+extern const afw_value_string_t \
+    afw_v__g__409;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__409 */
+#define afw_z__g__409 \
+    (afw_v__g__409.internal.s)
+
+
+
+/** @brief define for quoted string _g__41 */
+#define AFW_Q__g__41 \
+    "If specified, this adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects. The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__41 */
+#define afw_s__g__41 \
+    (afw_v__g__41.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__41 */
+extern const afw_value_string_t \
+    afw_v__g__41;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__41 */
+#define afw_z__g__41 \
+    (afw_v__g__41.internal.s)
+
+
+
+/** @brief define for quoted string _g__410 */
+#define AFW_Q__g__410 \
+    "This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__410 */
+#define afw_s__g__410 \
+    (afw_v__g__410.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__410 */
+extern const afw_value_string_t \
+    afw_v__g__410;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__410 */
+#define afw_z__g__410 \
+    (afw_v__g__410.internal.s)
+
+
+
+/** @brief define for quoted string _g__411 */
+#define AFW_Q__g__411 \
+    "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__411 */
+#define afw_s__g__411 \
+    (afw_v__g__411.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__411 */
+extern const afw_value_string_t \
+    afw_v__g__411;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__411 */
+#define afw_z__g__411 \
+    (afw_v__g__411.internal.s)
+
+
+
+/** @brief define for quoted string _g__412 */
+#define AFW_Q__g__412 \
+    "Hints that can optionally be used by UI to render this value."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__412 */
+#define afw_s__g__412 \
+    (afw_v__g__412.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__412 */
+extern const afw_value_string_t \
+    afw_v__g__412;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__412 */
+#define afw_z__g__412 \
+    (afw_v__g__412.internal.s)
+
+
+
+/** @brief define for quoted string _g__413 */
+#define AFW_Q__g__413 \
+    "This is maximum length of the to_string() for this value. If not specified, there is no maximum length."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__413 */
+#define afw_s__g__413 \
+    (afw_v__g__413.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__413 */
+extern const afw_value_string_t \
+    afw_v__g__413;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__413 */
+#define afw_z__g__413 \
+    (afw_v__g__413.internal.s)
+
+
+
+/** @brief define for quoted string _g__414 */
+#define AFW_Q__g__414 \
+    "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__414 */
+#define afw_s__g__414 \
+    (afw_v__g__414.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__414 */
+extern const afw_value_string_t \
+    afw_v__g__414;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__414 */
+#define afw_z__g__414 \
+    (afw_v__g__414.internal.s)
+
+
+
+/** @brief define for quoted string _g__415 */
+#define AFW_Q__g__415 \
+    "This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__415 */
+#define afw_s__g__415 \
+    (afw_v__g__415.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__415 */
+extern const afw_value_string_t \
+    afw_v__g__415;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__415 */
+#define afw_z__g__415 \
+    (afw_v__g__415.internal.s)
+
+
+
+/** @brief define for quoted string _g__416 */
+#define AFW_Q__g__416 \
+    "This is minimum length of the to_string() for this value. If not specified, there is no minimum length."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__416 */
+#define afw_s__g__416 \
+    (afw_v__g__416.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__416 */
+extern const afw_value_string_t \
+    afw_v__g__416;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__416 */
+#define afw_z__g__416 \
+    (afw_v__g__416.internal.s)
+
+
+
+/** @brief define for quoted string _g__417 */
+#define AFW_Q__g__417 \
+    "This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__417 */
+#define afw_s__g__417 \
+    (afw_v__g__417.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__417 */
+extern const afw_value_string_t \
+    afw_v__g__417;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__417 */
+#define afw_z__g__417 \
+    (afw_v__g__417.internal.s)
+
+
+
+/** @brief define for quoted string _g__418 */
+#define AFW_Q__g__418 \
+    "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__418 */
+#define afw_s__g__418 \
+    (afw_v__g__418.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__418 */
+extern const afw_value_string_t \
+    afw_v__g__418;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__418 */
+#define afw_z__g__418 \
+    (afw_v__g__418.internal.s)
+
+
+
+/** @brief define for quoted string _g__419 */
+#define AFW_Q__g__419 \
+    "Possible values of this value. This can be the typed value or the string value."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__419 */
+#define afw_s__g__419 \
+    (afw_v__g__419.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__419 */
+extern const afw_value_string_t \
+    afw_v__g__419;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__419 */
+#define afw_z__g__419 \
+    (afw_v__g__419.internal.s)
+
+
+
+/** @brief define for quoted string _g__42 */
+#define AFW_Q__g__42 \
+    "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template value is evaluated at the time the adaptor is started."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__42 */
+#define afw_s__g__42 \
+    (afw_v__g__42.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__42 */
+extern const afw_value_string_t \
+    afw_v__g__42;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__42 */
+#define afw_z__g__42 \
+    (afw_v__g__42.internal.s)
+
+
+
+/** @brief define for quoted string _g__420 */
+#define AFW_Q__g__420 \
+    "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__420 */
+#define afw_s__g__420 \
+    (afw_v__g__420.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__420 */
+extern const afw_value_string_t \
+    afw_v__g__420;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__420 */
+#define afw_z__g__420 \
+    (afw_v__g__420.internal.s)
+
+
+
+/** @brief define for quoted string _g__421 */
+#define AFW_Q__g__421 \
+    "List of keywords and terms associated with values with this meta"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__421 */
+#define afw_s__g__421 \
+    (afw_v__g__421.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__421 */
+extern const afw_value_string_t \
+    afw_v__g__421;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__421 */
+#define afw_z__g__421 \
+    (afw_v__g__421.internal.s)
+
+
+
+/** @brief define for quoted string _g__422 */
+#define AFW_Q__g__422 \
+    "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__422 */
+#define afw_s__g__422 \
+    (afw_v__g__422.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__422 */
+extern const afw_value_string_t \
+    afw_v__g__422;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__422 */
+#define afw_z__g__422 \
+    (afw_v__g__422.internal.s)
+
+
+
+/** @brief define for quoted string _g__423 */
+#define AFW_Q__g__423 \
+    "Additional information about this value that can be used to produce test data"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__423 */
+#define afw_s__g__423 \
+    (afw_v__g__423.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__423 */
+extern const afw_value_string_t \
+    afw_v__g__423;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__423 */
+#define afw_z__g__423 \
+    (afw_v__g__423.internal.s)
+
+
+
+/** @brief define for quoted string _g__424 */
+#define AFW_Q__g__424 \
+    "This contains additional information about values with this meta that is used to produce test data."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__424 */
+#define afw_s__g__424 \
+    (afw_v__g__424.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__424 */
+extern const afw_value_string_t \
+    afw_v__g__424;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__424 */
+#define afw_z__g__424 \
+    (afw_v__g__424.internal.s)
+
+
+
+/** @brief define for quoted string _g__425 */
+#define AFW_Q__g__425 \
+    "This is a runtime property that is the implementation id of the value interface"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__425 */
+#define afw_s__g__425 \
+    (afw_v__g__425.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__425 */
+extern const afw_value_string_t \
+    afw_v__g__425;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__425 */
+#define afw_z__g__425 \
+    (afw_v__g__425.internal.s)
+
+
+
+/** @brief define for quoted string _g__426 */
+#define AFW_Q__g__426 \
+    "This is a runtime property that is the implementation id of the value interface."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__426 */
+#define afw_s__g__426 \
+    (afw_v__g__426.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__426 */
+extern const afw_value_string_t \
+    afw_v__g__426;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__426 */
+#define afw_z__g__426 \
+    (afw_v__g__426.internal.s)
+
+
+
+/** @brief define for quoted string _g__427 */
+#define AFW_Q__g__427 \
+    "The URI that adaptive framework considers the normalized form of the path with substitutions complete"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__427 */
+#define afw_s__g__427 \
+    (afw_v__g__427.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__427 */
+extern const afw_value_string_t \
+    afw_v__g__427;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__427 */
+#define afw_z__g__427 \
+    (afw_v__g__427.internal.s)
+
+
+
+/** @brief define for quoted string _g__428 */
+#define AFW_Q__g__428 \
+    "This is the URI that adaptive framework considers the normalized form of the path with substitutions complete."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__428 */
+#define afw_s__g__428 \
+    (afw_v__g__428.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__428 */
+extern const afw_value_string_t \
+    afw_v__g__428;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__428 */
+#define afw_z__g__428 \
+    (afw_v__g__428.internal.s)
+
+
+
+/** @brief define for quoted string _g__429 */
+#define AFW_Q__g__429 \
+    "Object id including each property name preceded by a dot if embedded object reference"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__429 */
+#define afw_s__g__429 \
+    (afw_v__g__429.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__429 */
+extern const afw_value_string_t \
+    afw_v__g__429;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__429 */
+#define afw_z__g__429 \
+    (afw_v__g__429.internal.s)
+
+
+
+/** @brief define for quoted string _g__43 */
+#define AFW_Q__g__43 \
+    "Adaptive Framework configuration component for type=adaptor adaptorType=file."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__43 */
+#define afw_s__g__43 \
+    (afw_v__g__43.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__43 */
+extern const afw_value_string_t \
+    afw_v__g__43;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__43 */
+#define afw_z__g__43 \
+    (afw_v__g__43.internal.s)
+
+
+
+/** @brief define for quoted string _g__430 */
+#define AFW_Q__g__430 \
+    "Object id including each property name preceded by a dot if embedded object reference."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__430 */
+#define afw_s__g__430 \
+    (afw_v__g__430.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__430 */
+extern const afw_value_string_t \
+    afw_v__g__430;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__430 */
+#define afw_z__g__430 \
+    (afw_v__g__430.internal.s)
+
+
+
+/** @brief define for quoted string _g__431 */
+#define AFW_Q__g__431 \
+    "This uses the C preprocessor macro __DATE__ at time of compile."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__431 */
+#define afw_s__g__431 \
+    (afw_v__g__431.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__431 */
+extern const afw_value_string_t \
+    afw_v__g__431;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__431 */
+#define afw_z__g__431 \
+    (afw_v__g__431.internal.s)
+
+
+
+/** @brief define for quoted string _g__432 */
+#define AFW_Q__g__432 \
+    "This uses the C preprocessor macro __TIME__ at time of compile."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__432 */
+#define afw_s__g__432 \
+    (afw_v__g__432.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__432 */
+extern const afw_value_string_t \
+    afw_v__g__432;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__432 */
+#define afw_z__g__432 \
+    (afw_v__g__432.internal.s)
+
+
+
+/** @brief define for quoted string _g__433 */
+#define AFW_Q__g__433 \
+    "The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__433 */
+#define afw_s__g__433 \
+    (afw_v__g__433.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__433 */
+extern const afw_value_string_t \
+    afw_v__g__433;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__433 */
+#define afw_z__g__433 \
+    (afw_v__g__433.internal.s)
+
+
+
+/** @brief define for quoted string _g__434 */
+#define AFW_Q__g__434 \
+    "The most recent tag that is reachable from the current Git commit"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__434 */
+#define afw_s__g__434 \
+    (afw_v__g__434.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__434 */
+extern const afw_value_string_t \
+    afw_v__g__434;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__434 */
+#define afw_z__g__434 \
+    (afw_v__g__434.internal.s)
+
+
+
+/** @brief define for quoted string _g__435 */
+#define AFW_Q__g__435 \
+    "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__435 */
+#define afw_s__g__435 \
+    (afw_v__g__435.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__435 */
+extern const afw_value_string_t \
+    afw_v__g__435;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__435 */
+#define afw_z__g__435 \
+    (afw_v__g__435.internal.s)
+
+
+
+/** @brief define for quoted string _g__436 */
+#define AFW_Q__g__436 \
+    "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__436 */
+#define afw_s__g__436 \
+    (afw_v__g__436.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__436 */
+extern const afw_value_string_t \
+    afw_v__g__436;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__436 */
+#define afw_z__g__436 \
+    (afw_v__g__436.internal.s)
+
+
+
+/** @brief define for quoted string _g__437 */
+#define AFW_Q__g__437 \
+    "This is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__437 */
+#define afw_s__g__437 \
+    (afw_v__g__437.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__437 */
+extern const afw_value_string_t \
+    afw_v__g__437;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__437 */
+#define afw_z__g__437 \
+    (afw_v__g__437.internal.s)
+
+
+
+/** @brief define for quoted string _g__438 */
+#define AFW_Q__g__438 \
+    "These functions access adaptive objects via an Adaptive Framework adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__438 */
+#define afw_s__g__438 \
+    (afw_v__g__438.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__438 */
+extern const afw_value_string_t \
+    afw_v__g__438;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__438 */
+#define afw_z__g__438 \
+    (afw_v__g__438.internal.s)
+
+
+
+/** @brief define for quoted string _g__439 */
+#define AFW_Q__g__439 \
+    "These are function used to administer the adaptive environment."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__439 */
+#define afw_s__g__439 \
+    (afw_v__g__439.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__439 */
+extern const afw_value_string_t \
+    afw_v__g__439;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__439 */
+#define afw_z__g__439 \
+    (afw_v__g__439.internal.s)
+
+
+
+/** @brief define for quoted string _g__44 */
+#define AFW_Q__g__44 \
+    "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__44 */
+#define afw_s__g__44 \
+    (afw_v__g__44.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__44 */
+extern const afw_value_string_t \
+    afw_v__g__44;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__44 */
+#define afw_z__g__44 \
+    (afw_v__g__44.internal.s)
+
+
+
+/** @brief define for quoted string _g__440 */
+#define AFW_Q__g__440 \
+    "This is the Adaptive Framework (AFW) base which includes library libafw, the afw and afwdev commands, the core UI support, the AFW Administration application, plus a base set of extensions and server implementations."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__440 */
+#define afw_s__g__440 \
+    (afw_v__g__440.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__440 */
+extern const afw_value_string_t \
+    afw_v__g__440;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__440 */
+#define afw_z__g__440 \
+    (afw_v__g__440.internal.s)
+
+
+
+/** @brief define for quoted string _g__441 */
+#define AFW_Q__g__441 \
+    "Adaptor object type cache interface. This interface is used by\n      afw_adaptor_get_object_type()."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__441 */
+#define afw_s__g__441 \
+    (afw_v__g__441.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__441 */
+extern const afw_value_string_t \
+    afw_v__g__441;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__441 */
+#define afw_z__g__441 \
+    (afw_v__g__441.internal.s)
+
+
+
+/** @brief define for quoted string _g__442 */
+#define AFW_Q__g__442 \
+    "Factory to create an instance of an afw_authorization_handler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__442 */
+#define afw_s__g__442 \
+    (afw_v__g__442.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__442 */
+extern const afw_value_string_t \
+    afw_v__g__442;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__442 */
+#define afw_z__g__442 \
+    (afw_v__g__442.internal.s)
+
+
+
+/** @brief define for quoted string _g__443 */
+#define AFW_Q__g__443 \
+    "This extension loads Object Type definitions for Adaptive Layout Components, the building blocks for creating Adaptive Layouts."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__443 */
+#define afw_s__g__443 \
+    (afw_v__g__443.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__443 */
+extern const afw_value_string_t \
+    afw_v__g__443;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__443 */
+#define afw_z__g__443 \
+    (afw_v__g__443.internal.s)
+
+
+
+/** @brief define for quoted string _g__444 */
+#define AFW_Q__g__444 \
     "Adaptive Framework connection. This has not yet been developed."
 
-/** @brief 'afw_utf8_t' for string AFW_Q__g__9fa34025_a48d_427d_b115_b74aad2eb170 */
-#define afw_s__g__9fa34025_a48d_427d_b115_b74aad2eb170 \
-    (afw_v__g__9fa34025_a48d_427d_b115_b74aad2eb170.internal)
+/** @brief 'afw_utf8_t' for string AFW_Q__g__444 */
+#define afw_s__g__444 \
+    (afw_v__g__444.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_Q__g__9fa34025_a48d_427d_b115_b74aad2eb170 */
+/** @brief 'afw_value_string_t' for string AFW_Q__g__444 */
 extern const afw_value_string_t \
-    afw_v__g__9fa34025_a48d_427d_b115_b74aad2eb170;
+    afw_v__g__444;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9fa34025_a48d_427d_b115_b74aad2eb170 */
-#define afw_z__g__9fa34025_a48d_427d_b115_b74aad2eb170 \
-    (afw_v__g__9fa34025_a48d_427d_b115_b74aad2eb170.internal.s)
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__444 */
+#define afw_z__g__444 \
+    (afw_v__g__444.internal.s)
+
+
+
+/** @brief define for quoted string _g__445 */
+#define AFW_Q__g__445 \
+    "Interface returned from afw_extension_initialize() of an\n      Adaptive Framework environment extension module. Additional\n      information about an extension is found in object\n      /afw/_AdaptiveManifest_/<extension_id>."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__445 */
+#define afw_s__g__445 \
+    (afw_v__g__445.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__445 */
+extern const afw_value_string_t \
+    afw_v__g__445;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__445 */
+#define afw_z__g__445 \
+    (afw_v__g__445.internal.s)
+
+
+
+/** @brief define for quoted string _g__446 */
+#define AFW_Q__g__446 \
+    "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adaptor that allows Adaptive Objects to be retrieved and stored in a LDAP directory."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__446 */
+#define afw_s__g__446 \
+    (afw_v__g__446.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__446 */
+extern const afw_value_string_t \
+    afw_v__g__446;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__446 */
+#define afw_z__g__446 \
+    (afw_v__g__446.internal.s)
+
+
+
+/** @brief define for quoted string _g__447 */
+#define AFW_Q__g__447 \
+    "This extension provides an adaptor for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__447 */
+#define afw_s__g__447 \
+    (afw_v__g__447.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__447 */
+extern const afw_value_string_t \
+    afw_v__g__447;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__447 */
+#define afw_z__g__447 \
+    (afw_v__g__447.internal.s)
+
+
+
+/** @brief define for quoted string _g__448 */
+#define AFW_Q__g__448 \
+    "This is interface used to access the properties of an adaptive object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__448 */
+#define afw_s__g__448 \
+    (afw_v__g__448.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__448 */
+extern const afw_value_string_t \
+    afw_v__g__448;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__448 */
+#define afw_z__g__448 \
+    (afw_v__g__448.internal.s)
+
+
+
+/** @brief define for quoted string _g__449 */
+#define AFW_Q__g__449 \
+    "This is interface used to set properties and meta of an adaptive object.\n      See interface afw_object method get_object_setter for more information."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__449 */
+#define afw_s__g__449 \
+    (afw_v__g__449.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__449 */
+extern const afw_value_string_t \
+    afw_v__g__449;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__449 */
+#define afw_z__g__449 \
+    (afw_v__g__449.internal.s)
+
+
+
+/** @brief define for quoted string _g__45 */
+#define AFW_Q__g__45 \
+    "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__45 */
+#define afw_s__g__45 \
+    (afw_v__g__45.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__45 */
+extern const afw_value_string_t \
+    afw_v__g__45;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__45 */
+#define afw_z__g__45 \
+    (afw_v__g__45.internal.s)
+
+
+
+/** @brief define for quoted string _g__450 */
+#define AFW_Q__g__450 \
+    "Adaptive framework service type interface. Each instance is registered in the environment with type of \"service_type\" and id of the service type id."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__450 */
+#define afw_s__g__450 \
+    (afw_v__g__450.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__450 */
+extern const afw_value_string_t \
+    afw_v__g__450;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__450 */
+#define afw_z__g__450 \
+    (afw_v__g__450.internal.s)
+
+
+
+/** @brief define for quoted string _g__451 */
+#define AFW_Q__g__451 \
+    "This extension provides a content-type handler for Universal Binary JSON (UBJSON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__451 */
+#define afw_s__g__451 \
+    (afw_v__g__451.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__451 */
+extern const afw_value_string_t \
+    afw_v__g__451;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__451 */
+#define afw_z__g__451 \
+    (afw_v__g__451.internal.s)
+
+
+
+/** @brief define for quoted string _g__452 */
+#define AFW_Q__g__452 \
+    "This extension provides an adaptor for accessing local files through a Virtual File System interface."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__452 */
+#define afw_s__g__452 \
+    (afw_v__g__452.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__452 */
+extern const afw_value_string_t \
+    afw_v__g__452;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__452 */
+#define afw_z__g__452 \
+    (afw_v__g__452.internal.s)
+
+
+
+/** @brief define for quoted string _g__453 */
+#define AFW_Q__g__453 \
+    "This extension registers a content-type handler for the YAML Ain't Markup Language (YAML) format, which is a more human readable, superset of JSON."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__453 */
+#define afw_s__g__453 \
+    (afw_v__g__453.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__453 */
+extern const afw_value_string_t \
+    afw_v__g__453;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__453 */
+#define afw_z__g__453 \
+    (afw_v__g__453.internal.s)
+
+
+
+/** @brief define for quoted string _g__454 */
+#define AFW_Q__g__454 \
+    "These function are related to data type anyURI.\n\nThe '<anyURI>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__454 */
+#define afw_s__g__454 \
+    (afw_v__g__454.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__454 */
+extern const afw_value_string_t \
+    afw_v__g__454;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__454 */
+#define afw_z__g__454 \
+    (afw_v__g__454.internal.s)
+
+
+
+/** @brief define for quoted string _g__455 */
+#define AFW_Q__g__455 \
+    "These function are related to data type array.\n\nThe '<array>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__455 */
+#define afw_s__g__455 \
+    (afw_v__g__455.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__455 */
+extern const afw_value_string_t \
+    afw_v__g__455;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__455 */
+#define afw_z__g__455 \
+    (afw_v__g__455.internal.s)
+
+
+
+/** @brief define for quoted string _g__456 */
+#define AFW_Q__g__456 \
+    "These function are related to data type base64Binary.\n\nThe '<base64Binary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__456 */
+#define afw_s__g__456 \
+    (afw_v__g__456.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__456 */
+extern const afw_value_string_t \
+    afw_v__g__456;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__456 */
+#define afw_z__g__456 \
+    (afw_v__g__456.internal.s)
+
+
+
+/** @brief define for quoted string _g__457 */
+#define AFW_Q__g__457 \
+    "These function are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__457 */
+#define afw_s__g__457 \
+    (afw_v__g__457.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__457 */
+extern const afw_value_string_t \
+    afw_v__g__457;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__457 */
+#define afw_z__g__457 \
+    (afw_v__g__457.internal.s)
+
+
+
+/** @brief define for quoted string _g__458 */
+#define AFW_Q__g__458 \
+    "These are functions that compile, convert, decompile, and evaluated adaptive syntax."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__458 */
+#define afw_s__g__458 \
+    (afw_v__g__458.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__458 */
+extern const afw_value_string_t \
+    afw_v__g__458;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__458 */
+#define afw_z__g__458 \
+    (afw_v__g__458.internal.s)
+
+
+
+/** @brief define for quoted string _g__459 */
+#define AFW_Q__g__459 \
+    "These are functions that support compiled expressions at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__459 */
+#define afw_s__g__459 \
+    (afw_v__g__459.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__459 */
+extern const afw_value_string_t \
+    afw_v__g__459;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__459 */
+#define afw_z__g__459 \
+    (afw_v__g__459.internal.s)
+
+
+
+/** @brief define for quoted string _g__46 */
+#define AFW_Q__g__46 \
+    "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__46 */
+#define afw_s__g__46 \
+    (afw_v__g__46.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__46 */
+extern const afw_value_string_t \
+    afw_v__g__46;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__46 */
+#define afw_z__g__46 \
+    (afw_v__g__46.internal.s)
+
+
+
+/** @brief define for quoted string _g__460 */
+#define AFW_Q__g__460 \
+    "These are functions that support compiled scripts at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__460 */
+#define afw_s__g__460 \
+    (afw_v__g__460.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__460 */
+extern const afw_value_string_t \
+    afw_v__g__460;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__460 */
+#define afw_z__g__460 \
+    (afw_v__g__460.internal.s)
+
+
+
+/** @brief define for quoted string _g__461 */
+#define AFW_Q__g__461 \
+    "This authorization mode is used for trusted internal code that does not generally require additional authorization."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__461 */
+#define afw_s__g__461 \
+    (afw_v__g__461.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__461 */
+extern const afw_value_string_t \
+    afw_v__g__461;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__461 */
+#define afw_z__g__461 \
+    (afw_v__g__461.internal.s)
+
+
+
+/** @brief define for quoted string _g__462 */
+#define AFW_Q__g__462 \
+    "These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__462 */
+#define afw_s__g__462 \
+    (afw_v__g__462.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__462 */
+extern const afw_value_string_t \
+    afw_v__g__462;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__462 */
+#define afw_z__g__462 \
+    (afw_v__g__462.internal.s)
+
+
+
+/** @brief define for quoted string _g__463 */
+#define AFW_Q__g__463 \
+    "These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__463 */
+#define afw_s__g__463 \
+    (afw_v__g__463.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__463 */
+extern const afw_value_string_t \
+    afw_v__g__463;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__463 */
+#define afw_z__g__463 \
+    (afw_v__g__463.internal.s)
+
+
+
+/** @brief define for quoted string _g__464 */
+#define AFW_Q__g__464 \
+    "These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__464 */
+#define afw_s__g__464 \
+    (afw_v__g__464.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__464 */
+extern const afw_value_string_t \
+    afw_v__g__464;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__464 */
+#define afw_z__g__464 \
+    (afw_v__g__464.internal.s)
+
+
+
+/** @brief define for quoted string _g__465 */
+#define AFW_Q__g__465 \
+    "These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__465 */
+#define afw_s__g__465 \
+    (afw_v__g__465.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__465 */
+extern const afw_value_string_t \
+    afw_v__g__465;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__465 */
+#define afw_z__g__465 \
+    (afw_v__g__465.internal.s)
+
+
+
+/** @brief define for quoted string _g__466 */
+#define AFW_Q__g__466 \
+    "These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__466 */
+#define afw_s__g__466 \
+    (afw_v__g__466.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__466 */
+extern const afw_value_string_t \
+    afw_v__g__466;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__466 */
+#define afw_z__g__466 \
+    (afw_v__g__466.internal.s)
+
+
+
+/** @brief define for quoted string _g__467 */
+#define AFW_Q__g__467 \
+    "These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__467 */
+#define afw_s__g__467 \
+    (afw_v__g__467.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__467 */
+extern const afw_value_string_t \
+    afw_v__g__467;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__467 */
+#define afw_z__g__467 \
+    (afw_v__g__467.internal.s)
+
+
+
+/** @brief define for quoted string _g__468 */
+#define AFW_Q__g__468 \
+    "These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__468 */
+#define afw_s__g__468 \
+    (afw_v__g__468.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__468 */
+extern const afw_value_string_t \
+    afw_v__g__468;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__468 */
+#define afw_z__g__468 \
+    (afw_v__g__468.internal.s)
+
+
+
+/** @brief define for quoted string _g__469 */
+#define AFW_Q__g__469 \
+    "These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__469 */
+#define afw_s__g__469 \
+    (afw_v__g__469.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__469 */
+extern const afw_value_string_t \
+    afw_v__g__469;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__469 */
+#define afw_z__g__469 \
+    (afw_v__g__469.internal.s)
+
+
+
+/** @brief define for quoted string _g__47 */
+#define AFW_Q__g__47 \
+    "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__47 */
+#define afw_s__g__47 \
+    (afw_v__g__47.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__47 */
+extern const afw_value_string_t \
+    afw_v__g__47;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__47 */
+#define afw_z__g__47 \
+    (afw_v__g__47.internal.s)
+
+
+
+/** @brief define for quoted string _g__470 */
+#define AFW_Q__g__470 \
+    "These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__470 */
+#define afw_s__g__470 \
+    (afw_v__g__470.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__470 */
+extern const afw_value_string_t \
+    afw_v__g__470;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__470 */
+#define afw_z__g__470 \
+    (afw_v__g__470.internal.s)
+
+
+
+/** @brief define for quoted string _g__471 */
+#define AFW_Q__g__471 \
+    "This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adaptors when doing model processing."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__471 */
+#define afw_s__g__471 \
+    (afw_v__g__471.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__471 */
+extern const afw_value_string_t \
+    afw_v__g__471;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__471 */
+#define afw_z__g__471 \
+    (afw_v__g__471.internal.s)
+
+
+
+/** @brief define for quoted string _g__472 */
+#define AFW_Q__g__472 \
+    "These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__472 */
+#define afw_s__g__472 \
+    (afw_v__g__472.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__472 */
+extern const afw_value_string_t \
+    afw_v__g__472;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__472 */
+#define afw_z__g__472 \
+    (afw_v__g__472.internal.s)
+
+
+
+/** @brief define for quoted string _g__473 */
+#define AFW_Q__g__473 \
+    "These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__473 */
+#define afw_s__g__473 \
+    (afw_v__g__473.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__473 */
+extern const afw_value_string_t \
+    afw_v__g__473;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__473 */
+#define afw_z__g__473 \
+    (afw_v__g__473.internal.s)
+
+
+
+/** @brief define for quoted string _g__474 */
+#define AFW_Q__g__474 \
+    "These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__474 */
+#define afw_s__g__474 \
+    (afw_v__g__474.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__474 */
+extern const afw_value_string_t \
+    afw_v__g__474;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__474 */
+#define afw_z__g__474 \
+    (afw_v__g__474.internal.s)
+
+
+
+/** @brief define for quoted string _g__475 */
+#define AFW_Q__g__475 \
+    "These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__475 */
+#define afw_s__g__475 \
+    (afw_v__g__475.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__475 */
+extern const afw_value_string_t \
+    afw_v__g__475;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__475 */
+#define afw_z__g__475 \
+    (afw_v__g__475.internal.s)
+
+
+
+/** @brief define for quoted string _g__476 */
+#define AFW_Q__g__476 \
+    "These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__476 */
+#define afw_s__g__476 \
+    (afw_v__g__476.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__476 */
+extern const afw_value_string_t \
+    afw_v__g__476;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__476 */
+#define afw_z__g__476 \
+    (afw_v__g__476.internal.s)
+
+
+
+/** @brief define for quoted string _g__477 */
+#define AFW_Q__g__477 \
+    "These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__477 */
+#define afw_s__g__477 \
+    (afw_v__g__477.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__477 */
+extern const afw_value_string_t \
+    afw_v__g__477;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__477 */
+#define afw_z__g__477 \
+    (afw_v__g__477.internal.s)
+
+
+
+/** @brief define for quoted string _g__478 */
+#define AFW_Q__g__478 \
+    "These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__478 */
+#define afw_s__g__478 \
+    (afw_v__g__478.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__478 */
+extern const afw_value_string_t \
+    afw_v__g__478;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__478 */
+#define afw_z__g__478 \
+    (afw_v__g__478.internal.s)
+
+
+
+/** @brief define for quoted string _g__479 */
+#define AFW_Q__g__479 \
+    "These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__479 */
+#define afw_s__g__479 \
+    (afw_v__g__479.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__479 */
+extern const afw_value_string_t \
+    afw_v__g__479;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__479 */
+#define afw_z__g__479 \
+    (afw_v__g__479.internal.s)
+
+
+
+/** @brief define for quoted string _g__48 */
+#define AFW_Q__g__48 \
+    "Adaptive Framework configuration component for type=adaptor adaptorType=model."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__48 */
+#define afw_s__g__48 \
+    (afw_v__g__48.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__48 */
+extern const afw_value_string_t \
+    afw_v__g__48;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__48 */
+#define afw_z__g__48 \
+    (afw_v__g__48.internal.s)
+
+
+
+/** @brief define for quoted string _g__480 */
+#define AFW_Q__g__480 \
+    "These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__480 */
+#define afw_s__g__480 \
+    (afw_v__g__480.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__480 */
+extern const afw_value_string_t \
+    afw_v__g__480;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__480 */
+#define afw_z__g__480 \
+    (afw_v__g__480.internal.s)
+
+
+
+/** @brief define for quoted string _g__481 */
+#define AFW_Q__g__481 \
+    "These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__481 */
+#define afw_s__g__481 \
+    (afw_v__g__481.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__481 */
+extern const afw_value_string_t \
+    afw_v__g__481;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__481 */
+#define afw_z__g__481 \
+    (afw_v__g__481.internal.s)
+
+
+
+/** @brief define for quoted string _g__482 */
+#define AFW_Q__g__482 \
+    "These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__482 */
+#define afw_s__g__482 \
+    (afw_v__g__482.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__482 */
+extern const afw_value_string_t \
+    afw_v__g__482;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__482 */
+#define afw_z__g__482 \
+    (afw_v__g__482.internal.s)
+
+
+
+/** @brief define for quoted string _g__483 */
+#define AFW_Q__g__483 \
+    "This authorization mode is used when checking authorization from external sources."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__483 */
+#define afw_s__g__483 \
+    (afw_v__g__483.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__483 */
+extern const afw_value_string_t \
+    afw_v__g__483;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__483 */
+#define afw_z__g__483 \
+    (afw_v__g__483.internal.s)
+
+
+
+/** @brief define for quoted string _g__484 */
+#define AFW_Q__g__484 \
+    "These are function that work on all adaptive values and their associated meta."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__484 */
+#define afw_s__g__484 \
+    (afw_v__g__484.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__484 */
+extern const afw_value_string_t \
+    afw_v__g__484;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__484 */
+#define afw_z__g__484 \
+    (afw_v__g__484.internal.s)
+
+
+
+/** @brief define for quoted string _g__485 */
+#define AFW_Q__g__485 \
+    "These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__485 */
+#define afw_s__g__485 \
+    (afw_v__g__485.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__485 */
+extern const afw_value_string_t \
+    afw_v__g__485;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__485 */
+#define afw_z__g__485 \
+    (afw_v__g__485.internal.s)
+
+
+
+/** @brief define for quoted string _g__486 */
+#define AFW_Q__g__486 \
+    "Functions on path expressions used to navigate in XML documents."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__486 */
+#define afw_s__g__486 \
+    (afw_v__g__486.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__486 */
+extern const afw_value_string_t \
+    afw_v__g__486;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__486 */
+#define afw_z__g__486 \
+    (afw_v__g__486.internal.s)
+
+
+
+/** @brief define for quoted string _g__487 */
+#define AFW_Q__g__487 \
+    "These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__487 */
+#define afw_s__g__487 \
+    (afw_v__g__487.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__487 */
+extern const afw_value_string_t \
+    afw_v__g__487;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__487 */
+#define afw_z__g__487 \
+    (afw_v__g__487.internal.s)
+
+
+
+/** @brief define for quoted string _g__49 */
+#define AFW_Q__g__49 \
+    "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__49 */
+#define afw_s__g__49 \
+    (afw_v__g__49.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__49 */
+extern const afw_value_string_t \
+    afw_v__g__49;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__49 */
+#define afw_z__g__49 \
+    (afw_v__g__49.internal.s)
+
+
+
+/** @brief define for quoted string _g__5 */
+#define AFW_Q__g__5 \
+    "This is the type for this adaptor. It will create a registered adaptor_type string, from which adaptor instances will created from."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__5 */
+#define afw_s__g__5 \
+    (afw_v__g__5.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__5 */
+extern const afw_value_string_t \
+    afw_v__g__5;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__5 */
+#define afw_z__g__5 \
+    (afw_v__g__5.internal.s)
+
+
+
+/** @brief define for quoted string _g__50 */
+#define AFW_Q__g__50 \
+    "This defines how authorization checking occurs in this application"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__50 */
+#define afw_s__g__50 \
+    (afw_v__g__50.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__50 */
+extern const afw_value_string_t \
+    afw_v__g__50;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__50 */
+#define afw_z__g__50 \
+    (afw_v__g__50.internal.s)
+
+
+
+/** @brief define for quoted string _g__51 */
+#define AFW_Q__g__51 \
+    "This defines how authorization checking occurs in this application."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__51 */
+#define afw_s__g__51 \
+    (afw_v__g__51.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__51 */
+extern const afw_value_string_t \
+    afw_v__g__51;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__51 */
+#define afw_z__g__51 \
+    (afw_v__g__51.internal.s)
+
+
+
+/** @brief define for quoted string _g__52 */
+#define AFW_Q__g__52 \
+    "Optional adaptorId of the running adaptor that contains configuration related objects"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__52 */
+#define afw_s__g__52 \
+    (afw_v__g__52.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__52 */
+extern const afw_value_string_t \
+    afw_v__g__52;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__52 */
+#define afw_z__g__52 \
+    (afw_v__g__52.internal.s)
+
+
+
+/** @brief define for quoted string _g__53 */
+#define AFW_Q__g__53 \
+    "This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__53 */
+#define afw_s__g__53 \
+    (afw_v__g__53.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__53 */
+extern const afw_value_string_t \
+    afw_v__g__53;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__53 */
+#define afw_z__g__53 \
+    (afw_v__g__53.internal.s)
+
+
+
+/** @brief define for quoted string _g__54 */
+#define AFW_Q__g__54 \
+    "This is the adaptorId chosen by default for user interface select components"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__54 */
+#define afw_s__g__54 \
+    (afw_v__g__54.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__54 */
+extern const afw_value_string_t \
+    afw_v__g__54;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__54 */
+#define afw_z__g__54 \
+    (afw_v__g__54.internal.s)
+
+
+
+/** @brief define for quoted string _g__55 */
+#define AFW_Q__g__55 \
+    "This is the adaptorId chosen by default for user interface select components."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__55 */
+#define afw_s__g__55 \
+    (afw_v__g__55.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__55 */
+extern const afw_value_string_t \
+    afw_v__g__55;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__55 */
+#define afw_z__g__55 \
+    (afw_v__g__55.internal.s)
+
+
+
+/** @brief define for quoted string _g__56 */
+#define AFW_Q__g__56 \
+    "List of default flags to be set when an execution context (xctx) is created."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__56 */
+#define afw_s__g__56 \
+    (afw_v__g__56.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__56 */
+extern const afw_value_string_t \
+    afw_v__g__56;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__56 */
+#define afw_z__g__56 \
+    (afw_v__g__56.internal.s)
+
+
+
+/** @brief define for quoted string _g__57 */
+#define AFW_Q__g__57 \
+    "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__57 */
+#define afw_s__g__57 \
+    (afw_v__g__57.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__57 */
+extern const afw_value_string_t \
+    afw_v__g__57;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__57 */
+#define afw_z__g__57 \
+    (afw_v__g__57.internal.s)
+
+
+
+/** @brief define for quoted string _g__58 */
+#define AFW_Q__g__58 \
+    "When presented with multiple model adaptors, this is the default adaptorId to use. This will be the default selected adaptor chosen by user interface components."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__58 */
+#define afw_s__g__58 \
+    (afw_v__g__58.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__58 */
+extern const afw_value_string_t \
+    afw_v__g__58;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__58 */
+#define afw_z__g__58 \
+    (afw_v__g__58.internal.s)
+
+
+
+/** @brief define for quoted string _g__59 */
+#define AFW_Q__g__59 \
+    "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__59 */
+#define afw_s__g__59 \
+    (afw_v__g__59.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__59 */
+extern const afw_value_string_t \
+    afw_v__g__59;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__59 */
+#define afw_z__g__59 \
+    (afw_v__g__59.internal.s)
+
+
+
+/** @brief define for quoted string _g__6 */
+#define AFW_Q__g__6 \
+    "An adaptor may provide metrics to describe the current state of this adaptor instance."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__6 */
+#define afw_s__g__6 \
+    (afw_v__g__6.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__6 */
+extern const afw_value_string_t \
+    afw_v__g__6;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__6 */
+#define afw_z__g__6 \
+    (afw_v__g__6.internal.s)
+
+
+
+/** @brief define for quoted string _g__60 */
+#define AFW_Q__g__60 \
+    "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__60 */
+#define afw_s__g__60 \
+    (afw_v__g__60.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__60 */
+extern const afw_value_string_t \
+    afw_v__g__60;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__60 */
+#define afw_z__g__60 \
+    (afw_v__g__60.internal.s)
+
+
+
+/** @brief define for quoted string _g__61 */
+#define AFW_Q__g__61 \
+    "This is the adaptorId that locates Adaptive Layout Component objects."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__61 */
+#define afw_s__g__61 \
+    (afw_v__g__61.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__61 */
+extern const afw_value_string_t \
+    afw_v__g__61;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__61 */
+#define afw_z__g__61 \
+    (afw_v__g__61.internal.s)
+
+
+
+/** @brief define for quoted string _g__62 */
+#define AFW_Q__g__62 \
+    "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__62 */
+#define afw_s__g__62 \
+    (afw_v__g__62.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__62 */
+extern const afw_value_string_t \
+    afw_v__g__62;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__62 */
+#define afw_z__g__62 \
+    (afw_v__g__62.internal.s)
+
+
+
+/** @brief define for quoted string _g__63 */
+#define AFW_Q__g__63 \
+    "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__63 */
+#define afw_s__g__63 \
+    (afw_v__g__63.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__63 */
+extern const afw_value_string_t \
+    afw_v__g__63;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__63 */
+#define afw_z__g__63 \
+    (afw_v__g__63.internal.s)
+
+
+
+/** @brief define for quoted string _g__64 */
+#define AFW_Q__g__64 \
+    "The properties of this object are the root file paths used by open_file()."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__64 */
+#define afw_s__g__64 \
+    (afw_v__g__64.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__64 */
+extern const afw_value_string_t \
+    afw_v__g__64;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__64 */
+#define afw_z__g__64 \
+    (afw_v__g__64.internal.s)
+
+
+
+/** @brief define for quoted string _g__65 */
+#define AFW_Q__g__65 \
+    "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__65 */
+#define afw_s__g__65 \
+    (afw_v__g__65.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__65 */
+extern const afw_value_string_t \
+    afw_v__g__65;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__65 */
+#define afw_z__g__65 \
+    (afw_v__g__65.internal.s)
+
+
+
+/** @brief define for quoted string _g__66 */
+#define AFW_Q__g__66 \
+    "Adaptive Framework configuration component for type=application. There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__66 */
+#define afw_s__g__66 \
+    (afw_v__g__66.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__66 */
+extern const afw_value_string_t \
+    afw_v__g__66;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__66 */
+#define afw_z__g__66 \
+    (afw_v__g__66.internal.s)
+
+
+
+/** @brief define for quoted string _g__67 */
+#define AFW_Q__g__67 \
+    "Use caution when setting this parameter to true. If this parameter is true, a decision of permit by this authorization handler will override a decision of deny by a previous authorization handler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__67 */
+#define afw_s__g__67 \
+    (afw_v__g__67.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__67 */
+extern const afw_value_string_t \
+    afw_v__g__67;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__67 */
+#define afw_z__g__67 \
+    (afw_v__g__67.internal.s)
+
+
+
+/** @brief define for quoted string _g__68 */
+#define AFW_Q__g__68 \
+    "If this parameter is true, a decision of deny by this authorization handler will override a decision of permit by a previous authorization handler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__68 */
+#define afw_s__g__68 \
+    (afw_v__g__68.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__68 */
+extern const afw_value_string_t \
+    afw_v__g__68;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__68 */
+#define afw_z__g__68 \
+    (afw_v__g__68.internal.s)
+
+
+
+/** @brief define for quoted string _g__69 */
+#define AFW_Q__g__69 \
+    "When there are multiple active authorization handlers, this priority determines order this handler will be checked. Priority 1 is the highest and will be checked first. If multiple handlers have the same priority the order will vary."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__69 */
+#define afw_s__g__69 \
+    (afw_v__g__69.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__69 */
+extern const afw_value_string_t \
+    afw_v__g__69;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__69 */
+#define afw_z__g__69 \
+    (afw_v__g__69.internal.s)
+
+
+
+/** @brief define for quoted string _g__7 */
+#define AFW_Q__g__7 \
+    "This object contains some of properties from the associated conf object plus other runtime properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__7 */
+#define afw_s__g__7 \
+    (afw_v__g__7.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__7 */
+extern const afw_value_string_t \
+    afw_v__g__7;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__7 */
+#define afw_z__g__7 \
+    (afw_v__g__7.internal.s)
+
+
+
+/** @brief define for quoted string _g__70 */
+#define AFW_Q__g__70 \
+    "If true, this authorization handler must be running to make an authorization decision if not running in core mode and if initialAuthorizationCheck did not make a decision."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__70 */
+#define afw_s__g__70 \
+    (afw_v__g__70.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__70 */
+extern const afw_value_string_t \
+    afw_v__g__70;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__70 */
+#define afw_z__g__70 \
+    (afw_v__g__70.internal.s)
+
+
+
+/** @brief define for quoted string _g__71 */
+#define AFW_Q__g__71 \
+    "Adaptive Framework configuration component for type=authorization. This object type is the parent of an _AdaptiveObjectType_ that contains authorizationType specific properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__71 */
+#define afw_s__g__71 \
+    (afw_v__g__71.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__71 */
+extern const afw_value_string_t \
+    afw_v__g__71;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__71 */
+#define afw_z__g__71 \
+    (afw_v__g__71.internal.s)
+
+
+
+/** @brief define for quoted string _g__72 */
+#define AFW_Q__g__72 \
+    "Template to determine whether to allow access to the specified resourceId and/or object"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__72 */
+#define afw_s__g__72 \
+    (afw_v__g__72.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__72 */
+extern const afw_value_string_t \
+    afw_v__g__72;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__72 */
+#define afw_z__g__72 \
+    (afw_v__g__72.internal.s)
+
+
+
+/** @brief define for quoted string _g__73 */
+#define AFW_Q__g__73 \
+    "This is script to evaluate to determine whether to allow the requested access to the specified resourceId and/or object."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__73 */
+#define afw_s__g__73 \
+    (afw_v__g__73.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__73 */
+extern const afw_value_string_t \
+    afw_v__g__73;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__73 */
+#define afw_z__g__73 \
+    (afw_v__g__73.internal.s)
+
+
+
+/** @brief define for quoted string _g__74 */
+#define AFW_Q__g__74 \
+    "Qualified variables associated with this authorization handler"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__74 */
+#define afw_s__g__74 \
+    (afw_v__g__74.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__74 */
+extern const afw_value_string_t \
+    afw_v__g__74;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__74 */
+#define afw_z__g__74 \
+    (afw_v__g__74.internal.s)
+
+
+
+/** @brief define for quoted string _g__75 */
+#define AFW_Q__g__75 \
+    "The name of each property in this object corresponds to a qualifier that is available in processing associated with this authorization handler. The qualifier can be an empty string for unqualified variables. The properties of these 'qualifier objects' are template values that are accessible as qualified variables while processing this authorization handler. These variables are evaluated once per authorization check as they are accessed.\n\nVariables specified here have precedence over duplicate application variables when this authorization handler is being processed.\n\nSome qualifiers are restricted."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__75 */
+#define afw_s__g__75 \
+    (afw_v__g__75.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__75 */
+extern const afw_value_string_t \
+    afw_v__g__75;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__75 */
+#define afw_z__g__75 \
+    (afw_v__g__75.internal.s)
+
+
+
+/** @brief define for quoted string _g__76 */
+#define AFW_Q__g__76 \
+    "Adaptive Framework configuration component for type=authorizationHandler authorizationHandlerType=script."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__76 */
+#define afw_s__g__76 \
+    (afw_v__g__76.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__76 */
+extern const afw_value_string_t \
+    afw_v__g__76;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__76 */
+#define afw_z__g__76 \
+    (afw_v__g__76.internal.s)
+
+
+
+/** @brief define for quoted string _g__77 */
+#define AFW_Q__g__77 \
+    "Path to locate the module. This is required if extensionsId is not registered."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__77 */
+#define afw_s__g__77 \
+    (afw_v__g__77.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__77 */
+extern const afw_value_string_t \
+    afw_v__g__77;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__77 */
+#define afw_z__g__77 \
+    (afw_v__g__77.internal.s)
+
+
+
+/** @brief define for quoted string _g__78 */
+#define AFW_Q__g__78 \
+    "Adaptive Framework configuration component for type=extension."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__78 */
+#define afw_s__g__78 \
+    (afw_v__g__78.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__78 */
+extern const afw_value_string_t \
+    afw_v__g__78;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__78 */
+#define afw_z__g__78 \
+    (afw_v__g__78.internal.s)
+
+
+
+/** @brief define for quoted string _g__79 */
+#define AFW_Q__g__79 \
+    "Filter script used to determine whether to log a particular message."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__79 */
+#define afw_s__g__79 \
+    (afw_v__g__79.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__79 */
+extern const afw_value_string_t \
+    afw_v__g__79;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__79 */
+#define afw_z__g__79 \
+    (afw_v__g__79.internal.s)
+
+
+
+/** @brief define for quoted string _g__8 */
+#define AFW_Q__g__8 \
+    "The reference count is the total number of references that are currently being used for this adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__8 */
+#define afw_s__g__8 \
+    (afw_v__g__8.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__8 */
+extern const afw_value_string_t \
+    afw_v__g__8;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__8 */
+#define afw_z__g__8 \
+    (afw_v__g__8.internal.s)
+
+
+
+/** @brief define for quoted string _g__80 */
+#define AFW_Q__g__80 \
+    "Adaptive Framework configuration component for type=log. This object type is the parent of an _AdaptiveObjectType_ that contains logType specific properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__80 */
+#define afw_s__g__80 \
+    (afw_v__g__80.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__80 */
+extern const afw_value_string_t \
+    afw_v__g__80;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__80 */
+#define afw_z__g__80 \
+    (afw_v__g__80.internal.s)
+
+
+
+/** @brief define for quoted string _g__81 */
+#define AFW_Q__g__81 \
+    "Adaptive Framework configuration component for type=log logType=event_log. This log type is only available on Windows."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__81 */
+#define afw_s__g__81 \
+    (afw_v__g__81.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__81 */
+extern const afw_value_string_t \
+    afw_v__g__81;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__81 */
+#define afw_z__g__81 \
+    (afw_v__g__81.internal.s)
+
+
+
+/** @brief define for quoted string _g__82 */
+#define AFW_Q__g__82 \
+    "Adaptive Framework configuration component for type=log logType=standard. This type of log writes log messages to stdout."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__82 */
+#define afw_s__g__82 \
+    (afw_v__g__82.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__82 */
+extern const afw_value_string_t \
+    afw_v__g__82;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__82 */
+#define afw_z__g__82 \
+    (afw_v__g__82.internal.s)
+
+
+
+/** @brief define for quoted string _g__83 */
+#define AFW_Q__g__83 \
+    "The facility argument is used to specify what type of program is logging the message. This lets the configuration file specify that messages from different facilities will be handled differently. Valid options are:  auth, authpriv, cron, daemon, ftp, kern, local0 through local7, lpr, mail, news, user, uucp."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__83 */
+#define afw_s__g__83 \
+    (afw_v__g__83.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__83 */
+extern const afw_value_string_t \
+    afw_v__g__83;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__83 */
+#define afw_z__g__83 \
+    (afw_v__g__83.internal.s)
+
+
+
+/** @brief define for quoted string _g__84 */
+#define AFW_Q__g__84 \
+    "The identifier is prepended to every message, and is typically set to the program name. If omitted, the program name is used."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__84 */
+#define afw_s__g__84 \
+    (afw_v__g__84.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__84 */
+extern const afw_value_string_t \
+    afw_v__g__84;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__84 */
+#define afw_z__g__84 \
+    (afw_v__g__84.internal.s)
+
+
+
+/** @brief define for quoted string _g__85 */
+#define AFW_Q__g__85 \
+    "Write directly to system console if there is an error while sending to system logger."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__85 */
+#define afw_s__g__85 \
+    (afw_v__g__85.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__85 */
+extern const afw_value_string_t \
+    afw_v__g__85;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__85 */
+#define afw_z__g__85 \
+    (afw_v__g__85.internal.s)
+
+
+
+/** @brief define for quoted string _g__86 */
+#define AFW_Q__g__86 \
+    "Open the connection immediately (normally, the connection is opened when the first message is logged)."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__86 */
+#define afw_s__g__86 \
+    (afw_v__g__86.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__86 */
+extern const afw_value_string_t \
+    afw_v__g__86;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__86 */
+#define afw_z__g__86 \
+    (afw_v__g__86.internal.s)
+
+
+
+/** @brief define for quoted string _g__87 */
+#define AFW_Q__g__87 \
+    "Don't wait for child processes that may have been created while logging the message. (The GNU C library does not create a child process, so this option has no effect on Linux.)"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__87 */
+#define afw_s__g__87 \
+    (afw_v__g__87.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__87 */
+extern const afw_value_string_t \
+    afw_v__g__87;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__87 */
+#define afw_z__g__87 \
+    (afw_v__g__87.internal.s)
+
+
+
+/** @brief define for quoted string _g__88 */
+#define AFW_Q__g__88 \
+    "The converse of LOG_NDELAY; opening of the connection is delayed until syslog() is called. (This is the default, and need not be specified.)"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__88 */
+#define afw_s__g__88 \
+    (afw_v__g__88.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__88 */
+extern const afw_value_string_t \
+    afw_v__g__88;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__88 */
+#define afw_z__g__88 \
+    (afw_v__g__88.internal.s)
+
+
+
+/** @brief define for quoted string _g__89 */
+#define AFW_Q__g__89 \
+    "Adaptive Framework configuration component for type=log logType=syslog. This log type is only available on Linux."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__89 */
+#define afw_s__g__89 \
+    (afw_v__g__89.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__89 */
+extern const afw_value_string_t \
+    afw_v__g__89;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__89 */
+#define afw_z__g__89 \
+    (afw_v__g__89.internal.s)
+
+
+
+/** @brief define for quoted string _g__9 */
+#define AFW_Q__g__9 \
+    "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__9 */
+#define afw_s__g__9 \
+    (afw_v__g__9.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__9 */
+extern const afw_value_string_t \
+    afw_v__g__9;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__9 */
+#define afw_z__g__9 \
+    (afw_v__g__9.internal.s)
+
+
+
+/** @brief define for quoted string _g__90 */
+#define AFW_Q__g__90 \
+    "Type of request handler that will process requests directed to this handler"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__90 */
+#define afw_s__g__90 \
+    (afw_v__g__90.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__90 */
+extern const afw_value_string_t \
+    afw_v__g__90;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__90 */
+#define afw_z__g__90 \
+    (afw_v__g__90.internal.s)
+
+
+
+/** @brief define for quoted string _g__91 */
+#define AFW_Q__g__91 \
+    "Type of request handler that will process requests directed to this handler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__91 */
+#define afw_s__g__91 \
+    (afw_v__g__91.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__91 */
+extern const afw_value_string_t \
+    afw_v__g__91;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__91 */
+#define afw_z__g__91 \
+    (afw_v__g__91.internal.s)
+
+
+
+/** @brief define for quoted string _g__92 */
+#define AFW_Q__g__92 \
+    "Prefix of URIs that will be directed to this request handler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__92 */
+#define afw_s__g__92 \
+    (afw_v__g__92.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__92 */
+extern const afw_value_string_t \
+    afw_v__g__92;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__92 */
+#define afw_z__g__92 \
+    (afw_v__g__92.internal.s)
+
+
+
+/** @brief define for quoted string _g__93 */
+#define AFW_Q__g__93 \
+    "Adaptive Framework configuration component for type=requestHandler. This object type is the parent of an _AdaptiveObjectType_ that contains handlerType specific properties."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__93 */
+#define afw_s__g__93 \
+    (afw_v__g__93.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__93 */
+extern const afw_value_string_t \
+    afw_v__g__93;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__93 */
+#define afw_z__g__93 \
+    (afw_v__g__93.internal.s)
+
+
+
+/** @brief define for quoted string _g__94 */
+#define AFW_Q__g__94 \
+    "If this property is specified, a '/' followed by adaptorId is prepended to the path passed to process request if it does not already have that prefix."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__94 */
+#define afw_s__g__94 \
+    (afw_v__g__94.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__94 */
+extern const afw_value_string_t \
+    afw_v__g__94;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__94 */
+#define afw_z__g__94 \
+    (afw_v__g__94.internal.s)
+
+
+
+/** @brief define for quoted string _g__95 */
+#define AFW_Q__g__95 \
+    "Default object options for method GET requests through this request handler"
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__95 */
+#define afw_s__g__95 \
+    (afw_v__g__95.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__95 */
+extern const afw_value_string_t \
+    afw_v__g__95;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__95 */
+#define afw_z__g__95 \
+    (afw_v__g__95.internal.s)
+
+
+
+/** @brief define for quoted string _g__96 */
+#define AFW_Q__g__96 \
+    "This is the default object options for method GET requests though this request handler."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__96 */
+#define afw_s__g__96 \
+    (afw_v__g__96.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__96 */
+extern const afw_value_string_t \
+    afw_v__g__96;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__96 */
+#define afw_z__g__96 \
+    (afw_v__g__96.internal.s)
+
+
+
+/** @brief define for quoted string _g__97 */
+#define AFW_Q__g__97 \
+    "If this property is specified, a '/' followed by adaptorId followed by a '/' followed by objectType is prepended to the path passed to process request if it does not already have that prefix. If this property is specified, adaptorId is required."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__97 */
+#define afw_s__g__97 \
+    (afw_v__g__97.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__97 */
+extern const afw_value_string_t \
+    afw_v__g__97;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__97 */
+#define afw_z__g__97 \
+    (afw_v__g__97.internal.s)
+
+
+
+/** @brief define for quoted string _g__98 */
+#define AFW_Q__g__98 \
+    "Adaptive Framework configuration component for type=requestHandler handlerType=adaptor."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__98 */
+#define afw_s__g__98 \
+    (afw_v__g__98.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__98 */
+extern const afw_value_string_t \
+    afw_v__g__98;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__98 */
+#define afw_z__g__98 \
+    (afw_v__g__98.internal.s)
+
+
+
+/** @brief define for quoted string _g__99 */
+#define AFW_Q__g__99 \
+    "There is one of these for each media type registered for a content type implementation."
+
+/** @brief 'afw_utf8_t' for string AFW_Q__g__99 */
+#define afw_s__g__99 \
+    (afw_v__g__99.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_Q__g__99 */
+extern const afw_value_string_t \
+    afw_v__g__99;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__99 */
+#define afw_z__g__99 \
+    (afw_v__g__99.internal.s)
 
 
 
@@ -33743,744 +37361,6 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__a044310d_2a58_4b7e_8f1f_b64b96dc999d */
-#define AFW_Q__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d \
-    "This is the objectType used internally by the adaptor for this object type. It not specified, current::objectType is used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d */
-#define afw_s__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d \
-    (afw_v__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d */
-extern const afw_value_string_t \
-    afw_v__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d */
-#define afw_z__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d \
-    (afw_v__g__a044310d_2a58_4b7e_8f1f_b64b96dc999d.internal.s)
-
-
-
-/** @brief define for quoted string _g__a0467c48_52ba_41d4_90e2_60f6f1a42281 */
-#define AFW_Q__g__a0467c48_52ba_41d4_90e2_60f6f1a42281 \
-    "Factory to create an instance of an afw_authorization_handler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a0467c48_52ba_41d4_90e2_60f6f1a42281 */
-#define afw_s__g__a0467c48_52ba_41d4_90e2_60f6f1a42281 \
-    (afw_v__g__a0467c48_52ba_41d4_90e2_60f6f1a42281.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a0467c48_52ba_41d4_90e2_60f6f1a42281 */
-extern const afw_value_string_t \
-    afw_v__g__a0467c48_52ba_41d4_90e2_60f6f1a42281;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a0467c48_52ba_41d4_90e2_60f6f1a42281 */
-#define afw_z__g__a0467c48_52ba_41d4_90e2_60f6f1a42281 \
-    (afw_v__g__a0467c48_52ba_41d4_90e2_60f6f1a42281.internal.s)
-
-
-
-/** @brief define for quoted string _g__a17209a7_f18d_407d_a848_d09c9cf0d75d */
-#define AFW_Q__g__a17209a7_f18d_407d_a848_d09c9cf0d75d \
-    "Adaptive Framework configuration component for type=log logType=event_log. This log type is only available on Windows."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a17209a7_f18d_407d_a848_d09c9cf0d75d */
-#define afw_s__g__a17209a7_f18d_407d_a848_d09c9cf0d75d \
-    (afw_v__g__a17209a7_f18d_407d_a848_d09c9cf0d75d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a17209a7_f18d_407d_a848_d09c9cf0d75d */
-extern const afw_value_string_t \
-    afw_v__g__a17209a7_f18d_407d_a848_d09c9cf0d75d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a17209a7_f18d_407d_a848_d09c9cf0d75d */
-#define afw_z__g__a17209a7_f18d_407d_a848_d09c9cf0d75d \
-    (afw_v__g__a17209a7_f18d_407d_a848_d09c9cf0d75d.internal.s)
-
-
-
-/** @brief define for quoted string _g__a1e77aa5_5b31_4481_a487_006492c32258 */
-#define AFW_Q__g__a1e77aa5_5b31_4481_a487_006492c32258 \
-    "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a1e77aa5_5b31_4481_a487_006492c32258 */
-#define afw_s__g__a1e77aa5_5b31_4481_a487_006492c32258 \
-    (afw_v__g__a1e77aa5_5b31_4481_a487_006492c32258.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a1e77aa5_5b31_4481_a487_006492c32258 */
-extern const afw_value_string_t \
-    afw_v__g__a1e77aa5_5b31_4481_a487_006492c32258;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a1e77aa5_5b31_4481_a487_006492c32258 */
-#define afw_z__g__a1e77aa5_5b31_4481_a487_006492c32258 \
-    (afw_v__g__a1e77aa5_5b31_4481_a487_006492c32258.internal.s)
-
-
-
-/** @brief define for quoted string _g__a2204095_da34_4024_a24c_37d53bb4ea2d */
-#define AFW_Q__g__a2204095_da34_4024_a24c_37d53bb4ea2d \
-    "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a2204095_da34_4024_a24c_37d53bb4ea2d */
-#define afw_s__g__a2204095_da34_4024_a24c_37d53bb4ea2d \
-    (afw_v__g__a2204095_da34_4024_a24c_37d53bb4ea2d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a2204095_da34_4024_a24c_37d53bb4ea2d */
-extern const afw_value_string_t \
-    afw_v__g__a2204095_da34_4024_a24c_37d53bb4ea2d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a2204095_da34_4024_a24c_37d53bb4ea2d */
-#define afw_z__g__a2204095_da34_4024_a24c_37d53bb4ea2d \
-    (afw_v__g__a2204095_da34_4024_a24c_37d53bb4ea2d.internal.s)
-
-
-
-/** @brief define for quoted string _g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f */
-#define AFW_Q__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f \
-    "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f */
-#define afw_s__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f \
-    (afw_v__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f */
-extern const afw_value_string_t \
-    afw_v__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f */
-#define afw_z__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f \
-    (afw_v__g__a2e472e4_dbcb_4ee9_beb8_7e293a240f3f.internal.s)
-
-
-
-/** @brief define for quoted string _g__a410065f_0a21_4bd5_bbe1_8baea2554b18 */
-#define AFW_Q__g__a410065f_0a21_4bd5_bbe1_8baea2554b18 \
-    "If this property is specified, a '/' followed by adaptorId followed by a '/' followed by objectType is prepended to the path passed to process request if it does not already have that prefix. If this property is specified, adaptorId is required."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a410065f_0a21_4bd5_bbe1_8baea2554b18 */
-#define afw_s__g__a410065f_0a21_4bd5_bbe1_8baea2554b18 \
-    (afw_v__g__a410065f_0a21_4bd5_bbe1_8baea2554b18.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a410065f_0a21_4bd5_bbe1_8baea2554b18 */
-extern const afw_value_string_t \
-    afw_v__g__a410065f_0a21_4bd5_bbe1_8baea2554b18;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a410065f_0a21_4bd5_bbe1_8baea2554b18 */
-#define afw_z__g__a410065f_0a21_4bd5_bbe1_8baea2554b18 \
-    (afw_v__g__a410065f_0a21_4bd5_bbe1_8baea2554b18.internal.s)
-
-
-
-/** @brief define for quoted string _g__a4763c3b_5f99_4095_ba19_33f76c9503c2 */
-#define AFW_Q__g__a4763c3b_5f99_4095_ba19_33f76c9503c2 \
-    "If false, this property is read only. If true, the property can be changed unless denied by authorization policy, constraint checking, or the adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a4763c3b_5f99_4095_ba19_33f76c9503c2 */
-#define afw_s__g__a4763c3b_5f99_4095_ba19_33f76c9503c2 \
-    (afw_v__g__a4763c3b_5f99_4095_ba19_33f76c9503c2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a4763c3b_5f99_4095_ba19_33f76c9503c2 */
-extern const afw_value_string_t \
-    afw_v__g__a4763c3b_5f99_4095_ba19_33f76c9503c2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a4763c3b_5f99_4095_ba19_33f76c9503c2 */
-#define afw_z__g__a4763c3b_5f99_4095_ba19_33f76c9503c2 \
-    (afw_v__g__a4763c3b_5f99_4095_ba19_33f76c9503c2.internal.s)
-
-
-
-/** @brief define for quoted string _g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 */
-#define AFW_Q__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 \
-    "This dataType supports relational compares in addition to equality compares"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 */
-#define afw_s__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 \
-    (afw_v__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 */
-extern const afw_value_string_t \
-    afw_v__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 */
-#define afw_z__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95 \
-    (afw_v__g__a58f17b3_87bd_43a4_8b24_dd1fc458ce95.internal.s)
-
-
-
-/** @brief define for quoted string _g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a */
-#define AFW_Q__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a \
-    "This filters the objects that will be returned. If not specified, all objects will be returned."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a */
-#define afw_s__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a \
-    (afw_v__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a */
-extern const afw_value_string_t \
-    afw_v__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a */
-#define afw_z__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a \
-    (afw_v__g__a5d0105b_a943_469b_9eaf_a9dd76f6ba3a.internal.s)
-
-
-
-/** @brief define for quoted string _g__a68f01f2_2ede_4463_b643_8a5fde6d7faa */
-#define AFW_Q__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa \
-    "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveFunction_ objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa */
-#define afw_s__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa \
-    (afw_v__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa */
-extern const afw_value_string_t \
-    afw_v__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa */
-#define afw_z__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa \
-    (afw_v__g__a68f01f2_2ede_4463_b643_8a5fde6d7faa.internal.s)
-
-
-
-/** @brief define for quoted string _g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 */
-#define AFW_Q__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 \
-    "Additional information about this value that can be used to produce test data"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 */
-#define afw_s__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 \
-    (afw_v__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 */
-extern const afw_value_string_t \
-    afw_v__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 */
-#define afw_z__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5 \
-    (afw_v__g__a6fce1e7_db2d_495d_a52d_2fa5c73bddb5.internal.s)
-
-
-
-/** @brief define for quoted string _g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 */
-#define AFW_Q__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 \
-    "This option is overridden by the integersAsString option.\\n\\nIf this option is specified, all integers that have a magnitude that exceeds plus or minus 9007199254740991 (2^53-1) will be converted to the string data type.\\n\\nThis options is useful if integers of a content type are interpreted as double (floating point) values, but integers are normally small enough to be represented properly. An example is Javascript's use of JSON."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 */
-#define afw_s__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 \
-    (afw_v__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 */
-extern const afw_value_string_t \
-    afw_v__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 */
-#define afw_z__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227 \
-    (afw_v__g__a7177ea7_37bc_4367_88fe_1ba0cc11e227.internal.s)
-
-
-
-/** @brief define for quoted string _g__a91490b9_1f56_4c10_a33b_8de0587ac399 */
-#define AFW_Q__g__a91490b9_1f56_4c10_a33b_8de0587ac399 \
-    "These are function used to administer the adaptive environment."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a91490b9_1f56_4c10_a33b_8de0587ac399 */
-#define afw_s__g__a91490b9_1f56_4c10_a33b_8de0587ac399 \
-    (afw_v__g__a91490b9_1f56_4c10_a33b_8de0587ac399.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a91490b9_1f56_4c10_a33b_8de0587ac399 */
-extern const afw_value_string_t \
-    afw_v__g__a91490b9_1f56_4c10_a33b_8de0587ac399;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a91490b9_1f56_4c10_a33b_8de0587ac399 */
-#define afw_z__g__a91490b9_1f56_4c10_a33b_8de0587ac399 \
-    (afw_v__g__a91490b9_1f56_4c10_a33b_8de0587ac399.internal.s)
-
-
-
-/** @brief define for quoted string _g__a926870e_0dae_43f4_ad8d_66631c8849c5 */
-#define AFW_Q__g__a926870e_0dae_43f4_ad8d_66631c8849c5 \
-    "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a926870e_0dae_43f4_ad8d_66631c8849c5 */
-#define afw_s__g__a926870e_0dae_43f4_ad8d_66631c8849c5 \
-    (afw_v__g__a926870e_0dae_43f4_ad8d_66631c8849c5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a926870e_0dae_43f4_ad8d_66631c8849c5 */
-extern const afw_value_string_t \
-    afw_v__g__a926870e_0dae_43f4_ad8d_66631c8849c5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a926870e_0dae_43f4_ad8d_66631c8849c5 */
-#define afw_z__g__a926870e_0dae_43f4_ad8d_66631c8849c5 \
-    (afw_v__g__a926870e_0dae_43f4_ad8d_66631c8849c5.internal.s)
-
-
-
-/** @brief define for quoted string _g__a92ad959_16d8_4762_b721_c21666fac5cb */
-#define AFW_Q__g__a92ad959_16d8_4762_b721_c21666fac5cb \
-    "The name and version of the server software that is answering the client request."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a92ad959_16d8_4762_b721_c21666fac5cb */
-#define afw_s__g__a92ad959_16d8_4762_b721_c21666fac5cb \
-    (afw_v__g__a92ad959_16d8_4762_b721_c21666fac5cb.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a92ad959_16d8_4762_b721_c21666fac5cb */
-extern const afw_value_string_t \
-    afw_v__g__a92ad959_16d8_4762_b721_c21666fac5cb;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a92ad959_16d8_4762_b721_c21666fac5cb */
-#define afw_z__g__a92ad959_16d8_4762_b721_c21666fac5cb \
-    (afw_v__g__a92ad959_16d8_4762_b721_c21666fac5cb.internal.s)
-
-
-
-/** @brief define for quoted string _g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d */
-#define AFW_Q__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d \
-    "Indicates that both direct and embedded inheritance should be performed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d */
-#define afw_s__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d \
-    (afw_v__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d */
-extern const afw_value_string_t \
-    afw_v__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d */
-#define afw_z__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d \
-    (afw_v__g__a93c1ab6_5cb2_45ec_85ab_2b58909b8c5d.internal.s)
-
-
-
-/** @brief define for quoted string _g__a989f609_30ba_4a11_9c4e_2165203ad064 */
-#define AFW_Q__g__a989f609_30ba_4a11_9c4e_2165203ad064 \
-    "These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a989f609_30ba_4a11_9c4e_2165203ad064 */
-#define afw_s__g__a989f609_30ba_4a11_9c4e_2165203ad064 \
-    (afw_v__g__a989f609_30ba_4a11_9c4e_2165203ad064.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a989f609_30ba_4a11_9c4e_2165203ad064 */
-extern const afw_value_string_t \
-    afw_v__g__a989f609_30ba_4a11_9c4e_2165203ad064;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a989f609_30ba_4a11_9c4e_2165203ad064 */
-#define afw_z__g__a989f609_30ba_4a11_9c4e_2165203ad064 \
-    (afw_v__g__a989f609_30ba_4a11_9c4e_2165203ad064.internal.s)
-
-
-
-/** @brief define for quoted string _g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 */
-#define AFW_Q__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 \
-    "If false, objects of this type can NEVER be deleted via an adaptor. If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 */
-#define afw_s__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 \
-    (afw_v__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 */
-extern const afw_value_string_t \
-    afw_v__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 */
-#define afw_z__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763 \
-    (afw_v__g__a9fef9aa_4751_4e65_8eea_cbdf416d3763.internal.s)
-
-
-
-/** @brief define for quoted string _g__aa13cdc5_69d7_4275_9c10_f40c35fac3db */
-#define AFW_Q__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db \
-    "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db */
-#define afw_s__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db \
-    (afw_v__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db */
-extern const afw_value_string_t \
-    afw_v__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db */
-#define afw_z__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db \
-    (afw_v__g__aa13cdc5_69d7_4275_9c10_f40c35fac3db.internal.s)
-
-
-
-/** @brief define for quoted string _g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 */
-#define AFW_Q__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 \
-    "(\\n    mappedObject: object /* Object to map back. */\\n): object /* Mapped back object */"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 */
-#define afw_s__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 \
-    (afw_v__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 */
-extern const afw_value_string_t \
-    afw_v__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 */
-#define afw_z__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897 \
-    (afw_v__g__aa43c7ba_fc09_429a_aba2_2ec0aef2f897.internal.s)
-
-
-
-/** @brief define for quoted string _g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 */
-#define AFW_Q__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 \
-    "Object type of the propertyTypes property of instances of _AdaptiveModelObjectType_."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 */
-#define afw_s__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 \
-    (afw_v__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 */
-extern const afw_value_string_t \
-    afw_v__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 */
-#define afw_z__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414 \
-    (afw_v__g__aae31f8c_6d08_49cb_bdb5_556e3bd15414.internal.s)
-
-
-
-/** @brief define for quoted string _g__ab2850a6_e79a_4268_b889_492604fd1fc1 */
-#define AFW_Q__g__ab2850a6_e79a_4268_b889_492604fd1fc1 \
-    "A compiler option for the compiler id with this property name."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ab2850a6_e79a_4268_b889_492604fd1fc1 */
-#define afw_s__g__ab2850a6_e79a_4268_b889_492604fd1fc1 \
-    (afw_v__g__ab2850a6_e79a_4268_b889_492604fd1fc1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ab2850a6_e79a_4268_b889_492604fd1fc1 */
-extern const afw_value_string_t \
-    afw_v__g__ab2850a6_e79a_4268_b889_492604fd1fc1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ab2850a6_e79a_4268_b889_492604fd1fc1 */
-#define afw_z__g__ab2850a6_e79a_4268_b889_492604fd1fc1 \
-    (afw_v__g__ab2850a6_e79a_4268_b889_492604fd1fc1.internal.s)
-
-
-
-/** @brief define for quoted string _g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 */
-#define AFW_Q__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 \
-    "This is a sentence that contains details about the other properties of this function."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 */
-#define afw_s__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 \
-    (afw_v__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 */
-extern const afw_value_string_t \
-    afw_v__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 */
-#define afw_z__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9 \
-    (afw_v__g__abfb9f8f_f799_4695_88b3_3b6b7ea28ca9.internal.s)
-
-
-
-/** @brief define for quoted string _g__ac27885e_1988_411d_a0ac_37441b564e40 */
-#define AFW_Q__g__ac27885e_1988_411d_a0ac_37441b564e40 \
-    "This is the current version of this srcdir. The default is the package version. The form must be <MAJOR>.<MINOR>.<PATCH> as defined at http://semver.org."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ac27885e_1988_411d_a0ac_37441b564e40 */
-#define afw_s__g__ac27885e_1988_411d_a0ac_37441b564e40 \
-    (afw_v__g__ac27885e_1988_411d_a0ac_37441b564e40.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ac27885e_1988_411d_a0ac_37441b564e40 */
-extern const afw_value_string_t \
-    afw_v__g__ac27885e_1988_411d_a0ac_37441b564e40;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ac27885e_1988_411d_a0ac_37441b564e40 */
-#define afw_z__g__ac27885e_1988_411d_a0ac_37441b564e40 \
-    (afw_v__g__ac27885e_1988_411d_a0ac_37441b564e40.internal.s)
-
-
-
-/** @brief define for quoted string _g__ac462654_74a1_4eba_8764_411f5088758d */
-#define AFW_Q__g__ac462654_74a1_4eba_8764_411f5088758d \
-    "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ac462654_74a1_4eba_8764_411f5088758d */
-#define afw_s__g__ac462654_74a1_4eba_8764_411f5088758d \
-    (afw_v__g__ac462654_74a1_4eba_8764_411f5088758d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ac462654_74a1_4eba_8764_411f5088758d */
-extern const afw_value_string_t \
-    afw_v__g__ac462654_74a1_4eba_8764_411f5088758d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ac462654_74a1_4eba_8764_411f5088758d */
-#define afw_z__g__ac462654_74a1_4eba_8764_411f5088758d \
-    (afw_v__g__ac462654_74a1_4eba_8764_411f5088758d.internal.s)
-
-
-
-/** @brief define for quoted string _g__ac605300_c581_4870_8ef3_a78c56bd6fc9 */
-#define AFW_Q__g__ac605300_c581_4870_8ef3_a78c56bd6fc9 \
-    "The hostname of the server from the requested URL (this corresponds to the HTTP 1.1 Host field)."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ac605300_c581_4870_8ef3_a78c56bd6fc9 */
-#define afw_s__g__ac605300_c581_4870_8ef3_a78c56bd6fc9 \
-    (afw_v__g__ac605300_c581_4870_8ef3_a78c56bd6fc9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ac605300_c581_4870_8ef3_a78c56bd6fc9 */
-extern const afw_value_string_t \
-    afw_v__g__ac605300_c581_4870_8ef3_a78c56bd6fc9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ac605300_c581_4870_8ef3_a78c56bd6fc9 */
-#define afw_z__g__ac605300_c581_4870_8ef3_a78c56bd6fc9 \
-    (afw_v__g__ac605300_c581_4870_8ef3_a78c56bd6fc9.internal.s)
-
-
-
-/** @brief define for quoted string _g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 */
-#define AFW_Q__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 \
-    "This data type is source that can be compiled and evaluated with the compile() adaptive function."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 */
-#define afw_s__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 \
-    (afw_v__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 */
-extern const afw_value_string_t \
-    afw_v__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 */
-#define afw_z__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539 \
-    (afw_v__g__ac902713_9ac3_4a0b_8b38_ef7fc1299539.internal.s)
-
-
-
-/** @brief define for quoted string _g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 */
-#define AFW_Q__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 \
-    "This uses the C preprocessor macro __TIME__ at time of compile."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 */
-#define afw_s__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 \
-    (afw_v__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 */
-extern const afw_value_string_t \
-    afw_v__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 */
-#define afw_z__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1 \
-    (afw_v__g__ad5d3cbd_a170_492b_9a08_ee903a8100d1.internal.s)
-
-
-
-/** @brief define for quoted string _g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf */
-#define AFW_Q__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf \
-    "This extension registers a content-type handler for the YAML Ain't Markup Language (YAML) format, which is a more human readable, superset of JSON."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf */
-#define afw_s__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf \
-    (afw_v__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf */
-extern const afw_value_string_t \
-    afw_v__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf */
-#define afw_z__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf \
-    (afw_v__g__ad5e7efa_b672_4ee6_9b87_4826d2d89aaf.internal.s)
-
-
-
-/** @brief define for quoted string _g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 */
-#define AFW_Q__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 \
-    "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 */
-#define afw_s__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 \
-    (afw_v__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 */
-extern const afw_value_string_t \
-    afw_v__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 */
-#define afw_z__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3 \
-    (afw_v__g__ad669e4a_67a2_4a9e_ba6e_f0e2816984a3.internal.s)
-
-
-
-/** @brief define for quoted string _g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c */
-#define AFW_Q__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c \
-    "The name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c */
-#define afw_s__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c \
-    (afw_v__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c */
-extern const afw_value_string_t \
-    afw_v__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c */
-#define afw_z__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c \
-    (afw_v__g__ad66b3ae_c773_4374_bc1f_88c8677b3a1c.internal.s)
-
-
-
-/** @brief define for quoted string _g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 */
-#define AFW_Q__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 \
-    "This is the key for this flag in registry type flag and the objectId of its _AdaptiveFlag_ runtime object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 */
-#define afw_s__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 \
-    (afw_v__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 */
-extern const afw_value_string_t \
-    afw_v__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 */
-#define afw_z__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17 \
-    (afw_v__g__ad6e6cf2_d852_4ce2_b3c0_dfc5aa0c3f17.internal.s)
-
-
-
-/** @brief define for quoted string _g__ad9268a5_10f8_4d24_8823_32469eb088c7 */
-#define AFW_Q__g__ad9268a5_10f8_4d24_8823_32469eb088c7 \
-    "Adaptive Framework configuration component for type=adaptor adaptorType=file."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ad9268a5_10f8_4d24_8823_32469eb088c7 */
-#define afw_s__g__ad9268a5_10f8_4d24_8823_32469eb088c7 \
-    (afw_v__g__ad9268a5_10f8_4d24_8823_32469eb088c7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ad9268a5_10f8_4d24_8823_32469eb088c7 */
-extern const afw_value_string_t \
-    afw_v__g__ad9268a5_10f8_4d24_8823_32469eb088c7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ad9268a5_10f8_4d24_8823_32469eb088c7 */
-#define afw_z__g__ad9268a5_10f8_4d24_8823_32469eb088c7 \
-    (afw_v__g__ad9268a5_10f8_4d24_8823_32469eb088c7.internal.s)
-
-
-
-/** @brief define for quoted string _g__add05a91_8a34_45d0_84f4_0deabb1f0225 */
-#define AFW_Q__g__add05a91_8a34_45d0_84f4_0deabb1f0225 \
-    "This is the object type for the filter property of the queryCriteria parameter of retrieve object functions."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__add05a91_8a34_45d0_84f4_0deabb1f0225 */
-#define afw_s__g__add05a91_8a34_45d0_84f4_0deabb1f0225 \
-    (afw_v__g__add05a91_8a34_45d0_84f4_0deabb1f0225.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__add05a91_8a34_45d0_84f4_0deabb1f0225 */
-extern const afw_value_string_t \
-    afw_v__g__add05a91_8a34_45d0_84f4_0deabb1f0225;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__add05a91_8a34_45d0_84f4_0deabb1f0225 */
-#define afw_z__g__add05a91_8a34_45d0_84f4_0deabb1f0225 \
-    (afw_v__g__add05a91_8a34_45d0_84f4_0deabb1f0225.internal.s)
-
-
-
-/** @brief define for quoted string _g__ae348300_e841_4741_bf15_54669222db1c */
-#define AFW_Q__g__ae348300_e841_4741_bf15_54669222db1c \
-    "This variable can be used as a flag to indicate whether the connection is secure"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ae348300_e841_4741_bf15_54669222db1c */
-#define afw_s__g__ae348300_e841_4741_bf15_54669222db1c \
-    (afw_v__g__ae348300_e841_4741_bf15_54669222db1c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ae348300_e841_4741_bf15_54669222db1c */
-extern const afw_value_string_t \
-    afw_v__g__ae348300_e841_4741_bf15_54669222db1c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ae348300_e841_4741_bf15_54669222db1c */
-#define afw_z__g__ae348300_e841_4741_bf15_54669222db1c \
-    (afw_v__g__ae348300_e841_4741_bf15_54669222db1c.internal.s)
-
-
-
-/** @brief define for quoted string _g__ae4271cc_0078_4c9d_9fc3_06297828ed9d */
-#define AFW_Q__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d \
-    "This is a qualified or unqualified function name. If the 'actions' property is not specified, this is the single function to call. If actions is specified, this is the default function name."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d */
-#define afw_s__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d \
-    (afw_v__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d */
-extern const afw_value_string_t \
-    afw_v__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d */
-#define afw_z__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d \
-    (afw_v__g__ae4271cc_0078_4c9d_9fc3_06297828ed9d.internal.s)
-
-
-
-/** @brief define for quoted string _g__aea23644_e62f_41be_bb59_1192a1d6da57 */
-#define AFW_Q__g__aea23644_e62f_41be_bb59_1192a1d6da57 \
-    "This authorization mode is used when checking authorization from external sources."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__aea23644_e62f_41be_bb59_1192a1d6da57 */
-#define afw_s__g__aea23644_e62f_41be_bb59_1192a1d6da57 \
-    (afw_v__g__aea23644_e62f_41be_bb59_1192a1d6da57.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__aea23644_e62f_41be_bb59_1192a1d6da57 */
-extern const afw_value_string_t \
-    afw_v__g__aea23644_e62f_41be_bb59_1192a1d6da57;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__aea23644_e62f_41be_bb59_1192a1d6da57 */
-#define afw_z__g__aea23644_e62f_41be_bb59_1192a1d6da57 \
-    (afw_v__g__aea23644_e62f_41be_bb59_1192a1d6da57.internal.s)
-
-
-
-/** @brief define for quoted string _g__af561f92_212f_448c_af6d_7e2309bde22e */
-#define AFW_Q__g__af561f92_212f_448c_af6d_7e2309bde22e \
-    "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__af561f92_212f_448c_af6d_7e2309bde22e */
-#define afw_s__g__af561f92_212f_448c_af6d_7e2309bde22e \
-    (afw_v__g__af561f92_212f_448c_af6d_7e2309bde22e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__af561f92_212f_448c_af6d_7e2309bde22e */
-extern const afw_value_string_t \
-    afw_v__g__af561f92_212f_448c_af6d_7e2309bde22e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__af561f92_212f_448c_af6d_7e2309bde22e */
-#define afw_z__g__af561f92_212f_448c_af6d_7e2309bde22e \
-    (afw_v__g__af561f92_212f_448c_af6d_7e2309bde22e.internal.s)
-
-
-
-/** @brief define for quoted string _g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e */
-#define AFW_Q__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e \
-    "This is an array of actions to perform. Either the actions or function property must be specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e */
-#define afw_s__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e \
-    (afw_v__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e */
-extern const afw_value_string_t \
-    afw_v__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e */
-#define afw_z__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e \
-    (afw_v__g__af8ec729_58dd_4cf6_abfa_b7ecfbfc884e.internal.s)
-
-
-
-/** @brief define for quoted string _g__afc6f44c_e583_4e6d_a456_1fb699d69527 */
-#define AFW_Q__g__afc6f44c_e583_4e6d_a456_1fb699d69527 \
-    "The SSL client certificate subject component of the DN field."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__afc6f44c_e583_4e6d_a456_1fb699d69527 */
-#define afw_s__g__afc6f44c_e583_4e6d_a456_1fb699d69527 \
-    (afw_v__g__afc6f44c_e583_4e6d_a456_1fb699d69527.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__afc6f44c_e583_4e6d_a456_1fb699d69527 */
-extern const afw_value_string_t \
-    afw_v__g__afc6f44c_e583_4e6d_a456_1fb699d69527;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__afc6f44c_e583_4e6d_a456_1fb699d69527 */
-#define afw_z__g__afc6f44c_e583_4e6d_a456_1fb699d69527 \
-    (afw_v__g__afc6f44c_e583_4e6d_a456_1fb699d69527.internal.s)
-
-
-
 /** @brief define for quoted string _g__afwmake_python */
 #define AFW_Q__g__afwmake_python \
     "afwmake:python"
@@ -34496,546 +37376,6 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_Q__g__afwmake_python */
 #define afw_z__g__afwmake_python \
     (afw_v__g__afwmake_python.internal.s)
-
-
-
-/** @brief define for quoted string _g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 */
-#define AFW_Q__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 \
-    "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 */
-#define afw_s__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 \
-    (afw_v__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 */
-extern const afw_value_string_t \
-    afw_v__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 */
-#define afw_z__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15 \
-    (afw_v__g__b0ef82d0_fb24_4a9e_9a05_4a96cb154f15.internal.s)
-
-
-
-/** @brief define for quoted string _g__b1b3f732_fc04_4dba_a156_12e3b1f978ad */
-#define AFW_Q__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad \
-    "The name of the property that is used as the 'objectId' meta property"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad */
-#define afw_s__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad \
-    (afw_v__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad */
-extern const afw_value_string_t \
-    afw_v__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad */
-#define afw_z__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad \
-    (afw_v__g__b1b3f732_fc04_4dba_a156_12e3b1f978ad.internal.s)
-
-
-
-/** @brief define for quoted string _g__b1f9ccf0_7b7d_46ae_908d_78508474c314 */
-#define AFW_Q__g__b1f9ccf0_7b7d_46ae_908d_78508474c314 \
-    "This is the description of this flag, which may provide more detail for documentation."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b1f9ccf0_7b7d_46ae_908d_78508474c314 */
-#define afw_s__g__b1f9ccf0_7b7d_46ae_908d_78508474c314 \
-    (afw_v__g__b1f9ccf0_7b7d_46ae_908d_78508474c314.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b1f9ccf0_7b7d_46ae_908d_78508474c314 */
-extern const afw_value_string_t \
-    afw_v__g__b1f9ccf0_7b7d_46ae_908d_78508474c314;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b1f9ccf0_7b7d_46ae_908d_78508474c314 */
-#define afw_z__g__b1f9ccf0_7b7d_46ae_908d_78508474c314 \
-    (afw_v__g__b1f9ccf0_7b7d_46ae_908d_78508474c314.internal.s)
-
-
-
-/** @brief define for quoted string _g__b230961c_23e9_423d_af36_a6b015d2f3c9 */
-#define AFW_Q__g__b230961c_23e9_423d_af36_a6b015d2f3c9 \
-    "This is a source location to help determine how this log was defined."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b230961c_23e9_423d_af36_a6b015d2f3c9 */
-#define afw_s__g__b230961c_23e9_423d_af36_a6b015d2f3c9 \
-    (afw_v__g__b230961c_23e9_423d_af36_a6b015d2f3c9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b230961c_23e9_423d_af36_a6b015d2f3c9 */
-extern const afw_value_string_t \
-    afw_v__g__b230961c_23e9_423d_af36_a6b015d2f3c9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b230961c_23e9_423d_af36_a6b015d2f3c9 */
-#define afw_z__g__b230961c_23e9_423d_af36_a6b015d2f3c9 \
-    (afw_v__g__b230961c_23e9_423d_af36_a6b015d2f3c9.internal.s)
-
-
-
-/** @brief define for quoted string _g__b2adc215_df63_4cb3_8e29_c4ff421f1710 */
-#define AFW_Q__g__b2adc215_df63_4cb3_8e29_c4ff421f1710 \
-    "This is a predicate for this decisionId value with the first letter capitalized and without a trailing period."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b2adc215_df63_4cb3_8e29_c4ff421f1710 */
-#define afw_s__g__b2adc215_df63_4cb3_8e29_c4ff421f1710 \
-    (afw_v__g__b2adc215_df63_4cb3_8e29_c4ff421f1710.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b2adc215_df63_4cb3_8e29_c4ff421f1710 */
-extern const afw_value_string_t \
-    afw_v__g__b2adc215_df63_4cb3_8e29_c4ff421f1710;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b2adc215_df63_4cb3_8e29_c4ff421f1710 */
-#define afw_z__g__b2adc215_df63_4cb3_8e29_c4ff421f1710 \
-    (afw_v__g__b2adc215_df63_4cb3_8e29_c4ff421f1710.internal.s)
-
-
-
-/** @brief define for quoted string _g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d */
-#define AFW_Q__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d \
-    "If response:console flag is set and response:console:stream is not set, this will have any output written to console."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d */
-#define afw_s__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d \
-    (afw_v__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d */
-extern const afw_value_string_t \
-    afw_v__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d */
-#define afw_z__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d \
-    (afw_v__g__b34e82c2_3dd1_4aa7_8f67_57e0b6f48c8d.internal.s)
-
-
-
-/** @brief define for quoted string _g__b38dd6c8_15e0_4346_a745_2c6210e0e44c */
-#define AFW_Q__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c \
-    "Use caution when setting this parameter to true. If this parameter is true, a decision of permit by this authorization handler will override a decision of deny by a previous authorization handler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c */
-#define afw_s__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c \
-    (afw_v__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c */
-extern const afw_value_string_t \
-    afw_v__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c */
-#define afw_z__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c \
-    (afw_v__g__b38dd6c8_15e0_4346_a745_2c6210e0e44c.internal.s)
-
-
-
-/** @brief define for quoted string _g__b4071746_6feb_4143_bd96_75306fb2d52e */
-#define AFW_Q__g__b4071746_6feb_4143_bd96_75306fb2d52e \
-    "Component type id is the object id for this Layout Component Type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b4071746_6feb_4143_bd96_75306fb2d52e */
-#define afw_s__g__b4071746_6feb_4143_bd96_75306fb2d52e \
-    (afw_v__g__b4071746_6feb_4143_bd96_75306fb2d52e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b4071746_6feb_4143_bd96_75306fb2d52e */
-extern const afw_value_string_t \
-    afw_v__g__b4071746_6feb_4143_bd96_75306fb2d52e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b4071746_6feb_4143_bd96_75306fb2d52e */
-#define afw_z__g__b4071746_6feb_4143_bd96_75306fb2d52e \
-    (afw_v__g__b4071746_6feb_4143_bd96_75306fb2d52e.internal.s)
-
-
-
-/** @brief define for quoted string _g__b4373367_7ab7_4734_9a98_a0ba1153b54d */
-#define AFW_Q__g__b4373367_7ab7_4734_9a98_a0ba1153b54d \
-    "These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b4373367_7ab7_4734_9a98_a0ba1153b54d */
-#define afw_s__g__b4373367_7ab7_4734_9a98_a0ba1153b54d \
-    (afw_v__g__b4373367_7ab7_4734_9a98_a0ba1153b54d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b4373367_7ab7_4734_9a98_a0ba1153b54d */
-extern const afw_value_string_t \
-    afw_v__g__b4373367_7ab7_4734_9a98_a0ba1153b54d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b4373367_7ab7_4734_9a98_a0ba1153b54d */
-#define afw_z__g__b4373367_7ab7_4734_9a98_a0ba1153b54d \
-    (afw_v__g__b4373367_7ab7_4734_9a98_a0ba1153b54d.internal.s)
-
-
-
-/** @brief define for quoted string _g__b4ce78ea_6135_4560_a843_f59b8f952cef */
-#define AFW_Q__g__b4ce78ea_6135_4560_a843_f59b8f952cef \
-    "This should only be used during Adaptive Framework core and extension development. It allows core object type instances to be written to the directory used by generate.py."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b4ce78ea_6135_4560_a843_f59b8f952cef */
-#define afw_s__g__b4ce78ea_6135_4560_a843_f59b8f952cef \
-    (afw_v__g__b4ce78ea_6135_4560_a843_f59b8f952cef.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b4ce78ea_6135_4560_a843_f59b8f952cef */
-extern const afw_value_string_t \
-    afw_v__g__b4ce78ea_6135_4560_a843_f59b8f952cef;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b4ce78ea_6135_4560_a843_f59b8f952cef */
-#define afw_z__g__b4ce78ea_6135_4560_a843_f59b8f952cef \
-    (afw_v__g__b4ce78ea_6135_4560_a843_f59b8f952cef.internal.s)
-
-
-
-/** @brief define for quoted string _g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 */
-#define AFW_Q__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 \
-    "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 */
-#define afw_s__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 \
-    (afw_v__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 */
-extern const afw_value_string_t \
-    afw_v__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 */
-#define afw_z__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822 \
-    (afw_v__g__b630f16a_b0a9_4a3a_8ec5_b5f3a2610822.internal.s)
-
-
-
-/** @brief define for quoted string _g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 */
-#define AFW_Q__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 \
-    "Service id. This is the type and type specific id property separated with a '-'. For example, for conf type=adaptor, adaptorId=x, the serviceId must be 'adaptor-x'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 */
-#define afw_s__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 \
-    (afw_v__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 */
-extern const afw_value_string_t \
-    afw_v__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 */
-#define afw_z__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219 \
-    (afw_v__g__b6694b82_2ba4_4103_bfb2_5deaa4fa5219.internal.s)
-
-
-
-/** @brief define for quoted string _g__b6984ffa_c613_4503_859e_6a50992fcf9b */
-#define AFW_Q__g__b6984ffa_c613_4503_859e_6a50992fcf9b \
-    "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b6984ffa_c613_4503_859e_6a50992fcf9b */
-#define afw_s__g__b6984ffa_c613_4503_859e_6a50992fcf9b \
-    (afw_v__g__b6984ffa_c613_4503_859e_6a50992fcf9b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b6984ffa_c613_4503_859e_6a50992fcf9b */
-extern const afw_value_string_t \
-    afw_v__g__b6984ffa_c613_4503_859e_6a50992fcf9b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b6984ffa_c613_4503_859e_6a50992fcf9b */
-#define afw_z__g__b6984ffa_c613_4503_859e_6a50992fcf9b \
-    (afw_v__g__b6984ffa_c613_4503_859e_6a50992fcf9b.internal.s)
-
-
-
-/** @brief define for quoted string _g__b6ac505b_6bb9_44fe_92ff_9fc601831738 */
-#define AFW_Q__g__b6ac505b_6bb9_44fe_92ff_9fc601831738 \
-    "This extension provides an adaptor for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b6ac505b_6bb9_44fe_92ff_9fc601831738 */
-#define afw_s__g__b6ac505b_6bb9_44fe_92ff_9fc601831738 \
-    (afw_v__g__b6ac505b_6bb9_44fe_92ff_9fc601831738.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b6ac505b_6bb9_44fe_92ff_9fc601831738 */
-extern const afw_value_string_t \
-    afw_v__g__b6ac505b_6bb9_44fe_92ff_9fc601831738;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b6ac505b_6bb9_44fe_92ff_9fc601831738 */
-#define afw_z__g__b6ac505b_6bb9_44fe_92ff_9fc601831738 \
-    (afw_v__g__b6ac505b_6bb9_44fe_92ff_9fc601831738.internal.s)
-
-
-
-/** @brief define for quoted string _g__b754eea3_0b79_407e_98c5_05425a21508f */
-#define AFW_Q__g__b754eea3_0b79_407e_98c5_05425a21508f \
-    "Indicates that dataType needs to be available to fully interpret json value"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b754eea3_0b79_407e_98c5_05425a21508f */
-#define afw_s__g__b754eea3_0b79_407e_98c5_05425a21508f \
-    (afw_v__g__b754eea3_0b79_407e_98c5_05425a21508f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b754eea3_0b79_407e_98c5_05425a21508f */
-extern const afw_value_string_t \
-    afw_v__g__b754eea3_0b79_407e_98c5_05425a21508f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b754eea3_0b79_407e_98c5_05425a21508f */
-#define afw_z__g__b754eea3_0b79_407e_98c5_05425a21508f \
-    (afw_v__g__b754eea3_0b79_407e_98c5_05425a21508f.internal.s)
-
-
-
-/** @brief define for quoted string _g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 */
-#define AFW_Q__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 \
-    "Function category that this function belongs to. Categories group similar functions together logically."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 */
-#define afw_s__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 \
-    (afw_v__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 */
-extern const afw_value_string_t \
-    afw_v__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 */
-#define afw_z__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04 \
-    (afw_v__g__b8a27c58_fc0b_4e3f_8f89_4b74bd116d04.internal.s)
-
-
-
-/** @brief define for quoted string _g__ba108d23_a809_4241_99ec_612ed47e18e2 */
-#define AFW_Q__g__ba108d23_a809_4241_99ec_612ed47e18e2 \
-    "The subtype runtime object type for instances of this conf type"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ba108d23_a809_4241_99ec_612ed47e18e2 */
-#define afw_s__g__ba108d23_a809_4241_99ec_612ed47e18e2 \
-    (afw_v__g__ba108d23_a809_4241_99ec_612ed47e18e2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ba108d23_a809_4241_99ec_612ed47e18e2 */
-extern const afw_value_string_t \
-    afw_v__g__ba108d23_a809_4241_99ec_612ed47e18e2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ba108d23_a809_4241_99ec_612ed47e18e2 */
-#define afw_z__g__ba108d23_a809_4241_99ec_612ed47e18e2 \
-    (afw_v__g__ba108d23_a809_4241_99ec_612ed47e18e2.internal.s)
-
-
-
-/** @brief define for quoted string _g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 */
-#define AFW_Q__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 \
-    "The UTF-8 octet source cursor that the parser at the time the syntax error occurred. This can be used as an offset into parserSource if it is available."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 */
-#define afw_s__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 \
-    (afw_v__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 */
-extern const afw_value_string_t \
-    afw_v__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 */
-#define afw_z__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1 \
-    (afw_v__g__bacee2f4_e41f_4b5d_8f0c_072a6b04cee1.internal.s)
-
-
-
-/** @brief define for quoted string _g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd */
-#define AFW_Q__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd \
-    "If the request has multiple actions, this is the number, starting with 1, of the action that caused the error."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd */
-#define afw_s__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd \
-    (afw_v__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd */
-extern const afw_value_string_t \
-    afw_v__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd */
-#define afw_z__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd \
-    (afw_v__g__bb20d2db_5af3_4679_9cc1_555ab2e6f3dd.internal.s)
-
-
-
-/** @brief define for quoted string _g__bb3f5437_cf98_462d_94d2_c23d70a2c441 */
-#define AFW_Q__g__bb3f5437_cf98_462d_94d2_c23d70a2c441 \
-    "This variable can be used as a flag to indicate whether the connection is secure; its values vary by server (e.g., 'ON' or 'on' when secure and blank or 'OFF' when not)."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bb3f5437_cf98_462d_94d2_c23d70a2c441 */
-#define afw_s__g__bb3f5437_cf98_462d_94d2_c23d70a2c441 \
-    (afw_v__g__bb3f5437_cf98_462d_94d2_c23d70a2c441.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bb3f5437_cf98_462d_94d2_c23d70a2c441 */
-extern const afw_value_string_t \
-    afw_v__g__bb3f5437_cf98_462d_94d2_c23d70a2c441;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bb3f5437_cf98_462d_94d2_c23d70a2c441 */
-#define afw_z__g__bb3f5437_cf98_462d_94d2_c23d70a2c441 \
-    (afw_v__g__bb3f5437_cf98_462d_94d2_c23d70a2c441.internal.s)
-
-
-
-/** @brief define for quoted string _g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e */
-#define AFW_Q__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e \
-    "See the data type's dataTypeParameterType property to determine how to interpret this."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e */
-#define afw_s__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e \
-    (afw_v__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e */
-extern const afw_value_string_t \
-    afw_v__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e */
-#define afw_z__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e \
-    (afw_v__g__bb5a9939_9faa_4e0e_8fbd_4ab5f1ce734e.internal.s)
-
-
-
-/** @brief define for quoted string _g__bc1e5e1f_9816_472a_b611_bcda37bad55e */
-#define AFW_Q__g__bc1e5e1f_9816_472a_b611_bcda37bad55e \
-    "*** EXPERIMENTAL *** This option indicates that a value's type information (valueType, dataType, and objectType) should be included with each value. See the content type to determines how this is represented."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bc1e5e1f_9816_472a_b611_bcda37bad55e */
-#define afw_s__g__bc1e5e1f_9816_472a_b611_bcda37bad55e \
-    (afw_v__g__bc1e5e1f_9816_472a_b611_bcda37bad55e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bc1e5e1f_9816_472a_b611_bcda37bad55e */
-extern const afw_value_string_t \
-    afw_v__g__bc1e5e1f_9816_472a_b611_bcda37bad55e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bc1e5e1f_9816_472a_b611_bcda37bad55e */
-#define afw_z__g__bc1e5e1f_9816_472a_b611_bcda37bad55e \
-    (afw_v__g__bc1e5e1f_9816_472a_b611_bcda37bad55e.internal.s)
-
-
-
-/** @brief define for quoted string _g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c */
-#define AFW_Q__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c \
-    "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c */
-#define afw_s__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c \
-    (afw_v__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c */
-extern const afw_value_string_t \
-    afw_v__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c */
-#define afw_z__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c \
-    (afw_v__g__bc4da4ff_f8b4_409f_acae_7ba9b79d0b4c.internal.s)
-
-
-
-/** @brief define for quoted string _g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 */
-#define AFW_Q__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 \
-    "This is the number of codepoints in the full source for the test script before this test's 'expect' begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 */
-#define afw_s__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 \
-    (afw_v__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 */
-extern const afw_value_string_t \
-    afw_v__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 */
-#define afw_z__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8 \
-    (afw_v__g__bc9d2150_22ee_4960_bcec_822bb38fb6e8.internal.s)
-
-
-
-/** @brief define for quoted string _g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d */
-#define AFW_Q__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d \
-    "This function will call the appropriate function when the first parameter is one of these data types."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d */
-#define afw_s__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d \
-    (afw_v__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d */
-extern const afw_value_string_t \
-    afw_v__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d */
-#define afw_z__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d \
-    (afw_v__g__bcbb9984_8fbc_46e2_b4c3_3ef53dbd4d3d.internal.s)
-
-
-
-/** @brief define for quoted string _g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 */
-#define AFW_Q__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 \
-    "This is a predicate for this value, with the first letter capitalized and without a trailing period."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 */
-#define afw_s__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 \
-    (afw_v__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 */
-extern const afw_value_string_t \
-    afw_v__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 */
-#define afw_z__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661 \
-    (afw_v__g__bcf9d8e5_4850_4cf3_9d84_8566f1899661.internal.s)
-
-
-
-/** @brief define for quoted string _g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 */
-#define AFW_Q__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 \
-    "This authorization mode is used for trusted internal code that does not generally require additional authorization."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 */
-#define afw_s__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 \
-    (afw_v__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 */
-extern const afw_value_string_t \
-    afw_v__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 */
-#define afw_z__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58 \
-    (afw_v__g__bcfbbf54_aaa9_4952_a98b_0dd260830c58.internal.s)
-
-
-
-/** @brief define for quoted string _g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa */
-#define AFW_Q__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa \
-    "All of the flags that include this flag. When setting flags in this array, this flag will also be set."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa */
-#define afw_s__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa \
-    (afw_v__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa */
-extern const afw_value_string_t \
-    afw_v__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa */
-#define afw_z__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa \
-    (afw_v__g__bd1eb851_f9ed_43e6_9f80_3d8a2eb507aa.internal.s)
-
-
-
-/** @brief define for quoted string _g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f */
-#define AFW_Q__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f \
-    "This is the object type of the runtime property of _AdaptiveValueMeta_."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f */
-#define afw_s__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f \
-    (afw_v__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f */
-extern const afw_value_string_t \
-    afw_v__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f */
-#define afw_z__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f \
-    (afw_v__g__becc9c62_bcd4_4051_86ae_6f9a7db7c95f.internal.s)
-
-
-
-/** @brief define for quoted string _g__bf930b89_b4ef_4c2a_850f_5294796f1c3c */
-#define AFW_Q__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c \
-    "The length of the data (in bytes) passed to the CGI program via standard input"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c */
-#define afw_s__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c \
-    (afw_v__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c */
-extern const afw_value_string_t \
-    afw_v__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c */
-#define afw_z__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c \
-    (afw_v__g__bf930b89_b4ef_4c2a_850f_5294796f1c3c.internal.s)
 
 
 
@@ -35057,978 +37397,6 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__c1d33c06_eee3_487d_aff4_ce211ada1fee */
-#define AFW_Q__g__c1d33c06_eee3_487d_aff4_ce211ada1fee \
-    "If false, objects of this type can NEVER be added via an adaptor. If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c1d33c06_eee3_487d_aff4_ce211ada1fee */
-#define afw_s__g__c1d33c06_eee3_487d_aff4_ce211ada1fee \
-    (afw_v__g__c1d33c06_eee3_487d_aff4_ce211ada1fee.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c1d33c06_eee3_487d_aff4_ce211ada1fee */
-extern const afw_value_string_t \
-    afw_v__g__c1d33c06_eee3_487d_aff4_ce211ada1fee;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c1d33c06_eee3_487d_aff4_ce211ada1fee */
-#define afw_z__g__c1d33c06_eee3_487d_aff4_ce211ada1fee \
-    (afw_v__g__c1d33c06_eee3_487d_aff4_ce211ada1fee.internal.s)
-
-
-
-/** @brief define for quoted string _g__c2932fbb_ed80_4cc2_89b2_20a241158d7e */
-#define AFW_Q__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e \
-    "This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e */
-#define afw_s__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e \
-    (afw_v__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e */
-extern const afw_value_string_t \
-    afw_v__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e */
-#define afw_z__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e \
-    (afw_v__g__c2932fbb_ed80_4cc2_89b2_20a241158d7e.internal.s)
-
-
-
-/** @brief define for quoted string _g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd */
-#define AFW_Q__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd \
-    "Contextual string added when this configuration object is processed"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd */
-#define afw_s__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd \
-    (afw_v__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd */
-extern const afw_value_string_t \
-    afw_v__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd */
-#define afw_z__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd \
-    (afw_v__g__c2c28f55_8d1b_4d7f_8fa6_6b4773f92edd.internal.s)
-
-
-
-/** @brief define for quoted string _g__c34340a4_9262_4e26_975d_7777a24059fd */
-#define AFW_Q__g__c34340a4_9262_4e26_975d_7777a24059fd \
-    "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::')."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c34340a4_9262_4e26_975d_7777a24059fd */
-#define afw_s__g__c34340a4_9262_4e26_975d_7777a24059fd \
-    (afw_v__g__c34340a4_9262_4e26_975d_7777a24059fd.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c34340a4_9262_4e26_975d_7777a24059fd */
-extern const afw_value_string_t \
-    afw_v__g__c34340a4_9262_4e26_975d_7777a24059fd;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c34340a4_9262_4e26_975d_7777a24059fd */
-#define afw_z__g__c34340a4_9262_4e26_975d_7777a24059fd \
-    (afw_v__g__c34340a4_9262_4e26_975d_7777a24059fd.internal.s)
-
-
-
-/** @brief define for quoted string _g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 */
-#define AFW_Q__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 \
-    "Object type level qualifier custom:: variables available to model expressions."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 */
-#define afw_s__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 \
-    (afw_v__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 */
-extern const afw_value_string_t \
-    afw_v__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 */
-#define afw_z__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9 \
-    (afw_v__g__c348c4ae_2ed4_490d_b4ed_651891a6daa9.internal.s)
-
-
-
-/** @brief define for quoted string _g__c3924c48_0ae9_4df3_b78d_e169710bba16 */
-#define AFW_Q__g__c3924c48_0ae9_4df3_b78d_e169710bba16 \
-    "Decoded query of URI. If query tokens contain percent encoded reserved characters, queryTokens should be used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c3924c48_0ae9_4df3_b78d_e169710bba16 */
-#define afw_s__g__c3924c48_0ae9_4df3_b78d_e169710bba16 \
-    (afw_v__g__c3924c48_0ae9_4df3_b78d_e169710bba16.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c3924c48_0ae9_4df3_b78d_e169710bba16 */
-extern const afw_value_string_t \
-    afw_v__g__c3924c48_0ae9_4df3_b78d_e169710bba16;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c3924c48_0ae9_4df3_b78d_e169710bba16 */
-#define afw_z__g__c3924c48_0ae9_4df3_b78d_e169710bba16 \
-    (afw_v__g__c3924c48_0ae9_4df3_b78d_e169710bba16.internal.s)
-
-
-
-/** @brief define for quoted string _g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 */
-#define AFW_Q__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 \
-    "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 */
-#define afw_s__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 \
-    (afw_v__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 */
-extern const afw_value_string_t \
-    afw_v__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 */
-#define afw_z__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48 \
-    (afw_v__g__c3aeff22_751d_49f4_a7f4_4ee6b0689f48.internal.s)
-
-
-
-/** @brief define for quoted string _g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 */
-#define AFW_Q__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 \
-    "Adaptive Framework configuration component for type=log logType=syslog. This log type is only available on Linux."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 */
-#define afw_s__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 \
-    (afw_v__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 */
-extern const afw_value_string_t \
-    afw_v__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 */
-#define afw_z__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784 \
-    (afw_v__g__c3bbb5cd_4c23_4470_9e27_2a695f2ea784.internal.s)
-
-
-
-/** @brief define for quoted string _g__c5015487_1786_4ea0_a6ea_6d562878bf07 */
-#define AFW_Q__g__c5015487_1786_4ea0_a6ea_6d562878bf07 \
-    "The object type for properties in the 'propertyTypes' property of an object's meta."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c5015487_1786_4ea0_a6ea_6d562878bf07 */
-#define afw_s__g__c5015487_1786_4ea0_a6ea_6d562878bf07 \
-    (afw_v__g__c5015487_1786_4ea0_a6ea_6d562878bf07.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c5015487_1786_4ea0_a6ea_6d562878bf07 */
-extern const afw_value_string_t \
-    afw_v__g__c5015487_1786_4ea0_a6ea_6d562878bf07;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c5015487_1786_4ea0_a6ea_6d562878bf07 */
-#define afw_z__g__c5015487_1786_4ea0_a6ea_6d562878bf07 \
-    (afw_v__g__c5015487_1786_4ea0_a6ea_6d562878bf07.internal.s)
-
-
-
-/** @brief define for quoted string _g__c535a713_2b6b_44da_bf56_54180c2bc005 */
-#define AFW_Q__g__c535a713_2b6b_44da_bf56_54180c2bc005 \
-    "Defines a Property Type within this Adaptive Model Object Type definition"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c535a713_2b6b_44da_bf56_54180c2bc005 */
-#define afw_s__g__c535a713_2b6b_44da_bf56_54180c2bc005 \
-    (afw_v__g__c535a713_2b6b_44da_bf56_54180c2bc005.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c535a713_2b6b_44da_bf56_54180c2bc005 */
-extern const afw_value_string_t \
-    afw_v__g__c535a713_2b6b_44da_bf56_54180c2bc005;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c535a713_2b6b_44da_bf56_54180c2bc005 */
-#define afw_z__g__c535a713_2b6b_44da_bf56_54180c2bc005 \
-    (afw_v__g__c535a713_2b6b_44da_bf56_54180c2bc005.internal.s)
-
-
-
-/** @brief define for quoted string _g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 */
-#define AFW_Q__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 \
-    "This is used to uniquely identify this particular authorization mode."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 */
-#define afw_s__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 \
-    (afw_v__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 */
-extern const afw_value_string_t \
-    afw_v__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 */
-#define afw_z__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044 \
-    (afw_v__g__c62362a9_ac5b_4ba8_a5d7_09136e99f044.internal.s)
-
-
-
-/** @brief define for quoted string _g__c65628b8_56b0_4aa9_a3f9_edb2650103db */
-#define AFW_Q__g__c65628b8_56b0_4aa9_a3f9_edb2650103db \
-    "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c65628b8_56b0_4aa9_a3f9_edb2650103db */
-#define afw_s__g__c65628b8_56b0_4aa9_a3f9_edb2650103db \
-    (afw_v__g__c65628b8_56b0_4aa9_a3f9_edb2650103db.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c65628b8_56b0_4aa9_a3f9_edb2650103db */
-extern const afw_value_string_t \
-    afw_v__g__c65628b8_56b0_4aa9_a3f9_edb2650103db;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c65628b8_56b0_4aa9_a3f9_edb2650103db */
-#define afw_z__g__c65628b8_56b0_4aa9_a3f9_edb2650103db \
-    (afw_v__g__c65628b8_56b0_4aa9_a3f9_edb2650103db.internal.s)
-
-
-
-/** @brief define for quoted string _g__c7d238fc_735a_428b_b627_255fe41f08d8 */
-#define AFW_Q__g__c7d238fc_735a_428b_b627_255fe41f08d8 \
-    "This is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c7d238fc_735a_428b_b627_255fe41f08d8 */
-#define afw_s__g__c7d238fc_735a_428b_b627_255fe41f08d8 \
-    (afw_v__g__c7d238fc_735a_428b_b627_255fe41f08d8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c7d238fc_735a_428b_b627_255fe41f08d8 */
-extern const afw_value_string_t \
-    afw_v__g__c7d238fc_735a_428b_b627_255fe41f08d8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c7d238fc_735a_428b_b627_255fe41f08d8 */
-#define afw_z__g__c7d238fc_735a_428b_b627_255fe41f08d8 \
-    (afw_v__g__c7d238fc_735a_428b_b627_255fe41f08d8.internal.s)
-
-
-
-/** @brief define for quoted string _g__c85837ea_f121_4e05_877b_e9e7f0a201b3 */
-#define AFW_Q__g__c85837ea_f121_4e05_877b_e9e7f0a201b3 \
-    "These are functions that compile, convert, decompile, and evaluated adaptive syntax."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c85837ea_f121_4e05_877b_e9e7f0a201b3 */
-#define afw_s__g__c85837ea_f121_4e05_877b_e9e7f0a201b3 \
-    (afw_v__g__c85837ea_f121_4e05_877b_e9e7f0a201b3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c85837ea_f121_4e05_877b_e9e7f0a201b3 */
-extern const afw_value_string_t \
-    afw_v__g__c85837ea_f121_4e05_877b_e9e7f0a201b3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c85837ea_f121_4e05_877b_e9e7f0a201b3 */
-#define afw_z__g__c85837ea_f121_4e05_877b_e9e7f0a201b3 \
-    (afw_v__g__c85837ea_f121_4e05_877b_e9e7f0a201b3.internal.s)
-
-
-
-/** @brief define for quoted string _g__c8b8b2cc_5729_48c7_9246_c33f23c07992 */
-#define AFW_Q__g__c8b8b2cc_5729_48c7_9246_c33f23c07992 \
-    "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c8b8b2cc_5729_48c7_9246_c33f23c07992 */
-#define afw_s__g__c8b8b2cc_5729_48c7_9246_c33f23c07992 \
-    (afw_v__g__c8b8b2cc_5729_48c7_9246_c33f23c07992.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c8b8b2cc_5729_48c7_9246_c33f23c07992 */
-extern const afw_value_string_t \
-    afw_v__g__c8b8b2cc_5729_48c7_9246_c33f23c07992;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c8b8b2cc_5729_48c7_9246_c33f23c07992 */
-#define afw_z__g__c8b8b2cc_5729_48c7_9246_c33f23c07992 \
-    (afw_v__g__c8b8b2cc_5729_48c7_9246_c33f23c07992.internal.s)
-
-
-
-/** @brief define for quoted string _g__c9797a50_5e20_4948_8af4_91cd6d675bf0 */
-#define AFW_Q__g__c9797a50_5e20_4948_8af4_91cd6d675bf0 \
-    "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c9797a50_5e20_4948_8af4_91cd6d675bf0 */
-#define afw_s__g__c9797a50_5e20_4948_8af4_91cd6d675bf0 \
-    (afw_v__g__c9797a50_5e20_4948_8af4_91cd6d675bf0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c9797a50_5e20_4948_8af4_91cd6d675bf0 */
-extern const afw_value_string_t \
-    afw_v__g__c9797a50_5e20_4948_8af4_91cd6d675bf0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c9797a50_5e20_4948_8af4_91cd6d675bf0 */
-#define afw_z__g__c9797a50_5e20_4948_8af4_91cd6d675bf0 \
-    (afw_v__g__c9797a50_5e20_4948_8af4_91cd6d675bf0.internal.s)
-
-
-
-/** @brief define for quoted string _g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 */
-#define AFW_Q__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 \
-    "The URI that adaptive framework considers the normalized form of the URI"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 */
-#define afw_s__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 \
-    (afw_v__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 */
-extern const afw_value_string_t \
-    afw_v__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 */
-#define afw_z__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9 \
-    (afw_v__g__c9c5c9b1_2452_4193_8dd3_4b90024d99b9.internal.s)
-
-
-
-/** @brief define for quoted string _g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 */
-#define AFW_Q__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 \
-    "The origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 */
-#define afw_s__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 \
-    (afw_v__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 */
-extern const afw_value_string_t \
-    afw_v__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 */
-#define afw_z__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8 \
-    (afw_v__g__ca287c4b_6aa9_49cc_bec3_28b55e2559c8.internal.s)
-
-
-
-/** @brief define for quoted string _g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 */
-#define AFW_Q__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 \
-    "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 */
-#define afw_s__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 \
-    (afw_v__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 */
-extern const afw_value_string_t \
-    afw_v__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 */
-#define afw_z__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09 \
-    (afw_v__g__ca5c78a2_894c_4bc7_9b2e_1625bcfd6d09.internal.s)
-
-
-
-/** @brief define for quoted string _g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 */
-#define AFW_Q__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 \
-    "An object whose properties contain the _AdaptiveValueMeta_ for properties with corresponding name in instances of this _AdaptiveObjectType_."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 */
-#define afw_s__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 \
-    (afw_v__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 */
-extern const afw_value_string_t \
-    afw_v__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 */
-#define afw_z__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821 \
-    (afw_v__g__cbbcd6f3_b52d_4cc4_b154_ab41ab1c8821.internal.s)
-
-
-
-/** @brief define for quoted string _g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 */
-#define AFW_Q__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 \
-    "This is the label in the C source of the execute function used for this function."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 */
-#define afw_s__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 \
-    (afw_v__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 */
-extern const afw_value_string_t \
-    afw_v__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 */
-#define afw_z__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935 \
-    (afw_v__g__cc0bfdc2_fe5c_4946_aa47_f1d78b174935.internal.s)
-
-
-
-/** @brief define for quoted string _g__cd135040_9d92_4211_939e_d40a49251d69 */
-#define AFW_Q__g__cd135040_9d92_4211_939e_d40a49251d69 \
-    "The remote IP address of the client making the request; this could be the address of an HTTP proxy between the server and the user."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cd135040_9d92_4211_939e_d40a49251d69 */
-#define afw_s__g__cd135040_9d92_4211_939e_d40a49251d69 \
-    (afw_v__g__cd135040_9d92_4211_939e_d40a49251d69.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cd135040_9d92_4211_939e_d40a49251d69 */
-extern const afw_value_string_t \
-    afw_v__g__cd135040_9d92_4211_939e_d40a49251d69;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cd135040_9d92_4211_939e_d40a49251d69 */
-#define afw_z__g__cd135040_9d92_4211_939e_d40a49251d69 \
-    (afw_v__g__cd135040_9d92_4211_939e_d40a49251d69.internal.s)
-
-
-
-/** @brief define for quoted string _g__cd7afa1c_b381_4e23_a272_445a4deb293f */
-#define AFW_Q__g__cd7afa1c_b381_4e23_a272_445a4deb293f \
-    "This controls how authorization checking occurs in an Adaptive Framework application."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cd7afa1c_b381_4e23_a272_445a4deb293f */
-#define afw_s__g__cd7afa1c_b381_4e23_a272_445a4deb293f \
-    (afw_v__g__cd7afa1c_b381_4e23_a272_445a4deb293f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cd7afa1c_b381_4e23_a272_445a4deb293f */
-extern const afw_value_string_t \
-    afw_v__g__cd7afa1c_b381_4e23_a272_445a4deb293f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cd7afa1c_b381_4e23_a272_445a4deb293f */
-#define afw_z__g__cd7afa1c_b381_4e23_a272_445a4deb293f \
-    (afw_v__g__cd7afa1c_b381_4e23_a272_445a4deb293f.internal.s)
-
-
-
-/** @brief define for quoted string _g__ce1c5b3b_80df_4000_88aa_9fec0825323b */
-#define AFW_Q__g__ce1c5b3b_80df_4000_88aa_9fec0825323b \
-    "If false, objects of this type can NEVER be changed via an adaptor. If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ce1c5b3b_80df_4000_88aa_9fec0825323b */
-#define afw_s__g__ce1c5b3b_80df_4000_88aa_9fec0825323b \
-    (afw_v__g__ce1c5b3b_80df_4000_88aa_9fec0825323b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ce1c5b3b_80df_4000_88aa_9fec0825323b */
-extern const afw_value_string_t \
-    afw_v__g__ce1c5b3b_80df_4000_88aa_9fec0825323b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ce1c5b3b_80df_4000_88aa_9fec0825323b */
-#define afw_z__g__ce1c5b3b_80df_4000_88aa_9fec0825323b \
-    (afw_v__g__ce1c5b3b_80df_4000_88aa_9fec0825323b.internal.s)
-
-
-
-/** @brief define for quoted string _g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 */
-#define AFW_Q__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 \
-    "Indicates that the inheritedFrom property in meta propertyTypes.<propertyName>, where <propertyName> is the associated property name, should be set. This option is ignored unless composite option is also set."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 */
-#define afw_s__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 \
-    (afw_v__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 */
-extern const afw_value_string_t \
-    afw_v__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 */
-#define afw_z__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0 \
-    (afw_v__g__ce2151c9_b47b_4f82_84ee_1ad24995e4b0.internal.s)
-
-
-
-/** @brief define for quoted string _g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 */
-#define AFW_Q__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 \
-    "Default object options for method GET requests through this request handler"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 */
-#define afw_s__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 \
-    (afw_v__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 */
-extern const afw_value_string_t \
-    afw_v__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 */
-#define afw_z__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473 \
-    (afw_v__g__cea47ecf_e7de_42b2_ab73_d75f88b2f473.internal.s)
-
-
-
-/** @brief define for quoted string _g__ceddbaee_6b36_4044_87a2_470f7549421c */
-#define AFW_Q__g__ceddbaee_6b36_4044_87a2_470f7549421c \
-    "This is a runtime property that is the implementation id of the value interface."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ceddbaee_6b36_4044_87a2_470f7549421c */
-#define afw_s__g__ceddbaee_6b36_4044_87a2_470f7549421c \
-    (afw_v__g__ceddbaee_6b36_4044_87a2_470f7549421c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ceddbaee_6b36_4044_87a2_470f7549421c */
-extern const afw_value_string_t \
-    afw_v__g__ceddbaee_6b36_4044_87a2_470f7549421c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ceddbaee_6b36_4044_87a2_470f7549421c */
-#define afw_z__g__ceddbaee_6b36_4044_87a2_470f7549421c \
-    (afw_v__g__ceddbaee_6b36_4044_87a2_470f7549421c.internal.s)
-
-
-
-/** @brief define for quoted string _g__cefe64d9_28e7_4bab_a51c_edf4b1116bea */
-#define AFW_Q__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea \
-    "These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea */
-#define afw_s__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea \
-    (afw_v__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea */
-extern const afw_value_string_t \
-    afw_v__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea */
-#define afw_z__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea \
-    (afw_v__g__cefe64d9_28e7_4bab_a51c_edf4b1116bea.internal.s)
-
-
-
-/** @brief define for quoted string _g__cf441089_f374_498a_925c_8b58bf885847 */
-#define AFW_Q__g__cf441089_f374_498a_925c_8b58bf885847 \
-    "This is the maximum number of parameters or -1 if there is no maximum."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__cf441089_f374_498a_925c_8b58bf885847 */
-#define afw_s__g__cf441089_f374_498a_925c_8b58bf885847 \
-    (afw_v__g__cf441089_f374_498a_925c_8b58bf885847.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__cf441089_f374_498a_925c_8b58bf885847 */
-extern const afw_value_string_t \
-    afw_v__g__cf441089_f374_498a_925c_8b58bf885847;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__cf441089_f374_498a_925c_8b58bf885847 */
-#define afw_z__g__cf441089_f374_498a_925c_8b58bf885847 \
-    (afw_v__g__cf441089_f374_498a_925c_8b58bf885847.internal.s)
-
-
-
-/** @brief define for quoted string _g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 */
-#define AFW_Q__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 \
-    "When presented with multiple model adaptors, this is the default adaptorId to use. This will be the default selected adaptor chosen by user interface components."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 */
-#define afw_s__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 \
-    (afw_v__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 */
-extern const afw_value_string_t \
-    afw_v__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 */
-#define afw_z__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50 \
-    (afw_v__g__d1ebb9e6_fc31_4b41_b207_965aa01c1d50.internal.s)
-
-
-
-/** @brief define for quoted string _g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 */
-#define AFW_Q__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 \
-    "The remote hostname of the client making the request; this could also be the name of an HTTP proxy between the server and the user."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 */
-#define afw_s__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 \
-    (afw_v__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 */
-extern const afw_value_string_t \
-    afw_v__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 */
-#define afw_z__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5 \
-    (afw_v__g__d2063a75_91b7_46c6_ac3d_0c7e91fe0de5.internal.s)
-
-
-
-/** @brief define for quoted string _g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 */
-#define AFW_Q__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 \
-    "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 */
-#define afw_s__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 \
-    (afw_v__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 */
-extern const afw_value_string_t \
-    afw_v__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 */
-#define afw_z__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929 \
-    (afw_v__g__d239a9c1_9bab_4b9c_ad0d_cc32818e7929.internal.s)
-
-
-
-/** @brief define for quoted string _g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a */
-#define AFW_Q__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a \
-    "(\\n    object mappedObject /* Object to map back. */\\n): object /* Mapped back object */"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a */
-#define afw_s__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a \
-    (afw_v__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a */
-extern const afw_value_string_t \
-    afw_v__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a */
-#define afw_z__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a \
-    (afw_v__g__d2ab0a47_e52f_42c5_b5e9_ba817ad6091a.internal.s)
-
-
-
-/** @brief define for quoted string _g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc */
-#define AFW_Q__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc \
-    "Template to determine whether to allow access to the specified resourceId and/or object"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc */
-#define afw_s__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc \
-    (afw_v__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc */
-extern const afw_value_string_t \
-    afw_v__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc */
-#define afw_z__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc \
-    (afw_v__g__d2bcda4a_9b8b_48ea_9c37_59fadb7009bc.internal.s)
-
-
-
-/** @brief define for quoted string _g__d4541a03_522e_40c1_91a2_84acc28eefce */
-#define AFW_Q__g__d4541a03_522e_40c1_91a2_84acc28eefce \
-    "An Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d4541a03_522e_40c1_91a2_84acc28eefce */
-#define afw_s__g__d4541a03_522e_40c1_91a2_84acc28eefce \
-    (afw_v__g__d4541a03_522e_40c1_91a2_84acc28eefce.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d4541a03_522e_40c1_91a2_84acc28eefce */
-extern const afw_value_string_t \
-    afw_v__g__d4541a03_522e_40c1_91a2_84acc28eefce;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d4541a03_522e_40c1_91a2_84acc28eefce */
-#define afw_z__g__d4541a03_522e_40c1_91a2_84acc28eefce \
-    (afw_v__g__d4541a03_522e_40c1_91a2_84acc28eefce.internal.s)
-
-
-
-/** @brief define for quoted string _g__d557128a_e53c_43cc_884c_7b1a913962c5 */
-#define AFW_Q__g__d557128a_e53c_43cc_884c_7b1a913962c5 \
-    "This is the key for this lock in registry type flag and the objectId of its _AdaptiveLock_ runtime object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d557128a_e53c_43cc_884c_7b1a913962c5 */
-#define afw_s__g__d557128a_e53c_43cc_884c_7b1a913962c5 \
-    (afw_v__g__d557128a_e53c_43cc_884c_7b1a913962c5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d557128a_e53c_43cc_884c_7b1a913962c5 */
-extern const afw_value_string_t \
-    afw_v__g__d557128a_e53c_43cc_884c_7b1a913962c5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d557128a_e53c_43cc_884c_7b1a913962c5 */
-#define afw_z__g__d557128a_e53c_43cc_884c_7b1a913962c5 \
-    (afw_v__g__d557128a_e53c_43cc_884c_7b1a913962c5.internal.s)
-
-
-
-/** @brief define for quoted string _g__d5937612_b53b_4481_b285_e41162876af8 */
-#define AFW_Q__g__d5937612_b53b_4481_b285_e41162876af8 \
-    "These functions access adaptive objects via an Adaptive Framework adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d5937612_b53b_4481_b285_e41162876af8 */
-#define afw_s__g__d5937612_b53b_4481_b285_e41162876af8 \
-    (afw_v__g__d5937612_b53b_4481_b285_e41162876af8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d5937612_b53b_4481_b285_e41162876af8 */
-extern const afw_value_string_t \
-    afw_v__g__d5937612_b53b_4481_b285_e41162876af8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d5937612_b53b_4481_b285_e41162876af8 */
-#define afw_z__g__d5937612_b53b_4481_b285_e41162876af8 \
-    (afw_v__g__d5937612_b53b_4481_b285_e41162876af8.internal.s)
-
-
-
-/** @brief define for quoted string _g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 */
-#define AFW_Q__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 \
-    "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 */
-#define afw_s__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 \
-    (afw_v__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 */
-extern const afw_value_string_t \
-    afw_v__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 */
-#define afw_z__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3 \
-    (afw_v__g__d5f232f0_58d9_48a5_a5b7_d497aa18b5c3.internal.s)
-
-
-
-/** @brief define for quoted string _g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd */
-#define AFW_Q__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd \
-    "This is the id of an adaptor that provides journal service for this adaptor. This can be this adaptor's own id or a previously defined adaptor's id. If not specified, no journaling will be performed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd */
-#define afw_s__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd \
-    (afw_v__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd */
-extern const afw_value_string_t \
-    afw_v__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd */
-#define afw_z__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd \
-    (afw_v__g__d6a3075a_a50c_4300_b394_fe7cf73ecfcd.internal.s)
-
-
-
-/** @brief define for quoted string _g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e */
-#define AFW_Q__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e \
-    "Adaptive Framework configuration component for type=application. There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e */
-#define afw_s__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e \
-    (afw_v__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e */
-extern const afw_value_string_t \
-    afw_v__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e */
-#define afw_z__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e \
-    (afw_v__g__d6a6764f_dda4_45fa_8554_e76a3bccfc7e.internal.s)
-
-
-
-/** @brief define for quoted string _g__d6c42f04_aa75_4f44_b430_a4108e9f9813 */
-#define AFW_Q__g__d6c42f04_aa75_4f44_b430_a4108e9f9813 \
-    "This is the current cursor being consumed. This property only exists between a get_entry() option next_for_consumer and the corresponding mark_entry_consumed(). If this property exists, it should have exactly the same value as property cursorCurrent. Anything else is and error."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d6c42f04_aa75_4f44_b430_a4108e9f9813 */
-#define afw_s__g__d6c42f04_aa75_4f44_b430_a4108e9f9813 \
-    (afw_v__g__d6c42f04_aa75_4f44_b430_a4108e9f9813.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d6c42f04_aa75_4f44_b430_a4108e9f9813 */
-extern const afw_value_string_t \
-    afw_v__g__d6c42f04_aa75_4f44_b430_a4108e9f9813;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d6c42f04_aa75_4f44_b430_a4108e9f9813 */
-#define afw_z__g__d6c42f04_aa75_4f44_b430_a4108e9f9813 \
-    (afw_v__g__d6c42f04_aa75_4f44_b430_a4108e9f9813.internal.s)
-
-
-
-/** @brief define for quoted string _g__d75dd34b_c0b2_4893_83dc_31266386ad0e */
-#define AFW_Q__g__d75dd34b_c0b2_4893_83dc_31266386ad0e \
-    "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d75dd34b_c0b2_4893_83dc_31266386ad0e */
-#define afw_s__g__d75dd34b_c0b2_4893_83dc_31266386ad0e \
-    (afw_v__g__d75dd34b_c0b2_4893_83dc_31266386ad0e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d75dd34b_c0b2_4893_83dc_31266386ad0e */
-extern const afw_value_string_t \
-    afw_v__g__d75dd34b_c0b2_4893_83dc_31266386ad0e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d75dd34b_c0b2_4893_83dc_31266386ad0e */
-#define afw_z__g__d75dd34b_c0b2_4893_83dc_31266386ad0e \
-    (afw_v__g__d75dd34b_c0b2_4893_83dc_31266386ad0e.internal.s)
-
-
-
-/** @brief define for quoted string _g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b */
-#define AFW_Q__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b \
-    "This indicates that parameter is optional and can be undefined (NULL)."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b */
-#define afw_s__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b \
-    (afw_v__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b */
-extern const afw_value_string_t \
-    afw_v__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b */
-#define afw_z__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b \
-    (afw_v__g__d8039827_9f56_4ac1_9f14_3f0f71c1ae4b.internal.s)
-
-
-
-/** @brief define for quoted string _g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 */
-#define AFW_Q__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 \
-    "This is meta for a decisionId property value of _AdaptiveAuthorizationResult_."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 */
-#define afw_s__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 \
-    (afw_v__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 */
-extern const afw_value_string_t \
-    afw_v__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 */
-#define afw_z__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48 \
-    (afw_v__g__d80bb12d_dc17_4e50_a67c_c6b82db48f48.internal.s)
-
-
-
-/** @brief define for quoted string _g__d9737803_b4a8_4a27_bfc9_5fa20c08127c */
-#define AFW_Q__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c \
-    "The authentication method used to validate a user. This is blank if the request did not require authentication."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c */
-#define afw_s__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c \
-    (afw_v__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c */
-extern const afw_value_string_t \
-    afw_v__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c */
-#define afw_z__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c \
-    (afw_v__g__d9737803_b4a8_4a27_bfc9_5fa20c08127c.internal.s)
-
-
-
-/** @brief define for quoted string _g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 */
-#define AFW_Q__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 \
-    "This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 */
-#define afw_s__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 \
-    (afw_v__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 */
-extern const afw_value_string_t \
-    afw_v__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 */
-#define afw_z__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4 \
-    (afw_v__g__dab21ad1_4ed5_41a6_9a38_29f7740f93f4.internal.s)
-
-
-
-/** @brief define for quoted string _g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 */
-#define AFW_Q__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 \
-    "The name of the property in an instance that is used as the 'objectId' property in the meta for instances of this object type. If not specified, the internal adaptor objectId for an object is used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 */
-#define afw_s__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 \
-    (afw_v__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 */
-extern const afw_value_string_t \
-    afw_v__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 */
-#define afw_z__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50 \
-    (afw_v__g__dafc2ee6_e722_4799_9bc8_dd363aaf8c50.internal.s)
-
-
-
-/** @brief define for quoted string _g__db304bf8_83fd_4f4c_9501_e28edf6551ad */
-#define AFW_Q__g__db304bf8_83fd_4f4c_9501_e28edf6551ad \
-    "This is a URL encoded RQL string. This parameter is mutually exclusive with all other properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__db304bf8_83fd_4f4c_9501_e28edf6551ad */
-#define afw_s__g__db304bf8_83fd_4f4c_9501_e28edf6551ad \
-    (afw_v__g__db304bf8_83fd_4f4c_9501_e28edf6551ad.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__db304bf8_83fd_4f4c_9501_e28edf6551ad */
-extern const afw_value_string_t \
-    afw_v__g__db304bf8_83fd_4f4c_9501_e28edf6551ad;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__db304bf8_83fd_4f4c_9501_e28edf6551ad */
-#define afw_z__g__db304bf8_83fd_4f4c_9501_e28edf6551ad \
-    (afw_v__g__db304bf8_83fd_4f4c_9501_e28edf6551ad.internal.s)
-
-
-
-/** @brief define for quoted string _g__db4707ef_a9a3_466c_8323_9cf33d3ba262 */
-#define AFW_Q__g__db4707ef_a9a3_466c_8323_9cf33d3ba262 \
-    "If true, this authorization handler must be running to make an authorization decision if not running in core mode and if initialAuthorizationCheck did not make a decision."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__db4707ef_a9a3_466c_8323_9cf33d3ba262 */
-#define afw_s__g__db4707ef_a9a3_466c_8323_9cf33d3ba262 \
-    (afw_v__g__db4707ef_a9a3_466c_8323_9cf33d3ba262.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__db4707ef_a9a3_466c_8323_9cf33d3ba262 */
-extern const afw_value_string_t \
-    afw_v__g__db4707ef_a9a3_466c_8323_9cf33d3ba262;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__db4707ef_a9a3_466c_8323_9cf33d3ba262 */
-#define afw_z__g__db4707ef_a9a3_466c_8323_9cf33d3ba262 \
-    (afw_v__g__db4707ef_a9a3_466c_8323_9cf33d3ba262.internal.s)
-
-
-
-/** @brief define for quoted string _g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 */
-#define AFW_Q__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 \
-    "This can be specified to override default add_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onAddObject was not specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 */
-#define afw_s__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 \
-    (afw_v__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 */
-extern const afw_value_string_t \
-    afw_v__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 */
-#define afw_z__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824 \
-    (afw_v__g__dbc3fa19_ef22_41a7_96b9_dd23942d4824.internal.s)
-
-
-
-/** @brief define for quoted string _g__dd171534_b2ef_47f8_983d_919ef2788cef */
-#define AFW_Q__g__dd171534_b2ef_47f8_983d_919ef2788cef \
-    "This overrides the largeIntegersAsString option. If neither the integersAsString or large_integer_as_string is specified, integers will remain integers. If this option is specified, all data type integer values will be converted to the string data type.\\n\\nThis options is useful if a content type is used that represents integers as double (floating point) values."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__dd171534_b2ef_47f8_983d_919ef2788cef */
-#define afw_s__g__dd171534_b2ef_47f8_983d_919ef2788cef \
-    (afw_v__g__dd171534_b2ef_47f8_983d_919ef2788cef.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__dd171534_b2ef_47f8_983d_919ef2788cef */
-extern const afw_value_string_t \
-    afw_v__g__dd171534_b2ef_47f8_983d_919ef2788cef;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__dd171534_b2ef_47f8_983d_919ef2788cef */
-#define afw_z__g__dd171534_b2ef_47f8_983d_919ef2788cef \
-    (afw_v__g__dd171534_b2ef_47f8_983d_919ef2788cef.internal.s)
-
-
-
-/** @brief define for quoted string _g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 */
-#define AFW_Q__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 \
-    "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 */
-#define afw_s__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 \
-    (afw_v__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 */
-extern const afw_value_string_t \
-    afw_v__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 */
-#define afw_z__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1 \
-    (afw_v__g__dd8157e3_1353_4d0a_ae72_b292fefb5ea1.internal.s)
-
-
-
-/** @brief define for quoted string _g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d */
-#define AFW_Q__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d \
-    "This is the type for this adaptor. It will create a registered adaptor_type string, from which adaptor instances will created from."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d */
-#define afw_s__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d \
-    (afw_v__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d */
-extern const afw_value_string_t \
-    afw_v__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d */
-#define afw_z__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d \
-    (afw_v__g__ddce27fa_9313_4ceb_a6ea_1c780a9da30d.internal.s)
-
-
-
-/** @brief define for quoted string _g__de4042f0_444d_4a32_8b64_6bee234eb521 */
-#define AFW_Q__g__de4042f0_444d_4a32_8b64_6bee234eb521 \
-    "This is the label in C source of the afw_value_get_evaluated_meta for this data type."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__de4042f0_444d_4a32_8b64_6bee234eb521 */
-#define afw_s__g__de4042f0_444d_4a32_8b64_6bee234eb521 \
-    (afw_v__g__de4042f0_444d_4a32_8b64_6bee234eb521.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__de4042f0_444d_4a32_8b64_6bee234eb521 */
-extern const afw_value_string_t \
-    afw_v__g__de4042f0_444d_4a32_8b64_6bee234eb521;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__de4042f0_444d_4a32_8b64_6bee234eb521 */
-#define afw_z__g__de4042f0_444d_4a32_8b64_6bee234eb521 \
-    (afw_v__g__de4042f0_444d_4a32_8b64_6bee234eb521.internal.s)
-
-
-
 /** @brief define for quoted string _g__description_ */
 #define AFW_Q__g__description_ \
     "description:"
@@ -36047,834 +37415,6 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__df3b24f5_16e1_4405_8e47_e29f68c1a471 */
-#define AFW_Q__g__df3b24f5_16e1_4405_8e47_e29f68c1a471 \
-    "This is an array of the names of properties to include in result. If not specified, all properties are returned."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__df3b24f5_16e1_4405_8e47_e29f68c1a471 */
-#define afw_s__g__df3b24f5_16e1_4405_8e47_e29f68c1a471 \
-    (afw_v__g__df3b24f5_16e1_4405_8e47_e29f68c1a471.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__df3b24f5_16e1_4405_8e47_e29f68c1a471 */
-extern const afw_value_string_t \
-    afw_v__g__df3b24f5_16e1_4405_8e47_e29f68c1a471;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__df3b24f5_16e1_4405_8e47_e29f68c1a471 */
-#define afw_z__g__df3b24f5_16e1_4405_8e47_e29f68c1a471 \
-    (afw_v__g__df3b24f5_16e1_4405_8e47_e29f68c1a471.internal.s)
-
-
-
-/** @brief define for quoted string _g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 */
-#define AFW_Q__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 \
-    "The URL of the document that directed the user to this CGI program (e.g., via a hyperlink or via a form)."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 */
-#define afw_s__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 \
-    (afw_v__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 */
-extern const afw_value_string_t \
-    afw_v__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 */
-#define afw_z__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796 \
-    (afw_v__g__e00251b8_6d0f_4ef8_bc61_c4cdcce65796.internal.s)
-
-
-
-/** @brief define for quoted string _g__e05e4e87_6fde_440d_947b_1309857a151c */
-#define AFW_Q__g__e05e4e87_6fde_440d_947b_1309857a151c \
-    "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e05e4e87_6fde_440d_947b_1309857a151c */
-#define afw_s__g__e05e4e87_6fde_440d_947b_1309857a151c \
-    (afw_v__g__e05e4e87_6fde_440d_947b_1309857a151c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e05e4e87_6fde_440d_947b_1309857a151c */
-extern const afw_value_string_t \
-    afw_v__g__e05e4e87_6fde_440d_947b_1309857a151c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e05e4e87_6fde_440d_947b_1309857a151c */
-#define afw_z__g__e05e4e87_6fde_440d_947b_1309857a151c \
-    (afw_v__g__e05e4e87_6fde_440d_947b_1309857a151c.internal.s)
-
-
-
-/** @brief define for quoted string _g__e0a91ad4_4120_419b_b6b5_d09cde973db8 */
-#define AFW_Q__g__e0a91ad4_4120_419b_b6b5_d09cde973db8 \
-    "Indicates that objectType property should be included in the meta for entity and embedded objects, if assigned."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e0a91ad4_4120_419b_b6b5_d09cde973db8 */
-#define afw_s__g__e0a91ad4_4120_419b_b6b5_d09cde973db8 \
-    (afw_v__g__e0a91ad4_4120_419b_b6b5_d09cde973db8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e0a91ad4_4120_419b_b6b5_d09cde973db8 */
-extern const afw_value_string_t \
-    afw_v__g__e0a91ad4_4120_419b_b6b5_d09cde973db8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e0a91ad4_4120_419b_b6b5_d09cde973db8 */
-#define afw_z__g__e0a91ad4_4120_419b_b6b5_d09cde973db8 \
-    (afw_v__g__e0a91ad4_4120_419b_b6b5_d09cde973db8.internal.s)
-
-
-
-/** @brief define for quoted string _g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 */
-#define AFW_Q__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 \
-    "This is the object type of the runtime property of _AdaptiveObjectType_."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 */
-#define afw_s__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 \
-    (afw_v__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 */
-extern const afw_value_string_t \
-    afw_v__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 */
-#define afw_z__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0 \
-    (afw_v__g__e0bd79ae_5fcd_4efe_81a8_0503366530b0.internal.s)
-
-
-
-/** @brief define for quoted string _g__e110d54b_47d8_4b2c_9857_73d72c22c79c */
-#define AFW_Q__g__e110d54b_47d8_4b2c_9857_73d72c22c79c \
-    "Property type objects that can be inherited by propertyTypes in objectTypes"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e110d54b_47d8_4b2c_9857_73d72c22c79c */
-#define afw_s__g__e110d54b_47d8_4b2c_9857_73d72c22c79c \
-    (afw_v__g__e110d54b_47d8_4b2c_9857_73d72c22c79c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e110d54b_47d8_4b2c_9857_73d72c22c79c */
-extern const afw_value_string_t \
-    afw_v__g__e110d54b_47d8_4b2c_9857_73d72c22c79c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e110d54b_47d8_4b2c_9857_73d72c22c79c */
-#define afw_z__g__e110d54b_47d8_4b2c_9857_73d72c22c79c \
-    (afw_v__g__e110d54b_47d8_4b2c_9857_73d72c22c79c.internal.s)
-
-
-
-/** @brief define for quoted string _g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a */
-#define AFW_Q__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a \
-    "This is the associated object's direct parent paths before they were resolved by object option composite."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a */
-#define afw_s__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a \
-    (afw_v__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a */
-extern const afw_value_string_t \
-    afw_v__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a */
-#define afw_z__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a \
-    (afw_v__g__e14a54a1_f5a2_4883_b11c_e3ef38d88f9a.internal.s)
-
-
-
-/** @brief define for quoted string _g__e201679f_cb70_4de5_9b59_27a6ec516123 */
-#define AFW_Q__g__e201679f_cb70_4de5_9b59_27a6ec516123 \
-    "Result status. If this value is 'error', see property 'error' for more detail. This property will not exist for intermediate response objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e201679f_cb70_4de5_9b59_27a6ec516123 */
-#define afw_s__g__e201679f_cb70_4de5_9b59_27a6ec516123 \
-    (afw_v__g__e201679f_cb70_4de5_9b59_27a6ec516123.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e201679f_cb70_4de5_9b59_27a6ec516123 */
-extern const afw_value_string_t \
-    afw_v__g__e201679f_cb70_4de5_9b59_27a6ec516123;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e201679f_cb70_4de5_9b59_27a6ec516123 */
-#define afw_z__g__e201679f_cb70_4de5_9b59_27a6ec516123 \
-    (afw_v__g__e201679f_cb70_4de5_9b59_27a6ec516123.internal.s)
-
-
-
-/** @brief define for quoted string _g__e28a601e_8797_45c0_870a_58b83c7c75e2 */
-#define AFW_Q__g__e28a601e_8797_45c0_870a_58b83c7c75e2 \
-    "This object type used for qualifier definitions where each property is a _AdaptivePropertyTypes_ object with a qualifier id as a property name."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e28a601e_8797_45c0_870a_58b83c7c75e2 */
-#define afw_s__g__e28a601e_8797_45c0_870a_58b83c7c75e2 \
-    (afw_v__g__e28a601e_8797_45c0_870a_58b83c7c75e2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e28a601e_8797_45c0_870a_58b83c7c75e2 */
-extern const afw_value_string_t \
-    afw_v__g__e28a601e_8797_45c0_870a_58b83c7c75e2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e28a601e_8797_45c0_870a_58b83c7c75e2 */
-#define afw_z__g__e28a601e_8797_45c0_870a_58b83c7c75e2 \
-    (afw_v__g__e28a601e_8797_45c0_870a_58b83c7c75e2.internal.s)
-
-
-
-/** @brief define for quoted string _g__e2c301e9_de65_41b6_b36d_f17c9896184d */
-#define AFW_Q__g__e2c301e9_de65_41b6_b36d_f17c9896184d \
-    "These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e2c301e9_de65_41b6_b36d_f17c9896184d */
-#define afw_s__g__e2c301e9_de65_41b6_b36d_f17c9896184d \
-    (afw_v__g__e2c301e9_de65_41b6_b36d_f17c9896184d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e2c301e9_de65_41b6_b36d_f17c9896184d */
-extern const afw_value_string_t \
-    afw_v__g__e2c301e9_de65_41b6_b36d_f17c9896184d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e2c301e9_de65_41b6_b36d_f17c9896184d */
-#define afw_z__g__e2c301e9_de65_41b6_b36d_f17c9896184d \
-    (afw_v__g__e2c301e9_de65_41b6_b36d_f17c9896184d.internal.s)
-
-
-
-/** @brief define for quoted string _g__e30193b1_66ef_4c28_b715_cb00d889206c */
-#define AFW_Q__g__e30193b1_66ef_4c28_b715_cb00d889206c \
-    "List of default flags to be set when an execution context (xctx) is created."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e30193b1_66ef_4c28_b715_cb00d889206c */
-#define afw_s__g__e30193b1_66ef_4c28_b715_cb00d889206c \
-    (afw_v__g__e30193b1_66ef_4c28_b715_cb00d889206c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e30193b1_66ef_4c28_b715_cb00d889206c */
-extern const afw_value_string_t \
-    afw_v__g__e30193b1_66ef_4c28_b715_cb00d889206c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e30193b1_66ef_4c28_b715_cb00d889206c */
-#define afw_z__g__e30193b1_66ef_4c28_b715_cb00d889206c \
-    (afw_v__g__e30193b1_66ef_4c28_b715_cb00d889206c.internal.s)
-
-
-
-/** @brief define for quoted string _g__e34e37e9_9de1_4665_8197_eb5821d3e13f */
-#define AFW_Q__g__e34e37e9_9de1_4665_8197_eb5821d3e13f \
-    "Indicates that the objectTypes property should be added to the meta of the entity containing a property of each object type used by the entity and all of its embedded objects. This option implies normalize."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e34e37e9_9de1_4665_8197_eb5821d3e13f */
-#define afw_s__g__e34e37e9_9de1_4665_8197_eb5821d3e13f \
-    (afw_v__g__e34e37e9_9de1_4665_8197_eb5821d3e13f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e34e37e9_9de1_4665_8197_eb5821d3e13f */
-extern const afw_value_string_t \
-    afw_v__g__e34e37e9_9de1_4665_8197_eb5821d3e13f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e34e37e9_9de1_4665_8197_eb5821d3e13f */
-#define afw_z__g__e34e37e9_9de1_4665_8197_eb5821d3e13f \
-    (afw_v__g__e34e37e9_9de1_4665_8197_eb5821d3e13f.internal.s)
-
-
-
-/** @brief define for quoted string _g__e3de74ef_f0f8_4f48_b317_9dedadb4297d */
-#define AFW_Q__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d \
-    "This is present if an error was produced while compiling and evaluating the source."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d */
-#define afw_s__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d \
-    (afw_v__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d */
-extern const afw_value_string_t \
-    afw_v__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d */
-#define afw_z__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d \
-    (afw_v__g__e3de74ef_f0f8_4f48_b317_9dedadb4297d.internal.s)
-
-
-
-/** @brief define for quoted string _g__e40d43a0_336b_45e1_9ad5_fce216451e5c */
-#define AFW_Q__g__e40d43a0_336b_45e1_9ad5_fce216451e5c \
-    "This is the name of what this source directory produces as known to the buildType.\n\nFor buildType 'afwmake', this starts with 'lib' for libraries."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e40d43a0_336b_45e1_9ad5_fce216451e5c */
-#define afw_s__g__e40d43a0_336b_45e1_9ad5_fce216451e5c \
-    (afw_v__g__e40d43a0_336b_45e1_9ad5_fce216451e5c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e40d43a0_336b_45e1_9ad5_fce216451e5c */
-extern const afw_value_string_t \
-    afw_v__g__e40d43a0_336b_45e1_9ad5_fce216451e5c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e40d43a0_336b_45e1_9ad5_fce216451e5c */
-#define afw_z__g__e40d43a0_336b_45e1_9ad5_fce216451e5c \
-    (afw_v__g__e40d43a0_336b_45e1_9ad5_fce216451e5c.internal.s)
-
-
-
-/** @brief define for quoted string _g__e484abfa_9775_4516_ba84_922fee8dbf92 */
-#define AFW_Q__g__e484abfa_9775_4516_ba84_922fee8dbf92 \
-    "This object can be deleted unless denied by authorization policy or by the adaptor"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e484abfa_9775_4516_ba84_922fee8dbf92 */
-#define afw_s__g__e484abfa_9775_4516_ba84_922fee8dbf92 \
-    (afw_v__g__e484abfa_9775_4516_ba84_922fee8dbf92.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e484abfa_9775_4516_ba84_922fee8dbf92 */
-extern const afw_value_string_t \
-    afw_v__g__e484abfa_9775_4516_ba84_922fee8dbf92;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e484abfa_9775_4516_ba84_922fee8dbf92 */
-#define afw_z__g__e484abfa_9775_4516_ba84_922fee8dbf92 \
-    (afw_v__g__e484abfa_9775_4516_ba84_922fee8dbf92.internal.s)
-
-
-
-/** @brief define for quoted string _g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d */
-#define AFW_Q__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d \
-    "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d */
-#define afw_s__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d \
-    (afw_v__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d */
-extern const afw_value_string_t \
-    afw_v__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d */
-#define afw_z__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d \
-    (afw_v__g__e4bc8b46_d4b8_44b1_be2e_ca7d60c8b67d.internal.s)
-
-
-
-/** @brief define for quoted string _g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 */
-#define AFW_Q__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 \
-    "This is the email to which users should send bug reports. It's used in the bug-report parameter of AC_INIT in configure.ac."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 */
-#define afw_s__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 \
-    (afw_v__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 */
-extern const afw_value_string_t \
-    afw_v__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 */
-#define afw_z__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0 \
-    (afw_v__g__e4c3e137_6ac3_49ea_a4a0_8d8860e9d3a0.internal.s)
-
-
-
-/** @brief define for quoted string _g__e4f04b7f_a011_496c_96ab_ba20ec6b433a */
-#define AFW_Q__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a \
-    "This is the value of 'sourceType:'. If not specified, the value of the testScript 'sourceType' property is used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a */
-#define afw_s__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a \
-    (afw_v__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a */
-extern const afw_value_string_t \
-    afw_v__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a */
-#define afw_z__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a \
-    (afw_v__g__e4f04b7f_a011_496c_96ab_ba20ec6b433a.internal.s)
-
-
-
-/** @brief define for quoted string _g__e66b9808_666c_41b4_847b_c2a7b208c6f3 */
-#define AFW_Q__g__e66b9808_666c_41b4_847b_c2a7b208c6f3 \
-    "This function will call the appropriate function when the first parameter is one of these data types"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e66b9808_666c_41b4_847b_c2a7b208c6f3 */
-#define afw_s__g__e66b9808_666c_41b4_847b_c2a7b208c6f3 \
-    (afw_v__g__e66b9808_666c_41b4_847b_c2a7b208c6f3.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e66b9808_666c_41b4_847b_c2a7b208c6f3 */
-extern const afw_value_string_t \
-    afw_v__g__e66b9808_666c_41b4_847b_c2a7b208c6f3;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e66b9808_666c_41b4_847b_c2a7b208c6f3 */
-#define afw_z__g__e66b9808_666c_41b4_847b_c2a7b208c6f3 \
-    (afw_v__g__e66b9808_666c_41b4_847b_c2a7b208c6f3.internal.s)
-
-
-
-/** @brief define for quoted string _g__e690efe7_7f39_463a_a9fb_02a03eee1064 */
-#define AFW_Q__g__e690efe7_7f39_463a_a9fb_02a03eee1064 \
-    "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e690efe7_7f39_463a_a9fb_02a03eee1064 */
-#define afw_s__g__e690efe7_7f39_463a_a9fb_02a03eee1064 \
-    (afw_v__g__e690efe7_7f39_463a_a9fb_02a03eee1064.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e690efe7_7f39_463a_a9fb_02a03eee1064 */
-extern const afw_value_string_t \
-    afw_v__g__e690efe7_7f39_463a_a9fb_02a03eee1064;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e690efe7_7f39_463a_a9fb_02a03eee1064 */
-#define afw_z__g__e690efe7_7f39_463a_a9fb_02a03eee1064 \
-    (afw_v__g__e690efe7_7f39_463a_a9fb_02a03eee1064.internal.s)
-
-
-
-/** @brief define for quoted string _g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 */
-#define AFW_Q__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 \
-    "Adaptive Framework configuration component for type=adaptor. This object type is the parent of an _AdaptiveObjectType_ that contains adaptorType specific properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 */
-#define afw_s__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 \
-    (afw_v__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 */
-extern const afw_value_string_t \
-    afw_v__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 */
-#define afw_z__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12 \
-    (afw_v__g__e6e97fc1_5e17_418f_82c6_25982c0d6d12.internal.s)
-
-
-
-/** @brief define for quoted string _g__e719f6b7_425c_48a0_b306_b5248ec3e85c */
-#define AFW_Q__g__e719f6b7_425c_48a0_b306_b5248ec3e85c \
-    "If true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e719f6b7_425c_48a0_b306_b5248ec3e85c */
-#define afw_s__g__e719f6b7_425c_48a0_b306_b5248ec3e85c \
-    (afw_v__g__e719f6b7_425c_48a0_b306_b5248ec3e85c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e719f6b7_425c_48a0_b306_b5248ec3e85c */
-extern const afw_value_string_t \
-    afw_v__g__e719f6b7_425c_48a0_b306_b5248ec3e85c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e719f6b7_425c_48a0_b306_b5248ec3e85c */
-#define afw_z__g__e719f6b7_425c_48a0_b306_b5248ec3e85c \
-    (afw_v__g__e719f6b7_425c_48a0_b306_b5248ec3e85c.internal.s)
-
-
-
-/** @brief define for quoted string _g__e7241641_415f_42c2_9830_a25fda6c1c90 */
-#define AFW_Q__g__e7241641_415f_42c2_9830_a25fda6c1c90 \
-    "Adaptive Framework configuration component for type=authorizationHandler authorizationHandlerType=script."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e7241641_415f_42c2_9830_a25fda6c1c90 */
-#define afw_s__g__e7241641_415f_42c2_9830_a25fda6c1c90 \
-    (afw_v__g__e7241641_415f_42c2_9830_a25fda6c1c90.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e7241641_415f_42c2_9830_a25fda6c1c90 */
-extern const afw_value_string_t \
-    afw_v__g__e7241641_415f_42c2_9830_a25fda6c1c90;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e7241641_415f_42c2_9830_a25fda6c1c90 */
-#define afw_z__g__e7241641_415f_42c2_9830_a25fda6c1c90 \
-    (afw_v__g__e7241641_415f_42c2_9830_a25fda6c1c90.internal.s)
-
-
-
-/** @brief define for quoted string _g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea */
-#define AFW_Q__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea \
-    "Instances of this object type can exist as an entity object, not just an embedded object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea */
-#define afw_s__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea \
-    (afw_v__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea */
-extern const afw_value_string_t \
-    afw_v__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea */
-#define afw_z__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea \
-    (afw_v__g__e7c269e4_9dfb_4c28_a78c_7bd97a5c12ea.internal.s)
-
-
-
-/** @brief define for quoted string _g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc */
-#define AFW_Q__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc \
-    "Don't wait for child processes that may have been created while logging the message. (The GNU C library does not create a child process, so this option has no effect on Linux.)"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc */
-#define afw_s__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc \
-    (afw_v__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc */
-extern const afw_value_string_t \
-    afw_v__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc */
-#define afw_z__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc \
-    (afw_v__g__e8dd0b20_1f5c_4b1d_a035_2e9020af90dc.internal.s)
-
-
-
-/** @brief define for quoted string _g__e9148667_7ba9_4e55_aafa_f4f7da60440a */
-#define AFW_Q__g__e9148667_7ba9_4e55_aafa_f4f7da60440a \
-    "This can be specified to override default replace_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onReplaceObjects was not specified."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e9148667_7ba9_4e55_aafa_f4f7da60440a */
-#define afw_s__g__e9148667_7ba9_4e55_aafa_f4f7da60440a \
-    (afw_v__g__e9148667_7ba9_4e55_aafa_f4f7da60440a.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e9148667_7ba9_4e55_aafa_f4f7da60440a */
-extern const afw_value_string_t \
-    afw_v__g__e9148667_7ba9_4e55_aafa_f4f7da60440a;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e9148667_7ba9_4e55_aafa_f4f7da60440a */
-#define afw_z__g__e9148667_7ba9_4e55_aafa_f4f7da60440a \
-    (afw_v__g__e9148667_7ba9_4e55_aafa_f4f7da60440a.internal.s)
-
-
-
-/** @brief define for quoted string _g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 */
-#define AFW_Q__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 \
-    "The column in line of the error. This is only available if source contains line breaks."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 */
-#define afw_s__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 \
-    (afw_v__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 */
-extern const afw_value_string_t \
-    afw_v__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 */
-#define afw_z__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43 \
-    (afw_v__g__e9d5f3b3_73d7_4e2c_b064_9750189caa43.internal.s)
-
-
-
-/** @brief define for quoted string _g__ea30b5ff_5e29_4494_b742_4cc9577eeecb */
-#define AFW_Q__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb \
-    "This is the URI that adaptive framework considers the normalized form of the path with substitutions complete."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb */
-#define afw_s__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb \
-    (afw_v__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb */
-extern const afw_value_string_t \
-    afw_v__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb */
-#define afw_z__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb \
-    (afw_v__g__ea30b5ff_5e29_4494_b742_4cc9577eeecb.internal.s)
-
-
-
-/** @brief define for quoted string _g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 */
-#define AFW_Q__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 \
-    "Expression that determines if a journal entry is applicable to be consumed by this peer"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 */
-#define afw_s__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 \
-    (afw_v__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 */
-extern const afw_value_string_t \
-    afw_v__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 */
-#define afw_z__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79 \
-    (afw_v__g__ea6f2fb4_f7ce_4f6e_9f6f_cd34a80c5d79.internal.s)
-
-
-
-/** @brief define for quoted string _g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 */
-#define AFW_Q__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 \
-    "The identifier is prepended to every message, and is typically set to the program name. If omitted, the program name is used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 */
-#define afw_s__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 \
-    (afw_v__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 */
-extern const afw_value_string_t \
-    afw_v__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 */
-#define afw_z__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22 \
-    (afw_v__g__eac9c7fe_b17d_4d19_a35b_8a4a79b62c22.internal.s)
-
-
-
-/** @brief define for quoted string _g__eae1311e_20e7_451b_9c52_53dea68ab424 */
-#define AFW_Q__g__eae1311e_20e7_451b_9c52_53dea68ab424 \
-    "These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__eae1311e_20e7_451b_9c52_53dea68ab424 */
-#define afw_s__g__eae1311e_20e7_451b_9c52_53dea68ab424 \
-    (afw_v__g__eae1311e_20e7_451b_9c52_53dea68ab424.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__eae1311e_20e7_451b_9c52_53dea68ab424 */
-extern const afw_value_string_t \
-    afw_v__g__eae1311e_20e7_451b_9c52_53dea68ab424;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__eae1311e_20e7_451b_9c52_53dea68ab424 */
-#define afw_z__g__eae1311e_20e7_451b_9c52_53dea68ab424 \
-    (afw_v__g__eae1311e_20e7_451b_9c52_53dea68ab424.internal.s)
-
-
-
-/** @brief define for quoted string _g__eb2ee983_3060_4a81_b35e_473be03dd1cc */
-#define AFW_Q__g__eb2ee983_3060_4a81_b35e_473be03dd1cc \
-    "The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__eb2ee983_3060_4a81_b35e_473be03dd1cc */
-#define afw_s__g__eb2ee983_3060_4a81_b35e_473be03dd1cc \
-    (afw_v__g__eb2ee983_3060_4a81_b35e_473be03dd1cc.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__eb2ee983_3060_4a81_b35e_473be03dd1cc */
-extern const afw_value_string_t \
-    afw_v__g__eb2ee983_3060_4a81_b35e_473be03dd1cc;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__eb2ee983_3060_4a81_b35e_473be03dd1cc */
-#define afw_z__g__eb2ee983_3060_4a81_b35e_473be03dd1cc \
-    (afw_v__g__eb2ee983_3060_4a81_b35e_473be03dd1cc.internal.s)
-
-
-
-/** @brief define for quoted string _g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 */
-#define AFW_Q__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 \
-    "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 */
-#define afw_s__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 \
-    (afw_v__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 */
-extern const afw_value_string_t \
-    afw_v__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 */
-#define afw_z__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56 \
-    (afw_v__g__ec08ecc8_9ccf_461b_8e34_88207ba4bd56.internal.s)
-
-
-
-/** @brief define for quoted string _g__ec408f96_2983_49aa_848f_578b91319cc0 */
-#define AFW_Q__g__ec408f96_2983_49aa_848f_578b91319cc0 \
-    "There is an /afw/<objectType>/<key> object for each registered entry."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ec408f96_2983_49aa_848f_578b91319cc0 */
-#define afw_s__g__ec408f96_2983_49aa_848f_578b91319cc0 \
-    (afw_v__g__ec408f96_2983_49aa_848f_578b91319cc0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ec408f96_2983_49aa_848f_578b91319cc0 */
-extern const afw_value_string_t \
-    afw_v__g__ec408f96_2983_49aa_848f_578b91319cc0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ec408f96_2983_49aa_848f_578b91319cc0 */
-#define afw_z__g__ec408f96_2983_49aa_848f_578b91319cc0 \
-    (afw_v__g__ec408f96_2983_49aa_848f_578b91319cc0.internal.s)
-
-
-
-/** @brief define for quoted string _g__ec8d8867_1f23_4f12_91ec_b322d9502986 */
-#define AFW_Q__g__ec8d8867_1f23_4f12_91ec_b322d9502986 \
-    "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ec8d8867_1f23_4f12_91ec_b322d9502986 */
-#define afw_s__g__ec8d8867_1f23_4f12_91ec_b322d9502986 \
-    (afw_v__g__ec8d8867_1f23_4f12_91ec_b322d9502986.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ec8d8867_1f23_4f12_91ec_b322d9502986 */
-extern const afw_value_string_t \
-    afw_v__g__ec8d8867_1f23_4f12_91ec_b322d9502986;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ec8d8867_1f23_4f12_91ec_b322d9502986 */
-#define afw_z__g__ec8d8867_1f23_4f12_91ec_b322d9502986 \
-    (afw_v__g__ec8d8867_1f23_4f12_91ec_b322d9502986.internal.s)
-
-
-
-/** @brief define for quoted string _g__ecc55700_9e7d_4c10_8c50_c564afb36c9c */
-#define AFW_Q__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c \
-    "The converse of LOG_NDELAY; opening of the connection is delayed until syslog() is called. (This is the default, and need not be specified.)"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c */
-#define afw_s__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c \
-    (afw_v__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c */
-extern const afw_value_string_t \
-    afw_v__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c */
-#define afw_z__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c \
-    (afw_v__g__ecc55700_9e7d_4c10_8c50_c564afb36c9c.internal.s)
-
-
-
-/** @brief define for quoted string _g__ed0b68be_5aed_45b9_b918_03aaeba8196b */
-#define AFW_Q__g__ed0b68be_5aed_45b9_b918_03aaeba8196b \
-    "This is a predicate for the parameter with the first letter capitalized and without a trailing period."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ed0b68be_5aed_45b9_b918_03aaeba8196b */
-#define afw_s__g__ed0b68be_5aed_45b9_b918_03aaeba8196b \
-    (afw_v__g__ed0b68be_5aed_45b9_b918_03aaeba8196b.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ed0b68be_5aed_45b9_b918_03aaeba8196b */
-extern const afw_value_string_t \
-    afw_v__g__ed0b68be_5aed_45b9_b918_03aaeba8196b;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ed0b68be_5aed_45b9_b918_03aaeba8196b */
-#define afw_z__g__ed0b68be_5aed_45b9_b918_03aaeba8196b \
-    (afw_v__g__ed0b68be_5aed_45b9_b918_03aaeba8196b.internal.s)
-
-
-
-/** @brief define for quoted string _g__ed923331_1a40_4f29_b750_f640c22b7822 */
-#define AFW_Q__g__ed923331_1a40_4f29_b750_f640c22b7822 \
-    "The same as dataTypeParameter will possible comments and whitespace"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ed923331_1a40_4f29_b750_f640c22b7822 */
-#define afw_s__g__ed923331_1a40_4f29_b750_f640c22b7822 \
-    (afw_v__g__ed923331_1a40_4f29_b750_f640c22b7822.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ed923331_1a40_4f29_b750_f640c22b7822 */
-extern const afw_value_string_t \
-    afw_v__g__ed923331_1a40_4f29_b750_f640c22b7822;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ed923331_1a40_4f29_b750_f640c22b7822 */
-#define afw_z__g__ed923331_1a40_4f29_b750_f640c22b7822 \
-    (afw_v__g__ed923331_1a40_4f29_b750_f640c22b7822.internal.s)
-
-
-
-/** @brief define for quoted string _g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 */
-#define AFW_Q__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 \
-    "Adaptive Framework configuration component for type=requestHandler handlerType=adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 */
-#define afw_s__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 \
-    (afw_v__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 */
-extern const afw_value_string_t \
-    afw_v__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 */
-#define afw_z__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658 \
-    (afw_v__g__edc5d7f6_b5c2_40d5_bb72_237198fc0658.internal.s)
-
-
-
-/** @brief define for quoted string _g__edd96b50_6207_48af_bcfa_2f0b59dda14d */
-#define AFW_Q__g__edd96b50_6207_48af_bcfa_2f0b59dda14d \
-    "This is the context type id. For context types related to conf objects, the id should be the type followed by an optional dash and subtype. For example, the id for conf type log logType standard must be log-standard."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__edd96b50_6207_48af_bcfa_2f0b59dda14d */
-#define afw_s__g__edd96b50_6207_48af_bcfa_2f0b59dda14d \
-    (afw_v__g__edd96b50_6207_48af_bcfa_2f0b59dda14d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__edd96b50_6207_48af_bcfa_2f0b59dda14d */
-extern const afw_value_string_t \
-    afw_v__g__edd96b50_6207_48af_bcfa_2f0b59dda14d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__edd96b50_6207_48af_bcfa_2f0b59dda14d */
-#define afw_z__g__edd96b50_6207_48af_bcfa_2f0b59dda14d \
-    (afw_v__g__edd96b50_6207_48af_bcfa_2f0b59dda14d.internal.s)
-
-
-
-/** @brief define for quoted string _g__edddbb4a_083a_40a4_8039_f02c809a229f */
-#define AFW_Q__g__edddbb4a_083a_40a4_8039_f02c809a229f \
-    "This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adaptorId/objectType/objectId'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__edddbb4a_083a_40a4_8039_f02c809a229f */
-#define afw_s__g__edddbb4a_083a_40a4_8039_f02c809a229f \
-    (afw_v__g__edddbb4a_083a_40a4_8039_f02c809a229f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__edddbb4a_083a_40a4_8039_f02c809a229f */
-extern const afw_value_string_t \
-    afw_v__g__edddbb4a_083a_40a4_8039_f02c809a229f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__edddbb4a_083a_40a4_8039_f02c809a229f */
-#define afw_z__g__edddbb4a_083a_40a4_8039_f02c809a229f \
-    (afw_v__g__edddbb4a_083a_40a4_8039_f02c809a229f.internal.s)
-
-
-
-/** @brief define for quoted string _g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d */
-#define AFW_Q__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d \
-    "This is error detail if status is error. This property will not exist for intermediate response objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d */
-#define afw_s__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d \
-    (afw_v__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d */
-extern const afw_value_string_t \
-    afw_v__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d */
-#define afw_z__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d \
-    (afw_v__g__ee5cbab0_dd8e_4805_9e7b_22aee81ee94d.internal.s)
-
-
-
-/** @brief define for quoted string _g__ee6414ad_4af3_4599_8f43_af06be17793d */
-#define AFW_Q__g__ee6414ad_4af3_4599_8f43_af06be17793d \
-    "The result if this is a single action request and no error occurred"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ee6414ad_4af3_4599_8f43_af06be17793d */
-#define afw_s__g__ee6414ad_4af3_4599_8f43_af06be17793d \
-    (afw_v__g__ee6414ad_4af3_4599_8f43_af06be17793d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ee6414ad_4af3_4599_8f43_af06be17793d */
-extern const afw_value_string_t \
-    afw_v__g__ee6414ad_4af3_4599_8f43_af06be17793d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ee6414ad_4af3_4599_8f43_af06be17793d */
-#define afw_z__g__ee6414ad_4af3_4599_8f43_af06be17793d \
-    (afw_v__g__ee6414ad_4af3_4599_8f43_af06be17793d.internal.s)
-
-
-
-/** @brief define for quoted string _g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 */
-#define AFW_Q__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 \
-    "This is the adaptorId that locates Adaptive Layout Component objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 */
-#define afw_s__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 \
-    (afw_v__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 */
-extern const afw_value_string_t \
-    afw_v__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 */
-#define afw_z__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8 \
-    (afw_v__g__ee6d28fe_19c6_4fed_b2df_c25e5a596ee8.internal.s)
-
-
-
-/** @brief define for quoted string _g__ee778884_6edd_4e61_9244_304d06bce770 */
-#define AFW_Q__g__ee778884_6edd_4e61_9244_304d06bce770 \
-    "These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ee778884_6edd_4e61_9244_304d06bce770 */
-#define afw_s__g__ee778884_6edd_4e61_9244_304d06bce770 \
-    (afw_v__g__ee778884_6edd_4e61_9244_304d06bce770.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ee778884_6edd_4e61_9244_304d06bce770 */
-extern const afw_value_string_t \
-    afw_v__g__ee778884_6edd_4e61_9244_304d06bce770;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ee778884_6edd_4e61_9244_304d06bce770 */
-#define afw_z__g__ee778884_6edd_4e61_9244_304d06bce770 \
-    (afw_v__g__ee778884_6edd_4e61_9244_304d06bce770.internal.s)
-
-
-
-/** @brief define for quoted string _g__eedc58ac_cf14_4183_8f96_d42f264427a7 */
-#define AFW_Q__g__eedc58ac_cf14_4183_8f96_d42f264427a7 \
-    "The server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__eedc58ac_cf14_4183_8f96_d42f264427a7 */
-#define afw_s__g__eedc58ac_cf14_4183_8f96_d42f264427a7 \
-    (afw_v__g__eedc58ac_cf14_4183_8f96_d42f264427a7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__eedc58ac_cf14_4183_8f96_d42f264427a7 */
-extern const afw_value_string_t \
-    afw_v__g__eedc58ac_cf14_4183_8f96_d42f264427a7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__eedc58ac_cf14_4183_8f96_d42f264427a7 */
-#define afw_z__g__eedc58ac_cf14_4183_8f96_d42f264427a7 \
-    (afw_v__g__eedc58ac_cf14_4183_8f96_d42f264427a7.internal.s)
-
-
-
 /** @brief define for quoted string _g__expect_ */
 #define AFW_Q__g__expect_ \
     "expect:"
@@ -36890,546 +37430,6 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_Q__g__expect_ */
 #define afw_z__g__expect_ \
     (afw_v__g__expect_.internal.s)
-
-
-
-/** @brief define for quoted string _g__f113201d_133b_4678_adf5_6ab6b3742552 */
-#define AFW_Q__g__f113201d_133b_4678_adf5_6ab6b3742552 \
-    "This is the type of build used for this source directory. Specify 'afwmake' for c source directories."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f113201d_133b_4678_adf5_6ab6b3742552 */
-#define afw_s__g__f113201d_133b_4678_adf5_6ab6b3742552 \
-    (afw_v__g__f113201d_133b_4678_adf5_6ab6b3742552.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f113201d_133b_4678_adf5_6ab6b3742552 */
-extern const afw_value_string_t \
-    afw_v__g__f113201d_133b_4678_adf5_6ab6b3742552;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f113201d_133b_4678_adf5_6ab6b3742552 */
-#define afw_z__g__f113201d_133b_4678_adf5_6ab6b3742552 \
-    (afw_v__g__f113201d_133b_4678_adf5_6ab6b3742552.internal.s)
-
-
-
-/** @brief define for quoted string _g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 */
-#define AFW_Q__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 \
-    "This only applies to retrieve objects requests and indicates that objects with the supplied object type along with objects with any of its descendent object types should be included in the search."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 */
-#define afw_s__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 \
-    (afw_v__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 */
-extern const afw_value_string_t \
-    afw_v__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 */
-#define afw_z__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0 \
-    (afw_v__g__f1c25771_cba4_4b3b_a05e_f4d4bd19e7c0.internal.s)
-
-
-
-/** @brief define for quoted string _g__f1ff51d8_6afb_45dc_b58f_2863c1049866 */
-#define AFW_Q__g__f1ff51d8_6afb_45dc_b58f_2863c1049866 \
-    "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f1ff51d8_6afb_45dc_b58f_2863c1049866 */
-#define afw_s__g__f1ff51d8_6afb_45dc_b58f_2863c1049866 \
-    (afw_v__g__f1ff51d8_6afb_45dc_b58f_2863c1049866.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f1ff51d8_6afb_45dc_b58f_2863c1049866 */
-extern const afw_value_string_t \
-    afw_v__g__f1ff51d8_6afb_45dc_b58f_2863c1049866;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f1ff51d8_6afb_45dc_b58f_2863c1049866 */
-#define afw_z__g__f1ff51d8_6afb_45dc_b58f_2863c1049866 \
-    (afw_v__g__f1ff51d8_6afb_45dc_b58f_2863c1049866.internal.s)
-
-
-
-/** @brief define for quoted string _g__f290f3eb_9b5d_47e1_8647_dac56f77e08c */
-#define AFW_Q__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c \
-    "Adaptive Framework configuration component for type=requestHandler. This object type is the parent of an _AdaptiveObjectType_ that contains handlerType specific properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c */
-#define afw_s__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c \
-    (afw_v__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c */
-extern const afw_value_string_t \
-    afw_v__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c */
-#define afw_z__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c \
-    (afw_v__g__f290f3eb_9b5d_47e1_8647_dac56f77e08c.internal.s)
-
-
-
-/** @brief define for quoted string _g__f3373a66_dd45_4ee7_984a_dcdf33860052 */
-#define AFW_Q__g__f3373a66_dd45_4ee7_984a_dcdf33860052 \
-    "The adaptive object type of all object that contains _AdaptiveObjectType_ objects as properties."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f3373a66_dd45_4ee7_984a_dcdf33860052 */
-#define afw_s__g__f3373a66_dd45_4ee7_984a_dcdf33860052 \
-    (afw_v__g__f3373a66_dd45_4ee7_984a_dcdf33860052.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f3373a66_dd45_4ee7_984a_dcdf33860052 */
-extern const afw_value_string_t \
-    afw_v__g__f3373a66_dd45_4ee7_984a_dcdf33860052;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f3373a66_dd45_4ee7_984a_dcdf33860052 */
-#define afw_z__g__f3373a66_dd45_4ee7_984a_dcdf33860052 \
-    (afw_v__g__f3373a66_dd45_4ee7_984a_dcdf33860052.internal.s)
-
-
-
-/** @brief define for quoted string _g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d */
-#define AFW_Q__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d \
-    "Indicates that each object's object type should be processed, assigned each embedded object's object type, converting any properties to their correct data type, plus computing values when needed. If there is dataType or dataTypeParameter information available during normalization that is not in the associated _AdaptiveObjectType_, it will be added at the appropriate place in the object's meta.\\n\\nUse the includeDefaultValues option to include default values."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d */
-#define afw_s__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d \
-    (afw_v__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d */
-extern const afw_value_string_t \
-    afw_v__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d */
-#define afw_z__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d \
-    (afw_v__g__f34d4db4_9388_4bf5_8c0f_84ba3626b37d.internal.s)
-
-
-
-/** @brief define for quoted string _g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 */
-#define AFW_Q__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 \
-    "This is the content type to be used for this file adaptor. This must be a content-type that is registered by core or by an extension."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 */
-#define afw_s__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 \
-    (afw_v__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 */
-extern const afw_value_string_t \
-    afw_v__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 */
-#define afw_z__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7 \
-    (afw_v__g__f3b60f27_e273_49c3_ab5f_af256bc05cd7.internal.s)
-
-
-
-/** @brief define for quoted string _g__f4316995_19ae_4df7_8743_ceaccdc9de27 */
-#define AFW_Q__g__f4316995_19ae_4df7_8743_ceaccdc9de27 \
-    "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f4316995_19ae_4df7_8743_ceaccdc9de27 */
-#define afw_s__g__f4316995_19ae_4df7_8743_ceaccdc9de27 \
-    (afw_v__g__f4316995_19ae_4df7_8743_ceaccdc9de27.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f4316995_19ae_4df7_8743_ceaccdc9de27 */
-extern const afw_value_string_t \
-    afw_v__g__f4316995_19ae_4df7_8743_ceaccdc9de27;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f4316995_19ae_4df7_8743_ceaccdc9de27 */
-#define afw_z__g__f4316995_19ae_4df7_8743_ceaccdc9de27 \
-    (afw_v__g__f4316995_19ae_4df7_8743_ceaccdc9de27.internal.s)
-
-
-
-/** @brief define for quoted string _g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d */
-#define AFW_Q__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d \
-    "Adaptive Framework configuration component for type=adaptor adaptorType=model."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d */
-#define afw_s__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d \
-    (afw_v__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d */
-extern const afw_value_string_t \
-    afw_v__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d */
-#define afw_z__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d \
-    (afw_v__g__f4ab9f16_c3c1_48e8_a87c_b23ef4f4557d.internal.s)
-
-
-
-/** @brief define for quoted string _g__f5602f22_2863_4d97_9b92_7c50a59cd69f */
-#define AFW_Q__g__f5602f22_2863_4d97_9b92_7c50a59cd69f \
-    "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f5602f22_2863_4d97_9b92_7c50a59cd69f */
-#define afw_s__g__f5602f22_2863_4d97_9b92_7c50a59cd69f \
-    (afw_v__g__f5602f22_2863_4d97_9b92_7c50a59cd69f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f5602f22_2863_4d97_9b92_7c50a59cd69f */
-extern const afw_value_string_t \
-    afw_v__g__f5602f22_2863_4d97_9b92_7c50a59cd69f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f5602f22_2863_4d97_9b92_7c50a59cd69f */
-#define afw_z__g__f5602f22_2863_4d97_9b92_7c50a59cd69f \
-    (afw_v__g__f5602f22_2863_4d97_9b92_7c50a59cd69f.internal.s)
-
-
-
-/** @brief define for quoted string _g__f5638103_e067_4d72_805e_9d622d340cc5 */
-#define AFW_Q__g__f5638103_e067_4d72_805e_9d622d340cc5 \
-    "These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f5638103_e067_4d72_805e_9d622d340cc5 */
-#define afw_s__g__f5638103_e067_4d72_805e_9d622d340cc5 \
-    (afw_v__g__f5638103_e067_4d72_805e_9d622d340cc5.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f5638103_e067_4d72_805e_9d622d340cc5 */
-extern const afw_value_string_t \
-    afw_v__g__f5638103_e067_4d72_805e_9d622d340cc5;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f5638103_e067_4d72_805e_9d622d340cc5 */
-#define afw_z__g__f5638103_e067_4d72_805e_9d622d340cc5 \
-    (afw_v__g__f5638103_e067_4d72_805e_9d622d340cc5.internal.s)
-
-
-
-/** @brief define for quoted string _g__f61fccfc_6eda_47cd_936a_e27844921a88 */
-#define AFW_Q__g__f61fccfc_6eda_47cd_936a_e27844921a88 \
-    "This is the offset of UTF-8 octets in the full source up to where the first test begins."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f61fccfc_6eda_47cd_936a_e27844921a88 */
-#define afw_s__g__f61fccfc_6eda_47cd_936a_e27844921a88 \
-    (afw_v__g__f61fccfc_6eda_47cd_936a_e27844921a88.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f61fccfc_6eda_47cd_936a_e27844921a88 */
-extern const afw_value_string_t \
-    afw_v__g__f61fccfc_6eda_47cd_936a_e27844921a88;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f61fccfc_6eda_47cd_936a_e27844921a88 */
-#define afw_z__g__f61fccfc_6eda_47cd_936a_e27844921a88 \
-    (afw_v__g__f61fccfc_6eda_47cd_936a_e27844921a88.internal.s)
-
-
-
-/** @brief define for quoted string _g__f621ab9e_2e67_4c18_9f31_ac766e34d70c */
-#define AFW_Q__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c \
-    "Optional script value is evaluated to determine the objectId on add requests"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c */
-#define afw_s__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c \
-    (afw_v__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c */
-extern const afw_value_string_t \
-    afw_v__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c */
-#define afw_z__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c \
-    (afw_v__g__f621ab9e_2e67_4c18_9f31_ac766e34d70c.internal.s)
-
-
-
-/** @brief define for quoted string _g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 */
-#define AFW_Q__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 \
-    "Id of authorization handler used to control access to resources in this adaptor."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 */
-#define afw_s__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 \
-    (afw_v__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 */
-extern const afw_value_string_t \
-    afw_v__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 */
-#define afw_z__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89 \
-    (afw_v__g__f6aea78a_7efd_474b_9aa9_ded94dc0ab89.internal.s)
-
-
-
-/** @brief define for quoted string _g__f7e3cb18_10be_4be9_a03f_994dcefd5236 */
-#define AFW_Q__g__f7e3cb18_10be_4be9_a03f_994dcefd5236 \
-    "This is the default object options for method GET requests though this request handler."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f7e3cb18_10be_4be9_a03f_994dcefd5236 */
-#define afw_s__g__f7e3cb18_10be_4be9_a03f_994dcefd5236 \
-    (afw_v__g__f7e3cb18_10be_4be9_a03f_994dcefd5236.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f7e3cb18_10be_4be9_a03f_994dcefd5236 */
-extern const afw_value_string_t \
-    afw_v__g__f7e3cb18_10be_4be9_a03f_994dcefd5236;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f7e3cb18_10be_4be9_a03f_994dcefd5236 */
-#define afw_z__g__f7e3cb18_10be_4be9_a03f_994dcefd5236 \
-    (afw_v__g__f7e3cb18_10be_4be9_a03f_994dcefd5236.internal.s)
-
-
-
-/** @brief define for quoted string _g__f8918705_358e_4782_ae58_6a730e91c04e */
-#define AFW_Q__g__f8918705_358e_4782_ae58_6a730e91c04e \
-    "Indicates that objectId property should be included in the meta for entity objects."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f8918705_358e_4782_ae58_6a730e91c04e */
-#define afw_s__g__f8918705_358e_4782_ae58_6a730e91c04e \
-    (afw_v__g__f8918705_358e_4782_ae58_6a730e91c04e.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f8918705_358e_4782_ae58_6a730e91c04e */
-extern const afw_value_string_t \
-    afw_v__g__f8918705_358e_4782_ae58_6a730e91c04e;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f8918705_358e_4782_ae58_6a730e91c04e */
-#define afw_z__g__f8918705_358e_4782_ae58_6a730e91c04e \
-    (afw_v__g__f8918705_358e_4782_ae58_6a730e91c04e.internal.s)
-
-
-
-/** @brief define for quoted string _g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 */
-#define AFW_Q__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 \
-    "This is an array of ids of all policies whose target and condition matched during this check."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 */
-#define afw_s__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 \
-    (afw_v__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 */
-extern const afw_value_string_t \
-    afw_v__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 */
-#define afw_z__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66 \
-    (afw_v__g__f8f22d58_c2c5_4e16_bd06_cfbb09729d66.internal.s)
-
-
-
-/** @brief define for quoted string _g__f9301129_d0d6_46dc_945a_ac287db1cb73 */
-#define AFW_Q__g__f9301129_d0d6_46dc_945a_ac287db1cb73 \
-    "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f9301129_d0d6_46dc_945a_ac287db1cb73 */
-#define afw_s__g__f9301129_d0d6_46dc_945a_ac287db1cb73 \
-    (afw_v__g__f9301129_d0d6_46dc_945a_ac287db1cb73.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f9301129_d0d6_46dc_945a_ac287db1cb73 */
-extern const afw_value_string_t \
-    afw_v__g__f9301129_d0d6_46dc_945a_ac287db1cb73;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f9301129_d0d6_46dc_945a_ac287db1cb73 */
-#define afw_z__g__f9301129_d0d6_46dc_945a_ac287db1cb73 \
-    (afw_v__g__f9301129_d0d6_46dc_945a_ac287db1cb73.internal.s)
-
-
-
-/** @brief define for quoted string _g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 */
-#define AFW_Q__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 \
-    "Decoded path of URI. If path tokens contain percent encoded reserved characters, pathTokens should be used."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 */
-#define afw_s__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 \
-    (afw_v__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 */
-extern const afw_value_string_t \
-    afw_v__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 */
-#define afw_z__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7 \
-    (afw_v__g__f93d4d78_cc4b_4652_87d2_3bd59a6650e7.internal.s)
-
-
-
-/** @brief define for quoted string _g__f9afd779_2c31_4165_8fc3_50b5dd773856 */
-#define AFW_Q__g__f9afd779_2c31_4165_8fc3_50b5dd773856 \
-    "This contains additional information about values with this meta that is used to produce test data."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__f9afd779_2c31_4165_8fc3_50b5dd773856 */
-#define afw_s__g__f9afd779_2c31_4165_8fc3_50b5dd773856 \
-    (afw_v__g__f9afd779_2c31_4165_8fc3_50b5dd773856.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__f9afd779_2c31_4165_8fc3_50b5dd773856 */
-extern const afw_value_string_t \
-    afw_v__g__f9afd779_2c31_4165_8fc3_50b5dd773856;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__f9afd779_2c31_4165_8fc3_50b5dd773856 */
-#define afw_z__g__f9afd779_2c31_4165_8fc3_50b5dd773856 \
-    (afw_v__g__f9afd779_2c31_4165_8fc3_50b5dd773856.internal.s)
-
-
-
-/** @brief define for quoted string _g__fae258f1_a6a3_40ed_b7df_00409b37c084 */
-#define AFW_Q__g__fae258f1_a6a3_40ed_b7df_00409b37c084 \
-    "The user making the request, as reported by their ident daemon"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fae258f1_a6a3_40ed_b7df_00409b37c084 */
-#define afw_s__g__fae258f1_a6a3_40ed_b7df_00409b37c084 \
-    (afw_v__g__fae258f1_a6a3_40ed_b7df_00409b37c084.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fae258f1_a6a3_40ed_b7df_00409b37c084 */
-extern const afw_value_string_t \
-    afw_v__g__fae258f1_a6a3_40ed_b7df_00409b37c084;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fae258f1_a6a3_40ed_b7df_00409b37c084 */
-#define afw_z__g__fae258f1_a6a3_40ed_b7df_00409b37c084 \
-    (afw_v__g__fae258f1_a6a3_40ed_b7df_00409b37c084.internal.s)
-
-
-
-/** @brief define for quoted string _g__fb55b447_78f5_4308_b10f_0f4327c989d2 */
-#define AFW_Q__g__fb55b447_78f5_4308_b10f_0f4327c989d2 \
-    "This is the subtype runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptorType_'."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fb55b447_78f5_4308_b10f_0f4327c989d2 */
-#define afw_s__g__fb55b447_78f5_4308_b10f_0f4327c989d2 \
-    (afw_v__g__fb55b447_78f5_4308_b10f_0f4327c989d2.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fb55b447_78f5_4308_b10f_0f4327c989d2 */
-extern const afw_value_string_t \
-    afw_v__g__fb55b447_78f5_4308_b10f_0f4327c989d2;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fb55b447_78f5_4308_b10f_0f4327c989d2 */
-#define afw_z__g__fb55b447_78f5_4308_b10f_0f4327c989d2 \
-    (afw_v__g__fb55b447_78f5_4308_b10f_0f4327c989d2.internal.s)
-
-
-
-/** @brief define for quoted string _g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f */
-#define AFW_Q__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f \
-    "The adaptor id of the object being converted to mapped object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f */
-#define afw_s__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f \
-    (afw_v__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f */
-extern const afw_value_string_t \
-    afw_v__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f */
-#define afw_z__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f \
-    (afw_v__g__fb63f38f_4fab_4be6_b4ff_8b2911a5633f.internal.s)
-
-
-
-/** @brief define for quoted string _g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 */
-#define AFW_Q__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 \
-    "This is script to evaluate to determine whether to allow the requested access to the specified resourceId and/or object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 */
-#define afw_s__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 \
-    (afw_v__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 */
-extern const afw_value_string_t \
-    afw_v__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 */
-#define afw_z__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348 \
-    (afw_v__g__fb7ffa65_a185_46f8_b4cd_050b95e6d348.internal.s)
-
-
-
-/** @brief define for quoted string _g__fd3732d6_3d18_4864_906d_19c6fd5dd793 */
-#define AFW_Q__g__fd3732d6_3d18_4864_906d_19c6fd5dd793 \
-    "The object type of the object being converted to mapped object."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fd3732d6_3d18_4864_906d_19c6fd5dd793 */
-#define afw_s__g__fd3732d6_3d18_4864_906d_19c6fd5dd793 \
-    (afw_v__g__fd3732d6_3d18_4864_906d_19c6fd5dd793.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fd3732d6_3d18_4864_906d_19c6fd5dd793 */
-extern const afw_value_string_t \
-    afw_v__g__fd3732d6_3d18_4864_906d_19c6fd5dd793;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fd3732d6_3d18_4864_906d_19c6fd5dd793 */
-#define afw_z__g__fd3732d6_3d18_4864_906d_19c6fd5dd793 \
-    (afw_v__g__fd3732d6_3d18_4864_906d_19c6fd5dd793.internal.s)
-
-
-
-/** @brief define for quoted string _g__fd547204_725f_4e48_8d8b_543046c5f936 */
-#define AFW_Q__g__fd547204_725f_4e48_8d8b_543046c5f936 \
-    "This is a custom key:string specified in the TestScriptHeader."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fd547204_725f_4e48_8d8b_543046c5f936 */
-#define afw_s__g__fd547204_725f_4e48_8d8b_543046c5f936 \
-    (afw_v__g__fd547204_725f_4e48_8d8b_543046c5f936.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fd547204_725f_4e48_8d8b_543046c5f936 */
-extern const afw_value_string_t \
-    afw_v__g__fd547204_725f_4e48_8d8b_543046c5f936;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fd547204_725f_4e48_8d8b_543046c5f936 */
-#define afw_z__g__fd547204_725f_4e48_8d8b_543046c5f936 \
-    (afw_v__g__fd547204_725f_4e48_8d8b_543046c5f936.internal.s)
-
-
-
-/** @brief define for quoted string _g__fe627918_7cd9_47ea_9615_d8e4a407b562 */
-#define AFW_Q__g__fe627918_7cd9_47ea_9615_d8e4a407b562 \
-    "These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fe627918_7cd9_47ea_9615_d8e4a407b562 */
-#define afw_s__g__fe627918_7cd9_47ea_9615_d8e4a407b562 \
-    (afw_v__g__fe627918_7cd9_47ea_9615_d8e4a407b562.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fe627918_7cd9_47ea_9615_d8e4a407b562 */
-extern const afw_value_string_t \
-    afw_v__g__fe627918_7cd9_47ea_9615_d8e4a407b562;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fe627918_7cd9_47ea_9615_d8e4a407b562 */
-#define afw_z__g__fe627918_7cd9_47ea_9615_d8e4a407b562 \
-    (afw_v__g__fe627918_7cd9_47ea_9615_d8e4a407b562.internal.s)
-
-
-
-/** @brief define for quoted string _g__fe67a19a_cf78_4119_b404_e5150c07e6cb */
-#define AFW_Q__g__fe67a19a_cf78_4119_b404_e5150c07e6cb \
-    "The URL of the document that directed the user to this CGI program"
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fe67a19a_cf78_4119_b404_e5150c07e6cb */
-#define afw_s__g__fe67a19a_cf78_4119_b404_e5150c07e6cb \
-    (afw_v__g__fe67a19a_cf78_4119_b404_e5150c07e6cb.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fe67a19a_cf78_4119_b404_e5150c07e6cb */
-extern const afw_value_string_t \
-    afw_v__g__fe67a19a_cf78_4119_b404_e5150c07e6cb;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fe67a19a_cf78_4119_b404_e5150c07e6cb */
-#define afw_z__g__fe67a19a_cf78_4119_b404_e5150c07e6cb \
-    (afw_v__g__fe67a19a_cf78_4119_b404_e5150c07e6cb.internal.s)
-
-
-
-/** @brief define for quoted string _g__fe880481_f091_4417_9fe5_9d802003e353 */
-#define AFW_Q__g__fe880481_f091_4417_9fe5_9d802003e353 \
-    "If response:stdout flag is set and response:stdout:stream is not set, this will have any output written to stdout."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__fe880481_f091_4417_9fe5_9d802003e353 */
-#define afw_s__g__fe880481_f091_4417_9fe5_9d802003e353 \
-    (afw_v__g__fe880481_f091_4417_9fe5_9d802003e353.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__fe880481_f091_4417_9fe5_9d802003e353 */
-extern const afw_value_string_t \
-    afw_v__g__fe880481_f091_4417_9fe5_9d802003e353;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__fe880481_f091_4417_9fe5_9d802003e353 */
-#define afw_z__g__fe880481_f091_4417_9fe5_9d802003e353 \
-    (afw_v__g__fe880481_f091_4417_9fe5_9d802003e353.internal.s)
-
-
-
-/** @brief define for quoted string _g__ff319075_f2cc_4e90_9492_30ded98bf5aa */
-#define AFW_Q__g__ff319075_f2cc_4e90_9492_30ded98bf5aa \
-    "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value."
-
-/** @brief 'afw_utf8_t' for string AFW_Q__g__ff319075_f2cc_4e90_9492_30ded98bf5aa */
-#define afw_s__g__ff319075_f2cc_4e90_9492_30ded98bf5aa \
-    (afw_v__g__ff319075_f2cc_4e90_9492_30ded98bf5aa.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_Q__g__ff319075_f2cc_4e90_9492_30ded98bf5aa */
-extern const afw_value_string_t \
-    afw_v__g__ff319075_f2cc_4e90_9492_30ded98bf5aa;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_Q__g__ff319075_f2cc_4e90_9492_30ded98bf5aa */
-#define afw_z__g__ff319075_f2cc_4e90_9492_30ded98bf5aa \
-    (afw_v__g__ff319075_f2cc_4e90_9492_30ded98bf5aa.internal.s)
 
 
 

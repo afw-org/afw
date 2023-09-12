@@ -4,6 +4,8 @@ import os, fnmatch, re, uuid
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc
 
+generated_string_number = 0
+
 
 
 # @brief Get the string label for a given string.
@@ -21,9 +23,11 @@ from _afwdev.common import msg, nfc
 # 's'  for a afw_utf8_t string label.
 # '*s' for a afw_utf8_t string label that is a pointer.
 # 'v'  for a afw_value_string_t label.
-# '*v'  for a afw_value_string_t label that is a pointer.
+# '*v' for a afw_value_string_t label that is a pointer.
 # '*z' for an afw_utf8_z_t zero-terminated string label that is a pointer.
 def get_string_label(options, string, type, labelPreference=None):
+    global generated_string_number
+    
     determined = False
     if labelPreference is not None:
         if labelPreference in options['extra_strings']:
@@ -48,7 +52,8 @@ def get_string_label(options, string, type, labelPreference=None):
                 label = string
                 if not re.fullmatch(r'[a-zA-Z0-9_]+', label):
                     if len(label) > 60:
-                        label = str(uuid.uuid4())
+                        generated_string_number += 1
+                        label = str(generated_string_number)
                     label = '_g__' + re.sub(r'[^a-zA-Z0-9_]', '_', label)
             options['extra_strings'][label] = string
 
@@ -65,23 +70,6 @@ def get_string_label(options, string, type, labelPreference=None):
     if type == '*z':
        return options['prefix'] + 'z_' + label
     msg.error_exit('Invalid string type: ' + type)
-
-
-
-def break_into_substrings(s, max_length=72):
-    result = []
-    i = 0
-    n = len(s)
-
-    while i < n:
-        chunk = s[i:i+max_length]
-        if chunk.endswith("\\") and i+max_length < n:
-            chunk += s[i+max_length]
-            i += 1
-        result.append(chunk)
-        i += len(chunk)
-
-    return result
 
 
 
