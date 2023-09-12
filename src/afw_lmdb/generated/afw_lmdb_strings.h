@@ -389,6 +389,78 @@ extern const afw_value_string_t \
 
 
 
+/** @brief define for quoted string _g__ */
+#define AFW_LMDB_Q__g__ \
+    ""
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__ */
+#define afw_lmdb_s__g__ \
+    (afw_lmdb_v__g__.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__ */
+#define afw_lmdb_z__g__ \
+    (afw_lmdb_v__g__.internal.s)
+
+
+
+/** @brief define for quoted string _g__Adaptor_Id_ */
+#define AFW_LMDB_Q__g__Adaptor_Id_ \
+    "Adaptor Id."
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__Adaptor_Id_ */
+#define afw_lmdb_s__g__Adaptor_Id_ \
+    (afw_lmdb_v__g__Adaptor_Id_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__Adaptor_Id_ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__Adaptor_Id_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__Adaptor_Id_ */
+#define afw_lmdb_z__g__Adaptor_Id_ \
+    (afw_lmdb_v__g__Adaptor_Id_.internal.s)
+
+
+
+/** @brief define for quoted string _g__Number_of_stale_slots_that_were_cleared_ */
+#define AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_ \
+    "Number of stale slots that were cleared."
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_ */
+#define afw_lmdb_s__g__Number_of_stale_slots_that_were_cleared_ \
+    (afw_lmdb_v__g__Number_of_stale_slots_that_were_cleared_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__Number_of_stale_slots_that_were_cleared_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_ */
+#define afw_lmdb_z__g__Number_of_stale_slots_that_were_cleared_ \
+    (afw_lmdb_v__g__Number_of_stale_slots_that_were_cleared_.internal.s)
+
+
+
+/** @brief define for quoted string _g__Reader_entries_ */
+#define AFW_LMDB_Q__g__Reader_entries_ \
+    "Reader entries."
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__Reader_entries_ */
+#define afw_lmdb_s__g__Reader_entries_ \
+    (afw_lmdb_v__g__Reader_entries_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__Reader_entries_ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__Reader_entries_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__Reader_entries_ */
+#define afw_lmdb_z__g__Reader_entries_ \
+    (afw_lmdb_v__g__Reader_entries_.internal.s)
+
+
+
 /** @brief define for quoted string _meta_ */
 #define AFW_LMDB_Q__meta_ \
     "_meta_"
@@ -404,6 +476,24 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__meta_ */
 #define afw_lmdb_z__meta_ \
     (afw_lmdb_v__meta_.internal.s)
+
+
+
+/** @brief define for quoted string adaptorId */
+#define AFW_LMDB_Q_adaptorId \
+    "adaptorId"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q_adaptorId */
+#define afw_lmdb_s_adaptorId \
+    (afw_lmdb_v_adaptorId.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q_adaptorId */
+extern const afw_value_string_t \
+    afw_lmdb_v_adaptorId;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_adaptorId */
+#define afw_lmdb_z_adaptorId \
+    (afw_lmdb_v_adaptorId.internal.s)
 
 
 

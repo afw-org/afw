@@ -6,6 +6,7 @@ import os
 from _afwdev.common import direct
 from _afwdev.common import msg, nfc
 from _afwdev.generate import c
+from _afwdev.generate.strings import get_string_label
 
 def get_data_type(data_type_list, dataType):
     result = None
@@ -52,24 +53,36 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     if options['core'] and dataType != '':
         data_type = '&afw_data_type_' + dataType + '_direct'
     fd.write('    ' + data_type + ',\n')
-    fd.write('    AFW_UTF8_LITERAL("' + dataType + '"),\n')
+    if dataType != '':
+        fd.write('    ' + get_string_label(options, dataType, '*v') + ',\n')
+    else:
+        fd.write('    NULL,\n')
 
     # dataTypeParameter
-    dataTypeParameter = p.get('dataTypeParameter','')
-    fd.write('    AFW_UTF8_LITERAL("' + dataTypeParameter  + '"),\n')
+    dataTypeParameter = p.get('dataTypeParameter')
+    if dataTypeParameter is not None:
+        fd.write('    ' + get_string_label(options, dataTypeParameter, '*v') + ',\n')
+    else:
+        fd.write('    NULL,\n')
 
     # name
     name = p.get('name','')
-    fd.write('    AFW_UTF8_LITERAL("' + name  + '"),\n')
+    fd.write('    ' + get_string_label(options, name, '*v') + ',\n')
 
     # brief
-    brief = p.get('brief','') 
-    fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(brief)  + '),\n')
+    brief = p.get('brief')
+    if brief is not None:
+        fd.write('    ' + get_string_label(options, brief, '*v') + ',\n')
+    else:
+        fd.write('    NULL,\n')
 
     # description
-    description = p.get('description','')
-    fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(description)  + '),\n')
-            
+    description = p.get('description')
+    if description is not None:
+        fd.write('    ' + get_string_label(options, description, '*v') + ',\n')
+    else:
+        fd.write('    NULL,\n')
+
     # minArgs
     if p.get('minArgs') is not None:
         fd.write('    ' + str(p.get('minArgs'))  + ',\n')

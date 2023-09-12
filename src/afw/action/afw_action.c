@@ -55,10 +55,10 @@ impl_call_function(
         else {
             minArgs_found = true;
             args = afw_object_get_property(action_entry,
-                &(*a)->name, xctx);
+                &(*a)->name->internal, xctx);
             if (!args && parent_request) {
                 args = afw_object_get_property(parent_request,
-                    &(*a)->name, xctx);
+                    &(*a)->name->internal, xctx);
             }
             if (args) {
                 vargs = afw_value_as_array_of_values(args, p, xctx);
@@ -76,12 +76,12 @@ impl_call_function(
 
         /* If this is not minArgs parameter ... */
         if (*a && (*a)->minArgs == -1) {
-            argv[i] = afw_object_get_property(action_entry, &(*a)->name,
-                xctx);
+            argv[i] = afw_object_get_property(
+                action_entry, &(*a)->name->internal, xctx);
             if (argv[i]) {
                 if (afw_value_is_object(argv[i]) && parent_request) {
                     value = afw_object_get_property(parent_request,
-                        &(*a)->name, xctx);
+                        &(*a)->name->internal, xctx);
                     if (afw_value_is_object(value)) {
                         argv[i] = afw_value_create_object(
                             afw_object_create_merged(
@@ -95,7 +95,7 @@ impl_call_function(
             }
             else if (parent_request) {
                 argv[i] = afw_object_get_property(parent_request,
-                    &(*a)->name, xctx);
+                    &(*a)->name->internal, xctx);
             }
 
             /* If arg's data type doesn't match declared value, convert. */
@@ -112,7 +112,7 @@ impl_call_function(
             else if (!(*a)->optional) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "Missing parameter " AFW_UTF8_FMT_Q,
-                    AFW_UTF8_FMT_ARG(&(*a)->name));
+                    AFW_UTF8_FMT_ARG(&(*a)->name->internal));
             }
         }
 

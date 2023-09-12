@@ -11,7 +11,10 @@
             "brief": "Brief description of parameter",
             "dataType": "string",
             "description": "This is a predicate for the parameter with the first letter capitalized and without a trailing period.",
-            "label": "Brief"
+            "label": "Brief",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "canBeUndefined": {
             "allowQuery": true,
@@ -27,7 +30,10 @@
             "dataType": "string",
             "description": "This is the data type id for this parameter's value.",
             "label": "Data Type",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "dataTypeParameter": {
             "allowQuery": true,
@@ -35,7 +41,10 @@
             "dataType": "string",
             "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
             "label": "Data Type Parameter",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "description": {
             "allowQuery": true,
@@ -43,7 +52,10 @@
             "dataType": "string",
             "dataTypeParameter": "text/plain",
             "description": "This is the description of this parameter.",
-            "label": "Description"
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "minArgs": {
             "allowQuery": true,
@@ -57,7 +69,10 @@
             "brief": "The name of this parameter",
             "dataType": "string",
             "description": "This is the name of this parameter.",
-            "label": "Name"
+            "label": "Name",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "optional": {
             "allowQuery": true,

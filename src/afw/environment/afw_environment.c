@@ -1227,8 +1227,9 @@ impl_resolve_function_parameter(
 
     result->meta.inf = &afw_runtime_inf__AdaptiveFunctionParameter_;
 
-    if (parameter->dataType.s) {
-        result->data_type = afw_environment_get_data_type(&parameter->dataType,
+    if (parameter->dataType->internal.s) {
+        result->data_type = afw_environment_get_data_type(
+            &parameter->dataType->internal,
             xctx);
 
     }

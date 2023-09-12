@@ -81,11 +81,11 @@ struct afw_value_evaluated_s {
 struct afw_value_function_parameter_s {
     afw_object_t meta;
     const afw_data_type_t *data_type;
-    afw_utf8_t dataType;
-    afw_utf8_t dataTypeParameter;
-    afw_utf8_t name;
-    afw_utf8_t brief;
-    afw_utf8_t description;
+    const afw_value_string_t *dataType;
+    const afw_value_string_t *dataTypeParameter;
+    const afw_value_string_t *name;
+    const afw_value_string_t *brief;
+    const afw_value_string_t *description;
 
     /*
      * This is the minimum number of values that can be specified for this

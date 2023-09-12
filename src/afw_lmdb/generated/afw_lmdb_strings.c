@@ -125,9 +125,34 @@ const afw_value_string_t afw_lmdb_v__AdaptiveObjectType_ = {
     AFW_UTF8_LITERAL(AFW_LMDB_Q__AdaptiveObjectType_)
 };
 
+const afw_value_string_t afw_lmdb_v__g__ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__)
+};
+
+const afw_value_string_t afw_lmdb_v__g__Adaptor_Id_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Adaptor_Id_)
+};
+
+const afw_value_string_t afw_lmdb_v__g__Number_of_stale_slots_that_were_cleared_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_)
+};
+
+const afw_value_string_t afw_lmdb_v__g__Reader_entries_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Reader_entries_)
+};
+
 const afw_value_string_t afw_lmdb_v__meta_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_LMDB_Q__meta_)
+};
+
+const afw_value_string_t afw_lmdb_v_adaptorId = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_adaptorId)
 };
 
 const afw_value_string_t afw_lmdb_v_afwCamelCaseFunctionLabel = {
