@@ -80633,11 +80633,27 @@ extern const afw_value_string_t \
 
 
 
+/** @brief define for unquoted false */
+#define AFW_BOOLEAN_U_false \
+    false
+
+/** @brief define for quoted false */
+#define AFW_BOOLEAN_Q_false \
+    "false"
+
 /** @brief 'afw_value_boolean_t' for boolean false */
 extern const afw_value_boolean_t \
     afw_boolean_v_false;
 
 
+
+/** @brief define for unquoted true */
+#define AFW_BOOLEAN_U_true \
+    true
+
+/** @brief define for quoted true */
+#define AFW_BOOLEAN_Q_true \
+    "true"
 
 /** @brief 'afw_value_boolean_t' for boolean true */
 extern const afw_value_boolean_t \
@@ -80645,17 +80661,41 @@ extern const afw_value_boolean_t \
 
 
 
+/** @brief define for unquoted 1 */
+#define AFW_INTEGER_U_one \
+    1
+
+/** @brief define for quoted 1 */
+#define AFW_INTEGER_Q_one \
+    "1"
+
 /** @brief 'afw_value_integer_t' for integer 1 */
 extern const afw_value_integer_t \
     afw_integer_v_one;
 
 
 
+/** @brief define for unquoted 0 */
+#define AFW_INTEGER_U_zero \
+    0
+
+/** @brief define for quoted 0 */
+#define AFW_INTEGER_Q_zero \
+    "0"
+
 /** @brief 'afw_value_integer_t' for integer 0 */
 extern const afw_value_integer_t \
     afw_integer_v_zero;
 
 
+
+/** @brief define for unquoted 1.0e1 */
+#define AFW_DOUBLE_U_1raisedto1 \
+    1.0e1
+
+/** @brief define for quoted 1.0e1 */
+#define AFW_DOUBLE_Q_1raisedto1 \
+    "1.0e1"
 
 /** @brief 'afw_value_double_t' for double 1.0e1 */
 extern const afw_value_double_t \

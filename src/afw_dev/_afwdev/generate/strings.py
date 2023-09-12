@@ -129,8 +129,8 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
                 fd.write('\n')
  
                 if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
-                    fd.write('\n/** @brief define for quoted string ' + name + ' */\n')
                     q_name = use_prefix.upper() + 'Q_' + name 
+                    fd.write('\n/** @brief define for quoted string ' + name + ' */\n')
                     fd.write('#define ' + q_name + ' \\\n')
                     line = repr(value)[1:-1].replace('"', '\\"')
                     fd.write('    "' + line + '"\n')
@@ -141,8 +141,15 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
                     fd.write('\n/** @brief \'afw_utf8_z_t *\' for string ' + q_name + ' */\n')
                     fd.write('#define ' + use_prefix + 'z_' + name + ' \\\n    (' +  use_prefix + 'v_' + name + '.internal.s)\n')              
                 elif supported_dataTypes[dataType] == '':
+                    fd.write('\n/** @brief define for unquoted ' + value + ' */\n')
+                    fd.write('#define ' + use_prefix.upper() + 'U_' + name  + ' \\\n')
+                    fd.write('    ' + value + '\n')
+                    fd.write('\n/** @brief define for quoted ' + value + ' */\n')
+                    fd.write('#define ' + use_prefix.upper() + 'Q_' + name  + ' \\\n')
+                    line = repr(value)[1:-1].replace('"', '\\"')
+                    fd.write('    "' + line + '"\n')
                     fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + dataType + ' ' + value + ' */\n')
-                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'v_' + name + ';\n')
+                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'v_' + name + ';\n')            
                 else:
                     msg.error_exit(
                         'Unsupported supported_dataTypes[\'' +
