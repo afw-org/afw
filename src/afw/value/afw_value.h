@@ -152,7 +152,7 @@ struct afw_value_function_definition_s {
     const afw_value_string_t *functionDeclaration;
 
     /** @brief Optional operator for function. */
-    afw_utf8_t op;
+    const afw_value_string_t *op;
 
     /** @brief Function called to execute this Adaptive function. */
     afw_function_execute_cb_t execute;
@@ -161,10 +161,10 @@ struct afw_value_function_definition_s {
     afw_function_arg_check_t arg_check;
 
     /** @brief The number of required parameters. */
-    afw_integer_t numberOfRequiredParameters;
+    const afw_value_integer_t *numberOfRequiredParameters;
 
     /** @brief The maximum number of required parameters or -1 is no max. */
-    afw_integer_t maximumNumberOfParameters;
+    const afw_value_integer_t *maximumNumberOfParameters;
 
     /** @brief Function parameters. */
     const afw_value_function_parameter_t * const *parameters;
@@ -182,7 +182,7 @@ struct afw_value_function_definition_s {
     const afw_data_type_t *data_type;
 
     /** @brief If this is a data type method, this is the data type id. */
-    afw_utf8_t dataType;
+    const afw_value_string_t *dataType;
 
     /**
      * @brief Errors thrown or NULL.

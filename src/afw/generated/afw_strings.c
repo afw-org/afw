@@ -27134,6 +27134,12 @@ afw_v__g__Zero_based_position_in_the_search_string_to_start_search_ = {
 };
 
 const afw_value_string_t
+afw_v__g___ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_Q__g___)
+};
+
+const afw_value_string_t
 afw_v__g___MAJOR___MINOR___PATCH_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q__g___MAJOR___MINOR___PATCH_)
@@ -27161,6 +27167,18 @@ const afw_value_string_t
 afw_v__g___Service_type__title_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q__g___Service_type__title_)
+};
+
+const afw_value_string_t
+afw_v__g____ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_Q__g____)
+};
+
+const afw_value_string_t
+afw_v__g_____ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_Q__g_____)
 };
 
 const afw_value_string_t
@@ -52985,6 +53003,42 @@ const afw_value_integer_t
 afw_integer_v_2 = {
     &afw_value_permanent_integer_inf,
     2
+};
+
+const afw_value_integer_t
+afw_integer_v_3 = {
+    &afw_value_permanent_integer_inf,
+    3
+};
+
+const afw_value_integer_t
+afw_integer_v_4 = {
+    &afw_value_permanent_integer_inf,
+    4
+};
+
+const afw_value_integer_t
+afw_integer_v_5 = {
+    &afw_value_permanent_integer_inf,
+    5
+};
+
+const afw_value_integer_t
+afw_integer_v_6 = {
+    &afw_value_permanent_integer_inf,
+    6
+};
+
+const afw_value_integer_t
+afw_integer_v_7 = {
+    &afw_value_permanent_integer_inf,
+    7
+};
+
+const afw_value_integer_t
+afw_integer_v_8 = {
+    &afw_value_permanent_integer_inf,
+    8
 };
 
 const afw_value_integer_t

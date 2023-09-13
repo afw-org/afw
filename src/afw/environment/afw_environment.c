@@ -1227,7 +1227,7 @@ impl_resolve_function_parameter(
 
     result->meta.inf = &afw_runtime_inf__AdaptiveFunctionParameter_;
 
-    if (parameter->dataType->internal.s) {
+    if (parameter->dataType && parameter->dataType->internal.s) {
         result->data_type = afw_environment_get_data_type(
             &parameter->dataType->internal,
             xctx);
@@ -1260,9 +1260,9 @@ impl_resolve_function(
     object->pub.inf = &afw_runtime_inf__AdaptiveFunction_;
     object->internal = result;
     result->object = (const afw_object_t *)object;
-    if (result->dataType.len > 0) {
-        result->data_type = afw_environment_get_data_type(&result->dataType,
-            xctx);
+    if (result->dataType && result->dataType->internal.len > 0) {
+        result->data_type = afw_environment_get_data_type(
+            &result->dataType->internal, xctx);
     }
 
     if (result->data_type) {
@@ -1318,17 +1318,20 @@ afw_environment_register_function(
          * and data type method number in the clone.
          */
         f = NULL;
-        if (function->dataType.len > 0 && !function->data_type) {
+        if (function->dataType &&
+            function->dataType->internal.len > 0 &&
+            !function->data_type)
+        {
             f = afw_xctx_calloc(sizeof(afw_value_function_definition_t),
                 xctx);
             memcpy(f, function, sizeof(afw_value_function_definition_t));
             function = f;
             f->data_type = afw_environment_get_data_type(
-                &function->dataType, xctx);
+                &function->dataType->internal, xctx);
             if (!function->data_type) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                 "dataType " AFW_UTF8_FMT_Q " doesn't exist",
-                AFW_UTF8_FMT_ARG(&function->dataType));
+                AFW_UTF8_FMT_ARG(&function->dataType->internal));
             }
             if (function->dataTypeMethodNumber != 0)
             {
@@ -1455,7 +1458,7 @@ afw_environment_register_function(
         }
 
         /* If there was a data type id, set method. */
-        if (function->dataType.len > 0) {
+        if (function->dataType && function->dataType->internal.len > 0) {
             methods = ((apr_array_header_t **)env->data_type_methods->elts)
                 [function->data_type->data_type_number - 1];
             while (methods->nelts < function->dataTypeMethodNumber) {

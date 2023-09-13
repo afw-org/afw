@@ -699,10 +699,11 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('    ' + get_string_label(options, functionDeclaration, '*v') + ',\n')
             
             # op
-            if obj.get('op') is not None:
-                fd.write('    AFW_UTF8_LITERAL("' + obj.get('op')  + '"),\n')
+            op = obj.get('op')
+            if op is None:
+                fd.write('    NULL,\n')
             else:
-                fd.write('    AFW_UTF8_LITERAL(""),\n')
+                fd.write('    ' + get_string_label(options, op, '*v') + ',\n')
 
             # execute
             if obj.get('useExecuteFunction') is None:
@@ -714,10 +715,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('    NULL,\n') #@todo
 
             # numberOfRequiredParameters
-            fd.write('    ' + str(numberOfRequiredParameters) + ',\n')
+            fd.write('    ' + get_string_label(options, str(numberOfRequiredParameters), '*v', dataType='integer') + ',\n')
 
             # maximumNumberOfParameters
-            fd.write('    ' + str(maximumNumberOfParameters) + ',\n')
+            fd.write('    ' + get_string_label(options, str(maximumNumberOfParameters), '*v', dataType='integer') + ',\n')
 
             # parameters
             fd.write('    &impl_' + label + '_parameters[0],\n')
@@ -746,7 +747,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('    NULL,\n')
 
             # dataType
-            fd.write('    AFW_UTF8_LITERAL("' + dataType + '"),\n')
+            fd.write('    ' + get_string_label(options, dataType, '*v') + ',\n')
 
             # errorsThrown
             if obj.get("errorsThrown") is not None:

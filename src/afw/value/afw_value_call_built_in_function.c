@@ -144,23 +144,23 @@ impl_afw_value_optional_evaluate(
     x.argc = self->args.argc;
 
     /* Make there are at least the required number of parameters. */
-    if (x.argc < x.function->numberOfRequiredParameters) {
+    if (x.argc < x.function->numberOfRequiredParameters->internal) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT_Q
             " expects " AFW_SIZE_T_FMT " required parameters",
             AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
-            x.function->numberOfRequiredParameters);
+            x.function->numberOfRequiredParameters->internal);
     }
 
     /* Make there are at least the required number of parameters. */
-    if (x.function->maximumNumberOfParameters != -1 &&
-        x.argc > x.function->maximumNumberOfParameters)
+    if (x.function->maximumNumberOfParameters->internal != -1 &&
+        x.argc > x.function->maximumNumberOfParameters->internal)
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT_Q
             " expects no more than " AFW_SIZE_T_FMT " parameters",
             AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
-            x.function->maximumNumberOfParameters);
+            x.function->maximumNumberOfParameters->internal);
     }
 
     /*

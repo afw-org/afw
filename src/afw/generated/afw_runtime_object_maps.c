@@ -1693,8 +1693,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_dataTypeMethodNumber,
@@ -1783,8 +1783,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_integer_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_numberOfRequiredParameters,
@@ -1793,8 +1793,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_integer_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_op,
@@ -1803,8 +1803,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_parameters,

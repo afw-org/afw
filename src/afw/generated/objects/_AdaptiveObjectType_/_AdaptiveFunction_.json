@@ -56,7 +56,10 @@
             "dataType": "string",
             "description": "If present, this is a method for this data type.",
             "label": "Data Type",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "dataTypeMethodNumber": {
             "allowQuery": true,
@@ -148,7 +151,10 @@
             "dataType": "integer",
             "description": "This is the maximum number of parameters or -1 if there is no maximum.",
             "label": "Maximum Parameters",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "numberOfRequiredParameters": {
             "allowQuery": true,
@@ -156,14 +162,20 @@
             "dataType": "integer",
             "description": "This is the number of required parameters.",
             "label": "Required Parameters",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "op": {
             "allowQuery": true,
             "brief": "The function's operator",
             "dataType": "string",
             "description": "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
-            "label": "Op"
+            "label": "Op",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "parameters": {
             "brief": "The function's parameters",

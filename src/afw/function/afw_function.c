@@ -160,7 +160,8 @@ afw_function_evaluate_parameter(
     /* If result is undefined, return NULL. Fuss if required. */
     if (afw_value_is_undefined(result)) {
         if (
-            parameter_number <= x->function->numberOfRequiredParameters && 
+            parameter_number <=
+                x->function->numberOfRequiredParameters->internal && 
             !parameter->optional->internal &&
             !parameter->canBeUndefined->internal)
         {
