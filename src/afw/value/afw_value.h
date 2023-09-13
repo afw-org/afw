@@ -440,6 +440,34 @@ afw_value_undecorated_inf_is(
 
 
 /**
+ * @brief Determine if value is boolean true.
+ * @param value to test.
+ * @return boolean result.
+ *
+ * NOTE: If the value is NULL or not boolean it will always be false.
+ */
+#define afw_value_is_boolean_true(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_boolean && \
+    ((const afw_value_boolean_t *)A_VALUE)->internal \
+)
+
+
+
+/**
+ * @brief Determine if value is boolean false.
+ * @param value to test.
+ * @return boolean result.
+ *
+ * NOTE: If the value is NULL or not boolean it will always be false.
+ */
+#define afw_value_is_boolean_false(A_VALUE) \
+( !afw_value_is_boolean_true(A_VALUE) )
+
+
+
+/**
  * @brief Determine if value is undefined or null.
  * @param value to test.
  * @param xctx of caller.
