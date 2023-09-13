@@ -26893,16 +26893,28 @@ afw_v_zeroOffset = {
     AFW_UTF8_LITERAL(AFW_Q_zeroOffset)
 };
 
-const afw_value_boolean_t
-afw_boolean_v_false = {
-    &afw_value_permanent_boolean_inf,
-    false
+const afw_value_integer_t
+afw_integer_v_0 = {
+    &afw_value_permanent_integer_inf,
+    0
 };
 
-const afw_value_boolean_t
-afw_boolean_v_true = {
-    &afw_value_permanent_boolean_inf,
-    true
+const afw_value_integer_t
+afw_integer_v_1 = {
+    &afw_value_permanent_integer_inf,
+    1
+};
+
+const afw_value_integer_t
+afw_integer_v_2 = {
+    &afw_value_permanent_integer_inf,
+    2
+};
+
+const afw_value_integer_t
+afw_integer_v__g___1 = {
+    &afw_value_permanent_integer_inf,
+    -1
 };
 
 const afw_value_integer_t
@@ -26915,6 +26927,18 @@ const afw_value_integer_t
 afw_integer_v_zero = {
     &afw_value_permanent_integer_inf,
     0
+};
+
+const afw_value_boolean_t
+afw_boolean_v_false = {
+    &afw_value_permanent_boolean_inf,
+    false
+};
+
+const afw_value_boolean_t
+afw_boolean_v_true = {
+    &afw_value_permanent_boolean_inf,
+    true
 };
 
 const afw_value_double_t

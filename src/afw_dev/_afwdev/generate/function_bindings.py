@@ -66,8 +66,11 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
         fd.write('    NULL,\n')
 
     # name
-    name = p.get('name','')
-    fd.write('    ' + get_string_label(options, name, '*v') + ',\n')
+    name = p.get('name')
+    if name is not None:
+        fd.write('    ' + get_string_label(options, name, '*v') + ',\n')
+    else:
+        fd.write('    NULL,\n')
 
     # brief
     brief = p.get('brief')
@@ -84,34 +87,24 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
         fd.write('    NULL,\n')
 
     # minArgs
-    if p.get('minArgs') is not None:
-        fd.write('    ' + str(p.get('minArgs'))  + ',\n')
-    else:
-        fd.write('    -1,\n')
+    minArgs = str(p.get('minArgs', -1))
+    fd.write('    ' + get_string_label(options, minArgs, '*v', dataType='integer') + ',\n')
 
     # optional
-    if p.get('optional', False) == True:
-        fd.write('    true,\n')
-    else:
-        fd.write('    false,\n')
+    optional = 'false' if p.get('optional', False) == False else 'true'
+    fd.write('    ' + get_string_label(options, optional, '*v', dataType='boolean') + ',\n')
 
     # canBeUndefined
-    if p.get('canBeUndefined', False) == True:
-        fd.write('    true,\n')
-    else:
-        fd.write('    false,\n')
+    canBeUndefined = 'false' if p.get('canBeUndefined', False) == False else 'true'
+    fd.write('    ' + get_string_label(options, canBeUndefined, '*v', dataType='boolean') + ',\n')
 
     # polymorphicDataType
-    if p.get('polymorphicDataType', False) == True:
-        fd.write('    true,\n')
-    else:
-        fd.write('    false,\n')
+    polymorphicDataType = 'false' if p.get('polymorphicDataType', False) == False else 'true'
+    fd.write('    ' + get_string_label(options, polymorphicDataType, '*v', dataType='boolean') + ',\n')
 
     # polymorphicDataTypeParameter
-    if p.get('polymorphicDataTypeParameter', False) == True:
-        fd.write('    true,\n')
-    else:
-        fd.write('    false,\n')
+    polymorphicDataTypeParameter = 'false' if p.get('polymorphicDataTypeParameter', False) == False else 'true'
+    fd.write('    ' + get_string_label(options, polymorphicDataTypeParameter, '*v', dataType='boolean') + ',\n')
 
     fd.write('};\n')
 

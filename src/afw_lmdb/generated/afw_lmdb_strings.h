@@ -389,24 +389,6 @@ extern const afw_value_string_t \
 
 
 
-/** @brief define for quoted string _g__ */
-#define AFW_LMDB_Q__g__ \
-    ""
-
-/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__ */
-#define afw_lmdb_s__g__ \
-    (afw_lmdb_v__g__.internal)
-
-/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__ */
-extern const afw_value_string_t \
-    afw_lmdb_v__g__;
-
-/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__ */
-#define afw_lmdb_z__g__ \
-    (afw_lmdb_v__g__.internal.s)
-
-
-
 /** @brief define for quoted string _g__Adaptor_Id_ */
 #define AFW_LMDB_Q__g__Adaptor_Id_ \
     "Adaptor Id."
@@ -1754,6 +1736,34 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_version_string */
 #define afw_lmdb_z_version_string \
     (afw_lmdb_v_version_string.internal.s)
+
+
+
+/** @brief define for unquoted -1 */
+#define AFW_LMDB_INTEGER_U__g___1 \
+    -1
+
+/** @brief define for quoted -1 */
+#define AFW_LMDB_INTEGER_Q__g___1 \
+    "-1"
+
+/** @brief 'afw_value_integer_t' for integer -1 */
+extern const afw_value_integer_t \
+    afw_lmdb_integer_v__g___1;
+
+
+
+/** @brief define for unquoted false */
+#define AFW_LMDB_BOOLEAN_U_false \
+    false
+
+/** @brief define for quoted false */
+#define AFW_LMDB_BOOLEAN_Q_false \
+    "false"
+
+/** @brief 'afw_value_boolean_t' for boolean false */
+extern const afw_value_boolean_t \
+    afw_lmdb_boolean_v_false;
 
 
 

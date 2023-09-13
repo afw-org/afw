@@ -22,7 +22,10 @@
             "dataType": "boolean",
             "defaultValue": false,
             "description": "Indicates that parameter can be undefined (NULL) even if not optional.",
-            "label": "Optional"
+            "label": "Optional",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "dataType": {
             "allowQuery": true,
@@ -62,7 +65,10 @@
             "brief": "Minimum number of values that can be specified for this parameter",
             "dataType": "integer",
             "description": "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
-            "label": "Min Args"
+            "label": "Min Args",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "name": {
             "allowQuery": true,
@@ -80,21 +86,30 @@
             "dataType": "boolean",
             "defaultValue": false,
             "description": "This indicates that parameter is optional and can be undefined (NULL).",
-            "label": "Optional"
+            "label": "Optional",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "polymorphicDataType": {
             "allowQuery": true,
             "brief": "The dataType for this parameter",
             "dataType": "boolean",
             "description": "The dataType for this parameter is <Type>.",
-            "label": "Polymorphic Data Type"
+            "label": "Polymorphic Data Type",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "polymorphicDataTypeParameter": {
             "allowQuery": true,
             "brief": "The dataTypeParameter for this parameter",
             "dataType": "boolean",
             "description": "The dataTypeParameter for this parameter is <Type>.",
-            "label": "Polymorphic Data Type Parameter"
+            "label": "Polymorphic Data Type Parameter",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         }
     },
     "runtime": {

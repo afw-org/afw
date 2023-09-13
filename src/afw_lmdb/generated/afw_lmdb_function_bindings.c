@@ -69,14 +69,14 @@ impl_reader_check_returns = {
     NULL,
     &afw_lmdb_v_integer,
     NULL,
-    &afw_lmdb_v__g__,
+    NULL,
     NULL,
     &afw_lmdb_v__g__Number_of_stale_slots_that_were_cleared_,
-    -1,
-    false,
-    false,
-    false,
-    false,
+    &afw_lmdb_integer_v__g___1,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
 };
 
 static const afw_value_function_parameter_t
@@ -98,11 +98,11 @@ impl_reader_check_parameter_1 = {
     &afw_lmdb_v_adaptorId,
     NULL,
     &afw_lmdb_v__g__Adaptor_Id_,
-    -1,
-    false,
-    false,
-    false,
-    false,
+    &afw_lmdb_integer_v__g___1,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
 };
 
 static const afw_value_function_parameter_t *
@@ -188,14 +188,14 @@ impl_reader_list_returns = {
     NULL,
     &afw_lmdb_v_string,
     NULL,
-    &afw_lmdb_v__g__,
+    NULL,
     NULL,
     &afw_lmdb_v__g__Reader_entries_,
-    -1,
-    false,
-    false,
-    false,
-    false,
+    &afw_lmdb_integer_v__g___1,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
 };
 
 static const afw_value_function_parameter_t
@@ -217,11 +217,11 @@ impl_reader_list_parameter_1 = {
     &afw_lmdb_v_adaptorId,
     NULL,
     &afw_lmdb_v__g__Adaptor_Id_,
-    -1,
-    false,
-    false,
-    false,
-    false,
+    &afw_lmdb_integer_v__g___1,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
 };
 
 static const afw_value_function_parameter_t *

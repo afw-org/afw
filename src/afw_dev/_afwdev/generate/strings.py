@@ -38,6 +38,7 @@ supported_dataTypes = {
 # of string labels without the prefix and the values are the strings.
 # 
 # type can be:
+# 'U'  for a #define unquoted string label.
 # 'Q'  for a #define quoted string label.
 # 's'  for a afw_utf8_t string label.
 # '*s' for a afw_utf8_t string label that is a pointer.
@@ -68,7 +69,7 @@ def get_string_label(
 
     if not determined:
         label = None
-        for key, value in options['const']['string'].items():
+        for key, value in options['const'][dataType].items():
             if value == string:
                 label = key
                 break
@@ -83,7 +84,7 @@ def get_string_label(
                         generated_string_number += 1
                         label = str(generated_string_number)
                     label = '_g__' + re.sub(r'[^a-zA-Z0-9_]', '_', label)
-            options['const']['string'][label] = string
+            options['const'][dataType][label] = string
 
 
     use_prefix = options['prefix']
@@ -95,14 +96,15 @@ def get_string_label(
     if type == 'v':
         return use_prefix + 'v_' + label
     if type == '*v':
-        return '&' + use_prefix + 'v_' + label
-    if dataType == 'string' and type == 's':       
-        if type == 's':
-            return use_prefix + 's_' + label
-        if type == '*s':
-            return '&' + use_prefix + 's_' + label
-        if type == '*z':
-            return use_prefix+ 'z_' + label
+        return '&' + use_prefix + 'v_' + label     
+    if type == 's':
+        return use_prefix + 's_' + label
+    if type == '*s':
+        return '&' + use_prefix + 's_' + label
+    if type == '*z':
+        return use_prefix+ 'z_' + label
+    if type == 'U':
+        return use_prefix.upper() + 'U_' + label
     msg.error_exit('Invalid string type: ' + type)
 
 

@@ -49,7 +49,7 @@ impl_call_function(
             AFW_THROW_ERROR_Z(general,
                 "minArgs must be on last parameter", xctx);
         }
-        if ((*a)->minArgs == -1) {
+        if ((*a)->minArgs->internal == -1) {
             argc++;
         }
         else {
@@ -75,7 +75,7 @@ impl_call_function(
     for (i = 1, a = function->parameters; i <= argc; i++, a++) {
 
         /* If this is not minArgs parameter ... */
-        if (*a && (*a)->minArgs == -1) {
+        if (*a && (*a)->minArgs->internal == -1) {
             argv[i] = afw_object_get_property(
                 action_entry, &(*a)->name->internal, xctx);
             if (argv[i]) {
@@ -109,7 +109,7 @@ impl_call_function(
             }
 
             /* If arg is NULL and not optional, throw error. */
-            else if (!(*a)->optional) {
+            else if (!(*a)->optional->internal) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "Missing parameter " AFW_UTF8_FMT_Q,
                     AFW_UTF8_FMT_ARG(&(*a)->name->internal));

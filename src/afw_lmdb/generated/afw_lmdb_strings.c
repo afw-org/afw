@@ -146,12 +146,6 @@ afw_lmdb_v__AdaptiveObjectType_ = {
 };
 
 const afw_value_string_t
-afw_lmdb_v__g__ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__)
-};
-
-const afw_value_string_t
 afw_lmdb_v__g__Adaptor_Id_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Adaptor_Id_)
@@ -599,4 +593,16 @@ const afw_value_string_t
 afw_lmdb_v_version_string = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_LMDB_Q_version_string)
+};
+
+const afw_value_integer_t
+afw_lmdb_integer_v__g___1 = {
+    &afw_value_permanent_integer_inf,
+    -1
+};
+
+const afw_value_boolean_t
+afw_lmdb_boolean_v_false = {
+    &afw_value_permanent_boolean_inf,
+    false
 };

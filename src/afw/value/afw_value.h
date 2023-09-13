@@ -93,19 +93,19 @@ struct afw_value_function_parameter_s {
      * can only have a value other than -1 on last parameter where it can
      * have a value of -1 to 127.
      */
-    afw_integer_t minArgs;
+    const afw_value_integer_t *minArgs;
 
     /* Indicates that parameter is optional and can be undefined (NULL). */
-    afw_boolean_t optional;
+    const afw_value_boolean_t *optional;
 
     /* Indicates that parameter can be undefined (NULL) even if not optional. */
-    afw_boolean_t canBeUndefined;
+    const afw_value_boolean_t *canBeUndefined;
 
     /* Indicates that dataType is polymorphic. */
-    afw_boolean_t polymorphicDataType;
+    const afw_value_boolean_t *polymorphicDataType;
 
     /* Indicates that dataTypeParameter is polymorphic. */
-    afw_boolean_t polymorphicDataTypeParameter;
+    const afw_value_boolean_t *polymorphicDataTypeParameter;
 
 };
 
