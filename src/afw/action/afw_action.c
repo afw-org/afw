@@ -156,7 +156,7 @@ impl_call_function(
                 "Function " AFW_UTF8_FMT_Q
                 " returned a value that is not evaluated. ("
                 AFW_UTF8_FMT " " AFW_UTF8_FMT ")",
-                AFW_UTF8_FMT_ARG(&function->functionId),
+                AFW_UTF8_FMT_ARG(&function->functionId->internal),
                 AFW_UTF8_FMT_ARG(info.value_inf_id),
                 AFW_UTF8_FMT_OPTIONAL_ARG(info.detail)
             );

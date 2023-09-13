@@ -119,37 +119,37 @@ struct afw_value_function_definition_s {
     const afw_object_t *object;
 
     /** @brief Category of function. */
-    afw_utf8_t category;
+    const afw_value_string_t *category;
 
     /** @brief Function id of function. */
-    afw_utf8_t functionId;
+    const afw_value_string_t *functionId;
 
     /** @brief Function id without `<dataType>`.
      * 
      *  This is only different from functionId if polymorphic.
      */
-    afw_utf8_t untypedFunctionId;
+    const afw_value_string_t *untypedFunctionId;
 
     /** @brief Label used internally for function. */
-    afw_utf8_t functionLabel;
+    const afw_value_string_t *functionLabel;
 
     /** @brief functionLabel converted to camel case. */
-    afw_utf8_t camelCaseFunctionLabel;
+    const afw_value_string_t *camelCaseFunctionLabel;
 
     /** @brief functionLabel prefixed with "afw" and converted to camel case. */
-    afw_utf8_t afwCamelCaseFunctionLabel;
+    const afw_value_string_t *afwCamelCaseFunctionLabel;
 
     /** @brief Brief description. */
-    afw_utf8_t brief;
+    const afw_value_string_t *brief;
 
     /** @brief Description of function. */
-    afw_utf8_t description;
+    const afw_value_string_t *description;
 
     /** @brief Function signature. */
-    afw_utf8_t functionSignature;
+    const afw_value_string_t *functionSignature;
 
     /** @brief Function declaration. */
-    afw_utf8_t functionDeclaration;
+    const afw_value_string_t *functionDeclaration;
 
     /** @brief Optional operator for function. */
     afw_utf8_t op;

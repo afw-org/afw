@@ -169,7 +169,7 @@ afw_function_evaluate_parameter(
                 " of function " AFW_UTF8_FMT_Q
                 " can not be undefined",
                 parameter_number,
-                AFW_UTF8_FMT_ARG(&x->function->functionId));
+                AFW_UTF8_FMT_ARG(&x->function->functionId->internal));
         }
         afw_xctx_evaluation_stack_pop_parameter_number(xctx);
         return result;
@@ -189,7 +189,7 @@ afw_function_evaluate_parameter(
                 " must evaluate to data type " AFW_UTF8_FMT_Q
                 " but evaluated to be " AFW_UTF8_FMT_Q,
                 parameter_number,
-                AFW_UTF8_FMT_ARG(&x->function->functionId),
+                AFW_UTF8_FMT_ARG(&x->function->functionId->internal),
                 AFW_UTF8_FMT_ARG(&parameter->data_type->data_type_id),
                 AFW_UTF8_FMT_ARG(&result_data_type->data_type_id));
         }

@@ -536,36 +536,62 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('    (const afw_object_t *)&impl_object__' + label +',\n')
 
             # category
-            category = obj.get('category','')
-            fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(obj.get('category'))  + '),\n')
+            category = obj.get('category')
+            if category is None:
+                fd.write('    NULL,\n')
+            else:
+                fd.write('    ' + get_string_label(options, category, '*v') + ',\n')
 
             # functionId
-            fd.write('    AFW_UTF8_LITERAL("' + obj.get('functionId')  + '"),\n')
+            functionId = obj.get('functionId')
+            if functionId is None:
+                fd.write('    NULL,\n')
+            else:
+                fd.write('    ' + get_string_label(options, functionId, '*v') + ',\n')
 
             # untypedFunctionId
-            fd.write('    AFW_UTF8_LITERAL("' + obj.get('functionId').split('<')[0]  + '"),\n')
+            untypedFunctionId = functionId
+            if untypedFunctionId is None:
+                fd.write('    NULL,\n')
+            else:
+                untypedFunctionId = untypedFunctionId.split('<')[0]
+                fd.write('    ' + get_string_label(options, untypedFunctionId, '*v') + ',\n')
 
             # functionLabel
-            fd.write('    AFW_UTF8_LITERAL("' + label  + '"),\n')
+            functionLabel = obj.get('functionLabel')
+            if functionLabel is None:
+                fd.write('    NULL,\n')
+            else:
+                fd.write('    ' + get_string_label(options, functionLabel, '*v') + ',\n')
 
             # camelCaseFunctionLabel
-            fd.write('    AFW_UTF8_LITERAL("' + obj.get('camelCaseFunctionLabel') + '"),\n')
+            camelCaseFunctionLabel = obj.get('camelCaseFunctionLabel')
+            if camelCaseFunctionLabel is None:
+                fd.write('    NULL,\n')
+            else:
+                fd.write('    ' + get_string_label(options, camelCaseFunctionLabel, '*v') + ',\n')
 
             # afwCamelCaseFunctionLabel
-            fd.write('    AFW_UTF8_LITERAL("' + obj.get('afwCamelCaseFunctionLabel') + '"),\n')
+            afwCamelCaseFunctionLabel = obj.get('afwCamelCaseFunctionLabel')
+            if afwCamelCaseFunctionLabel is None:
+                fd.write('    NULL,\n')
+            else:
+                fd.write('    ' + get_string_label(options, afwCamelCaseFunctionLabel, '*v') + ',\n')
 
             # brief
-            if obj.get('brief') is not None:
-                fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(obj.get('brief'))  + '),\n')
+            brief = obj.get('brief')
+            if brief is None:
+                fd.write('    NULL,\n')
             else:
-                fd.write('    AFW_UTF8_LITERAL(""),\n')
+                fd.write('    ' + get_string_label(options, brief, '*v') + ',\n')
 
             # description
-            if obj.get('description') is not None:
-                fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(obj.get('description'))  + '),\n')
+            description = obj.get('description')
+            if description is None:
+                fd.write('    NULL,\n')
             else:
-                fd.write('    AFW_UTF8_LITERAL(""),\n')
-            
+                fd.write('    ' + get_string_label(options, description, '*v') + ',\n')
+          
             # functionSignature
             functionSignature = ""
             if obj.get('polymorphic', False):
@@ -594,7 +620,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     functionSignature += ': ' + make_Type(p)
             functionSignature += '): '
             functionSignature += make_Type(obj.get('returns'))
-            fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(functionSignature)  + '),\n') #@todo
+            fd.write('    ' + get_string_label(options, functionSignature, '*v') + ',\n')
 
             # functionDeclaration
             functionDeclaration = ""
@@ -670,7 +696,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
 
             # functionDeclaration: write
-            fd.write('    AFW_UTF8_LITERAL(' + c.make_quoted(functionDeclaration)  + '),\n')
+            fd.write('    ' + get_string_label(options, functionDeclaration, '*v') + ',\n')
             
             # op
             if obj.get('op') is not None:

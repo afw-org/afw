@@ -78,7 +78,7 @@ impl_afw_value_produce_compiler_listing(
 
     afw_value_compiler_listing_begin_value(writer, instance, NULL, xctx);
     afw_writer_write_z(writer, " ", xctx);
-    afw_writer_write_utf8(writer, &self->functionId, xctx);
+    afw_writer_write_utf8(writer, &self->functionId->internal, xctx);
     afw_writer_write_eol(writer, xctx);
 }
 
@@ -94,7 +94,7 @@ impl_afw_value_decompile(
     const afw_value_function_definition_t *self =
         (const afw_value_function_definition_t *)instance;
 
-    afw_writer_write_utf8(writer, &self->functionId, xctx);
+    afw_writer_write_utf8(writer, &self->functionId->internal, xctx);
 }
 
 /*
@@ -112,7 +112,7 @@ impl_afw_value_get_info(
 
     afw_memory_clear(info);
     info->value_inf_id = &instance->inf->rti.implementation_id;
-    info->detail = &self->functionId;
+    info->detail = &self->functionId->internal;
     info->optimized_value = instance;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */

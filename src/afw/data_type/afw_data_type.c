@@ -757,7 +757,8 @@ impl_afw_data_type_function_internal_to_utf8(
         result = AFW_VALUE_INTERNAL(value);
     }
     else if (afw_value_is_function_definition(value)) {
-        result = &((const afw_value_function_definition_t *)value)->functionId;
+        result = &((const afw_value_function_definition_t *)value)->
+            functionId->internal;
     }
     else if (afw_value_is_script_function_definition(value)) {
         result = ((const afw_value_script_function_definition_t *)value)->

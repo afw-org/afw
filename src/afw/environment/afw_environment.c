@@ -1339,8 +1339,8 @@ afw_environment_register_function(
             }
             method_number = apr_hash_get(
                 env->data_type_method_number_ht,
-                function->untypedFunctionId.s,
-                function->untypedFunctionId.len);
+                function->untypedFunctionId->internal.s,
+                function->untypedFunctionId->internal.len);
             if (method_number) {
                 f->dataTypeMethodNumber = *method_number;
             }
@@ -1348,8 +1348,8 @@ afw_environment_register_function(
                 f->dataTypeMethodNumber = apr_hash_count(
                     env->data_type_method_number_ht) + 1;
                 apr_hash_set(env->data_type_method_number_ht,
-                    function->untypedFunctionId.s,
-                    function->untypedFunctionId.len,
+                    function->untypedFunctionId->internal.s,
+                    function->untypedFunctionId->internal.len,
                     &function->dataTypeMethodNumber);
             }
 
@@ -1370,8 +1370,8 @@ afw_environment_register_function(
         if (function->data_type) {
 
             method_number = apr_hash_get(env->data_type_method_number_ht,
-                function->untypedFunctionId.s,
-                function->untypedFunctionId.len);
+                function->untypedFunctionId->internal.s,
+                function->untypedFunctionId->internal.len);
             if (method_number) {
                 if (function->dataTypeMethodNumber == 0) {
                     if (!f) {
@@ -1395,8 +1395,8 @@ afw_environment_register_function(
                         env->data_type_method_number_ht) + 1;
                 }
                 apr_hash_set(env->data_type_method_number_ht,
-                    function->untypedFunctionId.s,
-                    function->untypedFunctionId.len,
+                    function->untypedFunctionId->internal.s,
+                    function->untypedFunctionId->internal.len,
                     &function->dataTypeMethodNumber);
             }
         }
@@ -1409,45 +1409,47 @@ afw_environment_register_function(
             xctx);
 
         /* Register camelCaseFunctionLabel. */
-        if (function->camelCaseFunctionLabel.len > 0 &&
-            !afw_utf8_equal(&function->camelCaseFunctionLabel, function_id))
+        if (function->camelCaseFunctionLabel->internal.len > 0 &&
+            !afw_utf8_equal(
+                &function->camelCaseFunctionLabel->internal, function_id))
         {
             afw_environment_registry_register(
                 afw_environemnt_registry_type_function,
-                &function->camelCaseFunctionLabel,
+                &function->camelCaseFunctionLabel->internal,
                 function,
                 xctx);
         }
 
         /* Register afwCamelCaseFunctionLabel. */
-        if (function->afwCamelCaseFunctionLabel.len > 0 &&
-            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel, function_id)
+        if (function->afwCamelCaseFunctionLabel->internal.len > 0 &&
+            !afw_utf8_equal(
+                &function->afwCamelCaseFunctionLabel->internal, function_id)
             &&
-            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel,
-                &function->camelCaseFunctionLabel)
+            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel->internal,
+                &function->camelCaseFunctionLabel->internal)
             )
         {
             afw_environment_registry_register(
                 afw_environemnt_registry_type_function,
-                &function->afwCamelCaseFunctionLabel,
+                &function->afwCamelCaseFunctionLabel->internal,
                 function,
                 xctx);
         }
 
         /* Register function_label. */
-        if (function->afwCamelCaseFunctionLabel.len > 0 &&
-            !afw_utf8_equal(&function->functionLabel, function_id)
+        if (function->afwCamelCaseFunctionLabel->internal.len > 0 &&
+            !afw_utf8_equal(&function->functionLabel->internal, function_id)
             &&
-            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel,
-                &function->functionLabel)
+            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel->internal,
+                &function->functionLabel->internal)
             &&
-            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel,
-                &function->camelCaseFunctionLabel)
+            !afw_utf8_equal(&function->afwCamelCaseFunctionLabel->internal,
+                &function->camelCaseFunctionLabel->internal)
             )
         {
             afw_environment_registry_register(
                 afw_environemnt_registry_type_function,
-                &function->functionLabel,
+                &function->functionLabel->internal,
                 function,
                 xctx);
         }
@@ -1580,8 +1582,8 @@ afw_environment_register_functions(
     const afw_value_function_definition_t **function;
 
     for (function = functions; *function; function++) {
-        afw_environment_register_function(&(*function)->functionId, *function,
-            xctx);
+        afw_environment_register_function(
+            &(*function)->functionId->internal, *function, xctx);
     }
 }
 

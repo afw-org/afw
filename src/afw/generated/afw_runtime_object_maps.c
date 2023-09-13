@@ -1653,8 +1653,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_brief,
@@ -1663,8 +1663,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_camelCaseFunctionLabel,
@@ -1673,8 +1673,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_category,
@@ -1683,8 +1683,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_dataType,
@@ -1723,8 +1723,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL("text/plain"),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_errorsThrown,
@@ -1743,8 +1743,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL("text/plain"),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_functionId,
@@ -1753,8 +1753,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_functionLabel,
@@ -1763,8 +1763,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_functionSignature,
@@ -1773,8 +1773,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_s_maximumNumberOfParameters,
@@ -1893,8 +1893,8 @@ impl_properties__AdaptiveFunction_[] = {
         { &afw_data_type_string_direct },
         AFW_UTF8_LITERAL(""),
         { NULL },
-        &afw_s_default,
-        afw_runtime_value_accessor_default
+        &afw_s_value,
+        afw_runtime_value_accessor_value
     }
 };
 

@@ -407,6 +407,42 @@ extern const afw_value_string_t \
 
 
 
+/** @brief define for quoted string _g__Check_for_stale_entries_in_the_reader_lock_table_ */
+#define AFW_LMDB_Q__g__Check_for_stale_entries_in_the_reader_lock_table_ \
+    "Check for stale entries in the reader lock table."
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__Check_for_stale_entries_in_the_reader_lock_table_ */
+#define afw_lmdb_s__g__Check_for_stale_entries_in_the_reader_lock_table_ \
+    (afw_lmdb_v__g__Check_for_stale_entries_in_the_reader_lock_table_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__Check_for_stale_entries_in_the_reader_lock_table_ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__Check_for_stale_entries_in_the_reader_lock_table_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__Check_for_stale_entries_in_the_reader_lock_table_ */
+#define afw_lmdb_z__g__Check_for_stale_entries_in_the_reader_lock_table_ \
+    (afw_lmdb_v__g__Check_for_stale_entries_in_the_reader_lock_table_.internal.s)
+
+
+
+/** @brief define for quoted string _g__Dump_the_entries_in_the_reader_lock_table_ */
+#define AFW_LMDB_Q__g__Dump_the_entries_in_the_reader_lock_table_ \
+    "Dump the entries in the reader lock table."
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__Dump_the_entries_in_the_reader_lock_table_ */
+#define afw_lmdb_s__g__Dump_the_entries_in_the_reader_lock_table_ \
+    (afw_lmdb_v__g__Dump_the_entries_in_the_reader_lock_table_.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__Dump_the_entries_in_the_reader_lock_table_ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__Dump_the_entries_in_the_reader_lock_table_;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__Dump_the_entries_in_the_reader_lock_table_ */
+#define afw_lmdb_z__g__Dump_the_entries_in_the_reader_lock_table_ \
+    (afw_lmdb_v__g__Dump_the_entries_in_the_reader_lock_table_.internal.s)
+
+
+
 /** @brief define for quoted string _g__Number_of_stale_slots_that_were_cleared_ */
 #define AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_ \
     "Number of stale slots that were cleared."
@@ -440,6 +476,78 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__Reader_entries_ */
 #define afw_lmdb_z__g__Reader_entries_ \
     (afw_lmdb_v__g__Reader_entries_.internal.s)
+
+
+
+/** @brief define for quoted string _g___adaptorId__string___integer */
+#define AFW_LMDB_Q__g___adaptorId__string___integer \
+    "(adaptorId: string): integer"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g___adaptorId__string___integer */
+#define afw_lmdb_s__g___adaptorId__string___integer \
+    (afw_lmdb_v__g___adaptorId__string___integer.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g___adaptorId__string___integer */
+extern const afw_value_string_t \
+    afw_lmdb_v__g___adaptorId__string___integer;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g___adaptorId__string___integer */
+#define afw_lmdb_z__g___adaptorId__string___integer \
+    (afw_lmdb_v__g___adaptorId__string___integer.internal.s)
+
+
+
+/** @brief define for quoted string _g___adaptorId__string___string */
+#define AFW_LMDB_Q__g___adaptorId__string___string \
+    "(adaptorId: string): string"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g___adaptorId__string___string */
+#define afw_lmdb_s__g___adaptorId__string___string \
+    (afw_lmdb_v__g___adaptorId__string___string.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g___adaptorId__string___string */
+extern const afw_value_string_t \
+    afw_lmdb_v__g___adaptorId__string___string;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g___adaptorId__string___string */
+#define afw_lmdb_z__g___adaptorId__string___string \
+    (afw_lmdb_v__g___adaptorId__string___string.internal.s)
+
+
+
+/** @brief define for quoted string _g__function_reader_check_______adaptorId__string____integer__ */
+#define AFW_LMDB_Q__g__function_reader_check_______adaptorId__string____integer__ \
+    "function reader_check (\n    adaptorId: string\n): integer;\n"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__function_reader_check_______adaptorId__string____integer__ */
+#define afw_lmdb_s__g__function_reader_check_______adaptorId__string____integer__ \
+    (afw_lmdb_v__g__function_reader_check_______adaptorId__string____integer__.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__function_reader_check_______adaptorId__string____integer__ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__function_reader_check_______adaptorId__string____integer__;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__function_reader_check_______adaptorId__string____integer__ */
+#define afw_lmdb_z__g__function_reader_check_______adaptorId__string____integer__ \
+    (afw_lmdb_v__g__function_reader_check_______adaptorId__string____integer__.internal.s)
+
+
+
+/** @brief define for quoted string _g__function_reader_list_______adaptorId__string____string__ */
+#define AFW_LMDB_Q__g__function_reader_list_______adaptorId__string____string__ \
+    "function reader_list (\n    adaptorId: string\n): string;\n"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q__g__function_reader_list_______adaptorId__string____string__ */
+#define afw_lmdb_s__g__function_reader_list_______adaptorId__string____string__ \
+    (afw_lmdb_v__g__function_reader_list_______adaptorId__string____string__.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q__g__function_reader_list_______adaptorId__string____string__ */
+extern const afw_value_string_t \
+    afw_lmdb_v__g__function_reader_list_______adaptorId__string____string__;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q__g__function_reader_list_______adaptorId__string____string__ */
+#define afw_lmdb_z__g__function_reader_list_______adaptorId__string____string__ \
+    (afw_lmdb_v__g__function_reader_list_______adaptorId__string____string__.internal.s)
 
 
 
@@ -494,6 +602,42 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_afwCamelCaseFunctionLabel */
 #define afw_lmdb_z_afwCamelCaseFunctionLabel \
     (afw_lmdb_v_afwCamelCaseFunctionLabel.internal.s)
+
+
+
+/** @brief define for quoted string afwReaderCheck */
+#define AFW_LMDB_Q_afwReaderCheck \
+    "afwReaderCheck"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q_afwReaderCheck */
+#define afw_lmdb_s_afwReaderCheck \
+    (afw_lmdb_v_afwReaderCheck.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q_afwReaderCheck */
+extern const afw_value_string_t \
+    afw_lmdb_v_afwReaderCheck;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_afwReaderCheck */
+#define afw_lmdb_z_afwReaderCheck \
+    (afw_lmdb_v_afwReaderCheck.internal.s)
+
+
+
+/** @brief define for quoted string afwReaderList */
+#define AFW_LMDB_Q_afwReaderList \
+    "afwReaderList"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q_afwReaderList */
+#define afw_lmdb_s_afwReaderList \
+    (afw_lmdb_v_afwReaderList.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q_afwReaderList */
+extern const afw_value_string_t \
+    afw_lmdb_v_afwReaderList;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_afwReaderList */
+#define afw_lmdb_z_afwReaderList \
+    (afw_lmdb_v_afwReaderList.internal.s)
 
 
 
@@ -1484,6 +1628,42 @@ extern const afw_value_string_t \
 /** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_psize */
 #define afw_lmdb_z_psize \
     (afw_lmdb_v_psize.internal.s)
+
+
+
+/** @brief define for quoted string readerCheck */
+#define AFW_LMDB_Q_readerCheck \
+    "readerCheck"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q_readerCheck */
+#define afw_lmdb_s_readerCheck \
+    (afw_lmdb_v_readerCheck.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q_readerCheck */
+extern const afw_value_string_t \
+    afw_lmdb_v_readerCheck;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_readerCheck */
+#define afw_lmdb_z_readerCheck \
+    (afw_lmdb_v_readerCheck.internal.s)
+
+
+
+/** @brief define for quoted string readerList */
+#define AFW_LMDB_Q_readerList \
+    "readerList"
+
+/** @brief 'afw_utf8_t' for string AFW_LMDB_Q_readerList */
+#define afw_lmdb_s_readerList \
+    (afw_lmdb_v_readerList.internal)
+
+/** @brief 'afw_value_string_t' for string AFW_LMDB_Q_readerList */
+extern const afw_value_string_t \
+    afw_lmdb_v_readerList;
+
+/** @brief 'afw_utf8_z_t *' for string AFW_LMDB_Q_readerList */
+#define afw_lmdb_z_readerList \
+    (afw_lmdb_v_readerList.internal.s)
 
 
 

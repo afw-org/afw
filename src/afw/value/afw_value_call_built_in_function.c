@@ -76,7 +76,7 @@ afw_value_call_built_in_function_create(
             if (info.evaluated_data_type) {
                 function = afw_environment_get_qualified_function(
                     &info.evaluated_data_type->data_type_id,
-                    &function->functionId, xctx);
+                    &function->functionId->internal, xctx);
                 if (!function) {
                     function = self->function;
                 }
@@ -148,7 +148,7 @@ impl_afw_value_optional_evaluate(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT_Q
             " expects " AFW_SIZE_T_FMT " required parameters",
-            AFW_UTF8_FMT_ARG(&x.function->functionId),
+            AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
             x.function->numberOfRequiredParameters);
     }
 
@@ -159,7 +159,7 @@ impl_afw_value_optional_evaluate(
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT_Q
             " expects no more than " AFW_SIZE_T_FMT " parameters",
-            AFW_UTF8_FMT_ARG(&x.function->functionId),
+            AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
             x.function->maximumNumberOfParameters);
     }
 
@@ -179,7 +179,7 @@ impl_afw_value_optional_evaluate(
             AFW_THROW_ERROR_FZ(arg_error, xctx,
                 "Polymorphic function " AFW_UTF8_FMT_Q
                 " requires first parameter not be undefined",
-                AFW_UTF8_FMT_ARG(&self->function->functionId));
+                AFW_UTF8_FMT_ARG(&self->function->functionId->internal));
         }
         x.data_type = afw_value_get_data_type(x.first_arg, xctx);
         x.function = afw_environment_registry_get_data_type_method(
@@ -187,7 +187,7 @@ impl_afw_value_optional_evaluate(
         if (!x.function) {
             AFW_THROW_ERROR_FZ(arg_error, xctx,
                 AFW_UTF8_FMT_Q " is not a method of data type " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(&self->function->functionId),
+                AFW_UTF8_FMT_ARG(&self->function->functionId->internal),
                 AFW_UTF8_FMT_ARG(&x.data_type->data_type_id));
         }
     }
@@ -313,7 +313,7 @@ impl_afw_value_get_info(
         (const afw_value_call_built_in_function_t *)instance;
 
     afw_memory_clear(info);
-    info->detail = &self->function->functionId;
+    info->detail = &self->function->functionId->internal;
     info->value_inf_id = &instance->inf->rti.implementation_id;
     info->contextual = self->args.contextual;
     info->evaluated_data_type = self->evaluated_data_type;

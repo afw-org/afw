@@ -12,7 +12,10 @@
             "dataType": "string",
             "description": "This is the functionLabel prefixed with 'afw' and converted to camel case.",
             "label": "Prefixed Camel Case",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "brief": {
             "allowQuery": true,
@@ -20,7 +23,10 @@
             "dataType": "string",
             "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
             "label": "Brief",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "camelCaseFunctionLabel": {
             "allowQuery": true,
@@ -28,7 +34,10 @@
             "dataType": "string",
             "description": "This is the functionLabel converted to camel case.",
             "label": "Camel Case",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "category": {
             "allowQuery": true,
@@ -36,7 +45,10 @@
             "dataType": "string",
             "description": "Function category.",
             "label": "Category",
-            "required": true
+            "required": true,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "dataType": {
             "allowQuery": true,
@@ -69,7 +81,10 @@
             "dataTypeParameter": "text/plain",
             "description": "This is the function's description, used for documentation purposes.",
             "label": "Description",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "errorsThrown": {
             "allowQuery": true,
@@ -89,7 +104,10 @@
             "dataTypeParameter": "text/plain",
             "description": "This is the function's declaration with whitespace and brief comments.",
             "label": "Function Declaration",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "functionId": {
             "allowQuery": true,
@@ -97,7 +115,10 @@
             "dataType": "string",
             "description": "This is the function's id.",
             "label": "Function",
-            "required": true
+            "required": true,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "functionLabel": {
             "allowQuery": true,
@@ -105,7 +126,10 @@
             "dataType": "string",
             "description": "This is the function's label.",
             "label": "Function Label",
-            "required": true
+            "required": true,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "functionSignature": {
             "allowQuery": true,
@@ -113,7 +137,10 @@
             "dataType": "string",
             "description": "This is the function's signature.",
             "label": "Signature",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "maximumNumberOfParameters": {
             "allowQuery": true,
@@ -220,7 +247,10 @@
             "dataType": "string",
             "description": "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
             "label": "Function",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         }
     },
     "runtime": {
