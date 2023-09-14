@@ -146,66 +146,6 @@ afw_lmdb_v__AdaptiveObjectType_ = {
 };
 
 const afw_value_string_t
-afw_lmdb_v__g__ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__Adaptor_Id_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Adaptor_Id_)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__Check_for_stale_entries_in_the_reader_lock_table_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Check_for_stale_entries_in_the_reader_lock_table_)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__Dump_the_entries_in_the_reader_lock_table_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Dump_the_entries_in_the_reader_lock_table_)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__Number_of_stale_slots_that_were_cleared_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Number_of_stale_slots_that_were_cleared_)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__Reader_entries_ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__Reader_entries_)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g___adaptorId__string___integer = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g___adaptorId__string___integer)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g___adaptorId__string___string = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g___adaptorId__string___string)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__function_reader_check_______adaptorId__string____integer__ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__function_reader_check_______adaptorId__string____integer__)
-};
-
-const afw_value_string_t
-afw_lmdb_v__g__function_reader_list_______adaptorId__string____string__ = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_LMDB_Q__g__function_reader_list_______adaptorId__string____string__)
-};
-
-const afw_value_string_t
 afw_lmdb_v__meta_ = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_LMDB_Q__meta_)
@@ -661,6 +601,66 @@ afw_lmdb_v_version_string = {
     AFW_UTF8_LITERAL(AFW_LMDB_Q_version_string)
 };
 
+const afw_value_string_t
+afw_lmdb_v_zz__ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__Adaptor_Id_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Adaptor_Id_)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__Check_for_stale_entries_in_the_reader_lock_table_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Check_for_stale_entries_in_the_reader_lock_table_)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__Dump_the_entries_in_the_reader_lock_table_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Dump_the_entries_in_the_reader_lock_table_)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__Number_of_stale_slots_that_were_cleared_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_of_stale_slots_that_were_cleared_)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__Reader_entries_ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Reader_entries_)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz___adaptorId__string___integer = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz___adaptorId__string___integer)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz___adaptorId__string___string = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz___adaptorId__string___string)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__function_reader_check_______adaptorId__string____integer__ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__function_reader_check_______adaptorId__string____integer__)
+};
+
+const afw_value_string_t
+afw_lmdb_v_zz__function_reader_list_______adaptorId__string____string__ = {
+    &afw_value_permanent_string_inf,
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__function_reader_list_______adaptorId__string____string__)
+};
+
 const afw_value_integer_t
 afw_lmdb_integer_v_1 = {
     &afw_value_permanent_integer_inf,
@@ -668,7 +668,7 @@ afw_lmdb_integer_v_1 = {
 };
 
 const afw_value_integer_t
-afw_lmdb_integer_v__g___1 = {
+afw_lmdb_integer_v_zz___1 = {
     &afw_value_permanent_integer_inf,
     -1
 };

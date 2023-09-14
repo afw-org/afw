@@ -29,37 +29,37 @@
 #include "afw_ubjson_declare_helpers.h"
 
 
-/** @brief define for quoted string default */
+/** @brief #define for string in quotes */
 #define AFW_UBJSON_Q_default \
     "default"
 
-/** @brief 'afw_utf8_t' for string AFW_UBJSON_Q_default */
+/** @brief 'afw_utf8_t' for AFW_UBJSON_Q_default */
 #define afw_ubjson_s_default \
     (afw_ubjson_v_default.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_UBJSON_Q_default */
+/** @brief 'afw_value_string_t' for AFW_UBJSON_Q_default */
 extern const afw_value_string_t \
     afw_ubjson_v_default;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_UBJSON_Q_default */
+/** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_default */
 #define afw_ubjson_z_default \
     (afw_ubjson_v_default.internal.s)
 
 
 
-/** @brief define for quoted string indirect */
+/** @brief #define for string in quotes */
 #define AFW_UBJSON_Q_indirect \
     "indirect"
 
-/** @brief 'afw_utf8_t' for string AFW_UBJSON_Q_indirect */
+/** @brief 'afw_utf8_t' for AFW_UBJSON_Q_indirect */
 #define afw_ubjson_s_indirect \
     (afw_ubjson_v_indirect.internal)
 
-/** @brief 'afw_value_string_t' for string AFW_UBJSON_Q_indirect */
+/** @brief 'afw_value_string_t' for AFW_UBJSON_Q_indirect */
 extern const afw_value_string_t \
     afw_ubjson_v_indirect;
 
-/** @brief 'afw_utf8_z_t *' for string AFW_UBJSON_Q_indirect */
+/** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_indirect */
 #define afw_ubjson_z_indirect \
     (afw_ubjson_v_indirect.internal.s)
 
