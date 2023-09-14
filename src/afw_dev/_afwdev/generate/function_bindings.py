@@ -771,14 +771,6 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('    0, /* Not a data type method. */\n')
 
-            # scriptSupport
-            if obj.get('scriptSupport', False) == True:
-                if not options['core']:
-                    msg.error_exit('scriptSupport can only be true for core functions')
-                fd.write('    AFW_VALUE_SCRIPT_SUPPORT_NUMBER_' + obj.get('functionId').upper() + ',\n')
-            else:
-                fd.write('    0,\n')
-
             # polymorphic
             polymorphic = 'false' if obj.get('polymorphic', False) == False else 'true'
             fd.write('    ' + get_string_label(options, polymorphic, '*v', dataType='boolean') + ',\n')

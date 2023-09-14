@@ -1857,16 +1857,6 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_default
     },
     {
-        &afw_s_scriptSupportNumber,
-        offsetof(afw_value_function_definition_t, scriptSupportNumber),
-        -1,
-        { &afw_data_type_integer_direct },
-        AFW_UTF8_LITERAL(""),
-        { NULL },
-        &afw_s_octet,
-        afw_runtime_value_accessor_octet
-    },
-    {
         &afw_s_sideEffects,
         offsetof(afw_value_function_definition_t, sideEffects),
         -1,
@@ -1901,7 +1891,7 @@ impl_properties__AdaptiveFunction_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveFunction_ = {
     &afw_s__AdaptiveFunction_,
-    25,
+    24,
     &impl_properties__AdaptiveFunction_[0]
 };
 

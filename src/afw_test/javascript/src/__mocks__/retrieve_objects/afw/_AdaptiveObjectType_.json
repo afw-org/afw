@@ -3585,23 +3585,6 @@
                     "brief": "Side effects for this function.",
                     "allowQuery": true
                 },
-                "scriptSupportNumber": {
-                    "_meta_": {
-                        "objectType": "_AdaptiveValueMeta_"
-                    },
-                    "runtime": {
-                        "_meta_": {
-                            "objectType": "_AdaptiveRuntimeProperty_"
-                        },
-                        "valueAccessor": "octet"
-                    },
-                    "required": true,
-                    "label": "Script Support Number",
-                    "description": "If non-zero, this is an script support function and this is its internal special handling number.  See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information.",
-                    "dataType": "integer",
-                    "brief": "Special handling number",
-                    "allowQuery": true
-                },
                 "returns": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
@@ -6133,23 +6116,6 @@
                     "description": "The return parameter.",
                     "label": "Returns",
                     "required": true
-                },
-                "scriptSupportNumber": {
-                    "_meta_": {
-                        "objectType": "_AdaptiveValueMeta_"
-                    },
-                    "allowQuery": true,
-                    "brief": "Special handling number",
-                    "dataType": "integer",
-                    "description": "If non-zero, this is an script support function and this is its internal special handling number.  See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information.",
-                    "label": "Script Support Number",
-                    "required": true,
-                    "runtime": {
-                        "_meta_": {
-                            "objectType": "_AdaptiveRuntimeProperty_"
-                        },
-                        "valueAccessor": "octet"
-                    }
                 },
                 "sideEffects": {
                     "_meta_": {

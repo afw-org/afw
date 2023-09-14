@@ -233,17 +233,6 @@
             "label": "Returns",
             "required": true
         },
-        "scriptSupportNumber": {
-            "allowQuery": true,
-            "brief": "Special handling number",
-            "dataType": "integer",
-            "description": "If non-zero, this is an script support function and this is its internal special handling number. See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information.",
-            "label": "Script Support Number",
-            "required": false,
-            "runtime": {
-                "valueAccessor": "octet"
-            }
-        },
         "sideEffects": {
             "allowQuery": true,
             "brief": "Side effects for this function.",

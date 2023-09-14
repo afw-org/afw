@@ -232,11 +232,6 @@
                     "title": "Returns",
                     "type": "object"
                 },
-                "scriptSupportNumber": {
-                    "description": "If non-zero, this is an script support function and this is its internal special handling number. See #define AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* in afw_value.h for more information.",
-                    "title": "Script Support Number",
-                    "type": "integer"
-                },
                 "sideEffects": {
                     "description": "Any side effects that this function may produce as a result of execution.",
                     "items": {

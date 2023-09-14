@@ -58,7 +58,7 @@ class Session(object):
             if self._localSession.poll() is None:
                 #FIXME Temporary fix to allow afw time to start up, but this
                 # needs to be fixed in a better way.
-                time.sleep(0.5)
+                time.sleep(1.0)
                 self._fifo = open(self._filename, "r")
 
             # read the version information and any preliminary text output

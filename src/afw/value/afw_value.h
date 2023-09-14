@@ -202,9 +202,6 @@ struct afw_value_function_definition_s {
     /** @brief Data type member number. */
     afw_integer_t dataTypeMethodNumber;
 
-    /** @brief See AFW_VALUE_SCRIPT_SUPPORT_NUMBER_* `#define`s. */
-    afw_octet_t scriptSupportNumber;
-
     /** @brief True if this is a polymorphic function. */
     const afw_value_boolean_t *polymorphic;
 
