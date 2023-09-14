@@ -206,24 +206,24 @@ struct afw_value_function_definition_s {
     afw_octet_t scriptSupportNumber;
 
     /** @brief True if this is a polymorphic function. */
-    afw_boolean_t polymorphic;
+    const afw_value_boolean_t *polymorphic;
 
     /** @brief True if polymorphic execute evaluates first parameter. */
-    afw_boolean_t polymorphicExecuteFunctionEvaluatesFirstParameter;
+    const afw_value_boolean_t *polymorphicExecuteFunctionEvaluatesFirstParameter;
 
     /** @brief This function is deprecated. */
-    afw_boolean_t deprecated;
+    const afw_value_boolean_t *deprecated;
 
     /**
      * @brief Given the same exact parameter values, this function will always
      *     return the same result an not cause side effects.
      */
-    afw_boolean_t pure;
+    const afw_value_boolean_t *pure;
 
     /**
      * @brief This is only a signature with an unimplemented execute function.
      */
-    afw_boolean_t signatureOnly;
+    const afw_value_boolean_t *signatureOnly;
 };
 
 
@@ -452,18 +452,6 @@ afw_value_undecorated_inf_is(
     (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_boolean && \
     ((const afw_value_boolean_t *)A_VALUE)->internal \
 )
-
-
-
-/**
- * @brief Determine if value is boolean false.
- * @param value to test.
- * @return boolean result.
- *
- * NOTE: If the value is NULL or not boolean it will always be false.
- */
-#define afw_value_is_boolean_false(A_VALUE) \
-( !afw_value_is_boolean_true(A_VALUE) )
 
 
 
@@ -954,20 +942,6 @@ if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
 { \
     AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", xctx); \
 }
-
-
-
-/**
- * @brief Determine if value is boolean true.
- * @param value to test.
- * @param xctx of caller.
- * @return true if value is an evaluated boolean true value.
- */
-#define afw_value_is_true(A_VALUE) \
-( \
-    AFW_VALUE_IS_DATA_TYPE(A_VALUE, boolean) && \
-    ((const afw_value_boolean_t *)(A_VALUE))->internal \
-)
 
 
 

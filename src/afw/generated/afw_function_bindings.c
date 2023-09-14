@@ -165,11 +165,11 @@ afw_function_definition_adaptor_objectCallback_signature = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    true
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
 };
 
 /* ---------- add_object ---------- */
@@ -422,11 +422,11 @@ afw_function_definition_add_object = {
     &impl_add_object_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_object_with_uri ---------- */
@@ -625,11 +625,11 @@ afw_function_definition_add_object_with_uri = {
     &impl_add_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- convert_AdaptiveQueryCriteria_to_query_string ---------- */
@@ -822,11 +822,11 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- convert_query_string_to_AdaptiveQueryCriteria ---------- */
@@ -992,11 +992,11 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- delete_object ---------- */
@@ -1222,11 +1222,11 @@ afw_function_definition_delete_object = {
     &impl_delete_object_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- delete_object_with_uri ---------- */
@@ -1398,11 +1398,11 @@ afw_function_definition_delete_object_with_uri = {
     &impl_delete_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- get_object ---------- */
@@ -1622,11 +1622,11 @@ afw_function_definition_get_object = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- get_object_with_uri ---------- */
@@ -1792,11 +1792,11 @@ afw_function_definition_get_object_with_uri = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- modify_object ---------- */
@@ -2049,11 +2049,11 @@ afw_function_definition_modify_object = {
     &impl_modify_object_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- modify_object_with_uri ---------- */
@@ -2252,11 +2252,11 @@ afw_function_definition_modify_object_with_uri = {
     &impl_modify_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- reconcile_object ---------- */
@@ -2401,11 +2401,11 @@ afw_function_definition_reconcile_object = {
     &impl_reconcile_object_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- replace_object ---------- */
@@ -2658,11 +2658,11 @@ afw_function_definition_replace_object = {
     &impl_replace_object_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- replace_object_with_uri ---------- */
@@ -2861,11 +2861,11 @@ afw_function_definition_replace_object_with_uri = {
     &impl_replace_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects ---------- */
@@ -3085,11 +3085,11 @@ afw_function_definition_retrieve_objects = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_to_callback ---------- */
@@ -3363,11 +3363,11 @@ afw_function_definition_retrieve_objects_to_callback = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_to_response ---------- */
@@ -3587,11 +3587,11 @@ afw_function_definition_retrieve_objects_to_response = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_to_stream ---------- */
@@ -3838,11 +3838,11 @@ afw_function_definition_retrieve_objects_to_stream = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_with_uri ---------- */
@@ -4008,11 +4008,11 @@ afw_function_definition_retrieve_objects_with_uri = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_with_uri_to_callback ---------- */
@@ -4232,11 +4232,11 @@ afw_function_definition_retrieve_objects_with_uri_to_callback = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_with_uri_to_response ---------- */
@@ -4402,11 +4402,11 @@ afw_function_definition_retrieve_objects_with_uri_to_response = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- retrieve_objects_with_uri_to_stream ---------- */
@@ -4599,11 +4599,11 @@ afw_function_definition_retrieve_objects_with_uri_to_stream = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- update_object ---------- */
@@ -4856,11 +4856,11 @@ afw_function_definition_update_object = {
     &impl_update_object_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- update_object_with_uri ---------- */
@@ -5059,11 +5059,11 @@ afw_function_definition_update_object_with_uri = {
     &impl_update_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- extension_load ---------- */
@@ -5181,11 +5181,11 @@ afw_function_definition_extension_load = {
     &impl_extension_load_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- extension_load_by_module_path ---------- */
@@ -5303,11 +5303,11 @@ afw_function_definition_extension_load_by_module_path = {
     &impl_extension_load_by_module_path_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flag_get_active ---------- */
@@ -5392,11 +5392,11 @@ afw_function_definition_flag_get_active = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flag_get_active_defaults ---------- */
@@ -5481,11 +5481,11 @@ afw_function_definition_flag_get_active_defaults = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flag_get_defaults ---------- */
@@ -5570,11 +5570,11 @@ afw_function_definition_flag_get_defaults = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flag_modify_defaults ---------- */
@@ -5713,11 +5713,11 @@ afw_function_definition_flag_modify_defaults = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flag_replace_defaults ---------- */
@@ -5829,11 +5829,11 @@ afw_function_definition_flag_replace_defaults = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flag_set ---------- */
@@ -5972,11 +5972,11 @@ afw_function_definition_flag_set = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- registry_key_check ---------- */
@@ -6148,11 +6148,11 @@ afw_function_definition_registry_key_check = {
     &impl_registry_key_check_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- service_get ---------- */
@@ -6264,11 +6264,11 @@ afw_function_definition_service_get = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- service_restart ---------- */
@@ -6386,11 +6386,11 @@ afw_function_definition_service_restart = {
     &impl_service_restart_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- service_start ---------- */
@@ -6508,11 +6508,11 @@ afw_function_definition_service_start = {
     &impl_service_start_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- service_stop ---------- */
@@ -6630,11 +6630,11 @@ afw_function_definition_service_stop = {
     &impl_service_stop_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- anyURI ---------- */
@@ -6754,11 +6754,11 @@ afw_function_definition_anyURI = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<anyURI> ---------- */
@@ -6897,11 +6897,11 @@ afw_function_definition_at_least_one_member_of_anyURI = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<anyURI> ---------- */
@@ -7013,11 +7013,11 @@ afw_function_definition_bag_anyURI = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<anyURI> ---------- */
@@ -7129,11 +7129,11 @@ afw_function_definition_bag_size_anyURI = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ends_with<anyURI> ---------- */
@@ -7272,11 +7272,11 @@ afw_function_definition_ends_with_anyURI = {
     NULL,
     afw_data_type_method_number_ends_with,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<anyURI> ---------- */
@@ -7423,11 +7423,11 @@ afw_function_definition_eq_anyURI = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<anyURI> ---------- */
@@ -7566,11 +7566,11 @@ afw_function_definition_eqx_anyURI = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<anyURI> ---------- */
@@ -7709,11 +7709,11 @@ afw_function_definition_ge_anyURI = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<anyURI> ---------- */
@@ -7852,11 +7852,11 @@ afw_function_definition_gt_anyURI = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- includes<anyURI> ---------- */
@@ -8022,11 +8022,11 @@ afw_function_definition_includes_anyURI = {
     NULL,
     afw_data_type_method_number_includes,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- index_of<anyURI> ---------- */
@@ -8192,11 +8192,11 @@ afw_function_definition_index_of_anyURI = {
     NULL,
     afw_data_type_method_number_index_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<anyURI> ---------- */
@@ -8335,11 +8335,11 @@ afw_function_definition_intersection_anyURI = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<anyURI> ---------- */
@@ -8451,11 +8451,11 @@ afw_function_definition_is_anyURI = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<anyURI> ---------- */
@@ -8594,11 +8594,11 @@ afw_function_definition_is_in_anyURI = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- last_index_of<anyURI> ---------- */
@@ -8764,11 +8764,11 @@ afw_function_definition_last_index_of_anyURI = {
     NULL,
     afw_data_type_method_number_last_index_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<anyURI> ---------- */
@@ -8907,11 +8907,11 @@ afw_function_definition_le_anyURI = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- length<anyURI> ---------- */
@@ -9023,11 +9023,11 @@ afw_function_definition_length_anyURI = {
     NULL,
     afw_data_type_method_number_length,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<anyURI> ---------- */
@@ -9166,11 +9166,11 @@ afw_function_definition_lt_anyURI = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<anyURI> ---------- */
@@ -9317,11 +9317,11 @@ afw_function_definition_ne_anyURI = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<anyURI> ---------- */
@@ -9460,11 +9460,11 @@ afw_function_definition_nex_anyURI = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<anyURI> ---------- */
@@ -9584,11 +9584,11 @@ afw_function_definition_one_and_only_anyURI = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_index_of<anyURI> ---------- */
@@ -9727,11 +9727,11 @@ afw_function_definition_regexp_index_of_anyURI = {
     NULL,
     afw_data_type_method_number_regexp_index_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match<anyURI> ---------- */
@@ -9870,11 +9870,11 @@ afw_function_definition_regexp_match_anyURI = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_replace<anyURI> ---------- */
@@ -10067,11 +10067,11 @@ afw_function_definition_regexp_replace_anyURI = {
     NULL,
     afw_data_type_method_number_regexp_replace,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- repeat<anyURI> ---------- */
@@ -10210,11 +10210,11 @@ afw_function_definition_repeat_anyURI = {
     NULL,
     afw_data_type_method_number_repeat,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- replace<anyURI> ---------- */
@@ -10407,11 +10407,11 @@ afw_function_definition_replace_anyURI = {
     NULL,
     afw_data_type_method_number_replace,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<anyURI> ---------- */
@@ -10550,11 +10550,11 @@ afw_function_definition_set_equals_anyURI = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- split<anyURI> ---------- */
@@ -10720,11 +10720,11 @@ afw_function_definition_split_anyURI = {
     NULL,
     afw_data_type_method_number_split,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- starts_with<anyURI> ---------- */
@@ -10863,11 +10863,11 @@ afw_function_definition_starts_with_anyURI = {
     NULL,
     afw_data_type_method_number_starts_with,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<anyURI> ---------- */
@@ -11006,11 +11006,11 @@ afw_function_definition_subset_anyURI = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- substring<anyURI> ---------- */
@@ -11184,11 +11184,11 @@ afw_function_definition_substring_anyURI = {
     NULL,
     afw_data_type_method_number_substring,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<anyURI> ---------- */
@@ -11300,11 +11300,11 @@ afw_function_definition_to_string_anyURI = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<anyURI> ---------- */
@@ -11416,11 +11416,11 @@ afw_function_definition_union_anyURI = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- url_encode<anyURI> ---------- */
@@ -11532,11 +11532,11 @@ afw_function_definition_url_encode_anyURI = {
     NULL,
     afw_data_type_method_number_url_encode,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_entries ---------- */
@@ -11681,11 +11681,11 @@ afw_function_definition_add_entries = {
     &impl_add_entries_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- array ---------- */
@@ -11805,11 +11805,11 @@ afw_function_definition_array = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<array> ---------- */
@@ -11921,11 +11921,11 @@ afw_function_definition_bag_array = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<array> ---------- */
@@ -12037,11 +12037,11 @@ afw_function_definition_bag_size_array = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- clone<array> ---------- */
@@ -12153,11 +12153,11 @@ afw_function_definition_clone_array = {
     NULL,
     afw_data_type_method_number_clone,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<array> ---------- */
@@ -12304,11 +12304,11 @@ afw_function_definition_eq_array = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<array> ---------- */
@@ -12447,11 +12447,11 @@ afw_function_definition_eqx_array = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<array> ---------- */
@@ -12590,11 +12590,11 @@ afw_function_definition_ge_array = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<array> ---------- */
@@ -12733,11 +12733,11 @@ afw_function_definition_gt_array = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- includes<array> ---------- */
@@ -12903,11 +12903,11 @@ afw_function_definition_includes_array = {
     NULL,
     afw_data_type_method_number_includes,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<array> ---------- */
@@ -13019,11 +13019,11 @@ afw_function_definition_is_array = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- join ---------- */
@@ -13162,11 +13162,11 @@ afw_function_definition_join = {
     NULL,
     afw_data_type_method_number_join,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<array> ---------- */
@@ -13305,11 +13305,11 @@ afw_function_definition_le_array = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- length<array> ---------- */
@@ -13421,11 +13421,11 @@ afw_function_definition_length_array = {
     NULL,
     afw_data_type_method_number_length,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<array> ---------- */
@@ -13564,11 +13564,11 @@ afw_function_definition_lt_array = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<array> ---------- */
@@ -13715,11 +13715,11 @@ afw_function_definition_ne_array = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<array> ---------- */
@@ -13858,11 +13858,11 @@ afw_function_definition_nex_array = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- reverse ---------- */
@@ -13974,11 +13974,11 @@ afw_function_definition_reverse = {
     NULL,
     afw_data_type_method_number_reverse,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- slice ---------- */
@@ -14144,11 +14144,11 @@ afw_function_definition_slice = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<array> ---------- */
@@ -14260,11 +14260,11 @@ afw_function_definition_to_string_array = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- authorization_check ---------- */
@@ -14484,11 +14484,11 @@ afw_function_definition_authorization_check = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<base64Binary> ---------- */
@@ -14627,11 +14627,11 @@ afw_function_definition_at_least_one_member_of_base64Binary = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<base64Binary> ---------- */
@@ -14743,11 +14743,11 @@ afw_function_definition_bag_base64Binary = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<base64Binary> ---------- */
@@ -14859,11 +14859,11 @@ afw_function_definition_bag_size_base64Binary = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- base64Binary ---------- */
@@ -14983,11 +14983,11 @@ afw_function_definition_base64Binary = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- decode_to_string<base64Binary> ---------- */
@@ -15099,11 +15099,11 @@ afw_function_definition_decode_to_string_base64Binary = {
     NULL,
     afw_data_type_method_number_decode_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<base64Binary> ---------- */
@@ -15250,11 +15250,11 @@ afw_function_definition_eq_base64Binary = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<base64Binary> ---------- */
@@ -15393,11 +15393,11 @@ afw_function_definition_eqx_base64Binary = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<base64Binary> ---------- */
@@ -15536,11 +15536,11 @@ afw_function_definition_ge_base64Binary = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<base64Binary> ---------- */
@@ -15679,11 +15679,11 @@ afw_function_definition_gt_base64Binary = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<base64Binary> ---------- */
@@ -15822,11 +15822,11 @@ afw_function_definition_intersection_base64Binary = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<base64Binary> ---------- */
@@ -15938,11 +15938,11 @@ afw_function_definition_is_base64Binary = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<base64Binary> ---------- */
@@ -16081,11 +16081,11 @@ afw_function_definition_is_in_base64Binary = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<base64Binary> ---------- */
@@ -16224,11 +16224,11 @@ afw_function_definition_le_base64Binary = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<base64Binary> ---------- */
@@ -16367,11 +16367,11 @@ afw_function_definition_lt_base64Binary = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<base64Binary> ---------- */
@@ -16518,11 +16518,11 @@ afw_function_definition_ne_base64Binary = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<base64Binary> ---------- */
@@ -16661,11 +16661,11 @@ afw_function_definition_nex_base64Binary = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<base64Binary> ---------- */
@@ -16785,11 +16785,11 @@ afw_function_definition_one_and_only_base64Binary = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<base64Binary> ---------- */
@@ -16928,11 +16928,11 @@ afw_function_definition_set_equals_base64Binary = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<base64Binary> ---------- */
@@ -17071,11 +17071,11 @@ afw_function_definition_subset_base64Binary = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<base64Binary> ---------- */
@@ -17187,11 +17187,11 @@ afw_function_definition_to_string_base64Binary = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<base64Binary> ---------- */
@@ -17303,11 +17303,11 @@ afw_function_definition_union_base64Binary = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<boolean> ---------- */
@@ -17446,11 +17446,11 @@ afw_function_definition_at_least_one_member_of_boolean = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<boolean> ---------- */
@@ -17562,11 +17562,11 @@ afw_function_definition_bag_boolean = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<boolean> ---------- */
@@ -17678,11 +17678,11 @@ afw_function_definition_bag_size_boolean = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- boolean ---------- */
@@ -17802,11 +17802,11 @@ afw_function_definition_boolean = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<boolean> ---------- */
@@ -17953,11 +17953,11 @@ afw_function_definition_eq_boolean = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<boolean> ---------- */
@@ -18096,11 +18096,11 @@ afw_function_definition_eqx_boolean = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<boolean> ---------- */
@@ -18239,11 +18239,11 @@ afw_function_definition_ge_boolean = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<boolean> ---------- */
@@ -18382,11 +18382,11 @@ afw_function_definition_gt_boolean = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<boolean> ---------- */
@@ -18525,11 +18525,11 @@ afw_function_definition_intersection_boolean = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<boolean> ---------- */
@@ -18641,11 +18641,11 @@ afw_function_definition_is_boolean = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<boolean> ---------- */
@@ -18784,11 +18784,11 @@ afw_function_definition_is_in_boolean = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<boolean> ---------- */
@@ -18927,11 +18927,11 @@ afw_function_definition_le_boolean = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<boolean> ---------- */
@@ -19070,11 +19070,11 @@ afw_function_definition_lt_boolean = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<boolean> ---------- */
@@ -19221,11 +19221,11 @@ afw_function_definition_ne_boolean = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<boolean> ---------- */
@@ -19364,11 +19364,11 @@ afw_function_definition_nex_boolean = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<boolean> ---------- */
@@ -19488,11 +19488,11 @@ afw_function_definition_one_and_only_boolean = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<boolean> ---------- */
@@ -19631,11 +19631,11 @@ afw_function_definition_set_equals_boolean = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<boolean> ---------- */
@@ -19774,11 +19774,11 @@ afw_function_definition_subset_boolean = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<boolean> ---------- */
@@ -19890,11 +19890,11 @@ afw_function_definition_to_string_boolean = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<boolean> ---------- */
@@ -20006,11 +20006,11 @@ afw_function_definition_union_boolean = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nullish_coalescing ---------- */
@@ -20122,11 +20122,11 @@ afw_function_definition_nullish_coalescing = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- optional_chaining ---------- */
@@ -20265,11 +20265,11 @@ afw_function_definition_optional_chaining = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- void_operator ---------- */
@@ -20381,11 +20381,11 @@ afw_function_definition_void_operator = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- assign ---------- */
@@ -20530,11 +20530,11 @@ afw_function_definition_assign = {
     &impl_assign_sideEffects[0],
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_ASSIGN,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- break ---------- */
@@ -20646,11 +20646,11 @@ afw_function_definition_break = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_BREAK,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- const ---------- */
@@ -20816,11 +20816,11 @@ afw_function_definition_const = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONST,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- continue ---------- */
@@ -20905,11 +20905,11 @@ afw_function_definition_continue = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_CONTINUE,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- do_while ---------- */
@@ -21048,11 +21048,11 @@ afw_function_definition_do_while = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_DO_WHILE,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- for ---------- */
@@ -21245,11 +21245,11 @@ afw_function_definition_for = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- for_of ---------- */
@@ -21415,11 +21415,11 @@ afw_function_definition_for_of = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_FOR_OF,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- if ---------- */
@@ -21585,11 +21585,11 @@ afw_function_definition_if = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_IF,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- let ---------- */
@@ -21755,11 +21755,11 @@ afw_function_definition_let = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_LET,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- rethrow ---------- */
@@ -21844,11 +21844,11 @@ afw_function_definition_rethrow = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETHROW,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- return ---------- */
@@ -21960,11 +21960,11 @@ afw_function_definition_return = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_RETURN,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- switch ---------- */
@@ -22130,11 +22130,11 @@ afw_function_definition_switch = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_SWITCH,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- throw ---------- */
@@ -22273,11 +22273,11 @@ afw_function_definition_throw = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_THROW,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- try ---------- */
@@ -22470,11 +22470,11 @@ afw_function_definition_try = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_TRY,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- while ---------- */
@@ -22613,11 +22613,11 @@ afw_function_definition_while = {
     NULL,
     0, /* Not a data type method. */
     AFW_VALUE_SCRIPT_SUPPORT_NUMBER_WHILE,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- assert ---------- */
@@ -22756,11 +22756,11 @@ afw_function_definition_assert = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile_json ---------- */
@@ -22899,11 +22899,11 @@ afw_function_definition_compile_json = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile_relaxed_json ---------- */
@@ -23042,11 +23042,11 @@ afw_function_definition_compile_relaxed_json = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- decompile ---------- */
@@ -23185,11 +23185,11 @@ afw_function_definition_decompile = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- evaluate_value ---------- */
@@ -23328,11 +23328,11 @@ afw_function_definition_evaluate_value = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- evaluate_with_retry ---------- */
@@ -23471,11 +23471,11 @@ afw_function_definition_evaluate_with_retry = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- qualifier ---------- */
@@ -23614,11 +23614,11 @@ afw_function_definition_qualifier = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- qualifiers ---------- */
@@ -23730,11 +23730,11 @@ afw_function_definition_qualifiers = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- safe_evaluate ---------- */
@@ -23873,11 +23873,11 @@ afw_function_definition_safe_evaluate = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- stringify ---------- */
@@ -24043,11 +24043,11 @@ afw_function_definition_stringify = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- test_script ---------- */
@@ -24267,11 +24267,11 @@ afw_function_definition_test_script = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- test_template ---------- */
@@ -24491,11 +24491,11 @@ afw_function_definition_test_template = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- test_value ---------- */
@@ -24715,11 +24715,11 @@ afw_function_definition_test_value = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_dayTimeDuration<dateTime> ---------- */
@@ -24858,11 +24858,11 @@ afw_function_definition_add_dayTimeDuration_dateTime = {
     NULL,
     afw_data_type_method_number_add_dayTimeDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_yearMonthDuration<dateTime> ---------- */
@@ -25001,11 +25001,11 @@ afw_function_definition_add_yearMonthDuration_dateTime = {
     NULL,
     afw_data_type_method_number_add_yearMonthDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<dateTime> ---------- */
@@ -25144,11 +25144,11 @@ afw_function_definition_at_least_one_member_of_dateTime = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<dateTime> ---------- */
@@ -25260,11 +25260,11 @@ afw_function_definition_bag_dateTime = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<dateTime> ---------- */
@@ -25376,11 +25376,11 @@ afw_function_definition_bag_size_dateTime = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- dateTime ---------- */
@@ -25500,11 +25500,11 @@ afw_function_definition_dateTime = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<dateTime> ---------- */
@@ -25651,11 +25651,11 @@ afw_function_definition_eq_dateTime = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<dateTime> ---------- */
@@ -25794,11 +25794,11 @@ afw_function_definition_eqx_dateTime = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<dateTime> ---------- */
@@ -25937,11 +25937,11 @@ afw_function_definition_ge_dateTime = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<dateTime> ---------- */
@@ -26080,11 +26080,11 @@ afw_function_definition_gt_dateTime = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<dateTime> ---------- */
@@ -26223,11 +26223,11 @@ afw_function_definition_intersection_dateTime = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<dateTime> ---------- */
@@ -26339,11 +26339,11 @@ afw_function_definition_is_dateTime = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<dateTime> ---------- */
@@ -26482,11 +26482,11 @@ afw_function_definition_is_in_dateTime = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<dateTime> ---------- */
@@ -26625,11 +26625,11 @@ afw_function_definition_le_dateTime = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<dateTime> ---------- */
@@ -26768,11 +26768,11 @@ afw_function_definition_lt_dateTime = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max<dateTime> ---------- */
@@ -26884,11 +26884,11 @@ afw_function_definition_max_dateTime = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min<dateTime> ---------- */
@@ -27000,11 +27000,11 @@ afw_function_definition_min_dateTime = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<dateTime> ---------- */
@@ -27151,11 +27151,11 @@ afw_function_definition_ne_dateTime = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<dateTime> ---------- */
@@ -27294,11 +27294,11 @@ afw_function_definition_nex_dateTime = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<dateTime> ---------- */
@@ -27418,11 +27418,11 @@ afw_function_definition_one_and_only_dateTime = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<dateTime> ---------- */
@@ -27561,11 +27561,11 @@ afw_function_definition_set_equals_dateTime = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<dateTime> ---------- */
@@ -27704,11 +27704,11 @@ afw_function_definition_subset_dateTime = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract_dayTimeDuration<dateTime> ---------- */
@@ -27847,11 +27847,11 @@ afw_function_definition_subtract_dayTimeDuration_dateTime = {
     NULL,
     afw_data_type_method_number_subtract_dayTimeDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract_yearMonthDuration<dateTime> ---------- */
@@ -27990,11 +27990,11 @@ afw_function_definition_subtract_yearMonthDuration_dateTime = {
     NULL,
     afw_data_type_method_number_subtract_yearMonthDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<dateTime> ---------- */
@@ -28106,11 +28106,11 @@ afw_function_definition_to_string_dateTime = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<dateTime> ---------- */
@@ -28222,11 +28222,11 @@ afw_function_definition_union_dateTime = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_yearMonthDuration<date> ---------- */
@@ -28365,11 +28365,11 @@ afw_function_definition_add_yearMonthDuration_date = {
     NULL,
     afw_data_type_method_number_add_yearMonthDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<date> ---------- */
@@ -28508,11 +28508,11 @@ afw_function_definition_at_least_one_member_of_date = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<date> ---------- */
@@ -28624,11 +28624,11 @@ afw_function_definition_bag_date = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<date> ---------- */
@@ -28740,11 +28740,11 @@ afw_function_definition_bag_size_date = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- date ---------- */
@@ -28864,11 +28864,11 @@ afw_function_definition_date = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<date> ---------- */
@@ -29015,11 +29015,11 @@ afw_function_definition_eq_date = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<date> ---------- */
@@ -29158,11 +29158,11 @@ afw_function_definition_eqx_date = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<date> ---------- */
@@ -29301,11 +29301,11 @@ afw_function_definition_ge_date = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<date> ---------- */
@@ -29444,11 +29444,11 @@ afw_function_definition_gt_date = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<date> ---------- */
@@ -29587,11 +29587,11 @@ afw_function_definition_intersection_date = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<date> ---------- */
@@ -29703,11 +29703,11 @@ afw_function_definition_is_date = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<date> ---------- */
@@ -29846,11 +29846,11 @@ afw_function_definition_is_in_date = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<date> ---------- */
@@ -29989,11 +29989,11 @@ afw_function_definition_le_date = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<date> ---------- */
@@ -30132,11 +30132,11 @@ afw_function_definition_lt_date = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max<date> ---------- */
@@ -30248,11 +30248,11 @@ afw_function_definition_max_date = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min<date> ---------- */
@@ -30364,11 +30364,11 @@ afw_function_definition_min_date = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<date> ---------- */
@@ -30515,11 +30515,11 @@ afw_function_definition_ne_date = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<date> ---------- */
@@ -30658,11 +30658,11 @@ afw_function_definition_nex_date = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<date> ---------- */
@@ -30782,11 +30782,11 @@ afw_function_definition_one_and_only_date = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<date> ---------- */
@@ -30925,11 +30925,11 @@ afw_function_definition_set_equals_date = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<date> ---------- */
@@ -31068,11 +31068,11 @@ afw_function_definition_subset_date = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract_yearMonthDuration<date> ---------- */
@@ -31211,11 +31211,11 @@ afw_function_definition_subtract_yearMonthDuration_date = {
     NULL,
     afw_data_type_method_number_subtract_yearMonthDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<date> ---------- */
@@ -31327,11 +31327,11 @@ afw_function_definition_to_string_date = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<date> ---------- */
@@ -31443,11 +31443,11 @@ afw_function_definition_union_date = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<dayTimeDuration> ---------- */
@@ -31586,11 +31586,11 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<dayTimeDuration> ---------- */
@@ -31702,11 +31702,11 @@ afw_function_definition_bag_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<dayTimeDuration> ---------- */
@@ -31818,11 +31818,11 @@ afw_function_definition_bag_size_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- dayTimeDuration ---------- */
@@ -31942,11 +31942,11 @@ afw_function_definition_dayTimeDuration = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<dayTimeDuration> ---------- */
@@ -32093,11 +32093,11 @@ afw_function_definition_eq_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<dayTimeDuration> ---------- */
@@ -32236,11 +32236,11 @@ afw_function_definition_eqx_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<dayTimeDuration> ---------- */
@@ -32379,11 +32379,11 @@ afw_function_definition_ge_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<dayTimeDuration> ---------- */
@@ -32522,11 +32522,11 @@ afw_function_definition_gt_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<dayTimeDuration> ---------- */
@@ -32665,11 +32665,11 @@ afw_function_definition_intersection_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<dayTimeDuration> ---------- */
@@ -32781,11 +32781,11 @@ afw_function_definition_is_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<dayTimeDuration> ---------- */
@@ -32924,11 +32924,11 @@ afw_function_definition_is_in_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<dayTimeDuration> ---------- */
@@ -33067,11 +33067,11 @@ afw_function_definition_le_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<dayTimeDuration> ---------- */
@@ -33210,11 +33210,11 @@ afw_function_definition_lt_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<dayTimeDuration> ---------- */
@@ -33361,11 +33361,11 @@ afw_function_definition_ne_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<dayTimeDuration> ---------- */
@@ -33504,11 +33504,11 @@ afw_function_definition_nex_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<dayTimeDuration> ---------- */
@@ -33628,11 +33628,11 @@ afw_function_definition_one_and_only_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<dayTimeDuration> ---------- */
@@ -33771,11 +33771,11 @@ afw_function_definition_set_equals_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<dayTimeDuration> ---------- */
@@ -33914,11 +33914,11 @@ afw_function_definition_subset_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<dayTimeDuration> ---------- */
@@ -34030,11 +34030,11 @@ afw_function_definition_to_string_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<dayTimeDuration> ---------- */
@@ -34146,11 +34146,11 @@ afw_function_definition_union_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<dnsName> ---------- */
@@ -34262,11 +34262,11 @@ afw_function_definition_bag_dnsName = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<dnsName> ---------- */
@@ -34378,11 +34378,11 @@ afw_function_definition_bag_size_dnsName = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- dnsName ---------- */
@@ -34502,11 +34502,11 @@ afw_function_definition_dnsName = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<dnsName> ---------- */
@@ -34653,11 +34653,11 @@ afw_function_definition_eq_dnsName = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<dnsName> ---------- */
@@ -34796,11 +34796,11 @@ afw_function_definition_eqx_dnsName = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<dnsName> ---------- */
@@ -34939,11 +34939,11 @@ afw_function_definition_ge_dnsName = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<dnsName> ---------- */
@@ -35082,11 +35082,11 @@ afw_function_definition_gt_dnsName = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<dnsName> ---------- */
@@ -35198,11 +35198,11 @@ afw_function_definition_is_dnsName = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<dnsName> ---------- */
@@ -35341,11 +35341,11 @@ afw_function_definition_is_in_dnsName = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<dnsName> ---------- */
@@ -35484,11 +35484,11 @@ afw_function_definition_le_dnsName = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<dnsName> ---------- */
@@ -35627,11 +35627,11 @@ afw_function_definition_lt_dnsName = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<dnsName> ---------- */
@@ -35778,11 +35778,11 @@ afw_function_definition_ne_dnsName = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<dnsName> ---------- */
@@ -35921,11 +35921,11 @@ afw_function_definition_nex_dnsName = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<dnsName> ---------- */
@@ -36045,11 +36045,11 @@ afw_function_definition_one_and_only_dnsName = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match<dnsName> ---------- */
@@ -36188,11 +36188,11 @@ afw_function_definition_regexp_match_dnsName = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<dnsName> ---------- */
@@ -36304,11 +36304,11 @@ afw_function_definition_to_string_dnsName = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- abs<double> ---------- */
@@ -36420,11 +36420,11 @@ afw_function_definition_abs_double = {
     NULL,
     afw_data_type_method_number_abs,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add<double> ---------- */
@@ -36536,11 +36536,11 @@ afw_function_definition_add_double = {
     NULL,
     afw_data_type_method_number_add,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<double> ---------- */
@@ -36679,11 +36679,11 @@ afw_function_definition_at_least_one_member_of_double = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<double> ---------- */
@@ -36795,11 +36795,11 @@ afw_function_definition_bag_double = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<double> ---------- */
@@ -36911,11 +36911,11 @@ afw_function_definition_bag_size_double = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ceil<double> ---------- */
@@ -37027,11 +37027,11 @@ afw_function_definition_ceil_double = {
     NULL,
     afw_data_type_method_number_ceil,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- divide<double> ---------- */
@@ -37170,11 +37170,11 @@ afw_function_definition_divide_double = {
     NULL,
     afw_data_type_method_number_divide,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- double ---------- */
@@ -37294,11 +37294,11 @@ afw_function_definition_double = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<double> ---------- */
@@ -37445,11 +37445,11 @@ afw_function_definition_eq_double = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<double> ---------- */
@@ -37588,11 +37588,11 @@ afw_function_definition_eqx_double = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- floor<double> ---------- */
@@ -37704,11 +37704,11 @@ afw_function_definition_floor_double = {
     NULL,
     afw_data_type_method_number_floor,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<double> ---------- */
@@ -37847,11 +37847,11 @@ afw_function_definition_ge_double = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<double> ---------- */
@@ -37990,11 +37990,11 @@ afw_function_definition_gt_double = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<double> ---------- */
@@ -38133,11 +38133,11 @@ afw_function_definition_intersection_double = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_NaN ---------- */
@@ -38249,11 +38249,11 @@ afw_function_definition_is_NaN = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<double> ---------- */
@@ -38365,11 +38365,11 @@ afw_function_definition_is_double = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_finite ---------- */
@@ -38481,11 +38481,11 @@ afw_function_definition_is_finite = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<double> ---------- */
@@ -38624,11 +38624,11 @@ afw_function_definition_is_in_double = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<double> ---------- */
@@ -38767,11 +38767,11 @@ afw_function_definition_le_double = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<double> ---------- */
@@ -38910,11 +38910,11 @@ afw_function_definition_lt_double = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max<double> ---------- */
@@ -39026,11 +39026,11 @@ afw_function_definition_max_double = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min<double> ---------- */
@@ -39142,11 +39142,11 @@ afw_function_definition_min_double = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- multiply<double> ---------- */
@@ -39258,11 +39258,11 @@ afw_function_definition_multiply_double = {
     NULL,
     afw_data_type_method_number_multiply,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<double> ---------- */
@@ -39409,11 +39409,11 @@ afw_function_definition_ne_double = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- negative<double> ---------- */
@@ -39525,11 +39525,11 @@ afw_function_definition_negative_double = {
     NULL,
     afw_data_type_method_number_negative,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<double> ---------- */
@@ -39668,11 +39668,11 @@ afw_function_definition_nex_double = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<double> ---------- */
@@ -39792,11 +39792,11 @@ afw_function_definition_one_and_only_double = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- pow<double> ---------- */
@@ -39935,11 +39935,11 @@ afw_function_definition_pow_double = {
     NULL,
     afw_data_type_method_number_pow,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- round<double> ---------- */
@@ -40051,11 +40051,11 @@ afw_function_definition_round_double = {
     NULL,
     afw_data_type_method_number_round,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<double> ---------- */
@@ -40194,11 +40194,11 @@ afw_function_definition_set_equals_double = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<double> ---------- */
@@ -40337,11 +40337,11 @@ afw_function_definition_subset_double = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract<double> ---------- */
@@ -40480,11 +40480,11 @@ afw_function_definition_subtract_double = {
     NULL,
     afw_data_type_method_number_subtract,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_integer<double> ---------- */
@@ -40596,11 +40596,11 @@ afw_function_definition_to_integer_double = {
     NULL,
     afw_data_type_method_number_to_integer,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<double> ---------- */
@@ -40712,11 +40712,11 @@ afw_function_definition_to_string_double = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<double> ---------- */
@@ -40828,11 +40828,11 @@ afw_function_definition_union_double = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<function> ---------- */
@@ -40944,11 +40944,11 @@ afw_function_definition_bag_function = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<function> ---------- */
@@ -41060,11 +41060,11 @@ afw_function_definition_bag_size_function = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<function> ---------- */
@@ -41211,11 +41211,11 @@ afw_function_definition_eq_function = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<function> ---------- */
@@ -41354,11 +41354,11 @@ afw_function_definition_eqx_function = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- function ---------- */
@@ -41478,11 +41478,11 @@ afw_function_definition_function = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<function> ---------- */
@@ -41621,11 +41621,11 @@ afw_function_definition_ge_function = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<function> ---------- */
@@ -41764,11 +41764,11 @@ afw_function_definition_gt_function = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<function> ---------- */
@@ -41880,11 +41880,11 @@ afw_function_definition_is_function = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<function> ---------- */
@@ -42023,11 +42023,11 @@ afw_function_definition_le_function = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<function> ---------- */
@@ -42166,11 +42166,11 @@ afw_function_definition_lt_function = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<function> ---------- */
@@ -42317,11 +42317,11 @@ afw_function_definition_ne_function = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<function> ---------- */
@@ -42460,11 +42460,11 @@ afw_function_definition_nex_function = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<hexBinary> ---------- */
@@ -42603,11 +42603,11 @@ afw_function_definition_at_least_one_member_of_hexBinary = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<hexBinary> ---------- */
@@ -42719,11 +42719,11 @@ afw_function_definition_bag_hexBinary = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<hexBinary> ---------- */
@@ -42835,11 +42835,11 @@ afw_function_definition_bag_size_hexBinary = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- decode_to_string<hexBinary> ---------- */
@@ -42951,11 +42951,11 @@ afw_function_definition_decode_to_string_hexBinary = {
     NULL,
     afw_data_type_method_number_decode_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<hexBinary> ---------- */
@@ -43102,11 +43102,11 @@ afw_function_definition_eq_hexBinary = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<hexBinary> ---------- */
@@ -43245,11 +43245,11 @@ afw_function_definition_eqx_hexBinary = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<hexBinary> ---------- */
@@ -43388,11 +43388,11 @@ afw_function_definition_ge_hexBinary = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<hexBinary> ---------- */
@@ -43531,11 +43531,11 @@ afw_function_definition_gt_hexBinary = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- hexBinary ---------- */
@@ -43655,11 +43655,11 @@ afw_function_definition_hexBinary = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<hexBinary> ---------- */
@@ -43798,11 +43798,11 @@ afw_function_definition_intersection_hexBinary = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<hexBinary> ---------- */
@@ -43914,11 +43914,11 @@ afw_function_definition_is_hexBinary = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<hexBinary> ---------- */
@@ -44057,11 +44057,11 @@ afw_function_definition_is_in_hexBinary = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<hexBinary> ---------- */
@@ -44200,11 +44200,11 @@ afw_function_definition_le_hexBinary = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<hexBinary> ---------- */
@@ -44343,11 +44343,11 @@ afw_function_definition_lt_hexBinary = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<hexBinary> ---------- */
@@ -44494,11 +44494,11 @@ afw_function_definition_ne_hexBinary = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<hexBinary> ---------- */
@@ -44637,11 +44637,11 @@ afw_function_definition_nex_hexBinary = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<hexBinary> ---------- */
@@ -44761,11 +44761,11 @@ afw_function_definition_one_and_only_hexBinary = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<hexBinary> ---------- */
@@ -44904,11 +44904,11 @@ afw_function_definition_set_equals_hexBinary = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<hexBinary> ---------- */
@@ -45047,11 +45047,11 @@ afw_function_definition_subset_hexBinary = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<hexBinary> ---------- */
@@ -45163,11 +45163,11 @@ afw_function_definition_to_string_hexBinary = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<hexBinary> ---------- */
@@ -45279,11 +45279,11 @@ afw_function_definition_union_hexBinary = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- all_of ---------- */
@@ -45422,11 +45422,11 @@ afw_function_definition_all_of = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- all_of_all ---------- */
@@ -45592,11 +45592,11 @@ afw_function_definition_all_of_all = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- all_of_any ---------- */
@@ -45762,11 +45762,11 @@ afw_function_definition_all_of_any = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- any_of ---------- */
@@ -45905,11 +45905,11 @@ afw_function_definition_any_of = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- any_of_all ---------- */
@@ -46075,11 +46075,11 @@ afw_function_definition_any_of_all = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- any_of_any ---------- */
@@ -46245,11 +46245,11 @@ afw_function_definition_any_of_any = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- filter ---------- */
@@ -46388,11 +46388,11 @@ afw_function_definition_filter = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- find ---------- */
@@ -46531,11 +46531,11 @@ afw_function_definition_find = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- map ---------- */
@@ -46674,11 +46674,11 @@ afw_function_definition_map = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- reduce ---------- */
@@ -46844,11 +46844,11 @@ afw_function_definition_reduce = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- sort ---------- */
@@ -46987,11 +46987,11 @@ afw_function_definition_sort = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<ia5String> ---------- */
@@ -47103,11 +47103,11 @@ afw_function_definition_bag_ia5String = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<ia5String> ---------- */
@@ -47219,11 +47219,11 @@ afw_function_definition_bag_size_ia5String = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<ia5String> ---------- */
@@ -47370,11 +47370,11 @@ afw_function_definition_eq_ia5String = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<ia5String> ---------- */
@@ -47513,11 +47513,11 @@ afw_function_definition_eqx_ia5String = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<ia5String> ---------- */
@@ -47656,11 +47656,11 @@ afw_function_definition_ge_ia5String = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<ia5String> ---------- */
@@ -47799,11 +47799,11 @@ afw_function_definition_gt_ia5String = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ia5String ---------- */
@@ -47923,11 +47923,11 @@ afw_function_definition_ia5String = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<ia5String> ---------- */
@@ -48039,11 +48039,11 @@ afw_function_definition_is_ia5String = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<ia5String> ---------- */
@@ -48182,11 +48182,11 @@ afw_function_definition_le_ia5String = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<ia5String> ---------- */
@@ -48325,11 +48325,11 @@ afw_function_definition_lt_ia5String = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<ia5String> ---------- */
@@ -48476,11 +48476,11 @@ afw_function_definition_ne_ia5String = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<ia5String> ---------- */
@@ -48619,11 +48619,11 @@ afw_function_definition_nex_ia5String = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<ia5String> ---------- */
@@ -48735,11 +48735,11 @@ afw_function_definition_to_string_ia5String = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- index_create ---------- */
@@ -49046,11 +49046,11 @@ afw_function_definition_index_create = {
     &impl_index_create_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- index_list ---------- */
@@ -49189,11 +49189,11 @@ afw_function_definition_index_list = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- index_remove ---------- */
@@ -49338,11 +49338,11 @@ afw_function_definition_index_remove = {
     &impl_index_remove_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- abs<integer> ---------- */
@@ -49454,11 +49454,11 @@ afw_function_definition_abs_integer = {
     NULL,
     afw_data_type_method_number_abs,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add<integer> ---------- */
@@ -49570,11 +49570,11 @@ afw_function_definition_add_integer = {
     NULL,
     afw_data_type_method_number_add,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<integer> ---------- */
@@ -49713,11 +49713,11 @@ afw_function_definition_at_least_one_member_of_integer = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<integer> ---------- */
@@ -49829,11 +49829,11 @@ afw_function_definition_bag_integer = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<integer> ---------- */
@@ -49945,11 +49945,11 @@ afw_function_definition_bag_size_integer = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- divide<integer> ---------- */
@@ -50088,11 +50088,11 @@ afw_function_definition_divide_integer = {
     NULL,
     afw_data_type_method_number_divide,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<integer> ---------- */
@@ -50239,11 +50239,11 @@ afw_function_definition_eq_integer = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<integer> ---------- */
@@ -50382,11 +50382,11 @@ afw_function_definition_eqx_integer = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<integer> ---------- */
@@ -50525,11 +50525,11 @@ afw_function_definition_ge_integer = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<integer> ---------- */
@@ -50668,11 +50668,11 @@ afw_function_definition_gt_integer = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- integer ---------- */
@@ -50792,11 +50792,11 @@ afw_function_definition_integer = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<integer> ---------- */
@@ -50935,11 +50935,11 @@ afw_function_definition_intersection_integer = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<integer> ---------- */
@@ -51078,11 +51078,11 @@ afw_function_definition_is_in_integer = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<integer> ---------- */
@@ -51194,11 +51194,11 @@ afw_function_definition_is_integer = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<integer> ---------- */
@@ -51337,11 +51337,11 @@ afw_function_definition_le_integer = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<integer> ---------- */
@@ -51480,11 +51480,11 @@ afw_function_definition_lt_integer = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max<integer> ---------- */
@@ -51596,11 +51596,11 @@ afw_function_definition_max_integer = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min<integer> ---------- */
@@ -51712,11 +51712,11 @@ afw_function_definition_min_integer = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- mod<integer> ---------- */
@@ -51855,11 +51855,11 @@ afw_function_definition_mod_integer = {
     NULL,
     afw_data_type_method_number_mod,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- multiply<integer> ---------- */
@@ -51971,11 +51971,11 @@ afw_function_definition_multiply_integer = {
     NULL,
     afw_data_type_method_number_multiply,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<integer> ---------- */
@@ -52122,11 +52122,11 @@ afw_function_definition_ne_integer = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- negative<integer> ---------- */
@@ -52238,11 +52238,11 @@ afw_function_definition_negative_integer = {
     NULL,
     afw_data_type_method_number_negative,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<integer> ---------- */
@@ -52381,11 +52381,11 @@ afw_function_definition_nex_integer = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<integer> ---------- */
@@ -52505,11 +52505,11 @@ afw_function_definition_one_and_only_integer = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<integer> ---------- */
@@ -52648,11 +52648,11 @@ afw_function_definition_set_equals_integer = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<integer> ---------- */
@@ -52791,11 +52791,11 @@ afw_function_definition_subset_integer = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract<integer> ---------- */
@@ -52934,11 +52934,11 @@ afw_function_definition_subtract_integer = {
     NULL,
     afw_data_type_method_number_subtract,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_double<integer> ---------- */
@@ -53058,11 +53058,11 @@ afw_function_definition_to_double_integer = {
     NULL,
     afw_data_type_method_number_to_double,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<integer> ---------- */
@@ -53174,11 +53174,11 @@ afw_function_definition_to_string_integer = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<integer> ---------- */
@@ -53290,11 +53290,11 @@ afw_function_definition_union_integer = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<ipAddress> ---------- */
@@ -53406,11 +53406,11 @@ afw_function_definition_bag_ipAddress = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<ipAddress> ---------- */
@@ -53522,11 +53522,11 @@ afw_function_definition_bag_size_ipAddress = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<ipAddress> ---------- */
@@ -53673,11 +53673,11 @@ afw_function_definition_eq_ipAddress = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<ipAddress> ---------- */
@@ -53816,11 +53816,11 @@ afw_function_definition_eqx_ipAddress = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<ipAddress> ---------- */
@@ -53959,11 +53959,11 @@ afw_function_definition_ge_ipAddress = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<ipAddress> ---------- */
@@ -54102,11 +54102,11 @@ afw_function_definition_gt_ipAddress = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ipAddress ---------- */
@@ -54226,11 +54226,11 @@ afw_function_definition_ipAddress = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<ipAddress> ---------- */
@@ -54369,11 +54369,11 @@ afw_function_definition_is_in_ipAddress = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<ipAddress> ---------- */
@@ -54485,11 +54485,11 @@ afw_function_definition_is_ipAddress = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<ipAddress> ---------- */
@@ -54628,11 +54628,11 @@ afw_function_definition_le_ipAddress = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<ipAddress> ---------- */
@@ -54771,11 +54771,11 @@ afw_function_definition_lt_ipAddress = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<ipAddress> ---------- */
@@ -54922,11 +54922,11 @@ afw_function_definition_ne_ipAddress = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<ipAddress> ---------- */
@@ -55065,11 +55065,11 @@ afw_function_definition_nex_ipAddress = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<ipAddress> ---------- */
@@ -55189,11 +55189,11 @@ afw_function_definition_one_and_only_ipAddress = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match<ipAddress> ---------- */
@@ -55332,11 +55332,11 @@ afw_function_definition_regexp_match_ipAddress = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<ipAddress> ---------- */
@@ -55448,11 +55448,11 @@ afw_function_definition_to_string_ipAddress = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_advance_cursor_for_consumer ---------- */
@@ -55624,11 +55624,11 @@ afw_function_definition_journal_advance_cursor_for_consumer = {
     &impl_journal_advance_cursor_for_consumer_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_get_by_cursor ---------- */
@@ -55767,11 +55767,11 @@ afw_function_definition_journal_get_by_cursor = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_get_first ---------- */
@@ -55883,11 +55883,11 @@ afw_function_definition_journal_get_first = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_get_next_after_cursor ---------- */
@@ -56026,11 +56026,11 @@ afw_function_definition_journal_get_next_after_cursor = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_get_next_for_consumer ---------- */
@@ -56196,11 +56196,11 @@ afw_function_definition_journal_get_next_for_consumer = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_get_next_for_consumer_after_cursor ---------- */
@@ -56393,11 +56393,11 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- journal_mark_consumed ---------- */
@@ -56569,11 +56569,11 @@ afw_function_definition_journal_mark_consumed = {
     &impl_journal_mark_consumed_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- and ---------- */
@@ -56685,11 +56685,11 @@ afw_function_definition_and = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- n_of ---------- */
@@ -56836,11 +56836,11 @@ afw_function_definition_n_of = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- not ---------- */
@@ -56952,11 +56952,11 @@ afw_function_definition_not = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- or ---------- */
@@ -57068,11 +57068,11 @@ afw_function_definition_or = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compare_uri ---------- */
@@ -57265,11 +57265,11 @@ afw_function_definition_compare_uri = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- debug ---------- */
@@ -57414,11 +57414,11 @@ afw_function_definition_debug = {
     &impl_debug_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- execution_start_time_local ---------- */
@@ -57503,11 +57503,11 @@ afw_function_definition_execution_start_time_local = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- execution_start_time_utc ---------- */
@@ -57592,11 +57592,11 @@ afw_function_definition_execution_start_time_utc = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- generate_uuid ---------- */
@@ -57681,11 +57681,11 @@ afw_function_definition_generate_uuid = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_defined ---------- */
@@ -57797,11 +57797,11 @@ afw_function_definition_is_defined = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_nullish ---------- */
@@ -57913,11 +57913,11 @@ afw_function_definition_is_nullish = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- log ---------- */
@@ -58035,11 +58035,11 @@ afw_function_definition_log = {
     &impl_log_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- now_local ---------- */
@@ -58124,11 +58124,11 @@ afw_function_definition_now_local = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- now_utc ---------- */
@@ -58213,11 +58213,11 @@ afw_function_definition_now_utc = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- parse_uri ---------- */
@@ -58383,11 +58383,11 @@ afw_function_definition_parse_uri = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- perform ---------- */
@@ -58499,11 +58499,11 @@ afw_function_definition_perform = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- trace ---------- */
@@ -58675,11 +58675,11 @@ afw_function_definition_trace = {
     &impl_trace_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- variable_exists ---------- */
@@ -58791,11 +58791,11 @@ afw_function_definition_variable_exists = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- variable_get ---------- */
@@ -58934,11 +58934,11 @@ afw_function_definition_variable_get = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- variable_is_not_null ---------- */
@@ -59050,11 +59050,11 @@ afw_function_definition_variable_is_not_null = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- model_default_add_object_action ---------- */
@@ -59301,11 +59301,11 @@ afw_function_definition_model_default_add_object_action = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- model_default_delete_object_action ---------- */
@@ -59525,11 +59525,11 @@ afw_function_definition_model_default_delete_object_action = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- model_default_modify_object_action ---------- */
@@ -59776,11 +59776,11 @@ afw_function_definition_model_default_modify_object_action = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- model_default_replace_object_action ---------- */
@@ -60027,11 +60027,11 @@ afw_function_definition_model_default_replace_object_action = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- model_mapBackObject_signature ---------- */
@@ -60143,11 +60143,11 @@ afw_function_definition_model_mapBackObject_signature = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    true
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
 };
 
 /* ---------- model_mapObject_signature ---------- */
@@ -60259,11 +60259,11 @@ afw_function_definition_model_mapObject_signature = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    true
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
 };
 
 /* ---------- model_returnObject_signature ---------- */
@@ -60402,11 +60402,11 @@ afw_function_definition_model_returnObject_signature = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    true
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
 };
 
 /* ---------- bag<null> ---------- */
@@ -60518,11 +60518,11 @@ afw_function_definition_bag_null = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<null> ---------- */
@@ -60634,11 +60634,11 @@ afw_function_definition_bag_size_null = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<null> ---------- */
@@ -60750,11 +60750,11 @@ afw_function_definition_is_null = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- null ---------- */
@@ -60874,11 +60874,11 @@ afw_function_definition_null = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<null> ---------- */
@@ -60990,11 +60990,11 @@ afw_function_definition_to_string_null = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<objectId> ---------- */
@@ -61106,11 +61106,11 @@ afw_function_definition_bag_objectId = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<objectId> ---------- */
@@ -61222,11 +61222,11 @@ afw_function_definition_bag_size_objectId = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<objectId> ---------- */
@@ -61373,11 +61373,11 @@ afw_function_definition_eq_objectId = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<objectId> ---------- */
@@ -61516,11 +61516,11 @@ afw_function_definition_eqx_objectId = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<objectId> ---------- */
@@ -61659,11 +61659,11 @@ afw_function_definition_ge_objectId = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<objectId> ---------- */
@@ -61802,11 +61802,11 @@ afw_function_definition_gt_objectId = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<objectId> ---------- */
@@ -61918,11 +61918,11 @@ afw_function_definition_is_objectId = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<objectId> ---------- */
@@ -62061,11 +62061,11 @@ afw_function_definition_le_objectId = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<objectId> ---------- */
@@ -62204,11 +62204,11 @@ afw_function_definition_lt_objectId = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<objectId> ---------- */
@@ -62355,11 +62355,11 @@ afw_function_definition_ne_objectId = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<objectId> ---------- */
@@ -62498,11 +62498,11 @@ afw_function_definition_nex_objectId = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- objectId ---------- */
@@ -62622,11 +62622,11 @@ afw_function_definition_objectId = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<objectId> ---------- */
@@ -62738,11 +62738,11 @@ afw_function_definition_to_string_objectId = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<objectPath> ---------- */
@@ -62854,11 +62854,11 @@ afw_function_definition_bag_objectPath = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<objectPath> ---------- */
@@ -62970,11 +62970,11 @@ afw_function_definition_bag_size_objectPath = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<objectPath> ---------- */
@@ -63121,11 +63121,11 @@ afw_function_definition_eq_objectPath = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<objectPath> ---------- */
@@ -63264,11 +63264,11 @@ afw_function_definition_eqx_objectPath = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<objectPath> ---------- */
@@ -63407,11 +63407,11 @@ afw_function_definition_ge_objectPath = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<objectPath> ---------- */
@@ -63550,11 +63550,11 @@ afw_function_definition_gt_objectPath = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<objectPath> ---------- */
@@ -63666,11 +63666,11 @@ afw_function_definition_is_objectPath = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<objectPath> ---------- */
@@ -63809,11 +63809,11 @@ afw_function_definition_le_objectPath = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<objectPath> ---------- */
@@ -63952,11 +63952,11 @@ afw_function_definition_lt_objectPath = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<objectPath> ---------- */
@@ -64103,11 +64103,11 @@ afw_function_definition_ne_objectPath = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<objectPath> ---------- */
@@ -64246,11 +64246,11 @@ afw_function_definition_nex_objectPath = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- objectPath ---------- */
@@ -64370,11 +64370,11 @@ afw_function_definition_objectPath = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<objectPath> ---------- */
@@ -64486,11 +64486,11 @@ afw_function_definition_to_string_objectPath = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_properties ---------- */
@@ -64635,11 +64635,11 @@ afw_function_definition_add_properties = {
     &impl_add_properties_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- apply_object_options ---------- */
@@ -64778,11 +64778,11 @@ afw_function_definition_apply_object_options = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<object> ---------- */
@@ -64894,11 +64894,11 @@ afw_function_definition_bag_object = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<object> ---------- */
@@ -65010,11 +65010,11 @@ afw_function_definition_bag_size_object = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- clone<object> ---------- */
@@ -65126,11 +65126,11 @@ afw_function_definition_clone_object = {
     NULL,
     afw_data_type_method_number_clone,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<object> ---------- */
@@ -65277,11 +65277,11 @@ afw_function_definition_eq_object = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<object> ---------- */
@@ -65420,11 +65420,11 @@ afw_function_definition_eqx_object = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<object> ---------- */
@@ -65563,11 +65563,11 @@ afw_function_definition_ge_object = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<object> ---------- */
@@ -65706,11 +65706,11 @@ afw_function_definition_gt_object = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<object> ---------- */
@@ -65822,11 +65822,11 @@ afw_function_definition_is_object = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<object> ---------- */
@@ -65965,11 +65965,11 @@ afw_function_definition_le_object = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- local_object_meta_set_ids ---------- */
@@ -66168,11 +66168,11 @@ afw_function_definition_local_object_meta_set_ids = {
     &impl_local_object_meta_set_ids_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<object> ---------- */
@@ -66311,11 +66311,11 @@ afw_function_definition_lt_object = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<object> ---------- */
@@ -66462,11 +66462,11 @@ afw_function_definition_ne_object = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<object> ---------- */
@@ -66605,11 +66605,11 @@ afw_function_definition_nex_object = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- object ---------- */
@@ -66729,11 +66729,11 @@ afw_function_definition_object = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- property_delete ---------- */
@@ -66872,11 +66872,11 @@ afw_function_definition_property_delete = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- property_delete_by_reference ---------- */
@@ -66988,11 +66988,11 @@ afw_function_definition_property_delete_by_reference = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- property_exists ---------- */
@@ -67131,11 +67131,11 @@ afw_function_definition_property_exists = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- property_get ---------- */
@@ -67301,11 +67301,11 @@ afw_function_definition_property_get = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- property_is_not_null ---------- */
@@ -67444,11 +67444,11 @@ afw_function_definition_property_is_not_null = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<object> ---------- */
@@ -67560,11 +67560,11 @@ afw_function_definition_to_string_object = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<password> ---------- */
@@ -67676,11 +67676,11 @@ afw_function_definition_bag_password = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<password> ---------- */
@@ -67792,11 +67792,11 @@ afw_function_definition_bag_size_password = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<password> ---------- */
@@ -67943,11 +67943,11 @@ afw_function_definition_eq_password = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<password> ---------- */
@@ -68086,11 +68086,11 @@ afw_function_definition_eqx_password = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<password> ---------- */
@@ -68229,11 +68229,11 @@ afw_function_definition_ge_password = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<password> ---------- */
@@ -68372,11 +68372,11 @@ afw_function_definition_gt_password = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<password> ---------- */
@@ -68488,11 +68488,11 @@ afw_function_definition_is_password = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<password> ---------- */
@@ -68631,11 +68631,11 @@ afw_function_definition_le_password = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<password> ---------- */
@@ -68774,11 +68774,11 @@ afw_function_definition_lt_password = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<password> ---------- */
@@ -68925,11 +68925,11 @@ afw_function_definition_ne_password = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<password> ---------- */
@@ -69068,11 +69068,11 @@ afw_function_definition_nex_password = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- password ---------- */
@@ -69192,11 +69192,11 @@ afw_function_definition_password = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<password> ---------- */
@@ -69308,11 +69308,11 @@ afw_function_definition_to_string_password = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- abs ---------- */
@@ -69431,11 +69431,11 @@ afw_function_definition_abs = {
     NULL,
     afw_data_type_method_number_abs,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add ---------- */
@@ -69555,11 +69555,11 @@ afw_function_definition_add = {
     NULL,
     afw_data_type_method_number_add,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_dayTimeDuration ---------- */
@@ -69704,11 +69704,11 @@ afw_function_definition_add_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_add_dayTimeDuration,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add_yearMonthDuration ---------- */
@@ -69854,11 +69854,11 @@ afw_function_definition_add_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_add_yearMonthDuration,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of ---------- */
@@ -70016,11 +70016,11 @@ afw_function_definition_at_least_one_member_of = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag ---------- */
@@ -70164,11 +70164,11 @@ afw_function_definition_bag = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size ---------- */
@@ -70312,11 +70312,11 @@ afw_function_definition_bag_size = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ceil ---------- */
@@ -70434,11 +70434,11 @@ afw_function_definition_ceil = {
     NULL,
     afw_data_type_method_number_ceil,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- clone ---------- */
@@ -70557,11 +70557,11 @@ afw_function_definition_clone = {
     NULL,
     afw_data_type_method_number_clone,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile ---------- */
@@ -70709,11 +70709,11 @@ afw_function_definition_compile = {
     NULL,
     afw_data_type_method_number_compile,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- decode_to_string ---------- */
@@ -70832,11 +70832,11 @@ afw_function_definition_decode_to_string = {
     NULL,
     afw_data_type_method_number_decode_to_string,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- divide ---------- */
@@ -70982,11 +70982,11 @@ afw_function_definition_divide = {
     NULL,
     afw_data_type_method_number_divide,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- encode_as_base64Binary ---------- */
@@ -71104,11 +71104,11 @@ afw_function_definition_encode_as_base64Binary = {
     NULL,
     afw_data_type_method_number_encode_as_base64Binary,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- encode_as_hexBinary ---------- */
@@ -71226,11 +71226,11 @@ afw_function_definition_encode_as_hexBinary = {
     NULL,
     afw_data_type_method_number_encode_as_hexBinary,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ends_with ---------- */
@@ -71376,11 +71376,11 @@ afw_function_definition_ends_with = {
     NULL,
     afw_data_type_method_number_ends_with,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq ---------- */
@@ -71559,11 +71559,11 @@ afw_function_definition_eq = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    true,
-    true,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq_ignore_case ---------- */
@@ -71708,11 +71708,11 @@ afw_function_definition_eq_ignore_case = {
     NULL,
     afw_data_type_method_number_eq_ignore_case,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx ---------- */
@@ -71883,11 +71883,11 @@ afw_function_definition_eqx = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    true,
-    true,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- evaluate ---------- */
@@ -72034,11 +72034,11 @@ afw_function_definition_evaluate = {
     NULL,
     afw_data_type_method_number_evaluate,
     0,
-    true,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- floor ---------- */
@@ -72156,11 +72156,11 @@ afw_function_definition_floor = {
     NULL,
     afw_data_type_method_number_floor,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge ---------- */
@@ -72331,11 +72331,11 @@ afw_function_definition_ge = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt ---------- */
@@ -72506,11 +72506,11 @@ afw_function_definition_gt = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- in_range ---------- */
@@ -72682,11 +72682,11 @@ afw_function_definition_in_range = {
     NULL,
     afw_data_type_method_number_in_range,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- includes ---------- */
@@ -72860,11 +72860,11 @@ afw_function_definition_includes = {
     NULL,
     afw_data_type_method_number_includes,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- index_of ---------- */
@@ -73037,11 +73037,11 @@ afw_function_definition_index_of = {
     NULL,
     afw_data_type_method_number_index_of,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection ---------- */
@@ -73199,11 +73199,11 @@ afw_function_definition_intersection = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is ---------- */
@@ -73348,11 +73348,11 @@ afw_function_definition_is = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    true,
-    true,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in ---------- */
@@ -73512,11 +73512,11 @@ afw_function_definition_is_in = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- last_index_of ---------- */
@@ -73689,11 +73689,11 @@ afw_function_definition_last_index_of = {
     NULL,
     afw_data_type_method_number_last_index_of,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le ---------- */
@@ -73864,11 +73864,11 @@ afw_function_definition_le = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- length ---------- */
@@ -73988,11 +73988,11 @@ afw_function_definition_length = {
     NULL,
     afw_data_type_method_number_length,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt ---------- */
@@ -74163,11 +74163,11 @@ afw_function_definition_lt = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- match ---------- */
@@ -74313,11 +74313,11 @@ afw_function_definition_match = {
     NULL,
     afw_data_type_method_number_match,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max ---------- */
@@ -74440,11 +74440,11 @@ afw_function_definition_max = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min ---------- */
@@ -74567,11 +74567,11 @@ afw_function_definition_min = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- mod ---------- */
@@ -74716,11 +74716,11 @@ afw_function_definition_mod = {
     NULL,
     afw_data_type_method_number_mod,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- multiply ---------- */
@@ -74839,11 +74839,11 @@ afw_function_definition_multiply = {
     NULL,
     afw_data_type_method_number_multiply,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne ---------- */
@@ -75022,11 +75022,11 @@ afw_function_definition_ne = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    true,
-    true,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- negative ---------- */
@@ -75145,11 +75145,11 @@ afw_function_definition_negative = {
     NULL,
     afw_data_type_method_number_negative,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex ---------- */
@@ -75320,11 +75320,11 @@ afw_function_definition_nex = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    true,
-    true,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- normalize_space ---------- */
@@ -75442,11 +75442,11 @@ afw_function_definition_normalize_space = {
     NULL,
     afw_data_type_method_number_normalize_space,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- normalize_to_lower_case ---------- */
@@ -75564,11 +75564,11 @@ afw_function_definition_normalize_to_lower_case = {
     NULL,
     afw_data_type_method_number_normalize_to_lower_case,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only ---------- */
@@ -75709,11 +75709,11 @@ afw_function_definition_one_and_only = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- pow ---------- */
@@ -75858,11 +75858,11 @@ afw_function_definition_pow = {
     NULL,
     afw_data_type_method_number_pow,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_index_of ---------- */
@@ -76008,11 +76008,11 @@ afw_function_definition_regexp_index_of = {
     NULL,
     afw_data_type_method_number_regexp_index_of,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match ---------- */
@@ -76162,11 +76162,11 @@ afw_function_definition_regexp_match = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_replace ---------- */
@@ -76366,11 +76366,11 @@ afw_function_definition_regexp_replace = {
     NULL,
     afw_data_type_method_number_regexp_replace,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- repeat ---------- */
@@ -76516,11 +76516,11 @@ afw_function_definition_repeat = {
     NULL,
     afw_data_type_method_number_repeat,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- replace ---------- */
@@ -76720,11 +76720,11 @@ afw_function_definition_replace = {
     NULL,
     afw_data_type_method_number_replace,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- round ---------- */
@@ -76842,11 +76842,11 @@ afw_function_definition_round = {
     NULL,
     afw_data_type_method_number_round,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals ---------- */
@@ -77004,11 +77004,11 @@ afw_function_definition_set_equals = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- split ---------- */
@@ -77181,11 +77181,11 @@ afw_function_definition_split = {
     NULL,
     afw_data_type_method_number_split,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- starts_with ---------- */
@@ -77331,11 +77331,11 @@ afw_function_definition_starts_with = {
     NULL,
     afw_data_type_method_number_starts_with,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset ---------- */
@@ -77493,11 +77493,11 @@ afw_function_definition_subset = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- substring ---------- */
@@ -77678,11 +77678,11 @@ afw_function_definition_substring = {
     NULL,
     afw_data_type_method_number_substring,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract ---------- */
@@ -77828,11 +77828,11 @@ afw_function_definition_subtract = {
     NULL,
     afw_data_type_method_number_subtract,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract_dayTimeDuration ---------- */
@@ -77977,11 +77977,11 @@ afw_function_definition_subtract_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_subtract_dayTimeDuration,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subtract_yearMonthDuration ---------- */
@@ -78127,11 +78127,11 @@ afw_function_definition_subtract_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_subtract_yearMonthDuration,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_anyURI ---------- */
@@ -78257,11 +78257,11 @@ afw_function_definition_to_anyURI = {
     NULL,
     afw_data_type_method_number_to_anyURI,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_boolean ---------- */
@@ -78387,11 +78387,11 @@ afw_function_definition_to_boolean = {
     NULL,
     afw_data_type_method_number_to_boolean,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_date ---------- */
@@ -78517,11 +78517,11 @@ afw_function_definition_to_date = {
     NULL,
     afw_data_type_method_number_to_date,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_dateTime ---------- */
@@ -78647,11 +78647,11 @@ afw_function_definition_to_dateTime = {
     NULL,
     afw_data_type_method_number_to_dateTime,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_dayTimeDuration ---------- */
@@ -78777,11 +78777,11 @@ afw_function_definition_to_dayTimeDuration = {
     NULL,
     afw_data_type_method_number_to_dayTimeDuration,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_dnsName ---------- */
@@ -78907,11 +78907,11 @@ afw_function_definition_to_dnsName = {
     NULL,
     afw_data_type_method_number_to_dnsName,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_double ---------- */
@@ -79038,11 +79038,11 @@ afw_function_definition_to_double = {
     NULL,
     afw_data_type_method_number_to_double,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_integer ---------- */
@@ -79161,11 +79161,11 @@ afw_function_definition_to_integer = {
     NULL,
     afw_data_type_method_number_to_integer,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_ipAddress ---------- */
@@ -79291,11 +79291,11 @@ afw_function_definition_to_ipAddress = {
     NULL,
     afw_data_type_method_number_to_ipAddress,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_rfc822Name ---------- */
@@ -79421,11 +79421,11 @@ afw_function_definition_to_rfc822Name = {
     NULL,
     afw_data_type_method_number_to_rfc822Name,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string ---------- */
@@ -79567,11 +79567,11 @@ afw_function_definition_to_string = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_time ---------- */
@@ -79697,11 +79697,11 @@ afw_function_definition_to_time = {
     NULL,
     afw_data_type_method_number_to_time,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_x500Name ---------- */
@@ -79827,11 +79827,11 @@ afw_function_definition_to_x500Name = {
     NULL,
     afw_data_type_method_number_to_x500Name,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_yearMonthDuration ---------- */
@@ -79957,11 +79957,11 @@ afw_function_definition_to_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_to_yearMonthDuration,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union ---------- */
@@ -80092,11 +80092,11 @@ afw_function_definition_union = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- url_encode ---------- */
@@ -80215,11 +80215,11 @@ afw_function_definition_url_encode = {
     NULL,
     afw_data_type_method_number_url_encode,
     0,
-    true,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- random_base64Binary ---------- */
@@ -80331,11 +80331,11 @@ afw_function_definition_random_base64Binary = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- random_digits ---------- */
@@ -80447,11 +80447,11 @@ afw_function_definition_random_digits = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- random_hexBinary ---------- */
@@ -80563,11 +80563,11 @@ afw_function_definition_random_hexBinary = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- random_integer ---------- */
@@ -80706,11 +80706,11 @@ afw_function_definition_random_integer = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- random_number ---------- */
@@ -80849,11 +80849,11 @@ afw_function_definition_random_number = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile<regexp> ---------- */
@@ -80992,11 +80992,11 @@ afw_function_definition_compile_regexp = {
     NULL,
     afw_data_type_method_number_compile,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<regexp> ---------- */
@@ -81143,11 +81143,11 @@ afw_function_definition_eq_regexp = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<regexp> ---------- */
@@ -81286,11 +81286,11 @@ afw_function_definition_eqx_regexp = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<regexp> ---------- */
@@ -81429,11 +81429,11 @@ afw_function_definition_ge_regexp = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<regexp> ---------- */
@@ -81572,11 +81572,11 @@ afw_function_definition_gt_regexp = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<regexp> ---------- */
@@ -81715,11 +81715,11 @@ afw_function_definition_le_regexp = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<regexp> ---------- */
@@ -81858,11 +81858,11 @@ afw_function_definition_lt_regexp = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<regexp> ---------- */
@@ -82009,11 +82009,11 @@ afw_function_definition_ne_regexp = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<regexp> ---------- */
@@ -82152,11 +82152,11 @@ afw_function_definition_nex_regexp = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp ---------- */
@@ -82276,11 +82276,11 @@ afw_function_definition_regexp = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<rfc822Name> ---------- */
@@ -82419,11 +82419,11 @@ afw_function_definition_at_least_one_member_of_rfc822Name = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<rfc822Name> ---------- */
@@ -82535,11 +82535,11 @@ afw_function_definition_bag_rfc822Name = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<rfc822Name> ---------- */
@@ -82651,11 +82651,11 @@ afw_function_definition_bag_size_rfc822Name = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<rfc822Name> ---------- */
@@ -82802,11 +82802,11 @@ afw_function_definition_eq_rfc822Name = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<rfc822Name> ---------- */
@@ -82945,11 +82945,11 @@ afw_function_definition_eqx_rfc822Name = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<rfc822Name> ---------- */
@@ -83088,11 +83088,11 @@ afw_function_definition_ge_rfc822Name = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<rfc822Name> ---------- */
@@ -83231,11 +83231,11 @@ afw_function_definition_gt_rfc822Name = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<rfc822Name> ---------- */
@@ -83374,11 +83374,11 @@ afw_function_definition_intersection_rfc822Name = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<rfc822Name> ---------- */
@@ -83517,11 +83517,11 @@ afw_function_definition_is_in_rfc822Name = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<rfc822Name> ---------- */
@@ -83633,11 +83633,11 @@ afw_function_definition_is_rfc822Name = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<rfc822Name> ---------- */
@@ -83776,11 +83776,11 @@ afw_function_definition_le_rfc822Name = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<rfc822Name> ---------- */
@@ -83919,11 +83919,11 @@ afw_function_definition_lt_rfc822Name = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- match<rfc822Name> ---------- */
@@ -84062,11 +84062,11 @@ afw_function_definition_match_rfc822Name = {
     NULL,
     afw_data_type_method_number_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<rfc822Name> ---------- */
@@ -84213,11 +84213,11 @@ afw_function_definition_ne_rfc822Name = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<rfc822Name> ---------- */
@@ -84356,11 +84356,11 @@ afw_function_definition_nex_rfc822Name = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<rfc822Name> ---------- */
@@ -84480,11 +84480,11 @@ afw_function_definition_one_and_only_rfc822Name = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match<rfc822Name> ---------- */
@@ -84623,11 +84623,11 @@ afw_function_definition_regexp_match_rfc822Name = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- rfc822Name ---------- */
@@ -84747,11 +84747,11 @@ afw_function_definition_rfc822Name = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<rfc822Name> ---------- */
@@ -84890,11 +84890,11 @@ afw_function_definition_set_equals_rfc822Name = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<rfc822Name> ---------- */
@@ -85033,11 +85033,11 @@ afw_function_definition_subset_rfc822Name = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<rfc822Name> ---------- */
@@ -85149,11 +85149,11 @@ afw_function_definition_to_string_rfc822Name = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<rfc822Name> ---------- */
@@ -85265,11 +85265,11 @@ afw_function_definition_union_rfc822Name = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<script> ---------- */
@@ -85381,11 +85381,11 @@ afw_function_definition_bag_script = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<script> ---------- */
@@ -85497,11 +85497,11 @@ afw_function_definition_bag_size_script = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile<script> ---------- */
@@ -85640,11 +85640,11 @@ afw_function_definition_compile_script = {
     NULL,
     afw_data_type_method_number_compile,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<script> ---------- */
@@ -85791,11 +85791,11 @@ afw_function_definition_eq_script = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<script> ---------- */
@@ -85934,11 +85934,11 @@ afw_function_definition_eqx_script = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- evaluate<script> ---------- */
@@ -86077,11 +86077,11 @@ afw_function_definition_evaluate_script = {
     NULL,
     afw_data_type_method_number_evaluate,
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<script> ---------- */
@@ -86220,11 +86220,11 @@ afw_function_definition_ge_script = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<script> ---------- */
@@ -86363,11 +86363,11 @@ afw_function_definition_gt_script = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<script> ---------- */
@@ -86479,11 +86479,11 @@ afw_function_definition_is_script = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<script> ---------- */
@@ -86622,11 +86622,11 @@ afw_function_definition_le_script = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<script> ---------- */
@@ -86765,11 +86765,11 @@ afw_function_definition_lt_script = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<script> ---------- */
@@ -86916,11 +86916,11 @@ afw_function_definition_ne_script = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<script> ---------- */
@@ -87059,11 +87059,11 @@ afw_function_definition_nex_script = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- script ---------- */
@@ -87183,11 +87183,11 @@ afw_function_definition_script = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- close ---------- */
@@ -87305,11 +87305,11 @@ afw_function_definition_close = {
     &impl_close_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- flush ---------- */
@@ -87427,11 +87427,11 @@ afw_function_definition_flush = {
     &impl_flush_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- get_stream_error ---------- */
@@ -87516,11 +87516,11 @@ afw_function_definition_get_stream_error = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- open_file ---------- */
@@ -87719,11 +87719,11 @@ afw_function_definition_open_file = {
     &impl_open_file_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- open_response ---------- */
@@ -87868,11 +87868,11 @@ afw_function_definition_open_response = {
     &impl_open_response_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- open_uri ---------- */
@@ -88071,11 +88071,11 @@ afw_function_definition_open_uri = {
     &impl_open_uri_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- print ---------- */
@@ -88193,11 +88193,11 @@ afw_function_definition_print = {
     &impl_print_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- println ---------- */
@@ -88315,11 +88315,11 @@ afw_function_definition_println = {
     &impl_println_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- read ---------- */
@@ -88464,11 +88464,11 @@ afw_function_definition_read = {
     &impl_read_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- read_to_base64Binary ---------- */
@@ -88613,11 +88613,11 @@ afw_function_definition_read_to_base64Binary = {
     &impl_read_to_base64Binary_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- read_to_hexBinary ---------- */
@@ -88762,11 +88762,11 @@ afw_function_definition_read_to_hexBinary = {
     &impl_read_to_hexBinary_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- readln ---------- */
@@ -88884,11 +88884,11 @@ afw_function_definition_readln = {
     &impl_readln_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- stream ---------- */
@@ -89000,11 +89000,11 @@ afw_function_definition_stream = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- write ---------- */
@@ -89149,11 +89149,11 @@ afw_function_definition_write = {
     &impl_write_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- write_internal ---------- */
@@ -89298,11 +89298,11 @@ afw_function_definition_write_internal = {
     &impl_write_internal_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- writeln ---------- */
@@ -89447,11 +89447,11 @@ afw_function_definition_writeln = {
     &impl_writeln_sideEffects[0],
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- add<string> ---------- */
@@ -89590,11 +89590,11 @@ afw_function_definition_add_string = {
     NULL,
     afw_data_type_method_number_add,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<string> ---------- */
@@ -89733,11 +89733,11 @@ afw_function_definition_at_least_one_member_of_string = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<string> ---------- */
@@ -89849,11 +89849,11 @@ afw_function_definition_bag_size_string = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<string> ---------- */
@@ -89965,11 +89965,11 @@ afw_function_definition_bag_string = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- concat ---------- */
@@ -90089,11 +90089,11 @@ afw_function_definition_concat = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- encode_as_base64Binary<string> ---------- */
@@ -90205,11 +90205,11 @@ afw_function_definition_encode_as_base64Binary_string = {
     NULL,
     afw_data_type_method_number_encode_as_base64Binary,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- encode_as_hexBinary<string> ---------- */
@@ -90321,11 +90321,11 @@ afw_function_definition_encode_as_hexBinary_string = {
     NULL,
     afw_data_type_method_number_encode_as_hexBinary,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ends_with<string> ---------- */
@@ -90464,11 +90464,11 @@ afw_function_definition_ends_with_string = {
     NULL,
     afw_data_type_method_number_ends_with,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq_ignore_case<string> ---------- */
@@ -90607,11 +90607,11 @@ afw_function_definition_eq_ignore_case_string = {
     NULL,
     afw_data_type_method_number_eq_ignore_case,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<string> ---------- */
@@ -90758,11 +90758,11 @@ afw_function_definition_eq_string = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<string> ---------- */
@@ -90901,11 +90901,11 @@ afw_function_definition_eqx_string = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<string> ---------- */
@@ -91044,11 +91044,11 @@ afw_function_definition_ge_string = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<string> ---------- */
@@ -91187,11 +91187,11 @@ afw_function_definition_gt_string = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- includes<string> ---------- */
@@ -91357,11 +91357,11 @@ afw_function_definition_includes_string = {
     NULL,
     afw_data_type_method_number_includes,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- index_of<string> ---------- */
@@ -91527,11 +91527,11 @@ afw_function_definition_index_of_string = {
     NULL,
     afw_data_type_method_number_index_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<string> ---------- */
@@ -91670,11 +91670,11 @@ afw_function_definition_intersection_string = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<string> ---------- */
@@ -91813,11 +91813,11 @@ afw_function_definition_is_in_string = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<string> ---------- */
@@ -91929,11 +91929,11 @@ afw_function_definition_is_string = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- last_index_of<string> ---------- */
@@ -92099,11 +92099,11 @@ afw_function_definition_last_index_of_string = {
     NULL,
     afw_data_type_method_number_last_index_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<string> ---------- */
@@ -92242,11 +92242,11 @@ afw_function_definition_le_string = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- length<string> ---------- */
@@ -92358,11 +92358,11 @@ afw_function_definition_length_string = {
     NULL,
     afw_data_type_method_number_length,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<string> ---------- */
@@ -92501,11 +92501,11 @@ afw_function_definition_lt_string = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max<string> ---------- */
@@ -92617,11 +92617,11 @@ afw_function_definition_max_string = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min<string> ---------- */
@@ -92733,11 +92733,11 @@ afw_function_definition_min_string = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<string> ---------- */
@@ -92884,11 +92884,11 @@ afw_function_definition_ne_string = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<string> ---------- */
@@ -93027,11 +93027,11 @@ afw_function_definition_nex_string = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- normalize_space<string> ---------- */
@@ -93143,11 +93143,11 @@ afw_function_definition_normalize_space_string = {
     NULL,
     afw_data_type_method_number_normalize_space,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- normalize_to_lower_case<string> ---------- */
@@ -93259,11 +93259,11 @@ afw_function_definition_normalize_to_lower_case_string = {
     NULL,
     afw_data_type_method_number_normalize_to_lower_case,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<string> ---------- */
@@ -93383,11 +93383,11 @@ afw_function_definition_one_and_only_string = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_index_of<string> ---------- */
@@ -93526,11 +93526,11 @@ afw_function_definition_regexp_index_of_string = {
     NULL,
     afw_data_type_method_number_regexp_index_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match<string> ---------- */
@@ -93669,11 +93669,11 @@ afw_function_definition_regexp_match_string = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_replace<string> ---------- */
@@ -93866,11 +93866,11 @@ afw_function_definition_regexp_replace_string = {
     NULL,
     afw_data_type_method_number_regexp_replace,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- repeat<string> ---------- */
@@ -94009,11 +94009,11 @@ afw_function_definition_repeat_string = {
     NULL,
     afw_data_type_method_number_repeat,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- replace<string> ---------- */
@@ -94206,11 +94206,11 @@ afw_function_definition_replace_string = {
     NULL,
     afw_data_type_method_number_replace,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<string> ---------- */
@@ -94349,11 +94349,11 @@ afw_function_definition_set_equals_string = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- split<string> ---------- */
@@ -94519,11 +94519,11 @@ afw_function_definition_split_string = {
     NULL,
     afw_data_type_method_number_split,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- starts_with<string> ---------- */
@@ -94662,11 +94662,11 @@ afw_function_definition_starts_with_string = {
     NULL,
     afw_data_type_method_number_starts_with,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- string ---------- */
@@ -94786,11 +94786,11 @@ afw_function_definition_string = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<string> ---------- */
@@ -94929,11 +94929,11 @@ afw_function_definition_subset_string = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- substring<string> ---------- */
@@ -95107,11 +95107,11 @@ afw_function_definition_substring_string = {
     NULL,
     afw_data_type_method_number_substring,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_anyURI<string> ---------- */
@@ -95231,11 +95231,11 @@ afw_function_definition_to_anyURI_string = {
     NULL,
     afw_data_type_method_number_to_anyURI,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_boolean<string> ---------- */
@@ -95355,11 +95355,11 @@ afw_function_definition_to_boolean_string = {
     NULL,
     afw_data_type_method_number_to_boolean,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_dateTime<string> ---------- */
@@ -95479,11 +95479,11 @@ afw_function_definition_to_dateTime_string = {
     NULL,
     afw_data_type_method_number_to_dateTime,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_date<string> ---------- */
@@ -95603,11 +95603,11 @@ afw_function_definition_to_date_string = {
     NULL,
     afw_data_type_method_number_to_date,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_dayTimeDuration<string> ---------- */
@@ -95727,11 +95727,11 @@ afw_function_definition_to_dayTimeDuration_string = {
     NULL,
     afw_data_type_method_number_to_dayTimeDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_dnsName<string> ---------- */
@@ -95851,11 +95851,11 @@ afw_function_definition_to_dnsName_string = {
     NULL,
     afw_data_type_method_number_to_dnsName,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_double<string> ---------- */
@@ -95975,11 +95975,11 @@ afw_function_definition_to_double_string = {
     NULL,
     afw_data_type_method_number_to_double,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_integer<string> ---------- */
@@ -96091,11 +96091,11 @@ afw_function_definition_to_integer_string = {
     NULL,
     afw_data_type_method_number_to_integer,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_ipAddress<string> ---------- */
@@ -96215,11 +96215,11 @@ afw_function_definition_to_ipAddress_string = {
     NULL,
     afw_data_type_method_number_to_ipAddress,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_rfc822Name<string> ---------- */
@@ -96339,11 +96339,11 @@ afw_function_definition_to_rfc822Name_string = {
     NULL,
     afw_data_type_method_number_to_rfc822Name,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<string> ---------- */
@@ -96455,11 +96455,11 @@ afw_function_definition_to_string_string = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_time<string> ---------- */
@@ -96579,11 +96579,11 @@ afw_function_definition_to_time_string = {
     NULL,
     afw_data_type_method_number_to_time,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_x500Name<string> ---------- */
@@ -96703,11 +96703,11 @@ afw_function_definition_to_x500Name_string = {
     NULL,
     afw_data_type_method_number_to_x500Name,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_yearMonthDuration<string> ---------- */
@@ -96827,11 +96827,11 @@ afw_function_definition_to_yearMonthDuration_string = {
     NULL,
     afw_data_type_method_number_to_yearMonthDuration,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<string> ---------- */
@@ -96943,11 +96943,11 @@ afw_function_definition_union_string = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- url_decode ---------- */
@@ -97059,11 +97059,11 @@ afw_function_definition_url_decode = {
     NULL,
     afw_data_type_method_number_url_decode,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- url_encode<string> ---------- */
@@ -97175,11 +97175,11 @@ afw_function_definition_url_encode_string = {
     NULL,
     afw_data_type_method_number_url_encode,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<template> ---------- */
@@ -97291,11 +97291,11 @@ afw_function_definition_bag_size_template = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<template> ---------- */
@@ -97407,11 +97407,11 @@ afw_function_definition_bag_template = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile<template> ---------- */
@@ -97550,11 +97550,11 @@ afw_function_definition_compile_template = {
     NULL,
     afw_data_type_method_number_compile,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<template> ---------- */
@@ -97701,11 +97701,11 @@ afw_function_definition_eq_template = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<template> ---------- */
@@ -97844,11 +97844,11 @@ afw_function_definition_eqx_template = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- evaluate<template> ---------- */
@@ -97987,11 +97987,11 @@ afw_function_definition_evaluate_template = {
     NULL,
     afw_data_type_method_number_evaluate,
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<template> ---------- */
@@ -98130,11 +98130,11 @@ afw_function_definition_ge_template = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<template> ---------- */
@@ -98273,11 +98273,11 @@ afw_function_definition_gt_template = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<template> ---------- */
@@ -98389,11 +98389,11 @@ afw_function_definition_is_template = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<template> ---------- */
@@ -98532,11 +98532,11 @@ afw_function_definition_le_template = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<template> ---------- */
@@ -98675,11 +98675,11 @@ afw_function_definition_lt_template = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<template> ---------- */
@@ -98826,11 +98826,11 @@ afw_function_definition_ne_template = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<template> ---------- */
@@ -98969,11 +98969,11 @@ afw_function_definition_nex_template = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- template ---------- */
@@ -99093,11 +99093,11 @@ afw_function_definition_template = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<template> ---------- */
@@ -99209,11 +99209,11 @@ afw_function_definition_to_string_template = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<time> ---------- */
@@ -99352,11 +99352,11 @@ afw_function_definition_at_least_one_member_of_time = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<time> ---------- */
@@ -99468,11 +99468,11 @@ afw_function_definition_bag_size_time = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<time> ---------- */
@@ -99584,11 +99584,11 @@ afw_function_definition_bag_time = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<time> ---------- */
@@ -99735,11 +99735,11 @@ afw_function_definition_eq_time = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<time> ---------- */
@@ -99878,11 +99878,11 @@ afw_function_definition_eqx_time = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<time> ---------- */
@@ -100021,11 +100021,11 @@ afw_function_definition_ge_time = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<time> ---------- */
@@ -100164,11 +100164,11 @@ afw_function_definition_gt_time = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- in_range<time> ---------- */
@@ -100334,11 +100334,11 @@ afw_function_definition_in_range_time = {
     NULL,
     afw_data_type_method_number_in_range,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<time> ---------- */
@@ -100477,11 +100477,11 @@ afw_function_definition_intersection_time = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<time> ---------- */
@@ -100620,11 +100620,11 @@ afw_function_definition_is_in_time = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<time> ---------- */
@@ -100736,11 +100736,11 @@ afw_function_definition_is_time = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<time> ---------- */
@@ -100879,11 +100879,11 @@ afw_function_definition_le_time = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<time> ---------- */
@@ -101022,11 +101022,11 @@ afw_function_definition_lt_time = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- max<time> ---------- */
@@ -101138,11 +101138,11 @@ afw_function_definition_max_time = {
     NULL,
     afw_data_type_method_number_max,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- min<time> ---------- */
@@ -101254,11 +101254,11 @@ afw_function_definition_min_time = {
     NULL,
     afw_data_type_method_number_min,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<time> ---------- */
@@ -101405,11 +101405,11 @@ afw_function_definition_ne_time = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<time> ---------- */
@@ -101548,11 +101548,11 @@ afw_function_definition_nex_time = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<time> ---------- */
@@ -101672,11 +101672,11 @@ afw_function_definition_one_and_only_time = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<time> ---------- */
@@ -101815,11 +101815,11 @@ afw_function_definition_set_equals_time = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<time> ---------- */
@@ -101958,11 +101958,11 @@ afw_function_definition_subset_time = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- time ---------- */
@@ -102082,11 +102082,11 @@ afw_function_definition_time = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<time> ---------- */
@@ -102198,11 +102198,11 @@ afw_function_definition_to_string_time = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<time> ---------- */
@@ -102314,11 +102314,11 @@ afw_function_definition_union_time = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<unevaluated> ---------- */
@@ -102430,11 +102430,11 @@ afw_function_definition_is_unevaluated = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- meta ---------- */
@@ -102546,11 +102546,11 @@ afw_function_definition_meta = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- metas ---------- */
@@ -102662,11 +102662,11 @@ afw_function_definition_metas = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<x500Name> ---------- */
@@ -102805,11 +102805,11 @@ afw_function_definition_at_least_one_member_of_x500Name = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<x500Name> ---------- */
@@ -102921,11 +102921,11 @@ afw_function_definition_bag_size_x500Name = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<x500Name> ---------- */
@@ -103037,11 +103037,11 @@ afw_function_definition_bag_x500Name = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<x500Name> ---------- */
@@ -103188,11 +103188,11 @@ afw_function_definition_eq_x500Name = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<x500Name> ---------- */
@@ -103331,11 +103331,11 @@ afw_function_definition_eqx_x500Name = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<x500Name> ---------- */
@@ -103474,11 +103474,11 @@ afw_function_definition_ge_x500Name = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<x500Name> ---------- */
@@ -103617,11 +103617,11 @@ afw_function_definition_gt_x500Name = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<x500Name> ---------- */
@@ -103760,11 +103760,11 @@ afw_function_definition_intersection_x500Name = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<x500Name> ---------- */
@@ -103903,11 +103903,11 @@ afw_function_definition_is_in_x500Name = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<x500Name> ---------- */
@@ -104019,11 +104019,11 @@ afw_function_definition_is_x500Name = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<x500Name> ---------- */
@@ -104162,11 +104162,11 @@ afw_function_definition_le_x500Name = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<x500Name> ---------- */
@@ -104305,11 +104305,11 @@ afw_function_definition_lt_x500Name = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- match<x500Name> ---------- */
@@ -104448,11 +104448,11 @@ afw_function_definition_match_x500Name = {
     NULL,
     afw_data_type_method_number_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<x500Name> ---------- */
@@ -104599,11 +104599,11 @@ afw_function_definition_ne_x500Name = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<x500Name> ---------- */
@@ -104742,11 +104742,11 @@ afw_function_definition_nex_x500Name = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<x500Name> ---------- */
@@ -104866,11 +104866,11 @@ afw_function_definition_one_and_only_x500Name = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- regexp_match<x500Name> ---------- */
@@ -105009,11 +105009,11 @@ afw_function_definition_regexp_match_x500Name = {
     NULL,
     afw_data_type_method_number_regexp_match,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<x500Name> ---------- */
@@ -105152,11 +105152,11 @@ afw_function_definition_set_equals_x500Name = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<x500Name> ---------- */
@@ -105295,11 +105295,11 @@ afw_function_definition_subset_x500Name = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<x500Name> ---------- */
@@ -105411,11 +105411,11 @@ afw_function_definition_to_string_x500Name = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<x500Name> ---------- */
@@ -105527,11 +105527,11 @@ afw_function_definition_union_x500Name = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- x500Name ---------- */
@@ -105651,11 +105651,11 @@ afw_function_definition_x500Name = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<xpathExpression> ---------- */
@@ -105767,11 +105767,11 @@ afw_function_definition_bag_size_xpathExpression = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<xpathExpression> ---------- */
@@ -105883,11 +105883,11 @@ afw_function_definition_bag_xpathExpression = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- compile<xpathExpression> ---------- */
@@ -106026,11 +106026,11 @@ afw_function_definition_compile_xpathExpression = {
     NULL,
     afw_data_type_method_number_compile,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<xpathExpression> ---------- */
@@ -106177,11 +106177,11 @@ afw_function_definition_eq_xpathExpression = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<xpathExpression> ---------- */
@@ -106320,11 +106320,11 @@ afw_function_definition_eqx_xpathExpression = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- evaluate<xpathExpression> ---------- */
@@ -106463,11 +106463,11 @@ afw_function_definition_evaluate_xpathExpression = {
     NULL,
     afw_data_type_method_number_evaluate,
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<xpathExpression> ---------- */
@@ -106606,11 +106606,11 @@ afw_function_definition_ge_xpathExpression = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<xpathExpression> ---------- */
@@ -106749,11 +106749,11 @@ afw_function_definition_gt_xpathExpression = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<xpathExpression> ---------- */
@@ -106865,11 +106865,11 @@ afw_function_definition_is_xpathExpression = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<xpathExpression> ---------- */
@@ -107008,11 +107008,11 @@ afw_function_definition_le_xpathExpression = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<xpathExpression> ---------- */
@@ -107151,11 +107151,11 @@ afw_function_definition_lt_xpathExpression = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<xpathExpression> ---------- */
@@ -107302,11 +107302,11 @@ afw_function_definition_ne_xpathExpression = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<xpathExpression> ---------- */
@@ -107445,11 +107445,11 @@ afw_function_definition_nex_xpathExpression = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<xpathExpression> ---------- */
@@ -107561,11 +107561,11 @@ afw_function_definition_to_string_xpathExpression = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- xpathExpression ---------- */
@@ -107685,11 +107685,11 @@ afw_function_definition_xpathExpression = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- xpath_node_count ---------- */
@@ -107801,11 +107801,11 @@ afw_function_definition_xpath_node_count = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- xpath_node_eq ---------- */
@@ -107944,11 +107944,11 @@ afw_function_definition_xpath_node_eq = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- xpath_node_match ---------- */
@@ -108087,11 +108087,11 @@ afw_function_definition_xpath_node_match = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- at_least_one_member_of<yearMonthDuration> ---------- */
@@ -108230,11 +108230,11 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_at_least_one_member_of,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag_size<yearMonthDuration> ---------- */
@@ -108346,11 +108346,11 @@ afw_function_definition_bag_size_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_bag_size,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- bag<yearMonthDuration> ---------- */
@@ -108462,11 +108462,11 @@ afw_function_definition_bag_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_bag,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eq<yearMonthDuration> ---------- */
@@ -108613,11 +108613,11 @@ afw_function_definition_eq_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_eq,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- eqx<yearMonthDuration> ---------- */
@@ -108756,11 +108756,11 @@ afw_function_definition_eqx_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_eqx,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ge<yearMonthDuration> ---------- */
@@ -108899,11 +108899,11 @@ afw_function_definition_ge_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_ge,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- gt<yearMonthDuration> ---------- */
@@ -109042,11 +109042,11 @@ afw_function_definition_gt_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_gt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- intersection<yearMonthDuration> ---------- */
@@ -109185,11 +109185,11 @@ afw_function_definition_intersection_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_intersection,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is_in<yearMonthDuration> ---------- */
@@ -109328,11 +109328,11 @@ afw_function_definition_is_in_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_is_in,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- is<yearMonthDuration> ---------- */
@@ -109444,11 +109444,11 @@ afw_function_definition_is_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_is,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- le<yearMonthDuration> ---------- */
@@ -109587,11 +109587,11 @@ afw_function_definition_le_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_le,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- lt<yearMonthDuration> ---------- */
@@ -109730,11 +109730,11 @@ afw_function_definition_lt_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_lt,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- ne<yearMonthDuration> ---------- */
@@ -109881,11 +109881,11 @@ afw_function_definition_ne_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_ne,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- nex<yearMonthDuration> ---------- */
@@ -110024,11 +110024,11 @@ afw_function_definition_nex_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_nex,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- one_and_only<yearMonthDuration> ---------- */
@@ -110148,11 +110148,11 @@ afw_function_definition_one_and_only_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_one_and_only,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- set_equals<yearMonthDuration> ---------- */
@@ -110291,11 +110291,11 @@ afw_function_definition_set_equals_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_set_equals,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- subset<yearMonthDuration> ---------- */
@@ -110434,11 +110434,11 @@ afw_function_definition_subset_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_subset,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- to_string<yearMonthDuration> ---------- */
@@ -110550,11 +110550,11 @@ afw_function_definition_to_string_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_to_string,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- union<yearMonthDuration> ---------- */
@@ -110666,11 +110666,11 @@ afw_function_definition_union_yearMonthDuration = {
     NULL,
     afw_data_type_method_number_union,
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 /* ---------- yearMonthDuration ---------- */
@@ -110790,11 +110790,11 @@ afw_function_definition_yearMonthDuration = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    true,
-    false
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_false,
+    &afw_boolean_v_true,
+    &afw_boolean_v_false,
 };
 
 static const afw_value_function_definition_t * 

@@ -75,7 +75,10 @@
             "dataType": "boolean",
             "defaultValue": false,
             "description": "This indicates that the function is deprecated and may go away at some point.",
-            "label": "Deprecated"
+            "label": "Deprecated",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "description": {
             "allowQuery": true,
@@ -193,7 +196,10 @@
             "dataType": "boolean",
             "defaultValue": false,
             "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
-            "label": "Polymorphic"
+            "label": "Polymorphic",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "polymorphicDataTypes": {
             "allowQuery": true,
@@ -213,7 +219,10 @@
             "dataType": "boolean",
             "defaultValue": false,
             "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
-            "label": "Pure"
+            "label": "Pure",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "returns": {
             "allowQuery": true,
@@ -251,7 +260,10 @@
             "brief": "Signature only",
             "dataType": "boolean",
             "description": "This is a signature with an unimplemented execute function.",
-            "label": "Signature Only"
+            "label": "Signature Only",
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "untypedFunctionId": {
             "allowQuery": true,

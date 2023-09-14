@@ -780,34 +780,24 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('    0,\n')
 
             # polymorphic
-            if obj.get('polymorphic', False):
-                fd.write('    true,\n')
-            else:
-                fd.write('    false,\n')
+            polymorphic = 'false' if obj.get('polymorphic', False) == False else 'true'
+            fd.write('    ' + get_string_label(options, polymorphic, '*v', dataType='boolean') + ',\n')
 
             # polymorphicExecuteFunctionEvaluatesFirstParameter
-            if obj.get('polymorphicExecuteFunctionEvaluatesFirstParameter', False):
-                fd.write('    true,\n')
-            else:
-                fd.write('    false,\n')
+            polymorphicExecuteFunctionEvaluatesFirstParameter = 'false' if obj.get('polymorphicExecuteFunctionEvaluatesFirstParameter', False) == False else 'true'
+            fd.write('    ' + get_string_label(options, polymorphicExecuteFunctionEvaluatesFirstParameter, '*v', dataType='boolean') + ',\n')
 
             # deprecated
-            if obj.get('deprecated', False):
-                fd.write('    true,\n')
-            else:
-                fd.write('    false,\n')
+            deprecated = 'false' if obj.get('deprecated', False) == False else 'true'
+            fd.write('    ' + get_string_label(options, deprecated, '*v', dataType='boolean') + ',\n')
 
             # pure
-            if obj.get('pure', False):
-                fd.write('    true,\n')
-            else:
-                fd.write('    false,\n')
+            pure = 'false' if obj.get('pure', False) == False else 'true'
+            fd.write('    ' + get_string_label(options, pure, '*v', dataType='boolean') + ',\n')
 
             # signatureOnly
-            if obj.get('signatureOnly', False):
-                fd.write('    true\n')
-            else:
-                fd.write('    false\n')
+            signatureOnly = 'false' if obj.get('signatureOnly', False) == False else 'true'
+            fd.write('    ' + get_string_label(options, signatureOnly, '*v', dataType='boolean') + ',\n')
 
             fd.write('};\n')
 

@@ -162,8 +162,8 @@ afw_function_evaluate_parameter(
         if (
             parameter_number <=
                 x->function->numberOfRequiredParameters->internal && 
-            afw_value_is_boolean_false(parameter->optional) &&
-            afw_value_is_boolean_false(parameter->canBeUndefined))
+            !afw_value_is_boolean_true(parameter->optional) &&
+            !afw_value_is_boolean_true(parameter->canBeUndefined))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Parameter " AFW_SIZE_T_FMT

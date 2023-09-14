@@ -64,8 +64,11 @@ afw_value_call_built_in_function_create(
     if (allow_optimize && afw_flag_is_active(
         xctx->env->flag_index_compile_noOptimize_active, xctx))
     {
-        if (function->polymorphic &&
-            !function->polymorphicExecuteFunctionEvaluatesFirstParameter)
+        if (afw_value_is_boolean_true(
+                function->polymorphic) &&
+            !afw_value_is_boolean_true(
+                function->polymorphicExecuteFunctionEvaluatesFirstParameter)
+            )
         {
             if (argc < 1 || !argv[1]) {
                 AFW_THROW_ERROR_Z(general,

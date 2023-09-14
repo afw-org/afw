@@ -173,7 +173,9 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                             NULL,
                             untyped_function_id,
                             parser->xctx);
-                    if (function && function->polymorphic) {
+                    if (function &&
+                        afw_value_is_boolean_true(function->polymorphic))
+                    {
                         afw_compile_get_token();
                         if (afw_compile_token_is(open_angle_bracket)) {
                             afw_compile_get_token();

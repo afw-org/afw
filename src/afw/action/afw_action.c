@@ -109,7 +109,7 @@ impl_call_function(
             }
 
             /* If arg is NULL and not optional, throw error. */
-            else if (afw_value_is_boolean_false((*a)->optional)) {
+            else if (!afw_value_is_boolean_true((*a)->optional)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
                     "Missing parameter " AFW_UTF8_FMT_Q,
                     AFW_UTF8_FMT_ARG(&(*a)->name->internal));

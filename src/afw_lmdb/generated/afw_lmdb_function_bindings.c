@@ -140,11 +140,11 @@ impl_reader_check = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
 };
 
 /* ---------- reader_list ---------- */
@@ -259,11 +259,11 @@ impl_reader_list = {
     NULL,
     0, /* Not a data type method. */
     0,
-    false,
-    false,
-    false,
-    false,
-    false
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
+    &afw_lmdb_boolean_v_false,
 };
 
 static const afw_value_function_definition_t * 

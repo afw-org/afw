@@ -1257,7 +1257,7 @@ afw_function_execute_switch(
                 "Expecting functor to return a boolean value",
                 xctx);
         }
-        if (afw_value_is_true(result)) {
+        if (afw_value_is_boolean_true(result)) {
             break;
         }
     }
