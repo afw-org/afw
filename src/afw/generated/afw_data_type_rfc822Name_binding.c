@@ -166,7 +166,7 @@ afw_data_type_rfc822Name_direct = {
     (const afw_object_t *)&impl_data_type_object_rfc822Name,
     AFW_UTF8_LITERAL("rfc822Name"),
     AFW_UTF8_LITERAL("A RFC 822 name"),
-    AFW_UTF8_LITERAL("Data type rfc822Name holds a string value that conforms to RFC822: local-part@domain"),
+    AFW_UTF8_LITERAL("Data type 'rfc822Name' holds a string value that conforms to RFC822: local-part@domain"),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_rfc822Name,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -361,7 +361,9 @@ afw_object_get_property_as_rfc822Name_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, rfc822Name))
@@ -391,7 +393,9 @@ afw_object_get_next_property_as_rfc822Name_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, rfc822Name))

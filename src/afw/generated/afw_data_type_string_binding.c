@@ -166,7 +166,7 @@ afw_data_type_string_direct = {
     (const afw_object_t *)&impl_data_type_object_string,
     AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("A string"),
-    AFW_UTF8_LITERAL("Data type string hold a sequence of Unicode code points as defined at http://www.unicode.org."),
+    AFW_UTF8_LITERAL("Data type 'string' hold a sequence of Unicode code points as defined at http://www.unicode.org."),
     AFW_UTF8_LITERAL("MediaType"),
     afw_data_type_number_string,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -361,7 +361,9 @@ afw_object_get_property_as_string_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, string))
@@ -391,7 +393,9 @@ afw_object_get_next_property_as_string_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, string))

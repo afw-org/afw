@@ -2,7 +2,7 @@
     "brief": "An adaptive object's object path",
     "cType": "afw_utf8_t",
     "dataType": "objectPath",
-    "description": "Data type objectPath is the path within the same instance of Adaptive Framework of an object. Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
+    "description": "Data type 'objectPath' is the path within the same instance of Adaptive Framework of an object. Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",

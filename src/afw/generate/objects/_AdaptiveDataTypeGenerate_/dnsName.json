@@ -2,7 +2,7 @@
     "brief": "A DNS name",
     "cType": "afw_utf8_t",
     "dataType": "dnsName",
-    "description": "Data type dnsName is Domain Name System (DNS) name.",
+    "description": "Data type 'dnsName' is Domain Name System (DNS) name.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "idn-hostname",

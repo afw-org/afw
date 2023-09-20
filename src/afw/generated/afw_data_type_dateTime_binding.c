@@ -166,7 +166,7 @@ afw_data_type_dateTime_direct = {
     (const afw_object_t *)&impl_data_type_object_dateTime,
     AFW_UTF8_LITERAL("dateTime"),
     AFW_UTF8_LITERAL("A date and time"),
-    AFW_UTF8_LITERAL("Data type dateTime is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone."),
+    AFW_UTF8_LITERAL("Data type 'dateTime' is ISO 8601 extended format CCYY-MM-DDThh:mm:ss with an optional time zone."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_dateTime,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.24"),
@@ -361,7 +361,9 @@ afw_object_get_property_as_dateTime_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, dateTime))
@@ -391,7 +393,9 @@ afw_object_get_next_property_as_dateTime_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, dateTime))

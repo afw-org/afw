@@ -5,7 +5,7 @@
     "cType": "const afw_object_t *",
     "dataType": "object",
     "dataTypeParameterType": "ObjectType",
-    "description": "Data type object holds an adaptive object.",
+    "description": "Data type 'object' holds an adaptive object.",
     "directReturn": true,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "object",

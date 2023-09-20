@@ -3,7 +3,7 @@
     "cType": "afw_utf8_t",
     "dataType": "string",
     "dataTypeParameterType": "MediaType",
-    "description": "Data type string hold a sequence of Unicode code points as defined at http://www.unicode.org.",
+    "description": "Data type 'string' hold a sequence of Unicode code points as defined at http://www.unicode.org.",
     "directReturn": false,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "string",

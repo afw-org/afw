@@ -166,7 +166,7 @@ afw_data_type_objectPath_direct = {
     (const afw_object_t *)&impl_data_type_object_objectPath,
     AFW_UTF8_LITERAL("objectPath"),
     AFW_UTF8_LITERAL("An adaptive object's object path"),
-    AFW_UTF8_LITERAL("Data type objectPath is the path within the same instance of Adaptive Framework of an object. Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object."),
+    AFW_UTF8_LITERAL("Data type 'objectPath' is the path within the same instance of Adaptive Framework of an object. Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_objectPath,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -361,7 +361,9 @@ afw_object_get_property_as_objectPath_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, objectPath))
@@ -391,7 +393,9 @@ afw_object_get_next_property_as_objectPath_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, objectPath))

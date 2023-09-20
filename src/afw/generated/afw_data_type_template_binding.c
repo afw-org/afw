@@ -166,7 +166,7 @@ afw_data_type_template_direct = {
     (const afw_object_t *)&impl_data_type_object_template,
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("An adaptive template"),
-    AFW_UTF8_LITERAL("Data type template holds the source for an adaptive template."),
+    AFW_UTF8_LITERAL("Data type 'template' holds the source for an adaptive template."),
     AFW_UTF8_LITERAL("SourceParameter"),
     afw_data_type_number_template,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -361,7 +361,9 @@ afw_object_get_property_as_template_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, template))
@@ -391,7 +393,9 @@ afw_object_get_next_property_as_template_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, template))

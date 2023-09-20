@@ -166,7 +166,7 @@ afw_data_type_object_direct = {
     (const afw_object_t *)&impl_data_type_object_object,
     AFW_UTF8_LITERAL("object"),
     AFW_UTF8_LITERAL("An adaptive object"),
-    AFW_UTF8_LITERAL("Data type object holds an adaptive object."),
+    AFW_UTF8_LITERAL("Data type 'object' holds an adaptive object."),
     AFW_UTF8_LITERAL("ObjectType"),
     afw_data_type_number_object,
     AFW_UTF8_LITERAL(""),
@@ -355,7 +355,9 @@ afw_object_get_property_as_object_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object))
@@ -385,7 +387,9 @@ afw_object_get_next_property_as_object_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object))

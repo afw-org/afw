@@ -166,7 +166,7 @@ afw_data_type_double_direct = {
     (const afw_object_t *)&impl_data_type_object_double,
     AFW_UTF8_LITERAL("double"),
     AFW_UTF8_LITERAL("A 64-bit floating point number"),
-    AFW_UTF8_LITERAL("Data type double holds a double-precision 64-bit floating point number. It also can hold the values 0, -0, INF, -INF and NaN."),
+    AFW_UTF8_LITERAL("Data type 'double' holds a double-precision 64-bit floating point number. It also can hold the values 0, -0, INF, -INF and NaN."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_double,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),
@@ -357,7 +357,9 @@ afw_object_get_property_as_double_source(
 
     *found = false;
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return 0;
+    if (!value) {
+        return 0;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     *found = true;
@@ -390,7 +392,9 @@ afw_object_get_next_property_as_double_source(
 
     *found = false;
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return 0;
+    if (!value) {
+        return 0;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     *found = true;

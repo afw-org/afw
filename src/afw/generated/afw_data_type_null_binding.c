@@ -166,7 +166,7 @@ afw_data_type_null_direct = {
     (const afw_object_t *)&impl_data_type_object_null,
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("Intentional absence of value"),
-    AFW_UTF8_LITERAL("Data type null is a special data type that represents the intentional absence of a value."),
+    AFW_UTF8_LITERAL("Data type 'null' is a special data type that represents the intentional absence of a value."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_null,
     AFW_UTF8_LITERAL(""),
@@ -355,7 +355,9 @@ afw_object_get_property_as_null_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, null))
@@ -385,7 +387,9 @@ afw_object_get_next_property_as_null_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, null))

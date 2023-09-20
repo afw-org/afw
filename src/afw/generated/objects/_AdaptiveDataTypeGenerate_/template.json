@@ -4,7 +4,7 @@
     "compileType": "template",
     "dataType": "template",
     "dataTypeParameterType": "SourceParameter",
-    "description": "Data type template holds the source for an adaptive template.",
+    "description": "Data type 'template' holds the source for an adaptive template.",
     "directReturn": false,
     "evaluated": true,
     "jsonPrimitive": "string",

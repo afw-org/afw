@@ -2,7 +2,7 @@
     "brief": "A 64-bit floating point number",
     "cType": "double",
     "dataType": "double",
-    "description": "Data type double holds a double-precision 64-bit floating point number. It also can hold the values 0, -0, INF, -INF and NaN.",
+    "description": "Data type 'double' holds a double-precision 64-bit floating point number. It also can hold the values 0, -0, INF, -INF and NaN.",
     "directReturn": true,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "number",

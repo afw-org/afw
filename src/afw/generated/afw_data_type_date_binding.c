@@ -166,7 +166,7 @@ afw_data_type_date_direct = {
     (const afw_object_t *)&impl_data_type_object_date,
     AFW_UTF8_LITERAL("date"),
     AFW_UTF8_LITERAL("A date"),
-    AFW_UTF8_LITERAL("Data type date holds a calendar date in format CCYY-MM-DD."),
+    AFW_UTF8_LITERAL("Data type 'date' holds a calendar date in format CCYY-MM-DD."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_date,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.24"),
@@ -361,7 +361,9 @@ afw_object_get_property_as_date_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, date))
@@ -391,7 +393,9 @@ afw_object_get_next_property_as_date_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, date))

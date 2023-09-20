@@ -166,7 +166,7 @@ afw_data_type_integer_direct = {
     (const afw_object_t *)&impl_data_type_object_integer,
     AFW_UTF8_LITERAL("integer"),
     AFW_UTF8_LITERAL("An integer"),
-    AFW_UTF8_LITERAL("Data type integer hold a positive or negative whole numbers. The string value of a negative integer is preceded with a minus sign ('-'). A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input."),
+    AFW_UTF8_LITERAL("Data type 'integer' hold a positive or negative whole numbers. The string value of a negative integer is preceded with a minus sign ('-'). A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_integer,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.27"),
@@ -357,7 +357,9 @@ afw_object_get_property_as_integer_source(
 
     *found = false;
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return 0;
+    if (!value) {
+        return 0;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     *found = true;
@@ -390,7 +392,9 @@ afw_object_get_next_property_as_integer_source(
 
     *found = false;
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return 0;
+    if (!value) {
+        return 0;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     *found = true;

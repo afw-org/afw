@@ -5,7 +5,7 @@
     "cType": "const afw_array_t *",
     "dataType": "array",
     "dataTypeParameterType": "ArrayOf",
-    "description": "Data type array holds an array of adaptive value. The array can have value all of one data type or of different data types.",
+    "description": "Data type 'array' holds an array of adaptive value. The array can have value all of one data type or of different data types.",
     "directReturn": true,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "array",

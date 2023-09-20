@@ -2,7 +2,7 @@
     "brief": "An ASN.1 value",
     "cType": "afw_utf8_t",
     "dataType": "ia5String",
-    "description": "Data type ia5String holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters. which contains precisely 128 characters.",
+    "description": "Data type 'ia5String' holds a string restricted to the ASN.1 notation. It is used to represent ISO 646 (IA5) characters. which contains precisely 128 characters.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "ldapOid": "1.3.6.1.4.1.1466.115.121.1.26{64512}",

@@ -4,7 +4,7 @@
     "compileType": "script",
     "dataType": "script",
     "dataTypeParameterType": "SourceParameter",
-    "description": "Data type script holds the source for an adaptive script.",
+    "description": "Data type 'script' holds the source for an adaptive script.",
     "directReturn": false,
     "evaluated": true,
     "jsonPrimitive": "string",

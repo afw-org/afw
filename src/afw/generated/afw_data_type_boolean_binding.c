@@ -166,7 +166,7 @@ afw_data_type_boolean_direct = {
     (const afw_object_t *)&impl_data_type_object_boolean,
     AFW_UTF8_LITERAL("boolean"),
     AFW_UTF8_LITERAL("A boolean value"),
-    AFW_UTF8_LITERAL("Data type boolean holds a boolean value. Its to_string() value is 'true' or 'false'. Its from_string() true value can be mixed case 't', 'true' or '1'. Its from_string() false value can be mixed case 'f', 'false' or '0'."),
+    AFW_UTF8_LITERAL("Data type 'boolean' holds a boolean value. Its to_string() value is 'true' or 'false'. Its from_string() true value can be mixed case 't', 'true' or '1'. Its from_string() false value can be mixed case 'f', 'false' or '0'."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_boolean,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.7"),
@@ -357,7 +357,9 @@ afw_object_get_property_as_boolean_source(
 
     *found = false;
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return 0;
+    if (!value) {
+        return 0;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     *found = true;
@@ -390,7 +392,9 @@ afw_object_get_next_property_as_boolean_source(
 
     *found = false;
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return 0;
+    if (!value) {
+        return 0;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     *found = true;

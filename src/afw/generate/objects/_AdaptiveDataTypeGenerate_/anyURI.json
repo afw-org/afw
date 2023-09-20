@@ -2,7 +2,7 @@
     "brief": "A Uniform Resource Identifier Reference (URI)",
     "cType": "afw_utf8_t",
     "dataType": "anyURI",
-    "description": "Data type anyURI holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier.",
+    "description": "Data type 'anyURI' holds a Uniform Resource Identifier Reference (URI). The URI can be absolute or relative, and may have an optional fragment identifier.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "uri-reference",

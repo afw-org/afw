@@ -2,7 +2,7 @@
     "brief": "An integer",
     "cType": "afw_integer_t",
     "dataType": "integer",
-    "description": "Data type integer hold a positive or negative whole numbers. The string value of a negative integer is preceded with a minus sign ('-'). A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.",
+    "description": "Data type 'integer' hold a positive or negative whole numbers. The string value of a negative integer is preceded with a minus sign ('-'). A positive integer is displayed without a sign but can optionally be preceded by a plus sign ('+') on input.",
     "directReturn": true,
     "jsonImpliesDataType": true,
     "jsonPrimitive": "number",

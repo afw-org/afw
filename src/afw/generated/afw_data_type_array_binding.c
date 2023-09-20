@@ -166,7 +166,7 @@ afw_data_type_array_direct = {
     (const afw_object_t *)&impl_data_type_object_array,
     AFW_UTF8_LITERAL("array"),
     AFW_UTF8_LITERAL("An array of adaptive values"),
-    AFW_UTF8_LITERAL("Data type array holds an array of adaptive value. The array can have value all of one data type or of different data types."),
+    AFW_UTF8_LITERAL("Data type 'array' holds an array of adaptive value. The array can have value all of one data type or of different data types."),
     AFW_UTF8_LITERAL("ArrayOf"),
     afw_data_type_number_array,
     AFW_UTF8_LITERAL(""),
@@ -355,7 +355,9 @@ afw_object_get_property_as_array_source(
     const afw_value_t *value;
 
     value = afw_object_get_property(object, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, array))
@@ -385,7 +387,9 @@ afw_object_get_next_property_as_array_source(
     const afw_value_t *value;
 
     value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
 
     value = afw_value_evaluate(value, p, xctx);
     if (!AFW_VALUE_IS_DATA_TYPE(value, array))

@@ -2,7 +2,7 @@
     "brief": "A date",
     "cType": "afw_date_t",
     "dataType": "date",
-    "description": "Data type date holds a calendar date in format CCYY-MM-DD.",
+    "description": "Data type 'date' holds a calendar date in format CCYY-MM-DD.",
     "directReturn": false,
     "jsonPrimitive": "string",
     "jsonSchemaStringFormat": "date",
