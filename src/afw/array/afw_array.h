@@ -148,7 +148,7 @@ afw_array_const_create_null_terminated_array_of_values(
 
 
 /**
- * @brief Create a clone ofan array in memory.
+ * @brief Create a clone of an array in memory.
  * @param array to clone or NULL.
  * @param data_type to use if array is NULL.
  * @param clone_values true will clone values as well.
@@ -184,7 +184,7 @@ afw_array_of_create_from_value(
 
 
 /**
- * @brief Convertan array toan array of strings.
+ * @brief Convert an array to an array of strings.
  * @param array to convert.
  * @param p is pool for result.
  * @param xctx of caller.

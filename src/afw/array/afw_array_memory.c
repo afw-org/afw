@@ -35,6 +35,7 @@ afw_memory_internal_array_ring_t;
 
 struct afw_memory_internal_array_entry_s {
     APR_RING_ENTRY(afw_memory_internal_array_entry_s) link;
+    afw_integer_t index;
     const afw_value_t *value;
 };
 
