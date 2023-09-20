@@ -271,7 +271,9 @@ afw_application_internal_application_conf_type_create_cede_p(
             for (iterator = NULL;;) {
                 value = afw_object_get_next_property(object, &iterator,
                     &property_name, xctx);
-                if (!value) break;
+                if (!value) {
+                    break;
+                }
                 entry_value = afw_object_get_property(entry,
                     property_name, xctx);
                 if (entry_value ||

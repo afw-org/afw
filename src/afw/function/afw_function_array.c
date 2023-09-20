@@ -382,7 +382,9 @@ afw_function_execute_reverse(
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(array->internal, &iterator,
             x->p, x->xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
         afw_array_setter_insert_value(setter, value, 0, x->xctx);
     }
     return afw_value_create_array(result_array, x->p, x->xctx);

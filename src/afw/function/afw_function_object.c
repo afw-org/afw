@@ -75,7 +75,9 @@ afw_function_execute_add_properties(
         for (iterator = NULL;;) {
             value = afw_object_get_next_property(
                 source->internal, &iterator, &property_name, x->xctx);
-            if (!value) break;
+            if (!value) {
+                break;
+            }
             afw_object_set_property(target->internal,
                 property_name, value, x->xctx);
         }

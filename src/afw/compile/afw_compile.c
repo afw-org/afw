@@ -424,7 +424,9 @@ afw_compile_templates(
         /* Get the next property. */
         value = afw_object_get_next_property(object,
                 &iterator,  &property_name, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
 
         /* If this is a template value, compile it. */
        if (afw_value_is_template(value)) {

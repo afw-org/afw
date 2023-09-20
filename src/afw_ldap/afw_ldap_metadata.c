@@ -411,7 +411,9 @@ impl_parse_definition(
     p = metadata->p;
 
     value = afw_object_get_property(metadata->schema_object, name_in_schema, xctx);
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
     if (!afw_value_is_array_of_string(value)) {
         AFW_THROW_ERROR_Z(general, "Expecting list of strings", xctx);
     }
@@ -758,7 +760,9 @@ impl_properties_to_object_type(
     req_pn.s = (required) ? "MUST" : "MAY";
     req_pn.len = strlen(req_pn.s);
     value = afw_object_get_property(object_class_object, &req_pn, xctx);
-    if (!value) return;
+    if (!value) {
+        return;
+    }
     if (afw_value_is_array_of_string(value)) {
         list = ((const afw_value_array_t *)value)->internal;
         for (iterator = NULL;;)

@@ -492,7 +492,9 @@ impl_object_type_related_object_option_processing(
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(instance,
             &iterator, &property_name, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
 
         /* Get property type. */
         pt = afw_object_type_property_type_get(object_type,
@@ -530,7 +532,9 @@ impl_object_type_related_object_option_processing(
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(instance,
             &iterator, &property_name, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
 
         AFW_TRY {
 
@@ -933,7 +937,9 @@ impl_add_origin_properties(
     /* Make array of properties. */
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(self->origin, &iterator, &name, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
 
         if (!afw_utf8_equal(name, &afw_s__meta_)) {
             impl_set_property(self, self->origin, name, value, xctx);

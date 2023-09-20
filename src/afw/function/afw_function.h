@@ -240,7 +240,8 @@ if (!(A_VALUE) || !afw_utf8_equal( \
  * struct pointer.
  */
 #define AFW_FUNCTION_PARAMETER_IS_PRESENT(A_N) \
-    (AFW_FUNCTION_ARGV(A_N) != NULL)
+    (AFW_FUNCTION_ARGV(A_N) != NULL && \
+    AFW_FUNCTION_ARGV(A_N) != afw_value_undefined)
 
 
 

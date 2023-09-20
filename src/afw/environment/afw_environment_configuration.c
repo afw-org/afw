@@ -84,7 +84,9 @@ afw_environment_configure_with_object_list(
         /* Get next configuration entry. */
         value = afw_array_get_next_value(entry_list, &iterator,
             xctx->p, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
 
         /* Source location will include entry number. */
         detail_source_location = afw_utf8_printf(xctx->env->p, xctx,

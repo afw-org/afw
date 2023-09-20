@@ -316,7 +316,9 @@ afw_action_perform(
             /* Get next action.  If there are not more, break. */
             value = afw_array_get_next_value(actions, &iterator,
                 response->p, xctx);
-            if (!value) break;
+            if (!value) {
+                break;
+            }
 
             /* Action must be a single_object. */
             if (!afw_value_is_object(value)) {

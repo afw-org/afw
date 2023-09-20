@@ -29,7 +29,9 @@ impl_create_journal_entry(const afw_value_object_t *journal,
         for (iterator = NULL;;) {
             value = afw_object_get_next_property(journal->internal,
                 &iterator, &property_name, xctx);
-            if (!value) break;
+            if (!value) {
+                break;
+            }
             afw_object_set_property(journal_entry, property_name, value, xctx);
         }
     }

@@ -20,7 +20,7 @@ static const afw_utf8_t impl_s_a_quote = AFW_UTF8_LITERAL("\"");
 
 static const afw_value_null_t
 impl_value_null = {
-    &afw_value_evaluated_null_inf,
+    &afw_value_permanent_null_inf,
     NULL
 };
 
@@ -29,8 +29,18 @@ afw_value_null =
 { (const afw_value_t *)&impl_value_null };
 
 static const afw_value_null_t
+impl_value_undefined = {
+    &afw_value_permanent_null_inf,
+    NULL
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_undefined =
+{ (const afw_value_t *)&impl_value_undefined };
+
+static const afw_value_null_t
 impl_value_unique_default_case_value = {
-    &afw_value_evaluated_null_inf,
+    &afw_value_permanent_null_inf,
     NULL
 };
 
@@ -40,7 +50,7 @@ afw_value_unique_default_case_value =
 
 static const afw_value_integer_t
 impl_value_integer_1 = {
-    &afw_value_evaluated_integer_inf,
+    &afw_value_permanent_integer_inf,
     1
 };
 
@@ -51,7 +61,7 @@ afw_value_integer_1 =
 
 static const afw_value_string_t
 impl_value_undefined_string = {
-    &afw_value_evaluated_string_inf,
+    &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("<undefined>")
 };
 
@@ -61,7 +71,7 @@ afw_value_undefined_as_string =
 
 static const afw_value_string_t
 impl_value_empty_string = {
-    &afw_value_evaluated_string_inf,
+    &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("")
 };
 
@@ -71,7 +81,7 @@ afw_value_empty_string =
 
 static const afw_value_boolean_t
 impl_value_true = {
-    &afw_value_evaluated_boolean_inf,
+    &afw_value_permanent_boolean_inf,
     AFW_TRUE
 };
 
@@ -81,7 +91,7 @@ afw_value_true =
 
 static const afw_value_boolean_t
 impl_value_false = {
-    &afw_value_evaluated_boolean_inf,
+    &afw_value_permanent_boolean_inf,
     AFW_FALSE
 };
 
@@ -219,7 +229,9 @@ afw_value_undecorated_inf_is(
     const afw_value_t *value,
     const afw_value_inf_t *inf)
 {
-    if (!value) return false;
+    if (!value) {
+        return false;
+    }
 
     if (value->inf == &afw_value_compiled_value_inf) {
         value = ((const afw_value_compiled_value_t *)value)->root_value;
@@ -425,7 +437,9 @@ afw_value_one_and_only(
     const afw_value_t *result;
 
     /* Result is NULL if value is NULL.  */
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
     result = NULL;
     value = afw_value_evaluate(value, p, xctx);
 
@@ -473,7 +487,9 @@ afw_value_as_utf8(const afw_value_t *value,
     const afw_data_type_t *data_type;
 
     /* Result is NULL if value is NULL.  */
-    if (!value) return NULL;
+    if (!value) {
+        return NULL;
+    }
     value = afw_value_evaluate(value, p, xctx);
     data_type = afw_value_get_data_type(value, xctx);
     if (!data_type) {
@@ -872,8 +888,19 @@ afw_value_equal(const afw_value_t *value1, const afw_value_t *value2,
         result = true;
     }
 
-    else if (!value1 || !value2)
+    else if (afw_value_is_undefined(value1))
     {
+        if (afw_value_is_undefined(value2))
+        {
+            result = true;
+        }
+        else
+        {
+            result = false;
+        }
+    }
+
+    else if (afw_value_is_undefined(value2)) {
         result = false;
     }
 

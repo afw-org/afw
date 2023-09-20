@@ -328,8 +328,8 @@ impl_convert_value_to_json(
     const afw_data_type_t *value_data_type;
     afw_value_info_t info;
 
-    /* Change NULL value pointer to null.  */
-    if (!value) {
+    /* Change undefined value to null.  */
+    if (afw_value_is_undefined(value)) {
         value = afw_value_null;
     }
 

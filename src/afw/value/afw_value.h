@@ -331,20 +331,27 @@ afw_value_null;
 
 
 /**
- * @brief Adaptive value integer 1.
+ * @brief Adaptive value null.
+ *
+ * Undefined values are represented by C NULL or a pointer to this exact value.
+ * Throughout source NULL and undefined are used interchangeably, but it's
+ * preferred that undefined is represented by a pointer to this value. This is
+ * because C NULL is sometimes used as a return value to mean something other
+ * than undefined such as "not applicable".
+ *
+ * Macro afw_value_is_undefined() should always be used to check for an
+ * undefined value since it checks for both of these conditions.
  */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_value_integer_1;
+afw_value_undefined;
 
 
 
 /**
- * @brief An undefined value is represented by c NULL
- *
- * Undefined values are represented by c NULL.  Throughout source NULL and
- * undefined are used interchangeably.
+ * @brief Adaptive value integer 1.
  */
-#define afw_value_undefined NULL
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_1;
 
 
 
@@ -475,9 +482,11 @@ afw_value_undecorated_inf_is(
  * @param xctx of caller.
  * @return boolean result.
  *
- * NOTE: Undefined values are represented by c NULL.
+ * NOTE: Undefined values are represented by c NULL or an exact pointer to
+ * afw_value_undefined.
  */
-#define afw_value_is_undefined(A_VALUE) (!A_VALUE)
+#define afw_value_is_undefined(A_VALUE) \
+    (!A_VALUE || (A_VALUE) == afw_value_undefined)
 
 
 

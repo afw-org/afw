@@ -501,12 +501,12 @@ afw_function_execute_eq(
     AFW_FUNCTION_EVALUATE_PARAMETER(arg2, 2);
 
     /* Handle undefined/null special case. */
-    if (!arg1 || afw_value_is_null(arg1)) {
-        return (!arg2 || afw_value_is_null(arg2))
+    if (afw_value_is_undefined(arg1) || afw_value_is_null(arg1)) {
+        return (afw_value_is_undefined(arg2) || afw_value_is_null(arg2))
             ? afw_value_true
             : afw_value_false;
     }
-    if (!arg2 || afw_value_is_null(arg2)) {
+    if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
         return afw_value_false;
     }
 
@@ -589,12 +589,12 @@ afw_function_execute_eqx(
     AFW_FUNCTION_EVALUATE_PARAMETER(arg2, 2);
 
     /* Handle undefined/null special case. */
-    if (!arg1) {
-        return (!arg2)
+    if (afw_value_is_undefined(arg1)) {
+        return (afw_value_is_undefined(arg2))
             ? afw_value_true
             : afw_value_false;
     }
-    if (!arg2) {
+    if (afw_value_is_undefined(arg2)) {
         return afw_value_false;
     }
 
@@ -1516,12 +1516,12 @@ afw_function_execute_ne(
     AFW_FUNCTION_EVALUATE_PARAMETER(arg2, 2);
 
     /* Handle undefined/null special case. */
-    if (!arg1 || afw_value_is_null(arg1)) {
-        return (!arg2 || afw_value_is_null(arg2))
+    if (afw_value_is_undefined(arg1) || afw_value_is_null(arg1)) {
+        return (afw_value_is_undefined(arg2) || afw_value_is_null(arg2))
             ? afw_value_false
             : afw_value_true;
     }
-    if (!arg2 || afw_value_is_null(arg2)) {
+    if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
         return afw_value_true;
     }
 
@@ -1606,12 +1606,12 @@ afw_function_execute_nex(
     AFW_FUNCTION_EVALUATE_PARAMETER(arg2, 2);
 
     /* Handle undefined/null special case. */
-    if (!arg1) {
-        return (!arg2)
+    if (afw_value_is_undefined(arg1)) {
+        return (afw_value_is_undefined(arg2))
             ? afw_value_false
             : afw_value_true;
     }
-    if (!arg2) {
+    if (afw_value_is_undefined(arg2)) {
         return afw_value_true;
     }
 
@@ -2895,7 +2895,7 @@ afw_function_execute_is(
     
     AFW_FUNCTION_EVALUATE_PARAMETER(arg, 1);
 
-    if (!arg) {
+    if (afw_value_is_undefined(arg)) {
         return afw_value_false;
     }
 

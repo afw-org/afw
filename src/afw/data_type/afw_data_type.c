@@ -1370,7 +1370,9 @@ impl_afw_data_type_array_clone_internal(
 
     for (iterator = NULL;;) {
         value = afw_array_get_next_value(from, &iterator, p, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
         cloned_value = afw_value_clone(value, p, xctx);
         afw_array_add_value(to, cloned_value, xctx);
     }
@@ -1433,7 +1435,9 @@ impl_object_clone_properties_and_meta(
     for (iterator = NULL;;) {
         value = afw_object_get_next_property(from,
             &iterator, &property_name, xctx);
-        if (!value) break;
+        if (!value) {
+            break;
+        }
         impl_clone_and_set_property(to, property_name, value,
             xctx);
     }
