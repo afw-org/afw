@@ -166,7 +166,7 @@ afw_data_type_null_direct = {
     (const afw_object_t *)&impl_data_type_object_null,
     AFW_UTF8_LITERAL("null"),
     AFW_UTF8_LITERAL("Intentional absence of value"),
-    AFW_UTF8_LITERAL("Data type 'null' is a special data type that represents the intentional absence of a value."),
+    AFW_UTF8_LITERAL("Data type 'null' is a special data type that represents the intentional absence of a value. It is also used internally to represent special singleton values."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_null,
     AFW_UTF8_LITERAL(""),
