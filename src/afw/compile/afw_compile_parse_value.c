@@ -633,7 +633,7 @@ afw_compile_parse_Literal(
 
     case afw_compile_token_type_undefined:
         matches_production = true;
-        value = NULL;
+        value = afw_value_undefined;
         break;
 
     default:

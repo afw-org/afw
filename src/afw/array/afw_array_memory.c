@@ -420,12 +420,12 @@ impl_afw_array_setter_add_value(
     if (self->generic) {
         if (APR_RING_EMPTY(self->ring, afw_memory_internal_array_entry_s, link))
         {
-            if (value) {
+            if (!afw_value_is_undefined(value)) {
                 self->data_type = afw_value_get_data_type(value, xctx);;
             }
         }
         else if (
-            !value ||
+            !afw_value_is_undefined(value) ||
             (self->data_type &&
             self->data_type != afw_value_get_data_type(value, xctx)))
         {
