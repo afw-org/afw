@@ -655,6 +655,7 @@ impl_afw_array_setter_set_value_by_index(
             self->data_type = afw_value_get_data_type(value, xctx);;
         }
         else if (
+            !afw_value_is_undefined(value) &&
             self->data_type &&
             self->data_type != afw_value_get_data_type(value, xctx))
         {
@@ -663,7 +664,9 @@ impl_afw_array_setter_set_value_by_index(
     }
 
     /* If not generic, make sure data type of value is okay. */
-    else if (self->data_type && self->data_type !=
+    else if (
+        !afw_value_is_undefined(value) &&
+        self->data_type && self->data_type !=
         afw_value_get_data_type(value, xctx))
     {
         AFW_THROW_ERROR_Z(general,

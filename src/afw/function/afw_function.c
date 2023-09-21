@@ -159,6 +159,11 @@ afw_function_evaluate_parameter(
 
     /* If result is undefined, return NULL. Fuss if required. */
     if (afw_value_is_undefined(result)) {
+        /*
+         * Always use NULL for undefined in this case so that caller can use
+         * NULL to check if a parameter is not present.
+         */
+        result = NULL;
         if (
             parameter_number <=
                 x->function->numberOfRequiredParameters->internal && 

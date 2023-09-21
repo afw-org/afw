@@ -191,7 +191,7 @@ impl_afw_value_optional_evaluate(
                             p, xctx);
                     }
 
-                    if (!value) {
+                    if (afw_value_is_undefined(value)) {
                         if ((*params)->default_value) {
                             value = (*params)->default_value;
                         }

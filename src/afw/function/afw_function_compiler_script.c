@@ -1145,6 +1145,11 @@ afw_function_execute_return(
                 (const afw_value_script_function_definition_t *)result,
                 p, xctx);
         }
+
+        /* return statement should not return NULL for undefined. */
+        else if (!result) {
+            result = afw_value_undefined;
+        }
     }
     afw_xctx_statement_flow_set_type(return, xctx);
 

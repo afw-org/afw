@@ -721,7 +721,7 @@ afw_value_compiler_listing_value(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    if (!instance) {
+    if (afw_value_is_undefined(instance)) {
         afw_writer_write_utf8(writer, &afw_s_undefined, xctx);
         afw_writer_write_eol(writer, xctx);
     }
