@@ -61,9 +61,10 @@ def build(options):
     # now run the modules builds
     msg.highlighted_info('Building javascript apps')
     for app in js_apps:
-        msg.highlighted_info('  Building ' + app)
+        app_name = app.split('/')[-2]
+        msg.highlighted_info('  Building ' + app_name)
         # For react apps, we need to set the PUBLIC_URL environment variable
-        os.environ['PUBLIC_URL'] = '/apps/' + afwPackageId + '/' + app
+        os.environ['PUBLIC_URL'] = '/apps/' + afwPackageId + '/' + app_name
         rc = subprocess.run(['npm', 'run', '--prefix', app, 'build'], stdout=output)
         if rc.returncode != 0:
             msg.error_exit('npm run build failed for app ' + app)
