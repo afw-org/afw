@@ -97,7 +97,6 @@ afw_value_block_evaluate_statement(
 {
     const afw_value_t *result;
 
-    result = afw_value_undefined;
     afw_xctx_statement_flow_set_type(sequential, xctx);
 
     /* If statement is block, handle special. */
