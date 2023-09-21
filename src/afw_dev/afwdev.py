@@ -532,6 +532,15 @@ _info_build_scan = {
     "help": "Use clang analyze-build to analyze C source after compilation. Errors will cause the build to fail."
 }
 
+_info_build_web_root = {
+    "optionName": "build_web_root",
+    "arg": "--web-root",
+    "nargs": 1,
+    "default": "/usr/share/nginx/html",
+    "action": "store",
+    "help": "The root directory for the web server on this local system."
+}
+
 
 _info_build = {
     "subcommand": "build",
@@ -559,7 +568,8 @@ under. The --all selects all of those contexts.
         _info_build_maxloop,
         _info_build_prefix,
         _info_build_scan,
-        _info_build_sudo
+        _info_build_sudo,
+        _info_build_web_root
     ]
 }
 

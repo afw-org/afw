@@ -1,7 +1,6 @@
 {
   "name": "@afw/lmdb",
   "license": "UNLICENSED",
-  "version": "0.9.0",
   "description": "Javascript LMDB language bindings for Adaptive Framework",
   "repository": {
     "type": "git",

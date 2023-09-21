@@ -56,12 +56,9 @@ then
     echo "Building JS code..."
 
     cd /src && \
-    ./afwdev build --docs && \
-    ./afwdev build --js -j && \
-    mv build/docs build/js/apps/admin && \
+    ./afwdev build --js --docs && \
     cd build/js/apps && \
-    mv admin afw_app && \
-    tar cf admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar afw_app
+    tar cf admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar admin
 
     # copy to /
     cp admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar /    

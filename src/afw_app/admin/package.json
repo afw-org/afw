@@ -40,7 +40,7 @@
     "analyze": "source-map-explorer 'build/static/js/*.js{,.map}' --only-mapped",
     "analyze:stats": "webpack-bundle-analyzer build/bundle-stats.json",
     "prebuild": "./prebuild.sh",
-    "build": "cross-env PUBLIC_URL='/afw_app' react-scripts --max_old_space_size=4096 build",    
+    "build": "cross-env react-scripts --max_old_space_size=4096 build",    
     "build:stats": "react-scripts --max_old_space_size=4096 build --stats",
     "test": "cross-env TZ=UTC react-scripts test --watchAll=false --rootDir=. --setupFilesAfterEnv='../../afw_test/javascript/src/setupTests.js' --verbose",
     "test-p": "cross-env TZ=UTC npm-run-all --parallel --aggregate-output test:app test:objects test:models test:services test:admin test:tools test:docs",

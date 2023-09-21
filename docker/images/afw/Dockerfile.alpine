@@ -31,14 +31,15 @@ LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 
 # add supervisor package for managing startup services
 RUN apk add --no-cache nginx supervisor && \
-    mkdir -p /var/www/html
+    mkdir -p /usr/share/nginx/html/apps && \
+    mkdir -p /usr/share/nginx/html/docs
 
 # obtain the artifacts from build-stage
 COPY --from=build-stage /afw-*.tar /
-COPY --from=build-stage /admin-app-*.tar /var/www/html/
+COPY --from=build-stage /admin-app-*.tar /usr/share/nginx/html/apps
 
 RUN cd / && tar xvf /afw-*.tar && rm -f /afw-*.tar && \
-    cd /var/www/html && tar xvf admin-app-*.tar && rm -f admin-app-*.tar
+    cd /usr/share/nginx/html/apps && tar xvf admin-app-*.tar && rm -f admin-app-*.tar
 
 # Copy service configurations
 COPY ./docker/images/afw/etc/nginx/nginx.conf /etc/nginx/

@@ -1,7 +1,6 @@
 {
   "name": "@afw/ldap",
   "license": "UNLICENSED",
-  "version": "0.9.0",
   "description": "Javascript LDAP language bindings for Adaptive Framework",
   "repository": {
     "type": "git",

@@ -909,3 +909,18 @@ def build(options):
         package.set_options_from_existing_package_srcdir(options, srcdir, set_all=True)          
 
         run(options)
+
+    if options.get("build_install", False):
+        msg.highlighted_info("Installing documentation")
+
+        web_root = options.get("build_web_root")
+        # FIXME use --sudo, if specified
+        pathlib.Path(web_root + '/docs').mkdir(parents=True, exist_ok=True)
+
+        # if any files exist previously, delete them
+        # FIXME use --sudo, if specified
+        rmtree(options, web_root + '/docs')
+
+        # copy over the docs directory
+        # FIXME use --sudo, if specified
+        copytree(options.get("build_directory_docs"), web_root + '/docs')

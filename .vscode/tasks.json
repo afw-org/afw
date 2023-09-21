@@ -22,7 +22,7 @@
             "label": "Start:  nginx",
             "detail": "Starts nginx web server, forwarding requests to FCGI and loads web app from build.",
             "type": "shell",
-            "command": "nginx -g 'daemon off;' -c ${workspaceFolder}/.devcontainer/afw/nginx.conf -p ${workspaceFolder}/build",
+            "command": "nginx -g 'daemon off;' -c ${workspaceFolder}/.devcontainer/afw/nginx.conf",
             "runOptions": {
                 "instanceLimit": 1
             },

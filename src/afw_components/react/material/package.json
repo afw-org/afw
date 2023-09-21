@@ -1,7 +1,6 @@
 {
   "name": "@afw/react-material-ui",
   "license": "UNLICENSED",
-  "version": "0.9.0",
   "description": "Adaptive Framework components implemented with MaterialUI.",
   "repository": {
     "type": "git",

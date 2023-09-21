@@ -1,7 +1,6 @@
 {
   "name": "@afw/react-monaco",
   "license": "UNLICENSED",
-  "version": "0.9.0",
   "description": "Adaptive Framework Source Editor implemented with Monaco Code Editor.",
   "repository": {
     "type": "git",

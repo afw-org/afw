@@ -29,6 +29,24 @@
             "produces": "libafw",
             "srcdirPath": "src/afw"
         },
+        "afw_admin": {
+            "brief": "Administration web application",
+            "buildType": "js-app",
+            "description": "React-based web application for administering AFW.",
+            "srcdirPath": "src/afw_app/admin"
+        },
+        "afw_bindings": {
+            "brief": "Javascript core language bindings",
+            "buildType": "js-module",
+            "description": "Javascript bindings for afw core.",
+            "srcdirPath": "src/afw/generated/javascript_bindings"
+        },
+        "afw_client": {
+            "brief": "Javascript client library",
+            "buildType": "js-module",
+            "description": "Javascript functions that bindings use to communicate with afw.",
+            "srcdirPath": "src/afw_client/javascript"
+        },
         "afw_command": {
             "brief": "Command afw",
             "buildType": "afwmake",
@@ -44,6 +62,24 @@
             "prefix": "afw_components_",
             "produces": "libafwcomponents",
             "srcdirPath": "src/afw_components"
+        },
+        "afw_components_react_core": {
+            "brief": "Javascript react core components",
+            "buildType": "js-module",
+            "description": "Javascript core components implemented in react.",
+            "srcdirPath": "src/afw_components/react/core"
+        },
+        "afw_components_react_material": {
+            "brief": "Javascript react material components",
+            "buildType": "js-module",
+            "description": "Javascript components implemented in react material-ui.",
+            "srcdirPath": "src/afw_components/react/material"
+        },
+        "afw_components_react_monaco": {
+            "brief": "Javascript react monaco components",
+            "buildType": "js-module",
+            "description": "Javascript components implemented in react monaco.",
+            "srcdirPath": "src/afw_components/react/monaco"
         },
         "afw_dev": {
             "brief": "Command afwdev",
@@ -73,6 +109,12 @@
             "produces": "libafwlmdb",
             "srcdirPath": "src/afw_lmdb"
         },
+        "afw_lmdb_bindings": {
+            "brief": "Javascript LMDB language bindings",
+            "buildType": "js-module",
+            "description": "Javascript bindings for LMDB extension.",
+            "srcdirPath": "src/afw_lmdb/generated/javascript_bindings"
+        },
         "afw_server_fcgi": {
             "brief": "Command afwfcgi",
             "buildType": "afwmake",
@@ -81,6 +123,12 @@
             "prefix": "afw_server_fcgi_",
             "produces": "afwfcgi",
             "srcdirPath": "src/afw_server_fcgi"
+        },
+        "afw_test": {
+            "brief": "Javascript test library",
+            "buildType": "js-module",
+            "description": "Javascript functions that are useful for testing components.",
+            "srcdirPath": "src/afw_test/javascript"
         },
         "afw_ubjson": {
             "brief": "Library libafwubjson",

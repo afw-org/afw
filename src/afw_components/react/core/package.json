@@ -1,6 +1,5 @@
 {
   "name": "@afw/react",
-  "version": "0.9.0",
   "license": "UNLICENSED",
   "description": "Core ReactJS components for Adaptive Framework.",
   "repository": {

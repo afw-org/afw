@@ -2,7 +2,8 @@
 
 import subprocess
 import os
-from _afwdev.common import msg, package, resources
+import sys
+from _afwdev.common import msg, package
 
 def build(options):
 
@@ -11,8 +12,6 @@ def build(options):
     stdout_capture = subprocess.DEVNULL
     if msg.is_verbose_mode() or msg.is_debug_mode():
         stdout_capture = None
-
-    afw_package = package.get_afw_package(options)
 
     _configure_command = ['cmake']
     #FIXME MIght want to figure out something to pass flags cmake understands.

@@ -1,7 +1,6 @@
 {
   "name": "@afw/client",
   "license": "UNLICENSED",
-  "version": "0.9.0",
   "description": "Javascript language client for Adaptive Framework",
   "repository": {
     "type": "git",

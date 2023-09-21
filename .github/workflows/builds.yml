@@ -57,8 +57,7 @@ jobs:
               run: |
                   ./afwdev build --js -j
                   cd build/js/apps
-                  mv admin afw_app
-                  tar cvf admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar afw_app
+                  tar cvf admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar admin
 
             - name: Upload Admin App
               uses: actions/upload-artifact@v3
