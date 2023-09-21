@@ -52,12 +52,20 @@ set(afw_package_installPackageSubdir "afw")
 set(afw_package_srcdirManifest "afw")
 set(afw_package_srcdirs 
     "afw"
+    "afw_admin"
+    "afw_bindings"
+    "afw_client"
     "afw_command"
     "afw_components"
+    "afw_components_react_core"
+    "afw_components_react_material"
+    "afw_components_react_monaco"
     "afw_dev"
     "afw_ldap"
     "afw_lmdb"
+    "afw_lmdb_bindings"
     "afw_server_fcgi"
+    "afw_test"
     "afw_ubjson"
     "afw_vfs"
     "afw_yaml"
@@ -78,6 +86,48 @@ set(afw_package_srcdirs_afw_prefix "afw_")
 set(afw_package_srcdirs_afw_produces "libafw")
 set(afw_package_srcdirs_afw_srcdirPath "src/afw/")
 set(afw_package_srcdirs_afw_version "0.9.0")
+set(afw_package_srcdirs_afw_admin 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_admin_brief "Administration web application")
+set(afw_package_srcdirs_afw_admin_buildType "js-app")
+set(afw_package_srcdirs_afw_admin_description "React-based web application for administering AFW.")
+set(afw_package_srcdirs_afw_admin_srcdirPath "src/afw_app/admin/")
+set(afw_package_srcdirs_afw_admin_prefix "afw_admin_")
+set(afw_package_srcdirs_afw_admin_version "0.9.0")
+set(afw_package_srcdirs_afw_bindings 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_bindings_brief "Javascript core language bindings")
+set(afw_package_srcdirs_afw_bindings_buildType "js-module")
+set(afw_package_srcdirs_afw_bindings_description "Javascript bindings for afw core.")
+set(afw_package_srcdirs_afw_bindings_srcdirPath "src/afw/generated/javascript_bindings/")
+set(afw_package_srcdirs_afw_bindings_prefix "afw_bindings_")
+set(afw_package_srcdirs_afw_bindings_version "0.9.0")
+set(afw_package_srcdirs_afw_client 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_client_brief "Javascript client library")
+set(afw_package_srcdirs_afw_client_buildType "js-module")
+set(afw_package_srcdirs_afw_client_description "Javascript functions that bindings use to communicate with afw.")
+set(afw_package_srcdirs_afw_client_srcdirPath "src/afw_client/javascript/")
+set(afw_package_srcdirs_afw_client_prefix "afw_client_")
+set(afw_package_srcdirs_afw_client_version "0.9.0")
 set(afw_package_srcdirs_afw_command 
     "brief"
     "buildType"
@@ -110,6 +160,48 @@ set(afw_package_srcdirs_afw_components_prefix "afw_components_")
 set(afw_package_srcdirs_afw_components_produces "libafwcomponents")
 set(afw_package_srcdirs_afw_components_srcdirPath "src/afw_components/")
 set(afw_package_srcdirs_afw_components_version "0.9.0")
+set(afw_package_srcdirs_afw_components_react_core 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_components_react_core_brief "Javascript react core components")
+set(afw_package_srcdirs_afw_components_react_core_buildType "js-module")
+set(afw_package_srcdirs_afw_components_react_core_description "Javascript core components implemented in react.")
+set(afw_package_srcdirs_afw_components_react_core_srcdirPath "src/afw_components/react/core/")
+set(afw_package_srcdirs_afw_components_react_core_prefix "afw_components_react_core_")
+set(afw_package_srcdirs_afw_components_react_core_version "0.9.0")
+set(afw_package_srcdirs_afw_components_react_material 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_components_react_material_brief "Javascript react material components")
+set(afw_package_srcdirs_afw_components_react_material_buildType "js-module")
+set(afw_package_srcdirs_afw_components_react_material_description "Javascript components implemented in react material-ui.")
+set(afw_package_srcdirs_afw_components_react_material_srcdirPath "src/afw_components/react/material/")
+set(afw_package_srcdirs_afw_components_react_material_prefix "afw_components_react_material_")
+set(afw_package_srcdirs_afw_components_react_material_version "0.9.0")
+set(afw_package_srcdirs_afw_components_react_monaco 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_components_react_monaco_brief "Javascript react monaco components")
+set(afw_package_srcdirs_afw_components_react_monaco_buildType "js-module")
+set(afw_package_srcdirs_afw_components_react_monaco_description "Javascript components implemented in react monaco.")
+set(afw_package_srcdirs_afw_components_react_monaco_srcdirPath "src/afw_components/react/monaco/")
+set(afw_package_srcdirs_afw_components_react_monaco_prefix "afw_components_react_monaco_")
+set(afw_package_srcdirs_afw_components_react_monaco_version "0.9.0")
 set(afw_package_srcdirs_afw_dev 
     "brief"
     "buildType"
@@ -167,6 +259,20 @@ set(afw_package_srcdirs_afw_lmdb_prefix "afw_lmdb_")
 set(afw_package_srcdirs_afw_lmdb_produces "libafwlmdb")
 set(afw_package_srcdirs_afw_lmdb_srcdirPath "src/afw_lmdb/")
 set(afw_package_srcdirs_afw_lmdb_version "0.9.0")
+set(afw_package_srcdirs_afw_lmdb_bindings 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_lmdb_bindings_brief "Javascript LMDB language bindings")
+set(afw_package_srcdirs_afw_lmdb_bindings_buildType "js-module")
+set(afw_package_srcdirs_afw_lmdb_bindings_description "Javascript bindings for LMDB extension.")
+set(afw_package_srcdirs_afw_lmdb_bindings_srcdirPath "src/afw_lmdb/generated/javascript_bindings/")
+set(afw_package_srcdirs_afw_lmdb_bindings_prefix "afw_lmdb_bindings_")
+set(afw_package_srcdirs_afw_lmdb_bindings_version "0.9.0")
 set(afw_package_srcdirs_afw_server_fcgi 
     "brief"
     "buildType"
@@ -185,6 +291,20 @@ set(afw_package_srcdirs_afw_server_fcgi_prefix "afw_server_fcgi_")
 set(afw_package_srcdirs_afw_server_fcgi_produces "afwfcgi")
 set(afw_package_srcdirs_afw_server_fcgi_srcdirPath "src/afw_server_fcgi/")
 set(afw_package_srcdirs_afw_server_fcgi_version "0.9.0")
+set(afw_package_srcdirs_afw_test 
+    "brief"
+    "buildType"
+    "description"
+    "srcdirPath"
+    "prefix"
+    "version"
+)
+set(afw_package_srcdirs_afw_test_brief "Javascript test library")
+set(afw_package_srcdirs_afw_test_buildType "js-module")
+set(afw_package_srcdirs_afw_test_description "Javascript functions that are useful for testing components.")
+set(afw_package_srcdirs_afw_test_srcdirPath "src/afw_test/javascript/")
+set(afw_package_srcdirs_afw_test_prefix "afw_test_")
+set(afw_package_srcdirs_afw_test_version "0.9.0")
 set(afw_package_srcdirs_afw_ubjson 
     "brief"
     "buildType"

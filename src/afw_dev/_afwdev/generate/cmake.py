@@ -267,6 +267,14 @@ def _root_generate_add_subdirectories(options, afw_package):
 #
 """)
         for srcdir, info in afw_package['srcdirs'].items():
+
+            # Skip the srcdirs whose buildType doesn't start with 'afwmake'
+            #
+            #NOTE: This will need to change if other buildTypes start using
+            #      cmake.
+            if not info.get('buildType','').startswith('afwmake'):
+                continue
+
             srcdirPath = '${PROJECT_SOURCE_DIR}/' + info['srcdirPath']
             fd.write('\n')
             flag = srcdir.upper()
@@ -306,6 +314,14 @@ def _root_generate_config_header_in(options, afw_package):
         fd.write('#define ' + afw_config_build_prefix + 'INSTALL_LIBDIR "@AFW_PACKAGE_INSTALL_LIBDIR@"\n')
         fd.write('#define ' + afw_config_build_prefix + 'INSTALL_FULL_LIBDIR "@AFW_PACKAGE_INSTALL_FULL_LIBDIR@"\n')
         for srcdir, info in afw_package['srcdirs'].items():
+
+            # Skip the srcdirs whose buildType doesn't start with 'afwmake'
+            #
+            #NOTE: This will need to change if other buildTypes start using
+            #      cmake.
+            if not info.get('buildType','').startswith('afwmake'):
+                continue
+            
             flag = srcdir.upper()
             fd.write('#cmakedefine ' + afw_config_build_prefix_has + flag + ' @' + afw_config_build_prefix_has + flag + '@\n')
 
