@@ -1,0 +1,6 @@
+{
+    "brief": "Relaxed JavaScript Object Notation (JSON) functions",
+    "category": "relaxed_json",
+    "dataTypeCategory": true,
+    "description": "These functions support JavaScript Object Notation (JSON) that allows block comments, line comments, trailing commas, and other relaxed syntax rules."
+}

@@ -1,0 +1,14 @@
+{
+    "brief": "Relaxed JSON source",
+    "cType": "afw_utf8_t",
+    "compileType": "relaxed_json",
+    "dataType": "relaxed_json",
+    "dataTypeParameterType": "SourceParameter",
+    "description": "Data type 'relaxed_json' holds the source for a relaxed JSON value.",
+    "directReturn": false,
+    "evaluated": true,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

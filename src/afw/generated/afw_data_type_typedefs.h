@@ -471,6 +471,26 @@ typedef struct afw_value_regexp_s
 /** @} */
 
 /**
+ * @addtogroup afw_c_api_data_type_relaxed_json
+ * @{
+ */
+
+/** @brief Typedef for data type relaxed_json internal. */
+typedef afw_utf8_t afw_data_type_relaxed_json_internal_t;
+
+/** @brief Typedef for data type relaxed_json parameter. */
+typedef const afw_utf8_t * afw_data_type_relaxed_json_parameter_t;
+
+/** @brief Typedef for data type relaxed_json return. */
+typedef const afw_utf8_t * afw_data_type_relaxed_json_return_t;
+
+/** @brief Typedef for data type relaxed_json evaluated value. */
+typedef struct afw_value_relaxed_json_s
+    afw_value_relaxed_json_t;
+
+/** @} */
+
+/**
  * @addtogroup afw_c_api_data_type_rfc822Name
  * @{
  */

@@ -36,36 +36,6 @@ export function afwAssert(client : any, assertion : boolean, reason? : string) :
 }
 
 /**
- * Compile an adaptive relaxed JSON syntax string and return an adaptive
- * value.
- * 
- * @param {string} json - Adaptive relaxed JSON syntax string to compile.
- * 
- * @param {} listing - If specified, a compiler listing is produced instead of
- *     an unevaluated relaxed JSON value.
- * 
- *     This parameter can be an integer between 0 and 10 of a string that is
- *     used for indentation. If 0 is specified, no whitespace is added to the
- *     resulting string. If 1 through 10 is specified, that number of spaces
- *     is used.
- * 
- * @returns {} An unevaluated relaxed JSON value ready for use by function
- *     evaluate() or a string containing the compiler listing.
- */
-export function afwCompileRelaxedJson(client : any, json : string, listing? : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "compile_relaxed_json";
-    _action["json"] = json;
-
-    if (listing !== undefined)
-        _action["listing"] = listing;
-
-    return client.perform(_action);
-}
-
-/**
  * Decompile an adaptive value to string.
  * 
  * @param {} value - Value to decompile.

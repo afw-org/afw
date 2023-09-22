@@ -6540,49 +6540,6 @@ const afw_value_t *
 afw_function_execute_assert(
     afw_function_execute_t *x);
 
-/** @brief Function definition compile_relaxed_json */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_compile_relaxed_json;
-
-/**
- * @brief Adaptive Function `compile_relaxed_json`
- * @param x function execute parameter.
- *
- * Compile an adaptive relaxed JSON syntax string and return an adaptive value.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function compile_relaxed_json(
- *       json: string,
- *       listing?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   json - (string) Adaptive relaxed JSON syntax string to compile.
- *
- *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated relaxed JSON value.
- * 
- *       This parameter can be an integer between 0 and 10 of a string that is
- *       used for indentation. If 0 is specified, no whitespace is added to the
- *       resulting string. If 1 through 10 is specified, that number of spaces
- *       is used.
- *
- * Returns:
- *
- *   (any dataType) An unevaluated relaxed JSON value ready for use by function
- *       evaluate() or a string containing the compiler listing.
- */
-const afw_value_t *
-afw_function_execute_compile_relaxed_json(
-    afw_function_execute_t *x);
-
 /** @brief Function definition decompile */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_decompile;
@@ -20230,7 +20187,7 @@ afw_function_definition_compile;
  *
  * Supported `<dataType>`:
  *
- *   json, regexp, script, template, xml, xpathExpression.
+ *   json, regexp, relaxed_json, script, template, xml, xpathExpression.
  *
  * Declaration:
  *
@@ -23578,6 +23535,97 @@ afw_function_definition_regexp;
  * Returns:
  *
  *   (regexp) Converted value.
+ *
+ * Errors thrown:
+ *
+ *   cast_error - value could not be converted
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @} */
+
+
+/** @addtogroup afw_functions_relaxed_json relaxed_json functions
+ *
+ * relaxed_json adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition compile<relaxed_json> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_compile_relaxed_json;
+
+/**
+ * @brief Adaptive Function `compile<relaxed_json>`
+ * @param x function execute parameter.
+ *
+ * Compile relaxed_json value and return either an unevaluated adaptive value or
+ * a string containing the compiler listing.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function compile<relaxed_json>(
+ *       source: relaxed_json,
+ *       listing?: any
+ *   ): unevaluated;
+ * ```
+ *
+ * Parameters:
+ *
+ *   source - (relaxed_json) relaxed_json string to compile.
+ *
+ *   listing - (optional any dataType) If specified, a compiler listing is
+ *       produced instead of an unevaluated compiled value.
+ * 
+ *       This parameter can be an integer between 0 and 10 of a string that is
+ *       used for indentation. If 0 is specified, no whitespace is added to the
+ *       resulting string. If 1 through 10 is specified, that number of spaces
+ *       is used.
+ *
+ * Returns:
+ *
+ *   (unevaluated)
+ */
+const afw_value_t *
+afw_function_execute_compile_relaxed_json(
+    afw_function_execute_t *x);
+
+/** @brief Function definition relaxed_json */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_relaxed_json;
+
+/**
+ * @brief Adaptive Function `relaxed_json`
+ * @param x function execute parameter.
+ *
+ * Converts value to data type relaxed_json returning relaxed_json result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function relaxed_json(
+ *       value: any
+ *   ): relaxed_json;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) Value to convert.
+ *
+ * Returns:
+ *
+ *   (relaxed_json) Converted value.
  *
  * Errors thrown:
  *
@@ -32115,6 +32163,7 @@ afw_function_execute_clone(
  * password
  * to_string<password>
  * regexp
+ * relaxed_json
  * rfc822Name
  * to_string<rfc822Name>
  * script

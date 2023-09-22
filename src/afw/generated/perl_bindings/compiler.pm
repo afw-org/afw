@@ -6,7 +6,6 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     assert 
-    compile_relaxed_json 
     decompile 
     evaluate_value 
     evaluate_with_retry 
@@ -42,26 +41,6 @@ thrown.
     $reason
 
 This is an optional reason to include in the assertion_failed message.
-
-=head3 compile_relaxed_json
-
-Compile an adaptive relaxed JSON syntax string and return an adaptive value.
-Compile relaxed JSON
-
-=head4 Parameters
-
-    $json
-
-Adaptive relaxed JSON syntax string to compile.
-
-    $listing
-
-If specified, a compiler listing is produced instead of an unevaluated relaxed
-JSON value.
-
-This parameter can be an integer between 0 and 10 of a string that is used for
-indentation. If 0 is specified, no whitespace is added to the resulting
-string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 decompile
 
@@ -296,20 +275,6 @@ sub assert_ {
 
     if (defined $reason)
         $request->set("reason", $reason);
-
-    return $request->getResult();
-}
-
-sub compile_relaxed_json {
-    my ($json, $listing) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "compile_relaxed_json");
-    $request->set("json", $json);
-
-    if (defined $listing)
-        $request->set("listing", $listing);
 
     return $request->getResult();
 }

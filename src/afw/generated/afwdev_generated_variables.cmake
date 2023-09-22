@@ -106,6 +106,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_object_binding.h
     generated/afw_data_type_password_binding.h
     generated/afw_data_type_regexp_binding.h
+    generated/afw_data_type_relaxed_json_binding.h
     generated/afw_data_type_rfc822Name_binding.h
     generated/afw_data_type_script_binding.h
     generated/afw_data_type_string_binding.h
@@ -331,6 +332,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_polymorphic.c
     function/afw_function_random.c
     function/afw_function_regexp.c
+    function/afw_function_relaxed_json.c
     function/afw_function_rfc822Name.c
     function/afw_function_script.c
     function/afw_function_stream.c
@@ -365,6 +367,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_object_binding.c
     generated/afw_data_type_password_binding.c
     generated/afw_data_type_regexp_binding.c
+    generated/afw_data_type_relaxed_json_binding.c
     generated/afw_data_type_rfc822Name_binding.c
     generated/afw_data_type_script_binding.c
     generated/afw_data_type_string_binding.c

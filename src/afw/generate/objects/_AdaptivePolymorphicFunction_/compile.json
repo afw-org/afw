@@ -24,6 +24,7 @@
     "polymorphicDataTypes": [
         "json",
         "regexp",
+        "relaxed_json",
         "script",
         "template",
         "xml",

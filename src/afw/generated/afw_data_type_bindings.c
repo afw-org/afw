@@ -178,6 +178,12 @@ afw_register_data_type_infs(
         &afw_value_evaluated_regexp_inf,
         xctx);
 
+    /* Register value inf id evaluated_relaxed_json */
+    afw_environment_register_value_inf(
+        &afw_value_evaluated_relaxed_json_inf.rti.implementation_id,
+        &afw_value_evaluated_relaxed_json_inf,
+        xctx);
+
     /* Register value inf id evaluated_rfc822Name */
     afw_environment_register_value_inf(
         &afw_value_evaluated_rfc822Name_inf.rti.implementation_id,

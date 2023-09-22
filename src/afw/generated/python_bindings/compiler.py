@@ -40,47 +40,6 @@ def assert_(session, assertion, reason=None):
 
     return response['actions'][0]['result']
 
-def compile_relaxed_json(session, json, listing=None):
-    """
-    Compile relaxed JSON
-
-    Compile an adaptive relaxed JSON syntax string and return an adaptive
-    value.
-
-    Args:
-        json (str): Adaptive relaxed JSON syntax string to compile.
-
-        listing (object): If specified, a compiler listing is produced instead
-        of an unevaluated relaxed JSON value.
-        
-        This parameter can be an integer between 0 and 10 of a string that is
-        used for indentation. If 0 is specified, no whitespace is added to the
-        resulting string. If 1 through 10 is specified, that number of spaces
-        is used.
-
-    Returns:
-        object: An unevaluated relaxed JSON value ready for use by function
-        evaluate() or a string containing the compiler listing.
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "compile_relaxed_json",
-        "json": json
-    }
-
-    if listing != None:
-        action['listing'] = listing
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def decompile(session, value, whitespace=None):
     """
     Decompile value
