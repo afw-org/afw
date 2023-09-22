@@ -104,7 +104,7 @@ function test2 (a: string, b: string, c:string='3'): string (a + b + c);
 assert(test2('1', '2') == '123');
 
 function test3 (a: string, b: string, c?: string): string (a + b + string(c));
-assert(test3('1', '2') == '12<undefined>');
+assert(test3('1', '2') == '12undefined');
 
 function test4 (a: string, ... b: (array of string)): string (a + string(b));
 assert(test4('1', '2', '3', '4', '5') == '1["2","3","4","5"]');

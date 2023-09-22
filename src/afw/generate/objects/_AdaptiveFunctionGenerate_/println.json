@@ -1,7 +1,7 @@
 {
     "brief": "Print value followed by '\\n'",
     "category": "stream",
-    "description": "Evaluate and convert 0 or more values to their string value, then write them to stdout. A newline character ('\\n') is written after the last value. An undefined value is represented by '<undefined>'.",
+    "description": "Evaluate and convert 0 or more values to their string value, then write them to stdout. A newline character ('\\n') is written after the last value. An undefined value is represented by 'undefined'.",
     "functionId": "println",
     "functionLabel": "println",
     "parameters": [

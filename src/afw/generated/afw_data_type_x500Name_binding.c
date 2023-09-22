@@ -238,7 +238,7 @@ afw_value_as_x500Name(const afw_value_t *value, afw_xctx_t *xctx)
         if (!value) {
             AFW_THROW_ERROR_Z(general,
                 "Typesafe error: expecting 'x500Name' but "
-                "encountered '<undefined>'",
+                "encountered 'undefined'",
                 xctx);
         }
 

@@ -16376,7 +16376,7 @@ afw_function_definition_debug;
  *
  *   value - (any dataType) This is the value that will be converted to its
  *       string representation and written. An undefined value is represented by
- *       `<undefined>`.
+ *       'undefined'.
  *
  *   detail - (optional boolean) If true, the string will only written if the
  *       debug:function_active:detail flag is on. If false or not specified, the
@@ -16751,7 +16751,7 @@ afw_function_definition_trace;
  *
  *   value - (any dataType) This is the value that will be converted to its
  *       string representation and written the trace log. An undefined value is
- *       represented by `<undefined>`.
+ *       represented by 'undefined'.
  *
  *   filter - (optional boolean) If this optional filter is false, nothing will
  *       be written to the trace log. The default is true.
@@ -25199,7 +25199,7 @@ afw_function_definition_print;
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
- * stdout. An undefined value is represented by `<undefined>`.
+ * stdout. An undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25234,7 +25234,7 @@ afw_function_definition_println;
  *
  * Evaluate and convert 0 or more values to their string value, then write them
  * to stdout. A newline character ('\n') is written after the last value. An
- * undefined value is represented by `<undefined>`.
+ * undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25452,7 +25452,7 @@ afw_function_definition_write;
  * @param x function execute parameter.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
- * stream. An value with an undefined value is represented by `<undefined>`.
+ * stream. An value with an undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25527,7 +25527,7 @@ afw_function_definition_writeln;
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stream. A newline character ('\n') is written after the last value. An
- * undefined value is represented by `<undefined>`.
+ * undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -25719,7 +25719,7 @@ afw_function_definition_concat;
  *
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * `<undefined>`.
+ * 'undefined'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -26987,7 +26987,7 @@ afw_function_definition_string;
  *
  * Convert one or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * `<undefined>`.
+ * 'undefined'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

@@ -74,7 +74,7 @@ afw_function_execute_flush(
  * See afw_function_bindings.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
- * stdout. An undefined value is represented by `<undefined>`.
+ * stdout. An undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -113,8 +113,7 @@ afw_function_execute_print(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_utf8(stream,
-                &afw_s_a_undefined_as_string, x->xctx);
+            afw_stream_write_utf8(stream, &afw_s_undefined, x->xctx);
         }
     }
     afw_stream_flush(stream, x->xctx);
@@ -134,7 +133,7 @@ afw_function_execute_print(
  *
  * Evaluate and convert 0 or more values to their string value, then write them
  * to stdout. A newline character ('\n') is written after the last value. An
- * undefined value is represented by `<undefined>`.
+ * undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -173,8 +172,7 @@ afw_function_execute_println(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_utf8(stream,
-                &afw_s_a_undefined_as_string, x->xctx);
+            afw_stream_write_utf8(stream, &afw_s_undefined, x->xctx);
         }
     }
     afw_stream_write_eol(stream, x->xctx);
@@ -194,7 +192,7 @@ afw_function_execute_println(
  * See afw_function_bindings.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
- * stream. An value with an undefined value is represented by `<undefined>`.
+ * stream. An value with an undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -245,8 +243,7 @@ afw_function_execute_write(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_utf8(stream,
-                &afw_s_a_undefined_as_string, x->xctx);
+            afw_stream_write_utf8(stream, &afw_s_undefined, x->xctx);
         }
     }
 
@@ -265,7 +262,7 @@ afw_function_execute_write(
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stream. A newline character ('\n') is written after the last value. An
- * undefined value is represented by `<undefined>`.
+ * undefined value is represented by 'undefined'.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -316,7 +313,7 @@ afw_function_execute_writeln(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_z(stream, "<undefined>", x->xctx);
+            afw_stream_write_z(stream, "undefined", x->xctx);
         }
     }
     afw_stream_write_eol(stream, x->xctx);

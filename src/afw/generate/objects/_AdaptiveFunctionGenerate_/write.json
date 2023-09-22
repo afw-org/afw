@@ -1,7 +1,7 @@
 {
     "brief": "Write values to stream as sting",
     "category": "stream",
-    "description": "Evaluate and convert 0 or more values to its string value, then write them to stream. An value with an undefined value is represented by '<undefined>'.",
+    "description": "Evaluate and convert 0 or more values to its string value, then write them to stream. An value with an undefined value is represented by 'undefined'.",
     "functionId": "write",
     "functionLabel": "write",
     "parameters": [

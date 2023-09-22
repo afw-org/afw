@@ -58,17 +58,6 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_integer_1 =
 { (const afw_value_t *)&impl_value_integer_1 };
 
-
-static const afw_value_string_t
-impl_value_undefined_string = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL("<undefined>")
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_value_undefined_as_string =
-{ (const afw_value_t *)&impl_value_undefined_string };
-
 static const afw_value_string_t
 impl_value_empty_string = {
     &afw_value_permanent_string_inf,
@@ -729,7 +718,7 @@ afw_value_convert_to_string(
     result = afw_value_convert(value, afw_data_type_string, false, p, xctx);
     if (!result) {
         if (allow_undefined) {
-            return afw_value_undefined_as_string;
+            return (const afw_value_t *)&afw_v_undefined;
         }
         AFW_THROW_ERROR_Z(undefined, "Value is undefined", xctx);
     }

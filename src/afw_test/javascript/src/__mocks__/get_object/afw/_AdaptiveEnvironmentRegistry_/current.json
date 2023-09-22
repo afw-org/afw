@@ -13221,7 +13221,7 @@
                 "category": "miscellaneous",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
-                "description": "Evaluate and convert arg to String and print it.  An arg with an undefined value is represented by '<undefined>'.",
+                "description": "Evaluate and convert arg to String and print it.  An arg with an undefined value is represented by 'undefined'.",
                 "functionId": "print",
                 "functionLabel": "print",
                 "functionSignature": "null(any arg)",
@@ -13818,7 +13818,7 @@
                 "functionDeclaration": "/* Conditionally write a debug value */\nnull (\n    any value,\n    boolean detail?)",
                 "parameters": [
                     {
-                        "description": "This is the value that will be converted to its string representation and written.  An undefined value is represented by '<undefined>'.",
+                        "description": "This is the value that will be converted to its string representation and written.  An undefined value is represented by 'undefined'.",
                         "minArgs": -1,
                         "name": "value",
                         "optional": false,
@@ -15373,7 +15373,7 @@
                 "category": "string",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
-                "description": "Concatenate the string value of two or more args of any dataType and return the string result.  An arg with an undefined value is represented by '<undefined>'.",
+                "description": "Concatenate the string value of two or more args of any dataType and return the string result.  An arg with an undefined value is represented by 'undefined'.",
                 "functionId": "concat",
                 "functionLabel": "concat",
                 "functionSignature": "string(...any args)",
@@ -21748,7 +21748,7 @@
                 "category": "miscellaneous",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
-                "description": "Evaluate and convert each argument to String then print each List entry, Bag entry, or Single value on a separate line.  An undefined value is represented by '<undefined>'.",
+                "description": "Evaluate and convert each argument to String then print each List entry, Bag entry, or Single value on a separate line.  An undefined value is represented by 'undefined'.",
                 "functionId": "print_lines",
                 "functionLabel": "print_lines",
                 "functionSignature": "null(...any args)",
@@ -30374,7 +30374,7 @@
                 "functionDeclaration": "/* Write a value to the a trace log */\nnull (\n    any value,\n    boolean filter?,\n    integer number?)",
                 "parameters": [
                     {
-                        "description": "This is the value that will be converted to its string representation and written the trace log.  An undefined value is represented by '<undefined>'.",
+                        "description": "This is the value that will be converted to its string representation and written the trace log.  An undefined value is represented by 'undefined'.",
                         "minArgs": -1,
                         "name": "value",
                         "optional": false,
@@ -32208,7 +32208,7 @@
                     "category": "string",
                     "dataTypeMethodNumber": 0,
                     "deprecated": false,
-                    "description": "Concatenate the string value of two or more args of any dataType and return the string result.  An arg with an undefined value is represented by '<undefined>'.",
+                    "description": "Concatenate the string value of two or more args of any dataType and return the string result.  An arg with an undefined value is represented by 'undefined'.",
                     "functionId": "concat",
                     "functionLabel": "concat",
                     "functionSignature": "string(...any args)",

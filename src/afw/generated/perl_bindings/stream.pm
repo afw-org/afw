@@ -143,7 +143,7 @@ after every write.
 =head3 print
 
 Evaluate and convert 0 or more values to its string value, then write them to
-stdout. An undefined value is represented by `<undefined>`.
+stdout. An undefined value is represented by 'undefined'.
 Print value
 
 =head4 Parameters
@@ -156,7 +156,7 @@ Values to print.
 
 Evaluate and convert 0 or more values to their string value, then write them
 to stdout. A newline character ('\n') is written after the last value. An
-undefined value is represented by `<undefined>`.
+undefined value is represented by 'undefined'.
 Print value followed by '\n'
 
 =head4 Parameters
@@ -241,7 +241,7 @@ The id of a stream.
 =head3 write
 
 Evaluate and convert 0 or more values to its string value, then write them to
-stream. An value with an undefined value is represented by `<undefined>`.
+stream. An value with an undefined value is represented by 'undefined'.
 Write values to stream as sting
 
 =head4 Parameters
@@ -274,7 +274,7 @@ The internal memory of this value is written.
 
 Evaluate and convert 0 or more values to its string value, then write them to
 stream. A newline character ('\n') is written after the last value. An
-undefined value is represented by `<undefined>`.
+undefined value is represented by 'undefined'.
 Write values to stream as string followed by '\n'
 
 =head4 Parameters

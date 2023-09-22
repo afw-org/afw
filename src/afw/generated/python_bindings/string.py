@@ -133,7 +133,7 @@ def concat(session, values):
 
     Convert two or more values of any data type to string and return the
     concatenated result. A value with an undefined value is represented by
-    `<undefined>`.
+    'undefined'.
 
     Args:
         values (object): Value to convert
@@ -1204,7 +1204,7 @@ def string(session, values):
 
     Convert one or more values of any data type to string and return the
     concatenated result. A value with an undefined value is represented by
-    `<undefined>`.
+    'undefined'.
 
     Args:
         values (object): Value to convert

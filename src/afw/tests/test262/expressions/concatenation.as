@@ -6,7 +6,7 @@
 //? sourceType: script
 //?
 //? test: S9.8_A1_T2
-//? description: result of string conversion from undefined value is "<undefined>"
+//? description: result of string conversion from undefined value is "undefined"
 //? expect: undefined
 //? source: ...
 
@@ -14,8 +14,8 @@
 // parameter must be integer, double, or string. Because of this, "string"
 // must be used to convert undefined to a string.
 
-if (concat(string(undefined) + "") !== "<undefined>") {
-    throw "undefined + \"\" === \"<undefined>\"";
+if (concat(string(undefined) + "") !== "undefined") {
+    throw "undefined + \"\" === \"undefined\"";
 }
 
 

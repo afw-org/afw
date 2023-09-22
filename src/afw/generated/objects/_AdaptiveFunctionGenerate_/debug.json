@@ -8,7 +8,7 @@
     "functionLabel": "debug",
     "parameters": [
         {
-            "description": "This is the value that will be converted to its string representation and written. An undefined value is represented by '<undefined>'.",
+            "description": "This is the value that will be converted to its string representation and written. An undefined value is represented by 'undefined'.",
             "name": "value"
         },
         {

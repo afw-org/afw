@@ -92,7 +92,7 @@ export function afwBagString(client : any, values? : any[]) : any {
 /**
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * `<undefined>`.
+ * 'undefined'.
  * 
  * @param {} values - Value to convert
  * 
@@ -800,7 +800,7 @@ export function afwStartsWithString(client : any, value : string, subString : st
 /**
  * Convert one or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * `<undefined>`.
+ * 'undefined'.
  * 
  * @param {} values - Value to convert
  * 

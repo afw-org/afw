@@ -304,7 +304,6 @@ interface
 octet
 queryString
 undefined
-a_undefined_as_string=<undefined>
 void
 adaptorTypeSpecific
 mapObject

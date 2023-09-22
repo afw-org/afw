@@ -238,7 +238,7 @@ afw_value_as_function(const afw_value_t *value, afw_xctx_t *xctx)
         if (!value) {
             AFW_THROW_ERROR_Z(general,
                 "Typesafe error: expecting 'function' but "
-                "encountered '<undefined>'",
+                "encountered 'undefined'",
                 xctx);
         }
 

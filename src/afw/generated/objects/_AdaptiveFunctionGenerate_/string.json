@@ -3,7 +3,7 @@
     "brief": "Convert one or more values to string and concatenate",
     "camelCaseFunctionLabel": "string",
     "category": "string",
-    "description": "Convert one or more values of any data type to string and return the concatenated result. A value with an undefined value is represented by '<undefined>'.",
+    "description": "Convert one or more values of any data type to string and return the concatenated result. A value with an undefined value is represented by 'undefined'.",
     "errorsThrown": [
         {
             "error": "cast_error",

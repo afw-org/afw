@@ -238,7 +238,7 @@ afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx)
         if (!value) {
             AFW_THROW_ERROR_Z(general,
                 "Typesafe error: expecting 'integer' but "
-                "encountered '<undefined>'",
+                "encountered 'undefined'",
                 xctx);
         }
 

@@ -307,7 +307,7 @@ impl_evaluation_backtrace(
     {
 
         if (!xctx->evaluation_stack->first[i].value) {
-            afw_writer_write_utf8(w, &afw_s_a_undefined_as_string, xctx);
+            afw_writer_write_utf8(w, &afw_s_undefined, xctx);
             afw_writer_write_eol(w, xctx);
             continue;
         }

@@ -3350,12 +3350,6 @@ afw_v_a_tab = {
 };
 
 const afw_value_string_t
-afw_v_a_undefined_as_string = {
-    &afw_value_permanent_string_inf,
-    AFW_UTF8_LITERAL(AFW_Q_a_undefined_as_string)
-};
-
-const afw_value_string_t
 afw_v_a_vertical_bar = {
     &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL(AFW_Q_a_vertical_bar)

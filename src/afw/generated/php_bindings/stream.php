@@ -210,7 +210,7 @@ class stream
      * print()
      *
      * Evaluate and convert 0 or more values to its string value, then write
-     * them to stdout. An undefined value is represented by `<undefined>`.
+     * them to stdout. An undefined value is represented by 'undefined'.
      *
      * @param  $values Values to print.
      *
@@ -234,7 +234,7 @@ class stream
      *
      * Evaluate and convert 0 or more values to their string value, then write
      * them to stdout. A newline character ('\n') is written after the last
-     * value. An undefined value is represented by `<undefined>`.
+     * value. An undefined value is represented by 'undefined'.
      *
      * @param  $value Values to print.
      *
@@ -385,7 +385,7 @@ class stream
      *
      * Evaluate and convert 0 or more values to its string value, then write
      * them to stream. An value with an undefined value is represented by
-     * `<undefined>`.
+     * 'undefined'.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
      * @param any $value Values to write as their string value.
@@ -436,7 +436,7 @@ class stream
      *
      * Evaluate and convert 0 or more values to its string value, then write
      * them to stream. A newline character ('\n') is written after the last
-     * value. An undefined value is represented by `<undefined>`.
+     * value. An undefined value is represented by 'undefined'.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
      * @param  $value Values to write.

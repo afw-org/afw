@@ -64,7 +64,7 @@ def debug(session, value, detail=None):
     Args:
         value (object): This is the value that will be converted to its string
         representation and written. An undefined value is represented by
-        `<undefined>`.
+        'undefined'.
 
         detail (bool): If true, the string will only written if the
         debug:function_active:detail flag is on. If false or not specified,
@@ -383,7 +383,7 @@ def trace(session, value, filter=None, number=None):
     Args:
         value (object): This is the value that will be converted to its string
         representation and written the trace log. An undefined value is
-        represented by `<undefined>`.
+        represented by 'undefined'.
 
         filter (bool): If this optional filter is false, nothing will be
         written to the trace log. The default is true.

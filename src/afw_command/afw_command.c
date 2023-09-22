@@ -601,7 +601,7 @@ void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
     {
         impl_print_result(self,
             AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&afw_s_a_undefined_as_string));
+            AFW_UTF8_FMT_ARG(&afw_s_undefined));
     }
 
     /* If value is defined and evaluated, use output content type.*/

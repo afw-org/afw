@@ -824,7 +824,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('        if (!value) {\n')
         fd.write('            AFW_THROW_ERROR_Z(general,\n')
         fd.write('                "Typesafe error: expecting \'' + id + '\' but "\n')
-        fd.write('                "encountered \'<undefined>\'",\n')
+        fd.write('                "encountered \'undefined\'",\n')
         fd.write('                xctx);\n')
         fd.write('        }\n')
         fd.write('\n')

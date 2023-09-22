@@ -366,13 +366,6 @@ AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_unique_default_case_value;
 
 
-
-/** @brief Adaptive value containing `<undefined>` string. */
-AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_value_undefined_as_string;
-
-
-
 /** @brief Adaptive value empty string. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_empty_string;
@@ -1068,7 +1061,7 @@ afw_value_convert(
 /**
  * @brief Convert a value to a string value.
  * @param value to evaluate and convert, if needed.
- * @param allow_undefined if true returns '<undefined>" if value is NULL. 
+ * @param allow_undefined if true returns 'undefined' if value is NULL. 
  * @param p to hold converted value.
  * @param xctx of caller.
  * @return converted value.  If not conversion needed, value passed.

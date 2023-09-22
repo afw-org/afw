@@ -64,7 +64,7 @@ afw_function_execute_add_string(
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
         if (!*v) {
-            *v = (const afw_value_string_t *)afw_value_undefined_as_string;
+            *v = &afw_v_undefined;
         }
         len += (*v)->internal.len;
     }
@@ -98,7 +98,7 @@ afw_function_execute_add_string(
  *
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * `<undefined>`.
+ * 'undefined'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -140,7 +140,7 @@ afw_function_execute_concat(
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
         if (!*v) {
-            *v = (const afw_value_string_t *)afw_value_undefined_as_string;
+            *v = &afw_v_undefined;;
         }
         len += (*v)->internal.len;
     }
@@ -315,7 +315,7 @@ afw_function_execute_normalize_to_lower_case_string(
  *
  * Convert one or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
- * `<undefined>`.
+ * 'undefined'.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -357,7 +357,7 @@ afw_function_execute_string(
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
         if (!*v) {
-            *v = (const afw_value_string_t *)afw_value_undefined_as_string;
+            *v = &afw_v_undefined;;
         }
         len += (*v)->internal.len;
     }

@@ -227,7 +227,7 @@ def print(session, values):
     Print value
 
     Evaluate and convert 0 or more values to its string value, then write them
-    to stdout. An undefined value is represented by `<undefined>`.
+    to stdout. An undefined value is represented by 'undefined'.
 
     Args:
         values (object): Values to print.
@@ -257,7 +257,7 @@ def println(session, value):
 
     Evaluate and convert 0 or more values to their string value, then write
     them to stdout. A newline character ('\n') is written after the last
-    value. An undefined value is represented by `<undefined>`.
+    value. An undefined value is represented by 'undefined'.
 
     Args:
         value (object): Values to print.
@@ -445,8 +445,7 @@ def write(session, streamNumber, value):
     Write values to stream as sting
 
     Evaluate and convert 0 or more values to its string value, then write them
-    to stream. An value with an undefined value is represented by
-    `<undefined>`.
+    to stream. An value with an undefined value is represented by 'undefined'.
 
     Args:
         streamNumber (int): The streamNumber for the stream to write.
@@ -511,7 +510,7 @@ def writeln(session, streamNumber, value):
 
     Evaluate and convert 0 or more values to its string value, then write them
     to stream. A newline character ('\n') is written after the last value. An
-    undefined value is represented by `<undefined>`.
+    undefined value is represented by 'undefined'.
 
     Args:
         streamNumber (int): The streamNumber for the stream to write.
