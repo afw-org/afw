@@ -11,33 +11,33 @@
 //? source: ...
 
 compile_json(
-    string("0")
+    json("0")
 )
 
 //?
 //? test: compile_json-2
-//? description: Test compile_json with a boolean true.
+//? description: Test polymorphic compile json with a boolean true.
 //? expect: boolean(true)
 //? source: ...
 
-compile_json(
-    string("true")
+compile(
+    json("true")
 )
 
 //?
 //? test: compile_json-3
-//? description: Test compile_json with a string.
-//? expect: string("xyz")
+//? description: Test compile_json with a json.
+//? expect: "xyz"
 //? source: ...
 
 compile_json(
-    string("'xyz'")
+    json("'xyz'")
 )
 
 //?
 //? test: compile_json-4
 //? skip: true
-//? description: Test compile_json with a non-string (error).
+//? description: Test compile_json with a non-json (error).
 //? expect: error
 //? source: ...
 

@@ -1,0 +1,6 @@
+{
+    "brief": "JavaScript Object Notation (JSON) functions",
+    "category": "json",
+    "dataTypeCategory": true,
+    "description": "These functions support JavaScript Object Notation (JSON)."
+}

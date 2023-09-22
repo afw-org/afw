@@ -1,0 +1,14 @@
+{
+    "brief": "XML source",
+    "cType": "afw_utf8_t",
+    "compileType": "xml",
+    "dataType": "xml",
+    "dataTypeParameterType": "SourceParameter",
+    "description": "Data type 'xml' holds the source for an XML value.",
+    "directReturn": false,
+    "evaluated": true,
+    "jsonPrimitive": "string",
+    "ldapOid": "1.3.6.1.4.1.1466.115.121.1.15{64512}",
+    "relationalCompares": true,
+    "scalar": true
+}

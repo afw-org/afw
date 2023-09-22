@@ -40,6 +40,7 @@
 #include "afw_data_type_ia5String_binding.h"
 #include "afw_data_type_integer_binding.h"
 #include "afw_data_type_ipAddress_binding.h"
+#include "afw_data_type_json_binding.h"
 #include "afw_data_type_null_binding.h"
 #include "afw_data_type_object_binding.h"
 #include "afw_data_type_objectId_binding.h"
@@ -56,6 +57,7 @@
 #include "afw_data_type_unknown_binding.h"
 #include "afw_data_type_void_binding.h"
 #include "afw_data_type_x500Name_binding.h"
+#include "afw_data_type_xml_binding.h"
 #include "afw_data_type_xpathExpression_binding.h"
 #include "afw_data_type_yearMonthDuration_binding.h"
 
@@ -78,6 +80,7 @@
     XX(ia5String) \
     XX(integer) \
     XX(ipAddress) \
+    XX(json) \
     XX(null) \
     XX(object) \
     XX(objectId) \
@@ -94,6 +97,7 @@
     XX(unknown) \
     XX(void) \
     XX(x500Name) \
+    XX(xml) \
     XX(xpathExpression) \
     XX(yearMonthDuration) \
 

@@ -331,6 +331,26 @@ typedef struct afw_value_ipAddress_s
 /** @} */
 
 /**
+ * @addtogroup afw_c_api_data_type_json
+ * @{
+ */
+
+/** @brief Typedef for data type json internal. */
+typedef afw_utf8_t afw_data_type_json_internal_t;
+
+/** @brief Typedef for data type json parameter. */
+typedef const afw_utf8_t * afw_data_type_json_parameter_t;
+
+/** @brief Typedef for data type json return. */
+typedef const afw_utf8_t * afw_data_type_json_return_t;
+
+/** @brief Typedef for data type json evaluated value. */
+typedef struct afw_value_json_s
+    afw_value_json_t;
+
+/** @} */
+
+/**
  * @addtogroup afw_c_api_data_type_null
  * @{
  */
@@ -647,6 +667,26 @@ typedef const afw_utf8_t * afw_data_type_x500Name_return_t;
 /** @brief Typedef for data type x500Name evaluated value. */
 typedef struct afw_value_x500Name_s
     afw_value_x500Name_t;
+
+/** @} */
+
+/**
+ * @addtogroup afw_c_api_data_type_xml
+ * @{
+ */
+
+/** @brief Typedef for data type xml internal. */
+typedef afw_utf8_t afw_data_type_xml_internal_t;
+
+/** @brief Typedef for data type xml parameter. */
+typedef const afw_utf8_t * afw_data_type_xml_parameter_t;
+
+/** @brief Typedef for data type xml return. */
+typedef const afw_utf8_t * afw_data_type_xml_return_t;
+
+/** @brief Typedef for data type xml evaluated value. */
+typedef struct afw_value_xml_s
+    afw_value_xml_t;
 
 /** @} */
 

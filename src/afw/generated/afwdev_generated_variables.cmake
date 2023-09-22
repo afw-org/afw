@@ -99,6 +99,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_impl_declares.h
     generated/afw_data_type_integer_binding.h
     generated/afw_data_type_ipAddress_binding.h
+    generated/afw_data_type_json_binding.h
     generated/afw_data_type_null_binding.h
     generated/afw_data_type_objectId_binding.h
     generated/afw_data_type_objectPath_binding.h
@@ -116,6 +117,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_unknown_binding.h
     generated/afw_data_type_void_binding.h
     generated/afw_data_type_x500Name_binding.h
+    generated/afw_data_type_xml_binding.h
     generated/afw_data_type_xpathExpression_binding.h
     generated/afw_data_type_yearMonthDuration_binding.h
     generated/afw_declare_helpers.h
@@ -321,6 +323,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_indexes.c
     function/afw_function_integer.c
     function/afw_function_journal.c
+    function/afw_function_json.c
     function/afw_function_logical.c
     function/afw_function_miscellaneous.c
     function/afw_function_model.c
@@ -336,6 +339,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_time.c
     function/afw_function_value.c
     function/afw_function_x500Name.c
+    function/afw_function_xml.c
     function/afw_function_xpathExpression.c
     generated/afw_const_objects.c
     generated/afw_data_type_anyURI_binding.c
@@ -354,6 +358,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_ia5String_binding.c
     generated/afw_data_type_integer_binding.c
     generated/afw_data_type_ipAddress_binding.c
+    generated/afw_data_type_json_binding.c
     generated/afw_data_type_null_binding.c
     generated/afw_data_type_objectId_binding.c
     generated/afw_data_type_objectPath_binding.c
@@ -370,6 +375,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_unknown_binding.c
     generated/afw_data_type_void_binding.c
     generated/afw_data_type_x500Name_binding.c
+    generated/afw_data_type_xml_binding.c
     generated/afw_data_type_xpathExpression_binding.c
     generated/afw_data_type_yearMonthDuration_binding.c
     generated/afw_function_bindings.c

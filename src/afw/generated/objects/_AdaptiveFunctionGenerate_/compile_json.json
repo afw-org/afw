@@ -1,25 +1,28 @@
 {
     "afwCamelCaseFunctionLabel": "afwCompileJson",
-    "brief": "Compile JSON",
+    "brief": "Compile json value",
     "camelCaseFunctionLabel": "compileJson",
-    "category": "compiler",
-    "description": "Compile a string containing adaptive JSON syntax and return either an unevaluated JSON adaptive value or a string containing the compiler listing.",
-    "functionId": "compile_json",
+    "category": "json",
+    "dataTypeMethod": true,
+    "description": "Compile json value and return either an unevaluated adaptive value or a string containing the compiler listing.",
+    "functionId": "compile<json>",
     "functionLabel": "compile_json",
     "parameters": [
         {
-            "dataType": "string",
-            "description": "JSON string to compile.",
-            "name": "json"
+            "brief": "Source to compile",
+            "dataType": "json",
+            "description": "json string to compile",
+            "name": "source"
         },
         {
-            "description": "If specified, a compiler listing is produced instead of an unevaluated JSON value.\n\nThis parameter can be an integer between 0 and 10 of a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
+            "brief": "Listing option",
+            "description": "If specified, a compiler listing is produced instead of an unevaluated compiled value.\n\nThis parameter can be an integer between 0 and 10 of a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
             "name": "listing",
             "optional": true
         }
     ],
     "pure": true,
     "returns": {
-        "description": "An unevaluated JSON value ready for use by function evaluate() or a string containing the compiler listing."
+        "dataType": "unevaluated"
     }
 }

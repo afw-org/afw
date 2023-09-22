@@ -136,6 +136,12 @@ afw_register_data_type_infs(
         &afw_value_evaluated_ipAddress_inf,
         xctx);
 
+    /* Register value inf id evaluated_json */
+    afw_environment_register_value_inf(
+        &afw_value_evaluated_json_inf.rti.implementation_id,
+        &afw_value_evaluated_json_inf,
+        xctx);
+
     /* Register value inf id evaluated_null */
     afw_environment_register_value_inf(
         &afw_value_evaluated_null_inf.rti.implementation_id,
@@ -230,6 +236,12 @@ afw_register_data_type_infs(
     afw_environment_register_value_inf(
         &afw_value_evaluated_x500Name_inf.rti.implementation_id,
         &afw_value_evaluated_x500Name_inf,
+        xctx);
+
+    /* Register value inf id evaluated_xml */
+    afw_environment_register_value_inf(
+        &afw_value_evaluated_xml_inf.rti.implementation_id,
+        &afw_value_evaluated_xml_inf,
         xctx);
 
     /* Register value inf id evaluated_xpathExpression */

@@ -6540,50 +6540,6 @@ const afw_value_t *
 afw_function_execute_assert(
     afw_function_execute_t *x);
 
-/** @brief Function definition compile_json */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_compile_json;
-
-/**
- * @brief Adaptive Function `compile_json`
- * @param x function execute parameter.
- *
- * Compile a string containing adaptive JSON syntax and return either an
- * unevaluated JSON adaptive value or a string containing the compiler listing.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function compile_json(
- *       json: string,
- *       listing?: any
- *   ): any;
- * ```
- *
- * Parameters:
- *
- *   json - (string) JSON string to compile.
- *
- *   listing - (optional any dataType) If specified, a compiler listing is
- *       produced instead of an unevaluated JSON value.
- * 
- *       This parameter can be an integer between 0 and 10 of a string that is
- *       used for indentation. If 0 is specified, no whitespace is added to the
- *       resulting string. If 1 through 10 is specified, that number of spaces
- *       is used.
- *
- * Returns:
- *
- *   (any dataType) An unevaluated JSON value ready for use by function
- *       evaluate() or a string containing the compiler listing.
- */
-const afw_value_t *
-afw_function_execute_compile_json(
-    afw_function_execute_t *x);
-
 /** @brief Function definition compile_relaxed_json */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_compile_relaxed_json;
@@ -16136,6 +16092,97 @@ afw_function_execute_journal_mark_consumed(
 /** @} */
 
 
+/** @addtogroup afw_functions_json json functions
+ *
+ * json adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition compile<json> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_compile_json;
+
+/**
+ * @brief Adaptive Function `compile<json>`
+ * @param x function execute parameter.
+ *
+ * Compile json value and return either an unevaluated adaptive value or a
+ * string containing the compiler listing.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function compile<json>(
+ *       source: json,
+ *       listing?: any
+ *   ): unevaluated;
+ * ```
+ *
+ * Parameters:
+ *
+ *   source - (json) json string to compile.
+ *
+ *   listing - (optional any dataType) If specified, a compiler listing is
+ *       produced instead of an unevaluated compiled value.
+ * 
+ *       This parameter can be an integer between 0 and 10 of a string that is
+ *       used for indentation. If 0 is specified, no whitespace is added to the
+ *       resulting string. If 1 through 10 is specified, that number of spaces
+ *       is used.
+ *
+ * Returns:
+ *
+ *   (unevaluated)
+ */
+const afw_value_t *
+afw_function_execute_compile_json(
+    afw_function_execute_t *x);
+
+/** @brief Function definition json */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_json;
+
+/**
+ * @brief Adaptive Function `json`
+ * @param x function execute parameter.
+ *
+ * Converts value to data type json returning json result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function json(
+ *       value: any
+ *   ): json;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) Value to convert.
+ *
+ * Returns:
+ *
+ *   (json) Converted value.
+ *
+ * Errors thrown:
+ *
+ *   cast_error - value could not be converted
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @} */
+
+
 /** @addtogroup afw_functions_logical logical functions
  *
  * logical adaptive functions.
@@ -20183,7 +20230,7 @@ afw_function_definition_compile;
  *
  * Supported `<dataType>`:
  *
- *   regexp, script, template, xpathExpression.
+ *   json, regexp, script, template, xml, xpathExpression.
  *
  * Declaration:
  *
@@ -30183,6 +30230,97 @@ afw_function_definition_x500Name;
 /** @} */
 
 
+/** @addtogroup afw_functions_xml xml functions
+ *
+ * xml adaptive functions.
+ *
+ * @{
+ */
+
+/** @brief Function definition compile<xml> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_compile_xml;
+
+/**
+ * @brief Adaptive Function `compile<xml>`
+ * @param x function execute parameter.
+ *
+ * Compile xml value and return either an unevaluated adaptive value or a string
+ * containing the compiler listing.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function compile<xml>(
+ *       source: xml,
+ *       listing?: any
+ *   ): unevaluated;
+ * ```
+ *
+ * Parameters:
+ *
+ *   source - (xml) xml string to compile.
+ *
+ *   listing - (optional any dataType) If specified, a compiler listing is
+ *       produced instead of an unevaluated compiled value.
+ * 
+ *       This parameter can be an integer between 0 and 10 of a string that is
+ *       used for indentation. If 0 is specified, no whitespace is added to the
+ *       resulting string. If 1 through 10 is specified, that number of spaces
+ *       is used.
+ *
+ * Returns:
+ *
+ *   (unevaluated)
+ */
+const afw_value_t *
+afw_function_execute_compile_xml(
+    afw_function_execute_t *x);
+
+/** @brief Function definition xml */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_xml;
+
+/**
+ * @brief Adaptive Function `xml`
+ * @param x function execute parameter.
+ *
+ * Converts value to data type xml returning xml result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function xml(
+ *       value: any
+ *   ): xml;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (any dataType) Value to convert.
+ *
+ * Returns:
+ *
+ *   (xml) Converted value.
+ *
+ * Errors thrown:
+ *
+ *   cast_error - value could not be converted
+ *
+ * Implemented by afw_function_execute_convert()
+ *
+ * __________
+ */
+
+/** @} */
+
+
 /** @addtogroup afw_functions_xpathExpression xpathExpression functions
  *
  * xpathExpression adaptive functions.
@@ -31965,6 +32103,7 @@ afw_function_execute_clone(
  * to_string<integer>
  * ipAddress
  * to_string<ipAddress>
+ * json
  * null
  * to_string<null>
  * objectId
@@ -31999,6 +32138,7 @@ afw_function_execute_clone(
  * to_string<time>
  * to_string<x500Name>
  * x500Name
+ * xml
  * to_string<xpathExpression>
  * xpathExpression
  * to_string<yearMonthDuration>

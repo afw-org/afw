@@ -2277,6 +2277,16 @@ IMPL_DATA_TYPE_INF(
     typed_string)         /* as expression     */
 
 IMPL_DATA_TYPE_INF(
+    json,                 /* data type id      */
+    utf8,                 /* to utf8           */
+    utf8,                 /* to internal       */
+    utf8,                 /* compare           */
+    from_utf8,            /* conversion        */
+    utf8,                 /* clone             */
+    utf8,                 /* compiler listing  */
+    typed_string)         /* as expression     */
+
+IMPL_DATA_TYPE_INF(
     null,                 /* data type id      */
     null,                 /* to utf8           */
     null,                 /* to internal       */
@@ -2433,6 +2443,16 @@ IMPL_DATA_TYPE_INF(
     x500Name,             /* data type id      */
     utf8,                 /* to utf8           */
     x500Name,             /* to internal       */
+    utf8,                 /* compare           */
+    from_utf8,            /* conversion        */
+    utf8,                 /* clone             */
+    utf8,                 /* compiler listing  */
+    typed_string)         /* as expression     */
+
+IMPL_DATA_TYPE_INF(
+    xml,                  /* data type id      */
+    utf8,                 /* to utf8           */
+    utf8,                 /* to internal       */
     utf8,                 /* compare           */
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */

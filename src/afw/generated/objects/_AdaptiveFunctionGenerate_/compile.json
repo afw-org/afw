@@ -23,9 +23,11 @@
     ],
     "polymorphic": true,
     "polymorphicDataTypes": [
+        "json",
         "regexp",
         "script",
         "template",
+        "xml",
         "xpathExpression"
     ],
     "pure": true,

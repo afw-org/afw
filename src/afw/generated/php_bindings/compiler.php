@@ -53,42 +53,6 @@ class compiler
     }
 
     /**
-     * compile_json()
-     *
-     * Compile a string containing adaptive JSON syntax and return either an
-     * unevaluated JSON adaptive value or a string containing the compiler
-     * listing.
-     *
-     * @param string $json JSON string to compile.
-     * @param  $listing If specified, a compiler listing is produced instead
-     *                  of an unevaluated JSON value.
-     * 
-     *                  This parameter can be an integer between 0 and 10 of a
-     *                  string that is used for indentation. If 0 is
-     *                  specified, no whitespace is added to the resulting
-     *                  string. If 1 through 10 is specified, that number of
-     *                  spaces is used.
-     *
-     * @return  An unevaluated JSON value ready for use by function evaluate()
-     *          or a string containing the compiler listing.
-     */
-    public function compile_json(, $json, $listing = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "compile_json");
-
-        /* pass along required parameters to the request payload */
-        $request->set("json", $json);
-
-        /* pass along any optional parameters to the request payload */
-        if ($listing != null)
-            $request->set('listing', $listing);
-
-        return $request->get_result();
-    }
-
-    /**
      * compile_relaxed_json()
      *
      * Compile an adaptive relaxed JSON syntax string and return an adaptive
