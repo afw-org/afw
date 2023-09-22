@@ -258,12 +258,24 @@ struct afw_object_options_s {
 
 
 /**
+ * @brief Indicates content type should use non-standard tokens.
+ *
+ * This option can be optionally supported by a content type implementation.
+ * In the case of JSON, this indicates that non-standard tokens will be used
+ * for undefined, NaN, and Infinity values.  This means that there will be a
+ * 'undefined' token for undefined values instead of the standard JSON null
+ * token and that NaN and Infinity will also be special tokens instead of
+ * strings.
+ */
+#define AFW_OBJECT_OPTION_useNonStandardTokens (1 << 20)
+
+
+
+/**
  * @brief Object processing options - no options set.
  */
 AFW_DECLARE_CONST_DATA(afw_object_options_t)
 afw_object_options_none;
-
-
 
 /**
  * @brief Object processing options - objectType.
@@ -302,7 +314,6 @@ afw_object_options_essential_with_whitespace;
 AFW_DECLARE_CONST_DATA(afw_object_options_t)
 afw_object_options_reconcilable_meta_property;
 
-
 /** @brief Object processing options - composite + inheritance related. */
 AFW_DECLARE_CONST_DATA(afw_object_options_t)
 afw_object_options_composite_inheritedFrom_resolvedParentPaths;
@@ -311,6 +322,10 @@ afw_object_options_composite_inheritedFrom_resolvedParentPaths;
 /** @brief Whitespace only. */
 AFW_DECLARE_CONST_DATA(afw_object_options_t)
 afw_object_options_whitespace;
+
+/** @brief Use non-standard tokens. */
+AFW_DECLARE_CONST_DATA(afw_object_options_t)
+afw_object_options_useNonStandardTokens;
 
 
 /** @brief Test mask. */

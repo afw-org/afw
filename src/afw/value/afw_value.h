@@ -470,7 +470,7 @@ afw_value_undecorated_inf_is(
  */
 #define afw_value_is_nullish(A_VALUE) \
 ( \
-    (!A_VALUE) || \
+    (!A_VALUE) || (A_VALUE) == afw_value_undefined || \
     (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_null \
 )
 

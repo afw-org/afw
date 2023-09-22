@@ -28,9 +28,9 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_null =
 { (const afw_value_t *)&impl_value_null };
 
-static const afw_value_null_t
+static const afw_value_undefined_t
 impl_value_undefined = {
-    &afw_value_permanent_null_inf,
+    &afw_value_permanent_undefined_inf,
     NULL
 };
 
@@ -315,6 +315,11 @@ afw_value_clone(const afw_value_t *value,
 
     /* If value is NULL, return NULL. */
     if (!value) {
+        return value;
+    }
+
+    /** @fixme Use values clone or reference for this. */
+    if (afw_value_is_nullish(value)) {
         return value;
     }
 

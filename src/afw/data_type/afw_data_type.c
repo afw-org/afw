@@ -1065,6 +1065,44 @@ impl_afw_data_type_null_compare_internal(
 }
 
 
+/* Data type undefined to utf8. */
+static const afw_utf8_t *
+impl_afw_data_type_undefined_internal_to_utf8(
+    const afw_data_type_t * instance,
+    const void * from_internal,
+    const afw_pool_t * p,
+    afw_xctx_t *xctx)
+{
+    return &afw_s_undefined;
+}
+
+
+/* Data type undefined to internal. */
+static void
+impl_afw_data_type_undefined_utf8_to_internal(
+    const afw_data_type_t * instance,
+    void * to_internal,
+    const afw_utf8_t * from_utf8,
+    const afw_pool_t * p,
+    afw_xctx_t *xctx)
+{
+    memset(to_internal, 0, sizeof(void *));
+}
+
+
+/* Data type undefined compare. */
+static int
+impl_afw_data_type_undefined_compare_internal(
+    const afw_data_type_t * instance,
+    const void * value1,
+    const void * value2,
+    afw_xctx_t *xctx)
+{
+    /* Undefined has no value so comparing two undefined values is true. */
+    return 0;
+}
+
+
 /* Data type object to utf8. */
 static const afw_utf8_t *
 impl_afw_data_type_object_internal_to_utf8(
@@ -1636,6 +1674,19 @@ impl_afw_data_type_null_value_compiler_listing(
 
 
 static void
+impl_afw_data_type_undefined_value_compiler_listing(
+    const afw_data_type_t *instance,
+    const afw_writer_t *writer,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    afw_value_compiler_listing_begin_value(writer, value, NULL, xctx);
+    afw_writer_write_z(writer, " undefined", xctx);
+    afw_writer_write_eol(writer, xctx);
+}
+
+
+static void
 impl_afw_data_type_utf8_value_compiler_listing(
     const afw_data_type_t *instance,
     const afw_writer_t *writer,
@@ -1814,6 +1865,17 @@ impl_afw_data_type_null_write_as_expression(
     afw_xctx_t *xctx)
 {
     afw_writer_write_z(writer, "null", xctx);
+}
+
+
+static void
+impl_afw_data_type_undefined_write_as_expression(
+    const afw_data_type_t *instance,
+    const afw_writer_t *writer,
+    const void *from_internal,
+    afw_xctx_t *xctx)
+{
+    afw_writer_write_z(writer, "undefined", xctx);
 }
 
 
@@ -2322,6 +2384,16 @@ IMPL_DATA_TYPE_INF(
     direct,               /* clone             */
     typed_to_string,      /* compiler listing  */
     typed_to_string)      /* as expression     */
+
+IMPL_DATA_TYPE_INF(
+    undefined,            /* data type id      */
+    undefined,            /* to utf8           */
+    undefined,            /* to internal       */
+    undefined,            /* compare           */
+    standard,             /* conversion        */
+    direct,               /* clone             */
+    undefined,            /* compiler listing  */
+    undefined)            /* as expression     */
 
 IMPL_DATA_TYPE_INF(
     unevaluated,          /* data type id      */

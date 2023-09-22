@@ -202,6 +202,12 @@ afw_register_data_type_infs(
         &afw_value_evaluated_time_inf,
         xctx);
 
+    /* Register value inf id evaluated_undefined */
+    afw_environment_register_value_inf(
+        &afw_value_permanent_undefined_inf.rti.implementation_id,
+        NULL,
+        xctx);
+
     /* Register value inf id evaluated_unevaluated */
     afw_environment_register_value_inf(
         &afw_value_evaluated_unevaluated_inf.rti.implementation_id,

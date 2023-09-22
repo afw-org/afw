@@ -331,6 +331,9 @@ impl_convert_value_to_json(
     /* Change undefined value to null.  */
     if (afw_value_is_undefined(value)) {
         value = afw_value_null;
+        if (AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens)) {
+            value = afw_value_undefined;
+        }
     }
 
     /* Put whitespace if needed. */
@@ -374,7 +377,12 @@ impl_convert_value_to_json(
         if (afw_utf8_equal(&value_data_type->jsonPrimitive,
             &AFW_JSON_S_PRIMITIVE_NULL))
         {
-            impl_puts(wa, AFW_JSON_Q_PRIMITIVE_NULL);
+            if (AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens)) {
+                impl_puts(wa, "undefined");
+            }
+            else {
+                impl_puts(wa, AFW_JSON_Q_PRIMITIVE_NULL);
+            }
         }
 
         /* Primitive json type is string. */
@@ -398,12 +406,12 @@ impl_convert_value_to_json(
                 ((const afw_value_integer_t *)value)->internal))
                 )
             {
-            string = afw_value_as_utf8(value, wa->p, wa->xctx);
-            if (!string) {
-                AFW_THROW_ERROR_Z(general, "Error converting string.",
-                    wa->xctx);
-            }
-            impl_put_json_string(wa, string);
+                string = afw_value_as_utf8(value, wa->p, wa->xctx);
+                if (!string) {
+                    AFW_THROW_ERROR_Z(general, "Error converting string.",
+                        wa->xctx);
+                }
+                impl_put_json_string(wa, string);
             }
 
             else {

@@ -51,6 +51,7 @@
 #include "afw_data_type_string_binding.h"
 #include "afw_data_type_template_binding.h"
 #include "afw_data_type_time_binding.h"
+#include "afw_data_type_undefined_binding.h"
 #include "afw_data_type_unevaluated_binding.h"
 #include "afw_data_type_unknown_binding.h"
 #include "afw_data_type_void_binding.h"
@@ -88,6 +89,7 @@
     XX(string) \
     XX(template) \
     XX(time) \
+    XX(undefined) \
     XX(unevaluated) \
     XX(unknown) \
     XX(void) \

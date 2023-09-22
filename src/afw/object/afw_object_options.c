@@ -80,11 +80,16 @@ afw_object_options_composite_inheritedFrom_resolvedParentPaths = {
     AFW_OBJECT_OPTION_inheritedFrom
 };
 
-
 /* Whitespace only */
 AFW_DEFINE_CONST_DATA(afw_object_options_t)
 afw_object_options_whitespace = {
     AFW_OBJECT_OPTION_whitespace
+};
+
+/* Use non-standard tokens */
+AFW_DEFINE_CONST_DATA(afw_object_options_t)
+afw_object_options_useNonStandardTokens = {
+    AFW_OBJECT_OPTION_useNonStandardTokens
 };
 
 /* Set content type options from options object. */

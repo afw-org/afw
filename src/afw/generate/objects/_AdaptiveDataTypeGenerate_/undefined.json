@@ -1,0 +1,12 @@
+{
+    "brief": "An undefined value",
+    "cType": "void *",
+    "dataType": "undefined",
+    "description": "This is a special data type that is used for the single internal value used to represent undefined values.  It is not a valid data type for any other purpose.",
+    "directReturn": true,
+    "jsonImpliesDataType": true,
+    "jsonPrimitive": "null",
+    "relationalCompares": false,
+    "scalar": true,
+    "special": true
+}

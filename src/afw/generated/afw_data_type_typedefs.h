@@ -551,6 +551,26 @@ typedef struct afw_value_time_s
 /** @} */
 
 /**
+ * @addtogroup afw_c_api_data_type_undefined
+ * @{
+ */
+
+/** @brief Typedef for data type undefined internal. */
+typedef void * afw_data_type_undefined_internal_t;
+
+/** @brief Typedef for data type undefined parameter. */
+typedef const void * afw_data_type_undefined_parameter_t;
+
+/** @brief Typedef for data type undefined return. */
+typedef void * afw_data_type_undefined_return_t;
+
+/** @brief Typedef for data type undefined evaluated value. */
+typedef struct afw_value_undefined_s
+    afw_value_undefined_t;
+
+/** @} */
+
+/**
  * @addtogroup afw_c_api_data_type_unevaluated
  * @{
  */
