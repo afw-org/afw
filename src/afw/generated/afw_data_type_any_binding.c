@@ -26,29 +26,6 @@
 #include "afw_runtime_object_maps.h"
 #include "afw_value_internal.h"
 
-/* Declaration for method optional_release for managed value. */
-AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
-    const afw_value_t *instance,
-    afw_xctx_t *xctx);
-
-
-/* Declaration for method get_reference for unmanaged value. */
-AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
-    const afw_value_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/* Declaration for method get_reference for managed value. */
-AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
-    const afw_value_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
 /* Declaration for method get_reference for permanent value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
@@ -75,52 +52,22 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_any_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged any values. For this one */
-/* optional_release is NULL and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "any"
-#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_any_inf
-#define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
-#include "afw_value_impl_declares.h"
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
-
-/* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed any values. For this one */
-/* optional_release releases value and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "managed_any"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_any_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
-#define AFW_VALUE_INF_ONLY 1
-#include "afw_value_impl_declares.h"
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_value_optional_release
-#undef impl_afw_value_clone_or_reference
-#undef AFW_VALUE_INF_ONLY
-
-/* Declares and rti/inf defines for interface afw_value */
 /* This is the inf for permanent any values. For this one */
 /* optional_release is NULL and get_reference returns instance asis. */
 #define AFW_IMPLEMENTATION_ID "permanent_any"
+#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_any_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_permanent_get_reference
-#define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_value_optional_release
 #undef impl_afw_value_clone_or_reference
-#undef AFW_VALUE_INF_ONLY
 
 static const afw_value_string_t
 impl_data_type_any_id_value = {
-    &afw_value_evaluated_string_inf,
+    &afw_value_permanent_string_inf,
     AFW_UTF8_LITERAL("any")
 };
 
@@ -174,9 +121,9 @@ afw_data_type_any_direct = {
     AFW_UTF8_LITERAL(""),
     AFW_UTF8_LITERAL("const afw_value_t *"),
     sizeof(const afw_value_t *),
-    (const afw_array_t *)&impl_empty_array_of_any,
-    (const afw_value_t *)&impl_value_empty_array_of_any,
-    &afw_value_evaluated_any_inf,
+    NULL,
+    NULL,
+    NULL,
     afw_compile_type_error,
     false,
     false,
@@ -186,258 +133,10 @@ afw_data_type_any_direct = {
     true
 };
 
-/* Value for empty array of any. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
-impl_empty_array_of_any = {
-    &afw_array_wrapper_for_array_inf,
-    &afw_data_type_any_direct,
-    0
-};
-
-/* Value for empty array of any. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
-impl_value_empty_array_of_any = {
-    &afw_value_permanent_array_inf,
-    (const afw_array_t *)&impl_empty_array_of_any
-};
-
 /* Data type struct for any. */
 AFW_DEFINE_CONST_DATA(afw_data_type_t *)
 afw_data_type_any =
     &afw_data_type_any_direct;
-
-/* Set property function for data type any values. */
-AFW_DEFINE(void)
-afw_object_set_property_as_any(
-    const afw_object_t *object,
-    const afw_utf8_t *property_name,
-    const afw_value_t * internal,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *v;
-
-    if (!object->p) {
-        AFW_THROW_ERROR_Z(general,
-            "Object must have a pool",
-            xctx);
-    }
-
-    v = afw_value_create_any(internal, object->p, xctx);
-    afw_object_set_property(object, property_name, v, xctx);
-}
-
-/* Typesafe cast of data type any. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_as_any(const afw_value_t *value, afw_xctx_t *xctx)
-{
-    value = afw_value_evaluate(value, xctx->p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, any))
-    {
-        const afw_utf8_t *data_type_id;
-
-        if (!value) {
-            AFW_THROW_ERROR_Z(general,
-                "Typesafe error: expecting 'any' but "
-                "encountered '<undefined>'",
-                xctx);
-        }
-
-        data_type_id = afw_value_get_quick_data_type_id(value);
-        AFW_THROW_ERROR_FZ(general, xctx,
-            "Typesafe error: expecting 'any' but "
-            "encountered " AFW_UTF8_FMT_Q ,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-    }
-    return (((const afw_value_any_t *)value)->internal);
-}
-
-/* Allocate function for unmanaged data type any values. */
-AFW_DEFINE(afw_value_any_t *)
-afw_value_allocate_any(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_any_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_any_t),
-        xctx);
-    result->inf = &afw_value_evaluated_any_inf;
-    return result;
-}
-
-/* Create function for unmanaged data type any value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_any(const afw_value_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_any_t *v;
-
-    v = afw_value_allocate_any(p, xctx);
-    v->internal = internal;
-    return (const afw_value_t *)v;
-}
-
-/* Allocate function for managed data type any values. */
-AFW_DEFINE(afw_value_any_t *)
-afw_value_allocate_managed_any(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_any_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_any_t),
-        xctx);
-    result->inf = &afw_value_managed_any_inf;
-    return result;
-}
-
-/* Create function for data type any value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_any(const afw_value_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_any_t *v;
-
-    v = afw_value_allocate_managed_any(p, xctx);
-    v->internal = internal;
-    return (const afw_value_t *)v;
-}
-
-/* Allocate function for permanent data type any values. */
-AFW_DEFINE(afw_value_any_t *)
-afw_value_allocate_permanent_any(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_any_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_any_t),
-        xctx);
-    result->inf = &afw_value_permanent_any_inf;
-    return result;
-}
-
-/* Create function for data type any value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_any(const afw_value_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_any_t *v;
-
-    v = afw_value_allocate_permanent_any(p, xctx);
-    v->internal = internal;
-    return (const afw_value_t *)v;
-}
-
-/* Convert data type any string to const afw_value_t * *. */
-AFW_DEFINE(void)
-afw_data_type_any_to_internal(const afw_value_t * *to_internal,
-    const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_data_type_utf8_to_internal(
-        &afw_data_type_any_direct,
-        (void *)to_internal, from_utf8, p, xctx);
-}
-
-/*  Convert data type any internal representation to utf-8. */
-AFW_DEFINE(const afw_utf8_t *)
-afw_data_type_any_to_utf8(const afw_value_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    return afw_data_type_internal_to_utf8(
-        &afw_data_type_any_direct,
-        &internal, p, xctx);
-}
-
-/* Get property function for data type any values. */
-AFW_DEFINE(const afw_value_t *)
-afw_object_get_property_as_any_source(
-    const afw_object_t *object,
-    const afw_utf8_t *property_name,
-    const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = afw_object_get_property(object, property_name, xctx);
-    if (!value) {
-        return NULL;
-    }
-
-    value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, any))
-    {
-        const afw_utf8_t *data_type_id;
-
-        data_type_id = afw_value_get_quick_data_type_id(value);
-        afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'any' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
-    }
-    return (((const afw_value_any_t *)value)->internal);
-}
-
-/* Get next property function for data type any values. */
-AFW_DEFINE(const afw_value_t *)
-afw_object_get_next_property_as_any_source(
-    const afw_object_t *object,
-    const afw_iterator_t * *iterator,
-    const afw_utf8_t * *property_name,
-    const afw_utf8_z_t *source_z,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *value;
-
-    value = afw_object_get_next_property(object, iterator, property_name, xctx);
-    if (!value) {
-        return NULL;
-    }
-
-    value = afw_value_evaluate(value, p, xctx);
-    if (!AFW_VALUE_IS_DATA_TYPE(value, any))
-    {
-        const afw_utf8_t *data_type_id;
-
-        data_type_id = afw_value_get_quick_data_type_id(value);
-        afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'any' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
-    }
-    return (((const afw_value_any_t *)value)->internal);
-}
-
-/* Implementation of method optional_release for managed value. */
-AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
-    const afw_value_t *instance,
-    afw_xctx_t *xctx)
-{
-    /** @todo this needs to release reference of value or free it. */
-}
-
-/* Implementation of method get_reference for  unmanaged value. */
-AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
-    const afw_value_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    /** @todo this needs to addref or return a copy. */
-    return instance;
-}
-
-
-/* Implementation of method get_reference for managed value. */
-AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
-    const afw_value_t *instance,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    /* For unmanaged value, just return the instance passed. */
-    return instance;
-}
-
 
 /* Implementation of method get_reference for permanent value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
@@ -507,73 +206,3 @@ impl_afw_value_get_info(
     info->optimized_value = instance;
 }
 
-
-/* Get next value from array of any. */
-AFW_DEFINE(const afw_value_t *)
-afw_array_of_any_get_next_source(
-    const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
-    const afw_utf8_z_t *source_z,
-    afw_xctx_t *xctx)
-{
-    const void *internal;
-    const afw_data_type_t *data_type;
-
-    afw_array_get_next_internal(instance, iterator, &data_type, &internal, xctx);
-    if (!internal) {
-        return NULL;
-    }
-    if (data_type != afw_data_type_any) {
-        const afw_utf8_t *data_type_id;
-
-        data_type_id = &data_type->data_type_id;
-        afw_error_set_fz(afw_error_code_general, source_z, xctx,
-            "Typesafe error: expecting 'any' but "
-            "encountered " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
-        longjmp(((xctx)->current_try->throw_jmp_buf), afw_error_code_general);
-    }
-    return *(const afw_value_t * *)internal;
-}
-
-/* Add value from array of any */
-AFW_DEFINE(void)
-afw_array_of_any_add(
-    const afw_array_t *instance,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-    const afw_value_t *internal;
-
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    internal = value;
-    afw_array_setter_add_internal(setter, 
-        afw_data_type_any,
-        (const void *)&internal, xctx);
-}
-
-/* Remove value from array of any */
-AFW_DEFINE(void)
-afw_array_of_any_remove(
-    const afw_array_t *instance,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *internal;
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    internal = value;
-    afw_array_setter_remove_internal(setter, 
-        afw_data_type_any,
-        (const void *)&internal, xctx);
-}

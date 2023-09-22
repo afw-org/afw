@@ -100,7 +100,7 @@
  * @brief Core data types map.
  */
 typedef enum afw_data_type_number_e {
-    afw_data_type_number_External,
+    afw_data_type_number_special,
 #define XX(id) afw_data_type_number_ ## id,
     AFW_DATA_TYPES_MAP(XX)
     #undef XX

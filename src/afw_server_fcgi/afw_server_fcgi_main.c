@@ -168,7 +168,7 @@ int main(int argc, const char * const * argv) {
     /* Create Adaptive Framework environment for server. */
     AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
     if (!xctx) {
-        afw_error_print(xctx->env->stderr_fd, create_error);
+        afw_error_print(stderr, create_error);
         return EXIT_FAILURE;
     }
 

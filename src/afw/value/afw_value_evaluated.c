@@ -24,6 +24,13 @@ afw_value_evaluated_allocate(
 {
     afw_value_evaluated_t *result;
 
+    if (!data_type->evaluated_value_inf) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_value_evaluated_allocate() called with data type special "
+            "data type that does not have evaluated_value_inf",
+            xctx);
+    }
+
     result = afw_pool_calloc(p,
         offsetof(afw_value_evaluated_t, internal) + data_type->c_type_size,
         xctx);

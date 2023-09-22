@@ -48,8 +48,8 @@ afw_register_data_type_infs(
 
     /* Register value inf id evaluated_any */
     afw_environment_register_value_inf(
-        &afw_value_evaluated_any_inf.rti.implementation_id,
-        &afw_value_evaluated_any_inf,
+        &afw_value_permanent_any_inf.rti.implementation_id,
+        NULL,
         xctx);
 
     /* Register value inf id evaluated_anyURI */
@@ -210,14 +210,14 @@ afw_register_data_type_infs(
 
     /* Register value inf id evaluated_unknown */
     afw_environment_register_value_inf(
-        &afw_value_evaluated_unknown_inf.rti.implementation_id,
-        &afw_value_evaluated_unknown_inf,
+        &afw_value_permanent_unknown_inf.rti.implementation_id,
+        NULL,
         xctx);
 
     /* Register value inf id evaluated_void */
     afw_environment_register_value_inf(
-        &afw_value_evaluated_void_inf.rti.implementation_id,
-        &afw_value_evaluated_void_inf,
+        &afw_value_permanent_void_inf.rti.implementation_id,
+        NULL,
         xctx);
 
     /* Register value inf id evaluated_x500Name */
