@@ -329,7 +329,7 @@ impl_convert_value_to_json(
     afw_value_info_t info;
 
     /* Change undefined value to null.  */
-    if (afw_value_is_undefined(value)) {
+    if (!value) {
         value = afw_value_null;
         if (AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens)) {
             value = afw_value_undefined;
@@ -377,7 +377,9 @@ impl_convert_value_to_json(
         if (afw_utf8_equal(&value_data_type->jsonPrimitive,
             &AFW_JSON_S_PRIMITIVE_NULL))
         {
-            if (AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens)) {
+            if (afw_value_is_undefined(value) &&
+                AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens))
+            {
                 impl_puts(wa, "undefined");
             }
             else {
