@@ -947,7 +947,8 @@ impl_afw_data_type_array_internal_to_utf8(
 
     array.inf = &afw_value_evaluated_array_inf;
     array.internal = *(const afw_array_t **)from_internal;
-    return afw_json_from_value((const afw_value_t *)&array, NULL,
+    return afw_json_from_value(
+        (const afw_value_t *)&array, &afw_object_options_useNonStandardTokens,
         p, xctx);
 }
 
@@ -1116,8 +1117,9 @@ impl_afw_data_type_object_internal_to_utf8(
     obj.inf = &afw_value_evaluated_object_inf;
     obj.internal = *(const afw_object_t **)from_internal;
 
-    return afw_json_from_value((const afw_value_t *)&obj,
-        NULL, p, xctx);
+    return afw_json_from_value(
+        (const afw_value_t *)&obj, &afw_object_options_useNonStandardTokens,
+        p, xctx);
 }
 
 
