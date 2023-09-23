@@ -43,6 +43,5 @@ export * from "./time";
 export * from "./unevaluated";
 export * from "./value";
 export * from "./x500Name";
-export * from "./xml";
 export * from "./xpathExpression";
 export * from "./yearMonthDuration";

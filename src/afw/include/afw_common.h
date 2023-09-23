@@ -484,11 +484,6 @@ typedef _Bool afw_boolean_t;
         "See production TestScript in src/afw/doc/syntax/index.html or "        \
         "src/afw/generated/ebnf/syntax.ebnf for syntax.")                       \
                                                                                 \
-    XX(xml,                                                                     \
-        xpathExpression,                                                        \
-        &afw_function_definition_compile_xml,                                   \
-        "Extensible Markup Language (XML)")                                     \
-                                                                                \
     XX(xpathExpression,                                                         \
         xpathExpression,                                                        \
         &afw_function_definition_compile_xpathExpression,                       \

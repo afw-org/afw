@@ -118,7 +118,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_unknown_binding.h
     generated/afw_data_type_void_binding.h
     generated/afw_data_type_x500Name_binding.h
-    generated/afw_data_type_xml_binding.h
     generated/afw_data_type_xpathExpression_binding.h
     generated/afw_data_type_yearMonthDuration_binding.h
     generated/afw_declare_helpers.h
@@ -378,7 +377,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_data_type_unknown_binding.c
     generated/afw_data_type_void_binding.c
     generated/afw_data_type_x500Name_binding.c
-    generated/afw_data_type_xml_binding.c
     generated/afw_data_type_xpathExpression_binding.c
     generated/afw_data_type_yearMonthDuration_binding.c
     generated/afw_function_bindings.c

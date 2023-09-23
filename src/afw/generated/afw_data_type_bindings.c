@@ -244,12 +244,6 @@ afw_register_data_type_infs(
         &afw_value_evaluated_x500Name_inf,
         xctx);
 
-    /* Register value inf id evaluated_xml */
-    afw_environment_register_value_inf(
-        &afw_value_evaluated_xml_inf.rti.implementation_id,
-        &afw_value_evaluated_xml_inf,
-        xctx);
-
     /* Register value inf id evaluated_xpathExpression */
     afw_environment_register_value_inf(
         &afw_value_evaluated_xpathExpression_inf.rti.implementation_id,

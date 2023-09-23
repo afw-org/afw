@@ -27,7 +27,6 @@
         "relaxed_json",
         "script",
         "template",
-        "xml",
         "xpathExpression"
     ],
     "returns": {

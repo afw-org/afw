@@ -691,26 +691,6 @@ typedef struct afw_value_x500Name_s
 /** @} */
 
 /**
- * @addtogroup afw_c_api_data_type_xml
- * @{
- */
-
-/** @brief Typedef for data type xml internal. */
-typedef afw_utf8_t afw_data_type_xml_internal_t;
-
-/** @brief Typedef for data type xml parameter. */
-typedef const afw_utf8_t * afw_data_type_xml_parameter_t;
-
-/** @brief Typedef for data type xml return. */
-typedef const afw_utf8_t * afw_data_type_xml_return_t;
-
-/** @brief Typedef for data type xml evaluated value. */
-typedef struct afw_value_xml_s
-    afw_value_xml_t;
-
-/** @} */
-
-/**
  * @addtogroup afw_c_api_data_type_xpathExpression
  * @{
  */

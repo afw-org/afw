@@ -2460,16 +2460,6 @@ IMPL_DATA_TYPE_INF(
     typed_string)         /* as expression     */
 
 IMPL_DATA_TYPE_INF(
-    xml,                  /* data type id      */
-    utf8,                 /* to utf8           */
-    utf8,                 /* to internal       */
-    utf8,                 /* compare           */
-    from_utf8,            /* conversion        */
-    utf8,                 /* clone             */
-    utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
-
-IMPL_DATA_TYPE_INF(
     xpathExpression,      /* data type id      */
     utf8,                 /* to utf8           */
     utf8,                 /* to internal       */

@@ -28,7 +28,6 @@
         "relaxed_json",
         "script",
         "template",
-        "xml",
         "xpathExpression"
     ],
     "pure": true,
