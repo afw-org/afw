@@ -4537,10 +4537,11 @@ typedef void
     afw_xctx_t * xctx);
 
 /** @sa afw_iterator_next() */
-typedef const afw_value_t *
+typedef afw_boolean_t
 (*afw_iterator_next_t)(
     const afw_iterator_t * instance,
-    afw_boolean_t * done);
+    const afw_value_t ** key,
+    const afw_value_t ** value);
 
 /** @brief Interface afw_iterator_inf_s struct. */
 struct afw_iterator_inf_s {
@@ -4566,16 +4567,20 @@ struct afw_iterator_inf_s {
 /**
  * @brief Call method next of interface afw_iterator
  * @param instancePointer to this stream instance.
- * @param doneSet to 'true' if there are no more values or 'false' if the return
- *     value is the next value.
+ * @param keyThis is a pointer to the place to return the key value or NULL if
+ *     it does not need to be returned.
+ * @param valueThis is a pointer to the place to return the value or NULL if
+ *     it does not need to be returned.
  */
 #define afw_iterator_next( \
     instance, \
-    done \
+    key, \
+    value \
 ) \
 (instance)->inf->next( \
     (instance), \
-    (done) \
+    (key), \
+    (value) \
 )
 
 /** @} */

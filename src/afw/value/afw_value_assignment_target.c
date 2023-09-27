@@ -24,6 +24,7 @@
 #define AFW_IMPLEMENTATION_ID "assignment_target"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignment_target_inf
+#define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 
 

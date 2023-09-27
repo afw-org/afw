@@ -114,10 +114,11 @@ impl_afw_iterator_release(
 
 #ifndef impl_afw_iterator_next
 /* Declare method next */
-AFW_DECLARE_STATIC(const afw_value_t *)
+AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_iterator_next(
     AFW_ITERATOR_SELF_T *self,
-    afw_boolean_t * done);
+    const afw_value_t ** key,
+    const afw_value_t ** value);
 #endif
 #endif
 

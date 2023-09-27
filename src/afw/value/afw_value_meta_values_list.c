@@ -17,6 +17,7 @@
 
 #define impl_afw_array_get_entry_meta afw_array_impl_get_entry_meta
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
+#define impl_afw_value_create_iterator NULL
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "afw_value_meta_values_list"

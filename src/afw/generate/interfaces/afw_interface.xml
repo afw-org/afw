@@ -4486,18 +4486,25 @@ AFW_DEFINE(const afw_request_handler_t *)
         <description>Pointer to this stream instance.</description>
       </parameter>
 
-      <parameter name="done" type="afw_boolean_t *">
+      <parameter name="key" type="const afw_value_t **">
         <description>
-          Set to 'true' if there are no more values or 'false' if the return
-          value is the next value.
+          This is a pointer to the place to return the key value or NULL if
+          it does not need to be returned.
         </description>
       </parameter>
 
-      <return type="const afw_value_t *">
+      <parameter name="value" type="const afw_value_t **">
         <description>
-          This is the next value if 'done' is 'false' or NULL if 'done' is
-          'true'. The result can also be NULL and still be the valid next value
-          if 'done' is false.
+          This is a pointer to the place to return the value or NULL if
+          it does not need to be returned.
+        </description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>
+          Returns 'true' if 'done', in which case 'key' and 'value' will be
+          NULL. If 'false', 'key' and 'value' will be set to the next key
+          and value. NULL is a valid 'value' which indicates 'undefined'.
         </description>
       </return>
 

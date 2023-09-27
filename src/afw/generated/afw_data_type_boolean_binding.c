@@ -82,6 +82,7 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_boolean_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
+#define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL

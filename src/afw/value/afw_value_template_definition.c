@@ -17,7 +17,7 @@
 
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference NULL
-
+#define impl_afw_value_create_iterator NULL
 
 /* Inf specific is always data type. */
 #define AFW_IMPLEMENTATION_SPECIFIC (const void *)&afw_data_type_template_direct

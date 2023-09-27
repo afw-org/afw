@@ -20,6 +20,7 @@
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_closure_binding_inf
 #define AFW_VALUE_SELF_T afw_value_closure_binding_t
+#define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 
 

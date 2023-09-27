@@ -567,6 +567,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release NULL\n')
         fd.write('#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference\n')
+        fd.write('#define impl_afw_value_create_iterator NULL\n')
+
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
@@ -612,6 +614,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release NULL\n')
         fd.write('#define impl_afw_value_clone_or_reference impl_afw_value_permanent_get_reference\n')
+        fd.write('#define impl_afw_value_create_iterator NULL\n')
         fd.write('#include "afw_value_impl_declares.h"\n')
         fd.write('#undef AFW_IMPLEMENTATION_ID\n')
         fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')

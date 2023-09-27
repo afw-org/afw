@@ -27,8 +27,6 @@
 
 AFW_BEGIN_DECLARES
 
-/*FIXME Remove. */
-#define impl_afw_value_create_iterator NULL
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
     if (writer->indent > xctx->env->evaluation_stack_maximum_count) { \

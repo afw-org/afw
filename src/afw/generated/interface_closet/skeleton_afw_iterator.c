@@ -32,10 +32,11 @@ impl_afw_iterator_release(
 /*
  * Implementation of method next for interface afw_iterator.
  */
-const afw_value_t *
+afw_boolean_t
 impl_afw_iterator_next(
     AFW_ITERATOR_SELF_T *self,
-    afw_boolean_t * done)
+    const afw_value_t ** key,
+    const afw_value_t ** value)
 {
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);

@@ -23,6 +23,8 @@
 
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
+    
+#define impl_afw_value_create_iterator NULL
 
 /* Declares and rti/inf defines for interface afw_value */
 #define AFW_IMPLEMENTATION_ID "call_test_script"
