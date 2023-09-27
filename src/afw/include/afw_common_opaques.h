@@ -392,15 +392,6 @@ typedef struct  afw_function_execute_s
 afw_function_execute_t;
 
 /**
- * Opaque typedef iterator.
- *
- * Each implementation with a afw_iterator_t ** parameter has its own
- * private afw_iterator_s struct definition or use.
- */
-typedef struct afw_iterator_s
-afw_iterator_t;
-
-/**
  * Opaque typedef for afw_lock_t.
  *
  * See afw_lock.h for struct and more information.

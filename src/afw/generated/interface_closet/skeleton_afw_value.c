@@ -43,6 +43,19 @@ impl_afw_value_clone_or_reference(
 }
 
 /*
+ * Implementation of method create_iterator for interface afw_value.
+ */
+const afw_iterator_t *
+impl_afw_value_create_iterator(
+    AFW_VALUE_SELF_T *self,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method optional_evaluate for interface afw_value.
  */
 const afw_value_t *

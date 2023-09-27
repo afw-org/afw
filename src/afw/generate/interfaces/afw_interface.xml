@@ -4450,6 +4450,61 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
+  <interface name="afw_iterator" id="afww">
+
+    <description>
+      This is the interface for an iterator. An iterator is created by the
+      'afw_value' 'create_iterator()' method.
+    </description>
+
+    <method name="release">
+
+      <description>
+        This method releases the iterator.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_t *">
+        <description>Pointer to this stream instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+    <method name="next">
+
+      <description>
+        This method will return the next value. If there are no more values,
+        'done' is set to 'true'.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_t *">
+        <description>Pointer to this stream instance.</description>
+      </parameter>
+
+      <parameter name="done" type="afw_boolean_t *">
+        <description>
+          Set to 'true' if there are no more values or 'false' if the return
+          value is the next value.
+        </description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          This is the next value if 'done' is 'false' or NULL if 'done' is
+          'true'. The result can also be NULL and still be the valid next value
+          if 'done' is false.
+        </description>
+      </return>
+
+    </method>
+
+  </interface>
+
 
   <interface name="afw_request" id="afwr">
 
@@ -4882,7 +4937,6 @@ AFW_DEFINE(const afw_request_handler_t *)
     </method>
 
   </interface>
-
 
 
   <interface name="afw_pool" id="afwp">
@@ -5503,7 +5557,6 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-
     <method name="clone_or_reference">
 
       <description>
@@ -5551,6 +5604,38 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
+    <method name="create_iterator">
+
+      <description>
+        This will return an 'afw_iterator' instance or NULL if this value does
+        not support iteration.
+      </description>
+
+      <parameter name="instance" type="const afw_value_t *">
+        <description>
+          Pointer to this adaptive value instance.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>
+          Pool for result.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>
+          This is the caller's xctx.
+        </description>
+      </parameter>
+
+      <return type="const afw_iterator_t *">
+        <description>
+          This is an new instance of afw_iterator.
+      </description>
+      </return>
+
+    </method>
 
     <method name="optional_evaluate">
 
@@ -5609,6 +5694,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       </return>
 
     </method>
+
     <method name="get_evaluated_meta">
 
       <description>

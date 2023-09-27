@@ -4512,6 +4512,75 @@ struct afw_connection_inf_s {
 /** @} */
 
 /**
+ * @addtogroup afw_iterator_interface afw_iterator
+ *
+ * This is the interface for an iterator. An iterator is created by the
+ * 'afw_value' 'create_iterator()' method.
+ *
+ * @{
+ */
+
+
+/** @brief Interface afw_iterator public struct. */
+struct afw_iterator_s {
+    const afw_iterator_inf_t *inf;
+};
+
+/** @brief define for interface afw_iterator name. */
+#define AFW_ITERATOR_INTERFACE_NAME \
+"afw_iterator"
+
+/** @sa afw_iterator_release() */
+typedef void
+(*afw_iterator_release_t)(
+    const afw_iterator_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_iterator_next() */
+typedef const afw_value_t *
+(*afw_iterator_next_t)(
+    const afw_iterator_t * instance,
+    afw_boolean_t * done);
+
+/** @brief Interface afw_iterator_inf_s struct. */
+struct afw_iterator_inf_s {
+    afw_interface_implementation_rti_t rti;
+    afw_iterator_release_t release;
+    afw_iterator_next_t next;
+};
+
+/**
+ * @brief Call method release of interface afw_iterator
+ * @param instancePointer to this stream instance.
+ * @param xctxThis is the caller's xctx.
+ */
+#define afw_iterator_release( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->release( \
+    (instance), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method next of interface afw_iterator
+ * @param instancePointer to this stream instance.
+ * @param doneSet to 'true' if there are no more values or 'false' if the return
+ *     value is the next value.
+ */
+#define afw_iterator_next( \
+    instance, \
+    done \
+) \
+(instance)->inf->next( \
+    (instance), \
+    (done) \
+)
+
+/** @} */
+
+/**
  * @addtogroup afw_request_interface afw_request
  *
  * Adaptive framework request interface.
@@ -5684,6 +5753,13 @@ typedef const afw_value_t *
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
+/** @sa afw_value_create_iterator() */
+typedef const afw_iterator_t *
+(*afw_value_create_iterator_t)(
+    const afw_value_t * instance,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
 /** @sa afw_value_optional_evaluate() */
 typedef const afw_value_t *
 (*afw_value_optional_evaluate_t)(
@@ -5738,6 +5814,7 @@ struct afw_value_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_value_optional_release_t optional_release;
     afw_value_clone_or_reference_t clone_or_reference;
+    afw_value_create_iterator_t create_iterator;
     afw_value_optional_evaluate_t optional_evaluate;
     afw_value_get_data_type_t get_data_type;
     afw_value_get_evaluated_meta_t get_evaluated_meta;
@@ -5785,6 +5862,23 @@ struct afw_value_inf_s {
     xctx \
 ) \
 (instance)->inf->clone_or_reference( \
+    (instance), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method create_iterator of interface afw_value
+ * @param instancePointer to this adaptive value instance.
+ * @param pPool for result.
+ * @param xctxThis is the caller's xctx.
+ */
+#define afw_value_create_iterator( \
+    instance, \
+    p, \
+    xctx \
+) \
+(instance)->inf->create_iterator( \
     (instance), \
     (p), \
     (xctx) \

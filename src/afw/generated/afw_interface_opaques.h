@@ -187,6 +187,12 @@ afw_connection_t;
 typedef struct afw_connection_inf_s
 afw_connection_inf_t;
 
+typedef struct afw_iterator_s
+afw_iterator_t;
+
+typedef struct afw_iterator_inf_s
+afw_iterator_inf_t;
+
 typedef struct afw_request_s
 afw_request_t;
 

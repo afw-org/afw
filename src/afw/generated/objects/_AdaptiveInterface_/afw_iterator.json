@@ -1,0 +1,4 @@
+{
+    "name": "afw_iterator",
+    "description": "This is the interface for an iterator. An iterator is created by the\n      'afw_value' 'create_iterator()' method."
+}
