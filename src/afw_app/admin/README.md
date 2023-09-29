@@ -24,15 +24,15 @@ In order to build the web application, you must have NodeJS and NPM installed on
 
 ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  This app was created using the create-react-app, which handles many of the underlying web packaging complexities for us, such as Babel (a Javascript transpiler), webpack (a bundling tool), along with a default browser service worker in order to create a modern Progressive Web App (PWA).
 
-The app itself may be compiled with a prefix (defaulted to "afw_app"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adaptors.  Using this prefix, the app leverages React Router to break apart its major layouts into the following URI's:
+The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adaptors.  Using this prefix, the app leverages React Router to break apart its major layouts into the following URI's:
 
-  * /afw_app/Home
-  * /afw_app/Objects
-  * /afw_app/Admin
-  * /afw_app/Documentation
-  * /afw_app/Tools
+  * /apps/afw/admin/Home
+  * /apps/afw/admin/Objects
+  * /apps/afw/admin/Admin
+  * /apps/afw/admin/Documentation
+  * /apps/afw/admin/Tools
 
-Another way to architect this, without "reserving" the afw_app prefix would be for the web application to listen on a TCP port, separate from the RESTful interfaces provided by the adaptors, or separate them out via Virtual Hosts.  This, of course, would result in the Web App and RESTful Web Services to be separated by different hosts.
+Another way to architect this, without "reserving" the /apps/afw/admin prefix would be for the web application to listen on a TCP port, separate from the RESTful interfaces provided by the adaptors, or separate them out via Virtual Hosts.  This, of course, would result in the Web App and RESTful Web Services to be separated by different hosts.
 
 #### Style
 
@@ -47,7 +47,7 @@ The directory structure is laid out as follows:
     |   |-- favicon.ico
     |   |-- index.html
     |   |-- manifest.json
-    |   |-- doc/
+    |   |-- monaco-editor/
     |-- src/
     |   |-- Admin/
     |   |-- App/
