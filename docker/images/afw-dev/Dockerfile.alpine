@@ -32,7 +32,7 @@ LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 # obtain the artifacts from build-stage
 RUN mkdir -p /usr/share/nginx/html/apps
 COPY --from=build-stage /afw-*.tar /
-COPY --from=build-stage /admin-app-*.tar //usr/share/nginx/html/apps
+COPY --from=build-stage /admin-app-*.tar /usr/share/nginx/html/apps
 
 RUN cd / && tar xvf /afw-*.tar && rm -f /afw-*.tar && \
     cd /usr/share/nginx/html && tar xvf admin-app-*.tar && rm -f admin-app-*.tar
