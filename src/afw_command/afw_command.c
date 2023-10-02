@@ -54,7 +54,7 @@ static const apr_getopt_option_t opts[] = {
     { "extension", 'e', TRUE, "Load extension." },
     { "help", 'h', FALSE, "Print this help and exit successfully." },
     { "local", 'l', TRUE, "Run in \"local\" mode with output to path or fd number." },
-    { "syntax", 's', TRUE, "expression, hybrid, parenthesized, script, template, test_script" },
+    { "syntax", 's', TRUE, "expression, script, template, or test_script" },
     { "type", 't', TRUE, "Content type of configuration file." },
     { "version", 'v', FALSE, "Print version and exit successfully." },
     { NULL, 0, 0, NULL }
@@ -798,7 +798,7 @@ main(int argc, const char * const *argv) {
         if (
                 (
                     self->compile_option == afw_compile_type_script &&
-                    self->can_span_lines
+                    self->in_z
                 ) ||
                 self->compile_option == afw_compile_type_test_script
             )
