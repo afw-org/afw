@@ -75,10 +75,9 @@ Eventually, these adaptors will not be required, but rather enabled/disabled via
 ## Building Adaptive Framework
 
     cd afw
-    ./afwdev build    
-    make
+    ./afwdev build 
 
-## Adaptive Framework
+## Building and Installing Adaptive Framework
 
     ./afwdev build --install
 

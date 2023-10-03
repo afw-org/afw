@@ -33,6 +33,6 @@ The pkg-config tool is a system tool that gives Makefiles a convenient way to ge
     cd afw
     ./afwdev build
 
-## Adaptive Framework
+## Building and Installing Adaptive Framework
 
     ./afwdev build --install
