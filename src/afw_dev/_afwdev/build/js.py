@@ -27,14 +27,14 @@ def build(options):
     # first make sure node_modules are installed
     if not os.path.exists('node_modules'):
         msg.highlighted_info('Installing node modules...')
-        rc = subprocess.run(['npm', 'install'])
+        rc = subprocess.run(['npm', 'install'], stdout=output)
         if rc.returncode != 0:
             msg.error_exit('npm install failed')
 
     # if specified, clean the source directories
     if options.get("build_clean", False):        
         msg.highlighted_info('Cleaning javascript modules and web apps...')
-        rc = subprocess.run(['npm', 'run', 'clean'])
+        rc = subprocess.run(['npm', 'run', 'clean'], stdout=output)
         if rc.returncode != 0:
             msg.error_exit('npm run clean failed')
     

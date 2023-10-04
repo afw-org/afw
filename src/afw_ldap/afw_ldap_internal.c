@@ -184,7 +184,7 @@ afw_ldap_internal_session_begin(
     if (!afw_value_is_object(bind_parameters_value)) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Invalid bindParameters for adaptorId " AFW_UTF8_FMT_Q,
-            &adaptor->pub.adaptor_id);
+            AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id));
     }
     bind_parameters = ((const afw_value_object_t *)bind_parameters_value)
         ->internal;
@@ -195,7 +195,7 @@ afw_ldap_internal_session_begin(
     if (!self->bind_dn_z || !self->bind_password_z) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Invalid bindParameters for adaptorId " AFW_UTF8_FMT_Q,
-            &adaptor->pub.adaptor_id);
+            AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id));
     }
 
 
