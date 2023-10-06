@@ -47,9 +47,9 @@ afw_request_get_response_content_type(
 
     /* If accept was not specified, default to application/json. */
     if (!instance->accept || !*instance->accept) {
-        *type = &AFW_JSON_S_CONTENT_TYPE;
+        *type = AFW_JSON_S_CONTENT_TYPE;
         *response_content_type = afw_environment_get_content_type(
-        &AFW_JSON_S_CONTENT_TYPE, xctx);
+        AFW_JSON_S_CONTENT_TYPE, xctx);
     }
 
     /* It accept specified, find first first one with registered handler. */
@@ -58,9 +58,9 @@ afw_request_get_response_content_type(
         for (accept = instance->accept; accept && *accept; accept++) {
             if (!afw_utf8_compare(*accept, afw_s_a_star_slash_star)) {
                 // if */* is specified, use default of application/json
-                *type = &AFW_JSON_S_CONTENT_TYPE;
+                *type = AFW_JSON_S_CONTENT_TYPE;
                 *response_content_type = afw_environment_get_content_type(
-                    &AFW_JSON_S_CONTENT_TYPE, xctx);
+                    AFW_JSON_S_CONTENT_TYPE, xctx);
                 break;
             } else {
                 *response_content_type = afw_environment_get_content_type(
@@ -77,7 +77,7 @@ afw_request_get_response_content_type(
     /* If an accept was specified but none match, throw error. */
     if (!*response_content_type) {
         *response_content_type = afw_environment_get_content_type(
-            &AFW_JSON_S_CONTENT_TYPE, xctx);
+            AFW_JSON_S_CONTENT_TYPE, xctx);
         AFW_THROW_ERROR_Z(unsupported_accept, "Unsupported accept.", xctx);
     }
 }

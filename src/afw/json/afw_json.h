@@ -30,29 +30,22 @@ extern "C" {
 #endif
 
 #define AFW_JSON_Q_CONTENT_TYPE       "application/json"
-#define AFW_JSON_S_CONTENT_TYPE       afw_self_s_a_application_json
+#define AFW_JSON_S_CONTENT_TYPE       afw_s_a_application_json
 #define AFW_JSON_Q_CONTENT_TYPE_SHORT "json"
-#define AFW_JSON_S_CONTENT_TYPE_SHORT afw_self_s_json
-
 
 #define AFW_JSON_PN_JSON_PRIMITIVE   AFW_Q_jsonPrimitive
-#define AFW_JSON_PN_s_JSON_PRIMITIVE afw_self_s_jsonPrimitive
 #define AFW_JSON_Q_PRIMITIVE_OBJECT  AFW_Q_object
-#define AFW_JSON_S_PRIMITIVE_OBJECT  afw_self_s_object
 #define AFW_JSON_Q_PRIMITIVE_ARRAY   AFW_Q_array
-#define AFW_JSON_S_PRIMITIVE_ARRAY   afw_self_s_array
 #define AFW_JSON_Q_PRIMITIVE_NUMBER  AFW_Q_number
-#define AFW_JSON_S_PRIMITIVE_NUMBER  afw_self_s_number
+#define AFW_JSON_S_PRIMITIVE_NUMBER  afw_s_number
 #define AFW_JSON_Q_PRIMITIVE_STRING  AFW_Q_string
-#define AFW_JSON_S_PRIMITIVE_STRING  afw_self_s_string
+#define AFW_JSON_S_PRIMITIVE_STRING  afw_s_string
 #define AFW_JSON_Q_PRIMITIVE_BOOLEAN AFW_Q_boolean
-#define AFW_JSON_S_PRIMITIVE_BOOLEAN afw_self_s_boolean
+#define AFW_JSON_S_PRIMITIVE_BOOLEAN afw_s_boolean
 #define AFW_JSON_Q_PRIMITIVE_NULL    AFW_Q_null
-#define AFW_JSON_S_PRIMITIVE_NULL    afw_self_s_null
+#define AFW_JSON_S_PRIMITIVE_NULL    afw_s_null
 #define AFW_JSON_Q_PRIMITIVE_BOOLEAN_TRUE  AFW_Q_true
-#define AFW_JSON_S_PRIMITIVE_BOOLEAN_TRUE  afw_self_s_true
 #define AFW_JSON_Q_PRIMITIVE_BOOLEAN_FALSE AFW_Q_false
-#define AFW_JSON_S_PRIMITIVE_BOOLEAN_FALSE afw_self_s_false
 
 #define AFW_JSON_Q_INFINITY        "Infinity"
 #define AFW_JSON_Q_MINUS_INFINITY  "-Infinity"
