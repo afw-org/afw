@@ -144,8 +144,8 @@ impl_data_type_object_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_x500Name,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_x500Name,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_x500Name
         }
     },

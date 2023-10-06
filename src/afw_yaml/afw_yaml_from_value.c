@@ -371,7 +371,7 @@ void convert_object_to_yaml(
         wa->options, wa->p, wa->xctx);
     if (meta) {
         (wa->indent)++;
-        put_yaml_string(wa, &afw_s__meta_);
+        put_yaml_string(wa, afw_s__meta_);
         impl_puts(wa, ": ");
         put_ws(wa);
         convert_object_to_yaml(wa, meta);
@@ -450,21 +450,21 @@ void convert_value_to_yaml(
 
         /* Primitive json type is null. */
         if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_NULL))
+            AFW_JSON_S_PRIMITIVE_NULL))
         {
             impl_puts(wa, AFW_JSON_Q_PRIMITIVE_NULL);
         }
 
         /* Primitive json type is string. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_STRING))
+            AFW_JSON_S_PRIMITIVE_STRING))
         {
             convert_string_to_yaml(wa, value);
         }
 
         /* Primitive json type is number. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_NUMBER))
+            AFW_JSON_S_PRIMITIVE_NUMBER))
         {
             if (afw_value_is_integer(value)) {
                 convert_integer_to_yaml(wa,
@@ -483,7 +483,7 @@ void convert_value_to_yaml(
 
         /* Primitive json type is boolean. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_BOOLEAN))
+            AFW_JSON_S_PRIMITIVE_BOOLEAN))
         {
             convert_boolean_to_yaml(wa,
                 ((afw_value_boolean_t *)value)->internal);

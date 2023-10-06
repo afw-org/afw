@@ -450,7 +450,7 @@ impl_afw_data_type_boolean_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    return (*(afw_boolean_t *)from_internal) ? &afw_s_true : &afw_s_false;
+    return (*(afw_boolean_t *)from_internal) ? afw_s_true : afw_s_false;
 }
 
 
@@ -765,7 +765,7 @@ impl_afw_data_type_function_internal_to_utf8(
             contextual->compiled_value->full_source;
     }
     else {
-        result = &afw_s_a_empty_string;
+        result = afw_s_a_empty_string;
         /** @fixme
         AFW_THROW_ERROR_Z(general,
             "Invalid function internal",
@@ -1036,7 +1036,7 @@ impl_afw_data_type_null_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    return &afw_s_null;
+    return afw_s_null;
 }
 
 
@@ -1074,7 +1074,7 @@ impl_afw_data_type_undefined_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    return &afw_s_undefined;
+    return afw_s_undefined;
 }
 
 

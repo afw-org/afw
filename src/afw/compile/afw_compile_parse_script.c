@@ -101,11 +101,11 @@ afw_compile_parse_OptionalDefineTarget(
 
     /* Determine assignment type. */
     afw_compile_get_token();
-    if (afw_compile_token_is_name(&afw_s_let)) {
+    if (afw_compile_token_is_name(afw_s_let)) {
         assignment_type = afw_compile_assignment_type_let;
         *define_function = (const afw_value_t *)&afw_function_definition_let;
     }
-    else if afw_compile_token_is_name(&afw_s_const) {
+    else if afw_compile_token_is_name(afw_s_const) {
         assignment_type = afw_compile_assignment_type_const;
         *define_function = (const afw_value_t *)&afw_function_definition_const;
     }
@@ -566,7 +566,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
     parser->continue_allowed = continue_allowed;
 
     afw_compile_get_token();
-    if (!afw_compile_token_is_name(&afw_s_while)) {
+    if (!afw_compile_token_is_name(afw_s_while)) {
         AFW_COMPILE_THROW_ERROR_Z(
             "Expecting 'while'");
     }
@@ -647,7 +647,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
                 &define_function, &block);
 
             afw_compile_get_token();
-            if (afw_compile_token_is_name(&afw_s_of)) {
+            if (afw_compile_token_is_name(afw_s_of)) {
                 if (list) {
                     AFW_COMPILE_THROW_ERROR_Z("Not expecting 'of'");
                 }
@@ -860,7 +860,7 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
     afw_compile_get_token();
     if (afw_compile_token_is_unqualified_identifier()) {
-        if (afw_utf8_equal(parser->token->identifier_name, &afw_s_else))
+        if (afw_utf8_equal(parser->token->identifier_name, afw_s_else))
         {
             otherwise = afw_compile_parse_Statement(parser, NULL);
         }
@@ -1014,7 +1014,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
     /* Optional 'using' EntryFunctionLambdaOrVariableReference */
     predicate = (const afw_value_t *)&afw_function_definition_eqx;
     afw_compile_get_token();
-    if (afw_compile_token_is_name(&afw_s_using)) {
+    if (afw_compile_token_is_name(afw_s_using)) {
         predicate = afw_compile_parse_EntryFunctionLambdaOrVariableReference(
             parser);
         afw_compile_get_token();
@@ -1036,10 +1036,10 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
         if (afw_compile_token_is(close_brace)) {
             break;
         }
-        if (afw_compile_token_is_name(&afw_s_case)) {
+        if (afw_compile_token_is_name(afw_s_case)) {
             case_expression = afw_compile_parse_Expression(parser);
         }
-        else if (afw_compile_token_is_name(&afw_s_default)) {
+        else if (afw_compile_token_is_name(afw_s_default)) {
             if (default_encountered) {
                 AFW_COMPILE_THROW_ERROR_Z("Multiple 'default' clauses");
             }
@@ -1199,7 +1199,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 
     /* Catch */
     afw_compile_get_token();
-    if (afw_compile_token_is_name(&afw_s_catch)) {
+    if (afw_compile_token_is_name(afw_s_catch)) {
         parser->rethrow_allowed = true;
         argc = 3;
         afw_compile_get_token();
@@ -1244,7 +1244,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
 
     /* Finally */
     afw_compile_get_token();
-    if (afw_compile_token_is_name(&afw_s_finally)) {
+    if (afw_compile_token_is_name(afw_s_finally)) {
         if (argc == 1) {
             argc = 2;
         }
@@ -1384,82 +1384,82 @@ afw_compile_parse_Statement(
         !parser->token->identifier_qualifier)
     {
         if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_let))
+            afw_s_let))
         {
             result = impl_parse_LetStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_const))
+            afw_s_const))
         {
             result = impl_parse_ConstStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_break))
+            afw_s_break))
         {
             result = impl_parse_BreakStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_continue))
+            afw_s_continue))
         {
             result = impl_parse_ContinueStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_do))
+            afw_s_do))
         {
             result = impl_parse_DoWhileStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_for))
+            afw_s_for))
         {
             result = impl_parse_ForStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_if))
+            afw_s_if))
         {
             result = impl_parse_IfStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_return))
+            afw_s_return))
         {
             result = impl_parse_ReturnStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_switch))
+            afw_s_switch))
         {
             result = impl_parse_SwitchStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_throw))
+            afw_s_throw))
         {
             result = impl_parse_ThrowStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_try))
+            afw_s_try))
         {
             result = impl_parse_TryStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_while))
+            afw_s_while))
         {
             result = impl_parse_WhileStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_function))
+            afw_s_function))
         {
             result = impl_parse_FunctionStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_interface))
+            afw_s_interface))
         {
             result = impl_parse_InterfaceStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_type))
+            afw_s_type))
         {
             result = impl_parse_TypeStatement(parser);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
-            &afw_s_declare))
+            afw_s_declare))
         {
             result = impl_parse_DeclareStatement(parser);
         }
@@ -1575,8 +1575,8 @@ afw_compile_parse_StatementList(
         afw_compile_get_token();
         if (end_is_close_brace_case_or_default) {
             if (afw_compile_token_is(close_brace) ||
-                afw_compile_token_is_name(&afw_s_case) ||
-                afw_compile_token_is_name(&afw_s_default))
+                afw_compile_token_is_name(afw_s_case) ||
+                afw_compile_token_is_name(afw_s_default))
             {
                 afw_compile_reuse_token();
                 break;
@@ -1673,16 +1673,16 @@ afw_compile_parse_Script(
      */
     if (afw_compile_next_raw_starts_with_z("#!")) {
         afw_compile_get_raw_line(&line);
-        if (!afw_utf8_contains(&line, &afw_s_afw) &&
-            !afw_utf8_contains(&line, &afw_s_maluba) &&     /* Easter egg */
-            !afw_utf8_contains(&line, &afw_s_JeremyScript)) /* Easter egg */
+        if (!afw_utf8_contains(&line, afw_s_afw) &&
+            !afw_utf8_contains(&line, afw_s_maluba) &&     /* Easter egg */
+            !afw_utf8_contains(&line, afw_s_JeremyScript)) /* Easter egg */
         {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Shebang line must contain 'afw' to be recognized as an "
                 "adaptive script");
         }
-        if (afw_utf8_contains(&line, &afw_s_a_dash_s_test_script) ||
-            afw_utf8_contains(&line, &afw_s_a_dash_dash_syntax_test_script))
+        if (afw_utf8_contains(&line, afw_s_a_dash_s_test_script) ||
+            afw_utf8_contains(&line, afw_s_a_dash_dash_syntax_test_script))
         {
             return afw_compile_parse_TestScript(parser);
         }
@@ -1845,11 +1845,11 @@ impl_test_script_get_next_key_value(
         }
     }
 
-    if (afw_utf8_equal(*key, &afw_s_expect)) {
+    if (afw_utf8_equal(*key, afw_s_expect)) {
         if (*string &&
-            afw_utf8_starts_with(*string, &afw_s_error) &&
-            (*string)->len > afw_s_error.len &&
-            *((*string)->s + afw_s_error.len) != ':')
+            afw_utf8_starts_with(*string, afw_s_error) &&
+            (*string)->len > afw_self_s_error.len &&
+            *((*string)->s + afw_self_s_error.len) != ':')
         {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Must be 'error' by itself or 'error:' immediately "
@@ -1954,11 +1954,11 @@ afw_compile_parse_TestScript(
     /* Shebang line must contain afw and -s test_script. */
     if (afw_compile_next_raw_starts_with_z("#!")) {
         afw_compile_get_raw_line(&line);
-        if ((!afw_utf8_contains(&line, &afw_s_afw) &&
-            !afw_utf8_contains(&line, &afw_s_JeremyScript) && /* Easter egg */
-            !afw_utf8_contains(&line, &afw_s_maluba))   /* Easter egg */ ||
-            (!afw_utf8_contains(&line, &afw_s_a_dash_s_test_script) &&
-            !afw_utf8_contains(&line, &afw_s_a_dash_dash_syntax_test_script)))
+        if ((!afw_utf8_contains(&line, afw_s_afw) &&
+            !afw_utf8_contains(&line, afw_s_JeremyScript) && /* Easter egg */
+            !afw_utf8_contains(&line, afw_s_maluba))   /* Easter egg */ ||
+            (!afw_utf8_contains(&line, afw_s_a_dash_s_test_script) &&
+            !afw_utf8_contains(&line, afw_s_a_dash_dash_syntax_test_script)))
         {
             AFW_COMPILE_THROW_ERROR_Z(
                 "Shebang line must contain afw and -s[yntax] test_script to "
@@ -1970,7 +1970,7 @@ afw_compile_parse_TestScript(
     test_list = afw_array_of_create(afw_data_type_object,
         parser->p, parser->xctx);
     afw_object_set_property_as_array(test_script_object,
-        &afw_s_tests, test_list, parser->xctx);
+        afw_s_tests, test_list, parser->xctx);
 
     /* Process TestScriptDefinition */
     for (global_source_type = NULL, test_script_id = NULL;;)
@@ -1979,22 +1979,22 @@ afw_compile_parse_TestScript(
 
         impl_test_script_get_next_key_value(parser,
             &key, &string, &string_offset, &string_length);
-        if (afw_utf8_equal(key, &afw_s_testScript)) {
+        if (afw_utf8_equal(key, afw_s_testScript)) {
             test_script_id = string;
         }
         else if (!test_script_id) {
             AFW_COMPILE_THROW_ERROR_Z(
                 "'test_script:' must be specified first");
         }
-        if (!key || afw_utf8_equal(key, &afw_s_test)) {
+        if (!key || afw_utf8_equal(key, afw_s_test)) {
             break;
         }
-        if (afw_utf8_equal(key, &afw_s_skip)) {
-            if (afw_utf8_equal(string, &afw_s_true)) {
+        if (afw_utf8_equal(key, afw_s_skip)) {
+            if (afw_utf8_equal(string, afw_s_true)) {
                 afw_object_set_property(test_script_object,
                     key, afw_value_true, parser->xctx);
             }
-            else if (!afw_utf8_equal(string, &afw_s_false)) {
+            else if (!afw_utf8_equal(string, afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
                     "'skip:' must be 'true' or 'false'");
             }
@@ -2006,7 +2006,7 @@ afw_compile_parse_TestScript(
                     AFW_UTF8_FMT_Q " already specified",
                     AFW_UTF8_FMT_ARG(key));
             }
-            if (afw_utf8_equal(key, &afw_s_sourceType)) {
+            if (afw_utf8_equal(key, afw_s_sourceType)) {
                 global_source_type = string;
             }
             afw_object_set_property_as_string(test_script_object,
@@ -2014,27 +2014,27 @@ afw_compile_parse_TestScript(
         }
     }
     if (!global_source_type) {
-        global_source_type = &afw_s_script;
+        global_source_type = afw_s_script;
         afw_object_set_property_as_string(test_script_object,
-            &afw_s_sourceType, global_source_type, parser->xctx);
+            afw_s_sourceType, global_source_type, parser->xctx);
     }
     afw_object_set_property_as_integer(test_script_object,
-        &afw_s_upToTestsUTF8OctetOffsetInTestScript,
+        afw_s_upToTestsUTF8OctetOffsetInTestScript,
             afw_safe_cast_size_to_integer(up_to_tests_offset, parser->xctx),
             parser->xctx);
 
     /* Process TestDefinition */
     for (test_object = NULL; ;) {
 
-        if (!key || afw_utf8_equal(key, &afw_s_test)) {
+        if (!key || afw_utf8_equal(key, afw_s_test)) {
             if (test_object) {
                 if (!afw_object_has_property(test_object,
-                    &afw_s_source, parser->xctx))
+                    afw_s_source, parser->xctx))
                 {
                     AFW_COMPILE_THROW_ERROR_Z("'source:' missing");
                 }
                 if (!afw_object_has_property(test_object,
-                    &afw_s_expect, parser->xctx))
+                    afw_s_expect, parser->xctx))
                 {
                     AFW_COMPILE_THROW_ERROR_Z("'expect:' missing");
                 }
@@ -2047,18 +2047,18 @@ afw_compile_parse_TestScript(
                 afw_value_create_object(test_object, parser->p, parser->xctx),
                 parser->xctx);
             afw_object_set_property_as_string(test_object,
-                &afw_s_test, string, parser->xctx);
+                afw_s_test, string, parser->xctx);
         }
 
-        else if (afw_utf8_equal(key, &afw_s_skip)) {
-            if (afw_utf8_equal(string, &afw_s_true)) {
+        else if (afw_utf8_equal(key, afw_s_skip)) {
+            if (afw_utf8_equal(string, afw_s_true)) {
                 if (!test_object) {
                     AFW_COMPILE_THROW_ERROR_Z("'test:' missing");
                 }
                 afw_object_set_property(test_object,
                     key, afw_value_true, parser->xctx);
             }
-            else if (!afw_utf8_equal(string, &afw_s_false)) {
+            else if (!afw_utf8_equal(string, afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
                     "skip: must be 'true' or 'false'");
             }
@@ -2080,7 +2080,7 @@ afw_compile_parse_TestScript(
                 key, string, parser->xctx);
         }
 
-        if (afw_utf8_equal(key, &afw_s_expect)) {
+        if (afw_utf8_equal(key, afw_s_expect)) {
             afw_utf8_line_column_of_offset(
                 &source_line, &source_column,
                 parser->full_source,
@@ -2092,34 +2092,34 @@ afw_compile_parse_TestScript(
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string(test_object,
-                &afw_s_expectLocation, expect_location, parser->xctx);
+                afw_s_expectLocation, expect_location, parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_expectLineNumberInTestScript,
+                afw_s_expectLineNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_line, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_expectColumnNumberInTestScript,
+                afw_s_expectColumnNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_column, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_expectCodepointOffsetInTestScript,
+                afw_s_expectCodepointOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_expectCodepointLengthInTestScript,
+                afw_s_expectCodepointLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_expectUTF8OctetOffsetInTestScript,
+                afw_s_expectUTF8OctetOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_expectUTF8OctetLengthInTestScript,
+                afw_s_expectUTF8OctetLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
         }
 
-        if (afw_utf8_equal(key, &afw_s_source)) {
+        if (afw_utf8_equal(key, afw_s_source)) {
             afw_utf8_line_column_of_offset(
                 &source_line, &source_column,
                 parser->full_source,
@@ -2131,29 +2131,29 @@ afw_compile_parse_TestScript(
                 AFW_UTF8_FMT_ARG(test_script_id),
                 string_offset, source_line, source_column);
             afw_object_set_property_as_string(test_object,
-                &afw_s_sourceLocation, source_location, parser->xctx);
+                afw_s_sourceLocation, source_location, parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_sourceLineNumberInTestScript,
+                afw_s_sourceLineNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_line, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_sourceColumnNumberInTestScript,
+                afw_s_sourceColumnNumberInTestScript,
                     afw_safe_cast_size_to_integer(source_column, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_sourceCodepointOffsetInTestScript,
+                afw_s_sourceCodepointOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_sourceCodepointLengthInTestScript,
+                afw_s_sourceCodepointLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_sourceUTF8OctetOffsetInTestScript,
+                afw_s_sourceUTF8OctetOffsetInTestScript,
                     afw_safe_cast_size_to_integer(string_offset, parser->xctx),
                     parser->xctx);
             afw_object_set_property_as_integer(test_object,
-                &afw_s_sourceUTF8OctetLengthInTestScript,
+                afw_s_sourceUTF8OctetLengthInTestScript,
                     afw_safe_cast_size_to_integer(string_length, parser->xctx),
                     parser->xctx);
         }
@@ -2166,7 +2166,7 @@ afw_compile_parse_TestScript(
         parser->full_source->s, parser->full_source->len,
         parser->p, parser->xctx);
     afw_object_set_property_as_string(test_script_object,
-        &afw_s_source, string, parser->xctx);
+        afw_s_source, string, parser->xctx);
 
     /* Result is a call_test_script value. */
     result = afw_value_call_test_script_create(

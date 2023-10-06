@@ -375,7 +375,7 @@ impl_convert_value_to_json(
 
         /* Primitive json type is null. */
         if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_NULL))
+            AFW_JSON_S_PRIMITIVE_NULL))
         {
             if (afw_value_is_undefined(value) &&
                 AFW_OBJECT_OPTION_IS(wa->options, useNonStandardTokens))
@@ -389,7 +389,7 @@ impl_convert_value_to_json(
 
         /* Primitive json type is string. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_STRING))
+            AFW_JSON_S_PRIMITIVE_STRING))
         {
             string = afw_value_as_utf8(value, wa->p, wa->xctx);
             if (!string) {
@@ -400,7 +400,7 @@ impl_convert_value_to_json(
 
         /* Primitive json type is number. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_NUMBER))
+            AFW_JSON_S_PRIMITIVE_NUMBER))
         {
             if (afw_value_is_integer(value) &&
                 /** @fixme (option quoute all || */
@@ -427,7 +427,7 @@ impl_convert_value_to_json(
 
         /* Primitive json type is boolean. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_BOOLEAN))
+            AFW_JSON_S_PRIMITIVE_BOOLEAN))
         {
             impl_convert_boolean_to_json(wa,
                 ((afw_value_boolean_t *)value)->internal);
@@ -447,7 +447,7 @@ impl_convert_value_to_json(
         if (value_data_type) {
             if (afw_value_is_object(value)) {
                 object = ((const afw_value_object_t *)value)->internal;
-                s = &afw_s_object;
+                s = afw_s_object;
                 if (afw_object_meta_get_object_type_id(object, xctx)) {
                     s = afw_utf8_printf(wa->p, wa->xctx,
                         "object:" AFW_UTF8_FMT,

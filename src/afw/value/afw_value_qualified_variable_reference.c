@@ -47,7 +47,7 @@ afw_value_qualified_variable_reference_create(
     if (qualifier) {
         memcpy(&self->qualifier, qualifier, sizeof(afw_utf8_t));
         self->optionally_qualified_name = afw_utf8_concat(p, xctx,
-            &self->qualifier, &afw_s_a_qualification_operator, &self->name,
+            &self->qualifier, afw_s_a_qualification_operator, &self->name,
             NULL);
     }
     else {

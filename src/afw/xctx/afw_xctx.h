@@ -44,19 +44,19 @@ AFW_BEGIN_DECLARES
 #define AFW_XCTX_Q_NAME_BASE "base"
 
 /** Name of base xctx. */
-#define AFW_XCTX_s_NAME_BASE afw_s_base
+#define AFW_XCTX_s_NAME_BASE afw_self_s_base
 
 /** Name of request thread xctx. */
 #define AFW_XCTX_Q_NAME_REQUEST_THREAD "request_thread"
 
 /** Name of request thread xctx. */
-#define AFW_XCTX_s_NAME_REQUEST_THREAD afw_s_request_thread
+#define AFW_XCTX_s_NAME_REQUEST_THREAD afw_self_s_request_thread
 
 /** Name of request session xctx. */
 #define AFW_XCTX_Q_NAME_REQUEST_SESSION "request_session"
 
 /** Name of request session xctx. */
-#define AFW_XCTX_s_NAME_REQUEST_SESSION afw_s_request_session
+#define AFW_XCTX_s_NAME_REQUEST_SESSION afw_self_s_request_session
 
 
 /**
@@ -677,7 +677,7 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
     (xctx)->evaluation_stack->top->parameter_number =PARAMETER_NUMBER; \
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
-    (xctx)->evaluation_stack->top->entry_id = &afw_s_parameter_number
+    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number
 
 
 /**
@@ -685,7 +685,7 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
  * @param xctx of caller.
  */
 #define afw_xctx_evaluation_stack_pop(xctx) \
-if (xctx->evaluation_stack->top->entry_id == &afw_s_parameter_number) { \
+if (xctx->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
     afw_stack_pop(xctx->evaluation_stack, xctx); \
 } \
 afw_stack_pop(xctx->evaluation_stack, xctx)

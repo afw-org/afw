@@ -180,7 +180,7 @@ afw_compile_to_value_with_callback(
         if (compile_type == afw_compile_type_json ||
             compile_type == afw_compile_type_relaxed_json)
         {
-            parser->compiled_value->full_source_type = &afw_s_json;
+            parser->compiled_value->full_source_type = afw_s_json;
             result = afw_compile_parse_Json(parser);
             afw_compile_check_for_residual(parser);
         }
@@ -208,17 +208,17 @@ afw_compile_to_value_with_callback(
 
             /* Process based on compile option. */
             if (compile_type == afw_compile_type_script) {
-                parser->compiled_value->full_source_type = &afw_s_script;
+                parser->compiled_value->full_source_type = afw_s_script;
                 *interim = afw_compile_parse_Script(parser, false);
             }
 
             else if (compile_type == afw_compile_type_template) {
-                parser->compiled_value->full_source_type = &afw_s_template;
+                parser->compiled_value->full_source_type = afw_s_template;
                 *interim = afw_compile_parse_Template(parser);
             }
 
             else if (compile_type == afw_compile_type_test_script) {
-                parser->compiled_value->full_source_type = &afw_s_test_script;
+                parser->compiled_value->full_source_type = afw_s_test_script;
                 afw_compile_skip_ws(parser);
                 *interim = afw_compile_parse_TestScript(parser);
             }
@@ -318,7 +318,7 @@ afw_compile_to_object(
         string, NULL, NULL, source_location,
         afw_compile_type_json, afw_compile_residual_check_to_full,
         true, NULL, NULL, parser_p, xctx);
-    parser->compiled_value->full_source_type = &afw_s_json;
+    parser->compiled_value->full_source_type = afw_s_json;
 
     /* Parse. */
     AFW_TRY {
@@ -479,7 +479,7 @@ afw_compile_object_all_template_properties(
         source_location = afw_object_meta_get_path(object, xctx);
     }
     if (!source_location) {
-        source_location = &afw_s_a_empty_string;
+        source_location = afw_s_a_empty_string;
     }
     result = afw_object_create(p, xctx);
     iterator = NULL;
@@ -492,7 +492,7 @@ afw_compile_object_all_template_properties(
                 AFW_UTF8_FMT_ARG(property_name));
         value_data_type = afw_value_get_data_type(value, xctx);
         if (!value_data_type ||
-            !afw_utf8_equal(&value_data_type->cType, &afw_s_afw_utf8_t))
+            !afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t))
         {
             AFW_THROW_ERROR_FZ(general, xctx,
                 AFW_UTF8_FMT " is not a template",
@@ -584,7 +584,7 @@ afw_compile_source_location_of_value(
         }
         else {
             if (info.contextual->value_offset == 0) {
-                result = &afw_s_a_empty_string;
+                result = afw_s_a_empty_string;
             }
             else {
                 result = afw_utf8_printf(p, xctx,

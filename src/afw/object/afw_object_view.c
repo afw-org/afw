@@ -421,7 +421,7 @@ impl_object_type_related_object_option_processing(
     /* Get object type id. Default is _AdaptiveObject_. */
     object_type_id = afw_object_meta_get_object_type_id(instance, xctx);
     if (!object_type_id) {
-        object_type_id = &afw_s__AdaptiveObject_;
+        object_type_id = afw_s__AdaptiveObject_;
     }
 
     /* Get object type object. */
@@ -451,7 +451,7 @@ impl_object_type_related_object_option_processing(
 
                 /** @fixme Data type inf should have a function for this. */
                 if (afw_utf8_equal(&value_data_type->cType,
-                    &afw_s_afw_utf8_t))
+                    afw_s_afw_utf8_t))
                 {
                     if (((afw_value_string_t *)value)
                         ->internal.len == 0)
@@ -460,7 +460,7 @@ impl_object_type_related_object_option_processing(
                     }
                 }
                 else if (afw_utf8_equal(&value_data_type->cType,
-                    &afw_s_afw_memory_t))
+                    afw_s_afw_memory_t))
                 {
                     if (((afw_value_base64Binary_t *)value)
                         ->internal.size == 0)
@@ -550,7 +550,7 @@ impl_object_type_related_object_option_processing(
                 s_value = impl_shared_string_value(view,
                     &value_data_type->data_type_id, xctx);
                 afw_object_meta_set_property_type_property(instance,
-                    property_name, &afw_s_dataType, s_value, xctx);
+                    property_name, afw_s_dataType, s_value, xctx);
             }
 
             /* If object, set dataTypeParameter if different */
@@ -565,14 +565,14 @@ impl_object_type_related_object_option_processing(
                     if (pt) {
                         s = afw_object_old_get_property_as_string(
                             pt->property_type_object,
-                            &afw_s_dataTypeParameter,
+                            afw_s_dataTypeParameter,
                             xctx);
                     }
                     if (s && !afw_utf8_equal(s, object_type_id)) {
                         s_value = impl_shared_string_value(view,
                             object_type_id, xctx);
                         afw_object_meta_set_property_type_property(instance,
-                            property_name, &afw_s_dataTypeParameter, s_value, xctx);
+                            property_name, afw_s_dataTypeParameter, s_value, xctx);
                     }
                 }
             }
@@ -626,7 +626,7 @@ impl_additional_object_option_processing(
     {
         if (self->pub.meta.id) {
             v = impl_shared_string_value(self->view, self->pub.meta.id, xctx);
-            impl_meta_set_property(self, &AFW_OBJECT_S_PN_OBJECT_ID, v,
+            impl_meta_set_property(self, AFW_OBJECT_S_PN_OBJECT_ID, v,
                 xctx);
         }
     }
@@ -638,7 +638,7 @@ impl_additional_object_option_processing(
             v = impl_shared_string_value(self->view,
                 afw_object_meta_get_object_type_id(&self->pub, xctx),
                 xctx);
-            impl_meta_set_property(self, &afw_s_objectType, v, xctx);
+            impl_meta_set_property(self, afw_s_objectType, v, xctx);
         }
     }
 
@@ -654,7 +654,7 @@ impl_additional_object_option_processing(
         }
         if (self->pub.meta.object_uri) {
             v = impl_shared_path_value(self, self->pub.meta.object_uri, xctx);
-            impl_meta_set_property(self, &afw_s_path, v, xctx);
+            impl_meta_set_property(self, afw_s_path, v, xctx);
         }
     }
 
@@ -680,15 +680,15 @@ impl_additional_object_option_processing(
 
         if (AFW_OBJECT_OPTION_IS(options, composite)) {
             if (AFW_OBJECT_OPTION_IS(options, resolvedParentPaths)) {
-                impl_meta_set_property(self, &afw_s_resolvedParentPaths,
+                impl_meta_set_property(self, afw_s_resolvedParentPaths,
                     (const afw_value_t *)resolved_parent_paths, xctx);
             }
             afw_object_meta_set_property((const afw_object_t *)self,
-                &afw_s_parentPaths, NULL, xctx);
+                afw_s_parentPaths, NULL, xctx);
         }
 
         else {
-            impl_meta_set_property(self, &afw_s_parentPaths,
+            impl_meta_set_property(self, afw_s_parentPaths,
                 (const afw_value_t *)resolved_parent_paths, xctx);
         }
     }
@@ -708,7 +708,7 @@ impl_additional_object_option_processing(
                 }
                 v = impl_shared_path_value(self, path, xctx);
                 impl_meta_set_property_type_property(self,
-                    prop->name, &afw_s_inheritedFrom,
+                    prop->name, afw_s_inheritedFrom,
                     v, xctx);
             }
         }
@@ -941,7 +941,7 @@ impl_add_origin_properties(
             break;
         }
 
-        if (!afw_utf8_equal(name, &afw_s__meta_)) {
+        if (!afw_utf8_equal(name, afw_s__meta_)) {
             impl_set_property(self, self->origin, name, value, xctx);
         }
     }
@@ -1151,7 +1151,7 @@ impl_object_create(
     /* Set meta using clone of origin's meta and set path if entity. */
     afw_object_meta_clone_and_set((const afw_object_t *)self, origin, xctx);
     if (uri_parsed && uri_parsed->path_parsed) {
-        impl_meta_set_property(self, &afw_s_path, value, xctx);
+        impl_meta_set_property(self, afw_s_path, value, xctx);
     }
 
     /* Add self properties from origin. */
@@ -1393,7 +1393,7 @@ afw_object_view_create(
             &afw_object_options_reconcilable_meta_property,
             p, xctx);
         value = afw_value_create_string(reconcilable, p, xctx);
-        impl_meta_set_property(self, &afw_s_reconcilable, value, xctx);
+        impl_meta_set_property(self, afw_s_reconcilable, value, xctx);
     }
 
     /* Return view. */

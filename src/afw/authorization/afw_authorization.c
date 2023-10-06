@@ -215,7 +215,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_requestId =
 {
-    &afw_s_requestId,
+    &afw_self_s_requestId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Request Id"
@@ -247,7 +247,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_resourceId =
 {
-    &afw_s_resourceId,
+    &afw_self_s_resourceId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Resource Id"
@@ -279,7 +279,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_object =
 {
-    &afw_s_object,
+    &afw_self_s_object,
     &afw_value_evaluated_object_inf,
     &afw_data_type_object_direct,
     "Object"
@@ -311,7 +311,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_actionId =
 {
-    &afw_s_actionId,
+    &afw_self_s_actionId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Action Id"
@@ -365,39 +365,39 @@ afw_authorization_internal_set_control(
     if (object) {
         self->core_authorization_check =
             afw_object_old_get_property_as_compiled_script(object,
-                &afw_s_coreAuthorizationCheck,
-                &afw_s_internal, NULL, p, xctx);
+                afw_s_coreAuthorizationCheck,
+                afw_s_internal, NULL, p, xctx);
 
         self->initial_authorization_check =
             afw_object_old_get_property_as_compiled_script(object,
-                &afw_s_initialAuthorizationCheck,
-                &afw_s_internal, NULL, p, xctx);
+                afw_s_initialAuthorizationCheck,
+                afw_s_internal, NULL, p, xctx);
 
         self->check_intermediate_mode = afw_object_old_get_property_as_boolean(
-            object, &afw_s_checkIntermediateMode, &found, xctx);
+            object, afw_s_checkIntermediateMode, &found, xctx);
 
         deny_if_not_applicable = afw_object_old_get_property_as_boolean(
-            object, &afw_s_denyIfNotApplicable, &found, xctx);
+            object, afw_s_denyIfNotApplicable, &found, xctx);
     }
 
     /* Set not_applicable_result */
     not_applicable_object = afw_object_create(p, xctx);
     afw_object_meta_set_object_type_id(not_applicable_object,
-        &afw_s__AdaptiveAuthorizationResult_, xctx);
-    afw_object_set_property(not_applicable_object, &afw_s_decisionId,
+        afw_s__AdaptiveAuthorizationResult_, xctx);
+    afw_object_set_property(not_applicable_object, afw_s_decisionId,
         ((deny_if_not_applicable)
             ? afw_authorization_decision_id_deny_value
             : afw_authorization_decision_id_permit_value),
         xctx);
     self->not_applicable_decision_id =
         (deny_if_not_applicable)
-        ? &afw_s_deny
-        : &afw_s_permit;
+        ? afw_s_deny
+        : afw_s_permit;
     list = afw_array_create_wrapper_for_array(
         &impl_s_a_notApplicable_policy_id,
         false, afw_data_type_anyURI, 1, p, xctx);
     afw_object_set_property_as_array(not_applicable_object,
-        &afw_s_applicablePolicies, list, xctx);
+        afw_s_applicablePolicies, list, xctx);
     self->not_applicable_result = afw_value_create_object(not_applicable_object, p, xctx);
 
     /* Return self. */
@@ -450,8 +450,8 @@ afw_authorization_check(
     ctx.requestId = request_id_value;
     ctx.resourceId = resource_id_value;
     resource_id = afw_value_as_string(resource_id_value, xctx);
-    current_decider = &afw_s_none;
-    final_decider = &afw_s_none;
+    current_decider = afw_s_none;
+    final_decider = afw_s_none;
 
     /*
      * Bypass checks if any of the following:
@@ -515,7 +515,7 @@ afw_authorization_check(
     top = afw_xctx_qualifier_stack_top_get(xctx);
     ah = NULL;
     AFW_TRY{
-        afw_context_push_cb_variables(&afw_s_current,
+        afw_context_push_cb_variables(afw_s_current,
             impl_context_current_runtime_ctx, &ctx,
             p, xctx);
 
@@ -542,16 +542,16 @@ afw_authorization_check(
         if (xctx->mode == afw_authorization_mode_id_core_value) {
             check = ctl->core_authorization_check;
             property_name = "coreAuthorizationCheck";
-            current_decider = &afw_s_coreAuthorizationCheck;
+            current_decider = afw_s_coreAuthorizationCheck;
             (void)current_decider; /* In catch. Avoid "not used" error. */
-            final_decider = &afw_s_coreAuthorizationCheck;
+            final_decider = afw_s_coreAuthorizationCheck;
         }
         else if (ctl->initial_authorization_check) {
             check = ctl->initial_authorization_check;
             property_name = "initialAuthorizationCheck";
-            current_decider = &afw_s_initialAuthorizationCheck;
+            current_decider = afw_s_initialAuthorizationCheck;
             (void)current_decider; /* In catch. Avoid "not used" error. */
-            final_decider = &afw_s_initialAuthorizationCheck;
+            final_decider = afw_s_initialAuthorizationCheck;
         }
 
         /* Do check. */
@@ -559,7 +559,7 @@ afw_authorization_check(
             result = afw_value_evaluate(check, p, xctx);
 
             if (!result || afw_value_is_null(result)) {
-                decision_id = &afw_s_notApplicable;
+                decision_id = afw_s_notApplicable;
             }
             else {
                 if (!afw_value_is_object(result)) {
@@ -569,7 +569,7 @@ afw_authorization_check(
                 }
                 decision_id = afw_object_old_get_property_as_string(
                     ((const afw_value_object_t *)result)->internal,
-                    &afw_s_decisionId, xctx);
+                    afw_s_decisionId, xctx);
                 if (!decision_id) {
                     AFW_THROW_ERROR_FZ(general, xctx,
                         "applicationControl.%s returned an "
@@ -578,13 +578,13 @@ afw_authorization_check(
                 }
             }
 
-            if (afw_utf8_equal(decision_id, &afw_s_permit)) {
+            if (afw_utf8_equal(decision_id, afw_s_permit)) {
                 final_result = true;
             }
-            else if (afw_utf8_equal(decision_id, &afw_s_deny)) {
+            else if (afw_utf8_equal(decision_id, afw_s_deny)) {
                 final_result = true;
             }
-            else if (afw_utf8_equal(decision_id, &afw_s_notApplicable)) {
+            else if (afw_utf8_equal(decision_id, afw_s_notApplicable)) {
                 final_result = false;
             }
             else {
@@ -598,7 +598,7 @@ afw_authorization_check(
 
         /* Check with authorization handlers. */
         if (!final_result && xctx->mode != afw_authorization_mode_id_core_value) {
-            for (decision_id = &afw_s_notApplicable,
+            for (decision_id = afw_s_notApplicable,
                 result = NULL,
                 anchor = xctx->env->authorization_control->first_anchor;
                 anchor;
@@ -608,7 +608,7 @@ afw_authorization_check(
                 if (ah) {
                     current_decider = &ah->authorization_handler_id;
                     (void)current_decider; /* In catch. Avoid "not used". */
-                    if (afw_utf8_equal(decision_id, &afw_s_permit)) {
+                    if (afw_utf8_equal(decision_id, afw_s_permit)) {
                         if (!ah->allow_permit_override) {
                             afw_trace_fz(1, ah->trace_flag_index,
                                 NULL, xctx,
@@ -627,7 +627,7 @@ afw_authorization_check(
                             continue;
                         }
                     }
-                    else if (afw_utf8_equal(decision_id, &afw_s_deny)) {
+                    else if (afw_utf8_equal(decision_id, afw_s_deny)) {
                         if (!ah->allow_deny_override) {
                             afw_trace_fz(1, ah->trace_flag_index,
                                 NULL, xctx,
@@ -651,9 +651,9 @@ afw_authorization_check(
                     if (result2) {
                         decision_id2 = afw_object_old_get_property_as_string(
                             ((const afw_value_object_t *)result2)->internal,
-                            &afw_s_decisionId, xctx);
-                        if (afw_utf8_equal(decision_id2, &afw_s_permit) ||
-                            afw_utf8_equal(decision_id2, &afw_s_deny)) {
+                            afw_s_decisionId, xctx);
+                        if (afw_utf8_equal(decision_id2, afw_s_permit) ||
+                            afw_utf8_equal(decision_id2, afw_s_deny)) {
                             result = result2;
                             decision_id = decision_id2;
                             final_result = true;
@@ -683,9 +683,9 @@ afw_authorization_check(
 
         /* If not applicable, permit/deny based on deny_if_not_applicable*/
         if (!final_result) {
-            current_decider = &afw_s_denyIfNotApplicable;
+            current_decider = afw_s_denyIfNotApplicable;
             (void)current_decider; /* In catch. Avoid "not used" error. */
-            final_decider = &afw_s_denyIfNotApplicable;
+            final_decider = afw_s_denyIfNotApplicable;
             result = ctl->not_applicable_result;
             decision_id = ctl->not_applicable_decision_id;
         }
@@ -696,12 +696,12 @@ afw_authorization_check(
     AFW_CATCH_UNHANDLED{
         obj = afw_object_create(p, xctx);
         afw_object_meta_set_object_type_id(obj,
-            &afw_s__AdaptiveAuthorizationResult_, xctx);
-        afw_object_set_property(obj, &afw_s_decisionId,
+            afw_s__AdaptiveAuthorizationResult_, xctx);
+        afw_object_set_property(obj, afw_s_decisionId,
             afw_authorization_decision_id_indeterminate_value,
             xctx);
         result = afw_value_create_object(obj, p, xctx);
-        decision_id = &afw_s_indeterminate;
+        decision_id = afw_s_indeterminate;
         final_decider = current_decider;
 
         if (afw_flag_is_active(
@@ -753,11 +753,11 @@ afw_authorization_check(
     }
 
     if (enforce) {
-        if (!afw_utf8_equal(decision_id, &afw_s_permit)) {
+        if (!afw_utf8_equal(decision_id, afw_s_permit)) {
             obj = afw_object_create(p, xctx);
-            afw_object_set_property(obj, &afw_s_actionId,
+            afw_object_set_property(obj, afw_s_actionId,
                 action_id_value, xctx);
-            afw_object_set_property(obj, &afw_s_resourceId,
+            afw_object_set_property(obj, afw_s_resourceId,
                 request_id_value, xctx);
             result = afw_value_create_object(obj, p, xctx);
 
@@ -801,7 +801,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_actionId_meta =
 {
-    &afw_s_actionId,
+    &afw_self_s_actionId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Action Id"
@@ -842,8 +842,8 @@ afw_authorization_internal_register(
 
     /* Register context handlers */
     afw_context_type_register_cb_variables(
-        &afw_s_authorizationCheck,
-        &afw_s_current,
+        afw_s_authorizationCheck,
+        afw_s_current,
         "Qualified variables available during authorizationCheck processing",
         &impl_context_current_runtime_ctx[0],
         1, xctx);
@@ -851,90 +851,90 @@ afw_authorization_internal_register(
 
     /* Register flag trace:authorization:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization_detail,
-        &afw_s_a_flag_trace_authorization_detail_brief,
-        &afw_s_a_flag_trace_authorization_detail_description,
-        &afw_s_a_flag_trace_detail,
+        afw_s_a_flag_trace_authorization_detail,
+        afw_s_a_flag_trace_authorization_detail_brief,
+        afw_s_a_flag_trace_authorization_detail_description,
+        afw_s_a_flag_trace_detail,
         xctx);
 
     /* Register flag trace:authorization */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization,
-        &afw_s_a_flag_trace_authorization_brief,
-        &afw_s_a_flag_trace_authorization_description,
-        &afw_s_a_flag_trace,
+        afw_s_a_flag_trace_authorization,
+        afw_s_a_flag_trace_authorization_brief,
+        afw_s_a_flag_trace_authorization_description,
+        afw_s_a_flag_trace,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_trace_authorization,
-        &afw_s_a_flag_trace_authorization_detail,
+        afw_s_a_flag_trace_authorization,
+        afw_s_a_flag_trace_authorization_detail,
         xctx);
 
     /* Register flag trace:authorization:check:bypass */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization_check_bypass,
-        &afw_s_a_flag_trace_authorization_check_bypass_brief,
-        &afw_s_a_flag_trace_authorization_check_bypass_description,
-        &afw_s_a_flag_trace_authorization,
+        afw_s_a_flag_trace_authorization_check_bypass,
+        afw_s_a_flag_trace_authorization_check_bypass_brief,
+        afw_s_a_flag_trace_authorization_check_bypass_description,
+        afw_s_a_flag_trace_authorization,
         xctx);
     env->flag_index_trace_authorization_check_bypass =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_authorization_check_bypass,
+            afw_s_a_flag_trace_authorization_check_bypass,
             xctx)->flag_index;
 
     /* Register flag trace:authorization:check:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization_check_detail,
-        &afw_s_a_flag_trace_authorization_check_detail_brief,
-        &afw_s_a_flag_trace_authorization_check_detail_description,
-        &afw_s_a_flag_trace_authorization_detail,
+        afw_s_a_flag_trace_authorization_check_detail,
+        afw_s_a_flag_trace_authorization_check_detail_brief,
+        afw_s_a_flag_trace_authorization_check_detail_description,
+        afw_s_a_flag_trace_authorization_detail,
         xctx);
     env->flag_index_trace_authorization_check_detail =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_authorization_check_detail,
+            afw_s_a_flag_trace_authorization_check_detail,
             xctx)->flag_index;
 
     /* Register flag trace:authorization:check */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization_check,
-        &afw_s_a_flag_trace_authorization_check_brief,
-        &afw_s_a_flag_trace_authorization_check_description,
-        &afw_s_a_flag_trace_authorization,
+        afw_s_a_flag_trace_authorization_check,
+        afw_s_a_flag_trace_authorization_check_brief,
+        afw_s_a_flag_trace_authorization_check_description,
+        afw_s_a_flag_trace_authorization,
         xctx);
     env->flag_index_trace_authorization_check =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_authorization_check,
+            afw_s_a_flag_trace_authorization_check,
             xctx)->flag_index;
     afw_flag_add_included_by(
-        &afw_s_a_flag_trace_authorization_check,
-        &afw_s_a_flag_trace_authorization_check_detail,
+        afw_s_a_flag_trace_authorization_check,
+        afw_s_a_flag_trace_authorization_check_detail,
         xctx);
 
     /* Register flag trace:authorization:decision:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization_decision_detail,
-        &afw_s_a_flag_trace_authorization_decision_detail_brief,
-        &afw_s_a_flag_trace_authorization_decision_detail_description,
-        &afw_s_a_flag_trace_authorization_detail,
+        afw_s_a_flag_trace_authorization_decision_detail,
+        afw_s_a_flag_trace_authorization_decision_detail_brief,
+        afw_s_a_flag_trace_authorization_decision_detail_description,
+        afw_s_a_flag_trace_authorization_detail,
         xctx);
     env->flag_index_trace_authorization_decision_detail =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_authorization_decision_detail,
+            afw_s_a_flag_trace_authorization_decision_detail,
             xctx)->flag_index;
 
     /* Register flag trace:authorization:decision */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorization_decision,
-        &afw_s_a_flag_trace_authorization_decision_brief,
-        &afw_s_a_flag_trace_authorization_decision_description,
-        &afw_s_a_flag_trace_authorization,
+        afw_s_a_flag_trace_authorization_decision,
+        afw_s_a_flag_trace_authorization_decision_brief,
+        afw_s_a_flag_trace_authorization_decision_description,
+        afw_s_a_flag_trace_authorization,
         xctx);
     env->flag_index_trace_authorization_decision =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_authorization_decision,
+            afw_s_a_flag_trace_authorization_decision,
             xctx)->flag_index;
     afw_flag_add_included_by(
-        &afw_s_a_flag_trace_authorization_decision,
-        &afw_s_a_flag_trace_authorization_decision_detail,
+        afw_s_a_flag_trace_authorization_decision,
+        afw_s_a_flag_trace_authorization_decision_detail,
         xctx);
 
 }
@@ -1137,8 +1137,8 @@ afw_authorization_handler_get_reference(
     /* If authorizationHandler is not registered, try starting it. */
     if (!instance) {
         service_id = afw_utf8_concat(xctx->p, xctx,
-            &afw_s_authorizationHandler,
-            &afw_s_a_dash, authorization_handler_id, NULL);
+            afw_s_authorizationHandler,
+            afw_s_a_dash, authorization_handler_id, NULL);
         afw_service_start(service_id, false, xctx);
         instance = impl_get_reference(authorization_handler_id, xctx);
         if (!instance) {
@@ -1211,7 +1211,7 @@ impl_authorization_conf_type_create_cede_p(
 
     /* Get authorization_handler_id. */
     authorization_id = afw_object_old_get_property_as_string(conf,
-        &afw_s_authorizationHandlerId, xctx);
+        afw_s_authorizationHandlerId, xctx);
     if (!authorization_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -1245,33 +1245,33 @@ afw_authorization_internal_register_service_and_conf(
 
     /* Register type "authorization" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        &afw_s_authorizationHandler,
+        afw_s_authorizationHandler,
         impl_authorization_conf_type_create_cede_p,
-        &afw_s_a_authorizationHandler_title,
-        &afw_s_a_authorizationHandler_description,
-        &afw_s_authorizationHandlerId,
-        &afw_s_authorization_handler_id,
-        &afw_s__AdaptiveAuthorizationHandler_,
-        &afw_s_authorizationHandlerType,
-        &afw_s_authorization_handler_type,
-        &afw_s__AdaptiveAuthorizationHandlerType_,
+        afw_s_a_authorizationHandler_title,
+        afw_s_a_authorizationHandler_description,
+        afw_s_authorizationHandlerId,
+        afw_s_authorization_handler_id,
+        afw_s__AdaptiveAuthorizationHandler_,
+        afw_s_authorizationHandlerType,
+        afw_s_authorization_handler_type,
+        afw_s__AdaptiveAuthorizationHandlerType_,
         false,
         xctx);
 
     /* Create and register service type. */
     self = afw_xctx_calloc_type(afw_service_type_t, xctx);
     self->inf = &impl_afw_service_type_inf;
-    afw_memory_copy(&self->service_type_id, &afw_s_authorizationHandler);
+    afw_memory_copy(&self->service_type_id, afw_s_authorizationHandler);
     self->conf_type = afw_environment_get_conf_type(
-        &afw_s_authorizationHandler, xctx);
+        afw_s_authorizationHandler, xctx);
     if (!self->conf_type) {
         AFW_THROW_ERROR_Z(general, "conf_type must already be registered",
             xctx);
     }
-    self->title = &afw_s_a_service_type_authorizationHandler_title;
-    self->conf_type_object = afw_runtime_get_object(&afw_s__AdaptiveConfType_,
-        &afw_s_authorizationHandler, xctx);
-    afw_environment_register_service_type(&afw_s_authorizationHandler, self, xctx);
+    self->title = afw_s_a_service_type_authorizationHandler_title;
+    self->conf_type_object = afw_runtime_get_object(afw_s__AdaptiveConfType_,
+        afw_s_authorizationHandler, xctx);
+    afw_environment_register_service_type(afw_s_authorizationHandler, self, xctx);
 }
 
 
@@ -1330,7 +1330,7 @@ impl_afw_service_type_start_cede_p (
     const afw_utf8_t *authorization_handler_type;
 
     authorization_handler_type = afw_object_old_get_property_as_utf8(
-        properties, &afw_s_authorizationHandlerType, p, xctx);
+        properties, afw_s_authorizationHandlerType, p, xctx);
     if (!authorization_handler_type) {
         AFW_THROW_ERROR_Z(general,
             "parameter authorizationHandlerType missing",

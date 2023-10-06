@@ -35,15 +35,23 @@
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Autocomplete */
 #define afw_components_s_Autocomplete \
-    (afw_components_v_Autocomplete.internal)
+    (&afw_components_self_v_Autocomplete.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Autocomplete */
+#define afw_components_self_s_Autocomplete \
+    (afw_components_self_v_Autocomplete.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Autocomplete */
 extern const afw_value_string_t \
-    afw_components_v_Autocomplete;
+    afw_components_self_v_Autocomplete;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Autocomplete */
 #define afw_components_z_Autocomplete \
-    (afw_components_v_Autocomplete.internal.s)
+    (afw_components_self_v_Autocomplete.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Autocomplete */
+#define afw_components_v_Autocomplete \
+    ((const afw_value_t *)&afw_components_self_v_Autocomplete)
 
 
 
@@ -53,15 +61,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Box */
 #define afw_components_s_Box \
-    (afw_components_v_Box.internal)
+    (&afw_components_self_v_Box.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Box */
+#define afw_components_self_s_Box \
+    (afw_components_self_v_Box.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Box */
 extern const afw_value_string_t \
-    afw_components_v_Box;
+    afw_components_self_v_Box;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Box */
 #define afw_components_z_Box \
-    (afw_components_v_Box.internal.s)
+    (afw_components_self_v_Box.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Box */
+#define afw_components_v_Box \
+    ((const afw_value_t *)&afw_components_self_v_Box)
 
 
 
@@ -71,15 +87,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Breadcrumb */
 #define afw_components_s_Breadcrumb \
-    (afw_components_v_Breadcrumb.internal)
+    (&afw_components_self_v_Breadcrumb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Breadcrumb */
+#define afw_components_self_s_Breadcrumb \
+    (afw_components_self_v_Breadcrumb.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Breadcrumb */
 extern const afw_value_string_t \
-    afw_components_v_Breadcrumb;
+    afw_components_self_v_Breadcrumb;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Breadcrumb */
 #define afw_components_z_Breadcrumb \
-    (afw_components_v_Breadcrumb.internal.s)
+    (afw_components_self_v_Breadcrumb.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Breadcrumb */
+#define afw_components_v_Breadcrumb \
+    ((const afw_value_t *)&afw_components_self_v_Breadcrumb)
 
 
 
@@ -89,15 +113,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Button */
 #define afw_components_s_Button \
-    (afw_components_v_Button.internal)
+    (&afw_components_self_v_Button.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Button */
+#define afw_components_self_s_Button \
+    (afw_components_self_v_Button.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Button */
 extern const afw_value_string_t \
-    afw_components_v_Button;
+    afw_components_self_v_Button;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Button */
 #define afw_components_z_Button \
-    (afw_components_v_Button.internal.s)
+    (afw_components_self_v_Button.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Button */
+#define afw_components_v_Button \
+    ((const afw_value_t *)&afw_components_self_v_Button)
 
 
 
@@ -107,15 +139,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Callout */
 #define afw_components_s_Callout \
-    (afw_components_v_Callout.internal)
+    (&afw_components_self_v_Callout.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Callout */
+#define afw_components_self_s_Callout \
+    (afw_components_self_v_Callout.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Callout */
 extern const afw_value_string_t \
-    afw_components_v_Callout;
+    afw_components_self_v_Callout;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Callout */
 #define afw_components_z_Callout \
-    (afw_components_v_Callout.internal.s)
+    (afw_components_self_v_Callout.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Callout */
+#define afw_components_v_Callout \
+    ((const afw_value_t *)&afw_components_self_v_Callout)
 
 
 
@@ -125,15 +165,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Chart */
 #define afw_components_s_Chart \
-    (afw_components_v_Chart.internal)
+    (&afw_components_self_v_Chart.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Chart */
+#define afw_components_self_s_Chart \
+    (afw_components_self_v_Chart.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Chart */
 extern const afw_value_string_t \
-    afw_components_v_Chart;
+    afw_components_self_v_Chart;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Chart */
 #define afw_components_z_Chart \
-    (afw_components_v_Chart.internal.s)
+    (afw_components_self_v_Chart.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Chart */
+#define afw_components_v_Chart \
+    ((const afw_value_t *)&afw_components_self_v_Chart)
 
 
 
@@ -143,15 +191,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Checkbox */
 #define afw_components_s_Checkbox \
-    (afw_components_v_Checkbox.internal)
+    (&afw_components_self_v_Checkbox.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Checkbox */
+#define afw_components_self_s_Checkbox \
+    (afw_components_self_v_Checkbox.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Checkbox */
 extern const afw_value_string_t \
-    afw_components_v_Checkbox;
+    afw_components_self_v_Checkbox;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Checkbox */
 #define afw_components_z_Checkbox \
-    (afw_components_v_Checkbox.internal.s)
+    (afw_components_self_v_Checkbox.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Checkbox */
+#define afw_components_v_Checkbox \
+    ((const afw_value_t *)&afw_components_self_v_Checkbox)
 
 
 
@@ -161,15 +217,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_ChoiceGroup */
 #define afw_components_s_ChoiceGroup \
-    (afw_components_v_ChoiceGroup.internal)
+    (&afw_components_self_v_ChoiceGroup.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_ChoiceGroup */
+#define afw_components_self_s_ChoiceGroup \
+    (afw_components_self_v_ChoiceGroup.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_ChoiceGroup */
 extern const afw_value_string_t \
-    afw_components_v_ChoiceGroup;
+    afw_components_self_v_ChoiceGroup;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_ChoiceGroup */
 #define afw_components_z_ChoiceGroup \
-    (afw_components_v_ChoiceGroup.internal.s)
+    (afw_components_self_v_ChoiceGroup.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_ChoiceGroup */
+#define afw_components_v_ChoiceGroup \
+    ((const afw_value_t *)&afw_components_self_v_ChoiceGroup)
 
 
 
@@ -179,15 +243,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_CodeEditor */
 #define afw_components_s_CodeEditor \
-    (afw_components_v_CodeEditor.internal)
+    (&afw_components_self_v_CodeEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_CodeEditor */
+#define afw_components_self_s_CodeEditor \
+    (afw_components_self_v_CodeEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_CodeEditor */
 extern const afw_value_string_t \
-    afw_components_v_CodeEditor;
+    afw_components_self_v_CodeEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_CodeEditor */
 #define afw_components_z_CodeEditor \
-    (afw_components_v_CodeEditor.internal.s)
+    (afw_components_self_v_CodeEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_CodeEditor */
+#define afw_components_v_CodeEditor \
+    ((const afw_value_t *)&afw_components_self_v_CodeEditor)
 
 
 
@@ -197,15 +269,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Collapsible */
 #define afw_components_s_Collapsible \
-    (afw_components_v_Collapsible.internal)
+    (&afw_components_self_v_Collapsible.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Collapsible */
+#define afw_components_self_s_Collapsible \
+    (afw_components_self_v_Collapsible.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Collapsible */
 extern const afw_value_string_t \
-    afw_components_v_Collapsible;
+    afw_components_self_v_Collapsible;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Collapsible */
 #define afw_components_z_Collapsible \
-    (afw_components_v_Collapsible.internal.s)
+    (afw_components_self_v_Collapsible.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Collapsible */
+#define afw_components_v_Collapsible \
+    ((const afw_value_t *)&afw_components_self_v_Collapsible)
 
 
 
@@ -215,15 +295,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DatePicker */
 #define afw_components_s_DatePicker \
-    (afw_components_v_DatePicker.internal)
+    (&afw_components_self_v_DatePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DatePicker */
+#define afw_components_self_s_DatePicker \
+    (afw_components_self_v_DatePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_DatePicker */
 extern const afw_value_string_t \
-    afw_components_v_DatePicker;
+    afw_components_self_v_DatePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DatePicker */
 #define afw_components_z_DatePicker \
-    (afw_components_v_DatePicker.internal.s)
+    (afw_components_self_v_DatePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DatePicker */
+#define afw_components_v_DatePicker \
+    ((const afw_value_t *)&afw_components_self_v_DatePicker)
 
 
 
@@ -233,15 +321,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DateTimePicker */
 #define afw_components_s_DateTimePicker \
-    (afw_components_v_DateTimePicker.internal)
+    (&afw_components_self_v_DateTimePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DateTimePicker */
+#define afw_components_self_s_DateTimePicker \
+    (afw_components_self_v_DateTimePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_DateTimePicker */
 extern const afw_value_string_t \
-    afw_components_v_DateTimePicker;
+    afw_components_self_v_DateTimePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DateTimePicker */
 #define afw_components_z_DateTimePicker \
-    (afw_components_v_DateTimePicker.internal.s)
+    (afw_components_self_v_DateTimePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DateTimePicker */
+#define afw_components_v_DateTimePicker \
+    ((const afw_value_t *)&afw_components_self_v_DateTimePicker)
 
 
 
@@ -251,15 +347,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Dialog */
 #define afw_components_s_Dialog \
-    (afw_components_v_Dialog.internal)
+    (&afw_components_self_v_Dialog.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Dialog */
+#define afw_components_self_s_Dialog \
+    (afw_components_self_v_Dialog.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Dialog */
 extern const afw_value_string_t \
-    afw_components_v_Dialog;
+    afw_components_self_v_Dialog;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Dialog */
 #define afw_components_z_Dialog \
-    (afw_components_v_Dialog.internal.s)
+    (afw_components_self_v_Dialog.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Dialog */
+#define afw_components_v_Dialog \
+    ((const afw_value_t *)&afw_components_self_v_Dialog)
 
 
 
@@ -269,15 +373,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DiffEditor */
 #define afw_components_s_DiffEditor \
-    (afw_components_v_DiffEditor.internal)
+    (&afw_components_self_v_DiffEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DiffEditor */
+#define afw_components_self_s_DiffEditor \
+    (afw_components_self_v_DiffEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_DiffEditor */
 extern const afw_value_string_t \
-    afw_components_v_DiffEditor;
+    afw_components_self_v_DiffEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DiffEditor */
 #define afw_components_z_DiffEditor \
-    (afw_components_v_DiffEditor.internal.s)
+    (afw_components_self_v_DiffEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DiffEditor */
+#define afw_components_v_DiffEditor \
+    ((const afw_value_t *)&afw_components_self_v_DiffEditor)
 
 
 
@@ -287,15 +399,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Divider */
 #define afw_components_s_Divider \
-    (afw_components_v_Divider.internal)
+    (&afw_components_self_v_Divider.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Divider */
+#define afw_components_self_s_Divider \
+    (afw_components_self_v_Divider.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Divider */
 extern const afw_value_string_t \
-    afw_components_v_Divider;
+    afw_components_self_v_Divider;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Divider */
 #define afw_components_z_Divider \
-    (afw_components_v_Divider.internal.s)
+    (afw_components_self_v_Divider.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Divider */
+#define afw_components_v_Divider \
+    ((const afw_value_t *)&afw_components_self_v_Divider)
 
 
 
@@ -305,15 +425,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Drawer */
 #define afw_components_s_Drawer \
-    (afw_components_v_Drawer.internal)
+    (&afw_components_self_v_Drawer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Drawer */
+#define afw_components_self_s_Drawer \
+    (afw_components_self_v_Drawer.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Drawer */
 extern const afw_value_string_t \
-    afw_components_v_Drawer;
+    afw_components_self_v_Drawer;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Drawer */
 #define afw_components_z_Drawer \
-    (afw_components_v_Drawer.internal.s)
+    (afw_components_self_v_Drawer.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Drawer */
+#define afw_components_v_Drawer \
+    ((const afw_value_t *)&afw_components_self_v_Drawer)
 
 
 
@@ -323,15 +451,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Dropdown */
 #define afw_components_s_Dropdown \
-    (afw_components_v_Dropdown.internal)
+    (&afw_components_self_v_Dropdown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Dropdown */
+#define afw_components_self_s_Dropdown \
+    (afw_components_self_v_Dropdown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Dropdown */
 extern const afw_value_string_t \
-    afw_components_v_Dropdown;
+    afw_components_self_v_Dropdown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Dropdown */
 #define afw_components_z_Dropdown \
-    (afw_components_v_Dropdown.internal.s)
+    (afw_components_self_v_Dropdown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Dropdown */
+#define afw_components_v_Dropdown \
+    ((const afw_value_t *)&afw_components_self_v_Dropdown)
 
 
 
@@ -341,15 +477,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DropdownEditor */
 #define afw_components_s_DropdownEditor \
-    (afw_components_v_DropdownEditor.internal)
+    (&afw_components_self_v_DropdownEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_DropdownEditor */
+#define afw_components_self_s_DropdownEditor \
+    (afw_components_self_v_DropdownEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_DropdownEditor */
 extern const afw_value_string_t \
-    afw_components_v_DropdownEditor;
+    afw_components_self_v_DropdownEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DropdownEditor */
 #define afw_components_z_DropdownEditor \
-    (afw_components_v_DropdownEditor.internal.s)
+    (afw_components_self_v_DropdownEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_DropdownEditor */
+#define afw_components_v_DropdownEditor \
+    ((const afw_value_t *)&afw_components_self_v_DropdownEditor)
 
 
 
@@ -359,15 +503,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_EditableCallout */
 #define afw_components_s_EditableCallout \
-    (afw_components_v_EditableCallout.internal)
+    (&afw_components_self_v_EditableCallout.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_EditableCallout */
+#define afw_components_self_s_EditableCallout \
+    (afw_components_self_v_EditableCallout.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_EditableCallout */
 extern const afw_value_string_t \
-    afw_components_v_EditableCallout;
+    afw_components_self_v_EditableCallout;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_EditableCallout */
 #define afw_components_z_EditableCallout \
-    (afw_components_v_EditableCallout.internal.s)
+    (afw_components_self_v_EditableCallout.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_EditableCallout */
+#define afw_components_v_EditableCallout \
+    ((const afw_value_t *)&afw_components_self_v_EditableCallout)
 
 
 
@@ -377,15 +529,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_EditableLabel */
 #define afw_components_s_EditableLabel \
-    (afw_components_v_EditableLabel.internal)
+    (&afw_components_self_v_EditableLabel.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_EditableLabel */
+#define afw_components_self_s_EditableLabel \
+    (afw_components_self_v_EditableLabel.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_EditableLabel */
 extern const afw_value_string_t \
-    afw_components_v_EditableLabel;
+    afw_components_self_v_EditableLabel;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_EditableLabel */
 #define afw_components_z_EditableLabel \
-    (afw_components_v_EditableLabel.internal.s)
+    (afw_components_self_v_EditableLabel.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_EditableLabel */
+#define afw_components_v_EditableLabel \
+    ((const afw_value_t *)&afw_components_self_v_EditableLabel)
 
 
 
@@ -395,15 +555,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Hidden */
 #define afw_components_s_Hidden \
-    (afw_components_v_Hidden.internal)
+    (&afw_components_self_v_Hidden.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Hidden */
+#define afw_components_self_s_Hidden \
+    (afw_components_self_v_Hidden.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Hidden */
 extern const afw_value_string_t \
-    afw_components_v_Hidden;
+    afw_components_self_v_Hidden;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Hidden */
 #define afw_components_z_Hidden \
-    (afw_components_v_Hidden.internal.s)
+    (afw_components_self_v_Hidden.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Hidden */
+#define afw_components_v_Hidden \
+    ((const afw_value_t *)&afw_components_self_v_Hidden)
 
 
 
@@ -413,15 +581,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Icon */
 #define afw_components_s_Icon \
-    (afw_components_v_Icon.internal)
+    (&afw_components_self_v_Icon.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Icon */
+#define afw_components_self_s_Icon \
+    (afw_components_self_v_Icon.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Icon */
 extern const afw_value_string_t \
-    afw_components_v_Icon;
+    afw_components_self_v_Icon;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Icon */
 #define afw_components_z_Icon \
-    (afw_components_v_Icon.internal.s)
+    (afw_components_self_v_Icon.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Icon */
+#define afw_components_v_Icon \
+    ((const afw_value_t *)&afw_components_self_v_Icon)
 
 
 
@@ -431,15 +607,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Image */
 #define afw_components_s_Image \
-    (afw_components_v_Image.internal)
+    (&afw_components_self_v_Image.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Image */
+#define afw_components_self_s_Image \
+    (afw_components_self_v_Image.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Image */
 extern const afw_value_string_t \
-    afw_components_v_Image;
+    afw_components_self_v_Image;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Image */
 #define afw_components_z_Image \
-    (afw_components_v_Image.internal.s)
+    (afw_components_self_v_Image.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Image */
+#define afw_components_v_Image \
+    ((const afw_value_t *)&afw_components_self_v_Image)
 
 
 
@@ -449,15 +633,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Link */
 #define afw_components_s_Link \
-    (afw_components_v_Link.internal)
+    (&afw_components_self_v_Link.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Link */
+#define afw_components_self_s_Link \
+    (afw_components_self_v_Link.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Link */
 extern const afw_value_string_t \
-    afw_components_v_Link;
+    afw_components_self_v_Link;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Link */
 #define afw_components_z_Link \
-    (afw_components_v_Link.internal.s)
+    (afw_components_self_v_Link.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Link */
+#define afw_components_v_Link \
+    ((const afw_value_t *)&afw_components_self_v_Link)
 
 
 
@@ -467,15 +659,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_List */
 #define afw_components_s_List \
-    (afw_components_v_List.internal)
+    (&afw_components_self_v_List.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_List */
+#define afw_components_self_s_List \
+    (afw_components_self_v_List.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_List */
 extern const afw_value_string_t \
-    afw_components_v_List;
+    afw_components_self_v_List;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_List */
 #define afw_components_z_List \
-    (afw_components_v_List.internal.s)
+    (afw_components_self_v_List.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_List */
+#define afw_components_v_List \
+    ((const afw_value_t *)&afw_components_self_v_List)
 
 
 
@@ -485,15 +685,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_ListEditor */
 #define afw_components_s_ListEditor \
-    (afw_components_v_ListEditor.internal)
+    (&afw_components_self_v_ListEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_ListEditor */
+#define afw_components_self_s_ListEditor \
+    (afw_components_self_v_ListEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_ListEditor */
 extern const afw_value_string_t \
-    afw_components_v_ListEditor;
+    afw_components_self_v_ListEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_ListEditor */
 #define afw_components_z_ListEditor \
-    (afw_components_v_ListEditor.internal.s)
+    (afw_components_self_v_ListEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_ListEditor */
+#define afw_components_v_ListEditor \
+    ((const afw_value_t *)&afw_components_self_v_ListEditor)
 
 
 
@@ -503,15 +711,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Menu */
 #define afw_components_s_Menu \
-    (afw_components_v_Menu.internal)
+    (&afw_components_self_v_Menu.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Menu */
+#define afw_components_self_s_Menu \
+    (afw_components_self_v_Menu.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Menu */
 extern const afw_value_string_t \
-    afw_components_v_Menu;
+    afw_components_self_v_Menu;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Menu */
 #define afw_components_z_Menu \
-    (afw_components_v_Menu.internal.s)
+    (afw_components_self_v_Menu.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Menu */
+#define afw_components_v_Menu \
+    ((const afw_value_t *)&afw_components_self_v_Menu)
 
 
 
@@ -521,15 +737,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Message */
 #define afw_components_s_Message \
-    (afw_components_v_Message.internal)
+    (&afw_components_self_v_Message.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Message */
+#define afw_components_self_s_Message \
+    (afw_components_self_v_Message.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Message */
 extern const afw_value_string_t \
-    afw_components_v_Message;
+    afw_components_self_v_Message;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Message */
 #define afw_components_z_Message \
-    (afw_components_v_Message.internal.s)
+    (afw_components_self_v_Message.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Message */
+#define afw_components_v_Message \
+    ((const afw_value_t *)&afw_components_self_v_Message)
 
 
 
@@ -539,15 +763,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Modal */
 #define afw_components_s_Modal \
-    (afw_components_v_Modal.internal)
+    (&afw_components_self_v_Modal.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Modal */
+#define afw_components_self_s_Modal \
+    (afw_components_self_v_Modal.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Modal */
 extern const afw_value_string_t \
-    afw_components_v_Modal;
+    afw_components_self_v_Modal;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Modal */
 #define afw_components_z_Modal \
-    (afw_components_v_Modal.internal.s)
+    (afw_components_self_v_Modal.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Modal */
+#define afw_components_v_Modal \
+    ((const afw_value_t *)&afw_components_self_v_Modal)
 
 
 
@@ -557,15 +789,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Native */
 #define afw_components_s_Native \
-    (afw_components_v_Native.internal)
+    (&afw_components_self_v_Native.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Native */
+#define afw_components_self_s_Native \
+    (afw_components_self_v_Native.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Native */
 extern const afw_value_string_t \
-    afw_components_v_Native;
+    afw_components_self_v_Native;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Native */
 #define afw_components_z_Native \
-    (afw_components_v_Native.internal.s)
+    (afw_components_self_v_Native.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Native */
+#define afw_components_v_Native \
+    ((const afw_value_t *)&afw_components_self_v_Native)
 
 
 
@@ -575,15 +815,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Nav */
 #define afw_components_s_Nav \
-    (afw_components_v_Nav.internal)
+    (&afw_components_self_v_Nav.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Nav */
+#define afw_components_self_s_Nav \
+    (afw_components_self_v_Nav.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Nav */
 extern const afw_value_string_t \
-    afw_components_v_Nav;
+    afw_components_self_v_Nav;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Nav */
 #define afw_components_z_Nav \
-    (afw_components_v_Nav.internal.s)
+    (afw_components_self_v_Nav.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Nav */
+#define afw_components_v_Nav \
+    ((const afw_value_t *)&afw_components_self_v_Nav)
 
 
 
@@ -593,15 +841,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Paper */
 #define afw_components_s_Paper \
-    (afw_components_v_Paper.internal)
+    (&afw_components_self_v_Paper.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Paper */
+#define afw_components_self_s_Paper \
+    (afw_components_self_v_Paper.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Paper */
 extern const afw_value_string_t \
-    afw_components_v_Paper;
+    afw_components_self_v_Paper;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Paper */
 #define afw_components_z_Paper \
-    (afw_components_v_Paper.internal.s)
+    (afw_components_self_v_Paper.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Paper */
+#define afw_components_v_Paper \
+    ((const afw_value_t *)&afw_components_self_v_Paper)
 
 
 
@@ -611,15 +867,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Picker */
 #define afw_components_s_Picker \
-    (afw_components_v_Picker.internal)
+    (&afw_components_self_v_Picker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Picker */
+#define afw_components_self_s_Picker \
+    (afw_components_self_v_Picker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Picker */
 extern const afw_value_string_t \
-    afw_components_v_Picker;
+    afw_components_self_v_Picker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Picker */
 #define afw_components_z_Picker \
-    (afw_components_v_Picker.internal.s)
+    (afw_components_self_v_Picker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Picker */
+#define afw_components_v_Picker \
+    ((const afw_value_t *)&afw_components_self_v_Picker)
 
 
 
@@ -629,15 +893,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Responsive */
 #define afw_components_s_Responsive \
-    (afw_components_v_Responsive.internal)
+    (&afw_components_self_v_Responsive.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Responsive */
+#define afw_components_self_s_Responsive \
+    (afw_components_self_v_Responsive.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Responsive */
 extern const afw_value_string_t \
-    afw_components_v_Responsive;
+    afw_components_self_v_Responsive;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Responsive */
 #define afw_components_z_Responsive \
-    (afw_components_v_Responsive.internal.s)
+    (afw_components_self_v_Responsive.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Responsive */
+#define afw_components_v_Responsive \
+    ((const afw_value_t *)&afw_components_self_v_Responsive)
 
 
 
@@ -647,15 +919,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Skeleton */
 #define afw_components_s_Skeleton \
-    (afw_components_v_Skeleton.internal)
+    (&afw_components_self_v_Skeleton.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Skeleton */
+#define afw_components_self_s_Skeleton \
+    (afw_components_self_v_Skeleton.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Skeleton */
 extern const afw_value_string_t \
-    afw_components_v_Skeleton;
+    afw_components_self_v_Skeleton;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Skeleton */
 #define afw_components_z_Skeleton \
-    (afw_components_v_Skeleton.internal.s)
+    (afw_components_self_v_Skeleton.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Skeleton */
+#define afw_components_v_Skeleton \
+    ((const afw_value_t *)&afw_components_self_v_Skeleton)
 
 
 
@@ -665,15 +945,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Slider */
 #define afw_components_s_Slider \
-    (afw_components_v_Slider.internal)
+    (&afw_components_self_v_Slider.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Slider */
+#define afw_components_self_s_Slider \
+    (afw_components_self_v_Slider.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Slider */
 extern const afw_value_string_t \
-    afw_components_v_Slider;
+    afw_components_self_v_Slider;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Slider */
 #define afw_components_z_Slider \
-    (afw_components_v_Slider.internal.s)
+    (afw_components_self_v_Slider.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Slider */
+#define afw_components_v_Slider \
+    ((const afw_value_t *)&afw_components_self_v_Slider)
 
 
 
@@ -683,15 +971,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Snackbar */
 #define afw_components_s_Snackbar \
-    (afw_components_v_Snackbar.internal)
+    (&afw_components_self_v_Snackbar.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Snackbar */
+#define afw_components_self_s_Snackbar \
+    (afw_components_self_v_Snackbar.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Snackbar */
 extern const afw_value_string_t \
-    afw_components_v_Snackbar;
+    afw_components_self_v_Snackbar;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Snackbar */
 #define afw_components_z_Snackbar \
-    (afw_components_v_Snackbar.internal.s)
+    (afw_components_self_v_Snackbar.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Snackbar */
+#define afw_components_v_Snackbar \
+    ((const afw_value_t *)&afw_components_self_v_Snackbar)
 
 
 
@@ -701,15 +997,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_SpinButton */
 #define afw_components_s_SpinButton \
-    (afw_components_v_SpinButton.internal)
+    (&afw_components_self_v_SpinButton.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_SpinButton */
+#define afw_components_self_s_SpinButton \
+    (afw_components_self_v_SpinButton.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_SpinButton */
 extern const afw_value_string_t \
-    afw_components_v_SpinButton;
+    afw_components_self_v_SpinButton;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_SpinButton */
 #define afw_components_z_SpinButton \
-    (afw_components_v_SpinButton.internal.s)
+    (afw_components_self_v_SpinButton.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_SpinButton */
+#define afw_components_v_SpinButton \
+    ((const afw_value_t *)&afw_components_self_v_SpinButton)
 
 
 
@@ -719,15 +1023,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Spinner */
 #define afw_components_s_Spinner \
-    (afw_components_v_Spinner.internal)
+    (&afw_components_self_v_Spinner.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Spinner */
+#define afw_components_self_s_Spinner \
+    (afw_components_self_v_Spinner.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Spinner */
 extern const afw_value_string_t \
-    afw_components_v_Spinner;
+    afw_components_self_v_Spinner;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Spinner */
 #define afw_components_z_Spinner \
-    (afw_components_v_Spinner.internal.s)
+    (afw_components_self_v_Spinner.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Spinner */
+#define afw_components_v_Spinner \
+    ((const afw_value_t *)&afw_components_self_v_Spinner)
 
 
 
@@ -737,15 +1049,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Stepper */
 #define afw_components_s_Stepper \
-    (afw_components_v_Stepper.internal)
+    (&afw_components_self_v_Stepper.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Stepper */
+#define afw_components_self_s_Stepper \
+    (afw_components_self_v_Stepper.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Stepper */
 extern const afw_value_string_t \
-    afw_components_v_Stepper;
+    afw_components_self_v_Stepper;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Stepper */
 #define afw_components_z_Stepper \
-    (afw_components_v_Stepper.internal.s)
+    (afw_components_self_v_Stepper.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Stepper */
+#define afw_components_v_Stepper \
+    ((const afw_value_t *)&afw_components_self_v_Stepper)
 
 
 
@@ -755,15 +1075,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Table */
 #define afw_components_s_Table \
-    (afw_components_v_Table.internal)
+    (&afw_components_self_v_Table.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Table */
+#define afw_components_self_s_Table \
+    (afw_components_self_v_Table.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Table */
 extern const afw_value_string_t \
-    afw_components_v_Table;
+    afw_components_self_v_Table;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Table */
 #define afw_components_z_Table \
-    (afw_components_v_Table.internal.s)
+    (afw_components_self_v_Table.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Table */
+#define afw_components_v_Table \
+    ((const afw_value_t *)&afw_components_self_v_Table)
 
 
 
@@ -773,15 +1101,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Tabs */
 #define afw_components_s_Tabs \
-    (afw_components_v_Tabs.internal)
+    (&afw_components_self_v_Tabs.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Tabs */
+#define afw_components_self_s_Tabs \
+    (afw_components_self_v_Tabs.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Tabs */
 extern const afw_value_string_t \
-    afw_components_v_Tabs;
+    afw_components_self_v_Tabs;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Tabs */
 #define afw_components_z_Tabs \
-    (afw_components_v_Tabs.internal.s)
+    (afw_components_self_v_Tabs.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Tabs */
+#define afw_components_v_Tabs \
+    ((const afw_value_t *)&afw_components_self_v_Tabs)
 
 
 
@@ -791,15 +1127,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TextField */
 #define afw_components_s_TextField \
-    (afw_components_v_TextField.internal)
+    (&afw_components_self_v_TextField.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TextField */
+#define afw_components_self_s_TextField \
+    (afw_components_self_v_TextField.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_TextField */
 extern const afw_value_string_t \
-    afw_components_v_TextField;
+    afw_components_self_v_TextField;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TextField */
 #define afw_components_z_TextField \
-    (afw_components_v_TextField.internal.s)
+    (afw_components_self_v_TextField.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TextField */
+#define afw_components_v_TextField \
+    ((const afw_value_t *)&afw_components_self_v_TextField)
 
 
 
@@ -809,15 +1153,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TimeDuration */
 #define afw_components_s_TimeDuration \
-    (afw_components_v_TimeDuration.internal)
+    (&afw_components_self_v_TimeDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TimeDuration */
+#define afw_components_self_s_TimeDuration \
+    (afw_components_self_v_TimeDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_TimeDuration */
 extern const afw_value_string_t \
-    afw_components_v_TimeDuration;
+    afw_components_self_v_TimeDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TimeDuration */
 #define afw_components_z_TimeDuration \
-    (afw_components_v_TimeDuration.internal.s)
+    (afw_components_self_v_TimeDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TimeDuration */
+#define afw_components_v_TimeDuration \
+    ((const afw_value_t *)&afw_components_self_v_TimeDuration)
 
 
 
@@ -827,15 +1179,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TimePicker */
 #define afw_components_s_TimePicker \
-    (afw_components_v_TimePicker.internal)
+    (&afw_components_self_v_TimePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TimePicker */
+#define afw_components_self_s_TimePicker \
+    (afw_components_self_v_TimePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_TimePicker */
 extern const afw_value_string_t \
-    afw_components_v_TimePicker;
+    afw_components_self_v_TimePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TimePicker */
 #define afw_components_z_TimePicker \
-    (afw_components_v_TimePicker.internal.s)
+    (afw_components_self_v_TimePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TimePicker */
+#define afw_components_v_TimePicker \
+    ((const afw_value_t *)&afw_components_self_v_TimePicker)
 
 
 
@@ -845,15 +1205,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TimezonePicker */
 #define afw_components_s_TimezonePicker \
-    (afw_components_v_TimezonePicker.internal)
+    (&afw_components_self_v_TimezonePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_TimezonePicker */
+#define afw_components_self_s_TimezonePicker \
+    (afw_components_self_v_TimezonePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_TimezonePicker */
 extern const afw_value_string_t \
-    afw_components_v_TimezonePicker;
+    afw_components_self_v_TimezonePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TimezonePicker */
 #define afw_components_z_TimezonePicker \
-    (afw_components_v_TimezonePicker.internal.s)
+    (afw_components_self_v_TimezonePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_TimezonePicker */
+#define afw_components_v_TimezonePicker \
+    ((const afw_value_t *)&afw_components_self_v_TimezonePicker)
 
 
 
@@ -863,15 +1231,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Toggle */
 #define afw_components_s_Toggle \
-    (afw_components_v_Toggle.internal)
+    (&afw_components_self_v_Toggle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Toggle */
+#define afw_components_self_s_Toggle \
+    (afw_components_self_v_Toggle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Toggle */
 extern const afw_value_string_t \
-    afw_components_v_Toggle;
+    afw_components_self_v_Toggle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Toggle */
 #define afw_components_z_Toggle \
-    (afw_components_v_Toggle.internal.s)
+    (afw_components_self_v_Toggle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Toggle */
+#define afw_components_v_Toggle \
+    ((const afw_value_t *)&afw_components_self_v_Toggle)
 
 
 
@@ -881,15 +1257,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_ToggleButtons */
 #define afw_components_s_ToggleButtons \
-    (afw_components_v_ToggleButtons.internal)
+    (&afw_components_self_v_ToggleButtons.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_ToggleButtons */
+#define afw_components_self_s_ToggleButtons \
+    (afw_components_self_v_ToggleButtons.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_ToggleButtons */
 extern const afw_value_string_t \
-    afw_components_v_ToggleButtons;
+    afw_components_self_v_ToggleButtons;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_ToggleButtons */
 #define afw_components_z_ToggleButtons \
-    (afw_components_v_ToggleButtons.internal.s)
+    (afw_components_self_v_ToggleButtons.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_ToggleButtons */
+#define afw_components_v_ToggleButtons \
+    ((const afw_value_t *)&afw_components_self_v_ToggleButtons)
 
 
 
@@ -899,15 +1283,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Toolbar */
 #define afw_components_s_Toolbar \
-    (afw_components_v_Toolbar.internal)
+    (&afw_components_self_v_Toolbar.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Toolbar */
+#define afw_components_self_s_Toolbar \
+    (afw_components_self_v_Toolbar.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Toolbar */
 extern const afw_value_string_t \
-    afw_components_v_Toolbar;
+    afw_components_self_v_Toolbar;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Toolbar */
 #define afw_components_z_Toolbar \
-    (afw_components_v_Toolbar.internal.s)
+    (afw_components_self_v_Toolbar.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Toolbar */
+#define afw_components_v_Toolbar \
+    ((const afw_value_t *)&afw_components_self_v_Toolbar)
 
 
 
@@ -917,15 +1309,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Tooltip */
 #define afw_components_s_Tooltip \
-    (afw_components_v_Tooltip.internal)
+    (&afw_components_self_v_Tooltip.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Tooltip */
+#define afw_components_self_s_Tooltip \
+    (afw_components_self_v_Tooltip.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Tooltip */
 extern const afw_value_string_t \
-    afw_components_v_Tooltip;
+    afw_components_self_v_Tooltip;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Tooltip */
 #define afw_components_z_Tooltip \
-    (afw_components_v_Tooltip.internal.s)
+    (afw_components_self_v_Tooltip.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Tooltip */
+#define afw_components_v_Tooltip \
+    ((const afw_value_t *)&afw_components_self_v_Tooltip)
 
 
 
@@ -935,15 +1335,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Tree */
 #define afw_components_s_Tree \
-    (afw_components_v_Tree.internal)
+    (&afw_components_self_v_Tree.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Tree */
+#define afw_components_self_s_Tree \
+    (afw_components_self_v_Tree.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Tree */
 extern const afw_value_string_t \
-    afw_components_v_Tree;
+    afw_components_self_v_Tree;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Tree */
 #define afw_components_z_Tree \
-    (afw_components_v_Tree.internal.s)
+    (afw_components_self_v_Tree.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Tree */
+#define afw_components_v_Tree \
+    ((const afw_value_t *)&afw_components_self_v_Tree)
 
 
 
@@ -953,15 +1361,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Typography */
 #define afw_components_s_Typography \
-    (afw_components_v_Typography.internal)
+    (&afw_components_self_v_Typography.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_Typography */
+#define afw_components_self_s_Typography \
+    (afw_components_self_v_Typography.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_Typography */
 extern const afw_value_string_t \
-    afw_components_v_Typography;
+    afw_components_self_v_Typography;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Typography */
 #define afw_components_z_Typography \
-    (afw_components_v_Typography.internal.s)
+    (afw_components_self_v_Typography.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_Typography */
+#define afw_components_v_Typography \
+    ((const afw_value_t *)&afw_components_self_v_Typography)
 
 
 
@@ -971,15 +1387,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_ */
 #define afw_components_s__AdaptiveLayoutComponentTypeCategory_ \
-    (afw_components_v__AdaptiveLayoutComponentTypeCategory_.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentTypeCategory_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_ */
+#define afw_components_self_s__AdaptiveLayoutComponentTypeCategory_ \
+    (afw_components_self_v__AdaptiveLayoutComponentTypeCategory_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_ */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentTypeCategory_;
+    afw_components_self_v__AdaptiveLayoutComponentTypeCategory_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_ */
 #define afw_components_z__AdaptiveLayoutComponentTypeCategory_ \
-    (afw_components_v__AdaptiveLayoutComponentTypeCategory_.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentTypeCategory_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentTypeCategory_ */
+#define afw_components_v__AdaptiveLayoutComponentTypeCategory_ \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentTypeCategory_)
 
 
 
@@ -989,15 +1413,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ */
 #define afw_components_s__AdaptiveLayoutComponentType_ \
-    (afw_components_v__AdaptiveLayoutComponentType_.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ \
+    (afw_components_self_v__AdaptiveLayoutComponentType_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_;
+    afw_components_self_v__AdaptiveLayoutComponentType_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ */
 #define afw_components_z__AdaptiveLayoutComponentType_ \
-    (afw_components_v__AdaptiveLayoutComponentType_.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ */
+#define afw_components_v__AdaptiveLayoutComponentType_ \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_)
 
 
 
@@ -1007,15 +1439,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty */
 #define afw_components_s__AdaptiveLayoutComponentType_AdaptiveProperty \
-    (afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty */
+#define afw_components_self_s__AdaptiveLayoutComponentType_AdaptiveProperty \
+    (afw_components_self_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty;
+    afw_components_self_v__AdaptiveLayoutComponentType_AdaptiveProperty;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty */
 #define afw_components_z__AdaptiveLayoutComponentType_AdaptiveProperty \
-    (afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_AdaptiveProperty.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_AdaptiveProperty */
+#define afw_components_v__AdaptiveLayoutComponentType_AdaptiveProperty \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_AdaptiveProperty)
 
 
 
@@ -1025,15 +1465,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete */
 #define afw_components_s__AdaptiveLayoutComponentType_Autocomplete \
-    (afw_components_v__AdaptiveLayoutComponentType_Autocomplete.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Autocomplete \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Autocomplete;
+    afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete */
 #define afw_components_z__AdaptiveLayoutComponentType_Autocomplete \
-    (afw_components_v__AdaptiveLayoutComponentType_Autocomplete.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete */
+#define afw_components_v__AdaptiveLayoutComponentType_Autocomplete \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete)
 
 
 
@@ -1043,15 +1491,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option */
 #define afw_components_s__AdaptiveLayoutComponentType_Autocomplete_Option \
-    (afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Autocomplete_Option \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option;
+    afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option */
 #define afw_components_z__AdaptiveLayoutComponentType_Autocomplete_Option \
-    (afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Autocomplete_Option */
+#define afw_components_v__AdaptiveLayoutComponentType_Autocomplete_Option \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Autocomplete_Option)
 
 
 
@@ -1061,15 +1517,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box */
 #define afw_components_s__AdaptiveLayoutComponentType_Box \
-    (afw_components_v__AdaptiveLayoutComponentType_Box.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Box.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Box \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Box.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Box;
+    afw_components_self_v__AdaptiveLayoutComponentType_Box;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box */
 #define afw_components_z__AdaptiveLayoutComponentType_Box \
-    (afw_components_v__AdaptiveLayoutComponentType_Box.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Box.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Box */
+#define afw_components_v__AdaptiveLayoutComponentType_Box \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Box)
 
 
 
@@ -1079,15 +1543,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem */
 #define afw_components_s__AdaptiveLayoutComponentType_BoxItem \
-    (afw_components_v__AdaptiveLayoutComponentType_BoxItem.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_BoxItem.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem */
+#define afw_components_self_s__AdaptiveLayoutComponentType_BoxItem \
+    (afw_components_self_v__AdaptiveLayoutComponentType_BoxItem.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_BoxItem;
+    afw_components_self_v__AdaptiveLayoutComponentType_BoxItem;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem */
 #define afw_components_z__AdaptiveLayoutComponentType_BoxItem \
-    (afw_components_v__AdaptiveLayoutComponentType_BoxItem.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_BoxItem.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BoxItem */
+#define afw_components_v__AdaptiveLayoutComponentType_BoxItem \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_BoxItem)
 
 
 
@@ -1097,15 +1569,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb */
 #define afw_components_s__AdaptiveLayoutComponentType_Breadcrumb \
-    (afw_components_v__AdaptiveLayoutComponentType_Breadcrumb.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Breadcrumb \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Breadcrumb;
+    afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb */
 #define afw_components_z__AdaptiveLayoutComponentType_Breadcrumb \
-    (afw_components_v__AdaptiveLayoutComponentType_Breadcrumb.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Breadcrumb */
+#define afw_components_v__AdaptiveLayoutComponentType_Breadcrumb \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Breadcrumb)
 
 
 
@@ -1115,15 +1595,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem */
 #define afw_components_s__AdaptiveLayoutComponentType_BreadcrumbItem \
-    (afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem */
+#define afw_components_self_s__AdaptiveLayoutComponentType_BreadcrumbItem \
+    (afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem;
+    afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem */
 #define afw_components_z__AdaptiveLayoutComponentType_BreadcrumbItem \
-    (afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_BreadcrumbItem */
+#define afw_components_v__AdaptiveLayoutComponentType_BreadcrumbItem \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_BreadcrumbItem)
 
 
 
@@ -1133,15 +1621,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button */
 #define afw_components_s__AdaptiveLayoutComponentType_Button \
-    (afw_components_v__AdaptiveLayoutComponentType_Button.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Button.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Button \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Button.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Button;
+    afw_components_self_v__AdaptiveLayoutComponentType_Button;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button */
 #define afw_components_z__AdaptiveLayoutComponentType_Button \
-    (afw_components_v__AdaptiveLayoutComponentType_Button.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Button.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Button */
+#define afw_components_v__AdaptiveLayoutComponentType_Button \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Button)
 
 
 
@@ -1151,15 +1647,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout */
 #define afw_components_s__AdaptiveLayoutComponentType_Callout \
-    (afw_components_v__AdaptiveLayoutComponentType_Callout.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Callout.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Callout \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Callout.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Callout;
+    afw_components_self_v__AdaptiveLayoutComponentType_Callout;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout */
 #define afw_components_z__AdaptiveLayoutComponentType_Callout \
-    (afw_components_v__AdaptiveLayoutComponentType_Callout.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Callout.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Callout */
+#define afw_components_v__AdaptiveLayoutComponentType_Callout \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Callout)
 
 
 
@@ -1169,15 +1673,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart */
 #define afw_components_s__AdaptiveLayoutComponentType_Chart \
-    (afw_components_v__AdaptiveLayoutComponentType_Chart.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Chart.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Chart \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Chart.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Chart;
+    afw_components_self_v__AdaptiveLayoutComponentType_Chart;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart */
 #define afw_components_z__AdaptiveLayoutComponentType_Chart \
-    (afw_components_v__AdaptiveLayoutComponentType_Chart.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Chart.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart */
+#define afw_components_v__AdaptiveLayoutComponentType_Chart \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Chart)
 
 
 
@@ -1187,15 +1699,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data */
 #define afw_components_s__AdaptiveLayoutComponentType_Chart_Data \
-    (afw_components_v__AdaptiveLayoutComponentType_Chart_Data.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Chart_Data.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Chart_Data \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Chart_Data.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Chart_Data;
+    afw_components_self_v__AdaptiveLayoutComponentType_Chart_Data;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data */
 #define afw_components_z__AdaptiveLayoutComponentType_Chart_Data \
-    (afw_components_v__AdaptiveLayoutComponentType_Chart_Data.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Chart_Data.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Chart_Data */
+#define afw_components_v__AdaptiveLayoutComponentType_Chart_Data \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Chart_Data)
 
 
 
@@ -1205,15 +1725,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox */
 #define afw_components_s__AdaptiveLayoutComponentType_Checkbox \
-    (afw_components_v__AdaptiveLayoutComponentType_Checkbox.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Checkbox.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Checkbox \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Checkbox.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Checkbox;
+    afw_components_self_v__AdaptiveLayoutComponentType_Checkbox;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox */
 #define afw_components_z__AdaptiveLayoutComponentType_Checkbox \
-    (afw_components_v__AdaptiveLayoutComponentType_Checkbox.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Checkbox.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Checkbox */
+#define afw_components_v__AdaptiveLayoutComponentType_Checkbox \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Checkbox)
 
 
 
@@ -1223,15 +1751,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup */
 #define afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup \
-    (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ChoiceGroup \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup;
+    afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup */
 #define afw_components_z__AdaptiveLayoutComponentType_ChoiceGroup \
-    (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup */
+#define afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup)
 
 
 
@@ -1241,15 +1777,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option */
 #define afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup_Option \
-    (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ChoiceGroup_Option \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option;
+    afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup_Option;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option */
 #define afw_components_z__AdaptiveLayoutComponentType_ChoiceGroup_Option \
-    (afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup_Option.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ChoiceGroup_Option */
+#define afw_components_v__AdaptiveLayoutComponentType_ChoiceGroup_Option \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ChoiceGroup_Option)
 
 
 
@@ -1259,15 +1803,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor */
 #define afw_components_s__AdaptiveLayoutComponentType_CodeEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_CodeEditor.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor */
+#define afw_components_self_s__AdaptiveLayoutComponentType_CodeEditor \
+    (afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_CodeEditor;
+    afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor */
 #define afw_components_z__AdaptiveLayoutComponentType_CodeEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_CodeEditor.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_CodeEditor */
+#define afw_components_v__AdaptiveLayoutComponentType_CodeEditor \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_CodeEditor)
 
 
 
@@ -1277,15 +1829,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible */
 #define afw_components_s__AdaptiveLayoutComponentType_Collapsible \
-    (afw_components_v__AdaptiveLayoutComponentType_Collapsible.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Collapsible.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Collapsible \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Collapsible.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Collapsible;
+    afw_components_self_v__AdaptiveLayoutComponentType_Collapsible;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible */
 #define afw_components_z__AdaptiveLayoutComponentType_Collapsible \
-    (afw_components_v__AdaptiveLayoutComponentType_Collapsible.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Collapsible.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Collapsible */
+#define afw_components_v__AdaptiveLayoutComponentType_Collapsible \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Collapsible)
 
 
 
@@ -1295,15 +1855,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common */
 #define afw_components_s__AdaptiveLayoutComponentType_Common \
-    (afw_components_v__AdaptiveLayoutComponentType_Common.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Common.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Common \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Common.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Common;
+    afw_components_self_v__AdaptiveLayoutComponentType_Common;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common */
 #define afw_components_z__AdaptiveLayoutComponentType_Common \
-    (afw_components_v__AdaptiveLayoutComponentType_Common.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Common.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Common */
+#define afw_components_v__AdaptiveLayoutComponentType_Common \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Common)
 
 
 
@@ -1313,15 +1881,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker */
 #define afw_components_s__AdaptiveLayoutComponentType_DatePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_DatePicker.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_DatePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker */
+#define afw_components_self_s__AdaptiveLayoutComponentType_DatePicker \
+    (afw_components_self_v__AdaptiveLayoutComponentType_DatePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_DatePicker;
+    afw_components_self_v__AdaptiveLayoutComponentType_DatePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker */
 #define afw_components_z__AdaptiveLayoutComponentType_DatePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_DatePicker.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_DatePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DatePicker */
+#define afw_components_v__AdaptiveLayoutComponentType_DatePicker \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_DatePicker)
 
 
 
@@ -1331,15 +1907,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker */
 #define afw_components_s__AdaptiveLayoutComponentType_DateTimePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_DateTimePicker.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker */
+#define afw_components_self_s__AdaptiveLayoutComponentType_DateTimePicker \
+    (afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_DateTimePicker;
+    afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker */
 #define afw_components_z__AdaptiveLayoutComponentType_DateTimePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_DateTimePicker.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DateTimePicker */
+#define afw_components_v__AdaptiveLayoutComponentType_DateTimePicker \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_DateTimePicker)
 
 
 
@@ -1349,15 +1933,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog */
 #define afw_components_s__AdaptiveLayoutComponentType_Dialog \
-    (afw_components_v__AdaptiveLayoutComponentType_Dialog.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Dialog.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Dialog \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Dialog.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Dialog;
+    afw_components_self_v__AdaptiveLayoutComponentType_Dialog;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog */
 #define afw_components_z__AdaptiveLayoutComponentType_Dialog \
-    (afw_components_v__AdaptiveLayoutComponentType_Dialog.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Dialog.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dialog */
+#define afw_components_v__AdaptiveLayoutComponentType_Dialog \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Dialog)
 
 
 
@@ -1367,15 +1959,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor */
 #define afw_components_s__AdaptiveLayoutComponentType_DiffEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_DiffEditor.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor */
+#define afw_components_self_s__AdaptiveLayoutComponentType_DiffEditor \
+    (afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_DiffEditor;
+    afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor */
 #define afw_components_z__AdaptiveLayoutComponentType_DiffEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_DiffEditor.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DiffEditor */
+#define afw_components_v__AdaptiveLayoutComponentType_DiffEditor \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_DiffEditor)
 
 
 
@@ -1385,15 +1985,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider */
 #define afw_components_s__AdaptiveLayoutComponentType_Divider \
-    (afw_components_v__AdaptiveLayoutComponentType_Divider.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Divider.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Divider \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Divider.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Divider;
+    afw_components_self_v__AdaptiveLayoutComponentType_Divider;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider */
 #define afw_components_z__AdaptiveLayoutComponentType_Divider \
-    (afw_components_v__AdaptiveLayoutComponentType_Divider.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Divider.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Divider */
+#define afw_components_v__AdaptiveLayoutComponentType_Divider \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Divider)
 
 
 
@@ -1403,15 +2011,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer */
 #define afw_components_s__AdaptiveLayoutComponentType_Drawer \
-    (afw_components_v__AdaptiveLayoutComponentType_Drawer.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Drawer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Drawer \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Drawer.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Drawer;
+    afw_components_self_v__AdaptiveLayoutComponentType_Drawer;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer */
 #define afw_components_z__AdaptiveLayoutComponentType_Drawer \
-    (afw_components_v__AdaptiveLayoutComponentType_Drawer.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Drawer.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Drawer */
+#define afw_components_v__AdaptiveLayoutComponentType_Drawer \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Drawer)
 
 
 
@@ -1421,15 +2037,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown */
 #define afw_components_s__AdaptiveLayoutComponentType_Dropdown \
-    (afw_components_v__AdaptiveLayoutComponentType_Dropdown.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Dropdown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Dropdown \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Dropdown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Dropdown;
+    afw_components_self_v__AdaptiveLayoutComponentType_Dropdown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown */
 #define afw_components_z__AdaptiveLayoutComponentType_Dropdown \
-    (afw_components_v__AdaptiveLayoutComponentType_Dropdown.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Dropdown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown */
+#define afw_components_v__AdaptiveLayoutComponentType_Dropdown \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Dropdown)
 
 
 
@@ -1439,15 +2063,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor */
 #define afw_components_s__AdaptiveLayoutComponentType_DropdownEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_DropdownEditor.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor */
+#define afw_components_self_s__AdaptiveLayoutComponentType_DropdownEditor \
+    (afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_DropdownEditor;
+    afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor */
 #define afw_components_z__AdaptiveLayoutComponentType_DropdownEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_DropdownEditor.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_DropdownEditor */
+#define afw_components_v__AdaptiveLayoutComponentType_DropdownEditor \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_DropdownEditor)
 
 
 
@@ -1457,15 +2089,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option */
 #define afw_components_s__AdaptiveLayoutComponentType_Dropdown_Option \
-    (afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Dropdown_Option.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Dropdown_Option \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Dropdown_Option.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option;
+    afw_components_self_v__AdaptiveLayoutComponentType_Dropdown_Option;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option */
 #define afw_components_z__AdaptiveLayoutComponentType_Dropdown_Option \
-    (afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Dropdown_Option.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Dropdown_Option */
+#define afw_components_v__AdaptiveLayoutComponentType_Dropdown_Option \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Dropdown_Option)
 
 
 
@@ -1475,15 +2115,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout */
 #define afw_components_s__AdaptiveLayoutComponentType_EditableCallout \
-    (afw_components_v__AdaptiveLayoutComponentType_EditableCallout.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout */
+#define afw_components_self_s__AdaptiveLayoutComponentType_EditableCallout \
+    (afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_EditableCallout;
+    afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout */
 #define afw_components_z__AdaptiveLayoutComponentType_EditableCallout \
-    (afw_components_v__AdaptiveLayoutComponentType_EditableCallout.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableCallout */
+#define afw_components_v__AdaptiveLayoutComponentType_EditableCallout \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_EditableCallout)
 
 
 
@@ -1493,15 +2141,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel */
 #define afw_components_s__AdaptiveLayoutComponentType_EditableLabel \
-    (afw_components_v__AdaptiveLayoutComponentType_EditableLabel.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel */
+#define afw_components_self_s__AdaptiveLayoutComponentType_EditableLabel \
+    (afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_EditableLabel;
+    afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel */
 #define afw_components_z__AdaptiveLayoutComponentType_EditableLabel \
-    (afw_components_v__AdaptiveLayoutComponentType_EditableLabel.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_EditableLabel */
+#define afw_components_v__AdaptiveLayoutComponentType_EditableLabel \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_EditableLabel)
 
 
 
@@ -1511,15 +2167,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden */
 #define afw_components_s__AdaptiveLayoutComponentType_Hidden \
-    (afw_components_v__AdaptiveLayoutComponentType_Hidden.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Hidden.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Hidden \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Hidden.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Hidden;
+    afw_components_self_v__AdaptiveLayoutComponentType_Hidden;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden */
 #define afw_components_z__AdaptiveLayoutComponentType_Hidden \
-    (afw_components_v__AdaptiveLayoutComponentType_Hidden.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Hidden.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Hidden */
+#define afw_components_v__AdaptiveLayoutComponentType_Hidden \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Hidden)
 
 
 
@@ -1529,15 +2193,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon */
 #define afw_components_s__AdaptiveLayoutComponentType_Icon \
-    (afw_components_v__AdaptiveLayoutComponentType_Icon.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Icon.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Icon \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Icon.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Icon;
+    afw_components_self_v__AdaptiveLayoutComponentType_Icon;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon */
 #define afw_components_z__AdaptiveLayoutComponentType_Icon \
-    (afw_components_v__AdaptiveLayoutComponentType_Icon.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Icon.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Icon */
+#define afw_components_v__AdaptiveLayoutComponentType_Icon \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Icon)
 
 
 
@@ -1547,15 +2219,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image */
 #define afw_components_s__AdaptiveLayoutComponentType_Image \
-    (afw_components_v__AdaptiveLayoutComponentType_Image.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Image.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Image \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Image.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Image;
+    afw_components_self_v__AdaptiveLayoutComponentType_Image;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image */
 #define afw_components_z__AdaptiveLayoutComponentType_Image \
-    (afw_components_v__AdaptiveLayoutComponentType_Image.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Image.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Image */
+#define afw_components_v__AdaptiveLayoutComponentType_Image \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Image)
 
 
 
@@ -1565,15 +2245,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label */
 #define afw_components_s__AdaptiveLayoutComponentType_Label \
-    (afw_components_v__AdaptiveLayoutComponentType_Label.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Label.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Label \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Label.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Label;
+    afw_components_self_v__AdaptiveLayoutComponentType_Label;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label */
 #define afw_components_z__AdaptiveLayoutComponentType_Label \
-    (afw_components_v__AdaptiveLayoutComponentType_Label.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Label.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Label */
+#define afw_components_v__AdaptiveLayoutComponentType_Label \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Label)
 
 
 
@@ -1583,15 +2271,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link */
 #define afw_components_s__AdaptiveLayoutComponentType_Link \
-    (afw_components_v__AdaptiveLayoutComponentType_Link.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Link.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Link \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Link.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Link;
+    afw_components_self_v__AdaptiveLayoutComponentType_Link;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link */
 #define afw_components_z__AdaptiveLayoutComponentType_Link \
-    (afw_components_v__AdaptiveLayoutComponentType_Link.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Link.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Link */
+#define afw_components_v__AdaptiveLayoutComponentType_Link \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Link)
 
 
 
@@ -1601,15 +2297,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List */
 #define afw_components_s__AdaptiveLayoutComponentType_List \
-    (afw_components_v__AdaptiveLayoutComponentType_List.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_List.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List */
+#define afw_components_self_s__AdaptiveLayoutComponentType_List \
+    (afw_components_self_v__AdaptiveLayoutComponentType_List.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_List;
+    afw_components_self_v__AdaptiveLayoutComponentType_List;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List */
 #define afw_components_z__AdaptiveLayoutComponentType_List \
-    (afw_components_v__AdaptiveLayoutComponentType_List.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_List.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_List */
+#define afw_components_v__AdaptiveLayoutComponentType_List \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_List)
 
 
 
@@ -1619,15 +2323,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor */
 #define afw_components_s__AdaptiveLayoutComponentType_ListEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_ListEditor.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ListEditor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ListEditor \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ListEditor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ListEditor;
+    afw_components_self_v__AdaptiveLayoutComponentType_ListEditor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor */
 #define afw_components_z__AdaptiveLayoutComponentType_ListEditor \
-    (afw_components_v__AdaptiveLayoutComponentType_ListEditor.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ListEditor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor */
+#define afw_components_v__AdaptiveLayoutComponentType_ListEditor \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ListEditor)
 
 
 
@@ -1637,15 +2349,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item */
 #define afw_components_s__AdaptiveLayoutComponentType_ListEditor_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ListEditor_Item.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ListEditor_Item \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ListEditor_Item.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item;
+    afw_components_self_v__AdaptiveLayoutComponentType_ListEditor_Item;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item */
 #define afw_components_z__AdaptiveLayoutComponentType_ListEditor_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ListEditor_Item.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ListEditor_Item */
+#define afw_components_v__AdaptiveLayoutComponentType_ListEditor_Item \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ListEditor_Item)
 
 
 
@@ -1655,15 +2375,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu */
 #define afw_components_s__AdaptiveLayoutComponentType_Menu \
-    (afw_components_v__AdaptiveLayoutComponentType_Menu.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Menu.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Menu \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Menu.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Menu;
+    afw_components_self_v__AdaptiveLayoutComponentType_Menu;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu */
 #define afw_components_z__AdaptiveLayoutComponentType_Menu \
-    (afw_components_v__AdaptiveLayoutComponentType_Menu.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Menu.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu */
+#define afw_components_v__AdaptiveLayoutComponentType_Menu \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Menu)
 
 
 
@@ -1673,15 +2401,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item */
 #define afw_components_s__AdaptiveLayoutComponentType_Menu_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_Menu_Item.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Menu_Item.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Menu_Item \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Menu_Item.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Menu_Item;
+    afw_components_self_v__AdaptiveLayoutComponentType_Menu_Item;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item */
 #define afw_components_z__AdaptiveLayoutComponentType_Menu_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_Menu_Item.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Menu_Item.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Menu_Item */
+#define afw_components_v__AdaptiveLayoutComponentType_Menu_Item \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Menu_Item)
 
 
 
@@ -1691,15 +2427,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message */
 #define afw_components_s__AdaptiveLayoutComponentType_Message \
-    (afw_components_v__AdaptiveLayoutComponentType_Message.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Message.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Message \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Message.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Message;
+    afw_components_self_v__AdaptiveLayoutComponentType_Message;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message */
 #define afw_components_z__AdaptiveLayoutComponentType_Message \
-    (afw_components_v__AdaptiveLayoutComponentType_Message.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Message.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Message */
+#define afw_components_v__AdaptiveLayoutComponentType_Message \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Message)
 
 
 
@@ -1709,15 +2453,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal */
 #define afw_components_s__AdaptiveLayoutComponentType_Modal \
-    (afw_components_v__AdaptiveLayoutComponentType_Modal.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Modal.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Modal \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Modal.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Modal;
+    afw_components_self_v__AdaptiveLayoutComponentType_Modal;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal */
 #define afw_components_z__AdaptiveLayoutComponentType_Modal \
-    (afw_components_v__AdaptiveLayoutComponentType_Modal.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Modal.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Modal */
+#define afw_components_v__AdaptiveLayoutComponentType_Modal \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Modal)
 
 
 
@@ -1727,15 +2479,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native */
 #define afw_components_s__AdaptiveLayoutComponentType_Native \
-    (afw_components_v__AdaptiveLayoutComponentType_Native.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Native.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Native \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Native.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Native;
+    afw_components_self_v__AdaptiveLayoutComponentType_Native;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native */
 #define afw_components_z__AdaptiveLayoutComponentType_Native \
-    (afw_components_v__AdaptiveLayoutComponentType_Native.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Native.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Native */
+#define afw_components_v__AdaptiveLayoutComponentType_Native \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Native)
 
 
 
@@ -1745,15 +2505,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav */
 #define afw_components_s__AdaptiveLayoutComponentType_Nav \
-    (afw_components_v__AdaptiveLayoutComponentType_Nav.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Nav.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Nav \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Nav.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Nav;
+    afw_components_self_v__AdaptiveLayoutComponentType_Nav;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav */
 #define afw_components_z__AdaptiveLayoutComponentType_Nav \
-    (afw_components_v__AdaptiveLayoutComponentType_Nav.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Nav.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav */
+#define afw_components_v__AdaptiveLayoutComponentType_Nav \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Nav)
 
 
 
@@ -1763,15 +2531,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item */
 #define afw_components_s__AdaptiveLayoutComponentType_Nav_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_Nav_Item.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Nav_Item.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Nav_Item \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Nav_Item.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Nav_Item;
+    afw_components_self_v__AdaptiveLayoutComponentType_Nav_Item;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item */
 #define afw_components_z__AdaptiveLayoutComponentType_Nav_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_Nav_Item.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Nav_Item.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Nav_Item */
+#define afw_components_v__AdaptiveLayoutComponentType_Nav_Item \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Nav_Item)
 
 
 
@@ -1781,15 +2557,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper */
 #define afw_components_s__AdaptiveLayoutComponentType_Paper \
-    (afw_components_v__AdaptiveLayoutComponentType_Paper.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Paper.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Paper \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Paper.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Paper;
+    afw_components_self_v__AdaptiveLayoutComponentType_Paper;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper */
 #define afw_components_z__AdaptiveLayoutComponentType_Paper \
-    (afw_components_v__AdaptiveLayoutComponentType_Paper.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Paper.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Paper */
+#define afw_components_v__AdaptiveLayoutComponentType_Paper \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Paper)
 
 
 
@@ -1799,15 +2583,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker */
 #define afw_components_s__AdaptiveLayoutComponentType_Picker \
-    (afw_components_v__AdaptiveLayoutComponentType_Picker.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Picker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Picker \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Picker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Picker;
+    afw_components_self_v__AdaptiveLayoutComponentType_Picker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker */
 #define afw_components_z__AdaptiveLayoutComponentType_Picker \
-    (afw_components_v__AdaptiveLayoutComponentType_Picker.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Picker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker */
+#define afw_components_v__AdaptiveLayoutComponentType_Picker \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Picker)
 
 
 
@@ -1817,15 +2609,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item */
 #define afw_components_s__AdaptiveLayoutComponentType_Picker_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_Picker_Item.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Picker_Item.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Picker_Item \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Picker_Item.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Picker_Item;
+    afw_components_self_v__AdaptiveLayoutComponentType_Picker_Item;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item */
 #define afw_components_z__AdaptiveLayoutComponentType_Picker_Item \
-    (afw_components_v__AdaptiveLayoutComponentType_Picker_Item.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Picker_Item.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Picker_Item */
+#define afw_components_v__AdaptiveLayoutComponentType_Picker_Item \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Picker_Item)
 
 
 
@@ -1835,15 +2635,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive */
 #define afw_components_s__AdaptiveLayoutComponentType_Responsive \
-    (afw_components_v__AdaptiveLayoutComponentType_Responsive.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Responsive.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Responsive \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Responsive.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Responsive;
+    afw_components_self_v__AdaptiveLayoutComponentType_Responsive;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive */
 #define afw_components_z__AdaptiveLayoutComponentType_Responsive \
-    (afw_components_v__AdaptiveLayoutComponentType_Responsive.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Responsive.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive */
+#define afw_components_v__AdaptiveLayoutComponentType_Responsive \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Responsive)
 
 
 
@@ -1853,15 +2661,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol */
 #define afw_components_s__AdaptiveLayoutComponentType_ResponsiveCol \
-    (afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveCol.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ResponsiveCol \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveCol.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol;
+    afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveCol;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol */
 #define afw_components_z__AdaptiveLayoutComponentType_ResponsiveCol \
-    (afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveCol.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveCol */
+#define afw_components_v__AdaptiveLayoutComponentType_ResponsiveCol \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveCol)
 
 
 
@@ -1871,15 +2687,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow */
 #define afw_components_s__AdaptiveLayoutComponentType_ResponsiveRow \
-    (afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveRow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ResponsiveRow \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveRow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow;
+    afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveRow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow */
 #define afw_components_z__AdaptiveLayoutComponentType_ResponsiveRow \
-    (afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveRow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ResponsiveRow */
+#define afw_components_v__AdaptiveLayoutComponentType_ResponsiveRow \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ResponsiveRow)
 
 
 
@@ -1889,15 +2713,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints */
 #define afw_components_s__AdaptiveLayoutComponentType_Responsive_Breakpoints \
-    (afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Responsive_Breakpoints \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints;
+    afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints */
 #define afw_components_z__AdaptiveLayoutComponentType_Responsive_Breakpoints \
-    (afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Responsive_Breakpoints */
+#define afw_components_v__AdaptiveLayoutComponentType_Responsive_Breakpoints \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Responsive_Breakpoints)
 
 
 
@@ -1907,15 +2739,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton */
 #define afw_components_s__AdaptiveLayoutComponentType_Skeleton \
-    (afw_components_v__AdaptiveLayoutComponentType_Skeleton.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Skeleton.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Skeleton \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Skeleton.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Skeleton;
+    afw_components_self_v__AdaptiveLayoutComponentType_Skeleton;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton */
 #define afw_components_z__AdaptiveLayoutComponentType_Skeleton \
-    (afw_components_v__AdaptiveLayoutComponentType_Skeleton.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Skeleton.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Skeleton */
+#define afw_components_v__AdaptiveLayoutComponentType_Skeleton \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Skeleton)
 
 
 
@@ -1925,15 +2765,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider */
 #define afw_components_s__AdaptiveLayoutComponentType_Slider \
-    (afw_components_v__AdaptiveLayoutComponentType_Slider.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Slider.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Slider \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Slider.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Slider;
+    afw_components_self_v__AdaptiveLayoutComponentType_Slider;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider */
 #define afw_components_z__AdaptiveLayoutComponentType_Slider \
-    (afw_components_v__AdaptiveLayoutComponentType_Slider.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Slider.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Slider */
+#define afw_components_v__AdaptiveLayoutComponentType_Slider \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Slider)
 
 
 
@@ -1943,15 +2791,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar */
 #define afw_components_s__AdaptiveLayoutComponentType_Snackbar \
-    (afw_components_v__AdaptiveLayoutComponentType_Snackbar.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Snackbar.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Snackbar \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Snackbar.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Snackbar;
+    afw_components_self_v__AdaptiveLayoutComponentType_Snackbar;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar */
 #define afw_components_z__AdaptiveLayoutComponentType_Snackbar \
-    (afw_components_v__AdaptiveLayoutComponentType_Snackbar.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Snackbar.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Snackbar */
+#define afw_components_v__AdaptiveLayoutComponentType_Snackbar \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Snackbar)
 
 
 
@@ -1961,15 +2817,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton */
 #define afw_components_s__AdaptiveLayoutComponentType_SpinButton \
-    (afw_components_v__AdaptiveLayoutComponentType_SpinButton.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_SpinButton.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton */
+#define afw_components_self_s__AdaptiveLayoutComponentType_SpinButton \
+    (afw_components_self_v__AdaptiveLayoutComponentType_SpinButton.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_SpinButton;
+    afw_components_self_v__AdaptiveLayoutComponentType_SpinButton;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton */
 #define afw_components_z__AdaptiveLayoutComponentType_SpinButton \
-    (afw_components_v__AdaptiveLayoutComponentType_SpinButton.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_SpinButton.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_SpinButton */
+#define afw_components_v__AdaptiveLayoutComponentType_SpinButton \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_SpinButton)
 
 
 
@@ -1979,15 +2843,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner */
 #define afw_components_s__AdaptiveLayoutComponentType_Spinner \
-    (afw_components_v__AdaptiveLayoutComponentType_Spinner.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Spinner.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Spinner \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Spinner.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Spinner;
+    afw_components_self_v__AdaptiveLayoutComponentType_Spinner;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner */
 #define afw_components_z__AdaptiveLayoutComponentType_Spinner \
-    (afw_components_v__AdaptiveLayoutComponentType_Spinner.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Spinner.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Spinner */
+#define afw_components_v__AdaptiveLayoutComponentType_Spinner \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Spinner)
 
 
 
@@ -1997,15 +2869,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper */
 #define afw_components_s__AdaptiveLayoutComponentType_Stepper \
-    (afw_components_v__AdaptiveLayoutComponentType_Stepper.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Stepper.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Stepper \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Stepper.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Stepper;
+    afw_components_self_v__AdaptiveLayoutComponentType_Stepper;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper */
 #define afw_components_z__AdaptiveLayoutComponentType_Stepper \
-    (afw_components_v__AdaptiveLayoutComponentType_Stepper.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Stepper.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Stepper */
+#define afw_components_v__AdaptiveLayoutComponentType_Stepper \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Stepper)
 
 
 
@@ -2015,15 +2895,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style */
 #define afw_components_s__AdaptiveLayoutComponentType_Style \
-    (afw_components_v__AdaptiveLayoutComponentType_Style.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Style.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Style \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Style.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Style;
+    afw_components_self_v__AdaptiveLayoutComponentType_Style;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style */
 #define afw_components_z__AdaptiveLayoutComponentType_Style \
-    (afw_components_v__AdaptiveLayoutComponentType_Style.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Style.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Style */
+#define afw_components_v__AdaptiveLayoutComponentType_Style \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Style)
 
 
 
@@ -2033,15 +2921,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table */
 #define afw_components_s__AdaptiveLayoutComponentType_Table \
-    (afw_components_v__AdaptiveLayoutComponentType_Table.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Table.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Table \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Table.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Table;
+    afw_components_self_v__AdaptiveLayoutComponentType_Table;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table */
 #define afw_components_z__AdaptiveLayoutComponentType_Table \
-    (afw_components_v__AdaptiveLayoutComponentType_Table.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Table.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table */
+#define afw_components_v__AdaptiveLayoutComponentType_Table \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Table)
 
 
 
@@ -2051,15 +2947,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column */
 #define afw_components_s__AdaptiveLayoutComponentType_Table_Column \
-    (afw_components_v__AdaptiveLayoutComponentType_Table_Column.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Table_Column.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Table_Column \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Table_Column.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Table_Column;
+    afw_components_self_v__AdaptiveLayoutComponentType_Table_Column;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column */
 #define afw_components_z__AdaptiveLayoutComponentType_Table_Column \
-    (afw_components_v__AdaptiveLayoutComponentType_Table_Column.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Table_Column.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Column */
+#define afw_components_v__AdaptiveLayoutComponentType_Table_Column \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Table_Column)
 
 
 
@@ -2069,15 +2973,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row */
 #define afw_components_s__AdaptiveLayoutComponentType_Table_Row \
-    (afw_components_v__AdaptiveLayoutComponentType_Table_Row.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Table_Row.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Table_Row \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Table_Row.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Table_Row;
+    afw_components_self_v__AdaptiveLayoutComponentType_Table_Row;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row */
 #define afw_components_z__AdaptiveLayoutComponentType_Table_Row \
-    (afw_components_v__AdaptiveLayoutComponentType_Table_Row.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Table_Row.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Table_Row */
+#define afw_components_v__AdaptiveLayoutComponentType_Table_Row \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Table_Row)
 
 
 
@@ -2087,15 +2999,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs */
 #define afw_components_s__AdaptiveLayoutComponentType_Tabs \
-    (afw_components_v__AdaptiveLayoutComponentType_Tabs.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Tabs.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Tabs \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tabs.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Tabs;
+    afw_components_self_v__AdaptiveLayoutComponentType_Tabs;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs */
 #define afw_components_z__AdaptiveLayoutComponentType_Tabs \
-    (afw_components_v__AdaptiveLayoutComponentType_Tabs.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tabs.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs */
+#define afw_components_v__AdaptiveLayoutComponentType_Tabs \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Tabs)
 
 
 
@@ -2105,15 +3025,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab */
 #define afw_components_s__AdaptiveLayoutComponentType_Tabs_Tab \
-    (afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Tabs_Tab.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Tabs_Tab \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tabs_Tab.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab;
+    afw_components_self_v__AdaptiveLayoutComponentType_Tabs_Tab;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab */
 #define afw_components_z__AdaptiveLayoutComponentType_Tabs_Tab \
-    (afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tabs_Tab.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tabs_Tab */
+#define afw_components_v__AdaptiveLayoutComponentType_Tabs_Tab \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Tabs_Tab)
 
 
 
@@ -2123,15 +3051,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField */
 #define afw_components_s__AdaptiveLayoutComponentType_TextField \
-    (afw_components_v__AdaptiveLayoutComponentType_TextField.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_TextField.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField */
+#define afw_components_self_s__AdaptiveLayoutComponentType_TextField \
+    (afw_components_self_v__AdaptiveLayoutComponentType_TextField.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_TextField;
+    afw_components_self_v__AdaptiveLayoutComponentType_TextField;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField */
 #define afw_components_z__AdaptiveLayoutComponentType_TextField \
-    (afw_components_v__AdaptiveLayoutComponentType_TextField.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_TextField.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TextField */
+#define afw_components_v__AdaptiveLayoutComponentType_TextField \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_TextField)
 
 
 
@@ -2141,15 +3077,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration */
 #define afw_components_s__AdaptiveLayoutComponentType_TimeDuration \
-    (afw_components_v__AdaptiveLayoutComponentType_TimeDuration.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration */
+#define afw_components_self_s__AdaptiveLayoutComponentType_TimeDuration \
+    (afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_TimeDuration;
+    afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration */
 #define afw_components_z__AdaptiveLayoutComponentType_TimeDuration \
-    (afw_components_v__AdaptiveLayoutComponentType_TimeDuration.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimeDuration */
+#define afw_components_v__AdaptiveLayoutComponentType_TimeDuration \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_TimeDuration)
 
 
 
@@ -2159,15 +3103,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker */
 #define afw_components_s__AdaptiveLayoutComponentType_TimePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_TimePicker.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_TimePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker */
+#define afw_components_self_s__AdaptiveLayoutComponentType_TimePicker \
+    (afw_components_self_v__AdaptiveLayoutComponentType_TimePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_TimePicker;
+    afw_components_self_v__AdaptiveLayoutComponentType_TimePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker */
 #define afw_components_z__AdaptiveLayoutComponentType_TimePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_TimePicker.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_TimePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimePicker */
+#define afw_components_v__AdaptiveLayoutComponentType_TimePicker \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_TimePicker)
 
 
 
@@ -2177,15 +3129,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker */
 #define afw_components_s__AdaptiveLayoutComponentType_TimezonePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_TimezonePicker.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker */
+#define afw_components_self_s__AdaptiveLayoutComponentType_TimezonePicker \
+    (afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_TimezonePicker;
+    afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker */
 #define afw_components_z__AdaptiveLayoutComponentType_TimezonePicker \
-    (afw_components_v__AdaptiveLayoutComponentType_TimezonePicker.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_TimezonePicker */
+#define afw_components_v__AdaptiveLayoutComponentType_TimezonePicker \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_TimezonePicker)
 
 
 
@@ -2195,15 +3155,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle */
 #define afw_components_s__AdaptiveLayoutComponentType_Toggle \
-    (afw_components_v__AdaptiveLayoutComponentType_Toggle.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Toggle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Toggle \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Toggle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Toggle;
+    afw_components_self_v__AdaptiveLayoutComponentType_Toggle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle */
 #define afw_components_z__AdaptiveLayoutComponentType_Toggle \
-    (afw_components_v__AdaptiveLayoutComponentType_Toggle.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Toggle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toggle */
+#define afw_components_v__AdaptiveLayoutComponentType_Toggle \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Toggle)
 
 
 
@@ -2213,15 +3181,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons */
 #define afw_components_s__AdaptiveLayoutComponentType_ToggleButtons \
-    (afw_components_v__AdaptiveLayoutComponentType_ToggleButtons.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons */
+#define afw_components_self_s__AdaptiveLayoutComponentType_ToggleButtons \
+    (afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_ToggleButtons;
+    afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons */
 #define afw_components_z__AdaptiveLayoutComponentType_ToggleButtons \
-    (afw_components_v__AdaptiveLayoutComponentType_ToggleButtons.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_ToggleButtons */
+#define afw_components_v__AdaptiveLayoutComponentType_ToggleButtons \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_ToggleButtons)
 
 
 
@@ -2231,15 +3207,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar */
 #define afw_components_s__AdaptiveLayoutComponentType_Toolbar \
-    (afw_components_v__AdaptiveLayoutComponentType_Toolbar.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Toolbar.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Toolbar \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Toolbar.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Toolbar;
+    afw_components_self_v__AdaptiveLayoutComponentType_Toolbar;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar */
 #define afw_components_z__AdaptiveLayoutComponentType_Toolbar \
-    (afw_components_v__AdaptiveLayoutComponentType_Toolbar.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Toolbar.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Toolbar */
+#define afw_components_v__AdaptiveLayoutComponentType_Toolbar \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Toolbar)
 
 
 
@@ -2249,15 +3233,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip */
 #define afw_components_s__AdaptiveLayoutComponentType_Tooltip \
-    (afw_components_v__AdaptiveLayoutComponentType_Tooltip.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Tooltip.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Tooltip \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tooltip.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Tooltip;
+    afw_components_self_v__AdaptiveLayoutComponentType_Tooltip;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip */
 #define afw_components_z__AdaptiveLayoutComponentType_Tooltip \
-    (afw_components_v__AdaptiveLayoutComponentType_Tooltip.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tooltip.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tooltip */
+#define afw_components_v__AdaptiveLayoutComponentType_Tooltip \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Tooltip)
 
 
 
@@ -2267,15 +3259,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree */
 #define afw_components_s__AdaptiveLayoutComponentType_Tree \
-    (afw_components_v__AdaptiveLayoutComponentType_Tree.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Tree.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Tree \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tree.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Tree;
+    afw_components_self_v__AdaptiveLayoutComponentType_Tree;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree */
 #define afw_components_z__AdaptiveLayoutComponentType_Tree \
-    (afw_components_v__AdaptiveLayoutComponentType_Tree.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tree.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree */
+#define afw_components_v__AdaptiveLayoutComponentType_Tree \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Tree)
 
 
 
@@ -2285,15 +3285,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node */
 #define afw_components_s__AdaptiveLayoutComponentType_Tree_Node \
-    (afw_components_v__AdaptiveLayoutComponentType_Tree_Node.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Tree_Node.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Tree_Node \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tree_Node.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Tree_Node;
+    afw_components_self_v__AdaptiveLayoutComponentType_Tree_Node;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node */
 #define afw_components_z__AdaptiveLayoutComponentType_Tree_Node \
-    (afw_components_v__AdaptiveLayoutComponentType_Tree_Node.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Tree_Node.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Tree_Node */
+#define afw_components_v__AdaptiveLayoutComponentType_Tree_Node \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Tree_Node)
 
 
 
@@ -2303,15 +3311,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography */
 #define afw_components_s__AdaptiveLayoutComponentType_Typography \
-    (afw_components_v__AdaptiveLayoutComponentType_Typography.internal)
+    (&afw_components_self_v__AdaptiveLayoutComponentType_Typography.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography */
+#define afw_components_self_s__AdaptiveLayoutComponentType_Typography \
+    (afw_components_self_v__AdaptiveLayoutComponentType_Typography.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayoutComponentType_Typography;
+    afw_components_self_v__AdaptiveLayoutComponentType_Typography;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography */
 #define afw_components_z__AdaptiveLayoutComponentType_Typography \
-    (afw_components_v__AdaptiveLayoutComponentType_Typography.internal.s)
+    (afw_components_self_v__AdaptiveLayoutComponentType_Typography.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayoutComponentType_Typography */
+#define afw_components_v__AdaptiveLayoutComponentType_Typography \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayoutComponentType_Typography)
 
 
 
@@ -2321,15 +3337,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive */
 #define afw_components_s__AdaptiveLayout_ObjectResponsive \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive.internal)
+    (&afw_components_self_v__AdaptiveLayout_ObjectResponsive.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive */
+#define afw_components_self_s__AdaptiveLayout_ObjectResponsive \
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayout_ObjectResponsive;
+    afw_components_self_v__AdaptiveLayout_ObjectResponsive;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive */
 #define afw_components_z__AdaptiveLayout_ObjectResponsive \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive.internal.s)
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive */
+#define afw_components_v__AdaptiveLayout_ObjectResponsive \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayout_ObjectResponsive)
 
 
 
@@ -2339,15 +3363,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded */
 #define afw_components_s__AdaptiveLayout_ObjectResponsive_embedded \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_embedded.internal)
+    (&afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded */
+#define afw_components_self_s__AdaptiveLayout_ObjectResponsive_embedded \
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayout_ObjectResponsive_embedded;
+    afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded */
 #define afw_components_z__AdaptiveLayout_ObjectResponsive_embedded \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_embedded.internal.s)
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_embedded */
+#define afw_components_v__AdaptiveLayout_ObjectResponsive_embedded \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayout_ObjectResponsive_embedded)
 
 
 
@@ -2357,15 +3389,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions */
 #define afw_components_s__AdaptiveLayout_ObjectResponsive_filterOptions \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal)
+    (&afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions */
+#define afw_components_self_s__AdaptiveLayout_ObjectResponsive_filterOptions \
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions;
+    afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions */
 #define afw_components_z__AdaptiveLayout_ObjectResponsive_filterOptions \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal.s)
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_filterOptions */
+#define afw_components_v__AdaptiveLayout_ObjectResponsive_filterOptions \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayout_ObjectResponsive_filterOptions)
 
 
 
@@ -2375,15 +3415,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent */
 #define afw_components_s__AdaptiveLayout_ObjectResponsive_preferredComponent \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal)
+    (&afw_components_self_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent */
+#define afw_components_self_s__AdaptiveLayout_ObjectResponsive_preferredComponent \
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent;
+    afw_components_self_v__AdaptiveLayout_ObjectResponsive_preferredComponent;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent */
 #define afw_components_z__AdaptiveLayout_ObjectResponsive_preferredComponent \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal.s)
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_preferredComponent.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_preferredComponent */
+#define afw_components_v__AdaptiveLayout_ObjectResponsive_preferredComponent \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayout_ObjectResponsive_preferredComponent)
 
 
 
@@ -2393,15 +3441,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions */
 #define afw_components_s__AdaptiveLayout_ObjectResponsive_sortOptions \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal)
+    (&afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions */
+#define afw_components_self_s__AdaptiveLayout_ObjectResponsive_sortOptions \
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions;
+    afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions */
 #define afw_components_z__AdaptiveLayout_ObjectResponsive_sortOptions \
-    (afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal.s)
+    (afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveLayout_ObjectResponsive_sortOptions */
+#define afw_components_v__AdaptiveLayout_ObjectResponsive_sortOptions \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveLayout_ObjectResponsive_sortOptions)
 
 
 
@@ -2411,15 +3467,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveObjectType_ */
 #define afw_components_s__AdaptiveObjectType_ \
-    (afw_components_v__AdaptiveObjectType_.internal)
+    (&afw_components_self_v__AdaptiveObjectType_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__AdaptiveObjectType_ */
+#define afw_components_self_s__AdaptiveObjectType_ \
+    (afw_components_self_v__AdaptiveObjectType_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__AdaptiveObjectType_ */
 extern const afw_value_string_t \
-    afw_components_v__AdaptiveObjectType_;
+    afw_components_self_v__AdaptiveObjectType_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveObjectType_ */
 #define afw_components_z__AdaptiveObjectType_ \
-    (afw_components_v__AdaptiveObjectType_.internal.s)
+    (afw_components_self_v__AdaptiveObjectType_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__AdaptiveObjectType_ */
+#define afw_components_v__AdaptiveObjectType_ \
+    ((const afw_value_t *)&afw_components_self_v__AdaptiveObjectType_)
 
 
 
@@ -2429,15 +3493,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__meta_ */
 #define afw_components_s__meta_ \
-    (afw_components_v__meta_.internal)
+    (&afw_components_self_v__meta_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q__meta_ */
+#define afw_components_self_s__meta_ \
+    (afw_components_self_v__meta_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q__meta_ */
 extern const afw_value_string_t \
-    afw_components_v__meta_;
+    afw_components_self_v__meta_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__meta_ */
 #define afw_components_z__meta_ \
-    (afw_components_v__meta_.internal.s)
+    (afw_components_self_v__meta_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q__meta_ */
+#define afw_components_v__meta_ \
+    ((const afw_value_t *)&afw_components_self_v__meta_)
 
 
 
@@ -2447,15 +3519,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_a_aria_label */
 #define afw_components_s_a_aria_label \
-    (afw_components_v_a_aria_label.internal)
+    (&afw_components_self_v_a_aria_label.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_a_aria_label */
+#define afw_components_self_s_a_aria_label \
+    (afw_components_self_v_a_aria_label.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_a_aria_label */
 extern const afw_value_string_t \
-    afw_components_v_a_aria_label;
+    afw_components_self_v_a_aria_label;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_a_aria_label */
 #define afw_components_z_a_aria_label \
-    (afw_components_v_a_aria_label.internal.s)
+    (afw_components_self_v_a_aria_label.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_a_aria_label */
+#define afw_components_v_a_aria_label \
+    ((const afw_value_t *)&afw_components_self_v_a_aria_label)
 
 
 
@@ -2465,15 +3545,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_a_aria_labelledby */
 #define afw_components_s_a_aria_labelledby \
-    (afw_components_v_a_aria_labelledby.internal)
+    (&afw_components_self_v_a_aria_labelledby.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_a_aria_labelledby */
+#define afw_components_self_s_a_aria_labelledby \
+    (afw_components_self_v_a_aria_labelledby.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_a_aria_labelledby */
 extern const afw_value_string_t \
-    afw_components_v_a_aria_labelledby;
+    afw_components_self_v_a_aria_labelledby;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_a_aria_labelledby */
 #define afw_components_z_a_aria_labelledby \
-    (afw_components_v_a_aria_labelledby.internal.s)
+    (afw_components_self_v_a_aria_labelledby.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_a_aria_labelledby */
+#define afw_components_v_a_aria_labelledby \
+    ((const afw_value_t *)&afw_components_self_v_a_aria_labelledby)
 
 
 
@@ -2483,15 +3571,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_activeStep */
 #define afw_components_s_activeStep \
-    (afw_components_v_activeStep.internal)
+    (&afw_components_self_v_activeStep.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_activeStep */
+#define afw_components_self_s_activeStep \
+    (afw_components_self_v_activeStep.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_activeStep */
 extern const afw_value_string_t \
-    afw_components_v_activeStep;
+    afw_components_self_v_activeStep;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_activeStep */
 #define afw_components_z_activeStep \
-    (afw_components_v_activeStep.internal.s)
+    (afw_components_self_v_activeStep.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_activeStep */
+#define afw_components_v_activeStep \
+    ((const afw_value_t *)&afw_components_self_v_activeStep)
 
 
 
@@ -2501,15 +3597,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_alignContent */
 #define afw_components_s_alignContent \
-    (afw_components_v_alignContent.internal)
+    (&afw_components_self_v_alignContent.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_alignContent */
+#define afw_components_self_s_alignContent \
+    (afw_components_self_v_alignContent.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_alignContent */
 extern const afw_value_string_t \
-    afw_components_v_alignContent;
+    afw_components_self_v_alignContent;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_alignContent */
 #define afw_components_z_alignContent \
-    (afw_components_v_alignContent.internal.s)
+    (afw_components_self_v_alignContent.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_alignContent */
+#define afw_components_v_alignContent \
+    ((const afw_value_t *)&afw_components_self_v_alignContent)
 
 
 
@@ -2519,15 +3623,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_alignItems */
 #define afw_components_s_alignItems \
-    (afw_components_v_alignItems.internal)
+    (&afw_components_self_v_alignItems.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_alignItems */
+#define afw_components_self_s_alignItems \
+    (afw_components_self_v_alignItems.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_alignItems */
 extern const afw_value_string_t \
-    afw_components_v_alignItems;
+    afw_components_self_v_alignItems;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_alignItems */
 #define afw_components_z_alignItems \
-    (afw_components_v_alignItems.internal.s)
+    (afw_components_self_v_alignItems.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_alignItems */
+#define afw_components_v_alignItems \
+    ((const afw_value_t *)&afw_components_self_v_alignItems)
 
 
 
@@ -2537,15 +3649,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_alignSelf */
 #define afw_components_s_alignSelf \
-    (afw_components_v_alignSelf.internal)
+    (&afw_components_self_v_alignSelf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_alignSelf */
+#define afw_components_self_s_alignSelf \
+    (afw_components_self_v_alignSelf.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_alignSelf */
 extern const afw_value_string_t \
-    afw_components_v_alignSelf;
+    afw_components_self_v_alignSelf;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_alignSelf */
 #define afw_components_z_alignSelf \
-    (afw_components_v_alignSelf.internal.s)
+    (afw_components_self_v_alignSelf.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_alignSelf */
+#define afw_components_v_alignSelf \
+    ((const afw_value_t *)&afw_components_self_v_alignSelf)
 
 
 
@@ -2555,15 +3675,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowAdd */
 #define afw_components_s_allowAdd \
-    (afw_components_v_allowAdd.internal)
+    (&afw_components_self_v_allowAdd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowAdd */
+#define afw_components_self_s_allowAdd \
+    (afw_components_self_v_allowAdd.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_allowAdd */
 extern const afw_value_string_t \
-    afw_components_v_allowAdd;
+    afw_components_self_v_allowAdd;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowAdd */
 #define afw_components_z_allowAdd \
-    (afw_components_v_allowAdd.internal.s)
+    (afw_components_self_v_allowAdd.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowAdd */
+#define afw_components_v_allowAdd \
+    ((const afw_value_t *)&afw_components_self_v_allowAdd)
 
 
 
@@ -2573,15 +3701,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowChange */
 #define afw_components_s_allowChange \
-    (afw_components_v_allowChange.internal)
+    (&afw_components_self_v_allowChange.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowChange */
+#define afw_components_self_s_allowChange \
+    (afw_components_self_v_allowChange.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_allowChange */
 extern const afw_value_string_t \
-    afw_components_v_allowChange;
+    afw_components_self_v_allowChange;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowChange */
 #define afw_components_z_allowChange \
-    (afw_components_v_allowChange.internal.s)
+    (afw_components_self_v_allowChange.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowChange */
+#define afw_components_v_allowChange \
+    ((const afw_value_t *)&afw_components_self_v_allowChange)
 
 
 
@@ -2591,15 +3727,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowDelete */
 #define afw_components_s_allowDelete \
-    (afw_components_v_allowDelete.internal)
+    (&afw_components_self_v_allowDelete.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowDelete */
+#define afw_components_self_s_allowDelete \
+    (afw_components_self_v_allowDelete.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_allowDelete */
 extern const afw_value_string_t \
-    afw_components_v_allowDelete;
+    afw_components_self_v_allowDelete;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowDelete */
 #define afw_components_z_allowDelete \
-    (afw_components_v_allowDelete.internal.s)
+    (afw_components_self_v_allowDelete.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowDelete */
+#define afw_components_v_allowDelete \
+    ((const afw_value_t *)&afw_components_self_v_allowDelete)
 
 
 
@@ -2609,15 +3753,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowEntity */
 #define afw_components_s_allowEntity \
-    (afw_components_v_allowEntity.internal)
+    (&afw_components_self_v_allowEntity.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowEntity */
+#define afw_components_self_s_allowEntity \
+    (afw_components_self_v_allowEntity.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_allowEntity */
 extern const afw_value_string_t \
-    afw_components_v_allowEntity;
+    afw_components_self_v_allowEntity;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowEntity */
 #define afw_components_z_allowEntity \
-    (afw_components_v_allowEntity.internal.s)
+    (afw_components_self_v_allowEntity.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowEntity */
+#define afw_components_v_allowEntity \
+    ((const afw_value_t *)&afw_components_self_v_allowEntity)
 
 
 
@@ -2627,15 +3779,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowWrite */
 #define afw_components_s_allowWrite \
-    (afw_components_v_allowWrite.internal)
+    (&afw_components_self_v_allowWrite.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowWrite */
+#define afw_components_self_s_allowWrite \
+    (afw_components_self_v_allowWrite.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_allowWrite */
 extern const afw_value_string_t \
-    afw_components_v_allowWrite;
+    afw_components_self_v_allowWrite;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowWrite */
 #define afw_components_z_allowWrite \
-    (afw_components_v_allowWrite.internal.s)
+    (afw_components_self_v_allowWrite.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowWrite */
+#define afw_components_v_allowWrite \
+    ((const afw_value_t *)&afw_components_self_v_allowWrite)
 
 
 
@@ -2645,15 +3805,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowedValues */
 #define afw_components_s_allowedValues \
-    (afw_components_v_allowedValues.internal)
+    (&afw_components_self_v_allowedValues.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_allowedValues */
+#define afw_components_self_s_allowedValues \
+    (afw_components_self_v_allowedValues.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_allowedValues */
 extern const afw_value_string_t \
-    afw_components_v_allowedValues;
+    afw_components_self_v_allowedValues;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowedValues */
 #define afw_components_z_allowedValues \
-    (afw_components_v_allowedValues.internal.s)
+    (afw_components_self_v_allowedValues.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_allowedValues */
+#define afw_components_v_allowedValues \
+    ((const afw_value_t *)&afw_components_self_v_allowedValues)
 
 
 
@@ -2663,15 +3831,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_anchor */
 #define afw_components_s_anchor \
-    (afw_components_v_anchor.internal)
+    (&afw_components_self_v_anchor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_anchor */
+#define afw_components_self_s_anchor \
+    (afw_components_self_v_anchor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_anchor */
 extern const afw_value_string_t \
-    afw_components_v_anchor;
+    afw_components_self_v_anchor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_anchor */
 #define afw_components_z_anchor \
-    (afw_components_v_anchor.internal.s)
+    (afw_components_self_v_anchor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_anchor */
+#define afw_components_v_anchor \
+    ((const afw_value_t *)&afw_components_self_v_anchor)
 
 
 
@@ -2681,15 +3857,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animateDuration */
 #define afw_components_s_animateDuration \
-    (afw_components_v_animateDuration.internal)
+    (&afw_components_self_v_animateDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animateDuration */
+#define afw_components_self_s_animateDuration \
+    (afw_components_self_v_animateDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animateDuration */
 extern const afw_value_string_t \
-    afw_components_v_animateDuration;
+    afw_components_self_v_animateDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animateDuration */
 #define afw_components_z_animateDuration \
-    (afw_components_v_animateDuration.internal.s)
+    (afw_components_self_v_animateDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animateDuration */
+#define afw_components_v_animateDuration \
+    ((const afw_value_t *)&afw_components_self_v_animateDuration)
 
 
 
@@ -2699,15 +3883,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animation */
 #define afw_components_s_animation \
-    (afw_components_v_animation.internal)
+    (&afw_components_self_v_animation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animation */
+#define afw_components_self_s_animation \
+    (afw_components_self_v_animation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animation */
 extern const afw_value_string_t \
-    afw_components_v_animation;
+    afw_components_self_v_animation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animation */
 #define afw_components_z_animation \
-    (afw_components_v_animation.internal.s)
+    (afw_components_self_v_animation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animation */
+#define afw_components_v_animation \
+    ((const afw_value_t *)&afw_components_self_v_animation)
 
 
 
@@ -2717,15 +3909,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationDelay */
 #define afw_components_s_animationDelay \
-    (afw_components_v_animationDelay.internal)
+    (&afw_components_self_v_animationDelay.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationDelay */
+#define afw_components_self_s_animationDelay \
+    (afw_components_self_v_animationDelay.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationDelay */
 extern const afw_value_string_t \
-    afw_components_v_animationDelay;
+    afw_components_self_v_animationDelay;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationDelay */
 #define afw_components_z_animationDelay \
-    (afw_components_v_animationDelay.internal.s)
+    (afw_components_self_v_animationDelay.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationDelay */
+#define afw_components_v_animationDelay \
+    ((const afw_value_t *)&afw_components_self_v_animationDelay)
 
 
 
@@ -2735,15 +3935,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationDirection */
 #define afw_components_s_animationDirection \
-    (afw_components_v_animationDirection.internal)
+    (&afw_components_self_v_animationDirection.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationDirection */
+#define afw_components_self_s_animationDirection \
+    (afw_components_self_v_animationDirection.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationDirection */
 extern const afw_value_string_t \
-    afw_components_v_animationDirection;
+    afw_components_self_v_animationDirection;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationDirection */
 #define afw_components_z_animationDirection \
-    (afw_components_v_animationDirection.internal.s)
+    (afw_components_self_v_animationDirection.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationDirection */
+#define afw_components_v_animationDirection \
+    ((const afw_value_t *)&afw_components_self_v_animationDirection)
 
 
 
@@ -2753,15 +3961,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationDuration */
 #define afw_components_s_animationDuration \
-    (afw_components_v_animationDuration.internal)
+    (&afw_components_self_v_animationDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationDuration */
+#define afw_components_self_s_animationDuration \
+    (afw_components_self_v_animationDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationDuration */
 extern const afw_value_string_t \
-    afw_components_v_animationDuration;
+    afw_components_self_v_animationDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationDuration */
 #define afw_components_z_animationDuration \
-    (afw_components_v_animationDuration.internal.s)
+    (afw_components_self_v_animationDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationDuration */
+#define afw_components_v_animationDuration \
+    ((const afw_value_t *)&afw_components_self_v_animationDuration)
 
 
 
@@ -2771,15 +3987,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationFillMode */
 #define afw_components_s_animationFillMode \
-    (afw_components_v_animationFillMode.internal)
+    (&afw_components_self_v_animationFillMode.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationFillMode */
+#define afw_components_self_s_animationFillMode \
+    (afw_components_self_v_animationFillMode.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationFillMode */
 extern const afw_value_string_t \
-    afw_components_v_animationFillMode;
+    afw_components_self_v_animationFillMode;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationFillMode */
 #define afw_components_z_animationFillMode \
-    (afw_components_v_animationFillMode.internal.s)
+    (afw_components_self_v_animationFillMode.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationFillMode */
+#define afw_components_v_animationFillMode \
+    ((const afw_value_t *)&afw_components_self_v_animationFillMode)
 
 
 
@@ -2789,15 +4013,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationIterationCount */
 #define afw_components_s_animationIterationCount \
-    (afw_components_v_animationIterationCount.internal)
+    (&afw_components_self_v_animationIterationCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationIterationCount */
+#define afw_components_self_s_animationIterationCount \
+    (afw_components_self_v_animationIterationCount.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationIterationCount */
 extern const afw_value_string_t \
-    afw_components_v_animationIterationCount;
+    afw_components_self_v_animationIterationCount;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationIterationCount */
 #define afw_components_z_animationIterationCount \
-    (afw_components_v_animationIterationCount.internal.s)
+    (afw_components_self_v_animationIterationCount.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationIterationCount */
+#define afw_components_v_animationIterationCount \
+    ((const afw_value_t *)&afw_components_self_v_animationIterationCount)
 
 
 
@@ -2807,15 +4039,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationName */
 #define afw_components_s_animationName \
-    (afw_components_v_animationName.internal)
+    (&afw_components_self_v_animationName.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationName */
+#define afw_components_self_s_animationName \
+    (afw_components_self_v_animationName.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationName */
 extern const afw_value_string_t \
-    afw_components_v_animationName;
+    afw_components_self_v_animationName;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationName */
 #define afw_components_z_animationName \
-    (afw_components_v_animationName.internal.s)
+    (afw_components_self_v_animationName.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationName */
+#define afw_components_v_animationName \
+    ((const afw_value_t *)&afw_components_self_v_animationName)
 
 
 
@@ -2825,15 +4065,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationPlayState */
 #define afw_components_s_animationPlayState \
-    (afw_components_v_animationPlayState.internal)
+    (&afw_components_self_v_animationPlayState.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationPlayState */
+#define afw_components_self_s_animationPlayState \
+    (afw_components_self_v_animationPlayState.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationPlayState */
 extern const afw_value_string_t \
-    afw_components_v_animationPlayState;
+    afw_components_self_v_animationPlayState;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationPlayState */
 #define afw_components_z_animationPlayState \
-    (afw_components_v_animationPlayState.internal.s)
+    (afw_components_self_v_animationPlayState.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationPlayState */
+#define afw_components_v_animationPlayState \
+    ((const afw_value_t *)&afw_components_self_v_animationPlayState)
 
 
 
@@ -2843,15 +4091,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationTimingFunction */
 #define afw_components_s_animationTimingFunction \
-    (afw_components_v_animationTimingFunction.internal)
+    (&afw_components_self_v_animationTimingFunction.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_animationTimingFunction */
+#define afw_components_self_s_animationTimingFunction \
+    (afw_components_self_v_animationTimingFunction.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_animationTimingFunction */
 extern const afw_value_string_t \
-    afw_components_v_animationTimingFunction;
+    afw_components_self_v_animationTimingFunction;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationTimingFunction */
 #define afw_components_z_animationTimingFunction \
-    (afw_components_v_animationTimingFunction.internal.s)
+    (afw_components_self_v_animationTimingFunction.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_animationTimingFunction */
+#define afw_components_v_animationTimingFunction \
+    ((const afw_value_t *)&afw_components_self_v_animationTimingFunction)
 
 
 
@@ -2861,15 +4117,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_array */
 #define afw_components_s_array \
-    (afw_components_v_array.internal)
+    (&afw_components_self_v_array.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_array */
+#define afw_components_self_s_array \
+    (afw_components_self_v_array.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_array */
 extern const afw_value_string_t \
-    afw_components_v_array;
+    afw_components_self_v_array;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_array */
 #define afw_components_z_array \
-    (afw_components_v_array.internal.s)
+    (afw_components_self_v_array.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_array */
+#define afw_components_v_array \
+    ((const afw_value_t *)&afw_components_self_v_array)
 
 
 
@@ -2879,15 +4143,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backfaceVisibility */
 #define afw_components_s_backfaceVisibility \
-    (afw_components_v_backfaceVisibility.internal)
+    (&afw_components_self_v_backfaceVisibility.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backfaceVisibility */
+#define afw_components_self_s_backfaceVisibility \
+    (afw_components_self_v_backfaceVisibility.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backfaceVisibility */
 extern const afw_value_string_t \
-    afw_components_v_backfaceVisibility;
+    afw_components_self_v_backfaceVisibility;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backfaceVisibility */
 #define afw_components_z_backfaceVisibility \
-    (afw_components_v_backfaceVisibility.internal.s)
+    (afw_components_self_v_backfaceVisibility.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backfaceVisibility */
+#define afw_components_v_backfaceVisibility \
+    ((const afw_value_t *)&afw_components_self_v_backfaceVisibility)
 
 
 
@@ -2897,15 +4169,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_background */
 #define afw_components_s_background \
-    (afw_components_v_background.internal)
+    (&afw_components_self_v_background.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_background */
+#define afw_components_self_s_background \
+    (afw_components_self_v_background.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_background */
 extern const afw_value_string_t \
-    afw_components_v_background;
+    afw_components_self_v_background;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_background */
 #define afw_components_z_background \
-    (afw_components_v_background.internal.s)
+    (afw_components_self_v_background.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_background */
+#define afw_components_v_background \
+    ((const afw_value_t *)&afw_components_self_v_background)
 
 
 
@@ -2915,15 +4195,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundAttachment */
 #define afw_components_s_backgroundAttachment \
-    (afw_components_v_backgroundAttachment.internal)
+    (&afw_components_self_v_backgroundAttachment.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundAttachment */
+#define afw_components_self_s_backgroundAttachment \
+    (afw_components_self_v_backgroundAttachment.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundAttachment */
 extern const afw_value_string_t \
-    afw_components_v_backgroundAttachment;
+    afw_components_self_v_backgroundAttachment;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundAttachment */
 #define afw_components_z_backgroundAttachment \
-    (afw_components_v_backgroundAttachment.internal.s)
+    (afw_components_self_v_backgroundAttachment.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundAttachment */
+#define afw_components_v_backgroundAttachment \
+    ((const afw_value_t *)&afw_components_self_v_backgroundAttachment)
 
 
 
@@ -2933,15 +4221,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundClip */
 #define afw_components_s_backgroundClip \
-    (afw_components_v_backgroundClip.internal)
+    (&afw_components_self_v_backgroundClip.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundClip */
+#define afw_components_self_s_backgroundClip \
+    (afw_components_self_v_backgroundClip.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundClip */
 extern const afw_value_string_t \
-    afw_components_v_backgroundClip;
+    afw_components_self_v_backgroundClip;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundClip */
 #define afw_components_z_backgroundClip \
-    (afw_components_v_backgroundClip.internal.s)
+    (afw_components_self_v_backgroundClip.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundClip */
+#define afw_components_v_backgroundClip \
+    ((const afw_value_t *)&afw_components_self_v_backgroundClip)
 
 
 
@@ -2951,15 +4247,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundColor */
 #define afw_components_s_backgroundColor \
-    (afw_components_v_backgroundColor.internal)
+    (&afw_components_self_v_backgroundColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundColor */
+#define afw_components_self_s_backgroundColor \
+    (afw_components_self_v_backgroundColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundColor */
 extern const afw_value_string_t \
-    afw_components_v_backgroundColor;
+    afw_components_self_v_backgroundColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundColor */
 #define afw_components_z_backgroundColor \
-    (afw_components_v_backgroundColor.internal.s)
+    (afw_components_self_v_backgroundColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundColor */
+#define afw_components_v_backgroundColor \
+    ((const afw_value_t *)&afw_components_self_v_backgroundColor)
 
 
 
@@ -2969,15 +4273,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundImage */
 #define afw_components_s_backgroundImage \
-    (afw_components_v_backgroundImage.internal)
+    (&afw_components_self_v_backgroundImage.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundImage */
+#define afw_components_self_s_backgroundImage \
+    (afw_components_self_v_backgroundImage.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundImage */
 extern const afw_value_string_t \
-    afw_components_v_backgroundImage;
+    afw_components_self_v_backgroundImage;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundImage */
 #define afw_components_z_backgroundImage \
-    (afw_components_v_backgroundImage.internal.s)
+    (afw_components_self_v_backgroundImage.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundImage */
+#define afw_components_v_backgroundImage \
+    ((const afw_value_t *)&afw_components_self_v_backgroundImage)
 
 
 
@@ -2987,15 +4299,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundOrigin */
 #define afw_components_s_backgroundOrigin \
-    (afw_components_v_backgroundOrigin.internal)
+    (&afw_components_self_v_backgroundOrigin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundOrigin */
+#define afw_components_self_s_backgroundOrigin \
+    (afw_components_self_v_backgroundOrigin.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundOrigin */
 extern const afw_value_string_t \
-    afw_components_v_backgroundOrigin;
+    afw_components_self_v_backgroundOrigin;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundOrigin */
 #define afw_components_z_backgroundOrigin \
-    (afw_components_v_backgroundOrigin.internal.s)
+    (afw_components_self_v_backgroundOrigin.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundOrigin */
+#define afw_components_v_backgroundOrigin \
+    ((const afw_value_t *)&afw_components_self_v_backgroundOrigin)
 
 
 
@@ -3005,15 +4325,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundPosition */
 #define afw_components_s_backgroundPosition \
-    (afw_components_v_backgroundPosition.internal)
+    (&afw_components_self_v_backgroundPosition.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundPosition */
+#define afw_components_self_s_backgroundPosition \
+    (afw_components_self_v_backgroundPosition.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundPosition */
 extern const afw_value_string_t \
-    afw_components_v_backgroundPosition;
+    afw_components_self_v_backgroundPosition;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundPosition */
 #define afw_components_z_backgroundPosition \
-    (afw_components_v_backgroundPosition.internal.s)
+    (afw_components_self_v_backgroundPosition.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundPosition */
+#define afw_components_v_backgroundPosition \
+    ((const afw_value_t *)&afw_components_self_v_backgroundPosition)
 
 
 
@@ -3023,15 +4351,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundRepeat */
 #define afw_components_s_backgroundRepeat \
-    (afw_components_v_backgroundRepeat.internal)
+    (&afw_components_self_v_backgroundRepeat.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundRepeat */
+#define afw_components_self_s_backgroundRepeat \
+    (afw_components_self_v_backgroundRepeat.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundRepeat */
 extern const afw_value_string_t \
-    afw_components_v_backgroundRepeat;
+    afw_components_self_v_backgroundRepeat;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundRepeat */
 #define afw_components_z_backgroundRepeat \
-    (afw_components_v_backgroundRepeat.internal.s)
+    (afw_components_self_v_backgroundRepeat.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundRepeat */
+#define afw_components_v_backgroundRepeat \
+    ((const afw_value_t *)&afw_components_self_v_backgroundRepeat)
 
 
 
@@ -3041,15 +4377,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundSize */
 #define afw_components_s_backgroundSize \
-    (afw_components_v_backgroundSize.internal)
+    (&afw_components_self_v_backgroundSize.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_backgroundSize */
+#define afw_components_self_s_backgroundSize \
+    (afw_components_self_v_backgroundSize.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_backgroundSize */
 extern const afw_value_string_t \
-    afw_components_v_backgroundSize;
+    afw_components_self_v_backgroundSize;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundSize */
 #define afw_components_z_backgroundSize \
-    (afw_components_v_backgroundSize.internal.s)
+    (afw_components_self_v_backgroundSize.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_backgroundSize */
+#define afw_components_v_backgroundSize \
+    ((const afw_value_t *)&afw_components_self_v_backgroundSize)
 
 
 
@@ -3059,15 +4403,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_badge */
 #define afw_components_s_badge \
-    (afw_components_v_badge.internal)
+    (&afw_components_self_v_badge.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_badge */
+#define afw_components_self_s_badge \
+    (afw_components_self_v_badge.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_badge */
 extern const afw_value_string_t \
-    afw_components_v_badge;
+    afw_components_self_v_badge;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_badge */
 #define afw_components_z_badge \
-    (afw_components_v_badge.internal.s)
+    (afw_components_self_v_badge.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_badge */
+#define afw_components_v_badge \
+    ((const afw_value_t *)&afw_components_self_v_badge)
 
 
 
@@ -3077,15 +4429,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boolean */
 #define afw_components_s_boolean \
-    (afw_components_v_boolean.internal)
+    (&afw_components_self_v_boolean.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boolean */
+#define afw_components_self_s_boolean \
+    (afw_components_self_v_boolean.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_boolean */
 extern const afw_value_string_t \
-    afw_components_v_boolean;
+    afw_components_self_v_boolean;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boolean */
 #define afw_components_z_boolean \
-    (afw_components_v_boolean.internal.s)
+    (afw_components_self_v_boolean.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boolean */
+#define afw_components_v_boolean \
+    ((const afw_value_t *)&afw_components_self_v_boolean)
 
 
 
@@ -3095,15 +4455,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_border */
 #define afw_components_s_border \
-    (afw_components_v_border.internal)
+    (&afw_components_self_v_border.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_border */
+#define afw_components_self_s_border \
+    (afw_components_self_v_border.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_border */
 extern const afw_value_string_t \
-    afw_components_v_border;
+    afw_components_self_v_border;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_border */
 #define afw_components_z_border \
-    (afw_components_v_border.internal.s)
+    (afw_components_self_v_border.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_border */
+#define afw_components_v_border \
+    ((const afw_value_t *)&afw_components_self_v_border)
 
 
 
@@ -3113,15 +4481,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottom */
 #define afw_components_s_borderBottom \
-    (afw_components_v_borderBottom.internal)
+    (&afw_components_self_v_borderBottom.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottom */
+#define afw_components_self_s_borderBottom \
+    (afw_components_self_v_borderBottom.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderBottom */
 extern const afw_value_string_t \
-    afw_components_v_borderBottom;
+    afw_components_self_v_borderBottom;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottom */
 #define afw_components_z_borderBottom \
-    (afw_components_v_borderBottom.internal.s)
+    (afw_components_self_v_borderBottom.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottom */
+#define afw_components_v_borderBottom \
+    ((const afw_value_t *)&afw_components_self_v_borderBottom)
 
 
 
@@ -3131,15 +4507,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomColor */
 #define afw_components_s_borderBottomColor \
-    (afw_components_v_borderBottomColor.internal)
+    (&afw_components_self_v_borderBottomColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomColor */
+#define afw_components_self_s_borderBottomColor \
+    (afw_components_self_v_borderBottomColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderBottomColor */
 extern const afw_value_string_t \
-    afw_components_v_borderBottomColor;
+    afw_components_self_v_borderBottomColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomColor */
 #define afw_components_z_borderBottomColor \
-    (afw_components_v_borderBottomColor.internal.s)
+    (afw_components_self_v_borderBottomColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomColor */
+#define afw_components_v_borderBottomColor \
+    ((const afw_value_t *)&afw_components_self_v_borderBottomColor)
 
 
 
@@ -3149,15 +4533,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomLeftRadius */
 #define afw_components_s_borderBottomLeftRadius \
-    (afw_components_v_borderBottomLeftRadius.internal)
+    (&afw_components_self_v_borderBottomLeftRadius.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomLeftRadius */
+#define afw_components_self_s_borderBottomLeftRadius \
+    (afw_components_self_v_borderBottomLeftRadius.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderBottomLeftRadius */
 extern const afw_value_string_t \
-    afw_components_v_borderBottomLeftRadius;
+    afw_components_self_v_borderBottomLeftRadius;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomLeftRadius */
 #define afw_components_z_borderBottomLeftRadius \
-    (afw_components_v_borderBottomLeftRadius.internal.s)
+    (afw_components_self_v_borderBottomLeftRadius.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomLeftRadius */
+#define afw_components_v_borderBottomLeftRadius \
+    ((const afw_value_t *)&afw_components_self_v_borderBottomLeftRadius)
 
 
 
@@ -3167,15 +4559,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomRightRadius */
 #define afw_components_s_borderBottomRightRadius \
-    (afw_components_v_borderBottomRightRadius.internal)
+    (&afw_components_self_v_borderBottomRightRadius.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomRightRadius */
+#define afw_components_self_s_borderBottomRightRadius \
+    (afw_components_self_v_borderBottomRightRadius.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderBottomRightRadius */
 extern const afw_value_string_t \
-    afw_components_v_borderBottomRightRadius;
+    afw_components_self_v_borderBottomRightRadius;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomRightRadius */
 #define afw_components_z_borderBottomRightRadius \
-    (afw_components_v_borderBottomRightRadius.internal.s)
+    (afw_components_self_v_borderBottomRightRadius.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomRightRadius */
+#define afw_components_v_borderBottomRightRadius \
+    ((const afw_value_t *)&afw_components_self_v_borderBottomRightRadius)
 
 
 
@@ -3185,15 +4585,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomStyle */
 #define afw_components_s_borderBottomStyle \
-    (afw_components_v_borderBottomStyle.internal)
+    (&afw_components_self_v_borderBottomStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomStyle */
+#define afw_components_self_s_borderBottomStyle \
+    (afw_components_self_v_borderBottomStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderBottomStyle */
 extern const afw_value_string_t \
-    afw_components_v_borderBottomStyle;
+    afw_components_self_v_borderBottomStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomStyle */
 #define afw_components_z_borderBottomStyle \
-    (afw_components_v_borderBottomStyle.internal.s)
+    (afw_components_self_v_borderBottomStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomStyle */
+#define afw_components_v_borderBottomStyle \
+    ((const afw_value_t *)&afw_components_self_v_borderBottomStyle)
 
 
 
@@ -3203,15 +4611,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomWidth */
 #define afw_components_s_borderBottomWidth \
-    (afw_components_v_borderBottomWidth.internal)
+    (&afw_components_self_v_borderBottomWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderBottomWidth */
+#define afw_components_self_s_borderBottomWidth \
+    (afw_components_self_v_borderBottomWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderBottomWidth */
 extern const afw_value_string_t \
-    afw_components_v_borderBottomWidth;
+    afw_components_self_v_borderBottomWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomWidth */
 #define afw_components_z_borderBottomWidth \
-    (afw_components_v_borderBottomWidth.internal.s)
+    (afw_components_self_v_borderBottomWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderBottomWidth */
+#define afw_components_v_borderBottomWidth \
+    ((const afw_value_t *)&afw_components_self_v_borderBottomWidth)
 
 
 
@@ -3221,15 +4637,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderCollapse */
 #define afw_components_s_borderCollapse \
-    (afw_components_v_borderCollapse.internal)
+    (&afw_components_self_v_borderCollapse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderCollapse */
+#define afw_components_self_s_borderCollapse \
+    (afw_components_self_v_borderCollapse.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderCollapse */
 extern const afw_value_string_t \
-    afw_components_v_borderCollapse;
+    afw_components_self_v_borderCollapse;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderCollapse */
 #define afw_components_z_borderCollapse \
-    (afw_components_v_borderCollapse.internal.s)
+    (afw_components_self_v_borderCollapse.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderCollapse */
+#define afw_components_v_borderCollapse \
+    ((const afw_value_t *)&afw_components_self_v_borderCollapse)
 
 
 
@@ -3239,15 +4663,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderColor */
 #define afw_components_s_borderColor \
-    (afw_components_v_borderColor.internal)
+    (&afw_components_self_v_borderColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderColor */
+#define afw_components_self_s_borderColor \
+    (afw_components_self_v_borderColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderColor */
 extern const afw_value_string_t \
-    afw_components_v_borderColor;
+    afw_components_self_v_borderColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderColor */
 #define afw_components_z_borderColor \
-    (afw_components_v_borderColor.internal.s)
+    (afw_components_self_v_borderColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderColor */
+#define afw_components_v_borderColor \
+    ((const afw_value_t *)&afw_components_self_v_borderColor)
 
 
 
@@ -3257,15 +4689,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImage */
 #define afw_components_s_borderImage \
-    (afw_components_v_borderImage.internal)
+    (&afw_components_self_v_borderImage.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImage */
+#define afw_components_self_s_borderImage \
+    (afw_components_self_v_borderImage.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderImage */
 extern const afw_value_string_t \
-    afw_components_v_borderImage;
+    afw_components_self_v_borderImage;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImage */
 #define afw_components_z_borderImage \
-    (afw_components_v_borderImage.internal.s)
+    (afw_components_self_v_borderImage.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImage */
+#define afw_components_v_borderImage \
+    ((const afw_value_t *)&afw_components_self_v_borderImage)
 
 
 
@@ -3275,15 +4715,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageOutset */
 #define afw_components_s_borderImageOutset \
-    (afw_components_v_borderImageOutset.internal)
+    (&afw_components_self_v_borderImageOutset.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageOutset */
+#define afw_components_self_s_borderImageOutset \
+    (afw_components_self_v_borderImageOutset.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderImageOutset */
 extern const afw_value_string_t \
-    afw_components_v_borderImageOutset;
+    afw_components_self_v_borderImageOutset;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageOutset */
 #define afw_components_z_borderImageOutset \
-    (afw_components_v_borderImageOutset.internal.s)
+    (afw_components_self_v_borderImageOutset.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageOutset */
+#define afw_components_v_borderImageOutset \
+    ((const afw_value_t *)&afw_components_self_v_borderImageOutset)
 
 
 
@@ -3293,15 +4741,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageRepeat */
 #define afw_components_s_borderImageRepeat \
-    (afw_components_v_borderImageRepeat.internal)
+    (&afw_components_self_v_borderImageRepeat.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageRepeat */
+#define afw_components_self_s_borderImageRepeat \
+    (afw_components_self_v_borderImageRepeat.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderImageRepeat */
 extern const afw_value_string_t \
-    afw_components_v_borderImageRepeat;
+    afw_components_self_v_borderImageRepeat;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageRepeat */
 #define afw_components_z_borderImageRepeat \
-    (afw_components_v_borderImageRepeat.internal.s)
+    (afw_components_self_v_borderImageRepeat.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageRepeat */
+#define afw_components_v_borderImageRepeat \
+    ((const afw_value_t *)&afw_components_self_v_borderImageRepeat)
 
 
 
@@ -3311,15 +4767,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageSlice */
 #define afw_components_s_borderImageSlice \
-    (afw_components_v_borderImageSlice.internal)
+    (&afw_components_self_v_borderImageSlice.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageSlice */
+#define afw_components_self_s_borderImageSlice \
+    (afw_components_self_v_borderImageSlice.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderImageSlice */
 extern const afw_value_string_t \
-    afw_components_v_borderImageSlice;
+    afw_components_self_v_borderImageSlice;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageSlice */
 #define afw_components_z_borderImageSlice \
-    (afw_components_v_borderImageSlice.internal.s)
+    (afw_components_self_v_borderImageSlice.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageSlice */
+#define afw_components_v_borderImageSlice \
+    ((const afw_value_t *)&afw_components_self_v_borderImageSlice)
 
 
 
@@ -3329,15 +4793,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageSource */
 #define afw_components_s_borderImageSource \
-    (afw_components_v_borderImageSource.internal)
+    (&afw_components_self_v_borderImageSource.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageSource */
+#define afw_components_self_s_borderImageSource \
+    (afw_components_self_v_borderImageSource.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderImageSource */
 extern const afw_value_string_t \
-    afw_components_v_borderImageSource;
+    afw_components_self_v_borderImageSource;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageSource */
 #define afw_components_z_borderImageSource \
-    (afw_components_v_borderImageSource.internal.s)
+    (afw_components_self_v_borderImageSource.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageSource */
+#define afw_components_v_borderImageSource \
+    ((const afw_value_t *)&afw_components_self_v_borderImageSource)
 
 
 
@@ -3347,15 +4819,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageWidth */
 #define afw_components_s_borderImageWidth \
-    (afw_components_v_borderImageWidth.internal)
+    (&afw_components_self_v_borderImageWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderImageWidth */
+#define afw_components_self_s_borderImageWidth \
+    (afw_components_self_v_borderImageWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderImageWidth */
 extern const afw_value_string_t \
-    afw_components_v_borderImageWidth;
+    afw_components_self_v_borderImageWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageWidth */
 #define afw_components_z_borderImageWidth \
-    (afw_components_v_borderImageWidth.internal.s)
+    (afw_components_self_v_borderImageWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderImageWidth */
+#define afw_components_v_borderImageWidth \
+    ((const afw_value_t *)&afw_components_self_v_borderImageWidth)
 
 
 
@@ -3365,15 +4845,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeft */
 #define afw_components_s_borderLeft \
-    (afw_components_v_borderLeft.internal)
+    (&afw_components_self_v_borderLeft.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeft */
+#define afw_components_self_s_borderLeft \
+    (afw_components_self_v_borderLeft.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderLeft */
 extern const afw_value_string_t \
-    afw_components_v_borderLeft;
+    afw_components_self_v_borderLeft;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeft */
 #define afw_components_z_borderLeft \
-    (afw_components_v_borderLeft.internal.s)
+    (afw_components_self_v_borderLeft.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeft */
+#define afw_components_v_borderLeft \
+    ((const afw_value_t *)&afw_components_self_v_borderLeft)
 
 
 
@@ -3383,15 +4871,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeftColor */
 #define afw_components_s_borderLeftColor \
-    (afw_components_v_borderLeftColor.internal)
+    (&afw_components_self_v_borderLeftColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeftColor */
+#define afw_components_self_s_borderLeftColor \
+    (afw_components_self_v_borderLeftColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderLeftColor */
 extern const afw_value_string_t \
-    afw_components_v_borderLeftColor;
+    afw_components_self_v_borderLeftColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeftColor */
 #define afw_components_z_borderLeftColor \
-    (afw_components_v_borderLeftColor.internal.s)
+    (afw_components_self_v_borderLeftColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeftColor */
+#define afw_components_v_borderLeftColor \
+    ((const afw_value_t *)&afw_components_self_v_borderLeftColor)
 
 
 
@@ -3401,15 +4897,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeftStyle */
 #define afw_components_s_borderLeftStyle \
-    (afw_components_v_borderLeftStyle.internal)
+    (&afw_components_self_v_borderLeftStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeftStyle */
+#define afw_components_self_s_borderLeftStyle \
+    (afw_components_self_v_borderLeftStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderLeftStyle */
 extern const afw_value_string_t \
-    afw_components_v_borderLeftStyle;
+    afw_components_self_v_borderLeftStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeftStyle */
 #define afw_components_z_borderLeftStyle \
-    (afw_components_v_borderLeftStyle.internal.s)
+    (afw_components_self_v_borderLeftStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeftStyle */
+#define afw_components_v_borderLeftStyle \
+    ((const afw_value_t *)&afw_components_self_v_borderLeftStyle)
 
 
 
@@ -3419,15 +4923,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeftWidth */
 #define afw_components_s_borderLeftWidth \
-    (afw_components_v_borderLeftWidth.internal)
+    (&afw_components_self_v_borderLeftWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderLeftWidth */
+#define afw_components_self_s_borderLeftWidth \
+    (afw_components_self_v_borderLeftWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderLeftWidth */
 extern const afw_value_string_t \
-    afw_components_v_borderLeftWidth;
+    afw_components_self_v_borderLeftWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeftWidth */
 #define afw_components_z_borderLeftWidth \
-    (afw_components_v_borderLeftWidth.internal.s)
+    (afw_components_self_v_borderLeftWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderLeftWidth */
+#define afw_components_v_borderLeftWidth \
+    ((const afw_value_t *)&afw_components_self_v_borderLeftWidth)
 
 
 
@@ -3437,15 +4949,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRadius */
 #define afw_components_s_borderRadius \
-    (afw_components_v_borderRadius.internal)
+    (&afw_components_self_v_borderRadius.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRadius */
+#define afw_components_self_s_borderRadius \
+    (afw_components_self_v_borderRadius.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderRadius */
 extern const afw_value_string_t \
-    afw_components_v_borderRadius;
+    afw_components_self_v_borderRadius;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRadius */
 #define afw_components_z_borderRadius \
-    (afw_components_v_borderRadius.internal.s)
+    (afw_components_self_v_borderRadius.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRadius */
+#define afw_components_v_borderRadius \
+    ((const afw_value_t *)&afw_components_self_v_borderRadius)
 
 
 
@@ -3455,15 +4975,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRight */
 #define afw_components_s_borderRight \
-    (afw_components_v_borderRight.internal)
+    (&afw_components_self_v_borderRight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRight */
+#define afw_components_self_s_borderRight \
+    (afw_components_self_v_borderRight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderRight */
 extern const afw_value_string_t \
-    afw_components_v_borderRight;
+    afw_components_self_v_borderRight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRight */
 #define afw_components_z_borderRight \
-    (afw_components_v_borderRight.internal.s)
+    (afw_components_self_v_borderRight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRight */
+#define afw_components_v_borderRight \
+    ((const afw_value_t *)&afw_components_self_v_borderRight)
 
 
 
@@ -3473,15 +5001,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRightColor */
 #define afw_components_s_borderRightColor \
-    (afw_components_v_borderRightColor.internal)
+    (&afw_components_self_v_borderRightColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRightColor */
+#define afw_components_self_s_borderRightColor \
+    (afw_components_self_v_borderRightColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderRightColor */
 extern const afw_value_string_t \
-    afw_components_v_borderRightColor;
+    afw_components_self_v_borderRightColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRightColor */
 #define afw_components_z_borderRightColor \
-    (afw_components_v_borderRightColor.internal.s)
+    (afw_components_self_v_borderRightColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRightColor */
+#define afw_components_v_borderRightColor \
+    ((const afw_value_t *)&afw_components_self_v_borderRightColor)
 
 
 
@@ -3491,15 +5027,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRightStyle */
 #define afw_components_s_borderRightStyle \
-    (afw_components_v_borderRightStyle.internal)
+    (&afw_components_self_v_borderRightStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRightStyle */
+#define afw_components_self_s_borderRightStyle \
+    (afw_components_self_v_borderRightStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderRightStyle */
 extern const afw_value_string_t \
-    afw_components_v_borderRightStyle;
+    afw_components_self_v_borderRightStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRightStyle */
 #define afw_components_z_borderRightStyle \
-    (afw_components_v_borderRightStyle.internal.s)
+    (afw_components_self_v_borderRightStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRightStyle */
+#define afw_components_v_borderRightStyle \
+    ((const afw_value_t *)&afw_components_self_v_borderRightStyle)
 
 
 
@@ -3509,15 +5053,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRightWidth */
 #define afw_components_s_borderRightWidth \
-    (afw_components_v_borderRightWidth.internal)
+    (&afw_components_self_v_borderRightWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderRightWidth */
+#define afw_components_self_s_borderRightWidth \
+    (afw_components_self_v_borderRightWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderRightWidth */
 extern const afw_value_string_t \
-    afw_components_v_borderRightWidth;
+    afw_components_self_v_borderRightWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRightWidth */
 #define afw_components_z_borderRightWidth \
-    (afw_components_v_borderRightWidth.internal.s)
+    (afw_components_self_v_borderRightWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderRightWidth */
+#define afw_components_v_borderRightWidth \
+    ((const afw_value_t *)&afw_components_self_v_borderRightWidth)
 
 
 
@@ -3527,15 +5079,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderSpacing */
 #define afw_components_s_borderSpacing \
-    (afw_components_v_borderSpacing.internal)
+    (&afw_components_self_v_borderSpacing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderSpacing */
+#define afw_components_self_s_borderSpacing \
+    (afw_components_self_v_borderSpacing.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderSpacing */
 extern const afw_value_string_t \
-    afw_components_v_borderSpacing;
+    afw_components_self_v_borderSpacing;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderSpacing */
 #define afw_components_z_borderSpacing \
-    (afw_components_v_borderSpacing.internal.s)
+    (afw_components_self_v_borderSpacing.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderSpacing */
+#define afw_components_v_borderSpacing \
+    ((const afw_value_t *)&afw_components_self_v_borderSpacing)
 
 
 
@@ -3545,15 +5105,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderStyle */
 #define afw_components_s_borderStyle \
-    (afw_components_v_borderStyle.internal)
+    (&afw_components_self_v_borderStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderStyle */
+#define afw_components_self_s_borderStyle \
+    (afw_components_self_v_borderStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderStyle */
 extern const afw_value_string_t \
-    afw_components_v_borderStyle;
+    afw_components_self_v_borderStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderStyle */
 #define afw_components_z_borderStyle \
-    (afw_components_v_borderStyle.internal.s)
+    (afw_components_self_v_borderStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderStyle */
+#define afw_components_v_borderStyle \
+    ((const afw_value_t *)&afw_components_self_v_borderStyle)
 
 
 
@@ -3563,15 +5131,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTop */
 #define afw_components_s_borderTop \
-    (afw_components_v_borderTop.internal)
+    (&afw_components_self_v_borderTop.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTop */
+#define afw_components_self_s_borderTop \
+    (afw_components_self_v_borderTop.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderTop */
 extern const afw_value_string_t \
-    afw_components_v_borderTop;
+    afw_components_self_v_borderTop;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTop */
 #define afw_components_z_borderTop \
-    (afw_components_v_borderTop.internal.s)
+    (afw_components_self_v_borderTop.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTop */
+#define afw_components_v_borderTop \
+    ((const afw_value_t *)&afw_components_self_v_borderTop)
 
 
 
@@ -3581,15 +5157,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopColor */
 #define afw_components_s_borderTopColor \
-    (afw_components_v_borderTopColor.internal)
+    (&afw_components_self_v_borderTopColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopColor */
+#define afw_components_self_s_borderTopColor \
+    (afw_components_self_v_borderTopColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderTopColor */
 extern const afw_value_string_t \
-    afw_components_v_borderTopColor;
+    afw_components_self_v_borderTopColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopColor */
 #define afw_components_z_borderTopColor \
-    (afw_components_v_borderTopColor.internal.s)
+    (afw_components_self_v_borderTopColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopColor */
+#define afw_components_v_borderTopColor \
+    ((const afw_value_t *)&afw_components_self_v_borderTopColor)
 
 
 
@@ -3599,15 +5183,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopLeftRadius */
 #define afw_components_s_borderTopLeftRadius \
-    (afw_components_v_borderTopLeftRadius.internal)
+    (&afw_components_self_v_borderTopLeftRadius.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopLeftRadius */
+#define afw_components_self_s_borderTopLeftRadius \
+    (afw_components_self_v_borderTopLeftRadius.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderTopLeftRadius */
 extern const afw_value_string_t \
-    afw_components_v_borderTopLeftRadius;
+    afw_components_self_v_borderTopLeftRadius;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopLeftRadius */
 #define afw_components_z_borderTopLeftRadius \
-    (afw_components_v_borderTopLeftRadius.internal.s)
+    (afw_components_self_v_borderTopLeftRadius.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopLeftRadius */
+#define afw_components_v_borderTopLeftRadius \
+    ((const afw_value_t *)&afw_components_self_v_borderTopLeftRadius)
 
 
 
@@ -3617,15 +5209,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopRightRadius */
 #define afw_components_s_borderTopRightRadius \
-    (afw_components_v_borderTopRightRadius.internal)
+    (&afw_components_self_v_borderTopRightRadius.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopRightRadius */
+#define afw_components_self_s_borderTopRightRadius \
+    (afw_components_self_v_borderTopRightRadius.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderTopRightRadius */
 extern const afw_value_string_t \
-    afw_components_v_borderTopRightRadius;
+    afw_components_self_v_borderTopRightRadius;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopRightRadius */
 #define afw_components_z_borderTopRightRadius \
-    (afw_components_v_borderTopRightRadius.internal.s)
+    (afw_components_self_v_borderTopRightRadius.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopRightRadius */
+#define afw_components_v_borderTopRightRadius \
+    ((const afw_value_t *)&afw_components_self_v_borderTopRightRadius)
 
 
 
@@ -3635,15 +5235,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopStyle */
 #define afw_components_s_borderTopStyle \
-    (afw_components_v_borderTopStyle.internal)
+    (&afw_components_self_v_borderTopStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopStyle */
+#define afw_components_self_s_borderTopStyle \
+    (afw_components_self_v_borderTopStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderTopStyle */
 extern const afw_value_string_t \
-    afw_components_v_borderTopStyle;
+    afw_components_self_v_borderTopStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopStyle */
 #define afw_components_z_borderTopStyle \
-    (afw_components_v_borderTopStyle.internal.s)
+    (afw_components_self_v_borderTopStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopStyle */
+#define afw_components_v_borderTopStyle \
+    ((const afw_value_t *)&afw_components_self_v_borderTopStyle)
 
 
 
@@ -3653,15 +5261,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopWidth */
 #define afw_components_s_borderTopWidth \
-    (afw_components_v_borderTopWidth.internal)
+    (&afw_components_self_v_borderTopWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderTopWidth */
+#define afw_components_self_s_borderTopWidth \
+    (afw_components_self_v_borderTopWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderTopWidth */
 extern const afw_value_string_t \
-    afw_components_v_borderTopWidth;
+    afw_components_self_v_borderTopWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopWidth */
 #define afw_components_z_borderTopWidth \
-    (afw_components_v_borderTopWidth.internal.s)
+    (afw_components_self_v_borderTopWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderTopWidth */
+#define afw_components_v_borderTopWidth \
+    ((const afw_value_t *)&afw_components_self_v_borderTopWidth)
 
 
 
@@ -3671,15 +5287,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderWidth */
 #define afw_components_s_borderWidth \
-    (afw_components_v_borderWidth.internal)
+    (&afw_components_self_v_borderWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_borderWidth */
+#define afw_components_self_s_borderWidth \
+    (afw_components_self_v_borderWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_borderWidth */
 extern const afw_value_string_t \
-    afw_components_v_borderWidth;
+    afw_components_self_v_borderWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderWidth */
 #define afw_components_z_borderWidth \
-    (afw_components_v_borderWidth.internal.s)
+    (afw_components_self_v_borderWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_borderWidth */
+#define afw_components_v_borderWidth \
+    ((const afw_value_t *)&afw_components_self_v_borderWidth)
 
 
 
@@ -3689,15 +5313,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_bottom */
 #define afw_components_s_bottom \
-    (afw_components_v_bottom.internal)
+    (&afw_components_self_v_bottom.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_bottom */
+#define afw_components_self_s_bottom \
+    (afw_components_self_v_bottom.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_bottom */
 extern const afw_value_string_t \
-    afw_components_v_bottom;
+    afw_components_self_v_bottom;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_bottom */
 #define afw_components_z_bottom \
-    (afw_components_v_bottom.internal.s)
+    (afw_components_self_v_bottom.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_bottom */
+#define afw_components_v_bottom \
+    ((const afw_value_t *)&afw_components_self_v_bottom)
 
 
 
@@ -3707,15 +5339,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxDecorationBreak */
 #define afw_components_s_boxDecorationBreak \
-    (afw_components_v_boxDecorationBreak.internal)
+    (&afw_components_self_v_boxDecorationBreak.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxDecorationBreak */
+#define afw_components_self_s_boxDecorationBreak \
+    (afw_components_self_v_boxDecorationBreak.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_boxDecorationBreak */
 extern const afw_value_string_t \
-    afw_components_v_boxDecorationBreak;
+    afw_components_self_v_boxDecorationBreak;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxDecorationBreak */
 #define afw_components_z_boxDecorationBreak \
-    (afw_components_v_boxDecorationBreak.internal.s)
+    (afw_components_self_v_boxDecorationBreak.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxDecorationBreak */
+#define afw_components_v_boxDecorationBreak \
+    ((const afw_value_t *)&afw_components_self_v_boxDecorationBreak)
 
 
 
@@ -3725,15 +5365,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxShadow */
 #define afw_components_s_boxShadow \
-    (afw_components_v_boxShadow.internal)
+    (&afw_components_self_v_boxShadow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxShadow */
+#define afw_components_self_s_boxShadow \
+    (afw_components_self_v_boxShadow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_boxShadow */
 extern const afw_value_string_t \
-    afw_components_v_boxShadow;
+    afw_components_self_v_boxShadow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxShadow */
 #define afw_components_z_boxShadow \
-    (afw_components_v_boxShadow.internal.s)
+    (afw_components_self_v_boxShadow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxShadow */
+#define afw_components_v_boxShadow \
+    ((const afw_value_t *)&afw_components_self_v_boxShadow)
 
 
 
@@ -3743,15 +5391,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxSide */
 #define afw_components_s_boxSide \
-    (afw_components_v_boxSide.internal)
+    (&afw_components_self_v_boxSide.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxSide */
+#define afw_components_self_s_boxSide \
+    (afw_components_self_v_boxSide.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_boxSide */
 extern const afw_value_string_t \
-    afw_components_v_boxSide;
+    afw_components_self_v_boxSide;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxSide */
 #define afw_components_z_boxSide \
-    (afw_components_v_boxSide.internal.s)
+    (afw_components_self_v_boxSide.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxSide */
+#define afw_components_v_boxSide \
+    ((const afw_value_t *)&afw_components_self_v_boxSide)
 
 
 
@@ -3761,15 +5417,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxSizing */
 #define afw_components_s_boxSizing \
-    (afw_components_v_boxSizing.internal)
+    (&afw_components_self_v_boxSizing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_boxSizing */
+#define afw_components_self_s_boxSizing \
+    (afw_components_self_v_boxSizing.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_boxSizing */
 extern const afw_value_string_t \
-    afw_components_v_boxSizing;
+    afw_components_self_v_boxSizing;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxSizing */
 #define afw_components_z_boxSizing \
-    (afw_components_v_boxSizing.internal.s)
+    (afw_components_self_v_boxSizing.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_boxSizing */
+#define afw_components_v_boxSizing \
+    ((const afw_value_t *)&afw_components_self_v_boxSizing)
 
 
 
@@ -3779,15 +5443,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_breakpoints */
 #define afw_components_s_breakpoints \
-    (afw_components_v_breakpoints.internal)
+    (&afw_components_self_v_breakpoints.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_breakpoints */
+#define afw_components_self_s_breakpoints \
+    (afw_components_self_v_breakpoints.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_breakpoints */
 extern const afw_value_string_t \
-    afw_components_v_breakpoints;
+    afw_components_self_v_breakpoints;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_breakpoints */
 #define afw_components_z_breakpoints \
-    (afw_components_v_breakpoints.internal.s)
+    (afw_components_self_v_breakpoints.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_breakpoints */
+#define afw_components_v_breakpoints \
+    ((const afw_value_t *)&afw_components_self_v_breakpoints)
 
 
 
@@ -3797,15 +5469,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_brief */
 #define afw_components_s_brief \
-    (afw_components_v_brief.internal)
+    (&afw_components_self_v_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_brief */
+#define afw_components_self_s_brief \
+    (afw_components_self_v_brief.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_brief */
 extern const afw_value_string_t \
-    afw_components_v_brief;
+    afw_components_self_v_brief;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_brief */
 #define afw_components_z_brief \
-    (afw_components_v_brief.internal.s)
+    (afw_components_self_v_brief.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_brief */
+#define afw_components_v_brief \
+    ((const afw_value_t *)&afw_components_self_v_brief)
 
 
 
@@ -3815,15 +5495,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_canDismiss */
 #define afw_components_s_canDismiss \
-    (afw_components_v_canDismiss.internal)
+    (&afw_components_self_v_canDismiss.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_canDismiss */
+#define afw_components_self_s_canDismiss \
+    (afw_components_self_v_canDismiss.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_canDismiss */
 extern const afw_value_string_t \
-    afw_components_v_canDismiss;
+    afw_components_self_v_canDismiss;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_canDismiss */
 #define afw_components_z_canDismiss \
-    (afw_components_v_canDismiss.internal.s)
+    (afw_components_self_v_canDismiss.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_canDismiss */
+#define afw_components_v_canDismiss \
+    ((const afw_value_t *)&afw_components_self_v_canDismiss)
 
 
 
@@ -3833,15 +5521,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_captionSide */
 #define afw_components_s_captionSide \
-    (afw_components_v_captionSide.internal)
+    (&afw_components_self_v_captionSide.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_captionSide */
+#define afw_components_self_s_captionSide \
+    (afw_components_self_v_captionSide.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_captionSide */
 extern const afw_value_string_t \
-    afw_components_v_captionSide;
+    afw_components_self_v_captionSide;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_captionSide */
 #define afw_components_z_captionSide \
-    (afw_components_v_captionSide.internal.s)
+    (afw_components_self_v_captionSide.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_captionSide */
+#define afw_components_v_captionSide \
+    ((const afw_value_t *)&afw_components_self_v_captionSide)
 
 
 
@@ -3851,15 +5547,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_category */
 #define afw_components_s_category \
-    (afw_components_v_category.internal)
+    (&afw_components_self_v_category.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_category */
+#define afw_components_self_s_category \
+    (afw_components_self_v_category.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_category */
 extern const afw_value_string_t \
-    afw_components_v_category;
+    afw_components_self_v_category;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_category */
 #define afw_components_z_category \
-    (afw_components_v_category.internal.s)
+    (afw_components_self_v_category.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_category */
+#define afw_components_v_category \
+    ((const afw_value_t *)&afw_components_self_v_category)
 
 
 
@@ -3869,15 +5573,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_children */
 #define afw_components_s_children \
-    (afw_components_v_children.internal)
+    (&afw_components_self_v_children.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_children */
+#define afw_components_self_s_children \
+    (afw_components_self_v_children.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_children */
 extern const afw_value_string_t \
-    afw_components_v_children;
+    afw_components_self_v_children;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_children */
 #define afw_components_z_children \
-    (afw_components_v_children.internal.s)
+    (afw_components_self_v_children.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_children */
+#define afw_components_v_children \
+    ((const afw_value_t *)&afw_components_self_v_children)
 
 
 
@@ -3887,15 +5599,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_className */
 #define afw_components_s_className \
-    (afw_components_v_className.internal)
+    (&afw_components_self_v_className.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_className */
+#define afw_components_self_s_className \
+    (afw_components_self_v_className.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_className */
 extern const afw_value_string_t \
-    afw_components_v_className;
+    afw_components_self_v_className;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_className */
 #define afw_components_z_className \
-    (afw_components_v_className.internal.s)
+    (afw_components_self_v_className.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_className */
+#define afw_components_v_className \
+    ((const afw_value_t *)&afw_components_self_v_className)
 
 
 
@@ -3905,15 +5625,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_clear */
 #define afw_components_s_clear \
-    (afw_components_v_clear.internal)
+    (&afw_components_self_v_clear.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_clear */
+#define afw_components_self_s_clear \
+    (afw_components_self_v_clear.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_clear */
 extern const afw_value_string_t \
-    afw_components_v_clear;
+    afw_components_self_v_clear;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_clear */
 #define afw_components_z_clear \
-    (afw_components_v_clear.internal.s)
+    (afw_components_self_v_clear.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_clear */
+#define afw_components_v_clear \
+    ((const afw_value_t *)&afw_components_self_v_clear)
 
 
 
@@ -3923,15 +5651,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_clip */
 #define afw_components_s_clip \
-    (afw_components_v_clip.internal)
+    (&afw_components_self_v_clip.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_clip */
+#define afw_components_self_s_clip \
+    (afw_components_self_v_clip.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_clip */
 extern const afw_value_string_t \
-    afw_components_v_clip;
+    afw_components_self_v_clip;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_clip */
 #define afw_components_z_clip \
-    (afw_components_v_clip.internal.s)
+    (afw_components_self_v_clip.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_clip */
+#define afw_components_v_clip \
+    ((const afw_value_t *)&afw_components_self_v_clip)
 
 
 
@@ -3941,15 +5677,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_collectionURIs */
 #define afw_components_s_collectionURIs \
-    (afw_components_v_collectionURIs.internal)
+    (&afw_components_self_v_collectionURIs.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_collectionURIs */
+#define afw_components_self_s_collectionURIs \
+    (afw_components_self_v_collectionURIs.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_collectionURIs */
 extern const afw_value_string_t \
-    afw_components_v_collectionURIs;
+    afw_components_self_v_collectionURIs;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_collectionURIs */
 #define afw_components_z_collectionURIs \
-    (afw_components_v_collectionURIs.internal.s)
+    (afw_components_self_v_collectionURIs.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_collectionURIs */
+#define afw_components_v_collectionURIs \
+    ((const afw_value_t *)&afw_components_self_v_collectionURIs)
 
 
 
@@ -3959,15 +5703,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_color */
 #define afw_components_s_color \
-    (afw_components_v_color.internal)
+    (&afw_components_self_v_color.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_color */
+#define afw_components_self_s_color \
+    (afw_components_self_v_color.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_color */
 extern const afw_value_string_t \
-    afw_components_v_color;
+    afw_components_self_v_color;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_color */
 #define afw_components_z_color \
-    (afw_components_v_color.internal.s)
+    (afw_components_self_v_color.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_color */
+#define afw_components_v_color \
+    ((const afw_value_t *)&afw_components_self_v_color)
 
 
 
@@ -3977,15 +5729,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnCount */
 #define afw_components_s_columnCount \
-    (afw_components_v_columnCount.internal)
+    (&afw_components_self_v_columnCount.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnCount */
+#define afw_components_self_s_columnCount \
+    (afw_components_self_v_columnCount.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnCount */
 extern const afw_value_string_t \
-    afw_components_v_columnCount;
+    afw_components_self_v_columnCount;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnCount */
 #define afw_components_z_columnCount \
-    (afw_components_v_columnCount.internal.s)
+    (afw_components_self_v_columnCount.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnCount */
+#define afw_components_v_columnCount \
+    ((const afw_value_t *)&afw_components_self_v_columnCount)
 
 
 
@@ -3995,15 +5755,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnFill */
 #define afw_components_s_columnFill \
-    (afw_components_v_columnFill.internal)
+    (&afw_components_self_v_columnFill.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnFill */
+#define afw_components_self_s_columnFill \
+    (afw_components_self_v_columnFill.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnFill */
 extern const afw_value_string_t \
-    afw_components_v_columnFill;
+    afw_components_self_v_columnFill;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnFill */
 #define afw_components_z_columnFill \
-    (afw_components_v_columnFill.internal.s)
+    (afw_components_self_v_columnFill.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnFill */
+#define afw_components_v_columnFill \
+    ((const afw_value_t *)&afw_components_self_v_columnFill)
 
 
 
@@ -4013,15 +5781,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnGap */
 #define afw_components_s_columnGap \
-    (afw_components_v_columnGap.internal)
+    (&afw_components_self_v_columnGap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnGap */
+#define afw_components_self_s_columnGap \
+    (afw_components_self_v_columnGap.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnGap */
 extern const afw_value_string_t \
-    afw_components_v_columnGap;
+    afw_components_self_v_columnGap;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnGap */
 #define afw_components_z_columnGap \
-    (afw_components_v_columnGap.internal.s)
+    (afw_components_self_v_columnGap.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnGap */
+#define afw_components_v_columnGap \
+    ((const afw_value_t *)&afw_components_self_v_columnGap)
 
 
 
@@ -4031,15 +5807,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRule */
 #define afw_components_s_columnRule \
-    (afw_components_v_columnRule.internal)
+    (&afw_components_self_v_columnRule.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRule */
+#define afw_components_self_s_columnRule \
+    (afw_components_self_v_columnRule.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnRule */
 extern const afw_value_string_t \
-    afw_components_v_columnRule;
+    afw_components_self_v_columnRule;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRule */
 #define afw_components_z_columnRule \
-    (afw_components_v_columnRule.internal.s)
+    (afw_components_self_v_columnRule.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRule */
+#define afw_components_v_columnRule \
+    ((const afw_value_t *)&afw_components_self_v_columnRule)
 
 
 
@@ -4049,15 +5833,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRuleColor */
 #define afw_components_s_columnRuleColor \
-    (afw_components_v_columnRuleColor.internal)
+    (&afw_components_self_v_columnRuleColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRuleColor */
+#define afw_components_self_s_columnRuleColor \
+    (afw_components_self_v_columnRuleColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnRuleColor */
 extern const afw_value_string_t \
-    afw_components_v_columnRuleColor;
+    afw_components_self_v_columnRuleColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRuleColor */
 #define afw_components_z_columnRuleColor \
-    (afw_components_v_columnRuleColor.internal.s)
+    (afw_components_self_v_columnRuleColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRuleColor */
+#define afw_components_v_columnRuleColor \
+    ((const afw_value_t *)&afw_components_self_v_columnRuleColor)
 
 
 
@@ -4067,15 +5859,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRuleStyle */
 #define afw_components_s_columnRuleStyle \
-    (afw_components_v_columnRuleStyle.internal)
+    (&afw_components_self_v_columnRuleStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRuleStyle */
+#define afw_components_self_s_columnRuleStyle \
+    (afw_components_self_v_columnRuleStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnRuleStyle */
 extern const afw_value_string_t \
-    afw_components_v_columnRuleStyle;
+    afw_components_self_v_columnRuleStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRuleStyle */
 #define afw_components_z_columnRuleStyle \
-    (afw_components_v_columnRuleStyle.internal.s)
+    (afw_components_self_v_columnRuleStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRuleStyle */
+#define afw_components_v_columnRuleStyle \
+    ((const afw_value_t *)&afw_components_self_v_columnRuleStyle)
 
 
 
@@ -4085,15 +5885,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRuleWidth */
 #define afw_components_s_columnRuleWidth \
-    (afw_components_v_columnRuleWidth.internal)
+    (&afw_components_self_v_columnRuleWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnRuleWidth */
+#define afw_components_self_s_columnRuleWidth \
+    (afw_components_self_v_columnRuleWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnRuleWidth */
 extern const afw_value_string_t \
-    afw_components_v_columnRuleWidth;
+    afw_components_self_v_columnRuleWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRuleWidth */
 #define afw_components_z_columnRuleWidth \
-    (afw_components_v_columnRuleWidth.internal.s)
+    (afw_components_self_v_columnRuleWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnRuleWidth */
+#define afw_components_v_columnRuleWidth \
+    ((const afw_value_t *)&afw_components_self_v_columnRuleWidth)
 
 
 
@@ -4103,15 +5911,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnSpan */
 #define afw_components_s_columnSpan \
-    (afw_components_v_columnSpan.internal)
+    (&afw_components_self_v_columnSpan.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnSpan */
+#define afw_components_self_s_columnSpan \
+    (afw_components_self_v_columnSpan.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnSpan */
 extern const afw_value_string_t \
-    afw_components_v_columnSpan;
+    afw_components_self_v_columnSpan;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnSpan */
 #define afw_components_z_columnSpan \
-    (afw_components_v_columnSpan.internal.s)
+    (afw_components_self_v_columnSpan.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnSpan */
+#define afw_components_v_columnSpan \
+    ((const afw_value_t *)&afw_components_self_v_columnSpan)
 
 
 
@@ -4121,15 +5937,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnWidth */
 #define afw_components_s_columnWidth \
-    (afw_components_v_columnWidth.internal)
+    (&afw_components_self_v_columnWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columnWidth */
+#define afw_components_self_s_columnWidth \
+    (afw_components_self_v_columnWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columnWidth */
 extern const afw_value_string_t \
-    afw_components_v_columnWidth;
+    afw_components_self_v_columnWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnWidth */
 #define afw_components_z_columnWidth \
-    (afw_components_v_columnWidth.internal.s)
+    (afw_components_self_v_columnWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columnWidth */
+#define afw_components_v_columnWidth \
+    ((const afw_value_t *)&afw_components_self_v_columnWidth)
 
 
 
@@ -4139,15 +5963,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columns */
 #define afw_components_s_columns \
-    (afw_components_v_columns.internal)
+    (&afw_components_self_v_columns.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_columns */
+#define afw_components_self_s_columns \
+    (afw_components_self_v_columns.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_columns */
 extern const afw_value_string_t \
-    afw_components_v_columns;
+    afw_components_self_v_columns;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columns */
 #define afw_components_z_columns \
-    (afw_components_v_columns.internal.s)
+    (afw_components_self_v_columns.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_columns */
+#define afw_components_v_columns \
+    ((const afw_value_t *)&afw_components_self_v_columns)
 
 
 
@@ -4157,15 +5989,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_compact */
 #define afw_components_s_compact \
-    (afw_components_v_compact.internal)
+    (&afw_components_self_v_compact.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_compact */
+#define afw_components_self_s_compact \
+    (afw_components_self_v_compact.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_compact */
 extern const afw_value_string_t \
-    afw_components_v_compact;
+    afw_components_self_v_compact;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_compact */
 #define afw_components_z_compact \
-    (afw_components_v_compact.internal.s)
+    (afw_components_self_v_compact.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_compact */
+#define afw_components_v_compact \
+    ((const afw_value_t *)&afw_components_self_v_compact)
 
 
 
@@ -4175,15 +6015,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_component */
 #define afw_components_s_component \
-    (afw_components_v_component.internal)
+    (&afw_components_self_v_component.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_component */
+#define afw_components_self_s_component \
+    (afw_components_self_v_component.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_component */
 extern const afw_value_string_t \
-    afw_components_v_component;
+    afw_components_self_v_component;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_component */
 #define afw_components_z_component \
-    (afw_components_v_component.internal.s)
+    (afw_components_self_v_component.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_component */
+#define afw_components_v_component \
+    ((const afw_value_t *)&afw_components_self_v_component)
 
 
 
@@ -4193,15 +6041,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_componentProps */
 #define afw_components_s_componentProps \
-    (afw_components_v_componentProps.internal)
+    (&afw_components_self_v_componentProps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_componentProps */
+#define afw_components_self_s_componentProps \
+    (afw_components_self_v_componentProps.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_componentProps */
 extern const afw_value_string_t \
-    afw_components_v_componentProps;
+    afw_components_self_v_componentProps;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_componentProps */
 #define afw_components_z_componentProps \
-    (afw_components_v_componentProps.internal.s)
+    (afw_components_self_v_componentProps.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_componentProps */
+#define afw_components_v_componentProps \
+    ((const afw_value_t *)&afw_components_self_v_componentProps)
 
 
 
@@ -4211,15 +6067,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_componentType */
 #define afw_components_s_componentType \
-    (afw_components_v_componentType.internal)
+    (&afw_components_self_v_componentType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_componentType */
+#define afw_components_self_s_componentType \
+    (afw_components_self_v_componentType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_componentType */
 extern const afw_value_string_t \
-    afw_components_v_componentType;
+    afw_components_self_v_componentType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_componentType */
 #define afw_components_z_componentType \
-    (afw_components_v_componentType.internal.s)
+    (afw_components_self_v_componentType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_componentType */
+#define afw_components_v_componentType \
+    ((const afw_value_t *)&afw_components_self_v_componentType)
 
 
 
@@ -4229,15 +6093,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_containers */
 #define afw_components_s_containers \
-    (afw_components_v_containers.internal)
+    (&afw_components_self_v_containers.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_containers */
+#define afw_components_self_s_containers \
+    (afw_components_self_v_containers.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_containers */
 extern const afw_value_string_t \
-    afw_components_v_containers;
+    afw_components_self_v_containers;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_containers */
 #define afw_components_z_containers \
-    (afw_components_v_containers.internal.s)
+    (afw_components_self_v_containers.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_containers */
+#define afw_components_v_containers \
+    ((const afw_value_t *)&afw_components_self_v_containers)
 
 
 
@@ -4247,15 +6119,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_contains */
 #define afw_components_s_contains \
-    (afw_components_v_contains.internal)
+    (&afw_components_self_v_contains.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_contains */
+#define afw_components_self_s_contains \
+    (afw_components_self_v_contains.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_contains */
 extern const afw_value_string_t \
-    afw_components_v_contains;
+    afw_components_self_v_contains;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_contains */
 #define afw_components_z_contains \
-    (afw_components_v_contains.internal.s)
+    (afw_components_self_v_contains.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_contains */
+#define afw_components_v_contains \
+    ((const afw_value_t *)&afw_components_self_v_contains)
 
 
 
@@ -4265,15 +6145,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_content */
 #define afw_components_s_content \
-    (afw_components_v_content.internal)
+    (&afw_components_self_v_content.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_content */
+#define afw_components_self_s_content \
+    (afw_components_self_v_content.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_content */
 extern const afw_value_string_t \
-    afw_components_v_content;
+    afw_components_self_v_content;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_content */
 #define afw_components_z_content \
-    (afw_components_v_content.internal.s)
+    (afw_components_self_v_content.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_content */
+#define afw_components_v_content \
+    ((const afw_value_t *)&afw_components_self_v_content)
 
 
 
@@ -4283,15 +6171,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_counterIncrement */
 #define afw_components_s_counterIncrement \
-    (afw_components_v_counterIncrement.internal)
+    (&afw_components_self_v_counterIncrement.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_counterIncrement */
+#define afw_components_self_s_counterIncrement \
+    (afw_components_self_v_counterIncrement.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_counterIncrement */
 extern const afw_value_string_t \
-    afw_components_v_counterIncrement;
+    afw_components_self_v_counterIncrement;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_counterIncrement */
 #define afw_components_z_counterIncrement \
-    (afw_components_v_counterIncrement.internal.s)
+    (afw_components_self_v_counterIncrement.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_counterIncrement */
+#define afw_components_v_counterIncrement \
+    ((const afw_value_t *)&afw_components_self_v_counterIncrement)
 
 
 
@@ -4301,15 +6197,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_counterReset */
 #define afw_components_s_counterReset \
-    (afw_components_v_counterReset.internal)
+    (&afw_components_self_v_counterReset.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_counterReset */
+#define afw_components_self_s_counterReset \
+    (afw_components_self_v_counterReset.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_counterReset */
 extern const afw_value_string_t \
-    afw_components_v_counterReset;
+    afw_components_self_v_counterReset;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_counterReset */
 #define afw_components_z_counterReset \
-    (afw_components_v_counterReset.internal.s)
+    (afw_components_self_v_counterReset.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_counterReset */
+#define afw_components_v_counterReset \
+    ((const afw_value_t *)&afw_components_self_v_counterReset)
 
 
 
@@ -4319,15 +6223,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_cssFloat */
 #define afw_components_s_cssFloat \
-    (afw_components_v_cssFloat.internal)
+    (&afw_components_self_v_cssFloat.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_cssFloat */
+#define afw_components_self_s_cssFloat \
+    (afw_components_self_v_cssFloat.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_cssFloat */
 extern const afw_value_string_t \
-    afw_components_v_cssFloat;
+    afw_components_self_v_cssFloat;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_cssFloat */
 #define afw_components_z_cssFloat \
-    (afw_components_v_cssFloat.internal.s)
+    (afw_components_self_v_cssFloat.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_cssFloat */
+#define afw_components_v_cssFloat \
+    ((const afw_value_t *)&afw_components_self_v_cssFloat)
 
 
 
@@ -4337,15 +6249,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_cursor */
 #define afw_components_s_cursor \
-    (afw_components_v_cursor.internal)
+    (&afw_components_self_v_cursor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_cursor */
+#define afw_components_self_s_cursor \
+    (afw_components_self_v_cursor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_cursor */
 extern const afw_value_string_t \
-    afw_components_v_cursor;
+    afw_components_self_v_cursor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_cursor */
 #define afw_components_z_cursor \
-    (afw_components_v_cursor.internal.s)
+    (afw_components_self_v_cursor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_cursor */
+#define afw_components_v_cursor \
+    ((const afw_value_t *)&afw_components_self_v_cursor)
 
 
 
@@ -4355,15 +6275,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_data */
 #define afw_components_s_data \
-    (afw_components_v_data.internal)
+    (&afw_components_self_v_data.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_data */
+#define afw_components_self_s_data \
+    (afw_components_self_v_data.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_data */
 extern const afw_value_string_t \
-    afw_components_v_data;
+    afw_components_self_v_data;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_data */
 #define afw_components_z_data \
-    (afw_components_v_data.internal.s)
+    (afw_components_self_v_data.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_data */
+#define afw_components_v_data \
+    ((const afw_value_t *)&afw_components_self_v_data)
 
 
 
@@ -4373,15 +6301,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dataType */
 #define afw_components_s_dataType \
-    (afw_components_v_dataType.internal)
+    (&afw_components_self_v_dataType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dataType */
+#define afw_components_self_s_dataType \
+    (afw_components_self_v_dataType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_dataType */
 extern const afw_value_string_t \
-    afw_components_v_dataType;
+    afw_components_self_v_dataType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dataType */
 #define afw_components_z_dataType \
-    (afw_components_v_dataType.internal.s)
+    (afw_components_self_v_dataType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dataType */
+#define afw_components_v_dataType \
+    ((const afw_value_t *)&afw_components_self_v_dataType)
 
 
 
@@ -4391,15 +6327,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dataTypeParameter */
 #define afw_components_s_dataTypeParameter \
-    (afw_components_v_dataTypeParameter.internal)
+    (&afw_components_self_v_dataTypeParameter.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dataTypeParameter */
+#define afw_components_self_s_dataTypeParameter \
+    (afw_components_self_v_dataTypeParameter.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_dataTypeParameter */
 extern const afw_value_string_t \
-    afw_components_v_dataTypeParameter;
+    afw_components_self_v_dataTypeParameter;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dataTypeParameter */
 #define afw_components_z_dataTypeParameter \
-    (afw_components_v_dataTypeParameter.internal.s)
+    (afw_components_self_v_dataTypeParameter.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dataTypeParameter */
+#define afw_components_v_dataTypeParameter \
+    ((const afw_value_t *)&afw_components_self_v_dataTypeParameter)
 
 
 
@@ -4409,15 +6353,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dateTime */
 #define afw_components_s_dateTime \
-    (afw_components_v_dateTime.internal)
+    (&afw_components_self_v_dateTime.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dateTime */
+#define afw_components_self_s_dateTime \
+    (afw_components_self_v_dateTime.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_dateTime */
 extern const afw_value_string_t \
-    afw_components_v_dateTime;
+    afw_components_self_v_dateTime;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dateTime */
 #define afw_components_z_dateTime \
-    (afw_components_v_dateTime.internal.s)
+    (afw_components_self_v_dateTime.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dateTime */
+#define afw_components_v_dateTime \
+    ((const afw_value_t *)&afw_components_self_v_dateTime)
 
 
 
@@ -4427,15 +6379,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dayTimeDuration */
 #define afw_components_s_dayTimeDuration \
-    (afw_components_v_dayTimeDuration.internal)
+    (&afw_components_self_v_dayTimeDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dayTimeDuration */
+#define afw_components_self_s_dayTimeDuration \
+    (afw_components_self_v_dayTimeDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_dayTimeDuration */
 extern const afw_value_string_t \
-    afw_components_v_dayTimeDuration;
+    afw_components_self_v_dayTimeDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dayTimeDuration */
 #define afw_components_z_dayTimeDuration \
-    (afw_components_v_dayTimeDuration.internal.s)
+    (afw_components_self_v_dayTimeDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dayTimeDuration */
+#define afw_components_v_dayTimeDuration \
+    ((const afw_value_t *)&afw_components_self_v_dayTimeDuration)
 
 
 
@@ -4445,15 +6405,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_default */
 #define afw_components_s_default \
-    (afw_components_v_default.internal)
+    (&afw_components_self_v_default.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_default */
+#define afw_components_self_s_default \
+    (afw_components_self_v_default.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_default */
 extern const afw_value_string_t \
-    afw_components_v_default;
+    afw_components_self_v_default;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_default */
 #define afw_components_z_default \
-    (afw_components_v_default.internal.s)
+    (afw_components_self_v_default.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_default */
+#define afw_components_v_default \
+    ((const afw_value_t *)&afw_components_self_v_default)
 
 
 
@@ -4463,15 +6431,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_defaultValue */
 #define afw_components_s_defaultValue \
-    (afw_components_v_defaultValue.internal)
+    (&afw_components_self_v_defaultValue.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_defaultValue */
+#define afw_components_self_s_defaultValue \
+    (afw_components_self_v_defaultValue.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_defaultValue */
 extern const afw_value_string_t \
-    afw_components_v_defaultValue;
+    afw_components_self_v_defaultValue;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_defaultValue */
 #define afw_components_z_defaultValue \
-    (afw_components_v_defaultValue.internal.s)
+    (afw_components_self_v_defaultValue.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_defaultValue */
+#define afw_components_v_defaultValue \
+    ((const afw_value_t *)&afw_components_self_v_defaultValue)
 
 
 
@@ -4481,15 +6457,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_delay */
 #define afw_components_s_delay \
-    (afw_components_v_delay.internal)
+    (&afw_components_self_v_delay.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_delay */
+#define afw_components_self_s_delay \
+    (afw_components_self_v_delay.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_delay */
 extern const afw_value_string_t \
-    afw_components_v_delay;
+    afw_components_self_v_delay;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_delay */
 #define afw_components_z_delay \
-    (afw_components_v_delay.internal.s)
+    (afw_components_self_v_delay.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_delay */
+#define afw_components_v_delay \
+    ((const afw_value_t *)&afw_components_self_v_delay)
 
 
 
@@ -4499,15 +6483,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dense */
 #define afw_components_s_dense \
-    (afw_components_v_dense.internal)
+    (&afw_components_self_v_dense.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dense */
+#define afw_components_self_s_dense \
+    (afw_components_self_v_dense.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_dense */
 extern const afw_value_string_t \
-    afw_components_v_dense;
+    afw_components_self_v_dense;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dense */
 #define afw_components_z_dense \
-    (afw_components_v_dense.internal.s)
+    (afw_components_self_v_dense.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dense */
+#define afw_components_v_dense \
+    ((const afw_value_t *)&afw_components_self_v_dense)
 
 
 
@@ -4517,15 +6509,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_description */
 #define afw_components_s_description \
-    (afw_components_v_description.internal)
+    (&afw_components_self_v_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_description */
+#define afw_components_self_s_description \
+    (afw_components_self_v_description.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_description */
 extern const afw_value_string_t \
-    afw_components_v_description;
+    afw_components_self_v_description;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_description */
 #define afw_components_z_description \
-    (afw_components_v_description.internal.s)
+    (afw_components_self_v_description.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_description */
+#define afw_components_v_description \
+    ((const afw_value_t *)&afw_components_self_v_description)
 
 
 
@@ -4535,15 +6535,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_designMode */
 #define afw_components_s_designMode \
-    (afw_components_v_designMode.internal)
+    (&afw_components_self_v_designMode.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_designMode */
+#define afw_components_self_s_designMode \
+    (afw_components_self_v_designMode.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_designMode */
 extern const afw_value_string_t \
-    afw_components_v_designMode;
+    afw_components_self_v_designMode;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_designMode */
 #define afw_components_z_designMode \
-    (afw_components_v_designMode.internal.s)
+    (afw_components_self_v_designMode.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_designMode */
+#define afw_components_v_designMode \
+    ((const afw_value_t *)&afw_components_self_v_designMode)
 
 
 
@@ -4553,15 +6561,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_direction */
 #define afw_components_s_direction \
-    (afw_components_v_direction.internal)
+    (&afw_components_self_v_direction.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_direction */
+#define afw_components_self_s_direction \
+    (afw_components_self_v_direction.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_direction */
 extern const afw_value_string_t \
-    afw_components_v_direction;
+    afw_components_self_v_direction;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_direction */
 #define afw_components_z_direction \
-    (afw_components_v_direction.internal.s)
+    (afw_components_self_v_direction.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_direction */
+#define afw_components_v_direction \
+    ((const afw_value_t *)&afw_components_self_v_direction)
 
 
 
@@ -4571,15 +6587,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_disabled */
 #define afw_components_s_disabled \
-    (afw_components_v_disabled.internal)
+    (&afw_components_self_v_disabled.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_disabled */
+#define afw_components_self_s_disabled \
+    (afw_components_self_v_disabled.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_disabled */
 extern const afw_value_string_t \
-    afw_components_v_disabled;
+    afw_components_self_v_disabled;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_disabled */
 #define afw_components_z_disabled \
-    (afw_components_v_disabled.internal.s)
+    (afw_components_self_v_disabled.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_disabled */
+#define afw_components_v_disabled \
+    ((const afw_value_t *)&afw_components_self_v_disabled)
 
 
 
@@ -4589,15 +6613,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_display */
 #define afw_components_s_display \
-    (afw_components_v_display.internal)
+    (&afw_components_self_v_display.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_display */
+#define afw_components_self_s_display \
+    (afw_components_self_v_display.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_display */
 extern const afw_value_string_t \
-    afw_components_v_display;
+    afw_components_self_v_display;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_display */
 #define afw_components_z_display \
-    (afw_components_v_display.internal.s)
+    (afw_components_self_v_display.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_display */
+#define afw_components_v_display \
+    ((const afw_value_t *)&afw_components_self_v_display)
 
 
 
@@ -4607,15 +6639,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dropdown */
 #define afw_components_s_dropdown \
-    (afw_components_v_dropdown.internal)
+    (&afw_components_self_v_dropdown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_dropdown */
+#define afw_components_self_s_dropdown \
+    (afw_components_self_v_dropdown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_dropdown */
 extern const afw_value_string_t \
-    afw_components_v_dropdown;
+    afw_components_self_v_dropdown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dropdown */
 #define afw_components_z_dropdown \
-    (afw_components_v_dropdown.internal.s)
+    (afw_components_self_v_dropdown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_dropdown */
+#define afw_components_v_dropdown \
+    ((const afw_value_t *)&afw_components_self_v_dropdown)
 
 
 
@@ -4625,15 +6665,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_duration */
 #define afw_components_s_duration \
-    (afw_components_v_duration.internal)
+    (&afw_components_self_v_duration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_duration */
+#define afw_components_self_s_duration \
+    (afw_components_self_v_duration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_duration */
 extern const afw_value_string_t \
-    afw_components_v_duration;
+    afw_components_self_v_duration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_duration */
 #define afw_components_z_duration \
-    (afw_components_v_duration.internal.s)
+    (afw_components_self_v_duration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_duration */
+#define afw_components_v_duration \
+    ((const afw_value_t *)&afw_components_self_v_duration)
 
 
 
@@ -4643,15 +6691,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_editable */
 #define afw_components_s_editable \
-    (afw_components_v_editable.internal)
+    (&afw_components_self_v_editable.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_editable */
+#define afw_components_self_s_editable \
+    (afw_components_self_v_editable.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_editable */
 extern const afw_value_string_t \
-    afw_components_v_editable;
+    afw_components_self_v_editable;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_editable */
 #define afw_components_z_editable \
-    (afw_components_v_editable.internal.s)
+    (afw_components_self_v_editable.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_editable */
+#define afw_components_v_editable \
+    ((const afw_value_t *)&afw_components_self_v_editable)
 
 
 
@@ -4661,15 +6717,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_editors */
 #define afw_components_s_editors \
-    (afw_components_v_editors.internal)
+    (&afw_components_self_v_editors.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_editors */
+#define afw_components_self_s_editors \
+    (afw_components_self_v_editors.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_editors */
 extern const afw_value_string_t \
-    afw_components_v_editors;
+    afw_components_self_v_editors;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_editors */
 #define afw_components_z_editors \
-    (afw_components_v_editors.internal.s)
+    (afw_components_self_v_editors.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_editors */
+#define afw_components_v_editors \
+    ((const afw_value_t *)&afw_components_self_v_editors)
 
 
 
@@ -4679,15 +6743,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_elevation */
 #define afw_components_s_elevation \
-    (afw_components_v_elevation.internal)
+    (&afw_components_self_v_elevation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_elevation */
+#define afw_components_self_s_elevation \
+    (afw_components_self_v_elevation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_elevation */
 extern const afw_value_string_t \
-    afw_components_v_elevation;
+    afw_components_self_v_elevation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_elevation */
 #define afw_components_z_elevation \
-    (afw_components_v_elevation.internal.s)
+    (afw_components_self_v_elevation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_elevation */
+#define afw_components_v_elevation \
+    ((const afw_value_t *)&afw_components_self_v_elevation)
 
 
 
@@ -4697,15 +6769,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_embedded */
 #define afw_components_s_embedded \
-    (afw_components_v_embedded.internal)
+    (&afw_components_self_v_embedded.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_embedded */
+#define afw_components_self_s_embedded \
+    (afw_components_self_v_embedded.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_embedded */
 extern const afw_value_string_t \
-    afw_components_v_embedded;
+    afw_components_self_v_embedded;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_embedded */
 #define afw_components_z_embedded \
-    (afw_components_v_embedded.internal.s)
+    (afw_components_self_v_embedded.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_embedded */
+#define afw_components_v_embedded \
+    ((const afw_value_t *)&afw_components_self_v_embedded)
 
 
 
@@ -4715,15 +6795,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_emptyCells */
 #define afw_components_s_emptyCells \
-    (afw_components_v_emptyCells.internal)
+    (&afw_components_self_v_emptyCells.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_emptyCells */
+#define afw_components_self_s_emptyCells \
+    (afw_components_self_v_emptyCells.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_emptyCells */
 extern const afw_value_string_t \
-    afw_components_v_emptyCells;
+    afw_components_self_v_emptyCells;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_emptyCells */
 #define afw_components_z_emptyCells \
-    (afw_components_v_emptyCells.internal.s)
+    (afw_components_self_v_emptyCells.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_emptyCells */
+#define afw_components_v_emptyCells \
+    ((const afw_value_t *)&afw_components_self_v_emptyCells)
 
 
 
@@ -4733,15 +6821,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_exclusive */
 #define afw_components_s_exclusive \
-    (afw_components_v_exclusive.internal)
+    (&afw_components_self_v_exclusive.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_exclusive */
+#define afw_components_self_s_exclusive \
+    (afw_components_self_v_exclusive.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_exclusive */
 extern const afw_value_string_t \
-    afw_components_v_exclusive;
+    afw_components_self_v_exclusive;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_exclusive */
 #define afw_components_z_exclusive \
-    (afw_components_v_exclusive.internal.s)
+    (afw_components_self_v_exclusive.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_exclusive */
+#define afw_components_v_exclusive \
+    ((const afw_value_t *)&afw_components_self_v_exclusive)
 
 
 
@@ -4751,15 +6847,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_expandedKeys */
 #define afw_components_s_expandedKeys \
-    (afw_components_v_expandedKeys.internal)
+    (&afw_components_self_v_expandedKeys.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_expandedKeys */
+#define afw_components_self_s_expandedKeys \
+    (afw_components_self_v_expandedKeys.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_expandedKeys */
 extern const afw_value_string_t \
-    afw_components_v_expandedKeys;
+    afw_components_self_v_expandedKeys;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_expandedKeys */
 #define afw_components_z_expandedKeys \
-    (afw_components_v_expandedKeys.internal.s)
+    (afw_components_self_v_expandedKeys.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_expandedKeys */
+#define afw_components_v_expandedKeys \
+    ((const afw_value_t *)&afw_components_self_v_expandedKeys)
 
 
 
@@ -4769,15 +6873,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fieldName */
 #define afw_components_s_fieldName \
-    (afw_components_v_fieldName.internal)
+    (&afw_components_self_v_fieldName.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fieldName */
+#define afw_components_self_s_fieldName \
+    (afw_components_self_v_fieldName.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fieldName */
 extern const afw_value_string_t \
-    afw_components_v_fieldName;
+    afw_components_self_v_fieldName;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fieldName */
 #define afw_components_z_fieldName \
-    (afw_components_v_fieldName.internal.s)
+    (afw_components_self_v_fieldName.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fieldName */
+#define afw_components_v_fieldName \
+    ((const afw_value_t *)&afw_components_self_v_fieldName)
 
 
 
@@ -4787,15 +6899,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filter */
 #define afw_components_s_filter \
-    (afw_components_v_filter.internal)
+    (&afw_components_self_v_filter.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filter */
+#define afw_components_self_s_filter \
+    (afw_components_self_v_filter.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filter */
 extern const afw_value_string_t \
-    afw_components_v_filter;
+    afw_components_self_v_filter;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filter */
 #define afw_components_z_filter \
-    (afw_components_v_filter.internal.s)
+    (afw_components_self_v_filter.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filter */
+#define afw_components_v_filter \
+    ((const afw_value_t *)&afw_components_self_v_filter)
 
 
 
@@ -4805,15 +6925,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterCondAndProperties */
 #define afw_components_s_filterCondAndProperties \
-    (afw_components_v_filterCondAndProperties.internal)
+    (&afw_components_self_v_filterCondAndProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterCondAndProperties */
+#define afw_components_self_s_filterCondAndProperties \
+    (afw_components_self_v_filterCondAndProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterCondAndProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterCondAndProperties;
+    afw_components_self_v_filterCondAndProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterCondAndProperties */
 #define afw_components_z_filterCondAndProperties \
-    (afw_components_v_filterCondAndProperties.internal.s)
+    (afw_components_self_v_filterCondAndProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterCondAndProperties */
+#define afw_components_v_filterCondAndProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterCondAndProperties)
 
 
 
@@ -4823,15 +6951,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterCondOrProperties */
 #define afw_components_s_filterCondOrProperties \
-    (afw_components_v_filterCondOrProperties.internal)
+    (&afw_components_self_v_filterCondOrProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterCondOrProperties */
+#define afw_components_self_s_filterCondOrProperties \
+    (afw_components_self_v_filterCondOrProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterCondOrProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterCondOrProperties;
+    afw_components_self_v_filterCondOrProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterCondOrProperties */
 #define afw_components_z_filterCondOrProperties \
-    (afw_components_v_filterCondOrProperties.internal.s)
+    (afw_components_self_v_filterCondOrProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterCondOrProperties */
+#define afw_components_v_filterCondOrProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterCondOrProperties)
 
 
 
@@ -4841,15 +6977,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties */
 #define afw_components_s_filterExcludeEmbeddedProperties \
-    (afw_components_v_filterExcludeEmbeddedProperties.internal)
+    (&afw_components_self_v_filterExcludeEmbeddedProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties */
+#define afw_components_self_s_filterExcludeEmbeddedProperties \
+    (afw_components_self_v_filterExcludeEmbeddedProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterExcludeEmbeddedProperties;
+    afw_components_self_v_filterExcludeEmbeddedProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties */
 #define afw_components_z_filterExcludeEmbeddedProperties \
-    (afw_components_v_filterExcludeEmbeddedProperties.internal.s)
+    (afw_components_self_v_filterExcludeEmbeddedProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterExcludeEmbeddedProperties */
+#define afw_components_v_filterExcludeEmbeddedProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterExcludeEmbeddedProperties)
 
 
 
@@ -4859,15 +7003,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterExcludeProperties */
 #define afw_components_s_filterExcludeProperties \
-    (afw_components_v_filterExcludeProperties.internal)
+    (&afw_components_self_v_filterExcludeProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterExcludeProperties */
+#define afw_components_self_s_filterExcludeProperties \
+    (afw_components_self_v_filterExcludeProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterExcludeProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterExcludeProperties;
+    afw_components_self_v_filterExcludeProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterExcludeProperties */
 #define afw_components_z_filterExcludeProperties \
-    (afw_components_v_filterExcludeProperties.internal.s)
+    (afw_components_self_v_filterExcludeProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterExcludeProperties */
+#define afw_components_v_filterExcludeProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterExcludeProperties)
 
 
 
@@ -4877,15 +7029,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterOptions */
 #define afw_components_s_filterOptions \
-    (afw_components_v_filterOptions.internal)
+    (&afw_components_self_v_filterOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterOptions */
+#define afw_components_self_s_filterOptions \
+    (afw_components_self_v_filterOptions.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterOptions */
 extern const afw_value_string_t \
-    afw_components_v_filterOptions;
+    afw_components_self_v_filterOptions;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterOptions */
 #define afw_components_z_filterOptions \
-    (afw_components_v_filterOptions.internal.s)
+    (afw_components_self_v_filterOptions.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterOptions */
+#define afw_components_v_filterOptions \
+    ((const afw_value_t *)&afw_components_self_v_filterOptions)
 
 
 
@@ -4895,15 +7055,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterProperties */
 #define afw_components_s_filterProperties \
-    (afw_components_v_filterProperties.internal)
+    (&afw_components_self_v_filterProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterProperties */
+#define afw_components_self_s_filterProperties \
+    (afw_components_self_v_filterProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterProperties;
+    afw_components_self_v_filterProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterProperties */
 #define afw_components_z_filterProperties \
-    (afw_components_v_filterProperties.internal.s)
+    (afw_components_self_v_filterProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterProperties */
+#define afw_components_v_filterProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterProperties)
 
 
 
@@ -4913,15 +7081,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterRequiredProperties */
 #define afw_components_s_filterRequiredProperties \
-    (afw_components_v_filterRequiredProperties.internal)
+    (&afw_components_self_v_filterRequiredProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterRequiredProperties */
+#define afw_components_self_s_filterRequiredProperties \
+    (afw_components_self_v_filterRequiredProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterRequiredProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterRequiredProperties;
+    afw_components_self_v_filterRequiredProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterRequiredProperties */
 #define afw_components_z_filterRequiredProperties \
-    (afw_components_v_filterRequiredProperties.internal.s)
+    (afw_components_self_v_filterRequiredProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterRequiredProperties */
+#define afw_components_v_filterRequiredProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterRequiredProperties)
 
 
 
@@ -4931,15 +7107,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterValuedProperties */
 #define afw_components_s_filterValuedProperties \
-    (afw_components_v_filterValuedProperties.internal)
+    (&afw_components_self_v_filterValuedProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_filterValuedProperties */
+#define afw_components_self_s_filterValuedProperties \
+    (afw_components_self_v_filterValuedProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_filterValuedProperties */
 extern const afw_value_string_t \
-    afw_components_v_filterValuedProperties;
+    afw_components_self_v_filterValuedProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterValuedProperties */
 #define afw_components_z_filterValuedProperties \
-    (afw_components_v_filterValuedProperties.internal.s)
+    (afw_components_self_v_filterValuedProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_filterValuedProperties */
+#define afw_components_v_filterValuedProperties \
+    ((const afw_value_t *)&afw_components_self_v_filterValuedProperties)
 
 
 
@@ -4949,15 +7133,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flex */
 #define afw_components_s_flex \
-    (afw_components_v_flex.internal)
+    (&afw_components_self_v_flex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flex */
+#define afw_components_self_s_flex \
+    (afw_components_self_v_flex.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flex */
 extern const afw_value_string_t \
-    afw_components_v_flex;
+    afw_components_self_v_flex;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flex */
 #define afw_components_z_flex \
-    (afw_components_v_flex.internal.s)
+    (afw_components_self_v_flex.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flex */
+#define afw_components_v_flex \
+    ((const afw_value_t *)&afw_components_self_v_flex)
 
 
 
@@ -4967,15 +7159,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexBasis */
 #define afw_components_s_flexBasis \
-    (afw_components_v_flexBasis.internal)
+    (&afw_components_self_v_flexBasis.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexBasis */
+#define afw_components_self_s_flexBasis \
+    (afw_components_self_v_flexBasis.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flexBasis */
 extern const afw_value_string_t \
-    afw_components_v_flexBasis;
+    afw_components_self_v_flexBasis;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexBasis */
 #define afw_components_z_flexBasis \
-    (afw_components_v_flexBasis.internal.s)
+    (afw_components_self_v_flexBasis.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexBasis */
+#define afw_components_v_flexBasis \
+    ((const afw_value_t *)&afw_components_self_v_flexBasis)
 
 
 
@@ -4985,15 +7185,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexDirection */
 #define afw_components_s_flexDirection \
-    (afw_components_v_flexDirection.internal)
+    (&afw_components_self_v_flexDirection.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexDirection */
+#define afw_components_self_s_flexDirection \
+    (afw_components_self_v_flexDirection.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flexDirection */
 extern const afw_value_string_t \
-    afw_components_v_flexDirection;
+    afw_components_self_v_flexDirection;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexDirection */
 #define afw_components_z_flexDirection \
-    (afw_components_v_flexDirection.internal.s)
+    (afw_components_self_v_flexDirection.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexDirection */
+#define afw_components_v_flexDirection \
+    ((const afw_value_t *)&afw_components_self_v_flexDirection)
 
 
 
@@ -5003,15 +7211,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexFlow */
 #define afw_components_s_flexFlow \
-    (afw_components_v_flexFlow.internal)
+    (&afw_components_self_v_flexFlow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexFlow */
+#define afw_components_self_s_flexFlow \
+    (afw_components_self_v_flexFlow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flexFlow */
 extern const afw_value_string_t \
-    afw_components_v_flexFlow;
+    afw_components_self_v_flexFlow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexFlow */
 #define afw_components_z_flexFlow \
-    (afw_components_v_flexFlow.internal.s)
+    (afw_components_self_v_flexFlow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexFlow */
+#define afw_components_v_flexFlow \
+    ((const afw_value_t *)&afw_components_self_v_flexFlow)
 
 
 
@@ -5021,15 +7237,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexGrow */
 #define afw_components_s_flexGrow \
-    (afw_components_v_flexGrow.internal)
+    (&afw_components_self_v_flexGrow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexGrow */
+#define afw_components_self_s_flexGrow \
+    (afw_components_self_v_flexGrow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flexGrow */
 extern const afw_value_string_t \
-    afw_components_v_flexGrow;
+    afw_components_self_v_flexGrow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexGrow */
 #define afw_components_z_flexGrow \
-    (afw_components_v_flexGrow.internal.s)
+    (afw_components_self_v_flexGrow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexGrow */
+#define afw_components_v_flexGrow \
+    ((const afw_value_t *)&afw_components_self_v_flexGrow)
 
 
 
@@ -5039,15 +7263,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexShrink */
 #define afw_components_s_flexShrink \
-    (afw_components_v_flexShrink.internal)
+    (&afw_components_self_v_flexShrink.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexShrink */
+#define afw_components_self_s_flexShrink \
+    (afw_components_self_v_flexShrink.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flexShrink */
 extern const afw_value_string_t \
-    afw_components_v_flexShrink;
+    afw_components_self_v_flexShrink;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexShrink */
 #define afw_components_z_flexShrink \
-    (afw_components_v_flexShrink.internal.s)
+    (afw_components_self_v_flexShrink.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexShrink */
+#define afw_components_v_flexShrink \
+    ((const afw_value_t *)&afw_components_self_v_flexShrink)
 
 
 
@@ -5057,15 +7289,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexWrap */
 #define afw_components_s_flexWrap \
-    (afw_components_v_flexWrap.internal)
+    (&afw_components_self_v_flexWrap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_flexWrap */
+#define afw_components_self_s_flexWrap \
+    (afw_components_self_v_flexWrap.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_flexWrap */
 extern const afw_value_string_t \
-    afw_components_v_flexWrap;
+    afw_components_self_v_flexWrap;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexWrap */
 #define afw_components_z_flexWrap \
-    (afw_components_v_flexWrap.internal.s)
+    (afw_components_self_v_flexWrap.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_flexWrap */
+#define afw_components_v_flexWrap \
+    ((const afw_value_t *)&afw_components_self_v_flexWrap)
 
 
 
@@ -5075,15 +7315,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_font */
 #define afw_components_s_font \
-    (afw_components_v_font.internal)
+    (&afw_components_self_v_font.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_font */
+#define afw_components_self_s_font \
+    (afw_components_self_v_font.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_font */
 extern const afw_value_string_t \
-    afw_components_v_font;
+    afw_components_self_v_font;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_font */
 #define afw_components_z_font \
-    (afw_components_v_font.internal.s)
+    (afw_components_self_v_font.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_font */
+#define afw_components_v_font \
+    ((const afw_value_t *)&afw_components_self_v_font)
 
 
 
@@ -5093,15 +7341,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontFamily */
 #define afw_components_s_fontFamily \
-    (afw_components_v_fontFamily.internal)
+    (&afw_components_self_v_fontFamily.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontFamily */
+#define afw_components_self_s_fontFamily \
+    (afw_components_self_v_fontFamily.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontFamily */
 extern const afw_value_string_t \
-    afw_components_v_fontFamily;
+    afw_components_self_v_fontFamily;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontFamily */
 #define afw_components_z_fontFamily \
-    (afw_components_v_fontFamily.internal.s)
+    (afw_components_self_v_fontFamily.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontFamily */
+#define afw_components_v_fontFamily \
+    ((const afw_value_t *)&afw_components_self_v_fontFamily)
 
 
 
@@ -5111,15 +7367,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontSize */
 #define afw_components_s_fontSize \
-    (afw_components_v_fontSize.internal)
+    (&afw_components_self_v_fontSize.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontSize */
+#define afw_components_self_s_fontSize \
+    (afw_components_self_v_fontSize.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontSize */
 extern const afw_value_string_t \
-    afw_components_v_fontSize;
+    afw_components_self_v_fontSize;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontSize */
 #define afw_components_z_fontSize \
-    (afw_components_v_fontSize.internal.s)
+    (afw_components_self_v_fontSize.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontSize */
+#define afw_components_v_fontSize \
+    ((const afw_value_t *)&afw_components_self_v_fontSize)
 
 
 
@@ -5129,15 +7393,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontSizeAdjust */
 #define afw_components_s_fontSizeAdjust \
-    (afw_components_v_fontSizeAdjust.internal)
+    (&afw_components_self_v_fontSizeAdjust.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontSizeAdjust */
+#define afw_components_self_s_fontSizeAdjust \
+    (afw_components_self_v_fontSizeAdjust.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontSizeAdjust */
 extern const afw_value_string_t \
-    afw_components_v_fontSizeAdjust;
+    afw_components_self_v_fontSizeAdjust;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontSizeAdjust */
 #define afw_components_z_fontSizeAdjust \
-    (afw_components_v_fontSizeAdjust.internal.s)
+    (afw_components_self_v_fontSizeAdjust.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontSizeAdjust */
+#define afw_components_v_fontSizeAdjust \
+    ((const afw_value_t *)&afw_components_self_v_fontSizeAdjust)
 
 
 
@@ -5147,15 +7419,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontStretch */
 #define afw_components_s_fontStretch \
-    (afw_components_v_fontStretch.internal)
+    (&afw_components_self_v_fontStretch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontStretch */
+#define afw_components_self_s_fontStretch \
+    (afw_components_self_v_fontStretch.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontStretch */
 extern const afw_value_string_t \
-    afw_components_v_fontStretch;
+    afw_components_self_v_fontStretch;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontStretch */
 #define afw_components_z_fontStretch \
-    (afw_components_v_fontStretch.internal.s)
+    (afw_components_self_v_fontStretch.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontStretch */
+#define afw_components_v_fontStretch \
+    ((const afw_value_t *)&afw_components_self_v_fontStretch)
 
 
 
@@ -5165,15 +7445,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontStyle */
 #define afw_components_s_fontStyle \
-    (afw_components_v_fontStyle.internal)
+    (&afw_components_self_v_fontStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontStyle */
+#define afw_components_self_s_fontStyle \
+    (afw_components_self_v_fontStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontStyle */
 extern const afw_value_string_t \
-    afw_components_v_fontStyle;
+    afw_components_self_v_fontStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontStyle */
 #define afw_components_z_fontStyle \
-    (afw_components_v_fontStyle.internal.s)
+    (afw_components_self_v_fontStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontStyle */
+#define afw_components_v_fontStyle \
+    ((const afw_value_t *)&afw_components_self_v_fontStyle)
 
 
 
@@ -5183,15 +7471,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontVariant */
 #define afw_components_s_fontVariant \
-    (afw_components_v_fontVariant.internal)
+    (&afw_components_self_v_fontVariant.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontVariant */
+#define afw_components_self_s_fontVariant \
+    (afw_components_self_v_fontVariant.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontVariant */
 extern const afw_value_string_t \
-    afw_components_v_fontVariant;
+    afw_components_self_v_fontVariant;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontVariant */
 #define afw_components_z_fontVariant \
-    (afw_components_v_fontVariant.internal.s)
+    (afw_components_self_v_fontVariant.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontVariant */
+#define afw_components_v_fontVariant \
+    ((const afw_value_t *)&afw_components_self_v_fontVariant)
 
 
 
@@ -5201,15 +7497,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontWeight */
 #define afw_components_s_fontWeight \
-    (afw_components_v_fontWeight.internal)
+    (&afw_components_self_v_fontWeight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fontWeight */
+#define afw_components_self_s_fontWeight \
+    (afw_components_self_v_fontWeight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fontWeight */
 extern const afw_value_string_t \
-    afw_components_v_fontWeight;
+    afw_components_self_v_fontWeight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontWeight */
 #define afw_components_z_fontWeight \
-    (afw_components_v_fontWeight.internal.s)
+    (afw_components_self_v_fontWeight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fontWeight */
+#define afw_components_v_fontWeight \
+    ((const afw_value_t *)&afw_components_self_v_fontWeight)
 
 
 
@@ -5219,15 +7523,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_footer */
 #define afw_components_s_footer \
-    (afw_components_v_footer.internal)
+    (&afw_components_self_v_footer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_footer */
+#define afw_components_self_s_footer \
+    (afw_components_self_v_footer.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_footer */
 extern const afw_value_string_t \
-    afw_components_v_footer;
+    afw_components_self_v_footer;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_footer */
 #define afw_components_z_footer \
-    (afw_components_v_footer.internal.s)
+    (afw_components_self_v_footer.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_footer */
+#define afw_components_v_footer \
+    ((const afw_value_t *)&afw_components_self_v_footer)
 
 
 
@@ -5237,15 +7549,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_for */
 #define afw_components_s_for \
-    (afw_components_v_for.internal)
+    (&afw_components_self_v_for.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_for */
+#define afw_components_self_s_for \
+    (afw_components_self_v_for.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_for */
 extern const afw_value_string_t \
-    afw_components_v_for;
+    afw_components_self_v_for;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_for */
 #define afw_components_z_for \
-    (afw_components_v_for.internal.s)
+    (afw_components_self_v_for.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_for */
+#define afw_components_v_for \
+    ((const afw_value_t *)&afw_components_self_v_for)
 
 
 
@@ -5255,15 +7575,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fullScreen */
 #define afw_components_s_fullScreen \
-    (afw_components_v_fullScreen.internal)
+    (&afw_components_self_v_fullScreen.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_fullScreen */
+#define afw_components_self_s_fullScreen \
+    (afw_components_self_v_fullScreen.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_fullScreen */
 extern const afw_value_string_t \
-    afw_components_v_fullScreen;
+    afw_components_self_v_fullScreen;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fullScreen */
 #define afw_components_z_fullScreen \
-    (afw_components_v_fullScreen.internal.s)
+    (afw_components_self_v_fullScreen.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_fullScreen */
+#define afw_components_v_fullScreen \
+    ((const afw_value_t *)&afw_components_self_v_fullScreen)
 
 
 
@@ -5273,15 +7601,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_gapSpace */
 #define afw_components_s_gapSpace \
-    (afw_components_v_gapSpace.internal)
+    (&afw_components_self_v_gapSpace.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_gapSpace */
+#define afw_components_self_s_gapSpace \
+    (afw_components_self_v_gapSpace.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_gapSpace */
 extern const afw_value_string_t \
-    afw_components_v_gapSpace;
+    afw_components_self_v_gapSpace;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_gapSpace */
 #define afw_components_z_gapSpace \
-    (afw_components_v_gapSpace.internal.s)
+    (afw_components_self_v_gapSpace.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_gapSpace */
+#define afw_components_v_gapSpace \
+    ((const afw_value_t *)&afw_components_self_v_gapSpace)
 
 
 
@@ -5291,15 +7627,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_grow */
 #define afw_components_s_grow \
-    (afw_components_v_grow.internal)
+    (&afw_components_self_v_grow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_grow */
+#define afw_components_self_s_grow \
+    (afw_components_self_v_grow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_grow */
 extern const afw_value_string_t \
-    afw_components_v_grow;
+    afw_components_self_v_grow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_grow */
 #define afw_components_z_grow \
-    (afw_components_v_grow.internal.s)
+    (afw_components_self_v_grow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_grow */
+#define afw_components_v_grow \
+    ((const afw_value_t *)&afw_components_self_v_grow)
 
 
 
@@ -5309,15 +7653,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_hangingPunctuation */
 #define afw_components_s_hangingPunctuation \
-    (afw_components_v_hangingPunctuation.internal)
+    (&afw_components_self_v_hangingPunctuation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_hangingPunctuation */
+#define afw_components_self_s_hangingPunctuation \
+    (afw_components_self_v_hangingPunctuation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_hangingPunctuation */
 extern const afw_value_string_t \
-    afw_components_v_hangingPunctuation;
+    afw_components_self_v_hangingPunctuation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_hangingPunctuation */
 #define afw_components_z_hangingPunctuation \
-    (afw_components_v_hangingPunctuation.internal.s)
+    (afw_components_self_v_hangingPunctuation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_hangingPunctuation */
+#define afw_components_v_hangingPunctuation \
+    ((const afw_value_t *)&afw_components_self_v_hangingPunctuation)
 
 
 
@@ -5327,15 +7679,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_headerItems */
 #define afw_components_s_headerItems \
-    (afw_components_v_headerItems.internal)
+    (&afw_components_self_v_headerItems.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_headerItems */
+#define afw_components_self_s_headerItems \
+    (afw_components_self_v_headerItems.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_headerItems */
 extern const afw_value_string_t \
-    afw_components_v_headerItems;
+    afw_components_self_v_headerItems;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_headerItems */
 #define afw_components_z_headerItems \
-    (afw_components_v_headerItems.internal.s)
+    (afw_components_self_v_headerItems.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_headerItems */
+#define afw_components_v_headerItems \
+    ((const afw_value_t *)&afw_components_self_v_headerItems)
 
 
 
@@ -5345,15 +7705,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_headerOptions */
 #define afw_components_s_headerOptions \
-    (afw_components_v_headerOptions.internal)
+    (&afw_components_self_v_headerOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_headerOptions */
+#define afw_components_self_s_headerOptions \
+    (afw_components_self_v_headerOptions.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_headerOptions */
 extern const afw_value_string_t \
-    afw_components_v_headerOptions;
+    afw_components_self_v_headerOptions;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_headerOptions */
 #define afw_components_z_headerOptions \
-    (afw_components_v_headerOptions.internal.s)
+    (afw_components_self_v_headerOptions.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_headerOptions */
+#define afw_components_v_headerOptions \
+    ((const afw_value_t *)&afw_components_self_v_headerOptions)
 
 
 
@@ -5363,15 +7731,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_height */
 #define afw_components_s_height \
-    (afw_components_v_height.internal)
+    (&afw_components_self_v_height.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_height */
+#define afw_components_self_s_height \
+    (afw_components_self_v_height.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_height */
 extern const afw_value_string_t \
-    afw_components_v_height;
+    afw_components_self_v_height;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_height */
 #define afw_components_z_height \
-    (afw_components_v_height.internal.s)
+    (afw_components_self_v_height.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_height */
+#define afw_components_v_height \
+    ((const afw_value_t *)&afw_components_self_v_height)
 
 
 
@@ -5381,15 +7757,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_hyphens */
 #define afw_components_s_hyphens \
-    (afw_components_v_hyphens.internal)
+    (&afw_components_self_v_hyphens.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_hyphens */
+#define afw_components_self_s_hyphens \
+    (afw_components_self_v_hyphens.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_hyphens */
 extern const afw_value_string_t \
-    afw_components_v_hyphens;
+    afw_components_self_v_hyphens;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_hyphens */
 #define afw_components_z_hyphens \
-    (afw_components_v_hyphens.internal.s)
+    (afw_components_self_v_hyphens.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_hyphens */
+#define afw_components_v_hyphens \
+    ((const afw_value_t *)&afw_components_self_v_hyphens)
 
 
 
@@ -5399,15 +7783,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_icon */
 #define afw_components_s_icon \
-    (afw_components_v_icon.internal)
+    (&afw_components_self_v_icon.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_icon */
+#define afw_components_self_s_icon \
+    (afw_components_self_v_icon.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_icon */
 extern const afw_value_string_t \
-    afw_components_v_icon;
+    afw_components_self_v_icon;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_icon */
 #define afw_components_z_icon \
-    (afw_components_v_icon.internal.s)
+    (afw_components_self_v_icon.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_icon */
+#define afw_components_v_icon \
+    ((const afw_value_t *)&afw_components_self_v_icon)
 
 
 
@@ -5417,15 +7809,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_iconName */
 #define afw_components_s_iconName \
-    (afw_components_v_iconName.internal)
+    (&afw_components_self_v_iconName.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_iconName */
+#define afw_components_self_s_iconName \
+    (afw_components_self_v_iconName.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_iconName */
 extern const afw_value_string_t \
-    afw_components_v_iconName;
+    afw_components_self_v_iconName;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_iconName */
 #define afw_components_z_iconName \
-    (afw_components_v_iconName.internal.s)
+    (afw_components_self_v_iconName.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_iconName */
+#define afw_components_v_iconName \
+    ((const afw_value_t *)&afw_components_self_v_iconName)
 
 
 
@@ -5435,15 +7835,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_id */
 #define afw_components_s_id \
-    (afw_components_v_id.internal)
+    (&afw_components_self_v_id.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_id */
+#define afw_components_self_s_id \
+    (afw_components_self_v_id.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_id */
 extern const afw_value_string_t \
-    afw_components_v_id;
+    afw_components_self_v_id;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_id */
 #define afw_components_z_id \
-    (afw_components_v_id.internal.s)
+    (afw_components_self_v_id.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_id */
+#define afw_components_v_id \
+    ((const afw_value_t *)&afw_components_self_v_id)
 
 
 
@@ -5453,15 +7861,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_imageOrientation */
 #define afw_components_s_imageOrientation \
-    (afw_components_v_imageOrientation.internal)
+    (&afw_components_self_v_imageOrientation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_imageOrientation */
+#define afw_components_self_s_imageOrientation \
+    (afw_components_self_v_imageOrientation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_imageOrientation */
 extern const afw_value_string_t \
-    afw_components_v_imageOrientation;
+    afw_components_self_v_imageOrientation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_imageOrientation */
 #define afw_components_z_imageOrientation \
-    (afw_components_v_imageOrientation.internal.s)
+    (afw_components_self_v_imageOrientation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_imageOrientation */
+#define afw_components_v_imageOrientation \
+    ((const afw_value_t *)&afw_components_self_v_imageOrientation)
 
 
 
@@ -5471,15 +7887,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_implementationId */
 #define afw_components_s_implementationId \
-    (afw_components_v_implementationId.internal)
+    (&afw_components_self_v_implementationId.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_implementationId */
+#define afw_components_self_s_implementationId \
+    (afw_components_self_v_implementationId.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_implementationId */
 extern const afw_value_string_t \
-    afw_components_v_implementationId;
+    afw_components_self_v_implementationId;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_implementationId */
 #define afw_components_z_implementationId \
-    (afw_components_v_implementationId.internal.s)
+    (afw_components_self_v_implementationId.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_implementationId */
+#define afw_components_v_implementationId \
+    ((const afw_value_t *)&afw_components_self_v_implementationId)
 
 
 
@@ -5489,15 +7913,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_indirect */
 #define afw_components_s_indirect \
-    (afw_components_v_indirect.internal)
+    (&afw_components_self_v_indirect.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_indirect */
+#define afw_components_self_s_indirect \
+    (afw_components_self_v_indirect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_indirect */
 extern const afw_value_string_t \
-    afw_components_v_indirect;
+    afw_components_self_v_indirect;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_indirect */
 #define afw_components_z_indirect \
-    (afw_components_v_indirect.internal.s)
+    (afw_components_self_v_indirect.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_indirect */
+#define afw_components_v_indirect \
+    ((const afw_value_t *)&afw_components_self_v_indirect)
 
 
 
@@ -5507,15 +7939,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_inputs */
 #define afw_components_s_inputs \
-    (afw_components_v_inputs.internal)
+    (&afw_components_self_v_inputs.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_inputs */
+#define afw_components_self_s_inputs \
+    (afw_components_self_v_inputs.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_inputs */
 extern const afw_value_string_t \
-    afw_components_v_inputs;
+    afw_components_self_v_inputs;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_inputs */
 #define afw_components_z_inputs \
-    (afw_components_v_inputs.internal.s)
+    (afw_components_self_v_inputs.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_inputs */
+#define afw_components_v_inputs \
+    ((const afw_value_t *)&afw_components_self_v_inputs)
 
 
 
@@ -5525,15 +7965,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_instanceObjectType */
 #define afw_components_s_instanceObjectType \
-    (afw_components_v_instanceObjectType.internal)
+    (&afw_components_self_v_instanceObjectType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_instanceObjectType */
+#define afw_components_self_s_instanceObjectType \
+    (afw_components_self_v_instanceObjectType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_instanceObjectType */
 extern const afw_value_string_t \
-    afw_components_v_instanceObjectType;
+    afw_components_self_v_instanceObjectType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_instanceObjectType */
 #define afw_components_z_instanceObjectType \
-    (afw_components_v_instanceObjectType.internal.s)
+    (afw_components_self_v_instanceObjectType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_instanceObjectType */
+#define afw_components_v_instanceObjectType \
+    ((const afw_value_t *)&afw_components_self_v_instanceObjectType)
 
 
 
@@ -5543,15 +7991,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_integer */
 #define afw_components_s_integer \
-    (afw_components_v_integer.internal)
+    (&afw_components_self_v_integer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_integer */
+#define afw_components_self_s_integer \
+    (afw_components_self_v_integer.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_integer */
 extern const afw_value_string_t \
-    afw_components_v_integer;
+    afw_components_self_v_integer;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_integer */
 #define afw_components_z_integer \
-    (afw_components_v_integer.internal.s)
+    (afw_components_self_v_integer.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_integer */
+#define afw_components_v_integer \
+    ((const afw_value_t *)&afw_components_self_v_integer)
 
 
 
@@ -5561,15 +8017,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isBlocking */
 #define afw_components_s_isBlocking \
-    (afw_components_v_isBlocking.internal)
+    (&afw_components_self_v_isBlocking.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isBlocking */
+#define afw_components_self_s_isBlocking \
+    (afw_components_self_v_isBlocking.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isBlocking */
 extern const afw_value_string_t \
-    afw_components_v_isBlocking;
+    afw_components_self_v_isBlocking;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isBlocking */
 #define afw_components_z_isBlocking \
-    (afw_components_v_isBlocking.internal.s)
+    (afw_components_self_v_isBlocking.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isBlocking */
+#define afw_components_v_isBlocking \
+    ((const afw_value_t *)&afw_components_self_v_isBlocking)
 
 
 
@@ -5579,15 +8043,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isCollapsed */
 #define afw_components_s_isCollapsed \
-    (afw_components_v_isCollapsed.internal)
+    (&afw_components_self_v_isCollapsed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isCollapsed */
+#define afw_components_self_s_isCollapsed \
+    (afw_components_self_v_isCollapsed.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isCollapsed */
 extern const afw_value_string_t \
-    afw_components_v_isCollapsed;
+    afw_components_self_v_isCollapsed;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isCollapsed */
 #define afw_components_z_isCollapsed \
-    (afw_components_v_isCollapsed.internal.s)
+    (afw_components_self_v_isCollapsed.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isCollapsed */
+#define afw_components_v_isCollapsed \
+    ((const afw_value_t *)&afw_components_self_v_isCollapsed)
 
 
 
@@ -5597,15 +8069,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isExpanded */
 #define afw_components_s_isExpanded \
-    (afw_components_v_isExpanded.internal)
+    (&afw_components_self_v_isExpanded.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isExpanded */
+#define afw_components_self_s_isExpanded \
+    (afw_components_self_v_isExpanded.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isExpanded */
 extern const afw_value_string_t \
-    afw_components_v_isExpanded;
+    afw_components_self_v_isExpanded;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isExpanded */
 #define afw_components_z_isExpanded \
-    (afw_components_v_isExpanded.internal.s)
+    (afw_components_self_v_isExpanded.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isExpanded */
+#define afw_components_v_isExpanded \
+    ((const afw_value_t *)&afw_components_self_v_isExpanded)
 
 
 
@@ -5615,15 +8095,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isHeaderVisible */
 #define afw_components_s_isHeaderVisible \
-    (afw_components_v_isHeaderVisible.internal)
+    (&afw_components_self_v_isHeaderVisible.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isHeaderVisible */
+#define afw_components_self_s_isHeaderVisible \
+    (afw_components_self_v_isHeaderVisible.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isHeaderVisible */
 extern const afw_value_string_t \
-    afw_components_v_isHeaderVisible;
+    afw_components_self_v_isHeaderVisible;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isHeaderVisible */
 #define afw_components_z_isHeaderVisible \
-    (afw_components_v_isHeaderVisible.internal.s)
+    (afw_components_self_v_isHeaderVisible.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isHeaderVisible */
+#define afw_components_v_isHeaderVisible \
+    ((const afw_value_t *)&afw_components_self_v_isHeaderVisible)
 
 
 
@@ -5633,15 +8121,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isLoading */
 #define afw_components_s_isLoading \
-    (afw_components_v_isLoading.internal)
+    (&afw_components_self_v_isLoading.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isLoading */
+#define afw_components_self_s_isLoading \
+    (afw_components_self_v_isLoading.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isLoading */
 extern const afw_value_string_t \
-    afw_components_v_isLoading;
+    afw_components_self_v_isLoading;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isLoading */
 #define afw_components_z_isLoading \
-    (afw_components_v_isLoading.internal.s)
+    (afw_components_self_v_isLoading.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isLoading */
+#define afw_components_v_isLoading \
+    ((const afw_value_t *)&afw_components_self_v_isLoading)
 
 
 
@@ -5651,15 +8147,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isMultiline */
 #define afw_components_s_isMultiline \
-    (afw_components_v_isMultiline.internal)
+    (&afw_components_self_v_isMultiline.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isMultiline */
+#define afw_components_self_s_isMultiline \
+    (afw_components_self_v_isMultiline.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isMultiline */
 extern const afw_value_string_t \
-    afw_components_v_isMultiline;
+    afw_components_self_v_isMultiline;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isMultiline */
 #define afw_components_z_isMultiline \
-    (afw_components_v_isMultiline.internal.s)
+    (afw_components_self_v_isMultiline.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isMultiline */
+#define afw_components_v_isMultiline \
+    ((const afw_value_t *)&afw_components_self_v_isMultiline)
 
 
 
@@ -5669,15 +8173,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isResizable */
 #define afw_components_s_isResizable \
-    (afw_components_v_isResizable.internal)
+    (&afw_components_self_v_isResizable.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isResizable */
+#define afw_components_self_s_isResizable \
+    (afw_components_self_v_isResizable.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isResizable */
 extern const afw_value_string_t \
-    afw_components_v_isResizable;
+    afw_components_self_v_isResizable;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isResizable */
 #define afw_components_z_isResizable \
-    (afw_components_v_isResizable.internal.s)
+    (afw_components_self_v_isResizable.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isResizable */
+#define afw_components_v_isResizable \
+    ((const afw_value_t *)&afw_components_self_v_isResizable)
 
 
 
@@ -5687,15 +8199,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isolation */
 #define afw_components_s_isolation \
-    (afw_components_v_isolation.internal)
+    (&afw_components_self_v_isolation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_isolation */
+#define afw_components_self_s_isolation \
+    (afw_components_self_v_isolation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_isolation */
 extern const afw_value_string_t \
-    afw_components_v_isolation;
+    afw_components_self_v_isolation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isolation */
 #define afw_components_z_isolation \
-    (afw_components_v_isolation.internal.s)
+    (afw_components_self_v_isolation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_isolation */
+#define afw_components_v_isolation \
+    ((const afw_value_t *)&afw_components_self_v_isolation)
 
 
 
@@ -5705,15 +8225,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_items */
 #define afw_components_s_items \
-    (afw_components_v_items.internal)
+    (&afw_components_self_v_items.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_items */
+#define afw_components_self_s_items \
+    (afw_components_self_v_items.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_items */
 extern const afw_value_string_t \
-    afw_components_v_items;
+    afw_components_self_v_items;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_items */
 #define afw_components_z_items \
-    (afw_components_v_items.internal.s)
+    (afw_components_self_v_items.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_items */
+#define afw_components_v_items \
+    ((const afw_value_t *)&afw_components_self_v_items)
 
 
 
@@ -5723,15 +8251,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_justify */
 #define afw_components_s_justify \
-    (afw_components_v_justify.internal)
+    (&afw_components_self_v_justify.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_justify */
+#define afw_components_self_s_justify \
+    (afw_components_self_v_justify.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_justify */
 extern const afw_value_string_t \
-    afw_components_v_justify;
+    afw_components_self_v_justify;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_justify */
 #define afw_components_z_justify \
-    (afw_components_v_justify.internal.s)
+    (afw_components_self_v_justify.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_justify */
+#define afw_components_v_justify \
+    ((const afw_value_t *)&afw_components_self_v_justify)
 
 
 
@@ -5741,15 +8277,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_justifyContent */
 #define afw_components_s_justifyContent \
-    (afw_components_v_justifyContent.internal)
+    (&afw_components_self_v_justifyContent.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_justifyContent */
+#define afw_components_self_s_justifyContent \
+    (afw_components_self_v_justifyContent.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_justifyContent */
 extern const afw_value_string_t \
-    afw_components_v_justifyContent;
+    afw_components_self_v_justifyContent;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_justifyContent */
 #define afw_components_z_justifyContent \
-    (afw_components_v_justifyContent.internal.s)
+    (afw_components_self_v_justifyContent.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_justifyContent */
+#define afw_components_v_justifyContent \
+    ((const afw_value_t *)&afw_components_self_v_justifyContent)
 
 
 
@@ -5759,15 +8303,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_key */
 #define afw_components_s_key \
-    (afw_components_v_key.internal)
+    (&afw_components_self_v_key.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_key */
+#define afw_components_self_s_key \
+    (afw_components_self_v_key.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_key */
 extern const afw_value_string_t \
-    afw_components_v_key;
+    afw_components_self_v_key;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_key */
 #define afw_components_z_key \
-    (afw_components_v_key.internal.s)
+    (afw_components_self_v_key.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_key */
+#define afw_components_v_key \
+    ((const afw_value_t *)&afw_components_self_v_key)
 
 
 
@@ -5777,15 +8329,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_label */
 #define afw_components_s_label \
-    (afw_components_v_label.internal)
+    (&afw_components_self_v_label.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_label */
+#define afw_components_self_s_label \
+    (afw_components_self_v_label.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_label */
 extern const afw_value_string_t \
-    afw_components_v_label;
+    afw_components_self_v_label;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_label */
 #define afw_components_z_label \
-    (afw_components_v_label.internal.s)
+    (afw_components_self_v_label.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_label */
+#define afw_components_v_label \
+    ((const afw_value_t *)&afw_components_self_v_label)
 
 
 
@@ -5795,15 +8355,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_large */
 #define afw_components_s_large \
-    (afw_components_v_large.internal)
+    (&afw_components_self_v_large.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_large */
+#define afw_components_self_s_large \
+    (afw_components_self_v_large.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_large */
 extern const afw_value_string_t \
-    afw_components_v_large;
+    afw_components_self_v_large;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_large */
 #define afw_components_z_large \
-    (afw_components_v_large.internal.s)
+    (afw_components_self_v_large.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_large */
+#define afw_components_v_large \
+    ((const afw_value_t *)&afw_components_self_v_large)
 
 
 
@@ -5813,15 +8381,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_left */
 #define afw_components_s_left \
-    (afw_components_v_left.internal)
+    (&afw_components_self_v_left.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_left */
+#define afw_components_self_s_left \
+    (afw_components_self_v_left.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_left */
 extern const afw_value_string_t \
-    afw_components_v_left;
+    afw_components_self_v_left;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_left */
 #define afw_components_z_left \
-    (afw_components_v_left.internal.s)
+    (afw_components_self_v_left.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_left */
+#define afw_components_v_left \
+    ((const afw_value_t *)&afw_components_self_v_left)
 
 
 
@@ -5831,15 +8407,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_letterSpacing */
 #define afw_components_s_letterSpacing \
-    (afw_components_v_letterSpacing.internal)
+    (&afw_components_self_v_letterSpacing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_letterSpacing */
+#define afw_components_self_s_letterSpacing \
+    (afw_components_self_v_letterSpacing.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_letterSpacing */
 extern const afw_value_string_t \
-    afw_components_v_letterSpacing;
+    afw_components_self_v_letterSpacing;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_letterSpacing */
 #define afw_components_z_letterSpacing \
-    (afw_components_v_letterSpacing.internal.s)
+    (afw_components_self_v_letterSpacing.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_letterSpacing */
+#define afw_components_v_letterSpacing \
+    ((const afw_value_t *)&afw_components_self_v_letterSpacing)
 
 
 
@@ -5849,15 +8433,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_lgDown */
 #define afw_components_s_lgDown \
-    (afw_components_v_lgDown.internal)
+    (&afw_components_self_v_lgDown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_lgDown */
+#define afw_components_self_s_lgDown \
+    (afw_components_self_v_lgDown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_lgDown */
 extern const afw_value_string_t \
-    afw_components_v_lgDown;
+    afw_components_self_v_lgDown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_lgDown */
 #define afw_components_z_lgDown \
-    (afw_components_v_lgDown.internal.s)
+    (afw_components_self_v_lgDown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_lgDown */
+#define afw_components_v_lgDown \
+    ((const afw_value_t *)&afw_components_self_v_lgDown)
 
 
 
@@ -5867,15 +8459,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_lineHeight */
 #define afw_components_s_lineHeight \
-    (afw_components_v_lineHeight.internal)
+    (&afw_components_self_v_lineHeight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_lineHeight */
+#define afw_components_self_s_lineHeight \
+    (afw_components_self_v_lineHeight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_lineHeight */
 extern const afw_value_string_t \
-    afw_components_v_lineHeight;
+    afw_components_self_v_lineHeight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_lineHeight */
 #define afw_components_z_lineHeight \
-    (afw_components_v_lineHeight.internal.s)
+    (afw_components_self_v_lineHeight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_lineHeight */
+#define afw_components_v_lineHeight \
+    ((const afw_value_t *)&afw_components_self_v_lineHeight)
 
 
 
@@ -5885,15 +8485,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStyle */
 #define afw_components_s_listStyle \
-    (afw_components_v_listStyle.internal)
+    (&afw_components_self_v_listStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStyle */
+#define afw_components_self_s_listStyle \
+    (afw_components_self_v_listStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_listStyle */
 extern const afw_value_string_t \
-    afw_components_v_listStyle;
+    afw_components_self_v_listStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStyle */
 #define afw_components_z_listStyle \
-    (afw_components_v_listStyle.internal.s)
+    (afw_components_self_v_listStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStyle */
+#define afw_components_v_listStyle \
+    ((const afw_value_t *)&afw_components_self_v_listStyle)
 
 
 
@@ -5903,15 +8511,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStyleImage */
 #define afw_components_s_listStyleImage \
-    (afw_components_v_listStyleImage.internal)
+    (&afw_components_self_v_listStyleImage.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStyleImage */
+#define afw_components_self_s_listStyleImage \
+    (afw_components_self_v_listStyleImage.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_listStyleImage */
 extern const afw_value_string_t \
-    afw_components_v_listStyleImage;
+    afw_components_self_v_listStyleImage;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStyleImage */
 #define afw_components_z_listStyleImage \
-    (afw_components_v_listStyleImage.internal.s)
+    (afw_components_self_v_listStyleImage.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStyleImage */
+#define afw_components_v_listStyleImage \
+    ((const afw_value_t *)&afw_components_self_v_listStyleImage)
 
 
 
@@ -5921,15 +8537,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStylePosition */
 #define afw_components_s_listStylePosition \
-    (afw_components_v_listStylePosition.internal)
+    (&afw_components_self_v_listStylePosition.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStylePosition */
+#define afw_components_self_s_listStylePosition \
+    (afw_components_self_v_listStylePosition.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_listStylePosition */
 extern const afw_value_string_t \
-    afw_components_v_listStylePosition;
+    afw_components_self_v_listStylePosition;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStylePosition */
 #define afw_components_z_listStylePosition \
-    (afw_components_v_listStylePosition.internal.s)
+    (afw_components_self_v_listStylePosition.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStylePosition */
+#define afw_components_v_listStylePosition \
+    ((const afw_value_t *)&afw_components_self_v_listStylePosition)
 
 
 
@@ -5939,15 +8563,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStyleType */
 #define afw_components_s_listStyleType \
-    (afw_components_v_listStyleType.internal)
+    (&afw_components_self_v_listStyleType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_listStyleType */
+#define afw_components_self_s_listStyleType \
+    (afw_components_self_v_listStyleType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_listStyleType */
 extern const afw_value_string_t \
-    afw_components_v_listStyleType;
+    afw_components_self_v_listStyleType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStyleType */
 #define afw_components_z_listStyleType \
-    (afw_components_v_listStyleType.internal.s)
+    (afw_components_self_v_listStyleType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_listStyleType */
+#define afw_components_v_listStyleType \
+    ((const afw_value_t *)&afw_components_self_v_listStyleType)
 
 
 
@@ -5957,15 +8589,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_margin */
 #define afw_components_s_margin \
-    (afw_components_v_margin.internal)
+    (&afw_components_self_v_margin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_margin */
+#define afw_components_self_s_margin \
+    (afw_components_self_v_margin.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_margin */
 extern const afw_value_string_t \
-    afw_components_v_margin;
+    afw_components_self_v_margin;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_margin */
 #define afw_components_z_margin \
-    (afw_components_v_margin.internal.s)
+    (afw_components_self_v_margin.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_margin */
+#define afw_components_v_margin \
+    ((const afw_value_t *)&afw_components_self_v_margin)
 
 
 
@@ -5975,15 +8615,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginBottom */
 #define afw_components_s_marginBottom \
-    (afw_components_v_marginBottom.internal)
+    (&afw_components_self_v_marginBottom.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginBottom */
+#define afw_components_self_s_marginBottom \
+    (afw_components_self_v_marginBottom.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_marginBottom */
 extern const afw_value_string_t \
-    afw_components_v_marginBottom;
+    afw_components_self_v_marginBottom;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginBottom */
 #define afw_components_z_marginBottom \
-    (afw_components_v_marginBottom.internal.s)
+    (afw_components_self_v_marginBottom.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginBottom */
+#define afw_components_v_marginBottom \
+    ((const afw_value_t *)&afw_components_self_v_marginBottom)
 
 
 
@@ -5993,15 +8641,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginLeft */
 #define afw_components_s_marginLeft \
-    (afw_components_v_marginLeft.internal)
+    (&afw_components_self_v_marginLeft.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginLeft */
+#define afw_components_self_s_marginLeft \
+    (afw_components_self_v_marginLeft.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_marginLeft */
 extern const afw_value_string_t \
-    afw_components_v_marginLeft;
+    afw_components_self_v_marginLeft;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginLeft */
 #define afw_components_z_marginLeft \
-    (afw_components_v_marginLeft.internal.s)
+    (afw_components_self_v_marginLeft.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginLeft */
+#define afw_components_v_marginLeft \
+    ((const afw_value_t *)&afw_components_self_v_marginLeft)
 
 
 
@@ -6011,15 +8667,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginRight */
 #define afw_components_s_marginRight \
-    (afw_components_v_marginRight.internal)
+    (&afw_components_self_v_marginRight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginRight */
+#define afw_components_self_s_marginRight \
+    (afw_components_self_v_marginRight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_marginRight */
 extern const afw_value_string_t \
-    afw_components_v_marginRight;
+    afw_components_self_v_marginRight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginRight */
 #define afw_components_z_marginRight \
-    (afw_components_v_marginRight.internal.s)
+    (afw_components_self_v_marginRight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginRight */
+#define afw_components_v_marginRight \
+    ((const afw_value_t *)&afw_components_self_v_marginRight)
 
 
 
@@ -6029,15 +8693,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginTop */
 #define afw_components_s_marginTop \
-    (afw_components_v_marginTop.internal)
+    (&afw_components_self_v_marginTop.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_marginTop */
+#define afw_components_self_s_marginTop \
+    (afw_components_self_v_marginTop.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_marginTop */
 extern const afw_value_string_t \
-    afw_components_v_marginTop;
+    afw_components_self_v_marginTop;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginTop */
 #define afw_components_z_marginTop \
-    (afw_components_v_marginTop.internal.s)
+    (afw_components_self_v_marginTop.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_marginTop */
+#define afw_components_v_marginTop \
+    ((const afw_value_t *)&afw_components_self_v_marginTop)
 
 
 
@@ -6047,15 +8719,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_max */
 #define afw_components_s_max \
-    (afw_components_v_max.internal)
+    (&afw_components_self_v_max.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_max */
+#define afw_components_self_s_max \
+    (afw_components_self_v_max.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_max */
 extern const afw_value_string_t \
-    afw_components_v_max;
+    afw_components_self_v_max;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_max */
 #define afw_components_z_max \
-    (afw_components_v_max.internal.s)
+    (afw_components_self_v_max.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_max */
+#define afw_components_v_max \
+    ((const afw_value_t *)&afw_components_self_v_max)
 
 
 
@@ -6065,15 +8745,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_maxHeight */
 #define afw_components_s_maxHeight \
-    (afw_components_v_maxHeight.internal)
+    (&afw_components_self_v_maxHeight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_maxHeight */
+#define afw_components_self_s_maxHeight \
+    (afw_components_self_v_maxHeight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_maxHeight */
 extern const afw_value_string_t \
-    afw_components_v_maxHeight;
+    afw_components_self_v_maxHeight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_maxHeight */
 #define afw_components_z_maxHeight \
-    (afw_components_v_maxHeight.internal.s)
+    (afw_components_self_v_maxHeight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_maxHeight */
+#define afw_components_v_maxHeight \
+    ((const afw_value_t *)&afw_components_self_v_maxHeight)
 
 
 
@@ -6083,15 +8771,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_maxWidth */
 #define afw_components_s_maxWidth \
-    (afw_components_v_maxWidth.internal)
+    (&afw_components_self_v_maxWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_maxWidth */
+#define afw_components_self_s_maxWidth \
+    (afw_components_self_v_maxWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_maxWidth */
 extern const afw_value_string_t \
-    afw_components_v_maxWidth;
+    afw_components_self_v_maxWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_maxWidth */
 #define afw_components_z_maxWidth \
-    (afw_components_v_maxWidth.internal.s)
+    (afw_components_self_v_maxWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_maxWidth */
+#define afw_components_v_maxWidth \
+    ((const afw_value_t *)&afw_components_self_v_maxWidth)
 
 
 
@@ -6101,15 +8797,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_mdDown */
 #define afw_components_s_mdDown \
-    (afw_components_v_mdDown.internal)
+    (&afw_components_self_v_mdDown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_mdDown */
+#define afw_components_self_s_mdDown \
+    (afw_components_self_v_mdDown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_mdDown */
 extern const afw_value_string_t \
-    afw_components_v_mdDown;
+    afw_components_self_v_mdDown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_mdDown */
 #define afw_components_z_mdDown \
-    (afw_components_v_mdDown.internal.s)
+    (afw_components_self_v_mdDown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_mdDown */
+#define afw_components_v_mdDown \
+    ((const afw_value_t *)&afw_components_self_v_mdDown)
 
 
 
@@ -6119,15 +8823,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_medium */
 #define afw_components_s_medium \
-    (afw_components_v_medium.internal)
+    (&afw_components_self_v_medium.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_medium */
+#define afw_components_self_s_medium \
+    (afw_components_self_v_medium.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_medium */
 extern const afw_value_string_t \
-    afw_components_v_medium;
+    afw_components_self_v_medium;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_medium */
 #define afw_components_z_medium \
-    (afw_components_v_medium.internal.s)
+    (afw_components_self_v_medium.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_medium */
+#define afw_components_v_medium \
+    ((const afw_value_t *)&afw_components_self_v_medium)
 
 
 
@@ -6137,15 +8849,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_message */
 #define afw_components_s_message \
-    (afw_components_v_message.internal)
+    (&afw_components_self_v_message.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_message */
+#define afw_components_self_s_message \
+    (afw_components_self_v_message.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_message */
 extern const afw_value_string_t \
-    afw_components_v_message;
+    afw_components_self_v_message;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_message */
 #define afw_components_z_message \
-    (afw_components_v_message.internal.s)
+    (afw_components_self_v_message.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_message */
+#define afw_components_v_message \
+    ((const afw_value_t *)&afw_components_self_v_message)
 
 
 
@@ -6155,15 +8875,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_min */
 #define afw_components_s_min \
-    (afw_components_v_min.internal)
+    (&afw_components_self_v_min.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_min */
+#define afw_components_self_s_min \
+    (afw_components_self_v_min.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_min */
 extern const afw_value_string_t \
-    afw_components_v_min;
+    afw_components_self_v_min;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_min */
 #define afw_components_z_min \
-    (afw_components_v_min.internal.s)
+    (afw_components_self_v_min.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_min */
+#define afw_components_v_min \
+    ((const afw_value_t *)&afw_components_self_v_min)
 
 
 
@@ -6173,15 +8901,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_minHeight */
 #define afw_components_s_minHeight \
-    (afw_components_v_minHeight.internal)
+    (&afw_components_self_v_minHeight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_minHeight */
+#define afw_components_self_s_minHeight \
+    (afw_components_self_v_minHeight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_minHeight */
 extern const afw_value_string_t \
-    afw_components_v_minHeight;
+    afw_components_self_v_minHeight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_minHeight */
 #define afw_components_z_minHeight \
-    (afw_components_v_minHeight.internal.s)
+    (afw_components_self_v_minHeight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_minHeight */
+#define afw_components_v_minHeight \
+    ((const afw_value_t *)&afw_components_self_v_minHeight)
 
 
 
@@ -6191,15 +8927,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_minWidth */
 #define afw_components_s_minWidth \
-    (afw_components_v_minWidth.internal)
+    (&afw_components_self_v_minWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_minWidth */
+#define afw_components_self_s_minWidth \
+    (afw_components_self_v_minWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_minWidth */
 extern const afw_value_string_t \
-    afw_components_v_minWidth;
+    afw_components_self_v_minWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_minWidth */
 #define afw_components_z_minWidth \
-    (afw_components_v_minWidth.internal.s)
+    (afw_components_self_v_minWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_minWidth */
+#define afw_components_v_minWidth \
+    ((const afw_value_t *)&afw_components_self_v_minWidth)
 
 
 
@@ -6209,15 +8953,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_modified */
 #define afw_components_s_modified \
-    (afw_components_v_modified.internal)
+    (&afw_components_self_v_modified.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_modified */
+#define afw_components_self_s_modified \
+    (afw_components_self_v_modified.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_modified */
 extern const afw_value_string_t \
-    afw_components_v_modified;
+    afw_components_self_v_modified;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_modified */
 #define afw_components_z_modified \
-    (afw_components_v_modified.internal.s)
+    (afw_components_self_v_modified.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_modified */
+#define afw_components_v_modified \
+    ((const afw_value_t *)&afw_components_self_v_modified)
 
 
 
@@ -6227,15 +8979,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_multiline */
 #define afw_components_s_multiline \
-    (afw_components_v_multiline.internal)
+    (&afw_components_self_v_multiline.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_multiline */
+#define afw_components_self_s_multiline \
+    (afw_components_self_v_multiline.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_multiline */
 extern const afw_value_string_t \
-    afw_components_v_multiline;
+    afw_components_self_v_multiline;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_multiline */
 #define afw_components_z_multiline \
-    (afw_components_v_multiline.internal.s)
+    (afw_components_self_v_multiline.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_multiline */
+#define afw_components_v_multiline \
+    ((const afw_value_t *)&afw_components_self_v_multiline)
 
 
 
@@ -6245,15 +9005,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_multiselect */
 #define afw_components_s_multiselect \
-    (afw_components_v_multiselect.internal)
+    (&afw_components_self_v_multiselect.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_multiselect */
+#define afw_components_self_s_multiselect \
+    (afw_components_self_v_multiselect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_multiselect */
 extern const afw_value_string_t \
-    afw_components_v_multiselect;
+    afw_components_self_v_multiselect;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_multiselect */
 #define afw_components_z_multiselect \
-    (afw_components_v_multiselect.internal.s)
+    (afw_components_self_v_multiselect.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_multiselect */
+#define afw_components_v_multiselect \
+    ((const afw_value_t *)&afw_components_self_v_multiselect)
 
 
 
@@ -6263,15 +9031,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_name */
 #define afw_components_s_name \
-    (afw_components_v_name.internal)
+    (&afw_components_self_v_name.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_name */
+#define afw_components_self_s_name \
+    (afw_components_self_v_name.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_name */
 extern const afw_value_string_t \
-    afw_components_v_name;
+    afw_components_self_v_name;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_name */
 #define afw_components_z_name \
-    (afw_components_v_name.internal.s)
+    (afw_components_self_v_name.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_name */
+#define afw_components_v_name \
+    ((const afw_value_t *)&afw_components_self_v_name)
 
 
 
@@ -6281,15 +9057,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navDown */
 #define afw_components_s_navDown \
-    (afw_components_v_navDown.internal)
+    (&afw_components_self_v_navDown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navDown */
+#define afw_components_self_s_navDown \
+    (afw_components_self_v_navDown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_navDown */
 extern const afw_value_string_t \
-    afw_components_v_navDown;
+    afw_components_self_v_navDown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navDown */
 #define afw_components_z_navDown \
-    (afw_components_v_navDown.internal.s)
+    (afw_components_self_v_navDown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navDown */
+#define afw_components_v_navDown \
+    ((const afw_value_t *)&afw_components_self_v_navDown)
 
 
 
@@ -6299,15 +9083,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navIndex */
 #define afw_components_s_navIndex \
-    (afw_components_v_navIndex.internal)
+    (&afw_components_self_v_navIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navIndex */
+#define afw_components_self_s_navIndex \
+    (afw_components_self_v_navIndex.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_navIndex */
 extern const afw_value_string_t \
-    afw_components_v_navIndex;
+    afw_components_self_v_navIndex;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navIndex */
 #define afw_components_z_navIndex \
-    (afw_components_v_navIndex.internal.s)
+    (afw_components_self_v_navIndex.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navIndex */
+#define afw_components_v_navIndex \
+    ((const afw_value_t *)&afw_components_self_v_navIndex)
 
 
 
@@ -6317,15 +9109,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navLeft */
 #define afw_components_s_navLeft \
-    (afw_components_v_navLeft.internal)
+    (&afw_components_self_v_navLeft.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navLeft */
+#define afw_components_self_s_navLeft \
+    (afw_components_self_v_navLeft.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_navLeft */
 extern const afw_value_string_t \
-    afw_components_v_navLeft;
+    afw_components_self_v_navLeft;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navLeft */
 #define afw_components_z_navLeft \
-    (afw_components_v_navLeft.internal.s)
+    (afw_components_self_v_navLeft.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navLeft */
+#define afw_components_v_navLeft \
+    ((const afw_value_t *)&afw_components_self_v_navLeft)
 
 
 
@@ -6335,15 +9135,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navRight */
 #define afw_components_s_navRight \
-    (afw_components_v_navRight.internal)
+    (&afw_components_self_v_navRight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navRight */
+#define afw_components_self_s_navRight \
+    (afw_components_self_v_navRight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_navRight */
 extern const afw_value_string_t \
-    afw_components_v_navRight;
+    afw_components_self_v_navRight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navRight */
 #define afw_components_z_navRight \
-    (afw_components_v_navRight.internal.s)
+    (afw_components_self_v_navRight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navRight */
+#define afw_components_v_navRight \
+    ((const afw_value_t *)&afw_components_self_v_navRight)
 
 
 
@@ -6353,15 +9161,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navUp */
 #define afw_components_s_navUp \
-    (afw_components_v_navUp.internal)
+    (&afw_components_self_v_navUp.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navUp */
+#define afw_components_self_s_navUp \
+    (afw_components_self_v_navUp.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_navUp */
 extern const afw_value_string_t \
-    afw_components_v_navUp;
+    afw_components_self_v_navUp;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navUp */
 #define afw_components_z_navUp \
-    (afw_components_v_navUp.internal.s)
+    (afw_components_self_v_navUp.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navUp */
+#define afw_components_v_navUp \
+    ((const afw_value_t *)&afw_components_self_v_navUp)
 
 
 
@@ -6371,15 +9187,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navigation */
 #define afw_components_s_navigation \
-    (afw_components_v_navigation.internal)
+    (&afw_components_self_v_navigation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_navigation */
+#define afw_components_self_s_navigation \
+    (afw_components_self_v_navigation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_navigation */
 extern const afw_value_string_t \
-    afw_components_v_navigation;
+    afw_components_self_v_navigation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navigation */
 #define afw_components_z_navigation \
-    (afw_components_v_navigation.internal.s)
+    (afw_components_self_v_navigation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_navigation */
+#define afw_components_v_navigation \
+    ((const afw_value_t *)&afw_components_self_v_navigation)
 
 
 
@@ -6389,15 +9213,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_nestingDepth */
 #define afw_components_s_nestingDepth \
-    (afw_components_v_nestingDepth.internal)
+    (&afw_components_self_v_nestingDepth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_nestingDepth */
+#define afw_components_self_s_nestingDepth \
+    (afw_components_self_v_nestingDepth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_nestingDepth */
 extern const afw_value_string_t \
-    afw_components_v_nestingDepth;
+    afw_components_self_v_nestingDepth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_nestingDepth */
 #define afw_components_z_nestingDepth \
-    (afw_components_v_nestingDepth.internal.s)
+    (afw_components_self_v_nestingDepth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_nestingDepth */
+#define afw_components_v_nestingDepth \
+    ((const afw_value_t *)&afw_components_self_v_nestingDepth)
 
 
 
@@ -6407,15 +9239,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_object */
 #define afw_components_s_object \
-    (afw_components_v_object.internal)
+    (&afw_components_self_v_object.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_object */
+#define afw_components_self_s_object \
+    (afw_components_self_v_object.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_object */
 extern const afw_value_string_t \
-    afw_components_v_object;
+    afw_components_self_v_object;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_object */
 #define afw_components_z_object \
-    (afw_components_v_object.internal.s)
+    (afw_components_self_v_object.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_object */
+#define afw_components_v_object \
+    ((const afw_value_t *)&afw_components_self_v_object)
 
 
 
@@ -6425,15 +9265,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectFit */
 #define afw_components_s_objectFit \
-    (afw_components_v_objectFit.internal)
+    (&afw_components_self_v_objectFit.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectFit */
+#define afw_components_self_s_objectFit \
+    (afw_components_self_v_objectFit.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_objectFit */
 extern const afw_value_string_t \
-    afw_components_v_objectFit;
+    afw_components_self_v_objectFit;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectFit */
 #define afw_components_z_objectFit \
-    (afw_components_v_objectFit.internal.s)
+    (afw_components_self_v_objectFit.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectFit */
+#define afw_components_v_objectFit \
+    ((const afw_value_t *)&afw_components_self_v_objectFit)
 
 
 
@@ -6443,15 +9291,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectIdPropertyName */
 #define afw_components_s_objectIdPropertyName \
-    (afw_components_v_objectIdPropertyName.internal)
+    (&afw_components_self_v_objectIdPropertyName.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectIdPropertyName */
+#define afw_components_self_s_objectIdPropertyName \
+    (afw_components_self_v_objectIdPropertyName.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_objectIdPropertyName */
 extern const afw_value_string_t \
-    afw_components_v_objectIdPropertyName;
+    afw_components_self_v_objectIdPropertyName;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectIdPropertyName */
 #define afw_components_z_objectIdPropertyName \
-    (afw_components_v_objectIdPropertyName.internal.s)
+    (afw_components_self_v_objectIdPropertyName.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectIdPropertyName */
+#define afw_components_v_objectIdPropertyName \
+    ((const afw_value_t *)&afw_components_self_v_objectIdPropertyName)
 
 
 
@@ -6461,15 +9317,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectPosition */
 #define afw_components_s_objectPosition \
-    (afw_components_v_objectPosition.internal)
+    (&afw_components_self_v_objectPosition.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectPosition */
+#define afw_components_self_s_objectPosition \
+    (afw_components_self_v_objectPosition.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_objectPosition */
 extern const afw_value_string_t \
-    afw_components_v_objectPosition;
+    afw_components_self_v_objectPosition;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectPosition */
 #define afw_components_z_objectPosition \
-    (afw_components_v_objectPosition.internal.s)
+    (afw_components_self_v_objectPosition.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectPosition */
+#define afw_components_v_objectPosition \
+    ((const afw_value_t *)&afw_components_self_v_objectPosition)
 
 
 
@@ -6479,15 +9343,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectType */
 #define afw_components_s_objectType \
-    (afw_components_v_objectType.internal)
+    (&afw_components_self_v_objectType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_objectType */
+#define afw_components_self_s_objectType \
+    (afw_components_self_v_objectType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_objectType */
 extern const afw_value_string_t \
-    afw_components_v_objectType;
+    afw_components_self_v_objectType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectType */
 #define afw_components_z_objectType \
-    (afw_components_v_objectType.internal.s)
+    (afw_components_self_v_objectType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_objectType */
+#define afw_components_v_objectType \
+    ((const afw_value_t *)&afw_components_self_v_objectType)
 
 
 
@@ -6497,15 +9369,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_offText */
 #define afw_components_s_offText \
-    (afw_components_v_offText.internal)
+    (&afw_components_self_v_offText.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_offText */
+#define afw_components_self_s_offText \
+    (afw_components_self_v_offText.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_offText */
 extern const afw_value_string_t \
-    afw_components_v_offText;
+    afw_components_self_v_offText;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_offText */
 #define afw_components_z_offText \
-    (afw_components_v_offText.internal.s)
+    (afw_components_self_v_offText.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_offText */
+#define afw_components_v_offText \
+    ((const afw_value_t *)&afw_components_self_v_offText)
 
 
 
@@ -6515,15 +9395,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_onText */
 #define afw_components_s_onText \
-    (afw_components_v_onText.internal)
+    (&afw_components_self_v_onText.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_onText */
+#define afw_components_self_s_onText \
+    (afw_components_self_v_onText.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_onText */
 extern const afw_value_string_t \
-    afw_components_v_onText;
+    afw_components_self_v_onText;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_onText */
 #define afw_components_z_onText \
-    (afw_components_v_onText.internal.s)
+    (afw_components_self_v_onText.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_onText */
+#define afw_components_v_onText \
+    ((const afw_value_t *)&afw_components_self_v_onText)
 
 
 
@@ -6533,15 +9421,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_opacity */
 #define afw_components_s_opacity \
-    (afw_components_v_opacity.internal)
+    (&afw_components_self_v_opacity.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_opacity */
+#define afw_components_self_s_opacity \
+    (afw_components_self_v_opacity.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_opacity */
 extern const afw_value_string_t \
-    afw_components_v_opacity;
+    afw_components_self_v_opacity;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_opacity */
 #define afw_components_z_opacity \
-    (afw_components_v_opacity.internal.s)
+    (afw_components_self_v_opacity.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_opacity */
+#define afw_components_v_opacity \
+    ((const afw_value_t *)&afw_components_self_v_opacity)
 
 
 
@@ -6551,15 +9447,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_open */
 #define afw_components_s_open \
-    (afw_components_v_open.internal)
+    (&afw_components_self_v_open.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_open */
+#define afw_components_self_s_open \
+    (afw_components_self_v_open.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_open */
 extern const afw_value_string_t \
-    afw_components_v_open;
+    afw_components_self_v_open;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_open */
 #define afw_components_z_open \
-    (afw_components_v_open.internal.s)
+    (afw_components_self_v_open.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_open */
+#define afw_components_v_open \
+    ((const afw_value_t *)&afw_components_self_v_open)
 
 
 
@@ -6569,15 +9473,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_options */
 #define afw_components_s_options \
-    (afw_components_v_options.internal)
+    (&afw_components_self_v_options.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_options */
+#define afw_components_self_s_options \
+    (afw_components_self_v_options.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_options */
 extern const afw_value_string_t \
-    afw_components_v_options;
+    afw_components_self_v_options;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_options */
 #define afw_components_z_options \
-    (afw_components_v_options.internal.s)
+    (afw_components_self_v_options.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_options */
+#define afw_components_v_options \
+    ((const afw_value_t *)&afw_components_self_v_options)
 
 
 
@@ -6587,15 +9499,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_order */
 #define afw_components_s_order \
-    (afw_components_v_order.internal)
+    (&afw_components_self_v_order.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_order */
+#define afw_components_self_s_order \
+    (afw_components_self_v_order.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_order */
 extern const afw_value_string_t \
-    afw_components_v_order;
+    afw_components_self_v_order;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_order */
 #define afw_components_z_order \
-    (afw_components_v_order.internal.s)
+    (afw_components_self_v_order.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_order */
+#define afw_components_v_order \
+    ((const afw_value_t *)&afw_components_self_v_order)
 
 
 
@@ -6605,15 +9525,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_orientation */
 #define afw_components_s_orientation \
-    (afw_components_v_orientation.internal)
+    (&afw_components_self_v_orientation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_orientation */
+#define afw_components_self_s_orientation \
+    (afw_components_self_v_orientation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_orientation */
 extern const afw_value_string_t \
-    afw_components_v_orientation;
+    afw_components_self_v_orientation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_orientation */
 #define afw_components_z_orientation \
-    (afw_components_v_orientation.internal.s)
+    (afw_components_self_v_orientation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_orientation */
+#define afw_components_v_orientation \
+    ((const afw_value_t *)&afw_components_self_v_orientation)
 
 
 
@@ -6623,15 +9551,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_original */
 #define afw_components_s_original \
-    (afw_components_v_original.internal)
+    (&afw_components_self_v_original.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_original */
+#define afw_components_self_s_original \
+    (afw_components_self_v_original.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_original */
 extern const afw_value_string_t \
-    afw_components_v_original;
+    afw_components_self_v_original;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_original */
 #define afw_components_z_original \
-    (afw_components_v_original.internal.s)
+    (afw_components_self_v_original.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_original */
+#define afw_components_v_original \
+    ((const afw_value_t *)&afw_components_self_v_original)
 
 
 
@@ -6641,15 +9577,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_orphans */
 #define afw_components_s_orphans \
-    (afw_components_v_orphans.internal)
+    (&afw_components_self_v_orphans.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_orphans */
+#define afw_components_self_s_orphans \
+    (afw_components_self_v_orphans.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_orphans */
 extern const afw_value_string_t \
-    afw_components_v_orphans;
+    afw_components_self_v_orphans;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_orphans */
 #define afw_components_z_orphans \
-    (afw_components_v_orphans.internal.s)
+    (afw_components_self_v_orphans.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_orphans */
+#define afw_components_v_orphans \
+    ((const afw_value_t *)&afw_components_self_v_orphans)
 
 
 
@@ -6659,15 +9603,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_otherProperties */
 #define afw_components_s_otherProperties \
-    (afw_components_v_otherProperties.internal)
+    (&afw_components_self_v_otherProperties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_otherProperties */
+#define afw_components_self_s_otherProperties \
+    (afw_components_self_v_otherProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_otherProperties */
 extern const afw_value_string_t \
-    afw_components_v_otherProperties;
+    afw_components_self_v_otherProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_otherProperties */
 #define afw_components_z_otherProperties \
-    (afw_components_v_otherProperties.internal.s)
+    (afw_components_self_v_otherProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_otherProperties */
+#define afw_components_v_otherProperties \
+    ((const afw_value_t *)&afw_components_self_v_otherProperties)
 
 
 
@@ -6677,15 +9629,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outline */
 #define afw_components_s_outline \
-    (afw_components_v_outline.internal)
+    (&afw_components_self_v_outline.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outline */
+#define afw_components_self_s_outline \
+    (afw_components_self_v_outline.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_outline */
 extern const afw_value_string_t \
-    afw_components_v_outline;
+    afw_components_self_v_outline;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outline */
 #define afw_components_z_outline \
-    (afw_components_v_outline.internal.s)
+    (afw_components_self_v_outline.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outline */
+#define afw_components_v_outline \
+    ((const afw_value_t *)&afw_components_self_v_outline)
 
 
 
@@ -6695,15 +9655,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineColor */
 #define afw_components_s_outlineColor \
-    (afw_components_v_outlineColor.internal)
+    (&afw_components_self_v_outlineColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineColor */
+#define afw_components_self_s_outlineColor \
+    (afw_components_self_v_outlineColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_outlineColor */
 extern const afw_value_string_t \
-    afw_components_v_outlineColor;
+    afw_components_self_v_outlineColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineColor */
 #define afw_components_z_outlineColor \
-    (afw_components_v_outlineColor.internal.s)
+    (afw_components_self_v_outlineColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineColor */
+#define afw_components_v_outlineColor \
+    ((const afw_value_t *)&afw_components_self_v_outlineColor)
 
 
 
@@ -6713,15 +9681,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineOffset */
 #define afw_components_s_outlineOffset \
-    (afw_components_v_outlineOffset.internal)
+    (&afw_components_self_v_outlineOffset.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineOffset */
+#define afw_components_self_s_outlineOffset \
+    (afw_components_self_v_outlineOffset.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_outlineOffset */
 extern const afw_value_string_t \
-    afw_components_v_outlineOffset;
+    afw_components_self_v_outlineOffset;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineOffset */
 #define afw_components_z_outlineOffset \
-    (afw_components_v_outlineOffset.internal.s)
+    (afw_components_self_v_outlineOffset.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineOffset */
+#define afw_components_v_outlineOffset \
+    ((const afw_value_t *)&afw_components_self_v_outlineOffset)
 
 
 
@@ -6731,15 +9707,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineStyle */
 #define afw_components_s_outlineStyle \
-    (afw_components_v_outlineStyle.internal)
+    (&afw_components_self_v_outlineStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineStyle */
+#define afw_components_self_s_outlineStyle \
+    (afw_components_self_v_outlineStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_outlineStyle */
 extern const afw_value_string_t \
-    afw_components_v_outlineStyle;
+    afw_components_self_v_outlineStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineStyle */
 #define afw_components_z_outlineStyle \
-    (afw_components_v_outlineStyle.internal.s)
+    (afw_components_self_v_outlineStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineStyle */
+#define afw_components_v_outlineStyle \
+    ((const afw_value_t *)&afw_components_self_v_outlineStyle)
 
 
 
@@ -6749,15 +9733,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineWidth */
 #define afw_components_s_outlineWidth \
-    (afw_components_v_outlineWidth.internal)
+    (&afw_components_self_v_outlineWidth.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_outlineWidth */
+#define afw_components_self_s_outlineWidth \
+    (afw_components_self_v_outlineWidth.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_outlineWidth */
 extern const afw_value_string_t \
-    afw_components_v_outlineWidth;
+    afw_components_self_v_outlineWidth;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineWidth */
 #define afw_components_z_outlineWidth \
-    (afw_components_v_outlineWidth.internal.s)
+    (afw_components_self_v_outlineWidth.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_outlineWidth */
+#define afw_components_v_outlineWidth \
+    ((const afw_value_t *)&afw_components_self_v_outlineWidth)
 
 
 
@@ -6767,15 +9759,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_overflow */
 #define afw_components_s_overflow \
-    (afw_components_v_overflow.internal)
+    (&afw_components_self_v_overflow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_overflow */
+#define afw_components_self_s_overflow \
+    (afw_components_self_v_overflow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_overflow */
 extern const afw_value_string_t \
-    afw_components_v_overflow;
+    afw_components_self_v_overflow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_overflow */
 #define afw_components_z_overflow \
-    (afw_components_v_overflow.internal.s)
+    (afw_components_self_v_overflow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_overflow */
+#define afw_components_v_overflow \
+    ((const afw_value_t *)&afw_components_self_v_overflow)
 
 
 
@@ -6785,15 +9785,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_overflowX */
 #define afw_components_s_overflowX \
-    (afw_components_v_overflowX.internal)
+    (&afw_components_self_v_overflowX.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_overflowX */
+#define afw_components_self_s_overflowX \
+    (afw_components_self_v_overflowX.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_overflowX */
 extern const afw_value_string_t \
-    afw_components_v_overflowX;
+    afw_components_self_v_overflowX;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_overflowX */
 #define afw_components_z_overflowX \
-    (afw_components_v_overflowX.internal.s)
+    (afw_components_self_v_overflowX.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_overflowX */
+#define afw_components_v_overflowX \
+    ((const afw_value_t *)&afw_components_self_v_overflowX)
 
 
 
@@ -6803,15 +9811,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_overflowY */
 #define afw_components_s_overflowY \
-    (afw_components_v_overflowY.internal)
+    (&afw_components_self_v_overflowY.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_overflowY */
+#define afw_components_self_s_overflowY \
+    (afw_components_self_v_overflowY.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_overflowY */
 extern const afw_value_string_t \
-    afw_components_v_overflowY;
+    afw_components_self_v_overflowY;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_overflowY */
 #define afw_components_z_overflowY \
-    (afw_components_v_overflowY.internal.s)
+    (afw_components_self_v_overflowY.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_overflowY */
+#define afw_components_v_overflowY \
+    ((const afw_value_t *)&afw_components_self_v_overflowY)
 
 
 
@@ -6821,15 +9837,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_padding */
 #define afw_components_s_padding \
-    (afw_components_v_padding.internal)
+    (&afw_components_self_v_padding.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_padding */
+#define afw_components_self_s_padding \
+    (afw_components_self_v_padding.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_padding */
 extern const afw_value_string_t \
-    afw_components_v_padding;
+    afw_components_self_v_padding;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_padding */
 #define afw_components_z_padding \
-    (afw_components_v_padding.internal.s)
+    (afw_components_self_v_padding.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_padding */
+#define afw_components_v_padding \
+    ((const afw_value_t *)&afw_components_self_v_padding)
 
 
 
@@ -6839,15 +9863,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingBottom */
 #define afw_components_s_paddingBottom \
-    (afw_components_v_paddingBottom.internal)
+    (&afw_components_self_v_paddingBottom.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingBottom */
+#define afw_components_self_s_paddingBottom \
+    (afw_components_self_v_paddingBottom.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_paddingBottom */
 extern const afw_value_string_t \
-    afw_components_v_paddingBottom;
+    afw_components_self_v_paddingBottom;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingBottom */
 #define afw_components_z_paddingBottom \
-    (afw_components_v_paddingBottom.internal.s)
+    (afw_components_self_v_paddingBottom.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingBottom */
+#define afw_components_v_paddingBottom \
+    ((const afw_value_t *)&afw_components_self_v_paddingBottom)
 
 
 
@@ -6857,15 +9889,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingLeft */
 #define afw_components_s_paddingLeft \
-    (afw_components_v_paddingLeft.internal)
+    (&afw_components_self_v_paddingLeft.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingLeft */
+#define afw_components_self_s_paddingLeft \
+    (afw_components_self_v_paddingLeft.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_paddingLeft */
 extern const afw_value_string_t \
-    afw_components_v_paddingLeft;
+    afw_components_self_v_paddingLeft;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingLeft */
 #define afw_components_z_paddingLeft \
-    (afw_components_v_paddingLeft.internal.s)
+    (afw_components_self_v_paddingLeft.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingLeft */
+#define afw_components_v_paddingLeft \
+    ((const afw_value_t *)&afw_components_self_v_paddingLeft)
 
 
 
@@ -6875,15 +9915,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingRight */
 #define afw_components_s_paddingRight \
-    (afw_components_v_paddingRight.internal)
+    (&afw_components_self_v_paddingRight.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingRight */
+#define afw_components_self_s_paddingRight \
+    (afw_components_self_v_paddingRight.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_paddingRight */
 extern const afw_value_string_t \
-    afw_components_v_paddingRight;
+    afw_components_self_v_paddingRight;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingRight */
 #define afw_components_z_paddingRight \
-    (afw_components_v_paddingRight.internal.s)
+    (afw_components_self_v_paddingRight.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingRight */
+#define afw_components_v_paddingRight \
+    ((const afw_value_t *)&afw_components_self_v_paddingRight)
 
 
 
@@ -6893,15 +9941,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingTop */
 #define afw_components_s_paddingTop \
-    (afw_components_v_paddingTop.internal)
+    (&afw_components_self_v_paddingTop.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_paddingTop */
+#define afw_components_self_s_paddingTop \
+    (afw_components_self_v_paddingTop.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_paddingTop */
 extern const afw_value_string_t \
-    afw_components_v_paddingTop;
+    afw_components_self_v_paddingTop;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingTop */
 #define afw_components_z_paddingTop \
-    (afw_components_v_paddingTop.internal.s)
+    (afw_components_self_v_paddingTop.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_paddingTop */
+#define afw_components_v_paddingTop \
+    ((const afw_value_t *)&afw_components_self_v_paddingTop)
 
 
 
@@ -6911,15 +9967,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pageBreakAfter */
 #define afw_components_s_pageBreakAfter \
-    (afw_components_v_pageBreakAfter.internal)
+    (&afw_components_self_v_pageBreakAfter.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pageBreakAfter */
+#define afw_components_self_s_pageBreakAfter \
+    (afw_components_self_v_pageBreakAfter.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_pageBreakAfter */
 extern const afw_value_string_t \
-    afw_components_v_pageBreakAfter;
+    afw_components_self_v_pageBreakAfter;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pageBreakAfter */
 #define afw_components_z_pageBreakAfter \
-    (afw_components_v_pageBreakAfter.internal.s)
+    (afw_components_self_v_pageBreakAfter.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pageBreakAfter */
+#define afw_components_v_pageBreakAfter \
+    ((const afw_value_t *)&afw_components_self_v_pageBreakAfter)
 
 
 
@@ -6929,15 +9993,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pageBreakBefore */
 #define afw_components_s_pageBreakBefore \
-    (afw_components_v_pageBreakBefore.internal)
+    (&afw_components_self_v_pageBreakBefore.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pageBreakBefore */
+#define afw_components_self_s_pageBreakBefore \
+    (afw_components_self_v_pageBreakBefore.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_pageBreakBefore */
 extern const afw_value_string_t \
-    afw_components_v_pageBreakBefore;
+    afw_components_self_v_pageBreakBefore;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pageBreakBefore */
 #define afw_components_z_pageBreakBefore \
-    (afw_components_v_pageBreakBefore.internal.s)
+    (afw_components_self_v_pageBreakBefore.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pageBreakBefore */
+#define afw_components_v_pageBreakBefore \
+    ((const afw_value_t *)&afw_components_self_v_pageBreakBefore)
 
 
 
@@ -6947,15 +10019,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pageBreakInside */
 #define afw_components_s_pageBreakInside \
-    (afw_components_v_pageBreakInside.internal)
+    (&afw_components_self_v_pageBreakInside.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pageBreakInside */
+#define afw_components_self_s_pageBreakInside \
+    (afw_components_self_v_pageBreakInside.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_pageBreakInside */
 extern const afw_value_string_t \
-    afw_components_v_pageBreakInside;
+    afw_components_self_v_pageBreakInside;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pageBreakInside */
 #define afw_components_z_pageBreakInside \
-    (afw_components_v_pageBreakInside.internal.s)
+    (afw_components_self_v_pageBreakInside.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pageBreakInside */
+#define afw_components_v_pageBreakInside \
+    ((const afw_value_t *)&afw_components_self_v_pageBreakInside)
 
 
 
@@ -6965,15 +10045,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_parentPaths */
 #define afw_components_s_parentPaths \
-    (afw_components_v_parentPaths.internal)
+    (&afw_components_self_v_parentPaths.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_parentPaths */
+#define afw_components_self_s_parentPaths \
+    (afw_components_self_v_parentPaths.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_parentPaths */
 extern const afw_value_string_t \
-    afw_components_v_parentPaths;
+    afw_components_self_v_parentPaths;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_parentPaths */
 #define afw_components_z_parentPaths \
-    (afw_components_v_parentPaths.internal.s)
+    (afw_components_self_v_parentPaths.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_parentPaths */
+#define afw_components_v_parentPaths \
+    ((const afw_value_t *)&afw_components_self_v_parentPaths)
 
 
 
@@ -6983,15 +10071,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_perspective */
 #define afw_components_s_perspective \
-    (afw_components_v_perspective.internal)
+    (&afw_components_self_v_perspective.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_perspective */
+#define afw_components_self_s_perspective \
+    (afw_components_self_v_perspective.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_perspective */
 extern const afw_value_string_t \
-    afw_components_v_perspective;
+    afw_components_self_v_perspective;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_perspective */
 #define afw_components_z_perspective \
-    (afw_components_v_perspective.internal.s)
+    (afw_components_self_v_perspective.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_perspective */
+#define afw_components_v_perspective \
+    ((const afw_value_t *)&afw_components_self_v_perspective)
 
 
 
@@ -7001,15 +10097,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_perspectiveOrigin */
 #define afw_components_s_perspectiveOrigin \
-    (afw_components_v_perspectiveOrigin.internal)
+    (&afw_components_self_v_perspectiveOrigin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_perspectiveOrigin */
+#define afw_components_self_s_perspectiveOrigin \
+    (afw_components_self_v_perspectiveOrigin.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_perspectiveOrigin */
 extern const afw_value_string_t \
-    afw_components_v_perspectiveOrigin;
+    afw_components_self_v_perspectiveOrigin;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_perspectiveOrigin */
 #define afw_components_z_perspectiveOrigin \
-    (afw_components_v_perspectiveOrigin.internal.s)
+    (afw_components_self_v_perspectiveOrigin.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_perspectiveOrigin */
+#define afw_components_v_perspectiveOrigin \
+    ((const afw_value_t *)&afw_components_self_v_perspectiveOrigin)
 
 
 
@@ -7019,15 +10123,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pickers */
 #define afw_components_s_pickers \
-    (afw_components_v_pickers.internal)
+    (&afw_components_self_v_pickers.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_pickers */
+#define afw_components_self_s_pickers \
+    (afw_components_self_v_pickers.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_pickers */
 extern const afw_value_string_t \
-    afw_components_v_pickers;
+    afw_components_self_v_pickers;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pickers */
 #define afw_components_z_pickers \
-    (afw_components_v_pickers.internal.s)
+    (afw_components_self_v_pickers.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_pickers */
+#define afw_components_v_pickers \
+    ((const afw_value_t *)&afw_components_self_v_pickers)
 
 
 
@@ -7037,15 +10149,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_placeholder */
 #define afw_components_s_placeholder \
-    (afw_components_v_placeholder.internal)
+    (&afw_components_self_v_placeholder.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_placeholder */
+#define afw_components_self_s_placeholder \
+    (afw_components_self_v_placeholder.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_placeholder */
 extern const afw_value_string_t \
-    afw_components_v_placeholder;
+    afw_components_self_v_placeholder;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_placeholder */
 #define afw_components_z_placeholder \
-    (afw_components_v_placeholder.internal.s)
+    (afw_components_self_v_placeholder.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_placeholder */
+#define afw_components_v_placeholder \
+    ((const afw_value_t *)&afw_components_self_v_placeholder)
 
 
 
@@ -7055,15 +10175,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_position */
 #define afw_components_s_position \
-    (afw_components_v_position.internal)
+    (&afw_components_self_v_position.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_position */
+#define afw_components_self_s_position \
+    (afw_components_self_v_position.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_position */
 extern const afw_value_string_t \
-    afw_components_v_position;
+    afw_components_self_v_position;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_position */
 #define afw_components_z_position \
-    (afw_components_v_position.internal.s)
+    (afw_components_self_v_position.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_position */
+#define afw_components_v_position \
+    ((const afw_value_t *)&afw_components_self_v_position)
 
 
 
@@ -7073,15 +10201,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_possibleValues */
 #define afw_components_s_possibleValues \
-    (afw_components_v_possibleValues.internal)
+    (&afw_components_self_v_possibleValues.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_possibleValues */
+#define afw_components_self_s_possibleValues \
+    (afw_components_self_v_possibleValues.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_possibleValues */
 extern const afw_value_string_t \
-    afw_components_v_possibleValues;
+    afw_components_self_v_possibleValues;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_possibleValues */
 #define afw_components_z_possibleValues \
-    (afw_components_v_possibleValues.internal.s)
+    (afw_components_self_v_possibleValues.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_possibleValues */
+#define afw_components_v_possibleValues \
+    ((const afw_value_t *)&afw_components_self_v_possibleValues)
 
 
 
@@ -7091,15 +10227,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_preferredComponents */
 #define afw_components_s_preferredComponents \
-    (afw_components_v_preferredComponents.internal)
+    (&afw_components_self_v_preferredComponents.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_preferredComponents */
+#define afw_components_self_s_preferredComponents \
+    (afw_components_self_v_preferredComponents.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_preferredComponents */
 extern const afw_value_string_t \
-    afw_components_v_preferredComponents;
+    afw_components_self_v_preferredComponents;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_preferredComponents */
 #define afw_components_z_preferredComponents \
-    (afw_components_v_preferredComponents.internal.s)
+    (afw_components_self_v_preferredComponents.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_preferredComponents */
+#define afw_components_v_preferredComponents \
+    ((const afw_value_t *)&afw_components_self_v_preferredComponents)
 
 
 
@@ -7109,15 +10253,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_propertyName */
 #define afw_components_s_propertyName \
-    (afw_components_v_propertyName.internal)
+    (&afw_components_self_v_propertyName.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_propertyName */
+#define afw_components_self_s_propertyName \
+    (afw_components_self_v_propertyName.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_propertyName */
 extern const afw_value_string_t \
-    afw_components_v_propertyName;
+    afw_components_self_v_propertyName;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_propertyName */
 #define afw_components_z_propertyName \
-    (afw_components_v_propertyName.internal.s)
+    (afw_components_self_v_propertyName.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_propertyName */
+#define afw_components_v_propertyName \
+    ((const afw_value_t *)&afw_components_self_v_propertyName)
 
 
 
@@ -7127,15 +10279,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_propertyTypes */
 #define afw_components_s_propertyTypes \
-    (afw_components_v_propertyTypes.internal)
+    (&afw_components_self_v_propertyTypes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_propertyTypes */
+#define afw_components_self_s_propertyTypes \
+    (afw_components_self_v_propertyTypes.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_propertyTypes */
 extern const afw_value_string_t \
-    afw_components_v_propertyTypes;
+    afw_components_self_v_propertyTypes;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_propertyTypes */
 #define afw_components_z_propertyTypes \
-    (afw_components_v_propertyTypes.internal.s)
+    (afw_components_self_v_propertyTypes.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_propertyTypes */
+#define afw_components_v_propertyTypes \
+    ((const afw_value_t *)&afw_components_self_v_propertyTypes)
 
 
 
@@ -7145,15 +10305,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_quotes */
 #define afw_components_s_quotes \
-    (afw_components_v_quotes.internal)
+    (&afw_components_self_v_quotes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_quotes */
+#define afw_components_self_s_quotes \
+    (afw_components_self_v_quotes.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_quotes */
 extern const afw_value_string_t \
-    afw_components_v_quotes;
+    afw_components_self_v_quotes;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_quotes */
 #define afw_components_z_quotes \
-    (afw_components_v_quotes.internal.s)
+    (afw_components_self_v_quotes.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_quotes */
+#define afw_components_v_quotes \
+    ((const afw_value_t *)&afw_components_self_v_quotes)
 
 
 
@@ -7163,15 +10331,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_readOnly */
 #define afw_components_s_readOnly \
-    (afw_components_v_readOnly.internal)
+    (&afw_components_self_v_readOnly.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_readOnly */
+#define afw_components_self_s_readOnly \
+    (afw_components_self_v_readOnly.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_readOnly */
 extern const afw_value_string_t \
-    afw_components_v_readOnly;
+    afw_components_self_v_readOnly;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_readOnly */
 #define afw_components_z_readOnly \
-    (afw_components_v_readOnly.internal.s)
+    (afw_components_self_v_readOnly.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_readOnly */
+#define afw_components_v_readOnly \
+    ((const afw_value_t *)&afw_components_self_v_readOnly)
 
 
 
@@ -7181,15 +10357,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_readOnlyOrientation */
 #define afw_components_s_readOnlyOrientation \
-    (afw_components_v_readOnlyOrientation.internal)
+    (&afw_components_self_v_readOnlyOrientation.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_readOnlyOrientation */
+#define afw_components_self_s_readOnlyOrientation \
+    (afw_components_self_v_readOnlyOrientation.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_readOnlyOrientation */
 extern const afw_value_string_t \
-    afw_components_v_readOnlyOrientation;
+    afw_components_self_v_readOnlyOrientation;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_readOnlyOrientation */
 #define afw_components_z_readOnlyOrientation \
-    (afw_components_v_readOnlyOrientation.internal.s)
+    (afw_components_self_v_readOnlyOrientation.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_readOnlyOrientation */
+#define afw_components_v_readOnlyOrientation \
+    ((const afw_value_t *)&afw_components_self_v_readOnlyOrientation)
 
 
 
@@ -7199,15 +10383,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_recurse */
 #define afw_components_s_recurse \
-    (afw_components_v_recurse.internal)
+    (&afw_components_self_v_recurse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_recurse */
+#define afw_components_self_s_recurse \
+    (afw_components_self_v_recurse.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_recurse */
 extern const afw_value_string_t \
-    afw_components_v_recurse;
+    afw_components_self_v_recurse;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_recurse */
 #define afw_components_z_recurse \
-    (afw_components_v_recurse.internal.s)
+    (afw_components_self_v_recurse.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_recurse */
+#define afw_components_v_recurse \
+    ((const afw_value_t *)&afw_components_self_v_recurse)
 
 
 
@@ -7217,15 +10409,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_required */
 #define afw_components_s_required \
-    (afw_components_v_required.internal)
+    (&afw_components_self_v_required.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_required */
+#define afw_components_self_s_required \
+    (afw_components_self_v_required.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_required */
 extern const afw_value_string_t \
-    afw_components_v_required;
+    afw_components_self_v_required;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_required */
 #define afw_components_z_required \
-    (afw_components_v_required.internal.s)
+    (afw_components_self_v_required.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_required */
+#define afw_components_v_required \
+    ((const afw_value_t *)&afw_components_self_v_required)
 
 
 
@@ -7235,15 +10435,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_resize */
 #define afw_components_s_resize \
-    (afw_components_v_resize.internal)
+    (&afw_components_self_v_resize.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_resize */
+#define afw_components_self_s_resize \
+    (afw_components_self_v_resize.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_resize */
 extern const afw_value_string_t \
-    afw_components_v_resize;
+    afw_components_self_v_resize;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_resize */
 #define afw_components_z_resize \
-    (afw_components_v_resize.internal.s)
+    (afw_components_self_v_resize.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_resize */
+#define afw_components_v_resize \
+    ((const afw_value_t *)&afw_components_self_v_resize)
 
 
 
@@ -7253,15 +10461,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_right */
 #define afw_components_s_right \
-    (afw_components_v_right.internal)
+    (&afw_components_self_v_right.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_right */
+#define afw_components_self_s_right \
+    (afw_components_self_v_right.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_right */
 extern const afw_value_string_t \
-    afw_components_v_right;
+    afw_components_self_v_right;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_right */
 #define afw_components_z_right \
-    (afw_components_v_right.internal.s)
+    (afw_components_self_v_right.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_right */
+#define afw_components_v_right \
+    ((const afw_value_t *)&afw_components_self_v_right)
 
 
 
@@ -7271,15 +10487,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_role */
 #define afw_components_s_role \
-    (afw_components_v_role.internal)
+    (&afw_components_self_v_role.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_role */
+#define afw_components_self_s_role \
+    (afw_components_self_v_role.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_role */
 extern const afw_value_string_t \
-    afw_components_v_role;
+    afw_components_self_v_role;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_role */
 #define afw_components_z_role \
-    (afw_components_v_role.internal.s)
+    (afw_components_self_v_role.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_role */
+#define afw_components_v_role \
+    ((const afw_value_t *)&afw_components_self_v_role)
 
 
 
@@ -7289,15 +10513,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_rows */
 #define afw_components_s_rows \
-    (afw_components_v_rows.internal)
+    (&afw_components_self_v_rows.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_rows */
+#define afw_components_self_s_rows \
+    (afw_components_self_v_rows.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_rows */
 extern const afw_value_string_t \
-    afw_components_v_rows;
+    afw_components_self_v_rows;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_rows */
 #define afw_components_z_rows \
-    (afw_components_v_rows.internal.s)
+    (afw_components_self_v_rows.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_rows */
+#define afw_components_v_rows \
+    ((const afw_value_t *)&afw_components_self_v_rows)
 
 
 
@@ -7307,15 +10539,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_secondary */
 #define afw_components_s_secondary \
-    (afw_components_v_secondary.internal)
+    (&afw_components_self_v_secondary.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_secondary */
+#define afw_components_self_s_secondary \
+    (afw_components_self_v_secondary.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_secondary */
 extern const afw_value_string_t \
-    afw_components_v_secondary;
+    afw_components_self_v_secondary;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_secondary */
 #define afw_components_z_secondary \
-    (afw_components_v_secondary.internal.s)
+    (afw_components_self_v_secondary.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_secondary */
+#define afw_components_v_secondary \
+    ((const afw_value_t *)&afw_components_self_v_secondary)
 
 
 
@@ -7325,15 +10565,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_secondaryText */
 #define afw_components_s_secondaryText \
-    (afw_components_v_secondaryText.internal)
+    (&afw_components_self_v_secondaryText.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_secondaryText */
+#define afw_components_self_s_secondaryText \
+    (afw_components_self_v_secondaryText.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_secondaryText */
 extern const afw_value_string_t \
-    afw_components_v_secondaryText;
+    afw_components_self_v_secondaryText;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_secondaryText */
 #define afw_components_z_secondaryText \
-    (afw_components_v_secondaryText.internal.s)
+    (afw_components_self_v_secondaryText.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_secondaryText */
+#define afw_components_v_secondaryText \
+    ((const afw_value_t *)&afw_components_self_v_secondaryText)
 
 
 
@@ -7343,15 +10591,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectable */
 #define afw_components_s_selectable \
-    (afw_components_v_selectable.internal)
+    (&afw_components_self_v_selectable.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectable */
+#define afw_components_self_s_selectable \
+    (afw_components_self_v_selectable.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_selectable */
 extern const afw_value_string_t \
-    afw_components_v_selectable;
+    afw_components_self_v_selectable;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectable */
 #define afw_components_z_selectable \
-    (afw_components_v_selectable.internal.s)
+    (afw_components_self_v_selectable.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectable */
+#define afw_components_v_selectable \
+    ((const afw_value_t *)&afw_components_self_v_selectable)
 
 
 
@@ -7361,15 +10617,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selected */
 #define afw_components_s_selected \
-    (afw_components_v_selected.internal)
+    (&afw_components_self_v_selected.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selected */
+#define afw_components_self_s_selected \
+    (afw_components_self_v_selected.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_selected */
 extern const afw_value_string_t \
-    afw_components_v_selected;
+    afw_components_self_v_selected;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selected */
 #define afw_components_z_selected \
-    (afw_components_v_selected.internal.s)
+    (afw_components_self_v_selected.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selected */
+#define afw_components_v_selected \
+    ((const afw_value_t *)&afw_components_self_v_selected)
 
 
 
@@ -7379,15 +10643,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectedKey */
 #define afw_components_s_selectedKey \
-    (afw_components_v_selectedKey.internal)
+    (&afw_components_self_v_selectedKey.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectedKey */
+#define afw_components_self_s_selectedKey \
+    (afw_components_self_v_selectedKey.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_selectedKey */
 extern const afw_value_string_t \
-    afw_components_v_selectedKey;
+    afw_components_self_v_selectedKey;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectedKey */
 #define afw_components_z_selectedKey \
-    (afw_components_v_selectedKey.internal.s)
+    (afw_components_self_v_selectedKey.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectedKey */
+#define afw_components_v_selectedKey \
+    ((const afw_value_t *)&afw_components_self_v_selectedKey)
 
 
 
@@ -7397,15 +10669,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectedKeys */
 #define afw_components_s_selectedKeys \
-    (afw_components_v_selectedKeys.internal)
+    (&afw_components_self_v_selectedKeys.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectedKeys */
+#define afw_components_self_s_selectedKeys \
+    (afw_components_self_v_selectedKeys.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_selectedKeys */
 extern const afw_value_string_t \
-    afw_components_v_selectedKeys;
+    afw_components_self_v_selectedKeys;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectedKeys */
 #define afw_components_z_selectedKeys \
-    (afw_components_v_selectedKeys.internal.s)
+    (afw_components_self_v_selectedKeys.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectedKeys */
+#define afw_components_v_selectedKeys \
+    ((const afw_value_t *)&afw_components_self_v_selectedKeys)
 
 
 
@@ -7415,15 +10695,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectionMode */
 #define afw_components_s_selectionMode \
-    (afw_components_v_selectionMode.internal)
+    (&afw_components_self_v_selectionMode.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_selectionMode */
+#define afw_components_self_s_selectionMode \
+    (afw_components_self_v_selectionMode.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_selectionMode */
 extern const afw_value_string_t \
-    afw_components_v_selectionMode;
+    afw_components_self_v_selectionMode;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectionMode */
 #define afw_components_z_selectionMode \
-    (afw_components_v_selectionMode.internal.s)
+    (afw_components_self_v_selectionMode.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_selectionMode */
+#define afw_components_v_selectionMode \
+    ((const afw_value_t *)&afw_components_self_v_selectionMode)
 
 
 
@@ -7433,15 +10721,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showClose */
 #define afw_components_s_showClose \
-    (afw_components_v_showClose.internal)
+    (&afw_components_self_v_showClose.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showClose */
+#define afw_components_self_s_showClose \
+    (afw_components_self_v_showClose.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showClose */
 extern const afw_value_string_t \
-    afw_components_v_showClose;
+    afw_components_self_v_showClose;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showClose */
 #define afw_components_z_showClose \
-    (afw_components_v_showClose.internal.s)
+    (afw_components_self_v_showClose.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showClose */
+#define afw_components_v_showClose \
+    ((const afw_value_t *)&afw_components_self_v_showClose)
 
 
 
@@ -7451,15 +10747,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showCollapse */
 #define afw_components_s_showCollapse \
-    (afw_components_v_showCollapse.internal)
+    (&afw_components_self_v_showCollapse.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showCollapse */
+#define afw_components_self_s_showCollapse \
+    (afw_components_self_v_showCollapse.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showCollapse */
 extern const afw_value_string_t \
-    afw_components_v_showCollapse;
+    afw_components_self_v_showCollapse;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showCollapse */
 #define afw_components_z_showCollapse \
-    (afw_components_v_showCollapse.internal.s)
+    (afw_components_self_v_showCollapse.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showCollapse */
+#define afw_components_v_showCollapse \
+    ((const afw_value_t *)&afw_components_self_v_showCollapse)
 
 
 
@@ -7469,15 +10773,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showDescriptions */
 #define afw_components_s_showDescriptions \
-    (afw_components_v_showDescriptions.internal)
+    (&afw_components_self_v_showDescriptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showDescriptions */
+#define afw_components_self_s_showDescriptions \
+    (afw_components_self_v_showDescriptions.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showDescriptions */
 extern const afw_value_string_t \
-    afw_components_v_showDescriptions;
+    afw_components_self_v_showDescriptions;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showDescriptions */
 #define afw_components_z_showDescriptions \
-    (afw_components_v_showDescriptions.internal.s)
+    (afw_components_self_v_showDescriptions.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showDescriptions */
+#define afw_components_v_showDescriptions \
+    ((const afw_value_t *)&afw_components_self_v_showDescriptions)
 
 
 
@@ -7487,15 +10799,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showGutter */
 #define afw_components_s_showGutter \
-    (afw_components_v_showGutter.internal)
+    (&afw_components_self_v_showGutter.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showGutter */
+#define afw_components_self_s_showGutter \
+    (afw_components_self_v_showGutter.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showGutter */
 extern const afw_value_string_t \
-    afw_components_v_showGutter;
+    afw_components_self_v_showGutter;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showGutter */
 #define afw_components_z_showGutter \
-    (afw_components_v_showGutter.internal.s)
+    (afw_components_self_v_showGutter.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showGutter */
+#define afw_components_v_showGutter \
+    ((const afw_value_t *)&afw_components_self_v_showGutter)
 
 
 
@@ -7505,15 +10825,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showLabels */
 #define afw_components_s_showLabels \
-    (afw_components_v_showLabels.internal)
+    (&afw_components_self_v_showLabels.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showLabels */
+#define afw_components_self_s_showLabels \
+    (afw_components_self_v_showLabels.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showLabels */
 extern const afw_value_string_t \
-    afw_components_v_showLabels;
+    afw_components_self_v_showLabels;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showLabels */
 #define afw_components_z_showLabels \
-    (afw_components_v_showLabels.internal.s)
+    (afw_components_self_v_showLabels.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showLabels */
+#define afw_components_v_showLabels \
+    ((const afw_value_t *)&afw_components_self_v_showLabels)
 
 
 
@@ -7523,15 +10851,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showLineNumbers */
 #define afw_components_s_showLineNumbers \
-    (afw_components_v_showLineNumbers.internal)
+    (&afw_components_self_v_showLineNumbers.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showLineNumbers */
+#define afw_components_self_s_showLineNumbers \
+    (afw_components_self_v_showLineNumbers.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showLineNumbers */
 extern const afw_value_string_t \
-    afw_components_v_showLineNumbers;
+    afw_components_self_v_showLineNumbers;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showLineNumbers */
 #define afw_components_z_showLineNumbers \
-    (afw_components_v_showLineNumbers.internal.s)
+    (afw_components_self_v_showLineNumbers.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showLineNumbers */
+#define afw_components_v_showLineNumbers \
+    ((const afw_value_t *)&afw_components_self_v_showLineNumbers)
 
 
 
@@ -7541,15 +10877,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showMeta */
 #define afw_components_s_showMeta \
-    (afw_components_v_showMeta.internal)
+    (&afw_components_self_v_showMeta.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showMeta */
+#define afw_components_self_s_showMeta \
+    (afw_components_self_v_showMeta.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showMeta */
 extern const afw_value_string_t \
-    afw_components_v_showMeta;
+    afw_components_self_v_showMeta;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showMeta */
 #define afw_components_z_showMeta \
-    (afw_components_v_showMeta.internal.s)
+    (afw_components_self_v_showMeta.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showMeta */
+#define afw_components_v_showMeta \
+    ((const afw_value_t *)&afw_components_self_v_showMeta)
 
 
 
@@ -7559,15 +10903,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showNumber */
 #define afw_components_s_showNumber \
-    (afw_components_v_showNumber.internal)
+    (&afw_components_self_v_showNumber.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showNumber */
+#define afw_components_self_s_showNumber \
+    (afw_components_self_v_showNumber.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showNumber */
 extern const afw_value_string_t \
-    afw_components_v_showNumber;
+    afw_components_self_v_showNumber;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showNumber */
 #define afw_components_z_showNumber \
-    (afw_components_v_showNumber.internal.s)
+    (afw_components_self_v_showNumber.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showNumber */
+#define afw_components_v_showNumber \
+    ((const afw_value_t *)&afw_components_self_v_showNumber)
 
 
 
@@ -7577,15 +10929,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showPrintMargin */
 #define afw_components_s_showPrintMargin \
-    (afw_components_v_showPrintMargin.internal)
+    (&afw_components_self_v_showPrintMargin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_showPrintMargin */
+#define afw_components_self_s_showPrintMargin \
+    (afw_components_self_v_showPrintMargin.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_showPrintMargin */
 extern const afw_value_string_t \
-    afw_components_v_showPrintMargin;
+    afw_components_self_v_showPrintMargin;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showPrintMargin */
 #define afw_components_z_showPrintMargin \
-    (afw_components_v_showPrintMargin.internal.s)
+    (afw_components_self_v_showPrintMargin.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_showPrintMargin */
+#define afw_components_v_showPrintMargin \
+    ((const afw_value_t *)&afw_components_self_v_showPrintMargin)
 
 
 
@@ -7595,15 +10955,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_shrink */
 #define afw_components_s_shrink \
-    (afw_components_v_shrink.internal)
+    (&afw_components_self_v_shrink.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_shrink */
+#define afw_components_self_s_shrink \
+    (afw_components_self_v_shrink.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_shrink */
 extern const afw_value_string_t \
-    afw_components_v_shrink;
+    afw_components_self_v_shrink;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_shrink */
 #define afw_components_z_shrink \
-    (afw_components_v_shrink.internal.s)
+    (afw_components_self_v_shrink.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_shrink */
+#define afw_components_v_shrink \
+    ((const afw_value_t *)&afw_components_self_v_shrink)
 
 
 
@@ -7613,15 +10981,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_size */
 #define afw_components_s_size \
-    (afw_components_v_size.internal)
+    (&afw_components_self_v_size.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_size */
+#define afw_components_self_s_size \
+    (afw_components_self_v_size.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_size */
 extern const afw_value_string_t \
-    afw_components_v_size;
+    afw_components_self_v_size;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_size */
 #define afw_components_z_size \
-    (afw_components_v_size.internal.s)
+    (afw_components_self_v_size.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_size */
+#define afw_components_v_size \
+    ((const afw_value_t *)&afw_components_self_v_size)
 
 
 
@@ -7631,15 +11007,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_smDown */
 #define afw_components_s_smDown \
-    (afw_components_v_smDown.internal)
+    (&afw_components_self_v_smDown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_smDown */
+#define afw_components_self_s_smDown \
+    (afw_components_self_v_smDown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_smDown */
 extern const afw_value_string_t \
-    afw_components_v_smDown;
+    afw_components_self_v_smDown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_smDown */
 #define afw_components_z_smDown \
-    (afw_components_v_smDown.internal.s)
+    (afw_components_self_v_smDown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_smDown */
+#define afw_components_v_smDown \
+    ((const afw_value_t *)&afw_components_self_v_smDown)
 
 
 
@@ -7649,15 +11033,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_small */
 #define afw_components_s_small \
-    (afw_components_v_small.internal)
+    (&afw_components_self_v_small.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_small */
+#define afw_components_self_s_small \
+    (afw_components_self_v_small.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_small */
 extern const afw_value_string_t \
-    afw_components_v_small;
+    afw_components_self_v_small;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_small */
 #define afw_components_z_small \
-    (afw_components_v_small.internal.s)
+    (afw_components_self_v_small.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_small */
+#define afw_components_v_small \
+    ((const afw_value_t *)&afw_components_self_v_small)
 
 
 
@@ -7667,15 +11059,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortByDataType */
 #define afw_components_s_sortByDataType \
-    (afw_components_v_sortByDataType.internal)
+    (&afw_components_self_v_sortByDataType.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortByDataType */
+#define afw_components_self_s_sortByDataType \
+    (afw_components_self_v_sortByDataType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_sortByDataType */
 extern const afw_value_string_t \
-    afw_components_v_sortByDataType;
+    afw_components_self_v_sortByDataType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortByDataType */
 #define afw_components_z_sortByDataType \
-    (afw_components_v_sortByDataType.internal.s)
+    (afw_components_self_v_sortByDataType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortByDataType */
+#define afw_components_v_sortByDataType \
+    ((const afw_value_t *)&afw_components_self_v_sortByDataType)
 
 
 
@@ -7685,15 +11085,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortByPropertyName */
 #define afw_components_s_sortByPropertyName \
-    (afw_components_v_sortByPropertyName.internal)
+    (&afw_components_self_v_sortByPropertyName.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortByPropertyName */
+#define afw_components_self_s_sortByPropertyName \
+    (afw_components_self_v_sortByPropertyName.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_sortByPropertyName */
 extern const afw_value_string_t \
-    afw_components_v_sortByPropertyName;
+    afw_components_self_v_sortByPropertyName;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortByPropertyName */
 #define afw_components_z_sortByPropertyName \
-    (afw_components_v_sortByPropertyName.internal.s)
+    (afw_components_self_v_sortByPropertyName.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortByPropertyName */
+#define afw_components_v_sortByPropertyName \
+    ((const afw_value_t *)&afw_components_self_v_sortByPropertyName)
 
 
 
@@ -7703,15 +11111,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortByRequired */
 #define afw_components_s_sortByRequired \
-    (afw_components_v_sortByRequired.internal)
+    (&afw_components_self_v_sortByRequired.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortByRequired */
+#define afw_components_self_s_sortByRequired \
+    (afw_components_self_v_sortByRequired.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_sortByRequired */
 extern const afw_value_string_t \
-    afw_components_v_sortByRequired;
+    afw_components_self_v_sortByRequired;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortByRequired */
 #define afw_components_z_sortByRequired \
-    (afw_components_v_sortByRequired.internal.s)
+    (afw_components_self_v_sortByRequired.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortByRequired */
+#define afw_components_v_sortByRequired \
+    ((const afw_value_t *)&afw_components_self_v_sortByRequired)
 
 
 
@@ -7721,15 +11137,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortOptions */
 #define afw_components_s_sortOptions \
-    (afw_components_v_sortOptions.internal)
+    (&afw_components_self_v_sortOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_sortOptions */
+#define afw_components_self_s_sortOptions \
+    (afw_components_self_v_sortOptions.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_sortOptions */
 extern const afw_value_string_t \
-    afw_components_v_sortOptions;
+    afw_components_self_v_sortOptions;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortOptions */
 #define afw_components_z_sortOptions \
-    (afw_components_v_sortOptions.internal.s)
+    (afw_components_self_v_sortOptions.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_sortOptions */
+#define afw_components_v_sortOptions \
+    ((const afw_value_t *)&afw_components_self_v_sortOptions)
 
 
 
@@ -7739,15 +11163,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_source */
 #define afw_components_s_source \
-    (afw_components_v_source.internal)
+    (&afw_components_self_v_source.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_source */
+#define afw_components_self_s_source \
+    (afw_components_self_v_source.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_source */
 extern const afw_value_string_t \
-    afw_components_v_source;
+    afw_components_self_v_source;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_source */
 #define afw_components_z_source \
-    (afw_components_v_source.internal.s)
+    (afw_components_self_v_source.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_source */
+#define afw_components_v_source \
+    ((const afw_value_t *)&afw_components_self_v_source)
 
 
 
@@ -7757,15 +11189,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_spacing */
 #define afw_components_s_spacing \
-    (afw_components_v_spacing.internal)
+    (&afw_components_self_v_spacing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_spacing */
+#define afw_components_self_s_spacing \
+    (afw_components_self_v_spacing.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_spacing */
 extern const afw_value_string_t \
-    afw_components_v_spacing;
+    afw_components_self_v_spacing;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_spacing */
 #define afw_components_z_spacing \
-    (afw_components_v_spacing.internal.s)
+    (afw_components_self_v_spacing.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_spacing */
+#define afw_components_v_spacing \
+    ((const afw_value_t *)&afw_components_self_v_spacing)
 
 
 
@@ -7775,15 +11215,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_square */
 #define afw_components_s_square \
-    (afw_components_v_square.internal)
+    (&afw_components_self_v_square.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_square */
+#define afw_components_self_s_square \
+    (afw_components_self_v_square.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_square */
 extern const afw_value_string_t \
-    afw_components_v_square;
+    afw_components_self_v_square;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_square */
 #define afw_components_z_square \
-    (afw_components_v_square.internal.s)
+    (afw_components_self_v_square.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_square */
+#define afw_components_v_square \
+    ((const afw_value_t *)&afw_components_self_v_square)
 
 
 
@@ -7793,15 +11241,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_src */
 #define afw_components_s_src \
-    (afw_components_v_src.internal)
+    (&afw_components_self_v_src.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_src */
+#define afw_components_self_s_src \
+    (afw_components_self_v_src.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_src */
 extern const afw_value_string_t \
-    afw_components_v_src;
+    afw_components_self_v_src;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_src */
 #define afw_components_z_src \
-    (afw_components_v_src.internal.s)
+    (afw_components_self_v_src.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_src */
+#define afw_components_v_src \
+    ((const afw_value_t *)&afw_components_self_v_src)
 
 
 
@@ -7811,15 +11267,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_status */
 #define afw_components_s_status \
-    (afw_components_v_status.internal)
+    (&afw_components_self_v_status.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_status */
+#define afw_components_self_s_status \
+    (afw_components_self_v_status.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_status */
 extern const afw_value_string_t \
-    afw_components_v_status;
+    afw_components_self_v_status;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_status */
 #define afw_components_z_status \
-    (afw_components_v_status.internal.s)
+    (afw_components_self_v_status.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_status */
+#define afw_components_v_status \
+    ((const afw_value_t *)&afw_components_self_v_status)
 
 
 
@@ -7829,15 +11293,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_step */
 #define afw_components_s_step \
-    (afw_components_v_step.internal)
+    (&afw_components_self_v_step.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_step */
+#define afw_components_self_s_step \
+    (afw_components_self_v_step.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_step */
 extern const afw_value_string_t \
-    afw_components_v_step;
+    afw_components_self_v_step;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_step */
 #define afw_components_z_step \
-    (afw_components_v_step.internal.s)
+    (afw_components_self_v_step.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_step */
+#define afw_components_v_step \
+    ((const afw_value_t *)&afw_components_self_v_step)
 
 
 
@@ -7847,15 +11319,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_steps */
 #define afw_components_s_steps \
-    (afw_components_v_steps.internal)
+    (&afw_components_self_v_steps.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_steps */
+#define afw_components_self_s_steps \
+    (afw_components_self_v_steps.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_steps */
 extern const afw_value_string_t \
-    afw_components_v_steps;
+    afw_components_self_v_steps;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_steps */
 #define afw_components_z_steps \
-    (afw_components_v_steps.internal.s)
+    (afw_components_self_v_steps.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_steps */
+#define afw_components_v_steps \
+    ((const afw_value_t *)&afw_components_self_v_steps)
 
 
 
@@ -7865,15 +11345,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_string */
 #define afw_components_s_string \
-    (afw_components_v_string.internal)
+    (&afw_components_self_v_string.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_string */
+#define afw_components_self_s_string \
+    (afw_components_self_v_string.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_string */
 extern const afw_value_string_t \
-    afw_components_v_string;
+    afw_components_self_v_string;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_string */
 #define afw_components_z_string \
-    (afw_components_v_string.internal.s)
+    (afw_components_self_v_string.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_string */
+#define afw_components_v_string \
+    ((const afw_value_t *)&afw_components_self_v_string)
 
 
 
@@ -7883,15 +11371,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_structured */
 #define afw_components_s_structured \
-    (afw_components_v_structured.internal)
+    (&afw_components_self_v_structured.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_structured */
+#define afw_components_self_s_structured \
+    (afw_components_self_v_structured.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_structured */
 extern const afw_value_string_t \
-    afw_components_v_structured;
+    afw_components_self_v_structured;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_structured */
 #define afw_components_z_structured \
-    (afw_components_v_structured.internal.s)
+    (afw_components_self_v_structured.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_structured */
+#define afw_components_v_structured \
+    ((const afw_value_t *)&afw_components_self_v_structured)
 
 
 
@@ -7901,15 +11397,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_style */
 #define afw_components_s_style \
-    (afw_components_v_style.internal)
+    (&afw_components_self_v_style.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_style */
+#define afw_components_self_s_style \
+    (afw_components_self_v_style.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_style */
 extern const afw_value_string_t \
-    afw_components_v_style;
+    afw_components_self_v_style;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_style */
 #define afw_components_z_style \
-    (afw_components_v_style.internal.s)
+    (afw_components_self_v_style.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_style */
+#define afw_components_v_style \
+    ((const afw_value_t *)&afw_components_self_v_style)
 
 
 
@@ -7919,15 +11423,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_subText */
 #define afw_components_s_subText \
-    (afw_components_v_subText.internal)
+    (&afw_components_self_v_subText.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_subText */
+#define afw_components_self_s_subText \
+    (afw_components_self_v_subText.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_subText */
 extern const afw_value_string_t \
-    afw_components_v_subText;
+    afw_components_self_v_subText;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_subText */
 #define afw_components_z_subText \
-    (afw_components_v_subText.internal.s)
+    (afw_components_self_v_subText.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_subText */
+#define afw_components_v_subText \
+    ((const afw_value_t *)&afw_components_self_v_subText)
 
 
 
@@ -7937,15 +11449,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tabSize */
 #define afw_components_s_tabSize \
-    (afw_components_v_tabSize.internal)
+    (&afw_components_self_v_tabSize.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tabSize */
+#define afw_components_self_s_tabSize \
+    (afw_components_self_v_tabSize.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_tabSize */
 extern const afw_value_string_t \
-    afw_components_v_tabSize;
+    afw_components_self_v_tabSize;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tabSize */
 #define afw_components_z_tabSize \
-    (afw_components_v_tabSize.internal.s)
+    (afw_components_self_v_tabSize.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tabSize */
+#define afw_components_v_tabSize \
+    ((const afw_value_t *)&afw_components_self_v_tabSize)
 
 
 
@@ -7955,15 +11475,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tableLayout */
 #define afw_components_s_tableLayout \
-    (afw_components_v_tableLayout.internal)
+    (&afw_components_self_v_tableLayout.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tableLayout */
+#define afw_components_self_s_tableLayout \
+    (afw_components_self_v_tableLayout.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_tableLayout */
 extern const afw_value_string_t \
-    afw_components_v_tableLayout;
+    afw_components_self_v_tableLayout;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tableLayout */
 #define afw_components_z_tableLayout \
-    (afw_components_v_tableLayout.internal.s)
+    (afw_components_self_v_tableLayout.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tableLayout */
+#define afw_components_v_tableLayout \
+    ((const afw_value_t *)&afw_components_self_v_tableLayout)
 
 
 
@@ -7973,15 +11501,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tabs */
 #define afw_components_s_tabs \
-    (afw_components_v_tabs.internal)
+    (&afw_components_self_v_tabs.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tabs */
+#define afw_components_self_s_tabs \
+    (afw_components_self_v_tabs.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_tabs */
 extern const afw_value_string_t \
-    afw_components_v_tabs;
+    afw_components_self_v_tabs;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tabs */
 #define afw_components_z_tabs \
-    (afw_components_v_tabs.internal.s)
+    (afw_components_self_v_tabs.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tabs */
+#define afw_components_v_tabs \
+    ((const afw_value_t *)&afw_components_self_v_tabs)
 
 
 
@@ -7991,15 +11527,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tag */
 #define afw_components_s_tag \
-    (afw_components_v_tag.internal)
+    (&afw_components_self_v_tag.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tag */
+#define afw_components_self_s_tag \
+    (afw_components_self_v_tag.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_tag */
 extern const afw_value_string_t \
-    afw_components_v_tag;
+    afw_components_self_v_tag;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tag */
 #define afw_components_z_tag \
-    (afw_components_v_tag.internal.s)
+    (afw_components_self_v_tag.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tag */
+#define afw_components_v_tag \
+    ((const afw_value_t *)&afw_components_self_v_tag)
 
 
 
@@ -8009,15 +11553,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_target */
 #define afw_components_s_target \
-    (afw_components_v_target.internal)
+    (&afw_components_self_v_target.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_target */
+#define afw_components_self_s_target \
+    (afw_components_self_v_target.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_target */
 extern const afw_value_string_t \
-    afw_components_v_target;
+    afw_components_self_v_target;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_target */
 #define afw_components_z_target \
-    (afw_components_v_target.internal.s)
+    (afw_components_self_v_target.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_target */
+#define afw_components_v_target \
+    ((const afw_value_t *)&afw_components_self_v_target)
 
 
 
@@ -8027,15 +11579,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_targetPosition */
 #define afw_components_s_targetPosition \
-    (afw_components_v_targetPosition.internal)
+    (&afw_components_self_v_targetPosition.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_targetPosition */
+#define afw_components_self_s_targetPosition \
+    (afw_components_self_v_targetPosition.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_targetPosition */
 extern const afw_value_string_t \
-    afw_components_v_targetPosition;
+    afw_components_self_v_targetPosition;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_targetPosition */
 #define afw_components_z_targetPosition \
-    (afw_components_v_targetPosition.internal.s)
+    (afw_components_self_v_targetPosition.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_targetPosition */
+#define afw_components_v_targetPosition \
+    ((const afw_value_t *)&afw_components_self_v_targetPosition)
 
 
 
@@ -8045,15 +11605,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_testDataParameter */
 #define afw_components_s_testDataParameter \
-    (afw_components_v_testDataParameter.internal)
+    (&afw_components_self_v_testDataParameter.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_testDataParameter */
+#define afw_components_self_s_testDataParameter \
+    (afw_components_self_v_testDataParameter.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_testDataParameter */
 extern const afw_value_string_t \
-    afw_components_v_testDataParameter;
+    afw_components_self_v_testDataParameter;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_testDataParameter */
 #define afw_components_z_testDataParameter \
-    (afw_components_v_testDataParameter.internal.s)
+    (afw_components_self_v_testDataParameter.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_testDataParameter */
+#define afw_components_v_testDataParameter \
+    ((const afw_value_t *)&afw_components_self_v_testDataParameter)
 
 
 
@@ -8063,15 +11631,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_text */
 #define afw_components_s_text \
-    (afw_components_v_text.internal)
+    (&afw_components_self_v_text.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_text */
+#define afw_components_self_s_text \
+    (afw_components_self_v_text.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_text */
 extern const afw_value_string_t \
-    afw_components_v_text;
+    afw_components_self_v_text;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_text */
 #define afw_components_z_text \
-    (afw_components_v_text.internal.s)
+    (afw_components_self_v_text.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_text */
+#define afw_components_v_text \
+    ((const afw_value_t *)&afw_components_self_v_text)
 
 
 
@@ -8081,15 +11657,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textAlign */
 #define afw_components_s_textAlign \
-    (afw_components_v_textAlign.internal)
+    (&afw_components_self_v_textAlign.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textAlign */
+#define afw_components_self_s_textAlign \
+    (afw_components_self_v_textAlign.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textAlign */
 extern const afw_value_string_t \
-    afw_components_v_textAlign;
+    afw_components_self_v_textAlign;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textAlign */
 #define afw_components_z_textAlign \
-    (afw_components_v_textAlign.internal.s)
+    (afw_components_self_v_textAlign.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textAlign */
+#define afw_components_v_textAlign \
+    ((const afw_value_t *)&afw_components_self_v_textAlign)
 
 
 
@@ -8099,15 +11683,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textAlignLast */
 #define afw_components_s_textAlignLast \
-    (afw_components_v_textAlignLast.internal)
+    (&afw_components_self_v_textAlignLast.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textAlignLast */
+#define afw_components_self_s_textAlignLast \
+    (afw_components_self_v_textAlignLast.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textAlignLast */
 extern const afw_value_string_t \
-    afw_components_v_textAlignLast;
+    afw_components_self_v_textAlignLast;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textAlignLast */
 #define afw_components_z_textAlignLast \
-    (afw_components_v_textAlignLast.internal.s)
+    (afw_components_self_v_textAlignLast.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textAlignLast */
+#define afw_components_v_textAlignLast \
+    ((const afw_value_t *)&afw_components_self_v_textAlignLast)
 
 
 
@@ -8117,15 +11709,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecoration */
 #define afw_components_s_textDecoration \
-    (afw_components_v_textDecoration.internal)
+    (&afw_components_self_v_textDecoration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecoration */
+#define afw_components_self_s_textDecoration \
+    (afw_components_self_v_textDecoration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textDecoration */
 extern const afw_value_string_t \
-    afw_components_v_textDecoration;
+    afw_components_self_v_textDecoration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecoration */
 #define afw_components_z_textDecoration \
-    (afw_components_v_textDecoration.internal.s)
+    (afw_components_self_v_textDecoration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecoration */
+#define afw_components_v_textDecoration \
+    ((const afw_value_t *)&afw_components_self_v_textDecoration)
 
 
 
@@ -8135,15 +11735,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecorationColor */
 #define afw_components_s_textDecorationColor \
-    (afw_components_v_textDecorationColor.internal)
+    (&afw_components_self_v_textDecorationColor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecorationColor */
+#define afw_components_self_s_textDecorationColor \
+    (afw_components_self_v_textDecorationColor.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textDecorationColor */
 extern const afw_value_string_t \
-    afw_components_v_textDecorationColor;
+    afw_components_self_v_textDecorationColor;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecorationColor */
 #define afw_components_z_textDecorationColor \
-    (afw_components_v_textDecorationColor.internal.s)
+    (afw_components_self_v_textDecorationColor.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecorationColor */
+#define afw_components_v_textDecorationColor \
+    ((const afw_value_t *)&afw_components_self_v_textDecorationColor)
 
 
 
@@ -8153,15 +11761,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecorationLine */
 #define afw_components_s_textDecorationLine \
-    (afw_components_v_textDecorationLine.internal)
+    (&afw_components_self_v_textDecorationLine.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecorationLine */
+#define afw_components_self_s_textDecorationLine \
+    (afw_components_self_v_textDecorationLine.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textDecorationLine */
 extern const afw_value_string_t \
-    afw_components_v_textDecorationLine;
+    afw_components_self_v_textDecorationLine;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecorationLine */
 #define afw_components_z_textDecorationLine \
-    (afw_components_v_textDecorationLine.internal.s)
+    (afw_components_self_v_textDecorationLine.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecorationLine */
+#define afw_components_v_textDecorationLine \
+    ((const afw_value_t *)&afw_components_self_v_textDecorationLine)
 
 
 
@@ -8171,15 +11787,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecorationStyle */
 #define afw_components_s_textDecorationStyle \
-    (afw_components_v_textDecorationStyle.internal)
+    (&afw_components_self_v_textDecorationStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textDecorationStyle */
+#define afw_components_self_s_textDecorationStyle \
+    (afw_components_self_v_textDecorationStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textDecorationStyle */
 extern const afw_value_string_t \
-    afw_components_v_textDecorationStyle;
+    afw_components_self_v_textDecorationStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecorationStyle */
 #define afw_components_z_textDecorationStyle \
-    (afw_components_v_textDecorationStyle.internal.s)
+    (afw_components_self_v_textDecorationStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textDecorationStyle */
+#define afw_components_v_textDecorationStyle \
+    ((const afw_value_t *)&afw_components_self_v_textDecorationStyle)
 
 
 
@@ -8189,15 +11813,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textIndent */
 #define afw_components_s_textIndent \
-    (afw_components_v_textIndent.internal)
+    (&afw_components_self_v_textIndent.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textIndent */
+#define afw_components_self_s_textIndent \
+    (afw_components_self_v_textIndent.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textIndent */
 extern const afw_value_string_t \
-    afw_components_v_textIndent;
+    afw_components_self_v_textIndent;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textIndent */
 #define afw_components_z_textIndent \
-    (afw_components_v_textIndent.internal.s)
+    (afw_components_self_v_textIndent.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textIndent */
+#define afw_components_v_textIndent \
+    ((const afw_value_t *)&afw_components_self_v_textIndent)
 
 
 
@@ -8207,15 +11839,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textJustify */
 #define afw_components_s_textJustify \
-    (afw_components_v_textJustify.internal)
+    (&afw_components_self_v_textJustify.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textJustify */
+#define afw_components_self_s_textJustify \
+    (afw_components_self_v_textJustify.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textJustify */
 extern const afw_value_string_t \
-    afw_components_v_textJustify;
+    afw_components_self_v_textJustify;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textJustify */
 #define afw_components_z_textJustify \
-    (afw_components_v_textJustify.internal.s)
+    (afw_components_self_v_textJustify.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textJustify */
+#define afw_components_v_textJustify \
+    ((const afw_value_t *)&afw_components_self_v_textJustify)
 
 
 
@@ -8225,15 +11865,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textOverflow */
 #define afw_components_s_textOverflow \
-    (afw_components_v_textOverflow.internal)
+    (&afw_components_self_v_textOverflow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textOverflow */
+#define afw_components_self_s_textOverflow \
+    (afw_components_self_v_textOverflow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textOverflow */
 extern const afw_value_string_t \
-    afw_components_v_textOverflow;
+    afw_components_self_v_textOverflow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textOverflow */
 #define afw_components_z_textOverflow \
-    (afw_components_v_textOverflow.internal.s)
+    (afw_components_self_v_textOverflow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textOverflow */
+#define afw_components_v_textOverflow \
+    ((const afw_value_t *)&afw_components_self_v_textOverflow)
 
 
 
@@ -8243,15 +11891,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textShadow */
 #define afw_components_s_textShadow \
-    (afw_components_v_textShadow.internal)
+    (&afw_components_self_v_textShadow.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textShadow */
+#define afw_components_self_s_textShadow \
+    (afw_components_self_v_textShadow.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textShadow */
 extern const afw_value_string_t \
-    afw_components_v_textShadow;
+    afw_components_self_v_textShadow;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textShadow */
 #define afw_components_z_textShadow \
-    (afw_components_v_textShadow.internal.s)
+    (afw_components_self_v_textShadow.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textShadow */
+#define afw_components_v_textShadow \
+    ((const afw_value_t *)&afw_components_self_v_textShadow)
 
 
 
@@ -8261,15 +11917,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textTransform */
 #define afw_components_s_textTransform \
-    (afw_components_v_textTransform.internal)
+    (&afw_components_self_v_textTransform.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_textTransform */
+#define afw_components_self_s_textTransform \
+    (afw_components_self_v_textTransform.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_textTransform */
 extern const afw_value_string_t \
-    afw_components_v_textTransform;
+    afw_components_self_v_textTransform;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textTransform */
 #define afw_components_z_textTransform \
-    (afw_components_v_textTransform.internal.s)
+    (afw_components_self_v_textTransform.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_textTransform */
+#define afw_components_v_textTransform \
+    ((const afw_value_t *)&afw_components_self_v_textTransform)
 
 
 
@@ -8279,15 +11943,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_title */
 #define afw_components_s_title \
-    (afw_components_v_title.internal)
+    (&afw_components_self_v_title.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_title */
+#define afw_components_self_s_title \
+    (afw_components_self_v_title.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_title */
 extern const afw_value_string_t \
-    afw_components_v_title;
+    afw_components_self_v_title;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_title */
 #define afw_components_z_title \
-    (afw_components_v_title.internal.s)
+    (afw_components_self_v_title.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_title */
+#define afw_components_v_title \
+    ((const afw_value_t *)&afw_components_self_v_title)
 
 
 
@@ -8297,15 +11969,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tooltip */
 #define afw_components_s_tooltip \
-    (afw_components_v_tooltip.internal)
+    (&afw_components_self_v_tooltip.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_tooltip */
+#define afw_components_self_s_tooltip \
+    (afw_components_self_v_tooltip.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_tooltip */
 extern const afw_value_string_t \
-    afw_components_v_tooltip;
+    afw_components_self_v_tooltip;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tooltip */
 #define afw_components_z_tooltip \
-    (afw_components_v_tooltip.internal.s)
+    (afw_components_self_v_tooltip.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_tooltip */
+#define afw_components_v_tooltip \
+    ((const afw_value_t *)&afw_components_self_v_tooltip)
 
 
 
@@ -8315,15 +11995,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_top */
 #define afw_components_s_top \
-    (afw_components_v_top.internal)
+    (&afw_components_self_v_top.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_top */
+#define afw_components_self_s_top \
+    (afw_components_self_v_top.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_top */
 extern const afw_value_string_t \
-    afw_components_v_top;
+    afw_components_self_v_top;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_top */
 #define afw_components_z_top \
-    (afw_components_v_top.internal.s)
+    (afw_components_self_v_top.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_top */
+#define afw_components_v_top \
+    ((const afw_value_t *)&afw_components_self_v_top)
 
 
 
@@ -8333,15 +12021,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transform */
 #define afw_components_s_transform \
-    (afw_components_v_transform.internal)
+    (&afw_components_self_v_transform.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transform */
+#define afw_components_self_s_transform \
+    (afw_components_self_v_transform.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transform */
 extern const afw_value_string_t \
-    afw_components_v_transform;
+    afw_components_self_v_transform;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transform */
 #define afw_components_z_transform \
-    (afw_components_v_transform.internal.s)
+    (afw_components_self_v_transform.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transform */
+#define afw_components_v_transform \
+    ((const afw_value_t *)&afw_components_self_v_transform)
 
 
 
@@ -8351,15 +12047,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transformOrigin */
 #define afw_components_s_transformOrigin \
-    (afw_components_v_transformOrigin.internal)
+    (&afw_components_self_v_transformOrigin.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transformOrigin */
+#define afw_components_self_s_transformOrigin \
+    (afw_components_self_v_transformOrigin.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transformOrigin */
 extern const afw_value_string_t \
-    afw_components_v_transformOrigin;
+    afw_components_self_v_transformOrigin;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transformOrigin */
 #define afw_components_z_transformOrigin \
-    (afw_components_v_transformOrigin.internal.s)
+    (afw_components_self_v_transformOrigin.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transformOrigin */
+#define afw_components_v_transformOrigin \
+    ((const afw_value_t *)&afw_components_self_v_transformOrigin)
 
 
 
@@ -8369,15 +12073,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transformStyle */
 #define afw_components_s_transformStyle \
-    (afw_components_v_transformStyle.internal)
+    (&afw_components_self_v_transformStyle.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transformStyle */
+#define afw_components_self_s_transformStyle \
+    (afw_components_self_v_transformStyle.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transformStyle */
 extern const afw_value_string_t \
-    afw_components_v_transformStyle;
+    afw_components_self_v_transformStyle;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transformStyle */
 #define afw_components_z_transformStyle \
-    (afw_components_v_transformStyle.internal.s)
+    (afw_components_self_v_transformStyle.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transformStyle */
+#define afw_components_v_transformStyle \
+    ((const afw_value_t *)&afw_components_self_v_transformStyle)
 
 
 
@@ -8387,15 +12099,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transition */
 #define afw_components_s_transition \
-    (afw_components_v_transition.internal)
+    (&afw_components_self_v_transition.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transition */
+#define afw_components_self_s_transition \
+    (afw_components_self_v_transition.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transition */
 extern const afw_value_string_t \
-    afw_components_v_transition;
+    afw_components_self_v_transition;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transition */
 #define afw_components_z_transition \
-    (afw_components_v_transition.internal.s)
+    (afw_components_self_v_transition.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transition */
+#define afw_components_v_transition \
+    ((const afw_value_t *)&afw_components_self_v_transition)
 
 
 
@@ -8405,15 +12125,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionDelay */
 #define afw_components_s_transitionDelay \
-    (afw_components_v_transitionDelay.internal)
+    (&afw_components_self_v_transitionDelay.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionDelay */
+#define afw_components_self_s_transitionDelay \
+    (afw_components_self_v_transitionDelay.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transitionDelay */
 extern const afw_value_string_t \
-    afw_components_v_transitionDelay;
+    afw_components_self_v_transitionDelay;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionDelay */
 #define afw_components_z_transitionDelay \
-    (afw_components_v_transitionDelay.internal.s)
+    (afw_components_self_v_transitionDelay.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionDelay */
+#define afw_components_v_transitionDelay \
+    ((const afw_value_t *)&afw_components_self_v_transitionDelay)
 
 
 
@@ -8423,15 +12151,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionDuration */
 #define afw_components_s_transitionDuration \
-    (afw_components_v_transitionDuration.internal)
+    (&afw_components_self_v_transitionDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionDuration */
+#define afw_components_self_s_transitionDuration \
+    (afw_components_self_v_transitionDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transitionDuration */
 extern const afw_value_string_t \
-    afw_components_v_transitionDuration;
+    afw_components_self_v_transitionDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionDuration */
 #define afw_components_z_transitionDuration \
-    (afw_components_v_transitionDuration.internal.s)
+    (afw_components_self_v_transitionDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionDuration */
+#define afw_components_v_transitionDuration \
+    ((const afw_value_t *)&afw_components_self_v_transitionDuration)
 
 
 
@@ -8441,15 +12177,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionProperty */
 #define afw_components_s_transitionProperty \
-    (afw_components_v_transitionProperty.internal)
+    (&afw_components_self_v_transitionProperty.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionProperty */
+#define afw_components_self_s_transitionProperty \
+    (afw_components_self_v_transitionProperty.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transitionProperty */
 extern const afw_value_string_t \
-    afw_components_v_transitionProperty;
+    afw_components_self_v_transitionProperty;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionProperty */
 #define afw_components_z_transitionProperty \
-    (afw_components_v_transitionProperty.internal.s)
+    (afw_components_self_v_transitionProperty.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionProperty */
+#define afw_components_v_transitionProperty \
+    ((const afw_value_t *)&afw_components_self_v_transitionProperty)
 
 
 
@@ -8459,15 +12203,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionTimingFunction */
 #define afw_components_s_transitionTimingFunction \
-    (afw_components_v_transitionTimingFunction.internal)
+    (&afw_components_self_v_transitionTimingFunction.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_transitionTimingFunction */
+#define afw_components_self_s_transitionTimingFunction \
+    (afw_components_self_v_transitionTimingFunction.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_transitionTimingFunction */
 extern const afw_value_string_t \
-    afw_components_v_transitionTimingFunction;
+    afw_components_self_v_transitionTimingFunction;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionTimingFunction */
 #define afw_components_z_transitionTimingFunction \
-    (afw_components_v_transitionTimingFunction.internal.s)
+    (afw_components_self_v_transitionTimingFunction.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_transitionTimingFunction */
+#define afw_components_v_transitionTimingFunction \
+    ((const afw_value_t *)&afw_components_self_v_transitionTimingFunction)
 
 
 
@@ -8477,15 +12229,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_type */
 #define afw_components_s_type \
-    (afw_components_v_type.internal)
+    (&afw_components_self_v_type.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_type */
+#define afw_components_self_s_type \
+    (afw_components_self_v_type.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_type */
 extern const afw_value_string_t \
-    afw_components_v_type;
+    afw_components_self_v_type;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_type */
 #define afw_components_z_type \
-    (afw_components_v_type.internal.s)
+    (afw_components_self_v_type.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_type */
+#define afw_components_v_type \
+    ((const afw_value_t *)&afw_components_self_v_type)
 
 
 
@@ -8495,15 +12255,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_unicodeBidi */
 #define afw_components_s_unicodeBidi \
-    (afw_components_v_unicodeBidi.internal)
+    (&afw_components_self_v_unicodeBidi.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_unicodeBidi */
+#define afw_components_self_s_unicodeBidi \
+    (afw_components_self_v_unicodeBidi.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_unicodeBidi */
 extern const afw_value_string_t \
-    afw_components_v_unicodeBidi;
+    afw_components_self_v_unicodeBidi;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_unicodeBidi */
 #define afw_components_z_unicodeBidi \
-    (afw_components_v_unicodeBidi.internal.s)
+    (afw_components_self_v_unicodeBidi.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_unicodeBidi */
+#define afw_components_v_unicodeBidi \
+    ((const afw_value_t *)&afw_components_self_v_unicodeBidi)
 
 
 
@@ -8513,15 +12281,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_url */
 #define afw_components_s_url \
-    (afw_components_v_url.internal)
+    (&afw_components_self_v_url.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_url */
+#define afw_components_self_s_url \
+    (afw_components_self_v_url.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_url */
 extern const afw_value_string_t \
-    afw_components_v_url;
+    afw_components_self_v_url;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_url */
 #define afw_components_z_url \
-    (afw_components_v_url.internal.s)
+    (afw_components_self_v_url.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_url */
+#define afw_components_v_url \
+    ((const afw_value_t *)&afw_components_self_v_url)
 
 
 
@@ -8531,15 +12307,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_userSelect */
 #define afw_components_s_userSelect \
-    (afw_components_v_userSelect.internal)
+    (&afw_components_self_v_userSelect.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_userSelect */
+#define afw_components_self_s_userSelect \
+    (afw_components_self_v_userSelect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_userSelect */
 extern const afw_value_string_t \
-    afw_components_v_userSelect;
+    afw_components_self_v_userSelect;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_userSelect */
 #define afw_components_z_userSelect \
-    (afw_components_v_userSelect.internal.s)
+    (afw_components_self_v_userSelect.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_userSelect */
+#define afw_components_v_userSelect \
+    ((const afw_value_t *)&afw_components_self_v_userSelect)
 
 
 
@@ -8549,15 +12333,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_utilities */
 #define afw_components_s_utilities \
-    (afw_components_v_utilities.internal)
+    (&afw_components_self_v_utilities.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_utilities */
+#define afw_components_self_s_utilities \
+    (afw_components_self_v_utilities.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_utilities */
 extern const afw_value_string_t \
-    afw_components_v_utilities;
+    afw_components_self_v_utilities;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_utilities */
 #define afw_components_z_utilities \
-    (afw_components_v_utilities.internal.s)
+    (afw_components_self_v_utilities.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_utilities */
+#define afw_components_v_utilities \
+    ((const afw_value_t *)&afw_components_self_v_utilities)
 
 
 
@@ -8567,15 +12359,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_value */
 #define afw_components_s_value \
-    (afw_components_v_value.internal)
+    (&afw_components_self_v_value.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_value */
+#define afw_components_self_s_value \
+    (afw_components_self_v_value.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_value */
 extern const afw_value_string_t \
-    afw_components_v_value;
+    afw_components_self_v_value;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_value */
 #define afw_components_z_value \
-    (afw_components_v_value.internal.s)
+    (afw_components_self_v_value.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_value */
+#define afw_components_v_value \
+    ((const afw_value_t *)&afw_components_self_v_value)
 
 
 
@@ -8585,15 +12385,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_variant */
 #define afw_components_s_variant \
-    (afw_components_v_variant.internal)
+    (&afw_components_self_v_variant.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_variant */
+#define afw_components_self_s_variant \
+    (afw_components_self_v_variant.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_variant */
 extern const afw_value_string_t \
-    afw_components_v_variant;
+    afw_components_self_v_variant;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_variant */
 #define afw_components_z_variant \
-    (afw_components_v_variant.internal.s)
+    (afw_components_self_v_variant.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_variant */
+#define afw_components_v_variant \
+    ((const afw_value_t *)&afw_components_self_v_variant)
 
 
 
@@ -8603,15 +12411,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_vertical */
 #define afw_components_s_vertical \
-    (afw_components_v_vertical.internal)
+    (&afw_components_self_v_vertical.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_vertical */
+#define afw_components_self_s_vertical \
+    (afw_components_self_v_vertical.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_vertical */
 extern const afw_value_string_t \
-    afw_components_v_vertical;
+    afw_components_self_v_vertical;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_vertical */
 #define afw_components_z_vertical \
-    (afw_components_v_vertical.internal.s)
+    (afw_components_self_v_vertical.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_vertical */
+#define afw_components_v_vertical \
+    ((const afw_value_t *)&afw_components_self_v_vertical)
 
 
 
@@ -8621,15 +12437,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_verticalAlign */
 #define afw_components_s_verticalAlign \
-    (afw_components_v_verticalAlign.internal)
+    (&afw_components_self_v_verticalAlign.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_verticalAlign */
+#define afw_components_self_s_verticalAlign \
+    (afw_components_self_v_verticalAlign.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_verticalAlign */
 extern const afw_value_string_t \
-    afw_components_v_verticalAlign;
+    afw_components_self_v_verticalAlign;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_verticalAlign */
 #define afw_components_z_verticalAlign \
-    (afw_components_v_verticalAlign.internal.s)
+    (afw_components_self_v_verticalAlign.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_verticalAlign */
+#define afw_components_v_verticalAlign \
+    ((const afw_value_t *)&afw_components_self_v_verticalAlign)
 
 
 
@@ -8639,15 +12463,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_visibility */
 #define afw_components_s_visibility \
-    (afw_components_v_visibility.internal)
+    (&afw_components_self_v_visibility.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_visibility */
+#define afw_components_self_s_visibility \
+    (afw_components_self_v_visibility.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_visibility */
 extern const afw_value_string_t \
-    afw_components_v_visibility;
+    afw_components_self_v_visibility;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_visibility */
 #define afw_components_z_visibility \
-    (afw_components_v_visibility.internal.s)
+    (afw_components_self_v_visibility.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_visibility */
+#define afw_components_v_visibility \
+    ((const afw_value_t *)&afw_components_self_v_visibility)
 
 
 
@@ -8657,15 +12489,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_whiteSpace */
 #define afw_components_s_whiteSpace \
-    (afw_components_v_whiteSpace.internal)
+    (&afw_components_self_v_whiteSpace.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_whiteSpace */
+#define afw_components_self_s_whiteSpace \
+    (afw_components_self_v_whiteSpace.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_whiteSpace */
 extern const afw_value_string_t \
-    afw_components_v_whiteSpace;
+    afw_components_self_v_whiteSpace;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_whiteSpace */
 #define afw_components_z_whiteSpace \
-    (afw_components_v_whiteSpace.internal.s)
+    (afw_components_self_v_whiteSpace.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_whiteSpace */
+#define afw_components_v_whiteSpace \
+    ((const afw_value_t *)&afw_components_self_v_whiteSpace)
 
 
 
@@ -8675,15 +12515,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_widows */
 #define afw_components_s_widows \
-    (afw_components_v_widows.internal)
+    (&afw_components_self_v_widows.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_widows */
+#define afw_components_self_s_widows \
+    (afw_components_self_v_widows.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_widows */
 extern const afw_value_string_t \
-    afw_components_v_widows;
+    afw_components_self_v_widows;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_widows */
 #define afw_components_z_widows \
-    (afw_components_v_widows.internal.s)
+    (afw_components_self_v_widows.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_widows */
+#define afw_components_v_widows \
+    ((const afw_value_t *)&afw_components_self_v_widows)
 
 
 
@@ -8693,15 +12541,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_width */
 #define afw_components_s_width \
-    (afw_components_v_width.internal)
+    (&afw_components_self_v_width.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_width */
+#define afw_components_self_s_width \
+    (afw_components_self_v_width.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_width */
 extern const afw_value_string_t \
-    afw_components_v_width;
+    afw_components_self_v_width;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_width */
 #define afw_components_z_width \
-    (afw_components_v_width.internal.s)
+    (afw_components_self_v_width.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_width */
+#define afw_components_v_width \
+    ((const afw_value_t *)&afw_components_self_v_width)
 
 
 
@@ -8711,15 +12567,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wordBreak */
 #define afw_components_s_wordBreak \
-    (afw_components_v_wordBreak.internal)
+    (&afw_components_self_v_wordBreak.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wordBreak */
+#define afw_components_self_s_wordBreak \
+    (afw_components_self_v_wordBreak.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_wordBreak */
 extern const afw_value_string_t \
-    afw_components_v_wordBreak;
+    afw_components_self_v_wordBreak;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wordBreak */
 #define afw_components_z_wordBreak \
-    (afw_components_v_wordBreak.internal.s)
+    (afw_components_self_v_wordBreak.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wordBreak */
+#define afw_components_v_wordBreak \
+    ((const afw_value_t *)&afw_components_self_v_wordBreak)
 
 
 
@@ -8729,15 +12593,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wordSpacing */
 #define afw_components_s_wordSpacing \
-    (afw_components_v_wordSpacing.internal)
+    (&afw_components_self_v_wordSpacing.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wordSpacing */
+#define afw_components_self_s_wordSpacing \
+    (afw_components_self_v_wordSpacing.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_wordSpacing */
 extern const afw_value_string_t \
-    afw_components_v_wordSpacing;
+    afw_components_self_v_wordSpacing;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wordSpacing */
 #define afw_components_z_wordSpacing \
-    (afw_components_v_wordSpacing.internal.s)
+    (afw_components_self_v_wordSpacing.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wordSpacing */
+#define afw_components_v_wordSpacing \
+    ((const afw_value_t *)&afw_components_self_v_wordSpacing)
 
 
 
@@ -8747,15 +12619,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wordWrap */
 #define afw_components_s_wordWrap \
-    (afw_components_v_wordWrap.internal)
+    (&afw_components_self_v_wordWrap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wordWrap */
+#define afw_components_self_s_wordWrap \
+    (afw_components_self_v_wordWrap.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_wordWrap */
 extern const afw_value_string_t \
-    afw_components_v_wordWrap;
+    afw_components_self_v_wordWrap;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wordWrap */
 #define afw_components_z_wordWrap \
-    (afw_components_v_wordWrap.internal.s)
+    (afw_components_self_v_wordWrap.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wordWrap */
+#define afw_components_v_wordWrap \
+    ((const afw_value_t *)&afw_components_self_v_wordWrap)
 
 
 
@@ -8765,15 +12645,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wrap */
 #define afw_components_s_wrap \
-    (afw_components_v_wrap.internal)
+    (&afw_components_self_v_wrap.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_wrap */
+#define afw_components_self_s_wrap \
+    (afw_components_self_v_wrap.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_wrap */
 extern const afw_value_string_t \
-    afw_components_v_wrap;
+    afw_components_self_v_wrap;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wrap */
 #define afw_components_z_wrap \
-    (afw_components_v_wrap.internal.s)
+    (afw_components_self_v_wrap.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_wrap */
+#define afw_components_v_wrap \
+    ((const afw_value_t *)&afw_components_self_v_wrap)
 
 
 
@@ -8783,15 +12671,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_x */
 #define afw_components_s_x \
-    (afw_components_v_x.internal)
+    (&afw_components_self_v_x.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_x */
+#define afw_components_self_s_x \
+    (afw_components_self_v_x.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_x */
 extern const afw_value_string_t \
-    afw_components_v_x;
+    afw_components_self_v_x;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_x */
 #define afw_components_z_x \
-    (afw_components_v_x.internal.s)
+    (afw_components_self_v_x.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_x */
+#define afw_components_v_x \
+    ((const afw_value_t *)&afw_components_self_v_x)
 
 
 
@@ -8801,15 +12697,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xl */
 #define afw_components_s_xl \
-    (afw_components_v_xl.internal)
+    (&afw_components_self_v_xl.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xl */
+#define afw_components_self_s_xl \
+    (afw_components_self_v_xl.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_xl */
 extern const afw_value_string_t \
-    afw_components_v_xl;
+    afw_components_self_v_xl;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xl */
 #define afw_components_z_xl \
-    (afw_components_v_xl.internal.s)
+    (afw_components_self_v_xl.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xl */
+#define afw_components_v_xl \
+    ((const afw_value_t *)&afw_components_self_v_xl)
 
 
 
@@ -8819,15 +12723,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xlDown */
 #define afw_components_s_xlDown \
-    (afw_components_v_xlDown.internal)
+    (&afw_components_self_v_xlDown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xlDown */
+#define afw_components_self_s_xlDown \
+    (afw_components_self_v_xlDown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_xlDown */
 extern const afw_value_string_t \
-    afw_components_v_xlDown;
+    afw_components_self_v_xlDown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xlDown */
 #define afw_components_z_xlDown \
-    (afw_components_v_xlDown.internal.s)
+    (afw_components_self_v_xlDown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xlDown */
+#define afw_components_v_xlDown \
+    ((const afw_value_t *)&afw_components_self_v_xlDown)
 
 
 
@@ -8837,15 +12749,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xsDown */
 #define afw_components_s_xsDown \
-    (afw_components_v_xsDown.internal)
+    (&afw_components_self_v_xsDown.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xsDown */
+#define afw_components_self_s_xsDown \
+    (afw_components_self_v_xsDown.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_xsDown */
 extern const afw_value_string_t \
-    afw_components_v_xsDown;
+    afw_components_self_v_xsDown;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xsDown */
 #define afw_components_z_xsDown \
-    (afw_components_v_xsDown.internal.s)
+    (afw_components_self_v_xsDown.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xsDown */
+#define afw_components_v_xsDown \
+    ((const afw_value_t *)&afw_components_self_v_xsDown)
 
 
 
@@ -8855,15 +12775,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xxl */
 #define afw_components_s_xxl \
-    (afw_components_v_xxl.internal)
+    (&afw_components_self_v_xxl.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xxl */
+#define afw_components_self_s_xxl \
+    (afw_components_self_v_xxl.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_xxl */
 extern const afw_value_string_t \
-    afw_components_v_xxl;
+    afw_components_self_v_xxl;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xxl */
 #define afw_components_z_xxl \
-    (afw_components_v_xxl.internal.s)
+    (afw_components_self_v_xxl.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xxl */
+#define afw_components_v_xxl \
+    ((const afw_value_t *)&afw_components_self_v_xxl)
 
 
 
@@ -8873,15 +12801,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xxxl */
 #define afw_components_s_xxxl \
-    (afw_components_v_xxxl.internal)
+    (&afw_components_self_v_xxxl.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_xxxl */
+#define afw_components_self_s_xxxl \
+    (afw_components_self_v_xxxl.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_xxxl */
 extern const afw_value_string_t \
-    afw_components_v_xxxl;
+    afw_components_self_v_xxxl;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xxxl */
 #define afw_components_z_xxxl \
-    (afw_components_v_xxxl.internal.s)
+    (afw_components_self_v_xxxl.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_xxxl */
+#define afw_components_v_xxxl \
+    ((const afw_value_t *)&afw_components_self_v_xxxl)
 
 
 
@@ -8891,15 +12827,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_y */
 #define afw_components_s_y \
-    (afw_components_v_y.internal)
+    (&afw_components_self_v_y.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_y */
+#define afw_components_self_s_y \
+    (afw_components_self_v_y.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_y */
 extern const afw_value_string_t \
-    afw_components_v_y;
+    afw_components_self_v_y;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_y */
 #define afw_components_z_y \
-    (afw_components_v_y.internal.s)
+    (afw_components_self_v_y.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_y */
+#define afw_components_v_y \
+    ((const afw_value_t *)&afw_components_self_v_y)
 
 
 
@@ -8909,15 +12853,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_yearMonthDuration */
 #define afw_components_s_yearMonthDuration \
-    (afw_components_v_yearMonthDuration.internal)
+    (&afw_components_self_v_yearMonthDuration.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_yearMonthDuration */
+#define afw_components_self_s_yearMonthDuration \
+    (afw_components_self_v_yearMonthDuration.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_yearMonthDuration */
 extern const afw_value_string_t \
-    afw_components_v_yearMonthDuration;
+    afw_components_self_v_yearMonthDuration;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_yearMonthDuration */
 #define afw_components_z_yearMonthDuration \
-    (afw_components_v_yearMonthDuration.internal.s)
+    (afw_components_self_v_yearMonthDuration.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_yearMonthDuration */
+#define afw_components_v_yearMonthDuration \
+    ((const afw_value_t *)&afw_components_self_v_yearMonthDuration)
 
 
 
@@ -8927,15 +12879,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zIndex */
 #define afw_components_s_zIndex \
-    (afw_components_v_zIndex.internal)
+    (&afw_components_self_v_zIndex.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zIndex */
+#define afw_components_self_s_zIndex \
+    (afw_components_self_v_zIndex.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zIndex */
 extern const afw_value_string_t \
-    afw_components_v_zIndex;
+    afw_components_self_v_zIndex;
 
 /** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zIndex */
 #define afw_components_z_zIndex \
-    (afw_components_v_zIndex.internal.s)
+    (afw_components_self_v_zIndex.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zIndex */
+#define afw_components_v_zIndex \
+    ((const afw_value_t *)&afw_components_self_v_zIndex)
 
 
 

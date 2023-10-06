@@ -23,7 +23,7 @@ def write_h_map(fd, prefix, obj, options):
 def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
 
     id = obj['_meta_']['objectId']
-    s_ = '&' + prefix + 's_'
+    s_ = '&' + prefix + 'self_s_'
 
     typedef = None
     runtime = obj.get('runtime')

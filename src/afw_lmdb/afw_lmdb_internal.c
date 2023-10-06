@@ -499,11 +499,11 @@ void afw_lmdb_internal_save_config(
     memset(&uuid, 0, sizeof(afw_uuid_t));
 
     dbi = afw_lmdb_internal_open_database(self, 
-        txn, &afw_lmdb_s_Primary, MDB_CREATE, xctx->p, xctx);
+        txn, afw_lmdb_s_Primary, MDB_CREATE, xctx->p, xctx);
 
     /* set our last updateTimeStamp property */
     now = afw_value_create_dateTime_now_utc(config->p, xctx);
-    afw_object_set_property(config, &afw_lmdb_s_updateTimeStamp, now, xctx);
+    afw_object_set_property(config, afw_lmdb_s_updateTimeStamp, now, xctx);
 
     /* write out our object to raw string */
     raw = afw_content_type_object_to_raw(self->ubjson, config,
@@ -553,10 +553,10 @@ const afw_object_t * afw_lmdb_internal_get_config(
 
     /* set our object type to an internal type */
     /* (FIXME: inherit from config object types?) */
-    object_type_id = &afw_lmdb_s_internalConfig;
+    object_type_id = afw_lmdb_s_internalConfig;
 
     dbi = afw_lmdb_internal_open_database(self, txn, 
-        &afw_lmdb_s_Primary, MDB_CREATE, p, xctx);
+        afw_lmdb_s_Primary, MDB_CREATE, p, xctx);
 
     key.mv_data = (void *)&uuid;
     key.mv_size = sizeof(afw_uuid_t);
@@ -570,8 +570,8 @@ const afw_object_t * afw_lmdb_internal_get_config(
         /* get the current time for timestamps */
         now = afw_value_create_dateTime_now_utc(p, xctx);
 
-        afw_object_set_property(config, &afw_lmdb_s_createTimeStamp, now, xctx);
-        afw_object_set_property(config, &afw_lmdb_s_updateTimeStamp, now, xctx);
+        afw_object_set_property(config, afw_lmdb_s_createTimeStamp, now, xctx);
+        afw_object_set_property(config, afw_lmdb_s_updateTimeStamp, now, xctx);
 
         /* go ahead and write it back out */
         raw_out = afw_content_type_object_to_raw(
@@ -654,7 +654,7 @@ impl_afw_adaptor_key_value_add (
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
-        database = afw_utf8_concat(xctx->p, xctx, &afw_lmdb_s_Extern, 
+        database = afw_utf8_concat(xctx->p, xctx, afw_lmdb_s_Extern, 
             &separator, namespace, NULL);
 
         /** @fixme determine if we need to keep these databases open or not */
@@ -700,7 +700,7 @@ impl_afw_adaptor_key_value_delete (
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
-        database = afw_utf8_concat(xctx->p, xctx, &afw_lmdb_s_Extern,
+        database = afw_utf8_concat(xctx->p, xctx, afw_lmdb_s_Extern,
             &separator, namespace, NULL);
 
         dbi = afw_lmdb_internal_open_database(session->adaptor, 
@@ -752,7 +752,7 @@ impl_afw_adaptor_key_value_replace (
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
-        database = afw_utf8_concat(xctx->p, xctx, &afw_lmdb_s_Extern,
+        database = afw_utf8_concat(xctx->p, xctx, afw_lmdb_s_Extern,
             &separator, namespace, NULL);
 
         if (must_exist)
@@ -815,7 +815,7 @@ impl_afw_adaptor_key_value_get (
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
-        database = afw_utf8_concat(xctx->p, xctx, &afw_lmdb_s_Extern,
+        database = afw_utf8_concat(xctx->p, xctx, afw_lmdb_s_Extern,
             &separator, namespace, NULL);
 
         dbi = afw_lmdb_internal_open_database(session->adaptor, 
@@ -982,7 +982,7 @@ afw_adaptor_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
 
     /* also open the primary database to resolve references */
     self->dbPri = afw_lmdb_internal_open_database(self->session->adaptor,
-        txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+        txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* Return new instance. */
     return (afw_adaptor_impl_index_cursor_t *)self;

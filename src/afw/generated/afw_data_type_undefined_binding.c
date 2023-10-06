@@ -91,8 +91,8 @@ impl_data_type_object_undefined = {
         {
             NULL,
             NULL,
-            &afw_s_undefined,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_undefined,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_undefined
         }
     },

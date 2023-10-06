@@ -29,28 +29,28 @@ impl_create_property_type(
     self->property_type_object = property_type_object;
 
     self->context_type_id = afw_object_old_get_property_as_string(
-        property_type_object, &afw_s_contextType, xctx);
+        property_type_object, afw_s_contextType, xctx);
 
     self->default_value = afw_object_get_property(property_type_object,
-        &afw_s_defaultValue, xctx);
+        afw_s_defaultValue, xctx);
 
     self->data_type_parameter = afw_object_old_get_property_as_string(
-        property_type_object,  &afw_s_dataTypeParameter, xctx);
+        property_type_object,  afw_s_dataTypeParameter, xctx);
 
     dataType = afw_object_old_get_property_as_string(property_type_object,
-        &afw_s_dataType, xctx);
+        afw_s_dataType, xctx);
     if (dataType) {
         self->data_type = afw_environment_get_data_type(dataType, xctx);
     }
 
     self->allow_write = afw_object_old_get_property_as_boolean(
-        property_type_object, &afw_s_allowWrite, &found, xctx) || !found;
+        property_type_object, afw_s_allowWrite, &found, xctx) || !found;
 
     self->allow_query = afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-        &afw_s_allowQuery, xctx);
+        afw_s_allowQuery, xctx);
 
     self->required = afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-        &afw_s_required, xctx);
+        afw_s_required, xctx);
 
     /** @fixme Normalize default_value, etc. */
 
@@ -77,7 +77,7 @@ afw_object_type_internal_create(
     self->object_type_id = object_type_object->meta.id;
 
     self->property_types_object = afw_object_old_get_property_as_object(
-        object_type_object, &afw_s_propertyTypes, xctx);
+        object_type_object, afw_s_propertyTypes, xctx);
     if (self->property_types_object) {
         iterator = NULL;
         while ((property_type_object =
@@ -93,7 +93,7 @@ afw_object_type_internal_create(
     }
 
     self->other_properties_object = afw_object_old_get_property_as_object(
-        object_type_object, &afw_s_otherProperties, xctx);
+        object_type_object, afw_s_otherProperties, xctx);
     if (self->other_properties_object) {
         self->other_properties =
             impl_create_property_type(
@@ -206,7 +206,7 @@ afw_object_type_property_type_normalize(
         object = ((const afw_value_object_t *)result)->internal;
         embedded_object_type_id =
             afw_object_old_get_property_as_string(
-                pt->property_type_object, &afw_s_dataTypeParameter, xctx);
+                pt->property_type_object, afw_s_dataTypeParameter, xctx);
         if (embedded_object_type_id) {
             afw_object_meta_set_object_type_id(
                 object, embedded_object_type_id, xctx);

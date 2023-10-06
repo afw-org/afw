@@ -140,7 +140,7 @@ impl_afw_value_produce_compiler_listing(
             function_name_value->internal;
     }
     else {
-        name = &afw_s_a_anonymous_function_id;
+        name = afw_s_a_anonymous_function_id;
     }
     afw_value_compiler_listing_begin_value(
         writer, (const afw_value_t *)self, NULL, xctx);

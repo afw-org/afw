@@ -392,7 +392,7 @@ afw_compile_parse_Object(
                 }
 
                 /* If this is _meta_ property, set meta in object. */
-                if (afw_utf8_equal(parser->property_name, &afw_s__meta_)) {
+                if (afw_utf8_equal(parser->property_name, afw_s__meta_)) {
                     if (!afw_value_is_object(v)) {
                         AFW_COMPILE_THROW_ERROR_Z(
                             "'_meta_' property must be an object");

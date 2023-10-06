@@ -227,7 +227,7 @@ afw_object_get_property_compile_as(
     if (!source_location) {
         use_source_location = afw_object_meta_get_path(instance, xctx);
         if (!use_source_location) {
-            use_source_location = &afw_s_a_empty_string;
+            use_source_location = afw_s_a_empty_string;
         }
     }
     else {
@@ -487,7 +487,7 @@ afw_object_old_get_property_as_boolean_deprecated(
             string = afw_value_as_utf8(value, xctx->p, xctx);
 
             if (
-                afw_utf8_compare_ignore_case(string, &afw_s_true, xctx) == 0 ||
+                afw_utf8_compare_ignore_case(string, afw_s_true, xctx) == 0 ||
                 (string->len == 1 &&
                     (
                     *string->s == 't' ||
@@ -500,7 +500,7 @@ afw_object_old_get_property_as_boolean_deprecated(
             }
 
             else if (
-                afw_utf8_compare_ignore_case(string, &afw_s_false, xctx)== 0 ||
+                afw_utf8_compare_ignore_case(string, afw_s_false, xctx)== 0 ||
                 (string->len == 1 &&
                     (
                     *string->s == 'f' ||

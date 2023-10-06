@@ -222,7 +222,7 @@ static void convert_object_to_ubjson(
     meta = afw_object_meta_create_accessor_with_options(obj,
         wa->options, wa->p, wa->xctx);
     if (meta) {
-        convert_string_to_ubjson(wa, &afw_s__meta_, AFW_FALSE);
+        convert_string_to_ubjson(wa, afw_s__meta_, AFW_FALSE);
         convert_object_to_ubjson(wa, meta);
     }
 
@@ -404,14 +404,14 @@ static void convert_value_to_ubjson(
 
         /* Primitive json type is null. */
         if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_NULL)) 
+            AFW_JSON_S_PRIMITIVE_NULL)) 
         {
             impl_putc(wa, AFW_UBJSON_MARKER_NULL);
         }
 
         /* Primitive json type is string. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_STRING)) 
+            AFW_JSON_S_PRIMITIVE_STRING)) 
         {
             string = afw_value_as_utf8(value, wa->p, wa->xctx);
             if (!string) {
@@ -422,7 +422,7 @@ static void convert_value_to_ubjson(
 
         /* Primitive json type is boolean. */
         else if (afw_utf8_equal(&value_data_type->jsonPrimitive,
-            &AFW_JSON_S_PRIMITIVE_BOOLEAN))
+            AFW_JSON_S_PRIMITIVE_BOOLEAN))
         {
             if (((afw_value_boolean_t*)value)->internal)
                 impl_putc(wa, AFW_UBJSON_MARKER_TRUE);

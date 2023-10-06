@@ -28,23 +28,23 @@ afw_stream_get_by_streamId(
     *stream = NULL;
     *streamNumber = -1;
     if (xctx->stream_anchor) {
-        if (afw_utf8_equal(streamId, &afw_s_stdout)) {
+        if (afw_utf8_equal(streamId, afw_s_stdout)) {
             *stream = afw_stream_standard(stdout, xctx);
             *streamNumber = (afw_size_t)afw_stream_number_stdout;
         }
-        else if (afw_utf8_equal(streamId, &afw_s_stderr)) {
+        else if (afw_utf8_equal(streamId, afw_s_stderr)) {
             *stream = afw_stream_standard(stderr, xctx);
             *streamNumber = (afw_size_t)afw_stream_number_stderr;
         }
-        else if (afw_utf8_equal(streamId, &afw_s_console)) {
+        else if (afw_utf8_equal(streamId, afw_s_console)) {
             *stream = afw_stream_standard(console, xctx);
             *streamNumber = (afw_size_t)afw_stream_number_console;
         }
-        else if (afw_utf8_equal(streamId, &afw_s_response_body)) {
+        else if (afw_utf8_equal(streamId, afw_s_response_body)) {
             *stream = afw_stream_standard(response_body, xctx);
             *streamNumber = (afw_size_t)afw_stream_number_response_body;
         }
-        else if (afw_utf8_equal(streamId, &afw_s_raw_response_body)) {
+        else if (afw_utf8_equal(streamId, afw_s_raw_response_body)) {
             *stream = afw_stream_standard(raw_response_body, xctx);
             *streamNumber = (afw_size_t)afw_stream_number_raw_response_body;
         }
@@ -175,7 +175,7 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
             }
             else {
                 *stream = afw_stream_fd_create(xctx->env->stdout_fd,
-                    &afw_s_raw_response_body, false, true, true, false,
+                    afw_s_raw_response_body, false, true, true, false,
                     xctx->p, xctx);
             }
             break;
@@ -185,7 +185,7 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
             {
                 *stream = afw_content_type_application_afw_stream_create(
                     afw_stream_standard(raw_response_body, xctx),
-                    &afw_s_response, NULL, xctx->p, xctx);
+                    afw_s_response, NULL, xctx->p, xctx);
             }
             else {
                 *stream = afw_stream_standard(raw_response_body, xctx);
@@ -194,13 +194,13 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
 
         case afw_stream_number_console:
             if (afw_flag_by_id_is_active(
-                &afw_s_a_flag_response_console_stream, xctx))
+                afw_s_a_flag_response_console_stream, xctx))
             {
                 if (afw_content_type_is_application_afw(response_content_type))
                 {
                     *stream = afw_content_type_application_afw_stream_create(
                         afw_stream_standard(raw_response_body, xctx),
-                        &afw_s_console, NULL, xctx->p, xctx);
+                        afw_s_console, NULL, xctx->p, xctx);
                 }
                 else {
                     AFW_THROW_ERROR_Z(general,
@@ -210,26 +210,26 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
                 }
             }
             else if (afw_flag_by_id_is_active(
-                &afw_s_a_flag_response_console, xctx))
+                afw_s_a_flag_response_console, xctx))
             {
-                *stream = afw_utf8_stream_create(&afw_s_console,
+                *stream = afw_utf8_stream_create(afw_s_console,
                     xctx->p, xctx);
             }
             else {
                 *stream = afw_stream_fd_create(xctx->env->stdout_fd,
-                    &afw_s_console, false, true, true, false, xctx->p, xctx);
+                    afw_s_console, false, true, true, false, xctx->p, xctx);
             }
             break;
 
         case afw_stream_number_stderr:
             if (afw_flag_by_id_is_active(
-                &afw_s_a_flag_response_stderr_stream, xctx))
+                afw_s_a_flag_response_stderr_stream, xctx))
             {
                 if (afw_content_type_is_application_afw(response_content_type))
                 {
                     *stream = afw_content_type_application_afw_stream_create(
                         afw_stream_standard(raw_response_body, xctx),
-                        &afw_s_stderr, NULL, xctx->p, xctx);
+                        afw_s_stderr, NULL, xctx->p, xctx);
                 }
                 else {
                     AFW_THROW_ERROR_Z(general,
@@ -239,26 +239,26 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
                 }
             }
             else if (afw_flag_by_id_is_active(
-                &afw_s_a_flag_response_stderr, xctx))
+                afw_s_a_flag_response_stderr, xctx))
             {
-                *stream = afw_utf8_stream_create(&afw_s_stderr,
+                *stream = afw_utf8_stream_create(afw_s_stderr,
                     xctx->p, xctx);
             }
             else {
                 *stream = afw_stream_fd_create(xctx->env->stdout_fd,
-                    &afw_s_stderr, false, true, true, false, xctx->p, xctx);
+                    afw_s_stderr, false, true, true, false, xctx->p, xctx);
             }
             break;
 
         case afw_stream_number_stdout:
             if (afw_flag_by_id_is_active(
-                &afw_s_a_flag_response_stdout_stream, xctx))
+                afw_s_a_flag_response_stdout_stream, xctx))
             {
                 if (afw_content_type_is_application_afw(response_content_type))
                 {
                     *stream = afw_content_type_application_afw_stream_create(
                         afw_stream_standard(raw_response_body, xctx),
-                        &afw_s_stdout, NULL, xctx->p, xctx);
+                        afw_s_stdout, NULL, xctx->p, xctx);
                 }
                 else {
                     AFW_THROW_ERROR_Z(general,
@@ -268,14 +268,14 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
                 }
             }
             else if (afw_flag_by_id_is_active(
-                &afw_s_a_flag_response_stdout, xctx))
+                afw_s_a_flag_response_stdout, xctx))
             {
-                *stream = afw_utf8_stream_create(&afw_s_stdout,
+                *stream = afw_utf8_stream_create(afw_s_stdout,
                     xctx->p, xctx);
             }
             else {
                 *stream = afw_stream_fd_create(xctx->env->stdout_fd,
-                    &afw_s_stdout, false, true, true, false, xctx->p, xctx);
+                    afw_s_stdout, false, true, true, false, xctx->p, xctx);
             }
             break;
 

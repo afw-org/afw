@@ -43,13 +43,13 @@ impl_get_<objectId>_object_cb(
     /* Construct system specific object. */
     result = afw_object_create(p, xctx);
     afw_object_meta_set_ids(result,
-        &afw_s_afw,
-        &afw_s__AdaptiveSystemInfo_,
-        &afw_s_<objectId>,
+        afw_s_afw,
+        afw_s__AdaptiveSystemInfo_,
+        afw_s_<objectId>,
         xctx);
     afw_object_meta_set_read_only(result, xctx);
     afw_object_meta_set_property_from_utf8_z(
-        result, &afw_s_description,
+        result, afw_s_description,
         "<objectId> description.",
         xctx);
 
@@ -61,12 +61,12 @@ impl_get_<objectId>_object_cb(
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, &afw_s_label,
+        result, &impl_s_os, afw_s_label,
         "OS",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, &afw_s_description,
+        result, &impl_s_os, afw_s_description,
         "Operating system.",
         xctx);
  
@@ -84,13 +84,13 @@ impl_create_general_object(afw_xctx_t *xctx)
     /* Construct system specific object. */
     result = afw_object_create(xctx->p, xctx);
     afw_object_meta_set_ids(result,
-        &afw_s_afw,
-        &afw_s__AdaptiveSystemInfo_,
-        &afw_s_general,
+        afw_s_afw,
+        afw_s__AdaptiveSystemInfo_,
+        afw_s_general,
         xctx);
     afw_object_meta_set_read_only(result, xctx);
     afw_object_meta_set_property_from_utf8_z(
-        result, &afw_s_description,
+        result, afw_s_description,
         "General systems info.",
         xctx);
 
@@ -102,36 +102,36 @@ impl_create_general_object(afw_xctx_t *xctx)
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, &afw_s_label,
+        result, &impl_s_os, afw_s_label,
         "OS",
         xctx);
 
     afw_object_meta_set_property_type_property_from_utf8_z(
-        result, &impl_s_os, &afw_s_description,
+        result, &impl_s_os, afw_s_description,
         "Operating system.",
         xctx);
 
     /** @fixme Remove this section.  Was for testing time functions. */
     afw_object_set_property_as_date_from_parts(result,
-        &afw_s_S, 1923, 12, 31, -4, 0, xctx);
+        afw_s_S, 1923, 12, 31, -4, 0, xctx);
  
     afw_object_set_property_as_dateTime_from_parts(result,
-        &afw_s_N, 1923, 12, 31, 12, 30, 14,  999999, -4, 0, xctx);
+        afw_s_N, 1923, 12, 31, 12, 30, 14,  999999, -4, 0, xctx);
  
     afw_object_set_property_as_time_from_parts(result,
-        &afw_s_M, 12, 30, 14, 999999, -4, 0, xctx);
+        afw_s_M, 12, 30, 14, 999999, -4, 0, xctx);
  
     afw_object_set_property_as_dayTimeDuration_from_parts(result,
-        &afw_s_B, true, 12, 34, 56, 78, 90, xctx);
+        afw_s_B, true, 12, 34, 56, 78, 90, xctx);
  
     afw_object_set_property_as_dayTimeDuration_from_parts(result,
-        &afw_s_L, false, 12, 34, 56, 78, 90, xctx);
+        afw_s_L, false, 12, 34, 56, 78, 90, xctx);
 
     afw_object_set_property_as_yearMonthDuration_from_parts(result,
-        &afw_s_SS, true, 100, 200, xctx);
+        afw_s_SS, true, 100, 200, xctx);
  
     afw_object_set_property_as_yearMonthDuration_from_parts(result,
-        &afw_s_NS, false, 100, 200, xctx);
+        afw_s_NS, false, 100, 200, xctx);
  
     /* Return result. */
     return result;
@@ -161,7 +161,7 @@ afw_os_environment_initialize(afw_xctx_t *xctx)
 
     /* Set system info object wrapper. */
     afw_runtime_env_set_object_cb_wrapper(
-        &afw_s__AdaptiveSystemInfo_, &afw_s_<objectId>,
+        afw_s__AdaptiveSystemInfo_, afw_s_<objectId>,
         impl_get_<objectId>_object_cb, NULL, false, xctx);
 
 #endif /* __EXAMPLE_FOR_CREATING_WITH_CB_WRAPPER_ */

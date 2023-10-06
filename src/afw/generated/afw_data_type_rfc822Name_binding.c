@@ -144,8 +144,8 @@ impl_data_type_object_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_rfc822Name,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_rfc822Name,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_rfc822Name
         }
     },

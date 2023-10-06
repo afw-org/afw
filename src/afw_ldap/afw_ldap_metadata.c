@@ -106,7 +106,7 @@ impl_get_rootdse(
     }
 
     return afw_ldap_internal_create_object_from_entry(session,
-        &afw_ldap_s__AdaptiveLdapRootDse_, &afw_s_current,
+        afw_ldap_s__AdaptiveLdapRootDse_, afw_s_current,
         e, p, xctx);
 
 }
@@ -136,7 +136,7 @@ impl_get_schema(
     }
 
     return afw_ldap_internal_create_object_from_entry(session,
-        &afw_ldap_s__AdaptiveLdapSchema_, &afw_s_current,
+        afw_ldap_s__AdaptiveLdapSchema_, afw_s_current,
         e, p, xctx);
 }
 
@@ -428,15 +428,15 @@ impl_parse_definition(
         if (!e) {
             break;
         }
-        obj = impl_parse_schema_entry(&afw_ldap_s_numericoid, e,
+        obj = impl_parse_schema_entry(afw_ldap_s_numericoid, e,
             metadata->p, xctx);
 
         name_value = afw_object_get_property(obj,
-            &afw_ldap_s_NAME, xctx);
+            afw_ldap_s_NAME, xctx);
 
         if (!name_value) {
             name_value = afw_object_get_property(obj,
-                &afw_ldap_s_numericoid, xctx);
+                afw_ldap_s_numericoid, xctx);
             if (!name_value) {
                 AFW_THROW_ERROR_Z(general, "Error parsing schema", xctx);
             }
@@ -520,11 +520,11 @@ impl_make_property_type_and_handler_hash_tables(
          * ht_attribute_types.
          */
         syntax = afw_object_old_get_property_as_string(attribute_type_object,
-            &afw_ldap_s_SYNTAX, xctx);
+            afw_ldap_s_SYNTAX, xctx);
         if (syntax) {
 
             /* Get oid part of syntax. */
-            error_id = &afw_ldap_s_SYNTAX;
+            error_id = afw_ldap_s_SYNTAX;
             for (len = syntax->len, s = syntax->s;
                 len > 0 && *s != '{';
                 len--, s++);
@@ -548,33 +548,33 @@ impl_make_property_type_and_handler_hash_tables(
             /* Determine if single. */
             attribute_type->is_single =
                 afw_object_old_get_property_as_boolean(
-                    attribute_type_object, &afw_ldap_s_a_single_dash_value,
+                    attribute_type_object, afw_ldap_s_a_single_dash_value,
                     &found, xctx);
 
             /* X-NDS_LOWER_BOUND. */
             attribute_type->lower_bound =
                 afw_object_old_get_property_as_integer_deprecated(
-                    attribute_type_object, &afw_ldap_s_a_X_NDS_LOWER_BOUND,
+                    attribute_type_object, afw_ldap_s_a_X_NDS_LOWER_BOUND,
                     &attribute_type->lower_bound_present, xctx);
 
             /* X-NDS_UPPER_BOUND if already be obtained by {} in syntax. */
             if (!attribute_type->upper_bound_present) {
                 attribute_type->upper_bound =
                     afw_object_old_get_property_as_integer_deprecated(
-                        attribute_type_object, &afw_ldap_s_a_X_NDS_UPPER_BOUND,
+                        attribute_type_object, afw_ldap_s_a_X_NDS_UPPER_BOUND,
                         &attribute_type->upper_bound_present, xctx);
             }
 
             /* NO-USER-MODIFICATION - Never allow write. */
             if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                &afw_ldap_s_a_NO_USER_MODIFICATION, xctx))
+                afw_ldap_s_a_NO_USER_MODIFICATION, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_HIDDEN - Never allow read or write. */
             if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                &afw_ldap_s_a_X_NDS_HIDDEN, xctx))
+                afw_ldap_s_a_X_NDS_HIDDEN, xctx))
             {
                 attribute_type->never_allow_read = true;
                 attribute_type->never_allow_write = true;
@@ -582,14 +582,14 @@ impl_make_property_type_and_handler_hash_tables(
 
             /* X-NDS_NONREMOVABLE - Never remove. */
             if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                &afw_ldap_s_a_X_NDS_NONREMOVABLE, xctx))
+                afw_ldap_s_a_X_NDS_NONREMOVABLE, xctx))
             {
                 attribute_type->never_allow_write = true;
             }
 
             /* X-NDS_READ_FILTERED - Operational. */
             if (afw_object_old_get_property_as_boolean_deprecated(attribute_type_object,
-                &afw_ldap_s_a_X_NDS_READ_FILTERED, xctx))
+                afw_ldap_s_a_X_NDS_READ_FILTERED, xctx))
             {
                 attribute_type->operational = true;
                 attribute_type->never_allow_write = true;
@@ -612,7 +612,7 @@ impl_make_property_type_and_handler_hash_tables(
                 id = afw_object_meta_get_object_id(attribute_type_object, xctx);
                 afw_object_meta_set_ids(
                     attribute_type->property_type_object,
-                    adaptor_id, &afw_s__AdaptiveValueMeta_, id, xctx);
+                    adaptor_id, afw_s__AdaptiveValueMeta_, id, xctx);
                 attribute_type->property_name = id;
 
                 /* Set data type and data type parameter. */
@@ -620,19 +620,19 @@ impl_make_property_type_and_handler_hash_tables(
                     if (attribute_type->data_type_id_value) {
                         afw_object_set_property(
                             attribute_type->property_type_object,
-                            &afw_s_dataType, attribute_type->data_type_id_value,
+                            afw_s_dataType, attribute_type->data_type_id_value,
                             xctx);
                     }
                 }
                 else {
                     afw_object_set_property(
                         attribute_type->property_type_object,
-                        &afw_s_dataType, afw_data_type_array_id_value, 
+                        afw_s_dataType, afw_data_type_array_id_value, 
                         xctx);
                     if (attribute_type->data_type_id_value) {
                         afw_object_set_property(
                             attribute_type->property_type_object,
-                            &afw_s_dataTypeParameter,
+                            afw_s_dataTypeParameter,
                             attribute_type->data_type_id_value,
                             xctx);
                     }
@@ -644,7 +644,7 @@ impl_make_property_type_and_handler_hash_tables(
                         attribute_type->lower_bound, p, xctx);
                     afw_object_set_property_as_string(
                         attribute_type->property_type_object,
-                        &afw_s_minValue, string, xctx);
+                        afw_s_minValue, string, xctx);
 
                 }
 
@@ -654,14 +654,14 @@ impl_make_property_type_and_handler_hash_tables(
                         attribute_type->upper_bound, p, xctx);
                     afw_object_set_property_as_string(
                         attribute_type->property_type_object,
-                        &afw_s_maxValue, string, xctx);
+                        afw_s_maxValue, string, xctx);
                 }
 
                 /* allowWrite=false if applicable. */
                 if (attribute_type->never_allow_write) {
                     afw_object_set_property(
                         attribute_type->property_type_object,
-                        &afw_s_allowWrite,
+                        afw_s_allowWrite,
                         afw_value_false,
                         xctx);
                 }
@@ -669,15 +669,15 @@ impl_make_property_type_and_handler_hash_tables(
                 /* If you can read it, you can query it. */
                 afw_object_set_property_as_boolean(
                     attribute_type->property_type_object,
-                    &afw_s_allowQuery, afw_value_true, xctx);
+                    afw_s_allowQuery, afw_value_true, xctx);
 
                 /* Description. */
-                value = afw_object_get_property(attribute_type_object, &afw_ldap_s_DESC,
+                value = afw_object_get_property(attribute_type_object, afw_ldap_s_DESC,
                     xctx);
                 if (value) {
                     afw_object_set_property(
                         attribute_type->property_type_object,
-                        &afw_s_description, value, xctx);
+                        afw_s_description, value, xctx);
                 }
 
                 /* Add property type object to propertyType hash table. */
@@ -738,7 +738,7 @@ impl_a_property_to_object_type(
 
     /* If required, add required property. */
     if (required) {
-        afw_object_set_property(prop, &afw_s_required,
+        afw_object_set_property(prop, afw_s_required,
             afw_value_true, xctx);
     }
 }
@@ -795,7 +795,7 @@ impl_set_synthetic_object_type(apr_hash_t *ht,
     const afw_object_t *object_type;
 
     object_type = afw_runtime_get_object(
-        &afw_s__AdaptiveObjectType_, object_type_id, xctx);
+        afw_s__AdaptiveObjectType_, object_type_id, xctx);
     if (!object_type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Missing object '/afw/_AdaptiveObjectType_/" AFW_UTF8_FMT "'",
@@ -888,7 +888,7 @@ impl_add_parents_and_property_types(
 
     /* Make list of property types for this object type. */
     property_types_object = afw_object_old_get_property_as_object(
-        object_type_object, &afw_s_propertyTypes, xctx);
+        object_type_object, afw_s_propertyTypes, xctx);
     if (property_types_object) {
         iterator = NULL;
         while ((property_type_object =
@@ -910,7 +910,7 @@ impl_add_parents_and_property_types(
                 property_types_object;
             object_type_attribute->is_required =
                 afw_object_old_get_property_as_boolean_deprecated(property_type_object,
-                    &afw_s_required, xctx);
+                    afw_s_required, xctx);
         }
     }
 
@@ -918,7 +918,7 @@ impl_add_parents_and_property_types(
     count = 0;
     parent_id = NULL;
     value = afw_object_get_property(object_class_object,
-        &afw_ldap_s_SUP, xctx);
+        afw_ldap_s_SUP, xctx);
     if (value) {
         if (afw_value_is_string(value)) {
             count = 1;
@@ -1064,21 +1064,21 @@ impl_make_object_types(
         object_type_object = afw_object_create(p, xctx);
         id = afw_object_meta_get_object_id(object_class_object, xctx);
         afw_object_meta_set_ids(object_type_object, adaptor_id,
-            &afw_ldap_s__AdaptiveObjectType_, id, xctx);
-        afw_object_set_property_as_string(object_type_object, &afw_s_objectType,
+            afw_ldap_s__AdaptiveObjectType_, id, xctx);
+        afw_object_set_property_as_string(object_type_object, afw_s_objectType,
             id, xctx);
-        afw_object_set_property(object_type_object, &afw_s_allowEntity,
+        afw_object_set_property(object_type_object, afw_s_allowEntity,
             (afw_object_old_get_property_as_boolean_deprecated(object_class_object,
-                &afw_ldap_s_STRUCTURAL, xctx))
+                afw_ldap_s_STRUCTURAL, xctx))
             ? afw_value_true
             : afw_value_false,
             xctx);
 
-        afw_object_set_property(object_type_object, &afw_s_allowAdd,
+        afw_object_set_property(object_type_object, afw_s_allowAdd,
             afw_value_true, xctx);
-        afw_object_set_property(object_type_object, &afw_s_allowChange,
+        afw_object_set_property(object_type_object, afw_s_allowChange,
             afw_value_true, xctx);
-        afw_object_set_property(object_type_object, &afw_s_allowDelete,
+        afw_object_set_property(object_type_object, afw_s_allowDelete,
             afw_value_true, xctx);
 
         /*
@@ -1086,16 +1086,16 @@ impl_make_object_types(
          * are all allowWrite=false.
          */
         other_properties = afw_object_create_embedded(
-            object_type_object, &afw_s_otherProperties, xctx);
+            object_type_object, afw_s_otherProperties, xctx);
         afw_object_set_property(other_properties,
-            &afw_s_allowWrite, afw_value_false, xctx);
+            afw_s_allowWrite, afw_value_false, xctx);
 
         /* Add object type to object_type_objects ht. */
         apr_hash_set(metadata->object_type_objects, id->s, id->len,
             object_type_object);
 
         /* If object class has a description, use it otherwise, make up one. */
-        value = afw_object_get_property(object_class_object, &afw_ldap_s_DESC,
+        value = afw_object_get_property(object_class_object, afw_ldap_s_DESC,
             xctx);
         if (!value) {
             default_description = afw_utf8_printf(metadata->p, xctx,
@@ -1106,13 +1106,13 @@ impl_make_object_types(
                 default_description->s, default_description->len,
                 p, xctx);
         }
-        afw_object_set_property(object_type_object, &afw_s_description, value,
+        afw_object_set_property(object_type_object, afw_s_description, value,
             xctx);
 
         /* Create properties object. */
         property_types_object = afw_object_create_embedded(
             object_type_object,
-            &afw_s_propertyTypes, xctx);
+            afw_s_propertyTypes, xctx);
 
         /* Add MUST and MAY properties. */
         impl_properties_to_object_type(AFW_TRUE,
@@ -1136,25 +1136,25 @@ impl_make_object_types(
 
     /* Add synthetic object types. */
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_s__AdaptiveObjectType_, xctx);
+        afw_s__AdaptiveObjectType_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_s__AdaptiveValueMeta_, xctx);
+        afw_s__AdaptiveValueMeta_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapAttributeType_, xctx);
+        afw_ldap_s__AdaptiveLdapAttributeType_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapMatchingRuleUse_, xctx);
+        afw_ldap_s__AdaptiveLdapMatchingRuleUse_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapMatchingRuleUse_, xctx);
+        afw_ldap_s__AdaptiveLdapMatchingRuleUse_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapMatchingRule_, xctx);
+        afw_ldap_s__AdaptiveLdapMatchingRule_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapObjectClass_, xctx);
+        afw_ldap_s__AdaptiveLdapObjectClass_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapRootDse_, xctx);
+        afw_ldap_s__AdaptiveLdapRootDse_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapSchema_, xctx);
+        afw_ldap_s__AdaptiveLdapSchema_, xctx);
     impl_set_synthetic_object_type(metadata->object_type_objects,
-        &afw_ldap_s__AdaptiveLdapSyntax_, xctx);
+        afw_ldap_s__AdaptiveLdapSyntax_, xctx);
 }
 
 
@@ -1185,7 +1185,7 @@ afw_ldap_metadata_load(
 
     /* Get subschemaSubentry property of rootDSE. */
     value = afw_object_get_property(new_metadata->rootdse_object,
-        &afw_ldap_s_subschemaSubentry,
+        afw_ldap_s_subschemaSubentry,
         xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general, "subschemaSubentry not found.", xctx);
@@ -1201,36 +1201,36 @@ afw_ldap_metadata_load(
     new_metadata->attribute_type_objects =
         impl_parse_definition(
             &adaptor->pub.adaptor_id,
-            &afw_ldap_s__AdaptiveLdapAttributeType_,
-            &afw_ldap_s_attributeTypes,
+            afw_ldap_s__AdaptiveLdapAttributeType_,
+            afw_ldap_s_attributeTypes,
             new_metadata, xctx);
 
     new_metadata->ldap_syntax_objects =
         impl_parse_definition(
             &adaptor->pub.adaptor_id,
-            &afw_ldap_s__AdaptiveLdapSyntax_,
-            &afw_ldap_s_ldapSyntaxes,
+            afw_ldap_s__AdaptiveLdapSyntax_,
+            afw_ldap_s_ldapSyntaxes,
             new_metadata, xctx);
 
     new_metadata->matching_rule_objects =
         impl_parse_definition(
             &adaptor->pub.adaptor_id,
-            &afw_ldap_s__AdaptiveLdapMatchingRule_,
-            &afw_ldap_s_matchingRules,
+            afw_ldap_s__AdaptiveLdapMatchingRule_,
+            afw_ldap_s_matchingRules,
             new_metadata, xctx);
 
     new_metadata->matching_rule_use_objects =
         impl_parse_definition(
             &adaptor->pub.adaptor_id,
-            &afw_ldap_s__AdaptiveLdapMatchingRuleUse_,
-            &afw_ldap_s_matchingRuleUse,
+            afw_ldap_s__AdaptiveLdapMatchingRuleUse_,
+            afw_ldap_s_matchingRuleUse,
             new_metadata, xctx);
 
     new_metadata->object_class_objects =
         impl_parse_definition(
             &adaptor->pub.adaptor_id,
-            &afw_ldap_s__AdaptiveLdapObjectClass_,
-            &afw_ldap_s_objectClasses,
+            afw_ldap_s__AdaptiveLdapObjectClass_,
+            afw_ldap_s_objectClasses,
             new_metadata, xctx);
 
     impl_make_property_type_and_handler_hash_tables(
@@ -1300,49 +1300,49 @@ afw_ldap_metadata_retrieve_objects(
 
     /* ObjectType. */
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE))
     {
         ht = self->adaptor->metadata->object_type_objects;
     }
 
     /* ValueMeta. */
     else if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META))
     {
         ht = self->adaptor->metadata->value_meta_objects;
     }
 
     /* Object Class. */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapObjectClass_))
+        afw_ldap_s__AdaptiveLdapObjectClass_))
     {
         ht = self->adaptor->metadata->object_class_objects;
     }
 
     /* Attribute Type */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapAttributeType_))
+        afw_ldap_s__AdaptiveLdapAttributeType_))
     {
         ht = self->adaptor->metadata->attribute_type_objects;
     }
 
     /* Syntax */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapSyntax_))
+        afw_ldap_s__AdaptiveLdapSyntax_))
     {
         ht = self->adaptor->metadata->ldap_syntax_objects;
     }
 
     /* Matching Rule */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapMatchingRule_))
+        afw_ldap_s__AdaptiveLdapMatchingRule_))
     {
         ht = self->adaptor->metadata->matching_rule_objects;
     }
 
     /* Matching Rule Use */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapMatchingRuleUse_))
+        afw_ldap_s__AdaptiveLdapMatchingRuleUse_))
     {
         ht = self->adaptor->metadata->matching_rule_use_objects;
     }
@@ -1357,7 +1357,7 @@ afw_ldap_metadata_retrieve_objects(
 
         /* LDAP Root DSE */
         if (afw_utf8_equal(object_type_id,
-            &afw_ldap_s__AdaptiveLdapRootDse_))
+            afw_ldap_s__AdaptiveLdapRootDse_))
         {
             obj = self->adaptor->metadata->rootdse_object;
             if (afw_query_criteria_test_object(obj, criteria,
@@ -1369,7 +1369,7 @@ afw_ldap_metadata_retrieve_objects(
 
         /* LDAP Schema */
         if (afw_utf8_equal(object_type_id,
-            &afw_ldap_s__AdaptiveLdapSchema_))
+            afw_ldap_s__AdaptiveLdapSchema_))
         {
             obj = self->adaptor->metadata->schema_object;
             if (afw_query_criteria_test_object(obj, criteria,
@@ -1413,24 +1413,24 @@ afw_ldap_metadata_get_object(
     obj = NULL;
 
     /* RootDSE */
-    if (afw_utf8_equal(object_type_id, &afw_ldap_s__AdaptiveLdapRootDse_))
+    if (afw_utf8_equal(object_type_id, afw_ldap_s__AdaptiveLdapRootDse_))
     {
-        if (afw_utf8_equal(object_id, &afw_s_current)) {
+        if (afw_utf8_equal(object_id, afw_s_current)) {
             obj = self->adaptor->metadata->rootdse_object;
         }
     }
 
     /* Schema */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapSchema_))
+        afw_ldap_s__AdaptiveLdapSchema_))
     {
-        if (afw_utf8_equal(object_id, &afw_s_current)) {
+        if (afw_utf8_equal(object_id, afw_s_current)) {
             obj = self->adaptor->metadata->schema_object;
         }
     }
 
     /* ObjectType. */
-    else if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_))
+    else if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->object_type_objects,
@@ -1438,7 +1438,7 @@ afw_ldap_metadata_get_object(
     }
 
     /* ValueMeta. */
-    else if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveValueMeta_))
+    else if (afw_utf8_equal(object_type_id, afw_s__AdaptiveValueMeta_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->value_meta_objects,
@@ -1447,7 +1447,7 @@ afw_ldap_metadata_get_object(
 
     /* Object Class. */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapObjectClass_))
+        afw_ldap_s__AdaptiveLdapObjectClass_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->object_class_objects,
@@ -1456,7 +1456,7 @@ afw_ldap_metadata_get_object(
 
     /* Attribute Type */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapAttributeType_))
+        afw_ldap_s__AdaptiveLdapAttributeType_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->attribute_type_objects,
@@ -1465,7 +1465,7 @@ afw_ldap_metadata_get_object(
 
     /* Syntax */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapSyntax_))
+        afw_ldap_s__AdaptiveLdapSyntax_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->ldap_syntax_objects,
@@ -1474,7 +1474,7 @@ afw_ldap_metadata_get_object(
 
     /* Matching Rule */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapMatchingRule_))
+        afw_ldap_s__AdaptiveLdapMatchingRule_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->matching_rule_objects,
@@ -1483,7 +1483,7 @@ afw_ldap_metadata_get_object(
 
     /* Matching Rule Use */
     else if (afw_utf8_equal(object_type_id,
-        &afw_ldap_s__AdaptiveLdapMatchingRuleUse_))
+        afw_ldap_s__AdaptiveLdapMatchingRuleUse_))
     {
         obj = impl_get_object(self,
             self->adaptor->metadata->matching_rule_use_objects,
@@ -1498,7 +1498,7 @@ afw_ldap_metadata_get_object(
 afw_boolean_t
 afw_ldap_metadata_handles(const afw_utf8_t *object_type)
 {
-    if (object_type  && afw_utf8_starts_with(object_type, &afw_s__Adaptive))
+    if (object_type  && afw_utf8_starts_with(object_type, afw_s__Adaptive))
     {
         return AFW_TRUE;
     }

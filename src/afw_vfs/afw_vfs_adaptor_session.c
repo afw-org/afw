@@ -116,20 +116,20 @@ impl_read_file_object(
         object = afw_object_create_and_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adaptor->adaptor_id,
-            &afw_vfs_s__AdaptiveFile_vfs,
+            afw_vfs_s__AdaptiveFile_vfs,
             object_id,
             xctx);
         afw_object_set_property(object,
-            &afw_vfs_s_isDirectory, afw_value_true, xctx);
+            afw_vfs_s_isDirectory, afw_value_true, xctx);
         vfs_path = afw_utf8_printf(p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_id));
         afw_object_set_property_as_anyURI(object,
-            &afw_vfs_s_vfsPath, vfs_path, xctx);
+            afw_vfs_s_vfsPath, vfs_path, xctx);
         filenames = afw_array_of_create(afw_data_type_string, p, xctx);
         afw_object_set_property_as_array(object,
-            &afw_vfs_s_data, filenames, xctx);
+            afw_vfs_s_data, filenames, xctx);
         for (;;) {
 
             /* Read next directory entry until there are no more.*/
@@ -199,7 +199,7 @@ impl_read_file_object(
         object = afw_object_create_and_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adaptor->adaptor_id,
-            &afw_vfs_s__AdaptiveFile_vfs,
+            afw_vfs_s__AdaptiveFile_vfs,
             object_id,
             xctx);
         vfs_path = afw_utf8_printf(p, xctx,
@@ -207,18 +207,18 @@ impl_read_file_object(
             AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),
             AFW_UTF8_FMT_ARG(object_id));
         afw_object_set_property_as_anyURI(object,
-            &afw_vfs_s_vfsPath, vfs_path, xctx);
+            afw_vfs_s_vfsPath, vfs_path, xctx);
         if (afw_utf8_is_valid((const afw_utf8_octet_t *)buff, size_read, xctx)) {
             data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size_read,
                 p, xctx);
             afw_object_set_property_as_string(object,
-                &afw_vfs_s_data, data_string, xctx);
+                afw_vfs_s_data, data_string, xctx);
         }
         else {
             data_binary = afw_memory_create(buff, size_read,
                 p, xctx);
             afw_object_set_property_as_hexBinary(object,
-                &afw_vfs_s_data, data_binary, xctx);
+                afw_vfs_s_data, data_binary, xctx);
         }
     }
 
@@ -231,7 +231,7 @@ impl_read_file_object(
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.atime, xctx);
             afw_object_set_property(object,
-                &afw_vfs_s_timeAccessed,
+                afw_vfs_s_timeAccessed,
                 (const afw_value_t *)dateTime,
                 xctx);
         }
@@ -242,7 +242,7 @@ impl_read_file_object(
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.ctime, xctx);
             afw_object_set_property(object,
-                &afw_vfs_s_timeCreated,
+                afw_vfs_s_timeCreated,
                 (const afw_value_t *)dateTime,
                 xctx);
         }
@@ -253,7 +253,7 @@ impl_read_file_object(
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.mtime, xctx);
             afw_object_set_property(object,
-                &afw_vfs_s_timeModified,
+                afw_vfs_s_timeModified,
                 (const afw_value_t *)dateTime,
                 xctx);
         }
@@ -476,14 +476,14 @@ impl_afw_adaptor_session_retrieve_objects(
     ctx.criteria = criteria;
     ctx.original_context = context;
     ctx.original_callback = callback;
-    ctx.suffix = &afw_s_a_empty_string;
+    ctx.suffix = afw_s_a_empty_string;
 
     /* Object type _AdaptiveObjectType_ */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         short_circuit = false;
         object = afw_runtime_get_object(
-            &afw_s__AdaptiveObjectType_,
-            &afw_vfs_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+            afw_s__AdaptiveObjectType_,
+            afw_vfs_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
             xctx);
         if (object &&
             afw_query_criteria_test_object(object, criteria, p, xctx))
@@ -493,8 +493,8 @@ impl_afw_adaptor_session_retrieve_objects(
 
         if (!short_circuit) {
             object = afw_runtime_get_object(
-                &afw_s__AdaptiveObjectType_,
-                &afw_vfs_s__AdaptiveFile_vfs,
+                afw_s__AdaptiveObjectType_,
+                afw_vfs_s__AdaptiveFile_vfs,
                 xctx);
             if (object &&
                 afw_query_criteria_test_object(object, criteria, p, xctx))
@@ -508,7 +508,7 @@ impl_afw_adaptor_session_retrieve_objects(
     }
 
     /* There are no other object types other than _AdaptiveFile_vfs. */
-    if (!afw_utf8_equal(object_type_id, &afw_vfs_s__AdaptiveFile_vfs)) {
+    if (!afw_utf8_equal(object_type_id, afw_vfs_s__AdaptiveFile_vfs)) {
         callback(NULL, context, xctx);
         return;
     }
@@ -518,17 +518,17 @@ impl_afw_adaptor_session_retrieve_objects(
 
         /* includeHidden */
         ctx.includeHidden = afw_object_old_get_property_as_boolean(
-            adaptor_type_specific, &afw_vfs_s_includeHidden, &found, xctx);
+            adaptor_type_specific, afw_vfs_s_includeHidden, &found, xctx);
 
         /* subdirectory */
         subdirectory = afw_object_old_get_property_as_string(
-            adaptor_type_specific, &afw_vfs_s_subdirectory, xctx);
+            adaptor_type_specific, afw_vfs_s_subdirectory, xctx);
         if (subdirectory &&
             (
-                afw_utf8_starts_with(subdirectory, &afw_s_a_slash) ||
-                !afw_utf8_ends_with(subdirectory, &afw_s_a_slash) ||
-                afw_utf8_contains(subdirectory, &afw_s_a_backslash) ||
-                afw_utf8_contains(subdirectory, &afw_s_a_dot_slash)
+                afw_utf8_starts_with(subdirectory, afw_s_a_slash) ||
+                !afw_utf8_ends_with(subdirectory, afw_s_a_slash) ||
+                afw_utf8_contains(subdirectory, afw_s_a_backslash) ||
+                afw_utf8_contains(subdirectory, afw_s_a_dot_slash)
             ))
         {
             AFW_THROW_ERROR_Z(general,
@@ -540,11 +540,11 @@ impl_afw_adaptor_session_retrieve_objects(
 
         /* suffix */
         ctx.suffix = afw_object_old_get_property_as_string(
-            adaptor_type_specific, &afw_vfs_s_suffix, xctx);
+            adaptor_type_specific, afw_vfs_s_suffix, xctx);
 
         /* recursive */
         ctx.recursive = afw_object_old_get_property_as_boolean(
-            adaptor_type_specific, &afw_vfs_s_recursive, &found, xctx);
+            adaptor_type_specific, afw_vfs_s_recursive, &found, xctx);
     }
 
     /* Process each map entry applying subdirectory if specified. */
@@ -598,14 +598,14 @@ impl_afw_adaptor_session_get_object(
     const afw_key_z_string_z_t *vfs_entry;
 
     /* Only object type _AdaptiveFile_vfs is supported. */
-    if (!afw_utf8_equal(object_type_id, &afw_vfs_s__AdaptiveFile_vfs)) {
+    if (!afw_utf8_equal(object_type_id, afw_vfs_s__AdaptiveFile_vfs)) {
         callback(NULL, context, xctx);
         return;
     }
 
     /* Don't allow ./, ../, or \ in object id. */
-    if (afw_utf8_contains(object_id, &afw_s_a_dot_slash) ||
-        afw_utf8_contains(object_id, &afw_s_a_backslash))
+    if (afw_utf8_contains(object_id, afw_s_a_dot_slash) ||
+        afw_utf8_contains(object_id, afw_s_a_backslash))
     {
         callback(NULL, context, xctx);
         return;
@@ -657,7 +657,7 @@ impl_determine_path_for_object_id(
     }
 
     /* If object_id ended with '/', consider it a directory. */
-    if (afw_utf8_ends_with(object_id, &afw_s_a_slash)) {
+    if (afw_utf8_ends_with(object_id, afw_s_a_slash)) {
         *is_directory = true;
     }
 
@@ -838,7 +838,7 @@ impl_afw_adaptor_session_add_object(
     afw_boolean_t is_directory;
 
     /* Only object type _AdaptiveFile_vfs is allowed. */
-    if (!afw_utf8_equal(object_type_id, &afw_vfs_s__AdaptiveFile_vfs)) {
+    if (!afw_utf8_equal(object_type_id, afw_vfs_s__AdaptiveFile_vfs)) {
         AFW_THROW_ERROR_Z(general,
             "Only object type _AdaptiveFile_vfs is allowed by vfs adaptor",
             xctx);
@@ -866,7 +866,7 @@ impl_afw_adaptor_session_add_object(
 
     /* If regular file, get data property and write to file. */
     else {
-        data = afw_object_get_property(object, &afw_vfs_s_data, xctx);
+        data = afw_object_get_property(object, afw_vfs_s_data, xctx);
         impl_write_data_to_file(self,
             suggested_object_id, path.s_z, data, true, xctx);
     }
@@ -898,7 +898,7 @@ impl_afw_adaptor_session_modify_object(
 
 
     /* Only object type _AdaptiveFile_vfs is allowed. */
-    if (!afw_utf8_equal(object_type_id, &afw_vfs_s__AdaptiveFile_vfs)) {
+    if (!afw_utf8_equal(object_type_id, afw_vfs_s__AdaptiveFile_vfs)) {
         AFW_THROW_ERROR_Z(general,
             "Only object type _AdaptiveFile_vfs is allowed by vfs adaptor",
             xctx);
@@ -933,7 +933,7 @@ impl_afw_adaptor_session_modify_object(
     else if (
         !afw_utf8_equal(
             &(*entry)->first_property_name_entry->property_name,
-            &afw_vfs_s_data))
+            afw_vfs_s_data))
     {
         valid = false;
     }
@@ -974,7 +974,7 @@ impl_afw_adaptor_session_replace_object(
     afw_boolean_t is_directory;
 
     /* Only object type _AdaptiveFile_vfs is allowed. */
-    if (!afw_utf8_equal(object_type_id, &afw_vfs_s__AdaptiveFile_vfs)) {
+    if (!afw_utf8_equal(object_type_id, afw_vfs_s__AdaptiveFile_vfs)) {
         AFW_THROW_ERROR_Z(general,
             "Only object type _AdaptiveFile_vfs is allowed by vfs adaptor",
             xctx);
@@ -994,7 +994,7 @@ impl_afw_adaptor_session_replace_object(
     }
 
     /* Write data property and write to file. */
-    data = afw_object_get_property(replacement_object, &afw_vfs_s_data, xctx);
+    data = afw_object_get_property(replacement_object, afw_vfs_s_data, xctx);
     impl_write_data_to_file(self,
         object_id, path.s_z, data, false, xctx);
 }
@@ -1020,7 +1020,7 @@ impl_afw_adaptor_session_delete_object(
     afw_boolean_t is_directory;
 
     /* Only object type _AdaptiveFile_vfs is allowed. */
-    if (!afw_utf8_equal(object_type_id, &afw_vfs_s__AdaptiveFile_vfs)) {
+    if (!afw_utf8_equal(object_type_id, afw_vfs_s__AdaptiveFile_vfs)) {
         AFW_THROW_ERROR_Z(general,
             "Only object type _AdaptiveFile_vfs is allowed",
             xctx);

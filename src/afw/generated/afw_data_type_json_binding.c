@@ -144,8 +144,8 @@ impl_data_type_object_json = {
         {
             NULL,
             NULL,
-            &afw_s_json,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_json,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_json
         }
     },

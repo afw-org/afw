@@ -98,10 +98,10 @@ impl_get_valueInfId(
 static const afw_value_meta_name_handler_t
 impl_handler[] =
 {
-    { &afw_s_dataType, impl_get_dataType, NULL },
-    { &afw_s_key, impl_get_key, NULL },
-    { &afw_s_value, impl_get_value, NULL },
-    { &afw_s_valueInfId, impl_get_valueInfId, NULL }
+    { &afw_self_s_dataType, impl_get_dataType, NULL },
+    { &afw_self_s_key, impl_get_key, NULL },
+    { &afw_self_s_value, impl_get_value, NULL },
+    { &afw_self_s_valueInfId, impl_get_valueInfId, NULL }
 };
 
 static const afw_value_meta_name_handler_t *impl_handler_end =

@@ -36,10 +36,10 @@ afw_environment_configure_with_object(
 
     /* Added sourceLocation property to conf. */
     afw_object_set_property_as_string(conf,
-        &afw_s_sourceLocation, source_location, xctx);
+        afw_s_sourceLocation, source_location, xctx);
 
     /* Get type property. */
-    type = afw_object_old_get_property_as_utf8(conf, &afw_s_type, p, xctx);
+    type = afw_object_old_get_property_as_utf8(conf, afw_s_type, p, xctx);
     if (!type) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -75,7 +75,7 @@ afw_environment_configure_with_object_list(
 
     /* Default source_location to "Configuration". */
     if (!source_location) {
-        source_location = &afw_s_Configuration;
+        source_location = afw_s_Configuration;
     }
 
     /* Process each configuration entry. */   
@@ -119,7 +119,7 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     const afw_object_t* manifest;
 
     extension_id = afw_object_old_get_property_as_utf8(entry,
-        &afw_s_extensionId, p, xctx);
+        afw_s_extensionId, p, xctx);
 
     if (!extension_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -129,15 +129,15 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     }
 
     module_path = afw_object_old_get_property_as_utf8(entry,
-        &afw_s_modulePath, p, xctx);
+        afw_s_modulePath, p, xctx);
 
     /* If module_path is not supplied, see if it is registered. */
     if (!module_path) {
-        manifest = afw_runtime_get_object(&afw_s__AdaptiveManifest_,
+        manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
             extension_id, xctx);
         if (manifest) {
             module_path = afw_object_old_get_property_as_string(manifest,
-                &afw_s_modulePath, xctx);
+                afw_s_modulePath, xctx);
         }
     }
     if (!module_path) {
@@ -173,14 +173,14 @@ afw_environment_prepare_conf_type_properties(
 
     /* Get sourceLocation.  Default for now to empty string. */
     source_location = afw_object_old_get_property_as_string(
-        properties, &afw_s_sourceLocation, xctx);
+        properties, afw_s_sourceLocation, xctx);
     if (!source_location) {
-        source_location = &afw_s_a_empty_string;
+        source_location = afw_s_a_empty_string;
     }
 
     /* Get type. */
     type = afw_object_old_get_property_as_string(properties,
-        &afw_s_type, xctx);
+        afw_s_type, xctx);
     if (!type || type->len == 0) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -216,7 +216,7 @@ afw_environment_prepare_conf_type_properties(
     }
 
     /* If appropriate, get id.  If not present, default to subtype. */
-    id = &afw_s_current;
+    id = afw_s_current;
     if (conf_type->id_property_name) {
         id = afw_object_old_get_property_as_string(
             properties, conf_type->id_property_name, xctx);
@@ -244,16 +244,16 @@ afw_environment_prepare_conf_type_properties(
 
 
     /* If defaulting source location, make it path. */
-    if (source_location == &afw_s_a_empty_string) {
+    if (source_location == afw_s_a_empty_string) {
         source_location = path;
         afw_object_set_property_as_string(properties,
-            &afw_s_sourceLocation, source_location, xctx);
+            afw_s_sourceLocation, source_location, xctx);
     }
 
     /* If not adaptor for afw (which will cause loop), normalize result. */
     result = properties;
-    if (!afw_utf8_equal(type, &afw_s_adaptor) ||
-        !afw_utf8_equal(id, &afw_s_afw))
+    if (!afw_utf8_equal(type, afw_s_adaptor) ||
+        !afw_utf8_equal(id, afw_s_afw))
     {
         result = afw_object_view_create(properties,
             path, &afw_object_options_composite_normalize_defaults_required,

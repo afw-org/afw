@@ -144,8 +144,8 @@ impl_data_type_object_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_base64Binary,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_base64Binary,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_base64Binary
         }
     },

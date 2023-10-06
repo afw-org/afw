@@ -230,8 +230,8 @@ impl_1_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_1 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
     &impl_1_meta_path,
     &impl_1_properties[0]
 };
@@ -601,8 +601,8 @@ impl_4_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_4 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveConf_adaptor_ldap,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap,
     &impl_4_meta_path,
     &impl_4_properties[0]
 };
@@ -908,8 +908,8 @@ impl_9_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_9 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveConf_adaptor_ldap_bind,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap_bind,
     &impl_9_meta_path,
     &impl_9_properties[0]
 };
@@ -1256,8 +1256,8 @@ impl_13_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_13 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapAttributeType_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapAttributeType_,
     &impl_13_meta_path,
     &impl_13_properties[0]
 };
@@ -1389,8 +1389,8 @@ impl_20_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_20 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapMatchingRuleUse_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapMatchingRuleUse_,
     &impl_20_meta_path,
     &impl_20_properties[0]
 };
@@ -1522,8 +1522,8 @@ impl_22_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_22 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapMatchingRule_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapMatchingRule_,
     &impl_22_meta_path,
     &impl_22_properties[0]
 };
@@ -2215,8 +2215,8 @@ impl_24_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_24 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapObjectClass_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapObjectClass_,
     &impl_24_meta_path,
     &impl_24_properties[0]
 };
@@ -2348,8 +2348,8 @@ impl_36_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_36 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapRootDse_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapRootDse_,
     &impl_36_meta_path,
     &impl_36_properties[0]
 };
@@ -2481,8 +2481,8 @@ impl_38_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_38 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapSchema_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapSchema_,
     &impl_38_meta_path,
     &impl_38_properties[0]
 };
@@ -2735,8 +2735,8 @@ impl_40_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_40 = {
-    &afw_ldap_s__AdaptiveObjectType_,
-    &afw_ldap_s__AdaptiveLdapSyntax_,
+    &afw_ldap_self_s__AdaptiveObjectType_,
+    &afw_ldap_self_s__AdaptiveLdapSyntax_,
     &impl_40_meta_path,
     &impl_40_properties[0]
 };
@@ -2779,8 +2779,8 @@ impl_45_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_45 = {
-    &afw_ldap_s__AdaptiveCollection_,
-    &afw_ldap_s_ldap_extension,
+    &afw_ldap_self_s__AdaptiveCollection_,
+    &afw_ldap_self_s_ldap_extension,
     &impl_45_meta_path,
     &impl_45_properties[0]
 };

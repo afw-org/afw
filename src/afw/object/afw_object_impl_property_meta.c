@@ -148,10 +148,10 @@ impl_set_error_immutable(
 
 static const afw_object_impl_name_handler_t impl_handler[] =
 {
-    { &afw_s_dataType, impl_get_dataType, impl_set_dataType },
-    { &afw_s_key, impl_get_key, impl_set_error_immutable },
-    { &afw_s_value, impl_get_value, impl_set_value },
-    { &afw_s_valueInfId, impl_get_valueInfId, impl_set_error_immutable }
+    { afw_s_dataType, impl_get_dataType, impl_set_dataType },
+    { afw_s_key, impl_get_key, impl_set_error_immutable },
+    { afw_s_value, impl_get_value, impl_set_value },
+    { afw_s_valueInfId, impl_get_valueInfId, impl_set_error_immutable }
 };
 
 static const afw_object_impl_name_handler_t *impl_handler_end =

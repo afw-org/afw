@@ -39,8 +39,8 @@ impl_current_object = {
     {
         NULL,
         NULL,
-        &afw_s_current,
-        &afw_s__AdaptiveEnvironmentRegistry_,
+        &afw_self_s_current,
+        &afw_self_s__AdaptiveEnvironmentRegistry_,
         &impl_path
     }
 };

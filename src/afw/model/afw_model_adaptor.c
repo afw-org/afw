@@ -26,7 +26,7 @@
 static const afw_utf8_t *
 impl_on_object_type_ids[] = {
 #define XX(id) \
-    &afw_s_ ## id,
+    afw_s_ ## id,
     AFW_MODEL_ON_MAP(XX)
 #undef XX
     NULL
@@ -785,23 +785,23 @@ afw_model_adaptor_create_cede_p(
     /* Get signature functions for current:: thunks. */
     self->mapBackObject_signature = (const afw_value_t *)
         afw_environment_get_function(
-        &afw_s_model_mapBackObject_signature, xctx);
+        afw_s_model_mapBackObject_signature, xctx);
     self->mapObject_signature = (const afw_value_t *)
         afw_environment_get_function(
-        &afw_s_model_mapObject_signature, xctx);
+        afw_s_model_mapObject_signature, xctx);
     self->returnObject_signature = (const afw_value_t *)
         afw_environment_get_function(
-        &afw_s_model_returnObject_signature, xctx);
+        afw_s_model_returnObject_signature, xctx);
 
     /* Don't allow model to be updated view a model adaptor. */
     //afw_adaptor_impl_set_supported_core_object_type(adaptor,
-    //    &afw_s__AdaptiveModelObjectType_, true, false, xctx);
+    //    afw_s__AdaptiveModelObjectType_, true, false, xctx);
     //afw_adaptor_impl_set_supported_core_object_type(adaptor,
-    //    &afw_s__AdaptiveModelPropertyType_, false, false, xctx);
+    //    afw_s__AdaptiveModelPropertyType_, false, false, xctx);
 
     /* Get modelLocationAdaptorId.  It can not be the same as adaptorId. */
     self->model_location_adaptor_id = afw_object_old_get_property_as_utf8(properties,
-        &afw_s_modelLocationAdaptorId, p, xctx);
+        afw_s_modelLocationAdaptorId, p, xctx);
     if (afw_utf8_equal(self->model_location_adaptor_id, &adaptor->adaptor_id)) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -822,7 +822,7 @@ afw_model_adaptor_create_cede_p(
                 xctx);
         }
         meta = obj->pub.inf->rti.implementation_specific;
-        obj->pub.meta.id = &afw_s_current;
+        obj->pub.meta.id = afw_s_current;
         obj->pub.meta.object_type_uri = meta->object_type_id;
         obj->pub.meta.object_uri = &impl_on_paths[i];
     }
@@ -849,7 +849,7 @@ afw_model_adaptor_create_cede_p(
 
         /** @fixme Load modelId */
         self->model_id = afw_object_old_get_property_as_utf8(properties,
-            &afw_s_modelId, p, xctx);
+            afw_s_modelId, p, xctx);
     }
 
     AFW_FINALLY{
@@ -862,20 +862,20 @@ afw_model_adaptor_create_cede_p(
 
     /* mappedAdaptorId */
     self->mappedAdaptorId_value = afw_object_get_property(properties,
-        &afw_s_mappedAdaptorId, xctx);
+        afw_s_mappedAdaptorId, xctx);
     if (!self->mappedAdaptorId_value) {
         afw_adaptor_impl_throw_property_required(adaptor,
-        &afw_s_mappedAdaptorId, xctx);
+        afw_s_mappedAdaptorId, xctx);
     }
     if (!afw_value_is_string(self->mappedAdaptorId_value)) {
         afw_adaptor_impl_throw_property_invalid(adaptor,
-            &afw_s_mappedAdaptorId, xctx);
+            afw_s_mappedAdaptorId, xctx);
     }
     self->mapped_adaptor_id =
         &((const afw_value_string_t *)self->mappedAdaptorId_value)->internal;
     if (afw_utf8_equal(self->mapped_adaptor_id, &self->pub.adaptor_id)) {
         afw_adaptor_impl_throw_property_invalid(adaptor,
-            &afw_s_mappedAdaptorId, xctx);
+            afw_s_mappedAdaptorId, xctx);
     }
 
     /* Return adaptor. */
@@ -1071,7 +1071,7 @@ impl_afw_adaptor_session_retrieve_objects(
     cb_ctx.original_callback = callback;
     cb_ctx.criteria = criteria;
 
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
 
         /* Process other object types and return. */
         for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
@@ -1111,11 +1111,11 @@ impl_afw_adaptor_session_retrieve_objects(
                 &afw_model_internal_context_current_retrieve_objects[0],
                 self, impl_request, cb_ctx.model_object_type, p, xctx);
             ctx->mapBackObject_value = afw_value_function_thunk_create(
-                &afw_s_a_current_colon_colon_mapBackObject,
+                afw_s_a_current_colon_colon_mapBackObject,
                 adaptor->mapBackObject_signature,
                 impl_execute_mapBackObject_thunk, &cb_ctx, p, xctx);
             ctx->returnObject_value = afw_value_function_thunk_create(
-                &afw_s_a_current_colon_colon_returnObject,
+                afw_s_a_current_colon_colon_returnObject,
                 adaptor->returnObject_signature,
                 impl_execute_returnObject_thunk, &cb_ctx, p, xctx);
             ctx->mapped_object_type_id_value =
@@ -1189,7 +1189,7 @@ impl_afw_adaptor_session_get_object(
     cb_ctx.original_context = context;
     cb_ctx.original_callback = callback;
  
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         cb_ctx.model_object_type = afw_model_get_object_type(self->model,
             object_id, xctx);
         object = (cb_ctx.model_object_type)
@@ -1225,7 +1225,7 @@ impl_afw_adaptor_session_get_object(
                 &afw_model_internal_context_current_get_object[0],
                 self, impl_request, cb_ctx.model_object_type, p, xctx);
             ctx->mapBackObject_value = afw_value_function_thunk_create(
-                &afw_s_a_current_colon_colon_mapBackObject,
+                afw_s_a_current_colon_colon_mapBackObject,
                 adaptor->mapBackObject_signature,
                 impl_execute_mapBackObject_thunk, &cb_ctx, p, xctx);
             ctx->mapped_object_type_id_value =
@@ -1412,7 +1412,7 @@ impl_afw_adaptor_session_add_object(
     afw_boolean_t use_default_processing;
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -1577,7 +1577,7 @@ impl_afw_adaptor_session_modify_object(
     afw_boolean_t use_default_processing;
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -1670,7 +1670,7 @@ impl_afw_adaptor_session_replace_object(
     afw_boolean_t use_default_processing;
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -1757,7 +1757,7 @@ impl_afw_adaptor_session_delete_object(
     afw_boolean_t use_default_processing;
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 

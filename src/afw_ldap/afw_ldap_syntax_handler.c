@@ -326,11 +326,11 @@ impl_syntax_handler_single_binary_to_ber(
         AFW_THROW_ERROR_Z(general, "Expecting evaluated value", xctx);
     }
 
-    if (afw_utf8_equal(&value_data_type->cType, &afw_s_afw_memory_t)) {
+    if (afw_utf8_equal(&value_data_type->cType, afw_s_afw_memory_t)) {
         size = ((afw_value_hexBinary_t *)value)->internal.size;
         ptr = ((afw_value_hexBinary_t *)value)->internal.ptr;
     }
-    else if (afw_utf8_equal(&value_data_type->cType, &afw_s_afw_utf8_t)) {
+    else if (afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t)) {
         size = ((afw_value_string_t *)value)->internal.len;
         ptr = (afw_byte_t *)((afw_value_string_t *)value)->internal.s;
     }
@@ -615,7 +615,7 @@ impl_syntax_handler_list_binary_to_ber(
         result = afw_pool_calloc(p, sizeof(struct berval *) * (count + 1),
             xctx);
         data_type = afw_array_get_data_type(value, xctx);
-        if (afw_utf8_equal(&data_type->cType, &afw_s_afw_memory_t)) {
+        if (afw_utf8_equal(&data_type->cType, afw_s_afw_memory_t)) {
             for (iterator = NULL, bv = result; ;bv++) {
                 afw_array_get_next_internal(
                     list, &iterator, NULL, (const void **)&raw, xctx);
@@ -627,7 +627,7 @@ impl_syntax_handler_list_binary_to_ber(
                 (*bv)->bv_val = (char *)raw->ptr;
             }
         }
-        else if (afw_utf8_equal(&data_type->cType, &afw_s_afw_utf8_t)) {
+        else if (afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t)) {
             for (iterator = NULL, bv = result; ;bv++) {
                 afw_array_get_next_internal(
                     list, &iterator, NULL, (const void **)&s, xctx);
@@ -649,13 +649,13 @@ impl_syntax_handler_list_binary_to_ber(
     else {
         result = afw_pool_calloc(p, sizeof(struct berval *) * 2, xctx);
         data_type = afw_value_get_data_type(value, xctx);
-        if (afw_utf8_equal(&data_type->cType, &afw_s_afw_memory_t)) {
+        if (afw_utf8_equal(&data_type->cType, afw_s_afw_memory_t)) {
             raw = (const afw_memory_t *)AFW_VALUE_INTERNAL(value);
             *result = afw_pool_malloc_type(p, struct berval, xctx);
             (*result)->bv_len = (ber_len_t)raw->size;
             (*result)->bv_val = (char *)raw->ptr;
         }
-        else if (afw_utf8_equal(&data_type->cType, &afw_s_afw_utf8_t)) {
+        else if (afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t)) {
             s = (const afw_utf8_t *)AFW_VALUE_INTERNAL(value);
             *result = afw_pool_malloc_type(p, struct berval, xctx);
             (*result)->bv_len = (ber_len_t)s->len;
@@ -1306,7 +1306,7 @@ afw_ldap_internal_syntax_handler_assign(
         /* If there is an X-NDS_SYNTAX, assign syntax_handler based on it. */
         x_nds_syntax = afw_object_old_get_property_as_string(
             ldap_syntax_object,
-            &afw_ldap_s_a_X_NDS_SYNTAX, xctx);
+            afw_ldap_s_a_X_NDS_SYNTAX, xctx);
         if (x_nds_syntax) {
             impl_x_nds_syntax_handler(
                 &attribute_type->syntax_handler,

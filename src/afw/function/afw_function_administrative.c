@@ -509,7 +509,7 @@ afw_function_execute_extension_load_by_module_path(
         NULL, &module_path->internal, NULL, x->xctx);
     extension_id = (extension)
         ? &extension->extension_id
-        : &afw_s_undefined;
+        : afw_s_undefined;
 
     return afw_value_create_string(extension_id, x->p, x->xctx);
 }

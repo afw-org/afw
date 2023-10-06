@@ -29,7 +29,7 @@ afw_array_of_utf8_get_next(
         return NULL;
     }
 
-    if (!afw_utf8_equal(&data_type->cType, &afw_s_afw_utf8_t))
+    if (!afw_utf8_equal(&data_type->cType, afw_s_afw_utf8_t))
     {
         AFW_THROW_ERROR_Z(general,
             "cType of array data type is not afw_utf8_t", xctx);

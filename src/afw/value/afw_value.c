@@ -411,9 +411,9 @@ afw_value_as_casted_utf8(
     else {
         result = afw_utf8_concat(p, xctx,
             &data_type->data_type_id,
-            &afw_s_a_open_parenthesis, &impl_s_a_quote,
+            afw_s_a_open_parenthesis, &impl_s_a_quote,
             afw_value_as_utf8(value, p, xctx),
-            &impl_s_a_quote, &afw_s_a_close_parenthesis,
+            &impl_s_a_quote, afw_s_a_close_parenthesis,
             NULL);
     }
 
@@ -718,7 +718,7 @@ afw_value_convert_to_string(
     result = afw_value_convert(value, afw_data_type_string, false, p, xctx);
     if (!result) {
         if (allow_undefined) {
-            return (const afw_value_t *)&afw_v_undefined;
+            return afw_v_undefined;
         }
         AFW_THROW_ERROR_Z(undefined, "Value is undefined", xctx);
     }
@@ -976,7 +976,7 @@ afw_value_contains(
 
     value_data_type = afw_value_get_data_type(value, xctx);
     if (!value_data_type ||
-        !afw_utf8_equal(&value_data_type->cType, &afw_s_afw_utf8_t))
+        !afw_utf8_equal(&value_data_type->cType, afw_s_afw_utf8_t))
     {
         AFW_THROW_ERROR_Z(general,
             "value must have a data type with cType of afw_utf8_t",
@@ -985,7 +985,7 @@ afw_value_contains(
 
     substring_data_type = afw_value_get_data_type(substring, xctx);
     if (!substring_data_type ||
-        !afw_utf8_equal(&substring_data_type->cType, &afw_s_afw_utf8_t))
+        !afw_utf8_equal(&substring_data_type->cType, afw_s_afw_utf8_t))
     {
         AFW_THROW_ERROR_Z(general,
             "substring must have a data type with cType of afw_utf8_t",

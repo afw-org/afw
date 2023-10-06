@@ -16,5 +16,5 @@ void
 afw_lmdb_error_rv_decoder_lmdb_register(afw_xctx_t *xctx)
 {
     afw_environment_register_error_rv_decoder(
-        &afw_lmdb_s_lmdb, impl_rv_decoder_z_lmdb, xctx);
+        afw_lmdb_s_lmdb, impl_rv_decoder_z_lmdb, xctx);
 }

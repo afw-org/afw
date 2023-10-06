@@ -64,7 +64,7 @@ impl_load_model(
     AFW_TRY {
 
         afw_adaptor_session_get_object(session, NULL,
-            &afw_s__AdaptiveModel_, model_id,
+            afw_s__AdaptiveModel_, model_id,
             (void *)model_location_adaptor,
             impl_get_model_object_types_cb, NULL,
             model_location_adaptor->p, xctx);

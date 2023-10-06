@@ -31,7 +31,7 @@
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb = {
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -46,7 +46,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_information = {
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -61,7 +61,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic = {
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -76,7 +76,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics = {
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -91,7 +91,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_version = {
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -106,7 +106,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_lmdb = {
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -121,7 +121,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_lmdb_env = {
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_env,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_env,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -136,7 +136,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits = {
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -151,7 +151,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits_size = {
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_size,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_size,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -166,7 +166,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits_time = {
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_time,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_time,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,

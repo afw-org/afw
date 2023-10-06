@@ -172,11 +172,11 @@ impl_afw_object_get_next_property(
             /* If limited_data, always provide parentPaths. */
             if (self->limited_meta && afw_object_meta_object(self->instance)) {
                 result = afw_object_get_property(
-                    afw_object_meta_object(self->instance), &afw_s_parentPaths,
+                    afw_object_meta_object(self->instance), afw_s_parentPaths,
                     xctx);
                 if (result) {
                     if (property_name) {
-                        *property_name = &afw_s_parentPaths;
+                        *property_name = afw_s_parentPaths;
                     }
                     goto return_result;
                 }
@@ -212,12 +212,12 @@ impl_afw_object_get_next_property(
                 if (self->limited_meta ||
                     !afw_object_has_property(
                         afw_object_meta_object(self->instance),
-                        &afw_s_objectId, xctx))
+                        afw_s_objectId, xctx))
                 {
                     s = afw_object_meta_get_object_id(self->instance, xctx);
                     if (s) {
                         if (property_name) {
-                            *property_name = &afw_s_objectId;
+                            *property_name = afw_s_objectId;
                         }
                         result = afw_value_create_string(s, p, xctx);
                         goto return_result;
@@ -242,13 +242,13 @@ impl_afw_object_get_next_property(
                 if (self->limited_meta ||
                     !afw_object_has_property(
                         afw_object_meta_object(self->instance),
-                        &afw_s_objectType, xctx))
+                        afw_s_objectType, xctx))
                 {
                     s = afw_object_meta_get_object_type_id(self->instance,
                         xctx);
                     if (s) {
                         if (property_name) {
-                            *property_name = &afw_s_objectType;
+                            *property_name = afw_s_objectType;
                         }
                         result = afw_value_create_string(s, p, xctx);
                         goto return_result;
@@ -273,12 +273,12 @@ impl_afw_object_get_next_property(
             {
                 if (self->limited_meta ||
                     !afw_object_has_property(
-                        afw_object_meta_object(self->instance), &afw_s_path, xctx))
+                        afw_object_meta_object(self->instance), afw_s_path, xctx))
                 {
                     s = afw_object_meta_get_path(self->instance, xctx);
                     if (s) {
                         if (property_name) {
-                            *property_name = &afw_s_path;
+                            *property_name = afw_s_path;
                         }
                         result = afw_value_create_string(s, p, xctx);
                         goto return_result;

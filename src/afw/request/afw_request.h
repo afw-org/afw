@@ -122,32 +122,17 @@ AFW_BEGIN_DECLARES
 /** @brief Request method GET quoted string. */
 #define AFW_REQUEST_Q_METHOD_GET AFW_Q_GET
 
-/** @brief Request method GET afw_utf8_t */
-#define AFW_REQUEST_s_METHOD_GET afw_s_GET
-
 /** Request method POST quoted string. */
 #define AFW_REQUEST_Q_METHOD_POST AFW_Q_POST
-
-/** Request method POST afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_POST afw_s_POST
 
 /** Request method PUT quoted string. */
 #define AFW_REQUEST_Q_METHOD_PUT AFW_Q_PUT
 
-/** Request method PUT afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_PUT afw_s_PUT
-
 /** Request method PATCH quoted string. */
 #define AFW_REQUEST_Q_METHOD_PATCH AFW_Q_PATCH
 
-/** Request method PATCH afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_PATCH afw_s_PATCH
-
 /** Request method DELETE quoted string. */
 #define AFW_REQUEST_Q_METHOD_DELETE AFW_Q_DELETE
-
-/** Request method DELETE afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_DELETE afw_s_DELETE
 
 
 /** Request state enum.  This CAN be used by implementations of afw_request. */

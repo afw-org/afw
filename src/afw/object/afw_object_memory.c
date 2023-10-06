@@ -366,7 +366,7 @@ impl_afw_object_setter_set_property(
     }
     e = afw_pool_calloc_type(instance->object->p,
         afw_object_internal_name_value_entry_t, xctx);
-    e->name = (property_name) ? property_name : &afw_s_a_empty_string;
+    e->name = (property_name) ? property_name : afw_s_a_empty_string;
 
     /** @fixme
      * Need to think about setting a property that is an object.  Embedding

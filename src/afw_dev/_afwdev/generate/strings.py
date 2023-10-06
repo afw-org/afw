@@ -93,18 +93,18 @@ def get_string_label(
 
     if type == 'Q':
         return use_prefix.upper() + 'Q_' + label
-    if type == 'v':
-        return use_prefix + 'v_' + label
-    if type == '*v':
-        return '&' + use_prefix + 'v_' + label     
     if type == 's':
         return use_prefix + 's_' + label
-    if type == '*s':
-        return '&' + use_prefix + 's_' + label
+    if type == 'self_s':
+        return use_prefix + 'self_s_' + label
     if type == '*z':
         return use_prefix+ 'z_' + label
     if type == 'U':
         return use_prefix.upper() + 'U_' + label
+    if type == 'v':
+        return use_prefix + 'v_' + label
+    if type == 'self_v':
+        return use_prefix + 'self_v_' + label   
     msg.error_exit('Invalid string type: ' + type)
 
 
@@ -137,11 +137,15 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
                     line = repr(value)[1:-1].replace('"', '\\"')
                     fd.write('    "' + line + '"\n')
                     fd.write('\n/** @brief \'afw_utf8_t\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 's_' + name + ' \\\n    (' +  use_prefix + 'v_' + name + '.internal)\n')
+                    fd.write('#define ' + use_prefix + 's_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.internal)\n')
+                    fd.write('\n/** @brief \'afw_utf8_t\' for ' + q_name + ' */\n')
+                    fd.write('#define ' + use_prefix + 'self_s_' + name + ' \\\n    (' +  use_prefix + 'self_v_' + name + '.internal)\n')
                     fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + q_name + ' */\n')
-                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'v_' + name + ';\n')
+                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'self_v_' + name + ';\n')
                     fd.write('\n/** @brief \'afw_utf8_z_t *\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 'z_' + name + ' \\\n    (' +  use_prefix + 'v_' + name + '.internal.s)\n')              
+                    fd.write('#define ' + use_prefix + 'z_' + name + ' \\\n    (' +  use_prefix + 'self_v_' + name + '.internal.s)\n')              
+                    fd.write('\n/** @brief \'afw_utf8_z_t *\' for ' + q_name + ' */\n')
+                    fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    ((const afw_value_t *)&' +  use_prefix + 'self_v_' + name + ')\n')              
                 elif supported_dataTypes[dataType] == '':
                     fd.write('\n/** @brief #define for unquoted ' + dataType + ' ' + value + ' */\n')
                     fd.write('#define ' + use_prefix.upper() + 'U_' + name  + ' \\\n')
@@ -151,7 +155,7 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
                     line = repr(value)[1:-1].replace('"', '\\"')
                     fd.write('    "' + line + '"\n')
                     fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + value + ' */\n')
-                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'v_' + name + ';\n')            
+                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'self_v_' + name + ';\n')            
                 else:
                     msg.error_exit(
                         'Unsupported supported_dataTypes[\'' +
@@ -184,7 +188,7 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
                 fd.write('\n')
 
                 if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
-                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'v_' + name + ' = {\n')
+                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'self_v_' + name + ' = {\n')
                     fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
                     fd.write(
                         '    AFW_UTF8_LITERAL(' +
@@ -192,7 +196,7 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
                         ')\n')
                     fd.write('};\n')
                 elif supported_dataTypes[dataType] == '':
-                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'v_' + name + ' = {\n')
+                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'self_v_' + name + ' = {\n')
                     fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
                     fd.write('    ' + value + '\n')
                     fd.write('};\n')

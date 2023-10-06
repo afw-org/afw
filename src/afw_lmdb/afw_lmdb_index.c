@@ -76,10 +76,10 @@ const afw_utf8_t * afw_lmdb_index_database(
 
     /* Use the form: Index#object_type_id#key for our index database */
     if (object_type_id) {
-        database = afw_utf8_concat(p, xctx, &afw_lmdb_s_Index, 
+        database = afw_utf8_concat(p, xctx, afw_lmdb_s_Index, 
             &separator, object_type_id, &separator, key, NULL);
     } else {
-        database = afw_utf8_concat(p, xctx, &afw_lmdb_s_Index, 
+        database = afw_utf8_concat(p, xctx, afw_lmdb_s_Index, 
             &separator, key, NULL);
     }
 
@@ -113,7 +113,7 @@ impl_afw_adaptor_impl_index_get_index_definitions (
     /* lock the adaptor pool to fetch the indexes */
     AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN(adaptor) {
         indexes = afw_object_old_get_property_as_object(
-            self->adaptor->internalConfig, &afw_lmdb_s_indexDefinitions, xctx);
+            self->adaptor->internalConfig, afw_lmdb_s_indexDefinitions, xctx);
         if (indexes) {
             indexes = afw_object_create_clone(indexes,
                 xctx->p, xctx);
@@ -150,7 +150,7 @@ impl_afw_adaptor_impl_index_update_index_definitions (
     /* lock the adaptor */
     AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN(adaptor) {
         afw_object_set_property_as_object(
-            session->adaptor->internalConfig, &afw_lmdb_s_indexDefinitions, 
+            session->adaptor->internalConfig, afw_lmdb_s_indexDefinitions, 
             afw_object_create_clone(
                 indexDefinitions, pool, xctx),
             xctx);

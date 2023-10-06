@@ -28,7 +28,9 @@ const afw_object_t * afw_lmdb_metadata_get_object(
     afw_xctx_t *xctx)
 {
     /* ObjectType. */
-    if (afw_utf8_equal(object_type_id, &AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE)) {
+    if (afw_utf8_equal(
+        object_type_id, AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE))
+    {
     }
 
     AFW_THROW_ERROR_Z(not_found, "Not found.", xctx);
@@ -67,11 +69,11 @@ const afw_array_t * afw_lmdb_metadata_retrieve_objects(
     afw_xctx_t *xctx)
 {
     /* ObjectType. */
-    if (afw_utf8_equal(object_type_id, &AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE)) {
+    if (afw_utf8_equal(object_type_id, AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE)) {
     }
 
     /* PropertyType. */
-    if (afw_utf8_equal(object_type_id, &AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META)) {
+    if (afw_utf8_equal(object_type_id, AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META)) {
     }
 
     /* If none of above, return empty array. */

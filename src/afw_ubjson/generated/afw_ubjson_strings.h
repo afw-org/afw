@@ -35,15 +35,23 @@
 
 /** @brief 'afw_utf8_t' for AFW_UBJSON_Q_default */
 #define afw_ubjson_s_default \
-    (afw_ubjson_v_default.internal)
+    (&afw_ubjson_self_v_default.internal)
+
+/** @brief 'afw_utf8_t' for AFW_UBJSON_Q_default */
+#define afw_ubjson_self_s_default \
+    (afw_ubjson_self_v_default.internal)
 
 /** @brief 'afw_value_string_t' for AFW_UBJSON_Q_default */
 extern const afw_value_string_t \
-    afw_ubjson_v_default;
+    afw_ubjson_self_v_default;
 
 /** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_default */
 #define afw_ubjson_z_default \
-    (afw_ubjson_v_default.internal.s)
+    (afw_ubjson_self_v_default.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_default */
+#define afw_ubjson_v_default \
+    ((const afw_value_t *)&afw_ubjson_self_v_default)
 
 
 
@@ -53,15 +61,23 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_UBJSON_Q_indirect */
 #define afw_ubjson_s_indirect \
-    (afw_ubjson_v_indirect.internal)
+    (&afw_ubjson_self_v_indirect.internal)
+
+/** @brief 'afw_utf8_t' for AFW_UBJSON_Q_indirect */
+#define afw_ubjson_self_s_indirect \
+    (afw_ubjson_self_v_indirect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_UBJSON_Q_indirect */
 extern const afw_value_string_t \
-    afw_ubjson_v_indirect;
+    afw_ubjson_self_v_indirect;
 
 /** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_indirect */
 #define afw_ubjson_z_indirect \
-    (afw_ubjson_v_indirect.internal.s)
+    (afw_ubjson_self_v_indirect.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_indirect */
+#define afw_ubjson_v_indirect \
+    ((const afw_value_t *)&afw_ubjson_self_v_indirect)
 
 
 

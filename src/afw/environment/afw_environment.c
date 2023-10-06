@@ -375,46 +375,46 @@ afw_environment_create(
     /* Create multithreaded pool lock. */
     env->pub.multithreaded_pool_lock =
         afw_lock_create_environment_lock(
-            &afw_s_a_lock_multithreaded_pool, p, xctx);
+            afw_s_a_lock_multithreaded_pool, p, xctx);
 
     /* Create environment lock. */
     env->pub.environment_lock =
         afw_lock_create_and_register(
-            &afw_s_a_lock_environment,
-            &afw_s_a_lock_environment_brief,
-            &afw_s_a_lock_environment_description,
+            afw_s_a_lock_environment,
+            afw_s_a_lock_environment_brief,
+            afw_s_a_lock_environment_description,
             true, xctx);
 
     /* Create adaptor id anchors lock. */
     env->pub.adaptor_id_anchor_lock =
         afw_lock_create_and_register(
-            &afw_s_a_lock_adaptor_id_anchor,
-            &afw_s_a_lock_adaptor_id_anchor_brief,
-            &afw_s_a_lock_adaptor_id_anchor_description,
+            afw_s_a_lock_adaptor_id_anchor,
+            afw_s_a_lock_adaptor_id_anchor_brief,
+            afw_s_a_lock_adaptor_id_anchor_description,
             true, xctx);
 
     /* Create authorization handler id anchors rw lock. */
     env->pub.authorization_handler_id_anchor_rw_lock =
         afw_lock_create_rw_and_register(
-            &afw_s_a_lock_authorization_handler_id_anchor,
-            &afw_s_a_lock_authorization_handler_id_anchor_brief,
-            &afw_s_a_lock_authorization_handler_id_anchor_description,
+            afw_s_a_lock_authorization_handler_id_anchor,
+            afw_s_a_lock_authorization_handler_id_anchor_brief,
+            afw_s_a_lock_authorization_handler_id_anchor_description,
             xctx);
 
     /* Create active log list lock. */
     env->pub.active_log_list_lock =
         afw_lock_create_and_register(
-            &afw_s_a_lock_log_list,
-            &afw_s_a_lock_log_list_brief,
-            &afw_s_a_lock_log_list_description,
+            afw_s_a_lock_log_list,
+            afw_s_a_lock_log_list_brief,
+            afw_s_a_lock_log_list_description,
             true, xctx);
 
     /* Create flags lock. */
     env->pub.flags_lock  =
         afw_lock_create_and_register(
-            &afw_s_a_lock_flags,
-            &afw_s_a_lock_flags_brief,
-            &afw_s_a_lock_flags_description,
+            afw_s_a_lock_flags,
+            afw_s_a_lock_flags_brief,
+            afw_s_a_lock_flags_description,
             true, xctx);
 
     /*
@@ -528,9 +528,9 @@ afw_environment_get_registry_type_by_id(
             registry_type_id->len);
 
         if (!type && load_extension) {
-            ctx.type = &afw_s_registry_type;
+            ctx.type = afw_s_registry_type;
             ctx.key = registry_type_id;
-            afw_runtime_foreach(&afw_s__AdaptiveManifest_,
+            afw_runtime_foreach(afw_s__AdaptiveManifest_,
                 &ctx, impl_check_manifest_cb, xctx);
             type = apr_hash_get(
                 env->registry_names_ht,
@@ -644,7 +644,7 @@ impl_check_manifest_cb(
         return false;
     }
 
-    registers_value = afw_object_get_property(object, &afw_s_registers, xctx);
+    registers_value = afw_object_get_property(object, afw_s_registers, xctx);
     if (!registers_value) {
         return false;
     }
@@ -685,9 +685,9 @@ impl_check_manifest_cb(
                 afw_utf8_equal(ctx->key, &registry_key))
             {
                 extension_id = afw_object_old_get_property_as_string(object,
-                    &afw_s_extensionId, xctx);
+                    afw_s_extensionId, xctx);
                 module_path = afw_object_old_get_property_as_string(object,
-                    &afw_s_modulePath, xctx);
+                    afw_s_modulePath, xctx);
                 if (extension_id && module_path) {
                     afw_environment_load_extension(extension_id, module_path,
                         NULL, xctx);
@@ -772,7 +772,7 @@ afw_environment_registry_get(
         if (!result) {
             ctx.type = type->registry_type_id;
             ctx.key = key;
-            afw_runtime_foreach(&afw_s__AdaptiveManifest_,
+            afw_runtime_foreach(afw_s__AdaptiveManifest_,
                 &ctx, impl_check_manifest_cb, xctx);
             result = apr_hash_get(type->ht, key->s, key->len);
         }
@@ -946,7 +946,7 @@ afw_environment_load_extension(
     modulePath = NULL;
     if (properties) {
         extensionId = afw_object_old_get_property_as_string(properties,
-            &afw_s_extensionId, xctx);
+            afw_s_extensionId, xctx);
         if (extensionId) {
             if (extension_id && !afw_utf8_equal(extension_id, extensionId)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
@@ -958,7 +958,7 @@ afw_environment_load_extension(
         }
 
         modulePath = afw_object_old_get_property_as_string(properties,
-            &afw_s_modulePath, xctx);
+            afw_s_modulePath, xctx);
         if (modulePath) {
             if (module_path && !afw_utf8_equal(module_path, modulePath)) {
                 AFW_THROW_ERROR_FZ(general, xctx,
@@ -997,15 +997,15 @@ afw_environment_load_extension(
                 extension_id = afw_utf8_clone(extension_id, p, xctx);
                 properties = afw_object_create_managed(p, xctx);
                 afw_object_set_property_as_string(properties,
-                    &afw_s_extensionId, extension_id, xctx);
+                    afw_s_extensionId, extension_id, xctx);
             }
 
             if (!module_path) {
-                manifest = afw_runtime_get_object(&afw_s__AdaptiveManifest_,
+                manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
                     extension_id, xctx);
                 if (manifest) {
                     module_path = afw_object_old_get_property_as_string(manifest,
-                        &afw_s_modulePath, xctx);
+                        afw_s_modulePath, xctx);
                 }
             }
 
@@ -1017,12 +1017,12 @@ afw_environment_load_extension(
 
             /* Insure modulePath property matches what was decided.
             afw_object_set_property_as_string(properties,
-                &afw_s_modulePath, module_path, xctx); */
+                afw_s_modulePath, module_path, xctx); */
 
             /* Prepare properties. Supply type=extension if needed. */
-            if (!afw_object_has_property(properties, &afw_s_type, xctx)) {
+            if (!afw_object_has_property(properties, afw_s_type, xctx)) {
                 afw_object_set_property_as_string(properties,
-                    &afw_s_type, &afw_s_extension, xctx);
+                    afw_s_type, afw_s_extension, xctx);
             }
             properties = afw_environment_prepare_conf_type_properties(
                 properties, xctx);
@@ -1031,14 +1031,14 @@ afw_environment_load_extension(
         /* If just path_z specified. */
         else {
    
-            extension_id_for_message = &afw_s_unknown;
+            extension_id_for_message = afw_s_unknown;
 
             /* If there is not a properties object, make one. */
             if (!properties)
             {
                 properties = afw_object_create_managed(p, xctx);
                 afw_object_set_property_as_string(properties,
-                    &afw_s_modulePath, module_path, xctx);                
+                    afw_s_modulePath, module_path, xctx);                
             }
 
         }
@@ -1103,7 +1103,7 @@ afw_environment_load_extension(
          * If extension_id was not supplied, get it from extension instance. If
          * it's already registered, break.
          */
-        if (extension_id_for_message == &afw_s_unknown) {
+        if (extension_id_for_message == afw_s_unknown) {
             extension_id = &(*extension_instance)->extension_id;
             extension = afw_environment_registry_get(
                 afw_environemnt_registry_type_extension,
@@ -1126,7 +1126,7 @@ afw_environment_load_extension(
 
         /* Set extensionId in properties */
         afw_object_set_property_as_string(properties,
-            &afw_s_extensionId, extension_id, xctx);
+            afw_s_extensionId, extension_id, xctx);
 
         /* Register extension. */
         afw_environment_registry_register(
@@ -1626,7 +1626,7 @@ afw_environment_register_adaptor_type(
             AFW_UTF8_FMT_ARG(adaptor_type));
 
         afw_environment_register_flag(detail_flag_id, brief, description,
-            &afw_s_a_flag_trace_adaptor_detail, xctx);
+            afw_s_a_flag_trace_adaptor_detail, xctx);
 
         flag_id = afw_utf8_printf(p, xctx,
             "trace:adaptorType:" AFW_UTF8_FMT,
@@ -1642,7 +1642,7 @@ afw_environment_register_adaptor_type(
             AFW_UTF8_FMT_ARG(adaptor_type));
 
         afw_environment_register_flag(flag_id, brief, description,
-            &afw_s_a_flag_trace_adaptor, xctx);
+            afw_s_a_flag_trace_adaptor, xctx);
 
         afw_flag_add_included_by(flag_id, detail_flag_id, xctx);
     }
@@ -1686,7 +1686,7 @@ afw_environment_register_authorization_handler_type(
             AFW_UTF8_FMT_ARG(authorization_handler_type));
 
         afw_environment_register_flag(detail_flag_id, brief, description,
-            &afw_s_a_flag_trace_authorizationHandler_detail, xctx);
+            afw_s_a_flag_trace_authorizationHandler_detail, xctx);
 
         flag_id = afw_utf8_printf(p, xctx,
             "trace:authorizationHandlerType:" AFW_UTF8_FMT,
@@ -1702,7 +1702,7 @@ afw_environment_register_authorization_handler_type(
             AFW_UTF8_FMT_ARG(authorization_handler_type));
 
         afw_environment_register_flag(flag_id, brief, description,
-            &afw_s_a_flag_trace_authorizationHandler, xctx);
+            afw_s_a_flag_trace_authorizationHandler, xctx);
 
         afw_flag_add_included_by(flag_id, detail_flag_id, xctx);
     }

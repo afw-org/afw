@@ -64,7 +64,7 @@ afw_function_execute_add_string(
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
         if (!*v) {
-            *v = &afw_v_undefined;
+            *v = &afw_self_v_undefined;
         }
         len += (*v)->internal.len;
     }
@@ -140,7 +140,7 @@ afw_function_execute_concat(
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
         if (!*v) {
-            *v = &afw_v_undefined;;
+            *v = &afw_self_v_undefined;
         }
         len += (*v)->internal.len;
     }
@@ -357,7 +357,7 @@ afw_function_execute_string(
     for (v = args, n = 1, len = 0; n <= x->argc; v++, n++) {
         AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER((*v), n, string);
         if (!*v) {
-            *v = &afw_v_undefined;;
+            *v = &afw_self_v_undefined;
         }
         len += (*v)->internal.len;
     }

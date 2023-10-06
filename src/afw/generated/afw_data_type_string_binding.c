@@ -144,8 +144,8 @@ impl_data_type_object_string = {
         {
             NULL,
             NULL,
-            &afw_s_string,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_string,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_string
         }
     },

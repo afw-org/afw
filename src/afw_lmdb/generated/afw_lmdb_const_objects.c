@@ -414,8 +414,8 @@ impl_1_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_1 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
     &impl_1_meta_path,
     &impl_1_properties[0]
 };
@@ -1049,8 +1049,8 @@ impl_6_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_6 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
     &impl_6_meta_path,
     &impl_6_properties[0]
 };
@@ -1684,8 +1684,8 @@ impl_14_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_14 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
     &impl_14_meta_path,
     &impl_14_properties[0]
 };
@@ -1807,8 +1807,8 @@ impl_22_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_22 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
     &impl_22_meta_path,
     &impl_22_properties[0]
 };
@@ -2258,8 +2258,8 @@ impl_24_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_24 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
     &impl_24_meta_path,
     &impl_24_properties[0]
 };
@@ -2562,8 +2562,8 @@ impl_30_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_30 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb,
     &impl_30_meta_path,
     &impl_30_properties[0]
 };
@@ -3100,8 +3100,8 @@ impl_34_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_34 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_env,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_env,
     &impl_34_meta_path,
     &impl_34_properties[0]
 };
@@ -3397,8 +3397,8 @@ impl_41_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_41 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits,
     &impl_41_meta_path,
     &impl_41_properties[0]
 };
@@ -3674,8 +3674,8 @@ impl_45_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_45 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_size,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_size,
     &impl_45_meta_path,
     &impl_45_properties[0]
 };
@@ -3951,8 +3951,8 @@ impl_49_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_49 = {
-    &afw_lmdb_s__AdaptiveObjectType_,
-    &afw_lmdb_s__AdaptiveConf_adaptor_lmdb_limits_time,
+    &afw_lmdb_self_s__AdaptiveObjectType_,
+    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_time,
     &impl_49_meta_path,
     &impl_49_properties[0]
 };
@@ -4005,8 +4005,8 @@ impl_53_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_53 = {
-    &afw_lmdb_s__AdaptiveFunctionCategory_,
-    &afw_lmdb_s_lmdb,
+    &afw_lmdb_self_s__AdaptiveFunctionCategory_,
+    &afw_lmdb_self_s_lmdb,
     &impl_53_meta_path,
     &impl_53_properties[0]
 };
@@ -4049,8 +4049,8 @@ impl_54_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_54 = {
-    &afw_lmdb_s__AdaptiveCollection_,
-    &afw_lmdb_s_lmdb_extension,
+    &afw_lmdb_self_s__AdaptiveCollection_,
+    &afw_lmdb_self_s_lmdb_extension,
     &impl_54_meta_path,
     &impl_54_properties[0]
 };

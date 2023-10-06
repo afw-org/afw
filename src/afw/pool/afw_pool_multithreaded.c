@@ -185,7 +185,7 @@ afw_pool_internal_create_base_pool()
     }
     self->pub.inf = &impl_afw_pool_inf;
     self->apr_p = apr_p;
-    self->name = &afw_s_base;
+    self->name = afw_s_base;
     self->pool_number = 1;
     self->reference_count = 1;
 

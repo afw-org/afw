@@ -114,8 +114,8 @@ impl_1_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_1 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Autocomplete,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Autocomplete,
     &impl_1_meta_path,
     &impl_1_properties[0]
 };
@@ -208,8 +208,8 @@ impl_2_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_2 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Box,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Box,
     &impl_2_meta_path,
     &impl_2_properties[0]
 };
@@ -302,8 +302,8 @@ impl_3_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_3 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Breadcrumb,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Breadcrumb,
     &impl_3_meta_path,
     &impl_3_properties[0]
 };
@@ -396,8 +396,8 @@ impl_4_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_4 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Button,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Button,
     &impl_4_meta_path,
     &impl_4_properties[0]
 };
@@ -490,8 +490,8 @@ impl_5_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_5 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Callout,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Callout,
     &impl_5_meta_path,
     &impl_5_properties[0]
 };
@@ -584,8 +584,8 @@ impl_6_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_6 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Chart,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Chart,
     &impl_6_meta_path,
     &impl_6_properties[0]
 };
@@ -678,8 +678,8 @@ impl_7_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_7 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Checkbox,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Checkbox,
     &impl_7_meta_path,
     &impl_7_properties[0]
 };
@@ -772,8 +772,8 @@ impl_8_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_8 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_ChoiceGroup,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_ChoiceGroup,
     &impl_8_meta_path,
     &impl_8_properties[0]
 };
@@ -866,8 +866,8 @@ impl_9_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_9 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_CodeEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_CodeEditor,
     &impl_9_meta_path,
     &impl_9_properties[0]
 };
@@ -960,8 +960,8 @@ impl_10_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_10 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Collapsible,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Collapsible,
     &impl_10_meta_path,
     &impl_10_properties[0]
 };
@@ -1054,8 +1054,8 @@ impl_11_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_11 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_DatePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_DatePicker,
     &impl_11_meta_path,
     &impl_11_properties[0]
 };
@@ -1148,8 +1148,8 @@ impl_12_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_12 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_DateTimePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_DateTimePicker,
     &impl_12_meta_path,
     &impl_12_properties[0]
 };
@@ -1242,8 +1242,8 @@ impl_13_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_13 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Dialog,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Dialog,
     &impl_13_meta_path,
     &impl_13_properties[0]
 };
@@ -1336,8 +1336,8 @@ impl_14_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_14 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_DiffEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_DiffEditor,
     &impl_14_meta_path,
     &impl_14_properties[0]
 };
@@ -1430,8 +1430,8 @@ impl_15_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_15 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Divider,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Divider,
     &impl_15_meta_path,
     &impl_15_properties[0]
 };
@@ -1524,8 +1524,8 @@ impl_16_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_16 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Drawer,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Drawer,
     &impl_16_meta_path,
     &impl_16_properties[0]
 };
@@ -1618,8 +1618,8 @@ impl_17_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_17 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Dropdown,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Dropdown,
     &impl_17_meta_path,
     &impl_17_properties[0]
 };
@@ -1712,8 +1712,8 @@ impl_18_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_18 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_DropdownEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_DropdownEditor,
     &impl_18_meta_path,
     &impl_18_properties[0]
 };
@@ -1806,8 +1806,8 @@ impl_19_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_19 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_EditableCallout,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_EditableCallout,
     &impl_19_meta_path,
     &impl_19_properties[0]
 };
@@ -1900,8 +1900,8 @@ impl_20_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_20 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_EditableLabel,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_EditableLabel,
     &impl_20_meta_path,
     &impl_20_properties[0]
 };
@@ -1994,8 +1994,8 @@ impl_21_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_21 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Hidden,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Hidden,
     &impl_21_meta_path,
     &impl_21_properties[0]
 };
@@ -2088,8 +2088,8 @@ impl_22_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_22 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Icon,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Icon,
     &impl_22_meta_path,
     &impl_22_properties[0]
 };
@@ -2182,8 +2182,8 @@ impl_23_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_23 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Image,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Image,
     &impl_23_meta_path,
     &impl_23_properties[0]
 };
@@ -2276,8 +2276,8 @@ impl_24_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_24 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Link,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Link,
     &impl_24_meta_path,
     &impl_24_properties[0]
 };
@@ -2370,8 +2370,8 @@ impl_25_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_25 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_List,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_List,
     &impl_25_meta_path,
     &impl_25_properties[0]
 };
@@ -2464,8 +2464,8 @@ impl_26_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_26 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_ListEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_ListEditor,
     &impl_26_meta_path,
     &impl_26_properties[0]
 };
@@ -2558,8 +2558,8 @@ impl_27_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_27 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Menu,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Menu,
     &impl_27_meta_path,
     &impl_27_properties[0]
 };
@@ -2652,8 +2652,8 @@ impl_28_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_28 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Message,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Message,
     &impl_28_meta_path,
     &impl_28_properties[0]
 };
@@ -2746,8 +2746,8 @@ impl_29_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_29 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Modal,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Modal,
     &impl_29_meta_path,
     &impl_29_properties[0]
 };
@@ -2840,8 +2840,8 @@ impl_30_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_30 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Native,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Native,
     &impl_30_meta_path,
     &impl_30_properties[0]
 };
@@ -2934,8 +2934,8 @@ impl_31_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_31 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Nav,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Nav,
     &impl_31_meta_path,
     &impl_31_properties[0]
 };
@@ -3028,8 +3028,8 @@ impl_32_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_32 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Paper,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Paper,
     &impl_32_meta_path,
     &impl_32_properties[0]
 };
@@ -3122,8 +3122,8 @@ impl_33_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_33 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Picker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Picker,
     &impl_33_meta_path,
     &impl_33_properties[0]
 };
@@ -3216,8 +3216,8 @@ impl_34_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_34 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Responsive,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Responsive,
     &impl_34_meta_path,
     &impl_34_properties[0]
 };
@@ -3310,8 +3310,8 @@ impl_35_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_35 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Skeleton,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Skeleton,
     &impl_35_meta_path,
     &impl_35_properties[0]
 };
@@ -3404,8 +3404,8 @@ impl_36_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_36 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Slider,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Slider,
     &impl_36_meta_path,
     &impl_36_properties[0]
 };
@@ -3498,8 +3498,8 @@ impl_37_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_37 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Snackbar,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Snackbar,
     &impl_37_meta_path,
     &impl_37_properties[0]
 };
@@ -3592,8 +3592,8 @@ impl_38_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_38 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_SpinButton,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_SpinButton,
     &impl_38_meta_path,
     &impl_38_properties[0]
 };
@@ -3686,8 +3686,8 @@ impl_39_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_39 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Spinner,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Spinner,
     &impl_39_meta_path,
     &impl_39_properties[0]
 };
@@ -3780,8 +3780,8 @@ impl_40_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_40 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Stepper,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Stepper,
     &impl_40_meta_path,
     &impl_40_properties[0]
 };
@@ -3874,8 +3874,8 @@ impl_41_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_41 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Table,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Table,
     &impl_41_meta_path,
     &impl_41_properties[0]
 };
@@ -3968,8 +3968,8 @@ impl_42_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_42 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Tabs,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Tabs,
     &impl_42_meta_path,
     &impl_42_properties[0]
 };
@@ -4062,8 +4062,8 @@ impl_43_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_43 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_TextField,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_TextField,
     &impl_43_meta_path,
     &impl_43_properties[0]
 };
@@ -4156,8 +4156,8 @@ impl_44_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_44 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_TimeDuration,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_TimeDuration,
     &impl_44_meta_path,
     &impl_44_properties[0]
 };
@@ -4250,8 +4250,8 @@ impl_45_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_45 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_TimePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_TimePicker,
     &impl_45_meta_path,
     &impl_45_properties[0]
 };
@@ -4344,8 +4344,8 @@ impl_46_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_46 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_TimezonePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_TimezonePicker,
     &impl_46_meta_path,
     &impl_46_properties[0]
 };
@@ -4438,8 +4438,8 @@ impl_47_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_47 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Toggle,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Toggle,
     &impl_47_meta_path,
     &impl_47_properties[0]
 };
@@ -4532,8 +4532,8 @@ impl_48_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_48 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_ToggleButtons,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_ToggleButtons,
     &impl_48_meta_path,
     &impl_48_properties[0]
 };
@@ -4626,8 +4626,8 @@ impl_49_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_49 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Toolbar,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Toolbar,
     &impl_49_meta_path,
     &impl_49_properties[0]
 };
@@ -4720,8 +4720,8 @@ impl_50_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_50 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Tooltip,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Tooltip,
     &impl_50_meta_path,
     &impl_50_properties[0]
 };
@@ -4814,8 +4814,8 @@ impl_51_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_51 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Tree,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Tree,
     &impl_51_meta_path,
     &impl_51_properties[0]
 };
@@ -4908,8 +4908,8 @@ impl_52_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_52 = {
-    &afw_components_s__AdaptiveLayoutComponentType_,
-    &afw_components_s_Typography,
+    &afw_components_self_s__AdaptiveLayoutComponentType_,
+    &afw_components_self_s_Typography,
     &impl_52_meta_path,
     &impl_52_properties[0]
 };
@@ -5326,8 +5326,8 @@ impl_53_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_53 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_AdaptiveProperty,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_AdaptiveProperty,
     &impl_53_meta_path,
     &impl_53_properties[0]
 };
@@ -6062,8 +6062,8 @@ impl_59_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_59 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Autocomplete,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Autocomplete,
     &impl_59_meta_path,
     &impl_59_properties[0]
 };
@@ -6339,8 +6339,8 @@ impl_69_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_69 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Autocomplete_Option,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Autocomplete_Option,
     &impl_69_meta_path,
     &impl_69_properties[0]
 };
@@ -7136,8 +7136,8 @@ impl_73_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_73 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Box,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Box,
     &impl_73_meta_path,
     &impl_73_properties[0]
 };
@@ -7594,8 +7594,8 @@ impl_81_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_81 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_BoxItem,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_BoxItem,
     &impl_81_meta_path,
     &impl_81_properties[0]
 };
@@ -7831,8 +7831,8 @@ impl_87_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_87 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Breadcrumb,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Breadcrumb,
     &impl_87_meta_path,
     &impl_87_properties[0]
 };
@@ -8145,8 +8145,8 @@ impl_90_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_90 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_BreadcrumbItem,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_BreadcrumbItem,
     &impl_90_meta_path,
     &impl_90_properties[0]
 };
@@ -8905,8 +8905,8 @@ impl_94_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_94 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Button,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Button,
     &impl_94_meta_path,
     &impl_94_properties[0]
 };
@@ -9343,8 +9343,8 @@ impl_104_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_104 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Callout,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Callout,
     &impl_104_meta_path,
     &impl_104_properties[0]
 };
@@ -9771,8 +9771,8 @@ impl_110_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_110 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Chart,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Chart,
     &impl_110_meta_path,
     &impl_110_properties[0]
 };
@@ -10048,8 +10048,8 @@ impl_116_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_116 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Chart_Data,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Chart_Data,
     &impl_116_meta_path,
     &impl_116_properties[0]
 };
@@ -10543,8 +10543,8 @@ impl_120_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_120 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Checkbox,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Checkbox,
     &impl_120_meta_path,
     &impl_120_properties[0]
 };
@@ -11081,8 +11081,8 @@ impl_127_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_127 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ChoiceGroup,
     &impl_127_meta_path,
     &impl_127_properties[0]
 };
@@ -11462,8 +11462,8 @@ impl_134_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_134 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup_Option,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ChoiceGroup_Option,
     &impl_134_meta_path,
     &impl_134_properties[0]
 };
@@ -11957,8 +11957,8 @@ impl_140_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_140 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_CodeEditor,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_CodeEditor,
     &impl_140_meta_path,
     &impl_140_properties[0]
 };
@@ -12415,8 +12415,8 @@ impl_147_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_147 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Collapsible,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Collapsible,
     &impl_147_meta_path,
     &impl_147_properties[0]
 };
@@ -13153,8 +13153,8 @@ impl_153_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_153 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Common,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Common,
     &impl_153_meta_path,
     &impl_153_properties[0]
 };
@@ -13658,8 +13658,8 @@ impl_164_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_164 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_DatePicker,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DatePicker,
     &impl_164_meta_path,
     &impl_164_properties[0]
 };
@@ -14163,8 +14163,8 @@ impl_171_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_171 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_DateTimePicker,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DateTimePicker,
     &impl_171_meta_path,
     &impl_171_properties[0]
 };
@@ -14971,8 +14971,8 @@ impl_178_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_178 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Dialog,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Dialog,
     &impl_178_meta_path,
     &impl_178_properties[0]
 };
@@ -15342,8 +15342,8 @@ impl_189_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_189 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_DiffEditor,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DiffEditor,
     &impl_189_meta_path,
     &impl_189_properties[0]
 };
@@ -15492,8 +15492,8 @@ impl_194_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_194 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Divider,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Divider,
     &impl_194_meta_path,
     &impl_194_properties[0]
 };
@@ -16019,8 +16019,8 @@ impl_196_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_196 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Drawer,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Drawer,
     &impl_196_meta_path,
     &impl_196_properties[0]
 };
@@ -16611,8 +16611,8 @@ impl_202_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_202 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Dropdown,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Dropdown,
     &impl_202_meta_path,
     &impl_202_properties[0]
 };
@@ -17183,8 +17183,8 @@ impl_210_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_210 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_DropdownEditor,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DropdownEditor,
     &impl_210_meta_path,
     &impl_210_properties[0]
 };
@@ -17497,8 +17497,8 @@ impl_218_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_218 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Dropdown_Option,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Dropdown_Option,
     &impl_218_meta_path,
     &impl_218_properties[0]
 };
@@ -17992,8 +17992,8 @@ impl_223_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_223 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_EditableCallout,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_EditableCallout,
     &impl_223_meta_path,
     &impl_223_properties[0]
 };
@@ -18363,8 +18363,8 @@ impl_230_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_230 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_EditableLabel,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_EditableLabel,
     &impl_230_meta_path,
     &impl_230_properties[0]
 };
@@ -18992,8 +18992,8 @@ impl_235_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_235 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Hidden,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Hidden,
     &impl_235_meta_path,
     &impl_235_properties[0]
 };
@@ -19219,8 +19219,8 @@ impl_244_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_244 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Icon,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Icon,
     &impl_244_meta_path,
     &impl_244_properties[0]
 };
@@ -19436,8 +19436,8 @@ impl_247_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_247 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Image,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Image,
     &impl_247_meta_path,
     &impl_247_properties[0]
 };
@@ -19797,8 +19797,8 @@ impl_250_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_250 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Label,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Label,
     &impl_250_meta_path,
     &impl_250_properties[0]
 };
@@ -20168,8 +20168,8 @@ impl_255_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_255 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Link,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Link,
     &impl_255_meta_path,
     &impl_255_properties[0]
 };
@@ -20462,8 +20462,8 @@ impl_260_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_260 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_List,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_List,
     &impl_260_meta_path,
     &impl_260_properties[0]
 };
@@ -20756,8 +20756,8 @@ impl_264_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_264 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ListEditor,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ListEditor,
     &impl_264_meta_path,
     &impl_264_properties[0]
 };
@@ -21033,8 +21033,8 @@ impl_268_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_268 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ListEditor_Item,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ListEditor_Item,
     &impl_268_meta_path,
     &impl_268_properties[0]
 };
@@ -21327,8 +21327,8 @@ impl_272_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_272 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Menu,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Menu,
     &impl_272_meta_path,
     &impl_272_properties[0]
 };
@@ -21862,8 +21862,8 @@ impl_276_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_276 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Menu_Item,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Menu_Item,
     &impl_276_meta_path,
     &impl_276_properties[0]
 };
@@ -22381,8 +22381,8 @@ impl_284_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_284 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Message,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Message,
     &impl_284_meta_path,
     &impl_284_properties[0]
 };
@@ -22742,8 +22742,8 @@ impl_291_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_291 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Modal,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Modal,
     &impl_291_meta_path,
     &impl_291_properties[0]
 };
@@ -22949,8 +22949,8 @@ impl_296_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_296 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Native,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Native,
     &impl_296_meta_path,
     &impl_296_properties[0]
 };
@@ -23166,8 +23166,8 @@ impl_299_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_299 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Nav,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Nav,
     &impl_299_meta_path,
     &impl_299_properties[0]
 };
@@ -23644,8 +23644,8 @@ impl_302_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_302 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Nav_Item,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Nav_Item,
     &impl_302_meta_path,
     &impl_302_properties[0]
 };
@@ -24005,8 +24005,8 @@ impl_309_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_309 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Paper,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Paper,
     &impl_309_meta_path,
     &impl_309_properties[0]
 };
@@ -24376,8 +24376,8 @@ impl_314_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_314 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Picker,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Picker,
     &impl_314_meta_path,
     &impl_314_properties[0]
 };
@@ -24653,8 +24653,8 @@ impl_319_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_319 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Picker_Item,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Picker_Item,
     &impl_319_meta_path,
     &impl_319_properties[0]
 };
@@ -25263,8 +25263,8 @@ impl_323_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_323 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Responsive,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Responsive,
     &impl_323_meta_path,
     &impl_323_properties[0]
 };
@@ -25560,8 +25560,8 @@ impl_330_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_330 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ResponsiveCol,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ResponsiveCol,
     &impl_330_meta_path,
     &impl_330_properties[0]
 };
@@ -25790,8 +25790,8 @@ impl_334_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_334 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ResponsiveRow,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ResponsiveRow,
     &impl_334_meta_path,
     &impl_334_properties[0]
 };
@@ -26533,8 +26533,8 @@ impl_337_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_337 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Responsive_Breakpoints,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Responsive_Breakpoints,
     &impl_337_meta_path,
     &impl_337_properties[0]
 };
@@ -26854,8 +26854,8 @@ impl_345_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_345 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Skeleton,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Skeleton,
     &impl_345_meta_path,
     &impl_345_properties[0]
 };
@@ -27580,8 +27580,8 @@ impl_350_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_350 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Slider,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Slider,
     &impl_350_meta_path,
     &impl_350_properties[0]
 };
@@ -28023,8 +28023,8 @@ impl_360_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_360 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Snackbar,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Snackbar,
     &impl_360_meta_path,
     &impl_360_properties[0]
 };
@@ -28615,8 +28615,8 @@ impl_366_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_366 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_SpinButton,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_SpinButton,
     &impl_366_meta_path,
     &impl_366_properties[0]
 };
@@ -28899,8 +28899,8 @@ impl_374_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_374 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Spinner,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Spinner,
     &impl_374_meta_path,
     &impl_374_properties[0]
 };
@@ -29183,8 +29183,8 @@ impl_378_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_378 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Stepper,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Stepper,
     &impl_378_meta_path,
     &impl_378_properties[0]
 };
@@ -39888,8 +39888,8 @@ impl_382_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_382 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Style,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Style,
     &impl_382_meta_path,
     &impl_382_properties[0]
 };
@@ -40403,8 +40403,8 @@ impl_570_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_570 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Table,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Table,
     &impl_570_meta_path,
     &impl_570_properties[0]
 };
@@ -41045,8 +41045,8 @@ impl_577_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_577 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Table_Column,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Table_Column,
     &impl_577_meta_path,
     &impl_577_properties[0]
 };
@@ -41188,8 +41188,8 @@ impl_586_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_586 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Table_Row,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Table_Row,
     &impl_586_meta_path,
     &impl_586_properties[0]
 };
@@ -41482,8 +41482,8 @@ impl_588_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_588 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Tabs,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tabs,
     &impl_588_meta_path,
     &impl_588_properties[0]
 };
@@ -41846,8 +41846,8 @@ impl_592_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_592 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Tabs_Tab,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tabs_Tab,
     &impl_592_meta_path,
     &impl_592_properties[0]
 };
@@ -42562,8 +42562,8 @@ impl_597_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_597 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_TextField,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TextField,
     &impl_597_meta_path,
     &impl_597_properties[0]
 };
@@ -43134,8 +43134,8 @@ impl_607_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_607 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_TimeDuration,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TimeDuration,
     &impl_607_meta_path,
     &impl_607_properties[0]
 };
@@ -43408,8 +43408,8 @@ impl_615_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_615 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_TimePicker,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TimePicker,
     &impl_615_meta_path,
     &impl_615_properties[0]
 };
@@ -43702,8 +43702,8 @@ impl_619_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_619 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_TimezonePicker,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TimezonePicker,
     &impl_619_meta_path,
     &impl_619_properties[0]
 };
@@ -44187,8 +44187,8 @@ impl_623_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_623 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Toggle,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Toggle,
     &impl_623_meta_path,
     &impl_623_properties[0]
 };
@@ -44635,8 +44635,8 @@ impl_630_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_630 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_ToggleButtons,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ToggleButtons,
     &impl_630_meta_path,
     &impl_630_properties[0]
 };
@@ -45304,8 +45304,8 @@ impl_636_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_636 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Toolbar,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Toolbar,
     &impl_636_meta_path,
     &impl_636_properties[0]
 };
@@ -45732,8 +45732,8 @@ impl_644_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_644 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Tooltip,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tooltip,
     &impl_644_meta_path,
     &impl_644_properties[0]
 };
@@ -46190,8 +46190,8 @@ impl_650_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_650 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Tree,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tree,
     &impl_650_meta_path,
     &impl_650_properties[0]
 };
@@ -46698,8 +46698,8 @@ impl_656_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_656 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Tree_Node,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tree_Node,
     &impl_656_meta_path,
     &impl_656_properties[0]
 };
@@ -47256,8 +47256,8 @@ impl_663_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_663 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayoutComponentType_Typography,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Typography,
     &impl_663_meta_path,
     &impl_663_properties[0]
 };
@@ -48569,8 +48569,8 @@ impl_669_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_669 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayout_ObjectResponsive,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive,
     &impl_669_meta_path,
     &impl_669_properties[0]
 };
@@ -48795,8 +48795,8 @@ impl_686_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_686 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_embedded,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_embedded,
     &impl_686_meta_path,
     &impl_686_properties[0]
 };
@@ -49514,8 +49514,8 @@ impl_689_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_689 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_filterOptions,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_filterOptions,
     &impl_689_meta_path,
     &impl_689_properties[0]
 };
@@ -49915,8 +49915,8 @@ impl_699_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_699 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_preferredComponent,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_preferredComponent,
     &impl_699_meta_path,
     &impl_699_properties[0]
 };
@@ -50336,8 +50336,8 @@ impl_705_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_705 = {
-    &afw_components_s__AdaptiveObjectType_,
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_sortOptions,
+    &afw_components_self_s__AdaptiveObjectType_,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_sortOptions,
     &impl_705_meta_path,
     &impl_705_properties[0]
 };
@@ -50390,8 +50390,8 @@ impl_711_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_711 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_containers,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_containers,
     &impl_711_meta_path,
     &impl_711_properties[0]
 };
@@ -50444,8 +50444,8 @@ impl_712_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_712 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_content,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_content,
     &impl_712_meta_path,
     &impl_712_properties[0]
 };
@@ -50498,8 +50498,8 @@ impl_713_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_713 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_editors,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_editors,
     &impl_713_meta_path,
     &impl_713_properties[0]
 };
@@ -50552,8 +50552,8 @@ impl_714_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_714 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_inputs,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_inputs,
     &impl_714_meta_path,
     &impl_714_properties[0]
 };
@@ -50606,8 +50606,8 @@ impl_715_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_715 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_navigation,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_navigation,
     &impl_715_meta_path,
     &impl_715_properties[0]
 };
@@ -50660,8 +50660,8 @@ impl_716_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_716 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_pickers,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_pickers,
     &impl_716_meta_path,
     &impl_716_properties[0]
 };
@@ -50714,8 +50714,8 @@ impl_717_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_717 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_structured,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_structured,
     &impl_717_meta_path,
     &impl_717_properties[0]
 };
@@ -50768,8 +50768,8 @@ impl_718_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_718 = {
-    &afw_components_s__AdaptiveLayoutComponentTypeCategory_,
-    &afw_components_s_utilities,
+    &afw_components_self_s__AdaptiveLayoutComponentTypeCategory_,
+    &afw_components_self_s_utilities,
     &impl_718_meta_path,
     &impl_718_properties[0]
 };

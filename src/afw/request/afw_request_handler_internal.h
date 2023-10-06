@@ -49,7 +49,7 @@ struct afw_request_handler_entry_s {
 };
 
 
-#define AFW_REQUEST_HANDLER_S_SINGLETON_KEY_HEAD afw_s_afw_request_handler_head
+#define AFW_REQUEST_HANDLER_S_SINGLETON_KEY_HEAD afw_self_s_afw_request_handler_head
 
 typedef struct afw_request_handler_head_s {
     afw_request_handler_entry_t *first_handler;

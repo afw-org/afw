@@ -189,9 +189,9 @@ afw_ldap_internal_session_begin(
     bind_parameters = ((const afw_value_object_t *)bind_parameters_value)
         ->internal;
     self->bind_dn_z = afw_object_old_get_property_as_utf8_z(bind_parameters,
-        &afw_ldap_s_dn, p, xctx);
+        afw_ldap_s_dn, p, xctx);
     self->bind_password_z = afw_object_old_get_property_as_utf8_z(bind_parameters,
-        &afw_ldap_s_password, p, xctx);
+        afw_ldap_s_password, p, xctx);
     if (!self->bind_dn_z || !self->bind_password_z) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Invalid bindParameters for adaptorId " AFW_UTF8_FMT_Q,

@@ -145,7 +145,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
              *     If this becomes an issue, call afw_compile_is_reserved_word()
              *     instead of testing for void, but that will take longer.
              */
-            if (afw_compile_token_is_name(&afw_s_void))
+            if (afw_compile_token_is_name(afw_s_void))
             {
                 afw_compile_reuse_token();
                 return NULL;             
@@ -166,7 +166,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
             if (!result) {
                 if (!parser->token->identifier_qualifier ||
                     afw_utf8_equal(parser->token->identifier_qualifier,
-                        &afw_s_fn))
+                        afw_s_fn))
                 {
                     untyped_function_id = parser->token->identifier_name;
                     function = afw_environment_get_qualified_function(
@@ -718,7 +718,7 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         return NULL;
     }
-    if (afw_compile_token_is_name(&afw_s_function)) {
+    if (afw_compile_token_is_name(afw_s_function)) {
         afw_compile_get_token();
         if (!afw_compile_token_is(open_parenthesis) &&
             !afw_compile_token_is(identifier))
@@ -911,9 +911,9 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 afw_compile_get_token())
             {
                 /* MediaType */
-                if (afw_utf8_equal(dataType, &afw_s_string) ||
-                    afw_utf8_equal(dataType, &afw_s_base64Binary) ||
-                    afw_utf8_equal(dataType, &afw_s_hexBinary))
+                if (afw_utf8_equal(dataType, afw_s_string) ||
+                    afw_utf8_equal(dataType, afw_s_base64Binary) ||
+                    afw_utf8_equal(dataType, afw_s_hexBinary))
                 {
                     if (!afw_compile_token_is(utf8_string)) {
                         AFW_COMPILE_THROW_ERROR_Z("Expecting quoted string");
@@ -923,17 +923,17 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
 
                 /* ReturnType */
                 else if (
-                    afw_utf8_equal(dataType, &afw_s_script) ||
-                    afw_utf8_equal(dataType, &afw_s_template))
+                    afw_utf8_equal(dataType, afw_s_script) ||
+                    afw_utf8_equal(dataType, afw_s_template))
                 {
-                    if (!afw_compile_token_is_name(&afw_s_void)) {
+                    if (!afw_compile_token_is_name(afw_s_void)) {
                         afw_compile_reuse_token();
                         type->return_type = afw_compile_parse_Type(parser);
                     }
                 }
 
                 /* FunctionSignature */
-                else if (afw_utf8_equal(dataType, &afw_s_function))
+                else if (afw_utf8_equal(dataType, afw_s_function))
                 {
                     afw_compile_reuse_token();
                     type->function_signature =
@@ -942,7 +942,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 }
 
                 /* ArrayOf */
-                else if (afw_utf8_equal(dataType, &afw_s_array))
+                else if (afw_utf8_equal(dataType, afw_s_array))
                 {
                     if (!afw_compile_token_is_name_z("of")) {
                         AFW_COMPILE_THROW_ERROR_Z(
@@ -955,7 +955,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                         type->list_type = list_type;
                     }
                     afw_compile_get_token();
-                    if (!afw_compile_token_is_name(&afw_s_array)) {
+                    if (!afw_compile_token_is_name(afw_s_array)) {
                         list_type->dimension++;
                     }
                     else {
@@ -970,8 +970,8 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 }
 
                 /* ObjectType */
-                else if (afw_utf8_equal(dataType, &afw_s_object) ||
-                    afw_utf8_equal(dataType, &afw_s_objectId))
+                else if (afw_utf8_equal(dataType, afw_s_object) ||
+                    afw_utf8_equal(dataType, afw_s_objectId))
                 {
                     if (!afw_compile_token_is(utf8_string)) {
                         AFW_COMPILE_THROW_ERROR_Z("Expecting quoted string");
@@ -980,7 +980,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                 }
 
                 /* Type */
-                else if (afw_utf8_equal(dataType, &afw_s_unevaluated))
+                else if (afw_utf8_equal(dataType, afw_s_unevaluated))
                 {
                     afw_compile_reuse_token();
                     type->type = afw_compile_parse_Type(parser);
@@ -1042,7 +1042,7 @@ afw_compile_parse_OptionalType(
     if (afw_compile_token_is(colon)) {
         if (is_return) {
             afw_compile_get_token();
-            if (afw_compile_token_is_name(&afw_s_void)) {
+            if (afw_compile_token_is_name(afw_s_void)) {
                 return NULL;
             }
             afw_compile_reuse_token();
@@ -1604,7 +1604,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
     case afw_compile_token_type_identifier:
         if (!parser->token->identifier_qualifier) {
             if (afw_utf8_equal(parser->token->identifier_name,
-                &afw_s_void))
+                afw_s_void))
             {
                 argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
                     parser->xctx);

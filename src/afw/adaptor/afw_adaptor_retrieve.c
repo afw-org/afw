@@ -63,7 +63,7 @@ afw_adaptor_retrieve_objects(
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
-        journal_entry, &afw_s_request, xctx);
+        journal_entry, afw_s_request, xctx);
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
@@ -73,18 +73,18 @@ afw_adaptor_retrieve_objects(
         AFW_UTF8_FMT_ARG(adaptor_id),
         AFW_UTF8_FMT_ARG(object_type_id));
     afw_object_set_property_as_string(request,
-        &afw_s_resourceId, impl_request.resource_id, xctx);
+        afw_s_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;
     afw_object_set_property_as_string(request,
-        &afw_s_function, &afw_s_retrieve_objects, xctx);
+        afw_s_function, afw_s_retrieve_objects, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_adaptorId, adaptor_id, xctx);
+        afw_s_adaptorId, adaptor_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_objectType, object_type_id, xctx);
+        afw_s_objectType, object_type_id, xctx);
 
     /* Journal entry is not supported for retrieve. */
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
         AFW_THROW_ERROR_Z(general,
             "retrieve_objects() is not supported for "

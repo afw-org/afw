@@ -197,13 +197,13 @@ afw_adaptor_impl_push_qualifiers(
     const afw_adaptor_t *adaptor,
     afw_xctx_t *xctx)
 {
-    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_adaptor,
+    afw_xctx_qualifier_stack_qualifier_object_push(afw_s_adaptor,
         adaptor->properties, true, xctx->p, xctx);
-    afw_xctx_qualifier_stack_qualifier_push(&afw_s_adaptor, NULL, true,
+    afw_xctx_qualifier_stack_qualifier_push(afw_s_adaptor, NULL, true,
         impl_adaptor_common_variable_get_cb, (void *)adaptor,
         xctx->p, xctx);
     if (adaptor->impl->custom_variables) {
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_custom,
             adaptor->impl->custom_variables, true,
             xctx->p, xctx);
     }
@@ -232,7 +232,7 @@ afw_adaptor_impl_create_cede_p(
     adaptor->inf = &impl_afw_adaptor_inf;
     adaptor->p = p;
     adaptor->adaptor_type_id = afw_object_old_get_property_as_string(
-        properties, &afw_s_adaptorType, xctx);
+        properties, afw_s_adaptorType, xctx);
     impl = afw_pool_calloc_type(p, afw_adaptor_impl_t, xctx);
     adaptor->impl = impl;
     impl->adaptor = adaptor;
@@ -244,18 +244,18 @@ afw_adaptor_impl_create_cede_p(
 
     /* Get adaptorType from properties. */
     adaptor->adaptor_type_id = afw_object_old_get_property_as_string(
-        properties, &afw_s_adaptorType, xctx);
+        properties, afw_s_adaptorType, xctx);
 
     /* Get source location.  Default it to adaptor. */
     impl->source_location = afw_object_old_get_property_as_string(
-        properties, &afw_s_sourceLocation, xctx);
+        properties, afw_s_sourceLocation, xctx);
     if (!impl->source_location) {
-        impl->source_location = &afw_s_adaptor;
+        impl->source_location = afw_s_adaptor;
     }
 
     /* Get adaptor_id from parameters. */
     s = afw_object_old_get_property_as_utf8(properties,
-        &afw_s_adaptorId, p, xctx);
+        afw_s_adaptorId, p, xctx);
 
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,
@@ -299,12 +299,12 @@ afw_adaptor_impl_create_cede_p(
     impl->supported_core_object_types = apr_hash_make(
         afw_pool_get_apr_pool(p));
     afw_adaptor_impl_set_supported_core_object_type(adaptor,
-        &afw_s__AdaptiveObjectType_, true, false, xctx);
+        afw_s__AdaptiveObjectType_, true, false, xctx);
 
     /* Get optional authorizationHandlerId from parameters. */
     impl->authorization_handler_id =
         afw_object_old_get_property_as_string(adaptor->properties,
-            &afw_s_authorizationHandlerId, xctx);
+            afw_s_authorizationHandlerId, xctx);
     if (impl->authorization_handler_id)
     {
         authorization_handler = NULL;
@@ -330,7 +330,7 @@ afw_adaptor_impl_create_cede_p(
 
     /* Get optional journalAdaptorId from parameters. */
     impl->journal_adaptor_id = afw_object_old_get_property_as_string(
-        adaptor->properties, &afw_s_journalAdaptorId, xctx);
+        adaptor->properties, afw_s_journalAdaptorId, xctx);
     if (impl->journal_adaptor_id) {
         AFW_LOG_FZ(debug, xctx,
             "Adaptor " AFW_UTF8_FMT_Q
@@ -369,12 +369,12 @@ afw_adaptor_impl_create_cede_p(
 
     /* Authorization */
     impl->authorization = afw_object_get_property(
-        properties, &afw_s_authorization, xctx);
+        properties, afw_s_authorization, xctx);
 
     /** @fixme Reuse if already exists or reuse correct pool. */
     /* Create runtime metrics object and set in properties. */
     impl->metrics_object = afw_runtime_object_create_indirect(
-        &afw_s__AdaptiveAdaptorMetrics_,
+        afw_s__AdaptiveAdaptorMetrics_,
         &adaptor->adaptor_id, impl, xctx->env->p, xctx);
 
     /* If this is layout adaptor id, allow layout object type. */
@@ -382,60 +382,60 @@ afw_adaptor_impl_create_cede_p(
         afw_utf8_equal(xctx->env->layout_adaptor_id, &adaptor->adaptor_id))
     {
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveLayoutComponentType_, true, true, xctx);
+            afw_s__AdaptiveLayoutComponentType_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveLayoutComponent_, false, true, xctx);
+            afw_s__AdaptiveLayoutComponent_, false, true, xctx);
     }
 
     /* If isModelLocation is true, provide appropriate object types. */
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        &afw_s_isModelLocation, xctx);
+        afw_s_isModelLocation, xctx);
     if (b) {
         impl->model_location = afw_model_location_create(adaptor, p, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveTemplateProperties_, false, true, xctx);
+            afw_s__AdaptiveTemplateProperties_, false, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveModel_, true, true, xctx);
+            afw_s__AdaptiveModel_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveModelObjectTypes_, false, true, xctx);
+            afw_s__AdaptiveModelObjectTypes_, false, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveModelObjectType_, false, true, xctx);
+            afw_s__AdaptiveModelObjectType_, false, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveModelPropertyTypes_, false, true, xctx);
+            afw_s__AdaptiveModelPropertyTypes_, false, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveModelPropertyType_, false, true, xctx);
+            afw_s__AdaptiveModelPropertyType_, false, true, xctx);
     }
 
     /** @fixme have way for extension to add these.
     If isPolicyLocation is true, provide appropriate object types.
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        &afw_s_isPolicyLocation, xctx);
+        afw_s_isPolicyLocation, xctx);
     if (b) {
         impl->policy_location = afw_authorization_policy_internal_location_create(
             adaptor, p, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationAdviceExpression_, false, true,
+            afw_s__AdaptiveAuthorizationAdviceExpression_, false, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationCombinerParameter_, false, true,
+            afw_s__AdaptiveAuthorizationCombinerParameter_, false, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationObligationExpression_, false, true,
+            afw_s__AdaptiveAuthorizationObligationExpression_, false, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationPolicy_, true, true,
+            afw_s__AdaptiveAuthorizationPolicy_, true, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationPolicyIssuer_, false, true,
+            afw_s__AdaptiveAuthorizationPolicyIssuer_, false, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationPolicySet_, true, true,
+            afw_s__AdaptiveAuthorizationPolicySet_, true, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveAuthorizationRule_, false, true,
+            afw_s__AdaptiveAuthorizationRule_, false, true,
             xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveTemplateProperties_, false, true, xctx);
+            afw_s__AdaptiveTemplateProperties_, false, true, xctx);
     }
      */
 
@@ -484,10 +484,10 @@ afw_adaptor_impl_is_journal_entry_applicable(
     is_applicable = true;
 
     peerIdInEntry = afw_object_old_get_property_as_string(entry,
-        &afw_s_peerId, xctx);
+        afw_s_peerId, xctx);
     if (peerIdInEntry) {
         peerIdInConsumer = afw_object_old_get_property_as_string(consumer,
-            &afw_s_peerId, xctx);
+            afw_s_peerId, xctx);
         if (!peerIdInConsumer) {
             AFW_THROW_ERROR_Z(general,
                 "Missing peerId property in "
@@ -511,13 +511,13 @@ impl_update_allow(
     afw_boolean_t allow_write,
     afw_xctx_t *xctx)
 {
-    afw_object_set_property(object, &afw_s_allowEntity,
+    afw_object_set_property(object, afw_s_allowEntity,
         (allow_entity) ? afw_value_true : afw_value_false, xctx);
-    afw_object_set_property(object, &afw_s_allowAdd,
+    afw_object_set_property(object, afw_s_allowAdd,
         (allow_write) ? afw_value_true : afw_value_false, xctx);
-    afw_object_set_property(object, &afw_s_allowChange,
+    afw_object_set_property(object, afw_s_allowChange,
         (allow_write) ? afw_value_true : afw_value_false, xctx);
-    afw_object_set_property(object, &afw_s_allowDelete,
+    afw_object_set_property(object, afw_s_allowDelete,
         (allow_write) ? afw_value_true : afw_value_false, xctx);
 }
 
@@ -539,7 +539,7 @@ afw_adaptor_impl_set_supported_core_object_type(
     afw_value_array_t *parent_paths;
 
     /* Ignore call for afw adaptor.  Will cause parentPaths loops. */
-    if (afw_utf8_equal(&adaptor->adaptor_id, &afw_s_afw)) {
+    if (afw_utf8_equal(&adaptor->adaptor_id, afw_s_afw)) {
         return;
     }
 
@@ -555,7 +555,7 @@ afw_adaptor_impl_set_supported_core_object_type(
         e = afw_pool_calloc_type(p,
             afw_adaptor_impl_core_object_type_t, xctx);
         e->object_type_id = object_type_id;
-        e->object = afw_runtime_get_object(&afw_s__AdaptiveObjectType_,
+        e->object = afw_runtime_get_object(afw_s__AdaptiveObjectType_,
             object_type_id, xctx);
         if (!e->object) {
             AFW_THROW_ERROR_Z(general, "Invalid object type id", xctx);
@@ -564,7 +564,7 @@ afw_adaptor_impl_set_supported_core_object_type(
         e->object = afw_object_create_clone(e->object, p, xctx);
         path = afw_object_meta_get_path(e->object, xctx);
         afw_object_meta_set_ids(e->object, &adaptor->adaptor_id,
-            &afw_s__AdaptiveObjectType_, object_type_id, xctx);
+            afw_s__AdaptiveObjectType_, object_type_id, xctx);
         parent_paths = afw_value_allocate_array(p, xctx);
         parent_paths->internal = afw_array_create_wrapper_for_array(
             (const void *)path, false, afw_data_type_anyURI, 1, p, xctx);
@@ -595,21 +595,21 @@ afw_adaptor_impl_generic_object_type_object_get(
     result = afw_object_create_managed(p, xctx);
     objectType = afw_utf8_clone(object_type_id, result->p, xctx);
     afw_object_meta_set_ids(result, &adaptor->adaptor_id,
-        &afw_s__AdaptiveObjectType_, objectType, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectType,
+        afw_s__AdaptiveObjectType_, objectType, xctx);
+    afw_object_set_property_as_string(result, afw_s_objectType,
         objectType, xctx);
     afw_object_set_property_as_boolean(result,
-        &afw_s_allowAdd, afw_value_true, xctx);
+        afw_s_allowAdd, afw_value_true, xctx);
     afw_object_set_property_as_boolean(result,
-        &afw_s_allowChange, afw_value_true, xctx);
+        afw_s_allowChange, afw_value_true, xctx);
     afw_object_set_property_as_boolean(result,
-        &afw_s_allowDelete, afw_value_true, xctx);
+        afw_s_allowDelete, afw_value_true, xctx);
     other_properties = afw_object_create_embedded(result,
-        &afw_s_otherProperties, xctx);
+        afw_s_otherProperties, xctx);
     afw_object_set_property_as_boolean(other_properties,
-        &afw_s_allowQuery, afw_value_true, xctx);
+        afw_s_allowQuery, afw_value_true, xctx);
     afw_object_set_property_as_boolean(other_properties,
-        &afw_s_allowWrite, afw_value_true, xctx);
+        afw_s_allowWrite, afw_value_true, xctx);
 
     return result;
 }
@@ -880,13 +880,13 @@ impl_special_object_handling_cb(
         /* _AdaptiveServiceConf_ special processing for conf object type. */
         if (afw_utf8_equal(
             afw_object_meta_get_object_type_id(object, xctx),
-            &afw_s__AdaptiveServiceConf_))
+            afw_s__AdaptiveServiceConf_))
         {
             conf = afw_object_old_get_property_as_object(object,
-                &afw_s_conf, xctx);
+                afw_s_conf, xctx);
             if (conf) {
                 type = afw_object_old_get_property_as_string(conf,
-                    &afw_s_type, xctx);
+                    afw_s_type, xctx);
                 if (type) {
                     service_type = afw_environment_get_service_type(
                         type, xctx);
@@ -1029,7 +1029,7 @@ impl_afw_adaptor_session_retrieve_objects(
      *
      * Note: get allows all to be returned.
      */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_))
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_))
     {
         ht = self->pub.adaptor->impl->supported_core_object_types;
         for (hi = apr_hash_first(afw_pool_get_apr_pool(p), ht);
@@ -1056,7 +1056,7 @@ impl_afw_adaptor_session_retrieve_objects(
     }
 
     /** @fixme discuss this defensive check, it's null when indexing */
-    else if (object_type_id && afw_utf8_starts_with(object_type_id, &afw_s__Adaptive)) {
+    else if (object_type_id && afw_utf8_starts_with(object_type_id, afw_s__Adaptive)) {
         ctx.impl_callback_context = &ctx;
         ctx.impl_callback = impl_special_object_handling_cb;
         afw_adaptor_session_retrieve_objects(
@@ -1143,8 +1143,8 @@ impl_afw_adaptor_session_get_object(
     impl_check_authorization(&ctx, xctx);
 
     /* Get any core object types from runtime environment. */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_) &&
-        afw_utf8_starts_with(object_id, &afw_s__Adaptive))
+    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_) &&
+        afw_utf8_starts_with(object_id, afw_s__Adaptive))
     {
         /* If object type might have different allows, return it. */
         e = apr_hash_get(self->pub.adaptor->impl->supported_core_object_types,
@@ -1179,7 +1179,7 @@ impl_afw_adaptor_session_get_object(
         goto end_trace;
     }
 
-    if (afw_utf8_starts_with(object_type_id, &afw_s__Adaptive)) {
+    if (afw_utf8_starts_with(object_type_id, afw_s__Adaptive)) {
         ctx.impl_callback_context = &ctx;
         ctx.impl_callback = impl_special_object_handling_cb;
         afw_adaptor_session_get_object(
