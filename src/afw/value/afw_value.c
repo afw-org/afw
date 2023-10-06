@@ -718,7 +718,7 @@ afw_value_convert_to_string(
     result = afw_value_convert(value, afw_data_type_string, false, p, xctx);
     if (!result) {
         if (allow_undefined) {
-            return (const afw_value_t *)&afw_v_undefined;
+            return afw_v_undefined;
         }
         AFW_THROW_ERROR_Z(undefined, "Value is undefined", xctx);
     }

@@ -54,57 +54,57 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
         data_type = '&afw_data_type_' + dataType + '_direct'
     fd.write('    ' + data_type + ',\n')
     if dataType != '':
-        fd.write('    ' + get_string_label(options, dataType, '*v') + ',\n')
+        fd.write('    &' + get_string_label(options, dataType, 'self_v') + ',\n')
     else:
         fd.write('    NULL,\n')
 
     # dataTypeParameter
     dataTypeParameter = p.get('dataTypeParameter')
     if dataTypeParameter is not None:
-        fd.write('    ' + get_string_label(options, dataTypeParameter, '*v') + ',\n')
+        fd.write('    &' + get_string_label(options, dataTypeParameter, 'self_v') + ',\n')
     else:
         fd.write('    NULL,\n')
 
     # name
     name = p.get('name')
     if name is not None:
-        fd.write('    ' + get_string_label(options, name, '*v') + ',\n')
+        fd.write('    &' + get_string_label(options, name, 'self_v') + ',\n')
     else:
         fd.write('    NULL,\n')
 
     # brief
     brief = p.get('brief')
     if brief is not None:
-        fd.write('    ' + get_string_label(options, brief, '*v') + ',\n')
+        fd.write('    &' + get_string_label(options, brief, 'self_v') + ',\n')
     else:
         fd.write('    NULL,\n')
 
     # description
     description = p.get('description')
     if description is not None:
-        fd.write('    ' + get_string_label(options, description, '*v') + ',\n')
+        fd.write('    &' + get_string_label(options, description, 'self_v') + ',\n')
     else:
         fd.write('    NULL,\n')
 
     # minArgs
     minArgs = str(p.get('minArgs', -1))
-    fd.write('    ' + get_string_label(options, minArgs, '*v', dataType='integer') + ',\n')
+    fd.write('    &' + get_string_label(options, minArgs, 'self_v', dataType='integer') + ',\n')
 
     # optional
     optional = 'false' if p.get('optional', False) == False else 'true'
-    fd.write('    ' + get_string_label(options, optional, '*v', dataType='boolean') + ',\n')
+    fd.write('    &' + get_string_label(options, optional, 'self_v', dataType='boolean') + ',\n')
 
     # canBeUndefined
     canBeUndefined = 'false' if p.get('canBeUndefined', False) == False else 'true'
-    fd.write('    ' + get_string_label(options, canBeUndefined, '*v', dataType='boolean') + ',\n')
+    fd.write('    &' + get_string_label(options, canBeUndefined, 'self_v', dataType='boolean') + ',\n')
 
     # polymorphicDataType
     polymorphicDataType = 'false' if p.get('polymorphicDataType', False) == False else 'true'
-    fd.write('    ' + get_string_label(options, polymorphicDataType, '*v', dataType='boolean') + ',\n')
+    fd.write('    &' + get_string_label(options, polymorphicDataType, 'self_v', dataType='boolean') + ',\n')
 
     # polymorphicDataTypeParameter
     polymorphicDataTypeParameter = 'false' if p.get('polymorphicDataTypeParameter', False) == False else 'true'
-    fd.write('    ' + get_string_label(options, polymorphicDataTypeParameter, '*v', dataType='boolean') + ',\n')
+    fd.write('    &' + get_string_label(options, polymorphicDataTypeParameter, 'self_v', dataType='boolean') + ',\n')
 
     fd.write('};\n')
 
@@ -540,14 +540,14 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             if category is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, category, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, category, 'self_v') + ',\n')
 
             # functionId
             functionId = obj.get('functionId')
             if functionId is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, functionId, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, functionId, 'self_v') + ',\n')
 
             # untypedFunctionId
             untypedFunctionId = functionId
@@ -555,42 +555,42 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('    NULL,\n')
             else:
                 untypedFunctionId = untypedFunctionId.split('<')[0]
-                fd.write('    ' + get_string_label(options, untypedFunctionId, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, untypedFunctionId, 'self_v') + ',\n')
 
             # functionLabel
             functionLabel = obj.get('functionLabel')
             if functionLabel is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, functionLabel, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, functionLabel, 'self_v') + ',\n')
 
             # camelCaseFunctionLabel
             camelCaseFunctionLabel = obj.get('camelCaseFunctionLabel')
             if camelCaseFunctionLabel is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, camelCaseFunctionLabel, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, camelCaseFunctionLabel, 'self_v') + ',\n')
 
             # afwCamelCaseFunctionLabel
             afwCamelCaseFunctionLabel = obj.get('afwCamelCaseFunctionLabel')
             if afwCamelCaseFunctionLabel is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, afwCamelCaseFunctionLabel, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, afwCamelCaseFunctionLabel, 'self_v') + ',\n')
 
             # brief
             brief = obj.get('brief')
             if brief is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, brief, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, brief, 'self_v') + ',\n')
 
             # description
             description = obj.get('description')
             if description is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, description, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, description, 'self_v') + ',\n')
           
             # functionSignature
             functionSignature = ""
@@ -620,7 +620,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     functionSignature += ': ' + make_Type(p)
             functionSignature += '): '
             functionSignature += make_Type(obj.get('returns'))
-            fd.write('    ' + get_string_label(options, functionSignature, '*v') + ',\n')
+            fd.write('    &' + get_string_label(options, functionSignature, 'self_v') + ',\n')
 
             # functionDeclaration
             functionDeclaration = ""
@@ -696,14 +696,14 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
 
             # functionDeclaration: write
-            fd.write('    ' + get_string_label(options, functionDeclaration, '*v') + ',\n')
+            fd.write('    &' + get_string_label(options, functionDeclaration, 'self_v') + ',\n')
             
             # op
             op = obj.get('op')
             if op is None:
                 fd.write('    NULL,\n')
             else:
-                fd.write('    ' + get_string_label(options, op, '*v') + ',\n')
+                fd.write('    &' + get_string_label(options, op, 'self_v') + ',\n')
 
             # execute
             if obj.get('useExecuteFunction') is None:
@@ -715,10 +715,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('    NULL,\n') #@todo
 
             # numberOfRequiredParameters
-            fd.write('    ' + get_string_label(options, str(numberOfRequiredParameters), '*v', dataType='integer') + ',\n')
+            fd.write('    &' + get_string_label(options, str(numberOfRequiredParameters), 'self_v', dataType='integer') + ',\n')
 
             # maximumNumberOfParameters
-            fd.write('    ' + get_string_label(options, str(maximumNumberOfParameters), '*v', dataType='integer') + ',\n')
+            fd.write('    &' + get_string_label(options, str(maximumNumberOfParameters), 'self_v', dataType='integer') + ',\n')
 
             # parameters
             fd.write('    &impl_' + label + '_parameters[0],\n')
@@ -747,7 +747,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('    NULL,\n')
 
             # dataType
-            fd.write('    ' + get_string_label(options, dataType, '*v') + ',\n')
+            fd.write('    &' + get_string_label(options, dataType, 'self_v') + ',\n')
 
             # errorsThrown
             if obj.get("errorsThrown") is not None:
@@ -773,23 +773,23 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
             # polymorphic
             polymorphic = 'false' if obj.get('polymorphic', False) == False else 'true'
-            fd.write('    ' + get_string_label(options, polymorphic, '*v', dataType='boolean') + ',\n')
+            fd.write('    &' + get_string_label(options, polymorphic, 'self_v', dataType='boolean') + ',\n')
 
             # polymorphicExecuteFunctionEvaluatesFirstParameter
             polymorphicExecuteFunctionEvaluatesFirstParameter = 'false' if obj.get('polymorphicExecuteFunctionEvaluatesFirstParameter', False) == False else 'true'
-            fd.write('    ' + get_string_label(options, polymorphicExecuteFunctionEvaluatesFirstParameter, '*v', dataType='boolean') + ',\n')
+            fd.write('    &' + get_string_label(options, polymorphicExecuteFunctionEvaluatesFirstParameter, 'self_v', dataType='boolean') + ',\n')
 
             # deprecated
             deprecated = 'false' if obj.get('deprecated', False) == False else 'true'
-            fd.write('    ' + get_string_label(options, deprecated, '*v', dataType='boolean') + ',\n')
+            fd.write('    &' + get_string_label(options, deprecated, 'self_v', dataType='boolean') + ',\n')
 
             # pure
             pure = 'false' if obj.get('pure', False) == False else 'true'
-            fd.write('    ' + get_string_label(options, pure, '*v', dataType='boolean') + ',\n')
+            fd.write('    &' + get_string_label(options, pure, 'self_v', dataType='boolean') + ',\n')
 
             # signatureOnly
             signatureOnly = 'false' if obj.get('signatureOnly', False) == False else 'true'
-            fd.write('    ' + get_string_label(options, signatureOnly, '*v', dataType='boolean') + ',\n')
+            fd.write('    &' + get_string_label(options, signatureOnly, 'self_v', dataType='boolean') + ',\n')
 
             fd.write('};\n')
 

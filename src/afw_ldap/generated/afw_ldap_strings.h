@@ -35,15 +35,19 @@
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_ABSTRACT */
 #define afw_ldap_s_ABSTRACT \
-    (afw_ldap_v_ABSTRACT.internal)
+    (afw_ldap_self_v_ABSTRACT.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_ABSTRACT */
 extern const afw_value_string_t \
-    afw_ldap_v_ABSTRACT;
+    afw_ldap_self_v_ABSTRACT;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ABSTRACT */
 #define afw_ldap_z_ABSTRACT \
-    (afw_ldap_v_ABSTRACT.internal.s)
+    (afw_ldap_self_v_ABSTRACT.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ABSTRACT */
+#define afw_ldap_v_ABSTRACT \
+    ((const afw_value_t *)&afw_ldap_self_v_ABSTRACT)
 
 
 
@@ -53,15 +57,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_AUXILIARY */
 #define afw_ldap_s_AUXILIARY \
-    (afw_ldap_v_AUXILIARY.internal)
+    (afw_ldap_self_v_AUXILIARY.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_AUXILIARY */
 extern const afw_value_string_t \
-    afw_ldap_v_AUXILIARY;
+    afw_ldap_self_v_AUXILIARY;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_AUXILIARY */
 #define afw_ldap_z_AUXILIARY \
-    (afw_ldap_v_AUXILIARY.internal.s)
+    (afw_ldap_self_v_AUXILIARY.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_AUXILIARY */
+#define afw_ldap_v_AUXILIARY \
+    ((const afw_value_t *)&afw_ldap_self_v_AUXILIARY)
 
 
 
@@ -71,15 +79,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_DESC */
 #define afw_ldap_s_DESC \
-    (afw_ldap_v_DESC.internal)
+    (afw_ldap_self_v_DESC.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_DESC */
 extern const afw_value_string_t \
-    afw_ldap_v_DESC;
+    afw_ldap_self_v_DESC;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_DESC */
 #define afw_ldap_z_DESC \
-    (afw_ldap_v_DESC.internal.s)
+    (afw_ldap_self_v_DESC.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_DESC */
+#define afw_ldap_v_DESC \
+    ((const afw_value_t *)&afw_ldap_self_v_DESC)
 
 
 
@@ -89,15 +101,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_MAY */
 #define afw_ldap_s_MAY \
-    (afw_ldap_v_MAY.internal)
+    (afw_ldap_self_v_MAY.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_MAY */
 extern const afw_value_string_t \
-    afw_ldap_v_MAY;
+    afw_ldap_self_v_MAY;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_MAY */
 #define afw_ldap_z_MAY \
-    (afw_ldap_v_MAY.internal.s)
+    (afw_ldap_self_v_MAY.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_MAY */
+#define afw_ldap_v_MAY \
+    ((const afw_value_t *)&afw_ldap_self_v_MAY)
 
 
 
@@ -107,15 +123,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_MUST */
 #define afw_ldap_s_MUST \
-    (afw_ldap_v_MUST.internal)
+    (afw_ldap_self_v_MUST.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_MUST */
 extern const afw_value_string_t \
-    afw_ldap_v_MUST;
+    afw_ldap_self_v_MUST;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_MUST */
 #define afw_ldap_z_MUST \
-    (afw_ldap_v_MUST.internal.s)
+    (afw_ldap_self_v_MUST.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_MUST */
+#define afw_ldap_v_MUST \
+    ((const afw_value_t *)&afw_ldap_self_v_MUST)
 
 
 
@@ -125,15 +145,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_NAME */
 #define afw_ldap_s_NAME \
-    (afw_ldap_v_NAME.internal)
+    (afw_ldap_self_v_NAME.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_NAME */
 extern const afw_value_string_t \
-    afw_ldap_v_NAME;
+    afw_ldap_self_v_NAME;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_NAME */
 #define afw_ldap_z_NAME \
-    (afw_ldap_v_NAME.internal.s)
+    (afw_ldap_self_v_NAME.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_NAME */
+#define afw_ldap_v_NAME \
+    ((const afw_value_t *)&afw_ldap_self_v_NAME)
 
 
 
@@ -143,15 +167,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_SINGLE_VALUE */
 #define afw_ldap_s_SINGLE_VALUE \
-    (afw_ldap_v_SINGLE_VALUE.internal)
+    (afw_ldap_self_v_SINGLE_VALUE.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_SINGLE_VALUE */
 extern const afw_value_string_t \
-    afw_ldap_v_SINGLE_VALUE;
+    afw_ldap_self_v_SINGLE_VALUE;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_SINGLE_VALUE */
 #define afw_ldap_z_SINGLE_VALUE \
-    (afw_ldap_v_SINGLE_VALUE.internal.s)
+    (afw_ldap_self_v_SINGLE_VALUE.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_SINGLE_VALUE */
+#define afw_ldap_v_SINGLE_VALUE \
+    ((const afw_value_t *)&afw_ldap_self_v_SINGLE_VALUE)
 
 
 
@@ -161,15 +189,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_STRUCTURAL */
 #define afw_ldap_s_STRUCTURAL \
-    (afw_ldap_v_STRUCTURAL.internal)
+    (afw_ldap_self_v_STRUCTURAL.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_STRUCTURAL */
 extern const afw_value_string_t \
-    afw_ldap_v_STRUCTURAL;
+    afw_ldap_self_v_STRUCTURAL;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_STRUCTURAL */
 #define afw_ldap_z_STRUCTURAL \
-    (afw_ldap_v_STRUCTURAL.internal.s)
+    (afw_ldap_self_v_STRUCTURAL.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_STRUCTURAL */
+#define afw_ldap_v_STRUCTURAL \
+    ((const afw_value_t *)&afw_ldap_self_v_STRUCTURAL)
 
 
 
@@ -179,15 +211,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_SUP */
 #define afw_ldap_s_SUP \
-    (afw_ldap_v_SUP.internal)
+    (afw_ldap_self_v_SUP.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_SUP */
 extern const afw_value_string_t \
-    afw_ldap_v_SUP;
+    afw_ldap_self_v_SUP;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_SUP */
 #define afw_ldap_z_SUP \
-    (afw_ldap_v_SUP.internal.s)
+    (afw_ldap_self_v_SUP.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_SUP */
+#define afw_ldap_v_SUP \
+    ((const afw_value_t *)&afw_ldap_self_v_SUP)
 
 
 
@@ -197,15 +233,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_SYNTAX */
 #define afw_ldap_s_SYNTAX \
-    (afw_ldap_v_SYNTAX.internal)
+    (afw_ldap_self_v_SYNTAX.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_SYNTAX */
 extern const afw_value_string_t \
-    afw_ldap_v_SYNTAX;
+    afw_ldap_self_v_SYNTAX;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_SYNTAX */
 #define afw_ldap_z_SYNTAX \
-    (afw_ldap_v_SYNTAX.internal.s)
+    (afw_ldap_self_v_SYNTAX.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_SYNTAX */
+#define afw_ldap_v_SYNTAX \
+    ((const afw_value_t *)&afw_ldap_self_v_SYNTAX)
 
 
 
@@ -215,15 +255,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects */
 #define afw_ldap_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects \
-    (afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.internal)
+    (afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
+    afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects */
 #define afw_ldap_z__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects \
-    (afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.internal.s)
+    (afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects */
+#define afw_ldap_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects)
 
 
 
@@ -233,15 +277,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveCollection_ */
 #define afw_ldap_s__AdaptiveCollection_ \
-    (afw_ldap_v__AdaptiveCollection_.internal)
+    (afw_ldap_self_v__AdaptiveCollection_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveCollection_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveCollection_;
+    afw_ldap_self_v__AdaptiveCollection_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveCollection_ */
 #define afw_ldap_z__AdaptiveCollection_ \
-    (afw_ldap_v__AdaptiveCollection_.internal.s)
+    (afw_ldap_self_v__AdaptiveCollection_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveCollection_ */
+#define afw_ldap_v__AdaptiveCollection_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveCollection_)
 
 
 
@@ -251,15 +299,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap */
 #define afw_ldap_s__AdaptiveConf_adaptor_ldap \
-    (afw_ldap_v__AdaptiveConf_adaptor_ldap.internal)
+    (afw_ldap_self_v__AdaptiveConf_adaptor_ldap.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveConf_adaptor_ldap;
+    afw_ldap_self_v__AdaptiveConf_adaptor_ldap;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap */
 #define afw_ldap_z__AdaptiveConf_adaptor_ldap \
-    (afw_ldap_v__AdaptiveConf_adaptor_ldap.internal.s)
+    (afw_ldap_self_v__AdaptiveConf_adaptor_ldap.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap */
+#define afw_ldap_v__AdaptiveConf_adaptor_ldap \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveConf_adaptor_ldap)
 
 
 
@@ -269,15 +321,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind */
 #define afw_ldap_s__AdaptiveConf_adaptor_ldap_bind \
-    (afw_ldap_v__AdaptiveConf_adaptor_ldap_bind.internal)
+    (afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveConf_adaptor_ldap_bind;
+    afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind */
 #define afw_ldap_z__AdaptiveConf_adaptor_ldap_bind \
-    (afw_ldap_v__AdaptiveConf_adaptor_ldap_bind.internal.s)
+    (afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind */
+#define afw_ldap_v__AdaptiveConf_adaptor_ldap_bind \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind)
 
 
 
@@ -287,15 +343,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapAttributeType_ */
 #define afw_ldap_s__AdaptiveLdapAttributeType_ \
-    (afw_ldap_v__AdaptiveLdapAttributeType_.internal)
+    (afw_ldap_self_v__AdaptiveLdapAttributeType_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapAttributeType_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapAttributeType_;
+    afw_ldap_self_v__AdaptiveLdapAttributeType_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapAttributeType_ */
 #define afw_ldap_z__AdaptiveLdapAttributeType_ \
-    (afw_ldap_v__AdaptiveLdapAttributeType_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapAttributeType_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapAttributeType_ */
+#define afw_ldap_v__AdaptiveLdapAttributeType_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapAttributeType_)
 
 
 
@@ -305,15 +365,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapMatchingRuleUse_ */
 #define afw_ldap_s__AdaptiveLdapMatchingRuleUse_ \
-    (afw_ldap_v__AdaptiveLdapMatchingRuleUse_.internal)
+    (afw_ldap_self_v__AdaptiveLdapMatchingRuleUse_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapMatchingRuleUse_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapMatchingRuleUse_;
+    afw_ldap_self_v__AdaptiveLdapMatchingRuleUse_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapMatchingRuleUse_ */
 #define afw_ldap_z__AdaptiveLdapMatchingRuleUse_ \
-    (afw_ldap_v__AdaptiveLdapMatchingRuleUse_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapMatchingRuleUse_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapMatchingRuleUse_ */
+#define afw_ldap_v__AdaptiveLdapMatchingRuleUse_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapMatchingRuleUse_)
 
 
 
@@ -323,15 +387,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapMatchingRule_ */
 #define afw_ldap_s__AdaptiveLdapMatchingRule_ \
-    (afw_ldap_v__AdaptiveLdapMatchingRule_.internal)
+    (afw_ldap_self_v__AdaptiveLdapMatchingRule_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapMatchingRule_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapMatchingRule_;
+    afw_ldap_self_v__AdaptiveLdapMatchingRule_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapMatchingRule_ */
 #define afw_ldap_z__AdaptiveLdapMatchingRule_ \
-    (afw_ldap_v__AdaptiveLdapMatchingRule_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapMatchingRule_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapMatchingRule_ */
+#define afw_ldap_v__AdaptiveLdapMatchingRule_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapMatchingRule_)
 
 
 
@@ -341,15 +409,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapObjectClass_ */
 #define afw_ldap_s__AdaptiveLdapObjectClass_ \
-    (afw_ldap_v__AdaptiveLdapObjectClass_.internal)
+    (afw_ldap_self_v__AdaptiveLdapObjectClass_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapObjectClass_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapObjectClass_;
+    afw_ldap_self_v__AdaptiveLdapObjectClass_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapObjectClass_ */
 #define afw_ldap_z__AdaptiveLdapObjectClass_ \
-    (afw_ldap_v__AdaptiveLdapObjectClass_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapObjectClass_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapObjectClass_ */
+#define afw_ldap_v__AdaptiveLdapObjectClass_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapObjectClass_)
 
 
 
@@ -359,15 +431,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapRootDse_ */
 #define afw_ldap_s__AdaptiveLdapRootDse_ \
-    (afw_ldap_v__AdaptiveLdapRootDse_.internal)
+    (afw_ldap_self_v__AdaptiveLdapRootDse_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapRootDse_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapRootDse_;
+    afw_ldap_self_v__AdaptiveLdapRootDse_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapRootDse_ */
 #define afw_ldap_z__AdaptiveLdapRootDse_ \
-    (afw_ldap_v__AdaptiveLdapRootDse_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapRootDse_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapRootDse_ */
+#define afw_ldap_v__AdaptiveLdapRootDse_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapRootDse_)
 
 
 
@@ -377,15 +453,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapSchema_ */
 #define afw_ldap_s__AdaptiveLdapSchema_ \
-    (afw_ldap_v__AdaptiveLdapSchema_.internal)
+    (afw_ldap_self_v__AdaptiveLdapSchema_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapSchema_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapSchema_;
+    afw_ldap_self_v__AdaptiveLdapSchema_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapSchema_ */
 #define afw_ldap_z__AdaptiveLdapSchema_ \
-    (afw_ldap_v__AdaptiveLdapSchema_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapSchema_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapSchema_ */
+#define afw_ldap_v__AdaptiveLdapSchema_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapSchema_)
 
 
 
@@ -395,15 +475,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveLdapSyntax_ */
 #define afw_ldap_s__AdaptiveLdapSyntax_ \
-    (afw_ldap_v__AdaptiveLdapSyntax_.internal)
+    (afw_ldap_self_v__AdaptiveLdapSyntax_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveLdapSyntax_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveLdapSyntax_;
+    afw_ldap_self_v__AdaptiveLdapSyntax_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapSyntax_ */
 #define afw_ldap_z__AdaptiveLdapSyntax_ \
-    (afw_ldap_v__AdaptiveLdapSyntax_.internal.s)
+    (afw_ldap_self_v__AdaptiveLdapSyntax_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveLdapSyntax_ */
+#define afw_ldap_v__AdaptiveLdapSyntax_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveLdapSyntax_)
 
 
 
@@ -413,15 +497,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__AdaptiveObjectType_ */
 #define afw_ldap_s__AdaptiveObjectType_ \
-    (afw_ldap_v__AdaptiveObjectType_.internal)
+    (afw_ldap_self_v__AdaptiveObjectType_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__AdaptiveObjectType_ */
 extern const afw_value_string_t \
-    afw_ldap_v__AdaptiveObjectType_;
+    afw_ldap_self_v__AdaptiveObjectType_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveObjectType_ */
 #define afw_ldap_z__AdaptiveObjectType_ \
-    (afw_ldap_v__AdaptiveObjectType_.internal.s)
+    (afw_ldap_self_v__AdaptiveObjectType_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__AdaptiveObjectType_ */
+#define afw_ldap_v__AdaptiveObjectType_ \
+    ((const afw_value_t *)&afw_ldap_self_v__AdaptiveObjectType_)
 
 
 
@@ -431,15 +519,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q__meta_ */
 #define afw_ldap_s__meta_ \
-    (afw_ldap_v__meta_.internal)
+    (afw_ldap_self_v__meta_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q__meta_ */
 extern const afw_value_string_t \
-    afw_ldap_v__meta_;
+    afw_ldap_self_v__meta_;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__meta_ */
 #define afw_ldap_z__meta_ \
-    (afw_ldap_v__meta_.internal.s)
+    (afw_ldap_self_v__meta_.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q__meta_ */
+#define afw_ldap_v__meta_ \
+    ((const afw_value_t *)&afw_ldap_self_v__meta_)
 
 
 
@@ -449,15 +541,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_NO_USER_MODIFICATION */
 #define afw_ldap_s_a_NO_USER_MODIFICATION \
-    (afw_ldap_v_a_NO_USER_MODIFICATION.internal)
+    (afw_ldap_self_v_a_NO_USER_MODIFICATION.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_NO_USER_MODIFICATION */
 extern const afw_value_string_t \
-    afw_ldap_v_a_NO_USER_MODIFICATION;
+    afw_ldap_self_v_a_NO_USER_MODIFICATION;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_NO_USER_MODIFICATION */
 #define afw_ldap_z_a_NO_USER_MODIFICATION \
-    (afw_ldap_v_a_NO_USER_MODIFICATION.internal.s)
+    (afw_ldap_self_v_a_NO_USER_MODIFICATION.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_NO_USER_MODIFICATION */
+#define afw_ldap_v_a_NO_USER_MODIFICATION \
+    ((const afw_value_t *)&afw_ldap_self_v_a_NO_USER_MODIFICATION)
 
 
 
@@ -467,15 +563,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_FILTERED_REQUIRED */
 #define afw_ldap_s_a_X_NDS_FILTERED_REQUIRED \
-    (afw_ldap_v_a_X_NDS_FILTERED_REQUIRED.internal)
+    (afw_ldap_self_v_a_X_NDS_FILTERED_REQUIRED.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_FILTERED_REQUIRED */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_FILTERED_REQUIRED;
+    afw_ldap_self_v_a_X_NDS_FILTERED_REQUIRED;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_FILTERED_REQUIRED */
 #define afw_ldap_z_a_X_NDS_FILTERED_REQUIRED \
-    (afw_ldap_v_a_X_NDS_FILTERED_REQUIRED.internal.s)
+    (afw_ldap_self_v_a_X_NDS_FILTERED_REQUIRED.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_FILTERED_REQUIRED */
+#define afw_ldap_v_a_X_NDS_FILTERED_REQUIRED \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_FILTERED_REQUIRED)
 
 
 
@@ -485,15 +585,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_HIDDEN */
 #define afw_ldap_s_a_X_NDS_HIDDEN \
-    (afw_ldap_v_a_X_NDS_HIDDEN.internal)
+    (afw_ldap_self_v_a_X_NDS_HIDDEN.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_HIDDEN */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_HIDDEN;
+    afw_ldap_self_v_a_X_NDS_HIDDEN;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_HIDDEN */
 #define afw_ldap_z_a_X_NDS_HIDDEN \
-    (afw_ldap_v_a_X_NDS_HIDDEN.internal.s)
+    (afw_ldap_self_v_a_X_NDS_HIDDEN.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_HIDDEN */
+#define afw_ldap_v_a_X_NDS_HIDDEN \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_HIDDEN)
 
 
 
@@ -503,15 +607,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_LOWER_BOUND */
 #define afw_ldap_s_a_X_NDS_LOWER_BOUND \
-    (afw_ldap_v_a_X_NDS_LOWER_BOUND.internal)
+    (afw_ldap_self_v_a_X_NDS_LOWER_BOUND.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_LOWER_BOUND */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_LOWER_BOUND;
+    afw_ldap_self_v_a_X_NDS_LOWER_BOUND;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_LOWER_BOUND */
 #define afw_ldap_z_a_X_NDS_LOWER_BOUND \
-    (afw_ldap_v_a_X_NDS_LOWER_BOUND.internal.s)
+    (afw_ldap_self_v_a_X_NDS_LOWER_BOUND.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_LOWER_BOUND */
+#define afw_ldap_v_a_X_NDS_LOWER_BOUND \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_LOWER_BOUND)
 
 
 
@@ -521,15 +629,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_NAME */
 #define afw_ldap_s_a_X_NDS_NAME \
-    (afw_ldap_v_a_X_NDS_NAME.internal)
+    (afw_ldap_self_v_a_X_NDS_NAME.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_NAME */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_NAME;
+    afw_ldap_self_v_a_X_NDS_NAME;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_NAME */
 #define afw_ldap_z_a_X_NDS_NAME \
-    (afw_ldap_v_a_X_NDS_NAME.internal.s)
+    (afw_ldap_self_v_a_X_NDS_NAME.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_NAME */
+#define afw_ldap_v_a_X_NDS_NAME \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_NAME)
 
 
 
@@ -539,15 +651,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_NONREMOVABLE */
 #define afw_ldap_s_a_X_NDS_NONREMOVABLE \
-    (afw_ldap_v_a_X_NDS_NONREMOVABLE.internal)
+    (afw_ldap_self_v_a_X_NDS_NONREMOVABLE.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_NONREMOVABLE */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_NONREMOVABLE;
+    afw_ldap_self_v_a_X_NDS_NONREMOVABLE;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_NONREMOVABLE */
 #define afw_ldap_z_a_X_NDS_NONREMOVABLE \
-    (afw_ldap_v_a_X_NDS_NONREMOVABLE.internal.s)
+    (afw_ldap_self_v_a_X_NDS_NONREMOVABLE.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_NONREMOVABLE */
+#define afw_ldap_v_a_X_NDS_NONREMOVABLE \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_NONREMOVABLE)
 
 
 
@@ -557,15 +673,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE */
 #define afw_ldap_s_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE \
-    (afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE.internal)
+    (afw_ldap_self_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE;
+    afw_ldap_self_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE */
 #define afw_ldap_z_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE \
-    (afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE.internal.s)
+    (afw_ldap_self_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE */
+#define afw_ldap_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_NOT_SCHED_SYNC_IMMEDIATE)
 
 
 
@@ -575,15 +695,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_PUBLIC_READ */
 #define afw_ldap_s_a_X_NDS_PUBLIC_READ \
-    (afw_ldap_v_a_X_NDS_PUBLIC_READ.internal)
+    (afw_ldap_self_v_a_X_NDS_PUBLIC_READ.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_PUBLIC_READ */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_PUBLIC_READ;
+    afw_ldap_self_v_a_X_NDS_PUBLIC_READ;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_PUBLIC_READ */
 #define afw_ldap_z_a_X_NDS_PUBLIC_READ \
-    (afw_ldap_v_a_X_NDS_PUBLIC_READ.internal.s)
+    (afw_ldap_self_v_a_X_NDS_PUBLIC_READ.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_PUBLIC_READ */
+#define afw_ldap_v_a_X_NDS_PUBLIC_READ \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_PUBLIC_READ)
 
 
 
@@ -593,15 +717,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_READ_FILTERED */
 #define afw_ldap_s_a_X_NDS_READ_FILTERED \
-    (afw_ldap_v_a_X_NDS_READ_FILTERED.internal)
+    (afw_ldap_self_v_a_X_NDS_READ_FILTERED.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_READ_FILTERED */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_READ_FILTERED;
+    afw_ldap_self_v_a_X_NDS_READ_FILTERED;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_READ_FILTERED */
 #define afw_ldap_z_a_X_NDS_READ_FILTERED \
-    (afw_ldap_v_a_X_NDS_READ_FILTERED.internal.s)
+    (afw_ldap_self_v_a_X_NDS_READ_FILTERED.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_READ_FILTERED */
+#define afw_ldap_v_a_X_NDS_READ_FILTERED \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_READ_FILTERED)
 
 
 
@@ -611,15 +739,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_SERVER_READ */
 #define afw_ldap_s_a_X_NDS_SERVER_READ \
-    (afw_ldap_v_a_X_NDS_SERVER_READ.internal)
+    (afw_ldap_self_v_a_X_NDS_SERVER_READ.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_SERVER_READ */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_SERVER_READ;
+    afw_ldap_self_v_a_X_NDS_SERVER_READ;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_SERVER_READ */
 #define afw_ldap_z_a_X_NDS_SERVER_READ \
-    (afw_ldap_v_a_X_NDS_SERVER_READ.internal.s)
+    (afw_ldap_self_v_a_X_NDS_SERVER_READ.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_SERVER_READ */
+#define afw_ldap_v_a_X_NDS_SERVER_READ \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_SERVER_READ)
 
 
 
@@ -629,15 +761,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_SYNTAX */
 #define afw_ldap_s_a_X_NDS_SYNTAX \
-    (afw_ldap_v_a_X_NDS_SYNTAX.internal)
+    (afw_ldap_self_v_a_X_NDS_SYNTAX.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_SYNTAX */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_SYNTAX;
+    afw_ldap_self_v_a_X_NDS_SYNTAX;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_SYNTAX */
 #define afw_ldap_z_a_X_NDS_SYNTAX \
-    (afw_ldap_v_a_X_NDS_SYNTAX.internal.s)
+    (afw_ldap_self_v_a_X_NDS_SYNTAX.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_SYNTAX */
+#define afw_ldap_v_a_X_NDS_SYNTAX \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_SYNTAX)
 
 
 
@@ -647,15 +783,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_X_NDS_UPPER_BOUND */
 #define afw_ldap_s_a_X_NDS_UPPER_BOUND \
-    (afw_ldap_v_a_X_NDS_UPPER_BOUND.internal)
+    (afw_ldap_self_v_a_X_NDS_UPPER_BOUND.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_X_NDS_UPPER_BOUND */
 extern const afw_value_string_t \
-    afw_ldap_v_a_X_NDS_UPPER_BOUND;
+    afw_ldap_self_v_a_X_NDS_UPPER_BOUND;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_UPPER_BOUND */
 #define afw_ldap_z_a_X_NDS_UPPER_BOUND \
-    (afw_ldap_v_a_X_NDS_UPPER_BOUND.internal.s)
+    (afw_ldap_self_v_a_X_NDS_UPPER_BOUND.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_X_NDS_UPPER_BOUND */
+#define afw_ldap_v_a_X_NDS_UPPER_BOUND \
+    ((const afw_value_t *)&afw_ldap_self_v_a_X_NDS_UPPER_BOUND)
 
 
 
@@ -665,15 +805,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_a_single_dash_value */
 #define afw_ldap_s_a_single_dash_value \
-    (afw_ldap_v_a_single_dash_value.internal)
+    (afw_ldap_self_v_a_single_dash_value.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_a_single_dash_value */
 extern const afw_value_string_t \
-    afw_ldap_v_a_single_dash_value;
+    afw_ldap_self_v_a_single_dash_value;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_single_dash_value */
 #define afw_ldap_z_a_single_dash_value \
-    (afw_ldap_v_a_single_dash_value.internal.s)
+    (afw_ldap_self_v_a_single_dash_value.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_a_single_dash_value */
+#define afw_ldap_v_a_single_dash_value \
+    ((const afw_value_t *)&afw_ldap_self_v_a_single_dash_value)
 
 
 
@@ -683,15 +827,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_allowAdd */
 #define afw_ldap_s_allowAdd \
-    (afw_ldap_v_allowAdd.internal)
+    (afw_ldap_self_v_allowAdd.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_allowAdd */
 extern const afw_value_string_t \
-    afw_ldap_v_allowAdd;
+    afw_ldap_self_v_allowAdd;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowAdd */
 #define afw_ldap_z_allowAdd \
-    (afw_ldap_v_allowAdd.internal.s)
+    (afw_ldap_self_v_allowAdd.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowAdd */
+#define afw_ldap_v_allowAdd \
+    ((const afw_value_t *)&afw_ldap_self_v_allowAdd)
 
 
 
@@ -701,15 +849,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_allowChange */
 #define afw_ldap_s_allowChange \
-    (afw_ldap_v_allowChange.internal)
+    (afw_ldap_self_v_allowChange.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_allowChange */
 extern const afw_value_string_t \
-    afw_ldap_v_allowChange;
+    afw_ldap_self_v_allowChange;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowChange */
 #define afw_ldap_z_allowChange \
-    (afw_ldap_v_allowChange.internal.s)
+    (afw_ldap_self_v_allowChange.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowChange */
+#define afw_ldap_v_allowChange \
+    ((const afw_value_t *)&afw_ldap_self_v_allowChange)
 
 
 
@@ -719,15 +871,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_allowDelete */
 #define afw_ldap_s_allowDelete \
-    (afw_ldap_v_allowDelete.internal)
+    (afw_ldap_self_v_allowDelete.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_allowDelete */
 extern const afw_value_string_t \
-    afw_ldap_v_allowDelete;
+    afw_ldap_self_v_allowDelete;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowDelete */
 #define afw_ldap_z_allowDelete \
-    (afw_ldap_v_allowDelete.internal.s)
+    (afw_ldap_self_v_allowDelete.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowDelete */
+#define afw_ldap_v_allowDelete \
+    ((const afw_value_t *)&afw_ldap_self_v_allowDelete)
 
 
 
@@ -737,15 +893,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_allowEntity */
 #define afw_ldap_s_allowEntity \
-    (afw_ldap_v_allowEntity.internal)
+    (afw_ldap_self_v_allowEntity.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_allowEntity */
 extern const afw_value_string_t \
-    afw_ldap_v_allowEntity;
+    afw_ldap_self_v_allowEntity;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowEntity */
 #define afw_ldap_z_allowEntity \
-    (afw_ldap_v_allowEntity.internal.s)
+    (afw_ldap_self_v_allowEntity.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowEntity */
+#define afw_ldap_v_allowEntity \
+    ((const afw_value_t *)&afw_ldap_self_v_allowEntity)
 
 
 
@@ -755,15 +915,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_allowQuery */
 #define afw_ldap_s_allowQuery \
-    (afw_ldap_v_allowQuery.internal)
+    (afw_ldap_self_v_allowQuery.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_allowQuery */
 extern const afw_value_string_t \
-    afw_ldap_v_allowQuery;
+    afw_ldap_self_v_allowQuery;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowQuery */
 #define afw_ldap_z_allowQuery \
-    (afw_ldap_v_allowQuery.internal.s)
+    (afw_ldap_self_v_allowQuery.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_allowQuery */
+#define afw_ldap_v_allowQuery \
+    ((const afw_value_t *)&afw_ldap_self_v_allowQuery)
 
 
 
@@ -773,15 +937,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_array */
 #define afw_ldap_s_array \
-    (afw_ldap_v_array.internal)
+    (afw_ldap_self_v_array.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_array */
 extern const afw_value_string_t \
-    afw_ldap_v_array;
+    afw_ldap_self_v_array;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_array */
 #define afw_ldap_z_array \
-    (afw_ldap_v_array.internal.s)
+    (afw_ldap_self_v_array.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_array */
+#define afw_ldap_v_array \
+    ((const afw_value_t *)&afw_ldap_self_v_array)
 
 
 
@@ -791,15 +959,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_attributeTypes */
 #define afw_ldap_s_attributeTypes \
-    (afw_ldap_v_attributeTypes.internal)
+    (afw_ldap_self_v_attributeTypes.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_attributeTypes */
 extern const afw_value_string_t \
-    afw_ldap_v_attributeTypes;
+    afw_ldap_self_v_attributeTypes;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_attributeTypes */
 #define afw_ldap_z_attributeTypes \
-    (afw_ldap_v_attributeTypes.internal.s)
+    (afw_ldap_self_v_attributeTypes.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_attributeTypes */
+#define afw_ldap_v_attributeTypes \
+    ((const afw_value_t *)&afw_ldap_self_v_attributeTypes)
 
 
 
@@ -809,15 +981,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_base */
 #define afw_ldap_s_base \
-    (afw_ldap_v_base.internal)
+    (afw_ldap_self_v_base.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_base */
 extern const afw_value_string_t \
-    afw_ldap_v_base;
+    afw_ldap_self_v_base;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_base */
 #define afw_ldap_z_base \
-    (afw_ldap_v_base.internal.s)
+    (afw_ldap_self_v_base.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_base */
+#define afw_ldap_v_base \
+    ((const afw_value_t *)&afw_ldap_self_v_base)
 
 
 
@@ -827,15 +1003,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_bindParameters */
 #define afw_ldap_s_bindParameters \
-    (afw_ldap_v_bindParameters.internal)
+    (afw_ldap_self_v_bindParameters.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_bindParameters */
 extern const afw_value_string_t \
-    afw_ldap_v_bindParameters;
+    afw_ldap_self_v_bindParameters;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_bindParameters */
 #define afw_ldap_z_bindParameters \
-    (afw_ldap_v_bindParameters.internal.s)
+    (afw_ldap_self_v_bindParameters.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_bindParameters */
+#define afw_ldap_v_bindParameters \
+    ((const afw_value_t *)&afw_ldap_self_v_bindParameters)
 
 
 
@@ -845,15 +1025,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_boolean */
 #define afw_ldap_s_boolean \
-    (afw_ldap_v_boolean.internal)
+    (afw_ldap_self_v_boolean.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_boolean */
 extern const afw_value_string_t \
-    afw_ldap_v_boolean;
+    afw_ldap_self_v_boolean;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_boolean */
 #define afw_ldap_z_boolean \
-    (afw_ldap_v_boolean.internal.s)
+    (afw_ldap_self_v_boolean.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_boolean */
+#define afw_ldap_v_boolean \
+    ((const afw_value_t *)&afw_ldap_self_v_boolean)
 
 
 
@@ -863,15 +1047,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_collectionURIs */
 #define afw_ldap_s_collectionURIs \
-    (afw_ldap_v_collectionURIs.internal)
+    (afw_ldap_self_v_collectionURIs.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_collectionURIs */
 extern const afw_value_string_t \
-    afw_ldap_v_collectionURIs;
+    afw_ldap_self_v_collectionURIs;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_collectionURIs */
 #define afw_ldap_z_collectionURIs \
-    (afw_ldap_v_collectionURIs.internal.s)
+    (afw_ldap_self_v_collectionURIs.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_collectionURIs */
+#define afw_ldap_v_collectionURIs \
+    ((const afw_value_t *)&afw_ldap_self_v_collectionURIs)
 
 
 
@@ -881,15 +1069,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_dataType */
 #define afw_ldap_s_dataType \
-    (afw_ldap_v_dataType.internal)
+    (afw_ldap_self_v_dataType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_dataType */
 extern const afw_value_string_t \
-    afw_ldap_v_dataType;
+    afw_ldap_self_v_dataType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_dataType */
 #define afw_ldap_z_dataType \
-    (afw_ldap_v_dataType.internal.s)
+    (afw_ldap_self_v_dataType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_dataType */
+#define afw_ldap_v_dataType \
+    ((const afw_value_t *)&afw_ldap_self_v_dataType)
 
 
 
@@ -899,15 +1091,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_dataTypeParameter */
 #define afw_ldap_s_dataTypeParameter \
-    (afw_ldap_v_dataTypeParameter.internal)
+    (afw_ldap_self_v_dataTypeParameter.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_dataTypeParameter */
 extern const afw_value_string_t \
-    afw_ldap_v_dataTypeParameter;
+    afw_ldap_self_v_dataTypeParameter;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_dataTypeParameter */
 #define afw_ldap_z_dataTypeParameter \
-    (afw_ldap_v_dataTypeParameter.internal.s)
+    (afw_ldap_self_v_dataTypeParameter.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_dataTypeParameter */
+#define afw_ldap_v_dataTypeParameter \
+    ((const afw_value_t *)&afw_ldap_self_v_dataTypeParameter)
 
 
 
@@ -917,15 +1113,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_default */
 #define afw_ldap_s_default \
-    (afw_ldap_v_default.internal)
+    (afw_ldap_self_v_default.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_default */
 extern const afw_value_string_t \
-    afw_ldap_v_default;
+    afw_ldap_self_v_default;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_default */
 #define afw_ldap_z_default \
-    (afw_ldap_v_default.internal.s)
+    (afw_ldap_self_v_default.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_default */
+#define afw_ldap_v_default \
+    ((const afw_value_t *)&afw_ldap_self_v_default)
 
 
 
@@ -935,15 +1135,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_description */
 #define afw_ldap_s_description \
-    (afw_ldap_v_description.internal)
+    (afw_ldap_self_v_description.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_description */
 extern const afw_value_string_t \
-    afw_ldap_v_description;
+    afw_ldap_self_v_description;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_description */
 #define afw_ldap_z_description \
-    (afw_ldap_v_description.internal.s)
+    (afw_ldap_self_v_description.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_description */
+#define afw_ldap_v_description \
+    ((const afw_value_t *)&afw_ldap_self_v_description)
 
 
 
@@ -953,15 +1157,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_dn */
 #define afw_ldap_s_dn \
-    (afw_ldap_v_dn.internal)
+    (afw_ldap_self_v_dn.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_dn */
 extern const afw_value_string_t \
-    afw_ldap_v_dn;
+    afw_ldap_self_v_dn;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_dn */
 #define afw_ldap_z_dn \
-    (afw_ldap_v_dn.internal.s)
+    (afw_ldap_self_v_dn.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_dn */
+#define afw_ldap_v_dn \
+    ((const afw_value_t *)&afw_ldap_self_v_dn)
 
 
 
@@ -971,15 +1179,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_indirect */
 #define afw_ldap_s_indirect \
-    (afw_ldap_v_indirect.internal)
+    (afw_ldap_self_v_indirect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_indirect */
 extern const afw_value_string_t \
-    afw_ldap_v_indirect;
+    afw_ldap_self_v_indirect;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_indirect */
 #define afw_ldap_z_indirect \
-    (afw_ldap_v_indirect.internal.s)
+    (afw_ldap_self_v_indirect.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_indirect */
+#define afw_ldap_v_indirect \
+    ((const afw_value_t *)&afw_ldap_self_v_indirect)
 
 
 
@@ -989,15 +1201,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_label */
 #define afw_ldap_s_label \
-    (afw_ldap_v_label.internal)
+    (afw_ldap_self_v_label.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_label */
 extern const afw_value_string_t \
-    afw_ldap_v_label;
+    afw_ldap_self_v_label;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_label */
 #define afw_ldap_z_label \
-    (afw_ldap_v_label.internal.s)
+    (afw_ldap_self_v_label.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_label */
+#define afw_ldap_v_label \
+    ((const afw_value_t *)&afw_ldap_self_v_label)
 
 
 
@@ -1007,15 +1223,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_ldap */
 #define afw_ldap_s_ldap \
-    (afw_ldap_v_ldap.internal)
+    (afw_ldap_self_v_ldap.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_ldap */
 extern const afw_value_string_t \
-    afw_ldap_v_ldap;
+    afw_ldap_self_v_ldap;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldap */
 #define afw_ldap_z_ldap \
-    (afw_ldap_v_ldap.internal.s)
+    (afw_ldap_self_v_ldap.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldap */
+#define afw_ldap_v_ldap \
+    ((const afw_value_t *)&afw_ldap_self_v_ldap)
 
 
 
@@ -1025,15 +1245,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_ldapAttributeType */
 #define afw_ldap_s_ldapAttributeType \
-    (afw_ldap_v_ldapAttributeType.internal)
+    (afw_ldap_self_v_ldapAttributeType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_ldapAttributeType */
 extern const afw_value_string_t \
-    afw_ldap_v_ldapAttributeType;
+    afw_ldap_self_v_ldapAttributeType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldapAttributeType */
 #define afw_ldap_z_ldapAttributeType \
-    (afw_ldap_v_ldapAttributeType.internal.s)
+    (afw_ldap_self_v_ldapAttributeType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldapAttributeType */
+#define afw_ldap_v_ldapAttributeType \
+    ((const afw_value_t *)&afw_ldap_self_v_ldapAttributeType)
 
 
 
@@ -1043,15 +1267,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_ldapSyntax */
 #define afw_ldap_s_ldapSyntax \
-    (afw_ldap_v_ldapSyntax.internal)
+    (afw_ldap_self_v_ldapSyntax.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_ldapSyntax */
 extern const afw_value_string_t \
-    afw_ldap_v_ldapSyntax;
+    afw_ldap_self_v_ldapSyntax;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldapSyntax */
 #define afw_ldap_z_ldapSyntax \
-    (afw_ldap_v_ldapSyntax.internal.s)
+    (afw_ldap_self_v_ldapSyntax.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldapSyntax */
+#define afw_ldap_v_ldapSyntax \
+    ((const afw_value_t *)&afw_ldap_self_v_ldapSyntax)
 
 
 
@@ -1061,15 +1289,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_ldapSyntaxes */
 #define afw_ldap_s_ldapSyntaxes \
-    (afw_ldap_v_ldapSyntaxes.internal)
+    (afw_ldap_self_v_ldapSyntaxes.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_ldapSyntaxes */
 extern const afw_value_string_t \
-    afw_ldap_v_ldapSyntaxes;
+    afw_ldap_self_v_ldapSyntaxes;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldapSyntaxes */
 #define afw_ldap_z_ldapSyntaxes \
-    (afw_ldap_v_ldapSyntaxes.internal.s)
+    (afw_ldap_self_v_ldapSyntaxes.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldapSyntaxes */
+#define afw_ldap_v_ldapSyntaxes \
+    ((const afw_value_t *)&afw_ldap_self_v_ldapSyntaxes)
 
 
 
@@ -1079,15 +1311,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_ldap_extension */
 #define afw_ldap_s_ldap_extension \
-    (afw_ldap_v_ldap_extension.internal)
+    (afw_ldap_self_v_ldap_extension.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_ldap_extension */
 extern const afw_value_string_t \
-    afw_ldap_v_ldap_extension;
+    afw_ldap_self_v_ldap_extension;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldap_extension */
 #define afw_ldap_z_ldap_extension \
-    (afw_ldap_v_ldap_extension.internal.s)
+    (afw_ldap_self_v_ldap_extension.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_ldap_extension */
+#define afw_ldap_v_ldap_extension \
+    ((const afw_value_t *)&afw_ldap_self_v_ldap_extension)
 
 
 
@@ -1097,15 +1333,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_matchingRuleUse */
 #define afw_ldap_s_matchingRuleUse \
-    (afw_ldap_v_matchingRuleUse.internal)
+    (afw_ldap_self_v_matchingRuleUse.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_matchingRuleUse */
 extern const afw_value_string_t \
-    afw_ldap_v_matchingRuleUse;
+    afw_ldap_self_v_matchingRuleUse;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_matchingRuleUse */
 #define afw_ldap_z_matchingRuleUse \
-    (afw_ldap_v_matchingRuleUse.internal.s)
+    (afw_ldap_self_v_matchingRuleUse.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_matchingRuleUse */
+#define afw_ldap_v_matchingRuleUse \
+    ((const afw_value_t *)&afw_ldap_self_v_matchingRuleUse)
 
 
 
@@ -1115,15 +1355,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_matchingRules */
 #define afw_ldap_s_matchingRules \
-    (afw_ldap_v_matchingRules.internal)
+    (afw_ldap_self_v_matchingRules.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_matchingRules */
 extern const afw_value_string_t \
-    afw_ldap_v_matchingRules;
+    afw_ldap_self_v_matchingRules;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_matchingRules */
 #define afw_ldap_z_matchingRules \
-    (afw_ldap_v_matchingRules.internal.s)
+    (afw_ldap_self_v_matchingRules.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_matchingRules */
+#define afw_ldap_v_matchingRules \
+    ((const afw_value_t *)&afw_ldap_self_v_matchingRules)
 
 
 
@@ -1133,15 +1377,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_numericoid */
 #define afw_ldap_s_numericoid \
-    (afw_ldap_v_numericoid.internal)
+    (afw_ldap_self_v_numericoid.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_numericoid */
 extern const afw_value_string_t \
-    afw_ldap_v_numericoid;
+    afw_ldap_self_v_numericoid;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_numericoid */
 #define afw_ldap_z_numericoid \
-    (afw_ldap_v_numericoid.internal.s)
+    (afw_ldap_self_v_numericoid.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_numericoid */
+#define afw_ldap_v_numericoid \
+    ((const afw_value_t *)&afw_ldap_self_v_numericoid)
 
 
 
@@ -1151,15 +1399,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_objectClasses */
 #define afw_ldap_s_objectClasses \
-    (afw_ldap_v_objectClasses.internal)
+    (afw_ldap_self_v_objectClasses.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_objectClasses */
 extern const afw_value_string_t \
-    afw_ldap_v_objectClasses;
+    afw_ldap_self_v_objectClasses;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_objectClasses */
 #define afw_ldap_z_objectClasses \
-    (afw_ldap_v_objectClasses.internal.s)
+    (afw_ldap_self_v_objectClasses.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_objectClasses */
+#define afw_ldap_v_objectClasses \
+    ((const afw_value_t *)&afw_ldap_self_v_objectClasses)
 
 
 
@@ -1169,15 +1421,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_objectId */
 #define afw_ldap_s_objectId \
-    (afw_ldap_v_objectId.internal)
+    (afw_ldap_self_v_objectId.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_objectId */
 extern const afw_value_string_t \
-    afw_ldap_v_objectId;
+    afw_ldap_self_v_objectId;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_objectId */
 #define afw_ldap_z_objectId \
-    (afw_ldap_v_objectId.internal.s)
+    (afw_ldap_self_v_objectId.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_objectId */
+#define afw_ldap_v_objectId \
+    ((const afw_value_t *)&afw_ldap_self_v_objectId)
 
 
 
@@ -1187,15 +1443,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_objectType */
 #define afw_ldap_s_objectType \
-    (afw_ldap_v_objectType.internal)
+    (afw_ldap_self_v_objectType.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_objectType */
 extern const afw_value_string_t \
-    afw_ldap_v_objectType;
+    afw_ldap_self_v_objectType;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_objectType */
 #define afw_ldap_z_objectType \
-    (afw_ldap_v_objectType.internal.s)
+    (afw_ldap_self_v_objectType.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_objectType */
+#define afw_ldap_v_objectType \
+    ((const afw_value_t *)&afw_ldap_self_v_objectType)
 
 
 
@@ -1205,15 +1465,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_otherProperties */
 #define afw_ldap_s_otherProperties \
-    (afw_ldap_v_otherProperties.internal)
+    (afw_ldap_self_v_otherProperties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_otherProperties */
 extern const afw_value_string_t \
-    afw_ldap_v_otherProperties;
+    afw_ldap_self_v_otherProperties;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_otherProperties */
 #define afw_ldap_z_otherProperties \
-    (afw_ldap_v_otherProperties.internal.s)
+    (afw_ldap_self_v_otherProperties.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_otherProperties */
+#define afw_ldap_v_otherProperties \
+    ((const afw_value_t *)&afw_ldap_self_v_otherProperties)
 
 
 
@@ -1223,15 +1487,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_parentPaths */
 #define afw_ldap_s_parentPaths \
-    (afw_ldap_v_parentPaths.internal)
+    (afw_ldap_self_v_parentPaths.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_parentPaths */
 extern const afw_value_string_t \
-    afw_ldap_v_parentPaths;
+    afw_ldap_self_v_parentPaths;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_parentPaths */
 #define afw_ldap_z_parentPaths \
-    (afw_ldap_v_parentPaths.internal.s)
+    (afw_ldap_self_v_parentPaths.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_parentPaths */
+#define afw_ldap_v_parentPaths \
+    ((const afw_value_t *)&afw_ldap_self_v_parentPaths)
 
 
 
@@ -1241,15 +1509,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_password */
 #define afw_ldap_s_password \
-    (afw_ldap_v_password.internal)
+    (afw_ldap_self_v_password.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_password */
 extern const afw_value_string_t \
-    afw_ldap_v_password;
+    afw_ldap_self_v_password;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_password */
 #define afw_ldap_z_password \
-    (afw_ldap_v_password.internal.s)
+    (afw_ldap_self_v_password.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_password */
+#define afw_ldap_v_password \
+    ((const afw_value_t *)&afw_ldap_self_v_password)
 
 
 
@@ -1259,15 +1531,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_preventVerifyCert */
 #define afw_ldap_s_preventVerifyCert \
-    (afw_ldap_v_preventVerifyCert.internal)
+    (afw_ldap_self_v_preventVerifyCert.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_preventVerifyCert */
 extern const afw_value_string_t \
-    afw_ldap_v_preventVerifyCert;
+    afw_ldap_self_v_preventVerifyCert;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_preventVerifyCert */
 #define afw_ldap_z_preventVerifyCert \
-    (afw_ldap_v_preventVerifyCert.internal.s)
+    (afw_ldap_self_v_preventVerifyCert.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_preventVerifyCert */
+#define afw_ldap_v_preventVerifyCert \
+    ((const afw_value_t *)&afw_ldap_self_v_preventVerifyCert)
 
 
 
@@ -1277,15 +1553,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_propertyTypes */
 #define afw_ldap_s_propertyTypes \
-    (afw_ldap_v_propertyTypes.internal)
+    (afw_ldap_self_v_propertyTypes.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_propertyTypes */
 extern const afw_value_string_t \
-    afw_ldap_v_propertyTypes;
+    afw_ldap_self_v_propertyTypes;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_propertyTypes */
 #define afw_ldap_z_propertyTypes \
-    (afw_ldap_v_propertyTypes.internal.s)
+    (afw_ldap_self_v_propertyTypes.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_propertyTypes */
+#define afw_ldap_v_propertyTypes \
+    ((const afw_value_t *)&afw_ldap_self_v_propertyTypes)
 
 
 
@@ -1295,15 +1575,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_required */
 #define afw_ldap_s_required \
-    (afw_ldap_v_required.internal)
+    (afw_ldap_self_v_required.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_required */
 extern const afw_value_string_t \
-    afw_ldap_v_required;
+    afw_ldap_self_v_required;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_required */
 #define afw_ldap_z_required \
-    (afw_ldap_v_required.internal.s)
+    (afw_ldap_self_v_required.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_required */
+#define afw_ldap_v_required \
+    ((const afw_value_t *)&afw_ldap_self_v_required)
 
 
 
@@ -1313,15 +1597,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_string */
 #define afw_ldap_s_string \
-    (afw_ldap_v_string.internal)
+    (afw_ldap_self_v_string.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_string */
 extern const afw_value_string_t \
-    afw_ldap_v_string;
+    afw_ldap_self_v_string;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_string */
 #define afw_ldap_z_string \
-    (afw_ldap_v_string.internal.s)
+    (afw_ldap_self_v_string.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_string */
+#define afw_ldap_v_string \
+    ((const afw_value_t *)&afw_ldap_self_v_string)
 
 
 
@@ -1331,15 +1619,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_subschemaSubentry */
 #define afw_ldap_s_subschemaSubentry \
-    (afw_ldap_v_subschemaSubentry.internal)
+    (afw_ldap_self_v_subschemaSubentry.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_subschemaSubentry */
 extern const afw_value_string_t \
-    afw_ldap_v_subschemaSubentry;
+    afw_ldap_self_v_subschemaSubentry;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_subschemaSubentry */
 #define afw_ldap_z_subschemaSubentry \
-    (afw_ldap_v_subschemaSubentry.internal.s)
+    (afw_ldap_self_v_subschemaSubentry.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_subschemaSubentry */
+#define afw_ldap_v_subschemaSubentry \
+    ((const afw_value_t *)&afw_ldap_self_v_subschemaSubentry)
 
 
 
@@ -1349,15 +1641,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_template */
 #define afw_ldap_s_template \
-    (afw_ldap_v_template.internal)
+    (afw_ldap_self_v_template.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_template */
 extern const afw_value_string_t \
-    afw_ldap_v_template;
+    afw_ldap_self_v_template;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_template */
 #define afw_ldap_z_template \
-    (afw_ldap_v_template.internal.s)
+    (afw_ldap_self_v_template.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_template */
+#define afw_ldap_v_template \
+    ((const afw_value_t *)&afw_ldap_self_v_template)
 
 
 
@@ -1367,15 +1663,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_unique */
 #define afw_ldap_s_unique \
-    (afw_ldap_v_unique.internal)
+    (afw_ldap_self_v_unique.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_unique */
 extern const afw_value_string_t \
-    afw_ldap_v_unique;
+    afw_ldap_self_v_unique;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_unique */
 #define afw_ldap_z_unique \
-    (afw_ldap_v_unique.internal.s)
+    (afw_ldap_self_v_unique.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_unique */
+#define afw_ldap_v_unique \
+    ((const afw_value_t *)&afw_ldap_self_v_unique)
 
 
 
@@ -1385,15 +1685,19 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_t' for AFW_LDAP_Q_url */
 #define afw_ldap_s_url \
-    (afw_ldap_v_url.internal)
+    (afw_ldap_self_v_url.internal)
 
 /** @brief 'afw_value_string_t' for AFW_LDAP_Q_url */
 extern const afw_value_string_t \
-    afw_ldap_v_url;
+    afw_ldap_self_v_url;
 
 /** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_url */
 #define afw_ldap_z_url \
-    (afw_ldap_v_url.internal.s)
+    (afw_ldap_self_v_url.internal.s)
+
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_url */
+#define afw_ldap_v_url \
+    ((const afw_value_t *)&afw_ldap_self_v_url)
 
 
 

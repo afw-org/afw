@@ -106,7 +106,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
             fd.write('    ' + s_ + propname + ',\n')
 
         if dataType == 'string':
-            fd.write('    (const afw_value_t *)' + get_string_label(options, prop, '*v') + '\n')
+            fd.write('    (const afw_value_t *)&' + get_string_label(options, prop, 'self_v') + '\n')
         else:
             fd.write('    (const afw_value_t *)&' + obj['_meta_']['_label_'] + '_property_value_' + tag_propname + '\n')
         fd.write('};\n')
