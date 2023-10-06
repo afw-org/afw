@@ -107,7 +107,7 @@ afw_adaptor_get_object(
 
     /* If object_type_id is _AdaptiveJournalEntry_, handle special */
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
         return afw_adaptor_internal_journal_get_entry(session, object_id, journal_entry,
             xctx);

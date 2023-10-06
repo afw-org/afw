@@ -685,7 +685,7 @@ impl_afw_adaptor_session_modify_object(
 
     /* _AdaptiveJournalEntry_ objects are read-only. */
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
         AFW_THROW_ERROR_Z(read_only,
             AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY

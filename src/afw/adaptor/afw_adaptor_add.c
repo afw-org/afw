@@ -70,11 +70,11 @@ afw_adaptor_add_object(
 
     /* If one of the core object types, handle special */
     object_id = NULL;
-    if (afw_utf8_starts_with(object_type_id, &AFW_OBJECT_S_CORE_ID_PREFIX)) {
+    if (afw_utf8_starts_with(object_type_id, AFW_OBJECT_S_CORE_ID_PREFIX)) {
 
         /* Journal entry. */
         if (afw_utf8_equal(object_type_id,
-            &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+            AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
         {
             journal = afw_adaptor_session_get_journal_interface(session,
                 xctx);

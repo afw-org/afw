@@ -626,7 +626,7 @@ impl_additional_object_option_processing(
     {
         if (self->pub.meta.id) {
             v = impl_shared_string_value(self->view, self->pub.meta.id, xctx);
-            impl_meta_set_property(self, &AFW_OBJECT_S_PN_OBJECT_ID, v,
+            impl_meta_set_property(self, AFW_OBJECT_S_PN_OBJECT_ID, v,
                 xctx);
         }
     }

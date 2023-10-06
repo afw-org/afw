@@ -1300,14 +1300,14 @@ afw_ldap_metadata_retrieve_objects(
 
     /* ObjectType. */
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE))
     {
         ht = self->adaptor->metadata->object_type_objects;
     }
 
     /* ValueMeta. */
     else if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META))
     {
         ht = self->adaptor->metadata->value_meta_objects;
     }

@@ -84,7 +84,7 @@ afw_adaptor_retrieve_objects(
 
     /* Journal entry is not supported for retrieve. */
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
         AFW_THROW_ERROR_Z(general,
             "retrieve_objects() is not supported for "

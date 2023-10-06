@@ -64,11 +64,11 @@ afw_adaptor_replace_object(
     afw_adaptor_internal_journal_prologue(session, journal_entry, xctx);
 
     /* If one of the core object types, handle special */
-    if (afw_utf8_starts_with(object_type_id, &AFW_OBJECT_S_CORE_ID_PREFIX)) {
+    if (afw_utf8_starts_with(object_type_id, AFW_OBJECT_S_CORE_ID_PREFIX)) {
 
         /* Journal entry. */
         if (afw_utf8_equal(object_type_id,
-            &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+            AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
         {
             AFW_THROW_ERROR_Z(general,
                 "replace_object() is not supported for "

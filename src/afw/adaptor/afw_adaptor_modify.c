@@ -841,12 +841,12 @@ afw_adaptor_modify_object(
     afw_adaptor_internal_journal_prologue(session, journal_entry, xctx);
 
     /* If one of the core object types, handle special */
-    if (afw_utf8_starts_with(object_type_id, &AFW_OBJECT_S_CORE_ID_PREFIX))
+    if (afw_utf8_starts_with(object_type_id, AFW_OBJECT_S_CORE_ID_PREFIX))
     {
 
         /* Journal entry. */
         if (afw_utf8_equal(object_type_id,
-            &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+            AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
         {
             AFW_THROW_ERROR_Z(general,
                 "modify_object() is not supported for "
@@ -891,7 +891,7 @@ afw_adaptor_modify_using_update_object(
         Journal entry.
 
     if (afw_utf8_equal(object_type_id,
-        &AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
+        AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
         afw_adaptor_journal_entry_consume(session, object_id, update_object,
             xctx);
