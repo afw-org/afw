@@ -96,7 +96,7 @@ afw_server_fcgi_internal_create_request(
 
     /* Get request method. */
     value = afw_object_get_property(self->pub.properties,
-        &AFW_REQUEST_s_PN_REQUEST_METHOD, xctx);
+        AFW_REQUEST_s_PN_REQUEST_METHOD, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             AFW_REQUEST_Q_PN_REQUEST_METHOD " property required.", xctx);
@@ -105,10 +105,10 @@ afw_server_fcgi_internal_create_request(
 
     /* Get request URI. */
     self->pub.uri = afw_object_old_get_property_as_utf8(self->pub.properties,
-        &AFW_REQUEST_s_PN_PATH_INFO, xctx->p, xctx);
+        AFW_REQUEST_s_PN_PATH_INFO, xctx->p, xctx);
     if (!self->pub.uri || self->pub.uri->len == 0) {
         self->pub.uri = afw_object_old_get_property_as_utf8(self->pub.properties,
-            &AFW_REQUEST_s_PN_REQUEST_URI, xctx->p, xctx);
+            AFW_REQUEST_s_PN_REQUEST_URI, xctx->p, xctx);
         if (self->pub.uri && self->pub.uri->len != 0) {
             for (c = self->pub.uri->s, len = self->pub.uri->len;
                 len > 0; c++, len--)
@@ -129,7 +129,7 @@ afw_server_fcgi_internal_create_request(
 
     /* Get request query string. */
     value = afw_object_get_property(self->pub.properties,
-        &AFW_REQUEST_s_PN_QUERY_STRING, xctx);
+        AFW_REQUEST_s_PN_QUERY_STRING, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             AFW_REQUEST_Q_PN_QUERY_STRING " property required.", xctx);
@@ -139,11 +139,11 @@ afw_server_fcgi_internal_create_request(
     /* Get request content type. */
     self->pub.content_type = afw_object_old_get_property_as_utf8(
         self->pub.properties,
-        &AFW_REQUEST_s_PN_CONTENT_TYPE, xctx->p, xctx);
+        AFW_REQUEST_s_PN_CONTENT_TYPE, xctx->p, xctx);
 
     /* Get request content length. */
     value = afw_object_get_property(self->pub.properties,
-        &AFW_REQUEST_s_PN_CONTENT_LENGTH, xctx);
+        AFW_REQUEST_s_PN_CONTENT_LENGTH, xctx);
     if (value) {
         length_z = afw_value_as_utf8_z(value, xctx->p, xctx);
         self->pub.content_length = atoi(length_z);
@@ -151,7 +151,7 @@ afw_server_fcgi_internal_create_request(
 
     /* Get request accept header. */
     value = afw_object_get_property(self->pub.properties,
-        &AFW_REQUEST_s_PN_HTTP_ACCEPT, xctx);
+        AFW_REQUEST_s_PN_HTTP_ACCEPT, xctx);
     if (value) {
         self->pub.accept = afw_utf8_parse_csv(
             afw_value_as_utf8(value, xctx->p, xctx),
