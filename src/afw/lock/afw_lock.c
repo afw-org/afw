@@ -52,7 +52,7 @@ afw_lock_create_environment_lock(
     self = apr_pcalloc(afw_pool_get_apr_pool(p), sizeof(afw_lock_t));
     self->lock_id = (lock_id)
         ? lock_id
-        : &afw_s_a_empty_string;
+        : &afw_self_s_a_empty_string;
     rv = apr_thread_mutex_create(&self->mutex,
         APR_THREAD_MUTEX_UNNESTED, afw_pool_get_apr_pool(p));
     if (rv != APR_SUCCESS) {
@@ -132,7 +132,7 @@ afw_lock_create(
             AFW_UTF8_FMT_ARG(lock_id));
         afw_environment_register_flag(
             self->flag_id_debug, brief, description,
-            &afw_s_a_flag_debug_lock, xctx);
+            &afw_self_s_a_flag_debug_lock, xctx);
         flag = afw_environment_get_flag(self->flag_id_debug, xctx);
     }
     self->flag_index_debug = flag->flag_index;
@@ -225,7 +225,7 @@ afw_lock_create_rw(
             AFW_UTF8_FMT_ARG(lock_id));
         afw_environment_register_flag(
             self->lock.flag_id_debug, brief, description,
-            &afw_s_a_flag_debug_lock, xctx);
+            &afw_self_s_a_flag_debug_lock, xctx);
         flag = afw_environment_get_flag(self->lock.flag_id_debug, xctx);
     }
     self->lock.flag_index_debug = flag->flag_index;

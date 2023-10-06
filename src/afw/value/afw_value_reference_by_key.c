@@ -63,7 +63,7 @@ afw_value_reference_by_key_create(
             ((const afw_value_integer_t *)key)->internal);
     }
     else if (!afw_value_is_defined_and_evaluated(key)) {
-        self->backtrace_detail = &afw_s_a_bracketed_value;
+        self->backtrace_detail = &afw_self_s_a_bracketed_value;
     }
     else {
         AFW_THROW_ERROR_Z(general,

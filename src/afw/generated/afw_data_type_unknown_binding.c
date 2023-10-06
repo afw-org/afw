@@ -91,8 +91,8 @@ impl_data_type_object_unknown = {
         {
             NULL,
             NULL,
-            &afw_s_unknown,
-            &afw_s__AdaptiveDataType_,
+            &afw_self_s_unknown,
+            &afw_self_s__AdaptiveDataType_,
             &impl_data_type_path_unknown
         }
     },

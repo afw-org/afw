@@ -364,7 +364,7 @@ afw_function_execute_compile(
 
     /** @fixme Need a way to get source location */
     result = afw_value_compile(
-        source, &afw_s_a_empty_string, x->p, x->xctx);
+        source, &afw_self_s_a_empty_string, x->p, x->xctx);
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
         result = afw_value_create_string(

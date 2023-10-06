@@ -36,7 +36,7 @@ afw_adaptor_add_object(
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
-        journal_entry, &afw_s_request, xctx);
+        journal_entry, &afw_self_s_request, xctx);
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
@@ -48,19 +48,19 @@ afw_adaptor_add_object(
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
     afw_object_set_property_as_string(request,
-        &afw_s_resourceId, impl_request.resource_id, xctx);
+        &afw_self_s_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_function, &afw_s_add_object, xctx);
+        &afw_self_s_function, &afw_self_s_add_object, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_adaptorId, adaptor_id, xctx);
+        &afw_self_s_adaptorId, adaptor_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_objectType, object_type_id, xctx);
+        &afw_self_s_objectType, object_type_id, xctx);
     if (suggested_object_id) {
         afw_object_set_property_as_string(request,
-            &afw_s_suggestedObjectId, suggested_object_id, xctx);
+            &afw_self_s_suggestedObjectId, suggested_object_id, xctx);
     }
     afw_object_set_property_as_object(request,
-        &afw_s_object, object, xctx);
+        &afw_self_s_object, object, xctx);
 
     /* Get an active session with adaptor. */
     session = afw_adaptor_session_get_cached(adaptor_id, true, xctx);
@@ -98,11 +98,11 @@ afw_adaptor_add_object(
 
     /* Set info in journal entry. */
     afw_object_set_property_as_string(journal_entry,
-        &afw_s_objectId, object_id, xctx);
+        &afw_self_s_objectId, object_id, xctx);
     path = afw_object_path_make(adaptor_id, object_type_id, object_id,
         journal_entry->p, xctx);
     afw_object_set_property_as_string(journal_entry,
-        &afw_s_path, path, xctx);
+        &afw_self_s_path, path, xctx);
 
     /* If requested, write to event journal. */
     //if (session->adaptor->)

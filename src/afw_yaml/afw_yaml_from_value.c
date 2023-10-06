@@ -371,7 +371,7 @@ void convert_object_to_yaml(
         wa->options, wa->p, wa->xctx);
     if (meta) {
         (wa->indent)++;
-        put_yaml_string(wa, &afw_s__meta_);
+        put_yaml_string(wa, &afw_self_s__meta_);
         impl_puts(wa, ": ");
         put_ws(wa);
         convert_object_to_yaml(wa, meta);

@@ -86,7 +86,7 @@ afw_server_fcgi_internal_create(const char *path,
     self->pub.afw_version = afw_version_string();
     self->pub.afw_compiled_version = &impl_compiled_afw_version;
     self->pub.server_version = &impl_compiled_afw_version; /* Use afw version. */
-    self->pub.server_type = &afw_server_fcgi_s_afw_server_fcgi;
+    self->pub.server_type = &afw_server_fcgi_self_s_afw_server_fcgi;
     self->pub.start_time = afw_dateTime_now_local(xctx->p, xctx);
 
     /* Use afw version. */
@@ -97,7 +97,7 @@ afw_server_fcgi_internal_create(const char *path,
         afw_environment_create_environment_variables_object(true, xctx);
     afw_runtime_xctx_set_object(self->environment_variables_object,
         true, xctx);
-    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_environment,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_environment,
         self->environment_variables_object, true, xctx->p, xctx);        
 
     /* Open socket. */
@@ -115,34 +115,34 @@ afw_server_fcgi_internal_create(const char *path,
 
     /* Create and set runtime object for server. */
     afw_runtime_env_create_and_set_indirect_object(
-        &afw_s__AdaptiveServer_,
-        &afw_s_current, self, true, xctx);
+        &afw_self_s__AdaptiveServer_,
+        &afw_self_s_current, self, true, xctx);
 
     /* Register flag trace:server */
     afw_flag_environment_register_flag(
-        &afw_server_fcgi_s_a_flag_trace_server,
-        &afw_server_fcgi_s_a_flag_trace_server_brief,
-        &afw_server_fcgi_s_a_flag_trace_server_description,
-        &afw_s_a_flag_trace,
+        &afw_server_fcgi_self_s_a_flag_trace_server,
+        &afw_server_fcgi_self_s_a_flag_trace_server_brief,
+        &afw_server_fcgi_self_s_a_flag_trace_server_description,
+        &afw_self_s_a_flag_trace,
         xctx);
 
     /* Register flag trace:server:request */
     afw_flag_environment_register_flag(
-        &afw_server_fcgi_s_a_flag_trace_server_request,
-        &afw_server_fcgi_s_a_flag_trace_server_request_brief,
-        &afw_server_fcgi_s_a_flag_trace_server_request_description,
-        &afw_server_fcgi_s_a_flag_trace_server,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request_brief,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request_description,
+        &afw_server_fcgi_self_s_a_flag_trace_server,
         xctx);
 
     /* Register flag trace:server:request:process */
     afw_flag_environment_register_flag(
-        &afw_server_fcgi_s_a_flag_trace_server_request_process,
-        &afw_server_fcgi_s_a_flag_trace_server_request_process_brief,
-        &afw_server_fcgi_s_a_flag_trace_server_request_process_description,
-        &afw_server_fcgi_s_a_flag_trace_server_request,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request_process,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request_process_brief,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request_process_description,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request,
         xctx);
     self->flag_index_trace_process = afw_flag_get_index(
-        &afw_server_fcgi_s_a_flag_trace_server_request_process,
+        &afw_server_fcgi_self_s_a_flag_trace_server_request_process,
         xctx);
 
     /* Get flag_index for request trace. */

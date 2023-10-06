@@ -37,7 +37,7 @@ AFW_BEGIN_DECLARES
  *
  * The content type of the request.
  */
-#define AFW_REQUEST_s_PN_CONTENT_TYPE afw_s_CONTENT_TYPE
+#define AFW_REQUEST_s_PN_CONTENT_TYPE afw_self_s_CONTENT_TYPE
 
 /** @brief Request property name CONTENT_LENGTH quoted string.
  *
@@ -49,7 +49,7 @@ AFW_BEGIN_DECLARES
  *
  * The content length of the request, if available.
  */
-#define AFW_REQUEST_s_PN_CONTENT_LENGTH afw_s_CONTENT_LENGTH
+#define AFW_REQUEST_s_PN_CONTENT_LENGTH afw_self_s_CONTENT_LENGTH
 
 /**
  * @brief Request property name HTTP_ACCEPT quoted string.
@@ -59,7 +59,7 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Request property name HTTP_ACCEPT afw_utf8_t.
  */
-#define AFW_REQUEST_s_PN_HTTP_ACCEPT afw_s_HTTP_ACCEPT
+#define AFW_REQUEST_s_PN_HTTP_ACCEPT afw_self_s_HTTP_ACCEPT
 
 /**
  * @brief Request property name PATH_INFO quoted string.
@@ -73,7 +73,7 @@ AFW_BEGIN_DECLARES
  *
  * The query string.
  */
-#define AFW_REQUEST_s_PN_PATH_INFO afw_s_PATH_INFO
+#define AFW_REQUEST_s_PN_PATH_INFO afw_self_s_PATH_INFO
 
 /**
  * @brief Request property name QUERY_STRING quoted string.
@@ -87,7 +87,7 @@ AFW_BEGIN_DECLARES
  *
  * The query string.
  */
-#define AFW_REQUEST_s_PN_QUERY_STRING afw_s_QUERY_STRING
+#define AFW_REQUEST_s_PN_QUERY_STRING afw_self_s_QUERY_STRING
 
 /**
  * @brief Request property name REQUEST_METHOD quoted string.
@@ -103,7 +103,7 @@ AFW_BEGIN_DECLARES
  * The http method of the request. Usually, "GET", "POST", "PUT", "PATCH", or
  * "DELETE".
  */
-#define AFW_REQUEST_s_PN_REQUEST_METHOD afw_s_REQUEST_METHOD
+#define AFW_REQUEST_s_PN_REQUEST_METHOD afw_self_s_REQUEST_METHOD
 
 /**
  * @brief Request property name REQUEST_URI quoted string.
@@ -117,37 +117,37 @@ AFW_BEGIN_DECLARES
  *
  * The query string.
  */
-#define AFW_REQUEST_s_PN_REQUEST_URI afw_s_REQUEST_URI
+#define AFW_REQUEST_s_PN_REQUEST_URI afw_self_s_REQUEST_URI
 
 /** @brief Request method GET quoted string. */
 #define AFW_REQUEST_Q_METHOD_GET AFW_Q_GET
 
 /** @brief Request method GET afw_utf8_t */
-#define AFW_REQUEST_s_METHOD_GET afw_s_GET
+#define AFW_REQUEST_s_METHOD_GET afw_self_s_GET
 
 /** Request method POST quoted string. */
 #define AFW_REQUEST_Q_METHOD_POST AFW_Q_POST
 
 /** Request method POST afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_POST afw_s_POST
+#define AFW_REQUEST_s_METHOD_POST afw_self_s_POST
 
 /** Request method PUT quoted string. */
 #define AFW_REQUEST_Q_METHOD_PUT AFW_Q_PUT
 
 /** Request method PUT afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_PUT afw_s_PUT
+#define AFW_REQUEST_s_METHOD_PUT afw_self_s_PUT
 
 /** Request method PATCH quoted string. */
 #define AFW_REQUEST_Q_METHOD_PATCH AFW_Q_PATCH
 
 /** Request method PATCH afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_PATCH afw_s_PATCH
+#define AFW_REQUEST_s_METHOD_PATCH afw_self_s_PATCH
 
 /** Request method DELETE quoted string. */
 #define AFW_REQUEST_Q_METHOD_DELETE AFW_Q_DELETE
 
 /** Request method DELETE afw_utf8_t. */
-#define AFW_REQUEST_s_METHOD_DELETE afw_s_DELETE
+#define AFW_REQUEST_s_METHOD_DELETE afw_self_s_DELETE
 
 
 /** Request state enum.  This CAN be used by implementations of afw_request. */

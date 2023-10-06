@@ -155,7 +155,7 @@ impl_afw_adaptor_session_get_object(
      * If object_type_id is _AdaptiveObjectType_, return a generic object type for
      * now.  This may change if the lmdb adaptor starts storing object types.
      */
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(object_type_id, &afw_self_s__AdaptiveObjectType_)) {
         object = afw_adaptor_impl_generic_object_type_object_get(
             instance->adaptor, object_id, p, xctx);
         callback(object, context, xctx);
@@ -169,7 +169,7 @@ impl_afw_adaptor_session_get_object(
 
         /* open our database */
         dbi = afw_lmdb_internal_open_database(adaptor, 
-            txn, &afw_lmdb_s_Primary, 0, p, xctx);
+            txn, &afw_lmdb_self_s_Primary, 0, p, xctx);
 
         /* Callback with object. */
         callback(
@@ -217,7 +217,7 @@ impl_afw_adaptor_session_add_object(
 
         /* open our primary database */
         dbi = afw_lmdb_internal_open_database(adaptor, 
-            txn, &afw_lmdb_s_Primary, MDB_CREATE, xctx->p, xctx);
+            txn, &afw_lmdb_self_s_Primary, MDB_CREATE, xctx->p, xctx);
 
         /* add the object to our primary database */
         afw_lmdb_internal_create_entry_from_object(self,
@@ -266,7 +266,7 @@ impl_afw_adaptor_session_modify_object(
 
         /* open our primary database */
         dbi = afw_lmdb_internal_open_database(adaptor, 
-            txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+            txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
         /* load our object into memory and apply the modifications */
         object = afw_lmdb_internal_create_object_from_entry(self,
@@ -322,7 +322,7 @@ impl_afw_adaptor_session_replace_object(
 
         /* open our primary database */
         dbi = afw_lmdb_internal_open_database(adaptor,
-            txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+            txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
         /* get the old object */
         value = afw_lmdb_internal_create_value_from_entry(self, 
@@ -378,7 +378,7 @@ impl_afw_adaptor_session_delete_object(
         txn = AFW_LMDB_GET_TRANSACTION();
 
         dbi = afw_lmdb_internal_open_database(adaptor,
-            txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+            txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
         object = afw_lmdb_internal_create_object_from_entry(self, 
             object_type_id, object_id, dbi, xctx);
@@ -468,7 +468,7 @@ void afw_lmdb_adaptor_session_dump_objects(
 
     /* Open the database where our primary objects are stored */
     dbi = afw_lmdb_internal_open_database(session->adaptor, txn, 
-        &afw_lmdb_s_Primary, 0, p, xctx);
+        &afw_lmdb_self_s_Primary, 0, p, xctx);
 
     /* Open a cursor against the object_type index database */
     cursor = afw_lmdb_internal_open_cursor(session, dbi, xctx);

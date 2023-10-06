@@ -104,7 +104,7 @@ impl_afw_adaptor_session_retrieve_objects(
     base_z = "";
     if (adaptor_type_specific) {
         s = afw_object_old_get_property_as_string(adaptor_type_specific,
-            &afw_ldap_s_base, xctx);
+            &afw_ldap_self_s_base, xctx);
         if (s) {
             base_z = (char *)afw_utf8_to_utf8_z(s, p, xctx);
         }

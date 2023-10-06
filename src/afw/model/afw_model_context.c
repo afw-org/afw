@@ -659,7 +659,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_adaptorId =
 {
-    &afw_s_adaptorId,
+    &afw_self_s_adaptorId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Adaptor Id"
@@ -670,7 +670,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_adaptorTypeSpecific =
 {
-    &afw_s_adaptorTypeSpecific,
+    &afw_self_s_adaptorTypeSpecific,
     &afw_value_evaluated_object_inf,
     &afw_data_type_object_direct,
     "Adaptor Specific"
@@ -681,7 +681,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mapBackObject =
 {
-    &afw_s_mapBackObject,
+    &afw_self_s_mapBackObject,
     &afw_value_evaluated_function_inf,
     &afw_data_type_function_direct,
     "Function to map back an object",
@@ -695,7 +695,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_modifyEntries =
 {
-    &afw_s_modifyEntries,
+    &afw_self_s_modifyEntries,
     &afw_value_evaluated_array_inf,
     &afw_data_type_array_direct,
     "Modify Entries",
@@ -707,7 +707,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_object =
 {
-    &afw_s_object,
+    &afw_self_s_object,
     &afw_value_evaluated_object_inf,
     &afw_data_type_object_direct,
     "Object",
@@ -719,7 +719,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_objectId =
 {
-    &afw_s_objectId,
+    &afw_self_s_objectId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "ObjectId"
@@ -730,7 +730,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_objectType =
 {
-    &afw_s_objectType,
+    &afw_self_s_objectType,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "ObjectType"
@@ -741,7 +741,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_propertyName =
 {
-    &afw_s_propertyName,
+    &afw_self_s_propertyName,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Property Name"
@@ -752,7 +752,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_returnObject =
 {
-    &afw_s_returnObject,
+    &afw_self_s_returnObject,
     &afw_value_evaluated_function_inf,
     &afw_data_type_function_direct,
     "Function to call to return an object",
@@ -766,7 +766,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_value =
 {
-    &afw_s_value,
+    &afw_self_s_value,
     NULL,
     NULL,
     "Value"
@@ -777,7 +777,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedAdaptorId =
 {
-    &afw_s_mappedAdaptorId,
+    &afw_self_s_mappedAdaptorId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Mapped Adaptor Id"
@@ -788,7 +788,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedObject =
 {
-    &afw_s_mappedObject,
+    &afw_self_s_mappedObject,
     &afw_value_evaluated_object_inf,
     &afw_data_type_object_direct,
     "Mapped Object"
@@ -799,7 +799,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedObjectId =
 {
-    &afw_s_mappedObjectId,
+    &afw_self_s_mappedObjectId,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Mapped Object Id"
@@ -810,7 +810,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedObjectType =
 {
-    &afw_s_mappedObjectType,
+    &afw_self_s_mappedObjectType,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Mapped Object Type"
@@ -821,7 +821,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedPropertyName =
 {
-    &afw_s_mappedPropertyName,
+    &afw_self_s_mappedPropertyName,
     &afw_value_evaluated_string_inf,
     &afw_data_type_string_direct,
     "Mapped Property Name"
@@ -832,7 +832,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedValue =
 {
-    &afw_s_mappedValue,
+    &afw_self_s_mappedValue,
     NULL,
     NULL,
     "Mapped Value"
@@ -843,7 +843,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_queryCriteria =
 {
-    &afw_s_queryCriteria,
+    &afw_self_s_queryCriteria,
     &afw_value_evaluated_object_inf,
     &afw_data_type_object_direct,
     "Query Criteria",
@@ -855,7 +855,7 @@ static const
 afw_context_cb_variable_meta_t
 impl_current_variable_meta_useDefaultProcessing =
 {
-    &afw_s_useDefaultProcessing,
+    &afw_self_s_useDefaultProcessing,
     NULL,
     NULL,
     "Use Default Processing"
@@ -1178,65 +1178,65 @@ void
 afw_model_internal_register_context_type_model(afw_xctx_t *xctx)
 {
     afw_context_type_register_cb_variables(
-        &afw_s_modelGetObject,
-        &afw_s_current,
+        &afw_self_s_modelGetObject,
+        &afw_self_s_current,
         "Qualified variables available during onGetObject processing",
         &afw_model_internal_context_current_get_object[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelRetrieveObjects,
-        &afw_s_current,
+        &afw_self_s_modelRetrieveObjects,
+        &afw_self_s_current,
         "Qualified variables available during onRetrieveObjects processing",
         &afw_model_internal_context_current_retrieve_objects[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelAddObject,
-        &afw_s_current,
+        &afw_self_s_modelAddObject,
+        &afw_self_s_current,
         "Qualified variables available during onAddObject processing",
         &afw_model_internal_context_current_add_object[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelDeleteObject,
-        &afw_s_current,
+        &afw_self_s_modelDeleteObject,
+        &afw_self_s_current,
         "Qualified variables available during onDeleteObject processing",
         &afw_model_internal_context_current_delete_object[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelModifyObject,
-        &afw_s_current,
+        &afw_self_s_modelModifyObject,
+        &afw_self_s_current,
         "Qualified variables available during onModifyObject processing",
         &afw_model_internal_context_current_modify_object[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelReplaceObject,
-        &afw_s_current,
+        &afw_self_s_modelReplaceObject,
+        &afw_self_s_current,
         "Qualified variables available during onReplaceObject processing",
         &afw_model_internal_context_current_replace_object[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelGetProperty,
-        &afw_s_current,
+        &afw_self_s_modelGetProperty,
+        &afw_self_s_current,
         "Qualified variables available during model onGetProperty processing",
         &afw_model_internal_context_current_property_from_mapped[0],
         IMPL_INCLUDE_MASK_EITHER,
         xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelSetProperty,
-        &afw_s_current,
+        &afw_self_s_modelSetProperty,
+        &afw_self_s_current,
         "Qualified variables available during model onSetProperty processing",
         &afw_model_internal_context_current_property_to_mapped[0],
         IMPL_INCLUDE_MASK_EITHER, xctx);
 
     afw_context_type_register_cb_variables(
-        &afw_s_modelInitialObjectId,
-        &afw_s_current,
+        &afw_self_s_modelInitialObjectId,
+        &afw_self_s_current,
         "Qualified variables available during onGetInitialObjectId processing",
         &afw_model_internal_context_current_for_initial_object_id[0],
         IMPL_INCLUDE_MASK_OBJECT_LEVEL, xctx);
@@ -1310,7 +1310,7 @@ afw_model_internal_create_skeleton_context(
     /* Push qualifiers. */
     afw_adaptor_impl_push_qualifiers(
         (const afw_adaptor_t *)session_self->adaptor, xctx);
-    afw_xctx_qualifier_stack_qualifier_push(&afw_s_custom, NULL, true,
+    afw_xctx_qualifier_stack_qualifier_push(&afw_self_s_custom, NULL, true,
         impl_custom_variable_get_cb, ctx, p, xctx);
 
     /* Create and push current object level object. */
@@ -1318,21 +1318,21 @@ afw_model_internal_create_skeleton_context(
         runtime_object_level_skeleton);
     ctx->runtime_object_level.internal = ctx;
     ctx->runtime_object_level.pub.p = p;
-    afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_current,
+    afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_current,
         (const afw_object_t *)&ctx->runtime_object_level,
         true, p, xctx);
 
 #ifdef _AFW_WORKING_ON___
     /* Push model custom variables. (First one push is last one checked) */
     if (ctx->model_object_type->model->custom_variables) {
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_custom,
             ctx->model_object_type->model->custom_variables,
             true, p, xctx);
     }
 
     /* Push model object type custom variables  */
     if (ctx->model_object_type->custom_variables) {
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_custom,
             ctx->model_object_type->custom_variables,
             true, p, xctx);
     }
@@ -1341,7 +1341,7 @@ afw_model_internal_create_skeleton_context(
     if (ctx->property_level.model_property_type &&
         ctx->property_level.model_property_type->custom_variables)
     {
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_s_custom,
+        afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_custom,
             ctx->property_level.model_property_type->custom_variables,
             true, p, xctx);
     }

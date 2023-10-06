@@ -182,16 +182,16 @@ impl_object_path_parse(
         if (current_parsed) {
             afw_memory_copy(&parsed->adaptor_id, &current_parsed->adaptor_id);
             afw_memory_copy(&parsed->object_type_id, &current_parsed->object_type_id);
-            if (afw_utf8_equal(&parsed->adaptor_id, &afw_s_a_asterisk) ||
-                afw_utf8_equal(&parsed->object_type_id, &afw_s_a_asterisk))
+            if (afw_utf8_equal(&parsed->adaptor_id, &afw_self_s_a_asterisk) ||
+                afw_utf8_equal(&parsed->object_type_id, &afw_self_s_a_asterisk))
             {
                 parsed->contains_unresolved_substitutions = true;
             }
         }
         else {
             parsed->contains_unresolved_substitutions = true;
-            afw_memory_copy(&parsed->adaptor_id, &afw_s_a_asterisk);
-            afw_memory_copy(&parsed->object_type_id, &afw_s_a_asterisk);
+            afw_memory_copy(&parsed->adaptor_id, &afw_self_s_a_asterisk);
+            afw_memory_copy(&parsed->object_type_id, &afw_self_s_a_asterisk);
         }
         state = impl_state_entity_object_id;
     }
@@ -225,17 +225,17 @@ impl_object_path_parse(
             }
 
             if (is_reserved) {
-                if (!afw_utf8_equal(token, &afw_s_a_asterisk)) {
+                if (!afw_utf8_equal(token, &afw_self_s_a_asterisk)) {
                     goto error;
                 }
 
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->adaptor_id,
-                        &afw_s_a_asterisk))
+                        &afw_self_s_a_asterisk))
                 {
                     parsed->contains_unresolved_substitutions = true;
-                    parsed->adaptor_id.s = afw_s_a_asterisk.s;
-                    parsed->adaptor_id.len = afw_s_a_asterisk.len;
+                    parsed->adaptor_id.s = afw_self_s_a_asterisk.s;
+                    parsed->adaptor_id.len = afw_self_s_a_asterisk.len;
                 }
                 else {
                     parsed->substituted_adaptor_id = true;
@@ -262,7 +262,7 @@ impl_object_path_parse(
                 break;
             }
 
-            if (!is_reserved || !afw_utf8_equal(token, &afw_s_a_slash)) {
+            if (!is_reserved || !afw_utf8_equal(token, &afw_self_s_a_slash)) {
                 goto error;
             }
 
@@ -279,16 +279,16 @@ impl_object_path_parse(
             }
 
             if (is_reserved) {
-                if (!afw_utf8_equal(token, &afw_s_a_asterisk)) {
+                if (!afw_utf8_equal(token, &afw_self_s_a_asterisk)) {
                     goto error;
                 }
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->object_type_id,
-                        &afw_s_a_asterisk))
+                        &afw_self_s_a_asterisk))
                 {
                     parsed->contains_unresolved_substitutions = true;
-                    parsed->object_type_id.s = afw_s_a_asterisk.s;
-                    parsed->object_type_id.len = afw_s_a_asterisk.len;
+                    parsed->object_type_id.s = afw_self_s_a_asterisk.s;
+                    parsed->object_type_id.len = afw_self_s_a_asterisk.len;
                 }
                 else {
                     parsed->substituted_object_type_id = true;
@@ -319,12 +319,12 @@ impl_object_path_parse(
                 goto error;
             }
 
-            if (afw_utf8_equal(token, &afw_s_a_slash)) {
+            if (afw_utf8_equal(token, &afw_self_s_a_slash)) {
                 state = impl_state_entity_object_id;
                 break;
             }
 
-            if (afw_utf8_equal(token, &afw_s_a_semicolon)) {
+            if (afw_utf8_equal(token, &afw_self_s_a_semicolon)) {
                 state = impl_state_option_name;
                 parsed->options_object =
                     afw_object_create(p, xctx);
@@ -350,7 +350,7 @@ impl_object_path_parse(
         case impl_state_after_option_name:
 
             if (at_end ||
-                (is_reserved && !afw_utf8_equal(token, &afw_s_a_equal)))
+                (is_reserved && !afw_utf8_equal(token, &afw_self_s_a_equal)))
             {
                 afw_object_set_property(parsed->options_object,
                     name, afw_value_true, xctx);
@@ -363,17 +363,17 @@ impl_object_path_parse(
 
             if (is_reserved) {
 
-                if (afw_utf8_equal(token, &afw_s_a_equal)) {
+                if (afw_utf8_equal(token, &afw_self_s_a_equal)) {
                     state = impl_state_option_value;
                     break;
                 }
 
-                if (afw_utf8_equal(token, &afw_s_a_ampersand)) {
+                if (afw_utf8_equal(token, &afw_self_s_a_ampersand)) {
                     state = impl_state_option_name;
                     break;
                 }
 
-                if (afw_utf8_equal(token, &afw_s_a_slash)) {
+                if (afw_utf8_equal(token, &afw_self_s_a_slash)) {
                     state = impl_state_entity_object_id;
                     break;
                 }
@@ -405,12 +405,12 @@ impl_object_path_parse(
                 break;
             }
 
-            if (afw_utf8_equal(token, &afw_s_a_ampersand)) {
+            if (afw_utf8_equal(token, &afw_self_s_a_ampersand)) {
                 state = impl_state_option_name;
                 break;
             }
 
-            if (afw_utf8_equal(token, &afw_s_a_slash)) {
+            if (afw_utf8_equal(token, &afw_self_s_a_slash)) {
                 state = impl_state_entity_object_id;
                 break;
             }
@@ -427,16 +427,16 @@ impl_object_path_parse(
             }
 
             if (is_reserved) {
-                if (!afw_utf8_equal(token, &afw_s_a_asterisk)) {
+                if (!afw_utf8_equal(token, &afw_self_s_a_asterisk)) {
                     goto error;
                 }
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->entity_object_id,
-                        &afw_s_a_asterisk))
+                        &afw_self_s_a_asterisk))
                 {
                     parsed->contains_unresolved_substitutions = true;
-                    parsed->entity_object_id.s = afw_s_a_asterisk.s;
-                    parsed->entity_object_id.len = afw_s_a_asterisk.len;
+                    parsed->entity_object_id.s = afw_self_s_a_asterisk.s;
+                    parsed->entity_object_id.len = afw_self_s_a_asterisk.len;
                 }
                 else {
                     parsed->substituted_entity_object_id = true;
@@ -466,20 +466,20 @@ impl_object_path_parse(
                 break;
             }
 
-            if (is_reserved && !afw_utf8_equal(token, &afw_s_a_slash))
+            if (is_reserved && !afw_utf8_equal(token, &afw_self_s_a_slash))
             {
-                if (!afw_utf8_equal(token, &afw_s_a_asterisk))
+                if (!afw_utf8_equal(token, &afw_self_s_a_asterisk))
                 {
                     goto error;
                 }
                 parsed->substituted_entire_object_id = true;
                 if (!current_parsed ||
                     afw_utf8_equal(&current_parsed->entity_object_id,
-                            &afw_s_a_asterisk))
+                            &afw_self_s_a_asterisk))
                 {
                     parsed->contains_unresolved_substitutions = true;
-                    parsed->entity_object_id.s = afw_s_a_asterisk.s;
-                    parsed->entity_object_id.len = afw_s_a_asterisk.len;
+                    parsed->entity_object_id.s = afw_self_s_a_asterisk.s;
+                    parsed->entity_object_id.len = afw_self_s_a_asterisk.len;
                 }
                 else {
                     parsed->first_property_name = current_parsed->first_property_name;
@@ -490,7 +490,7 @@ impl_object_path_parse(
                             curr_name->next)
                     {
                         if (afw_utf8_starts_with(&curr_name->property_name,
-                            &afw_s_a_asterisk))
+                            &afw_self_s_a_asterisk))
                         {
                             parsed->contains_unresolved_substitutions = true;
                         }
@@ -500,7 +500,7 @@ impl_object_path_parse(
                 break;
             }
 
-            if (!afw_utf8_equal(token, &afw_s_a_slash)) {
+            if (!afw_utf8_equal(token, &afw_self_s_a_slash)) {
                 goto error;
             }
 
@@ -532,10 +532,10 @@ impl_object_path_parse(
                 }
             }
 
-            if (is_reserved && !afw_utf8_equal(token, &afw_s_a_slash))
+            if (is_reserved && !afw_utf8_equal(token, &afw_self_s_a_slash))
             {
 
-                if (!afw_utf8_equal(token, &afw_s_a_asterisk))
+                if (!afw_utf8_equal(token, &afw_self_s_a_asterisk))
                 {
                     goto error;
                 }
@@ -544,12 +544,12 @@ impl_object_path_parse(
                     !current_parsed->first_property_name ||
                     !relative_name ||
                     afw_utf8_equal(&relative_name->property_name,
-                        &afw_s_a_asterisk)
+                        &afw_self_s_a_asterisk)
                     )
                 {
                     parsed->contains_unresolved_substitutions = true;
                     afw_memory_copy(&curr_name->property_name,
-                        &afw_s_a_asterisk);
+                        &afw_self_s_a_asterisk);
                 }
 
                 else {
@@ -577,7 +577,7 @@ impl_object_path_parse(
                 break;
             }
 
-            if (!afw_utf8_equal(token, &afw_s_a_slash))
+            if (!afw_utf8_equal(token, &afw_self_s_a_slash))
             {
                 goto error;
             }
@@ -736,37 +736,37 @@ afw_object_path_parsed_to_object(
 
     if (parsed->original_path.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_originalPath, &parsed->original_path, xctx);
+            &afw_self_s_originalPath, &parsed->original_path, xctx);
     }
 
     if (parsed->normalized_path.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_normalizedPath, &parsed->normalized_path, xctx);
+            &afw_self_s_normalizedPath, &parsed->normalized_path, xctx);
     }
 
     if (parsed->entity_path.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_entityPath, &parsed->entity_path, xctx);
+            &afw_self_s_entityPath, &parsed->entity_path, xctx);
     }
 
     if (parsed->adaptor_id.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_adaptorId, &parsed->adaptor_id, xctx);
+            &afw_self_s_adaptorId, &parsed->adaptor_id, xctx);
     }
 
     if (parsed->object_type_id.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_objectType, &parsed->object_type_id, xctx);
+            &afw_self_s_objectType, &parsed->object_type_id, xctx);
     }
 
     if (parsed->entity_object_id.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_entityObjectId, &parsed->entity_object_id, xctx);
+            &afw_self_s_entityObjectId, &parsed->entity_object_id, xctx);
     }
 
     if (parsed->undecoded_object_id.len > 0) {
         afw_object_set_property_as_string(result,
-            &afw_s_objectId, &parsed->undecoded_object_id, xctx);
+            &afw_self_s_objectId, &parsed->undecoded_object_id, xctx);
     }
 
     if (parsed->first_property_name) {
@@ -778,47 +778,47 @@ afw_object_path_parsed_to_object(
             afw_array_add_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,
-            &afw_s_propertyTypes, list, xctx);
+            &afw_self_s_propertyTypes, list, xctx);
     }
 
     if (parsed->options_object) {
         afw_object_set_property_as_object(result,
-            &afw_s_optionsObject, parsed->options_object, xctx);
+            &afw_self_s_optionsObject, parsed->options_object, xctx);
     }
 
     if (parsed->substitution_occurred) {
         afw_object_set_property(result,
-            &afw_s_substitutionOccurred, afw_value_true, xctx);
+            &afw_self_s_substitutionOccurred, afw_value_true, xctx);
     }
 
     if (parsed->substituted_adaptor_id) {
         afw_object_set_property(result,
-            &afw_s_substitutedAdaptorId, afw_value_true, xctx);
+            &afw_self_s_substitutedAdaptorId, afw_value_true, xctx);
     }
 
     if (parsed->substituted_object_type_id) {
         afw_object_set_property(result,
-            &afw_s_substitutedObjectTypeId, afw_value_true, xctx);
+            &afw_self_s_substitutedObjectTypeId, afw_value_true, xctx);
     }
 
     if (parsed->substituted_entire_object_id) {
         afw_object_set_property(result,
-            &afw_s_substitutedEntireObjectId, afw_value_true, xctx);
+            &afw_self_s_substitutedEntireObjectId, afw_value_true, xctx);
     }
 
     if (parsed->substituted_entity_object_id) {
         afw_object_set_property(result,
-            &afw_s_substitutedEntityObjectId, afw_value_true, xctx);
+            &afw_self_s_substitutedEntityObjectId, afw_value_true, xctx);
     }
 
     if (parsed->substituted_property_name) {
         afw_object_set_property(result,
-            &afw_s_substitutedPropertyName, afw_value_true, xctx);
+            &afw_self_s_substitutedPropertyName, afw_value_true, xctx);
     }
 
     if (parsed->contains_unresolved_substitutions) {
         afw_object_set_property(result,
-            &afw_s_containsUnresolvedSubstitutions, afw_value_true, xctx);
+            &afw_self_s_containsUnresolvedSubstitutions, afw_value_true, xctx);
     }
 
     return result;}
@@ -913,31 +913,31 @@ afw_object_path_make(
     const afw_utf8_t *path;
 
     /* URL encode each parameter if they are on asterisk. */
-    if (!afw_utf8_equal(adaptor_id, &afw_s_a_asterisk)) {
+    if (!afw_utf8_equal(adaptor_id, &afw_self_s_a_asterisk)) {
         adaptor_id = afw_uri_encode(adaptor_id,
             AFW_URI_OCTET_UNRESERVED, p, xctx);
     }
 
-    if (!afw_utf8_equal(object_type_id, &afw_s_a_asterisk)) {
+    if (!afw_utf8_equal(object_type_id, &afw_self_s_a_asterisk)) {
         object_type_id = afw_uri_encode(object_type_id,
             AFW_URI_OCTET_UNRESERVED, p, xctx);
     }
 
     if (object_id) {
-        if (!afw_utf8_equal(object_id, &afw_s_a_asterisk)) {
+        if (!afw_utf8_equal(object_id, &afw_self_s_a_asterisk)) {
             object_id = afw_uri_encode(object_id,
                 AFW_URI_OCTET_UNRESERVED, p, xctx);
         }
         path = afw_utf8_concat(p, xctx,
-            &afw_s_a_slash, adaptor_id,
-            &afw_s_a_slash, object_type_id,
-            &afw_s_a_slash, object_id,
+            &afw_self_s_a_slash, adaptor_id,
+            &afw_self_s_a_slash, object_type_id,
+            &afw_self_s_a_slash, object_id,
             NULL);
     }
     else {
         path = afw_utf8_concat(p, xctx,
-            &afw_s_a_slash, adaptor_id,
-            &afw_s_a_slash, object_type_id,
+            &afw_self_s_a_slash, adaptor_id,
+            &afw_self_s_a_slash, object_type_id,
             NULL);
     }
 

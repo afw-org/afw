@@ -69,7 +69,7 @@ impl_afw_adaptor_journal_add_entry(
         /* open the journal database */
         dbi = afw_lmdb_internal_open_database(adaptor, 
             AFW_LMDB_GET_TRANSACTION(),
-            &afw_lmdb_s_Journal, MDB_CREATE, xctx->p, xctx);
+            &afw_lmdb_self_s_Journal, MDB_CREATE, xctx->p, xctx);
 
         /* first get the last entry in the database */
         cursor = afw_lmdb_internal_open_cursor(session, dbi, xctx);
@@ -174,7 +174,7 @@ afw_lmdb_journal_update_peer(
     object_id = afw_uuid_to_utf8(uuid, xctx->p, xctx);
 
     afw_lmdb_internal_replace_entry_from_object(session,
-        &afw_s__AdaptiveJournalEntry_, object_id, updated_object,
+        &afw_self_s__AdaptiveJournalEntry_, object_id, updated_object,
         dbi, xctx);
 }
 
@@ -237,11 +237,11 @@ afw_lmdb_journal_get_first(
     entry = afw_lmdb_adaptor_journal_get_entry_object(
         self, session, adaptor, dbiJournal, txn, cursor, xctx);
     if (entry) {
-        afw_object_set_property_as_string(response, &afw_s_entryCursor,
+        afw_object_set_property_as_string(response, &afw_self_s_entryCursor,
                 afw_utf8_printf(xctx->p, xctx, "%lu", cursor), xctx);
 
         /* Set entry property in response. */
-        afw_object_set_property_as_object(response, &afw_s_entry, entry,
+        afw_object_set_property_as_object(response, &afw_self_s_entry, entry,
             xctx);
     }
 }
@@ -266,11 +266,11 @@ afw_lmdb_journal_get_by_cursor(
     entry = afw_lmdb_adaptor_journal_get_entry_object(
         self, session, adaptor, dbiJournal, txn, cursor, xctx);
     if (entry) {
-        afw_object_set_property_as_string(response, &afw_s_entryCursor,
+        afw_object_set_property_as_string(response, &afw_self_s_entryCursor,
                 afw_utf8_printf(xctx->p, xctx, "%lu", cursor), xctx);
 
         /* Set entry property in response. */
-        afw_object_set_property_as_object(response, &afw_s_entry, entry,
+        afw_object_set_property_as_object(response, &afw_self_s_entry, entry,
             xctx);
     }
 }
@@ -297,11 +297,11 @@ afw_lmdb_journal_get_next_after_cursor(
     entry = afw_lmdb_adaptor_journal_get_entry_object(
         self, session, adaptor, dbiJournal, txn, cursor, xctx);
     if (entry) {
-        afw_object_set_property_as_string(response, &afw_s_entryCursor,
+        afw_object_set_property_as_string(response, &afw_self_s_entryCursor,
                 afw_utf8_printf(xctx->p, xctx, "%lu", cursor), xctx);
 
         /* Set entry property in response. */
-        afw_object_set_property_as_object(response, &afw_s_entry, entry,
+        afw_object_set_property_as_object(response, &afw_self_s_entry, entry,
             xctx);
     }
 }
@@ -337,7 +337,7 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
         afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10);
 
     dbiConsumers = afw_lmdb_internal_open_database(session->adaptor, 
-        txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+        txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
     uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
@@ -350,9 +350,9 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
     }
 
     advance_cursor = afw_object_old_get_property_as_utf8(
-        peer, &afw_s_advanceCursor, xctx->p, xctx);
+        peer, &afw_self_s_advanceCursor, xctx->p, xctx);
     consumer_filter = afw_object_get_property(
-        peer, &afw_s_consumeFilter, xctx);
+        peer, &afw_self_s_consumeFilter, xctx);
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
     for (i = 0; (i < limit) || !found;  i++) {
@@ -382,21 +382,21 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
     if (found) {
         /* set our consumption properties */
         afw_object_set_property_as_dateTime(peer,
-            &afw_s_consumeStartTime, now, xctx);
+            &afw_self_s_consumeStartTime, now, xctx);
         afw_object_set_property_as_string(peer,
-            &afw_s_consumeCursor, cursor_str, xctx);
+            &afw_self_s_consumeCursor, cursor_str, xctx);
         afw_object_set_property_as_string(peer,
-            &afw_s_currentCursor, cursor_str, xctx);
+            &afw_self_s_currentCursor, cursor_str, xctx);
         afw_object_remove_property(peer,
-            &afw_s_advanceCursor, xctx);
+            &afw_self_s_advanceCursor, xctx);
 
         /* set our entry cursor */
         afw_object_set_property_as_string(response,
-            &afw_s_entryCursor, cursor_str, xctx);
+            &afw_self_s_entryCursor, cursor_str, xctx);
 
         /* set the entry to be returned */
         afw_object_set_property_as_object(response,
-            &afw_s_entry, entry, xctx);
+            &afw_self_s_entry, entry, xctx);
     } else {
         /* we may need to increase the advanceCursor */
         if (advance_cursor) {
@@ -404,12 +404,12 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
 
         } else {
             afw_object_set_property_as_string(peer,
-                &afw_s_advanceCursor, cursor_str, xctx);
+                &afw_self_s_advanceCursor, cursor_str, xctx);
         }
     }
 
     afw_object_set_property_as_dateTime(peer,
-        &afw_s_lastContactTime, now, xctx);
+        &afw_self_s_lastContactTime, now, xctx);
 
     /* update the peer object */
     afw_lmdb_journal_update_peer(self, session, adaptor,
@@ -443,7 +443,7 @@ impl_afw_adaptor_journal_get_next_for_consumer(
     afw_size_t i;
 
     dbiConsumers = afw_lmdb_internal_open_database(session->adaptor,
-        txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+        txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
     uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
@@ -456,13 +456,13 @@ impl_afw_adaptor_journal_get_next_for_consumer(
     }
 
     current_cursor = afw_object_old_get_property_as_utf8(
-        peer, &afw_s_currentCursor, xctx->p, xctx);
+        peer, &afw_self_s_currentCursor, xctx->p, xctx);
     advance_cursor = afw_object_old_get_property_as_utf8(
-        peer, &afw_s_advanceCursor, xctx->p, xctx);
+        peer, &afw_self_s_advanceCursor, xctx->p, xctx);
     consumer_filter = afw_object_get_property(
-        peer, &afw_s_consumeFilter, xctx);
+        peer, &afw_self_s_consumeFilter, xctx);
     consume_cursor = afw_object_old_get_property_as_string(
-        peer, &afw_s_consumeCursor, xctx);
+        peer, &afw_self_s_consumeCursor, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
         a consume_cursor (re-issue) and now it's removed from the
@@ -508,27 +508,27 @@ impl_afw_adaptor_journal_get_next_for_consumer(
     if (found) {
         /* check to see if this is a re-issue */
         if (consume_cursor) {
-            afw_object_set_property_as_boolean(response, &afw_s_reissue,
+            afw_object_set_property_as_boolean(response, &afw_self_s_reissue,
                 true, xctx);
         } else {
             /* not a re-issue, so set our consumption properties */
             afw_object_set_property_as_dateTime(peer, 
-                &afw_s_consumeStartTime, now, xctx);
+                &afw_self_s_consumeStartTime, now, xctx);
             afw_object_set_property_as_string(peer, 
-                &afw_s_consumeCursor, cursor_str, xctx);
+                &afw_self_s_consumeCursor, cursor_str, xctx);
             afw_object_set_property_as_string(peer, 
-                &afw_s_currentCursor, cursor_str, xctx);
+                &afw_self_s_currentCursor, cursor_str, xctx);
             afw_object_remove_property(peer, 
-                &afw_s_advanceCursor, xctx);
+                &afw_self_s_advanceCursor, xctx);
         }
 
         /* set our entry cursor */
         afw_object_set_property_as_string(response, 
-            &afw_s_entryCursor, cursor_str, xctx);
+            &afw_self_s_entryCursor, cursor_str, xctx);
 
         /* set the entry to be returned */
         afw_object_set_property_as_object(response, 
-            &afw_s_entry, entry, xctx);
+            &afw_self_s_entry, entry, xctx);
     } else {
         /* we may need to increase the advanceCursor */
         if (advance_cursor) {
@@ -536,12 +536,12 @@ impl_afw_adaptor_journal_get_next_for_consumer(
 
         } else {
             afw_object_set_property_as_string(peer, 
-                &afw_s_advanceCursor, cursor_str, xctx); 
+                &afw_self_s_advanceCursor, cursor_str, xctx); 
         }
     }
 
     afw_object_set_property_as_dateTime(peer,
-        &afw_s_lastContactTime, now, xctx);   
+        &afw_self_s_lastContactTime, now, xctx);   
 
     /* update the peer object */ 
     afw_lmdb_journal_update_peer(self, session, adaptor,
@@ -575,7 +575,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     afw_size_t i;
 
     dbiConsumers = afw_lmdb_internal_open_database(session->adaptor,
-        txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+        txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
     uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
@@ -588,13 +588,13 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     }
 
     current_cursor = afw_object_old_get_property_as_utf8(
-        peer, &afw_s_currentCursor, xctx->p, xctx);
+        peer, &afw_self_s_currentCursor, xctx->p, xctx);
     advance_cursor = afw_object_old_get_property_as_utf8(
-        peer, &afw_s_advanceCursor, xctx->p, xctx);
+        peer, &afw_self_s_advanceCursor, xctx->p, xctx);
     consumer_filter = afw_object_get_property(
-        peer, &afw_s_consumeFilter, xctx);
+        peer, &afw_self_s_consumeFilter, xctx);
     consume_cursor = afw_object_old_get_property_as_string(
-        peer, &afw_s_consumeCursor, xctx);
+        peer, &afw_self_s_consumeCursor, xctx);
 
     /** @fixme: we'll have to consider the scenario where we get
         a consume_cursor (re-issue) and now it's removed from the
@@ -640,23 +640,23 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     if (found) {
         /* check to see if this is a re-issue */
         if (consume_cursor) {
-            afw_object_set_property_as_boolean(response, &afw_s_reissue,
+            afw_object_set_property_as_boolean(response, &afw_self_s_reissue,
                 true, xctx);
         } else {
             /* not a re-issue, so set our consumption properties */
             afw_object_set_property_as_dateTime(peer,
-                &afw_s_consumeStartTime, now, xctx);
+                &afw_self_s_consumeStartTime, now, xctx);
             afw_object_set_property_as_string(peer,
-                &afw_s_consumeCursor, cursor_str, xctx);
+                &afw_self_s_consumeCursor, cursor_str, xctx);
             afw_object_set_property_as_string(peer,
-                &afw_s_currentCursor, cursor_str, xctx);
+                &afw_self_s_currentCursor, cursor_str, xctx);
             afw_object_remove_property(peer,
-                &afw_s_advanceCursor, xctx);
+                &afw_self_s_advanceCursor, xctx);
         }
 
         /* set our entry cursor */
         afw_object_set_property_as_string(response,
-            &afw_s_entryCursor, cursor_str, xctx);
+            &afw_self_s_entryCursor, cursor_str, xctx);
     } else {
         /* we may need to increase the advanceCursor */
         if (advance_cursor) {
@@ -664,12 +664,12 @@ afw_lmdb_journal_advance_cursor_for_consumer(
 
         } else {
             afw_object_set_property_as_string(peer,
-                &afw_s_advanceCursor, cursor_str, xctx);
+                &afw_self_s_advanceCursor, cursor_str, xctx);
         }
     }
 
     afw_object_set_property_as_dateTime(peer,
-        &afw_s_lastContactTime, now, xctx);
+        &afw_self_s_lastContactTime, now, xctx);
 
     /* update the peer object */
     afw_lmdb_journal_update_peer(self, session, adaptor,
@@ -706,7 +706,7 @@ impl_afw_adaptor_journal_get_entry(
 
         /* Open up our Journal database, for every call option */
         dbiJournal = afw_lmdb_internal_open_database(adaptor, 
-        txn, &afw_lmdb_s_Journal, 0, xctx->p, xctx);
+        txn, &afw_lmdb_self_s_Journal, 0, xctx->p, xctx);
     
         switch (option) {
             case afw_adaptor_journal_option_get_first:
@@ -775,7 +775,7 @@ impl_afw_adaptor_journal_mark_entry_consumed(
         txn = AFW_LMDB_GET_TRANSACTION();
 
         dbiConsumers = afw_lmdb_internal_open_database(adaptor,
-            txn, &afw_lmdb_s_Primary, 0, xctx->p, xctx);
+            txn, &afw_lmdb_self_s_Primary, 0, xctx->p, xctx);
 
         /* lookup the cursor from the database */
         uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
@@ -784,19 +784,19 @@ impl_afw_adaptor_journal_mark_entry_consumed(
             self, session, adaptor, dbiConsumers, txn, uuid, xctx);
 
         consume_cursor = afw_object_old_get_property_as_string(peer,
-            &afw_s_consumeCursor, xctx);
+            &afw_self_s_consumeCursor, xctx);
         if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
             AFW_THROW_ERROR_Z(general,
                 "Object id supplied is not currently being consumed", xctx);
         }
 
         /* now, clear consumerStart/consumeCursor */
-        afw_object_remove_property(peer, &afw_s_consumeStartTime, xctx);
-        afw_object_remove_property(peer, &afw_s_consumeCursor, xctx);
+        afw_object_remove_property(peer, &afw_self_s_consumeStartTime, xctx);
+        afw_object_remove_property(peer, &afw_self_s_consumeCursor, xctx);
 
         /* Update lastContactTime property */
         now = afw_dateTime_now_utc(xctx->p, xctx);
-        afw_object_set_property_as_dateTime(peer, &afw_s_lastContactTime,
+        afw_object_set_property_as_dateTime(peer, &afw_self_s_lastContactTime,
             now, xctx);
 
         /* write out the object and commit */

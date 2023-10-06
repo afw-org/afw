@@ -796,7 +796,7 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
 #define afw_value_get_quick_data_type_id(A_VALUE) \
 (((A_VALUE) && (A_VALUE)->inf->data_type) \
 ? &((A_VALUE)->inf->data_type->data_type_id) \
-: &afw_s_unknown )
+: &afw_self_s_unknown )
 
 
 

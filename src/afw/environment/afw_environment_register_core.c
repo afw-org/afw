@@ -176,11 +176,11 @@ impl_create_environment_variables_object(
 
     result = afw_object_create(xctx->p, xctx);
     afw_object_meta_set_ids(result,
-        &afw_s_afw,
-        &afw_s__AdaptiveSystemInfo_,
-        &afw_s_initialEnvironmentVariables,
+        &afw_self_s_afw,
+        &afw_self_s__AdaptiveSystemInfo_,
+        &afw_self_s_initialEnvironmentVariables,
         xctx);
-    afw_object_meta_set_property_as(result, &afw_s_description, string,
+    afw_object_meta_set_property_as(result, &afw_self_s_description, string,
         &impl_s_description_initialEnvironmentVariables, xctx);
     afw_object_meta_set_read_only(result, xctx);
 
@@ -267,16 +267,16 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
 
     /* Register conf type "adaptor" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        &afw_s_adaptor,
+        &afw_self_s_adaptor,
         afw_adaptor_internal_conf_type_create_cede_p,
-        &afw_s_a_adaptor_title,
-        &afw_s_a_adaptor_description,
-        &afw_s_adaptorId,
-        &afw_s_adaptor_id,
-        &afw_s__AdaptiveAdaptor_,
-        &afw_s_adaptorType,
-        &afw_s_adaptor_type,
-        &afw_s__AdaptiveAdaptorType_,
+        &afw_self_s_a_adaptor_title,
+        &afw_self_s_a_adaptor_description,
+        &afw_self_s_adaptorId,
+        &afw_self_s_adaptor_id,
+        &afw_self_s__AdaptiveAdaptor_,
+        &afw_self_s_adaptorType,
+        &afw_self_s_adaptor_type,
+        &afw_self_s__AdaptiveAdaptorType_,
         true,
         xctx);
 
@@ -290,13 +290,13 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
 
     /* Register type "application" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        &afw_s_application,
+        &afw_self_s_application,
         afw_application_internal_application_conf_type_create_cede_p,
-        &afw_s_a_application_title,
-        &afw_s_a_application_description,
+        &afw_self_s_a_application_title,
+        &afw_self_s_a_application_description,
         NULL,
         NULL,
-        &afw_s__AdaptiveApplication_,
+        &afw_self_s__AdaptiveApplication_,
         NULL,
         NULL,
         NULL,
@@ -305,13 +305,13 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
 
     /* Register type "extension" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        &afw_s_extension,
+        &afw_self_s_extension,
         afw_environment_internal_extension_conf_type_create_cede_p,
-        &afw_s_a_extension_title,
-        &afw_s_a_extension_description,
-        &afw_s_extensionId,
-        &afw_s_extension,
-        &afw_s__AdaptiveExtension_,
+        &afw_self_s_a_extension_title,
+        &afw_self_s_a_extension_description,
+        &afw_self_s_extensionId,
+        &afw_self_s_extension,
+        &afw_self_s__AdaptiveExtension_,
         NULL,
         NULL,
         NULL,
@@ -320,16 +320,16 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
 
     /* Register type "log" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        &afw_s_log,
+        &afw_self_s_log,
         afw_log_internal_conf_type_create_cede_p,
-        &afw_s_a_log_title,
-        &afw_s_a_log_description,
-        &afw_s_logId,
-        &afw_s_log_id,
-        &afw_s__AdaptiveLog_,
-        &afw_s_logType,
-        &afw_s_log_type,
-        &afw_s__AdaptiveLogType_,
+        &afw_self_s_a_log_title,
+        &afw_self_s_a_log_description,
+        &afw_self_s_logId,
+        &afw_self_s_log_id,
+        &afw_self_s__AdaptiveLog_,
+        &afw_self_s_logType,
+        &afw_self_s_log_type,
+        &afw_self_s__AdaptiveLogType_,
         true,
         xctx);
 
@@ -338,16 +338,16 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
 
     /* Register type "requestHandler" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        &afw_s_requestHandler,
+        &afw_self_s_requestHandler,
         afw_request_handler_internal_conf_type_create_cede_p,
-        &afw_s_a_requestHandler_title,
-        &afw_s_a_requestHandler_description,
+        &afw_self_s_a_requestHandler_title,
+        &afw_self_s_a_requestHandler_description,
         NULL,
         NULL,
-        &afw_s__AdaptiveRequestHandler_,
-        &afw_s_requestHandlerType,
+        &afw_self_s__AdaptiveRequestHandler_,
+        &afw_self_s_requestHandlerType,
         NULL,
-        &afw_s__AdaptiveRequestHandlerType_,
+        &afw_self_s__AdaptiveRequestHandlerType_,
         false,
         xctx);
 
@@ -373,7 +373,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     runtime_custom->get_object =
         afw_service_internal_AdaptiveService_get_object;
     afw_environment_register_runtime_custom(
-        &afw_s__AdaptiveService_,
+        &afw_self_s__AdaptiveService_,
         runtime_custom, xctx);
 
     /* Register special handler for _AdaptiveLayoutComponentType_ objects. */
@@ -383,7 +383,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     runtime_custom->get_object =
         impl_AdaptiveLayoutComponentType_get_object;
     afw_environment_register_runtime_custom(
-        &afw_s__AdaptiveLayoutComponentType_,
+        &afw_self_s__AdaptiveLayoutComponentType_,
         runtime_custom, xctx);
 
     /* Register factory for adaptor_type=file. */
@@ -417,8 +417,8 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     /* Allocate object for accessing and loading afw_components extension. */
     afw_components = afw_pool_calloc_type(xctx->env->p, afw_components_t, xctx);
     afw_runtime_env_create_and_set_indirect_object(
-        &afw_s__AdaptiveApplicationComponents_,
-        &afw_s_current, afw_components, true, xctx);
+        &afw_self_s__AdaptiveApplicationComponents_,
+        &afw_self_s_current, afw_components, true, xctx);
 
     /** @fixme Not implemented yet
         Register factory for log_type=file.

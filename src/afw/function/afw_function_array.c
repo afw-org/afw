@@ -282,7 +282,7 @@ afw_function_execute_join(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, array);
 
-    sep = &afw_s_a_comma;
+    sep = &afw_self_s_a_comma;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(separator, 2, string);
         sep = &separator->internal;

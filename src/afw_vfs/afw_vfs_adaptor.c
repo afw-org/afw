@@ -57,7 +57,7 @@ afw_vfs_adaptor_internal_create_cede_p(
 
     /* Get vfsMap property. */
     vfs_map = afw_object_old_get_property_as_array(
-        adaptor->properties, &afw_vfs_s_vfsMap, xctx);
+        adaptor->properties, &afw_vfs_self_s_vfsMap, xctx);
     count = 0;
     if (vfs_map) {
         count = afw_array_get_count(vfs_map, xctx);
@@ -105,7 +105,7 @@ afw_vfs_adaptor_internal_create_cede_p(
 
         /* Make sure <objectId_prefix> is empty or ends with '/'. */
         if (entries->key.len > 0 &&
-            !afw_utf8_ends_with(&entries->key, &afw_s_a_slash))
+            !afw_utf8_ends_with(&entries->key, &afw_self_s_a_slash))
         {
             AFW_THROW_ERROR_Z(general,
                 "The <objectId_prefix> in a vfsMap entry must be empty or end "
@@ -115,10 +115,10 @@ afw_vfs_adaptor_internal_create_cede_p(
 
         /* Make sure <host file system directory path> ends with a '/' */
         if (entries->string.len == 0 ||
-            !afw_utf8_ends_with(&entries->string, &afw_s_a_slash))
+            !afw_utf8_ends_with(&entries->string, &afw_self_s_a_slash))
         {
 #if defined(_WIN32) || defined(WIN32)
-            if (!afw_utf8_ends_with(&entries->string, &afw_s_a_backslash)) {
+            if (!afw_utf8_ends_with(&entries->string, &afw_self_s_a_backslash)) {
                 AFW_THROW_ERROR_Z(general,
                     "The <host file system directory path> in a vfsMap entry "
                     "must end with a slash ('/') or a backslash ('\\')",
@@ -164,7 +164,7 @@ afw_vfs_adaptor_internal_create_cede_p(
 
     /* Process markExecutable */
     x_list = afw_object_old_get_property_as_array(adaptor->properties,
-        &afw_vfs_s_markExecutable, xctx);
+        &afw_vfs_self_s_markExecutable, xctx);
     count = 0;
     if (x_list) {
         count = afw_array_get_count(x_list, xctx);

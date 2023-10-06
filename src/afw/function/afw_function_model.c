@@ -62,7 +62,7 @@ impl_get_self_and_model(
     *self = (afw_model_internal_adaptor_session_self_t *)session;
     if (!afw_utf8_equal(
         &(*self)->pub.inf->rti.implementation_id,
-        &afw_s_model))
+        &afw_self_s_model))
     {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT_Q " is not a model adaptor",
@@ -177,7 +177,7 @@ afw_function_execute_model_default_add_object_action(
     }
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(&objectType_value->internal, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(&objectType_value->internal, &afw_self_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -218,17 +218,17 @@ afw_function_execute_model_default_add_object_action(
     AFW_ENDTRY;
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, &afw_s_function,
+    afw_object_set_property(result, &afw_self_s_function,
         (const afw_value_t *)&impl_value_add_object, xctx);
-    afw_object_set_property_as_string(result, &afw_s_adaptorId,
+    afw_object_set_property_as_string(result, &afw_self_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectType,
+    afw_object_set_property_as_string(result, &afw_self_s_objectType,
         ctx->mapped_object_type_id, xctx);
     if (ctx->mapped_object_id) {
-        afw_object_set_property_as_string(result, &afw_s_objectId,
+        afw_object_set_property_as_string(result, &afw_self_s_objectId,
             ctx->mapped_object_id, xctx);
     }
-    afw_object_set_property_as_object(result, &afw_s_object,
+    afw_object_set_property_as_object(result, &afw_self_s_object,
         ctx->mapped_object, xctx);
 
     return afw_value_create_object(result, x->p, xctx);
@@ -323,7 +323,7 @@ afw_function_execute_model_default_delete_object_action(
     }
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(&objectType_value->internal, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(&objectType_value->internal, &afw_self_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -362,13 +362,13 @@ afw_function_execute_model_default_delete_object_action(
     AFW_ENDTRY;
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, &afw_s_function,
+    afw_object_set_property(result, &afw_self_s_function,
         (const afw_value_t *)&impl_value_delete_object, xctx);
-    afw_object_set_property_as_string(result, &afw_s_adaptorId,
+    afw_object_set_property_as_string(result, &afw_self_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectType,
+    afw_object_set_property_as_string(result, &afw_self_s_objectType,
         ctx->mapped_object_type_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectId,
+    afw_object_set_property_as_string(result, &afw_self_s_objectId,
             ctx->mapped_object_id, xctx);
 
     return afw_value_create_object(result, x->p, xctx);
@@ -492,7 +492,7 @@ afw_function_execute_model_default_modify_object_action(
     }
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(&objectType_value->internal, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(&objectType_value->internal, &afw_self_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -534,15 +534,15 @@ afw_function_execute_model_default_modify_object_action(
     AFW_ENDTRY;
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, &afw_s_function,
+    afw_object_set_property(result, &afw_self_s_function,
         (const afw_value_t *)&impl_value_modify_object, xctx);
-    afw_object_set_property_as_string(result, &afw_s_adaptorId,
+    afw_object_set_property_as_string(result, &afw_self_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectType,
+    afw_object_set_property_as_string(result, &afw_self_s_objectType,
         ctx->mapped_object_type_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectId,
+    afw_object_set_property_as_string(result, &afw_self_s_objectId,
             ctx->mapped_object_id, xctx);
-    afw_object_set_property_as_array(result, &afw_s_entries,
+    afw_object_set_property_as_array(result, &afw_self_s_entries,
             ctx->mapped_entries, xctx);
 
     return afw_value_create_object(result, x->p, xctx);
@@ -642,7 +642,7 @@ afw_function_execute_model_default_replace_object_action(
     }
 
     /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(&objectType_value->internal, &afw_s__AdaptiveObjectType_)) {
+    if (afw_utf8_equal(&objectType_value->internal, &afw_self_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
 
@@ -684,15 +684,15 @@ afw_function_execute_model_default_replace_object_action(
     AFW_ENDTRY;
 
     result = afw_object_create(x->p, xctx);
-    afw_object_set_property(result, &afw_s_function,
+    afw_object_set_property(result, &afw_self_s_function,
         (const afw_value_t *)&impl_value_replace_object, xctx);
-    afw_object_set_property_as_string(result, &afw_s_adaptorId,
+    afw_object_set_property_as_string(result, &afw_self_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectType,
+    afw_object_set_property_as_string(result, &afw_self_s_objectType,
         ctx->mapped_object_type_id, xctx);
-    afw_object_set_property_as_string(result, &afw_s_objectId,
+    afw_object_set_property_as_string(result, &afw_self_s_objectId,
             ctx->mapped_object_id, xctx);
-    afw_object_set_property_as_array(result, &afw_s_entries,
+    afw_object_set_property_as_array(result, &afw_self_s_entries,
             ctx->mapped_entries, xctx);
 
     return afw_value_create_object(result, x->p, xctx);

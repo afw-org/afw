@@ -40,7 +40,7 @@
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_AdaptiveProperty = {
-    &afw_components_s__AdaptiveLayoutComponentType_AdaptiveProperty,
+    &afw_components_self_s__AdaptiveLayoutComponentType_AdaptiveProperty,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -55,7 +55,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete = {
-    &afw_components_s__AdaptiveLayoutComponentType_Autocomplete,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Autocomplete,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -70,7 +70,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete_Option = {
-    &afw_components_s__AdaptiveLayoutComponentType_Autocomplete_Option,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Autocomplete_Option,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -85,7 +85,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Box = {
-    &afw_components_s__AdaptiveLayoutComponentType_Box,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Box,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -100,7 +100,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_BoxItem = {
-    &afw_components_s__AdaptiveLayoutComponentType_BoxItem,
+    &afw_components_self_s__AdaptiveLayoutComponentType_BoxItem,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -115,7 +115,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Breadcrumb = {
-    &afw_components_s__AdaptiveLayoutComponentType_Breadcrumb,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Breadcrumb,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -130,7 +130,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_BreadcrumbItem = {
-    &afw_components_s__AdaptiveLayoutComponentType_BreadcrumbItem,
+    &afw_components_self_s__AdaptiveLayoutComponentType_BreadcrumbItem,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -145,7 +145,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Button = {
-    &afw_components_s__AdaptiveLayoutComponentType_Button,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Button,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -160,7 +160,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Callout = {
-    &afw_components_s__AdaptiveLayoutComponentType_Callout,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Callout,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -175,7 +175,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Chart = {
-    &afw_components_s__AdaptiveLayoutComponentType_Chart,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Chart,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -190,7 +190,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Chart_Data = {
-    &afw_components_s__AdaptiveLayoutComponentType_Chart_Data,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Chart_Data,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -205,7 +205,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Checkbox = {
-    &afw_components_s__AdaptiveLayoutComponentType_Checkbox,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Checkbox,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -220,7 +220,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup = {
-    &afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ChoiceGroup,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -235,7 +235,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup_Option = {
-    &afw_components_s__AdaptiveLayoutComponentType_ChoiceGroup_Option,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ChoiceGroup_Option,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -250,7 +250,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_CodeEditor = {
-    &afw_components_s__AdaptiveLayoutComponentType_CodeEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_CodeEditor,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -265,7 +265,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Collapsible = {
-    &afw_components_s__AdaptiveLayoutComponentType_Collapsible,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Collapsible,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -280,7 +280,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Common = {
-    &afw_components_s__AdaptiveLayoutComponentType_Common,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Common,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -295,7 +295,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_DatePicker = {
-    &afw_components_s__AdaptiveLayoutComponentType_DatePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DatePicker,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -310,7 +310,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_DateTimePicker = {
-    &afw_components_s__AdaptiveLayoutComponentType_DateTimePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DateTimePicker,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -325,7 +325,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Dialog = {
-    &afw_components_s__AdaptiveLayoutComponentType_Dialog,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Dialog,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -340,7 +340,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_DiffEditor = {
-    &afw_components_s__AdaptiveLayoutComponentType_DiffEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DiffEditor,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -355,7 +355,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Divider = {
-    &afw_components_s__AdaptiveLayoutComponentType_Divider,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Divider,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -370,7 +370,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Drawer = {
-    &afw_components_s__AdaptiveLayoutComponentType_Drawer,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Drawer,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -385,7 +385,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown = {
-    &afw_components_s__AdaptiveLayoutComponentType_Dropdown,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Dropdown,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -400,7 +400,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_DropdownEditor = {
-    &afw_components_s__AdaptiveLayoutComponentType_DropdownEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_DropdownEditor,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -415,7 +415,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown_Option = {
-    &afw_components_s__AdaptiveLayoutComponentType_Dropdown_Option,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Dropdown_Option,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -430,7 +430,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_EditableCallout = {
-    &afw_components_s__AdaptiveLayoutComponentType_EditableCallout,
+    &afw_components_self_s__AdaptiveLayoutComponentType_EditableCallout,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -445,7 +445,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_EditableLabel = {
-    &afw_components_s__AdaptiveLayoutComponentType_EditableLabel,
+    &afw_components_self_s__AdaptiveLayoutComponentType_EditableLabel,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -460,7 +460,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Hidden = {
-    &afw_components_s__AdaptiveLayoutComponentType_Hidden,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Hidden,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -475,7 +475,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Icon = {
-    &afw_components_s__AdaptiveLayoutComponentType_Icon,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Icon,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -490,7 +490,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Image = {
-    &afw_components_s__AdaptiveLayoutComponentType_Image,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Image,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -505,7 +505,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Label = {
-    &afw_components_s__AdaptiveLayoutComponentType_Label,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Label,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -520,7 +520,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Link = {
-    &afw_components_s__AdaptiveLayoutComponentType_Link,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Link,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -535,7 +535,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_List = {
-    &afw_components_s__AdaptiveLayoutComponentType_List,
+    &afw_components_self_s__AdaptiveLayoutComponentType_List,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -550,7 +550,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor = {
-    &afw_components_s__AdaptiveLayoutComponentType_ListEditor,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ListEditor,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -565,7 +565,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor_Item = {
-    &afw_components_s__AdaptiveLayoutComponentType_ListEditor_Item,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ListEditor_Item,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -580,7 +580,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Menu = {
-    &afw_components_s__AdaptiveLayoutComponentType_Menu,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Menu,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -595,7 +595,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Menu_Item = {
-    &afw_components_s__AdaptiveLayoutComponentType_Menu_Item,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Menu_Item,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -610,7 +610,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Message = {
-    &afw_components_s__AdaptiveLayoutComponentType_Message,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Message,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -625,7 +625,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Modal = {
-    &afw_components_s__AdaptiveLayoutComponentType_Modal,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Modal,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -640,7 +640,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Native = {
-    &afw_components_s__AdaptiveLayoutComponentType_Native,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Native,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -655,7 +655,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Nav = {
-    &afw_components_s__AdaptiveLayoutComponentType_Nav,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Nav,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -670,7 +670,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Nav_Item = {
-    &afw_components_s__AdaptiveLayoutComponentType_Nav_Item,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Nav_Item,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -685,7 +685,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Paper = {
-    &afw_components_s__AdaptiveLayoutComponentType_Paper,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Paper,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -700,7 +700,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Picker = {
-    &afw_components_s__AdaptiveLayoutComponentType_Picker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Picker,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -715,7 +715,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Picker_Item = {
-    &afw_components_s__AdaptiveLayoutComponentType_Picker_Item,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Picker_Item,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -730,7 +730,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Responsive = {
-    &afw_components_s__AdaptiveLayoutComponentType_Responsive,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Responsive,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -745,7 +745,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveCol = {
-    &afw_components_s__AdaptiveLayoutComponentType_ResponsiveCol,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ResponsiveCol,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -760,7 +760,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveRow = {
-    &afw_components_s__AdaptiveLayoutComponentType_ResponsiveRow,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ResponsiveRow,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -775,7 +775,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Responsive_Breakpoints = {
-    &afw_components_s__AdaptiveLayoutComponentType_Responsive_Breakpoints,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Responsive_Breakpoints,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -790,7 +790,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Skeleton = {
-    &afw_components_s__AdaptiveLayoutComponentType_Skeleton,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Skeleton,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -805,7 +805,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Slider = {
-    &afw_components_s__AdaptiveLayoutComponentType_Slider,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Slider,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -820,7 +820,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Snackbar = {
-    &afw_components_s__AdaptiveLayoutComponentType_Snackbar,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Snackbar,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -835,7 +835,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_SpinButton = {
-    &afw_components_s__AdaptiveLayoutComponentType_SpinButton,
+    &afw_components_self_s__AdaptiveLayoutComponentType_SpinButton,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -850,7 +850,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Spinner = {
-    &afw_components_s__AdaptiveLayoutComponentType_Spinner,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Spinner,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -865,7 +865,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Stepper = {
-    &afw_components_s__AdaptiveLayoutComponentType_Stepper,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Stepper,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -880,7 +880,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Style = {
-    &afw_components_s__AdaptiveLayoutComponentType_Style,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Style,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -895,7 +895,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Table = {
-    &afw_components_s__AdaptiveLayoutComponentType_Table,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Table,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -910,7 +910,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Table_Column = {
-    &afw_components_s__AdaptiveLayoutComponentType_Table_Column,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Table_Column,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -925,7 +925,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Table_Row = {
-    &afw_components_s__AdaptiveLayoutComponentType_Table_Row,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Table_Row,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -940,7 +940,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Tabs = {
-    &afw_components_s__AdaptiveLayoutComponentType_Tabs,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tabs,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -955,7 +955,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Tabs_Tab = {
-    &afw_components_s__AdaptiveLayoutComponentType_Tabs_Tab,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tabs_Tab,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -970,7 +970,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_TextField = {
-    &afw_components_s__AdaptiveLayoutComponentType_TextField,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TextField,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -985,7 +985,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_TimeDuration = {
-    &afw_components_s__AdaptiveLayoutComponentType_TimeDuration,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TimeDuration,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1000,7 +1000,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_TimePicker = {
-    &afw_components_s__AdaptiveLayoutComponentType_TimePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TimePicker,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1015,7 +1015,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_TimezonePicker = {
-    &afw_components_s__AdaptiveLayoutComponentType_TimezonePicker,
+    &afw_components_self_s__AdaptiveLayoutComponentType_TimezonePicker,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1030,7 +1030,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Toggle = {
-    &afw_components_s__AdaptiveLayoutComponentType_Toggle,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Toggle,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1045,7 +1045,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_ToggleButtons = {
-    &afw_components_s__AdaptiveLayoutComponentType_ToggleButtons,
+    &afw_components_self_s__AdaptiveLayoutComponentType_ToggleButtons,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1060,7 +1060,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Toolbar = {
-    &afw_components_s__AdaptiveLayoutComponentType_Toolbar,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Toolbar,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1075,7 +1075,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Tooltip = {
-    &afw_components_s__AdaptiveLayoutComponentType_Tooltip,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tooltip,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1090,7 +1090,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Tree = {
-    &afw_components_s__AdaptiveLayoutComponentType_Tree,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tree,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1105,7 +1105,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Tree_Node = {
-    &afw_components_s__AdaptiveLayoutComponentType_Tree_Node,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Tree_Node,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1120,7 +1120,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayoutComponentType_Typography = {
-    &afw_components_s__AdaptiveLayoutComponentType_Typography,
+    &afw_components_self_s__AdaptiveLayoutComponentType_Typography,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1135,7 +1135,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayout_ObjectResponsive = {
-    &afw_components_s__AdaptiveLayout_ObjectResponsive,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1150,7 +1150,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayout_ObjectResponsive_embedded = {
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_embedded,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_embedded,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1165,7 +1165,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayout_ObjectResponsive_filterOptions = {
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_filterOptions,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_filterOptions,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1180,7 +1180,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayout_ObjectResponsive_preferredComponent = {
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_preferredComponent,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_preferredComponent,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -1195,7 +1195,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLayout_ObjectResponsive_sortOptions = {
-    &afw_components_s__AdaptiveLayout_ObjectResponsive_sortOptions,
+    &afw_components_self_s__AdaptiveLayout_ObjectResponsive_sortOptions,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,

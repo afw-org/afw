@@ -45,8 +45,8 @@ impl_object__reader_check = {
         {
             NULL,
             NULL,
-            &afw_lmdb_s_reader_check,
-            &afw_lmdb_s__AdaptiveFunction_,
+            &afw_lmdb_self_s_reader_check,
+            &afw_lmdb_self_s__AdaptiveFunction_,
             &impl_object_path__reader_check
         }
     },
@@ -62,7 +62,7 @@ impl_reader_check_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_lmdb_s__AdaptiveFunctionParameter_,
+            &afw_lmdb_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88,7 +88,7 @@ impl_reader_check_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_lmdb_s__AdaptiveFunctionParameter_,
+            &afw_lmdb_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -163,8 +163,8 @@ impl_object__reader_list = {
         {
             NULL,
             NULL,
-            &afw_lmdb_s_reader_list,
-            &afw_lmdb_s__AdaptiveFunction_,
+            &afw_lmdb_self_s_reader_list,
+            &afw_lmdb_self_s__AdaptiveFunction_,
             &impl_object_path__reader_list
         }
     },
@@ -180,7 +180,7 @@ impl_reader_list_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_lmdb_s__AdaptiveFunctionParameter_,
+            &afw_lmdb_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -206,7 +206,7 @@ impl_reader_list_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_lmdb_s__AdaptiveFunctionParameter_,
+            &afw_lmdb_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },

@@ -43,8 +43,8 @@ impl_object__adaptor_objectCallback_signature = {
         {
             NULL,
             NULL,
-            &afw_s_adaptor_objectCallback_signature,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_adaptor_objectCallback_signature,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__adaptor_objectCallback_signature
         }
     },
@@ -60,7 +60,7 @@ impl_adaptor_objectCallback_signature_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86,7 +86,7 @@ impl_adaptor_objectCallback_signature_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -112,7 +112,7 @@ impl_adaptor_objectCallback_signature_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -185,8 +185,8 @@ impl_object__add_object = {
         {
             NULL,
             NULL,
-            &afw_s_add_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_object
         }
     },
@@ -202,7 +202,7 @@ impl_add_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -228,7 +228,7 @@ impl_add_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -254,7 +254,7 @@ impl_add_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -280,7 +280,7 @@ impl_add_object_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -306,7 +306,7 @@ impl_add_object_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -332,7 +332,7 @@ impl_add_object_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -358,7 +358,7 @@ impl_add_object_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -441,8 +441,8 @@ impl_object__add_object_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_add_object_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_object_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_object_with_uri
         }
     },
@@ -458,7 +458,7 @@ impl_add_object_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -484,7 +484,7 @@ impl_add_object_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -510,7 +510,7 @@ impl_add_object_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -536,7 +536,7 @@ impl_add_object_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -562,7 +562,7 @@ impl_add_object_with_uri_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -643,8 +643,8 @@ impl_object__convert_AdaptiveQueryCriteria_to_query_string = {
         {
             NULL,
             NULL,
-            &afw_s_convert_AdaptiveQueryCriteria_to_query_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_convert_AdaptiveQueryCriteria_to_query_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__convert_AdaptiveQueryCriteria_to_query_string
         }
     },
@@ -660,7 +660,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -686,7 +686,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -712,7 +712,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -738,7 +738,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -764,7 +764,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -839,8 +839,8 @@ impl_object__convert_query_string_to_AdaptiveQueryCriteria = {
         {
             NULL,
             NULL,
-            &afw_s_convert_query_string_to_AdaptiveQueryCriteria,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_convert_query_string_to_AdaptiveQueryCriteria,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__convert_query_string_to_AdaptiveQueryCriteria
         }
     },
@@ -856,7 +856,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -882,7 +882,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -908,7 +908,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -934,7 +934,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1008,8 +1008,8 @@ impl_object__delete_object = {
         {
             NULL,
             NULL,
-            &afw_s_delete_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_delete_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__delete_object
         }
     },
@@ -1025,7 +1025,7 @@ impl_delete_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1051,7 +1051,7 @@ impl_delete_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1077,7 +1077,7 @@ impl_delete_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1103,7 +1103,7 @@ impl_delete_object_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1129,7 +1129,7 @@ impl_delete_object_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1155,7 +1155,7 @@ impl_delete_object_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1237,8 +1237,8 @@ impl_object__delete_object_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_delete_object_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_delete_object_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__delete_object_with_uri
         }
     },
@@ -1254,7 +1254,7 @@ impl_delete_object_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1280,7 +1280,7 @@ impl_delete_object_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1306,7 +1306,7 @@ impl_delete_object_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1332,7 +1332,7 @@ impl_delete_object_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1412,8 +1412,8 @@ impl_object__get_object = {
         {
             NULL,
             NULL,
-            &afw_s_get_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_get_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__get_object
         }
     },
@@ -1429,7 +1429,7 @@ impl_get_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1455,7 +1455,7 @@ impl_get_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1481,7 +1481,7 @@ impl_get_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1507,7 +1507,7 @@ impl_get_object_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1533,7 +1533,7 @@ impl_get_object_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1559,7 +1559,7 @@ impl_get_object_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1635,8 +1635,8 @@ impl_object__get_object_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_get_object_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_get_object_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__get_object_with_uri
         }
     },
@@ -1652,7 +1652,7 @@ impl_get_object_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1678,7 +1678,7 @@ impl_get_object_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1704,7 +1704,7 @@ impl_get_object_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1730,7 +1730,7 @@ impl_get_object_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1804,8 +1804,8 @@ impl_object__modify_object = {
         {
             NULL,
             NULL,
-            &afw_s_modify_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_modify_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__modify_object
         }
     },
@@ -1821,7 +1821,7 @@ impl_modify_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1847,7 +1847,7 @@ impl_modify_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1873,7 +1873,7 @@ impl_modify_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1899,7 +1899,7 @@ impl_modify_object_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1925,7 +1925,7 @@ impl_modify_object_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1951,7 +1951,7 @@ impl_modify_object_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -1977,7 +1977,7 @@ impl_modify_object_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2060,8 +2060,8 @@ impl_object__modify_object_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_modify_object_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_modify_object_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__modify_object_with_uri
         }
     },
@@ -2077,7 +2077,7 @@ impl_modify_object_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2103,7 +2103,7 @@ impl_modify_object_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2129,7 +2129,7 @@ impl_modify_object_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2155,7 +2155,7 @@ impl_modify_object_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2181,7 +2181,7 @@ impl_modify_object_with_uri_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2262,8 +2262,8 @@ impl_object__reconcile_object = {
         {
             NULL,
             NULL,
-            &afw_s_reconcile_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_reconcile_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__reconcile_object
         }
     },
@@ -2279,7 +2279,7 @@ impl_reconcile_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2305,7 +2305,7 @@ impl_reconcile_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2331,7 +2331,7 @@ impl_reconcile_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2410,8 +2410,8 @@ impl_object__replace_object = {
         {
             NULL,
             NULL,
-            &afw_s_replace_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_replace_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__replace_object
         }
     },
@@ -2427,7 +2427,7 @@ impl_replace_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2453,7 +2453,7 @@ impl_replace_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2479,7 +2479,7 @@ impl_replace_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2505,7 +2505,7 @@ impl_replace_object_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2531,7 +2531,7 @@ impl_replace_object_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2557,7 +2557,7 @@ impl_replace_object_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2583,7 +2583,7 @@ impl_replace_object_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2666,8 +2666,8 @@ impl_object__replace_object_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_replace_object_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_replace_object_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__replace_object_with_uri
         }
     },
@@ -2683,7 +2683,7 @@ impl_replace_object_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2709,7 +2709,7 @@ impl_replace_object_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2735,7 +2735,7 @@ impl_replace_object_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2761,7 +2761,7 @@ impl_replace_object_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2787,7 +2787,7 @@ impl_replace_object_with_uri_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2868,8 +2868,8 @@ impl_object__retrieve_objects = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects
         }
     },
@@ -2885,7 +2885,7 @@ impl_retrieve_objects_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2911,7 +2911,7 @@ impl_retrieve_objects_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2937,7 +2937,7 @@ impl_retrieve_objects_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2963,7 +2963,7 @@ impl_retrieve_objects_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -2989,7 +2989,7 @@ impl_retrieve_objects_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3015,7 +3015,7 @@ impl_retrieve_objects_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3091,8 +3091,8 @@ impl_object__retrieve_objects_to_callback = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_to_callback,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_to_callback,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_to_callback
         }
     },
@@ -3108,7 +3108,7 @@ impl_retrieve_objects_to_callback_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3134,7 +3134,7 @@ impl_retrieve_objects_to_callback_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3160,7 +3160,7 @@ impl_retrieve_objects_to_callback_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3186,7 +3186,7 @@ impl_retrieve_objects_to_callback_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3212,7 +3212,7 @@ impl_retrieve_objects_to_callback_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3238,7 +3238,7 @@ impl_retrieve_objects_to_callback_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3264,7 +3264,7 @@ impl_retrieve_objects_to_callback_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3290,7 +3290,7 @@ impl_retrieve_objects_to_callback_parameter_7 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3368,8 +3368,8 @@ impl_object__retrieve_objects_to_response = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_to_response,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_to_response,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_to_response
         }
     },
@@ -3385,7 +3385,7 @@ impl_retrieve_objects_to_response_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3411,7 +3411,7 @@ impl_retrieve_objects_to_response_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3437,7 +3437,7 @@ impl_retrieve_objects_to_response_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3463,7 +3463,7 @@ impl_retrieve_objects_to_response_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3489,7 +3489,7 @@ impl_retrieve_objects_to_response_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3515,7 +3515,7 @@ impl_retrieve_objects_to_response_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3591,8 +3591,8 @@ impl_object__retrieve_objects_to_stream = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_to_stream,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_to_stream,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_to_stream
         }
     },
@@ -3608,7 +3608,7 @@ impl_retrieve_objects_to_stream_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3634,7 +3634,7 @@ impl_retrieve_objects_to_stream_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3660,7 +3660,7 @@ impl_retrieve_objects_to_stream_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3686,7 +3686,7 @@ impl_retrieve_objects_to_stream_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3712,7 +3712,7 @@ impl_retrieve_objects_to_stream_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3738,7 +3738,7 @@ impl_retrieve_objects_to_stream_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3764,7 +3764,7 @@ impl_retrieve_objects_to_stream_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3841,8 +3841,8 @@ impl_object__retrieve_objects_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_with_uri
         }
     },
@@ -3858,7 +3858,7 @@ impl_retrieve_objects_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3884,7 +3884,7 @@ impl_retrieve_objects_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3910,7 +3910,7 @@ impl_retrieve_objects_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -3936,7 +3936,7 @@ impl_retrieve_objects_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4010,8 +4010,8 @@ impl_object__retrieve_objects_with_uri_to_callback = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_with_uri_to_callback,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_with_uri_to_callback,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_with_uri_to_callback
         }
     },
@@ -4027,7 +4027,7 @@ impl_retrieve_objects_with_uri_to_callback_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4053,7 +4053,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4079,7 +4079,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4105,7 +4105,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4131,7 +4131,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4157,7 +4157,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4233,8 +4233,8 @@ impl_object__retrieve_objects_with_uri_to_response = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_with_uri_to_response,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_with_uri_to_response,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_with_uri_to_response
         }
     },
@@ -4250,7 +4250,7 @@ impl_retrieve_objects_with_uri_to_response_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4276,7 +4276,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4302,7 +4302,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4328,7 +4328,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4402,8 +4402,8 @@ impl_object__retrieve_objects_with_uri_to_stream = {
         {
             NULL,
             NULL,
-            &afw_s_retrieve_objects_with_uri_to_stream,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_retrieve_objects_with_uri_to_stream,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__retrieve_objects_with_uri_to_stream
         }
     },
@@ -4419,7 +4419,7 @@ impl_retrieve_objects_with_uri_to_stream_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4445,7 +4445,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4471,7 +4471,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4497,7 +4497,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4523,7 +4523,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4598,8 +4598,8 @@ impl_object__update_object = {
         {
             NULL,
             NULL,
-            &afw_s_update_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_update_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__update_object
         }
     },
@@ -4615,7 +4615,7 @@ impl_update_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4641,7 +4641,7 @@ impl_update_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4667,7 +4667,7 @@ impl_update_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4693,7 +4693,7 @@ impl_update_object_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4719,7 +4719,7 @@ impl_update_object_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4745,7 +4745,7 @@ impl_update_object_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4771,7 +4771,7 @@ impl_update_object_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4854,8 +4854,8 @@ impl_object__update_object_with_uri = {
         {
             NULL,
             NULL,
-            &afw_s_update_object_with_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_update_object_with_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__update_object_with_uri
         }
     },
@@ -4871,7 +4871,7 @@ impl_update_object_with_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4897,7 +4897,7 @@ impl_update_object_with_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4923,7 +4923,7 @@ impl_update_object_with_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4949,7 +4949,7 @@ impl_update_object_with_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -4975,7 +4975,7 @@ impl_update_object_with_uri_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5056,8 +5056,8 @@ impl_object__extension_load = {
         {
             NULL,
             NULL,
-            &afw_s_extension_load,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_extension_load,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__extension_load
         }
     },
@@ -5073,7 +5073,7 @@ impl_extension_load_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5099,7 +5099,7 @@ impl_extension_load_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5177,8 +5177,8 @@ impl_object__extension_load_by_module_path = {
         {
             NULL,
             NULL,
-            &afw_s_extension_load_by_module_path,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_extension_load_by_module_path,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__extension_load_by_module_path
         }
     },
@@ -5194,7 +5194,7 @@ impl_extension_load_by_module_path_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5220,7 +5220,7 @@ impl_extension_load_by_module_path_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5298,8 +5298,8 @@ impl_object__flag_get_active = {
         {
             NULL,
             NULL,
-            &afw_s_flag_get_active,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flag_get_active,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flag_get_active
         }
     },
@@ -5315,7 +5315,7 @@ impl_flag_get_active_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5386,8 +5386,8 @@ impl_object__flag_get_active_defaults = {
         {
             NULL,
             NULL,
-            &afw_s_flag_get_active_defaults,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flag_get_active_defaults,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flag_get_active_defaults
         }
     },
@@ -5403,7 +5403,7 @@ impl_flag_get_active_defaults_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5474,8 +5474,8 @@ impl_object__flag_get_defaults = {
         {
             NULL,
             NULL,
-            &afw_s_flag_get_defaults,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flag_get_defaults,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flag_get_defaults
         }
     },
@@ -5491,7 +5491,7 @@ impl_flag_get_defaults_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5562,8 +5562,8 @@ impl_object__flag_modify_defaults = {
         {
             NULL,
             NULL,
-            &afw_s_flag_modify_defaults,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flag_modify_defaults,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flag_modify_defaults
         }
     },
@@ -5579,7 +5579,7 @@ impl_flag_modify_defaults_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5605,7 +5605,7 @@ impl_flag_modify_defaults_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5631,7 +5631,7 @@ impl_flag_modify_defaults_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5704,8 +5704,8 @@ impl_object__flag_replace_defaults = {
         {
             NULL,
             NULL,
-            &afw_s_flag_replace_defaults,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flag_replace_defaults,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flag_replace_defaults
         }
     },
@@ -5721,7 +5721,7 @@ impl_flag_replace_defaults_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5747,7 +5747,7 @@ impl_flag_replace_defaults_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5819,8 +5819,8 @@ impl_object__flag_set = {
         {
             NULL,
             NULL,
-            &afw_s_flag_set,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flag_set,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flag_set
         }
     },
@@ -5836,7 +5836,7 @@ impl_flag_set_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5862,7 +5862,7 @@ impl_flag_set_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5888,7 +5888,7 @@ impl_flag_set_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -5961,8 +5961,8 @@ impl_object__registry_key_check = {
         {
             NULL,
             NULL,
-            &afw_s_registry_key_check,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_registry_key_check,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__registry_key_check
         }
     },
@@ -5978,7 +5978,7 @@ impl_registry_key_check_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6004,7 +6004,7 @@ impl_registry_key_check_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6030,7 +6030,7 @@ impl_registry_key_check_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6056,7 +6056,7 @@ impl_registry_key_check_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6136,8 +6136,8 @@ impl_object__service_get = {
         {
             NULL,
             NULL,
-            &afw_s_service_get,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_service_get,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__service_get
         }
     },
@@ -6153,7 +6153,7 @@ impl_service_get_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6179,7 +6179,7 @@ impl_service_get_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6251,8 +6251,8 @@ impl_object__service_restart = {
         {
             NULL,
             NULL,
-            &afw_s_service_restart,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_service_restart,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__service_restart
         }
     },
@@ -6268,7 +6268,7 @@ impl_service_restart_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6294,7 +6294,7 @@ impl_service_restart_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6372,8 +6372,8 @@ impl_object__service_start = {
         {
             NULL,
             NULL,
-            &afw_s_service_start,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_service_start,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__service_start
         }
     },
@@ -6389,7 +6389,7 @@ impl_service_start_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6415,7 +6415,7 @@ impl_service_start_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6493,8 +6493,8 @@ impl_object__service_stop = {
         {
             NULL,
             NULL,
-            &afw_s_service_stop,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_service_stop,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__service_stop
         }
     },
@@ -6510,7 +6510,7 @@ impl_service_stop_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6536,7 +6536,7 @@ impl_service_stop_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6614,8 +6614,8 @@ impl_object__anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__anyURI
         }
     },
@@ -6631,7 +6631,7 @@ impl_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6657,7 +6657,7 @@ impl_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6737,8 +6737,8 @@ impl_object__at_least_one_member_of_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_anyURI
         }
     },
@@ -6754,7 +6754,7 @@ impl_at_least_one_member_of_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6780,7 +6780,7 @@ impl_at_least_one_member_of_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6806,7 +6806,7 @@ impl_at_least_one_member_of_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6879,8 +6879,8 @@ impl_object__bag_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_bag_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_anyURI
         }
     },
@@ -6896,7 +6896,7 @@ impl_bag_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6922,7 +6922,7 @@ impl_bag_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -6994,8 +6994,8 @@ impl_object__bag_size_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_anyURI
         }
     },
@@ -7011,7 +7011,7 @@ impl_bag_size_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7037,7 +7037,7 @@ impl_bag_size_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7109,8 +7109,8 @@ impl_object__ends_with_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_ends_with_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ends_with_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ends_with_anyURI
         }
     },
@@ -7126,7 +7126,7 @@ impl_ends_with_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7152,7 +7152,7 @@ impl_ends_with_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7178,7 +7178,7 @@ impl_ends_with_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7251,8 +7251,8 @@ impl_object__eq_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_eq_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_anyURI
         }
     },
@@ -7268,7 +7268,7 @@ impl_eq_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7294,7 +7294,7 @@ impl_eq_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7320,7 +7320,7 @@ impl_eq_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7401,8 +7401,8 @@ impl_object__eqx_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_anyURI
         }
     },
@@ -7418,7 +7418,7 @@ impl_eqx_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7444,7 +7444,7 @@ impl_eqx_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7470,7 +7470,7 @@ impl_eqx_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7543,8 +7543,8 @@ impl_object__ge_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_ge_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_anyURI
         }
     },
@@ -7560,7 +7560,7 @@ impl_ge_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7586,7 +7586,7 @@ impl_ge_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7612,7 +7612,7 @@ impl_ge_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7685,8 +7685,8 @@ impl_object__gt_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_gt_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_anyURI
         }
     },
@@ -7702,7 +7702,7 @@ impl_gt_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7728,7 +7728,7 @@ impl_gt_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7754,7 +7754,7 @@ impl_gt_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7827,8 +7827,8 @@ impl_object__includes_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_includes_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_includes_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__includes_anyURI
         }
     },
@@ -7844,7 +7844,7 @@ impl_includes_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7870,7 +7870,7 @@ impl_includes_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7896,7 +7896,7 @@ impl_includes_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7922,7 +7922,7 @@ impl_includes_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -7996,8 +7996,8 @@ impl_object__index_of_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_index_of_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_index_of_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__index_of_anyURI
         }
     },
@@ -8013,7 +8013,7 @@ impl_index_of_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8039,7 +8039,7 @@ impl_index_of_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8065,7 +8065,7 @@ impl_index_of_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8091,7 +8091,7 @@ impl_index_of_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8165,8 +8165,8 @@ impl_object__intersection_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_anyURI
         }
     },
@@ -8182,7 +8182,7 @@ impl_intersection_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8208,7 +8208,7 @@ impl_intersection_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8234,7 +8234,7 @@ impl_intersection_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8307,8 +8307,8 @@ impl_object__is_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_is_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_anyURI
         }
     },
@@ -8324,7 +8324,7 @@ impl_is_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8350,7 +8350,7 @@ impl_is_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8422,8 +8422,8 @@ impl_object__is_in_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_anyURI
         }
     },
@@ -8439,7 +8439,7 @@ impl_is_in_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8465,7 +8465,7 @@ impl_is_in_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8491,7 +8491,7 @@ impl_is_in_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8564,8 +8564,8 @@ impl_object__last_index_of_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_last_index_of_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_last_index_of_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__last_index_of_anyURI
         }
     },
@@ -8581,7 +8581,7 @@ impl_last_index_of_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8607,7 +8607,7 @@ impl_last_index_of_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8633,7 +8633,7 @@ impl_last_index_of_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8659,7 +8659,7 @@ impl_last_index_of_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8733,8 +8733,8 @@ impl_object__le_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_le_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_anyURI
         }
     },
@@ -8750,7 +8750,7 @@ impl_le_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8776,7 +8776,7 @@ impl_le_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8802,7 +8802,7 @@ impl_le_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8875,8 +8875,8 @@ impl_object__length_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_length_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_length_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__length_anyURI
         }
     },
@@ -8892,7 +8892,7 @@ impl_length_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8918,7 +8918,7 @@ impl_length_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -8990,8 +8990,8 @@ impl_object__lt_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_lt_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_anyURI
         }
     },
@@ -9007,7 +9007,7 @@ impl_lt_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9033,7 +9033,7 @@ impl_lt_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9059,7 +9059,7 @@ impl_lt_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9132,8 +9132,8 @@ impl_object__ne_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_ne_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_anyURI
         }
     },
@@ -9149,7 +9149,7 @@ impl_ne_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9175,7 +9175,7 @@ impl_ne_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9201,7 +9201,7 @@ impl_ne_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9282,8 +9282,8 @@ impl_object__nex_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_nex_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_anyURI
         }
     },
@@ -9299,7 +9299,7 @@ impl_nex_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9325,7 +9325,7 @@ impl_nex_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9351,7 +9351,7 @@ impl_nex_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9424,8 +9424,8 @@ impl_object__one_and_only_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_anyURI
         }
     },
@@ -9441,7 +9441,7 @@ impl_one_and_only_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9467,7 +9467,7 @@ impl_one_and_only_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9547,8 +9547,8 @@ impl_object__regexp_index_of_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_index_of_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_index_of_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_index_of_anyURI
         }
     },
@@ -9564,7 +9564,7 @@ impl_regexp_index_of_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9590,7 +9590,7 @@ impl_regexp_index_of_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9616,7 +9616,7 @@ impl_regexp_index_of_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9689,8 +9689,8 @@ impl_object__regexp_match_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match_anyURI
         }
     },
@@ -9706,7 +9706,7 @@ impl_regexp_match_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9732,7 +9732,7 @@ impl_regexp_match_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9758,7 +9758,7 @@ impl_regexp_match_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9831,8 +9831,8 @@ impl_object__regexp_replace_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_replace_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_replace_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_replace_anyURI
         }
     },
@@ -9848,7 +9848,7 @@ impl_regexp_replace_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9874,7 +9874,7 @@ impl_regexp_replace_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9900,7 +9900,7 @@ impl_regexp_replace_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9926,7 +9926,7 @@ impl_regexp_replace_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -9952,7 +9952,7 @@ impl_regexp_replace_anyURI_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10027,8 +10027,8 @@ impl_object__repeat_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_repeat_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_repeat_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__repeat_anyURI
         }
     },
@@ -10044,7 +10044,7 @@ impl_repeat_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10070,7 +10070,7 @@ impl_repeat_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10096,7 +10096,7 @@ impl_repeat_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10169,8 +10169,8 @@ impl_object__replace_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_replace_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_replace_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__replace_anyURI
         }
     },
@@ -10186,7 +10186,7 @@ impl_replace_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10212,7 +10212,7 @@ impl_replace_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10238,7 +10238,7 @@ impl_replace_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10264,7 +10264,7 @@ impl_replace_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10290,7 +10290,7 @@ impl_replace_anyURI_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10365,8 +10365,8 @@ impl_object__set_equals_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_anyURI
         }
     },
@@ -10382,7 +10382,7 @@ impl_set_equals_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10408,7 +10408,7 @@ impl_set_equals_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10434,7 +10434,7 @@ impl_set_equals_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10507,8 +10507,8 @@ impl_object__split_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_split_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_split_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__split_anyURI
         }
     },
@@ -10524,7 +10524,7 @@ impl_split_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10550,7 +10550,7 @@ impl_split_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10576,7 +10576,7 @@ impl_split_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10602,7 +10602,7 @@ impl_split_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10676,8 +10676,8 @@ impl_object__starts_with_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_starts_with_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_starts_with_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__starts_with_anyURI
         }
     },
@@ -10693,7 +10693,7 @@ impl_starts_with_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10719,7 +10719,7 @@ impl_starts_with_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10745,7 +10745,7 @@ impl_starts_with_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10818,8 +10818,8 @@ impl_object__subset_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_subset_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_anyURI
         }
     },
@@ -10835,7 +10835,7 @@ impl_subset_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10861,7 +10861,7 @@ impl_subset_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10887,7 +10887,7 @@ impl_subset_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -10960,8 +10960,8 @@ impl_object__substring_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_substring_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_substring_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__substring_anyURI
         }
     },
@@ -10977,7 +10977,7 @@ impl_substring_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11003,7 +11003,7 @@ impl_substring_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11029,7 +11029,7 @@ impl_substring_anyURI_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11055,7 +11055,7 @@ impl_substring_anyURI_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11137,8 +11137,8 @@ impl_object__to_string_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_anyURI
         }
     },
@@ -11154,7 +11154,7 @@ impl_to_string_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11180,7 +11180,7 @@ impl_to_string_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11252,8 +11252,8 @@ impl_object__union_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_union_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_anyURI
         }
     },
@@ -11269,7 +11269,7 @@ impl_union_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11295,7 +11295,7 @@ impl_union_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11367,8 +11367,8 @@ impl_object__url_encode_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_url_encode_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_url_encode_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__url_encode_anyURI
         }
     },
@@ -11384,7 +11384,7 @@ impl_url_encode_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11410,7 +11410,7 @@ impl_url_encode_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11482,8 +11482,8 @@ impl_object__add_entries = {
         {
             NULL,
             NULL,
-            &afw_s_add_entries,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_entries,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_entries
         }
     },
@@ -11499,7 +11499,7 @@ impl_add_entries_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11525,7 +11525,7 @@ impl_add_entries_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11551,7 +11551,7 @@ impl_add_entries_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11630,8 +11630,8 @@ impl_object__array = {
         {
             NULL,
             NULL,
-            &afw_s_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__array
         }
     },
@@ -11647,7 +11647,7 @@ impl_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11673,7 +11673,7 @@ impl_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11753,8 +11753,8 @@ impl_object__bag_array = {
         {
             NULL,
             NULL,
-            &afw_s_bag_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_array
         }
     },
@@ -11770,7 +11770,7 @@ impl_bag_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11796,7 +11796,7 @@ impl_bag_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11868,8 +11868,8 @@ impl_object__bag_size_array = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_array
         }
     },
@@ -11885,7 +11885,7 @@ impl_bag_size_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11911,7 +11911,7 @@ impl_bag_size_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -11983,8 +11983,8 @@ impl_object__clone_array = {
         {
             NULL,
             NULL,
-            &afw_s_clone_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_clone_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__clone_array
         }
     },
@@ -12000,7 +12000,7 @@ impl_clone_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12026,7 +12026,7 @@ impl_clone_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12098,8 +12098,8 @@ impl_object__eq_array = {
         {
             NULL,
             NULL,
-            &afw_s_eq_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_array
         }
     },
@@ -12115,7 +12115,7 @@ impl_eq_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12141,7 +12141,7 @@ impl_eq_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12167,7 +12167,7 @@ impl_eq_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12248,8 +12248,8 @@ impl_object__eqx_array = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_array
         }
     },
@@ -12265,7 +12265,7 @@ impl_eqx_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12291,7 +12291,7 @@ impl_eqx_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12317,7 +12317,7 @@ impl_eqx_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12390,8 +12390,8 @@ impl_object__ge_array = {
         {
             NULL,
             NULL,
-            &afw_s_ge_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_array
         }
     },
@@ -12407,7 +12407,7 @@ impl_ge_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12433,7 +12433,7 @@ impl_ge_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12459,7 +12459,7 @@ impl_ge_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12532,8 +12532,8 @@ impl_object__gt_array = {
         {
             NULL,
             NULL,
-            &afw_s_gt_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_array
         }
     },
@@ -12549,7 +12549,7 @@ impl_gt_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12575,7 +12575,7 @@ impl_gt_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12601,7 +12601,7 @@ impl_gt_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12674,8 +12674,8 @@ impl_object__includes_array = {
         {
             NULL,
             NULL,
-            &afw_s_includes_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_includes_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__includes_array
         }
     },
@@ -12691,7 +12691,7 @@ impl_includes_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12717,7 +12717,7 @@ impl_includes_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12743,7 +12743,7 @@ impl_includes_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12769,7 +12769,7 @@ impl_includes_array_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12843,8 +12843,8 @@ impl_object__is_array = {
         {
             NULL,
             NULL,
-            &afw_s_is_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_array
         }
     },
@@ -12860,7 +12860,7 @@ impl_is_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12886,7 +12886,7 @@ impl_is_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -12958,8 +12958,8 @@ impl_object__join = {
         {
             NULL,
             NULL,
-            &afw_s_join,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_join,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__join
         }
     },
@@ -12975,7 +12975,7 @@ impl_join_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13001,7 +13001,7 @@ impl_join_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13027,7 +13027,7 @@ impl_join_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13100,8 +13100,8 @@ impl_object__le_array = {
         {
             NULL,
             NULL,
-            &afw_s_le_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_array
         }
     },
@@ -13117,7 +13117,7 @@ impl_le_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13143,7 +13143,7 @@ impl_le_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13169,7 +13169,7 @@ impl_le_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13242,8 +13242,8 @@ impl_object__length_array = {
         {
             NULL,
             NULL,
-            &afw_s_length_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_length_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__length_array
         }
     },
@@ -13259,7 +13259,7 @@ impl_length_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13285,7 +13285,7 @@ impl_length_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13357,8 +13357,8 @@ impl_object__lt_array = {
         {
             NULL,
             NULL,
-            &afw_s_lt_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_array
         }
     },
@@ -13374,7 +13374,7 @@ impl_lt_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13400,7 +13400,7 @@ impl_lt_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13426,7 +13426,7 @@ impl_lt_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13499,8 +13499,8 @@ impl_object__ne_array = {
         {
             NULL,
             NULL,
-            &afw_s_ne_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_array
         }
     },
@@ -13516,7 +13516,7 @@ impl_ne_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13542,7 +13542,7 @@ impl_ne_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13568,7 +13568,7 @@ impl_ne_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13649,8 +13649,8 @@ impl_object__nex_array = {
         {
             NULL,
             NULL,
-            &afw_s_nex_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_array
         }
     },
@@ -13666,7 +13666,7 @@ impl_nex_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13692,7 +13692,7 @@ impl_nex_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13718,7 +13718,7 @@ impl_nex_array_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13791,8 +13791,8 @@ impl_object__reverse = {
         {
             NULL,
             NULL,
-            &afw_s_reverse,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_reverse,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__reverse
         }
     },
@@ -13808,7 +13808,7 @@ impl_reverse_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13834,7 +13834,7 @@ impl_reverse_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13906,8 +13906,8 @@ impl_object__slice = {
         {
             NULL,
             NULL,
-            &afw_s_slice,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_slice,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__slice
         }
     },
@@ -13923,7 +13923,7 @@ impl_slice_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13949,7 +13949,7 @@ impl_slice_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -13975,7 +13975,7 @@ impl_slice_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14001,7 +14001,7 @@ impl_slice_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14075,8 +14075,8 @@ impl_object__to_string_array = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_array,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_array,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_array
         }
     },
@@ -14092,7 +14092,7 @@ impl_to_string_array_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14118,7 +14118,7 @@ impl_to_string_array_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14190,8 +14190,8 @@ impl_object__authorization_check = {
         {
             NULL,
             NULL,
-            &afw_s_authorization_check,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_authorization_check,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__authorization_check
         }
     },
@@ -14207,7 +14207,7 @@ impl_authorization_check_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14233,7 +14233,7 @@ impl_authorization_check_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14259,7 +14259,7 @@ impl_authorization_check_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14285,7 +14285,7 @@ impl_authorization_check_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14311,7 +14311,7 @@ impl_authorization_check_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14337,7 +14337,7 @@ impl_authorization_check_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14413,8 +14413,8 @@ impl_object__at_least_one_member_of_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_base64Binary
         }
     },
@@ -14430,7 +14430,7 @@ impl_at_least_one_member_of_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14456,7 +14456,7 @@ impl_at_least_one_member_of_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14482,7 +14482,7 @@ impl_at_least_one_member_of_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14555,8 +14555,8 @@ impl_object__bag_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_bag_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_base64Binary
         }
     },
@@ -14572,7 +14572,7 @@ impl_bag_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14598,7 +14598,7 @@ impl_bag_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14670,8 +14670,8 @@ impl_object__bag_size_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_base64Binary
         }
     },
@@ -14687,7 +14687,7 @@ impl_bag_size_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14713,7 +14713,7 @@ impl_bag_size_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14785,8 +14785,8 @@ impl_object__base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__base64Binary
         }
     },
@@ -14802,7 +14802,7 @@ impl_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14828,7 +14828,7 @@ impl_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14908,8 +14908,8 @@ impl_object__decode_to_string_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_decode_to_string_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_decode_to_string_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__decode_to_string_base64Binary
         }
     },
@@ -14925,7 +14925,7 @@ impl_decode_to_string_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -14951,7 +14951,7 @@ impl_decode_to_string_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15023,8 +15023,8 @@ impl_object__eq_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_eq_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_base64Binary
         }
     },
@@ -15040,7 +15040,7 @@ impl_eq_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15066,7 +15066,7 @@ impl_eq_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15092,7 +15092,7 @@ impl_eq_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15173,8 +15173,8 @@ impl_object__eqx_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_base64Binary
         }
     },
@@ -15190,7 +15190,7 @@ impl_eqx_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15216,7 +15216,7 @@ impl_eqx_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15242,7 +15242,7 @@ impl_eqx_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15315,8 +15315,8 @@ impl_object__ge_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_ge_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_base64Binary
         }
     },
@@ -15332,7 +15332,7 @@ impl_ge_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15358,7 +15358,7 @@ impl_ge_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15384,7 +15384,7 @@ impl_ge_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15457,8 +15457,8 @@ impl_object__gt_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_gt_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_base64Binary
         }
     },
@@ -15474,7 +15474,7 @@ impl_gt_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15500,7 +15500,7 @@ impl_gt_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15526,7 +15526,7 @@ impl_gt_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15599,8 +15599,8 @@ impl_object__intersection_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_base64Binary
         }
     },
@@ -15616,7 +15616,7 @@ impl_intersection_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15642,7 +15642,7 @@ impl_intersection_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15668,7 +15668,7 @@ impl_intersection_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15741,8 +15741,8 @@ impl_object__is_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_is_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_base64Binary
         }
     },
@@ -15758,7 +15758,7 @@ impl_is_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15784,7 +15784,7 @@ impl_is_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15856,8 +15856,8 @@ impl_object__is_in_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_base64Binary
         }
     },
@@ -15873,7 +15873,7 @@ impl_is_in_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15899,7 +15899,7 @@ impl_is_in_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15925,7 +15925,7 @@ impl_is_in_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -15998,8 +15998,8 @@ impl_object__le_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_le_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_base64Binary
         }
     },
@@ -16015,7 +16015,7 @@ impl_le_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16041,7 +16041,7 @@ impl_le_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16067,7 +16067,7 @@ impl_le_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16140,8 +16140,8 @@ impl_object__lt_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_lt_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_base64Binary
         }
     },
@@ -16157,7 +16157,7 @@ impl_lt_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16183,7 +16183,7 @@ impl_lt_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16209,7 +16209,7 @@ impl_lt_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16282,8 +16282,8 @@ impl_object__ne_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_ne_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_base64Binary
         }
     },
@@ -16299,7 +16299,7 @@ impl_ne_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16325,7 +16325,7 @@ impl_ne_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16351,7 +16351,7 @@ impl_ne_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16432,8 +16432,8 @@ impl_object__nex_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_nex_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_base64Binary
         }
     },
@@ -16449,7 +16449,7 @@ impl_nex_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16475,7 +16475,7 @@ impl_nex_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16501,7 +16501,7 @@ impl_nex_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16574,8 +16574,8 @@ impl_object__one_and_only_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_base64Binary
         }
     },
@@ -16591,7 +16591,7 @@ impl_one_and_only_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16617,7 +16617,7 @@ impl_one_and_only_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16697,8 +16697,8 @@ impl_object__set_equals_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_base64Binary
         }
     },
@@ -16714,7 +16714,7 @@ impl_set_equals_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16740,7 +16740,7 @@ impl_set_equals_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16766,7 +16766,7 @@ impl_set_equals_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16839,8 +16839,8 @@ impl_object__subset_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_subset_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_base64Binary
         }
     },
@@ -16856,7 +16856,7 @@ impl_subset_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16882,7 +16882,7 @@ impl_subset_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16908,7 +16908,7 @@ impl_subset_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -16981,8 +16981,8 @@ impl_object__to_string_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_base64Binary
         }
     },
@@ -16998,7 +16998,7 @@ impl_to_string_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17024,7 +17024,7 @@ impl_to_string_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17096,8 +17096,8 @@ impl_object__union_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_union_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_base64Binary
         }
     },
@@ -17113,7 +17113,7 @@ impl_union_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17139,7 +17139,7 @@ impl_union_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17211,8 +17211,8 @@ impl_object__at_least_one_member_of_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_boolean
         }
     },
@@ -17228,7 +17228,7 @@ impl_at_least_one_member_of_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17254,7 +17254,7 @@ impl_at_least_one_member_of_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17280,7 +17280,7 @@ impl_at_least_one_member_of_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17353,8 +17353,8 @@ impl_object__bag_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_bag_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_boolean
         }
     },
@@ -17370,7 +17370,7 @@ impl_bag_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17396,7 +17396,7 @@ impl_bag_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17468,8 +17468,8 @@ impl_object__bag_size_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_boolean
         }
     },
@@ -17485,7 +17485,7 @@ impl_bag_size_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17511,7 +17511,7 @@ impl_bag_size_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17583,8 +17583,8 @@ impl_object__boolean = {
         {
             NULL,
             NULL,
-            &afw_s_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__boolean
         }
     },
@@ -17600,7 +17600,7 @@ impl_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17626,7 +17626,7 @@ impl_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17706,8 +17706,8 @@ impl_object__eq_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_eq_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_boolean
         }
     },
@@ -17723,7 +17723,7 @@ impl_eq_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17749,7 +17749,7 @@ impl_eq_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17775,7 +17775,7 @@ impl_eq_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17856,8 +17856,8 @@ impl_object__eqx_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_boolean
         }
     },
@@ -17873,7 +17873,7 @@ impl_eqx_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17899,7 +17899,7 @@ impl_eqx_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17925,7 +17925,7 @@ impl_eqx_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -17998,8 +17998,8 @@ impl_object__ge_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_ge_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_boolean
         }
     },
@@ -18015,7 +18015,7 @@ impl_ge_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18041,7 +18041,7 @@ impl_ge_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18067,7 +18067,7 @@ impl_ge_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18140,8 +18140,8 @@ impl_object__gt_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_gt_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_boolean
         }
     },
@@ -18157,7 +18157,7 @@ impl_gt_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18183,7 +18183,7 @@ impl_gt_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18209,7 +18209,7 @@ impl_gt_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18282,8 +18282,8 @@ impl_object__intersection_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_boolean
         }
     },
@@ -18299,7 +18299,7 @@ impl_intersection_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18325,7 +18325,7 @@ impl_intersection_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18351,7 +18351,7 @@ impl_intersection_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18424,8 +18424,8 @@ impl_object__is_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_is_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_boolean
         }
     },
@@ -18441,7 +18441,7 @@ impl_is_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18467,7 +18467,7 @@ impl_is_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18539,8 +18539,8 @@ impl_object__is_in_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_boolean
         }
     },
@@ -18556,7 +18556,7 @@ impl_is_in_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18582,7 +18582,7 @@ impl_is_in_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18608,7 +18608,7 @@ impl_is_in_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18681,8 +18681,8 @@ impl_object__le_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_le_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_boolean
         }
     },
@@ -18698,7 +18698,7 @@ impl_le_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18724,7 +18724,7 @@ impl_le_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18750,7 +18750,7 @@ impl_le_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18823,8 +18823,8 @@ impl_object__lt_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_lt_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_boolean
         }
     },
@@ -18840,7 +18840,7 @@ impl_lt_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18866,7 +18866,7 @@ impl_lt_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18892,7 +18892,7 @@ impl_lt_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -18965,8 +18965,8 @@ impl_object__ne_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_ne_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_boolean
         }
     },
@@ -18982,7 +18982,7 @@ impl_ne_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19008,7 +19008,7 @@ impl_ne_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19034,7 +19034,7 @@ impl_ne_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19115,8 +19115,8 @@ impl_object__nex_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_nex_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_boolean
         }
     },
@@ -19132,7 +19132,7 @@ impl_nex_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19158,7 +19158,7 @@ impl_nex_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19184,7 +19184,7 @@ impl_nex_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19257,8 +19257,8 @@ impl_object__one_and_only_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_boolean
         }
     },
@@ -19274,7 +19274,7 @@ impl_one_and_only_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19300,7 +19300,7 @@ impl_one_and_only_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19380,8 +19380,8 @@ impl_object__set_equals_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_boolean
         }
     },
@@ -19397,7 +19397,7 @@ impl_set_equals_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19423,7 +19423,7 @@ impl_set_equals_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19449,7 +19449,7 @@ impl_set_equals_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19522,8 +19522,8 @@ impl_object__subset_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_subset_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_boolean
         }
     },
@@ -19539,7 +19539,7 @@ impl_subset_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19565,7 +19565,7 @@ impl_subset_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19591,7 +19591,7 @@ impl_subset_boolean_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19664,8 +19664,8 @@ impl_object__to_string_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_boolean
         }
     },
@@ -19681,7 +19681,7 @@ impl_to_string_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19707,7 +19707,7 @@ impl_to_string_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19779,8 +19779,8 @@ impl_object__union_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_union_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_boolean
         }
     },
@@ -19796,7 +19796,7 @@ impl_union_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19822,7 +19822,7 @@ impl_union_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19894,8 +19894,8 @@ impl_object__nullish_coalescing = {
         {
             NULL,
             NULL,
-            &afw_s_nullish_coalescing,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nullish_coalescing,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nullish_coalescing
         }
     },
@@ -19911,7 +19911,7 @@ impl_nullish_coalescing_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -19937,7 +19937,7 @@ impl_nullish_coalescing_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20009,8 +20009,8 @@ impl_object__optional_chaining = {
         {
             NULL,
             NULL,
-            &afw_s_optional_chaining,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_optional_chaining,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__optional_chaining
         }
     },
@@ -20026,7 +20026,7 @@ impl_optional_chaining_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20052,7 +20052,7 @@ impl_optional_chaining_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20078,7 +20078,7 @@ impl_optional_chaining_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20151,8 +20151,8 @@ impl_object__void_operator = {
         {
             NULL,
             NULL,
-            &afw_s_void_operator,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_void_operator,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__void_operator
         }
     },
@@ -20168,7 +20168,7 @@ impl_void_operator_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20194,7 +20194,7 @@ impl_void_operator_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20266,8 +20266,8 @@ impl_object__assign = {
         {
             NULL,
             NULL,
-            &afw_s_assign,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_assign,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__assign
         }
     },
@@ -20283,7 +20283,7 @@ impl_assign_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20309,7 +20309,7 @@ impl_assign_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20335,7 +20335,7 @@ impl_assign_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20414,8 +20414,8 @@ impl_object__break = {
         {
             NULL,
             NULL,
-            &afw_s_break,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_break,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__break
         }
     },
@@ -20431,7 +20431,7 @@ impl_break_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20457,7 +20457,7 @@ impl_break_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20529,8 +20529,8 @@ impl_object__const = {
         {
             NULL,
             NULL,
-            &afw_s_const,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_const,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__const
         }
     },
@@ -20546,7 +20546,7 @@ impl_const_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20572,7 +20572,7 @@ impl_const_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20598,7 +20598,7 @@ impl_const_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20624,7 +20624,7 @@ impl_const_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20698,8 +20698,8 @@ impl_object__continue = {
         {
             NULL,
             NULL,
-            &afw_s_continue,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_continue,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__continue
         }
     },
@@ -20715,7 +20715,7 @@ impl_continue_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20786,8 +20786,8 @@ impl_object__do_while = {
         {
             NULL,
             NULL,
-            &afw_s_do_while,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_do_while,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__do_while
         }
     },
@@ -20803,7 +20803,7 @@ impl_do_while_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20829,7 +20829,7 @@ impl_do_while_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20855,7 +20855,7 @@ impl_do_while_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20928,8 +20928,8 @@ impl_object__for = {
         {
             NULL,
             NULL,
-            &afw_s_for,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_for,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__for
         }
     },
@@ -20945,7 +20945,7 @@ impl_for_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20971,7 +20971,7 @@ impl_for_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -20997,7 +20997,7 @@ impl_for_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21023,7 +21023,7 @@ impl_for_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21049,7 +21049,7 @@ impl_for_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21124,8 +21124,8 @@ impl_object__for_of = {
         {
             NULL,
             NULL,
-            &afw_s_for_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_for_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__for_of
         }
     },
@@ -21141,7 +21141,7 @@ impl_for_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21167,7 +21167,7 @@ impl_for_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21193,7 +21193,7 @@ impl_for_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21219,7 +21219,7 @@ impl_for_of_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21293,8 +21293,8 @@ impl_object__if = {
         {
             NULL,
             NULL,
-            &afw_s_if,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_if,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__if
         }
     },
@@ -21310,7 +21310,7 @@ impl_if_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21336,7 +21336,7 @@ impl_if_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21362,7 +21362,7 @@ impl_if_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21388,7 +21388,7 @@ impl_if_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21462,8 +21462,8 @@ impl_object__let = {
         {
             NULL,
             NULL,
-            &afw_s_let,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_let,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__let
         }
     },
@@ -21479,7 +21479,7 @@ impl_let_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21505,7 +21505,7 @@ impl_let_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21531,7 +21531,7 @@ impl_let_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21557,7 +21557,7 @@ impl_let_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21631,8 +21631,8 @@ impl_object__rethrow = {
         {
             NULL,
             NULL,
-            &afw_s_rethrow,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_rethrow,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__rethrow
         }
     },
@@ -21648,7 +21648,7 @@ impl_rethrow_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21719,8 +21719,8 @@ impl_object__return = {
         {
             NULL,
             NULL,
-            &afw_s_return,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_return,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__return
         }
     },
@@ -21736,7 +21736,7 @@ impl_return_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21762,7 +21762,7 @@ impl_return_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21834,8 +21834,8 @@ impl_object__switch = {
         {
             NULL,
             NULL,
-            &afw_s_switch,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_switch,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__switch
         }
     },
@@ -21851,7 +21851,7 @@ impl_switch_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21877,7 +21877,7 @@ impl_switch_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21903,7 +21903,7 @@ impl_switch_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -21929,7 +21929,7 @@ impl_switch_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22003,8 +22003,8 @@ impl_object__throw = {
         {
             NULL,
             NULL,
-            &afw_s_throw,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_throw,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__throw
         }
     },
@@ -22020,7 +22020,7 @@ impl_throw_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22046,7 +22046,7 @@ impl_throw_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22072,7 +22072,7 @@ impl_throw_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22145,8 +22145,8 @@ impl_object__try = {
         {
             NULL,
             NULL,
-            &afw_s_try,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_try,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__try
         }
     },
@@ -22162,7 +22162,7 @@ impl_try_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22188,7 +22188,7 @@ impl_try_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22214,7 +22214,7 @@ impl_try_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22240,7 +22240,7 @@ impl_try_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22266,7 +22266,7 @@ impl_try_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22341,8 +22341,8 @@ impl_object__while = {
         {
             NULL,
             NULL,
-            &afw_s_while,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_while,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__while
         }
     },
@@ -22358,7 +22358,7 @@ impl_while_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22384,7 +22384,7 @@ impl_while_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22410,7 +22410,7 @@ impl_while_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22483,8 +22483,8 @@ impl_object__assert = {
         {
             NULL,
             NULL,
-            &afw_s_assert,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_assert,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__assert
         }
     },
@@ -22500,7 +22500,7 @@ impl_assert_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22526,7 +22526,7 @@ impl_assert_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22552,7 +22552,7 @@ impl_assert_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22625,8 +22625,8 @@ impl_object__decompile = {
         {
             NULL,
             NULL,
-            &afw_s_decompile,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_decompile,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__decompile
         }
     },
@@ -22642,7 +22642,7 @@ impl_decompile_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22668,7 +22668,7 @@ impl_decompile_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22694,7 +22694,7 @@ impl_decompile_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22767,8 +22767,8 @@ impl_object__evaluate_value = {
         {
             NULL,
             NULL,
-            &afw_s_evaluate_value,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_evaluate_value,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__evaluate_value
         }
     },
@@ -22784,7 +22784,7 @@ impl_evaluate_value_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22810,7 +22810,7 @@ impl_evaluate_value_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22836,7 +22836,7 @@ impl_evaluate_value_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22909,8 +22909,8 @@ impl_object__evaluate_with_retry = {
         {
             NULL,
             NULL,
-            &afw_s_evaluate_with_retry,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_evaluate_with_retry,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__evaluate_with_retry
         }
     },
@@ -22926,7 +22926,7 @@ impl_evaluate_with_retry_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22952,7 +22952,7 @@ impl_evaluate_with_retry_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -22978,7 +22978,7 @@ impl_evaluate_with_retry_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23051,8 +23051,8 @@ impl_object__qualifier = {
         {
             NULL,
             NULL,
-            &afw_s_qualifier,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_qualifier,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__qualifier
         }
     },
@@ -23068,7 +23068,7 @@ impl_qualifier_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23094,7 +23094,7 @@ impl_qualifier_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23120,7 +23120,7 @@ impl_qualifier_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23193,8 +23193,8 @@ impl_object__qualifiers = {
         {
             NULL,
             NULL,
-            &afw_s_qualifiers,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_qualifiers,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__qualifiers
         }
     },
@@ -23210,7 +23210,7 @@ impl_qualifiers_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23236,7 +23236,7 @@ impl_qualifiers_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23308,8 +23308,8 @@ impl_object__safe_evaluate = {
         {
             NULL,
             NULL,
-            &afw_s_safe_evaluate,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_safe_evaluate,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__safe_evaluate
         }
     },
@@ -23325,7 +23325,7 @@ impl_safe_evaluate_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23351,7 +23351,7 @@ impl_safe_evaluate_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23377,7 +23377,7 @@ impl_safe_evaluate_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23450,8 +23450,8 @@ impl_object__stringify = {
         {
             NULL,
             NULL,
-            &afw_s_stringify,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_stringify,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__stringify
         }
     },
@@ -23467,7 +23467,7 @@ impl_stringify_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23493,7 +23493,7 @@ impl_stringify_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23519,7 +23519,7 @@ impl_stringify_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23545,7 +23545,7 @@ impl_stringify_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23619,8 +23619,8 @@ impl_object__test_script = {
         {
             NULL,
             NULL,
-            &afw_s_test_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_test_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__test_script
         }
     },
@@ -23636,7 +23636,7 @@ impl_test_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23662,7 +23662,7 @@ impl_test_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23688,7 +23688,7 @@ impl_test_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23714,7 +23714,7 @@ impl_test_script_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23740,7 +23740,7 @@ impl_test_script_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23766,7 +23766,7 @@ impl_test_script_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23842,8 +23842,8 @@ impl_object__test_template = {
         {
             NULL,
             NULL,
-            &afw_s_test_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_test_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__test_template
         }
     },
@@ -23859,7 +23859,7 @@ impl_test_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23885,7 +23885,7 @@ impl_test_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23911,7 +23911,7 @@ impl_test_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23937,7 +23937,7 @@ impl_test_template_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23963,7 +23963,7 @@ impl_test_template_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -23989,7 +23989,7 @@ impl_test_template_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24065,8 +24065,8 @@ impl_object__test_value = {
         {
             NULL,
             NULL,
-            &afw_s_test_value,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_test_value,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__test_value
         }
     },
@@ -24082,7 +24082,7 @@ impl_test_value_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24108,7 +24108,7 @@ impl_test_value_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24134,7 +24134,7 @@ impl_test_value_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24160,7 +24160,7 @@ impl_test_value_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24186,7 +24186,7 @@ impl_test_value_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24212,7 +24212,7 @@ impl_test_value_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24288,8 +24288,8 @@ impl_object__add_dayTimeDuration_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_add_dayTimeDuration_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_dayTimeDuration_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_dayTimeDuration_dateTime
         }
     },
@@ -24305,7 +24305,7 @@ impl_add_dayTimeDuration_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24331,7 +24331,7 @@ impl_add_dayTimeDuration_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24357,7 +24357,7 @@ impl_add_dayTimeDuration_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24430,8 +24430,8 @@ impl_object__add_yearMonthDuration_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_add_yearMonthDuration_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_yearMonthDuration_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_yearMonthDuration_dateTime
         }
     },
@@ -24447,7 +24447,7 @@ impl_add_yearMonthDuration_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24473,7 +24473,7 @@ impl_add_yearMonthDuration_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24499,7 +24499,7 @@ impl_add_yearMonthDuration_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24572,8 +24572,8 @@ impl_object__at_least_one_member_of_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_dateTime
         }
     },
@@ -24589,7 +24589,7 @@ impl_at_least_one_member_of_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24615,7 +24615,7 @@ impl_at_least_one_member_of_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24641,7 +24641,7 @@ impl_at_least_one_member_of_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24714,8 +24714,8 @@ impl_object__bag_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_bag_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_dateTime
         }
     },
@@ -24731,7 +24731,7 @@ impl_bag_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24757,7 +24757,7 @@ impl_bag_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24829,8 +24829,8 @@ impl_object__bag_size_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_dateTime
         }
     },
@@ -24846,7 +24846,7 @@ impl_bag_size_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24872,7 +24872,7 @@ impl_bag_size_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24944,8 +24944,8 @@ impl_object__dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__dateTime
         }
     },
@@ -24961,7 +24961,7 @@ impl_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -24987,7 +24987,7 @@ impl_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25067,8 +25067,8 @@ impl_object__eq_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_eq_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_dateTime
         }
     },
@@ -25084,7 +25084,7 @@ impl_eq_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25110,7 +25110,7 @@ impl_eq_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25136,7 +25136,7 @@ impl_eq_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25217,8 +25217,8 @@ impl_object__eqx_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_dateTime
         }
     },
@@ -25234,7 +25234,7 @@ impl_eqx_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25260,7 +25260,7 @@ impl_eqx_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25286,7 +25286,7 @@ impl_eqx_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25359,8 +25359,8 @@ impl_object__ge_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_ge_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_dateTime
         }
     },
@@ -25376,7 +25376,7 @@ impl_ge_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25402,7 +25402,7 @@ impl_ge_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25428,7 +25428,7 @@ impl_ge_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25501,8 +25501,8 @@ impl_object__gt_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_gt_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_dateTime
         }
     },
@@ -25518,7 +25518,7 @@ impl_gt_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25544,7 +25544,7 @@ impl_gt_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25570,7 +25570,7 @@ impl_gt_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25643,8 +25643,8 @@ impl_object__intersection_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_dateTime
         }
     },
@@ -25660,7 +25660,7 @@ impl_intersection_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25686,7 +25686,7 @@ impl_intersection_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25712,7 +25712,7 @@ impl_intersection_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25785,8 +25785,8 @@ impl_object__is_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_is_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_dateTime
         }
     },
@@ -25802,7 +25802,7 @@ impl_is_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25828,7 +25828,7 @@ impl_is_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25900,8 +25900,8 @@ impl_object__is_in_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_dateTime
         }
     },
@@ -25917,7 +25917,7 @@ impl_is_in_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25943,7 +25943,7 @@ impl_is_in_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -25969,7 +25969,7 @@ impl_is_in_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26042,8 +26042,8 @@ impl_object__le_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_le_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_dateTime
         }
     },
@@ -26059,7 +26059,7 @@ impl_le_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26085,7 +26085,7 @@ impl_le_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26111,7 +26111,7 @@ impl_le_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26184,8 +26184,8 @@ impl_object__lt_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_lt_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_dateTime
         }
     },
@@ -26201,7 +26201,7 @@ impl_lt_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26227,7 +26227,7 @@ impl_lt_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26253,7 +26253,7 @@ impl_lt_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26326,8 +26326,8 @@ impl_object__max_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_max_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max_dateTime
         }
     },
@@ -26343,7 +26343,7 @@ impl_max_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26369,7 +26369,7 @@ impl_max_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26441,8 +26441,8 @@ impl_object__min_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_min_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min_dateTime
         }
     },
@@ -26458,7 +26458,7 @@ impl_min_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26484,7 +26484,7 @@ impl_min_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26556,8 +26556,8 @@ impl_object__ne_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_ne_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_dateTime
         }
     },
@@ -26573,7 +26573,7 @@ impl_ne_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26599,7 +26599,7 @@ impl_ne_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26625,7 +26625,7 @@ impl_ne_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26706,8 +26706,8 @@ impl_object__nex_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_nex_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_dateTime
         }
     },
@@ -26723,7 +26723,7 @@ impl_nex_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26749,7 +26749,7 @@ impl_nex_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26775,7 +26775,7 @@ impl_nex_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26848,8 +26848,8 @@ impl_object__one_and_only_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_dateTime
         }
     },
@@ -26865,7 +26865,7 @@ impl_one_and_only_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26891,7 +26891,7 @@ impl_one_and_only_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -26971,8 +26971,8 @@ impl_object__set_equals_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_dateTime
         }
     },
@@ -26988,7 +26988,7 @@ impl_set_equals_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27014,7 +27014,7 @@ impl_set_equals_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27040,7 +27040,7 @@ impl_set_equals_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27113,8 +27113,8 @@ impl_object__subset_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_subset_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_dateTime
         }
     },
@@ -27130,7 +27130,7 @@ impl_subset_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27156,7 +27156,7 @@ impl_subset_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27182,7 +27182,7 @@ impl_subset_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27255,8 +27255,8 @@ impl_object__subtract_dayTimeDuration_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_dayTimeDuration_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_dayTimeDuration_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_dayTimeDuration_dateTime
         }
     },
@@ -27272,7 +27272,7 @@ impl_subtract_dayTimeDuration_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27298,7 +27298,7 @@ impl_subtract_dayTimeDuration_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27324,7 +27324,7 @@ impl_subtract_dayTimeDuration_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27397,8 +27397,8 @@ impl_object__subtract_yearMonthDuration_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_yearMonthDuration_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_yearMonthDuration_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_yearMonthDuration_dateTime
         }
     },
@@ -27414,7 +27414,7 @@ impl_subtract_yearMonthDuration_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27440,7 +27440,7 @@ impl_subtract_yearMonthDuration_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27466,7 +27466,7 @@ impl_subtract_yearMonthDuration_dateTime_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27539,8 +27539,8 @@ impl_object__to_string_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_dateTime
         }
     },
@@ -27556,7 +27556,7 @@ impl_to_string_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27582,7 +27582,7 @@ impl_to_string_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27654,8 +27654,8 @@ impl_object__union_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_union_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_dateTime
         }
     },
@@ -27671,7 +27671,7 @@ impl_union_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27697,7 +27697,7 @@ impl_union_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27769,8 +27769,8 @@ impl_object__add_yearMonthDuration_date = {
         {
             NULL,
             NULL,
-            &afw_s_add_yearMonthDuration_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_yearMonthDuration_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_yearMonthDuration_date
         }
     },
@@ -27786,7 +27786,7 @@ impl_add_yearMonthDuration_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27812,7 +27812,7 @@ impl_add_yearMonthDuration_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27838,7 +27838,7 @@ impl_add_yearMonthDuration_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27911,8 +27911,8 @@ impl_object__at_least_one_member_of_date = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_date
         }
     },
@@ -27928,7 +27928,7 @@ impl_at_least_one_member_of_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27954,7 +27954,7 @@ impl_at_least_one_member_of_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -27980,7 +27980,7 @@ impl_at_least_one_member_of_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28053,8 +28053,8 @@ impl_object__bag_date = {
         {
             NULL,
             NULL,
-            &afw_s_bag_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_date
         }
     },
@@ -28070,7 +28070,7 @@ impl_bag_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28096,7 +28096,7 @@ impl_bag_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28168,8 +28168,8 @@ impl_object__bag_size_date = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_date
         }
     },
@@ -28185,7 +28185,7 @@ impl_bag_size_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28211,7 +28211,7 @@ impl_bag_size_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28283,8 +28283,8 @@ impl_object__date = {
         {
             NULL,
             NULL,
-            &afw_s_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__date
         }
     },
@@ -28300,7 +28300,7 @@ impl_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28326,7 +28326,7 @@ impl_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28406,8 +28406,8 @@ impl_object__eq_date = {
         {
             NULL,
             NULL,
-            &afw_s_eq_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_date
         }
     },
@@ -28423,7 +28423,7 @@ impl_eq_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28449,7 +28449,7 @@ impl_eq_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28475,7 +28475,7 @@ impl_eq_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28556,8 +28556,8 @@ impl_object__eqx_date = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_date
         }
     },
@@ -28573,7 +28573,7 @@ impl_eqx_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28599,7 +28599,7 @@ impl_eqx_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28625,7 +28625,7 @@ impl_eqx_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28698,8 +28698,8 @@ impl_object__ge_date = {
         {
             NULL,
             NULL,
-            &afw_s_ge_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_date
         }
     },
@@ -28715,7 +28715,7 @@ impl_ge_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28741,7 +28741,7 @@ impl_ge_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28767,7 +28767,7 @@ impl_ge_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28840,8 +28840,8 @@ impl_object__gt_date = {
         {
             NULL,
             NULL,
-            &afw_s_gt_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_date
         }
     },
@@ -28857,7 +28857,7 @@ impl_gt_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28883,7 +28883,7 @@ impl_gt_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28909,7 +28909,7 @@ impl_gt_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -28982,8 +28982,8 @@ impl_object__intersection_date = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_date
         }
     },
@@ -28999,7 +28999,7 @@ impl_intersection_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29025,7 +29025,7 @@ impl_intersection_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29051,7 +29051,7 @@ impl_intersection_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29124,8 +29124,8 @@ impl_object__is_date = {
         {
             NULL,
             NULL,
-            &afw_s_is_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_date
         }
     },
@@ -29141,7 +29141,7 @@ impl_is_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29167,7 +29167,7 @@ impl_is_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29239,8 +29239,8 @@ impl_object__is_in_date = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_date
         }
     },
@@ -29256,7 +29256,7 @@ impl_is_in_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29282,7 +29282,7 @@ impl_is_in_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29308,7 +29308,7 @@ impl_is_in_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29381,8 +29381,8 @@ impl_object__le_date = {
         {
             NULL,
             NULL,
-            &afw_s_le_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_date
         }
     },
@@ -29398,7 +29398,7 @@ impl_le_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29424,7 +29424,7 @@ impl_le_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29450,7 +29450,7 @@ impl_le_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29523,8 +29523,8 @@ impl_object__lt_date = {
         {
             NULL,
             NULL,
-            &afw_s_lt_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_date
         }
     },
@@ -29540,7 +29540,7 @@ impl_lt_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29566,7 +29566,7 @@ impl_lt_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29592,7 +29592,7 @@ impl_lt_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29665,8 +29665,8 @@ impl_object__max_date = {
         {
             NULL,
             NULL,
-            &afw_s_max_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max_date
         }
     },
@@ -29682,7 +29682,7 @@ impl_max_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29708,7 +29708,7 @@ impl_max_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29780,8 +29780,8 @@ impl_object__min_date = {
         {
             NULL,
             NULL,
-            &afw_s_min_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min_date
         }
     },
@@ -29797,7 +29797,7 @@ impl_min_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29823,7 +29823,7 @@ impl_min_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29895,8 +29895,8 @@ impl_object__ne_date = {
         {
             NULL,
             NULL,
-            &afw_s_ne_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_date
         }
     },
@@ -29912,7 +29912,7 @@ impl_ne_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29938,7 +29938,7 @@ impl_ne_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -29964,7 +29964,7 @@ impl_ne_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30045,8 +30045,8 @@ impl_object__nex_date = {
         {
             NULL,
             NULL,
-            &afw_s_nex_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_date
         }
     },
@@ -30062,7 +30062,7 @@ impl_nex_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30088,7 +30088,7 @@ impl_nex_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30114,7 +30114,7 @@ impl_nex_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30187,8 +30187,8 @@ impl_object__one_and_only_date = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_date
         }
     },
@@ -30204,7 +30204,7 @@ impl_one_and_only_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30230,7 +30230,7 @@ impl_one_and_only_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30310,8 +30310,8 @@ impl_object__set_equals_date = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_date
         }
     },
@@ -30327,7 +30327,7 @@ impl_set_equals_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30353,7 +30353,7 @@ impl_set_equals_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30379,7 +30379,7 @@ impl_set_equals_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30452,8 +30452,8 @@ impl_object__subset_date = {
         {
             NULL,
             NULL,
-            &afw_s_subset_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_date
         }
     },
@@ -30469,7 +30469,7 @@ impl_subset_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30495,7 +30495,7 @@ impl_subset_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30521,7 +30521,7 @@ impl_subset_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30594,8 +30594,8 @@ impl_object__subtract_yearMonthDuration_date = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_yearMonthDuration_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_yearMonthDuration_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_yearMonthDuration_date
         }
     },
@@ -30611,7 +30611,7 @@ impl_subtract_yearMonthDuration_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30637,7 +30637,7 @@ impl_subtract_yearMonthDuration_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30663,7 +30663,7 @@ impl_subtract_yearMonthDuration_date_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30736,8 +30736,8 @@ impl_object__to_string_date = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_date
         }
     },
@@ -30753,7 +30753,7 @@ impl_to_string_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30779,7 +30779,7 @@ impl_to_string_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30851,8 +30851,8 @@ impl_object__union_date = {
         {
             NULL,
             NULL,
-            &afw_s_union_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_date
         }
     },
@@ -30868,7 +30868,7 @@ impl_union_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30894,7 +30894,7 @@ impl_union_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -30966,8 +30966,8 @@ impl_object__at_least_one_member_of_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_dayTimeDuration
         }
     },
@@ -30983,7 +30983,7 @@ impl_at_least_one_member_of_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31009,7 +31009,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31035,7 +31035,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31108,8 +31108,8 @@ impl_object__bag_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_bag_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_dayTimeDuration
         }
     },
@@ -31125,7 +31125,7 @@ impl_bag_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31151,7 +31151,7 @@ impl_bag_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31223,8 +31223,8 @@ impl_object__bag_size_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_dayTimeDuration
         }
     },
@@ -31240,7 +31240,7 @@ impl_bag_size_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31266,7 +31266,7 @@ impl_bag_size_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31338,8 +31338,8 @@ impl_object__dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__dayTimeDuration
         }
     },
@@ -31355,7 +31355,7 @@ impl_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31381,7 +31381,7 @@ impl_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31461,8 +31461,8 @@ impl_object__eq_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_eq_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_dayTimeDuration
         }
     },
@@ -31478,7 +31478,7 @@ impl_eq_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31504,7 +31504,7 @@ impl_eq_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31530,7 +31530,7 @@ impl_eq_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31611,8 +31611,8 @@ impl_object__eqx_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_dayTimeDuration
         }
     },
@@ -31628,7 +31628,7 @@ impl_eqx_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31654,7 +31654,7 @@ impl_eqx_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31680,7 +31680,7 @@ impl_eqx_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31753,8 +31753,8 @@ impl_object__ge_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_ge_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_dayTimeDuration
         }
     },
@@ -31770,7 +31770,7 @@ impl_ge_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31796,7 +31796,7 @@ impl_ge_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31822,7 +31822,7 @@ impl_ge_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31895,8 +31895,8 @@ impl_object__gt_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_gt_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_dayTimeDuration
         }
     },
@@ -31912,7 +31912,7 @@ impl_gt_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31938,7 +31938,7 @@ impl_gt_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -31964,7 +31964,7 @@ impl_gt_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32037,8 +32037,8 @@ impl_object__intersection_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_dayTimeDuration
         }
     },
@@ -32054,7 +32054,7 @@ impl_intersection_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32080,7 +32080,7 @@ impl_intersection_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32106,7 +32106,7 @@ impl_intersection_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32179,8 +32179,8 @@ impl_object__is_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_is_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_dayTimeDuration
         }
     },
@@ -32196,7 +32196,7 @@ impl_is_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32222,7 +32222,7 @@ impl_is_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32294,8 +32294,8 @@ impl_object__is_in_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_dayTimeDuration
         }
     },
@@ -32311,7 +32311,7 @@ impl_is_in_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32337,7 +32337,7 @@ impl_is_in_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32363,7 +32363,7 @@ impl_is_in_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32436,8 +32436,8 @@ impl_object__le_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_le_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_dayTimeDuration
         }
     },
@@ -32453,7 +32453,7 @@ impl_le_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32479,7 +32479,7 @@ impl_le_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32505,7 +32505,7 @@ impl_le_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32578,8 +32578,8 @@ impl_object__lt_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_lt_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_dayTimeDuration
         }
     },
@@ -32595,7 +32595,7 @@ impl_lt_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32621,7 +32621,7 @@ impl_lt_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32647,7 +32647,7 @@ impl_lt_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32720,8 +32720,8 @@ impl_object__ne_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_ne_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_dayTimeDuration
         }
     },
@@ -32737,7 +32737,7 @@ impl_ne_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32763,7 +32763,7 @@ impl_ne_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32789,7 +32789,7 @@ impl_ne_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32870,8 +32870,8 @@ impl_object__nex_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_nex_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_dayTimeDuration
         }
     },
@@ -32887,7 +32887,7 @@ impl_nex_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32913,7 +32913,7 @@ impl_nex_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -32939,7 +32939,7 @@ impl_nex_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33012,8 +33012,8 @@ impl_object__one_and_only_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_dayTimeDuration
         }
     },
@@ -33029,7 +33029,7 @@ impl_one_and_only_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33055,7 +33055,7 @@ impl_one_and_only_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33135,8 +33135,8 @@ impl_object__set_equals_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_dayTimeDuration
         }
     },
@@ -33152,7 +33152,7 @@ impl_set_equals_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33178,7 +33178,7 @@ impl_set_equals_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33204,7 +33204,7 @@ impl_set_equals_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33277,8 +33277,8 @@ impl_object__subset_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_subset_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_dayTimeDuration
         }
     },
@@ -33294,7 +33294,7 @@ impl_subset_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33320,7 +33320,7 @@ impl_subset_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33346,7 +33346,7 @@ impl_subset_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33419,8 +33419,8 @@ impl_object__to_string_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_dayTimeDuration
         }
     },
@@ -33436,7 +33436,7 @@ impl_to_string_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33462,7 +33462,7 @@ impl_to_string_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33534,8 +33534,8 @@ impl_object__union_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_union_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_dayTimeDuration
         }
     },
@@ -33551,7 +33551,7 @@ impl_union_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33577,7 +33577,7 @@ impl_union_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33649,8 +33649,8 @@ impl_object__bag_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_bag_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_dnsName
         }
     },
@@ -33666,7 +33666,7 @@ impl_bag_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33692,7 +33692,7 @@ impl_bag_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33764,8 +33764,8 @@ impl_object__bag_size_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_dnsName
         }
     },
@@ -33781,7 +33781,7 @@ impl_bag_size_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33807,7 +33807,7 @@ impl_bag_size_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33879,8 +33879,8 @@ impl_object__dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__dnsName
         }
     },
@@ -33896,7 +33896,7 @@ impl_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -33922,7 +33922,7 @@ impl_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34002,8 +34002,8 @@ impl_object__eq_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_eq_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_dnsName
         }
     },
@@ -34019,7 +34019,7 @@ impl_eq_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34045,7 +34045,7 @@ impl_eq_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34071,7 +34071,7 @@ impl_eq_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34152,8 +34152,8 @@ impl_object__eqx_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_dnsName
         }
     },
@@ -34169,7 +34169,7 @@ impl_eqx_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34195,7 +34195,7 @@ impl_eqx_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34221,7 +34221,7 @@ impl_eqx_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34294,8 +34294,8 @@ impl_object__ge_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_ge_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_dnsName
         }
     },
@@ -34311,7 +34311,7 @@ impl_ge_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34337,7 +34337,7 @@ impl_ge_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34363,7 +34363,7 @@ impl_ge_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34436,8 +34436,8 @@ impl_object__gt_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_gt_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_dnsName
         }
     },
@@ -34453,7 +34453,7 @@ impl_gt_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34479,7 +34479,7 @@ impl_gt_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34505,7 +34505,7 @@ impl_gt_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34578,8 +34578,8 @@ impl_object__is_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_is_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_dnsName
         }
     },
@@ -34595,7 +34595,7 @@ impl_is_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34621,7 +34621,7 @@ impl_is_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34693,8 +34693,8 @@ impl_object__is_in_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_dnsName
         }
     },
@@ -34710,7 +34710,7 @@ impl_is_in_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34736,7 +34736,7 @@ impl_is_in_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34762,7 +34762,7 @@ impl_is_in_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34835,8 +34835,8 @@ impl_object__le_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_le_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_dnsName
         }
     },
@@ -34852,7 +34852,7 @@ impl_le_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34878,7 +34878,7 @@ impl_le_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34904,7 +34904,7 @@ impl_le_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -34977,8 +34977,8 @@ impl_object__lt_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_lt_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_dnsName
         }
     },
@@ -34994,7 +34994,7 @@ impl_lt_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35020,7 +35020,7 @@ impl_lt_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35046,7 +35046,7 @@ impl_lt_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35119,8 +35119,8 @@ impl_object__ne_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_ne_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_dnsName
         }
     },
@@ -35136,7 +35136,7 @@ impl_ne_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35162,7 +35162,7 @@ impl_ne_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35188,7 +35188,7 @@ impl_ne_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35269,8 +35269,8 @@ impl_object__nex_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_nex_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_dnsName
         }
     },
@@ -35286,7 +35286,7 @@ impl_nex_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35312,7 +35312,7 @@ impl_nex_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35338,7 +35338,7 @@ impl_nex_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35411,8 +35411,8 @@ impl_object__one_and_only_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_dnsName
         }
     },
@@ -35428,7 +35428,7 @@ impl_one_and_only_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35454,7 +35454,7 @@ impl_one_and_only_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35534,8 +35534,8 @@ impl_object__regexp_match_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match_dnsName
         }
     },
@@ -35551,7 +35551,7 @@ impl_regexp_match_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35577,7 +35577,7 @@ impl_regexp_match_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35603,7 +35603,7 @@ impl_regexp_match_dnsName_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35676,8 +35676,8 @@ impl_object__to_string_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_dnsName
         }
     },
@@ -35693,7 +35693,7 @@ impl_to_string_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35719,7 +35719,7 @@ impl_to_string_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35791,8 +35791,8 @@ impl_object__abs_double = {
         {
             NULL,
             NULL,
-            &afw_s_abs_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_abs_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__abs_double
         }
     },
@@ -35808,7 +35808,7 @@ impl_abs_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35834,7 +35834,7 @@ impl_abs_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35906,8 +35906,8 @@ impl_object__add_double = {
         {
             NULL,
             NULL,
-            &afw_s_add_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_double
         }
     },
@@ -35923,7 +35923,7 @@ impl_add_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -35949,7 +35949,7 @@ impl_add_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36021,8 +36021,8 @@ impl_object__at_least_one_member_of_double = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_double
         }
     },
@@ -36038,7 +36038,7 @@ impl_at_least_one_member_of_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36064,7 +36064,7 @@ impl_at_least_one_member_of_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36090,7 +36090,7 @@ impl_at_least_one_member_of_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36163,8 +36163,8 @@ impl_object__bag_double = {
         {
             NULL,
             NULL,
-            &afw_s_bag_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_double
         }
     },
@@ -36180,7 +36180,7 @@ impl_bag_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36206,7 +36206,7 @@ impl_bag_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36278,8 +36278,8 @@ impl_object__bag_size_double = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_double
         }
     },
@@ -36295,7 +36295,7 @@ impl_bag_size_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36321,7 +36321,7 @@ impl_bag_size_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36393,8 +36393,8 @@ impl_object__ceil_double = {
         {
             NULL,
             NULL,
-            &afw_s_ceil_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ceil_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ceil_double
         }
     },
@@ -36410,7 +36410,7 @@ impl_ceil_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36436,7 +36436,7 @@ impl_ceil_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36508,8 +36508,8 @@ impl_object__divide_double = {
         {
             NULL,
             NULL,
-            &afw_s_divide_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_divide_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__divide_double
         }
     },
@@ -36525,7 +36525,7 @@ impl_divide_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36551,7 +36551,7 @@ impl_divide_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36577,7 +36577,7 @@ impl_divide_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36650,8 +36650,8 @@ impl_object__double = {
         {
             NULL,
             NULL,
-            &afw_s_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__double
         }
     },
@@ -36667,7 +36667,7 @@ impl_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36693,7 +36693,7 @@ impl_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36773,8 +36773,8 @@ impl_object__eq_double = {
         {
             NULL,
             NULL,
-            &afw_s_eq_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_double
         }
     },
@@ -36790,7 +36790,7 @@ impl_eq_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36816,7 +36816,7 @@ impl_eq_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36842,7 +36842,7 @@ impl_eq_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36923,8 +36923,8 @@ impl_object__eqx_double = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_double
         }
     },
@@ -36940,7 +36940,7 @@ impl_eqx_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36966,7 +36966,7 @@ impl_eqx_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -36992,7 +36992,7 @@ impl_eqx_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37065,8 +37065,8 @@ impl_object__floor_double = {
         {
             NULL,
             NULL,
-            &afw_s_floor_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_floor_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__floor_double
         }
     },
@@ -37082,7 +37082,7 @@ impl_floor_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37108,7 +37108,7 @@ impl_floor_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37180,8 +37180,8 @@ impl_object__ge_double = {
         {
             NULL,
             NULL,
-            &afw_s_ge_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_double
         }
     },
@@ -37197,7 +37197,7 @@ impl_ge_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37223,7 +37223,7 @@ impl_ge_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37249,7 +37249,7 @@ impl_ge_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37322,8 +37322,8 @@ impl_object__gt_double = {
         {
             NULL,
             NULL,
-            &afw_s_gt_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_double
         }
     },
@@ -37339,7 +37339,7 @@ impl_gt_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37365,7 +37365,7 @@ impl_gt_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37391,7 +37391,7 @@ impl_gt_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37464,8 +37464,8 @@ impl_object__intersection_double = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_double
         }
     },
@@ -37481,7 +37481,7 @@ impl_intersection_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37507,7 +37507,7 @@ impl_intersection_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37533,7 +37533,7 @@ impl_intersection_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37606,8 +37606,8 @@ impl_object__is_NaN = {
         {
             NULL,
             NULL,
-            &afw_s_is_NaN,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_NaN,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_NaN
         }
     },
@@ -37623,7 +37623,7 @@ impl_is_NaN_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37649,7 +37649,7 @@ impl_is_NaN_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37721,8 +37721,8 @@ impl_object__is_double = {
         {
             NULL,
             NULL,
-            &afw_s_is_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_double
         }
     },
@@ -37738,7 +37738,7 @@ impl_is_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37764,7 +37764,7 @@ impl_is_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37836,8 +37836,8 @@ impl_object__is_finite = {
         {
             NULL,
             NULL,
-            &afw_s_is_finite,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_finite,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_finite
         }
     },
@@ -37853,7 +37853,7 @@ impl_is_finite_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37879,7 +37879,7 @@ impl_is_finite_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37951,8 +37951,8 @@ impl_object__is_in_double = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_double
         }
     },
@@ -37968,7 +37968,7 @@ impl_is_in_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -37994,7 +37994,7 @@ impl_is_in_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38020,7 +38020,7 @@ impl_is_in_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38093,8 +38093,8 @@ impl_object__le_double = {
         {
             NULL,
             NULL,
-            &afw_s_le_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_double
         }
     },
@@ -38110,7 +38110,7 @@ impl_le_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38136,7 +38136,7 @@ impl_le_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38162,7 +38162,7 @@ impl_le_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38235,8 +38235,8 @@ impl_object__lt_double = {
         {
             NULL,
             NULL,
-            &afw_s_lt_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_double
         }
     },
@@ -38252,7 +38252,7 @@ impl_lt_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38278,7 +38278,7 @@ impl_lt_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38304,7 +38304,7 @@ impl_lt_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38377,8 +38377,8 @@ impl_object__max_double = {
         {
             NULL,
             NULL,
-            &afw_s_max_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max_double
         }
     },
@@ -38394,7 +38394,7 @@ impl_max_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38420,7 +38420,7 @@ impl_max_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38492,8 +38492,8 @@ impl_object__min_double = {
         {
             NULL,
             NULL,
-            &afw_s_min_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min_double
         }
     },
@@ -38509,7 +38509,7 @@ impl_min_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38535,7 +38535,7 @@ impl_min_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38607,8 +38607,8 @@ impl_object__multiply_double = {
         {
             NULL,
             NULL,
-            &afw_s_multiply_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_multiply_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__multiply_double
         }
     },
@@ -38624,7 +38624,7 @@ impl_multiply_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38650,7 +38650,7 @@ impl_multiply_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38722,8 +38722,8 @@ impl_object__ne_double = {
         {
             NULL,
             NULL,
-            &afw_s_ne_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_double
         }
     },
@@ -38739,7 +38739,7 @@ impl_ne_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38765,7 +38765,7 @@ impl_ne_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38791,7 +38791,7 @@ impl_ne_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38872,8 +38872,8 @@ impl_object__negative_double = {
         {
             NULL,
             NULL,
-            &afw_s_negative_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_negative_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__negative_double
         }
     },
@@ -38889,7 +38889,7 @@ impl_negative_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38915,7 +38915,7 @@ impl_negative_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -38987,8 +38987,8 @@ impl_object__nex_double = {
         {
             NULL,
             NULL,
-            &afw_s_nex_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_double
         }
     },
@@ -39004,7 +39004,7 @@ impl_nex_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39030,7 +39030,7 @@ impl_nex_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39056,7 +39056,7 @@ impl_nex_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39129,8 +39129,8 @@ impl_object__one_and_only_double = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_double
         }
     },
@@ -39146,7 +39146,7 @@ impl_one_and_only_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39172,7 +39172,7 @@ impl_one_and_only_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39252,8 +39252,8 @@ impl_object__pow_double = {
         {
             NULL,
             NULL,
-            &afw_s_pow_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_pow_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__pow_double
         }
     },
@@ -39269,7 +39269,7 @@ impl_pow_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39295,7 +39295,7 @@ impl_pow_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39321,7 +39321,7 @@ impl_pow_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39394,8 +39394,8 @@ impl_object__round_double = {
         {
             NULL,
             NULL,
-            &afw_s_round_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_round_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__round_double
         }
     },
@@ -39411,7 +39411,7 @@ impl_round_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39437,7 +39437,7 @@ impl_round_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39509,8 +39509,8 @@ impl_object__set_equals_double = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_double
         }
     },
@@ -39526,7 +39526,7 @@ impl_set_equals_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39552,7 +39552,7 @@ impl_set_equals_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39578,7 +39578,7 @@ impl_set_equals_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39651,8 +39651,8 @@ impl_object__subset_double = {
         {
             NULL,
             NULL,
-            &afw_s_subset_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_double
         }
     },
@@ -39668,7 +39668,7 @@ impl_subset_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39694,7 +39694,7 @@ impl_subset_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39720,7 +39720,7 @@ impl_subset_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39793,8 +39793,8 @@ impl_object__subtract_double = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_double
         }
     },
@@ -39810,7 +39810,7 @@ impl_subtract_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39836,7 +39836,7 @@ impl_subtract_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39862,7 +39862,7 @@ impl_subtract_double_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39935,8 +39935,8 @@ impl_object__to_integer_double = {
         {
             NULL,
             NULL,
-            &afw_s_to_integer_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_integer_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_integer_double
         }
     },
@@ -39952,7 +39952,7 @@ impl_to_integer_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -39978,7 +39978,7 @@ impl_to_integer_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40050,8 +40050,8 @@ impl_object__to_string_double = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_double
         }
     },
@@ -40067,7 +40067,7 @@ impl_to_string_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40093,7 +40093,7 @@ impl_to_string_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40165,8 +40165,8 @@ impl_object__union_double = {
         {
             NULL,
             NULL,
-            &afw_s_union_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_double
         }
     },
@@ -40182,7 +40182,7 @@ impl_union_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40208,7 +40208,7 @@ impl_union_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40280,8 +40280,8 @@ impl_object__bag_function = {
         {
             NULL,
             NULL,
-            &afw_s_bag_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_function
         }
     },
@@ -40297,7 +40297,7 @@ impl_bag_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40323,7 +40323,7 @@ impl_bag_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40395,8 +40395,8 @@ impl_object__bag_size_function = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_function
         }
     },
@@ -40412,7 +40412,7 @@ impl_bag_size_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40438,7 +40438,7 @@ impl_bag_size_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40510,8 +40510,8 @@ impl_object__eq_function = {
         {
             NULL,
             NULL,
-            &afw_s_eq_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_function
         }
     },
@@ -40527,7 +40527,7 @@ impl_eq_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40553,7 +40553,7 @@ impl_eq_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40579,7 +40579,7 @@ impl_eq_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40660,8 +40660,8 @@ impl_object__eqx_function = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_function
         }
     },
@@ -40677,7 +40677,7 @@ impl_eqx_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40703,7 +40703,7 @@ impl_eqx_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40729,7 +40729,7 @@ impl_eqx_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40802,8 +40802,8 @@ impl_object__function = {
         {
             NULL,
             NULL,
-            &afw_s_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__function
         }
     },
@@ -40819,7 +40819,7 @@ impl_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40845,7 +40845,7 @@ impl_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40925,8 +40925,8 @@ impl_object__ge_function = {
         {
             NULL,
             NULL,
-            &afw_s_ge_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_function
         }
     },
@@ -40942,7 +40942,7 @@ impl_ge_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40968,7 +40968,7 @@ impl_ge_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -40994,7 +40994,7 @@ impl_ge_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41067,8 +41067,8 @@ impl_object__gt_function = {
         {
             NULL,
             NULL,
-            &afw_s_gt_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_function
         }
     },
@@ -41084,7 +41084,7 @@ impl_gt_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41110,7 +41110,7 @@ impl_gt_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41136,7 +41136,7 @@ impl_gt_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41209,8 +41209,8 @@ impl_object__is_function = {
         {
             NULL,
             NULL,
-            &afw_s_is_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_function
         }
     },
@@ -41226,7 +41226,7 @@ impl_is_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41252,7 +41252,7 @@ impl_is_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41324,8 +41324,8 @@ impl_object__le_function = {
         {
             NULL,
             NULL,
-            &afw_s_le_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_function
         }
     },
@@ -41341,7 +41341,7 @@ impl_le_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41367,7 +41367,7 @@ impl_le_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41393,7 +41393,7 @@ impl_le_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41466,8 +41466,8 @@ impl_object__lt_function = {
         {
             NULL,
             NULL,
-            &afw_s_lt_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_function
         }
     },
@@ -41483,7 +41483,7 @@ impl_lt_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41509,7 +41509,7 @@ impl_lt_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41535,7 +41535,7 @@ impl_lt_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41608,8 +41608,8 @@ impl_object__ne_function = {
         {
             NULL,
             NULL,
-            &afw_s_ne_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_function
         }
     },
@@ -41625,7 +41625,7 @@ impl_ne_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41651,7 +41651,7 @@ impl_ne_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41677,7 +41677,7 @@ impl_ne_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41758,8 +41758,8 @@ impl_object__nex_function = {
         {
             NULL,
             NULL,
-            &afw_s_nex_function,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_function,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_function
         }
     },
@@ -41775,7 +41775,7 @@ impl_nex_function_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41801,7 +41801,7 @@ impl_nex_function_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41827,7 +41827,7 @@ impl_nex_function_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41900,8 +41900,8 @@ impl_object__at_least_one_member_of_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_hexBinary
         }
     },
@@ -41917,7 +41917,7 @@ impl_at_least_one_member_of_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41943,7 +41943,7 @@ impl_at_least_one_member_of_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -41969,7 +41969,7 @@ impl_at_least_one_member_of_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42042,8 +42042,8 @@ impl_object__bag_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_bag_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_hexBinary
         }
     },
@@ -42059,7 +42059,7 @@ impl_bag_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42085,7 +42085,7 @@ impl_bag_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42157,8 +42157,8 @@ impl_object__bag_size_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_hexBinary
         }
     },
@@ -42174,7 +42174,7 @@ impl_bag_size_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42200,7 +42200,7 @@ impl_bag_size_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42272,8 +42272,8 @@ impl_object__decode_to_string_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_decode_to_string_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_decode_to_string_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__decode_to_string_hexBinary
         }
     },
@@ -42289,7 +42289,7 @@ impl_decode_to_string_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42315,7 +42315,7 @@ impl_decode_to_string_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42387,8 +42387,8 @@ impl_object__eq_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_eq_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_hexBinary
         }
     },
@@ -42404,7 +42404,7 @@ impl_eq_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42430,7 +42430,7 @@ impl_eq_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42456,7 +42456,7 @@ impl_eq_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42537,8 +42537,8 @@ impl_object__eqx_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_hexBinary
         }
     },
@@ -42554,7 +42554,7 @@ impl_eqx_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42580,7 +42580,7 @@ impl_eqx_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42606,7 +42606,7 @@ impl_eqx_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42679,8 +42679,8 @@ impl_object__ge_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_ge_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_hexBinary
         }
     },
@@ -42696,7 +42696,7 @@ impl_ge_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42722,7 +42722,7 @@ impl_ge_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42748,7 +42748,7 @@ impl_ge_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42821,8 +42821,8 @@ impl_object__gt_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_gt_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_hexBinary
         }
     },
@@ -42838,7 +42838,7 @@ impl_gt_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42864,7 +42864,7 @@ impl_gt_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42890,7 +42890,7 @@ impl_gt_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -42963,8 +42963,8 @@ impl_object__hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__hexBinary
         }
     },
@@ -42980,7 +42980,7 @@ impl_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43006,7 +43006,7 @@ impl_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43086,8 +43086,8 @@ impl_object__intersection_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_hexBinary
         }
     },
@@ -43103,7 +43103,7 @@ impl_intersection_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43129,7 +43129,7 @@ impl_intersection_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43155,7 +43155,7 @@ impl_intersection_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43228,8 +43228,8 @@ impl_object__is_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_is_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_hexBinary
         }
     },
@@ -43245,7 +43245,7 @@ impl_is_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43271,7 +43271,7 @@ impl_is_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43343,8 +43343,8 @@ impl_object__is_in_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_hexBinary
         }
     },
@@ -43360,7 +43360,7 @@ impl_is_in_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43386,7 +43386,7 @@ impl_is_in_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43412,7 +43412,7 @@ impl_is_in_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43485,8 +43485,8 @@ impl_object__le_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_le_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_hexBinary
         }
     },
@@ -43502,7 +43502,7 @@ impl_le_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43528,7 +43528,7 @@ impl_le_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43554,7 +43554,7 @@ impl_le_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43627,8 +43627,8 @@ impl_object__lt_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_lt_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_hexBinary
         }
     },
@@ -43644,7 +43644,7 @@ impl_lt_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43670,7 +43670,7 @@ impl_lt_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43696,7 +43696,7 @@ impl_lt_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43769,8 +43769,8 @@ impl_object__ne_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_ne_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_hexBinary
         }
     },
@@ -43786,7 +43786,7 @@ impl_ne_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43812,7 +43812,7 @@ impl_ne_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43838,7 +43838,7 @@ impl_ne_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43919,8 +43919,8 @@ impl_object__nex_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_nex_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_hexBinary
         }
     },
@@ -43936,7 +43936,7 @@ impl_nex_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43962,7 +43962,7 @@ impl_nex_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -43988,7 +43988,7 @@ impl_nex_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44061,8 +44061,8 @@ impl_object__one_and_only_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_hexBinary
         }
     },
@@ -44078,7 +44078,7 @@ impl_one_and_only_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44104,7 +44104,7 @@ impl_one_and_only_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44184,8 +44184,8 @@ impl_object__set_equals_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_hexBinary
         }
     },
@@ -44201,7 +44201,7 @@ impl_set_equals_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44227,7 +44227,7 @@ impl_set_equals_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44253,7 +44253,7 @@ impl_set_equals_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44326,8 +44326,8 @@ impl_object__subset_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_subset_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_hexBinary
         }
     },
@@ -44343,7 +44343,7 @@ impl_subset_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44369,7 +44369,7 @@ impl_subset_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44395,7 +44395,7 @@ impl_subset_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44468,8 +44468,8 @@ impl_object__to_string_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_hexBinary
         }
     },
@@ -44485,7 +44485,7 @@ impl_to_string_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44511,7 +44511,7 @@ impl_to_string_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44583,8 +44583,8 @@ impl_object__union_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_union_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_hexBinary
         }
     },
@@ -44600,7 +44600,7 @@ impl_union_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44626,7 +44626,7 @@ impl_union_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44698,8 +44698,8 @@ impl_object__all_of = {
         {
             NULL,
             NULL,
-            &afw_s_all_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_all_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__all_of
         }
     },
@@ -44715,7 +44715,7 @@ impl_all_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44741,7 +44741,7 @@ impl_all_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44767,7 +44767,7 @@ impl_all_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44840,8 +44840,8 @@ impl_object__all_of_all = {
         {
             NULL,
             NULL,
-            &afw_s_all_of_all,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_all_of_all,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__all_of_all
         }
     },
@@ -44857,7 +44857,7 @@ impl_all_of_all_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44883,7 +44883,7 @@ impl_all_of_all_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44909,7 +44909,7 @@ impl_all_of_all_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -44935,7 +44935,7 @@ impl_all_of_all_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45009,8 +45009,8 @@ impl_object__all_of_any = {
         {
             NULL,
             NULL,
-            &afw_s_all_of_any,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_all_of_any,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__all_of_any
         }
     },
@@ -45026,7 +45026,7 @@ impl_all_of_any_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45052,7 +45052,7 @@ impl_all_of_any_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45078,7 +45078,7 @@ impl_all_of_any_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45104,7 +45104,7 @@ impl_all_of_any_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45178,8 +45178,8 @@ impl_object__any_of = {
         {
             NULL,
             NULL,
-            &afw_s_any_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_any_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__any_of
         }
     },
@@ -45195,7 +45195,7 @@ impl_any_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45221,7 +45221,7 @@ impl_any_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45247,7 +45247,7 @@ impl_any_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45320,8 +45320,8 @@ impl_object__any_of_all = {
         {
             NULL,
             NULL,
-            &afw_s_any_of_all,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_any_of_all,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__any_of_all
         }
     },
@@ -45337,7 +45337,7 @@ impl_any_of_all_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45363,7 +45363,7 @@ impl_any_of_all_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45389,7 +45389,7 @@ impl_any_of_all_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45415,7 +45415,7 @@ impl_any_of_all_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45489,8 +45489,8 @@ impl_object__any_of_any = {
         {
             NULL,
             NULL,
-            &afw_s_any_of_any,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_any_of_any,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__any_of_any
         }
     },
@@ -45506,7 +45506,7 @@ impl_any_of_any_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45532,7 +45532,7 @@ impl_any_of_any_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45558,7 +45558,7 @@ impl_any_of_any_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45584,7 +45584,7 @@ impl_any_of_any_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45658,8 +45658,8 @@ impl_object__filter = {
         {
             NULL,
             NULL,
-            &afw_s_filter,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_filter,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__filter
         }
     },
@@ -45675,7 +45675,7 @@ impl_filter_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45701,7 +45701,7 @@ impl_filter_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45727,7 +45727,7 @@ impl_filter_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45800,8 +45800,8 @@ impl_object__find = {
         {
             NULL,
             NULL,
-            &afw_s_find,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_find,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__find
         }
     },
@@ -45817,7 +45817,7 @@ impl_find_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45843,7 +45843,7 @@ impl_find_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45869,7 +45869,7 @@ impl_find_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45942,8 +45942,8 @@ impl_object__map = {
         {
             NULL,
             NULL,
-            &afw_s_map,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_map,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__map
         }
     },
@@ -45959,7 +45959,7 @@ impl_map_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -45985,7 +45985,7 @@ impl_map_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46011,7 +46011,7 @@ impl_map_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46084,8 +46084,8 @@ impl_object__reduce = {
         {
             NULL,
             NULL,
-            &afw_s_reduce,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_reduce,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__reduce
         }
     },
@@ -46101,7 +46101,7 @@ impl_reduce_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46127,7 +46127,7 @@ impl_reduce_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46153,7 +46153,7 @@ impl_reduce_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46179,7 +46179,7 @@ impl_reduce_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46253,8 +46253,8 @@ impl_object__sort = {
         {
             NULL,
             NULL,
-            &afw_s_sort,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_sort,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__sort
         }
     },
@@ -46270,7 +46270,7 @@ impl_sort_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46296,7 +46296,7 @@ impl_sort_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46322,7 +46322,7 @@ impl_sort_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46395,8 +46395,8 @@ impl_object__bag_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_bag_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_ia5String
         }
     },
@@ -46412,7 +46412,7 @@ impl_bag_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46438,7 +46438,7 @@ impl_bag_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46510,8 +46510,8 @@ impl_object__bag_size_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_ia5String
         }
     },
@@ -46527,7 +46527,7 @@ impl_bag_size_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46553,7 +46553,7 @@ impl_bag_size_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46625,8 +46625,8 @@ impl_object__eq_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_eq_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_ia5String
         }
     },
@@ -46642,7 +46642,7 @@ impl_eq_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46668,7 +46668,7 @@ impl_eq_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46694,7 +46694,7 @@ impl_eq_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46775,8 +46775,8 @@ impl_object__eqx_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_ia5String
         }
     },
@@ -46792,7 +46792,7 @@ impl_eqx_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46818,7 +46818,7 @@ impl_eqx_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46844,7 +46844,7 @@ impl_eqx_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46917,8 +46917,8 @@ impl_object__ge_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_ge_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_ia5String
         }
     },
@@ -46934,7 +46934,7 @@ impl_ge_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46960,7 +46960,7 @@ impl_ge_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -46986,7 +46986,7 @@ impl_ge_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47059,8 +47059,8 @@ impl_object__gt_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_gt_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_ia5String
         }
     },
@@ -47076,7 +47076,7 @@ impl_gt_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47102,7 +47102,7 @@ impl_gt_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47128,7 +47128,7 @@ impl_gt_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47201,8 +47201,8 @@ impl_object__ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ia5String
         }
     },
@@ -47218,7 +47218,7 @@ impl_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47244,7 +47244,7 @@ impl_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47324,8 +47324,8 @@ impl_object__is_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_is_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_ia5String
         }
     },
@@ -47341,7 +47341,7 @@ impl_is_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47367,7 +47367,7 @@ impl_is_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47439,8 +47439,8 @@ impl_object__le_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_le_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_ia5String
         }
     },
@@ -47456,7 +47456,7 @@ impl_le_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47482,7 +47482,7 @@ impl_le_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47508,7 +47508,7 @@ impl_le_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47581,8 +47581,8 @@ impl_object__lt_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_lt_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_ia5String
         }
     },
@@ -47598,7 +47598,7 @@ impl_lt_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47624,7 +47624,7 @@ impl_lt_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47650,7 +47650,7 @@ impl_lt_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47723,8 +47723,8 @@ impl_object__ne_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_ne_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_ia5String
         }
     },
@@ -47740,7 +47740,7 @@ impl_ne_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47766,7 +47766,7 @@ impl_ne_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47792,7 +47792,7 @@ impl_ne_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47873,8 +47873,8 @@ impl_object__nex_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_nex_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_ia5String
         }
     },
@@ -47890,7 +47890,7 @@ impl_nex_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47916,7 +47916,7 @@ impl_nex_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -47942,7 +47942,7 @@ impl_nex_ia5String_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48015,8 +48015,8 @@ impl_object__to_string_ia5String = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_ia5String,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_ia5String,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_ia5String
         }
     },
@@ -48032,7 +48032,7 @@ impl_to_string_ia5String_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48058,7 +48058,7 @@ impl_to_string_ia5String_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48130,8 +48130,8 @@ impl_object__index_create = {
         {
             NULL,
             NULL,
-            &afw_s_index_create,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_index_create,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__index_create
         }
     },
@@ -48147,7 +48147,7 @@ impl_index_create_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48173,7 +48173,7 @@ impl_index_create_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48199,7 +48199,7 @@ impl_index_create_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48225,7 +48225,7 @@ impl_index_create_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48251,7 +48251,7 @@ impl_index_create_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48277,7 +48277,7 @@ impl_index_create_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48303,7 +48303,7 @@ impl_index_create_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48329,7 +48329,7 @@ impl_index_create_parameter_7 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48355,7 +48355,7 @@ impl_index_create_parameter_8 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48440,8 +48440,8 @@ impl_object__index_list = {
         {
             NULL,
             NULL,
-            &afw_s_index_list,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_index_list,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__index_list
         }
     },
@@ -48457,7 +48457,7 @@ impl_index_list_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48483,7 +48483,7 @@ impl_index_list_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48509,7 +48509,7 @@ impl_index_list_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48582,8 +48582,8 @@ impl_object__index_remove = {
         {
             NULL,
             NULL,
-            &afw_s_index_remove,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_index_remove,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__index_remove
         }
     },
@@ -48599,7 +48599,7 @@ impl_index_remove_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48625,7 +48625,7 @@ impl_index_remove_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48651,7 +48651,7 @@ impl_index_remove_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48730,8 +48730,8 @@ impl_object__abs_integer = {
         {
             NULL,
             NULL,
-            &afw_s_abs_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_abs_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__abs_integer
         }
     },
@@ -48747,7 +48747,7 @@ impl_abs_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48773,7 +48773,7 @@ impl_abs_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48845,8 +48845,8 @@ impl_object__add_integer = {
         {
             NULL,
             NULL,
-            &afw_s_add_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_integer
         }
     },
@@ -48862,7 +48862,7 @@ impl_add_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48888,7 +48888,7 @@ impl_add_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -48960,8 +48960,8 @@ impl_object__at_least_one_member_of_integer = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_integer
         }
     },
@@ -48977,7 +48977,7 @@ impl_at_least_one_member_of_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49003,7 +49003,7 @@ impl_at_least_one_member_of_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49029,7 +49029,7 @@ impl_at_least_one_member_of_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49102,8 +49102,8 @@ impl_object__bag_integer = {
         {
             NULL,
             NULL,
-            &afw_s_bag_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_integer
         }
     },
@@ -49119,7 +49119,7 @@ impl_bag_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49145,7 +49145,7 @@ impl_bag_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49217,8 +49217,8 @@ impl_object__bag_size_integer = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_integer
         }
     },
@@ -49234,7 +49234,7 @@ impl_bag_size_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49260,7 +49260,7 @@ impl_bag_size_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49332,8 +49332,8 @@ impl_object__divide_integer = {
         {
             NULL,
             NULL,
-            &afw_s_divide_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_divide_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__divide_integer
         }
     },
@@ -49349,7 +49349,7 @@ impl_divide_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49375,7 +49375,7 @@ impl_divide_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49401,7 +49401,7 @@ impl_divide_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49474,8 +49474,8 @@ impl_object__eq_integer = {
         {
             NULL,
             NULL,
-            &afw_s_eq_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_integer
         }
     },
@@ -49491,7 +49491,7 @@ impl_eq_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49517,7 +49517,7 @@ impl_eq_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49543,7 +49543,7 @@ impl_eq_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49624,8 +49624,8 @@ impl_object__eqx_integer = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_integer
         }
     },
@@ -49641,7 +49641,7 @@ impl_eqx_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49667,7 +49667,7 @@ impl_eqx_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49693,7 +49693,7 @@ impl_eqx_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49766,8 +49766,8 @@ impl_object__ge_integer = {
         {
             NULL,
             NULL,
-            &afw_s_ge_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_integer
         }
     },
@@ -49783,7 +49783,7 @@ impl_ge_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49809,7 +49809,7 @@ impl_ge_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49835,7 +49835,7 @@ impl_ge_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49908,8 +49908,8 @@ impl_object__gt_integer = {
         {
             NULL,
             NULL,
-            &afw_s_gt_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_integer
         }
     },
@@ -49925,7 +49925,7 @@ impl_gt_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49951,7 +49951,7 @@ impl_gt_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -49977,7 +49977,7 @@ impl_gt_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50050,8 +50050,8 @@ impl_object__integer = {
         {
             NULL,
             NULL,
-            &afw_s_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__integer
         }
     },
@@ -50067,7 +50067,7 @@ impl_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50093,7 +50093,7 @@ impl_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50173,8 +50173,8 @@ impl_object__intersection_integer = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_integer
         }
     },
@@ -50190,7 +50190,7 @@ impl_intersection_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50216,7 +50216,7 @@ impl_intersection_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50242,7 +50242,7 @@ impl_intersection_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50315,8 +50315,8 @@ impl_object__is_in_integer = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_integer
         }
     },
@@ -50332,7 +50332,7 @@ impl_is_in_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50358,7 +50358,7 @@ impl_is_in_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50384,7 +50384,7 @@ impl_is_in_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50457,8 +50457,8 @@ impl_object__is_integer = {
         {
             NULL,
             NULL,
-            &afw_s_is_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_integer
         }
     },
@@ -50474,7 +50474,7 @@ impl_is_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50500,7 +50500,7 @@ impl_is_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50572,8 +50572,8 @@ impl_object__le_integer = {
         {
             NULL,
             NULL,
-            &afw_s_le_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_integer
         }
     },
@@ -50589,7 +50589,7 @@ impl_le_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50615,7 +50615,7 @@ impl_le_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50641,7 +50641,7 @@ impl_le_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50714,8 +50714,8 @@ impl_object__lt_integer = {
         {
             NULL,
             NULL,
-            &afw_s_lt_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_integer
         }
     },
@@ -50731,7 +50731,7 @@ impl_lt_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50757,7 +50757,7 @@ impl_lt_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50783,7 +50783,7 @@ impl_lt_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50856,8 +50856,8 @@ impl_object__max_integer = {
         {
             NULL,
             NULL,
-            &afw_s_max_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max_integer
         }
     },
@@ -50873,7 +50873,7 @@ impl_max_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50899,7 +50899,7 @@ impl_max_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -50971,8 +50971,8 @@ impl_object__min_integer = {
         {
             NULL,
             NULL,
-            &afw_s_min_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min_integer
         }
     },
@@ -50988,7 +50988,7 @@ impl_min_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51014,7 +51014,7 @@ impl_min_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51086,8 +51086,8 @@ impl_object__mod_integer = {
         {
             NULL,
             NULL,
-            &afw_s_mod_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_mod_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__mod_integer
         }
     },
@@ -51103,7 +51103,7 @@ impl_mod_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51129,7 +51129,7 @@ impl_mod_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51155,7 +51155,7 @@ impl_mod_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51228,8 +51228,8 @@ impl_object__multiply_integer = {
         {
             NULL,
             NULL,
-            &afw_s_multiply_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_multiply_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__multiply_integer
         }
     },
@@ -51245,7 +51245,7 @@ impl_multiply_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51271,7 +51271,7 @@ impl_multiply_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51343,8 +51343,8 @@ impl_object__ne_integer = {
         {
             NULL,
             NULL,
-            &afw_s_ne_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_integer
         }
     },
@@ -51360,7 +51360,7 @@ impl_ne_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51386,7 +51386,7 @@ impl_ne_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51412,7 +51412,7 @@ impl_ne_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51493,8 +51493,8 @@ impl_object__negative_integer = {
         {
             NULL,
             NULL,
-            &afw_s_negative_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_negative_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__negative_integer
         }
     },
@@ -51510,7 +51510,7 @@ impl_negative_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51536,7 +51536,7 @@ impl_negative_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51608,8 +51608,8 @@ impl_object__nex_integer = {
         {
             NULL,
             NULL,
-            &afw_s_nex_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_integer
         }
     },
@@ -51625,7 +51625,7 @@ impl_nex_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51651,7 +51651,7 @@ impl_nex_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51677,7 +51677,7 @@ impl_nex_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51750,8 +51750,8 @@ impl_object__one_and_only_integer = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_integer
         }
     },
@@ -51767,7 +51767,7 @@ impl_one_and_only_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51793,7 +51793,7 @@ impl_one_and_only_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51873,8 +51873,8 @@ impl_object__set_equals_integer = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_integer
         }
     },
@@ -51890,7 +51890,7 @@ impl_set_equals_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51916,7 +51916,7 @@ impl_set_equals_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -51942,7 +51942,7 @@ impl_set_equals_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52015,8 +52015,8 @@ impl_object__subset_integer = {
         {
             NULL,
             NULL,
-            &afw_s_subset_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_integer
         }
     },
@@ -52032,7 +52032,7 @@ impl_subset_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52058,7 +52058,7 @@ impl_subset_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52084,7 +52084,7 @@ impl_subset_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52157,8 +52157,8 @@ impl_object__subtract_integer = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_integer
         }
     },
@@ -52174,7 +52174,7 @@ impl_subtract_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52200,7 +52200,7 @@ impl_subtract_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52226,7 +52226,7 @@ impl_subtract_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52299,8 +52299,8 @@ impl_object__to_double_integer = {
         {
             NULL,
             NULL,
-            &afw_s_to_double_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_double_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_double_integer
         }
     },
@@ -52316,7 +52316,7 @@ impl_to_double_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52342,7 +52342,7 @@ impl_to_double_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52422,8 +52422,8 @@ impl_object__to_string_integer = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_integer
         }
     },
@@ -52439,7 +52439,7 @@ impl_to_string_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52465,7 +52465,7 @@ impl_to_string_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52537,8 +52537,8 @@ impl_object__union_integer = {
         {
             NULL,
             NULL,
-            &afw_s_union_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_integer
         }
     },
@@ -52554,7 +52554,7 @@ impl_union_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52580,7 +52580,7 @@ impl_union_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52652,8 +52652,8 @@ impl_object__bag_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_bag_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_ipAddress
         }
     },
@@ -52669,7 +52669,7 @@ impl_bag_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52695,7 +52695,7 @@ impl_bag_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52767,8 +52767,8 @@ impl_object__bag_size_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_ipAddress
         }
     },
@@ -52784,7 +52784,7 @@ impl_bag_size_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52810,7 +52810,7 @@ impl_bag_size_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52882,8 +52882,8 @@ impl_object__eq_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_eq_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_ipAddress
         }
     },
@@ -52899,7 +52899,7 @@ impl_eq_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52925,7 +52925,7 @@ impl_eq_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -52951,7 +52951,7 @@ impl_eq_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53032,8 +53032,8 @@ impl_object__eqx_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_ipAddress
         }
     },
@@ -53049,7 +53049,7 @@ impl_eqx_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53075,7 +53075,7 @@ impl_eqx_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53101,7 +53101,7 @@ impl_eqx_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53174,8 +53174,8 @@ impl_object__ge_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_ge_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_ipAddress
         }
     },
@@ -53191,7 +53191,7 @@ impl_ge_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53217,7 +53217,7 @@ impl_ge_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53243,7 +53243,7 @@ impl_ge_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53316,8 +53316,8 @@ impl_object__gt_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_gt_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_ipAddress
         }
     },
@@ -53333,7 +53333,7 @@ impl_gt_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53359,7 +53359,7 @@ impl_gt_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53385,7 +53385,7 @@ impl_gt_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53458,8 +53458,8 @@ impl_object__ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ipAddress
         }
     },
@@ -53475,7 +53475,7 @@ impl_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53501,7 +53501,7 @@ impl_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53581,8 +53581,8 @@ impl_object__is_in_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_ipAddress
         }
     },
@@ -53598,7 +53598,7 @@ impl_is_in_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53624,7 +53624,7 @@ impl_is_in_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53650,7 +53650,7 @@ impl_is_in_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53723,8 +53723,8 @@ impl_object__is_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_is_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_ipAddress
         }
     },
@@ -53740,7 +53740,7 @@ impl_is_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53766,7 +53766,7 @@ impl_is_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53838,8 +53838,8 @@ impl_object__le_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_le_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_ipAddress
         }
     },
@@ -53855,7 +53855,7 @@ impl_le_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53881,7 +53881,7 @@ impl_le_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53907,7 +53907,7 @@ impl_le_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -53980,8 +53980,8 @@ impl_object__lt_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_lt_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_ipAddress
         }
     },
@@ -53997,7 +53997,7 @@ impl_lt_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54023,7 +54023,7 @@ impl_lt_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54049,7 +54049,7 @@ impl_lt_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54122,8 +54122,8 @@ impl_object__ne_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_ne_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_ipAddress
         }
     },
@@ -54139,7 +54139,7 @@ impl_ne_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54165,7 +54165,7 @@ impl_ne_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54191,7 +54191,7 @@ impl_ne_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54272,8 +54272,8 @@ impl_object__nex_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_nex_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_ipAddress
         }
     },
@@ -54289,7 +54289,7 @@ impl_nex_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54315,7 +54315,7 @@ impl_nex_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54341,7 +54341,7 @@ impl_nex_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54414,8 +54414,8 @@ impl_object__one_and_only_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_ipAddress
         }
     },
@@ -54431,7 +54431,7 @@ impl_one_and_only_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54457,7 +54457,7 @@ impl_one_and_only_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54537,8 +54537,8 @@ impl_object__regexp_match_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match_ipAddress
         }
     },
@@ -54554,7 +54554,7 @@ impl_regexp_match_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54580,7 +54580,7 @@ impl_regexp_match_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54606,7 +54606,7 @@ impl_regexp_match_ipAddress_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54679,8 +54679,8 @@ impl_object__to_string_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_ipAddress
         }
     },
@@ -54696,7 +54696,7 @@ impl_to_string_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54722,7 +54722,7 @@ impl_to_string_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54794,8 +54794,8 @@ impl_object__journal_advance_cursor_for_consumer = {
         {
             NULL,
             NULL,
-            &afw_s_journal_advance_cursor_for_consumer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_advance_cursor_for_consumer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_advance_cursor_for_consumer
         }
     },
@@ -54811,7 +54811,7 @@ impl_journal_advance_cursor_for_consumer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54837,7 +54837,7 @@ impl_journal_advance_cursor_for_consumer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54863,7 +54863,7 @@ impl_journal_advance_cursor_for_consumer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54889,7 +54889,7 @@ impl_journal_advance_cursor_for_consumer_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -54969,8 +54969,8 @@ impl_object__journal_get_by_cursor = {
         {
             NULL,
             NULL,
-            &afw_s_journal_get_by_cursor,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_get_by_cursor,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_get_by_cursor
         }
     },
@@ -54986,7 +54986,7 @@ impl_journal_get_by_cursor_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55012,7 +55012,7 @@ impl_journal_get_by_cursor_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55038,7 +55038,7 @@ impl_journal_get_by_cursor_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55111,8 +55111,8 @@ impl_object__journal_get_first = {
         {
             NULL,
             NULL,
-            &afw_s_journal_get_first,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_get_first,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_get_first
         }
     },
@@ -55128,7 +55128,7 @@ impl_journal_get_first_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55154,7 +55154,7 @@ impl_journal_get_first_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55226,8 +55226,8 @@ impl_object__journal_get_next_after_cursor = {
         {
             NULL,
             NULL,
-            &afw_s_journal_get_next_after_cursor,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_get_next_after_cursor,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_get_next_after_cursor
         }
     },
@@ -55243,7 +55243,7 @@ impl_journal_get_next_after_cursor_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55269,7 +55269,7 @@ impl_journal_get_next_after_cursor_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55295,7 +55295,7 @@ impl_journal_get_next_after_cursor_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55368,8 +55368,8 @@ impl_object__journal_get_next_for_consumer = {
         {
             NULL,
             NULL,
-            &afw_s_journal_get_next_for_consumer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_get_next_for_consumer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_get_next_for_consumer
         }
     },
@@ -55385,7 +55385,7 @@ impl_journal_get_next_for_consumer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55411,7 +55411,7 @@ impl_journal_get_next_for_consumer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55437,7 +55437,7 @@ impl_journal_get_next_for_consumer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55463,7 +55463,7 @@ impl_journal_get_next_for_consumer_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55537,8 +55537,8 @@ impl_object__journal_get_next_for_consumer_after_cursor = {
         {
             NULL,
             NULL,
-            &afw_s_journal_get_next_for_consumer_after_cursor,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_get_next_for_consumer_after_cursor,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_get_next_for_consumer_after_cursor
         }
     },
@@ -55554,7 +55554,7 @@ impl_journal_get_next_for_consumer_after_cursor_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55580,7 +55580,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55606,7 +55606,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55632,7 +55632,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55658,7 +55658,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55733,8 +55733,8 @@ impl_object__journal_mark_consumed = {
         {
             NULL,
             NULL,
-            &afw_s_journal_mark_consumed,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_journal_mark_consumed,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__journal_mark_consumed
         }
     },
@@ -55750,7 +55750,7 @@ impl_journal_mark_consumed_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55776,7 +55776,7 @@ impl_journal_mark_consumed_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55802,7 +55802,7 @@ impl_journal_mark_consumed_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55828,7 +55828,7 @@ impl_journal_mark_consumed_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55908,8 +55908,8 @@ impl_object__compile_json = {
         {
             NULL,
             NULL,
-            &afw_s_compile_json,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile_json,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile_json
         }
     },
@@ -55925,7 +55925,7 @@ impl_compile_json_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55951,7 +55951,7 @@ impl_compile_json_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -55977,7 +55977,7 @@ impl_compile_json_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56050,8 +56050,8 @@ impl_object__json = {
         {
             NULL,
             NULL,
-            &afw_s_json,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_json,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__json
         }
     },
@@ -56067,7 +56067,7 @@ impl_json_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56093,7 +56093,7 @@ impl_json_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56173,8 +56173,8 @@ impl_object__and = {
         {
             NULL,
             NULL,
-            &afw_s_and,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_and,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__and
         }
     },
@@ -56190,7 +56190,7 @@ impl_and_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56216,7 +56216,7 @@ impl_and_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56288,8 +56288,8 @@ impl_object__n_of = {
         {
             NULL,
             NULL,
-            &afw_s_n_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_n_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__n_of
         }
     },
@@ -56305,7 +56305,7 @@ impl_n_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56331,7 +56331,7 @@ impl_n_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56357,7 +56357,7 @@ impl_n_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56438,8 +56438,8 @@ impl_object__not = {
         {
             NULL,
             NULL,
-            &afw_s_not,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_not,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__not
         }
     },
@@ -56455,7 +56455,7 @@ impl_not_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56481,7 +56481,7 @@ impl_not_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56553,8 +56553,8 @@ impl_object__or = {
         {
             NULL,
             NULL,
-            &afw_s_or,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_or,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__or
         }
     },
@@ -56570,7 +56570,7 @@ impl_or_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56596,7 +56596,7 @@ impl_or_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56668,8 +56668,8 @@ impl_object__compare_uri = {
         {
             NULL,
             NULL,
-            &afw_s_compare_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compare_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compare_uri
         }
     },
@@ -56685,7 +56685,7 @@ impl_compare_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56711,7 +56711,7 @@ impl_compare_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56737,7 +56737,7 @@ impl_compare_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56763,7 +56763,7 @@ impl_compare_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56789,7 +56789,7 @@ impl_compare_uri_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56864,8 +56864,8 @@ impl_object__debug = {
         {
             NULL,
             NULL,
-            &afw_s_debug,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_debug,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__debug
         }
     },
@@ -56881,7 +56881,7 @@ impl_debug_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56907,7 +56907,7 @@ impl_debug_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -56933,7 +56933,7 @@ impl_debug_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57012,8 +57012,8 @@ impl_object__execution_start_time_local = {
         {
             NULL,
             NULL,
-            &afw_s_execution_start_time_local,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_execution_start_time_local,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__execution_start_time_local
         }
     },
@@ -57029,7 +57029,7 @@ impl_execution_start_time_local_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57100,8 +57100,8 @@ impl_object__execution_start_time_utc = {
         {
             NULL,
             NULL,
-            &afw_s_execution_start_time_utc,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_execution_start_time_utc,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__execution_start_time_utc
         }
     },
@@ -57117,7 +57117,7 @@ impl_execution_start_time_utc_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57188,8 +57188,8 @@ impl_object__generate_uuid = {
         {
             NULL,
             NULL,
-            &afw_s_generate_uuid,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_generate_uuid,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__generate_uuid
         }
     },
@@ -57205,7 +57205,7 @@ impl_generate_uuid_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57276,8 +57276,8 @@ impl_object__is_defined = {
         {
             NULL,
             NULL,
-            &afw_s_is_defined,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_defined,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_defined
         }
     },
@@ -57293,7 +57293,7 @@ impl_is_defined_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57319,7 +57319,7 @@ impl_is_defined_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57391,8 +57391,8 @@ impl_object__is_nullish = {
         {
             NULL,
             NULL,
-            &afw_s_is_nullish,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_nullish,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_nullish
         }
     },
@@ -57408,7 +57408,7 @@ impl_is_nullish_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57434,7 +57434,7 @@ impl_is_nullish_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57506,8 +57506,8 @@ impl_object__log = {
         {
             NULL,
             NULL,
-            &afw_s_log,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_log,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__log
         }
     },
@@ -57523,7 +57523,7 @@ impl_log_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57549,7 +57549,7 @@ impl_log_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57627,8 +57627,8 @@ impl_object__now_local = {
         {
             NULL,
             NULL,
-            &afw_s_now_local,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_now_local,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__now_local
         }
     },
@@ -57644,7 +57644,7 @@ impl_now_local_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57715,8 +57715,8 @@ impl_object__now_utc = {
         {
             NULL,
             NULL,
-            &afw_s_now_utc,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_now_utc,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__now_utc
         }
     },
@@ -57732,7 +57732,7 @@ impl_now_utc_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57803,8 +57803,8 @@ impl_object__parse_uri = {
         {
             NULL,
             NULL,
-            &afw_s_parse_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_parse_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__parse_uri
         }
     },
@@ -57820,7 +57820,7 @@ impl_parse_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57846,7 +57846,7 @@ impl_parse_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57872,7 +57872,7 @@ impl_parse_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57898,7 +57898,7 @@ impl_parse_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -57972,8 +57972,8 @@ impl_object__perform = {
         {
             NULL,
             NULL,
-            &afw_s_perform,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_perform,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__perform
         }
     },
@@ -57989,7 +57989,7 @@ impl_perform_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58015,7 +58015,7 @@ impl_perform_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58087,8 +58087,8 @@ impl_object__trace = {
         {
             NULL,
             NULL,
-            &afw_s_trace,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_trace,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__trace
         }
     },
@@ -58104,7 +58104,7 @@ impl_trace_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58130,7 +58130,7 @@ impl_trace_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58156,7 +58156,7 @@ impl_trace_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58182,7 +58182,7 @@ impl_trace_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58262,8 +58262,8 @@ impl_object__variable_exists = {
         {
             NULL,
             NULL,
-            &afw_s_variable_exists,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_variable_exists,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__variable_exists
         }
     },
@@ -58279,7 +58279,7 @@ impl_variable_exists_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58305,7 +58305,7 @@ impl_variable_exists_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58377,8 +58377,8 @@ impl_object__variable_get = {
         {
             NULL,
             NULL,
-            &afw_s_variable_get,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_variable_get,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__variable_get
         }
     },
@@ -58394,7 +58394,7 @@ impl_variable_get_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58420,7 +58420,7 @@ impl_variable_get_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58446,7 +58446,7 @@ impl_variable_get_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58519,8 +58519,8 @@ impl_object__variable_is_not_null = {
         {
             NULL,
             NULL,
-            &afw_s_variable_is_not_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_variable_is_not_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__variable_is_not_null
         }
     },
@@ -58536,7 +58536,7 @@ impl_variable_is_not_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58562,7 +58562,7 @@ impl_variable_is_not_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58634,8 +58634,8 @@ impl_object__model_default_add_object_action = {
         {
             NULL,
             NULL,
-            &afw_s_model_default_add_object_action,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_default_add_object_action,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_default_add_object_action
         }
     },
@@ -58651,7 +58651,7 @@ impl_model_default_add_object_action_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58677,7 +58677,7 @@ impl_model_default_add_object_action_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58703,7 +58703,7 @@ impl_model_default_add_object_action_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58729,7 +58729,7 @@ impl_model_default_add_object_action_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58755,7 +58755,7 @@ impl_model_default_add_object_action_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58781,7 +58781,7 @@ impl_model_default_add_object_action_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58807,7 +58807,7 @@ impl_model_default_add_object_action_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58884,8 +58884,8 @@ impl_object__model_default_delete_object_action = {
         {
             NULL,
             NULL,
-            &afw_s_model_default_delete_object_action,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_default_delete_object_action,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_default_delete_object_action
         }
     },
@@ -58901,7 +58901,7 @@ impl_model_default_delete_object_action_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58927,7 +58927,7 @@ impl_model_default_delete_object_action_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58953,7 +58953,7 @@ impl_model_default_delete_object_action_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -58979,7 +58979,7 @@ impl_model_default_delete_object_action_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59005,7 +59005,7 @@ impl_model_default_delete_object_action_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59031,7 +59031,7 @@ impl_model_default_delete_object_action_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59107,8 +59107,8 @@ impl_object__model_default_modify_object_action = {
         {
             NULL,
             NULL,
-            &afw_s_model_default_modify_object_action,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_default_modify_object_action,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_default_modify_object_action
         }
     },
@@ -59124,7 +59124,7 @@ impl_model_default_modify_object_action_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59150,7 +59150,7 @@ impl_model_default_modify_object_action_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59176,7 +59176,7 @@ impl_model_default_modify_object_action_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59202,7 +59202,7 @@ impl_model_default_modify_object_action_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59228,7 +59228,7 @@ impl_model_default_modify_object_action_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59254,7 +59254,7 @@ impl_model_default_modify_object_action_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59280,7 +59280,7 @@ impl_model_default_modify_object_action_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59357,8 +59357,8 @@ impl_object__model_default_replace_object_action = {
         {
             NULL,
             NULL,
-            &afw_s_model_default_replace_object_action,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_default_replace_object_action,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_default_replace_object_action
         }
     },
@@ -59374,7 +59374,7 @@ impl_model_default_replace_object_action_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59400,7 +59400,7 @@ impl_model_default_replace_object_action_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59426,7 +59426,7 @@ impl_model_default_replace_object_action_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59452,7 +59452,7 @@ impl_model_default_replace_object_action_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59478,7 +59478,7 @@ impl_model_default_replace_object_action_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59504,7 +59504,7 @@ impl_model_default_replace_object_action_parameter_5 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59530,7 +59530,7 @@ impl_model_default_replace_object_action_parameter_6 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59607,8 +59607,8 @@ impl_object__model_mapBackObject_signature = {
         {
             NULL,
             NULL,
-            &afw_s_model_mapBackObject_signature,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_mapBackObject_signature,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_mapBackObject_signature
         }
     },
@@ -59624,7 +59624,7 @@ impl_model_mapBackObject_signature_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59650,7 +59650,7 @@ impl_model_mapBackObject_signature_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59722,8 +59722,8 @@ impl_object__model_mapObject_signature = {
         {
             NULL,
             NULL,
-            &afw_s_model_mapObject_signature,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_mapObject_signature,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_mapObject_signature
         }
     },
@@ -59739,7 +59739,7 @@ impl_model_mapObject_signature_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59765,7 +59765,7 @@ impl_model_mapObject_signature_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59837,8 +59837,8 @@ impl_object__model_returnObject_signature = {
         {
             NULL,
             NULL,
-            &afw_s_model_returnObject_signature,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_model_returnObject_signature,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__model_returnObject_signature
         }
     },
@@ -59854,7 +59854,7 @@ impl_model_returnObject_signature_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59880,7 +59880,7 @@ impl_model_returnObject_signature_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59906,7 +59906,7 @@ impl_model_returnObject_signature_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -59979,8 +59979,8 @@ impl_object__bag_null = {
         {
             NULL,
             NULL,
-            &afw_s_bag_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_null
         }
     },
@@ -59996,7 +59996,7 @@ impl_bag_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60022,7 +60022,7 @@ impl_bag_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60094,8 +60094,8 @@ impl_object__bag_size_null = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_null
         }
     },
@@ -60111,7 +60111,7 @@ impl_bag_size_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60137,7 +60137,7 @@ impl_bag_size_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60209,8 +60209,8 @@ impl_object__is_null = {
         {
             NULL,
             NULL,
-            &afw_s_is_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_null
         }
     },
@@ -60226,7 +60226,7 @@ impl_is_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60252,7 +60252,7 @@ impl_is_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60324,8 +60324,8 @@ impl_object__null = {
         {
             NULL,
             NULL,
-            &afw_s_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__null
         }
     },
@@ -60341,7 +60341,7 @@ impl_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60367,7 +60367,7 @@ impl_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60447,8 +60447,8 @@ impl_object__to_string_null = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_null
         }
     },
@@ -60464,7 +60464,7 @@ impl_to_string_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60490,7 +60490,7 @@ impl_to_string_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60562,8 +60562,8 @@ impl_object__bag_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_bag_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_objectId
         }
     },
@@ -60579,7 +60579,7 @@ impl_bag_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60605,7 +60605,7 @@ impl_bag_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60677,8 +60677,8 @@ impl_object__bag_size_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_objectId
         }
     },
@@ -60694,7 +60694,7 @@ impl_bag_size_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60720,7 +60720,7 @@ impl_bag_size_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60792,8 +60792,8 @@ impl_object__eq_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_eq_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_objectId
         }
     },
@@ -60809,7 +60809,7 @@ impl_eq_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60835,7 +60835,7 @@ impl_eq_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60861,7 +60861,7 @@ impl_eq_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60942,8 +60942,8 @@ impl_object__eqx_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_objectId
         }
     },
@@ -60959,7 +60959,7 @@ impl_eqx_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -60985,7 +60985,7 @@ impl_eqx_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61011,7 +61011,7 @@ impl_eqx_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61084,8 +61084,8 @@ impl_object__ge_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_ge_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_objectId
         }
     },
@@ -61101,7 +61101,7 @@ impl_ge_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61127,7 +61127,7 @@ impl_ge_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61153,7 +61153,7 @@ impl_ge_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61226,8 +61226,8 @@ impl_object__gt_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_gt_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_objectId
         }
     },
@@ -61243,7 +61243,7 @@ impl_gt_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61269,7 +61269,7 @@ impl_gt_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61295,7 +61295,7 @@ impl_gt_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61368,8 +61368,8 @@ impl_object__is_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_is_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_objectId
         }
     },
@@ -61385,7 +61385,7 @@ impl_is_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61411,7 +61411,7 @@ impl_is_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61483,8 +61483,8 @@ impl_object__le_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_le_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_objectId
         }
     },
@@ -61500,7 +61500,7 @@ impl_le_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61526,7 +61526,7 @@ impl_le_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61552,7 +61552,7 @@ impl_le_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61625,8 +61625,8 @@ impl_object__lt_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_lt_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_objectId
         }
     },
@@ -61642,7 +61642,7 @@ impl_lt_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61668,7 +61668,7 @@ impl_lt_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61694,7 +61694,7 @@ impl_lt_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61767,8 +61767,8 @@ impl_object__ne_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_ne_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_objectId
         }
     },
@@ -61784,7 +61784,7 @@ impl_ne_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61810,7 +61810,7 @@ impl_ne_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61836,7 +61836,7 @@ impl_ne_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61917,8 +61917,8 @@ impl_object__nex_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_nex_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_objectId
         }
     },
@@ -61934,7 +61934,7 @@ impl_nex_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61960,7 +61960,7 @@ impl_nex_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -61986,7 +61986,7 @@ impl_nex_objectId_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62059,8 +62059,8 @@ impl_object__objectId = {
         {
             NULL,
             NULL,
-            &afw_s_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__objectId
         }
     },
@@ -62076,7 +62076,7 @@ impl_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62102,7 +62102,7 @@ impl_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62182,8 +62182,8 @@ impl_object__to_string_objectId = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_objectId,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_objectId,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_objectId
         }
     },
@@ -62199,7 +62199,7 @@ impl_to_string_objectId_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62225,7 +62225,7 @@ impl_to_string_objectId_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62297,8 +62297,8 @@ impl_object__bag_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_bag_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_objectPath
         }
     },
@@ -62314,7 +62314,7 @@ impl_bag_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62340,7 +62340,7 @@ impl_bag_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62412,8 +62412,8 @@ impl_object__bag_size_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_objectPath
         }
     },
@@ -62429,7 +62429,7 @@ impl_bag_size_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62455,7 +62455,7 @@ impl_bag_size_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62527,8 +62527,8 @@ impl_object__eq_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_eq_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_objectPath
         }
     },
@@ -62544,7 +62544,7 @@ impl_eq_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62570,7 +62570,7 @@ impl_eq_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62596,7 +62596,7 @@ impl_eq_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62677,8 +62677,8 @@ impl_object__eqx_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_objectPath
         }
     },
@@ -62694,7 +62694,7 @@ impl_eqx_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62720,7 +62720,7 @@ impl_eqx_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62746,7 +62746,7 @@ impl_eqx_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62819,8 +62819,8 @@ impl_object__ge_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_ge_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_objectPath
         }
     },
@@ -62836,7 +62836,7 @@ impl_ge_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62862,7 +62862,7 @@ impl_ge_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62888,7 +62888,7 @@ impl_ge_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -62961,8 +62961,8 @@ impl_object__gt_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_gt_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_objectPath
         }
     },
@@ -62978,7 +62978,7 @@ impl_gt_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63004,7 +63004,7 @@ impl_gt_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63030,7 +63030,7 @@ impl_gt_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63103,8 +63103,8 @@ impl_object__is_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_is_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_objectPath
         }
     },
@@ -63120,7 +63120,7 @@ impl_is_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63146,7 +63146,7 @@ impl_is_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63218,8 +63218,8 @@ impl_object__le_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_le_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_objectPath
         }
     },
@@ -63235,7 +63235,7 @@ impl_le_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63261,7 +63261,7 @@ impl_le_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63287,7 +63287,7 @@ impl_le_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63360,8 +63360,8 @@ impl_object__lt_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_lt_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_objectPath
         }
     },
@@ -63377,7 +63377,7 @@ impl_lt_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63403,7 +63403,7 @@ impl_lt_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63429,7 +63429,7 @@ impl_lt_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63502,8 +63502,8 @@ impl_object__ne_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_ne_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_objectPath
         }
     },
@@ -63519,7 +63519,7 @@ impl_ne_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63545,7 +63545,7 @@ impl_ne_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63571,7 +63571,7 @@ impl_ne_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63652,8 +63652,8 @@ impl_object__nex_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_nex_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_objectPath
         }
     },
@@ -63669,7 +63669,7 @@ impl_nex_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63695,7 +63695,7 @@ impl_nex_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63721,7 +63721,7 @@ impl_nex_objectPath_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63794,8 +63794,8 @@ impl_object__objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__objectPath
         }
     },
@@ -63811,7 +63811,7 @@ impl_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63837,7 +63837,7 @@ impl_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63917,8 +63917,8 @@ impl_object__to_string_objectPath = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_objectPath,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_objectPath,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_objectPath
         }
     },
@@ -63934,7 +63934,7 @@ impl_to_string_objectPath_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -63960,7 +63960,7 @@ impl_to_string_objectPath_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64032,8 +64032,8 @@ impl_object__add_properties = {
         {
             NULL,
             NULL,
-            &afw_s_add_properties,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_properties,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_properties
         }
     },
@@ -64049,7 +64049,7 @@ impl_add_properties_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64075,7 +64075,7 @@ impl_add_properties_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64101,7 +64101,7 @@ impl_add_properties_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64180,8 +64180,8 @@ impl_object__apply_object_options = {
         {
             NULL,
             NULL,
-            &afw_s_apply_object_options,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_apply_object_options,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__apply_object_options
         }
     },
@@ -64197,7 +64197,7 @@ impl_apply_object_options_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64223,7 +64223,7 @@ impl_apply_object_options_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64249,7 +64249,7 @@ impl_apply_object_options_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64322,8 +64322,8 @@ impl_object__bag_object = {
         {
             NULL,
             NULL,
-            &afw_s_bag_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_object
         }
     },
@@ -64339,7 +64339,7 @@ impl_bag_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64365,7 +64365,7 @@ impl_bag_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64437,8 +64437,8 @@ impl_object__bag_size_object = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_object
         }
     },
@@ -64454,7 +64454,7 @@ impl_bag_size_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64480,7 +64480,7 @@ impl_bag_size_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64552,8 +64552,8 @@ impl_object__clone_object = {
         {
             NULL,
             NULL,
-            &afw_s_clone_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_clone_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__clone_object
         }
     },
@@ -64569,7 +64569,7 @@ impl_clone_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64595,7 +64595,7 @@ impl_clone_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64667,8 +64667,8 @@ impl_object__eq_object = {
         {
             NULL,
             NULL,
-            &afw_s_eq_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_object
         }
     },
@@ -64684,7 +64684,7 @@ impl_eq_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64710,7 +64710,7 @@ impl_eq_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64736,7 +64736,7 @@ impl_eq_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64817,8 +64817,8 @@ impl_object__eqx_object = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_object
         }
     },
@@ -64834,7 +64834,7 @@ impl_eqx_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64860,7 +64860,7 @@ impl_eqx_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64886,7 +64886,7 @@ impl_eqx_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -64959,8 +64959,8 @@ impl_object__ge_object = {
         {
             NULL,
             NULL,
-            &afw_s_ge_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_object
         }
     },
@@ -64976,7 +64976,7 @@ impl_ge_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65002,7 +65002,7 @@ impl_ge_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65028,7 +65028,7 @@ impl_ge_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65101,8 +65101,8 @@ impl_object__gt_object = {
         {
             NULL,
             NULL,
-            &afw_s_gt_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_object
         }
     },
@@ -65118,7 +65118,7 @@ impl_gt_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65144,7 +65144,7 @@ impl_gt_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65170,7 +65170,7 @@ impl_gt_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65243,8 +65243,8 @@ impl_object__is_object = {
         {
             NULL,
             NULL,
-            &afw_s_is_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_object
         }
     },
@@ -65260,7 +65260,7 @@ impl_is_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65286,7 +65286,7 @@ impl_is_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65358,8 +65358,8 @@ impl_object__le_object = {
         {
             NULL,
             NULL,
-            &afw_s_le_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_object
         }
     },
@@ -65375,7 +65375,7 @@ impl_le_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65401,7 +65401,7 @@ impl_le_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65427,7 +65427,7 @@ impl_le_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65500,8 +65500,8 @@ impl_object__local_object_meta_set_ids = {
         {
             NULL,
             NULL,
-            &afw_s_local_object_meta_set_ids,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_local_object_meta_set_ids,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__local_object_meta_set_ids
         }
     },
@@ -65517,7 +65517,7 @@ impl_local_object_meta_set_ids_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65543,7 +65543,7 @@ impl_local_object_meta_set_ids_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65569,7 +65569,7 @@ impl_local_object_meta_set_ids_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65595,7 +65595,7 @@ impl_local_object_meta_set_ids_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65621,7 +65621,7 @@ impl_local_object_meta_set_ids_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65702,8 +65702,8 @@ impl_object__lt_object = {
         {
             NULL,
             NULL,
-            &afw_s_lt_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_object
         }
     },
@@ -65719,7 +65719,7 @@ impl_lt_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65745,7 +65745,7 @@ impl_lt_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65771,7 +65771,7 @@ impl_lt_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65844,8 +65844,8 @@ impl_object__ne_object = {
         {
             NULL,
             NULL,
-            &afw_s_ne_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_object
         }
     },
@@ -65861,7 +65861,7 @@ impl_ne_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65887,7 +65887,7 @@ impl_ne_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65913,7 +65913,7 @@ impl_ne_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -65994,8 +65994,8 @@ impl_object__nex_object = {
         {
             NULL,
             NULL,
-            &afw_s_nex_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_object
         }
     },
@@ -66011,7 +66011,7 @@ impl_nex_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66037,7 +66037,7 @@ impl_nex_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66063,7 +66063,7 @@ impl_nex_object_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66136,8 +66136,8 @@ impl_object__object = {
         {
             NULL,
             NULL,
-            &afw_s_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__object
         }
     },
@@ -66153,7 +66153,7 @@ impl_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66179,7 +66179,7 @@ impl_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66259,8 +66259,8 @@ impl_object__property_delete = {
         {
             NULL,
             NULL,
-            &afw_s_property_delete,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_property_delete,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__property_delete
         }
     },
@@ -66276,7 +66276,7 @@ impl_property_delete_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66302,7 +66302,7 @@ impl_property_delete_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66328,7 +66328,7 @@ impl_property_delete_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66401,8 +66401,8 @@ impl_object__property_delete_by_reference = {
         {
             NULL,
             NULL,
-            &afw_s_property_delete_by_reference,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_property_delete_by_reference,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__property_delete_by_reference
         }
     },
@@ -66418,7 +66418,7 @@ impl_property_delete_by_reference_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66444,7 +66444,7 @@ impl_property_delete_by_reference_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66516,8 +66516,8 @@ impl_object__property_exists = {
         {
             NULL,
             NULL,
-            &afw_s_property_exists,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_property_exists,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__property_exists
         }
     },
@@ -66533,7 +66533,7 @@ impl_property_exists_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66559,7 +66559,7 @@ impl_property_exists_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66585,7 +66585,7 @@ impl_property_exists_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66658,8 +66658,8 @@ impl_object__property_get = {
         {
             NULL,
             NULL,
-            &afw_s_property_get,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_property_get,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__property_get
         }
     },
@@ -66675,7 +66675,7 @@ impl_property_get_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66701,7 +66701,7 @@ impl_property_get_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66727,7 +66727,7 @@ impl_property_get_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66753,7 +66753,7 @@ impl_property_get_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66827,8 +66827,8 @@ impl_object__property_is_not_null = {
         {
             NULL,
             NULL,
-            &afw_s_property_is_not_null,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_property_is_not_null,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__property_is_not_null
         }
     },
@@ -66844,7 +66844,7 @@ impl_property_is_not_null_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66870,7 +66870,7 @@ impl_property_is_not_null_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66896,7 +66896,7 @@ impl_property_is_not_null_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -66969,8 +66969,8 @@ impl_object__to_string_object = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_object,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_object,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_object
         }
     },
@@ -66986,7 +66986,7 @@ impl_to_string_object_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67012,7 +67012,7 @@ impl_to_string_object_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67084,8 +67084,8 @@ impl_object__bag_password = {
         {
             NULL,
             NULL,
-            &afw_s_bag_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_password
         }
     },
@@ -67101,7 +67101,7 @@ impl_bag_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67127,7 +67127,7 @@ impl_bag_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67199,8 +67199,8 @@ impl_object__bag_size_password = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_password
         }
     },
@@ -67216,7 +67216,7 @@ impl_bag_size_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67242,7 +67242,7 @@ impl_bag_size_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67314,8 +67314,8 @@ impl_object__eq_password = {
         {
             NULL,
             NULL,
-            &afw_s_eq_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_password
         }
     },
@@ -67331,7 +67331,7 @@ impl_eq_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67357,7 +67357,7 @@ impl_eq_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67383,7 +67383,7 @@ impl_eq_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67464,8 +67464,8 @@ impl_object__eqx_password = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_password
         }
     },
@@ -67481,7 +67481,7 @@ impl_eqx_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67507,7 +67507,7 @@ impl_eqx_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67533,7 +67533,7 @@ impl_eqx_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67606,8 +67606,8 @@ impl_object__ge_password = {
         {
             NULL,
             NULL,
-            &afw_s_ge_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_password
         }
     },
@@ -67623,7 +67623,7 @@ impl_ge_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67649,7 +67649,7 @@ impl_ge_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67675,7 +67675,7 @@ impl_ge_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67748,8 +67748,8 @@ impl_object__gt_password = {
         {
             NULL,
             NULL,
-            &afw_s_gt_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_password
         }
     },
@@ -67765,7 +67765,7 @@ impl_gt_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67791,7 +67791,7 @@ impl_gt_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67817,7 +67817,7 @@ impl_gt_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67890,8 +67890,8 @@ impl_object__is_password = {
         {
             NULL,
             NULL,
-            &afw_s_is_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_password
         }
     },
@@ -67907,7 +67907,7 @@ impl_is_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -67933,7 +67933,7 @@ impl_is_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68005,8 +68005,8 @@ impl_object__le_password = {
         {
             NULL,
             NULL,
-            &afw_s_le_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_password
         }
     },
@@ -68022,7 +68022,7 @@ impl_le_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68048,7 +68048,7 @@ impl_le_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68074,7 +68074,7 @@ impl_le_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68147,8 +68147,8 @@ impl_object__lt_password = {
         {
             NULL,
             NULL,
-            &afw_s_lt_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_password
         }
     },
@@ -68164,7 +68164,7 @@ impl_lt_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68190,7 +68190,7 @@ impl_lt_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68216,7 +68216,7 @@ impl_lt_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68289,8 +68289,8 @@ impl_object__ne_password = {
         {
             NULL,
             NULL,
-            &afw_s_ne_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_password
         }
     },
@@ -68306,7 +68306,7 @@ impl_ne_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68332,7 +68332,7 @@ impl_ne_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68358,7 +68358,7 @@ impl_ne_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68439,8 +68439,8 @@ impl_object__nex_password = {
         {
             NULL,
             NULL,
-            &afw_s_nex_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_password
         }
     },
@@ -68456,7 +68456,7 @@ impl_nex_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68482,7 +68482,7 @@ impl_nex_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68508,7 +68508,7 @@ impl_nex_password_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68581,8 +68581,8 @@ impl_object__password = {
         {
             NULL,
             NULL,
-            &afw_s_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__password
         }
     },
@@ -68598,7 +68598,7 @@ impl_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68624,7 +68624,7 @@ impl_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68704,8 +68704,8 @@ impl_object__to_string_password = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_password,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_password,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_password
         }
     },
@@ -68721,7 +68721,7 @@ impl_to_string_password_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68747,7 +68747,7 @@ impl_to_string_password_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68819,8 +68819,8 @@ impl_object__abs = {
         {
             NULL,
             NULL,
-            &afw_s_abs,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_abs,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__abs
         }
     },
@@ -68836,7 +68836,7 @@ impl_abs_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68862,7 +68862,7 @@ impl_abs_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68941,8 +68941,8 @@ impl_object__add = {
         {
             NULL,
             NULL,
-            &afw_s_add,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add
         }
     },
@@ -68958,7 +68958,7 @@ impl_add_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -68984,7 +68984,7 @@ impl_add_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69064,8 +69064,8 @@ impl_object__add_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_add_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_dayTimeDuration
         }
     },
@@ -69081,7 +69081,7 @@ impl_add_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69107,7 +69107,7 @@ impl_add_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69133,7 +69133,7 @@ impl_add_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69212,8 +69212,8 @@ impl_object__add_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_add_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_yearMonthDuration
         }
     },
@@ -69229,7 +69229,7 @@ impl_add_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69255,7 +69255,7 @@ impl_add_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69281,7 +69281,7 @@ impl_add_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69361,8 +69361,8 @@ impl_object__at_least_one_member_of = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of
         }
     },
@@ -69378,7 +69378,7 @@ impl_at_least_one_member_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69404,7 +69404,7 @@ impl_at_least_one_member_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69430,7 +69430,7 @@ impl_at_least_one_member_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69522,8 +69522,8 @@ impl_object__bag = {
         {
             NULL,
             NULL,
-            &afw_s_bag,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag
         }
     },
@@ -69539,7 +69539,7 @@ impl_bag_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69565,7 +69565,7 @@ impl_bag_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69669,8 +69669,8 @@ impl_object__bag_size = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size
         }
     },
@@ -69686,7 +69686,7 @@ impl_bag_size_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69712,7 +69712,7 @@ impl_bag_size_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69816,8 +69816,8 @@ impl_object__ceil = {
         {
             NULL,
             NULL,
-            &afw_s_ceil,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ceil,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ceil
         }
     },
@@ -69833,7 +69833,7 @@ impl_ceil_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69859,7 +69859,7 @@ impl_ceil_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69937,8 +69937,8 @@ impl_object__clone = {
         {
             NULL,
             NULL,
-            &afw_s_clone,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_clone,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__clone
         }
     },
@@ -69954,7 +69954,7 @@ impl_clone_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -69980,7 +69980,7 @@ impl_clone_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70059,8 +70059,8 @@ impl_object__compile = {
         {
             NULL,
             NULL,
-            &afw_s_compile,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile
         }
     },
@@ -70076,7 +70076,7 @@ impl_compile_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70102,7 +70102,7 @@ impl_compile_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70128,7 +70128,7 @@ impl_compile_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70212,8 +70212,8 @@ impl_object__decode_to_string = {
         {
             NULL,
             NULL,
-            &afw_s_decode_to_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_decode_to_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__decode_to_string
         }
     },
@@ -70229,7 +70229,7 @@ impl_decode_to_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70255,7 +70255,7 @@ impl_decode_to_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70334,8 +70334,8 @@ impl_object__divide = {
         {
             NULL,
             NULL,
-            &afw_s_divide,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_divide,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__divide
         }
     },
@@ -70351,7 +70351,7 @@ impl_divide_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70377,7 +70377,7 @@ impl_divide_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70403,7 +70403,7 @@ impl_divide_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70483,8 +70483,8 @@ impl_object__encode_as_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_encode_as_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_encode_as_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__encode_as_base64Binary
         }
     },
@@ -70500,7 +70500,7 @@ impl_encode_as_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70526,7 +70526,7 @@ impl_encode_as_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70604,8 +70604,8 @@ impl_object__encode_as_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_encode_as_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_encode_as_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__encode_as_hexBinary
         }
     },
@@ -70621,7 +70621,7 @@ impl_encode_as_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70647,7 +70647,7 @@ impl_encode_as_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70725,8 +70725,8 @@ impl_object__ends_with = {
         {
             NULL,
             NULL,
-            &afw_s_ends_with,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ends_with,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ends_with
         }
     },
@@ -70742,7 +70742,7 @@ impl_ends_with_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70768,7 +70768,7 @@ impl_ends_with_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70794,7 +70794,7 @@ impl_ends_with_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70874,8 +70874,8 @@ impl_object__eq = {
         {
             NULL,
             NULL,
-            &afw_s_eq,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq
         }
     },
@@ -70891,7 +70891,7 @@ impl_eq_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70917,7 +70917,7 @@ impl_eq_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -70943,7 +70943,7 @@ impl_eq_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71056,8 +71056,8 @@ impl_object__eq_ignore_case = {
         {
             NULL,
             NULL,
-            &afw_s_eq_ignore_case,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_ignore_case,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_ignore_case
         }
     },
@@ -71073,7 +71073,7 @@ impl_eq_ignore_case_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71099,7 +71099,7 @@ impl_eq_ignore_case_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71125,7 +71125,7 @@ impl_eq_ignore_case_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71204,8 +71204,8 @@ impl_object__eqx = {
         {
             NULL,
             NULL,
-            &afw_s_eqx,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx
         }
     },
@@ -71221,7 +71221,7 @@ impl_eqx_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71247,7 +71247,7 @@ impl_eqx_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71273,7 +71273,7 @@ impl_eqx_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71378,8 +71378,8 @@ impl_object__evaluate = {
         {
             NULL,
             NULL,
-            &afw_s_evaluate,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_evaluate,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__evaluate
         }
     },
@@ -71395,7 +71395,7 @@ impl_evaluate_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71421,7 +71421,7 @@ impl_evaluate_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71447,7 +71447,7 @@ impl_evaluate_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71528,8 +71528,8 @@ impl_object__floor = {
         {
             NULL,
             NULL,
-            &afw_s_floor,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_floor,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__floor
         }
     },
@@ -71545,7 +71545,7 @@ impl_floor_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71571,7 +71571,7 @@ impl_floor_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71649,8 +71649,8 @@ impl_object__ge = {
         {
             NULL,
             NULL,
-            &afw_s_ge,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge
         }
     },
@@ -71666,7 +71666,7 @@ impl_ge_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71692,7 +71692,7 @@ impl_ge_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71718,7 +71718,7 @@ impl_ge_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71823,8 +71823,8 @@ impl_object__gt = {
         {
             NULL,
             NULL,
-            &afw_s_gt,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt
         }
     },
@@ -71840,7 +71840,7 @@ impl_gt_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71866,7 +71866,7 @@ impl_gt_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71892,7 +71892,7 @@ impl_gt_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -71997,8 +71997,8 @@ impl_object__in_range = {
         {
             NULL,
             NULL,
-            &afw_s_in_range,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_in_range,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__in_range
         }
     },
@@ -72014,7 +72014,7 @@ impl_in_range_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72040,7 +72040,7 @@ impl_in_range_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72066,7 +72066,7 @@ impl_in_range_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72092,7 +72092,7 @@ impl_in_range_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72172,8 +72172,8 @@ impl_object__includes = {
         {
             NULL,
             NULL,
-            &afw_s_includes,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_includes,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__includes
         }
     },
@@ -72189,7 +72189,7 @@ impl_includes_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72215,7 +72215,7 @@ impl_includes_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72241,7 +72241,7 @@ impl_includes_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72267,7 +72267,7 @@ impl_includes_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72349,8 +72349,8 @@ impl_object__index_of = {
         {
             NULL,
             NULL,
-            &afw_s_index_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_index_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__index_of
         }
     },
@@ -72366,7 +72366,7 @@ impl_index_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72392,7 +72392,7 @@ impl_index_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72418,7 +72418,7 @@ impl_index_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72444,7 +72444,7 @@ impl_index_of_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72525,8 +72525,8 @@ impl_object__intersection = {
         {
             NULL,
             NULL,
-            &afw_s_intersection,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection
         }
     },
@@ -72542,7 +72542,7 @@ impl_intersection_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72568,7 +72568,7 @@ impl_intersection_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72594,7 +72594,7 @@ impl_intersection_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72686,8 +72686,8 @@ impl_object__is = {
         {
             NULL,
             NULL,
-            &afw_s_is,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is
         }
     },
@@ -72703,7 +72703,7 @@ impl_is_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72729,7 +72729,7 @@ impl_is_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72834,8 +72834,8 @@ impl_object__is_in = {
         {
             NULL,
             NULL,
-            &afw_s_is_in,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in
         }
     },
@@ -72851,7 +72851,7 @@ impl_is_in_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72877,7 +72877,7 @@ impl_is_in_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72903,7 +72903,7 @@ impl_is_in_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -72997,8 +72997,8 @@ impl_object__last_index_of = {
         {
             NULL,
             NULL,
-            &afw_s_last_index_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_last_index_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__last_index_of
         }
     },
@@ -73014,7 +73014,7 @@ impl_last_index_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73040,7 +73040,7 @@ impl_last_index_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73066,7 +73066,7 @@ impl_last_index_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73092,7 +73092,7 @@ impl_last_index_of_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73173,8 +73173,8 @@ impl_object__le = {
         {
             NULL,
             NULL,
-            &afw_s_le,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le
         }
     },
@@ -73190,7 +73190,7 @@ impl_le_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73216,7 +73216,7 @@ impl_le_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73242,7 +73242,7 @@ impl_le_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73347,8 +73347,8 @@ impl_object__length = {
         {
             NULL,
             NULL,
-            &afw_s_length,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_length,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__length
         }
     },
@@ -73364,7 +73364,7 @@ impl_length_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73390,7 +73390,7 @@ impl_length_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73470,8 +73470,8 @@ impl_object__lt = {
         {
             NULL,
             NULL,
-            &afw_s_lt,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt
         }
     },
@@ -73487,7 +73487,7 @@ impl_lt_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73513,7 +73513,7 @@ impl_lt_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73539,7 +73539,7 @@ impl_lt_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73644,8 +73644,8 @@ impl_object__match = {
         {
             NULL,
             NULL,
-            &afw_s_match,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_match,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__match
         }
     },
@@ -73661,7 +73661,7 @@ impl_match_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73687,7 +73687,7 @@ impl_match_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73713,7 +73713,7 @@ impl_match_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73793,8 +73793,8 @@ impl_object__max = {
         {
             NULL,
             NULL,
-            &afw_s_max,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max
         }
     },
@@ -73810,7 +73810,7 @@ impl_max_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73836,7 +73836,7 @@ impl_max_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73919,8 +73919,8 @@ impl_object__min = {
         {
             NULL,
             NULL,
-            &afw_s_min,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min
         }
     },
@@ -73936,7 +73936,7 @@ impl_min_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -73962,7 +73962,7 @@ impl_min_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74045,8 +74045,8 @@ impl_object__mod = {
         {
             NULL,
             NULL,
-            &afw_s_mod,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_mod,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__mod
         }
     },
@@ -74062,7 +74062,7 @@ impl_mod_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74088,7 +74088,7 @@ impl_mod_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74114,7 +74114,7 @@ impl_mod_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74193,8 +74193,8 @@ impl_object__multiply = {
         {
             NULL,
             NULL,
-            &afw_s_multiply,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_multiply,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__multiply
         }
     },
@@ -74210,7 +74210,7 @@ impl_multiply_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74236,7 +74236,7 @@ impl_multiply_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74315,8 +74315,8 @@ impl_object__ne = {
         {
             NULL,
             NULL,
-            &afw_s_ne,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne
         }
     },
@@ -74332,7 +74332,7 @@ impl_ne_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74358,7 +74358,7 @@ impl_ne_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74384,7 +74384,7 @@ impl_ne_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74497,8 +74497,8 @@ impl_object__negative = {
         {
             NULL,
             NULL,
-            &afw_s_negative,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_negative,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__negative
         }
     },
@@ -74514,7 +74514,7 @@ impl_negative_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74540,7 +74540,7 @@ impl_negative_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74619,8 +74619,8 @@ impl_object__nex = {
         {
             NULL,
             NULL,
-            &afw_s_nex,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex
         }
     },
@@ -74636,7 +74636,7 @@ impl_nex_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74662,7 +74662,7 @@ impl_nex_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74688,7 +74688,7 @@ impl_nex_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74793,8 +74793,8 @@ impl_object__normalize_space = {
         {
             NULL,
             NULL,
-            &afw_s_normalize_space,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_normalize_space,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__normalize_space
         }
     },
@@ -74810,7 +74810,7 @@ impl_normalize_space_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74836,7 +74836,7 @@ impl_normalize_space_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74914,8 +74914,8 @@ impl_object__normalize_to_lower_case = {
         {
             NULL,
             NULL,
-            &afw_s_normalize_to_lower_case,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_normalize_to_lower_case,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__normalize_to_lower_case
         }
     },
@@ -74931,7 +74931,7 @@ impl_normalize_to_lower_case_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -74957,7 +74957,7 @@ impl_normalize_to_lower_case_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75035,8 +75035,8 @@ impl_object__one_and_only = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only
         }
     },
@@ -75052,7 +75052,7 @@ impl_one_and_only_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75078,7 +75078,7 @@ impl_one_and_only_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75179,8 +75179,8 @@ impl_object__pow = {
         {
             NULL,
             NULL,
-            &afw_s_pow,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_pow,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__pow
         }
     },
@@ -75196,7 +75196,7 @@ impl_pow_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75222,7 +75222,7 @@ impl_pow_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75248,7 +75248,7 @@ impl_pow_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75327,8 +75327,8 @@ impl_object__regexp_index_of = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_index_of,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_index_of,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_index_of
         }
     },
@@ -75344,7 +75344,7 @@ impl_regexp_index_of_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75370,7 +75370,7 @@ impl_regexp_index_of_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75396,7 +75396,7 @@ impl_regexp_index_of_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75476,8 +75476,8 @@ impl_object__regexp_match = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match
         }
     },
@@ -75493,7 +75493,7 @@ impl_regexp_match_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75519,7 +75519,7 @@ impl_regexp_match_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75545,7 +75545,7 @@ impl_regexp_match_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75629,8 +75629,8 @@ impl_object__regexp_replace = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_replace,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_replace,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_replace
         }
     },
@@ -75646,7 +75646,7 @@ impl_regexp_replace_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75672,7 +75672,7 @@ impl_regexp_replace_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75698,7 +75698,7 @@ impl_regexp_replace_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75724,7 +75724,7 @@ impl_regexp_replace_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75750,7 +75750,7 @@ impl_regexp_replace_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75832,8 +75832,8 @@ impl_object__repeat = {
         {
             NULL,
             NULL,
-            &afw_s_repeat,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_repeat,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__repeat
         }
     },
@@ -75849,7 +75849,7 @@ impl_repeat_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75875,7 +75875,7 @@ impl_repeat_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75901,7 +75901,7 @@ impl_repeat_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -75981,8 +75981,8 @@ impl_object__replace = {
         {
             NULL,
             NULL,
-            &afw_s_replace,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_replace,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__replace
         }
     },
@@ -75998,7 +75998,7 @@ impl_replace_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76024,7 +76024,7 @@ impl_replace_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76050,7 +76050,7 @@ impl_replace_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76076,7 +76076,7 @@ impl_replace_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76102,7 +76102,7 @@ impl_replace_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76184,8 +76184,8 @@ impl_object__round = {
         {
             NULL,
             NULL,
-            &afw_s_round,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_round,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__round
         }
     },
@@ -76201,7 +76201,7 @@ impl_round_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76227,7 +76227,7 @@ impl_round_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76305,8 +76305,8 @@ impl_object__set_equals = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals
         }
     },
@@ -76322,7 +76322,7 @@ impl_set_equals_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76348,7 +76348,7 @@ impl_set_equals_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76374,7 +76374,7 @@ impl_set_equals_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76466,8 +76466,8 @@ impl_object__split = {
         {
             NULL,
             NULL,
-            &afw_s_split,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_split,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__split
         }
     },
@@ -76483,7 +76483,7 @@ impl_split_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76509,7 +76509,7 @@ impl_split_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76535,7 +76535,7 @@ impl_split_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76561,7 +76561,7 @@ impl_split_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76642,8 +76642,8 @@ impl_object__starts_with = {
         {
             NULL,
             NULL,
-            &afw_s_starts_with,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_starts_with,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__starts_with
         }
     },
@@ -76659,7 +76659,7 @@ impl_starts_with_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76685,7 +76685,7 @@ impl_starts_with_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76711,7 +76711,7 @@ impl_starts_with_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76791,8 +76791,8 @@ impl_object__subset = {
         {
             NULL,
             NULL,
-            &afw_s_subset,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset
         }
     },
@@ -76808,7 +76808,7 @@ impl_subset_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76834,7 +76834,7 @@ impl_subset_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76860,7 +76860,7 @@ impl_subset_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76952,8 +76952,8 @@ impl_object__substring = {
         {
             NULL,
             NULL,
-            &afw_s_substring,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_substring,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__substring
         }
     },
@@ -76969,7 +76969,7 @@ impl_substring_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -76995,7 +76995,7 @@ impl_substring_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77021,7 +77021,7 @@ impl_substring_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77047,7 +77047,7 @@ impl_substring_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77136,8 +77136,8 @@ impl_object__subtract = {
         {
             NULL,
             NULL,
-            &afw_s_subtract,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract
         }
     },
@@ -77153,7 +77153,7 @@ impl_subtract_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77179,7 +77179,7 @@ impl_subtract_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77205,7 +77205,7 @@ impl_subtract_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77285,8 +77285,8 @@ impl_object__subtract_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_dayTimeDuration
         }
     },
@@ -77302,7 +77302,7 @@ impl_subtract_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77328,7 +77328,7 @@ impl_subtract_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77354,7 +77354,7 @@ impl_subtract_dayTimeDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77433,8 +77433,8 @@ impl_object__subtract_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_subtract_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subtract_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subtract_yearMonthDuration
         }
     },
@@ -77450,7 +77450,7 @@ impl_subtract_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77476,7 +77476,7 @@ impl_subtract_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77502,7 +77502,7 @@ impl_subtract_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77582,8 +77582,8 @@ impl_object__to_anyURI = {
         {
             NULL,
             NULL,
-            &afw_s_to_anyURI,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_anyURI,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_anyURI
         }
     },
@@ -77599,7 +77599,7 @@ impl_to_anyURI_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77625,7 +77625,7 @@ impl_to_anyURI_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77711,8 +77711,8 @@ impl_object__to_boolean = {
         {
             NULL,
             NULL,
-            &afw_s_to_boolean,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_boolean,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_boolean
         }
     },
@@ -77728,7 +77728,7 @@ impl_to_boolean_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77754,7 +77754,7 @@ impl_to_boolean_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77840,8 +77840,8 @@ impl_object__to_date = {
         {
             NULL,
             NULL,
-            &afw_s_to_date,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_date,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_date
         }
     },
@@ -77857,7 +77857,7 @@ impl_to_date_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77883,7 +77883,7 @@ impl_to_date_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -77969,8 +77969,8 @@ impl_object__to_dateTime = {
         {
             NULL,
             NULL,
-            &afw_s_to_dateTime,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_dateTime,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_dateTime
         }
     },
@@ -77986,7 +77986,7 @@ impl_to_dateTime_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78012,7 +78012,7 @@ impl_to_dateTime_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78098,8 +78098,8 @@ impl_object__to_dayTimeDuration = {
         {
             NULL,
             NULL,
-            &afw_s_to_dayTimeDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_dayTimeDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_dayTimeDuration
         }
     },
@@ -78115,7 +78115,7 @@ impl_to_dayTimeDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78141,7 +78141,7 @@ impl_to_dayTimeDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78227,8 +78227,8 @@ impl_object__to_dnsName = {
         {
             NULL,
             NULL,
-            &afw_s_to_dnsName,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_dnsName,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_dnsName
         }
     },
@@ -78244,7 +78244,7 @@ impl_to_dnsName_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78270,7 +78270,7 @@ impl_to_dnsName_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78356,8 +78356,8 @@ impl_object__to_double = {
         {
             NULL,
             NULL,
-            &afw_s_to_double,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_double,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_double
         }
     },
@@ -78373,7 +78373,7 @@ impl_to_double_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78399,7 +78399,7 @@ impl_to_double_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78486,8 +78486,8 @@ impl_object__to_integer = {
         {
             NULL,
             NULL,
-            &afw_s_to_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_integer
         }
     },
@@ -78503,7 +78503,7 @@ impl_to_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78529,7 +78529,7 @@ impl_to_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78608,8 +78608,8 @@ impl_object__to_ipAddress = {
         {
             NULL,
             NULL,
-            &afw_s_to_ipAddress,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_ipAddress,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_ipAddress
         }
     },
@@ -78625,7 +78625,7 @@ impl_to_ipAddress_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78651,7 +78651,7 @@ impl_to_ipAddress_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78737,8 +78737,8 @@ impl_object__to_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_to_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_rfc822Name
         }
     },
@@ -78754,7 +78754,7 @@ impl_to_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78780,7 +78780,7 @@ impl_to_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78866,8 +78866,8 @@ impl_object__to_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string
         }
     },
@@ -78883,7 +78883,7 @@ impl_to_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -78909,7 +78909,7 @@ impl_to_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79011,8 +79011,8 @@ impl_object__to_time = {
         {
             NULL,
             NULL,
-            &afw_s_to_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_time
         }
     },
@@ -79028,7 +79028,7 @@ impl_to_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79054,7 +79054,7 @@ impl_to_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79140,8 +79140,8 @@ impl_object__to_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_to_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_x500Name
         }
     },
@@ -79157,7 +79157,7 @@ impl_to_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79183,7 +79183,7 @@ impl_to_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79269,8 +79269,8 @@ impl_object__to_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_to_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_yearMonthDuration
         }
     },
@@ -79286,7 +79286,7 @@ impl_to_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79312,7 +79312,7 @@ impl_to_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79398,8 +79398,8 @@ impl_object__union = {
         {
             NULL,
             NULL,
-            &afw_s_union,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union
         }
     },
@@ -79415,7 +79415,7 @@ impl_union_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79441,7 +79441,7 @@ impl_union_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79532,8 +79532,8 @@ impl_object__url_encode = {
         {
             NULL,
             NULL,
-            &afw_s_url_encode,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_url_encode,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__url_encode
         }
     },
@@ -79549,7 +79549,7 @@ impl_url_encode_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79575,7 +79575,7 @@ impl_url_encode_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79654,8 +79654,8 @@ impl_object__random_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_random_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_random_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__random_base64Binary
         }
     },
@@ -79671,7 +79671,7 @@ impl_random_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79697,7 +79697,7 @@ impl_random_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79769,8 +79769,8 @@ impl_object__random_digits = {
         {
             NULL,
             NULL,
-            &afw_s_random_digits,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_random_digits,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__random_digits
         }
     },
@@ -79786,7 +79786,7 @@ impl_random_digits_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79812,7 +79812,7 @@ impl_random_digits_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79884,8 +79884,8 @@ impl_object__random_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_random_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_random_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__random_hexBinary
         }
     },
@@ -79901,7 +79901,7 @@ impl_random_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79927,7 +79927,7 @@ impl_random_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -79999,8 +79999,8 @@ impl_object__random_integer = {
         {
             NULL,
             NULL,
-            &afw_s_random_integer,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_random_integer,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__random_integer
         }
     },
@@ -80016,7 +80016,7 @@ impl_random_integer_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80042,7 +80042,7 @@ impl_random_integer_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80068,7 +80068,7 @@ impl_random_integer_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80141,8 +80141,8 @@ impl_object__random_number = {
         {
             NULL,
             NULL,
-            &afw_s_random_number,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_random_number,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__random_number
         }
     },
@@ -80158,7 +80158,7 @@ impl_random_number_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80184,7 +80184,7 @@ impl_random_number_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80210,7 +80210,7 @@ impl_random_number_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80283,8 +80283,8 @@ impl_object__compile_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_compile_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile_regexp
         }
     },
@@ -80300,7 +80300,7 @@ impl_compile_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80326,7 +80326,7 @@ impl_compile_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80352,7 +80352,7 @@ impl_compile_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80425,8 +80425,8 @@ impl_object__eq_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_eq_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_regexp
         }
     },
@@ -80442,7 +80442,7 @@ impl_eq_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80468,7 +80468,7 @@ impl_eq_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80494,7 +80494,7 @@ impl_eq_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80575,8 +80575,8 @@ impl_object__eqx_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_regexp
         }
     },
@@ -80592,7 +80592,7 @@ impl_eqx_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80618,7 +80618,7 @@ impl_eqx_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80644,7 +80644,7 @@ impl_eqx_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80717,8 +80717,8 @@ impl_object__ge_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_ge_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_regexp
         }
     },
@@ -80734,7 +80734,7 @@ impl_ge_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80760,7 +80760,7 @@ impl_ge_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80786,7 +80786,7 @@ impl_ge_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80859,8 +80859,8 @@ impl_object__gt_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_gt_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_regexp
         }
     },
@@ -80876,7 +80876,7 @@ impl_gt_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80902,7 +80902,7 @@ impl_gt_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -80928,7 +80928,7 @@ impl_gt_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81001,8 +81001,8 @@ impl_object__le_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_le_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_regexp
         }
     },
@@ -81018,7 +81018,7 @@ impl_le_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81044,7 +81044,7 @@ impl_le_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81070,7 +81070,7 @@ impl_le_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81143,8 +81143,8 @@ impl_object__lt_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_lt_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_regexp
         }
     },
@@ -81160,7 +81160,7 @@ impl_lt_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81186,7 +81186,7 @@ impl_lt_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81212,7 +81212,7 @@ impl_lt_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81285,8 +81285,8 @@ impl_object__ne_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_ne_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_regexp
         }
     },
@@ -81302,7 +81302,7 @@ impl_ne_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81328,7 +81328,7 @@ impl_ne_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81354,7 +81354,7 @@ impl_ne_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81435,8 +81435,8 @@ impl_object__nex_regexp = {
         {
             NULL,
             NULL,
-            &afw_s_nex_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_regexp
         }
     },
@@ -81452,7 +81452,7 @@ impl_nex_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81478,7 +81478,7 @@ impl_nex_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81504,7 +81504,7 @@ impl_nex_regexp_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81577,8 +81577,8 @@ impl_object__regexp = {
         {
             NULL,
             NULL,
-            &afw_s_regexp,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp
         }
     },
@@ -81594,7 +81594,7 @@ impl_regexp_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81620,7 +81620,7 @@ impl_regexp_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81700,8 +81700,8 @@ impl_object__compile_relaxed_json = {
         {
             NULL,
             NULL,
-            &afw_s_compile_relaxed_json,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile_relaxed_json,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile_relaxed_json
         }
     },
@@ -81717,7 +81717,7 @@ impl_compile_relaxed_json_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81743,7 +81743,7 @@ impl_compile_relaxed_json_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81769,7 +81769,7 @@ impl_compile_relaxed_json_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81842,8 +81842,8 @@ impl_object__relaxed_json = {
         {
             NULL,
             NULL,
-            &afw_s_relaxed_json,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_relaxed_json,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__relaxed_json
         }
     },
@@ -81859,7 +81859,7 @@ impl_relaxed_json_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81885,7 +81885,7 @@ impl_relaxed_json_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -81965,8 +81965,8 @@ impl_object__at_least_one_member_of_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_rfc822Name
         }
     },
@@ -81982,7 +81982,7 @@ impl_at_least_one_member_of_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82008,7 +82008,7 @@ impl_at_least_one_member_of_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82034,7 +82034,7 @@ impl_at_least_one_member_of_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82107,8 +82107,8 @@ impl_object__bag_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_bag_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_rfc822Name
         }
     },
@@ -82124,7 +82124,7 @@ impl_bag_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82150,7 +82150,7 @@ impl_bag_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82222,8 +82222,8 @@ impl_object__bag_size_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_rfc822Name
         }
     },
@@ -82239,7 +82239,7 @@ impl_bag_size_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82265,7 +82265,7 @@ impl_bag_size_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82337,8 +82337,8 @@ impl_object__eq_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_eq_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_rfc822Name
         }
     },
@@ -82354,7 +82354,7 @@ impl_eq_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82380,7 +82380,7 @@ impl_eq_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82406,7 +82406,7 @@ impl_eq_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82487,8 +82487,8 @@ impl_object__eqx_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_rfc822Name
         }
     },
@@ -82504,7 +82504,7 @@ impl_eqx_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82530,7 +82530,7 @@ impl_eqx_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82556,7 +82556,7 @@ impl_eqx_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82629,8 +82629,8 @@ impl_object__ge_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_ge_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_rfc822Name
         }
     },
@@ -82646,7 +82646,7 @@ impl_ge_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82672,7 +82672,7 @@ impl_ge_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82698,7 +82698,7 @@ impl_ge_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82771,8 +82771,8 @@ impl_object__gt_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_gt_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_rfc822Name
         }
     },
@@ -82788,7 +82788,7 @@ impl_gt_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82814,7 +82814,7 @@ impl_gt_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82840,7 +82840,7 @@ impl_gt_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82913,8 +82913,8 @@ impl_object__intersection_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_rfc822Name
         }
     },
@@ -82930,7 +82930,7 @@ impl_intersection_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82956,7 +82956,7 @@ impl_intersection_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -82982,7 +82982,7 @@ impl_intersection_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83055,8 +83055,8 @@ impl_object__is_in_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_rfc822Name
         }
     },
@@ -83072,7 +83072,7 @@ impl_is_in_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83098,7 +83098,7 @@ impl_is_in_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83124,7 +83124,7 @@ impl_is_in_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83197,8 +83197,8 @@ impl_object__is_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_is_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_rfc822Name
         }
     },
@@ -83214,7 +83214,7 @@ impl_is_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83240,7 +83240,7 @@ impl_is_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83312,8 +83312,8 @@ impl_object__le_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_le_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_rfc822Name
         }
     },
@@ -83329,7 +83329,7 @@ impl_le_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83355,7 +83355,7 @@ impl_le_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83381,7 +83381,7 @@ impl_le_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83454,8 +83454,8 @@ impl_object__lt_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_lt_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_rfc822Name
         }
     },
@@ -83471,7 +83471,7 @@ impl_lt_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83497,7 +83497,7 @@ impl_lt_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83523,7 +83523,7 @@ impl_lt_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83596,8 +83596,8 @@ impl_object__match_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_match_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_match_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__match_rfc822Name
         }
     },
@@ -83613,7 +83613,7 @@ impl_match_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83639,7 +83639,7 @@ impl_match_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83665,7 +83665,7 @@ impl_match_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83738,8 +83738,8 @@ impl_object__ne_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_ne_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_rfc822Name
         }
     },
@@ -83755,7 +83755,7 @@ impl_ne_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83781,7 +83781,7 @@ impl_ne_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83807,7 +83807,7 @@ impl_ne_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83888,8 +83888,8 @@ impl_object__nex_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_nex_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_rfc822Name
         }
     },
@@ -83905,7 +83905,7 @@ impl_nex_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83931,7 +83931,7 @@ impl_nex_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -83957,7 +83957,7 @@ impl_nex_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84030,8 +84030,8 @@ impl_object__one_and_only_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_rfc822Name
         }
     },
@@ -84047,7 +84047,7 @@ impl_one_and_only_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84073,7 +84073,7 @@ impl_one_and_only_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84153,8 +84153,8 @@ impl_object__regexp_match_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match_rfc822Name
         }
     },
@@ -84170,7 +84170,7 @@ impl_regexp_match_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84196,7 +84196,7 @@ impl_regexp_match_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84222,7 +84222,7 @@ impl_regexp_match_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84295,8 +84295,8 @@ impl_object__rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__rfc822Name
         }
     },
@@ -84312,7 +84312,7 @@ impl_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84338,7 +84338,7 @@ impl_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84418,8 +84418,8 @@ impl_object__set_equals_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_rfc822Name
         }
     },
@@ -84435,7 +84435,7 @@ impl_set_equals_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84461,7 +84461,7 @@ impl_set_equals_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84487,7 +84487,7 @@ impl_set_equals_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84560,8 +84560,8 @@ impl_object__subset_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_subset_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_rfc822Name
         }
     },
@@ -84577,7 +84577,7 @@ impl_subset_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84603,7 +84603,7 @@ impl_subset_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84629,7 +84629,7 @@ impl_subset_rfc822Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84702,8 +84702,8 @@ impl_object__to_string_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_rfc822Name
         }
     },
@@ -84719,7 +84719,7 @@ impl_to_string_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84745,7 +84745,7 @@ impl_to_string_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84817,8 +84817,8 @@ impl_object__union_rfc822Name = {
         {
             NULL,
             NULL,
-            &afw_s_union_rfc822Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_rfc822Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_rfc822Name
         }
     },
@@ -84834,7 +84834,7 @@ impl_union_rfc822Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84860,7 +84860,7 @@ impl_union_rfc822Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84932,8 +84932,8 @@ impl_object__bag_script = {
         {
             NULL,
             NULL,
-            &afw_s_bag_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_script
         }
     },
@@ -84949,7 +84949,7 @@ impl_bag_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -84975,7 +84975,7 @@ impl_bag_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85047,8 +85047,8 @@ impl_object__bag_size_script = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_script
         }
     },
@@ -85064,7 +85064,7 @@ impl_bag_size_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85090,7 +85090,7 @@ impl_bag_size_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85162,8 +85162,8 @@ impl_object__compile_script = {
         {
             NULL,
             NULL,
-            &afw_s_compile_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile_script
         }
     },
@@ -85179,7 +85179,7 @@ impl_compile_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85205,7 +85205,7 @@ impl_compile_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85231,7 +85231,7 @@ impl_compile_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85304,8 +85304,8 @@ impl_object__eq_script = {
         {
             NULL,
             NULL,
-            &afw_s_eq_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_script
         }
     },
@@ -85321,7 +85321,7 @@ impl_eq_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85347,7 +85347,7 @@ impl_eq_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85373,7 +85373,7 @@ impl_eq_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85454,8 +85454,8 @@ impl_object__eqx_script = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_script
         }
     },
@@ -85471,7 +85471,7 @@ impl_eqx_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85497,7 +85497,7 @@ impl_eqx_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85523,7 +85523,7 @@ impl_eqx_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85596,8 +85596,8 @@ impl_object__evaluate_script = {
         {
             NULL,
             NULL,
-            &afw_s_evaluate_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_evaluate_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__evaluate_script
         }
     },
@@ -85613,7 +85613,7 @@ impl_evaluate_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85639,7 +85639,7 @@ impl_evaluate_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85665,7 +85665,7 @@ impl_evaluate_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85738,8 +85738,8 @@ impl_object__ge_script = {
         {
             NULL,
             NULL,
-            &afw_s_ge_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_script
         }
     },
@@ -85755,7 +85755,7 @@ impl_ge_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85781,7 +85781,7 @@ impl_ge_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85807,7 +85807,7 @@ impl_ge_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85880,8 +85880,8 @@ impl_object__gt_script = {
         {
             NULL,
             NULL,
-            &afw_s_gt_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_script
         }
     },
@@ -85897,7 +85897,7 @@ impl_gt_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85923,7 +85923,7 @@ impl_gt_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -85949,7 +85949,7 @@ impl_gt_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86022,8 +86022,8 @@ impl_object__is_script = {
         {
             NULL,
             NULL,
-            &afw_s_is_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_script
         }
     },
@@ -86039,7 +86039,7 @@ impl_is_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86065,7 +86065,7 @@ impl_is_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86137,8 +86137,8 @@ impl_object__le_script = {
         {
             NULL,
             NULL,
-            &afw_s_le_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_script
         }
     },
@@ -86154,7 +86154,7 @@ impl_le_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86180,7 +86180,7 @@ impl_le_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86206,7 +86206,7 @@ impl_le_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86279,8 +86279,8 @@ impl_object__lt_script = {
         {
             NULL,
             NULL,
-            &afw_s_lt_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_script
         }
     },
@@ -86296,7 +86296,7 @@ impl_lt_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86322,7 +86322,7 @@ impl_lt_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86348,7 +86348,7 @@ impl_lt_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86421,8 +86421,8 @@ impl_object__ne_script = {
         {
             NULL,
             NULL,
-            &afw_s_ne_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_script
         }
     },
@@ -86438,7 +86438,7 @@ impl_ne_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86464,7 +86464,7 @@ impl_ne_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86490,7 +86490,7 @@ impl_ne_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86571,8 +86571,8 @@ impl_object__nex_script = {
         {
             NULL,
             NULL,
-            &afw_s_nex_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_script
         }
     },
@@ -86588,7 +86588,7 @@ impl_nex_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86614,7 +86614,7 @@ impl_nex_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86640,7 +86640,7 @@ impl_nex_script_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86713,8 +86713,8 @@ impl_object__script = {
         {
             NULL,
             NULL,
-            &afw_s_script,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_script,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__script
         }
     },
@@ -86730,7 +86730,7 @@ impl_script_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86756,7 +86756,7 @@ impl_script_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86836,8 +86836,8 @@ impl_object__close = {
         {
             NULL,
             NULL,
-            &afw_s_close,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_close,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__close
         }
     },
@@ -86853,7 +86853,7 @@ impl_close_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86879,7 +86879,7 @@ impl_close_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -86957,8 +86957,8 @@ impl_object__flush = {
         {
             NULL,
             NULL,
-            &afw_s_flush,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_flush,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__flush
         }
     },
@@ -86974,7 +86974,7 @@ impl_flush_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87000,7 +87000,7 @@ impl_flush_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87078,8 +87078,8 @@ impl_object__get_stream_error = {
         {
             NULL,
             NULL,
-            &afw_s_get_stream_error,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_get_stream_error,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__get_stream_error
         }
     },
@@ -87095,7 +87095,7 @@ impl_get_stream_error_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87166,8 +87166,8 @@ impl_object__open_file = {
         {
             NULL,
             NULL,
-            &afw_s_open_file,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_open_file,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__open_file
         }
     },
@@ -87183,7 +87183,7 @@ impl_open_file_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87209,7 +87209,7 @@ impl_open_file_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87235,7 +87235,7 @@ impl_open_file_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87261,7 +87261,7 @@ impl_open_file_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87287,7 +87287,7 @@ impl_open_file_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87368,8 +87368,8 @@ impl_object__open_response = {
         {
             NULL,
             NULL,
-            &afw_s_open_response,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_open_response,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__open_response
         }
     },
@@ -87385,7 +87385,7 @@ impl_open_response_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87411,7 +87411,7 @@ impl_open_response_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87437,7 +87437,7 @@ impl_open_response_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87516,8 +87516,8 @@ impl_object__open_uri = {
         {
             NULL,
             NULL,
-            &afw_s_open_uri,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_open_uri,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__open_uri
         }
     },
@@ -87533,7 +87533,7 @@ impl_open_uri_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87559,7 +87559,7 @@ impl_open_uri_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87585,7 +87585,7 @@ impl_open_uri_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87611,7 +87611,7 @@ impl_open_uri_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87637,7 +87637,7 @@ impl_open_uri_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87718,8 +87718,8 @@ impl_object__print = {
         {
             NULL,
             NULL,
-            &afw_s_print,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_print,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__print
         }
     },
@@ -87735,7 +87735,7 @@ impl_print_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87761,7 +87761,7 @@ impl_print_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87839,8 +87839,8 @@ impl_object__println = {
         {
             NULL,
             NULL,
-            &afw_s_println,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_println,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__println
         }
     },
@@ -87856,7 +87856,7 @@ impl_println_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87882,7 +87882,7 @@ impl_println_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -87960,8 +87960,8 @@ impl_object__read = {
         {
             NULL,
             NULL,
-            &afw_s_read,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_read,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__read
         }
     },
@@ -87977,7 +87977,7 @@ impl_read_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88003,7 +88003,7 @@ impl_read_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88029,7 +88029,7 @@ impl_read_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88108,8 +88108,8 @@ impl_object__read_to_base64Binary = {
         {
             NULL,
             NULL,
-            &afw_s_read_to_base64Binary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_read_to_base64Binary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__read_to_base64Binary
         }
     },
@@ -88125,7 +88125,7 @@ impl_read_to_base64Binary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88151,7 +88151,7 @@ impl_read_to_base64Binary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88177,7 +88177,7 @@ impl_read_to_base64Binary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88256,8 +88256,8 @@ impl_object__read_to_hexBinary = {
         {
             NULL,
             NULL,
-            &afw_s_read_to_hexBinary,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_read_to_hexBinary,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__read_to_hexBinary
         }
     },
@@ -88273,7 +88273,7 @@ impl_read_to_hexBinary_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88299,7 +88299,7 @@ impl_read_to_hexBinary_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88325,7 +88325,7 @@ impl_read_to_hexBinary_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88404,8 +88404,8 @@ impl_object__readln = {
         {
             NULL,
             NULL,
-            &afw_s_readln,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_readln,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__readln
         }
     },
@@ -88421,7 +88421,7 @@ impl_readln_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88447,7 +88447,7 @@ impl_readln_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88525,8 +88525,8 @@ impl_object__stream = {
         {
             NULL,
             NULL,
-            &afw_s_stream,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_stream,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__stream
         }
     },
@@ -88542,7 +88542,7 @@ impl_stream_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88568,7 +88568,7 @@ impl_stream_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88640,8 +88640,8 @@ impl_object__write = {
         {
             NULL,
             NULL,
-            &afw_s_write,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_write,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__write
         }
     },
@@ -88657,7 +88657,7 @@ impl_write_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88683,7 +88683,7 @@ impl_write_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88709,7 +88709,7 @@ impl_write_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88788,8 +88788,8 @@ impl_object__write_internal = {
         {
             NULL,
             NULL,
-            &afw_s_write_internal,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_write_internal,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__write_internal
         }
     },
@@ -88805,7 +88805,7 @@ impl_write_internal_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88831,7 +88831,7 @@ impl_write_internal_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88857,7 +88857,7 @@ impl_write_internal_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88936,8 +88936,8 @@ impl_object__writeln = {
         {
             NULL,
             NULL,
-            &afw_s_writeln,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_writeln,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__writeln
         }
     },
@@ -88953,7 +88953,7 @@ impl_writeln_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -88979,7 +88979,7 @@ impl_writeln_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89005,7 +89005,7 @@ impl_writeln_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89084,8 +89084,8 @@ impl_object__add_string = {
         {
             NULL,
             NULL,
-            &afw_s_add_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_add_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__add_string
         }
     },
@@ -89101,7 +89101,7 @@ impl_add_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89127,7 +89127,7 @@ impl_add_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89153,7 +89153,7 @@ impl_add_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89226,8 +89226,8 @@ impl_object__at_least_one_member_of_string = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_string
         }
     },
@@ -89243,7 +89243,7 @@ impl_at_least_one_member_of_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89269,7 +89269,7 @@ impl_at_least_one_member_of_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89295,7 +89295,7 @@ impl_at_least_one_member_of_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89368,8 +89368,8 @@ impl_object__bag_size_string = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_string
         }
     },
@@ -89385,7 +89385,7 @@ impl_bag_size_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89411,7 +89411,7 @@ impl_bag_size_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89483,8 +89483,8 @@ impl_object__bag_string = {
         {
             NULL,
             NULL,
-            &afw_s_bag_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_string
         }
     },
@@ -89500,7 +89500,7 @@ impl_bag_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89526,7 +89526,7 @@ impl_bag_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89598,8 +89598,8 @@ impl_object__concat = {
         {
             NULL,
             NULL,
-            &afw_s_concat,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_concat,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__concat
         }
     },
@@ -89615,7 +89615,7 @@ impl_concat_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89641,7 +89641,7 @@ impl_concat_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89721,8 +89721,8 @@ impl_object__encode_as_base64Binary_string = {
         {
             NULL,
             NULL,
-            &afw_s_encode_as_base64Binary_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_encode_as_base64Binary_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__encode_as_base64Binary_string
         }
     },
@@ -89738,7 +89738,7 @@ impl_encode_as_base64Binary_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89764,7 +89764,7 @@ impl_encode_as_base64Binary_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89836,8 +89836,8 @@ impl_object__encode_as_hexBinary_string = {
         {
             NULL,
             NULL,
-            &afw_s_encode_as_hexBinary_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_encode_as_hexBinary_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__encode_as_hexBinary_string
         }
     },
@@ -89853,7 +89853,7 @@ impl_encode_as_hexBinary_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89879,7 +89879,7 @@ impl_encode_as_hexBinary_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89951,8 +89951,8 @@ impl_object__ends_with_string = {
         {
             NULL,
             NULL,
-            &afw_s_ends_with_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ends_with_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ends_with_string
         }
     },
@@ -89968,7 +89968,7 @@ impl_ends_with_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -89994,7 +89994,7 @@ impl_ends_with_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90020,7 +90020,7 @@ impl_ends_with_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90093,8 +90093,8 @@ impl_object__eq_ignore_case_string = {
         {
             NULL,
             NULL,
-            &afw_s_eq_ignore_case_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_ignore_case_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_ignore_case_string
         }
     },
@@ -90110,7 +90110,7 @@ impl_eq_ignore_case_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90136,7 +90136,7 @@ impl_eq_ignore_case_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90162,7 +90162,7 @@ impl_eq_ignore_case_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90235,8 +90235,8 @@ impl_object__eq_string = {
         {
             NULL,
             NULL,
-            &afw_s_eq_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_string
         }
     },
@@ -90252,7 +90252,7 @@ impl_eq_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90278,7 +90278,7 @@ impl_eq_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90304,7 +90304,7 @@ impl_eq_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90385,8 +90385,8 @@ impl_object__eqx_string = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_string
         }
     },
@@ -90402,7 +90402,7 @@ impl_eqx_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90428,7 +90428,7 @@ impl_eqx_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90454,7 +90454,7 @@ impl_eqx_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90527,8 +90527,8 @@ impl_object__ge_string = {
         {
             NULL,
             NULL,
-            &afw_s_ge_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_string
         }
     },
@@ -90544,7 +90544,7 @@ impl_ge_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90570,7 +90570,7 @@ impl_ge_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90596,7 +90596,7 @@ impl_ge_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90669,8 +90669,8 @@ impl_object__gt_string = {
         {
             NULL,
             NULL,
-            &afw_s_gt_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_string
         }
     },
@@ -90686,7 +90686,7 @@ impl_gt_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90712,7 +90712,7 @@ impl_gt_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90738,7 +90738,7 @@ impl_gt_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90811,8 +90811,8 @@ impl_object__includes_string = {
         {
             NULL,
             NULL,
-            &afw_s_includes_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_includes_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__includes_string
         }
     },
@@ -90828,7 +90828,7 @@ impl_includes_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90854,7 +90854,7 @@ impl_includes_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90880,7 +90880,7 @@ impl_includes_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90906,7 +90906,7 @@ impl_includes_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -90980,8 +90980,8 @@ impl_object__index_of_string = {
         {
             NULL,
             NULL,
-            &afw_s_index_of_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_index_of_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__index_of_string
         }
     },
@@ -90997,7 +90997,7 @@ impl_index_of_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91023,7 +91023,7 @@ impl_index_of_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91049,7 +91049,7 @@ impl_index_of_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91075,7 +91075,7 @@ impl_index_of_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91149,8 +91149,8 @@ impl_object__intersection_string = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_string
         }
     },
@@ -91166,7 +91166,7 @@ impl_intersection_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91192,7 +91192,7 @@ impl_intersection_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91218,7 +91218,7 @@ impl_intersection_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91291,8 +91291,8 @@ impl_object__is_in_string = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_string
         }
     },
@@ -91308,7 +91308,7 @@ impl_is_in_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91334,7 +91334,7 @@ impl_is_in_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91360,7 +91360,7 @@ impl_is_in_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91433,8 +91433,8 @@ impl_object__is_string = {
         {
             NULL,
             NULL,
-            &afw_s_is_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_string
         }
     },
@@ -91450,7 +91450,7 @@ impl_is_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91476,7 +91476,7 @@ impl_is_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91548,8 +91548,8 @@ impl_object__last_index_of_string = {
         {
             NULL,
             NULL,
-            &afw_s_last_index_of_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_last_index_of_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__last_index_of_string
         }
     },
@@ -91565,7 +91565,7 @@ impl_last_index_of_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91591,7 +91591,7 @@ impl_last_index_of_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91617,7 +91617,7 @@ impl_last_index_of_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91643,7 +91643,7 @@ impl_last_index_of_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91717,8 +91717,8 @@ impl_object__le_string = {
         {
             NULL,
             NULL,
-            &afw_s_le_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_string
         }
     },
@@ -91734,7 +91734,7 @@ impl_le_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91760,7 +91760,7 @@ impl_le_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91786,7 +91786,7 @@ impl_le_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91859,8 +91859,8 @@ impl_object__length_string = {
         {
             NULL,
             NULL,
-            &afw_s_length_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_length_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__length_string
         }
     },
@@ -91876,7 +91876,7 @@ impl_length_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91902,7 +91902,7 @@ impl_length_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -91974,8 +91974,8 @@ impl_object__lt_string = {
         {
             NULL,
             NULL,
-            &afw_s_lt_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_string
         }
     },
@@ -91991,7 +91991,7 @@ impl_lt_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92017,7 +92017,7 @@ impl_lt_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92043,7 +92043,7 @@ impl_lt_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92116,8 +92116,8 @@ impl_object__max_string = {
         {
             NULL,
             NULL,
-            &afw_s_max_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max_string
         }
     },
@@ -92133,7 +92133,7 @@ impl_max_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92159,7 +92159,7 @@ impl_max_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92231,8 +92231,8 @@ impl_object__min_string = {
         {
             NULL,
             NULL,
-            &afw_s_min_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min_string
         }
     },
@@ -92248,7 +92248,7 @@ impl_min_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92274,7 +92274,7 @@ impl_min_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92346,8 +92346,8 @@ impl_object__ne_string = {
         {
             NULL,
             NULL,
-            &afw_s_ne_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_string
         }
     },
@@ -92363,7 +92363,7 @@ impl_ne_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92389,7 +92389,7 @@ impl_ne_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92415,7 +92415,7 @@ impl_ne_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92496,8 +92496,8 @@ impl_object__nex_string = {
         {
             NULL,
             NULL,
-            &afw_s_nex_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_string
         }
     },
@@ -92513,7 +92513,7 @@ impl_nex_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92539,7 +92539,7 @@ impl_nex_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92565,7 +92565,7 @@ impl_nex_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92638,8 +92638,8 @@ impl_object__normalize_space_string = {
         {
             NULL,
             NULL,
-            &afw_s_normalize_space_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_normalize_space_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__normalize_space_string
         }
     },
@@ -92655,7 +92655,7 @@ impl_normalize_space_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92681,7 +92681,7 @@ impl_normalize_space_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92753,8 +92753,8 @@ impl_object__normalize_to_lower_case_string = {
         {
             NULL,
             NULL,
-            &afw_s_normalize_to_lower_case_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_normalize_to_lower_case_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__normalize_to_lower_case_string
         }
     },
@@ -92770,7 +92770,7 @@ impl_normalize_to_lower_case_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92796,7 +92796,7 @@ impl_normalize_to_lower_case_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92868,8 +92868,8 @@ impl_object__one_and_only_string = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_string
         }
     },
@@ -92885,7 +92885,7 @@ impl_one_and_only_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92911,7 +92911,7 @@ impl_one_and_only_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -92991,8 +92991,8 @@ impl_object__regexp_index_of_string = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_index_of_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_index_of_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_index_of_string
         }
     },
@@ -93008,7 +93008,7 @@ impl_regexp_index_of_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93034,7 +93034,7 @@ impl_regexp_index_of_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93060,7 +93060,7 @@ impl_regexp_index_of_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93133,8 +93133,8 @@ impl_object__regexp_match_string = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match_string
         }
     },
@@ -93150,7 +93150,7 @@ impl_regexp_match_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93176,7 +93176,7 @@ impl_regexp_match_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93202,7 +93202,7 @@ impl_regexp_match_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93275,8 +93275,8 @@ impl_object__regexp_replace_string = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_replace_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_replace_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_replace_string
         }
     },
@@ -93292,7 +93292,7 @@ impl_regexp_replace_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93318,7 +93318,7 @@ impl_regexp_replace_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93344,7 +93344,7 @@ impl_regexp_replace_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93370,7 +93370,7 @@ impl_regexp_replace_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93396,7 +93396,7 @@ impl_regexp_replace_string_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93471,8 +93471,8 @@ impl_object__repeat_string = {
         {
             NULL,
             NULL,
-            &afw_s_repeat_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_repeat_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__repeat_string
         }
     },
@@ -93488,7 +93488,7 @@ impl_repeat_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93514,7 +93514,7 @@ impl_repeat_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93540,7 +93540,7 @@ impl_repeat_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93613,8 +93613,8 @@ impl_object__replace_string = {
         {
             NULL,
             NULL,
-            &afw_s_replace_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_replace_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__replace_string
         }
     },
@@ -93630,7 +93630,7 @@ impl_replace_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93656,7 +93656,7 @@ impl_replace_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93682,7 +93682,7 @@ impl_replace_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93708,7 +93708,7 @@ impl_replace_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93734,7 +93734,7 @@ impl_replace_string_parameter_4 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93809,8 +93809,8 @@ impl_object__set_equals_string = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_string
         }
     },
@@ -93826,7 +93826,7 @@ impl_set_equals_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93852,7 +93852,7 @@ impl_set_equals_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93878,7 +93878,7 @@ impl_set_equals_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93951,8 +93951,8 @@ impl_object__split_string = {
         {
             NULL,
             NULL,
-            &afw_s_split_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_split_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__split_string
         }
     },
@@ -93968,7 +93968,7 @@ impl_split_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -93994,7 +93994,7 @@ impl_split_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94020,7 +94020,7 @@ impl_split_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94046,7 +94046,7 @@ impl_split_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94120,8 +94120,8 @@ impl_object__starts_with_string = {
         {
             NULL,
             NULL,
-            &afw_s_starts_with_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_starts_with_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__starts_with_string
         }
     },
@@ -94137,7 +94137,7 @@ impl_starts_with_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94163,7 +94163,7 @@ impl_starts_with_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94189,7 +94189,7 @@ impl_starts_with_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94262,8 +94262,8 @@ impl_object__string = {
         {
             NULL,
             NULL,
-            &afw_s_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__string
         }
     },
@@ -94279,7 +94279,7 @@ impl_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94305,7 +94305,7 @@ impl_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94385,8 +94385,8 @@ impl_object__subset_string = {
         {
             NULL,
             NULL,
-            &afw_s_subset_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_string
         }
     },
@@ -94402,7 +94402,7 @@ impl_subset_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94428,7 +94428,7 @@ impl_subset_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94454,7 +94454,7 @@ impl_subset_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94527,8 +94527,8 @@ impl_object__substring_string = {
         {
             NULL,
             NULL,
-            &afw_s_substring_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_substring_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__substring_string
         }
     },
@@ -94544,7 +94544,7 @@ impl_substring_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94570,7 +94570,7 @@ impl_substring_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94596,7 +94596,7 @@ impl_substring_string_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94622,7 +94622,7 @@ impl_substring_string_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94704,8 +94704,8 @@ impl_object__to_anyURI_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_anyURI_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_anyURI_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_anyURI_string
         }
     },
@@ -94721,7 +94721,7 @@ impl_to_anyURI_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94747,7 +94747,7 @@ impl_to_anyURI_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94827,8 +94827,8 @@ impl_object__to_boolean_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_boolean_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_boolean_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_boolean_string
         }
     },
@@ -94844,7 +94844,7 @@ impl_to_boolean_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94870,7 +94870,7 @@ impl_to_boolean_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94950,8 +94950,8 @@ impl_object__to_dateTime_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_dateTime_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_dateTime_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_dateTime_string
         }
     },
@@ -94967,7 +94967,7 @@ impl_to_dateTime_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -94993,7 +94993,7 @@ impl_to_dateTime_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95073,8 +95073,8 @@ impl_object__to_date_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_date_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_date_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_date_string
         }
     },
@@ -95090,7 +95090,7 @@ impl_to_date_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95116,7 +95116,7 @@ impl_to_date_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95196,8 +95196,8 @@ impl_object__to_dayTimeDuration_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_dayTimeDuration_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_dayTimeDuration_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_dayTimeDuration_string
         }
     },
@@ -95213,7 +95213,7 @@ impl_to_dayTimeDuration_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95239,7 +95239,7 @@ impl_to_dayTimeDuration_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95319,8 +95319,8 @@ impl_object__to_dnsName_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_dnsName_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_dnsName_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_dnsName_string
         }
     },
@@ -95336,7 +95336,7 @@ impl_to_dnsName_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95362,7 +95362,7 @@ impl_to_dnsName_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95442,8 +95442,8 @@ impl_object__to_double_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_double_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_double_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_double_string
         }
     },
@@ -95459,7 +95459,7 @@ impl_to_double_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95485,7 +95485,7 @@ impl_to_double_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95565,8 +95565,8 @@ impl_object__to_integer_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_integer_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_integer_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_integer_string
         }
     },
@@ -95582,7 +95582,7 @@ impl_to_integer_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95608,7 +95608,7 @@ impl_to_integer_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95680,8 +95680,8 @@ impl_object__to_ipAddress_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_ipAddress_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_ipAddress_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_ipAddress_string
         }
     },
@@ -95697,7 +95697,7 @@ impl_to_ipAddress_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95723,7 +95723,7 @@ impl_to_ipAddress_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95803,8 +95803,8 @@ impl_object__to_rfc822Name_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_rfc822Name_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_rfc822Name_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_rfc822Name_string
         }
     },
@@ -95820,7 +95820,7 @@ impl_to_rfc822Name_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95846,7 +95846,7 @@ impl_to_rfc822Name_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95926,8 +95926,8 @@ impl_object__to_string_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_string
         }
     },
@@ -95943,7 +95943,7 @@ impl_to_string_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -95969,7 +95969,7 @@ impl_to_string_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96041,8 +96041,8 @@ impl_object__to_time_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_time_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_time_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_time_string
         }
     },
@@ -96058,7 +96058,7 @@ impl_to_time_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96084,7 +96084,7 @@ impl_to_time_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96164,8 +96164,8 @@ impl_object__to_x500Name_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_x500Name_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_x500Name_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_x500Name_string
         }
     },
@@ -96181,7 +96181,7 @@ impl_to_x500Name_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96207,7 +96207,7 @@ impl_to_x500Name_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96287,8 +96287,8 @@ impl_object__to_yearMonthDuration_string = {
         {
             NULL,
             NULL,
-            &afw_s_to_yearMonthDuration_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_yearMonthDuration_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_yearMonthDuration_string
         }
     },
@@ -96304,7 +96304,7 @@ impl_to_yearMonthDuration_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96330,7 +96330,7 @@ impl_to_yearMonthDuration_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96410,8 +96410,8 @@ impl_object__union_string = {
         {
             NULL,
             NULL,
-            &afw_s_union_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_string
         }
     },
@@ -96427,7 +96427,7 @@ impl_union_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96453,7 +96453,7 @@ impl_union_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96525,8 +96525,8 @@ impl_object__url_decode = {
         {
             NULL,
             NULL,
-            &afw_s_url_decode,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_url_decode,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__url_decode
         }
     },
@@ -96542,7 +96542,7 @@ impl_url_decode_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96568,7 +96568,7 @@ impl_url_decode_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96640,8 +96640,8 @@ impl_object__url_encode_string = {
         {
             NULL,
             NULL,
-            &afw_s_url_encode_string,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_url_encode_string,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__url_encode_string
         }
     },
@@ -96657,7 +96657,7 @@ impl_url_encode_string_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96683,7 +96683,7 @@ impl_url_encode_string_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96755,8 +96755,8 @@ impl_object__bag_size_template = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_template
         }
     },
@@ -96772,7 +96772,7 @@ impl_bag_size_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96798,7 +96798,7 @@ impl_bag_size_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96870,8 +96870,8 @@ impl_object__bag_template = {
         {
             NULL,
             NULL,
-            &afw_s_bag_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_template
         }
     },
@@ -96887,7 +96887,7 @@ impl_bag_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96913,7 +96913,7 @@ impl_bag_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -96985,8 +96985,8 @@ impl_object__compile_template = {
         {
             NULL,
             NULL,
-            &afw_s_compile_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile_template
         }
     },
@@ -97002,7 +97002,7 @@ impl_compile_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97028,7 +97028,7 @@ impl_compile_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97054,7 +97054,7 @@ impl_compile_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97127,8 +97127,8 @@ impl_object__eq_template = {
         {
             NULL,
             NULL,
-            &afw_s_eq_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_template
         }
     },
@@ -97144,7 +97144,7 @@ impl_eq_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97170,7 +97170,7 @@ impl_eq_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97196,7 +97196,7 @@ impl_eq_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97277,8 +97277,8 @@ impl_object__eqx_template = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_template
         }
     },
@@ -97294,7 +97294,7 @@ impl_eqx_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97320,7 +97320,7 @@ impl_eqx_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97346,7 +97346,7 @@ impl_eqx_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97419,8 +97419,8 @@ impl_object__evaluate_template = {
         {
             NULL,
             NULL,
-            &afw_s_evaluate_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_evaluate_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__evaluate_template
         }
     },
@@ -97436,7 +97436,7 @@ impl_evaluate_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97462,7 +97462,7 @@ impl_evaluate_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97488,7 +97488,7 @@ impl_evaluate_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97561,8 +97561,8 @@ impl_object__ge_template = {
         {
             NULL,
             NULL,
-            &afw_s_ge_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_template
         }
     },
@@ -97578,7 +97578,7 @@ impl_ge_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97604,7 +97604,7 @@ impl_ge_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97630,7 +97630,7 @@ impl_ge_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97703,8 +97703,8 @@ impl_object__gt_template = {
         {
             NULL,
             NULL,
-            &afw_s_gt_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_template
         }
     },
@@ -97720,7 +97720,7 @@ impl_gt_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97746,7 +97746,7 @@ impl_gt_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97772,7 +97772,7 @@ impl_gt_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97845,8 +97845,8 @@ impl_object__is_template = {
         {
             NULL,
             NULL,
-            &afw_s_is_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_template
         }
     },
@@ -97862,7 +97862,7 @@ impl_is_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97888,7 +97888,7 @@ impl_is_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -97960,8 +97960,8 @@ impl_object__le_template = {
         {
             NULL,
             NULL,
-            &afw_s_le_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_template
         }
     },
@@ -97977,7 +97977,7 @@ impl_le_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98003,7 +98003,7 @@ impl_le_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98029,7 +98029,7 @@ impl_le_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98102,8 +98102,8 @@ impl_object__lt_template = {
         {
             NULL,
             NULL,
-            &afw_s_lt_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_template
         }
     },
@@ -98119,7 +98119,7 @@ impl_lt_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98145,7 +98145,7 @@ impl_lt_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98171,7 +98171,7 @@ impl_lt_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98244,8 +98244,8 @@ impl_object__ne_template = {
         {
             NULL,
             NULL,
-            &afw_s_ne_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_template
         }
     },
@@ -98261,7 +98261,7 @@ impl_ne_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98287,7 +98287,7 @@ impl_ne_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98313,7 +98313,7 @@ impl_ne_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98394,8 +98394,8 @@ impl_object__nex_template = {
         {
             NULL,
             NULL,
-            &afw_s_nex_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_template
         }
     },
@@ -98411,7 +98411,7 @@ impl_nex_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98437,7 +98437,7 @@ impl_nex_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98463,7 +98463,7 @@ impl_nex_template_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98536,8 +98536,8 @@ impl_object__template = {
         {
             NULL,
             NULL,
-            &afw_s_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__template
         }
     },
@@ -98553,7 +98553,7 @@ impl_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98579,7 +98579,7 @@ impl_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98659,8 +98659,8 @@ impl_object__to_string_template = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_template,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_template,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_template
         }
     },
@@ -98676,7 +98676,7 @@ impl_to_string_template_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98702,7 +98702,7 @@ impl_to_string_template_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98774,8 +98774,8 @@ impl_object__at_least_one_member_of_time = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_time
         }
     },
@@ -98791,7 +98791,7 @@ impl_at_least_one_member_of_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98817,7 +98817,7 @@ impl_at_least_one_member_of_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98843,7 +98843,7 @@ impl_at_least_one_member_of_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98916,8 +98916,8 @@ impl_object__bag_size_time = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_time
         }
     },
@@ -98933,7 +98933,7 @@ impl_bag_size_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -98959,7 +98959,7 @@ impl_bag_size_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99031,8 +99031,8 @@ impl_object__bag_time = {
         {
             NULL,
             NULL,
-            &afw_s_bag_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_time
         }
     },
@@ -99048,7 +99048,7 @@ impl_bag_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99074,7 +99074,7 @@ impl_bag_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99146,8 +99146,8 @@ impl_object__eq_time = {
         {
             NULL,
             NULL,
-            &afw_s_eq_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_time
         }
     },
@@ -99163,7 +99163,7 @@ impl_eq_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99189,7 +99189,7 @@ impl_eq_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99215,7 +99215,7 @@ impl_eq_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99296,8 +99296,8 @@ impl_object__eqx_time = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_time
         }
     },
@@ -99313,7 +99313,7 @@ impl_eqx_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99339,7 +99339,7 @@ impl_eqx_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99365,7 +99365,7 @@ impl_eqx_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99438,8 +99438,8 @@ impl_object__ge_time = {
         {
             NULL,
             NULL,
-            &afw_s_ge_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_time
         }
     },
@@ -99455,7 +99455,7 @@ impl_ge_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99481,7 +99481,7 @@ impl_ge_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99507,7 +99507,7 @@ impl_ge_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99580,8 +99580,8 @@ impl_object__gt_time = {
         {
             NULL,
             NULL,
-            &afw_s_gt_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_time
         }
     },
@@ -99597,7 +99597,7 @@ impl_gt_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99623,7 +99623,7 @@ impl_gt_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99649,7 +99649,7 @@ impl_gt_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99722,8 +99722,8 @@ impl_object__in_range_time = {
         {
             NULL,
             NULL,
-            &afw_s_in_range_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_in_range_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__in_range_time
         }
     },
@@ -99739,7 +99739,7 @@ impl_in_range_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99765,7 +99765,7 @@ impl_in_range_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99791,7 +99791,7 @@ impl_in_range_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99817,7 +99817,7 @@ impl_in_range_time_parameter_3 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99891,8 +99891,8 @@ impl_object__intersection_time = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_time
         }
     },
@@ -99908,7 +99908,7 @@ impl_intersection_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99934,7 +99934,7 @@ impl_intersection_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -99960,7 +99960,7 @@ impl_intersection_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100033,8 +100033,8 @@ impl_object__is_in_time = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_time
         }
     },
@@ -100050,7 +100050,7 @@ impl_is_in_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100076,7 +100076,7 @@ impl_is_in_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100102,7 +100102,7 @@ impl_is_in_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100175,8 +100175,8 @@ impl_object__is_time = {
         {
             NULL,
             NULL,
-            &afw_s_is_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_time
         }
     },
@@ -100192,7 +100192,7 @@ impl_is_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100218,7 +100218,7 @@ impl_is_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100290,8 +100290,8 @@ impl_object__le_time = {
         {
             NULL,
             NULL,
-            &afw_s_le_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_time
         }
     },
@@ -100307,7 +100307,7 @@ impl_le_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100333,7 +100333,7 @@ impl_le_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100359,7 +100359,7 @@ impl_le_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100432,8 +100432,8 @@ impl_object__lt_time = {
         {
             NULL,
             NULL,
-            &afw_s_lt_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_time
         }
     },
@@ -100449,7 +100449,7 @@ impl_lt_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100475,7 +100475,7 @@ impl_lt_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100501,7 +100501,7 @@ impl_lt_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100574,8 +100574,8 @@ impl_object__max_time = {
         {
             NULL,
             NULL,
-            &afw_s_max_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_max_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__max_time
         }
     },
@@ -100591,7 +100591,7 @@ impl_max_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100617,7 +100617,7 @@ impl_max_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100689,8 +100689,8 @@ impl_object__min_time = {
         {
             NULL,
             NULL,
-            &afw_s_min_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_min_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__min_time
         }
     },
@@ -100706,7 +100706,7 @@ impl_min_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100732,7 +100732,7 @@ impl_min_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100804,8 +100804,8 @@ impl_object__ne_time = {
         {
             NULL,
             NULL,
-            &afw_s_ne_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_time
         }
     },
@@ -100821,7 +100821,7 @@ impl_ne_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100847,7 +100847,7 @@ impl_ne_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100873,7 +100873,7 @@ impl_ne_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100954,8 +100954,8 @@ impl_object__nex_time = {
         {
             NULL,
             NULL,
-            &afw_s_nex_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_time
         }
     },
@@ -100971,7 +100971,7 @@ impl_nex_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -100997,7 +100997,7 @@ impl_nex_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101023,7 +101023,7 @@ impl_nex_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101096,8 +101096,8 @@ impl_object__one_and_only_time = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_time
         }
     },
@@ -101113,7 +101113,7 @@ impl_one_and_only_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101139,7 +101139,7 @@ impl_one_and_only_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101219,8 +101219,8 @@ impl_object__set_equals_time = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_time
         }
     },
@@ -101236,7 +101236,7 @@ impl_set_equals_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101262,7 +101262,7 @@ impl_set_equals_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101288,7 +101288,7 @@ impl_set_equals_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101361,8 +101361,8 @@ impl_object__subset_time = {
         {
             NULL,
             NULL,
-            &afw_s_subset_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_time
         }
     },
@@ -101378,7 +101378,7 @@ impl_subset_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101404,7 +101404,7 @@ impl_subset_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101430,7 +101430,7 @@ impl_subset_time_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101503,8 +101503,8 @@ impl_object__time = {
         {
             NULL,
             NULL,
-            &afw_s_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__time
         }
     },
@@ -101520,7 +101520,7 @@ impl_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101546,7 +101546,7 @@ impl_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101626,8 +101626,8 @@ impl_object__to_string_time = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_time
         }
     },
@@ -101643,7 +101643,7 @@ impl_to_string_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101669,7 +101669,7 @@ impl_to_string_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101741,8 +101741,8 @@ impl_object__union_time = {
         {
             NULL,
             NULL,
-            &afw_s_union_time,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_time,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_time
         }
     },
@@ -101758,7 +101758,7 @@ impl_union_time_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101784,7 +101784,7 @@ impl_union_time_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101856,8 +101856,8 @@ impl_object__is_unevaluated = {
         {
             NULL,
             NULL,
-            &afw_s_is_unevaluated,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_unevaluated,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_unevaluated
         }
     },
@@ -101873,7 +101873,7 @@ impl_is_unevaluated_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101899,7 +101899,7 @@ impl_is_unevaluated_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -101971,8 +101971,8 @@ impl_object__meta = {
         {
             NULL,
             NULL,
-            &afw_s_meta,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_meta,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__meta
         }
     },
@@ -101988,7 +101988,7 @@ impl_meta_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102014,7 +102014,7 @@ impl_meta_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102086,8 +102086,8 @@ impl_object__metas = {
         {
             NULL,
             NULL,
-            &afw_s_metas,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_metas,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__metas
         }
     },
@@ -102103,7 +102103,7 @@ impl_metas_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102129,7 +102129,7 @@ impl_metas_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102201,8 +102201,8 @@ impl_object__at_least_one_member_of_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_x500Name
         }
     },
@@ -102218,7 +102218,7 @@ impl_at_least_one_member_of_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102244,7 +102244,7 @@ impl_at_least_one_member_of_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102270,7 +102270,7 @@ impl_at_least_one_member_of_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102343,8 +102343,8 @@ impl_object__bag_size_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_x500Name
         }
     },
@@ -102360,7 +102360,7 @@ impl_bag_size_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102386,7 +102386,7 @@ impl_bag_size_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102458,8 +102458,8 @@ impl_object__bag_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_bag_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_x500Name
         }
     },
@@ -102475,7 +102475,7 @@ impl_bag_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102501,7 +102501,7 @@ impl_bag_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102573,8 +102573,8 @@ impl_object__eq_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_eq_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_x500Name
         }
     },
@@ -102590,7 +102590,7 @@ impl_eq_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102616,7 +102616,7 @@ impl_eq_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102642,7 +102642,7 @@ impl_eq_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102723,8 +102723,8 @@ impl_object__eqx_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_x500Name
         }
     },
@@ -102740,7 +102740,7 @@ impl_eqx_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102766,7 +102766,7 @@ impl_eqx_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102792,7 +102792,7 @@ impl_eqx_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102865,8 +102865,8 @@ impl_object__ge_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_ge_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_x500Name
         }
     },
@@ -102882,7 +102882,7 @@ impl_ge_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102908,7 +102908,7 @@ impl_ge_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -102934,7 +102934,7 @@ impl_ge_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103007,8 +103007,8 @@ impl_object__gt_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_gt_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_x500Name
         }
     },
@@ -103024,7 +103024,7 @@ impl_gt_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103050,7 +103050,7 @@ impl_gt_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103076,7 +103076,7 @@ impl_gt_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103149,8 +103149,8 @@ impl_object__intersection_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_x500Name
         }
     },
@@ -103166,7 +103166,7 @@ impl_intersection_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103192,7 +103192,7 @@ impl_intersection_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103218,7 +103218,7 @@ impl_intersection_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103291,8 +103291,8 @@ impl_object__is_in_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_x500Name
         }
     },
@@ -103308,7 +103308,7 @@ impl_is_in_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103334,7 +103334,7 @@ impl_is_in_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103360,7 +103360,7 @@ impl_is_in_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103433,8 +103433,8 @@ impl_object__is_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_is_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_x500Name
         }
     },
@@ -103450,7 +103450,7 @@ impl_is_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103476,7 +103476,7 @@ impl_is_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103548,8 +103548,8 @@ impl_object__le_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_le_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_x500Name
         }
     },
@@ -103565,7 +103565,7 @@ impl_le_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103591,7 +103591,7 @@ impl_le_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103617,7 +103617,7 @@ impl_le_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103690,8 +103690,8 @@ impl_object__lt_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_lt_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_x500Name
         }
     },
@@ -103707,7 +103707,7 @@ impl_lt_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103733,7 +103733,7 @@ impl_lt_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103759,7 +103759,7 @@ impl_lt_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103832,8 +103832,8 @@ impl_object__match_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_match_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_match_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__match_x500Name
         }
     },
@@ -103849,7 +103849,7 @@ impl_match_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103875,7 +103875,7 @@ impl_match_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103901,7 +103901,7 @@ impl_match_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -103974,8 +103974,8 @@ impl_object__ne_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_ne_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_x500Name
         }
     },
@@ -103991,7 +103991,7 @@ impl_ne_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104017,7 +104017,7 @@ impl_ne_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104043,7 +104043,7 @@ impl_ne_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104124,8 +104124,8 @@ impl_object__nex_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_nex_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_x500Name
         }
     },
@@ -104141,7 +104141,7 @@ impl_nex_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104167,7 +104167,7 @@ impl_nex_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104193,7 +104193,7 @@ impl_nex_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104266,8 +104266,8 @@ impl_object__one_and_only_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_x500Name
         }
     },
@@ -104283,7 +104283,7 @@ impl_one_and_only_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104309,7 +104309,7 @@ impl_one_and_only_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104389,8 +104389,8 @@ impl_object__regexp_match_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_regexp_match_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_regexp_match_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__regexp_match_x500Name
         }
     },
@@ -104406,7 +104406,7 @@ impl_regexp_match_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104432,7 +104432,7 @@ impl_regexp_match_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104458,7 +104458,7 @@ impl_regexp_match_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104531,8 +104531,8 @@ impl_object__set_equals_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_x500Name
         }
     },
@@ -104548,7 +104548,7 @@ impl_set_equals_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104574,7 +104574,7 @@ impl_set_equals_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104600,7 +104600,7 @@ impl_set_equals_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104673,8 +104673,8 @@ impl_object__subset_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_subset_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_x500Name
         }
     },
@@ -104690,7 +104690,7 @@ impl_subset_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104716,7 +104716,7 @@ impl_subset_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104742,7 +104742,7 @@ impl_subset_x500Name_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104815,8 +104815,8 @@ impl_object__to_string_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_x500Name
         }
     },
@@ -104832,7 +104832,7 @@ impl_to_string_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104858,7 +104858,7 @@ impl_to_string_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104930,8 +104930,8 @@ impl_object__union_x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_union_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_x500Name
         }
     },
@@ -104947,7 +104947,7 @@ impl_union_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -104973,7 +104973,7 @@ impl_union_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105045,8 +105045,8 @@ impl_object__x500Name = {
         {
             NULL,
             NULL,
-            &afw_s_x500Name,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_x500Name,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__x500Name
         }
     },
@@ -105062,7 +105062,7 @@ impl_x500Name_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105088,7 +105088,7 @@ impl_x500Name_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105168,8 +105168,8 @@ impl_object__bag_size_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_xpathExpression
         }
     },
@@ -105185,7 +105185,7 @@ impl_bag_size_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105211,7 +105211,7 @@ impl_bag_size_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105283,8 +105283,8 @@ impl_object__bag_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_bag_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_xpathExpression
         }
     },
@@ -105300,7 +105300,7 @@ impl_bag_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105326,7 +105326,7 @@ impl_bag_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105398,8 +105398,8 @@ impl_object__compile_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_compile_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_compile_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__compile_xpathExpression
         }
     },
@@ -105415,7 +105415,7 @@ impl_compile_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105441,7 +105441,7 @@ impl_compile_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105467,7 +105467,7 @@ impl_compile_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105540,8 +105540,8 @@ impl_object__eq_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_eq_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_xpathExpression
         }
     },
@@ -105557,7 +105557,7 @@ impl_eq_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105583,7 +105583,7 @@ impl_eq_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105609,7 +105609,7 @@ impl_eq_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105690,8 +105690,8 @@ impl_object__eqx_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_xpathExpression
         }
     },
@@ -105707,7 +105707,7 @@ impl_eqx_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105733,7 +105733,7 @@ impl_eqx_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105759,7 +105759,7 @@ impl_eqx_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105832,8 +105832,8 @@ impl_object__evaluate_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_evaluate_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_evaluate_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__evaluate_xpathExpression
         }
     },
@@ -105849,7 +105849,7 @@ impl_evaluate_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105875,7 +105875,7 @@ impl_evaluate_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105901,7 +105901,7 @@ impl_evaluate_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -105974,8 +105974,8 @@ impl_object__ge_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_ge_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_xpathExpression
         }
     },
@@ -105991,7 +105991,7 @@ impl_ge_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106017,7 +106017,7 @@ impl_ge_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106043,7 +106043,7 @@ impl_ge_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106116,8 +106116,8 @@ impl_object__gt_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_gt_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_xpathExpression
         }
     },
@@ -106133,7 +106133,7 @@ impl_gt_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106159,7 +106159,7 @@ impl_gt_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106185,7 +106185,7 @@ impl_gt_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106258,8 +106258,8 @@ impl_object__is_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_is_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_xpathExpression
         }
     },
@@ -106275,7 +106275,7 @@ impl_is_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106301,7 +106301,7 @@ impl_is_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106373,8 +106373,8 @@ impl_object__le_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_le_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_xpathExpression
         }
     },
@@ -106390,7 +106390,7 @@ impl_le_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106416,7 +106416,7 @@ impl_le_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106442,7 +106442,7 @@ impl_le_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106515,8 +106515,8 @@ impl_object__lt_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_lt_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_xpathExpression
         }
     },
@@ -106532,7 +106532,7 @@ impl_lt_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106558,7 +106558,7 @@ impl_lt_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106584,7 +106584,7 @@ impl_lt_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106657,8 +106657,8 @@ impl_object__ne_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_ne_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_xpathExpression
         }
     },
@@ -106674,7 +106674,7 @@ impl_ne_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106700,7 +106700,7 @@ impl_ne_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106726,7 +106726,7 @@ impl_ne_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106807,8 +106807,8 @@ impl_object__nex_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_nex_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_xpathExpression
         }
     },
@@ -106824,7 +106824,7 @@ impl_nex_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106850,7 +106850,7 @@ impl_nex_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106876,7 +106876,7 @@ impl_nex_xpathExpression_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106949,8 +106949,8 @@ impl_object__to_string_xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_xpathExpression
         }
     },
@@ -106966,7 +106966,7 @@ impl_to_string_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -106992,7 +106992,7 @@ impl_to_string_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107064,8 +107064,8 @@ impl_object__xpathExpression = {
         {
             NULL,
             NULL,
-            &afw_s_xpathExpression,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_xpathExpression,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__xpathExpression
         }
     },
@@ -107081,7 +107081,7 @@ impl_xpathExpression_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107107,7 +107107,7 @@ impl_xpathExpression_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107187,8 +107187,8 @@ impl_object__xpath_node_count = {
         {
             NULL,
             NULL,
-            &afw_s_xpath_node_count,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_xpath_node_count,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__xpath_node_count
         }
     },
@@ -107204,7 +107204,7 @@ impl_xpath_node_count_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107230,7 +107230,7 @@ impl_xpath_node_count_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107302,8 +107302,8 @@ impl_object__xpath_node_eq = {
         {
             NULL,
             NULL,
-            &afw_s_xpath_node_eq,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_xpath_node_eq,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__xpath_node_eq
         }
     },
@@ -107319,7 +107319,7 @@ impl_xpath_node_eq_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107345,7 +107345,7 @@ impl_xpath_node_eq_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107371,7 +107371,7 @@ impl_xpath_node_eq_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107444,8 +107444,8 @@ impl_object__xpath_node_match = {
         {
             NULL,
             NULL,
-            &afw_s_xpath_node_match,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_xpath_node_match,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__xpath_node_match
         }
     },
@@ -107461,7 +107461,7 @@ impl_xpath_node_match_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107487,7 +107487,7 @@ impl_xpath_node_match_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107513,7 +107513,7 @@ impl_xpath_node_match_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107586,8 +107586,8 @@ impl_object__at_least_one_member_of_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_at_least_one_member_of_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_at_least_one_member_of_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__at_least_one_member_of_yearMonthDuration
         }
     },
@@ -107603,7 +107603,7 @@ impl_at_least_one_member_of_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107629,7 +107629,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107655,7 +107655,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107728,8 +107728,8 @@ impl_object__bag_size_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_bag_size_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_size_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_size_yearMonthDuration
         }
     },
@@ -107745,7 +107745,7 @@ impl_bag_size_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107771,7 +107771,7 @@ impl_bag_size_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107843,8 +107843,8 @@ impl_object__bag_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_bag_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_bag_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__bag_yearMonthDuration
         }
     },
@@ -107860,7 +107860,7 @@ impl_bag_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107886,7 +107886,7 @@ impl_bag_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -107958,8 +107958,8 @@ impl_object__eq_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_eq_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eq_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eq_yearMonthDuration
         }
     },
@@ -107975,7 +107975,7 @@ impl_eq_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108001,7 +108001,7 @@ impl_eq_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108027,7 +108027,7 @@ impl_eq_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108108,8 +108108,8 @@ impl_object__eqx_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_eqx_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_eqx_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__eqx_yearMonthDuration
         }
     },
@@ -108125,7 +108125,7 @@ impl_eqx_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108151,7 +108151,7 @@ impl_eqx_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108177,7 +108177,7 @@ impl_eqx_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108250,8 +108250,8 @@ impl_object__ge_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_ge_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ge_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ge_yearMonthDuration
         }
     },
@@ -108267,7 +108267,7 @@ impl_ge_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108293,7 +108293,7 @@ impl_ge_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108319,7 +108319,7 @@ impl_ge_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108392,8 +108392,8 @@ impl_object__gt_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_gt_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_gt_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__gt_yearMonthDuration
         }
     },
@@ -108409,7 +108409,7 @@ impl_gt_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108435,7 +108435,7 @@ impl_gt_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108461,7 +108461,7 @@ impl_gt_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108534,8 +108534,8 @@ impl_object__intersection_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_intersection_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_intersection_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__intersection_yearMonthDuration
         }
     },
@@ -108551,7 +108551,7 @@ impl_intersection_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108577,7 +108577,7 @@ impl_intersection_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108603,7 +108603,7 @@ impl_intersection_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108676,8 +108676,8 @@ impl_object__is_in_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_is_in_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_in_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_in_yearMonthDuration
         }
     },
@@ -108693,7 +108693,7 @@ impl_is_in_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108719,7 +108719,7 @@ impl_is_in_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108745,7 +108745,7 @@ impl_is_in_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108818,8 +108818,8 @@ impl_object__is_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_is_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_is_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__is_yearMonthDuration
         }
     },
@@ -108835,7 +108835,7 @@ impl_is_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108861,7 +108861,7 @@ impl_is_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108933,8 +108933,8 @@ impl_object__le_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_le_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_le_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__le_yearMonthDuration
         }
     },
@@ -108950,7 +108950,7 @@ impl_le_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -108976,7 +108976,7 @@ impl_le_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109002,7 +109002,7 @@ impl_le_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109075,8 +109075,8 @@ impl_object__lt_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_lt_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_lt_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__lt_yearMonthDuration
         }
     },
@@ -109092,7 +109092,7 @@ impl_lt_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109118,7 +109118,7 @@ impl_lt_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109144,7 +109144,7 @@ impl_lt_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109217,8 +109217,8 @@ impl_object__ne_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_ne_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_ne_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__ne_yearMonthDuration
         }
     },
@@ -109234,7 +109234,7 @@ impl_ne_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109260,7 +109260,7 @@ impl_ne_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109286,7 +109286,7 @@ impl_ne_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109367,8 +109367,8 @@ impl_object__nex_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_nex_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_nex_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__nex_yearMonthDuration
         }
     },
@@ -109384,7 +109384,7 @@ impl_nex_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109410,7 +109410,7 @@ impl_nex_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109436,7 +109436,7 @@ impl_nex_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109509,8 +109509,8 @@ impl_object__one_and_only_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_one_and_only_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_one_and_only_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__one_and_only_yearMonthDuration
         }
     },
@@ -109526,7 +109526,7 @@ impl_one_and_only_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109552,7 +109552,7 @@ impl_one_and_only_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109632,8 +109632,8 @@ impl_object__set_equals_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_set_equals_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_set_equals_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__set_equals_yearMonthDuration
         }
     },
@@ -109649,7 +109649,7 @@ impl_set_equals_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109675,7 +109675,7 @@ impl_set_equals_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109701,7 +109701,7 @@ impl_set_equals_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109774,8 +109774,8 @@ impl_object__subset_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_subset_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_subset_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__subset_yearMonthDuration
         }
     },
@@ -109791,7 +109791,7 @@ impl_subset_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109817,7 +109817,7 @@ impl_subset_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109843,7 +109843,7 @@ impl_subset_yearMonthDuration_parameter_2 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109916,8 +109916,8 @@ impl_object__to_string_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_to_string_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_to_string_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__to_string_yearMonthDuration
         }
     },
@@ -109933,7 +109933,7 @@ impl_to_string_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -109959,7 +109959,7 @@ impl_to_string_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -110031,8 +110031,8 @@ impl_object__union_yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_union_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_union_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__union_yearMonthDuration
         }
     },
@@ -110048,7 +110048,7 @@ impl_union_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -110074,7 +110074,7 @@ impl_union_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -110146,8 +110146,8 @@ impl_object__yearMonthDuration = {
         {
             NULL,
             NULL,
-            &afw_s_yearMonthDuration,
-            &afw_s__AdaptiveFunction_,
+            &afw_self_s_yearMonthDuration,
+            &afw_self_s__AdaptiveFunction_,
             &impl_object_path__yearMonthDuration
         }
     },
@@ -110163,7 +110163,7 @@ impl_yearMonthDuration_returns = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },
@@ -110189,7 +110189,7 @@ impl_yearMonthDuration_parameter_1 = {
             NULL,
             NULL,
             NULL,
-            &afw_s__AdaptiveFunctionParameter_,
+            &afw_self_s__AdaptiveFunctionParameter_,
             NULL,
         }
     },

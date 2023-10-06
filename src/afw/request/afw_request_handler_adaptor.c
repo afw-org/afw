@@ -51,7 +51,7 @@ afw_request_handler_adaptor_create_cede_p(
     self->properties = properties;
     
     options_object = afw_object_old_get_property_as_object(self->properties,
-        &afw_s_defaultOptions, xctx);
+        &afw_self_s_defaultOptions, xctx);
     if (options_object) {
         self->default_options = afw_object_options_set_from_object(
             NULL, options_object, p, xctx);
@@ -390,7 +390,7 @@ impl_afw_request_handler_process(
 
                 /* Perform actions if just /afw and no object type.  */
                 if (parsed_path->object_type_id.len == 0 &&
-                    afw_utf8_equal(&parsed_path->adaptor_id, &afw_s_afw))
+                    afw_utf8_equal(&parsed_path->adaptor_id, &afw_self_s_afw))
                 {
                     response_content_type = afw_request_prepare_response_content_type(
                         request, xctx);

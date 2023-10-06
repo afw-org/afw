@@ -70,35 +70,35 @@ const afw_lmdb_env_t * afw_lmdb_adaptor_parse_env(
 
     env = afw_xctx_calloc_type(afw_lmdb_env_t, xctx);
 
-    value = afw_object_get_property(envObject, &afw_lmdb_s_path, xctx);
+    value = afw_object_get_property(envObject, &afw_lmdb_self_s_path, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             "Property env.path required by LMDB adaptor.", xctx);
     }
     env->path_z = afw_value_as_utf8_z(value, p, xctx);
 
-    value = afw_object_get_property(envObject, &afw_lmdb_s_mode, xctx);
+    value = afw_object_get_property(envObject, &afw_lmdb_self_s_mode, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             "Property env.mode required by LMDB adaptor.", xctx);
     }
     env->mode = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
 
-    value = afw_object_get_property(envObject, &afw_lmdb_s_maxreaders, xctx);
+    value = afw_object_get_property(envObject, &afw_lmdb_self_s_maxreaders, xctx);
     if (value) {
         env->maxreaders = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
     } else {
         env->maxreaders = 0;
     }
 
-    value = afw_object_get_property(envObject, &afw_lmdb_s_maxdbs, xctx);
+    value = afw_object_get_property(envObject, &afw_lmdb_self_s_maxdbs, xctx);
     if (value) {
         env->maxdbs = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
     } else {
         env->maxdbs = 0;
     }
 
-    value = afw_object_get_property(envObject, &afw_lmdb_s_mapsize, xctx);
+    value = afw_object_get_property(envObject, &afw_lmdb_self_s_mapsize, xctx);
     if (value) {
         env->mapsize = (size_t)afw_value_as_integer(value, xctx);
     } else {
@@ -117,34 +117,34 @@ const afw_lmdb_limits_t * afw_lmdb_adaptor_parse_limits(
 
     limits = afw_xctx_calloc_type(afw_lmdb_limits_t, xctx);
 
-    value = afw_object_get_property(lim, &afw_lmdb_s_size, xctx);
+    value = afw_object_get_property(lim, &afw_lmdb_self_s_size, xctx);
     if (value) {
         obj = afw_value_as_object(value, xctx);
 
-        value = afw_object_get_property(obj, &afw_lmdb_s_soft, xctx);
+        value = afw_object_get_property(obj, &afw_lmdb_self_s_soft, xctx);
         if (value)
             limits->size_soft = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
         else
             limits->size_soft = 500;
 
-        value = afw_object_get_property(obj, &afw_lmdb_s_hard, xctx);
+        value = afw_object_get_property(obj, &afw_lmdb_self_s_hard, xctx);
         if (value)
             limits->size_hard = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
         else
             limits->size_hard = 1000;
     }
 
-    value = afw_object_get_property(lim, &afw_lmdb_s_time, xctx);
+    value = afw_object_get_property(lim, &afw_lmdb_self_s_time, xctx);
     if (value) {
         obj = afw_value_as_object(value, xctx);
 
-        value = afw_object_get_property(obj, &afw_lmdb_s_soft, xctx);
+        value = afw_object_get_property(obj, &afw_lmdb_self_s_soft, xctx);
         if (value)
             limits->time_soft = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
         else
             limits->time_soft = 3600;
 
-        value = afw_object_get_property(obj, &afw_lmdb_s_hard, xctx);
+        value = afw_object_get_property(obj, &afw_lmdb_self_s_hard, xctx);
         if (value)
             limits->time_hard = afw_safe_cast_integer_to_int(afw_value_as_integer(value, xctx), xctx);
         else
@@ -186,17 +186,17 @@ void afw_lmdb_adaptor_open_databases(
 
     /* open the Primary database */
     afw_lmdb_internal_open_database(self, txn, 
-        &afw_lmdb_s_Primary, MDB_CREATE, pool, xctx);
+        &afw_lmdb_self_s_Primary, MDB_CREATE, pool, xctx);
 
     /* open the Journal database */
     afw_lmdb_internal_open_database(self, txn, 
-        &afw_lmdb_s_Journal, MDB_CREATE, pool, xctx);
+        &afw_lmdb_self_s_Journal, MDB_CREATE, pool, xctx);
 
     indexer = afw_lmdb_adaptor_impl_index_create(NULL, self, txn, xctx);
 
     /* now open up any index databases we may have */
     indexDefinitions = afw_object_old_get_property_as_object(
-        self->internalConfig, &afw_lmdb_s_indexDefinitions, xctx);
+        self->internalConfig, &afw_lmdb_self_s_indexDefinitions, xctx);
     if (indexDefinitions) {
         afw_adaptor_impl_index_open_definitions(indexer, 
             indexDefinitions, pool, xctx);
@@ -232,7 +232,7 @@ const afw_adaptor_t * afw_lmdb_adaptor_create_cede_p(
 
     /* This adaptor will always use the UBJSON content type */
     self->ubjson = afw_environment_get_content_type(
-        &afw_s_ubjson, xctx);
+        &afw_self_s_ubjson, xctx);
     if (!self->ubjson)
     {
         AFW_THROW_ERROR_Z(general,
@@ -240,7 +240,7 @@ const afw_adaptor_t * afw_lmdb_adaptor_create_cede_p(
     }
 
     /* Get our env parameters */
-    value = afw_object_get_property(properties, &afw_lmdb_s_env, xctx);
+    value = afw_object_get_property(properties, &afw_lmdb_self_s_env, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             "Property env required by LMDB adaptor.", xctx);
@@ -300,7 +300,7 @@ const afw_adaptor_t * afw_lmdb_adaptor_create_cede_p(
     // FIXME check return code here and decide what to do/throw
     mdb_reader_check(self->dbEnv, &deadReaders);
 
-    value = afw_object_get_property(properties, &afw_lmdb_s_limits, xctx);
+    value = afw_object_get_property(properties, &afw_lmdb_self_s_limits, xctx);
     if (value) {
         limits = afw_value_as_object(value, xctx);
         self->limits = afw_lmdb_adaptor_parse_limits(limits, xctx);
@@ -407,7 +407,7 @@ impl_afw_adaptor_get_additional_metrics (
     /* Create additional metrics object and set object type. */
     metrics = afw_object_create_managed(p, xctx);
     afw_object_meta_set_object_type_id(metrics, 
-        &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
+        &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
         xctx);
 
     /** @fixme Jeremy
@@ -416,7 +416,7 @@ impl_afw_adaptor_get_additional_metrics (
     in afw_lmdb/object/_AdaptiveObjectType_/
 
     afw_object_meta_set_object_type_id(metrics,
-        &afw_lmdb_s_????,
+        &afw_lmdb_self_s_????,
         xctx);
 
     This object type can have the object type for all of the embedded
@@ -438,77 +438,77 @@ impl_afw_adaptor_get_additional_metrics (
 
     /* create our version object, which reports LMDB version information */
     version = afw_object_create_embedded(metrics, 
-        &afw_lmdb_s_version, xctx);
+        &afw_lmdb_self_s_version, xctx);
 
     afw_object_meta_set_object_type_id(version,
-        &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
+        &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
         xctx);
 
     version_str = mdb_version(&major, &minor, &patch);
     if (version_str) {
         afw_object_set_property_as_string_from_utf8_z(version, 
-            &afw_lmdb_s_version_string, version_str, xctx);
-        afw_object_set_property(version, &afw_lmdb_s_major,
+            &afw_lmdb_self_s_version_string, version_str, xctx);
+        afw_object_set_property(version, &afw_lmdb_self_s_major,
             afw_value_create_integer(major, p, xctx), xctx);
-        afw_object_set_property(version, &afw_lmdb_s_minor,
+        afw_object_set_property(version, &afw_lmdb_self_s_minor,
             afw_value_create_integer(minor, p, xctx), xctx);
-        afw_object_set_property(version, &afw_lmdb_s_patch,
+        afw_object_set_property(version, &afw_lmdb_self_s_patch,
             afw_value_create_integer(patch, p, xctx), xctx);
     }
 
     /* gather statistics for each database */
     statistics = afw_object_create_embedded(metrics, 
-        &afw_lmdb_s_statistics, xctx);
+        &afw_lmdb_self_s_statistics, xctx);
 
     afw_object_meta_set_object_type_id(statistics,
-        &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
+        &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
         xctx);
 
     /* start with the environment stats */
     environment = afw_object_create_embedded(statistics,
-        &afw_lmdb_s_environment, xctx);
+        &afw_lmdb_self_s_environment, xctx);
 
     afw_object_meta_set_object_type_id(environment,
-        &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
+        &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
         xctx);
 
     rc = mdb_env_stat(self->dbEnv, &stat);
     if (rc == 0) {
-        afw_object_set_property(environment, &afw_lmdb_s_psize, 
+        afw_object_set_property(environment, &afw_lmdb_self_s_psize, 
             afw_value_create_integer(stat.ms_psize, p, xctx), xctx);
-        afw_object_set_property(environment, &afw_lmdb_s_depth, 
+        afw_object_set_property(environment, &afw_lmdb_self_s_depth, 
             afw_value_create_integer(stat.ms_depth, p, xctx), xctx);
-        afw_object_set_property(environment, &afw_lmdb_s_branch_pages, 
+        afw_object_set_property(environment, &afw_lmdb_self_s_branch_pages, 
             afw_value_create_integer(stat.ms_branch_pages, p, xctx), xctx);
-        afw_object_set_property(environment, &afw_lmdb_s_leaf_pages, 
+        afw_object_set_property(environment, &afw_lmdb_self_s_leaf_pages, 
             afw_value_create_integer(stat.ms_leaf_pages, p, xctx), xctx);
-        afw_object_set_property(environment, &afw_lmdb_s_overflow_pages, 
+        afw_object_set_property(environment, &afw_lmdb_self_s_overflow_pages, 
             afw_value_create_integer(stat.ms_overflow_pages, p, xctx), xctx);
-        afw_object_set_property(environment, &afw_lmdb_s_entries, 
+        afw_object_set_property(environment, &afw_lmdb_self_s_entries, 
             afw_value_create_integer(stat.ms_entries, p, xctx), xctx);
     }
    
     /* gather the env_info */
     information = afw_object_create_embedded(metrics, 
-        &afw_lmdb_s_information, xctx);
+        &afw_lmdb_self_s_information, xctx);
 
     afw_object_meta_set_object_type_id(information,
-        &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
+        &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
         xctx);
 
     rc = mdb_env_info(self->dbEnv, &info);
     if (rc == 0) {
-        afw_object_set_property(information, &afw_lmdb_s_mapaddr,
+        afw_object_set_property(information, &afw_lmdb_self_s_mapaddr,
             afw_value_create_integer((size_t)info.me_mapaddr, p, xctx), xctx);
-        afw_object_set_property(information, &afw_lmdb_s_mapsize,
+        afw_object_set_property(information, &afw_lmdb_self_s_mapsize,
             afw_value_create_integer(info.me_mapsize, p, xctx), xctx);
-        afw_object_set_property(information, &afw_lmdb_s_last_pgno,
+        afw_object_set_property(information, &afw_lmdb_self_s_last_pgno,
             afw_value_create_integer(info.me_last_pgno, p, xctx), xctx);
-        afw_object_set_property(information, &afw_lmdb_s_last_txnid,
+        afw_object_set_property(information, &afw_lmdb_self_s_last_txnid,
             afw_value_create_integer(info.me_last_txnid, p, xctx), xctx);
-        afw_object_set_property(information, &afw_lmdb_s_maxreaders,
+        afw_object_set_property(information, &afw_lmdb_self_s_maxreaders,
             afw_value_create_integer(info.me_maxreaders, p, xctx), xctx);
-        afw_object_set_property(information, &afw_lmdb_s_numreaders,
+        afw_object_set_property(information, &afw_lmdb_self_s_numreaders,
             afw_value_create_integer(info.me_numreaders, p, xctx), xctx);
     }
 
@@ -552,20 +552,20 @@ impl_afw_adaptor_get_additional_metrics (
                         database_str, xctx); 
 
                     afw_object_meta_set_object_type_id(database,
-                        &afw_lmdb_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
+                        &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
                         xctx);
                   
-                    afw_object_set_property(database, &afw_lmdb_s_psize,
+                    afw_object_set_property(database, &afw_lmdb_self_s_psize,
                         afw_value_create_integer(stat.ms_psize, p, xctx), xctx);
-                    afw_object_set_property(database, &afw_lmdb_s_depth,
+                    afw_object_set_property(database, &afw_lmdb_self_s_depth,
                         afw_value_create_integer(stat.ms_depth, p, xctx), xctx);
-                    afw_object_set_property(database, &afw_lmdb_s_branch_pages,
+                    afw_object_set_property(database, &afw_lmdb_self_s_branch_pages,
                         afw_value_create_integer(stat.ms_branch_pages, p, xctx), xctx);
-                    afw_object_set_property(database, &afw_lmdb_s_leaf_pages,
+                    afw_object_set_property(database, &afw_lmdb_self_s_leaf_pages,
                         afw_value_create_integer(stat.ms_leaf_pages, p, xctx), xctx);
-                    afw_object_set_property(database, &afw_lmdb_s_overflow_pages,
+                    afw_object_set_property(database, &afw_lmdb_self_s_overflow_pages,
                         afw_value_create_integer(stat.ms_overflow_pages, p, xctx), xctx);
-                    afw_object_set_property(database, &afw_lmdb_s_entries,
+                    afw_object_set_property(database, &afw_lmdb_self_s_entries,
                         afw_value_create_integer(stat.ms_entries, p, xctx), xctx);
                 }
             }

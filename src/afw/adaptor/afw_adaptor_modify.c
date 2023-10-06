@@ -33,7 +33,7 @@ typedef struct impl_reconcile_wa_s {
 
 /* Array of entry type ids. */
 static const afw_utf8_t * entry_type[] = {
-#define XX(id, _) &afw_s_ ## id,
+#define XX(id, _) &afw_self_s_ ## id,
     AFW_ADAPTOR_MODIFY_ENTRY_TYPE_MAP(XX)
 #undef XX
     NULL
@@ -807,7 +807,7 @@ afw_adaptor_modify_object(
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
-        journal_entry, &afw_s_request, xctx);
+        journal_entry, &afw_self_s_request, xctx);
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
@@ -819,17 +819,17 @@ afw_adaptor_modify_object(
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));
     afw_object_set_property_as_string(request,
-        &afw_s_resourceId, impl_request.resource_id, xctx);
+        &afw_self_s_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_function, &afw_s_modify_object, xctx);
+        &afw_self_s_function, &afw_self_s_modify_object, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_adaptorId, adaptor_id, xctx);
+        &afw_self_s_adaptorId, adaptor_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_objectType, object_type_id, xctx);
+        &afw_self_s_objectType, object_type_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_s_objectId, object_id, xctx);
+        &afw_self_s_objectId, object_id, xctx);
     afw_object_set_property_as_array(request,
-        &afw_s_entries, entries, xctx);
+        &afw_self_s_entries, entries, xctx);
 
     /* Parse entries. */
     entry = afw_adaptor_modify_entries_from_list(entries, xctx->p, xctx);

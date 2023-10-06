@@ -78,27 +78,27 @@ afw_authorization_handler_type_script_create_cede_p(
     self->authorization_check =
         afw_object_old_get_property_as_compiled_script(
             self->pub.properties,
-            &afw_s_authorizationCheck,
+            &afw_self_s_authorizationCheck,
             detail_source_location, NULL, p, xctx);
 
     /* Make context. */
     context_type_id = afw_utf8_printf(xctx->env->p, xctx,
         "authorizationHandler-" AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(&self->pub.authorization_handler_id));
-    conf_object_type_id = &afw_s__AdaptiveConf_authorizationHandler_script;
+    conf_object_type_id = &afw_self_s__AdaptiveConf_authorizationHandler_script;
     context_type_object = afw_context_type_create(
         context_type_id, xctx->env->p, xctx);
     qualifier_definitions =
         afw_context_type_insure_qualifier_definitions_object_exists(
             context_type_object, xctx);
     afw_object_meta_add_parent_path(qualifier_definitions,
-        &afw_s_a_context_type_application_qualifier_definitions_path,
+        &afw_self_s_a_context_type_application_qualifier_definitions_path,
         xctx);
 
     /* Configuration variables. */
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
-            context_type_object, &afw_s_authorizationHandler, xctx);
+            context_type_object, &afw_self_s_authorizationHandler, xctx);
     afw_context_variable_definitions_add_based_on_object_type_id(
         variable_definitions, conf_object_type_id,
         false, xctx);
@@ -106,9 +106,9 @@ afw_authorization_handler_type_script_create_cede_p(
     /* Current variables. */
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
-            context_type_object, &afw_s_current, xctx);
+            context_type_object, &afw_self_s_current, xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_s_message, &afw_s_internal,
+        &afw_self_s_message, &afw_self_s_internal,
         &afw_value_evaluated_string_inf,
         "Message",
         "Unformatted message that is being logged.",
@@ -117,13 +117,13 @@ afw_authorization_handler_type_script_create_cede_p(
 
     /* qualifiedVariables definitions. */
     self->qualified_variables = afw_object_old_get_property_as_object(
-        self->pub.properties, &afw_s_qualifiedVariables, xctx);
+        self->pub.properties, &afw_self_s_qualifiedVariables, xctx);
     if (self->qualified_variables) {
         detail_source_location = afw_utf8_printf(
             self->qualified_variables->p, xctx,
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(self->pub.source_location),
-            AFW_UTF8_FMT_ARG(&afw_s_qualifiedVariables));
+            AFW_UTF8_FMT_ARG(&afw_self_s_qualifiedVariables));
         self->qualified_variables = afw_object_create_clone(
             self->qualified_variables, p, xctx);
         afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
@@ -210,6 +210,6 @@ AFW_DEFINE_INTERNAL(void)
 afw_authorization_internal_register_handler_type_script(
     afw_xctx_t *xctx)
 {
-    afw_environment_register_authorization_handler_type(&afw_s_script,
+    afw_environment_register_authorization_handler_type(&afw_self_s_script,
         &impl_authorization_handler_factory_instance, xctx);
 }

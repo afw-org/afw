@@ -34,7 +34,7 @@
     "METHOD"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_METHOD */
-#define afw_command_s_METHOD \
+#define afw_command_self_s_METHOD \
     (afw_command_self_v_METHOD.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_METHOD */
@@ -56,7 +56,7 @@ extern const afw_value_string_t \
     "SERVER_PROTOCOL"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_SERVER_PROTOCOL */
-#define afw_command_s_SERVER_PROTOCOL \
+#define afw_command_self_s_SERVER_PROTOCOL \
     (afw_command_self_v_SERVER_PROTOCOL.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_SERVER_PROTOCOL */
@@ -78,7 +78,7 @@ extern const afw_value_string_t \
     "URI"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_URI */
-#define afw_command_s_URI \
+#define afw_command_self_s_URI \
     (afw_command_self_v_URI.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_URI */
@@ -100,7 +100,7 @@ extern const afw_value_string_t \
     "++afw-local-"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_directive_starts_with */
-#define afw_command_s_a_local_directive_starts_with \
+#define afw_command_self_s_a_local_directive_starts_with \
     (afw_command_self_v_a_local_directive_starts_with.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_directive_starts_with */
@@ -122,7 +122,7 @@ extern const afw_value_string_t \
     "++afw-local-mode-action"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_mode_action */
-#define afw_command_s_a_local_mode_action \
+#define afw_command_self_s_a_local_mode_action \
     (afw_command_self_v_a_local_mode_action.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_mode_action */
@@ -144,7 +144,7 @@ extern const afw_value_string_t \
     "++afw-local-mode-action-direct"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_mode_action_direct */
-#define afw_command_s_a_local_mode_action_direct \
+#define afw_command_self_s_a_local_mode_action_direct \
     (afw_command_self_v_a_local_mode_action_direct.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_mode_action_direct */
@@ -166,7 +166,7 @@ extern const afw_value_string_t \
     "++afw-local-mode-evaluate"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_mode_evaluate */
-#define afw_command_s_a_local_mode_evaluate \
+#define afw_command_self_s_a_local_mode_evaluate \
     (afw_command_self_v_a_local_mode_evaluate.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_mode_evaluate */
@@ -188,7 +188,7 @@ extern const afw_value_string_t \
     "++afw-local-mode-evaluate-direct"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_mode_evaluate_direct */
-#define afw_command_s_a_local_mode_evaluate_direct \
+#define afw_command_self_s_a_local_mode_evaluate_direct \
     (afw_command_self_v_a_local_mode_evaluate_direct.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_mode_evaluate_direct */
@@ -210,7 +210,7 @@ extern const afw_value_string_t \
     "++afw-local-mode-http-like"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_mode_http_like */
-#define afw_command_s_a_local_mode_http_like \
+#define afw_command_self_s_a_local_mode_http_like \
     (afw_command_self_v_a_local_mode_http_like.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_mode_http_like */
@@ -232,7 +232,7 @@ extern const afw_value_string_t \
     "++afw-local-multi-request-properties"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_a_local_request_properties */
-#define afw_command_s_a_local_request_properties \
+#define afw_command_self_s_a_local_request_properties \
     (afw_command_self_v_a_local_request_properties.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_a_local_request_properties */
@@ -254,7 +254,7 @@ extern const afw_value_string_t \
     "afw_command"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_afw_command */
-#define afw_command_s_afw_command \
+#define afw_command_self_s_afw_command \
     (afw_command_self_v_afw_command.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_afw_command */
@@ -276,7 +276,7 @@ extern const afw_value_string_t \
     "afw_command_dash_x"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_afw_command_dash_x */
-#define afw_command_s_afw_command_dash_x \
+#define afw_command_self_s_afw_command_dash_x \
     (afw_command_self_v_afw_command_dash_x.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_afw_command_dash_x */
@@ -298,7 +298,7 @@ extern const afw_value_string_t \
     "afw_command_interactive"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_afw_command_interactive */
-#define afw_command_s_afw_command_interactive \
+#define afw_command_self_s_afw_command_interactive \
     (afw_command_self_v_afw_command_interactive.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_afw_command_interactive */
@@ -320,7 +320,7 @@ extern const afw_value_string_t \
     "afw_command_local_mode"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_afw_command_local_mode */
-#define afw_command_s_afw_command_local_mode \
+#define afw_command_self_s_afw_command_local_mode \
     (afw_command_self_v_afw_command_local_mode.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_afw_command_local_mode */
@@ -342,7 +342,7 @@ extern const afw_value_string_t \
     "default"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_default */
-#define afw_command_s_default \
+#define afw_command_self_s_default \
     (afw_command_self_v_default.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_default */
@@ -364,7 +364,7 @@ extern const afw_value_string_t \
     "indirect"
 
 /** @brief 'afw_utf8_t' for AFW_COMMAND_Q_indirect */
-#define afw_command_s_indirect \
+#define afw_command_self_s_indirect \
     (afw_command_self_v_indirect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_COMMAND_Q_indirect */

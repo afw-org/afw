@@ -116,9 +116,9 @@ impl_retrieve_to_response_cb(
         p = (object->p) ? object->p : ctx->p;
         response_object = afw_object_create(p, xctx);
         afw_object_set_property_as_boolean(response_object,
-            &afw_s_intermediate, true, xctx);
+            &afw_self_s_intermediate, true, xctx);
         afw_object_set_property_as_object(response_object,
-            &afw_s_result, object, xctx);
+            &afw_self_s_result, object, xctx);
         object_value = afw_value_create_object(response_object, p, xctx);
         response_stream = afw_stream_standard(response_body, xctx);
         afw_content_type_write_value(ctx->response_content_type,
@@ -1284,13 +1284,13 @@ afw_function_execute_reconcile_object(
     }
 
     reconcilable = afw_object_meta_get_property_as_string(
-        object->internal, &afw_s_reconcilable, x->xctx);
+        object->internal, &afw_self_s_reconcilable, x->xctx);
     if (!reconcilable) {
         AFW_THROW_ERROR_Z(general,
             "object is not reconcilable",
             x->xctx);
     }
-    reconcilable_value = afw_json_to_value(reconcilable, &afw_s_reconcilable,
+    reconcilable_value = afw_json_to_value(reconcilable, &afw_self_s_reconcilable,
         x->p, x->xctx);
     AFW_VALUE_ASSERT_IS_DATA_TYPE(reconcilable_value, object, x->xctx);
     original = ((const afw_value_object_t *)reconcilable_value)->internal;

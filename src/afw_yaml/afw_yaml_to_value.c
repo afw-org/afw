@@ -195,7 +195,7 @@ const afw_object_t * afw_yaml_parse_object(
                 /** @fixme, check that key is not NULL, or throw an exception? */
 
                 /* check if it's a meta object */
-                if (afw_utf8_equal(key, &afw_s__meta_)) {
+                if (afw_utf8_equal(key, &afw_self_s__meta_)) {
                     if (!afw_value_is_object(v)) {
                         AFW_THROW_ERROR_Z(general, "_meta_ property must be an object", xctx);
                     }

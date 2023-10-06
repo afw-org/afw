@@ -508,8 +508,8 @@ impl_1_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_1 = {
-    &afw_vfs_s__AdaptiveObjectType_,
-    &afw_vfs_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+    &afw_vfs_self_s__AdaptiveObjectType_,
+    &afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
     &impl_1_meta_path,
     &impl_1_properties[0]
 };
@@ -782,8 +782,8 @@ impl_8_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_8 = {
-    &afw_vfs_s__AdaptiveObjectType_,
-    &afw_vfs_s__AdaptiveConf_adaptor_vfs,
+    &afw_vfs_self_s__AdaptiveObjectType_,
+    &afw_vfs_self_s__AdaptiveConf_adaptor_vfs,
     &impl_8_meta_path,
     &impl_8_properties[0]
 };
@@ -1347,8 +1347,8 @@ impl_12_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_12 = {
-    &afw_vfs_s__AdaptiveObjectType_,
-    &afw_vfs_s__AdaptiveFile_vfs,
+    &afw_vfs_self_s__AdaptiveObjectType_,
+    &afw_vfs_self_s__AdaptiveFile_vfs,
     &impl_12_meta_path,
     &impl_12_properties[0]
 };

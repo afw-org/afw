@@ -29,7 +29,7 @@ impl_default_tab = AFW_UTF8_LITERAL("    ");
 /* Frame symbol types. */
 static const afw_utf8_t *
 impl_symbol_type_names[] = {
-#define XX(name, description) &afw_s_ ## name,
+#define XX(name, description) &afw_self_s_ ## name,
     AFW_VALUE_BLOCK_SYMBOL_TYPE(XX)
 #undef XX
     NULL
@@ -440,7 +440,7 @@ afw_value_compiler_listing_to_string_instance(
         afw_writer_write_z(writer, "#", xctx);
         afw_writer_write_eol(writer, xctx);
         if (afw_value_is_undefined(value)) {
-            afw_writer_write_utf8(writer, &afw_s_undefined, xctx);
+            afw_writer_write_utf8(writer, &afw_self_s_undefined, xctx);
         }
         else {
             afw_data_type_write_as_expression(
@@ -722,7 +722,7 @@ afw_value_compiler_listing_value(
     afw_xctx_t *xctx)
 {
     if (afw_value_is_undefined(instance)) {
-        afw_writer_write_utf8(writer, &afw_s_undefined, xctx);
+        afw_writer_write_utf8(writer, &afw_self_s_undefined, xctx);
         afw_writer_write_eol(writer, xctx);
     }
     else {

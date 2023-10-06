@@ -134,7 +134,7 @@ afw_compile_parse_reference_create(
     if (!result) {
         result = (const afw_value_t *)
             afw_environment_get_qualified_function(
-                afw_utf8_equal(&qualifier, &afw_s_fn) ? NULL : &qualifier,
+                afw_utf8_equal(&qualifier, &afw_self_s_fn) ? NULL : &qualifier,
                 &name, parser->xctx);
         if (!result) {
             if (qualifier.len == 0) {
@@ -142,7 +142,7 @@ afw_compile_parse_reference_create(
                     "Undeclared variable " AFW_UTF8_FMT_Q,
                     AFW_UTF8_FMT_ARG(&name));
             }
-            if (afw_utf8_equal(&qualifier, &afw_s_fn)) {
+            if (afw_utf8_equal(&qualifier, &afw_self_s_fn)) {
                 AFW_COMPILE_THROW_ERROR_FZ(
                     "Unknown built-in function " AFW_UTF8_FMT_Q,
                     AFW_UTF8_FMT_ARG(&name));

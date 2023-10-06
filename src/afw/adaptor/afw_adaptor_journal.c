@@ -24,7 +24,7 @@ afw_adaptor_internal_journal_prologue(
     const afw_value_t *now;
 
     now = afw_value_create_dateTime_now_utc(journal_entry->p, xctx);
-    afw_object_set_property(journal_entry, &afw_s_beginTime, now, xctx);
+    afw_object_set_property(journal_entry, &afw_self_s_beginTime, now, xctx);
 }
 
 
@@ -41,7 +41,7 @@ afw_adaptor_internal_journal_epilogue(
     afw_adaptor_impl_request_t impl_request;
 
     now = afw_value_create_dateTime_now_utc(journal_entry->p, xctx);
-    afw_object_set_property(journal_entry, &afw_s_endTime, now, xctx);
+    afw_object_set_property(journal_entry, &afw_self_s_endTime, now, xctx);
 
     /** @fixme Might want to record failures too???? */
     /* If this is a modification, add event to journal if requested. */
@@ -83,7 +83,7 @@ afw_adaptor_journal_entry_consume(
 
     /* Get consumed property from update object. */
     consumed = afw_object_old_get_property_as_boolean(update_object,
-        &afw_s_consumed, &found, xctx);
+        &afw_self_s_consumed, &found, xctx);
     if (!found || !consumed) {
         AFW_THROW_ERROR_Z(general,
             AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
@@ -92,7 +92,7 @@ afw_adaptor_journal_entry_consume(
 
     /* Get consumer_id from update object. */
     consumer_id = afw_object_old_get_property_as_string(update_object,
-        &afw_s_consumerId, xctx);
+        &afw_self_s_consumerId, xctx);
     if (!consumer_id) {
         AFW_THROW_ERROR_Z(general,
             AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
@@ -367,11 +367,11 @@ afw_adaptor_internal_journal_get_entry(
      * Get request object.  Make one if necessary.  Additional properties
      * will be set for the get_object() properties.
      */
-    request = afw_object_old_get_property_as_object(journal_entry, &afw_s_request,
+    request = afw_object_old_get_property_as_object(journal_entry, &afw_self_s_request,
         xctx);
     if (!request) {
         request = afw_object_create_embedded(
-            journal_entry, &afw_s_request, xctx);
+            journal_entry, &afw_self_s_request, xctx);
     }
 
     /* Set default limit. */
@@ -476,28 +476,28 @@ afw_adaptor_internal_journal_get_entry(
     }
 
     /* Set more specific request function. */
-    afw_object_set_property_as_string(request, &afw_s_function,
-        &afw_s_a_journal_get_entry, xctx);
+    afw_object_set_property_as_string(request, &afw_self_s_function,
+        &afw_self_s_a_journal_get_entry, xctx);
 
     /* Set option. */
     afw_object_set_property_as_string_from_utf8_z(request,
-        &afw_s_option, option_z, xctx);
+        &afw_self_s_option, option_z, xctx);
 
     /* Set entry consumerId property, if applicable. */
     if (consumer_id) {
-        afw_object_set_property_as_string(request, &afw_s_consumerId,
+        afw_object_set_property_as_string(request, &afw_self_s_consumerId,
             consumer_id, xctx);
     }
 
     /* Set entry consumerId property, if applicable. */
     if (entry_cursor) {
-        afw_object_set_property_as_string(request, &afw_s_entryCursor,
+        afw_object_set_property_as_string(request, &afw_self_s_entryCursor,
             entry_cursor, xctx);
     }
 
     /* Set entry limit property, if applicable. */
     if (limit_applies) {
-        afw_object_set_property_as_integer(request, &afw_s_limit,
+        afw_object_set_property_as_integer(request, &afw_self_s_limit,
             limit, xctx);
     } else {
         limit = 1;
@@ -508,7 +508,7 @@ afw_adaptor_internal_journal_get_entry(
     afw_adaptor_journal_get_entry(journal, &impl_request,
         option, consumer_id, entry_cursor, limit, journal_entry, xctx);
     afw_object_set_property_as_string(journal_entry,
-        &afw_s_status, &afw_s_success, xctx);
+        &afw_self_s_status, &afw_self_s_success, xctx);
     return journal_entry;
 
 error_special_id:

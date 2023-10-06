@@ -15,6 +15,6 @@ impl_rv_decoder_z_ldap(int rv,
 void
 afw_ldap_error_rv_decoder_ldap_register(afw_xctx_t *xctx)
 {
-    afw_environment_register_error_rv_decoder(&afw_ldap_s_ldap,
+    afw_environment_register_error_rv_decoder(&afw_ldap_self_s_ldap,
         impl_rv_decoder_z_ldap, xctx);
 }

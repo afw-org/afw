@@ -64,8 +64,8 @@ impl_1_meta_path =
 
 static const afw_runtime_unresolved_const_object_t
 impl_1 = {
-    &afw_server_fcgi_s__AdaptiveCollection_,
-    &afw_server_fcgi_s_afw_server_fcgi,
+    &afw_server_fcgi_self_s__AdaptiveCollection_,
+    &afw_server_fcgi_self_s_afw_server_fcgi,
     &impl_1_meta_path,
     &impl_1_properties[0]
 };

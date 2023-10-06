@@ -30,111 +30,111 @@ AFW_BEGIN_DECLARES
 #define AFW_OBJECT_Q_CORE_ID_PREFIX AFW_Q__Adaptive
 
 /** @brief String prefix for all core adaptive object types. */
-#define AFW_OBJECT_S_CORE_ID_PREFIX afw_s__Adaptive
+#define AFW_OBJECT_S_CORE_ID_PREFIX afw_self_s__Adaptive
 
 /** @brief Quoted object type id for untyped adaptive object. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_OBJECT AFW_Q__AdaptiveObject_
 
 /** @brief String object type id for untyped adaptive object. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT afw_s__AdaptiveObject_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT afw_self_s__AdaptiveObject_
 
 /** @brief Quoted object type id for Object Type object. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_OBJECT_TYPE AFW_Q__AdaptiveObjectType_
 
 /** @brief String object type id for Object Type object. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE afw_s__AdaptiveObjectType_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE afw_self_s__AdaptiveObjectType_
 
 /** @brief Quoted object type id for Value Meta object. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_VALUE_META AFW_Q__AdaptiveValueMeta_
 
 /** @brief String object type id for Property Type object. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META afw_s__AdaptiveValueMeta_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META afw_self_s__AdaptiveValueMeta_
 
 /** @brief Quoted object type id for Data Type object. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_DATA_TYPE AFW_Q__AdaptiveDataType_
 
 /** @brief String object type id for Data Type object. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_DATA_TYPE afw_s__AdaptiveDataType_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_DATA_TYPE afw_self_s__AdaptiveDataType_
 
 /** @brief Quoted object type id for Journal Entry object. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY AFW_Q__AdaptiveJournalEntry_
 
 /** @brief String object type id for Journal Entry object. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY afw_s__AdaptiveJournalEntry_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY afw_self_s__AdaptiveJournalEntry_
 
 /** @brief Quoted object type id for Provisioning Peer object. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER AFW_Q__AdaptiveProvisioningPeer_
 
 /** @brief String object type id for Provisioning Peer object. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_PROVISIONING_PEER afw_s__AdaptiveProvisioningPeer_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_PROVISIONING_PEER afw_self_s__AdaptiveProvisioningPeer_
 
 /** @brief Quoted object type id for Response. */
 #define AFW_OBJECT_Q_OBJECT_TYPE_ID_RESPONSE AFW_Q__AdaptiveResponse_
 
 /** @brief String object type id for Response. */
-#define AFW_OBJECT_S_OBJECT_TYPE_ID_RESPONSE afw_s__AdaptiveResponse_
+#define AFW_OBJECT_S_OBJECT_TYPE_ID_RESPONSE afw_self_s__AdaptiveResponse_
 
 /** @brief Quoted pseudo meta property name. */
 #define AFW_OBJECT_Q_PN_META AFW_Q__meta_
 
 /** @brief String pseudo meta property name. */
-#define AFW_OBJECT_S_PN_META afw_s__meta_
+#define AFW_OBJECT_S_PN_META afw_self_s__meta_
 
 /** @brief Quoted pseudo meta property name for objectId. */
 #define AFW_OBJECT_Q_PN_OBJECT_ID AFW_Q_objectId
 
 /** @brief String pseudo meta property name for objectId. */
-#define AFW_OBJECT_S_PN_OBJECT_ID afw_s_objectId
+#define AFW_OBJECT_S_PN_OBJECT_ID afw_self_s_objectId
 
 /** @brief Quoted pseudo meta property name for path. */
 #define AFW_OBJECT_Q_PN_PATH AFW_Q_path
 
 /** @brief String pseudo meta property name for path. */
-#define AFW_OBJECT_S_PN_PATH afw_s_path
+#define AFW_OBJECT_S_PN_PATH afw_self_s_path
 
 /** @brief Quoted pseudo meta property name for adaptorId. */
 #define AFW_OBJECT_Q_PN_ADAPTOR_ID AFW_Q_adaptorId
 
 /** @brief String pseudo meta property name for adaptorId. */
-#define AFW_OBJECT_S_PN_ADAPTOR_ID afw_s_adaptorId
+#define AFW_OBJECT_S_PN_ADAPTOR_ID afw_self_s_adaptorId
 
 /** @brief Quoted pseudo meta property name for objectType. */
 #define AFW_OBJECT_Q_PN_OBJECT_TYPE AFW_Q_objectType
 
 /** @brief String pseudo meta property name for objectType. */
-#define AFW_OBJECT_S_PN_OBJECT_TYPE afw_s_objectType
+#define AFW_OBJECT_S_PN_OBJECT_TYPE afw_self_s_objectType
 
 /** @brief Quoted pseudo meta property name for parentPaths. */
 #define AFW_OBJECT_Q_PN_PARENT_PATHS AFW_Q_parentPaths
 
 /** @brief String pseudo meta property name for parentPaths. */
-#define AFW_OBJECT_S_PN_PARENT_PATHS afw_s_parentPaths
+#define AFW_OBJECT_S_PN_PARENT_PATHS afw_self_s_parentPaths
 
 /** @brief Quoted pseudo meta property name for property types. */
 #define AFW_OBJECT_Q_PN_PROPERTY_TYPES AFW_Q_propertyTypes
 
 /** @brief String pseudo meta property name for property types. */
-#define AFW_OBJECT_S_PN_PROPERTY_TYPES afw_s_propertyTypes
+#define AFW_OBJECT_S_PN_PROPERTY_TYPES afw_self_s_propertyTypes
 
 /** @brief Quoted _meta_.objectType */
 #define AFW_OBJECT_Q_PN_META_OBJECTTYPE \
     AFW_OBJECT_Q_PN_META "." AFW_OBJECT_Q_PN_OBJECT_TYPE
 
 /** @brief String _meta_.objectType */
-#define AFW_OBJECT_S_PN_META_OBJECTTYPE afw_s_a_meta_objectType
+#define AFW_OBJECT_S_PN_META_OBJECTTYPE afw_self_s_a_meta_objectType
 
 /** @brief The object type id for object type objects is _AdaptiveObjectType_. */
 #define AFW_OBJECT_ID_IS_OBJECT_TYPE(OBJECT_TYPE_ID) \
-    afw_utf8_equal((OBJECT_TYPE_ID), &afw_s__AdaptiveObjectType_)
+    afw_utf8_equal((OBJECT_TYPE_ID), &afw_self_s__AdaptiveObjectType_)
 
 /** @brief Core object type objects have an object id starting with _Adaptive. */
 #define AFW_OBJECT_IS_CORE_OBJECT_TYPE_ID(OBJECT_TYPE_ID, OBJECT_ID) \
     AFW_OBJECT_ID_IS_OBJECT_TYPE(OBJECT_TYPE_ID) && \
-    afw_utf8_starts_with((OBJECT_ID), &afw_s__Adaptive)
+    afw_utf8_starts_with((OBJECT_ID), &afw_self_s__Adaptive)
 
 /** @brief Core type ids starting with _Adaptive. */
 #define AFW_OBJECT_IS_CORE_TYPE_ID(ID) \
-    afw_utf8_starts_with((ID), &afw_s__Adaptive)
+    afw_utf8_starts_with((ID), &afw_self_s__Adaptive)
 
 
 /**
@@ -1040,7 +1040,7 @@ afw_object_insure_embedded_exists(
     result,embedding_object,property_name,always_create_unmanaged, \
     cede_p,entity_p,xctx) \
     if (always_create_unmanaged || \
-        (property_name && afw_utf8_equal(property_name, &afw_s__meta_))) \
+        (property_name && afw_utf8_equal(property_name, &afw_self_s__meta_))) \
     { \
         result = afw_object_create(entity_p, xctx); \
     } \

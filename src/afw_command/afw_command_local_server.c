@@ -167,7 +167,7 @@ impl_process_directive(
 
     /* ++afw-local-mode-evaluate-direct */
     if (afw_utf8_starts_with(string,
-        &afw_command_s_a_local_mode_evaluate_direct))
+        &afw_command_self_s_a_local_mode_evaluate_direct))
     {
         self->mode = afw_command_local_server_mode_evaluate_direct;
         if (self->multi_request_mode_properties) {
@@ -175,13 +175,13 @@ impl_process_directive(
                 self->pub.xctx);
         }
         self->multi_request_mode_properties = impl_get_directive_input(self,
-            string, afw_command_s_a_local_mode_evaluate_direct.len, xctx);
+            string, afw_command_self_s_a_local_mode_evaluate_direct.len, xctx);
         is_invalid = false;       
     }
 
     /* ++afw-local-mode-evaluate */
     else if (afw_utf8_starts_with(string,
-        &afw_command_s_a_local_mode_evaluate))
+        &afw_command_self_s_a_local_mode_evaluate))
     {
         self->mode = afw_command_local_server_mode_evaluate;
         if (self->multi_request_mode_properties) {
@@ -189,13 +189,13 @@ impl_process_directive(
                 self->pub.xctx);
         }
         self->multi_request_mode_properties = impl_get_directive_input(self,
-            string, afw_command_s_a_local_mode_evaluate.len, xctx);
+            string, afw_command_self_s_a_local_mode_evaluate.len, xctx);
         is_invalid = false;       
     }
 
     /* ++afw-local-mode-action-direct */
     else if (afw_utf8_starts_with(string,
-        &afw_command_s_a_local_mode_action_direct))
+        &afw_command_self_s_a_local_mode_action_direct))
     {
         self->mode = afw_command_local_server_mode_action_direct;
         if (self->multi_request_mode_properties) {
@@ -203,13 +203,13 @@ impl_process_directive(
                 self->pub.xctx);
         }
         self->multi_request_mode_properties = impl_get_directive_input(self,
-            string, afw_command_s_a_local_mode_action_direct.len, xctx);            
+            string, afw_command_self_s_a_local_mode_action_direct.len, xctx);            
         is_invalid = false;       
     }
 
     /* ++afw-local-mode-action */
     else if (afw_utf8_starts_with(string,
-        &afw_command_s_a_local_mode_action))
+        &afw_command_self_s_a_local_mode_action))
     {
         self->mode = afw_command_local_server_mode_action;
         if (self->multi_request_mode_properties) {
@@ -217,13 +217,13 @@ impl_process_directive(
                 self->pub.xctx);
         }
         self->multi_request_mode_properties = impl_get_directive_input(self,
-            string, afw_command_s_a_local_mode_action.len, xctx);            
+            string, afw_command_self_s_a_local_mode_action.len, xctx);            
         is_invalid = false;       
     }
 
     /* ++afw-local-mode-http-like */
     else if (afw_utf8_starts_with(string,
-        &afw_command_s_a_local_mode_http_like))
+        &afw_command_self_s_a_local_mode_http_like))
     {
         self->mode = afw_command_local_server_mode_http_like;
         if (self->multi_request_mode_properties) {
@@ -231,19 +231,19 @@ impl_process_directive(
                 self->pub.xctx);
         }
         self->multi_request_mode_properties = impl_get_directive_input(self,
-            string, afw_command_s_a_local_mode_http_like.len, xctx);            
+            string, afw_command_self_s_a_local_mode_http_like.len, xctx);            
         is_invalid = false;       
     }
 
     /* ++afw-local-multi-request-properties */
     else if (afw_utf8_starts_with(string,
-        &afw_command_s_a_local_request_properties))
+        &afw_command_self_s_a_local_request_properties))
     {
         if (self->multi_request_properties) {
             afw_object_release(self->multi_request_properties, self->pub.xctx);
         }
         self->multi_request_properties = impl_get_directive_input(self,
-            string, afw_command_s_a_local_request_properties.len, xctx); 
+            string, afw_command_self_s_a_local_request_properties.len, xctx); 
         is_invalid = false;       
     }
 
@@ -280,7 +280,7 @@ impl_read_and_process_request(
     afw_boolean_t error_occurred;
     afw_boolean_t keep_going;
 
-    xctx = afw_xctx_create(&afw_command_s_afw_command_local_mode,
+    xctx = afw_xctx_create(&afw_command_self_s_afw_command_local_mode,
         0, self->command_self->xctx);
     p = xctx->p;
     error_occurred = false;
@@ -319,7 +319,7 @@ impl_read_and_process_request(
 
             /* If this is a directive, process it and continue looping. */
             if (afw_utf8_starts_with((const afw_utf8_t *)input,
-                &afw_command_s_a_local_directive_starts_with))
+                &afw_command_self_s_a_local_directive_starts_with))
             {
                 impl_process_directive(self, input, xctx);
                 continue;
@@ -379,9 +379,9 @@ impl_read_and_process_request(
                     p, xctx);
                 action_object = afw_object_create(p, xctx);
                 afw_object_set_property_as_string(action_object,
-                    &afw_s_function, &afw_s_evaluate_script, xctx);
+                    &afw_self_s_function, &afw_self_s_evaluate_script, xctx);
                 afw_object_set_property_as_string(action_object,
-                    &afw_s_source, string, xctx);
+                    &afw_self_s_source, string, xctx);
                 response_object = afw_action_perform(
                     action_object, self->content_type, NULL, p, xctx);
                 string = afw_data_type_object_to_utf8(response_object,
@@ -484,7 +484,7 @@ afw_command_local_server_create(
     self->pub.afw_version = afw_version_string();
     self->pub.concurrent = 1;
     self->pub.max_concurrent = 1;
-    self->pub.server_type = &afw_command_s_afw_command_local_mode;
+    self->pub.server_type = &afw_command_self_s_afw_command_local_mode;
     self->pub.server_version = &impl_compiled_afw_version; /* Use afw version. */
     self->pub.start_time = afw_dateTime_now_local(xctx->p, xctx);
     self->pub.thread_count = 1;
@@ -498,13 +498,13 @@ afw_command_local_server_create(
     self->mode = afw_command_local_server_mode_evaluate_direct;
 
     /** @todo these should be able to be changed. */
-    self->evaluate_function_id = &afw_s_evaluate_script;
+    self->evaluate_function_id = &afw_self_s_evaluate_script;
     self->content_type = command_self->content_type_in;
    
     /* Create and set runtime object for server. */
     afw_runtime_env_create_and_set_indirect_object(
-        &afw_s__AdaptiveServer_,
-        &afw_s_current, self, true, xctx);
+        &afw_self_s__AdaptiveServer_,
+        &afw_self_s_current, self, true, xctx);
 
     /* If there's not a conf file already processed, process a default one. */
     if (!self->command_self->conf_z) {
@@ -541,7 +541,7 @@ afw_command_local_server_create(
     self->request_properties = afw_object_aggregate_external_create(
         &self->properties_array[0], p, xctx);
     afw_object_meta_set_ids(self->request_properties,
-        &afw_s_afw, &afw_s__AdaptiveRequestProperties_, &afw_s_current, xctx);
+        &afw_self_s_afw, &afw_self_s__AdaptiveRequestProperties_, &afw_self_s_current, xctx);
     afw_runtime_env_set_object(self->request_properties, false, xctx);
 
     /* Return self. */
@@ -599,13 +599,13 @@ afw_command_local_server_write_error(
 
     response_object = afw_object_create(xctx->p, xctx);
 
-    status = (self->fatal_error) ? &afw_s_fatal : &afw_s_error;
+    status = (self->fatal_error) ? &afw_self_s_fatal : &afw_self_s_error;
     afw_object_set_property_as_string(response_object,
-        &afw_s_status, status, xctx);
+        &afw_self_s_status, status, xctx);
 
     error_object = afw_error_to_object(error, xctx->p, xctx);
     afw_object_set_property_as_object(response_object,
-        &afw_s_error, error_object, xctx);
+        &afw_self_s_error, error_object, xctx);
 
     string = afw_data_type_object_to_utf8(response_object, xctx->p, xctx);
     rv = fprintf(self->fd_output, AFW_SIZE_T_FMT "\n", string->len);

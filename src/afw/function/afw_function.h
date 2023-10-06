@@ -223,7 +223,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_VALUE_IS_UTF8(A_VALUE) \
 if (!(A_VALUE) || !afw_utf8_equal( \
     &afw_value_get_data_type(((const afw_value_t *)A_VALUE), x->xctx)->cType, \
-    &afw_s_afw_utf8_t)) \
+    &afw_self_s_afw_utf8_t)) \
 { \
     AFW_THROW_ERROR_Z(arg_error, \
         "Value's data type not supported for this function", x->xctx); \

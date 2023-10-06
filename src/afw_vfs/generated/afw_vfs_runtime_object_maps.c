@@ -40,7 +40,7 @@
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects = {
-    &afw_vfs_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+    &afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -55,7 +55,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_vfs = {
-    &afw_vfs_s__AdaptiveConf_adaptor_vfs,
+    &afw_vfs_self_s__AdaptiveConf_adaptor_vfs,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -70,7 +70,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveFile_vfs = {
-    &afw_vfs_s__AdaptiveFile_vfs,
+    &afw_vfs_self_s__AdaptiveFile_vfs,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,

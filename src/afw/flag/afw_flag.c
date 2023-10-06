@@ -215,339 +215,339 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
 
     /* Register flag unspecified */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_unspecified,
-        &afw_s_a_flag_unspecified_brief,
-        &afw_s_a_flag_unspecified_description,
+        &afw_self_s_a_flag_unspecified,
+        &afw_self_s_a_flag_unspecified_brief,
+        &afw_self_s_a_flag_unspecified_description,
         NULL,
         xctx);
 
     /* Register flag compile:noImplicitAny */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_compile_noImplicitAny,
-        &afw_s_a_flag_compile_noImplicitAny_brief,
-        &afw_s_a_flag_compile_noImplicitAny_description,
+        &afw_self_s_a_flag_compile_noImplicitAny,
+        &afw_self_s_a_flag_compile_noImplicitAny_brief,
+        &afw_self_s_a_flag_compile_noImplicitAny_description,
         NULL,
         xctx);
     env->flag_index_compile_noImplicitAny_active =
         afw_environment_get_flag(
-            &afw_s_a_flag_compile_noImplicitAny,
+            &afw_self_s_a_flag_compile_noImplicitAny,
             xctx)->flag_index;
 
     /* Register flag compile:noOptimize */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_compile_noOptimize,
-        &afw_s_a_flag_compile_noOptimize_brief,
-        &afw_s_a_flag_compile_noOptimize_description,
+        &afw_self_s_a_flag_compile_noOptimize,
+        &afw_self_s_a_flag_compile_noOptimize_brief,
+        &afw_self_s_a_flag_compile_noOptimize_description,
         NULL,
         xctx);
     env->flag_index_compile_noOptimize_active =
         afw_environment_get_flag(
-            &afw_s_a_flag_compile_noOptimize,
+            &afw_self_s_a_flag_compile_noOptimize,
             xctx)->flag_index;
 
     /* Register flag debug:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug_detail,
-        &afw_s_a_flag_debug_detail_brief,
-        &afw_s_a_flag_debug_detail_description,
+        &afw_self_s_a_flag_debug_detail,
+        &afw_self_s_a_flag_debug_detail_brief,
+        &afw_self_s_a_flag_debug_detail_description,
         NULL,
         xctx);
 
     /* Register flag debug */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug,
-        &afw_s_a_flag_debug_brief,
-        &afw_s_a_flag_debug_description,
-        &afw_s_a_flag_debug_detail,
+        &afw_self_s_a_flag_debug,
+        &afw_self_s_a_flag_debug_brief,
+        &afw_self_s_a_flag_debug_description,
+        &afw_self_s_a_flag_debug_detail,
         xctx);
 
 #ifdef AFW_LOCK_DEBUG
     /* Register flag debug:lock */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug_lock,
-        &afw_s_a_flag_debug_lock_brief,
-        &afw_s_a_flag_debug_lock_description,
-        &afw_s_a_flag_debug,
+        &afw_self_s_a_flag_debug_lock,
+        &afw_self_s_a_flag_debug_lock_brief,
+        &afw_self_s_a_flag_debug_lock_description,
+        &afw_self_s_a_flag_debug,
         xctx);
 #endif
 
 #ifdef AFW_POOL_DEBUG
     /* Register flag debug:pool:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug_pool_detail,
-        &afw_s_a_flag_debug_pool_detail_brief,
-        &afw_s_a_flag_debug_pool_detail_description,
-        &afw_s_a_flag_debug_detail,
+        &afw_self_s_a_flag_debug_pool_detail,
+        &afw_self_s_a_flag_debug_pool_detail_brief,
+        &afw_self_s_a_flag_debug_pool_detail_description,
+        &afw_self_s_a_flag_debug_detail,
         xctx);
     env->flag_index_debug_pool_detail =
         afw_environment_get_flag(
-            &afw_s_a_flag_debug_pool_detail,
+            &afw_self_s_a_flag_debug_pool_detail,
             xctx)->flag_index;
 
     /* Register flag debug:pool */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug_pool,
-        &afw_s_a_flag_debug_pool_brief,
-        &afw_s_a_flag_debug_pool_description,
-        &afw_s_a_flag_debug,
+        &afw_self_s_a_flag_debug_pool,
+        &afw_self_s_a_flag_debug_pool_brief,
+        &afw_self_s_a_flag_debug_pool_description,
+        &afw_self_s_a_flag_debug,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_debug_pool,
-        &afw_s_a_flag_debug_detail,
+        &afw_self_s_a_flag_debug_pool,
+        &afw_self_s_a_flag_debug_detail,
         xctx);
     env->flag_index_debug_pool =
         afw_environment_get_flag(
-            &afw_s_a_flag_debug_pool,
+            &afw_self_s_a_flag_debug_pool,
             xctx)->flag_index;
 #endif
 
     /* Register flag debug:print:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug_function_active_detail,
-        &afw_s_a_flag_debug_function_active_detail_brief,
-        &afw_s_a_flag_debug_function_active_detail_description,
-        &afw_s_a_flag_debug_detail,
+        &afw_self_s_a_flag_debug_function_active_detail,
+        &afw_self_s_a_flag_debug_function_active_detail_brief,
+        &afw_self_s_a_flag_debug_function_active_detail_description,
+        &afw_self_s_a_flag_debug_detail,
         xctx);
     env->flag_index_debug_function_active_detail =
         afw_environment_get_flag(
-            &afw_s_a_flag_debug_function_active_detail,
+            &afw_self_s_a_flag_debug_function_active_detail,
             xctx)->flag_index;
 
     /* Register flag debug:print */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_debug_function_active,
-        &afw_s_a_flag_debug_function_active_brief,
-        &afw_s_a_flag_debug_function_active_description,
-        &afw_s_a_flag_debug,
+        &afw_self_s_a_flag_debug_function_active,
+        &afw_self_s_a_flag_debug_function_active_brief,
+        &afw_self_s_a_flag_debug_function_active_description,
+        &afw_self_s_a_flag_debug,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_debug_function_active,
-        &afw_s_a_flag_debug_detail,
+        &afw_self_s_a_flag_debug_function_active,
+        &afw_self_s_a_flag_debug_detail,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_debug_function_active,
-        &afw_s_a_flag_debug_function_active_detail,
+        &afw_self_s_a_flag_debug_function_active,
+        &afw_self_s_a_flag_debug_function_active_detail,
         xctx);
     env->flag_index_debug_function_active =
         afw_environment_get_flag(
-            &afw_s_a_flag_debug_function_active,
+            &afw_self_s_a_flag_debug_function_active,
             xctx)->flag_index;
 
     /* Register flag response:error */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_error,
-        &afw_s_a_flag_response_error_brief,
-        &afw_s_a_flag_response_error_description,
+        &afw_self_s_a_flag_response_error,
+        &afw_self_s_a_flag_response_error_brief,
+        &afw_self_s_a_flag_response_error_description,
         NULL,
         xctx);
 
     /* Register flag response:error:backtrace */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_error_backtrace,
-        &afw_s_a_flag_response_error_backtrace_brief,
-        &afw_s_a_flag_response_error_backtrace_description,
-        &afw_s_a_flag_response_error,
+        &afw_self_s_a_flag_response_error_backtrace,
+        &afw_self_s_a_flag_response_error_backtrace_brief,
+        &afw_self_s_a_flag_response_error_backtrace_description,
+        &afw_self_s_a_flag_response_error,
         xctx);
     env->flag_index_response_error_backtrace =
         afw_environment_get_flag(
-            &afw_s_a_flag_response_error_backtrace,
+            &afw_self_s_a_flag_response_error_backtrace,
             xctx)->flag_index;
 
     /* Register flag response:error:backtraceEvaluation */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_error_backtraceEvaluation,
-        &afw_s_a_flag_response_error_backtraceEvaluation_brief,
-        &afw_s_a_flag_response_error_backtraceEvaluation_description,
-        &afw_s_a_flag_response_error,
+        &afw_self_s_a_flag_response_error_backtraceEvaluation,
+        &afw_self_s_a_flag_response_error_backtraceEvaluation_brief,
+        &afw_self_s_a_flag_response_error_backtraceEvaluation_description,
+        &afw_self_s_a_flag_response_error,
         xctx);
     env->flag_index_response_error_backtraceEvaluation =
         afw_environment_get_flag(
-            &afw_s_a_flag_response_error_backtraceEvaluation,
+            &afw_self_s_a_flag_response_error_backtraceEvaluation,
             xctx)->flag_index;
 
     /* Register flag response:error:contextual */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_error_contextual,
-        &afw_s_a_flag_response_error_contextual_brief,
-        &afw_s_a_flag_response_error_contextual_description,
-        &afw_s_a_flag_response_error,
+        &afw_self_s_a_flag_response_error_contextual,
+        &afw_self_s_a_flag_response_error_contextual_brief,
+        &afw_self_s_a_flag_response_error_contextual_description,
+        &afw_self_s_a_flag_response_error,
         xctx);
     env->flag_index_response_error_contextual =
         afw_environment_get_flag(
-            &afw_s_a_flag_response_error_contextual,
+            &afw_self_s_a_flag_response_error_contextual,
             xctx)->flag_index;
 
     /* Register flag response:error:hasAdditionalDetail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_error_hasAdditionalDetail,
-        &afw_s_a_flag_response_error_hasAdditionalDetail_brief,
-        &afw_s_a_flag_response_error_hasAdditionalDetail_description,
-        &afw_s_a_flag_response_error,
+        &afw_self_s_a_flag_response_error_hasAdditionalDetail,
+        &afw_self_s_a_flag_response_error_hasAdditionalDetail_brief,
+        &afw_self_s_a_flag_response_error_hasAdditionalDetail_description,
+        &afw_self_s_a_flag_response_error,
         xctx);
     env->flag_index_response_error_hasAdditionalDetail =
         afw_environment_get_flag(
-            &afw_s_a_flag_response_error_hasAdditionalDetail,
+            &afw_self_s_a_flag_response_error_hasAdditionalDetail,
             xctx)->flag_index;
     afw_flag_add_included_by(
-        &afw_s_a_flag_response_error_hasAdditionalDetail,
-        &afw_s_a_flag_response_error_backtrace,
+        &afw_self_s_a_flag_response_error_hasAdditionalDetail,
+        &afw_self_s_a_flag_response_error_backtrace,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_response_error_hasAdditionalDetail,
-        &afw_s_a_flag_response_error_backtraceEvaluation,
+        &afw_self_s_a_flag_response_error_hasAdditionalDetail,
+        &afw_self_s_a_flag_response_error_backtraceEvaluation,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_response_error_hasAdditionalDetail,
-        &afw_s_a_flag_response_error_contextual,
+        &afw_self_s_a_flag_response_error_hasAdditionalDetail,
+        &afw_self_s_a_flag_response_error_contextual,
         xctx);
 
     /* Register response:console, stderr, and stdout. */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_console,
-        &afw_s_a_flag_response_console_brief,
-        &afw_s_a_flag_response_console_description,
+        &afw_self_s_a_flag_response_console,
+        &afw_self_s_a_flag_response_console_brief,
+        &afw_self_s_a_flag_response_console_description,
         NULL,
         xctx);
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_console_stream,
-        &afw_s_a_flag_response_console_stream_brief,
-        &afw_s_a_flag_response_console_stream_description,
+        &afw_self_s_a_flag_response_console_stream,
+        &afw_self_s_a_flag_response_console_stream_brief,
+        &afw_self_s_a_flag_response_console_stream_description,
         NULL,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_response_console,
-        &afw_s_a_flag_response_console_stream,
+        &afw_self_s_a_flag_response_console,
+        &afw_self_s_a_flag_response_console_stream,
         xctx);
 
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_stderr,
-        &afw_s_a_flag_response_stderr_brief,
-        &afw_s_a_flag_response_stderr_description,
+        &afw_self_s_a_flag_response_stderr,
+        &afw_self_s_a_flag_response_stderr_brief,
+        &afw_self_s_a_flag_response_stderr_description,
         NULL,
         xctx);
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_stderr_stream,
-        &afw_s_a_flag_response_stderr_stream_brief,
-        &afw_s_a_flag_response_stderr_stream_description,
+        &afw_self_s_a_flag_response_stderr_stream,
+        &afw_self_s_a_flag_response_stderr_stream_brief,
+        &afw_self_s_a_flag_response_stderr_stream_description,
         NULL,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_response_stderr,
-        &afw_s_a_flag_response_stderr_stream,
+        &afw_self_s_a_flag_response_stderr,
+        &afw_self_s_a_flag_response_stderr_stream,
         xctx);
 
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_stdout,
-        &afw_s_a_flag_response_stdout_brief,
-        &afw_s_a_flag_response_stdout_description,
+        &afw_self_s_a_flag_response_stdout,
+        &afw_self_s_a_flag_response_stdout_brief,
+        &afw_self_s_a_flag_response_stdout_description,
         NULL,
         xctx);
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_response_stdout_stream,
-        &afw_s_a_flag_response_stdout_stream_brief,
-        &afw_s_a_flag_response_stdout_stream_description,
+        &afw_self_s_a_flag_response_stdout_stream,
+        &afw_self_s_a_flag_response_stdout_stream_brief,
+        &afw_self_s_a_flag_response_stdout_stream_description,
         NULL,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_response_stdout,
-        &afw_s_a_flag_response_stdout_stream,
+        &afw_self_s_a_flag_response_stdout,
+        &afw_self_s_a_flag_response_stdout_stream,
         xctx);
 
 
     /* Register flag trace:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_detail,
-        &afw_s_a_flag_trace_detail_brief,
-        &afw_s_a_flag_trace_detail_description,
+        &afw_self_s_a_flag_trace_detail,
+        &afw_self_s_a_flag_trace_detail_brief,
+        &afw_self_s_a_flag_trace_detail_description,
         NULL,
         xctx);
 
     /* Register flag trace */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace,
-        &afw_s_a_flag_trace_brief,
-        &afw_s_a_flag_trace_description,
-        &afw_s_a_flag_trace_detail,
+        &afw_self_s_a_flag_trace,
+        &afw_self_s_a_flag_trace_brief,
+        &afw_self_s_a_flag_trace_description,
+        &afw_self_s_a_flag_trace_detail,
         xctx);
 
     /* Register flag trace:adaptor:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_adaptor_detail,
-        &afw_s_a_flag_trace_adaptor_detail_brief,
-        &afw_s_a_flag_trace_adaptor_detail_description,
-        &afw_s_a_flag_trace_detail,
+        &afw_self_s_a_flag_trace_adaptor_detail,
+        &afw_self_s_a_flag_trace_adaptor_detail_brief,
+        &afw_self_s_a_flag_trace_adaptor_detail_description,
+        &afw_self_s_a_flag_trace_detail,
         xctx);
 
     /* Register flag trace:adaptor */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_adaptor,
-        &afw_s_a_flag_trace_adaptor_brief,
-        &afw_s_a_flag_trace_adaptor_description,
-        &afw_s_a_flag_trace,
+        &afw_self_s_a_flag_trace_adaptor,
+        &afw_self_s_a_flag_trace_adaptor_brief,
+        &afw_self_s_a_flag_trace_adaptor_description,
+        &afw_self_s_a_flag_trace,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_trace_adaptor,
-        &afw_s_a_flag_trace_adaptor_detail,
+        &afw_self_s_a_flag_trace_adaptor,
+        &afw_self_s_a_flag_trace_adaptor_detail,
         xctx);
 
     /* Register flag trace:authorizationHandler:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorizationHandler_detail,
-        &afw_s_a_flag_trace_authorizationHandler_detail_brief,
-        &afw_s_a_flag_trace_authorizationHandler_detail_description,
-        &afw_s_a_flag_trace_detail,
+        &afw_self_s_a_flag_trace_authorizationHandler_detail,
+        &afw_self_s_a_flag_trace_authorizationHandler_detail_brief,
+        &afw_self_s_a_flag_trace_authorizationHandler_detail_description,
+        &afw_self_s_a_flag_trace_detail,
         xctx);
 
     /* Register flag trace:authorizationHandler */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_authorizationHandler,
-        &afw_s_a_flag_trace_authorizationHandler_brief,
-        &afw_s_a_flag_trace_authorizationHandler_description,
-        &afw_s_a_flag_trace,
+        &afw_self_s_a_flag_trace_authorizationHandler,
+        &afw_self_s_a_flag_trace_authorizationHandler_brief,
+        &afw_self_s_a_flag_trace_authorizationHandler_description,
+        &afw_self_s_a_flag_trace,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_trace_authorizationHandler,
-        &afw_s_a_flag_trace_authorizationHandler_detail,
+        &afw_self_s_a_flag_trace_authorizationHandler,
+        &afw_self_s_a_flag_trace_authorizationHandler_detail,
         xctx);
 
     /* Register flag trace:evaluation:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_evaluation_detail,
-        &afw_s_a_flag_trace_evaluation_detail_brief,
-        &afw_s_a_flag_trace_evaluation_detail_description,
-        &afw_s_a_flag_trace_detail,
+        &afw_self_s_a_flag_trace_evaluation_detail,
+        &afw_self_s_a_flag_trace_evaluation_detail_brief,
+        &afw_self_s_a_flag_trace_evaluation_detail_description,
+        &afw_self_s_a_flag_trace_detail,
         xctx);
     env->flag_index_trace_evaluation_detail =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_evaluation_detail,
+            &afw_self_s_a_flag_trace_evaluation_detail,
             xctx)->flag_index;
 
     /* Register flag trace:request:detail */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_request_detail,
-        &afw_s_a_flag_trace_request_detail_brief,
-        &afw_s_a_flag_trace_request_detail_description,
-        &afw_s_a_flag_trace_detail,
+        &afw_self_s_a_flag_trace_request_detail,
+        &afw_self_s_a_flag_trace_request_detail_brief,
+        &afw_self_s_a_flag_trace_request_detail_description,
+        &afw_self_s_a_flag_trace_detail,
         xctx);
     env->flag_index_trace_request_detail =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_request_detail,
+            &afw_self_s_a_flag_trace_request_detail,
             xctx)->flag_index;
 
     /* Register flag trace:request */
     afw_flag_environment_register_flag(
-        &afw_s_a_flag_trace_request,
-        &afw_s_a_flag_trace_request_brief,
-        &afw_s_a_flag_trace_request_description,
-        &afw_s_a_flag_trace,
+        &afw_self_s_a_flag_trace_request,
+        &afw_self_s_a_flag_trace_request_brief,
+        &afw_self_s_a_flag_trace_request_description,
+        &afw_self_s_a_flag_trace,
         xctx);
     afw_flag_add_included_by(
-        &afw_s_a_flag_trace_request,
-        &afw_s_a_flag_trace_request_detail,
+        &afw_self_s_a_flag_trace_request,
+        &afw_self_s_a_flag_trace_request_detail,
         xctx);
     env->flag_index_trace_request =
         afw_environment_get_flag(
-            &afw_s_a_flag_trace_request,
+            &afw_self_s_a_flag_trace_request,
             xctx)->flag_index;
 
 }
@@ -631,7 +631,7 @@ afw_flag_environment_register_flag(
         self->brief = brief;
         self->description = description;
         self->object = afw_runtime_object_create_indirect(
-            &afw_s__AdaptiveFlag_, self->flag_id, self, p, xctx);
+            &afw_self_s__AdaptiveFlag_, self->flag_id, self, p, xctx);
         self->object_value = afw_value_create_object(self->object,
             p, xctx);
         self->flag_index = (env->flags_count_registered)++;

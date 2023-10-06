@@ -19,121 +19,121 @@
 void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
 {
     afw_environment_register_runtime_value_accessor(
-        &afw_s_default,
+        &afw_self_s_default,
         afw_runtime_value_accessor_default,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_compile_type,
+        &afw_self_s_compile_type,
         afw_runtime_value_accessor_compile_type,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_indirect,
+        &afw_self_s_indirect,
         afw_runtime_value_accessor_indirect,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_octet,
+        &afw_self_s_octet,
         afw_runtime_value_accessor_octet,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_stopping_adaptor_instances,
+        &afw_self_s_stopping_adaptor_instances,
         afw_runtime_value_accessor_stopping_adaptor_instances,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_applicable_flags,
+        &afw_self_s_applicable_flags,
         afw_runtime_value_accessor_applicable_flags,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_stopping_authorization_handler_instances,
+        &afw_self_s_stopping_authorization_handler_instances,
         afw_runtime_value_accessor_stopping_authorization_handler_instances,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_adaptor_metrics,
+        &afw_self_s_adaptor_metrics,
         afw_runtime_value_accessor_adaptor_metrics,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_null_terminated_array_of_internal,
+        &afw_self_s_null_terminated_array_of_internal,
         afw_runtime_value_accessor_null_terminated_array_of_internal,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_null_terminated_array_of_objects,
+        &afw_self_s_null_terminated_array_of_objects,
         afw_runtime_value_accessor_null_terminated_array_of_objects,
         xctx
     );
     
     afw_environment_register_runtime_value_accessor(
-        &afw_s_null_terminated_array_of_utf8_z_key_value_pair_objects,
+        &afw_self_s_null_terminated_array_of_utf8_z_key_value_pair_objects,
         afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_objects,
         xctx
     );
     
     afw_environment_register_runtime_value_accessor(
-        &afw_s_null_terminated_array_of_pointers,
+        &afw_self_s_null_terminated_array_of_pointers,
         afw_runtime_value_accessor_null_terminated_array_of_pointers,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_null_terminated_array_of_values,
+        &afw_self_s_null_terminated_array_of_values,
         afw_runtime_value_accessor_null_terminated_array_of_values,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_size,
+        &afw_self_s_size,
         afw_runtime_value_accessor_size,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_service_startup,
+        &afw_self_s_service_startup,
         afw_runtime_value_accessor_service_startup,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_service_status,
+        &afw_self_s_service_status,
         afw_runtime_value_accessor_service_status,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_uint32,
+        &afw_self_s_uint32,
         afw_runtime_value_accessor_uint32,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_adaptor_additional_metrics,
+        &afw_self_s_adaptor_additional_metrics,
         afw_runtime_value_accessor_adaptor_additional_metrics,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_afw_components_extension_loaded,
+        &afw_self_s_afw_components_extension_loaded,
         afw_runtime_value_accessor_ensure_afw_components_extension_loaded,
         xctx
     );
 
     afw_environment_register_runtime_value_accessor(
-        &afw_s_value,
+        &afw_self_s_value,
         afw_runtime_value_accessor_value,
         xctx
     );
@@ -615,7 +615,7 @@ afw_runtime_value_accessor_ensure_afw_components_extension_loaded(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_environment_load_extension(&afw_s_afw_components, NULL, NULL, xctx);
+    afw_environment_load_extension(&afw_self_s_afw_components, NULL, NULL, xctx);
     
     return afw_value_true;
 }

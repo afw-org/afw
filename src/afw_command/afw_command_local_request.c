@@ -288,56 +288,56 @@ afw_command_local_request_create(
 
     /* Method */
     self->pub.method = afw_object_old_get_property_as_string(
-        properties, &afw_s_REQUEST_METHOD, xctx);
+        properties, &afw_self_s_REQUEST_METHOD, xctx);
     if (!self->pub.method) {
-        self->pub.method = &afw_s_POST;
+        self->pub.method = &afw_self_s_POST;
         afw_object_set_property_as_string(
-            properties, &afw_s_REQUEST_METHOD, self->pub.method, xctx);      
+            properties, &afw_self_s_REQUEST_METHOD, self->pub.method, xctx);      
     }
 
     /* Request URI. */
     self->pub.uri = afw_object_old_get_property_as_string(
-        properties, &afw_s_REQUEST_URI, xctx);
+        properties, &afw_self_s_REQUEST_URI, xctx);
     if (!self->pub.uri) {
-        self->pub.uri = &afw_s_a_slash_afw;
+        self->pub.uri = &afw_self_s_a_slash_afw;
         afw_object_set_property_as_string(
-            properties, &afw_s_REQUEST_URI, self->pub.uri, xctx);      
+            properties, &afw_self_s_REQUEST_URI, self->pub.uri, xctx);      
     }
 
     /* Content type. */
     self->pub.content_type = afw_object_old_get_property_as_string(
-        properties, &afw_s_CONTENT_TYPE, xctx);
+        properties, &afw_self_s_CONTENT_TYPE, xctx);
     if (!self->pub.content_type) {
         self->pub.content_type = afw_object_old_get_property_as_string(
-            properties, &afw_s_CONTENT_TYPE, xctx);
+            properties, &afw_self_s_CONTENT_TYPE, xctx);
         if (!self->pub.content_type) {
-            self->pub.content_type = &afw_s_a_application_json;
+            self->pub.content_type = &afw_self_s_a_application_json;
         }
         afw_object_set_property_as_string(
-            properties, &afw_s_CONTENT_TYPE, self->pub.content_type, xctx);      
+            properties, &afw_self_s_CONTENT_TYPE, self->pub.content_type, xctx);      
     }
 
     /* Query string */
     self->pub.query_string = afw_object_old_get_property_as_string(
-        properties, &afw_s_QUERY_STRING, xctx);
+        properties, &afw_self_s_QUERY_STRING, xctx);
 
     /* Overwrite CONTENT_LENGTH */
     value = afw_value_create_integer(
         (afw_integer_t)self->pub.content_length, p, xctx);
     s = afw_value_as_utf8(value, p, xctx);
     afw_object_set_property_as_string(
-        properties, &afw_s_CONTENT_LENGTH, s, xctx);
+        properties, &afw_self_s_CONTENT_LENGTH, s, xctx);
 
     /* accept */
-    s = afw_object_old_get_property_as_string(properties, &afw_s_ACCEPT, xctx);
+    s = afw_object_old_get_property_as_string(properties, &afw_self_s_ACCEPT, xctx);
     if (!s) {
         s =  afw_object_old_get_property_as_string(
-            properties, &afw_s_HTTP_ACCEPT, xctx);
+            properties, &afw_self_s_HTTP_ACCEPT, xctx);
         if (!s) {
-            s =  &afw_s_a_application_json;
+            s =  &afw_self_s_a_application_json;
         }
         afw_object_set_property_as_string(
-            properties, &afw_s_ACCEPT, s, xctx);
+            properties, &afw_self_s_ACCEPT, s, xctx);
     }
     self->pub.accept = afw_utf8_parse_csv(s, p, xctx);
 

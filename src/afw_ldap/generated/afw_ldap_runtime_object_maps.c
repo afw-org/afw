@@ -31,7 +31,7 @@
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects = {
-    &afw_ldap_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+    &afw_ldap_self_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -46,7 +46,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_ldap = {
-    &afw_ldap_s__AdaptiveConf_adaptor_ldap,
+    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -61,7 +61,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveConf_adaptor_ldap_bind = {
-    &afw_ldap_s__AdaptiveConf_adaptor_ldap_bind,
+    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap_bind,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -76,7 +76,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapAttributeType_ = {
-    &afw_ldap_s__AdaptiveLdapAttributeType_,
+    &afw_ldap_self_s__AdaptiveLdapAttributeType_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -91,7 +91,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapMatchingRuleUse_ = {
-    &afw_ldap_s__AdaptiveLdapMatchingRuleUse_,
+    &afw_ldap_self_s__AdaptiveLdapMatchingRuleUse_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -106,7 +106,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapMatchingRule_ = {
-    &afw_ldap_s__AdaptiveLdapMatchingRule_,
+    &afw_ldap_self_s__AdaptiveLdapMatchingRule_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -121,7 +121,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapObjectClass_ = {
-    &afw_ldap_s__AdaptiveLdapObjectClass_,
+    &afw_ldap_self_s__AdaptiveLdapObjectClass_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -136,7 +136,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapRootDse_ = {
-    &afw_ldap_s__AdaptiveLdapRootDse_,
+    &afw_ldap_self_s__AdaptiveLdapRootDse_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -151,7 +151,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapSchema_ = {
-    &afw_ldap_s__AdaptiveLdapSchema_,
+    &afw_ldap_self_s__AdaptiveLdapSchema_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
@@ -166,7 +166,7 @@ AFW_RUNTIME_OBJECT_RTI(
 
 static const afw_runtime_object_type_meta_t
 impl_runtime_meta__AdaptiveLdapSyntax_ = {
-    &afw_ldap_s__AdaptiveLdapSyntax_,
+    &afw_ldap_self_s__AdaptiveLdapSyntax_,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,

@@ -42,7 +42,7 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     fd.write('            NULL,\n')
     fd.write('            NULL,\n')
     fd.write('            NULL,\n')
-    fd.write('            &' + prefix + 's__AdaptiveFunctionParameter_,\n')
+    fd.write('            &' + prefix + 'self_s__AdaptiveFunctionParameter_,\n')
     fd.write('            NULL,\n')
     fd.write('        }\n')
     fd.write('    },\n')
@@ -244,7 +244,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     declare = prefix.upper() + 'DECLARE'
     define = prefix.upper() + 'DEFINE'
     declare_data =  prefix.upper() + 'DECLARE_CONST_DATA'
-    string_ref = '&' + prefix + 's_'
+    string_ref = '&' + prefix + 'self_s_'
 
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)

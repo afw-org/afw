@@ -302,29 +302,29 @@ afw_file_adaptor_create_cede_p(
 
     /* Get content_type parameters. */
     content_type = afw_object_old_get_property_as_utf8(properties,
-        &afw_s_contentType, p, xctx);
+        &afw_self_s_contentType, p, xctx);
     self->content_type = afw_environment_get_content_type(content_type,
         xctx);
     if (!self->content_type)
     {
         afw_adaptor_impl_throw_property_invalid(adaptor,
-            &afw_s_contentType, xctx);
+            &afw_self_s_contentType, xctx);
     }
 
     /* Get optional filename extension */
     self->filename_suffix = afw_object_old_get_property_as_utf8(
-        properties, &afw_s_filenameSuffix, p, xctx);
+        properties, &afw_self_s_filenameSuffix, p, xctx);
     if (!self->filename_suffix) {
-        self->filename_suffix = &afw_s_a_empty_string;
+        self->filename_suffix = &afw_self_s_a_empty_string;
     }
 
     /* Get root from parameters and make it full path. */
     value = afw_object_get_property_compile_and_evaluate_as(
-        properties,  &afw_s_root, adaptor->source_location,
+        properties,  &afw_self_s_root, adaptor->source_location,
         afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
         afw_adaptor_impl_throw_property_invalid(adaptor,
-            &afw_s_root, xctx);
+            &afw_self_s_root, xctx);
     }
     self->root = afw_file_insure_full_path(
         &((afw_value_string_t *)value)->internal,
@@ -342,20 +342,20 @@ afw_file_adaptor_create_cede_p(
 
     /* If isDevelopmentInput is true, provide appropriate object types. */
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
-        &afw_s_isDevelopmentInput, xctx);
+        &afw_self_s_isDevelopmentInput, xctx);
     if (b) {
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveCollection_, true, true, xctx);
+            &afw_self_s__AdaptiveCollection_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveDataTypeGenerate_, true, true, xctx);
+            &afw_self_s__AdaptiveDataTypeGenerate_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveManifest_, true, true, xctx);
+            &afw_self_s__AdaptiveManifest_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveFunctionGenerate_, true, true, xctx);
+            &afw_self_s__AdaptiveFunctionGenerate_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveObjectType_, true, true, xctx);
+            &afw_self_s__AdaptiveObjectType_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(adaptor,
-            &afw_s__AdaptiveValueMeta_, true, true, xctx);
+            &afw_self_s__AdaptiveValueMeta_, true, true, xctx);
     }
 
     /* Return adaptor. */

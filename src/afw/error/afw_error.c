@@ -284,7 +284,7 @@ impl_evaluation_backtrace(
     column_cell_octets = 0;
 
 
-    w = afw_utf8_writer_create(&afw_s_a_tab, p, xctx);
+    w = afw_utf8_writer_create(&afw_self_s_a_tab, p, xctx);
 
     if (error->parser_source) {
         caret_on_error = afw_utf8_line_column_of_offset(
@@ -307,13 +307,13 @@ impl_evaluation_backtrace(
     {
 
         if (!xctx->evaluation_stack->first[i].value) {
-            afw_writer_write_utf8(w, &afw_s_undefined, xctx);
+            afw_writer_write_utf8(w, &afw_self_s_undefined, xctx);
             afw_writer_write_eol(w, xctx);
             continue;
         }
 
         if (xctx->evaluation_stack->first[i].entry_id ==
-            &afw_s_parameter_number)
+            &afw_self_s_parameter_number)
         {
             i--;
             parameter_number =
@@ -805,7 +805,7 @@ impl_add_contextual(
 
     if (contextual->source_location) {
         afw_object_set_property_as_string(object,
-            &afw_s_sourceLocation,
+            &afw_self_s_sourceLocation,
             contextual->source_location, xctx);
     }
 
@@ -813,7 +813,7 @@ impl_add_contextual(
     if (value_source.len > 0) {
 
         afw_object_set_property_as_integer(object,
-            &afw_s_offset, (afw_integer_t)contextual->value_offset, xctx);
+            &afw_self_s_offset, (afw_integer_t)contextual->value_offset, xctx);
         line = 0;
         c = value_source.s;
         end = c + (contextual->value_offset < value_source.len ?
@@ -831,9 +831,9 @@ impl_add_contextual(
         if (line != 1) {
             line++;
             afw_object_set_property_as_integer(object,
-                &afw_s_line, line, xctx);
+                &afw_self_s_line, line, xctx);
             afw_object_set_property_as_integer(object,
-                &afw_s_column, (afw_integer_t)(end - last_nl), xctx);
+                &afw_self_s_column, (afw_integer_t)(end - last_nl), xctx);
         }
     }
 }
@@ -860,7 +860,7 @@ afw_error_add_to_object(
     /* data. */
     if (error->data) {
         afw_object_set_property(object,
-            &afw_s_data,
+            &afw_self_s_data,
             error->data,
             xctx);
     }
@@ -874,7 +874,7 @@ afw_error_add_to_object(
                 p, xctx);
         }
         afw_object_set_property_as_string(object,
-            &afw_s_errorSource,
+            &afw_self_s_errorSource,
             afw_utf8_create(
                 afw_error_source_file(error),
                 AFW_UTF8_Z_LEN, p, xctx),
@@ -888,7 +888,7 @@ afw_error_add_to_object(
             xctx->env->flag_index_response_error_backtrace, xctx))
     {
         afw_object_set_property_as_string(object,
-            &afw_s_backtrace, error->backtrace, xctx);
+            &afw_self_s_backtrace, error->backtrace, xctx);
     }
 
     /* Evaluation backtrace. */
@@ -898,52 +898,52 @@ afw_error_add_to_object(
         evaluation_backtrace = impl_evaluation_backtrace(error, p, xctx);
         if (evaluation_backtrace) {
             afw_object_set_property_as_string(object,
-                &afw_s_backtraceEvaluation, evaluation_backtrace, xctx);
+                &afw_self_s_backtraceEvaluation, evaluation_backtrace, xctx);
         }
     }
 
 
     /* Add properties to object. */
 
-    afw_object_set_property(object, &afw_s_error, afw_value_true, xctx);
+    afw_object_set_property(object, &afw_self_s_error, afw_value_true, xctx);
 
     afw_object_set_property_as_integer(object,
-        &afw_s_errorCode, error->code, xctx);
+        &afw_self_s_errorCode, error->code, xctx);
 
 
     /* If parser source available, set appropriate properties. */
     if (error->parser_source) {
         afw_object_set_property_as_integer(object,
-            &afw_s_parserCursor,
+            &afw_self_s_parserCursor,
             (afw_integer_t)error->parser_cursor,
             xctx);
         afw_object_set_property_as_string(object,
-            &afw_s_parserSource, error->parser_source, xctx);
+            &afw_self_s_parserSource, error->parser_source, xctx);
         afw_utf8_line_column_of_offset(
             &source_line, &source_column,
             error->parser_source, error->parser_cursor, 4, xctx);
         afw_object_set_property_as_integer(object,
-            &afw_s_parserLineNumber, source_line, xctx);
+            &afw_self_s_parserLineNumber, source_line, xctx);
         afw_object_set_property_as_integer(object,
-            &afw_s_parserColumnNumber, source_column, xctx);
+            &afw_self_s_parserColumnNumber, source_column, xctx);
     }
 
     else if (error->parser_cursor > 0) {
         afw_object_set_property_as_integer(object,
-            &afw_s_parserCursor,
+            &afw_self_s_parserCursor,
             (afw_integer_t)error->parser_cursor,
             xctx);
     }
 
     afw_object_set_property_as_string(object,
-        &afw_s_id,
+        &afw_self_s_id,
         afw_utf8_create(afw_error_code_id_z(error),
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);
 
     if (error->rv_source_id_z) {
         afw_object_set_property_as_string(object,
-            &afw_s_rvSourceId,
+            &afw_self_s_rvSourceId,
             afw_utf8_create_copy(error->rv_source_id_z,
                 AFW_UTF8_Z_LEN, p, xctx),
             xctx);
@@ -951,25 +951,25 @@ afw_error_add_to_object(
 
     if (error->rv) {
         afw_object_set_property_as_integer(object,
-            &afw_s_rv, error->rv, xctx);
+            &afw_self_s_rv, error->rv, xctx);
     }
 
     if (error->rv_decoded_z) {
         afw_object_set_property_as_string(object,
-            &afw_s_rvDecoded,
+            &afw_self_s_rvDecoded,
             afw_utf8_create_copy(error->rv_decoded_z,
                 AFW_UTF8_Z_LEN, p, xctx),
             xctx);
     }
 
     afw_object_set_property_as_string(object,
-        &afw_s_message,
+        &afw_self_s_message,
         afw_utf8_create_copy(error->message_z,
             AFW_UTF8_Z_LEN, p, xctx),
         xctx);
 
     afw_object_set_property_as_string(object,
-        &afw_s_xctxUUID, xctx->uuid, xctx);
+        &afw_self_s_xctxUUID, xctx->uuid, xctx);
 }
 
 

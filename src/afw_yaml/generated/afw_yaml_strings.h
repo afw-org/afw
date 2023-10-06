@@ -34,7 +34,7 @@
     "_AdaptiveManifest_"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q__AdaptiveManifest_ */
-#define afw_yaml_s__AdaptiveManifest_ \
+#define afw_yaml_self_s__AdaptiveManifest_ \
     (afw_yaml_self_v__AdaptiveManifest_.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q__AdaptiveManifest_ */
@@ -56,7 +56,7 @@ extern const afw_value_string_t \
     "afw_yaml"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_afw_yaml */
-#define afw_yaml_s_afw_yaml \
+#define afw_yaml_self_s_afw_yaml \
     (afw_yaml_self_v_afw_yaml.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_afw_yaml */
@@ -78,7 +78,7 @@ extern const afw_value_string_t \
     "brief"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_brief */
-#define afw_yaml_s_brief \
+#define afw_yaml_self_s_brief \
     (afw_yaml_self_v_brief.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_brief */
@@ -100,7 +100,7 @@ extern const afw_value_string_t \
     "default"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_default */
-#define afw_yaml_s_default \
+#define afw_yaml_self_s_default \
     (afw_yaml_self_v_default.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_default */
@@ -122,7 +122,7 @@ extern const afw_value_string_t \
     "description"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_description */
-#define afw_yaml_s_description \
+#define afw_yaml_self_s_description \
     (afw_yaml_self_v_description.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_description */
@@ -144,7 +144,7 @@ extern const afw_value_string_t \
     "extensionId"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_extensionId */
-#define afw_yaml_s_extensionId \
+#define afw_yaml_self_s_extensionId \
     (afw_yaml_self_v_extensionId.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_extensionId */
@@ -166,7 +166,7 @@ extern const afw_value_string_t \
     "indirect"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_indirect */
-#define afw_yaml_s_indirect \
+#define afw_yaml_self_s_indirect \
     (afw_yaml_self_v_indirect.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_indirect */
@@ -188,7 +188,7 @@ extern const afw_value_string_t \
     "modulePath"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_modulePath */
-#define afw_yaml_s_modulePath \
+#define afw_yaml_self_s_modulePath \
     (afw_yaml_self_v_modulePath.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_modulePath */
@@ -210,7 +210,7 @@ extern const afw_value_string_t \
     "registers"
 
 /** @brief 'afw_utf8_t' for AFW_YAML_Q_registers */
-#define afw_yaml_s_registers \
+#define afw_yaml_self_s_registers \
     (afw_yaml_self_v_registers.internal)
 
 /** @brief 'afw_value_string_t' for AFW_YAML_Q_registers */

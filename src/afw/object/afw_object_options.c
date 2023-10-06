@@ -111,7 +111,7 @@ afw_object_options_set_from_object(
     }
 
     /** @fixme May put in at some point ... Process options property first.
-    v = afw_object_get_property(options_object, &afw_s_options, xctx);
+    v = afw_object_get_property(options_object, &afw_self_s_options, xctx);
     if (v) {
 
     }
@@ -124,11 +124,11 @@ afw_object_options_set_from_object(
         if (!v) break;
 
         /** @fixme May put in at some point ...  options property already handled.
-        if (afw_utf8_equal(name, &afw_s_options)) continue;
+        if (afw_utf8_equal(name, &afw_self_s_options)) continue;
          */
 
         /* checkRequired */
-        if (afw_utf8_equal(name, &afw_s_checkRequired)) {
+        if (afw_utf8_equal(name, &afw_self_s_checkRequired)) {
             AFW_OBJECT_OPTION_SET(options, checkRequired,
                 afw_value_as_boolean(v, xctx));
             AFW_OBJECT_OPTION_SET(options, normalize,
@@ -136,13 +136,13 @@ afw_object_options_set_from_object(
         }
 
         /* composite */
-        else if (afw_utf8_equal(name, &afw_s_composite)) {
+        else if (afw_utf8_equal(name, &afw_self_s_composite)) {
             AFW_OBJECT_OPTION_SET(options, composite,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* includeDefaultValues */
-        else if (afw_utf8_equal(name, &afw_s_includeDefaultValues)) {
+        else if (afw_utf8_equal(name, &afw_self_s_includeDefaultValues)) {
             AFW_OBJECT_OPTION_SET(options, includeDefaultValues,
                 afw_value_as_boolean(v, xctx));
             AFW_OBJECT_OPTION_SET(options, normalize,
@@ -150,31 +150,31 @@ afw_object_options_set_from_object(
         }
 
         /* includeDescendentObjectTypes */
-        else if (afw_utf8_equal(name, &afw_s_includeDescendentObjectTypes)) {
+        else if (afw_utf8_equal(name, &afw_self_s_includeDescendentObjectTypes)) {
             AFW_OBJECT_OPTION_SET(options, includeDescendentObjectTypes,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* inheritedFrom */
-        else if (afw_utf8_equal(name, &afw_s_inheritedFrom)) {
+        else if (afw_utf8_equal(name, &afw_self_s_inheritedFrom)) {
             AFW_OBJECT_OPTION_SET(options, inheritedFrom,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* integersAsString */
-        else if (afw_utf8_equal(name, &afw_s_integersAsString)) {
+        else if (afw_utf8_equal(name, &afw_self_s_integersAsString)) {
             AFW_OBJECT_OPTION_SET(options, integersAsString,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* largeIntegersAsString */
-        else if (afw_utf8_equal(name, &afw_s_largeIntegersAsString)) {
+        else if (afw_utf8_equal(name, &afw_self_s_largeIntegersAsString)) {
             AFW_OBJECT_OPTION_SET(options, largeIntegersAsString,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* metaFull */
-        else if (afw_utf8_equal(name, &afw_s_metaFull)) {
+        else if (afw_utf8_equal(name, &afw_self_s_metaFull)) {
             AFW_OBJECT_OPTION_SET(options, metaFull,
                 afw_value_as_boolean(v, xctx));
             if (AFW_OBJECT_OPTION_IS(options, metaFull)) {
@@ -183,7 +183,7 @@ afw_object_options_set_from_object(
         }
 
         /* metaLimited */
-        else if (afw_utf8_equal(name, &afw_s_metaLimited)) {
+        else if (afw_utf8_equal(name, &afw_self_s_metaLimited)) {
             if (!AFW_OBJECT_OPTION_IS(options, metaFull)) {
                 AFW_OBJECT_OPTION_SET(options, metaLimited,
                     afw_value_as_boolean(v, xctx));
@@ -191,25 +191,25 @@ afw_object_options_set_from_object(
         }
 
         /* normalize */
-        else if (afw_utf8_equal(name, &afw_s_normalize)) {
+        else if (afw_utf8_equal(name, &afw_self_s_normalize)) {
             AFW_OBJECT_OPTION_SET(options, normalize,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* objectId */
-        else if (afw_utf8_equal(name, &afw_s_objectId)) {
+        else if (afw_utf8_equal(name, &afw_self_s_objectId)) {
             AFW_OBJECT_OPTION_SET(options, objectId,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* objectType */
-        else if (afw_utf8_equal(name, &afw_s_objectType)) {
+        else if (afw_utf8_equal(name, &afw_self_s_objectType)) {
             AFW_OBJECT_OPTION_SET(options, objectType,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* objectTypes */
-        else if (afw_utf8_equal(name, &afw_s_objectTypes)) {
+        else if (afw_utf8_equal(name, &afw_self_s_objectTypes)) {
             AFW_OBJECT_OPTION_SET(options, objectTypes,
                 afw_value_as_boolean(v, xctx));
             AFW_OBJECT_OPTION_SET(options, normalize,
@@ -217,19 +217,19 @@ afw_object_options_set_from_object(
         }
 
         /* path */
-        else if (afw_utf8_equal(name, &afw_s_path)) {
+        else if (afw_utf8_equal(name, &afw_self_s_path)) {
             AFW_OBJECT_OPTION_SET(options, path,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* pathEmbedded */
-        else if (afw_utf8_equal(name, &afw_s_pathEmbedded)) {
+        else if (afw_utf8_equal(name, &afw_self_s_pathEmbedded)) {
             AFW_OBJECT_OPTION_SET(options, pathEmbedded,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* reconcilable */
-        else if (afw_utf8_equal(name, &afw_s_reconcilable)) {
+        else if (afw_utf8_equal(name, &afw_self_s_reconcilable)) {
             AFW_OBJECT_OPTION_SET(options, reconcilable,
                 afw_value_as_boolean(v, xctx));
             AFW_OBJECT_OPTION_SET(options, path,
@@ -239,19 +239,19 @@ afw_object_options_set_from_object(
         }
 
         /* resolvedParentPaths */
-        else if (afw_utf8_equal(name, &afw_s_resolvedParentPaths)) {
+        else if (afw_utf8_equal(name, &afw_self_s_resolvedParentPaths)) {
             AFW_OBJECT_OPTION_SET(options, resolvedParentPaths,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* typedValues */
-        else if (afw_utf8_equal(name, &afw_s_typedValues)) {
+        else if (afw_utf8_equal(name, &afw_self_s_typedValues)) {
             AFW_OBJECT_OPTION_SET(options, typedValues,
                 afw_value_as_boolean(v, xctx));
         }
 
         /* whitespace */
-        else if (afw_utf8_equal(name, &afw_s_whitespace)) {
+        else if (afw_utf8_equal(name, &afw_self_s_whitespace)) {
             AFW_OBJECT_OPTION_SET(options, whitespace,
                 afw_value_as_boolean(v, xctx));
         }

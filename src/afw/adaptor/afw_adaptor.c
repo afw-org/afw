@@ -97,7 +97,7 @@ impl_set_instance_active(
         }
         else {
             afw_runtime_remove_object(
-                &afw_s__AdaptiveAdaptorMetrics_, adaptor_id,
+                &afw_self_s__AdaptiveAdaptorMetrics_, adaptor_id,
                 xctx);
             anchor->properties = NULL;
             anchor->reference_count = 0;
@@ -156,7 +156,7 @@ afw_adaptor_get_reference(
     /* If adaptor is not registered, try starting it. */
     if (!instance) {
         service_id = afw_utf8_concat(xctx->p, xctx,
-            &afw_s_adaptor, &afw_s_a_dash,
+            &afw_self_s_adaptor, &afw_self_s_a_dash,
             adaptor_id, NULL);
         afw_service_start(service_id, false, xctx);
         instance = impl_get_reference(adaptor_id, xctx);
@@ -496,11 +496,11 @@ afw_adaptor_get_object_type(
 
     /* Get special runtime object types to prevent loop. */
     result = NULL;
-    if (afw_utf8_equal(object_type_id, &afw_s__AdaptiveObjectType_) ||
-        afw_utf8_equal(object_type_id, &afw_s__AdaptiveValueMeta_))
+    if (afw_utf8_equal(object_type_id, &afw_self_s__AdaptiveObjectType_) ||
+        afw_utf8_equal(object_type_id, &afw_self_s__AdaptiveValueMeta_))
     {
         object = afw_runtime_get_object(
-            &afw_s__AdaptiveObjectType_, object_type_id, xctx);
+            &afw_self_s__AdaptiveObjectType_, object_type_id, xctx);
         result = afw_object_type_internal_create(
             adaptor, object, p, xctx);
     }
@@ -510,7 +510,7 @@ afw_adaptor_get_object_type(
         object = NULL;
         AFW_TRY {
             object = afw_adaptor_get_object(adaptor_id,
-                &afw_s__AdaptiveObjectType_,
+                &afw_self_s__AdaptiveObjectType_,
                 object_type_id, &afw_object_options_composite_and_defaults,
                 NULL, journal_entry, NULL, p, xctx);
         }
@@ -563,15 +563,15 @@ afw_adaptor_internal_register_afw_adaptor(afw_xctx_t *xctx)
     p = afw_pool_create_multithreaded(xctx->env->p, xctx);
     conf = afw_object_create(p, xctx);
     afw_object_set_property_as_string(conf,
-        &afw_s_type, &afw_s_adaptor, xctx);
+        &afw_self_s_type, &afw_self_s_adaptor, xctx);
     afw_object_set_property_as_string(conf,
-        &afw_s_adaptorType, &afw_s_afw_runtime, xctx);
+        &afw_self_s_adaptorType, &afw_self_s_afw_runtime, xctx);
     afw_object_set_property_as_string(conf,
-        &afw_s_adaptorId, &afw_s_afw, xctx);
+        &afw_self_s_adaptorId, &afw_self_s_afw, xctx);
     afw_object_set_property_as_string(conf,
-        &afw_s_sourceLocation, &afw_s_a_Core_afw_adaptor, xctx);
-    afw_adaptor_internal_conf_type_create_cede_p(&afw_s_adaptor,
-        conf, &afw_s_a_Core_afw_adaptor, p, xctx);
+        &afw_self_s_sourceLocation, &afw_self_s_a_Core_afw_adaptor, xctx);
+    afw_adaptor_internal_conf_type_create_cede_p(&afw_self_s_adaptor,
+        conf, &afw_self_s_a_Core_afw_adaptor, p, xctx);
 }
 
 
@@ -588,7 +588,7 @@ afw_adaptor_internal_conf_type_create_cede_p(
 
     /* Get adaptor_id. */
     adaptor_id = afw_object_old_get_property_as_string(conf,
-        &afw_s_adaptorId, xctx);
+        &afw_self_s_adaptorId, xctx);
     if (!adaptor_id) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_CONTEXTUAL_LABEL_FMT
@@ -601,7 +601,7 @@ afw_adaptor_internal_conf_type_create_cede_p(
     if (anchor) {
 
         /* If adaptor id is afw, handle special. */
-        if (afw_utf8_equal(adaptor_id, &afw_s_afw)) {
+        if (afw_utf8_equal(adaptor_id, &afw_self_s_afw)) {
             AFW_LOG_FZ(warning, xctx,
                 AFW_UTF8_CONTEXTUAL_LABEL_FMT
                 "adaptor id afw is automatically defined.  Entry ignored.",
@@ -667,16 +667,16 @@ afw_adaptor_internal_register_service_type(afw_xctx_t *xctx)
 
     self = afw_xctx_calloc_type(afw_service_type_t, xctx);
     self->inf = &impl_afw_service_type_inf;
-    afw_memory_copy(&self->service_type_id, &afw_s_adaptor);
-    self->conf_type = afw_environment_get_conf_type(&afw_s_adaptor, xctx);
+    afw_memory_copy(&self->service_type_id, &afw_self_s_adaptor);
+    self->conf_type = afw_environment_get_conf_type(&afw_self_s_adaptor, xctx);
     if (!self->conf_type) {
         AFW_THROW_ERROR_Z(general, "conf_type must already be registered",
             xctx);
     }
-    self->title = &afw_s_a_service_type_adaptor_title;
-    self->conf_type_object = afw_runtime_get_object(&afw_s__AdaptiveConfType_,
-        &afw_s_adaptor, xctx);
-    afw_environment_register_service_type(&afw_s_adaptor, self, xctx);
+    self->title = &afw_self_s_a_service_type_adaptor_title;
+    self->conf_type_object = afw_runtime_get_object(&afw_self_s__AdaptiveConfType_,
+        &afw_self_s_adaptor, xctx);
+    afw_environment_register_service_type(&afw_self_s_adaptor, self, xctx);
 }
 
 
@@ -735,7 +735,7 @@ impl_afw_service_type_start_cede_p (
     const afw_utf8_t *adaptor_type;
 
     adaptor_type = afw_object_old_get_property_as_utf8(properties,
-        &afw_s_adaptorType, p, xctx);
+        &afw_self_s_adaptorType, p, xctx);
     if (!adaptor_type) {
         AFW_THROW_ERROR_Z(general,
             "parameter adaptorType missing",

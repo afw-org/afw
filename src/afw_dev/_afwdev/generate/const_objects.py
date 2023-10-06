@@ -18,7 +18,7 @@ def sort_use_id_cb(obj):
     return obj['_meta_']['objectId']
 
 def write_const_core_c(options, fd, prefix, obj, path, embedder):
-    s_ = '&' + prefix + 's_'
+    s_ = '&' + prefix + 'self_s_'
     propnames = sorted(list(iter(obj)))
     meta = obj.get('_meta_', {})
     if '_meta_' in propnames:
@@ -187,7 +187,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         fd.write('        {\n')
         fd.write('            (const afw_object_t *)&' + meta.get('_label_') + '_meta_object,\n')
         fd.write('            (const afw_object_t *)&' + embedder['_meta_']['_label_'] + ',\n')
-        fd.write('            &' + prefix + 's_' + meta.get('propname') + ',\n')
+        fd.write('            &' + prefix + 'self_s_' + meta.get('propname') + ',\n')
         if meta.get('objectType') is not None and meta.get('objectType') != '':
             fd.write('            ' + s_ +  meta.get('objectType') + ',\n')
         else:
@@ -200,7 +200,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         fd.write('};\n')
 
 def write_const_unresolved_c(fd, prefix, obj, path, embedder):
-    s_ = '&' + prefix + 's_'
+    s_ = '&' + prefix + 'self_s_'
     propnames = sorted(list(iter(obj)))
     meta = obj.get('_meta_', {})
     if '_meta_' in propnames:

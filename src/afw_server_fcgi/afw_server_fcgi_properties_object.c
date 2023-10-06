@@ -41,8 +41,8 @@ afw_server_fcgi_internal_create_properties_object(
     /* Allocate memory for self and initialize. */
     self = afw_xctx_calloc_type(impl_self_t, request->pub.xctx);
     self->pub.inf = &impl_afw_object_inf;
-    self->pub.meta.id = &afw_s_current;
-    self->pub.meta.object_type_uri = &afw_s__AdaptiveRequestProperties_;
+    self->pub.meta.id = &afw_self_s_current;
+    self->pub.meta.object_type_uri = &afw_self_s__AdaptiveRequestProperties_;
     self->pub.meta.object_uri = &impl_path;
     self->pub.p = xctx->p;
     self->request = request;
@@ -211,7 +211,7 @@ impl_afw_object_get_next_property(
     }
 
     if (!*c) {
-        string = &afw_s_a_empty_string;
+        string = &afw_self_s_a_empty_string;
     }
     else {
         string = afw_utf8_create(c + 1, AFW_UTF8_Z_LEN, xctx->p, xctx);
