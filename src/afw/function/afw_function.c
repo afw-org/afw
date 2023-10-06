@@ -23,52 +23,52 @@ afw_function_internal_prepare_environment(afw_xctx_t *xctx)
     ((afw_environment_t *)xctx->env)->function_environment = e;
 
     e->add_operator_function =
-        afw_environment_get_function(&afw_self_s_add, xctx);
+        afw_environment_get_function(afw_s_add, xctx);
 
     e->subtract_operator_function =
-        afw_environment_get_function(&afw_self_s_subtract, xctx);
+        afw_environment_get_function(afw_s_subtract, xctx);
 
     e->multiply_operator_function =
-        afw_environment_get_function(&afw_self_s_multiply, xctx);
+        afw_environment_get_function(afw_s_multiply, xctx);
 
     e->divide_operator_function =
-        afw_environment_get_function(&afw_self_s_divide, xctx);
+        afw_environment_get_function(afw_s_divide, xctx);
 
     e->modulus_operator_function =
-        afw_environment_get_function(&afw_self_s_mod, xctx);
+        afw_environment_get_function(afw_s_mod, xctx);
 
     e->exponentiation_operator_function =
-        afw_environment_get_function(&afw_self_s_pow, xctx);
+        afw_environment_get_function(afw_s_pow, xctx);
 
     e->negative_operator_function =
-        afw_environment_get_function(&afw_self_s_negative, xctx);
+        afw_environment_get_function(afw_s_negative, xctx);
 
     e->and_operator_function =
-        afw_environment_get_function(&afw_self_s_and, xctx);
+        afw_environment_get_function(afw_s_and, xctx);
 
     e->or_operator_function =
-        afw_environment_get_function(&afw_self_s_or, xctx);
+        afw_environment_get_function(afw_s_or, xctx);
 
     e->unary_not_operator_function =
-        afw_environment_get_function(&afw_self_s_not, xctx);
+        afw_environment_get_function(afw_s_not, xctx);
 
     e->equal_to_operator_function =
-        afw_environment_get_function(&afw_self_s_eq, xctx);
+        afw_environment_get_function(afw_s_eq, xctx);
 
     e->not_equal_to_operator_function =
-        afw_environment_get_function(&afw_self_s_ne, xctx);
+        afw_environment_get_function(afw_s_ne, xctx);
 
     e->less_than_operator_function =
-        afw_environment_get_function(&afw_self_s_lt, xctx);
+        afw_environment_get_function(afw_s_lt, xctx);
 
     e->less_than_or_equal_to_function =
-        afw_environment_get_function(&afw_self_s_le, xctx);
+        afw_environment_get_function(afw_s_le, xctx);
 
     e->greater_than_operator_function =
-        afw_environment_get_function(&afw_self_s_gt, xctx);
+        afw_environment_get_function(afw_s_gt, xctx);
 
     e->greater_than_or_equal_to_function =
-        afw_environment_get_function(&afw_self_s_ge, xctx);
+        afw_environment_get_function(afw_s_ge, xctx);
 }
 
 

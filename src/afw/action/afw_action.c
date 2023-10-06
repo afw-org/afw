@@ -133,9 +133,9 @@ impl_call_function(
     }
 
     /* Set flags. */
-    value = afw_object_get_property(action_entry, &afw_self_s__flags_, xctx);
+    value = afw_object_get_property(action_entry, afw_s__flags_, xctx);
     if (!value && parent_request) {
-        value = afw_object_get_property(parent_request, &afw_self_s__flags_, xctx);
+        value = afw_object_get_property(parent_request, afw_s__flags_, xctx);
     }
     if (value) {
         flag_ids = afw_value_as_array_of_utf8(value, p, xctx);
@@ -163,14 +163,14 @@ impl_call_function(
         }
 
         /* Set result property in result. */
-        afw_object_set_property(action_response_entry, &afw_self_s_result, result,
+        afw_object_set_property(action_response_entry, afw_s_result, result,
             xctx);
 
         /* Set resultDataType property in result. */
         data_type = afw_value_quick_data_type(result);
         if (data_type) {
             afw_object_set_property_as_string(action_response_entry,
-                &afw_self_s_resultDataType, &data_type->data_type_id, xctx);
+                afw_s_resultDataType, &data_type->data_type_id, xctx);
         }
     }
 }
@@ -184,38 +184,38 @@ impl_add_stream_properties(
 {
     afw_utf8_t string;
 
-    if (afw_flag_by_id_is_active(&afw_self_s_a_flag_response_console, xctx) &&
-        !afw_flag_by_id_is_active(&afw_self_s_a_flag_response_console_stream, xctx) &&
+    if (afw_flag_by_id_is_active(afw_s_a_flag_response_console, xctx) &&
+        !afw_flag_by_id_is_active(afw_s_a_flag_response_console_stream, xctx) &&
         afw_stream_standard_is_set(console, xctx))
     {
         afw_utf8_stream_get_current_cached_string(
             afw_stream_standard(console, xctx),
             &string, xctx);
-        afw_object_set_property_as_string(response, &afw_self_s_console,
+        afw_object_set_property_as_string(response, afw_s_console,
             afw_utf8_clone(&string, p, xctx), xctx);
         afw_stream_standard_release(console, xctx);
     }
 
-    if (afw_flag_by_id_is_active(&afw_self_s_a_flag_response_stderr, xctx) &&
-        !afw_flag_by_id_is_active(&afw_self_s_a_flag_response_stderr_stream, xctx) &&
+    if (afw_flag_by_id_is_active(afw_s_a_flag_response_stderr, xctx) &&
+        !afw_flag_by_id_is_active(afw_s_a_flag_response_stderr_stream, xctx) &&
         afw_stream_standard_is_set(stderr, xctx))
     {
         afw_utf8_stream_get_current_cached_string(
             afw_stream_standard(stderr, xctx),
             &string, xctx);
-        afw_object_set_property_as_string(response, &afw_self_s_stderr,
+        afw_object_set_property_as_string(response, afw_s_stderr,
             afw_utf8_clone(&string, p, xctx), xctx);
         afw_stream_standard_release(stderr, xctx);
     }
 
-    if (afw_flag_by_id_is_active(&afw_self_s_a_flag_response_stdout, xctx) &&
-        !afw_flag_by_id_is_active(&afw_self_s_a_flag_response_stdout_stream, xctx) &&
+    if (afw_flag_by_id_is_active(afw_s_a_flag_response_stdout, xctx) &&
+        !afw_flag_by_id_is_active(afw_s_a_flag_response_stdout_stream, xctx) &&
         afw_stream_standard_is_set(stdout, xctx))
     {
         afw_utf8_stream_get_current_cached_string(
             afw_stream_standard(stdout, xctx),
             &string, xctx);
-        afw_object_set_property_as_string(response, &afw_self_s_stdout,
+        afw_object_set_property_as_string(response, afw_s_stdout,
             afw_utf8_clone(&string, p, xctx), xctx);
         afw_stream_standard_release(stdout, xctx);
     }
@@ -259,10 +259,10 @@ afw_action_perform(
     AFW_TRY{
 
         /* Get actions property.  If it doesn't exist, process single function. */
-        name = &afw_self_s_actions;
+        name = afw_s_actions;
         value = afw_object_get_property(request, name, xctx);
         if (!value) {
-            name = &afw_self_s_function;
+            name = afw_s_function;
             value = afw_object_get_property(request, name, xctx);
             if (!value) {
                 AFW_THROW_ERROR_Z(syntax,
@@ -281,13 +281,13 @@ afw_action_perform(
                 }
 
                 /* Call function. */
-                contextual->source_location = &afw_self_s_action;
+                contextual->source_location = afw_s_action;
                 impl_call_function(contextual, function, NULL,
                     request, response_content_type, response,
                     response->p, xctx);
 
-                afw_object_set_property_as_string(response, &afw_self_s_status,
-                    &afw_self_s_success, xctx);
+                afw_object_set_property_as_string(response, afw_s_status,
+                    afw_s_success, xctx);
 
                 break;
             }
@@ -306,7 +306,7 @@ afw_action_perform(
         if (!afw_content_type_is_application_afw(response_content_type)) {
             action_response_entries = afw_array_of_create(
                 afw_data_type_object, response->p, xctx);
-            afw_object_set_property_as_array(response, &afw_self_s_actions,
+            afw_object_set_property_as_array(response, afw_s_actions,
                 action_response_entries, xctx);
         }
 
@@ -345,7 +345,7 @@ afw_action_perform(
             }
 
             /* Get required function. */
-            name = &afw_self_s_function;
+            name = afw_s_function;
             value = afw_object_get_property(action_entry, name, xctx);
             if (!value) {
                 value = afw_object_get_property(request, name, xctx);
@@ -380,7 +380,7 @@ afw_action_perform(
                 impl_add_stream_properties(action_response_entry, p, xctx);
                 stream = afw_stream_standard(response_body, xctx);
                 afw_object_set_property(action_response_entry,
-                    &afw_self_s_intermediate, afw_value_true, xctx);
+                    afw_s_intermediate, afw_value_true, xctx);
                 afw_content_type_write_value(
                     response_content_type,
                     action_response_entry_value,
@@ -392,22 +392,22 @@ afw_action_perform(
         }
 
         /* Set status to success. */
-        afw_object_set_property_as_string(response, &afw_self_s_status,
-            &afw_self_s_success, xctx);
+        afw_object_set_property_as_string(response, afw_s_status,
+            afw_s_success, xctx);
     }
 
     AFW_CATCH_UNHANDLED{
 
         /* Add error to response object. */
         afw_object_set_property_as_string(response,
-            &afw_self_s_status, &afw_self_s_error, xctx);
-        error = afw_object_create_embedded(response, &afw_self_s_error, xctx);
+            afw_s_status, afw_s_error, xctx);
+        error = afw_object_create_embedded(response, afw_s_error, xctx);
         afw_error_add_to_object(error, &this_THROWN_ERROR, xctx);
 
         /* If multiple actions, add actionNumber to error. */
         if (action_number > 0) {
             afw_object_set_property_as_integer(error,
-                &afw_self_s_actionNumber, action_number, xctx);
+                afw_s_actionNumber, action_number, xctx);
         }
     }
 

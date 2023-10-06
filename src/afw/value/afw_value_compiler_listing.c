@@ -440,7 +440,7 @@ afw_value_compiler_listing_to_string_instance(
         afw_writer_write_z(writer, "#", xctx);
         afw_writer_write_eol(writer, xctx);
         if (afw_value_is_undefined(value)) {
-            afw_writer_write_utf8(writer, &afw_self_s_undefined, xctx);
+            afw_writer_write_utf8(writer, afw_s_undefined, xctx);
         }
         else {
             afw_data_type_write_as_expression(
@@ -722,7 +722,7 @@ afw_value_compiler_listing_value(
     afw_xctx_t *xctx)
 {
     if (afw_value_is_undefined(instance)) {
-        afw_writer_write_utf8(writer, &afw_self_s_undefined, xctx);
+        afw_writer_write_utf8(writer, afw_s_undefined, xctx);
         afw_writer_write_eol(writer, xctx);
     }
     else {

@@ -44,24 +44,24 @@ afw_ldap_internal_adaptor_create_cede_p(
 
     /* Process url property. */
     self->url_z = afw_object_old_get_property_as_utf8_z(properties,
-        &afw_ldap_self_s_url, p, xctx);
+        afw_ldap_s_url, p, xctx);
     rv = apr_ldap_url_parse(
         afw_pool_get_apr_pool(self->pub.p),
         self->url_z,
         &(self->lud), &err);
     if (rv != APR_SUCCESS) {
         afw_adaptor_impl_throw_property_invalid(adaptor,
-            &afw_ldap_self_s_url, xctx);
+            afw_ldap_s_url, xctx);
     }
 
     /* Get compiled bindParameter. */
     self->bind_parameters = afw_object_old_get_property_as_compiled_template(
-        properties, &afw_ldap_self_s_bindParameters,
+        properties, afw_ldap_s_bindParameters,
         adaptor->impl->source_location, NULL, adaptor->p, xctx);
 
     /* Get preventVerifyCert. */
     self->prevent_verify_cert = afw_object_old_get_property_as_boolean(
-        properties, &afw_ldap_self_s_preventVerifyCert, &found, xctx);
+        properties, afw_ldap_s_preventVerifyCert, &found, xctx);
 
     /** @fixme add parameter. */
     self->timeout.tv_sec = 30;

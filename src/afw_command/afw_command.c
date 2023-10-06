@@ -218,7 +218,7 @@ impl_evaluate(
     afw_utf8_t *line;
 
 
-    xctx = afw_xctx_create(&afw_command_self_s_afw_command, 0, self->xctx);
+    xctx = afw_xctx_create(afw_command_s_afw_command, 0, self->xctx);
     error_occurred = false;
     keep_going = true;
     if (exit_code) {
@@ -229,7 +229,7 @@ impl_evaluate(
         /* Set environment object and qualifier in new xctx. */
         afw_runtime_xctx_set_object(self->environment_variables_object,
             true, xctx);
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_environment,
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
             self->environment_variables_object, true, xctx->p, xctx);        
 
         /* If input is not NULL, insure it is NFC normalized utf-8. */
@@ -601,7 +601,7 @@ void impl_print_result_value(afw_command_self_t *self, const afw_value_t *value)
     {
         impl_print_result(self,
             AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(&afw_self_s_undefined));
+            AFW_UTF8_FMT_ARG(afw_s_undefined));
     }
 
     /* If value is defined and evaluated, use output content type.*/
@@ -697,7 +697,7 @@ main(int argc, const char * const *argv) {
         self->xctx = xctx;
         self->fd_input = stdin;
         self->fd_output = stdout;
-        self->source_location = &afw_command_self_s_afw_command;
+        self->source_location = afw_command_s_afw_command;
 
         /* Process arguments. */
         rv = process_args(self, argc, argv, xctx);
@@ -710,7 +710,7 @@ main(int argc, const char * const *argv) {
             afw_environment_create_environment_variables_object(false, xctx);
         afw_runtime_xctx_set_object(self->environment_variables_object,
             true, xctx);
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_environment,
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
             self->environment_variables_object, true, xctx->p, xctx);        
 
         /* If extension specified, load it. */
@@ -751,9 +751,9 @@ main(int argc, const char * const *argv) {
 
         /* If expression specified, evaluate it. */
         if (self->expression_z) {
-            self->source_location = &afw_command_self_s_afw_command_dash_x;
+            self->source_location = afw_command_s_afw_command_dash_x;
             impl_evaluate(self, &self->expression, NULL);
-            self->source_location = &afw_command_self_s_afw_command;
+            self->source_location = afw_command_s_afw_command;
         }
 
         /* If [IN] specified, read from file instead of stdin. */
@@ -770,7 +770,7 @@ main(int argc, const char * const *argv) {
 
         /* If local mode specified, open output. */
         if (self->local_mode_z) {
-            self->source_location = &afw_command_self_s_afw_command_local_mode;
+            self->source_location = afw_command_s_afw_command_local_mode;
             for (s = self->local_mode_z; *s && *s >= '0' && *s <= '9'; s++);
             if (*s == 0)
             {
@@ -791,7 +791,7 @@ main(int argc, const char * const *argv) {
         }
 
         if (self->interactive_mode) {
-            self->source_location = &afw_command_self_s_afw_command_interactive;
+            self->source_location = afw_command_s_afw_command_interactive;
         }
 
         /* If script, only evaluate once. */

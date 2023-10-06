@@ -447,7 +447,7 @@ impl_convert_value_to_json(
         if (value_data_type) {
             if (afw_value_is_object(value)) {
                 object = ((const afw_value_object_t *)value)->internal;
-                s = &afw_self_s_object;
+                s = afw_s_object;
                 if (afw_object_meta_get_object_type_id(object, xctx)) {
                     s = afw_utf8_printf(wa->p, wa->xctx,
                         "object:" AFW_UTF8_FMT,

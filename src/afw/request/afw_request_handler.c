@@ -45,9 +45,9 @@ void afw_request_handler_internal_conf_type_create_cede_p(
 
     /* Get uri_prefix and handler_type. */
     e->uri_prefix = afw_object_old_get_property_as_utf8(entry,
-        &afw_self_s_uriPrefix, p, xctx);
+        afw_s_uriPrefix, p, xctx);
     e->handler_type = afw_object_old_get_property_as_utf8(entry,
-        &afw_self_s_requestHandlerType, p, xctx);
+        afw_s_requestHandlerType, p, xctx);
 
     /* Log request handler active. */
     AFW_LOG_FZ(info, xctx, "Request handler for URI prefix " AFW_UTF8_FMT_Q
@@ -81,8 +81,8 @@ void afw_request_handler_internal_conf_type_create_cede_p(
     for (e = head->first_handler, count = 0; e; e = e->next, count++);
     head->last_handler->object_id =
         afw_number_integer_to_utf8(count, p, xctx);
-    afw_object_meta_set_ids(entry, &afw_self_s_afw,
-        &afw_self_s__AdaptiveRequestHandler_, head->last_handler->object_id, xctx);
+    afw_object_meta_set_ids(entry, afw_s_afw,
+        afw_s__AdaptiveRequestHandler_, head->last_handler->object_id, xctx);
     afw_runtime_env_set_object(entry, false, xctx);
 
     /* Log request handler active. */

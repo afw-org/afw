@@ -29,7 +29,7 @@ afw_value_decompile_to_string(
 
 
     if (afw_value_is_undefined(value)) {
-        result = &afw_self_s_undefined;
+        result = afw_s_undefined;
     }
 
     else {
@@ -86,7 +86,7 @@ afw_value_decompile_value(
     afw_xctx_t *xctx)
 {
     if (afw_value_is_undefined(instance)) {
-        afw_writer_write_utf8(writer, &afw_self_s_undefined, xctx);
+        afw_writer_write_utf8(writer, afw_s_undefined, xctx);
     }
     else {
         afw_value_decompile(instance, writer, xctx);

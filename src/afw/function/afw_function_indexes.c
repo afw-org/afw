@@ -94,7 +94,7 @@ afw_function_execute_index_create(
                 NULL, NULL, x->p, xctx);
         } AFW_CATCH_UNHANDLED {
             result = afw_object_create_managed(x->p, xctx);
-            afw_object_set_property_as_object(result, &afw_self_s_error,
+            afw_object_set_property_as_object(result, afw_s_error,
                 afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
             return afw_value_create_object(result, x->p, xctx);
         }

@@ -340,7 +340,7 @@ const afw_object_t * afw_ubjson_parse_object(
         property_value = afw_ubjson_parse_value(parser, type, xctx);
 
         /* check if this is a meta property */
-        if (afw_utf8_equal(property_name, &afw_self_s__meta_)) {
+        if (afw_utf8_equal(property_name, afw_s__meta_)) {
             if (!afw_value_is_object(property_value)) {
                 AFW_THROW_ERROR_Z(general, "_meta_ property must be an object", xctx);
             }

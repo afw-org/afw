@@ -88,8 +88,8 @@ afw_environment_create_environment_variables_object(
     self = afw_pool_calloc_type(p, impl_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->pub.meta.id = &afw_self_s_current;
-    self->pub.meta.object_type_uri = &afw_self_s__AdaptiveEnvironmentVariables_;
+    self->pub.meta.id = afw_s_current;
+    self->pub.meta.object_type_uri = afw_s__AdaptiveEnvironmentVariables_;
     self->pub.meta.object_uri = &impl_path;
 
     /* Create request properties object. */

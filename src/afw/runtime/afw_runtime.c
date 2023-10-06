@@ -467,7 +467,7 @@ afw_runtime_object_create_indirect_using_inf(
     obj->pub.meta.id = object_id;
     obj->pub.meta.object_type_uri = meta->object_type_id;
     obj->pub.meta.object_uri = afw_object_path_make(
-        &afw_self_s_afw, meta->object_type_id, object_id,
+        afw_s_afw, meta->object_type_id, object_id,
         p, xctx);
     obj->internal = internal;
 
@@ -575,7 +575,7 @@ impl_resolve_untyped_object(
             afw_data_type_anyURI, unresolved->parent_paths_count,
             p, xctx);
         afw_object_set_property_as_array(delta,
-            &afw_self_s_parentPaths, parent_paths, xctx);
+            afw_s_parentPaths, parent_paths, xctx);
     }
 
     return (const afw_object_t *)resolved;
@@ -789,7 +789,7 @@ impl_check_manifest_cb(
         return false;
     }
 
-    providesObjects_value = afw_object_get_property(object, &afw_self_s_providesObjects, xctx);
+    providesObjects_value = afw_object_get_property(object, afw_s_providesObjects, xctx);
     if (!providesObjects_value) {
         return false;
     }
@@ -832,9 +832,9 @@ impl_check_manifest_cb(
 
         /* If extension provides object, load extension and break. */
         extension_id = afw_object_old_get_property_as_string(object,
-            &afw_self_s_extensionId, xctx);
+            afw_s_extensionId, xctx);
         module_path = afw_object_old_get_property_as_string(object,
-            &afw_self_s_modulePath, xctx);
+            afw_s_modulePath, xctx);
         if (extension_id && module_path) {
             afw_environment_load_extension(extension_id, module_path,
                 NULL, xctx);
@@ -876,7 +876,7 @@ afw_runtime_get_object(
     if (!result) {
         ctx.object_type_id = object_type_id;
         ctx.object_id = object_id;
-        afw_runtime_foreach(&afw_self_s__AdaptiveManifest_,
+        afw_runtime_foreach(afw_s__AdaptiveManifest_,
             &ctx, impl_check_manifest_cb, xctx);
         for (c = xctx; c; c = c->parent) {
             if (c->runtime_objects && c->runtime_objects->types_ht) {
@@ -938,7 +938,7 @@ impl_afw_adaptor_factory_create_adaptor_cede_p (
         sizeof(impl_afw_adaptor_self_t), properties, p, xctx);
 
     /* If this is afw adaptor, remember it in environment. */
-    if (afw_utf8_equal(&adaptor->adaptor_id, &afw_self_s_afw)) {
+    if (afw_utf8_equal(&adaptor->adaptor_id, afw_s_afw)) {
         ((afw_environment_t*)xctx->env)->afw_adaptor = adaptor;
     }
 

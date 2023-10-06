@@ -30,22 +30,22 @@ impl_log_current_variable_get_cb(
 
 static const afw_log_priority_id_map_entry_t impl_log_priority_id_map[] =
 {
-    { &afw_self_s_emerg,   afw_log_priority_emerg,   "System unusable" },
-    { &afw_self_s_alert,   afw_log_priority_alert,   "Immediate action required" },
-    { &afw_self_s_crit,    afw_log_priority_crit,    "Critical conditions" },
-    { &afw_self_s_err,     afw_log_priority_err,     "Error conditions" },
-    { &afw_self_s_warning, afw_log_priority_warning, "Warning, errors may occur" },
-    { &afw_self_s_notice,  afw_log_priority_notice,  "Normal but significant" },
-    { &afw_self_s_info,    afw_log_priority_info,    "Informational" },
-    { &afw_self_s_debug,   afw_log_priority_debug,   "Debug" },
-    { &afw_self_s_trace1,  afw_log_priority_trace1,  "Trace level 1 message" },
-    { &afw_self_s_trace2,  afw_log_priority_trace2,  "Trace level 2 message" },
-    { &afw_self_s_trace3,  afw_log_priority_trace3,  "Trace level 3 message" },
-    { &afw_self_s_trace4,  afw_log_priority_trace4,  "Trace level 4 message" },
-    { &afw_self_s_trace5,  afw_log_priority_trace5,  "Trace level 5 message" },
-    { &afw_self_s_trace6,  afw_log_priority_trace6,  "Trace level 6 message" },
-    { &afw_self_s_trace7,  afw_log_priority_trace7,  "Trace level 7 message" },
-    { &afw_self_s_trace8,  afw_log_priority_trace8,  "Trace level 8 message" },
+    { afw_s_emerg,   afw_log_priority_emerg,   "System unusable" },
+    { afw_s_alert,   afw_log_priority_alert,   "Immediate action required" },
+    { afw_s_crit,    afw_log_priority_crit,    "Critical conditions" },
+    { afw_s_err,     afw_log_priority_err,     "Error conditions" },
+    { afw_s_warning, afw_log_priority_warning, "Warning, errors may occur" },
+    { afw_s_notice,  afw_log_priority_notice,  "Normal but significant" },
+    { afw_s_info,    afw_log_priority_info,    "Informational" },
+    { afw_s_debug,   afw_log_priority_debug,   "Debug" },
+    { afw_s_trace1,  afw_log_priority_trace1,  "Trace level 1 message" },
+    { afw_s_trace2,  afw_log_priority_trace2,  "Trace level 2 message" },
+    { afw_s_trace3,  afw_log_priority_trace3,  "Trace level 3 message" },
+    { afw_s_trace4,  afw_log_priority_trace4,  "Trace level 4 message" },
+    { afw_s_trace5,  afw_log_priority_trace5,  "Trace level 5 message" },
+    { afw_s_trace6,  afw_log_priority_trace6,  "Trace level 6 message" },
+    { afw_s_trace7,  afw_log_priority_trace7,  "Trace level 7 message" },
+    { afw_s_trace8,  afw_log_priority_trace8,  "Trace level 8 message" },
     { NULL,           afw_log_priority_invalid, "Invalid log priority" }
 };
 
@@ -127,15 +127,15 @@ impl_log_current_variable_get_cb(
 
     result = NULL;
 
-    if (afw_utf8_equal(name, &afw_self_s_message)) {
+    if (afw_utf8_equal(name, afw_s_message)) {
         result = afw_value_create_string(wa->message, wa->p, xctx);
     }
 
-    else if (afw_utf8_equal(name, &afw_self_s_xctxUUID)) {
+    else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
         result = afw_value_create_string(xctx->uuid, wa->p, xctx);
     }
 
-    else if (afw_utf8_equal(name, &afw_self_s_source)) {
+    else if (afw_utf8_equal(name, afw_s_source)) {
         if (wa->source_z) {
             source = afw_value_allocate_string(wa->p, xctx);
             source->internal.s = afw_utf8_z_source_file(wa->source_z);
@@ -178,35 +178,35 @@ void afw_log_internal_register_logType_context_type(
         afw_context_type_insure_qualifier_definitions_object_exists(
             context_type_object, xctx);
     afw_object_meta_add_parent_path(qualifier_definitions,
-        &afw_self_s_a_context_type_application_qualifier_definitions_path,
+        afw_s_a_context_type_application_qualifier_definitions_path,
         xctx);
 
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
-            context_type_object, &afw_self_s_log, xctx);
+            context_type_object, afw_s_log, xctx);
     afw_context_variable_definitions_add_based_on_object_type_id(
         variable_definitions, conf_object_type_id,
         false, xctx);
 
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
-            context_type_object, &afw_self_s_current, xctx);
+            context_type_object, afw_s_current, xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_message, &afw_self_s_internal,
+        afw_s_message, afw_s_internal,
         &afw_value_evaluated_string_inf,
         "Message",
         "Unformatted message that is being logged.",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_xctxUUID, &afw_self_s_internal,
+        afw_s_xctxUUID, afw_s_internal,
         &afw_value_evaluated_string_inf,
         "UUID",
         "The current UUID of the execution context (xctx).",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_source, &afw_self_s_internal,
+        afw_s_source, afw_s_internal,
         &afw_value_evaluated_string_inf,
         "Source",
         "Source file that issued message.",
@@ -448,14 +448,14 @@ impl_write_formatted_message(
         /* Add qualifiers, if needed.  Note: last one pushed has precedence. */
         if (wa->e && (wa->e->log->impl->filter || wa->e->log->impl->format))
         {
-            afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_log,
+            afw_xctx_qualifier_stack_qualifier_object_push(afw_s_log,
                 wa->e->log->properties,
                 true, wa->p, xctx);
-            afw_xctx_qualifier_stack_qualifier_push(&afw_self_s_current, NULL, true,
+            afw_xctx_qualifier_stack_qualifier_push(afw_s_current, NULL, true,
                 impl_log_current_variable_get_cb, (void *)wa,
                 wa->p, xctx);
             if (wa->e->log->impl->custom_variables) {
-                afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_custom,
+                afw_xctx_qualifier_stack_qualifier_object_push(afw_s_custom,
                     wa->e->log->impl->custom_variables,
                     true, wa->p, xctx);
             }
@@ -610,16 +610,16 @@ afw_log_internal_register_service_type(afw_xctx_t *xctx)
 
     self = afw_xctx_calloc_type(afw_service_type_t, xctx);
     self->inf = &impl_afw_service_type_inf;
-    afw_memory_copy(&self->service_type_id, &afw_self_s_log);
-    self->conf_type = afw_environment_get_conf_type(&afw_self_s_log, xctx);
+    afw_memory_copy(&self->service_type_id, afw_s_log);
+    self->conf_type = afw_environment_get_conf_type(afw_s_log, xctx);
     if (!self->conf_type) {
         AFW_THROW_ERROR_Z(general, "conf_type must already be registered",
             xctx);
     }
-    self->title = &afw_self_s_a_service_type_log_title;
-    self->conf_type_object = afw_runtime_get_object(&afw_self_s__AdaptiveConfType_,
-        &afw_self_s_log, xctx);
-    afw_environment_register_service_type(&afw_self_s_log, self, xctx);
+    self->title = afw_s_a_service_type_log_title;
+    self->conf_type_object = afw_runtime_get_object(afw_s__AdaptiveConfType_,
+        afw_s_log, xctx);
+    afw_environment_register_service_type(afw_s_log, self, xctx);
 }
 
 
@@ -655,7 +655,7 @@ impl_afw_service_type_start_cede_p (
     const afw_utf8_t *log_type;
 
     log_type = afw_object_old_get_property_as_utf8(properties,
-        &afw_self_s_logType, p, xctx);
+        afw_s_logType, p, xctx);
     if (!log_type) {
         AFW_THROW_ERROR_Z(general, "parameter logType missing", xctx);
     }
@@ -792,14 +792,14 @@ afw_log_impl_create_cede_p(
 
     /* Get source location.  Default it to adaptor. */
     self->source_location = afw_object_old_get_property_as_string(
-        properties, &afw_self_s_sourceLocation, xctx);
+        properties, afw_s_sourceLocation, xctx);
     if (!self->source_location) {
-        self->source_location = &afw_self_s_log;
+        self->source_location = afw_s_log;
     }
 
     /* Get log_id from parameters. Default to log_type. */
     s = afw_object_old_get_property_as_utf8(properties,
-        &afw_self_s_logId, p, xctx);
+        afw_s_logId, p, xctx);
     memcpy(&self->log_id, s, sizeof(afw_utf8_t));
 
     /* Service id. */
@@ -818,11 +818,11 @@ afw_log_impl_create_cede_p(
 
     /* Compile filter, if it exists. */
     impl->filter = afw_object_old_get_property_as_compiled_script(
-        properties, &afw_self_s_filter, self->source_location, NULL, p, xctx); 
+        properties, afw_s_filter, self->source_location, NULL, p, xctx); 
 
     /* Compile format, if it exists. */
     impl->format = afw_object_old_get_property_as_compiled_template(
-        properties, &afw_self_s_format, self->source_location, NULL, p, xctx); 
+        properties, afw_s_format, self->source_location, NULL, p, xctx); 
 
     /* Return new log. */
     return self;

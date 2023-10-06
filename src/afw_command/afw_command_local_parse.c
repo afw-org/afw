@@ -133,7 +133,7 @@ afw_command_local_parse_request(
             x.line_number);
     }
     afw_object_set_property_as_string(self->this_request_properties,
-        &afw_self_s_REQUEST_METHOD, x.string, xctx);
+        afw_s_REQUEST_METHOD, x.string, xctx);
  
     /* URI */
     impl_get_token(&x);
@@ -143,7 +143,7 @@ afw_command_local_parse_request(
             x.line_number);
     }
     afw_object_set_property_as_string(self->this_request_properties,
-        &afw_self_s_REQUEST_URI, x.string, xctx);
+        afw_s_REQUEST_URI, x.string, xctx);
  
     /* SERVER_PROTOCOL */
     impl_get_token(&x);
@@ -153,7 +153,7 @@ afw_command_local_parse_request(
             x.line_number);
     }
     afw_object_set_property_as_string(self->this_request_properties,
-        &afw_command_self_s_SERVER_PROTOCOL, x.string, xctx);
+        afw_command_s_SERVER_PROTOCOL, x.string, xctx);
 
     /* End of line */
     impl_get_token(&x);
@@ -163,7 +163,7 @@ afw_command_local_parse_request(
             x.line_number);
     }
     if (x.cursor >= x.end) {
-        return (const afw_memory_t *)&afw_self_s_a_empty_string;
+        return (const afw_memory_t *)afw_s_a_empty_string;
     }
  
     /* Process all headers. */
@@ -182,7 +182,7 @@ afw_command_local_parse_request(
 
         /* End of input indicates no payload. */
         if (x.token_type == afw_command_local_parse_token_type_end_of_input) {
-            return (const afw_memory_t *)&afw_self_s_a_empty_string;
+            return (const afw_memory_t *)afw_s_a_empty_string;
         }
 
         /* name */

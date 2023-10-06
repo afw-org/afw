@@ -104,7 +104,7 @@ impl_compile_property_type(
 
     /* dataType */
     s = afw_object_old_get_property_as_string(object,
-        &afw_self_s_dataType, xctx);
+        afw_s_dataType, xctx);
     if (s) {
         pt->data_type = afw_environment_get_data_type(s, xctx);
         if (!pt->data_type) {
@@ -120,7 +120,7 @@ impl_compile_property_type(
 
     /* custom */
     custom = afw_object_old_get_property_as_object(object,
-        &afw_self_s_custom, xctx);
+        afw_s_custom, xctx);
     if (custom) {
         pt->custom_variables = impl_compile_custom(
             custom, model, xctx);
@@ -128,37 +128,37 @@ impl_compile_property_type(
 
     /* allowQuery - default false */
     b = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowQuery, &found, xctx);
+        afw_s_allowQuery, &found, xctx);
     pt->allow_query = found && b;
 
     /* allowRead - defaults to true */
     b = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowRead, &found, xctx);
+        afw_s_allowRead, &found, xctx);
     pt->allow_query = !found || b;
 
     /* allowWrite - default to true */
     b = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowWrite, &found, xctx);
+        afw_s_allowWrite, &found, xctx);
     pt->allow_write = !found || b;
 
     /* required - default false */
     b = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_required, &found, xctx);
+        afw_s_required, &found, xctx);
     pt->required = found && b;
 
     /* transitory - default false */
     b = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_transitory, &found, xctx);
+        afw_s_transitory, &found, xctx);
     pt->transitory = found && b;
 
     /* unique - default false */
     b = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_unique, &found, xctx);
+        afw_s_unique, &found, xctx);
     pt->unique = found && b;
 
     /* defaultValue */
     s = afw_object_old_get_property_as_string(object,
-        &afw_self_s_defaultValue, xctx);
+        afw_s_defaultValue, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/defaultValue",
@@ -169,7 +169,7 @@ impl_compile_property_type(
 
     /* mappedPropertyName */
     pt->mapped_property_name = afw_object_old_get_property_as_string(object,
-        &afw_self_s_mappedPropertyName, xctx);
+        afw_s_mappedPropertyName, xctx);
     if (!pt->mapped_property_name) {
         pt->mapped_property_name = pt->property_name;
     }
@@ -178,7 +178,7 @@ impl_compile_property_type(
 
     /* onGetProperty */
     s = afw_object_old_get_property_as_string(object,
-        &afw_self_s_onGetProperty, xctx);
+        afw_s_onGetProperty, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetProperty",
@@ -189,7 +189,7 @@ impl_compile_property_type(
 
     /* onGetInitialValue */
     s = afw_object_old_get_property_as_string(object,
-        &afw_self_s_onGetInitialValue, xctx);
+        afw_s_onGetInitialValue, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialValue",
@@ -200,7 +200,7 @@ impl_compile_property_type(
 
     /* setProperty */
     s = afw_object_old_get_property_as_string(object,
-        &afw_self_s_onSetProperty, xctx);
+        afw_s_onSetProperty, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onSetProperty",
@@ -228,13 +228,13 @@ impl_is_inherited(
     result = false;
     if (object->meta.meta_object) {
         propertyTypes = afw_object_old_get_property_as_object(
-            afw_object_meta_object(object), &afw_self_s_propertyTypes, xctx);
+            afw_object_meta_object(object), afw_s_propertyTypes, xctx);
         if (propertyTypes) {
             property = afw_object_old_get_property_as_object(
                 propertyTypes, property_name, xctx);
             if (property) {
                 inheritedFrom = afw_object_get_property(
-                    property, &afw_self_s_inheritedFrom, xctx);
+                    property, afw_s_inheritedFrom, xctx);
                 if (inheritedFrom) {
                     result = true;
                 }
@@ -261,119 +261,119 @@ impl_harvest_property_type(
     result = afw_object_create_embedded(
         embedding_object, property_name, xctx);
     afw_object_meta_set_object_type_id(result,
-        &afw_self_s__AdaptiveValueMeta_, xctx);
+        afw_s__AdaptiveValueMeta_, xctx);
 
     /** @fixme This should be a script. */
     /* additionalConstraints */
     value = afw_object_get_property(object,
-        &afw_self_s_additionalConstraints, xctx);
+        afw_s_additionalConstraints, xctx);
     if (value) {
         afw_object_set_property(result,
-            &afw_self_s_additionalConstraints, value, xctx);
+            afw_s_additionalConstraints, value, xctx);
     }
 
     /* allowQuery */
     value = afw_object_get_property(object,
-        &afw_self_s_allowQuery, xctx);
+        afw_s_allowQuery, xctx);
     if (value) {
         afw_object_set_property(result,
-            &afw_self_s_allowQuery, value, xctx);
+            afw_s_allowQuery, value, xctx);
     }
 
     /* allowWrite */
     value = afw_object_get_property(object,
-        &afw_self_s_allowWrite, xctx);
+        afw_s_allowWrite, xctx);
     if (value) {
         afw_object_set_property(result,
-            &afw_self_s_allowWrite, value, xctx);
+            afw_s_allowWrite, value, xctx);
     }
 
     /* collectionURIs */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_collectionURIs, p, xctx);
+        afw_s_collectionURIs, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI(result,
-            &afw_self_s_collectionURIs, s, xctx);
+            afw_s_collectionURIs, s, xctx);
     }
 
     /* contextType */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_contextType, p, xctx);
+        afw_s_contextType, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_contextType, s, xctx);
+            afw_s_contextType, s, xctx);
     }
 
     /* dataType */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_dataType, p, xctx);
+        afw_s_dataType, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_dataType, s, xctx);
+            afw_s_dataType, s, xctx);
     }
 
     /* dataTypeParameter */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_dataTypeParameter, p, xctx);
+        afw_s_dataTypeParameter, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_dataTypeParameter, s, xctx);
+            afw_s_dataTypeParameter, s, xctx);
     }
 
     /* description */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_description, p, xctx);
+        afw_s_description, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_description, s, xctx);
+            afw_s_description, s, xctx);
     }
 
     /* label */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_label, p, xctx);
+        afw_s_label, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_label, s, xctx);
+            afw_s_label, s, xctx);
     }
 
     /* originURI */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_originURI, p, xctx);
+        afw_s_originURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI(result,
-            &afw_self_s_originURI, s, xctx);
+            afw_s_originURI, s, xctx);
     }
 
     /* referenceURI */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_referenceURI, p, xctx);
+        afw_s_referenceURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI(result,
-            &afw_self_s_referenceURI, s, xctx);
+            afw_s_referenceURI, s, xctx);
     }
 
     /* required */
     value = afw_object_get_property(object,
-        &afw_self_s_required, xctx);
+        afw_s_required, xctx);
     if (value) {
         afw_object_set_property(result,
-            &afw_self_s_required, value, xctx);
+            afw_s_required, value, xctx);
     }
 
     /* testDataParameter */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_testDataParameter, p, xctx);
+        afw_s_testDataParameter, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_testDataParameter, s, xctx);
+            afw_s_testDataParameter, s, xctx);
     }
 
     /* unique */
     value = afw_object_get_property(object,
-        &afw_self_s_unique, xctx);
+        afw_s_unique, xctx);
     if (value) {
         afw_object_set_property(result,
-            &afw_self_s_unique, value, xctx);
+            afw_s_unique, value, xctx);
     }
 }
 
@@ -405,18 +405,18 @@ impl_harvest_object_type(
     result = afw_object_create(p, xctx);
     afw_object_meta_set_ids(result,
         adaptor_id,
-        &afw_self_s__AdaptiveObjectType_,
+        afw_s__AdaptiveObjectType_,
         object_type_id, xctx);
     afw_object_meta_set_property(result,
-        &afw_self_s_allowAdd, afw_value_false, xctx);
+        afw_s_allowAdd, afw_value_false, xctx);
     afw_object_meta_set_property(result,
-        &afw_self_s_allowChange, afw_value_false, xctx);
+        afw_s_allowChange, afw_value_false, xctx);
     afw_object_meta_set_property(result,
-        &afw_self_s_allowDelete, afw_value_false, xctx);
+        afw_s_allowDelete, afw_value_false, xctx);
 
     /* If object has resolvedParentPaths, use as parentPaths. */
     value = afw_object_meta_get_property(object,
-        &afw_self_s_resolvedParentPaths, xctx);
+        afw_s_resolvedParentPaths, xctx);
     if (value) {
         AFW_VALUE_ASSERT_IS_DATA_TYPE(value, array, xctx);
         from_parent_paths = (const afw_value_array_t *)value;
@@ -439,119 +439,119 @@ impl_harvest_object_type(
             }
         }
         afw_object_meta_set_property(result,
-            &afw_self_s_parentPaths, (const afw_value_t *)to_parent_paths, xctx);
+            afw_s_parentPaths, (const afw_value_t *)to_parent_paths, xctx);
     }
 
     /* allowAdd */
     flag = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowAdd, &found, xctx);
+        afw_s_allowAdd, &found, xctx);
     if (found) {
         afw_object_set_property(result,
-            &afw_self_s_allowAdd, afw_value_for_boolean(flag), xctx);
+            afw_s_allowAdd, afw_value_for_boolean(flag), xctx);
     }
 
     /* allowChange */
     flag = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowChange, &found, xctx);
+        afw_s_allowChange, &found, xctx);
     if (found) {
         afw_object_set_property(result,
-            &afw_self_s_allowChange, afw_value_for_boolean(flag), xctx);
+            afw_s_allowChange, afw_value_for_boolean(flag), xctx);
     }
 
     /* allowDelete */
     flag = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowDelete, &found, xctx);
+        afw_s_allowDelete, &found, xctx);
     if (found) {
         afw_object_set_property(result,
-            &afw_self_s_allowDelete, afw_value_for_boolean(flag), xctx);
+            afw_s_allowDelete, afw_value_for_boolean(flag), xctx);
     }
 
     /* allowEntity */
     flag = afw_object_old_get_property_as_boolean(object,
-        &afw_self_s_allowEntity, &found, xctx);
+        afw_s_allowEntity, &found, xctx);
     if (found) {
         afw_object_set_property(result,
-            &afw_self_s_allowEntity, afw_value_for_boolean(flag), xctx);
+            afw_s_allowEntity, afw_value_for_boolean(flag), xctx);
     }
 
     /* collectionURIs */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_collectionURIs, p, xctx);
+        afw_s_collectionURIs, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI(result,
-            &afw_self_s_collectionURIs, s, xctx);
+            afw_s_collectionURIs, s, xctx);
     }
 
     /* description */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_description, p, xctx);
+        afw_s_description, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_description, s, xctx);
+            afw_s_description, s, xctx);
     }
 
     /* descriptionPropertyName */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_descriptionPropertyName, p, xctx);
+        afw_s_descriptionPropertyName, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_descriptionPropertyName, s, xctx);
+            afw_s_descriptionPropertyName, s, xctx);
     }
 
     /* label */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_label, p, xctx);
+        afw_s_label, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_label, s, xctx);
+            afw_s_label, s, xctx);
     }
 
     /* objectIdPropertyName */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_objectIdPropertyName, p, xctx);
+        afw_s_objectIdPropertyName, p, xctx);
     if (s) {
         afw_object_set_property_as_string(result,
-            &afw_self_s_objectIdPropertyName, s, xctx);
+            afw_s_objectIdPropertyName, s, xctx);
     }
 
     /* objectType */
     afw_object_set_property_as_string(result,
-        &afw_self_s_objectType, object_type_id, xctx);
+        afw_s_objectType, object_type_id, xctx);
 
     /* originURI */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_originURI, p, xctx);
+        afw_s_originURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI(result,
-            &afw_self_s_originURI, s, xctx);
+            afw_s_originURI, s, xctx);
     }
 
     /* otherProperties. */
     obj = afw_object_old_get_property_as_object(object,
-        &afw_self_s_otherProperties, xctx);
+        afw_s_otherProperties, xctx);
     if (obj) {
         impl_harvest_property_type(
-            result, &afw_self_s_otherProperties,
+            result, afw_s_otherProperties,
             composite, obj, p, xctx);
     }
 
     /* propertyTypes */
     property_types = afw_object_old_get_property_as_object(object,
-        &afw_self_s_propertyTypes, xctx);
+        afw_s_propertyTypes, xctx);
     if (property_types) {
 
         /* Make new propertyTypes object. */
         propertyTypes = afw_object_create_embedded(
-            result, &afw_self_s_propertyTypes, xctx);
+            result, afw_s_propertyTypes, xctx);
         afw_object_meta_set_object_type_id(propertyTypes,
-            &afw_self_s__AdaptivePropertyTypes_, xctx);
+            afw_s__AdaptivePropertyTypes_, xctx);
 
         /* If object has resolvedParentPaths, use as parentPaths. */
         value = afw_object_meta_get_property(property_types,
-            &afw_self_s_resolvedParentPaths, xctx);
+            afw_s_resolvedParentPaths, xctx);
         if (value) {
             afw_object_meta_set_property(propertyTypes,
-                &afw_self_s_parentPaths, value, xctx);
+                afw_s_parentPaths, value, xctx);
         }
 
         /* Add all properties that were not inherited. */
@@ -569,10 +569,10 @@ impl_harvest_object_type(
 
     /* referenceURI */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_referenceURI, p, xctx);
+        afw_s_referenceURI, p, xctx);
     if (s) {
         afw_object_set_property_as_anyURI(result,
-            &afw_self_s_referenceURI, s, xctx);
+            afw_s_referenceURI, s, xctx);
     }
 
     /* Return result. */
@@ -619,7 +619,7 @@ impl_object_type_compile(
 
     /* custom */
     custom = afw_object_old_get_property_as_object(object,
-        &afw_self_s_custom, xctx);
+        afw_s_custom, xctx);
     if (custom) {
         ot->custom_variables = impl_compile_custom(
             custom, model, xctx);
@@ -630,7 +630,7 @@ impl_object_type_compile(
 
     /* onGetInitialObjectId */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onGetInitialObjectId, p, xctx);
+        afw_s_onGetInitialObjectId, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetInitialObjectId",
@@ -642,7 +642,7 @@ impl_object_type_compile(
 
     /* mappedObjectType */
     ot->mapped_object_type_id_value = afw_object_get_property(object,
-        &afw_self_s_mappedObjectType, xctx);
+        afw_s_mappedObjectType, xctx);
     if (ot->mapped_object_type_id_value) {
         ot->mapped_object_type_id = afw_value_as_string(
             ot->mapped_object_type_id_value, xctx);
@@ -654,7 +654,7 @@ impl_object_type_compile(
 
     /* descriptionPropertyName */
     ot->description_property_name_value = afw_object_get_property(object,
-        &afw_self_s_descriptionPropertyName, xctx);
+        afw_s_descriptionPropertyName, xctx);
     if (ot->description_property_name_value) {
         ot->description_property_name = afw_value_as_string(
             ot->description_property_name_value, xctx);
@@ -662,7 +662,7 @@ impl_object_type_compile(
 
     /* objectIdPropertyName */
     ot->object_id_property_name_value = afw_object_get_property(object,
-        &afw_self_s_objectIdPropertyName, xctx);
+        afw_s_objectIdPropertyName, xctx);
     if (ot->object_id_property_name_value) {
         ot->object_id_property_name = afw_value_as_string(
             ot->object_id_property_name_value, xctx);
@@ -670,7 +670,7 @@ impl_object_type_compile(
 
     /* Count the number of properties. */
     properties = afw_object_old_get_property_as_object(object,
-        &afw_self_s_propertyTypes, xctx);
+        afw_s_propertyTypes, xctx);
     count = 0;
     if (properties) {
         for (iterator = NULL;
@@ -698,7 +698,7 @@ impl_object_type_compile(
 
     /* onAddObject */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onAddObject, p, xctx);
+        afw_s_onAddObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onAddObject",
@@ -709,7 +709,7 @@ impl_object_type_compile(
 
     /* onDeleteObject */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onDeleteObject, p, xctx);
+        afw_s_onDeleteObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onDeleteObject",
@@ -720,7 +720,7 @@ impl_object_type_compile(
 
     /* onGetObject */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onGetObject, p, xctx);
+        afw_s_onGetObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onGetObject",
@@ -731,7 +731,7 @@ impl_object_type_compile(
 
     /* onModifyObject */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onModifyObject, p, xctx);
+        afw_s_onModifyObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onModifyObject",
@@ -742,7 +742,7 @@ impl_object_type_compile(
 
     /* onReplaceObject */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onReplaceObject, p, xctx);
+        afw_s_onReplaceObject, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onReplaceObject",
@@ -753,7 +753,7 @@ impl_object_type_compile(
 
     /* onRetrieveObjects */
     s = afw_object_old_get_property_as_utf8(object,
-        &afw_self_s_onRetrieveObjects, p, xctx);
+        afw_s_onRetrieveObjects, p, xctx);
     if (s) {
         source_location = afw_utf8_printf(p, xctx,
             AFW_UTF8_FMT "/onRetrieveObjects",
@@ -764,7 +764,7 @@ impl_object_type_compile(
 
     /* Compile otherProperties, if it exists. */
     pt_object = afw_object_old_get_property_as_object(object,
-        &afw_self_s_otherProperties, xctx);
+        afw_s_otherProperties, xctx);
     if (pt_object) {
         ot->property_type_other =
             impl_compile_property_type(
@@ -813,7 +813,7 @@ afw_model_compile(
 
     /* custom */
     model->custom_variables = afw_object_old_get_property_as_object(object,
-        &afw_self_s_custom, xctx);
+        afw_s_custom, xctx);
     if (model->custom_variables) {
         model->custom_variables = impl_compile_custom(
             model->custom_variables, model, xctx);
@@ -821,7 +821,7 @@ afw_model_compile(
 
     /* Get objectTypes property from model. */
     objectTypes = afw_object_old_get_property_as_object(
-        model->model_object, &afw_self_s_objectTypes, xctx);
+        model->model_object, afw_s_objectTypes, xctx);
     if (!objectTypes) {
         AFW_THROW_ERROR_Z(general,
             "Object model must have objectTypes property", xctx);

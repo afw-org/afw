@@ -222,7 +222,7 @@ static void convert_object_to_ubjson(
     meta = afw_object_meta_create_accessor_with_options(obj,
         wa->options, wa->p, wa->xctx);
     if (meta) {
-        convert_string_to_ubjson(wa, &afw_self_s__meta_, AFW_FALSE);
+        convert_string_to_ubjson(wa, afw_s__meta_, AFW_FALSE);
         convert_object_to_ubjson(wa, meta);
     }
 

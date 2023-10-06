@@ -56,7 +56,7 @@ afw_request_get_response_content_type(
     /*NOTE: This does not process wildcard or q= properly. */
     else {
         for (accept = instance->accept; accept && *accept; accept++) {
-            if (!afw_utf8_compare(*accept, &afw_self_s_a_star_slash_star)) {
+            if (!afw_utf8_compare(*accept, afw_s_a_star_slash_star)) {
                 // if */* is specified, use default of application/json
                 *type = &AFW_JSON_S_CONTENT_TYPE;
                 *response_content_type = afw_environment_get_content_type(
@@ -106,7 +106,7 @@ afw_request_prepare_response_content_type(
 
     /* Write response_content_type header. */
     afw_request_write_response_header(instance,
-        &afw_self_s_a_Content_dash_Type,
+        afw_s_a_Content_dash_Type,
         type,
         xctx);
 
@@ -178,7 +178,7 @@ afw_request_body_to_value(
     }
 
     return afw_content_type_raw_to_value(content_type, 
-        afw_utf8_as_raw(string, xctx->p, xctx), &afw_self_s_a_request_body,
+        afw_utf8_as_raw(string, xctx->p, xctx), afw_s_a_request_body,
         xctx->p, xctx);
 }
 
@@ -235,8 +235,8 @@ afw_request_write_error_to_response_body(
     if (!response) {
         response = afw_object_create_managed(xctx->p, xctx);
     }
-    afw_object_set_property_as_string(response, &afw_self_s_status, &afw_self_s_error, xctx);
-    err = afw_object_create_embedded(response, &afw_self_s_error, xctx);
+    afw_object_set_property_as_string(response, afw_s_status, afw_s_error, xctx);
+    err = afw_object_create_embedded(response, afw_s_error, xctx);
     afw_error_add_to_object(err, error, xctx);
     value = afw_value_create_object(response, xctx->p, xctx);
     afw_request_write_value_to_response_body(instance, value, NULL, xctx);
@@ -252,8 +252,8 @@ afw_request_write_success_response(
 {
     const afw_value_t *value;
 
-    afw_request_set_response_status_code(instance, &afw_self_s_200,
-        &afw_self_s_OK, xctx);
+    afw_request_set_response_status_code(instance, afw_s_200,
+        afw_s_OK, xctx);
 
     /* If response is NULL, make empty one. */
     if (!response) {
@@ -261,9 +261,9 @@ afw_request_write_success_response(
     }
 
     /* Default status to success. */
-    if (!afw_object_has_property(response, &afw_self_s_status, xctx)) {
-        afw_object_set_property_as_string(response, &afw_self_s_status,
-            &afw_self_s_success, xctx);
+    if (!afw_object_has_property(response, afw_s_status, xctx)) {
+        afw_object_set_property_as_string(response, afw_s_status,
+            afw_s_success, xctx);
     }
 
     /* Write response to body. */
@@ -361,7 +361,7 @@ afw_request_response_body_raw_writer_create(
         afw_request_response_body_raw_writer_self_t, xctx);
     self->pub.inf = &impl_afw_stream_inf;
     self->pub.p = xctx->p;
-    self->pub.streamId = &afw_self_s_raw_response_body;
+    self->pub.streamId = afw_s_raw_response_body;
     self->pub.write_cb = &impl_response_write_cb;
     self->request = request;
 

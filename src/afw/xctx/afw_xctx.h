@@ -677,7 +677,7 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
     (xctx)->evaluation_stack->top->parameter_number =PARAMETER_NUMBER; \
     afw_stack_push_direct(xctx->evaluation_stack, xctx); \
-    (xctx)->evaluation_stack->top->entry_id = &afw_self_s_parameter_number
+    (xctx)->evaluation_stack->top->entry_id = afw_s_parameter_number
 
 
 /**
@@ -685,7 +685,7 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
  * @param xctx of caller.
  */
 #define afw_xctx_evaluation_stack_pop(xctx) \
-if (xctx->evaluation_stack->top->entry_id == &afw_self_s_parameter_number) { \
+if (xctx->evaluation_stack->top->entry_id == afw_s_parameter_number) { \
     afw_stack_pop(xctx->evaluation_stack, xctx); \
 } \
 afw_stack_pop(xctx->evaluation_stack, xctx)

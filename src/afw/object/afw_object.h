@@ -125,16 +125,16 @@ AFW_BEGIN_DECLARES
 
 /** @brief The object type id for object type objects is _AdaptiveObjectType_. */
 #define AFW_OBJECT_ID_IS_OBJECT_TYPE(OBJECT_TYPE_ID) \
-    afw_utf8_equal((OBJECT_TYPE_ID), &afw_self_s__AdaptiveObjectType_)
+    afw_utf8_equal((OBJECT_TYPE_ID), afw_s__AdaptiveObjectType_)
 
 /** @brief Core object type objects have an object id starting with _Adaptive. */
 #define AFW_OBJECT_IS_CORE_OBJECT_TYPE_ID(OBJECT_TYPE_ID, OBJECT_ID) \
     AFW_OBJECT_ID_IS_OBJECT_TYPE(OBJECT_TYPE_ID) && \
-    afw_utf8_starts_with((OBJECT_ID), &afw_self_s__Adaptive)
+    afw_utf8_starts_with((OBJECT_ID), afw_s__Adaptive)
 
 /** @brief Core type ids starting with _Adaptive. */
 #define AFW_OBJECT_IS_CORE_TYPE_ID(ID) \
-    afw_utf8_starts_with((ID), &afw_self_s__Adaptive)
+    afw_utf8_starts_with((ID), afw_s__Adaptive)
 
 
 /**
@@ -1040,7 +1040,7 @@ afw_object_insure_embedded_exists(
     result,embedding_object,property_name,always_create_unmanaged, \
     cede_p,entity_p,xctx) \
     if (always_create_unmanaged || \
-        (property_name && afw_utf8_equal(property_name, &afw_self_s__meta_))) \
+        (property_name && afw_utf8_equal(property_name, afw_s__meta_))) \
     { \
         result = afw_object_create(entity_p, xctx); \
     } \

@@ -34,6 +34,10 @@
     "default"
 
 /** @brief 'afw_utf8_t' for AFW_UBJSON_Q_default */
+#define afw_ubjson_s_default \
+    (&afw_ubjson_self_v_default.internal)
+
+/** @brief 'afw_utf8_t' for AFW_UBJSON_Q_default */
 #define afw_ubjson_self_s_default \
     (afw_ubjson_self_v_default.internal)
 
@@ -54,6 +58,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_UBJSON_Q_indirect \
     "indirect"
+
+/** @brief 'afw_utf8_t' for AFW_UBJSON_Q_indirect */
+#define afw_ubjson_s_indirect \
+    (&afw_ubjson_self_v_indirect.internal)
 
 /** @brief 'afw_utf8_t' for AFW_UBJSON_Q_indirect */
 #define afw_ubjson_self_s_indirect \

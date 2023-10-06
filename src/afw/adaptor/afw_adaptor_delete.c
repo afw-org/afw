@@ -31,7 +31,7 @@ afw_adaptor_delete_object(
     /* Set request in journal entry. */
     afw_memory_clear(&impl_request);
     impl_request.request = request = afw_object_create_embedded(
-        journal_entry, &afw_self_s_request, xctx);
+        journal_entry, afw_s_request, xctx);
     impl_request.p = request->p;
     impl_request.journal_entry = journal_entry;
     impl_request.resource_id = afw_utf8_printf(impl_request.p, xctx,
@@ -43,15 +43,15 @@ afw_adaptor_delete_object(
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id));
     afw_object_set_property_as_string(request,
-        &afw_self_s_resourceId, impl_request.resource_id, xctx);
+        afw_s_resourceId, impl_request.resource_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_self_s_function, &afw_self_s_delete_object, xctx);
+        afw_s_function, afw_s_delete_object, xctx);
     afw_object_set_property_as_string(request,
-        &afw_self_s_adaptorId, adaptor_id, xctx);
+        afw_s_adaptorId, adaptor_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_self_s_objectType, object_type_id, xctx);
+        afw_s_objectType, object_type_id, xctx);
     afw_object_set_property_as_string(request,
-        &afw_self_s_objectId, object_id, xctx);
+        afw_s_objectId, object_id, xctx);
 
     /* Get an active session with adaptor. */
     session = afw_adaptor_session_get_cached(adaptor_id, true, xctx);

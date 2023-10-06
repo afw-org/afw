@@ -129,18 +129,18 @@ afw_authorization_handler_impl_create_cede_p(
 
     /* Get authorizationHandlerType from properties. */
     self->authorization_handler_type_id = afw_object_old_get_property_as_string(
-        properties, &afw_self_s_authorizationHandlerType, xctx);
+        properties, afw_s_authorizationHandlerType, xctx);
 
     /* Get source location.  Default it to authorization handler. */
     self->source_location = afw_object_old_get_property_as_string(
-        properties, &afw_self_s_sourceLocation, xctx);
+        properties, afw_s_sourceLocation, xctx);
     if (!self->source_location) {
-        self->source_location = &afw_self_s_authorization_handler;
+        self->source_location = afw_s_authorization_handler;
     }
 
     /* Get authorization_handler_id from parameters. */
     s = afw_object_old_get_property_as_utf8(properties,
-        &afw_self_s_authorizationHandlerId, p, xctx);
+        afw_s_authorizationHandlerId, p, xctx);
     if (!s) {
         AFW_THROW_ERROR_FZ(general, xctx,
             AFW_UTF8_FMT " requires 'id' property.",
@@ -172,18 +172,18 @@ afw_authorization_handler_impl_create_cede_p(
 
     /* priority default 9999 */
     self->priority = afw_object_old_get_property_as_integer(properties,
-        &afw_self_s_priority, &found, xctx);
+        afw_s_priority, &found, xctx);
     if (!found) {
         self->priority = 9999;
     }
 
     /* allow_* and required. */
     self->allow_deny_override = afw_object_old_get_property_as_boolean(properties,
-        &afw_self_s_allowDenyOverride, &found, xctx);
+        afw_s_allowDenyOverride, &found, xctx);
     self->allow_permit_override = afw_object_old_get_property_as_boolean(properties,
-        &afw_self_s_allowPermitOverride, &found, xctx);
+        afw_s_allowPermitOverride, &found, xctx);
     self->required = afw_object_old_get_property_as_boolean(properties,
-        &afw_self_s_required, &found, xctx);
+        afw_s_required, &found, xctx);
     
     /* Set trace fields */
     impl_set_trace_flag_fields(self, xctx);

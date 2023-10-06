@@ -113,7 +113,7 @@ afw_function_execute_print(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_utf8(stream, &afw_self_s_undefined, x->xctx);
+            afw_stream_write_utf8(stream, afw_s_undefined, x->xctx);
         }
     }
     afw_stream_flush(stream, x->xctx);
@@ -172,7 +172,7 @@ afw_function_execute_println(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_utf8(stream, &afw_self_s_undefined, x->xctx);
+            afw_stream_write_utf8(stream, afw_s_undefined, x->xctx);
         }
     }
     afw_stream_write_eol(stream, x->xctx);
@@ -243,7 +243,7 @@ afw_function_execute_write(
             afw_stream_write(stream, s->s, s->len, x->xctx);
         }
         else {
-            afw_stream_write_utf8(stream, &afw_self_s_undefined, x->xctx);
+            afw_stream_write_utf8(stream, afw_s_undefined, x->xctx);
         }
     }
 

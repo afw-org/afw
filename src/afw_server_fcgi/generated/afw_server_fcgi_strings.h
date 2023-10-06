@@ -34,6 +34,10 @@
     "_AdaptiveCollection_"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q__AdaptiveCollection_ */
+#define afw_server_fcgi_s__AdaptiveCollection_ \
+    (&afw_server_fcgi_self_v__AdaptiveCollection_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q__AdaptiveCollection_ */
 #define afw_server_fcgi_self_s__AdaptiveCollection_ \
     (afw_server_fcgi_self_v__AdaptiveCollection_.internal)
 
@@ -54,6 +58,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q__AdaptiveServer_ \
     "_AdaptiveServer_"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q__AdaptiveServer_ */
+#define afw_server_fcgi_s__AdaptiveServer_ \
+    (&afw_server_fcgi_self_v__AdaptiveServer_.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q__AdaptiveServer_ */
 #define afw_server_fcgi_self_s__AdaptiveServer_ \
@@ -78,6 +86,10 @@ extern const afw_value_string_t \
     "trace:server"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server */
+#define afw_server_fcgi_s_a_flag_trace_server \
+    (&afw_server_fcgi_self_v_a_flag_trace_server.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server */
 #define afw_server_fcgi_self_s_a_flag_trace_server \
     (afw_server_fcgi_self_v_a_flag_trace_server.internal)
 
@@ -98,6 +110,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_brief \
     "Server related flags"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_brief */
+#define afw_server_fcgi_s_a_flag_trace_server_brief \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_brief.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_brief */
 #define afw_server_fcgi_self_s_a_flag_trace_server_brief \
@@ -122,6 +138,10 @@ extern const afw_value_string_t \
     "This includes all trace:server related flags."
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_description */
+#define afw_server_fcgi_s_a_flag_trace_server_description \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_description */
 #define afw_server_fcgi_self_s_a_flag_trace_server_description \
     (afw_server_fcgi_self_v_a_flag_trace_server_description.internal)
 
@@ -142,6 +162,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request \
     "trace:server:request"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request */
+#define afw_server_fcgi_s_a_flag_trace_server_request \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request */
 #define afw_server_fcgi_self_s_a_flag_trace_server_request \
@@ -166,6 +190,10 @@ extern const afw_value_string_t \
     "Trace server request"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_brief */
+#define afw_server_fcgi_s_a_flag_trace_server_request_brief \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_brief */
 #define afw_server_fcgi_self_s_a_flag_trace_server_request_brief \
     (afw_server_fcgi_self_v_a_flag_trace_server_request_brief.internal)
 
@@ -186,6 +214,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_description \
     "This includes all trace:server:request related flags."
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_description */
+#define afw_server_fcgi_s_a_flag_trace_server_request_description \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_description.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_description */
 #define afw_server_fcgi_self_s_a_flag_trace_server_request_description \
@@ -210,6 +242,10 @@ extern const afw_value_string_t \
     "trace:server:request:process"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process */
+#define afw_server_fcgi_s_a_flag_trace_server_request_process \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_process.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process */
 #define afw_server_fcgi_self_s_a_flag_trace_server_request_process \
     (afw_server_fcgi_self_v_a_flag_trace_server_request_process.internal)
 
@@ -230,6 +266,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_brief \
     "Trace process request begin and end"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_brief */
+#define afw_server_fcgi_s_a_flag_trace_server_request_process_brief \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_process_brief.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_brief */
 #define afw_server_fcgi_self_s_a_flag_trace_server_request_process_brief \
@@ -254,6 +294,10 @@ extern const afw_value_string_t \
     "This traces the begin and end of processing for requests."
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_description */
+#define afw_server_fcgi_s_a_flag_trace_server_request_process_description \
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_process_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_description */
 #define afw_server_fcgi_self_s_a_flag_trace_server_request_process_description \
     (afw_server_fcgi_self_v_a_flag_trace_server_request_process_description.internal)
 
@@ -274,6 +318,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_afw_server_fcgi \
     "afw_server_fcgi"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_afw_server_fcgi */
+#define afw_server_fcgi_s_afw_server_fcgi \
+    (&afw_server_fcgi_self_v_afw_server_fcgi.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_afw_server_fcgi */
 #define afw_server_fcgi_self_s_afw_server_fcgi \
@@ -298,6 +346,10 @@ extern const afw_value_string_t \
     "concurrent"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_concurrent */
+#define afw_server_fcgi_s_concurrent \
+    (&afw_server_fcgi_self_v_concurrent.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_concurrent */
 #define afw_server_fcgi_self_s_concurrent \
     (afw_server_fcgi_self_v_concurrent.internal)
 
@@ -318,6 +370,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_default \
     "default"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_default */
+#define afw_server_fcgi_s_default \
+    (&afw_server_fcgi_self_v_default.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_default */
 #define afw_server_fcgi_self_s_default \
@@ -342,6 +398,10 @@ extern const afw_value_string_t \
     "description"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_description */
+#define afw_server_fcgi_s_description \
+    (&afw_server_fcgi_self_v_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_description */
 #define afw_server_fcgi_self_s_description \
     (afw_server_fcgi_self_v_description.internal)
 
@@ -362,6 +422,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_indirect \
     "indirect"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_indirect */
+#define afw_server_fcgi_s_indirect \
+    (&afw_server_fcgi_self_v_indirect.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_indirect */
 #define afw_server_fcgi_self_s_indirect \
@@ -386,6 +450,10 @@ extern const afw_value_string_t \
     "integer"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_integer */
+#define afw_server_fcgi_s_integer \
+    (&afw_server_fcgi_self_v_integer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_integer */
 #define afw_server_fcgi_self_s_integer \
     (afw_server_fcgi_self_v_integer.internal)
 
@@ -406,6 +474,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_max_concurrent \
     "max_concurrent"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_max_concurrent */
+#define afw_server_fcgi_s_max_concurrent \
+    (&afw_server_fcgi_self_v_max_concurrent.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_max_concurrent */
 #define afw_server_fcgi_self_s_max_concurrent \
@@ -430,6 +502,10 @@ extern const afw_value_string_t \
     "objectId"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_objectId */
+#define afw_server_fcgi_s_objectId \
+    (&afw_server_fcgi_self_v_objectId.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_objectId */
 #define afw_server_fcgi_self_s_objectId \
     (afw_server_fcgi_self_v_objectId.internal)
 
@@ -450,6 +526,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_request_count \
     "request_count"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_request_count */
+#define afw_server_fcgi_s_request_count \
+    (&afw_server_fcgi_self_v_request_count.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_request_count */
 #define afw_server_fcgi_self_s_request_count \
@@ -474,6 +554,10 @@ extern const afw_value_string_t \
     "single"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_single */
+#define afw_server_fcgi_s_single \
+    (&afw_server_fcgi_self_v_single.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_single */
 #define afw_server_fcgi_self_s_single \
     (afw_server_fcgi_self_v_single.internal)
 
@@ -496,6 +580,10 @@ extern const afw_value_string_t \
     "thread_count"
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_thread_count */
+#define afw_server_fcgi_s_thread_count \
+    (&afw_server_fcgi_self_v_thread_count.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_thread_count */
 #define afw_server_fcgi_self_s_thread_count \
     (afw_server_fcgi_self_v_thread_count.internal)
 
@@ -516,6 +604,10 @@ extern const afw_value_string_t \
 /** @brief #define for string in quotes */
 #define AFW_SERVER_FCGI_Q_uint32 \
     "uint32"
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_uint32 */
+#define afw_server_fcgi_s_uint32 \
+    (&afw_server_fcgi_self_v_uint32.internal)
 
 /** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_uint32 */
 #define afw_server_fcgi_self_s_uint32 \

@@ -55,17 +55,17 @@ impl_current_get_variable_cb(
     afw_integer_t pid;
 
     result = NULL;
-    if (afw_utf8_equal(name, &afw_self_s_mode)) {
+    if (afw_utf8_equal(name, afw_s_mode)) {
         result = xctx->mode;
     }
-    else if (afw_utf8_equal(name, &afw_self_s_pid)) {
+    else if (afw_utf8_equal(name, afw_s_pid)) {
         pid = afw_os_get_pid();
         result = afw_value_create_integer(pid, xctx->p, xctx);
     }
-    else if (afw_utf8_equal(name, &afw_self_s_xctxUUID)) {
+    else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
         result = afw_value_create_string(xctx->uuid, xctx->p, xctx);
     }
-    else if (afw_utf8_equal(name, &afw_self_s_programName)) {
+    else if (afw_utf8_equal(name, afw_s_programName)) {
         result = afw_value_create_string(
             &xctx->env->program_name, xctx->p, xctx);
     }
@@ -81,12 +81,12 @@ afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
     const afw_environment_t *env = xctx->env;
 
     /* Push current:: qualifier. */
-    afw_xctx_qualifier_stack_qualifier_push(&afw_self_s_current, NULL, true,
+    afw_xctx_qualifier_stack_qualifier_push(afw_s_current, NULL, true,
         impl_current_get_variable_cb, NULL, xctx->p, xctx);
 
     /* If there is an application qualifier, push application qualifier. */
     if (env->application_object) {
-        afw_xctx_qualifier_stack_qualifier_object_push(&afw_self_s_application,
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_application,
             env->application_object, true, xctx->p, xctx);
     }
 
@@ -113,14 +113,14 @@ afw_application_internal_register_basic_application_context_type(
     const afw_object_t *variable_definitions;
 
     context_type_object = afw_context_type_create(
-        &afw_self_s_application, xctx->env->p, xctx);
+        afw_s_application, xctx->env->p, xctx);
 
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
-            context_type_object, &afw_self_s_current, xctx);
+            context_type_object, afw_s_current, xctx);
 
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_mode, &afw_self_s_runtime,
+        afw_s_mode, afw_s_runtime,
         &afw_value_evaluated_string_inf,
         "Authorization Mode",
         "The current authorization mode.",
@@ -128,7 +128,7 @@ afw_application_internal_register_basic_application_context_type(
         xctx);
 
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_pid, &afw_self_s_runtime,
+        afw_s_pid, afw_s_runtime,
         &afw_value_evaluated_integer_inf,
         "Pid",
         "The current processor id.",
@@ -136,7 +136,7 @@ afw_application_internal_register_basic_application_context_type(
         xctx);
 
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_programName, &afw_self_s_runtime,
+        afw_s_programName, afw_s_runtime,
         &afw_value_evaluated_string_inf,
         "Program Name",
         "The current program name.",
@@ -144,14 +144,14 @@ afw_application_internal_register_basic_application_context_type(
         xctx);
 
     afw_context_variable_definition_add_z(variable_definitions,
-        &afw_self_s_xctxUUID, &afw_self_s_runtime,
+        afw_s_xctxUUID, afw_s_runtime,
         &afw_value_evaluated_string_inf,
         "XCTX UUID",
         "The execution context (xctx) UUID which can normally be considered the UUID of the current request.",
         NULL, NULL,
         xctx);
 
-    afw_environment_register_context_type(&afw_self_s_application,
+    afw_environment_register_context_type(afw_s_application,
         context_type_object, xctx);
 }
 
@@ -197,7 +197,7 @@ afw_application_internal_application_conf_type_create_cede_p(
 
     /* Get optional confAdaptorId. */
     conf_adaptor_id = afw_object_old_get_property_as_utf8(
-        entry, &afw_self_s_confAdaptorId, p, xctx);
+        entry, afw_s_confAdaptorId, p, xctx);
 
     /* Get conf adaptor.  It will not ever be released. */
     if (conf_adaptor_id) {
@@ -207,20 +207,20 @@ afw_application_internal_application_conf_type_create_cede_p(
             AFW_UTF8_FMT_ARG(conf_adaptor_id));
         env->conf_adaptor = afw_adaptor_get_reference(conf_adaptor_id, xctx);
         afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
-            &afw_self_s__AdaptiveServiceConf_, true, true, xctx);
+            afw_s__AdaptiveServiceConf_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
-            &afw_self_s__AdaptiveConf_application, true, true, xctx);
+            afw_s__AdaptiveConf_application, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
-            &afw_self_s__AdaptiveTemplateProperties_, false, true, xctx);
+            afw_s__AdaptiveTemplateProperties_, false, true, xctx);
     }
 
     /* Get optional applicationId and default to "application". */
     application_id = afw_object_old_get_property_as_utf8(entry,
-        &afw_self_s_applicationId, p, xctx);
+        afw_s_applicationId, p, xctx);
     if (!application_id) {
-        application_id = &afw_self_s_Adaptive;
+        application_id = afw_s_Adaptive;
         afw_object_set_property_as_string(entry,
-            &afw_self_s_applicationId, application_id, xctx);
+            afw_s_applicationId, application_id, xctx);
     }
     ((afw_environment_t *)env)->application_id.len = application_id->len;
     ((afw_environment_t *)env)->application_id.s = application_id->s;
@@ -236,7 +236,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         AFW_TRY {
             afw_adaptor_session_get_object(
                 session, NULL,
-                &afw_self_s__AdaptiveConf_application, application_id,
+                afw_s__AdaptiveConf_application, application_id,
                 (void *)&object, impl_conf_object_cb, NULL, p, xctx);
         }
 
@@ -277,8 +277,8 @@ afw_application_internal_application_conf_type_create_cede_p(
                 entry_value = afw_object_get_property(entry,
                     property_name, xctx);
                 if (entry_value ||
-                    afw_utf8_equal(property_name, &afw_self_s_confAdaptorId) ||
-                    afw_utf8_equal(property_name, &afw_self_s_applicationId))
+                    afw_utf8_equal(property_name, afw_s_confAdaptorId) ||
+                    afw_utf8_equal(property_name, afw_s_applicationId))
                 {
                     if (!afw_value_equal(value, entry_value, xctx)) {
                         AFW_LOG_FZ(warning, xctx,
@@ -305,13 +305,13 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Prepare/validate application conf. */
     properties = afw_environment_prepare_conf_type_properties(entry, xctx);
     env->application_object = properties;
-    afw_object_meta_set_ids(env->application_object, &afw_self_s_afw,
-        &afw_self_s__AdaptiveApplication_, &afw_self_s_current, xctx);
+    afw_object_meta_set_ids(env->application_object, afw_s_afw,
+        afw_s__AdaptiveApplication_, afw_s_current, xctx);
     afw_runtime_env_set_object(env->application_object, false, xctx);
 
     /* If extensions specified, load them. */
     value = afw_object_get_property(env->application_object,
-        &afw_self_s_extensions, xctx);
+        afw_s_extensions, xctx);
     if (value) {
         for (extension_id = afw_value_as_array_of_utf8(value, p, xctx);
             *extension_id;
@@ -323,7 +323,7 @@ afw_application_internal_application_conf_type_create_cede_p(
 
     /* If extensionModulePaths specified, load them. */
     value = afw_object_get_property(env->application_object,
-        &afw_self_s_extensionModulePaths, xctx);
+        afw_s_extensionModulePaths, xctx);
     if (value) {
         for (module_path = afw_value_as_array_of_utf8(value, p, xctx);
             *module_path;
@@ -334,25 +334,25 @@ afw_application_internal_application_conf_type_create_cede_p(
     }
 
     /* Make application context object. */
-    context_type_object = afw_environment_get_context_type(&afw_self_s_application,
+    context_type_object = afw_environment_get_context_type(afw_s_application,
         xctx);
 
     /* application:: variable definitions. */
     variable_definitions_object =
         afw_context_type_insure_variable_definitions_object_exists(
-        context_type_object, &afw_self_s_application, xctx);
+        context_type_object, afw_s_application, xctx);
     afw_context_variable_definitions_add_based_on_object(
         variable_definitions_object, env->application_object, xctx);
 
     /* qualifiedVariables definitions. */
     env->application_qualified_variables = afw_object_old_get_property_as_object(
-        env->application_object, &afw_self_s_qualifiedVariables, xctx);
+        env->application_object, afw_s_qualifiedVariables, xctx);
     if (env->application_qualified_variables) {
         detail_source_location = afw_utf8_printf(
             env->application_qualified_variables->p, xctx,
             AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(source_location),
-            AFW_UTF8_FMT_ARG(&afw_self_s_qualifiedVariables));
+            AFW_UTF8_FMT_ARG(afw_s_qualifiedVariables));
         env->application_qualified_variables = afw_object_create_clone(
             env->application_qualified_variables, p, xctx);
         afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
@@ -362,18 +362,18 @@ afw_application_internal_application_conf_type_create_cede_p(
 
     /* rootFilePaths */
     env->root_file_paths = afw_object_old_get_property_as_object(
-        env->application_object, &afw_self_s_rootFilePaths, xctx);
+        env->application_object, afw_s_rootFilePaths, xctx);
 
     /* defaultFlags */
     default_flags = afw_object_old_get_property_as_array(env->application_object,
-        &afw_self_s_defaultFlags, xctx);
+        afw_s_defaultFlags, xctx);
     if (default_flags) {
         afw_flag_set_default_flag_ids(default_flags, xctx);
     }
 
     /* Get optional layoutAdaptorId. */
     env->layout_adaptor_id = afw_object_old_get_property_as_utf8(
-        properties, &afw_self_s_layoutsAdaptorId, p, xctx);
+        properties, afw_s_layoutsAdaptorId, p, xctx);
 
     /* Set supported core object type in adaptor. */
     if (env->layout_adaptor_id) {
@@ -383,15 +383,15 @@ afw_application_internal_application_conf_type_create_cede_p(
             AFW_UTF8_FMT_ARG(env->layout_adaptor_id));
         layout_adaptor = afw_adaptor_get_reference(env->layout_adaptor_id, xctx);
         afw_adaptor_impl_set_supported_core_object_type(layout_adaptor,
-            &afw_self_s__AdaptiveLayoutComponentType_, true, true, xctx);
+            afw_s__AdaptiveLayoutComponentType_, true, true, xctx);
         afw_adaptor_impl_set_supported_core_object_type(layout_adaptor,
-            &afw_self_s__AdaptiveLayoutComponent_, false, true, xctx);
+            afw_s__AdaptiveLayoutComponent_, false, true, xctx);
         afw_adaptor_release(layout_adaptor, xctx);
     }
 
     /* Process authorizationControl*/
     object = afw_object_old_get_property_as_object(properties,
-        &afw_self_s_authorizationControl, xctx);
+        afw_s_authorizationControl, xctx);
     afw_authorization_internal_set_control(object, xctx);
 
     /* If conf adaptor, start any services that are ready. */
@@ -407,7 +407,7 @@ afw_application_internal_application_conf_type_create_cede_p(
      * if it returns a non-nullish value of other than integer 0.
      */
     value = afw_object_get_property(properties,
-        &afw_self_s_onApplicationStartupComplete, xctx);
+        afw_s_onApplicationStartupComplete, xctx);
     if (value) {       
         AFW_LOG_Z(info,
             "Application onApplicationStartupComplete script being called.",

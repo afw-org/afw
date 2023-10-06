@@ -109,7 +109,7 @@ afw_utf8_nfc(
         {
             return NULL;
         }
-        return &afw_self_s_a_empty_string;
+        return afw_s_a_empty_string;
     }
 
     /* If len is AFW_UTF8_Z_LEN, set it to strlen(s). */
@@ -928,7 +928,7 @@ afw_utf8_array_to_utf8_with_separator(
     afw_utf8_t * result;
     afw_utf8_octet_t * s;
 
-    if (!strings || *strings == NULL) return &afw_self_s_a_empty_string;
+    if (!strings || *strings == NULL) return afw_s_a_empty_string;
 
     len = 0;
     for (count = 0, c = strings; *c; count++, c++)
@@ -940,7 +940,7 @@ afw_utf8_array_to_utf8_with_separator(
         len += (count - 1) * separator->len;
     }
 
-    if (len == 0) return &afw_self_s_a_empty_string;
+    if (len == 0) return afw_s_a_empty_string;
 
     s = afw_pool_malloc(p, len, xctx);
     result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
