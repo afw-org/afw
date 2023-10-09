@@ -26,7 +26,7 @@ impl_value_null = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_null =
-{ (const afw_value_t *)&impl_value_null };
+{ &impl_value_null.pub };
 
 static const afw_value_undefined_t
 impl_value_undefined = {
@@ -36,7 +36,7 @@ impl_value_undefined = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_undefined =
-{ (const afw_value_t *)&impl_value_undefined };
+{ &impl_value_undefined.pub };
 
 static const afw_value_null_t
 impl_value_unique_default_case_value = {
@@ -46,7 +46,7 @@ impl_value_unique_default_case_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_unique_default_case_value =
-{ (const afw_value_t *)&impl_value_unique_default_case_value };
+{ &impl_value_unique_default_case_value.pub };
 
 static const afw_value_integer_t
 impl_value_integer_1 = {
@@ -56,7 +56,7 @@ impl_value_integer_1 = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_integer_1 =
-{ (const afw_value_t *)&impl_value_integer_1 };
+{ &impl_value_integer_1.pub };
 
 static const afw_value_string_t
 impl_value_empty_string = {
@@ -66,7 +66,7 @@ impl_value_empty_string = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_empty_string =
-{ (const afw_value_t *)&impl_value_empty_string };
+{ &impl_value_empty_string.pub };
 
 static const afw_value_boolean_t
 impl_value_true = {
@@ -76,7 +76,7 @@ impl_value_true = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_true =
-{ (const afw_value_t *)&impl_value_true };
+{ &impl_value_true.pub };
 
 static const afw_value_boolean_t
 impl_value_false = {
@@ -86,7 +86,7 @@ impl_value_false = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_false =
-{ (const afw_value_t *)&impl_value_false };
+{ &impl_value_false.pub };
 
 
 /* Compile a value. */
@@ -684,7 +684,7 @@ afw_value_convert(
                     to_data_type,
                     p, xctx);
             }
-            result = (const afw_value_t *)single;
+            result = &single->pub;
         }
 
         /* Not list. */
@@ -696,7 +696,7 @@ afw_value_convert(
                 &((const afw_value_evaluated_t *)value)->internal,
                 to_data_type,
                 p, xctx);
-            result = (const afw_value_t *)single;
+            result = &single->pub;
         }
     }
 

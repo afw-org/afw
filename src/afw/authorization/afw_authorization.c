@@ -30,7 +30,7 @@ impl_authorization_decision_id_action_id_control = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_control =
-(const afw_value_t *)& impl_authorization_decision_id_action_id_control;
+&impl_authorization_decision_id_action_id_control.pub;
 
 
 static const afw_value_string_t
@@ -41,7 +41,7 @@ impl_authorization_decision_id_action_id_create = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_create =
-(const afw_value_t *)& impl_authorization_decision_id_action_id_create;
+&impl_authorization_decision_id_action_id_create.pub;
 
 
 static const afw_value_string_t
@@ -52,7 +52,7 @@ impl_authorization_decision_id_action_id_delete = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_delete =
-(const afw_value_t *)& impl_authorization_decision_id_action_id_delete;
+&impl_authorization_decision_id_action_id_delete.pub;
 
 
 static const afw_value_string_t
@@ -63,7 +63,7 @@ impl_authorization_decision_id_action_id_modify = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_modify =
-(const afw_value_t *)& impl_authorization_decision_id_action_id_modify;
+&impl_authorization_decision_id_action_id_modify.pub;
 
 
 static const afw_value_string_t
@@ -74,7 +74,7 @@ impl_authorization_decision_id_action_id_query = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_query =
-(const afw_value_t *)& impl_authorization_decision_id_action_id_query;
+&impl_authorization_decision_id_action_id_query.pub;
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_read = {
@@ -84,8 +84,7 @@ impl_authorization_decision_id_action_id_read = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_read =
-(const afw_value_t *)& impl_authorization_decision_id_action_id_read;
-
+&impl_authorization_decision_id_action_id_read.pub;
 
 
 static const afw_value_string_t
@@ -96,7 +95,7 @@ impl_authorization_decision_id_deny_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_deny_value =
-(const afw_value_t *)& impl_authorization_decision_id_deny_value;
+&impl_authorization_decision_id_deny_value.pub;
 
 
 static const afw_value_string_t
@@ -107,7 +106,7 @@ impl_authorization_decision_id_indeterminate_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_indeterminate_value =
-(const afw_value_t *)& impl_authorization_decision_id_indeterminate_value;
+&impl_authorization_decision_id_indeterminate_value.pub;
 
 
 static const afw_value_string_t
@@ -118,7 +117,7 @@ impl_authorization_decision_id_indeterminateD_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_indeterminateD_value =
-(const afw_value_t *)& impl_authorization_decision_id_indeterminateD_value;
+&impl_authorization_decision_id_indeterminateD_value.pub;
 
 
 static const afw_value_string_t
@@ -129,7 +128,7 @@ impl_authorization_decision_id_indeterminateDP_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_indeterminateDP_value =
-(const afw_value_t *)& impl_authorization_decision_id_indeterminateDP_value;
+&impl_authorization_decision_id_indeterminateDP_value.pub;
 
 
 static const afw_value_string_t
@@ -140,7 +139,7 @@ impl_authorization_decision_id_indeterminateP_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_indeterminateP_value =
-(const afw_value_t *)& impl_authorization_decision_id_indeterminateP_value;
+&impl_authorization_decision_id_indeterminateP_value.pub;
 
 
 static const afw_value_string_t
@@ -151,7 +150,7 @@ impl_authorization_decision_id_notApplicable_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_notApplicable_value =
-(const afw_value_t *)& impl_authorization_decision_id_notApplicable_value;
+&impl_authorization_decision_id_notApplicable_value.pub;
 
 
 static const afw_value_string_t
@@ -162,7 +161,7 @@ impl_authorization_decision_id_permit_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_decision_id_permit_value =
-(const afw_value_t *)&impl_authorization_decision_id_permit_value;
+&impl_authorization_decision_id_permit_value.pub;
 
 
 
@@ -174,7 +173,7 @@ impl_authorization_mode_id_core_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_mode_id_core_value =
-(const afw_value_t *)& impl_authorization_mode_id_core_value;
+&impl_authorization_mode_id_core_value.pub;
 
 
 static const afw_value_string_t
@@ -185,7 +184,7 @@ impl_authorization_mode_id_intermediate_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_mode_id_intermediate_value =
-(const afw_value_t *)& impl_authorization_mode_id_intermediate_value;
+&impl_authorization_mode_id_intermediate_value.pub;
 
 
 static const afw_value_string_t
@@ -196,7 +195,7 @@ impl_authorization_mode_id_user_value = {
 
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_mode_id_user_value =
-(const afw_value_t *)& impl_authorization_mode_id_user_value;
+&impl_authorization_mode_id_user_value.pub;
 
 
 
@@ -794,7 +793,7 @@ impl_actionId_cb(
         ctx->action_id_value.inf = {&afw_value_evaluated_string_inf};
         afw_memory_copy(&ctx->action_id_value.internal, ctx->action_id);
     }
-    return (const afw_value_t *)& ctx->action_id_value;
+    return &ctx->action_id_value.pub;
 }
 
 static const

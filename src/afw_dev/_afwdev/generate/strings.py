@@ -145,7 +145,7 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
                     fd.write('\n/** @brief \'afw_utf8_z_t *\' for ' + q_name + ' */\n')
                     fd.write('#define ' + use_prefix + 'z_' + name + ' \\\n    (' +  use_prefix + 'self_v_' + name + '.internal.s)\n')              
                     fd.write('\n/** @brief \'afw_utf8_z_t *\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    ((const afw_value_t *)&' +  use_prefix + 'self_v_' + name + ')\n')              
+                    fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.pub)\n')              
                 elif supported_dataTypes[dataType] == '':
                     fd.write('\n/** @brief #define for unquoted ' + dataType + ' ' + value + ' */\n')
                     fd.write('#define ' + use_prefix.upper() + 'U_' + name  + ' \\\n')

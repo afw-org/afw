@@ -57,7 +57,7 @@ impl_create_closure_if_needed(
         result = afw_value_closure_binding_create(function, scope, xctx);
     }
     else {
-        result = (const afw_value_t *)function;
+        result = &function->pub;
     }
 
     return result;
@@ -178,7 +178,7 @@ impl_object_destructure(
                 v = ap->default_value;
             }
             if (v) {
-                impl_assign_value((const afw_value_t *)ap->symbol_reference,
+                impl_assign_value(&ap->symbol_reference->pub,
                     v, assignment_type, p, xctx);
             }
             else {

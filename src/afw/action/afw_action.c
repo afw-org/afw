@@ -71,7 +71,7 @@ impl_call_function(
 
     /* Build argv. */
     argv = afw_pool_calloc(p, sizeof(afw_value_t *) * (argc + 1), xctx);
-    argv[0] = (const afw_value_t *)function;
+    argv[0] = &function->pub;
     for (i = 1, a = function->parameters; i <= argc; i++, a++) {
 
         /* If this is not minArgs parameter ... */

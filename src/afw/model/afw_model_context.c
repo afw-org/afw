@@ -1304,8 +1304,7 @@ afw_model_internal_create_skeleton_context(
     ctx->current_variables = current_variables;
     ctx->model_object_type = model_object_type;
     ctx->mapped_object_type_id = ctx->model_object_type->mapped_object_type_id;
-    ctx->useDefaultProcessing_value =
-        (const afw_value_t *)&impl_useDefaultProcessing;
+    ctx->useDefaultProcessing_value = &impl_useDefaultProcessing.pub;
 
     /* Push qualifiers. */
     afw_adaptor_impl_push_qualifiers(

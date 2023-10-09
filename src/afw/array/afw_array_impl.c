@@ -36,7 +36,7 @@ afw_array_impl_get_entry_meta(
     if (entry_value) {
         meta_self = afw_value_internal_create_meta_object_self(
             entry_value, p, xctx);
-        result = (const afw_value_t *)& meta_self->meta_object_value;
+        result = &meta_self->meta_object_value.pub;
     }
 
     return result;
@@ -65,7 +65,7 @@ afw_array_impl_get_next_entry_meta(
     if (entry_value) {
         meta_self = afw_value_internal_create_meta_object_self(
             entry_value, p, xctx);
-        result = (const afw_value_t *)& meta_self->meta_object_value;
+        result = &meta_self->meta_object_value.pub;
     }
 
     return result;

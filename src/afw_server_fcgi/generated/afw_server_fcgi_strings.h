@@ -51,7 +51,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q__AdaptiveCollection_ */
 #define afw_server_fcgi_v__AdaptiveCollection_ \
-    ((const afw_value_t *)&afw_server_fcgi_self_v__AdaptiveCollection_)
+    (&afw_server_fcgi_self_v__AdaptiveCollection_.pub)
 
 
 
@@ -77,7 +77,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q__AdaptiveServer_ */
 #define afw_server_fcgi_v__AdaptiveServer_ \
-    ((const afw_value_t *)&afw_server_fcgi_self_v__AdaptiveServer_)
+    (&afw_server_fcgi_self_v__AdaptiveServer_.pub)
 
 
 
@@ -103,7 +103,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server */
 #define afw_server_fcgi_v_a_flag_trace_server \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server)
+    (&afw_server_fcgi_self_v_a_flag_trace_server.pub)
 
 
 
@@ -129,7 +129,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_brief */
 #define afw_server_fcgi_v_a_flag_trace_server_brief \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_brief)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_brief.pub)
 
 
 
@@ -155,7 +155,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_description */
 #define afw_server_fcgi_v_a_flag_trace_server_description \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_description)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_description.pub)
 
 
 
@@ -181,7 +181,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request */
 #define afw_server_fcgi_v_a_flag_trace_server_request \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_request)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request.pub)
 
 
 
@@ -207,7 +207,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_brief */
 #define afw_server_fcgi_v_a_flag_trace_server_request_brief \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_request_brief)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_brief.pub)
 
 
 
@@ -233,7 +233,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_description */
 #define afw_server_fcgi_v_a_flag_trace_server_request_description \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_request_description)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_description.pub)
 
 
 
@@ -259,7 +259,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process */
 #define afw_server_fcgi_v_a_flag_trace_server_request_process \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_request_process)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_process.pub)
 
 
 
@@ -285,7 +285,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_brief */
 #define afw_server_fcgi_v_a_flag_trace_server_request_process_brief \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_request_process_brief)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_process_brief.pub)
 
 
 
@@ -311,7 +311,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_a_flag_trace_server_request_process_description */
 #define afw_server_fcgi_v_a_flag_trace_server_request_process_description \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_a_flag_trace_server_request_process_description)
+    (&afw_server_fcgi_self_v_a_flag_trace_server_request_process_description.pub)
 
 
 
@@ -337,7 +337,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_afw_server_fcgi */
 #define afw_server_fcgi_v_afw_server_fcgi \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_afw_server_fcgi)
+    (&afw_server_fcgi_self_v_afw_server_fcgi.pub)
 
 
 
@@ -363,7 +363,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_concurrent */
 #define afw_server_fcgi_v_concurrent \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_concurrent)
+    (&afw_server_fcgi_self_v_concurrent.pub)
 
 
 
@@ -389,7 +389,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_default */
 #define afw_server_fcgi_v_default \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_default)
+    (&afw_server_fcgi_self_v_default.pub)
 
 
 
@@ -415,7 +415,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_description */
 #define afw_server_fcgi_v_description \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_description)
+    (&afw_server_fcgi_self_v_description.pub)
 
 
 
@@ -441,7 +441,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_indirect */
 #define afw_server_fcgi_v_indirect \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_indirect)
+    (&afw_server_fcgi_self_v_indirect.pub)
 
 
 
@@ -467,7 +467,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_integer */
 #define afw_server_fcgi_v_integer \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_integer)
+    (&afw_server_fcgi_self_v_integer.pub)
 
 
 
@@ -493,7 +493,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_max_concurrent */
 #define afw_server_fcgi_v_max_concurrent \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_max_concurrent)
+    (&afw_server_fcgi_self_v_max_concurrent.pub)
 
 
 
@@ -519,7 +519,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_objectId */
 #define afw_server_fcgi_v_objectId \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_objectId)
+    (&afw_server_fcgi_self_v_objectId.pub)
 
 
 
@@ -545,7 +545,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_request_count */
 #define afw_server_fcgi_v_request_count \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_request_count)
+    (&afw_server_fcgi_self_v_request_count.pub)
 
 
 
@@ -571,7 +571,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_single */
 #define afw_server_fcgi_v_single \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_single)
+    (&afw_server_fcgi_self_v_single.pub)
 
 
 
@@ -597,7 +597,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_thread_count */
 #define afw_server_fcgi_v_thread_count \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_thread_count)
+    (&afw_server_fcgi_self_v_thread_count.pub)
 
 
 
@@ -623,7 +623,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_uint32 */
 #define afw_server_fcgi_v_uint32 \
-    ((const afw_value_t *)&afw_server_fcgi_self_v_uint32)
+    (&afw_server_fcgi_self_v_uint32.pub)
 
 
 

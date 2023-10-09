@@ -53,7 +53,7 @@ afw_function_execute_abs_integer(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, integer);
 
     return (arg->internal >= 0)
-        ? (const afw_value_t *)arg
+        ? &arg->pub
         : afw_value_create_integer(-(arg->internal), x->p, x->xctx);
 }
 

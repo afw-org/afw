@@ -219,28 +219,28 @@ afw_context_variable_definition_add_z(
         string_value->internal.s = label_z;
         string_value->internal.len = strlen(label_z);
         afw_object_set_property(definition, afw_s_label,
-            (const afw_value_t *)string_value, xctx);
+            &string_value->pub, xctx);
     }
     if (description_z) {
         string_value = afw_value_allocate_string(definition->p, xctx);
         string_value->internal.s = description_z;
         string_value->internal.len = strlen(description_z);
         afw_object_set_property(definition, afw_s_description,
-            (const afw_value_t *)string_value, xctx);
+            &string_value->pub, xctx);
     }
     if (data_type_parameter_z) {
         string_value = afw_value_allocate_string(definition->p, xctx);
         string_value->internal.s = data_type_parameter_z;
         string_value->internal.len = strlen(data_type_parameter_z);
         afw_object_set_property(definition, afw_s_dataTypeParameter,
-            (const afw_value_t *)string_value, xctx);
+            &string_value->pub, xctx);
     }
     if (data_type_parameter_formatted_z) {
         string_value = afw_value_allocate_string(definition->p, xctx);
         string_value->internal.s = data_type_parameter_formatted_z;
         string_value->internal.len = strlen(data_type_parameter_formatted_z);
         afw_object_set_property(definition, afw_s_dataTypeParameterFormatted,
-            (const afw_value_t *)string_value, xctx);
+            &string_value->pub, xctx);
     }
 }
 

@@ -681,7 +681,7 @@ impl_additional_object_option_processing(
         if (AFW_OBJECT_OPTION_IS(options, composite)) {
             if (AFW_OBJECT_OPTION_IS(options, resolvedParentPaths)) {
                 impl_meta_set_property(self, afw_s_resolvedParentPaths,
-                    (const afw_value_t *)resolved_parent_paths, xctx);
+                    &resolved_parent_paths->pub, xctx);
             }
             afw_object_meta_set_property((const afw_object_t *)self,
                 afw_s_parentPaths, NULL, xctx);
@@ -689,7 +689,7 @@ impl_additional_object_option_processing(
 
         else {
             impl_meta_set_property(self, afw_s_parentPaths,
-                (const afw_value_t *)resolved_parent_paths, xctx);
+                &resolved_parent_paths->pub, xctx);
         }
     }
 
@@ -1389,7 +1389,7 @@ afw_object_view_create(
         self_value.inf = &afw_value_evaluated_object_inf;
         self_value.internal = (const afw_object_t *)self;
         reconcilable = afw_json_from_value(
-            (const afw_value_t *)&self_value,
+            &self_value.pub,
             &afw_object_options_reconcilable_meta_property,
             p, xctx);
         value = afw_value_create_string(reconcilable, p, xctx);

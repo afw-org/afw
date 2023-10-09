@@ -51,7 +51,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q__AdaptiveManifest_ */
 #define afw_yaml_v__AdaptiveManifest_ \
-    ((const afw_value_t *)&afw_yaml_self_v__AdaptiveManifest_)
+    (&afw_yaml_self_v__AdaptiveManifest_.pub)
 
 
 
@@ -77,7 +77,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_afw_yaml */
 #define afw_yaml_v_afw_yaml \
-    ((const afw_value_t *)&afw_yaml_self_v_afw_yaml)
+    (&afw_yaml_self_v_afw_yaml.pub)
 
 
 
@@ -103,7 +103,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_brief */
 #define afw_yaml_v_brief \
-    ((const afw_value_t *)&afw_yaml_self_v_brief)
+    (&afw_yaml_self_v_brief.pub)
 
 
 
@@ -129,7 +129,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_default */
 #define afw_yaml_v_default \
-    ((const afw_value_t *)&afw_yaml_self_v_default)
+    (&afw_yaml_self_v_default.pub)
 
 
 
@@ -155,7 +155,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_description */
 #define afw_yaml_v_description \
-    ((const afw_value_t *)&afw_yaml_self_v_description)
+    (&afw_yaml_self_v_description.pub)
 
 
 
@@ -181,7 +181,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_extensionId */
 #define afw_yaml_v_extensionId \
-    ((const afw_value_t *)&afw_yaml_self_v_extensionId)
+    (&afw_yaml_self_v_extensionId.pub)
 
 
 
@@ -207,7 +207,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_indirect */
 #define afw_yaml_v_indirect \
-    ((const afw_value_t *)&afw_yaml_self_v_indirect)
+    (&afw_yaml_self_v_indirect.pub)
 
 
 
@@ -233,7 +233,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_modulePath */
 #define afw_yaml_v_modulePath \
-    ((const afw_value_t *)&afw_yaml_self_v_modulePath)
+    (&afw_yaml_self_v_modulePath.pub)
 
 
 
@@ -259,7 +259,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_YAML_Q_registers */
 #define afw_yaml_v_registers \
-    ((const afw_value_t *)&afw_yaml_self_v_registers)
+    (&afw_yaml_self_v_registers.pub)
 
 
 

@@ -14,23 +14,23 @@
 
 #include "afw_internal.h"
 
-#define XX(name, data_type, compile_function, description)                      \
-                                                                                \
-static const afw_utf8_t                                                         \
-impl_compile_type_ ## name ## _name =                                           \
-    AFW_UTF8_LITERAL(#name);                                                    \
-                                                                                \
-static const afw_value_string_t                                                 \
-impl_compile_type_ ## name ## _name_value =                                     \
-    {{&afw_value_evaluated_string_inf}, AFW_UTF8_LITERAL(#name)};                 \
-                                                                                \
-static const afw_utf8_t                                                         \
-impl_compile_type_ ## name ## _description =                                    \
-    AFW_UTF8_LITERAL(#description);                                             \
-                                                                                \
-static const afw_value_string_t                                                 \
-impl_compile_type_ ## name ## _description_value =                              \
-    {{&afw_value_evaluated_string_inf}, AFW_UTF8_LITERAL(#description)};          \
+#define XX(name, data_type, compile_function, description)                     \
+                                                                               \
+static const afw_utf8_t                                                        \
+impl_compile_type_ ## name ## _name =                                          \
+    AFW_UTF8_LITERAL(#name);                                                   \
+                                                                               \
+static const afw_value_string_t                                                \
+impl_compile_type_ ## name ## _name_value =                                    \
+    {{&afw_value_evaluated_string_inf}, AFW_UTF8_LITERAL(#name)};              \
+                                                                               \
+static const afw_utf8_t                                                        \
+impl_compile_type_ ## name ## _description =                                   \
+    AFW_UTF8_LITERAL(#description);                                            \
+                                                                               \
+static const afw_value_string_t                                                \
+impl_compile_type_ ## name ## _description_value =                             \
+    {{&afw_value_evaluated_string_inf}, AFW_UTF8_LITERAL(#description)};       \
 
 AFW_COMPILE_TYPE_MAP(XX)
     
@@ -40,16 +40,16 @@ AFW_COMPILE_TYPE_MAP(XX)
 
 static const afw_compile_type_info_t
 impl_compile_type_pneumonic[] = {
-#define XX(name, data_type, compile_function, description)                      \
-{                                                                               \
-    afw_compile_type_ ## name,                                                  \
-    &impl_compile_type_ ## name ## _name,                                       \
-    (const afw_value_t *)&impl_compile_type_ ## name ## _name_value,            \
-    &impl_compile_type_ ## name ## _description,                                \
-    (const afw_value_t *)&impl_compile_type_ ## name ## _description_value,     \
-    &afw_data_type_ ## data_type ##_direct,                                     \
-    compile_function                                                            \
-},                                                                              \
+#define XX(name, data_type, compile_function, description)                     \
+{                                                                              \
+    afw_compile_type_ ## name,                                                 \
+    &impl_compile_type_ ## name ## _name,                                      \
+    &impl_compile_type_ ## name ## _name_value.pub,                            \
+    &impl_compile_type_ ## name ## _description,                               \
+    &impl_compile_type_ ## name ## _description_value.pub,                     \
+    &afw_data_type_ ## data_type ##_direct,                                    \
+    compile_function                                                           \
+},                                                                             \
 
     AFW_COMPILE_TYPE_MAP(XX)
 #undef XX
@@ -190,7 +190,7 @@ afw_compile_to_value_with_callback(
             /* Result is a compiled value. */
             parser->compiled_value->reference_id =
                 afw_uuid_create_utf8(parser->p, xctx);
-            result = (const afw_value_t *)parser->compiled_value;
+            result = &parser->compiled_value->pub;
             interim = &parser->compiled_value->root_value;
 
             /*

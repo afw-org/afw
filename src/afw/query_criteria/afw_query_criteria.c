@@ -2202,7 +2202,7 @@ impl_criteria_select_to_property_value(
     for (e = select; *e; e++) {
         v = afw_value_allocate_string(p, xctx);
         afw_memory_copy(&v->internal, *e);
-        afw_array_add_value(result, (const afw_value_t *)v, xctx);
+        afw_array_add_value(result, &v->pub, xctx);
     }
 
     return result;
@@ -2232,7 +2232,7 @@ impl_criteria_sort_to_property_value(
         v->internal.s = c = afw_pool_malloc(p, v->internal.len, xctx);
         *c++ = (e->descending) ? '-' : '+';
         memcpy(c, e->property_name->s, e->property_name->len);
-        afw_array_add_value(result, (const afw_value_t *)v, xctx);
+        afw_array_add_value(result, &v->pub, xctx);
     }
 
     return result;

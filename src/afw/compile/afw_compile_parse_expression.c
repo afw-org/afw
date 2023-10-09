@@ -207,7 +207,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
                             "Unknown built-in function " AFW_UTF8_FMT_Q,
                             AFW_UTF8_FMT_ARG(untyped_function_id));                        
                     }
-                    result = (const afw_value_t *)function;
+                    result = &function->pub;
                 }
 
                 /* Last, this must be a qualified variable. */
@@ -395,8 +395,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
             argv = afw_pool_malloc(parser->p,
                 sizeof(afw_value_t *) * 3,
                 parser->xctx);
-            argv[0] = (const afw_value_t *)
-                &afw_function_definition_optional_chaining;
+            argv[0] = &afw_function_definition_optional_chaining.pub;
             argv[1] = optional_chaining_arg0;
             argv[2] = result;
             result = afw_value_call_built_in_function_create(
@@ -1086,7 +1085,7 @@ afw_compile_parse_NullishCoalescing(afw_compile_parser_t *parser)
 
     args = afw_compile_args_create(parser);
     afw_compile_args_add_value(args,
-        (const afw_value_t *)&afw_function_definition_nullish_coalescing);
+        &afw_function_definition_nullish_coalescing.pub);
     afw_compile_args_add_value(args, result);
 
     for (;;)
@@ -1136,7 +1135,7 @@ afw_compile_parse_LogicalExpression(afw_compile_parser_t *parser)
 
     args = afw_compile_args_create(parser);
     afw_compile_args_add_value(args,
-        (const afw_value_t *)&afw_function_definition_or);
+        &afw_function_definition_or.pub);
     afw_compile_args_add_value(args, result);
 
     for (;;) {
@@ -1184,7 +1183,7 @@ afw_compile_parse_LogicalAnd(afw_compile_parser_t *parser)
 
     args = afw_compile_args_create(parser);
     afw_compile_args_add_value(args,
-        (const afw_value_t *)&afw_function_definition_and);
+        &afw_function_definition_and.pub);
     afw_compile_args_add_value(args, result);
 
     for (;;) {
@@ -1230,19 +1229,19 @@ afw_compile_parse_Equality(afw_compile_parser_t *parser)
     switch (parser->token->type) {
 
     case afw_compile_token_type_equal_to:
-        function = (const afw_value_t *)&afw_function_definition_eq;
+        function = &afw_function_definition_eq.pub;
         break;
 
     case afw_compile_token_type_equal_value_and_type:
-        function = (const afw_value_t *)&afw_function_definition_eqx;
+        function = &afw_function_definition_eqx.pub;
         break;
 
     case afw_compile_token_type_not_equal_to:
-        function = (const afw_value_t *)&afw_function_definition_ne;
+        function = &afw_function_definition_ne.pub;
         break;
 
     case afw_compile_token_type_not_equal_value_and_type:
-        function = (const afw_value_t *)&afw_function_definition_nex;
+        function = &afw_function_definition_nex.pub;
         break;
 
     default:
@@ -1306,7 +1305,7 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser)
     }
 
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
-    argv[0] = (const afw_value_t *)function;
+    argv[0] = &function->pub;
     argv[1] = result;
     argv[2] = afw_compile_parse_Factor(parser);
 
@@ -1330,7 +1329,7 @@ impl_parse_subtract(
 
     start_offset = parser->token->token_source_offset;
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
-    argv[0] = (const afw_value_t *)&afw_function_definition_subtract;
+    argv[0] = &afw_function_definition_subtract.pub;
     argv[1] = value;
     argv[2] = afw_compile_parse_Term(parser);
     result = afw_value_call_built_in_function_create(
@@ -1379,7 +1378,7 @@ afw_compile_parse_Factor(afw_compile_parser_t *parser)
             if (!args) {
                 args = afw_compile_args_create(parser);
                 afw_compile_args_add_value(args,
-                    (const afw_value_t *)&afw_function_definition_add);
+                    &afw_function_definition_add.pub);
                 afw_compile_args_add_value(args, result);
             }
             value = afw_compile_parse_Term(parser);
@@ -1424,8 +1423,8 @@ impl_parse_divide_or_mod(
     afw_size_t start_offset;
 
     function = (parser->token->type == afw_compile_token_type_divide)
-        ? (const afw_value_t *)&afw_function_definition_divide
-        : (const afw_value_t *)&afw_function_definition_mod;
+        ? &afw_function_definition_divide.pub
+        : &afw_function_definition_mod.pub;
 
     start_offset = parser->token->token_source_offset;
     argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
@@ -1478,7 +1477,7 @@ afw_compile_parse_Term(afw_compile_parser_t *parser)
             if (!args) {
                 args = afw_compile_args_create(parser);
                 afw_compile_args_add_value(args,
-                    (const afw_value_t *)&afw_function_definition_multiply);
+                    &afw_function_definition_multiply.pub);
                 afw_compile_args_add_value(args, result);
             }
             value = afw_compile_parse_Exponentiation(parser);
@@ -1538,7 +1537,7 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
             if (!args) {
                 args = afw_compile_args_create(parser);
                 afw_compile_args_add_value(args,
-                    (const afw_value_t *)&afw_function_definition_pow);
+                    &afw_function_definition_pow.pub);
                 afw_compile_args_add_value(args, result);
             }
             value = afw_compile_parse_Prefixed(parser);
@@ -1584,7 +1583,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
     case afw_compile_token_type_unary_minus:
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
             parser->xctx);
-        argv[0] = (const afw_value_t *)&afw_function_definition_negative;
+        argv[0] = &afw_function_definition_negative.pub;
         argv[1] = afw_compile_parse_Value(parser);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
@@ -1594,7 +1593,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
     case afw_compile_token_type_unary_not:
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
             parser->xctx);
-        argv[0] = (const afw_value_t *)&afw_function_definition_not;
+        argv[0] = &afw_function_definition_not.pub;
         argv[1] = afw_compile_parse_Value(parser);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),
@@ -1608,8 +1607,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
             {
                 argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 2,
                     parser->xctx);
-                argv[0] = (const afw_value_t *)
-                    &afw_function_definition_void_operator;
+                argv[0] = &afw_function_definition_void_operator.pub;
                 argv[1] = afw_compile_parse_Value(parser);
                 result = afw_value_call_built_in_function_create(
                     afw_compile_create_contextual_to_cursor(start_offset),
@@ -1647,7 +1645,7 @@ afw_compile_parse_Expression(afw_compile_parser_t *parser)
     if (afw_compile_token_is(question_mark)) {
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 4, parser->xctx);
-        argv[0] = (const afw_value_t *)&afw_function_definition_if;
+        argv[0] = &afw_function_definition_if.pub;
         argv[1] = result;
         argv[2] = afw_compile_parse_Expression(parser);
 

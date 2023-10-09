@@ -160,8 +160,7 @@ afw_object_meta_add_parent_path(
     
     afw_array_of_anyURI_add(parent_paths->internal, parent_path, xctx);
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
-    afw_object_set_property(meta, afw_s_parentPaths,
-        (const afw_value_t *)parent_paths, xctx);
+    afw_object_set_property(meta, afw_s_parentPaths, &parent_paths->pub, xctx);
 }
 
 
@@ -499,8 +498,8 @@ afw_object_meta_set_parent_paths(
 
     meta = afw_object_meta_get_nonempty_delta(instance, xctx);
 
-    afw_object_set_property(meta, afw_s_parentPaths,
-        (const afw_value_t *)parent_paths, xctx);
+    afw_object_set_property(
+        meta, afw_s_parentPaths, &parent_paths->pub, xctx);
 }
 
 

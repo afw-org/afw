@@ -230,10 +230,8 @@ impl_read_file_object(
             dateTime = afw_value_allocate_dateTime(object->p, xctx);
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.atime, xctx);
-            afw_object_set_property(object,
-                afw_vfs_s_timeAccessed,
-                (const afw_value_t *)dateTime,
-                xctx);
+            afw_object_set_property(
+                object, afw_vfs_s_timeAccessed, &dateTime->pub, xctx);
         }
 
         /** The time the file was created. */
@@ -241,10 +239,8 @@ impl_read_file_object(
             dateTime = afw_value_allocate_dateTime(object->p, xctx);
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.ctime, xctx);
-            afw_object_set_property(object,
-                afw_vfs_s_timeCreated,
-                (const afw_value_t *)dateTime,
-                xctx);
+            afw_object_set_property(
+                object, afw_vfs_s_timeCreated, &dateTime->pub, xctx);
         }
 
         /** The time the file was last modified. */
@@ -252,10 +248,8 @@ impl_read_file_object(
             dateTime = afw_value_allocate_dateTime(object->p, xctx);
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.mtime, xctx);
-            afw_object_set_property(object,
-                afw_vfs_s_timeModified,
-                (const afw_value_t *)dateTime,
-                xctx);
+            afw_object_set_property(
+                object, afw_vfs_s_timeModified, &dateTime->pub, xctx);
         }
 
     }

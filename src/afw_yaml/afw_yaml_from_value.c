@@ -493,7 +493,7 @@ void convert_value_to_yaml(
     /* If value is function, evaluated value and convert value to json. */
     else  if (0 /** @fixmeAFW_VALUE_INSTANCE_IS(value,Function)*/) {
         /** @fixme
-        evaluated_value = afw_value_evaluate((const afw_value_t *)value,
+        evaluated_value = afw_value_evaluate(&value->pub,
             wa->p, wa->xctx);
         convert_value_to_yaml(wa, evaluated_value);
          */

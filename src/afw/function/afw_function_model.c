@@ -219,7 +219,7 @@ afw_function_execute_model_default_add_object_action(
 
     result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
-        (const afw_value_t *)&impl_value_add_object, xctx);
+        &impl_value_add_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
@@ -363,7 +363,7 @@ afw_function_execute_model_default_delete_object_action(
 
     result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
-        (const afw_value_t *)&impl_value_delete_object, xctx);
+        &impl_value_delete_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
@@ -520,7 +520,7 @@ afw_function_execute_model_default_modify_object_action(
             xctx);
 
         /** @todo This next line was missing so do a complete review of this. */
-        ctx->modify_entries_value = (const afw_value_t *)entries_value;
+        ctx->modify_entries_value = &entries_value->pub;
 
         /* Complete ctx for default modify object. */
         afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
@@ -535,7 +535,7 @@ afw_function_execute_model_default_modify_object_action(
 
     result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
-        (const afw_value_t *)&impl_value_modify_object, xctx);
+        &impl_value_modify_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
@@ -670,7 +670,7 @@ afw_function_execute_model_default_replace_object_action(
             xctx);
 
         /** @todo This next line was missing so do a complete review of this. */
-        ctx->object_value = (const afw_value_t *)object_value;
+        ctx->object_value = &object_value->pub;
 
         /* Complete ctx for default add object. */
         afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
@@ -685,7 +685,7 @@ afw_function_execute_model_default_replace_object_action(
 
     result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
-        (const afw_value_t *)&impl_value_replace_object, xctx);
+        &impl_value_replace_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
         self->adaptor->mapped_adaptor_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,

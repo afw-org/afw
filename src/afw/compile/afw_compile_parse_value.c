@@ -121,7 +121,7 @@ afw_compile_parse_List(
             if (!args && !afw_value_is_defined_and_evaluated(entry)) {
                 args = afw_compile_args_create(parser);
                 afw_compile_args_add_value(args,
-                    (const afw_value_t *)&afw_function_definition_array);
+                    &afw_function_definition_array.pub);
 
                 /* Add previous list entries as args for constructor. */
                 if (list) {
@@ -342,7 +342,7 @@ afw_compile_parse_Object(
                 if (!args) {
                     args = afw_compile_args_create(parser);
                     afw_compile_args_add_value(args,
-                        (const afw_value_t *)&afw_function_definition_add_properties);
+                        &afw_function_definition_add_properties.pub);
                     if (is_object_expression) {
                         result = afw_value_create_object_expression(
                             afw_compile_create_contextual_to_cursor(start_offset),

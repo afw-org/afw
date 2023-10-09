@@ -51,7 +51,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_default */
 #define afw_ubjson_v_default \
-    ((const afw_value_t *)&afw_ubjson_self_v_default)
+    (&afw_ubjson_self_v_default.pub)
 
 
 
@@ -77,7 +77,7 @@ extern const afw_value_string_t \
 
 /** @brief 'afw_utf8_z_t *' for AFW_UBJSON_Q_indirect */
 #define afw_ubjson_v_indirect \
-    ((const afw_value_t *)&afw_ubjson_self_v_indirect)
+    (&afw_ubjson_self_v_indirect.pub)
 
 
 

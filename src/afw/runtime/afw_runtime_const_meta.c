@@ -114,7 +114,7 @@ impl_afw_object_get_property (
     /* Parent paths. */
     if (afw_utf8_equal(property_name, afw_s_parentPaths)) {
         if (self->parent_paths) {
-            result = (const afw_value_t *)self->parent_paths;
+            result = &self->parent_paths->pub;
         }
     }
 

@@ -157,7 +157,7 @@ afw_adaptor_modify_entry_type_value(
 {
     return (type < 0 || type >= afw_adaptor_modify_entry_type_invalid)
         ? NULL
-        : (const afw_value_t *)&entry_type_value[type];
+        : &entry_type_value[type].pub;
 }
 
 
@@ -908,7 +908,7 @@ afw_adaptor_modify_using_update_object(
         /* Add ["set_property", <property name>, value]. */
         entry = afw_array_create_generic(xctx->p, xctx);
         afw_array_add_value(entry,
-            (const afw_value_t *)&impl_value_set_property,
+            &impl_value_set_property.pub,
             xctx);
         property_name_value = afw_value_create_string(
             property_name, xctx->p, xctx);

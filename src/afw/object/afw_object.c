@@ -82,7 +82,7 @@ afw_object_set_property_as_date_from_parts(
         tz_hours_offset, tz_minutes_offset,
         xctx);
     afw_object_set_property(instance, property_name,
-        (const afw_value_t *)value, xctx);
+        &value->pub, xctx);
 }
 
 
@@ -112,7 +112,7 @@ afw_object_set_property_as_dateTime_from_parts(
         tz_hours_offset, tz_minutes_offset,
         xctx);
     afw_object_set_property(instance, property_name,
-        (const afw_value_t *)value, xctx);
+        &value->pub, xctx);
 }
 
 
@@ -137,7 +137,7 @@ afw_object_set_property_as_dayTimeDuration_from_parts(
         is_positive,
         days, hours, minutes, seconds, microseconds, xctx);
     afw_object_set_property(instance, property_name,
-        (const afw_value_t *)value, xctx);
+        &value->pub, xctx);
 }
 
 
@@ -163,7 +163,7 @@ afw_object_set_property_as_time_from_parts(
         tz_hours_offset, tz_minutes_offset,
         xctx);
     afw_object_set_property(instance, property_name,
-        (const afw_value_t *)value, xctx);
+        &value->pub, xctx);
 }
 
 
@@ -185,7 +185,7 @@ afw_object_set_property_as_yearMonthDuration_from_parts(
         years, months, 
         xctx);
     afw_object_set_property(instance, property_name,
-        (const afw_value_t *)value, xctx);
+        &value->pub, xctx);
 }
 
 
@@ -204,7 +204,7 @@ afw_object_set_property_as_string_from_utf8_z(
     string->internal.len = strlen(string_z);
 
     afw_object_set_property(instance,
-        property_name, (const afw_value_t *)string,
+        property_name, &string->pub,
         xctx);
 }
 
