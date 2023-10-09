@@ -143,7 +143,13 @@ afw_data_type_base64Binary_to_utf8(const afw_memory_t * internal,
 
 /** @brief struct for data type base64Binary values. */
 struct afw_value_base64Binary_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_memory_t value. */
     afw_memory_t internal;
 };
 

@@ -143,7 +143,13 @@ afw_data_type_array_to_utf8(const afw_array_t * internal,
 
 /** @brief struct for data type array values. */
 struct afw_value_array_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal const afw_array_t * value. */
     const afw_array_t * internal;
 };
 

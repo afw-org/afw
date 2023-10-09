@@ -143,7 +143,13 @@ afw_data_type_yearMonthDuration_to_utf8(const afw_yearMonthDuration_t * internal
 
 /** @brief struct for data type yearMonthDuration values. */
 struct afw_value_yearMonthDuration_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_yearMonthDuration_t value. */
     afw_yearMonthDuration_t internal;
 };
 

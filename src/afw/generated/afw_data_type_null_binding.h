@@ -143,7 +143,13 @@ afw_data_type_null_to_utf8(void * internal,
 
 /** @brief struct for data type null values. */
 struct afw_value_null_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal void * value. */
     void * internal;
 };
 

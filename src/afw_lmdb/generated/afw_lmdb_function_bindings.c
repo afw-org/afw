@@ -113,7 +113,7 @@ impl_reader_check_parameters[] = {
 
 static const afw_value_function_definition_t
 impl_reader_check = {
-    NULL,
+    {NULL},
     (const afw_object_t *)&impl_object__reader_check,
     &afw_lmdb_self_v_lmdb,
     &afw_lmdb_self_v_reader_check,
@@ -231,7 +231,7 @@ impl_reader_list_parameters[] = {
 
 static const afw_value_function_definition_t
 impl_reader_list = {
-    NULL,
+    {NULL},
     (const afw_object_t *)&impl_object__reader_list,
     &afw_lmdb_self_v_lmdb,
     &afw_lmdb_self_v_reader_list,

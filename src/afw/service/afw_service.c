@@ -40,13 +40,13 @@ impl_startup_values[] =
 
 #define XX(id, _) \
     { \
-        &afw_value_evaluated_string_inf, \
+        {&afw_value_evaluated_string_inf}, \
         AFW_UTF8_LITERAL(# id) \
     },
     AFW_SERVICE_STARTUP_MAP(XX)
 #undef XX
     {
-        &afw_value_evaluated_string_inf,
+        {&afw_value_evaluated_string_inf},
         AFW_UTF8_LITERAL("invalid"),
     }
 
@@ -63,13 +63,13 @@ static const afw_value_string_t impl_startup_descriptions[] =
 {
 #define XX(id, desc) \
     { \
-        &afw_value_evaluated_string_inf, \
+        {&afw_value_evaluated_string_inf}, \
         AFW_UTF8_LITERAL(desc) \
     },
     AFW_SERVICE_STARTUP_MAP(XX)
 #undef XX
     {
-        &afw_value_evaluated_string_inf,
+        {&afw_value_evaluated_string_inf},
         AFW_UTF8_LITERAL("invalid"),
     }
 };
@@ -81,13 +81,13 @@ impl_status_values[] =
 {
 #define XX(id, _) \
     { \
-        &afw_value_evaluated_string_inf, \
+        {&afw_value_evaluated_string_inf}, \
         AFW_UTF8_LITERAL(# id) \
     },
     AFW_SERVICE_STATUS_MAP(XX)
 #undef XX
     {
-        &afw_value_evaluated_string_inf,
+        {&afw_value_evaluated_string_inf},
         AFW_UTF8_LITERAL("invalid"),
     }
 };
@@ -104,13 +104,13 @@ impl_status_descriptions[] =
 
 #define XX(id, desc) \
     { \
-        &afw_value_evaluated_string_inf, \
+        {&afw_value_evaluated_string_inf}, \
         AFW_UTF8_LITERAL(desc) \
     },
     AFW_SERVICE_STATUS_MAP(XX)
 #undef XX
     {
-        &afw_value_evaluated_string_inf,
+        {&afw_value_evaluated_string_inf},
         AFW_UTF8_LITERAL("invalid"),
     }
 };

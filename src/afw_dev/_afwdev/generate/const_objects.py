@@ -94,7 +94,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         if dataType != 'string':
             fd.write('\nstatic const afw_value_' + dataType + '_t\n' +
                 obj['_meta_']['_label_'] + '_property_value_' + tag_propname + ' = {\n')
-            fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
+            fd.write('    {&afw_value_permanent_' + dataType + '_inf},\n')
             fd.write('    ' + value + '\n')
             fd.write('};\n')
 
@@ -142,7 +142,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
 
         fd.write('\nstatic const afw_value_array_t\n')
         fd.write(meta.get('_label_') + '_parentPaths = {\n')
-        fd.write('    &afw_value_evaluated_array_inf,\n')
+        fd.write('    {&afw_value_evaluated_array_inf},\n')
         fd.write('    (const afw_array_t *)&' + meta.get('_label_') + '_parentPaths_list\n')
         fd.write('};\n')
 

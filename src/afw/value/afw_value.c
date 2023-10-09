@@ -20,7 +20,7 @@ static const afw_utf8_t impl_s_a_quote = AFW_UTF8_LITERAL("\"");
 
 static const afw_value_null_t
 impl_value_null = {
-    &afw_value_permanent_null_inf,
+    {&afw_value_permanent_null_inf},
     NULL
 };
 
@@ -30,7 +30,7 @@ afw_value_null =
 
 static const afw_value_undefined_t
 impl_value_undefined = {
-    &afw_value_permanent_undefined_inf,
+    {&afw_value_permanent_undefined_inf},
     NULL
 };
 
@@ -40,7 +40,7 @@ afw_value_undefined =
 
 static const afw_value_null_t
 impl_value_unique_default_case_value = {
-    &afw_value_permanent_null_inf,
+    {&afw_value_permanent_null_inf},
     NULL
 };
 
@@ -50,7 +50,7 @@ afw_value_unique_default_case_value =
 
 static const afw_value_integer_t
 impl_value_integer_1 = {
-    &afw_value_permanent_integer_inf,
+    {&afw_value_permanent_integer_inf},
     1
 };
 
@@ -60,7 +60,7 @@ afw_value_integer_1 =
 
 static const afw_value_string_t
 impl_value_empty_string = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL("")
 };
 
@@ -70,7 +70,7 @@ afw_value_empty_string =
 
 static const afw_value_boolean_t
 impl_value_true = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     AFW_TRUE
 };
 
@@ -80,7 +80,7 @@ afw_value_true =
 
 static const afw_value_boolean_t
 impl_value_false = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     AFW_FALSE
 };
 

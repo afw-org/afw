@@ -81,7 +81,13 @@ afw_value_permanent_any_inf;
 
 /** @brief struct for data type any values. */
 struct afw_value_any_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal const afw_value_t * value. */
     const afw_value_t * internal;
 };
 

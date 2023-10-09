@@ -143,7 +143,13 @@ afw_data_type_integer_to_utf8(afw_integer_t internal,
 
 /** @brief struct for data type integer values. */
 struct afw_value_integer_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_integer_t value. */
     afw_integer_t internal;
 };
 

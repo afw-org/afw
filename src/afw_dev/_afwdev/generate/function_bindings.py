@@ -526,11 +526,11 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             if options['core']:
                 fd.write('\nAFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
                 fd.write('afw_function_definition_' + label + ' = {\n')
-                fd.write('    &afw_value_function_definition_inf,\n')
+                fd.write('    {&afw_value_function_definition_inf},\n')
             else:
                 fd.write('\nstatic const afw_value_function_definition_t\n')
                 fd.write('impl_' + label + ' = {\n')
-                fd.write('    NULL,\n')
+                fd.write('    {NULL},\n')
 
             # object
             fd.write('    (const afw_object_t *)&impl_object__' + label +',\n')

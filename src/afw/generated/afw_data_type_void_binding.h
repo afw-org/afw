@@ -81,7 +81,13 @@ afw_value_permanent_void_inf;
 
 /** @brief struct for data type void values. */
 struct afw_value_void_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal void * value. */
     void * internal;
 };
 

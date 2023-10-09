@@ -119,7 +119,7 @@ impl_4_property_label = {
 
 static const afw_value_boolean_t
 impl_4_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -196,7 +196,7 @@ impl_5_property_description = {
 
 static const afw_value_boolean_t
 impl_5_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -250,7 +250,7 @@ impl_5 = {
 
 static const afw_value_object_t
 impl_3_property_value__flags_ = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_4
 };
 
@@ -262,7 +262,7 @@ impl_3_property__flags_ = {
 
 static const afw_value_object_t
 impl_3_property_value_function = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_5
 };
 
@@ -314,7 +314,7 @@ impl_3 = {
 
 static const afw_value_boolean_t
 impl_1_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -326,7 +326,7 @@ impl_1_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -338,7 +338,7 @@ impl_1_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -350,7 +350,7 @@ impl_1_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -375,7 +375,7 @@ impl_1_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1_list_collectionURIs
 };
 
@@ -393,7 +393,7 @@ impl_1_property_objectType = {
 
 static const afw_value_object_t
 impl_1_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_2
 };
 
@@ -405,7 +405,7 @@ impl_1_property_otherProperties = {
 
 static const afw_value_object_t
 impl_1_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_3
 };
 
@@ -550,7 +550,7 @@ impl_9_property_label = {
 
 static const afw_value_boolean_t
 impl_9_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -633,7 +633,7 @@ impl_10_property_description = {
 
 static const afw_value_boolean_t
 impl_10_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -709,7 +709,7 @@ impl_11_property_description = {
 
 static const afw_value_boolean_t
 impl_11_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -763,7 +763,7 @@ impl_11 = {
 
 static const afw_value_object_t
 impl_8_property_value__flags_ = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_9
 };
 
@@ -775,7 +775,7 @@ impl_8_property__flags_ = {
 
 static const afw_value_object_t
 impl_8_property_value_actions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_10
 };
 
@@ -787,7 +787,7 @@ impl_8_property_actions = {
 
 static const afw_value_object_t
 impl_8_property_value_function = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_11
 };
 
@@ -840,7 +840,7 @@ impl_8 = {
 
 static const afw_value_boolean_t
 impl_6_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -852,7 +852,7 @@ impl_6_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_6_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -864,7 +864,7 @@ impl_6_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_6_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -876,7 +876,7 @@ impl_6_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_6_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -901,7 +901,7 @@ impl_6_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_6_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_6_list_collectionURIs
 };
 
@@ -919,7 +919,7 @@ impl_6_property_objectType = {
 
 static const afw_value_object_t
 impl_6_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_7
 };
 
@@ -931,7 +931,7 @@ impl_6_property_otherProperties = {
 
 static const afw_value_object_t
 impl_6_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_8
 };
 
@@ -1046,7 +1046,7 @@ impl_15 = {
 
 static const afw_value_boolean_t
 impl_14_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1076,7 +1076,7 @@ impl_14_property_label = {
 
 static const afw_value_boolean_t
 impl_14_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1088,7 +1088,7 @@ impl_14_property_required = {
 
 static const afw_value_object_t
 impl_14_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_15
 };
 
@@ -1100,7 +1100,7 @@ impl_14_property_runtime = {
 
 static const afw_value_boolean_t
 impl_14_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -1169,7 +1169,7 @@ impl_17_property_valueAccessor = {
 
 static const afw_value_boolean_t
 impl_17_property_value_zeroOffset = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1221,7 +1221,7 @@ impl_17 = {
 
 static const afw_value_boolean_t
 impl_16_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1251,7 +1251,7 @@ impl_16_property_label = {
 
 static const afw_value_boolean_t
 impl_16_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1263,7 +1263,7 @@ impl_16_property_required = {
 
 static const afw_value_object_t
 impl_16_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_17
 };
 
@@ -1275,7 +1275,7 @@ impl_16_property_runtime = {
 
 static const afw_value_boolean_t
 impl_16_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -1383,7 +1383,7 @@ impl_19 = {
 
 static const afw_value_boolean_t
 impl_18_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1413,7 +1413,7 @@ impl_18_property_label = {
 
 static const afw_value_boolean_t
 impl_18_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1425,7 +1425,7 @@ impl_18_property_required = {
 
 static const afw_value_object_t
 impl_18_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_19
 };
 
@@ -1437,7 +1437,7 @@ impl_18_property_runtime = {
 
 static const afw_value_boolean_t
 impl_18_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -1545,7 +1545,7 @@ impl_21 = {
 
 static const afw_value_boolean_t
 impl_20_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1575,7 +1575,7 @@ impl_20_property_label = {
 
 static const afw_value_boolean_t
 impl_20_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1587,7 +1587,7 @@ impl_20_property_required = {
 
 static const afw_value_object_t
 impl_20_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_21
 };
 
@@ -1599,7 +1599,7 @@ impl_20_property_runtime = {
 
 static const afw_value_boolean_t
 impl_20_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -1707,7 +1707,7 @@ impl_23 = {
 
 static const afw_value_boolean_t
 impl_22_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1737,7 +1737,7 @@ impl_22_property_label = {
 
 static const afw_value_boolean_t
 impl_22_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1749,7 +1749,7 @@ impl_22_property_required = {
 
 static const afw_value_object_t
 impl_22_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_23
 };
 
@@ -1761,7 +1761,7 @@ impl_22_property_runtime = {
 
 static const afw_value_boolean_t
 impl_22_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -1869,7 +1869,7 @@ impl_25 = {
 
 static const afw_value_boolean_t
 impl_24_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1899,7 +1899,7 @@ impl_24_property_label = {
 
 static const afw_value_boolean_t
 impl_24_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -1911,7 +1911,7 @@ impl_24_property_required = {
 
 static const afw_value_object_t
 impl_24_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_25
 };
 
@@ -1923,7 +1923,7 @@ impl_24_property_runtime = {
 
 static const afw_value_boolean_t
 impl_24_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2031,7 +2031,7 @@ impl_27 = {
 
 static const afw_value_boolean_t
 impl_26_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2061,7 +2061,7 @@ impl_26_property_label = {
 
 static const afw_value_boolean_t
 impl_26_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2073,7 +2073,7 @@ impl_26_property_required = {
 
 static const afw_value_object_t
 impl_26_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_27
 };
 
@@ -2085,7 +2085,7 @@ impl_26_property_runtime = {
 
 static const afw_value_boolean_t
 impl_26_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2193,7 +2193,7 @@ impl_29 = {
 
 static const afw_value_boolean_t
 impl_28_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2223,7 +2223,7 @@ impl_28_property_label = {
 
 static const afw_value_boolean_t
 impl_28_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2235,7 +2235,7 @@ impl_28_property_required = {
 
 static const afw_value_object_t
 impl_28_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_29
 };
 
@@ -2247,7 +2247,7 @@ impl_28_property_runtime = {
 
 static const afw_value_boolean_t
 impl_28_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2304,7 +2304,7 @@ impl_28 = {
 
 static const afw_value_object_t
 impl_13_property_value_addObjectCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_14
 };
 
@@ -2316,7 +2316,7 @@ impl_13_property_addObjectCount = {
 
 static const afw_value_object_t
 impl_13_property_value_additional = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_16
 };
 
@@ -2328,7 +2328,7 @@ impl_13_property_additional = {
 
 static const afw_value_object_t
 impl_13_property_value_deleteObjectCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_18
 };
 
@@ -2340,7 +2340,7 @@ impl_13_property_deleteObjectCount = {
 
 static const afw_value_object_t
 impl_13_property_value_getObjectCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_20
 };
 
@@ -2352,7 +2352,7 @@ impl_13_property_getObjectCount = {
 
 static const afw_value_object_t
 impl_13_property_value_modifyObjectCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_22
 };
 
@@ -2364,7 +2364,7 @@ impl_13_property_modifyObjectCount = {
 
 static const afw_value_object_t
 impl_13_property_value_replaceObjectCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_24
 };
 
@@ -2376,7 +2376,7 @@ impl_13_property_replaceObjectCount = {
 
 static const afw_value_object_t
 impl_13_property_value_retrieveObjectsCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_26
 };
 
@@ -2388,7 +2388,7 @@ impl_13_property_retrieveObjectsCount = {
 
 static const afw_value_object_t
 impl_13_property_value_updateObjectCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_28
 };
 
@@ -2452,7 +2452,7 @@ impl_31;
 
 static const afw_value_boolean_t
 impl_31_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2510,7 +2510,7 @@ impl_31 = {
 
 static const afw_value_boolean_t
 impl_30_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2522,7 +2522,7 @@ impl_30_property_indirect = {
 
 static const afw_value_object_t
 impl_30_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_31
 };
 
@@ -2581,7 +2581,7 @@ impl_30 = {
 
 static const afw_value_boolean_t
 impl_12_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2593,7 +2593,7 @@ impl_12_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_12_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2605,7 +2605,7 @@ impl_12_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_12_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2617,7 +2617,7 @@ impl_12_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_12_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -2642,7 +2642,7 @@ impl_12_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_12_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_12_list_collectionURIs
 };
 
@@ -2666,7 +2666,7 @@ impl_12_property_objectType = {
 
 static const afw_value_object_t
 impl_12_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_13
 };
 
@@ -2678,7 +2678,7 @@ impl_12_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_12_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_30
 };
 
@@ -2794,7 +2794,7 @@ impl_35 = {
 
 static const afw_value_boolean_t
 impl_34_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2830,7 +2830,7 @@ impl_34_property_label = {
 
 static const afw_value_object_t
 impl_34_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_35
 };
 
@@ -2937,7 +2937,7 @@ impl_37 = {
 
 static const afw_value_boolean_t
 impl_36_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -2979,7 +2979,7 @@ impl_36_property_label = {
 
 static const afw_value_object_t
 impl_36_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_37
 };
 
@@ -3036,7 +3036,7 @@ impl_36 = {
 
 static const afw_value_object_t
 impl_33_property_value_adaptorType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_34
 };
 
@@ -3048,7 +3048,7 @@ impl_33_property_adaptorType = {
 
 static const afw_value_object_t
 impl_33_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_36
 };
 
@@ -3151,7 +3151,7 @@ impl_39 = {
 
 static const afw_value_boolean_t
 impl_38_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -3163,7 +3163,7 @@ impl_38_property_indirect = {
 
 static const afw_value_object_t
 impl_38_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_39
 };
 
@@ -3222,7 +3222,7 @@ impl_38 = {
 
 static const afw_value_boolean_t
 impl_32_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -3234,7 +3234,7 @@ impl_32_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_32_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -3246,7 +3246,7 @@ impl_32_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_32_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -3258,7 +3258,7 @@ impl_32_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_32_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -3283,7 +3283,7 @@ impl_32_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_32_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_32_list_collectionURIs
 };
 
@@ -3307,7 +3307,7 @@ impl_32_property_objectType = {
 
 static const afw_value_object_t
 impl_32_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_33
 };
 
@@ -3319,7 +3319,7 @@ impl_32_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_32_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_38
 };
 
@@ -3442,7 +3442,7 @@ impl_43 = {
 
 static const afw_value_boolean_t
 impl_42_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -3478,7 +3478,7 @@ impl_42_property_label = {
 
 static const afw_value_object_t
 impl_42_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_43
 };
 
@@ -3592,7 +3592,7 @@ impl_45 = {
 
 static const afw_value_boolean_t
 impl_44_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -3634,7 +3634,7 @@ impl_44_property_label = {
 
 static const afw_value_object_t
 impl_44_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_45
 };
 
@@ -3811,7 +3811,7 @@ impl_48 = {
 
 static const afw_value_boolean_t
 impl_47_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -3847,7 +3847,7 @@ impl_47_property_label = {
 
 static const afw_value_object_t
 impl_47_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_48
 };
 
@@ -3961,7 +3961,7 @@ impl_50 = {
 
 static const afw_value_boolean_t
 impl_49_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -3997,7 +3997,7 @@ impl_49_property_label = {
 
 static const afw_value_object_t
 impl_49_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_50
 };
 
@@ -4111,7 +4111,7 @@ impl_52 = {
 
 static const afw_value_boolean_t
 impl_51_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -4153,7 +4153,7 @@ impl_51_property_label = {
 
 static const afw_value_object_t
 impl_51_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_52
 };
 
@@ -4210,7 +4210,7 @@ impl_51 = {
 
 static const afw_value_object_t
 impl_41_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_42
 };
 
@@ -4222,7 +4222,7 @@ impl_41_property_adaptorId = {
 
 static const afw_value_object_t
 impl_41_property_value_metrics = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_44
 };
 
@@ -4234,7 +4234,7 @@ impl_41_property_metrics = {
 
 static const afw_value_object_t
 impl_41_property_value_properties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_46
 };
 
@@ -4246,7 +4246,7 @@ impl_41_property_properties = {
 
 static const afw_value_object_t
 impl_41_property_value_referenceCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_47
 };
 
@@ -4258,7 +4258,7 @@ impl_41_property_referenceCount = {
 
 static const afw_value_object_t
 impl_41_property_value_serviceId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_49
 };
 
@@ -4270,7 +4270,7 @@ impl_41_property_serviceId = {
 
 static const afw_value_object_t
 impl_41_property_value_stopping = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_51
 };
 
@@ -4332,7 +4332,7 @@ impl_54;
 
 static const afw_value_boolean_t
 impl_54_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -4390,7 +4390,7 @@ impl_54 = {
 
 static const afw_value_boolean_t
 impl_53_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -4402,7 +4402,7 @@ impl_53_property_indirect = {
 
 static const afw_value_object_t
 impl_53_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_54
 };
 
@@ -4461,7 +4461,7 @@ impl_53 = {
 
 static const afw_value_boolean_t
 impl_40_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -4473,7 +4473,7 @@ impl_40_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_40_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -4485,7 +4485,7 @@ impl_40_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_40_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -4497,7 +4497,7 @@ impl_40_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_40_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -4522,7 +4522,7 @@ impl_40_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_40_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_40_list_collectionURIs
 };
 
@@ -4546,7 +4546,7 @@ impl_40_property_objectType = {
 
 static const afw_value_object_t
 impl_40_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_41
 };
 
@@ -4558,7 +4558,7 @@ impl_40_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_40_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_53
 };
 
@@ -4705,7 +4705,7 @@ impl_57_property_label = {
 
 static const afw_value_object_t
 impl_57_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_58
 };
 
@@ -4760,7 +4760,7 @@ impl_57 = {
 
 static const afw_value_object_t
 impl_56_property_value_load = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_57
 };
 
@@ -4817,7 +4817,7 @@ impl_60;
 
 static const afw_value_boolean_t
 impl_60_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -4875,7 +4875,7 @@ impl_60 = {
 
 static const afw_value_boolean_t
 impl_59_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -4887,7 +4887,7 @@ impl_59_property_indirect = {
 
 static const afw_value_object_t
 impl_59_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_60
 };
 
@@ -4946,7 +4946,7 @@ impl_59 = {
 
 static const afw_value_boolean_t
 impl_55_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -4958,7 +4958,7 @@ impl_55_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_55_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -4970,7 +4970,7 @@ impl_55_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_55_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -4982,7 +4982,7 @@ impl_55_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_55_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5007,7 +5007,7 @@ impl_55_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_55_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_55_list_collectionURIs
 };
 
@@ -5031,7 +5031,7 @@ impl_55_property_objectType = {
 
 static const afw_value_object_t
 impl_55_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_56
 };
 
@@ -5043,7 +5043,7 @@ impl_55_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_55_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_59
 };
 
@@ -5167,7 +5167,7 @@ impl_63_parentPaths_list = {
 
 static const afw_value_array_t
 impl_63_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_63_parentPaths_list
 };
 
@@ -5206,7 +5206,7 @@ impl_63 = {
 
 static const afw_value_boolean_t
 impl_61_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5218,7 +5218,7 @@ impl_61_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_61_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5230,7 +5230,7 @@ impl_61_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_61_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5242,7 +5242,7 @@ impl_61_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_61_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -5267,7 +5267,7 @@ impl_61_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_61_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_61_list_collectionURIs
 };
 
@@ -5291,7 +5291,7 @@ impl_61_property_objectType = {
 
 static const afw_value_object_t
 impl_61_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_62
 };
 
@@ -5303,7 +5303,7 @@ impl_61_property_otherProperties = {
 
 static const afw_value_object_t
 impl_61_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_63
 };
 
@@ -5383,7 +5383,7 @@ impl_66_property_dataType = {
 
 static const afw_value_boolean_t
 impl_66_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5407,7 +5407,7 @@ impl_66_property_label = {
 
 static const afw_value_boolean_t
 impl_66_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5502,7 +5502,7 @@ impl_67_property_label = {
 
 static const afw_value_boolean_t
 impl_67_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5574,7 +5574,7 @@ impl_68_property_dataType = {
 
 static const afw_value_boolean_t
 impl_68_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5598,7 +5598,7 @@ impl_68_property_label = {
 
 static const afw_value_boolean_t
 impl_68_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5693,7 +5693,7 @@ impl_69_property_label = {
 
 static const afw_value_boolean_t
 impl_69_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5750,7 +5750,7 @@ impl_69 = {
 
 static const afw_value_object_t
 impl_65_property_value_checkIntermediateMode = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_66
 };
 
@@ -5762,7 +5762,7 @@ impl_65_property_checkIntermediateMode = {
 
 static const afw_value_object_t
 impl_65_property_value_coreAuthorizationCheck = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_67
 };
 
@@ -5774,7 +5774,7 @@ impl_65_property_coreAuthorizationCheck = {
 
 static const afw_value_object_t
 impl_65_property_value_denyIfNotApplicable = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_68
 };
 
@@ -5786,7 +5786,7 @@ impl_65_property_denyIfNotApplicable = {
 
 static const afw_value_object_t
 impl_65_property_value_initialAuthorizationCheck = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_69
 };
 
@@ -5840,7 +5840,7 @@ impl_65 = {
 
 static const afw_value_boolean_t
 impl_64_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5852,7 +5852,7 @@ impl_64_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_64_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5864,7 +5864,7 @@ impl_64_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_64_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5876,7 +5876,7 @@ impl_64_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_64_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -5901,7 +5901,7 @@ impl_64_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_64_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_64_list_collectionURIs
 };
 
@@ -5925,7 +5925,7 @@ impl_64_property_objectType = {
 
 static const afw_value_object_t
 impl_64_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_65
 };
 
@@ -5992,7 +5992,7 @@ impl_72;
 
 static const afw_value_boolean_t
 impl_72_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -6028,7 +6028,7 @@ impl_72_property_label = {
 
 static const afw_value_boolean_t
 impl_72_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6111,7 +6111,7 @@ impl_73_property_label = {
 
 static const afw_value_boolean_t
 impl_73_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6169,7 +6169,7 @@ impl_74;
 
 static const afw_value_boolean_t
 impl_74_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -6211,7 +6211,7 @@ impl_74_property_label = {
 
 static const afw_value_boolean_t
 impl_74_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6283,7 +6283,7 @@ impl_75_property_dataType = {
 
 static const afw_value_boolean_t
 impl_75_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6307,7 +6307,7 @@ impl_75_property_label = {
 
 static const afw_value_boolean_t
 impl_75_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6363,7 +6363,7 @@ impl_75 = {
 
 static const afw_value_object_t
 impl_71_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_72
 };
 
@@ -6375,7 +6375,7 @@ impl_71_property_brief = {
 
 static const afw_value_object_t
 impl_71_property_value_decisionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_73
 };
 
@@ -6387,7 +6387,7 @@ impl_71_property_decisionId = {
 
 static const afw_value_object_t
 impl_71_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_74
 };
 
@@ -6399,7 +6399,7 @@ impl_71_property_description = {
 
 static const afw_value_object_t
 impl_71_property_value_intermediateOnly = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_75
 };
 
@@ -6453,7 +6453,7 @@ impl_71 = {
 
 static const afw_value_boolean_t
 impl_70_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6465,7 +6465,7 @@ impl_70_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_70_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6477,7 +6477,7 @@ impl_70_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_70_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -6489,7 +6489,7 @@ impl_70_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_70_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -6514,7 +6514,7 @@ impl_70_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_70_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_70_list_collectionURIs
 };
 
@@ -6544,7 +6544,7 @@ impl_70_property_objectType = {
 
 static const afw_value_object_t
 impl_70_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_71
 };
 
@@ -6660,7 +6660,7 @@ impl_79 = {
 
 static const afw_value_boolean_t
 impl_78_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -6696,7 +6696,7 @@ impl_78_property_label = {
 
 static const afw_value_object_t
 impl_78_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_79
 };
 
@@ -6803,7 +6803,7 @@ impl_81 = {
 
 static const afw_value_boolean_t
 impl_80_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -6845,7 +6845,7 @@ impl_80_property_label = {
 
 static const afw_value_object_t
 impl_80_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_81
 };
 
@@ -6902,7 +6902,7 @@ impl_80 = {
 
 static const afw_value_object_t
 impl_77_property_value_authorizationHandlerType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_78
 };
 
@@ -6914,7 +6914,7 @@ impl_77_property_authorizationHandlerType = {
 
 static const afw_value_object_t
 impl_77_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_80
 };
 
@@ -7017,7 +7017,7 @@ impl_83 = {
 
 static const afw_value_boolean_t
 impl_82_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7029,7 +7029,7 @@ impl_82_property_indirect = {
 
 static const afw_value_object_t
 impl_82_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_83
 };
 
@@ -7088,7 +7088,7 @@ impl_82 = {
 
 static const afw_value_boolean_t
 impl_76_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7113,7 +7113,7 @@ impl_76_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_76_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_76_list_collectionURIs
 };
 
@@ -7137,7 +7137,7 @@ impl_76_property_objectType = {
 
 static const afw_value_object_t
 impl_76_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_77
 };
 
@@ -7149,7 +7149,7 @@ impl_76_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_76_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_82
 };
 
@@ -7269,7 +7269,7 @@ impl_87 = {
 
 static const afw_value_boolean_t
 impl_86_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7305,7 +7305,7 @@ impl_86_property_label = {
 
 static const afw_value_object_t
 impl_86_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_87
 };
 
@@ -7412,7 +7412,7 @@ impl_89 = {
 
 static const afw_value_boolean_t
 impl_88_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7448,7 +7448,7 @@ impl_88_property_label = {
 
 static const afw_value_object_t
 impl_88_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_89
 };
 
@@ -7507,7 +7507,7 @@ impl_90;
 
 static const afw_value_boolean_t
 impl_90_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -7637,7 +7637,7 @@ impl_92 = {
 
 static const afw_value_boolean_t
 impl_91_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7673,7 +7673,7 @@ impl_91_property_label = {
 
 static const afw_value_object_t
 impl_91_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_92
 };
 
@@ -7787,7 +7787,7 @@ impl_94 = {
 
 static const afw_value_boolean_t
 impl_93_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7823,7 +7823,7 @@ impl_93_property_label = {
 
 static const afw_value_object_t
 impl_93_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_94
 };
 
@@ -7937,7 +7937,7 @@ impl_96 = {
 
 static const afw_value_boolean_t
 impl_95_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -7979,7 +7979,7 @@ impl_95_property_label = {
 
 static const afw_value_object_t
 impl_95_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_96
 };
 
@@ -8036,7 +8036,7 @@ impl_95 = {
 
 static const afw_value_object_t
 impl_85_property_value_authorizationHandlerId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_86
 };
 
@@ -8048,7 +8048,7 @@ impl_85_property_authorizationHandlerId = {
 
 static const afw_value_object_t
 impl_85_property_value_processingOrder = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_88
 };
 
@@ -8060,7 +8060,7 @@ impl_85_property_processingOrder = {
 
 static const afw_value_object_t
 impl_85_property_value_properties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_90
 };
 
@@ -8072,7 +8072,7 @@ impl_85_property_properties = {
 
 static const afw_value_object_t
 impl_85_property_value_referenceCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_91
 };
 
@@ -8084,7 +8084,7 @@ impl_85_property_referenceCount = {
 
 static const afw_value_object_t
 impl_85_property_value_serviceId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_93
 };
 
@@ -8096,7 +8096,7 @@ impl_85_property_serviceId = {
 
 static const afw_value_object_t
 impl_85_property_value_stopping = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_95
 };
 
@@ -8158,7 +8158,7 @@ impl_98;
 
 static const afw_value_boolean_t
 impl_98_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -8216,7 +8216,7 @@ impl_98 = {
 
 static const afw_value_boolean_t
 impl_97_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -8228,7 +8228,7 @@ impl_97_property_indirect = {
 
 static const afw_value_object_t
 impl_97_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_98
 };
 
@@ -8287,7 +8287,7 @@ impl_97 = {
 
 static const afw_value_boolean_t
 impl_84_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -8312,7 +8312,7 @@ impl_84_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_84_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_84_list_collectionURIs
 };
 
@@ -8336,7 +8336,7 @@ impl_84_property_objectType = {
 
 static const afw_value_object_t
 impl_84_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_85
 };
 
@@ -8348,7 +8348,7 @@ impl_84_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_84_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_97
 };
 
@@ -8413,7 +8413,7 @@ impl_101;
 
 static const afw_value_boolean_t
 impl_101_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -8449,7 +8449,7 @@ impl_101_property_label = {
 
 static const afw_value_boolean_t
 impl_101_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -8508,7 +8508,7 @@ impl_102;
 
 static const afw_value_boolean_t
 impl_102_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -8550,7 +8550,7 @@ impl_102_property_label = {
 
 static const afw_value_boolean_t
 impl_102_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -8634,7 +8634,7 @@ impl_103_property_label = {
 
 static const afw_value_boolean_t
 impl_103_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -8689,7 +8689,7 @@ impl_103 = {
 
 static const afw_value_object_t
 impl_100_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_101
 };
 
@@ -8701,7 +8701,7 @@ impl_100_property_brief = {
 
 static const afw_value_object_t
 impl_100_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_102
 };
 
@@ -8713,7 +8713,7 @@ impl_100_property_description = {
 
 static const afw_value_object_t
 impl_100_property_value_modeId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_103
 };
 
@@ -8766,7 +8766,7 @@ impl_100 = {
 
 static const afw_value_boolean_t
 impl_99_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -8778,7 +8778,7 @@ impl_99_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_99_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -8790,7 +8790,7 @@ impl_99_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_99_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -8802,7 +8802,7 @@ impl_99_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_99_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -8827,7 +8827,7 @@ impl_99_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_99_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_99_list_collectionURIs
 };
 
@@ -8857,7 +8857,7 @@ impl_99_property_objectType = {
 
 static const afw_value_object_t
 impl_99_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_100
 };
 
@@ -9117,7 +9117,7 @@ impl_108_list_possibleValues = {
 
 static const afw_value_array_t
 impl_108_property_value_possibleValues = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_108_list_possibleValues
 };
 
@@ -9129,7 +9129,7 @@ impl_108_property_possibleValues = {
 
 static const afw_value_boolean_t
 impl_108_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -9218,7 +9218,7 @@ impl_109_property_label = {
 
 static const afw_value_boolean_t
 impl_109_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -9419,7 +9419,7 @@ impl_111 = {
 
 static const afw_value_object_t
 impl_105_property_value_advice = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_106
 };
 
@@ -9431,7 +9431,7 @@ impl_105_property_advice = {
 
 static const afw_value_object_t
 impl_105_property_value_applicablePolicies = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_107
 };
 
@@ -9443,7 +9443,7 @@ impl_105_property_applicablePolicies = {
 
 static const afw_value_object_t
 impl_105_property_value_decision = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_108
 };
 
@@ -9455,7 +9455,7 @@ impl_105_property_decision = {
 
 static const afw_value_object_t
 impl_105_property_value_errors = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_109
 };
 
@@ -9467,7 +9467,7 @@ impl_105_property_errors = {
 
 static const afw_value_object_t
 impl_105_property_value_obligations = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_110
 };
 
@@ -9479,7 +9479,7 @@ impl_105_property_obligations = {
 
 static const afw_value_object_t
 impl_105_property_value_properties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_111
 };
 
@@ -9535,7 +9535,7 @@ impl_105 = {
 
 static const afw_value_boolean_t
 impl_104_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -9547,7 +9547,7 @@ impl_104_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_104_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -9559,7 +9559,7 @@ impl_104_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_104_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -9571,7 +9571,7 @@ impl_104_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_104_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -9596,7 +9596,7 @@ impl_104_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_104_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_104_list_collectionURIs
 };
 
@@ -9620,7 +9620,7 @@ impl_104_property_objectType = {
 
 static const afw_value_object_t
 impl_104_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_105
 };
 
@@ -9687,7 +9687,7 @@ impl_114;
 
 static const afw_value_boolean_t
 impl_114_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -9762,7 +9762,7 @@ impl_115;
 
 static const afw_value_boolean_t
 impl_115_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -9844,7 +9844,7 @@ impl_116;
 
 static const afw_value_boolean_t
 impl_116_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -9874,7 +9874,7 @@ impl_116_property_label = {
 
 static const afw_value_boolean_t
 impl_116_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -9932,7 +9932,7 @@ impl_117;
 
 static const afw_value_boolean_t
 impl_117_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10004,7 +10004,7 @@ impl_117 = {
 
 static const afw_value_object_t
 impl_113_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_114
 };
 
@@ -10016,7 +10016,7 @@ impl_113_property_brief = {
 
 static const afw_value_object_t
 impl_113_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_115
 };
 
@@ -10028,7 +10028,7 @@ impl_113_property_description = {
 
 static const afw_value_object_t
 impl_113_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_116
 };
 
@@ -10040,7 +10040,7 @@ impl_113_property_objectId = {
 
 static const afw_value_object_t
 impl_113_property_value_originURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_117
 };
 
@@ -10094,7 +10094,7 @@ impl_113 = {
 
 static const afw_value_boolean_t
 impl_112_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10119,7 +10119,7 @@ impl_112_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_112_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_112_list_collectionURIs
 };
 
@@ -10143,7 +10143,7 @@ impl_112_property_objectType = {
 
 static const afw_value_object_t
 impl_112_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_113
 };
 
@@ -10255,7 +10255,7 @@ impl_121 = {
 
 static const afw_value_boolean_t
 impl_120_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10297,7 +10297,7 @@ impl_120_property_label = {
 
 static const afw_value_object_t
 impl_120_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_121
 };
 
@@ -10412,7 +10412,7 @@ impl_123 = {
 
 static const afw_value_boolean_t
 impl_122_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10448,7 +10448,7 @@ impl_122_property_label = {
 
 static const afw_value_object_t
 impl_122_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_123
 };
 
@@ -10562,7 +10562,7 @@ impl_125 = {
 
 static const afw_value_boolean_t
 impl_124_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10598,7 +10598,7 @@ impl_124_property_label = {
 
 static const afw_value_object_t
 impl_124_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_125
 };
 
@@ -10712,7 +10712,7 @@ impl_127 = {
 
 static const afw_value_boolean_t
 impl_126_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10748,7 +10748,7 @@ impl_126_property_label = {
 
 static const afw_value_object_t
 impl_126_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_127
 };
 
@@ -10855,7 +10855,7 @@ impl_129 = {
 
 static const afw_value_boolean_t
 impl_128_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -10891,7 +10891,7 @@ impl_128_property_label = {
 
 static const afw_value_object_t
 impl_128_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_129
 };
 
@@ -11005,7 +11005,7 @@ impl_131 = {
 
 static const afw_value_boolean_t
 impl_130_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -11041,7 +11041,7 @@ impl_130_property_label = {
 
 static const afw_value_object_t
 impl_130_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_131
 };
 
@@ -11155,7 +11155,7 @@ impl_133 = {
 
 static const afw_value_boolean_t
 impl_132_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -11191,7 +11191,7 @@ impl_132_property_label = {
 
 static const afw_value_object_t
 impl_132_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_133
 };
 
@@ -11305,7 +11305,7 @@ impl_135 = {
 
 static const afw_value_boolean_t
 impl_134_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -11341,7 +11341,7 @@ impl_134_property_label = {
 
 static const afw_value_object_t
 impl_134_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_135
 };
 
@@ -11448,7 +11448,7 @@ impl_137 = {
 
 static const afw_value_boolean_t
 impl_136_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -11484,7 +11484,7 @@ impl_136_property_label = {
 
 static const afw_value_object_t
 impl_136_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_137
 };
 
@@ -11591,7 +11591,7 @@ impl_139 = {
 
 static const afw_value_boolean_t
 impl_138_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -11627,7 +11627,7 @@ impl_138_property_label = {
 
 static const afw_value_object_t
 impl_138_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_139
 };
 
@@ -11683,7 +11683,7 @@ impl_138 = {
 
 static const afw_value_object_t
 impl_119_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_120
 };
 
@@ -11695,7 +11695,7 @@ impl_119_property_description = {
 
 static const afw_value_object_t
 impl_119_property_value_idPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_122
 };
 
@@ -11707,7 +11707,7 @@ impl_119_property_idPropertyName = {
 
 static const afw_value_object_t
 impl_119_property_value_idRegistryType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_124
 };
 
@@ -11719,7 +11719,7 @@ impl_119_property_idRegistryType = {
 
 static const afw_value_object_t
 impl_119_property_value_idRuntimeObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_126
 };
 
@@ -11731,7 +11731,7 @@ impl_119_property_idRuntimeObjectType = {
 
 static const afw_value_object_t
 impl_119_property_value_isUnique = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_128
 };
 
@@ -11743,7 +11743,7 @@ impl_119_property_isUnique = {
 
 static const afw_value_object_t
 impl_119_property_value_subtypePropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_130
 };
 
@@ -11755,7 +11755,7 @@ impl_119_property_subtypePropertyName = {
 
 static const afw_value_object_t
 impl_119_property_value_subtypeRegistryType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_132
 };
 
@@ -11767,7 +11767,7 @@ impl_119_property_subtypeRegistryType = {
 
 static const afw_value_object_t
 impl_119_property_value_subtypeRuntimeObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_134
 };
 
@@ -11779,7 +11779,7 @@ impl_119_property_subtypeRuntimeObjectType = {
 
 static const afw_value_object_t
 impl_119_property_value_title = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_136
 };
 
@@ -11791,7 +11791,7 @@ impl_119_property_title = {
 
 static const afw_value_object_t
 impl_119_property_value_type = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_138
 };
 
@@ -11902,7 +11902,7 @@ impl_141 = {
 
 static const afw_value_boolean_t
 impl_140_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -11914,7 +11914,7 @@ impl_140_property_indirect = {
 
 static const afw_value_object_t
 impl_140_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_141
 };
 
@@ -11973,7 +11973,7 @@ impl_140 = {
 
 static const afw_value_boolean_t
 impl_118_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -11985,7 +11985,7 @@ impl_118_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_118_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -11997,7 +11997,7 @@ impl_118_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_118_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -12009,7 +12009,7 @@ impl_118_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_118_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12034,7 +12034,7 @@ impl_118_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_118_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_118_list_collectionURIs
 };
 
@@ -12058,7 +12058,7 @@ impl_118_property_objectType = {
 
 static const afw_value_object_t
 impl_118_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_119
 };
 
@@ -12070,7 +12070,7 @@ impl_118_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_118_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_140
 };
 
@@ -12138,7 +12138,7 @@ impl_144;
 
 static const afw_value_boolean_t
 impl_144_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12227,7 +12227,7 @@ impl_145;
 
 static const afw_value_boolean_t
 impl_145_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12309,7 +12309,7 @@ impl_146;
 
 static const afw_value_boolean_t
 impl_146_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12391,7 +12391,7 @@ impl_147;
 
 static const afw_value_boolean_t
 impl_147_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12427,7 +12427,7 @@ impl_147_property_label = {
 
 static const afw_value_boolean_t
 impl_147_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12483,7 +12483,7 @@ impl_147 = {
 
 static const afw_value_object_t
 impl_143_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_144
 };
 
@@ -12495,7 +12495,7 @@ impl_143_property_description = {
 
 static const afw_value_object_t
 impl_143_property_value_sourceLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_145
 };
 
@@ -12507,7 +12507,7 @@ impl_143_property_sourceLocation = {
 
 static const afw_value_object_t
 impl_143_property_value_title = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_146
 };
 
@@ -12519,7 +12519,7 @@ impl_143_property_title = {
 
 static const afw_value_object_t
 impl_143_property_value_type = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_147
 };
 
@@ -12573,7 +12573,7 @@ impl_143 = {
 
 static const afw_value_boolean_t
 impl_142_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -12598,7 +12598,7 @@ impl_142_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_142_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_142_list_collectionURIs
 };
 
@@ -12622,7 +12622,7 @@ impl_142_property_objectType = {
 
 static const afw_value_object_t
 impl_142_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_143
 };
 
@@ -12686,7 +12686,7 @@ impl_150;
 
 static const afw_value_boolean_t
 impl_150_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12768,7 +12768,7 @@ impl_151;
 
 static const afw_value_boolean_t
 impl_151_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12804,7 +12804,7 @@ impl_151_property_label = {
 
 static const afw_value_boolean_t
 impl_151_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12863,7 +12863,7 @@ impl_152;
 
 static const afw_value_boolean_t
 impl_152_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -12945,7 +12945,7 @@ impl_153;
 
 static const afw_value_boolean_t
 impl_153_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13024,7 +13024,7 @@ impl_153 = {
 
 static const afw_value_object_t
 impl_149_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_150
 };
 
@@ -13036,7 +13036,7 @@ impl_149_property_adaptorId = {
 
 static const afw_value_object_t
 impl_149_property_value_adaptorType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_151
 };
 
@@ -13048,7 +13048,7 @@ impl_149_property_adaptorType = {
 
 static const afw_value_object_t
 impl_149_property_value_authorizationHandlerId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_152
 };
 
@@ -13060,7 +13060,7 @@ impl_149_property_authorizationHandlerId = {
 
 static const afw_value_object_t
 impl_149_property_value_journalAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_153
 };
 
@@ -13094,7 +13094,7 @@ impl_149_parentPaths_list = {
 
 static const afw_value_array_t
 impl_149_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_149_parentPaths_list
 };
 
@@ -13133,7 +13133,7 @@ impl_149 = {
 
 static const afw_value_boolean_t
 impl_148_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -13158,7 +13158,7 @@ impl_148_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_148_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_148_list_collectionURIs
 };
 
@@ -13182,7 +13182,7 @@ impl_148_property_objectType = {
 
 static const afw_value_object_t
 impl_148_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_149
 };
 
@@ -13261,7 +13261,7 @@ impl_155_parentPaths_list = {
 
 static const afw_value_array_t
 impl_155_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_155_parentPaths_list
 };
 
@@ -13300,7 +13300,7 @@ impl_155 = {
 
 static const afw_value_boolean_t
 impl_154_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -13312,7 +13312,7 @@ impl_154_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_154_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -13324,7 +13324,7 @@ impl_154_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_154_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -13336,7 +13336,7 @@ impl_154_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_154_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -13361,7 +13361,7 @@ impl_154_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_154_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_154_list_collectionURIs
 };
 
@@ -13385,7 +13385,7 @@ impl_154_property_objectType = {
 
 static const afw_value_object_t
 impl_154_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_155
 };
 
@@ -13452,7 +13452,7 @@ impl_158;
 
 static const afw_value_boolean_t
 impl_158_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13488,7 +13488,7 @@ impl_158_property_label = {
 
 static const afw_value_boolean_t
 impl_158_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13547,7 +13547,7 @@ impl_159;
 
 static const afw_value_boolean_t
 impl_159_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13629,7 +13629,7 @@ impl_160;
 
 static const afw_value_boolean_t
 impl_160_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13711,7 +13711,7 @@ impl_161;
 
 static const afw_value_boolean_t
 impl_161_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13793,7 +13793,7 @@ impl_162;
 
 static const afw_value_boolean_t
 impl_162_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13875,7 +13875,7 @@ impl_163;
 
 static const afw_value_boolean_t
 impl_163_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13911,7 +13911,7 @@ impl_163_property_label = {
 
 static const afw_value_boolean_t
 impl_163_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -13967,7 +13967,7 @@ impl_163 = {
 
 static const afw_value_object_t
 impl_157_property_value_contentType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_158
 };
 
@@ -13979,7 +13979,7 @@ impl_157_property_contentType = {
 
 static const afw_value_object_t
 impl_157_property_value_filenameSuffix = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_159
 };
 
@@ -13991,7 +13991,7 @@ impl_157_property_filenameSuffix = {
 
 static const afw_value_object_t
 impl_157_property_value_isDevelopmentInput = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_160
 };
 
@@ -14003,7 +14003,7 @@ impl_157_property_isDevelopmentInput = {
 
 static const afw_value_object_t
 impl_157_property_value_isModelLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_161
 };
 
@@ -14015,7 +14015,7 @@ impl_157_property_isModelLocation = {
 
 static const afw_value_object_t
 impl_157_property_value_isPolicyLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_162
 };
 
@@ -14027,7 +14027,7 @@ impl_157_property_isPolicyLocation = {
 
 static const afw_value_object_t
 impl_157_property_value_root = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_163
 };
 
@@ -14063,7 +14063,7 @@ impl_157_parentPaths_list = {
 
 static const afw_value_array_t
 impl_157_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_157_parentPaths_list
 };
 
@@ -14102,7 +14102,7 @@ impl_157 = {
 
 static const afw_value_boolean_t
 impl_156_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -14127,7 +14127,7 @@ impl_156_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_156_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_156_list_collectionURIs
 };
 
@@ -14151,7 +14151,7 @@ impl_156_property_objectType = {
 
 static const afw_value_object_t
 impl_156_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_157
 };
 
@@ -14215,7 +14215,7 @@ impl_166;
 
 static const afw_value_boolean_t
 impl_166_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14304,7 +14304,7 @@ impl_167;
 
 static const afw_value_boolean_t
 impl_167_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14340,7 +14340,7 @@ impl_167_property_label = {
 
 static const afw_value_boolean_t
 impl_167_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14399,7 +14399,7 @@ impl_168;
 
 static const afw_value_boolean_t
 impl_168_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14435,7 +14435,7 @@ impl_168_property_label = {
 
 static const afw_value_boolean_t
 impl_168_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14494,7 +14494,7 @@ impl_169;
 
 static const afw_value_boolean_t
 impl_169_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14530,7 +14530,7 @@ impl_169_property_label = {
 
 static const afw_value_boolean_t
 impl_169_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14586,7 +14586,7 @@ impl_169 = {
 
 static const afw_value_object_t
 impl_165_property_value_custom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_166
 };
 
@@ -14598,7 +14598,7 @@ impl_165_property_custom = {
 
 static const afw_value_object_t
 impl_165_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_167
 };
 
@@ -14610,7 +14610,7 @@ impl_165_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_165_property_value_modelId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_168
 };
 
@@ -14622,7 +14622,7 @@ impl_165_property_modelId = {
 
 static const afw_value_object_t
 impl_165_property_value_modelLocationAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_169
 };
 
@@ -14656,7 +14656,7 @@ impl_165_parentPaths_list = {
 
 static const afw_value_array_t
 impl_165_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_165_parentPaths_list
 };
 
@@ -14695,7 +14695,7 @@ impl_165 = {
 
 static const afw_value_boolean_t
 impl_164_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -14720,7 +14720,7 @@ impl_164_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_164_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_164_list_collectionURIs
 };
 
@@ -14744,7 +14744,7 @@ impl_164_property_objectType = {
 
 static const afw_value_object_t
 impl_164_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_165
 };
 
@@ -14808,7 +14808,7 @@ impl_172;
 
 static const afw_value_boolean_t
 impl_172_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -14820,7 +14820,7 @@ impl_172_property_allowQuery = {
 
 static const afw_value_boolean_t
 impl_172_property_value_allowWrite = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -14903,7 +14903,7 @@ impl_173;
 
 static const afw_value_boolean_t
 impl_173_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -14992,7 +14992,7 @@ impl_174;
 
 static const afw_value_boolean_t
 impl_174_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -15004,7 +15004,7 @@ impl_174_property_allowQuery = {
 
 static const afw_value_boolean_t
 impl_174_property_value_allowWrite = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15087,7 +15087,7 @@ impl_175;
 
 static const afw_value_boolean_t
 impl_175_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -15123,7 +15123,7 @@ impl_175_property_label = {
 
 static const afw_value_boolean_t
 impl_175_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15212,7 +15212,7 @@ impl_176_property_label = {
 
 static const afw_value_boolean_t
 impl_176_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15271,7 +15271,7 @@ impl_177;
 
 static const afw_value_boolean_t
 impl_177_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -15307,7 +15307,7 @@ impl_177_property_label = {
 
 static const afw_value_boolean_t
 impl_177_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15366,7 +15366,7 @@ impl_178;
 
 static const afw_value_boolean_t
 impl_178_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -15408,7 +15408,7 @@ impl_178_property_label = {
 
 static const afw_value_boolean_t
 impl_178_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15498,7 +15498,7 @@ impl_179_property_label = {
 
 static const afw_value_boolean_t
 impl_179_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15587,7 +15587,7 @@ impl_180_property_label = {
 
 static const afw_value_boolean_t
 impl_180_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15646,7 +15646,7 @@ impl_181;
 
 static const afw_value_boolean_t
 impl_181_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -15682,7 +15682,7 @@ impl_181_property_label = {
 
 static const afw_value_boolean_t
 impl_181_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15741,7 +15741,7 @@ impl_182;
 
 static const afw_value_boolean_t
 impl_182_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -15913,7 +15913,7 @@ impl_184;
 
 static const afw_value_boolean_t
 impl_184_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -15955,7 +15955,7 @@ impl_184_property_label = {
 
 static const afw_value_boolean_t
 impl_184_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -16015,7 +16015,7 @@ impl_185;
 
 static const afw_value_boolean_t
 impl_185_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16051,7 +16051,7 @@ impl_185_property_label = {
 
 static const afw_value_boolean_t
 impl_185_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -16107,7 +16107,7 @@ impl_185 = {
 
 static const afw_value_object_t
 impl_171_property_value_applicationId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_172
 };
 
@@ -16119,7 +16119,7 @@ impl_171_property_applicationId = {
 
 static const afw_value_object_t
 impl_171_property_value_authorizationControl = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_173
 };
 
@@ -16131,7 +16131,7 @@ impl_171_property_authorizationControl = {
 
 static const afw_value_object_t
 impl_171_property_value_confAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_174
 };
 
@@ -16143,7 +16143,7 @@ impl_171_property_confAdaptorId = {
 
 static const afw_value_object_t
 impl_171_property_value_defaultAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_175
 };
 
@@ -16155,7 +16155,7 @@ impl_171_property_defaultAdaptorId = {
 
 static const afw_value_object_t
 impl_171_property_value_defaultFlags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_176
 };
 
@@ -16167,7 +16167,7 @@ impl_171_property_defaultFlags = {
 
 static const afw_value_object_t
 impl_171_property_value_defaultModelAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_177
 };
 
@@ -16179,7 +16179,7 @@ impl_171_property_defaultModelAdaptorId = {
 
 static const afw_value_object_t
 impl_171_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_178
 };
 
@@ -16191,7 +16191,7 @@ impl_171_property_description = {
 
 static const afw_value_object_t
 impl_171_property_value_extensionModulePaths = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_179
 };
 
@@ -16203,7 +16203,7 @@ impl_171_property_extensionModulePaths = {
 
 static const afw_value_object_t
 impl_171_property_value_extensions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_180
 };
 
@@ -16215,7 +16215,7 @@ impl_171_property_extensions = {
 
 static const afw_value_object_t
 impl_171_property_value_layoutsAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_181
 };
 
@@ -16227,7 +16227,7 @@ impl_171_property_layoutsAdaptorId = {
 
 static const afw_value_object_t
 impl_171_property_value_onApplicationStartupComplete = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_182
 };
 
@@ -16239,7 +16239,7 @@ impl_171_property_onApplicationStartupComplete = {
 
 static const afw_value_object_t
 impl_171_property_value_qualifiedVariables = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_183
 };
 
@@ -16251,7 +16251,7 @@ impl_171_property_qualifiedVariables = {
 
 static const afw_value_object_t
 impl_171_property_value_rootFilePaths = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_184
 };
 
@@ -16263,7 +16263,7 @@ impl_171_property_rootFilePaths = {
 
 static const afw_value_object_t
 impl_171_property_value_title = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_185
 };
 
@@ -16307,7 +16307,7 @@ impl_171_parentPaths_list = {
 
 static const afw_value_array_t
 impl_171_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_171_parentPaths_list
 };
 
@@ -16346,7 +16346,7 @@ impl_171 = {
 
 static const afw_value_boolean_t
 impl_170_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16371,7 +16371,7 @@ impl_170_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_170_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_170_list_collectionURIs
 };
 
@@ -16395,7 +16395,7 @@ impl_170_property_objectType = {
 
 static const afw_value_object_t
 impl_170_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_171
 };
 
@@ -16459,7 +16459,7 @@ impl_188;
 
 static const afw_value_boolean_t
 impl_188_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16495,7 +16495,7 @@ impl_188_property_label = {
 
 static const afw_value_boolean_t
 impl_188_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -16554,7 +16554,7 @@ impl_189;
 
 static const afw_value_boolean_t
 impl_189_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16590,7 +16590,7 @@ impl_189_property_label = {
 
 static const afw_value_boolean_t
 impl_189_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -16649,7 +16649,7 @@ impl_190;
 
 static const afw_value_boolean_t
 impl_190_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16731,7 +16731,7 @@ impl_191;
 
 static const afw_value_boolean_t
 impl_191_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16767,7 +16767,7 @@ impl_191_property_label = {
 
 static const afw_value_boolean_t
 impl_191_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16826,7 +16826,7 @@ impl_192;
 
 static const afw_value_boolean_t
 impl_192_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16850,7 +16850,7 @@ impl_192_property_dataType = {
 
 static const afw_value_integer_t
 impl_192_property_value_defaultValue = {
-    &afw_value_permanent_integer_inf,
+    {&afw_value_permanent_integer_inf},
     9999
 };
 
@@ -16874,7 +16874,7 @@ impl_192_property_label = {
 
 static const afw_value_integer_t
 impl_192_property_value_maxValue = {
-    &afw_value_permanent_integer_inf,
+    {&afw_value_permanent_integer_inf},
     9999
 };
 
@@ -16886,7 +16886,7 @@ impl_192_property_maxValue = {
 
 static const afw_value_integer_t
 impl_192_property_value_minValue = {
-    &afw_value_permanent_integer_inf,
+    {&afw_value_permanent_integer_inf},
     1
 };
 
@@ -16898,7 +16898,7 @@ impl_192_property_minValue = {
 
 static const afw_value_boolean_t
 impl_192_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -16960,7 +16960,7 @@ impl_193;
 
 static const afw_value_boolean_t
 impl_193_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -16996,7 +16996,7 @@ impl_193_property_label = {
 
 static const afw_value_boolean_t
 impl_193_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -17052,7 +17052,7 @@ impl_193 = {
 
 static const afw_value_object_t
 impl_187_property_value_allowDenyOverride = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_188
 };
 
@@ -17064,7 +17064,7 @@ impl_187_property_allowDenyOverride = {
 
 static const afw_value_object_t
 impl_187_property_value_allowPermitOverride = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_189
 };
 
@@ -17076,7 +17076,7 @@ impl_187_property_allowPermitOverride = {
 
 static const afw_value_object_t
 impl_187_property_value_authorizationHandlerId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_190
 };
 
@@ -17088,7 +17088,7 @@ impl_187_property_authorizationHandlerId = {
 
 static const afw_value_object_t
 impl_187_property_value_authorizationHandlerType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_191
 };
 
@@ -17100,7 +17100,7 @@ impl_187_property_authorizationHandlerType = {
 
 static const afw_value_object_t
 impl_187_property_value_priority = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_192
 };
 
@@ -17112,7 +17112,7 @@ impl_187_property_priority = {
 
 static const afw_value_object_t
 impl_187_property_value_required = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_193
 };
 
@@ -17148,7 +17148,7 @@ impl_187_parentPaths_list = {
 
 static const afw_value_array_t
 impl_187_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_187_parentPaths_list
 };
 
@@ -17187,7 +17187,7 @@ impl_187 = {
 
 static const afw_value_boolean_t
 impl_186_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -17212,7 +17212,7 @@ impl_186_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_186_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_186_list_collectionURIs
 };
 
@@ -17236,7 +17236,7 @@ impl_186_property_objectType = {
 
 static const afw_value_object_t
 impl_186_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_187
 };
 
@@ -17300,7 +17300,7 @@ impl_196;
 
 static const afw_value_boolean_t
 impl_196_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -17348,7 +17348,7 @@ impl_196_property_label = {
 
 static const afw_value_boolean_t
 impl_196_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -17482,7 +17482,7 @@ impl_197 = {
 
 static const afw_value_object_t
 impl_195_property_value_authorizationCheck = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_196
 };
 
@@ -17494,7 +17494,7 @@ impl_195_property_authorizationCheck = {
 
 static const afw_value_object_t
 impl_195_property_value_qualifiedVariables = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_197
 };
 
@@ -17526,7 +17526,7 @@ impl_195_parentPaths_list = {
 
 static const afw_value_array_t
 impl_195_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_195_parentPaths_list
 };
 
@@ -17565,7 +17565,7 @@ impl_195 = {
 
 static const afw_value_boolean_t
 impl_194_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -17590,7 +17590,7 @@ impl_194_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_194_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_194_list_collectionURIs
 };
 
@@ -17614,7 +17614,7 @@ impl_194_property_objectType = {
 
 static const afw_value_object_t
 impl_194_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_195
 };
 
@@ -17678,7 +17678,7 @@ impl_200;
 
 static const afw_value_boolean_t
 impl_200_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -17760,7 +17760,7 @@ impl_201;
 
 static const afw_value_boolean_t
 impl_201_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -17839,7 +17839,7 @@ impl_201 = {
 
 static const afw_value_object_t
 impl_199_property_value_extensionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_200
 };
 
@@ -17851,7 +17851,7 @@ impl_199_property_extensionId = {
 
 static const afw_value_object_t
 impl_199_property_value_modulePath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_201
 };
 
@@ -17883,7 +17883,7 @@ impl_199_parentPaths_list = {
 
 static const afw_value_array_t
 impl_199_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_199_parentPaths_list
 };
 
@@ -17922,7 +17922,7 @@ impl_199 = {
 
 static const afw_value_boolean_t
 impl_198_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -17947,7 +17947,7 @@ impl_198_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_198_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_198_list_collectionURIs
 };
 
@@ -17971,7 +17971,7 @@ impl_198_property_objectType = {
 
 static const afw_value_object_t
 impl_198_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_199
 };
 
@@ -18035,7 +18035,7 @@ impl_204;
 
 static const afw_value_boolean_t
 impl_204_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18117,7 +18117,7 @@ impl_205;
 
 static const afw_value_boolean_t
 impl_205_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18199,7 +18199,7 @@ impl_206;
 
 static const afw_value_boolean_t
 impl_206_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18288,7 +18288,7 @@ impl_207;
 
 static const afw_value_boolean_t
 impl_207_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18370,7 +18370,7 @@ impl_208;
 
 static const afw_value_boolean_t
 impl_208_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18452,7 +18452,7 @@ impl_209;
 
 static const afw_value_boolean_t
 impl_209_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18534,7 +18534,7 @@ impl_210;
 
 static const afw_value_boolean_t
 impl_210_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18564,7 +18564,7 @@ impl_210_property_dataTypeParameter = {
 
 static const afw_value_boolean_t
 impl_210_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18636,7 +18636,7 @@ impl_211;
 
 static const afw_value_boolean_t
 impl_211_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18725,7 +18725,7 @@ impl_212;
 
 static const afw_value_boolean_t
 impl_212_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18807,7 +18807,7 @@ impl_213;
 
 static const afw_value_boolean_t
 impl_213_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18843,7 +18843,7 @@ impl_213_property_label = {
 
 static const afw_value_boolean_t
 impl_213_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18902,7 +18902,7 @@ impl_214;
 
 static const afw_value_boolean_t
 impl_214_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18938,7 +18938,7 @@ impl_214_property_label = {
 
 static const afw_value_boolean_t
 impl_214_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -18997,7 +18997,7 @@ impl_215;
 
 static const afw_value_boolean_t
 impl_215_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19079,7 +19079,7 @@ impl_216;
 
 static const afw_value_boolean_t
 impl_216_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19161,7 +19161,7 @@ impl_217;
 
 static const afw_value_boolean_t
 impl_217_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19243,7 +19243,7 @@ impl_218;
 
 static const afw_value_boolean_t
 impl_218_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19325,7 +19325,7 @@ impl_219;
 
 static const afw_value_boolean_t
 impl_219_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19407,7 +19407,7 @@ impl_220;
 
 static const afw_value_boolean_t
 impl_220_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19489,7 +19489,7 @@ impl_221;
 
 static const afw_value_boolean_t
 impl_221_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19571,7 +19571,7 @@ impl_222;
 
 static const afw_value_boolean_t
 impl_222_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19653,7 +19653,7 @@ impl_223;
 
 static const afw_value_boolean_t
 impl_223_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19735,7 +19735,7 @@ impl_224;
 
 static const afw_value_boolean_t
 impl_224_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -19814,7 +19814,7 @@ impl_224 = {
 
 static const afw_value_object_t
 impl_203_property_value_alert = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_204
 };
 
@@ -19826,7 +19826,7 @@ impl_203_property_alert = {
 
 static const afw_value_object_t
 impl_203_property_value_crit = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_205
 };
 
@@ -19838,7 +19838,7 @@ impl_203_property_crit = {
 
 static const afw_value_object_t
 impl_203_property_value_custom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_206
 };
 
@@ -19850,7 +19850,7 @@ impl_203_property_custom = {
 
 static const afw_value_object_t
 impl_203_property_value_debug = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_207
 };
 
@@ -19862,7 +19862,7 @@ impl_203_property_debug = {
 
 static const afw_value_object_t
 impl_203_property_value_emerg = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_208
 };
 
@@ -19874,7 +19874,7 @@ impl_203_property_emerg = {
 
 static const afw_value_object_t
 impl_203_property_value_err = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_209
 };
 
@@ -19886,7 +19886,7 @@ impl_203_property_err = {
 
 static const afw_value_object_t
 impl_203_property_value_filter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_210
 };
 
@@ -19898,7 +19898,7 @@ impl_203_property_filter = {
 
 static const afw_value_object_t
 impl_203_property_value_format = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_211
 };
 
@@ -19910,7 +19910,7 @@ impl_203_property_format = {
 
 static const afw_value_object_t
 impl_203_property_value_info = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_212
 };
 
@@ -19922,7 +19922,7 @@ impl_203_property_info = {
 
 static const afw_value_object_t
 impl_203_property_value_logId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_213
 };
 
@@ -19934,7 +19934,7 @@ impl_203_property_logId = {
 
 static const afw_value_object_t
 impl_203_property_value_logType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_214
 };
 
@@ -19946,7 +19946,7 @@ impl_203_property_logType = {
 
 static const afw_value_object_t
 impl_203_property_value_notice = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_215
 };
 
@@ -19958,7 +19958,7 @@ impl_203_property_notice = {
 
 static const afw_value_object_t
 impl_203_property_value_trace1 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_216
 };
 
@@ -19970,7 +19970,7 @@ impl_203_property_trace1 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace2 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_217
 };
 
@@ -19982,7 +19982,7 @@ impl_203_property_trace2 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace3 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_218
 };
 
@@ -19994,7 +19994,7 @@ impl_203_property_trace3 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace4 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_219
 };
 
@@ -20006,7 +20006,7 @@ impl_203_property_trace4 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace5 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_220
 };
 
@@ -20018,7 +20018,7 @@ impl_203_property_trace5 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace6 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_221
 };
 
@@ -20030,7 +20030,7 @@ impl_203_property_trace6 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace7 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_222
 };
 
@@ -20042,7 +20042,7 @@ impl_203_property_trace7 = {
 
 static const afw_value_object_t
 impl_203_property_value_trace8 = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_223
 };
 
@@ -20054,7 +20054,7 @@ impl_203_property_trace8 = {
 
 static const afw_value_object_t
 impl_203_property_value_warning = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_224
 };
 
@@ -20105,7 +20105,7 @@ impl_203_parentPaths_list = {
 
 static const afw_value_array_t
 impl_203_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_203_parentPaths_list
 };
 
@@ -20144,7 +20144,7 @@ impl_203 = {
 
 static const afw_value_boolean_t
 impl_202_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20169,7 +20169,7 @@ impl_202_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_202_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_202_list_collectionURIs
 };
 
@@ -20193,7 +20193,7 @@ impl_202_property_objectType = {
 
 static const afw_value_object_t
 impl_202_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_203
 };
 
@@ -20272,7 +20272,7 @@ impl_226_parentPaths_list = {
 
 static const afw_value_array_t
 impl_226_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_226_parentPaths_list
 };
 
@@ -20311,7 +20311,7 @@ impl_226 = {
 
 static const afw_value_boolean_t
 impl_225_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20336,7 +20336,7 @@ impl_225_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_225_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_225_list_collectionURIs
 };
 
@@ -20360,7 +20360,7 @@ impl_225_property_objectType = {
 
 static const afw_value_object_t
 impl_225_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_226
 };
 
@@ -20439,7 +20439,7 @@ impl_228_parentPaths_list = {
 
 static const afw_value_array_t
 impl_228_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_228_parentPaths_list
 };
 
@@ -20478,7 +20478,7 @@ impl_228 = {
 
 static const afw_value_boolean_t
 impl_227_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20503,7 +20503,7 @@ impl_227_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_227_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_227_list_collectionURIs
 };
 
@@ -20527,7 +20527,7 @@ impl_227_property_objectType = {
 
 static const afw_value_object_t
 impl_227_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_228
 };
 
@@ -20615,7 +20615,7 @@ impl_231_property_label = {
 
 static const afw_value_boolean_t
 impl_231_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20697,7 +20697,7 @@ impl_232_property_label = {
 
 static const afw_value_boolean_t
 impl_232_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20779,7 +20779,7 @@ impl_233_property_label = {
 
 static const afw_value_boolean_t
 impl_233_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20861,7 +20861,7 @@ impl_234_property_label = {
 
 static const afw_value_boolean_t
 impl_234_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -20943,7 +20943,7 @@ impl_235_property_label = {
 
 static const afw_value_boolean_t
 impl_235_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21013,7 +21013,7 @@ impl_236_property_dataType = {
 
 static const afw_value_boolean_t
 impl_236_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -21037,7 +21037,7 @@ impl_236_property_label = {
 
 static const afw_value_boolean_t
 impl_236_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21120,7 +21120,7 @@ impl_237_property_label = {
 
 static const afw_value_boolean_t
 impl_237_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21202,7 +21202,7 @@ impl_238_property_label = {
 
 static const afw_value_boolean_t
 impl_238_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21257,7 +21257,7 @@ impl_238 = {
 
 static const afw_value_object_t
 impl_230_property_value_facility = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_231
 };
 
@@ -21269,7 +21269,7 @@ impl_230_property_facility = {
 
 static const afw_value_object_t
 impl_230_property_value_ident = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_232
 };
 
@@ -21281,7 +21281,7 @@ impl_230_property_ident = {
 
 static const afw_value_object_t
 impl_230_property_value_optionLogCons = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_233
 };
 
@@ -21293,7 +21293,7 @@ impl_230_property_optionLogCons = {
 
 static const afw_value_object_t
 impl_230_property_value_optionLogNoDelay = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_234
 };
 
@@ -21305,7 +21305,7 @@ impl_230_property_optionLogNoDelay = {
 
 static const afw_value_object_t
 impl_230_property_value_optionLogNoWait = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_235
 };
 
@@ -21317,7 +21317,7 @@ impl_230_property_optionLogNoWait = {
 
 static const afw_value_object_t
 impl_230_property_value_optionLogODelay = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_236
 };
 
@@ -21329,7 +21329,7 @@ impl_230_property_optionLogODelay = {
 
 static const afw_value_object_t
 impl_230_property_value_optionLogPError = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_237
 };
 
@@ -21341,7 +21341,7 @@ impl_230_property_optionLogPError = {
 
 static const afw_value_object_t
 impl_230_property_value_optionLogPid = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_238
 };
 
@@ -21379,7 +21379,7 @@ impl_230_parentPaths_list = {
 
 static const afw_value_array_t
 impl_230_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_230_parentPaths_list
 };
 
@@ -21418,7 +21418,7 @@ impl_230 = {
 
 static const afw_value_boolean_t
 impl_229_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21443,7 +21443,7 @@ impl_229_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_229_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_229_list_collectionURIs
 };
 
@@ -21467,7 +21467,7 @@ impl_229_property_objectType = {
 
 static const afw_value_object_t
 impl_229_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_230
 };
 
@@ -21531,7 +21531,7 @@ impl_241;
 
 static const afw_value_boolean_t
 impl_241_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -21613,7 +21613,7 @@ impl_242;
 
 static const afw_value_boolean_t
 impl_242_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -21649,7 +21649,7 @@ impl_242_property_label = {
 
 static const afw_value_boolean_t
 impl_242_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21705,7 +21705,7 @@ impl_242 = {
 
 static const afw_value_object_t
 impl_240_property_value_requestHandlerType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_241
 };
 
@@ -21717,7 +21717,7 @@ impl_240_property_requestHandlerType = {
 
 static const afw_value_object_t
 impl_240_property_value_uriPrefix = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_242
 };
 
@@ -21749,7 +21749,7 @@ impl_240_parentPaths_list = {
 
 static const afw_value_array_t
 impl_240_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_240_parentPaths_list
 };
 
@@ -21788,7 +21788,7 @@ impl_240 = {
 
 static const afw_value_boolean_t
 impl_239_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -21813,7 +21813,7 @@ impl_239_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_239_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_239_list_collectionURIs
 };
 
@@ -21837,7 +21837,7 @@ impl_239_property_objectType = {
 
 static const afw_value_object_t
 impl_239_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_240
 };
 
@@ -21901,7 +21901,7 @@ impl_245;
 
 static const afw_value_boolean_t
 impl_245_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -21983,7 +21983,7 @@ impl_246;
 
 static const afw_value_boolean_t
 impl_246_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -22072,7 +22072,7 @@ impl_247;
 
 static const afw_value_boolean_t
 impl_247_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -22151,7 +22151,7 @@ impl_247 = {
 
 static const afw_value_object_t
 impl_244_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_245
 };
 
@@ -22163,7 +22163,7 @@ impl_244_property_adaptorId = {
 
 static const afw_value_object_t
 impl_244_property_value_defaultOptions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_246
 };
 
@@ -22175,7 +22175,7 @@ impl_244_property_defaultOptions = {
 
 static const afw_value_object_t
 impl_244_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_247
 };
 
@@ -22208,7 +22208,7 @@ impl_244_parentPaths_list = {
 
 static const afw_value_array_t
 impl_244_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_244_parentPaths_list
 };
 
@@ -22247,7 +22247,7 @@ impl_244 = {
 
 static const afw_value_boolean_t
 impl_243_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -22272,7 +22272,7 @@ impl_243_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_243_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_243_list_collectionURIs
 };
 
@@ -22296,7 +22296,7 @@ impl_243_property_objectType = {
 
 static const afw_value_object_t
 impl_243_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_244
 };
 
@@ -22439,7 +22439,7 @@ impl_250_property_label = {
 
 static const afw_value_object_t
 impl_250_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_251
 };
 
@@ -22494,7 +22494,7 @@ impl_250 = {
 
 static const afw_value_object_t
 impl_249_property_value_mediaType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_250
 };
 
@@ -22551,7 +22551,7 @@ impl_253;
 
 static const afw_value_boolean_t
 impl_253_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -22609,7 +22609,7 @@ impl_253 = {
 
 static const afw_value_boolean_t
 impl_252_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -22621,7 +22621,7 @@ impl_252_property_indirect = {
 
 static const afw_value_object_t
 impl_252_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_253
 };
 
@@ -22680,7 +22680,7 @@ impl_252 = {
 
 static const afw_value_boolean_t
 impl_248_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -22692,7 +22692,7 @@ impl_248_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_248_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -22704,7 +22704,7 @@ impl_248_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_248_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -22716,7 +22716,7 @@ impl_248_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_248_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -22741,7 +22741,7 @@ impl_248_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_248_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_248_list_collectionURIs
 };
 
@@ -22765,7 +22765,7 @@ impl_248_property_objectType = {
 
 static const afw_value_object_t
 impl_248_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_249
 };
 
@@ -22777,7 +22777,7 @@ impl_248_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_248_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_252
 };
 
@@ -22845,7 +22845,7 @@ impl_256;
 
 static const afw_value_boolean_t
 impl_256_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -22927,7 +22927,7 @@ impl_257;
 
 static const afw_value_boolean_t
 impl_257_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23016,7 +23016,7 @@ impl_258;
 
 static const afw_value_boolean_t
 impl_258_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23105,7 +23105,7 @@ impl_259;
 
 static const afw_value_boolean_t
 impl_259_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23184,7 +23184,7 @@ impl_259 = {
 
 static const afw_value_object_t
 impl_255_property_value_contextTypeId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_256
 };
 
@@ -23196,7 +23196,7 @@ impl_255_property_contextTypeId = {
 
 static const afw_value_object_t
 impl_255_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_257
 };
 
@@ -23208,7 +23208,7 @@ impl_255_property_description = {
 
 static const afw_value_object_t
 impl_255_property_value_qualifierDefinitions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_258
 };
 
@@ -23220,7 +23220,7 @@ impl_255_property_qualifierDefinitions = {
 
 static const afw_value_object_t
 impl_255_property_value_title = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_259
 };
 
@@ -23274,7 +23274,7 @@ impl_255 = {
 
 static const afw_value_boolean_t
 impl_254_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23286,7 +23286,7 @@ impl_254_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_254_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23298,7 +23298,7 @@ impl_254_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_254_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23310,7 +23310,7 @@ impl_254_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_254_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23335,7 +23335,7 @@ impl_254_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_254_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_254_list_collectionURIs
 };
 
@@ -23365,7 +23365,7 @@ impl_254_property_objectType = {
 
 static const afw_value_object_t
 impl_254_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_255
 };
 
@@ -23433,7 +23433,7 @@ impl_262;
 
 static const afw_value_boolean_t
 impl_262_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23469,7 +23469,7 @@ impl_262_property_label = {
 
 static const afw_value_boolean_t
 impl_262_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23528,7 +23528,7 @@ impl_263;
 
 static const afw_value_boolean_t
 impl_263_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23564,7 +23564,7 @@ impl_263_property_label = {
 
 static const afw_value_boolean_t
 impl_263_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23620,7 +23620,7 @@ impl_263 = {
 
 static const afw_value_object_t
 impl_261_property_value_afw_value_get_evaluated_meta = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_262
 };
 
@@ -23632,7 +23632,7 @@ impl_261_property_afw_value_get_evaluated_meta = {
 
 static const afw_value_object_t
 impl_261_property_value_afw_value_get_evaluated_metas = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_263
 };
 
@@ -23664,7 +23664,7 @@ impl_261_parentPaths_list = {
 
 static const afw_value_array_t
 impl_261_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_261_parentPaths_list
 };
 
@@ -23703,7 +23703,7 @@ impl_261 = {
 
 static const afw_value_boolean_t
 impl_260_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23715,7 +23715,7 @@ impl_260_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_260_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23727,7 +23727,7 @@ impl_260_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_260_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23739,7 +23739,7 @@ impl_260_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_260_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23764,7 +23764,7 @@ impl_260_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_260_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_260_list_collectionURIs
 };
 
@@ -23788,7 +23788,7 @@ impl_260_property_objectType = {
 
 static const afw_value_object_t
 impl_260_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_261
 };
 
@@ -23855,7 +23855,7 @@ impl_266;
 
 static const afw_value_boolean_t
 impl_266_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23891,7 +23891,7 @@ impl_266_property_label = {
 
 static const afw_value_boolean_t
 impl_266_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -23950,7 +23950,7 @@ impl_267;
 
 static const afw_value_boolean_t
 impl_267_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -23986,7 +23986,7 @@ impl_267_property_label = {
 
 static const afw_value_boolean_t
 impl_267_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24100,7 +24100,7 @@ impl_269 = {
 
 static const afw_value_boolean_t
 impl_268_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24136,7 +24136,7 @@ impl_268_property_label = {
 
 static const afw_value_boolean_t
 impl_268_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -24148,7 +24148,7 @@ impl_268_property_required = {
 
 static const afw_value_object_t
 impl_268_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_269
 };
 
@@ -24256,7 +24256,7 @@ impl_271 = {
 
 static const afw_value_boolean_t
 impl_270_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24292,7 +24292,7 @@ impl_270_property_label = {
 
 static const afw_value_boolean_t
 impl_270_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24304,7 +24304,7 @@ impl_270_property_required = {
 
 static const afw_value_object_t
 impl_270_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_271
 };
 
@@ -24412,7 +24412,7 @@ impl_273 = {
 
 static const afw_value_boolean_t
 impl_272_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24466,7 +24466,7 @@ impl_272_list_possibleValues = {
 
 static const afw_value_array_t
 impl_272_property_value_possibleValues = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_272_list_possibleValues
 };
 
@@ -24478,7 +24478,7 @@ impl_272_property_possibleValues = {
 
 static const afw_value_boolean_t
 impl_272_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -24490,7 +24490,7 @@ impl_272_property_required = {
 
 static const afw_value_object_t
 impl_272_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_273
 };
 
@@ -24551,7 +24551,7 @@ impl_274;
 
 static const afw_value_boolean_t
 impl_274_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24593,7 +24593,7 @@ impl_274_property_label = {
 
 static const afw_value_boolean_t
 impl_274_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -24653,7 +24653,7 @@ impl_275;
 
 static const afw_value_boolean_t
 impl_275_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24735,7 +24735,7 @@ impl_276;
 
 static const afw_value_boolean_t
 impl_276_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24865,7 +24865,7 @@ impl_278 = {
 
 static const afw_value_boolean_t
 impl_277_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -24889,7 +24889,7 @@ impl_277_property_dataType = {
 
 static const afw_value_boolean_t
 impl_277_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -24913,7 +24913,7 @@ impl_277_property_label = {
 
 static const afw_value_boolean_t
 impl_277_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -24925,7 +24925,7 @@ impl_277_property_required = {
 
 static const afw_value_object_t
 impl_277_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_278
 };
 
@@ -24986,7 +24986,7 @@ impl_279;
 
 static const afw_value_boolean_t
 impl_279_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25022,7 +25022,7 @@ impl_279_property_label = {
 
 static const afw_value_boolean_t
 impl_279_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -25081,7 +25081,7 @@ impl_280;
 
 static const afw_value_boolean_t
 impl_280_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25117,7 +25117,7 @@ impl_280_property_label = {
 
 static const afw_value_boolean_t
 impl_280_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -25176,7 +25176,7 @@ impl_281;
 
 static const afw_value_boolean_t
 impl_281_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25212,7 +25212,7 @@ impl_281_property_label = {
 
 static const afw_value_boolean_t
 impl_281_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -25271,7 +25271,7 @@ impl_282;
 
 static const afw_value_boolean_t
 impl_282_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25353,7 +25353,7 @@ impl_283;
 
 static const afw_value_boolean_t
 impl_283_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25435,7 +25435,7 @@ impl_284;
 
 static const afw_value_boolean_t
 impl_284_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25514,7 +25514,7 @@ impl_284 = {
 
 static const afw_value_object_t
 impl_265_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_266
 };
 
@@ -25526,7 +25526,7 @@ impl_265_property_brief = {
 
 static const afw_value_object_t
 impl_265_property_value_cType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_267
 };
 
@@ -25538,7 +25538,7 @@ impl_265_property_cType = {
 
 static const afw_value_object_t
 impl_265_property_value_compileType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_268
 };
 
@@ -25550,7 +25550,7 @@ impl_265_property_compileType = {
 
 static const afw_value_object_t
 impl_265_property_value_dataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_270
 };
 
@@ -25562,7 +25562,7 @@ impl_265_property_dataType = {
 
 static const afw_value_object_t
 impl_265_property_value_dataTypeParameterType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_272
 };
 
@@ -25574,7 +25574,7 @@ impl_265_property_dataTypeParameterType = {
 
 static const afw_value_object_t
 impl_265_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_274
 };
 
@@ -25586,7 +25586,7 @@ impl_265_property_description = {
 
 static const afw_value_object_t
 impl_265_property_value_directReturn = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_275
 };
 
@@ -25598,7 +25598,7 @@ impl_265_property_directReturn = {
 
 static const afw_value_object_t
 impl_265_property_value_evaluated = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_276
 };
 
@@ -25610,7 +25610,7 @@ impl_265_property_evaluated = {
 
 static const afw_value_object_t
 impl_265_property_value_jsonImpliesDataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_277
 };
 
@@ -25622,7 +25622,7 @@ impl_265_property_jsonImpliesDataType = {
 
 static const afw_value_object_t
 impl_265_property_value_jsonPrimitive = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_279
 };
 
@@ -25634,7 +25634,7 @@ impl_265_property_jsonPrimitive = {
 
 static const afw_value_object_t
 impl_265_property_value_jsonSchemaStringFormat = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_280
 };
 
@@ -25646,7 +25646,7 @@ impl_265_property_jsonSchemaStringFormat = {
 
 static const afw_value_object_t
 impl_265_property_value_ldapOid = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_281
 };
 
@@ -25658,7 +25658,7 @@ impl_265_property_ldapOid = {
 
 static const afw_value_object_t
 impl_265_property_value_relationalCompares = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_282
 };
 
@@ -25670,7 +25670,7 @@ impl_265_property_relationalCompares = {
 
 static const afw_value_object_t
 impl_265_property_value_scalar = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_283
 };
 
@@ -25682,7 +25682,7 @@ impl_265_property_scalar = {
 
 static const afw_value_object_t
 impl_265_property_value_special = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_284
 };
 
@@ -25798,7 +25798,7 @@ impl_286 = {
 
 static const afw_value_boolean_t
 impl_285_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25810,7 +25810,7 @@ impl_285_property_indirect = {
 
 static const afw_value_object_t
 impl_285_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_286
 };
 
@@ -25869,7 +25869,7 @@ impl_285 = {
 
 static const afw_value_boolean_t
 impl_264_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -25881,7 +25881,7 @@ impl_264_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_264_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -25893,7 +25893,7 @@ impl_264_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_264_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -25905,7 +25905,7 @@ impl_264_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_264_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -25930,7 +25930,7 @@ impl_264_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_264_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_264_list_collectionURIs
 };
 
@@ -25954,7 +25954,7 @@ impl_264_property_objectType = {
 
 static const afw_value_object_t
 impl_264_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_265
 };
 
@@ -25966,7 +25966,7 @@ impl_264_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_264_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_285
 };
 
@@ -26082,7 +26082,7 @@ impl_290 = {
 
 static const afw_value_boolean_t
 impl_289_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26118,7 +26118,7 @@ impl_289_property_label = {
 
 static const afw_value_object_t
 impl_289_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_290
 };
 
@@ -26225,7 +26225,7 @@ impl_292 = {
 
 static const afw_value_boolean_t
 impl_291_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26261,7 +26261,7 @@ impl_291_property_label = {
 
 static const afw_value_object_t
 impl_291_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_292
 };
 
@@ -26368,7 +26368,7 @@ impl_294 = {
 
 static const afw_value_boolean_t
 impl_293_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26410,7 +26410,7 @@ impl_293_property_label = {
 
 static const afw_value_object_t
 impl_293_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_294
 };
 
@@ -26525,7 +26525,7 @@ impl_296 = {
 
 static const afw_value_boolean_t
 impl_295_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26561,7 +26561,7 @@ impl_295_property_label = {
 
 static const afw_value_object_t
 impl_295_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_296
 };
 
@@ -26675,7 +26675,7 @@ impl_298 = {
 
 static const afw_value_boolean_t
 impl_297_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26711,7 +26711,7 @@ impl_297_property_label = {
 
 static const afw_value_object_t
 impl_297_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_298
 };
 
@@ -26767,7 +26767,7 @@ impl_297 = {
 
 static const afw_value_object_t
 impl_288_property_value_allowReregister = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_289
 };
 
@@ -26779,7 +26779,7 @@ impl_288_property_allowReregister = {
 
 static const afw_value_object_t
 impl_288_property_value_autoRegister = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_291
 };
 
@@ -26791,7 +26791,7 @@ impl_288_property_autoRegister = {
 
 static const afw_value_object_t
 impl_288_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_293
 };
 
@@ -26803,7 +26803,7 @@ impl_288_property_description = {
 
 static const afw_value_object_t
 impl_288_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_295
 };
 
@@ -26815,7 +26815,7 @@ impl_288_property_objectType = {
 
 static const afw_value_object_t
 impl_288_property_value_registryType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_297
 };
 
@@ -26876,7 +26876,7 @@ impl_300;
 
 static const afw_value_boolean_t
 impl_300_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26934,7 +26934,7 @@ impl_300 = {
 
 static const afw_value_boolean_t
 impl_299_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -26946,7 +26946,7 @@ impl_299_property_indirect = {
 
 static const afw_value_object_t
 impl_299_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_300
 };
 
@@ -27005,7 +27005,7 @@ impl_299 = {
 
 static const afw_value_boolean_t
 impl_287_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27017,7 +27017,7 @@ impl_287_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_287_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27029,7 +27029,7 @@ impl_287_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_287_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27041,7 +27041,7 @@ impl_287_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_287_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27066,7 +27066,7 @@ impl_287_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_287_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_287_list_collectionURIs
 };
 
@@ -27090,7 +27090,7 @@ impl_287_property_objectType = {
 
 static const afw_value_object_t
 impl_287_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_288
 };
 
@@ -27102,7 +27102,7 @@ impl_287_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_287_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_299
 };
 
@@ -27212,7 +27212,7 @@ impl_302 = {
 
 static const afw_value_boolean_t
 impl_301_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27224,7 +27224,7 @@ impl_301_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_301_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27236,7 +27236,7 @@ impl_301_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_301_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27248,7 +27248,7 @@ impl_301_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_301_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27273,7 +27273,7 @@ impl_301_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_301_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_301_list_collectionURIs
 };
 
@@ -27297,7 +27297,7 @@ impl_301_property_objectType = {
 
 static const afw_value_object_t
 impl_301_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_302
 };
 
@@ -27406,7 +27406,7 @@ impl_304 = {
 
 static const afw_value_boolean_t
 impl_303_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27431,7 +27431,7 @@ impl_303_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_303_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_303_list_collectionURIs
 };
 
@@ -27455,7 +27455,7 @@ impl_303_property_objectType = {
 
 static const afw_value_object_t
 impl_303_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_304
 };
 
@@ -27567,7 +27567,7 @@ impl_308 = {
 
 static const afw_value_boolean_t
 impl_307_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27603,7 +27603,7 @@ impl_307_property_label = {
 
 static const afw_value_object_t
 impl_307_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_308
 };
 
@@ -27659,7 +27659,7 @@ impl_307 = {
 
 static const afw_value_object_t
 impl_306_property_value_key = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_307
 };
 
@@ -27716,7 +27716,7 @@ impl_310;
 
 static const afw_value_boolean_t
 impl_310_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27774,7 +27774,7 @@ impl_310 = {
 
 static const afw_value_boolean_t
 impl_309_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27786,7 +27786,7 @@ impl_309_property_indirect = {
 
 static const afw_value_object_t
 impl_309_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_310
 };
 
@@ -27845,7 +27845,7 @@ impl_309 = {
 
 static const afw_value_boolean_t
 impl_305_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27857,7 +27857,7 @@ impl_305_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_305_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27869,7 +27869,7 @@ impl_305_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_305_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -27881,7 +27881,7 @@ impl_305_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_305_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -27906,7 +27906,7 @@ impl_305_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_305_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_305_list_collectionURIs
 };
 
@@ -27930,7 +27930,7 @@ impl_305_property_objectType = {
 
 static const afw_value_object_t
 impl_305_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_306
 };
 
@@ -27942,7 +27942,7 @@ impl_305_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_305_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_309
 };
 
@@ -29504,7 +29504,7 @@ impl_334 = {
 
 static const afw_value_object_t
 impl_313_property_value_actionNumber = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_314
 };
 
@@ -29516,7 +29516,7 @@ impl_313_property_actionNumber = {
 
 static const afw_value_object_t
 impl_313_property_value_backtrace = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_315
 };
 
@@ -29528,7 +29528,7 @@ impl_313_property_backtrace = {
 
 static const afw_value_object_t
 impl_313_property_value_backtraceEvaluation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_316
 };
 
@@ -29540,7 +29540,7 @@ impl_313_property_backtraceEvaluation = {
 
 static const afw_value_object_t
 impl_313_property_value_column = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_317
 };
 
@@ -29552,7 +29552,7 @@ impl_313_property_column = {
 
 static const afw_value_object_t
 impl_313_property_value_data = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_318
 };
 
@@ -29564,7 +29564,7 @@ impl_313_property_data = {
 
 static const afw_value_object_t
 impl_313_property_value_errorCode = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_319
 };
 
@@ -29576,7 +29576,7 @@ impl_313_property_errorCode = {
 
 static const afw_value_object_t
 impl_313_property_value_errorSource = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_320
 };
 
@@ -29588,7 +29588,7 @@ impl_313_property_errorSource = {
 
 static const afw_value_object_t
 impl_313_property_value_id = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_321
 };
 
@@ -29600,7 +29600,7 @@ impl_313_property_id = {
 
 static const afw_value_object_t
 impl_313_property_value_line = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_322
 };
 
@@ -29612,7 +29612,7 @@ impl_313_property_line = {
 
 static const afw_value_object_t
 impl_313_property_value_message = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_323
 };
 
@@ -29624,7 +29624,7 @@ impl_313_property_message = {
 
 static const afw_value_object_t
 impl_313_property_value_offset = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_324
 };
 
@@ -29636,7 +29636,7 @@ impl_313_property_offset = {
 
 static const afw_value_object_t
 impl_313_property_value_parserColumnNumber = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_325
 };
 
@@ -29648,7 +29648,7 @@ impl_313_property_parserColumnNumber = {
 
 static const afw_value_object_t
 impl_313_property_value_parserCursor = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_326
 };
 
@@ -29660,7 +29660,7 @@ impl_313_property_parserCursor = {
 
 static const afw_value_object_t
 impl_313_property_value_parserLineNumber = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_327
 };
 
@@ -29672,7 +29672,7 @@ impl_313_property_parserLineNumber = {
 
 static const afw_value_object_t
 impl_313_property_value_parserSource = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_328
 };
 
@@ -29684,7 +29684,7 @@ impl_313_property_parserSource = {
 
 static const afw_value_object_t
 impl_313_property_value_rv = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_329
 };
 
@@ -29696,7 +29696,7 @@ impl_313_property_rv = {
 
 static const afw_value_object_t
 impl_313_property_value_rvDecoded = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_330
 };
 
@@ -29708,7 +29708,7 @@ impl_313_property_rvDecoded = {
 
 static const afw_value_object_t
 impl_313_property_value_rvSourceId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_331
 };
 
@@ -29720,7 +29720,7 @@ impl_313_property_rvSourceId = {
 
 static const afw_value_object_t
 impl_313_property_value_sourceFile = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_332
 };
 
@@ -29732,7 +29732,7 @@ impl_313_property_sourceFile = {
 
 static const afw_value_object_t
 impl_313_property_value_sourceLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_333
 };
 
@@ -29744,7 +29744,7 @@ impl_313_property_sourceLocation = {
 
 static const afw_value_object_t
 impl_313_property_value_xctxUUID = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_334
 };
 
@@ -29815,7 +29815,7 @@ impl_313 = {
 
 static const afw_value_boolean_t
 impl_311_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -29827,7 +29827,7 @@ impl_311_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_311_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -29839,7 +29839,7 @@ impl_311_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_311_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -29851,7 +29851,7 @@ impl_311_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_311_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -29876,7 +29876,7 @@ impl_311_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_311_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_311_list_collectionURIs
 };
 
@@ -29900,7 +29900,7 @@ impl_311_property_objectType = {
 
 static const afw_value_object_t
 impl_311_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_312
 };
 
@@ -29912,7 +29912,7 @@ impl_311_property_otherProperties = {
 
 static const afw_value_object_t
 impl_311_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_313
 };
 
@@ -30028,7 +30028,7 @@ impl_338 = {
 
 static const afw_value_boolean_t
 impl_337_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -30064,7 +30064,7 @@ impl_337_property_label = {
 
 static const afw_value_object_t
 impl_337_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_338
 };
 
@@ -30171,7 +30171,7 @@ impl_340 = {
 
 static const afw_value_boolean_t
 impl_339_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -30207,7 +30207,7 @@ impl_339_property_label = {
 
 static const afw_value_object_t
 impl_339_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_340
 };
 
@@ -30314,7 +30314,7 @@ impl_342 = {
 
 static const afw_value_boolean_t
 impl_341_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -30350,7 +30350,7 @@ impl_341_property_label = {
 
 static const afw_value_object_t
 impl_341_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_342
 };
 
@@ -30406,7 +30406,7 @@ impl_341 = {
 
 static const afw_value_object_t
 impl_336_property_value_afwCompiledVersion = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_337
 };
 
@@ -30418,7 +30418,7 @@ impl_336_property_afwCompiledVersion = {
 
 static const afw_value_object_t
 impl_336_property_value_extensionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_339
 };
 
@@ -30430,7 +30430,7 @@ impl_336_property_extensionId = {
 
 static const afw_value_object_t
 impl_336_property_value_extensionVersion = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_341
 };
 
@@ -30534,7 +30534,7 @@ impl_344 = {
 
 static const afw_value_boolean_t
 impl_343_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -30546,7 +30546,7 @@ impl_343_property_indirect = {
 
 static const afw_value_object_t
 impl_343_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_344
 };
 
@@ -30605,7 +30605,7 @@ impl_343 = {
 
 static const afw_value_boolean_t
 impl_335_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -30617,7 +30617,7 @@ impl_335_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_335_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -30629,7 +30629,7 @@ impl_335_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_335_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -30641,7 +30641,7 @@ impl_335_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_335_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -30666,7 +30666,7 @@ impl_335_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_335_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_335_list_collectionURIs
 };
 
@@ -30690,7 +30690,7 @@ impl_335_property_objectType = {
 
 static const afw_value_object_t
 impl_335_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_336
 };
 
@@ -30702,7 +30702,7 @@ impl_335_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_335_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_343
 };
 
@@ -30825,7 +30825,7 @@ impl_348 = {
 
 static const afw_value_boolean_t
 impl_347_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -30867,7 +30867,7 @@ impl_347_property_label = {
 
 static const afw_value_object_t
 impl_347_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_348
 };
 
@@ -30975,7 +30975,7 @@ impl_350 = {
 
 static const afw_value_boolean_t
 impl_349_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -31011,7 +31011,7 @@ impl_349_property_label = {
 
 static const afw_value_object_t
 impl_349_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_350
 };
 
@@ -31118,7 +31118,7 @@ impl_352 = {
 
 static const afw_value_boolean_t
 impl_351_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -31160,7 +31160,7 @@ impl_351_property_label = {
 
 static const afw_value_object_t
 impl_351_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_352
 };
 
@@ -31275,7 +31275,7 @@ impl_354 = {
 
 static const afw_value_boolean_t
 impl_353_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -31311,7 +31311,7 @@ impl_353_property_label = {
 
 static const afw_value_object_t
 impl_353_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_354
 };
 
@@ -31425,7 +31425,7 @@ impl_356 = {
 
 static const afw_value_boolean_t
 impl_355_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -31461,7 +31461,7 @@ impl_355_property_label = {
 
 static const afw_value_object_t
 impl_355_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_356
 };
 
@@ -31575,7 +31575,7 @@ impl_358 = {
 
 static const afw_value_boolean_t
 impl_357_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -31617,7 +31617,7 @@ impl_357_property_label = {
 
 static const afw_value_object_t
 impl_357_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_358
 };
 
@@ -31732,7 +31732,7 @@ impl_360 = {
 
 static const afw_value_boolean_t
 impl_359_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -31774,7 +31774,7 @@ impl_359_property_label = {
 
 static const afw_value_object_t
 impl_359_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_360
 };
 
@@ -31831,7 +31831,7 @@ impl_359 = {
 
 static const afw_value_object_t
 impl_346_property_value_applicableFlags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_347
 };
 
@@ -31843,7 +31843,7 @@ impl_346_property_applicableFlags = {
 
 static const afw_value_object_t
 impl_346_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_349
 };
 
@@ -31855,7 +31855,7 @@ impl_346_property_brief = {
 
 static const afw_value_object_t
 impl_346_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_351
 };
 
@@ -31867,7 +31867,7 @@ impl_346_property_description = {
 
 static const afw_value_object_t
 impl_346_property_value_flagId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_353
 };
 
@@ -31879,7 +31879,7 @@ impl_346_property_flagId = {
 
 static const afw_value_object_t
 impl_346_property_value_flagIndex = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_355
 };
 
@@ -31891,7 +31891,7 @@ impl_346_property_flagIndex = {
 
 static const afw_value_object_t
 impl_346_property_value_includedByFlags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_357
 };
 
@@ -31903,7 +31903,7 @@ impl_346_property_includedByFlags = {
 
 static const afw_value_object_t
 impl_346_property_value_includesFlags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_359
 };
 
@@ -32011,7 +32011,7 @@ impl_362 = {
 
 static const afw_value_boolean_t
 impl_361_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32023,7 +32023,7 @@ impl_361_property_indirect = {
 
 static const afw_value_object_t
 impl_361_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_362
 };
 
@@ -32082,7 +32082,7 @@ impl_361 = {
 
 static const afw_value_boolean_t
 impl_345_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32094,7 +32094,7 @@ impl_345_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_345_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32106,7 +32106,7 @@ impl_345_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_345_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32118,7 +32118,7 @@ impl_345_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_345_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32143,7 +32143,7 @@ impl_345_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_345_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_345_list_collectionURIs
 };
 
@@ -32167,7 +32167,7 @@ impl_345_property_objectType = {
 
 static const afw_value_object_t
 impl_345_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_346
 };
 
@@ -32179,7 +32179,7 @@ impl_345_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_345_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_361
 };
 
@@ -32247,7 +32247,7 @@ impl_365;
 
 static const afw_value_boolean_t
 impl_365_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32283,7 +32283,7 @@ impl_365_property_label = {
 
 static const afw_value_boolean_t
 impl_365_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32342,7 +32342,7 @@ impl_366;
 
 static const afw_value_boolean_t
 impl_366_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32378,7 +32378,7 @@ impl_366_property_label = {
 
 static const afw_value_boolean_t
 impl_366_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32437,7 +32437,7 @@ impl_367;
 
 static const afw_value_boolean_t
 impl_367_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32473,7 +32473,7 @@ impl_367_property_label = {
 
 static const afw_value_boolean_t
 impl_367_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32532,7 +32532,7 @@ impl_368;
 
 static const afw_value_boolean_t
 impl_368_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32618,7 +32618,7 @@ impl_368 = {
 
 static const afw_value_object_t
 impl_364_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_365
 };
 
@@ -32630,7 +32630,7 @@ impl_364_property_brief = {
 
 static const afw_value_object_t
 impl_364_property_value_category = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_366
 };
 
@@ -32642,7 +32642,7 @@ impl_364_property_category = {
 
 static const afw_value_object_t
 impl_364_property_value_dataTypeCategory = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_367
 };
 
@@ -32654,7 +32654,7 @@ impl_364_property_dataTypeCategory = {
 
 static const afw_value_object_t
 impl_364_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_368
 };
 
@@ -32708,7 +32708,7 @@ impl_364 = {
 
 static const afw_value_boolean_t
 impl_363_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32733,7 +32733,7 @@ impl_363_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_363_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_363_list_collectionURIs
 };
 
@@ -32757,7 +32757,7 @@ impl_363_property_objectType = {
 
 static const afw_value_object_t
 impl_363_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_364
 };
 
@@ -32821,7 +32821,7 @@ impl_371;
 
 static const afw_value_boolean_t
 impl_371_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32851,7 +32851,7 @@ impl_371_property_label = {
 
 static const afw_value_boolean_t
 impl_371_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32909,7 +32909,7 @@ impl_372;
 
 static const afw_value_boolean_t
 impl_372_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -32939,7 +32939,7 @@ impl_372_property_label = {
 
 static const afw_value_boolean_t
 impl_372_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -32997,7 +32997,7 @@ impl_373;
 
 static const afw_value_boolean_t
 impl_373_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33033,7 +33033,7 @@ impl_373_property_label = {
 
 static const afw_value_boolean_t
 impl_373_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -33092,7 +33092,7 @@ impl_374;
 
 static const afw_value_boolean_t
 impl_374_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33122,7 +33122,7 @@ impl_374_property_label = {
 
 static const afw_value_boolean_t
 impl_374_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33249,7 +33249,7 @@ impl_376;
 
 static const afw_value_boolean_t
 impl_376_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33267,7 +33267,7 @@ impl_376_property_dataType = {
 
 static const afw_value_boolean_t
 impl_376_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -33337,7 +33337,7 @@ impl_377;
 
 static const afw_value_boolean_t
 impl_377_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33361,7 +33361,7 @@ impl_377_property_dataTypeParameter = {
 
 static const afw_value_boolean_t
 impl_377_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -33432,7 +33432,7 @@ impl_378;
 
 static const afw_value_boolean_t
 impl_378_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33450,7 +33450,7 @@ impl_378_property_dataType = {
 
 static const afw_value_boolean_t
 impl_378_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -33520,7 +33520,7 @@ impl_379;
 
 static const afw_value_boolean_t
 impl_379_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33556,7 +33556,7 @@ impl_379_property_label = {
 
 static const afw_value_boolean_t
 impl_379_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33612,7 +33612,7 @@ impl_379 = {
 
 static const afw_value_object_t
 impl_370_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_371
 };
 
@@ -33624,7 +33624,7 @@ impl_370_property_brief = {
 
 static const afw_value_object_t
 impl_370_property_value_dataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_372
 };
 
@@ -33636,7 +33636,7 @@ impl_370_property_dataType = {
 
 static const afw_value_object_t
 impl_370_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_373
 };
 
@@ -33648,7 +33648,7 @@ impl_370_property_description = {
 
 static const afw_value_object_t
 impl_370_property_value_functionDeclarationId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_374
 };
 
@@ -33660,7 +33660,7 @@ impl_370_property_functionDeclarationId = {
 
 static const afw_value_object_t
 impl_370_property_value_parameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_375
 };
 
@@ -33672,7 +33672,7 @@ impl_370_property_parameters = {
 
 static const afw_value_object_t
 impl_370_property_value_polymorphic = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_376
 };
 
@@ -33684,7 +33684,7 @@ impl_370_property_polymorphic = {
 
 static const afw_value_object_t
 impl_370_property_value_polymorphicDataTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_377
 };
 
@@ -33696,7 +33696,7 @@ impl_370_property_polymorphicDataTypes = {
 
 static const afw_value_object_t
 impl_370_property_value_pure = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_378
 };
 
@@ -33708,7 +33708,7 @@ impl_370_property_pure = {
 
 static const afw_value_object_t
 impl_370_property_value_returns = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_379
 };
 
@@ -33767,7 +33767,7 @@ impl_370 = {
 
 static const afw_value_boolean_t
 impl_369_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -33792,7 +33792,7 @@ impl_369_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_369_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_369_list_collectionURIs
 };
 
@@ -33822,7 +33822,7 @@ impl_369_property_objectType = {
 
 static const afw_value_object_t
 impl_369_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_370
 };
 
@@ -33887,7 +33887,7 @@ impl_382;
 
 static const afw_value_boolean_t
 impl_382_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33923,7 +33923,7 @@ impl_382_property_label = {
 
 static const afw_value_boolean_t
 impl_382_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -33982,7 +33982,7 @@ impl_383;
 
 static const afw_value_boolean_t
 impl_383_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34018,7 +34018,7 @@ impl_383_property_label = {
 
 static const afw_value_boolean_t
 impl_383_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34074,7 +34074,7 @@ impl_383 = {
 
 static const afw_value_object_t
 impl_381_property_value_error = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_382
 };
 
@@ -34086,7 +34086,7 @@ impl_381_property_error = {
 
 static const afw_value_object_t
 impl_381_property_value_reason = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_383
 };
 
@@ -34138,7 +34138,7 @@ impl_381 = {
 
 static const afw_value_boolean_t
 impl_380_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34163,7 +34163,7 @@ impl_380_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_380_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_380_list_collectionURIs
 };
 
@@ -34187,7 +34187,7 @@ impl_380_property_objectType = {
 
 static const afw_value_object_t
 impl_380_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_381
 };
 
@@ -34251,7 +34251,7 @@ impl_386;
 
 static const afw_value_boolean_t
 impl_386_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34287,7 +34287,7 @@ impl_386_property_label = {
 
 static const afw_value_boolean_t
 impl_386_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34346,7 +34346,7 @@ impl_387;
 
 static const afw_value_boolean_t
 impl_387_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34382,7 +34382,7 @@ impl_387_property_label = {
 
 static const afw_value_boolean_t
 impl_387_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34441,7 +34441,7 @@ impl_388;
 
 static const afw_value_boolean_t
 impl_388_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34477,7 +34477,7 @@ impl_388_property_label = {
 
 static const afw_value_boolean_t
 impl_388_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34536,7 +34536,7 @@ impl_389;
 
 static const afw_value_boolean_t
 impl_389_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34572,7 +34572,7 @@ impl_389_property_label = {
 
 static const afw_value_boolean_t
 impl_389_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34631,7 +34631,7 @@ impl_390;
 
 static const afw_value_boolean_t
 impl_390_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34667,7 +34667,7 @@ impl_390_property_label = {
 
 static const afw_value_boolean_t
 impl_390_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34726,7 +34726,7 @@ impl_391;
 
 static const afw_value_boolean_t
 impl_391_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34762,7 +34762,7 @@ impl_391_property_label = {
 
 static const afw_value_boolean_t
 impl_391_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34821,7 +34821,7 @@ impl_392;
 
 static const afw_value_boolean_t
 impl_392_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34857,7 +34857,7 @@ impl_392_property_label = {
 
 static const afw_value_boolean_t
 impl_392_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -34916,7 +34916,7 @@ impl_393;
 
 static const afw_value_boolean_t
 impl_393_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -34940,7 +34940,7 @@ impl_393_property_dataType = {
 
 static const afw_value_boolean_t
 impl_393_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -35011,7 +35011,7 @@ impl_394;
 
 static const afw_value_boolean_t
 impl_394_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35053,7 +35053,7 @@ impl_394_property_label = {
 
 static const afw_value_boolean_t
 impl_394_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -35113,7 +35113,7 @@ impl_395;
 
 static const afw_value_boolean_t
 impl_395_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35225,7 +35225,7 @@ impl_396_property_label = {
 
 static const afw_value_boolean_t
 impl_396_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -35284,7 +35284,7 @@ impl_397;
 
 static const afw_value_boolean_t
 impl_397_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35320,7 +35320,7 @@ impl_397_property_label = {
 
 static const afw_value_boolean_t
 impl_397_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35379,7 +35379,7 @@ impl_398;
 
 static const afw_value_boolean_t
 impl_398_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35415,7 +35415,7 @@ impl_398_property_label = {
 
 static const afw_value_boolean_t
 impl_398_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35474,7 +35474,7 @@ impl_399;
 
 static const afw_value_boolean_t
 impl_399_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35510,7 +35510,7 @@ impl_399_property_label = {
 
 static const afw_value_boolean_t
 impl_399_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -35569,7 +35569,7 @@ impl_400;
 
 static const afw_value_boolean_t
 impl_400_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35727,7 +35727,7 @@ impl_402;
 
 static const afw_value_boolean_t
 impl_402_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35751,7 +35751,7 @@ impl_402_property_dataType = {
 
 static const afw_value_boolean_t
 impl_402_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -35822,7 +35822,7 @@ impl_403;
 
 static const afw_value_boolean_t
 impl_403_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35852,7 +35852,7 @@ impl_403_property_dataTypeParameter = {
 
 static const afw_value_boolean_t
 impl_403_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -35924,7 +35924,7 @@ impl_404;
 
 static const afw_value_boolean_t
 impl_404_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -35960,7 +35960,7 @@ impl_404_property_label = {
 
 static const afw_value_boolean_t
 impl_404_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -36019,7 +36019,7 @@ impl_405;
 
 static const afw_value_boolean_t
 impl_405_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36043,7 +36043,7 @@ impl_405_property_dataType = {
 
 static const afw_value_boolean_t
 impl_405_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -36114,7 +36114,7 @@ impl_406;
 
 static const afw_value_boolean_t
 impl_406_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -36150,7 +36150,7 @@ impl_406_property_label = {
 
 static const afw_value_boolean_t
 impl_406_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -36209,7 +36209,7 @@ impl_407;
 
 static const afw_value_boolean_t
 impl_407_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36233,7 +36233,7 @@ impl_407_property_dataType = {
 
 static const afw_value_boolean_t
 impl_407_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -36304,7 +36304,7 @@ impl_408;
 
 static const afw_value_boolean_t
 impl_408_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36346,7 +36346,7 @@ impl_408_property_label = {
 
 static const afw_value_boolean_t
 impl_408_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36406,7 +36406,7 @@ impl_409;
 
 static const afw_value_boolean_t
 impl_409_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36488,7 +36488,7 @@ impl_410;
 
 static const afw_value_boolean_t
 impl_410_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36577,7 +36577,7 @@ impl_411;
 
 static const afw_value_boolean_t
 impl_411_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36659,7 +36659,7 @@ impl_412;
 
 static const afw_value_boolean_t
 impl_412_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -36695,7 +36695,7 @@ impl_412_property_label = {
 
 static const afw_value_boolean_t
 impl_412_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -36751,7 +36751,7 @@ impl_412 = {
 
 static const afw_value_object_t
 impl_385_property_value_additionalArgCheck = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_386
 };
 
@@ -36763,7 +36763,7 @@ impl_385_property_additionalArgCheck = {
 
 static const afw_value_object_t
 impl_385_property_value_afwCamelCaseFunctionLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_387
 };
 
@@ -36775,7 +36775,7 @@ impl_385_property_afwCamelCaseFunctionLabel = {
 
 static const afw_value_object_t
 impl_385_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_388
 };
 
@@ -36787,7 +36787,7 @@ impl_385_property_brief = {
 
 static const afw_value_object_t
 impl_385_property_value_camelCaseFunctionLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_389
 };
 
@@ -36799,7 +36799,7 @@ impl_385_property_camelCaseFunctionLabel = {
 
 static const afw_value_object_t
 impl_385_property_value_category = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_390
 };
 
@@ -36811,7 +36811,7 @@ impl_385_property_category = {
 
 static const afw_value_object_t
 impl_385_property_value_dataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_391
 };
 
@@ -36823,7 +36823,7 @@ impl_385_property_dataType = {
 
 static const afw_value_object_t
 impl_385_property_value_dataTypeMethod = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_392
 };
 
@@ -36835,7 +36835,7 @@ impl_385_property_dataTypeMethod = {
 
 static const afw_value_object_t
 impl_385_property_value_deprecated = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_393
 };
 
@@ -36847,7 +36847,7 @@ impl_385_property_deprecated = {
 
 static const afw_value_object_t
 impl_385_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_394
 };
 
@@ -36859,7 +36859,7 @@ impl_385_property_description = {
 
 static const afw_value_object_t
 impl_385_property_value_details = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_395
 };
 
@@ -36871,7 +36871,7 @@ impl_385_property_details = {
 
 static const afw_value_object_t
 impl_385_property_value_errorsThrown = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_396
 };
 
@@ -36883,7 +36883,7 @@ impl_385_property_errorsThrown = {
 
 static const afw_value_object_t
 impl_385_property_value_functionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_397
 };
 
@@ -36895,7 +36895,7 @@ impl_385_property_functionId = {
 
 static const afw_value_object_t
 impl_385_property_value_functionLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_398
 };
 
@@ -36907,7 +36907,7 @@ impl_385_property_functionLabel = {
 
 static const afw_value_object_t
 impl_385_property_value_functionSignature = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_399
 };
 
@@ -36919,7 +36919,7 @@ impl_385_property_functionSignature = {
 
 static const afw_value_object_t
 impl_385_property_value_op = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_400
 };
 
@@ -36931,7 +36931,7 @@ impl_385_property_op = {
 
 static const afw_value_object_t
 impl_385_property_value_parameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_401
 };
 
@@ -36943,7 +36943,7 @@ impl_385_property_parameters = {
 
 static const afw_value_object_t
 impl_385_property_value_polymorphic = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_402
 };
 
@@ -36955,7 +36955,7 @@ impl_385_property_polymorphic = {
 
 static const afw_value_object_t
 impl_385_property_value_polymorphicDataTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_403
 };
 
@@ -36967,7 +36967,7 @@ impl_385_property_polymorphicDataTypes = {
 
 static const afw_value_object_t
 impl_385_property_value_polymorphicExecuteFunction = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_404
 };
 
@@ -36979,7 +36979,7 @@ impl_385_property_polymorphicExecuteFunction = {
 
 static const afw_value_object_t
 impl_385_property_value_polymorphicExecuteFunctionEvaluatesFirstParameter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_405
 };
 
@@ -36991,7 +36991,7 @@ impl_385_property_polymorphicExecuteFunctionEvaluatesFirstParameter = {
 
 static const afw_value_object_t
 impl_385_property_value_polymorphicOverrides = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_406
 };
 
@@ -37003,7 +37003,7 @@ impl_385_property_polymorphicOverrides = {
 
 static const afw_value_object_t
 impl_385_property_value_pure = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_407
 };
 
@@ -37015,7 +37015,7 @@ impl_385_property_pure = {
 
 static const afw_value_object_t
 impl_385_property_value_returns = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_408
 };
 
@@ -37027,7 +37027,7 @@ impl_385_property_returns = {
 
 static const afw_value_object_t
 impl_385_property_value_scriptSupport = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_409
 };
 
@@ -37039,7 +37039,7 @@ impl_385_property_scriptSupport = {
 
 static const afw_value_object_t
 impl_385_property_value_sideEffects = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_410
 };
 
@@ -37051,7 +37051,7 @@ impl_385_property_sideEffects = {
 
 static const afw_value_object_t
 impl_385_property_value_signatureOnly = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_411
 };
 
@@ -37063,7 +37063,7 @@ impl_385_property_signatureOnly = {
 
 static const afw_value_object_t
 impl_385_property_value_useExecuteFunction = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_412
 };
 
@@ -37140,7 +37140,7 @@ impl_385 = {
 
 static const afw_value_boolean_t
 impl_384_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -37165,7 +37165,7 @@ impl_384_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_384_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_384_list_collectionURIs
 };
 
@@ -37189,7 +37189,7 @@ impl_384_property_objectType = {
 
 static const afw_value_object_t
 impl_384_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_385
 };
 
@@ -37301,7 +37301,7 @@ impl_416 = {
 
 static const afw_value_boolean_t
 impl_415_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -37337,7 +37337,7 @@ impl_415_property_label = {
 
 static const afw_value_object_t
 impl_415_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_416
 };
 
@@ -37444,7 +37444,7 @@ impl_418 = {
 
 static const afw_value_boolean_t
 impl_417_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -37468,7 +37468,7 @@ impl_417_property_dataType = {
 
 static const afw_value_boolean_t
 impl_417_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -37492,7 +37492,7 @@ impl_417_property_label = {
 
 static const afw_value_object_t
 impl_417_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_418
 };
 
@@ -37600,7 +37600,7 @@ impl_420 = {
 
 static const afw_value_boolean_t
 impl_419_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -37636,7 +37636,7 @@ impl_419_property_label = {
 
 static const afw_value_boolean_t
 impl_419_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -37648,7 +37648,7 @@ impl_419_property_required = {
 
 static const afw_value_object_t
 impl_419_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_420
 };
 
@@ -37756,7 +37756,7 @@ impl_422 = {
 
 static const afw_value_boolean_t
 impl_421_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -37792,7 +37792,7 @@ impl_421_property_label = {
 
 static const afw_value_boolean_t
 impl_421_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -37804,7 +37804,7 @@ impl_421_property_required = {
 
 static const afw_value_object_t
 impl_421_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_422
 };
 
@@ -37912,7 +37912,7 @@ impl_424 = {
 
 static const afw_value_boolean_t
 impl_423_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -37954,7 +37954,7 @@ impl_423_property_label = {
 
 static const afw_value_object_t
 impl_423_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_424
 };
 
@@ -38062,7 +38062,7 @@ impl_426 = {
 
 static const afw_value_boolean_t
 impl_425_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -38098,7 +38098,7 @@ impl_425_property_label = {
 
 static const afw_value_object_t
 impl_425_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_426
 };
 
@@ -38205,7 +38205,7 @@ impl_428 = {
 
 static const afw_value_boolean_t
 impl_427_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -38241,7 +38241,7 @@ impl_427_property_label = {
 
 static const afw_value_object_t
 impl_427_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_428
 };
 
@@ -38348,7 +38348,7 @@ impl_430 = {
 
 static const afw_value_boolean_t
 impl_429_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -38372,7 +38372,7 @@ impl_429_property_dataType = {
 
 static const afw_value_boolean_t
 impl_429_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -38396,7 +38396,7 @@ impl_429_property_label = {
 
 static const afw_value_object_t
 impl_429_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_430
 };
 
@@ -38504,7 +38504,7 @@ impl_432 = {
 
 static const afw_value_boolean_t
 impl_431_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -38540,7 +38540,7 @@ impl_431_property_label = {
 
 static const afw_value_object_t
 impl_431_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_432
 };
 
@@ -38647,7 +38647,7 @@ impl_434 = {
 
 static const afw_value_boolean_t
 impl_433_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -38683,7 +38683,7 @@ impl_433_property_label = {
 
 static const afw_value_object_t
 impl_433_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_434
 };
 
@@ -38739,7 +38739,7 @@ impl_433 = {
 
 static const afw_value_object_t
 impl_414_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_415
 };
 
@@ -38751,7 +38751,7 @@ impl_414_property_brief = {
 
 static const afw_value_object_t
 impl_414_property_value_canBeUndefined = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_417
 };
 
@@ -38763,7 +38763,7 @@ impl_414_property_canBeUndefined = {
 
 static const afw_value_object_t
 impl_414_property_value_dataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_419
 };
 
@@ -38775,7 +38775,7 @@ impl_414_property_dataType = {
 
 static const afw_value_object_t
 impl_414_property_value_dataTypeParameter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_421
 };
 
@@ -38787,7 +38787,7 @@ impl_414_property_dataTypeParameter = {
 
 static const afw_value_object_t
 impl_414_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_423
 };
 
@@ -38799,7 +38799,7 @@ impl_414_property_description = {
 
 static const afw_value_object_t
 impl_414_property_value_minArgs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_425
 };
 
@@ -38811,7 +38811,7 @@ impl_414_property_minArgs = {
 
 static const afw_value_object_t
 impl_414_property_value_name = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_427
 };
 
@@ -38823,7 +38823,7 @@ impl_414_property_name = {
 
 static const afw_value_object_t
 impl_414_property_value_optional = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_429
 };
 
@@ -38835,7 +38835,7 @@ impl_414_property_optional = {
 
 static const afw_value_object_t
 impl_414_property_value_polymorphicDataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_431
 };
 
@@ -38847,7 +38847,7 @@ impl_414_property_polymorphicDataType = {
 
 static const afw_value_object_t
 impl_414_property_value_polymorphicDataTypeParameter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_433
 };
 
@@ -38951,7 +38951,7 @@ impl_436 = {
 
 static const afw_value_boolean_t
 impl_435_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -38963,7 +38963,7 @@ impl_435_property_indirect = {
 
 static const afw_value_object_t
 impl_435_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_436
 };
 
@@ -39022,7 +39022,7 @@ impl_435 = {
 
 static const afw_value_boolean_t
 impl_413_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -39047,7 +39047,7 @@ impl_413_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_413_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_413_list_collectionURIs
 };
 
@@ -39071,7 +39071,7 @@ impl_413_property_objectType = {
 
 static const afw_value_object_t
 impl_413_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_414
 };
 
@@ -39083,7 +39083,7 @@ impl_413_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_413_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_435
 };
 
@@ -39196,7 +39196,7 @@ impl_440 = {
 
 static const afw_value_boolean_t
 impl_439_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39232,7 +39232,7 @@ impl_439_property_label = {
 
 static const afw_value_boolean_t
 impl_439_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -39244,7 +39244,7 @@ impl_439_property_required = {
 
 static const afw_value_object_t
 impl_439_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_440
 };
 
@@ -39352,7 +39352,7 @@ impl_442 = {
 
 static const afw_value_boolean_t
 impl_441_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39388,7 +39388,7 @@ impl_441_property_label = {
 
 static const afw_value_boolean_t
 impl_441_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -39400,7 +39400,7 @@ impl_441_property_required = {
 
 static const afw_value_object_t
 impl_441_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_442
 };
 
@@ -39508,7 +39508,7 @@ impl_444 = {
 
 static const afw_value_boolean_t
 impl_443_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39544,7 +39544,7 @@ impl_443_property_label = {
 
 static const afw_value_boolean_t
 impl_443_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -39556,7 +39556,7 @@ impl_443_property_required = {
 
 static const afw_value_object_t
 impl_443_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_444
 };
 
@@ -39664,7 +39664,7 @@ impl_446 = {
 
 static const afw_value_boolean_t
 impl_445_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39700,7 +39700,7 @@ impl_445_property_label = {
 
 static const afw_value_boolean_t
 impl_445_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39712,7 +39712,7 @@ impl_445_property_required = {
 
 static const afw_value_object_t
 impl_445_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_446
 };
 
@@ -39820,7 +39820,7 @@ impl_448 = {
 
 static const afw_value_boolean_t
 impl_447_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39856,7 +39856,7 @@ impl_447_property_label = {
 
 static const afw_value_boolean_t
 impl_447_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -39868,7 +39868,7 @@ impl_447_property_required = {
 
 static const afw_value_object_t
 impl_447_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_448
 };
 
@@ -39928,7 +39928,7 @@ impl_449;
 
 static const afw_value_boolean_t
 impl_449_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -39964,7 +39964,7 @@ impl_449_property_label = {
 
 static const afw_value_boolean_t
 impl_449_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -40071,7 +40071,7 @@ impl_451 = {
 
 static const afw_value_boolean_t
 impl_450_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40095,7 +40095,7 @@ impl_450_property_dataType = {
 
 static const afw_value_boolean_t
 impl_450_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -40119,7 +40119,7 @@ impl_450_property_label = {
 
 static const afw_value_object_t
 impl_450_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_451
 };
 
@@ -40227,7 +40227,7 @@ impl_453 = {
 
 static const afw_value_boolean_t
 impl_452_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40269,7 +40269,7 @@ impl_452_property_label = {
 
 static const afw_value_boolean_t
 impl_452_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -40281,7 +40281,7 @@ impl_452_property_required = {
 
 static const afw_value_object_t
 impl_452_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_453
 };
 
@@ -40390,7 +40390,7 @@ impl_455 = {
 
 static const afw_value_boolean_t
 impl_454_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40432,7 +40432,7 @@ impl_454_property_label = {
 
 static const afw_value_object_t
 impl_454_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_455
 };
 
@@ -40540,7 +40540,7 @@ impl_457 = {
 
 static const afw_value_boolean_t
 impl_456_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40582,7 +40582,7 @@ impl_456_property_label = {
 
 static const afw_value_boolean_t
 impl_456_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -40594,7 +40594,7 @@ impl_456_property_required = {
 
 static const afw_value_object_t
 impl_456_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_457
 };
 
@@ -40703,7 +40703,7 @@ impl_459 = {
 
 static const afw_value_boolean_t
 impl_458_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40739,7 +40739,7 @@ impl_458_property_label = {
 
 static const afw_value_boolean_t
 impl_458_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40751,7 +40751,7 @@ impl_458_property_required = {
 
 static const afw_value_object_t
 impl_458_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_459
 };
 
@@ -40859,7 +40859,7 @@ impl_461 = {
 
 static const afw_value_boolean_t
 impl_460_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40895,7 +40895,7 @@ impl_460_property_label = {
 
 static const afw_value_boolean_t
 impl_460_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -40907,7 +40907,7 @@ impl_460_property_required = {
 
 static const afw_value_object_t
 impl_460_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_461
 };
 
@@ -41015,7 +41015,7 @@ impl_463 = {
 
 static const afw_value_boolean_t
 impl_462_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -41051,7 +41051,7 @@ impl_462_property_label = {
 
 static const afw_value_boolean_t
 impl_462_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -41063,7 +41063,7 @@ impl_462_property_required = {
 
 static const afw_value_object_t
 impl_462_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_463
 };
 
@@ -41171,7 +41171,7 @@ impl_465 = {
 
 static const afw_value_boolean_t
 impl_464_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -41207,7 +41207,7 @@ impl_464_property_label = {
 
 static const afw_value_boolean_t
 impl_464_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -41219,7 +41219,7 @@ impl_464_property_required = {
 
 static const afw_value_object_t
 impl_464_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_465
 };
 
@@ -41327,7 +41327,7 @@ impl_467 = {
 
 static const afw_value_boolean_t
 impl_466_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -41363,7 +41363,7 @@ impl_466_property_label = {
 
 static const afw_value_boolean_t
 impl_466_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -41375,7 +41375,7 @@ impl_466_property_required = {
 
 static const afw_value_object_t
 impl_466_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_467
 };
 
@@ -41483,7 +41483,7 @@ impl_469 = {
 
 static const afw_value_boolean_t
 impl_468_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -41519,7 +41519,7 @@ impl_468_property_label = {
 
 static const afw_value_object_t
 impl_468_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_469
 };
 
@@ -41656,7 +41656,7 @@ impl_470_property_label = {
 
 static const afw_value_object_t
 impl_470_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_471
 };
 
@@ -41763,7 +41763,7 @@ impl_473 = {
 
 static const afw_value_boolean_t
 impl_472_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -41787,7 +41787,7 @@ impl_472_property_dataType = {
 
 static const afw_value_boolean_t
 impl_472_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -41811,7 +41811,7 @@ impl_472_property_label = {
 
 static const afw_value_object_t
 impl_472_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_473
 };
 
@@ -41919,7 +41919,7 @@ impl_475 = {
 
 static const afw_value_boolean_t
 impl_474_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -41949,7 +41949,7 @@ impl_474_property_dataTypeParameter = {
 
 static const afw_value_boolean_t
 impl_474_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -41973,7 +41973,7 @@ impl_474_property_label = {
 
 static const afw_value_object_t
 impl_474_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_475
 };
 
@@ -42082,7 +42082,7 @@ impl_477 = {
 
 static const afw_value_boolean_t
 impl_476_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -42106,7 +42106,7 @@ impl_476_property_dataType = {
 
 static const afw_value_boolean_t
 impl_476_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -42130,7 +42130,7 @@ impl_476_property_label = {
 
 static const afw_value_object_t
 impl_476_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_477
 };
 
@@ -42190,7 +42190,7 @@ impl_478;
 
 static const afw_value_boolean_t
 impl_478_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -42232,7 +42232,7 @@ impl_478_property_label = {
 
 static const afw_value_boolean_t
 impl_478_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -42340,7 +42340,7 @@ impl_480 = {
 
 static const afw_value_boolean_t
 impl_479_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -42382,7 +42382,7 @@ impl_479_property_label = {
 
 static const afw_value_object_t
 impl_479_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_480
 };
 
@@ -42490,7 +42490,7 @@ impl_482 = {
 
 static const afw_value_boolean_t
 impl_481_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -42526,7 +42526,7 @@ impl_481_property_label = {
 
 static const afw_value_object_t
 impl_481_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_482
 };
 
@@ -42633,7 +42633,7 @@ impl_484 = {
 
 static const afw_value_boolean_t
 impl_483_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -42669,7 +42669,7 @@ impl_483_property_label = {
 
 static const afw_value_boolean_t
 impl_483_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -42681,7 +42681,7 @@ impl_483_property_required = {
 
 static const afw_value_object_t
 impl_483_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_484
 };
 
@@ -42738,7 +42738,7 @@ impl_483 = {
 
 static const afw_value_object_t
 impl_438_property_value_afwCamelCaseFunctionLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_439
 };
 
@@ -42750,7 +42750,7 @@ impl_438_property_afwCamelCaseFunctionLabel = {
 
 static const afw_value_object_t
 impl_438_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_441
 };
 
@@ -42762,7 +42762,7 @@ impl_438_property_brief = {
 
 static const afw_value_object_t
 impl_438_property_value_camelCaseFunctionLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_443
 };
 
@@ -42774,7 +42774,7 @@ impl_438_property_camelCaseFunctionLabel = {
 
 static const afw_value_object_t
 impl_438_property_value_category = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_445
 };
 
@@ -42786,7 +42786,7 @@ impl_438_property_category = {
 
 static const afw_value_object_t
 impl_438_property_value_dataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_447
 };
 
@@ -42798,7 +42798,7 @@ impl_438_property_dataType = {
 
 static const afw_value_object_t
 impl_438_property_value_dataTypeMethodNumber = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_449
 };
 
@@ -42810,7 +42810,7 @@ impl_438_property_dataTypeMethodNumber = {
 
 static const afw_value_object_t
 impl_438_property_value_deprecated = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_450
 };
 
@@ -42822,7 +42822,7 @@ impl_438_property_deprecated = {
 
 static const afw_value_object_t
 impl_438_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_452
 };
 
@@ -42834,7 +42834,7 @@ impl_438_property_description = {
 
 static const afw_value_object_t
 impl_438_property_value_errorsThrown = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_454
 };
 
@@ -42846,7 +42846,7 @@ impl_438_property_errorsThrown = {
 
 static const afw_value_object_t
 impl_438_property_value_functionDeclaration = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_456
 };
 
@@ -42858,7 +42858,7 @@ impl_438_property_functionDeclaration = {
 
 static const afw_value_object_t
 impl_438_property_value_functionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_458
 };
 
@@ -42870,7 +42870,7 @@ impl_438_property_functionId = {
 
 static const afw_value_object_t
 impl_438_property_value_functionLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_460
 };
 
@@ -42882,7 +42882,7 @@ impl_438_property_functionLabel = {
 
 static const afw_value_object_t
 impl_438_property_value_functionSignature = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_462
 };
 
@@ -42894,7 +42894,7 @@ impl_438_property_functionSignature = {
 
 static const afw_value_object_t
 impl_438_property_value_maximumNumberOfParameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_464
 };
 
@@ -42906,7 +42906,7 @@ impl_438_property_maximumNumberOfParameters = {
 
 static const afw_value_object_t
 impl_438_property_value_numberOfRequiredParameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_466
 };
 
@@ -42918,7 +42918,7 @@ impl_438_property_numberOfRequiredParameters = {
 
 static const afw_value_object_t
 impl_438_property_value_op = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_468
 };
 
@@ -42930,7 +42930,7 @@ impl_438_property_op = {
 
 static const afw_value_object_t
 impl_438_property_value_parameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_470
 };
 
@@ -42942,7 +42942,7 @@ impl_438_property_parameters = {
 
 static const afw_value_object_t
 impl_438_property_value_polymorphic = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_472
 };
 
@@ -42954,7 +42954,7 @@ impl_438_property_polymorphic = {
 
 static const afw_value_object_t
 impl_438_property_value_polymorphicDataTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_474
 };
 
@@ -42966,7 +42966,7 @@ impl_438_property_polymorphicDataTypes = {
 
 static const afw_value_object_t
 impl_438_property_value_pure = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_476
 };
 
@@ -42978,7 +42978,7 @@ impl_438_property_pure = {
 
 static const afw_value_object_t
 impl_438_property_value_returns = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_478
 };
 
@@ -42990,7 +42990,7 @@ impl_438_property_returns = {
 
 static const afw_value_object_t
 impl_438_property_value_sideEffects = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_479
 };
 
@@ -43002,7 +43002,7 @@ impl_438_property_sideEffects = {
 
 static const afw_value_object_t
 impl_438_property_value_signatureOnly = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_481
 };
 
@@ -43014,7 +43014,7 @@ impl_438_property_signatureOnly = {
 
 static const afw_value_object_t
 impl_438_property_value_untypedFunctionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_483
 };
 
@@ -43139,7 +43139,7 @@ impl_486 = {
 
 static const afw_value_boolean_t
 impl_485_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -43151,7 +43151,7 @@ impl_485_property_indirect = {
 
 static const afw_value_object_t
 impl_485_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_486
 };
 
@@ -43210,7 +43210,7 @@ impl_485 = {
 
 static const afw_value_boolean_t
 impl_437_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -43235,7 +43235,7 @@ impl_437_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_437_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_437_list_collectionURIs
 };
 
@@ -43259,7 +43259,7 @@ impl_437_property_objectType = {
 
 static const afw_value_object_t
 impl_437_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_438
 };
 
@@ -43271,7 +43271,7 @@ impl_437_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_437_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_485
 };
 
@@ -43336,7 +43336,7 @@ impl_489;
 
 static const afw_value_boolean_t
 impl_489_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -43378,7 +43378,7 @@ impl_489_property_label = {
 
 static const afw_value_boolean_t
 impl_489_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -43438,7 +43438,7 @@ impl_490;
 
 static const afw_value_boolean_t
 impl_490_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -43474,7 +43474,7 @@ impl_490_property_label = {
 
 static const afw_value_boolean_t
 impl_490_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -43530,7 +43530,7 @@ impl_490 = {
 
 static const afw_value_object_t
 impl_488_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_489
 };
 
@@ -43542,7 +43542,7 @@ impl_488_property_description = {
 
 static const afw_value_object_t
 impl_488_property_value_name = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_490
 };
 
@@ -43594,7 +43594,7 @@ impl_488 = {
 
 static const afw_value_boolean_t
 impl_487_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -43619,7 +43619,7 @@ impl_487_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_487_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_487_list_collectionURIs
 };
 
@@ -43643,7 +43643,7 @@ impl_487_property_objectType = {
 
 static const afw_value_object_t
 impl_487_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_488
 };
 
@@ -43742,7 +43742,7 @@ impl_492 = {
 
 static const afw_value_boolean_t
 impl_491_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -43767,7 +43767,7 @@ impl_491_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_491_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_491_list_collectionURIs
 };
 
@@ -43785,7 +43785,7 @@ impl_491_property_objectType = {
 
 static const afw_value_object_t
 impl_491_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_492
 };
 
@@ -43883,7 +43883,7 @@ impl_494 = {
 
 static const afw_value_boolean_t
 impl_493_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -43908,7 +43908,7 @@ impl_493_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_493_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_493_list_collectionURIs
 };
 
@@ -43926,7 +43926,7 @@ impl_493_property_objectType = {
 
 static const afw_value_object_t
 impl_493_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_494
 };
 
@@ -44255,7 +44255,7 @@ impl_500 = {
 
 static const afw_value_object_t
 impl_497_property_value_authorizationResults = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_498
 };
 
@@ -44267,7 +44267,7 @@ impl_497_property_authorizationResults = {
 
 static const afw_value_object_t
 impl_497_property_value_request = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_499
 };
 
@@ -44279,7 +44279,7 @@ impl_497_property_request = {
 
 static const afw_value_object_t
 impl_497_property_value_source = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_500
 };
 
@@ -44332,7 +44332,7 @@ impl_497 = {
 
 static const afw_value_boolean_t
 impl_495_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -44357,7 +44357,7 @@ impl_495_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_495_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_495_list_collectionURIs
 };
 
@@ -44381,7 +44381,7 @@ impl_495_property_objectType = {
 
 static const afw_value_object_t
 impl_495_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_496
 };
 
@@ -44393,7 +44393,7 @@ impl_495_property_otherProperties = {
 
 static const afw_value_object_t
 impl_495_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_497
 };
 
@@ -44458,7 +44458,7 @@ impl_503;
 
 static const afw_value_boolean_t
 impl_503_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -44494,7 +44494,7 @@ impl_503_property_label = {
 
 static const afw_value_boolean_t
 impl_503_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -44553,7 +44553,7 @@ impl_504;
 
 static const afw_value_boolean_t
 impl_504_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -44642,7 +44642,7 @@ impl_505;
 
 static const afw_value_boolean_t
 impl_505_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -44721,7 +44721,7 @@ impl_505 = {
 
 static const afw_value_object_t
 impl_502_property_value_category = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_503
 };
 
@@ -44733,7 +44733,7 @@ impl_502_property_category = {
 
 static const afw_value_object_t
 impl_502_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_504
 };
 
@@ -44745,7 +44745,7 @@ impl_502_property_description = {
 
 static const afw_value_object_t
 impl_502_property_value_label = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_505
 };
 
@@ -44798,7 +44798,7 @@ impl_502 = {
 
 static const afw_value_boolean_t
 impl_501_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -44823,7 +44823,7 @@ impl_501_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_501_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_501_list_collectionURIs
 };
 
@@ -44847,7 +44847,7 @@ impl_501_property_objectType = {
 
 static const afw_value_object_t
 impl_501_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_502
 };
 
@@ -44911,7 +44911,7 @@ impl_508;
 
 static const afw_value_boolean_t
 impl_508_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -44947,7 +44947,7 @@ impl_508_property_label = {
 
 static const afw_value_boolean_t
 impl_508_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45006,7 +45006,7 @@ impl_509;
 
 static const afw_value_boolean_t
 impl_509_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45042,7 +45042,7 @@ impl_509_property_label = {
 
 static const afw_value_boolean_t
 impl_509_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45101,7 +45101,7 @@ impl_510;
 
 static const afw_value_boolean_t
 impl_510_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45137,7 +45137,7 @@ impl_510_property_label = {
 
 static const afw_value_boolean_t
 impl_510_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45196,7 +45196,7 @@ impl_511;
 
 static const afw_value_boolean_t
 impl_511_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45238,7 +45238,7 @@ impl_511_property_label = {
 
 static const afw_value_boolean_t
 impl_511_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45322,7 +45322,7 @@ impl_512_property_label = {
 
 static const afw_value_boolean_t
 impl_512_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45380,7 +45380,7 @@ impl_513;
 
 static const afw_value_boolean_t
 impl_513_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45416,7 +45416,7 @@ impl_513_property_label = {
 
 static const afw_value_boolean_t
 impl_513_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45475,7 +45475,7 @@ impl_514;
 
 static const afw_value_boolean_t
 impl_514_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45511,7 +45511,7 @@ impl_514_property_label = {
 
 static const afw_value_boolean_t
 impl_514_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45570,7 +45570,7 @@ impl_515;
 
 static const afw_value_boolean_t
 impl_515_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45606,7 +45606,7 @@ impl_515_property_label = {
 
 static const afw_value_boolean_t
 impl_515_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45662,7 +45662,7 @@ impl_515 = {
 
 static const afw_value_object_t
 impl_507_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_508
 };
 
@@ -45674,7 +45674,7 @@ impl_507_property_brief = {
 
 static const afw_value_object_t
 impl_507_property_value_category = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_509
 };
 
@@ -45686,7 +45686,7 @@ impl_507_property_category = {
 
 static const afw_value_object_t
 impl_507_property_value_componentType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_510
 };
 
@@ -45698,7 +45698,7 @@ impl_507_property_componentType = {
 
 static const afw_value_object_t
 impl_507_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_511
 };
 
@@ -45710,7 +45710,7 @@ impl_507_property_description = {
 
 static const afw_value_object_t
 impl_507_property_value_implementationId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_512
 };
 
@@ -45722,7 +45722,7 @@ impl_507_property_implementationId = {
 
 static const afw_value_object_t
 impl_507_property_value_implementationParameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_513
 };
 
@@ -45734,7 +45734,7 @@ impl_507_property_implementationParameters = {
 
 static const afw_value_object_t
 impl_507_property_value_instanceObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_514
 };
 
@@ -45746,7 +45746,7 @@ impl_507_property_instanceObjectType = {
 
 static const afw_value_object_t
 impl_507_property_value_label = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_515
 };
 
@@ -45804,7 +45804,7 @@ impl_507 = {
 
 static const afw_value_boolean_t
 impl_506_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -45829,7 +45829,7 @@ impl_506_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_506_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_506_list_collectionURIs
 };
 
@@ -45859,7 +45859,7 @@ impl_506_property_objectType = {
 
 static const afw_value_object_t
 impl_506_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_507
 };
 
@@ -45924,7 +45924,7 @@ impl_518;
 
 static const afw_value_boolean_t
 impl_518_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -45960,7 +45960,7 @@ impl_518_property_label = {
 
 static const afw_value_boolean_t
 impl_518_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -46019,7 +46019,7 @@ impl_519;
 
 static const afw_value_boolean_t
 impl_519_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -46055,7 +46055,7 @@ impl_519_property_label = {
 
 static const afw_value_boolean_t
 impl_519_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -46111,7 +46111,7 @@ impl_519 = {
 
 static const afw_value_object_t
 impl_517_property_value_componentType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_518
 };
 
@@ -46123,7 +46123,7 @@ impl_517_property_componentType = {
 
 static const afw_value_object_t
 impl_517_property_value_parameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_519
 };
 
@@ -46175,7 +46175,7 @@ impl_517 = {
 
 static const afw_value_boolean_t
 impl_516_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -46200,7 +46200,7 @@ impl_516_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_516_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_516_list_collectionURIs
 };
 
@@ -46230,7 +46230,7 @@ impl_516_property_objectType = {
 
 static const afw_value_object_t
 impl_516_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_517
 };
 
@@ -46343,7 +46343,7 @@ impl_523 = {
 
 static const afw_value_boolean_t
 impl_522_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -46379,7 +46379,7 @@ impl_522_property_label = {
 
 static const afw_value_object_t
 impl_522_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_523
 };
 
@@ -46493,7 +46493,7 @@ impl_525 = {
 
 static const afw_value_boolean_t
 impl_524_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -46529,7 +46529,7 @@ impl_524_property_label = {
 
 static const afw_value_object_t
 impl_524_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_525
 };
 
@@ -46643,7 +46643,7 @@ impl_527 = {
 
 static const afw_value_boolean_t
 impl_526_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -46679,7 +46679,7 @@ impl_526_property_label = {
 
 static const afw_value_object_t
 impl_526_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_527
 };
 
@@ -46786,7 +46786,7 @@ impl_529 = {
 
 static const afw_value_boolean_t
 impl_528_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -46828,7 +46828,7 @@ impl_528_property_label = {
 
 static const afw_value_object_t
 impl_528_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_529
 };
 
@@ -46943,7 +46943,7 @@ impl_531 = {
 
 static const afw_value_boolean_t
 impl_530_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -46979,7 +46979,7 @@ impl_530_property_label = {
 
 static const afw_value_object_t
 impl_530_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_531
 };
 
@@ -47035,7 +47035,7 @@ impl_530 = {
 
 static const afw_value_object_t
 impl_521_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_522
 };
 
@@ -47047,7 +47047,7 @@ impl_521_property_brief = {
 
 static const afw_value_object_t
 impl_521_property_value_debugFlagId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_524
 };
 
@@ -47059,7 +47059,7 @@ impl_521_property_debugFlagId = {
 
 static const afw_value_object_t
 impl_521_property_value_debugFlagIndex = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_526
 };
 
@@ -47071,7 +47071,7 @@ impl_521_property_debugFlagIndex = {
 
 static const afw_value_object_t
 impl_521_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_528
 };
 
@@ -47083,7 +47083,7 @@ impl_521_property_description = {
 
 static const afw_value_object_t
 impl_521_property_value_lockId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_530
 };
 
@@ -47189,7 +47189,7 @@ impl_533 = {
 
 static const afw_value_boolean_t
 impl_532_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -47201,7 +47201,7 @@ impl_532_property_indirect = {
 
 static const afw_value_object_t
 impl_532_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_533
 };
 
@@ -47260,7 +47260,7 @@ impl_532 = {
 
 static const afw_value_boolean_t
 impl_520_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -47272,7 +47272,7 @@ impl_520_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_520_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -47284,7 +47284,7 @@ impl_520_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_520_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -47296,7 +47296,7 @@ impl_520_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_520_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -47321,7 +47321,7 @@ impl_520_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_520_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_520_list_collectionURIs
 };
 
@@ -47345,7 +47345,7 @@ impl_520_property_objectType = {
 
 static const afw_value_object_t
 impl_520_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_521
 };
 
@@ -47357,7 +47357,7 @@ impl_520_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_520_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_532
 };
 
@@ -47473,7 +47473,7 @@ impl_537 = {
 
 static const afw_value_boolean_t
 impl_536_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -47515,7 +47515,7 @@ impl_536_property_label = {
 
 static const afw_value_object_t
 impl_536_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_537
 };
 
@@ -47623,7 +47623,7 @@ impl_539 = {
 
 static const afw_value_boolean_t
 impl_538_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -47659,7 +47659,7 @@ impl_538_property_label = {
 
 static const afw_value_object_t
 impl_538_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_539
 };
 
@@ -47715,7 +47715,7 @@ impl_538 = {
 
 static const afw_value_object_t
 impl_535_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_536
 };
 
@@ -47727,7 +47727,7 @@ impl_535_property_description = {
 
 static const afw_value_object_t
 impl_535_property_value_logType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_538
 };
 
@@ -47830,7 +47830,7 @@ impl_541 = {
 
 static const afw_value_boolean_t
 impl_540_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -47842,7 +47842,7 @@ impl_540_property_indirect = {
 
 static const afw_value_object_t
 impl_540_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_541
 };
 
@@ -47901,7 +47901,7 @@ impl_540 = {
 
 static const afw_value_boolean_t
 impl_534_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -47913,7 +47913,7 @@ impl_534_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_534_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -47925,7 +47925,7 @@ impl_534_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_534_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -47937,7 +47937,7 @@ impl_534_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_534_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -47962,7 +47962,7 @@ impl_534_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_534_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_534_list_collectionURIs
 };
 
@@ -47986,7 +47986,7 @@ impl_534_property_objectType = {
 
 static const afw_value_object_t
 impl_534_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_535
 };
 
@@ -47998,7 +47998,7 @@ impl_534_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_534_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_540
 };
 
@@ -48114,7 +48114,7 @@ impl_545 = {
 
 static const afw_value_boolean_t
 impl_544_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -48150,7 +48150,7 @@ impl_544_property_label = {
 
 static const afw_value_object_t
 impl_544_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_545
 };
 
@@ -48209,7 +48209,7 @@ impl_546;
 
 static const afw_value_boolean_t
 impl_546_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -48346,7 +48346,7 @@ impl_548 = {
 
 static const afw_value_boolean_t
 impl_547_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -48382,7 +48382,7 @@ impl_547_property_label = {
 
 static const afw_value_object_t
 impl_547_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_548
 };
 
@@ -48496,7 +48496,7 @@ impl_550 = {
 
 static const afw_value_boolean_t
 impl_549_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -48532,7 +48532,7 @@ impl_549_property_label = {
 
 static const afw_value_object_t
 impl_549_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_550
 };
 
@@ -48588,7 +48588,7 @@ impl_549 = {
 
 static const afw_value_object_t
 impl_543_property_value_logId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_544
 };
 
@@ -48600,7 +48600,7 @@ impl_543_property_logId = {
 
 static const afw_value_object_t
 impl_543_property_value_properties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_546
 };
 
@@ -48612,7 +48612,7 @@ impl_543_property_properties = {
 
 static const afw_value_object_t
 impl_543_property_value_serviceId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_547
 };
 
@@ -48624,7 +48624,7 @@ impl_543_property_serviceId = {
 
 static const afw_value_object_t
 impl_543_property_value_sourceLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_549
 };
 
@@ -48684,7 +48684,7 @@ impl_552;
 
 static const afw_value_boolean_t
 impl_552_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -48742,7 +48742,7 @@ impl_552 = {
 
 static const afw_value_boolean_t
 impl_551_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -48754,7 +48754,7 @@ impl_551_property_indirect = {
 
 static const afw_value_object_t
 impl_551_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_552
 };
 
@@ -48813,7 +48813,7 @@ impl_551 = {
 
 static const afw_value_boolean_t
 impl_542_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -48825,7 +48825,7 @@ impl_542_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_542_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -48837,7 +48837,7 @@ impl_542_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_542_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -48849,7 +48849,7 @@ impl_542_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_542_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -48874,7 +48874,7 @@ impl_542_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_542_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_542_list_collectionURIs
 };
 
@@ -48898,7 +48898,7 @@ impl_542_property_objectType = {
 
 static const afw_value_object_t
 impl_542_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_543
 };
 
@@ -48910,7 +48910,7 @@ impl_542_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_542_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_551
 };
 
@@ -48978,7 +48978,7 @@ impl_555;
 
 static const afw_value_boolean_t
 impl_555_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49060,7 +49060,7 @@ impl_556;
 
 static const afw_value_boolean_t
 impl_556_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49149,7 +49149,7 @@ impl_557;
 
 static const afw_value_boolean_t
 impl_557_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49185,7 +49185,7 @@ impl_557_property_label = {
 
 static const afw_value_boolean_t
 impl_557_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49244,7 +49244,7 @@ impl_558;
 
 static const afw_value_boolean_t
 impl_558_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49280,7 +49280,7 @@ impl_558_property_label = {
 
 static const afw_value_boolean_t
 impl_558_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49488,7 +49488,7 @@ impl_560 = {
 
 static const afw_value_object_t
 impl_554_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_555
 };
 
@@ -49500,7 +49500,7 @@ impl_554_property_brief = {
 
 static const afw_value_object_t
 impl_554_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_556
 };
 
@@ -49512,7 +49512,7 @@ impl_554_property_description = {
 
 static const afw_value_object_t
 impl_554_property_value_extensionId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_557
 };
 
@@ -49524,7 +49524,7 @@ impl_554_property_extensionId = {
 
 static const afw_value_object_t
 impl_554_property_value_modulePath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_558
 };
 
@@ -49536,7 +49536,7 @@ impl_554_property_modulePath = {
 
 static const afw_value_object_t
 impl_554_property_value_providesObjects = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_559
 };
 
@@ -49548,7 +49548,7 @@ impl_554_property_providesObjects = {
 
 static const afw_value_object_t
 impl_554_property_value_registers = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_560
 };
 
@@ -49604,7 +49604,7 @@ impl_554 = {
 
 static const afw_value_boolean_t
 impl_553_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49629,7 +49629,7 @@ impl_553_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_553_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_553_list_collectionURIs
 };
 
@@ -49653,7 +49653,7 @@ impl_553_property_objectType = {
 
 static const afw_value_object_t
 impl_553_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_554
 };
 
@@ -49729,7 +49729,7 @@ impl_563_property_dataType = {
 
 static const afw_value_boolean_t
 impl_563_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -49875,7 +49875,7 @@ impl_565;
 
 static const afw_value_boolean_t
 impl_565_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -49887,7 +49887,7 @@ impl_565_property_allowQuery = {
 
 static const afw_value_boolean_t
 impl_565_property_value_allowWrite = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -49967,7 +49967,7 @@ impl_565 = {
 
 static const afw_value_object_t
 impl_562_property_value_allowWrite = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_563
 };
 
@@ -49979,7 +49979,7 @@ impl_562_property_allowWrite = {
 
 static const afw_value_object_t
 impl_562_property_value_errors = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_564
 };
 
@@ -49991,7 +49991,7 @@ impl_562_property_errors = {
 
 static const afw_value_object_t
 impl_562_property_value_inheritedFrom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_565
 };
 
@@ -50024,7 +50024,7 @@ impl_562_parentPaths_list = {
 
 static const afw_value_array_t
 impl_562_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_562_parentPaths_list
 };
 
@@ -50063,7 +50063,7 @@ impl_562 = {
 
 static const afw_value_boolean_t
 impl_561_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -50088,7 +50088,7 @@ impl_561_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_561_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_561_list_collectionURIs
 };
 
@@ -50112,7 +50112,7 @@ impl_561_property_objectType = {
 
 static const afw_value_object_t
 impl_561_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_562
 };
 
@@ -50225,7 +50225,7 @@ impl_567 = {
 
 static const afw_value_boolean_t
 impl_566_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -50250,7 +50250,7 @@ impl_566_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_566_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_566_list_collectionURIs
 };
 
@@ -50274,7 +50274,7 @@ impl_566_property_objectType = {
 
 static const afw_value_object_t
 impl_566_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_567
 };
 
@@ -50338,7 +50338,7 @@ impl_570;
 
 static const afw_value_boolean_t
 impl_570_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -50362,7 +50362,7 @@ impl_570_property_dataType = {
 
 static const afw_value_boolean_t
 impl_570_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -50433,7 +50433,7 @@ impl_571;
 
 static const afw_value_boolean_t
 impl_571_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -50457,7 +50457,7 @@ impl_571_property_dataType = {
 
 static const afw_value_boolean_t
 impl_571_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -51395,7 +51395,7 @@ impl_583 = {
 
 static const afw_value_object_t
 impl_569_property_value_allowChange = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_570
 };
 
@@ -51407,7 +51407,7 @@ impl_569_property_allowChange = {
 
 static const afw_value_object_t
 impl_569_property_value_allowDelete = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_571
 };
 
@@ -51419,7 +51419,7 @@ impl_569_property_allowDelete = {
 
 static const afw_value_object_t
 impl_569_property_value_ancestorPaths = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_572
 };
 
@@ -51431,7 +51431,7 @@ impl_569_property_ancestorPaths = {
 
 static const afw_value_object_t
 impl_569_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_573
 };
 
@@ -51443,7 +51443,7 @@ impl_569_property_description = {
 
 static const afw_value_object_t
 impl_569_property_value_errors = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_574
 };
 
@@ -51455,7 +51455,7 @@ impl_569_property_errors = {
 
 static const afw_value_object_t
 impl_569_property_value_hasErrors = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_575
 };
 
@@ -51467,7 +51467,7 @@ impl_569_property_hasErrors = {
 
 static const afw_value_object_t
 impl_569_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_576
 };
 
@@ -51479,7 +51479,7 @@ impl_569_property_objectId = {
 
 static const afw_value_object_t
 impl_569_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_577
 };
 
@@ -51491,7 +51491,7 @@ impl_569_property_objectType = {
 
 static const afw_value_object_t
 impl_569_property_value_objectTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_578
 };
 
@@ -51503,7 +51503,7 @@ impl_569_property_objectTypes = {
 
 static const afw_value_object_t
 impl_569_property_value_parentPaths = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_579
 };
 
@@ -51515,7 +51515,7 @@ impl_569_property_parentPaths = {
 
 static const afw_value_object_t
 impl_569_property_value_path = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_580
 };
 
@@ -51527,7 +51527,7 @@ impl_569_property_path = {
 
 static const afw_value_object_t
 impl_569_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_581
 };
 
@@ -51539,7 +51539,7 @@ impl_569_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_569_property_value_reconcilable = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_582
 };
 
@@ -51551,7 +51551,7 @@ impl_569_property_reconcilable = {
 
 static const afw_value_object_t
 impl_569_property_value_resolvedParentPaths = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_583
 };
 
@@ -51595,7 +51595,7 @@ impl_569_parentPaths_list = {
 
 static const afw_value_array_t
 impl_569_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_569_parentPaths_list
 };
 
@@ -51634,7 +51634,7 @@ impl_569 = {
 
 static const afw_value_boolean_t
 impl_568_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -51659,7 +51659,7 @@ impl_568_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_568_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_568_list_collectionURIs
 };
 
@@ -51683,7 +51683,7 @@ impl_568_property_objectType = {
 
 static const afw_value_object_t
 impl_568_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_569
 };
 
@@ -51819,7 +51819,7 @@ impl_586_property_label = {
 
 static const afw_value_object_t
 impl_586_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_587
 };
 
@@ -51949,7 +51949,7 @@ impl_588_property_label = {
 
 static const afw_value_object_t
 impl_588_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_589
 };
 
@@ -52079,7 +52079,7 @@ impl_590_property_label = {
 
 static const afw_value_object_t
 impl_590_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_591
 };
 
@@ -52209,7 +52209,7 @@ impl_592_property_label = {
 
 static const afw_value_object_t
 impl_592_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_593
 };
 
@@ -52339,7 +52339,7 @@ impl_594_property_label = {
 
 static const afw_value_object_t
 impl_594_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_595
 };
 
@@ -52469,7 +52469,7 @@ impl_596_property_label = {
 
 static const afw_value_object_t
 impl_596_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_597
 };
 
@@ -52599,7 +52599,7 @@ impl_598_property_label = {
 
 static const afw_value_object_t
 impl_598_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_599
 };
 
@@ -52723,7 +52723,7 @@ impl_600_property_label = {
 
 static const afw_value_object_t
 impl_600_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_601
 };
 
@@ -52777,7 +52777,7 @@ impl_600 = {
 
 static const afw_value_object_t
 impl_585_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_586
 };
 
@@ -52789,7 +52789,7 @@ impl_585_property_adaptorId = {
 
 static const afw_value_object_t
 impl_585_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_588
 };
 
@@ -52801,7 +52801,7 @@ impl_585_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_585_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_590
 };
 
@@ -52813,7 +52813,7 @@ impl_585_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_585_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_592
 };
 
@@ -52825,7 +52825,7 @@ impl_585_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_585_property_value_object = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_594
 };
 
@@ -52837,7 +52837,7 @@ impl_585_property_object = {
 
 static const afw_value_object_t
 impl_585_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_596
 };
 
@@ -52849,7 +52849,7 @@ impl_585_property_objectId = {
 
 static const afw_value_object_t
 impl_585_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_598
 };
 
@@ -52861,7 +52861,7 @@ impl_585_property_objectType = {
 
 static const afw_value_object_t
 impl_585_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_600
 };
 
@@ -52973,7 +52973,7 @@ impl_584_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_584_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_584_list_collectionURIs
 };
 
@@ -52997,7 +52997,7 @@ impl_584_property_objectType = {
 
 static const afw_value_object_t
 impl_584_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_585
 };
 
@@ -53009,7 +53009,7 @@ impl_584_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_584_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_602
 };
 
@@ -53145,7 +53145,7 @@ impl_605_property_label = {
 
 static const afw_value_object_t
 impl_605_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_606
 };
 
@@ -53275,7 +53275,7 @@ impl_607_property_label = {
 
 static const afw_value_object_t
 impl_607_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_608
 };
 
@@ -53405,7 +53405,7 @@ impl_609_property_label = {
 
 static const afw_value_object_t
 impl_609_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_610
 };
 
@@ -53535,7 +53535,7 @@ impl_611_property_label = {
 
 static const afw_value_object_t
 impl_611_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_612
 };
 
@@ -53665,7 +53665,7 @@ impl_613_property_label = {
 
 static const afw_value_object_t
 impl_613_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_614
 };
 
@@ -53795,7 +53795,7 @@ impl_615_property_label = {
 
 static const afw_value_object_t
 impl_615_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_616
 };
 
@@ -53919,7 +53919,7 @@ impl_617_property_label = {
 
 static const afw_value_object_t
 impl_617_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_618
 };
 
@@ -53973,7 +53973,7 @@ impl_617 = {
 
 static const afw_value_object_t
 impl_604_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_605
 };
 
@@ -53985,7 +53985,7 @@ impl_604_property_adaptorId = {
 
 static const afw_value_object_t
 impl_604_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_607
 };
 
@@ -53997,7 +53997,7 @@ impl_604_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_604_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_609
 };
 
@@ -54009,7 +54009,7 @@ impl_604_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_604_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_611
 };
 
@@ -54021,7 +54021,7 @@ impl_604_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_604_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_613
 };
 
@@ -54033,7 +54033,7 @@ impl_604_property_objectId = {
 
 static const afw_value_object_t
 impl_604_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_615
 };
 
@@ -54045,7 +54045,7 @@ impl_604_property_objectType = {
 
 static const afw_value_object_t
 impl_604_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_617
 };
 
@@ -54156,7 +54156,7 @@ impl_603_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_603_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_603_list_collectionURIs
 };
 
@@ -54180,7 +54180,7 @@ impl_603_property_objectType = {
 
 static const afw_value_object_t
 impl_603_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_604
 };
 
@@ -54192,7 +54192,7 @@ impl_603_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_603_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_619
 };
 
@@ -54328,7 +54328,7 @@ impl_622_property_label = {
 
 static const afw_value_object_t
 impl_622_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_623
 };
 
@@ -54458,7 +54458,7 @@ impl_624_property_label = {
 
 static const afw_value_object_t
 impl_624_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_625
 };
 
@@ -54588,7 +54588,7 @@ impl_626_property_label = {
 
 static const afw_value_object_t
 impl_626_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_627
 };
 
@@ -54718,7 +54718,7 @@ impl_628_property_label = {
 
 static const afw_value_object_t
 impl_628_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_629
 };
 
@@ -54848,7 +54848,7 @@ impl_630_property_label = {
 
 static const afw_value_object_t
 impl_630_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_631
 };
 
@@ -54978,7 +54978,7 @@ impl_632_property_label = {
 
 static const afw_value_object_t
 impl_632_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_633
 };
 
@@ -55108,7 +55108,7 @@ impl_634_property_label = {
 
 static const afw_value_object_t
 impl_634_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_635
 };
 
@@ -55232,7 +55232,7 @@ impl_636_property_label = {
 
 static const afw_value_object_t
 impl_636_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_637
 };
 
@@ -55361,7 +55361,7 @@ impl_638_property_label = {
 
 static const afw_value_object_t
 impl_638_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_639
 };
 
@@ -55491,7 +55491,7 @@ impl_640_property_label = {
 
 static const afw_value_object_t
 impl_640_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_641
 };
 
@@ -55621,7 +55621,7 @@ impl_642_property_label = {
 
 static const afw_value_object_t
 impl_642_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_643
 };
 
@@ -55751,7 +55751,7 @@ impl_644_property_label = {
 
 static const afw_value_object_t
 impl_644_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_645
 };
 
@@ -55875,7 +55875,7 @@ impl_646_property_label = {
 
 static const afw_value_object_t
 impl_646_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_647
 };
 
@@ -55998,7 +55998,7 @@ impl_648_property_label = {
 
 static const afw_value_object_t
 impl_648_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_649
 };
 
@@ -56052,7 +56052,7 @@ impl_648 = {
 
 static const afw_value_object_t
 impl_621_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_622
 };
 
@@ -56064,7 +56064,7 @@ impl_621_property_adaptorId = {
 
 static const afw_value_object_t
 impl_621_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_624
 };
 
@@ -56076,7 +56076,7 @@ impl_621_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_621_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_626
 };
 
@@ -56088,7 +56088,7 @@ impl_621_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_621_property_value_mappedObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_628
 };
 
@@ -56100,7 +56100,7 @@ impl_621_property_mappedObject = {
 
 static const afw_value_object_t
 impl_621_property_value_mappedObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_630
 };
 
@@ -56112,7 +56112,7 @@ impl_621_property_mappedObjectId = {
 
 static const afw_value_object_t
 impl_621_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_632
 };
 
@@ -56124,7 +56124,7 @@ impl_621_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_621_property_value_mappedPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_634
 };
 
@@ -56136,7 +56136,7 @@ impl_621_property_mappedPropertyName = {
 
 static const afw_value_object_t
 impl_621_property_value_mappedValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_636
 };
 
@@ -56148,7 +56148,7 @@ impl_621_property_mappedValue = {
 
 static const afw_value_object_t
 impl_621_property_value_object = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_638
 };
 
@@ -56160,7 +56160,7 @@ impl_621_property_object = {
 
 static const afw_value_object_t
 impl_621_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_640
 };
 
@@ -56172,7 +56172,7 @@ impl_621_property_objectId = {
 
 static const afw_value_object_t
 impl_621_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_642
 };
 
@@ -56184,7 +56184,7 @@ impl_621_property_objectType = {
 
 static const afw_value_object_t
 impl_621_property_value_propertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_644
 };
 
@@ -56196,7 +56196,7 @@ impl_621_property_propertyName = {
 
 static const afw_value_object_t
 impl_621_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_646
 };
 
@@ -56208,7 +56208,7 @@ impl_621_property_useDefaultProcessing = {
 
 static const afw_value_object_t
 impl_621_property_value_value = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_648
 };
 
@@ -56326,7 +56326,7 @@ impl_620_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_620_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_620_list_collectionURIs
 };
 
@@ -56350,7 +56350,7 @@ impl_620_property_objectType = {
 
 static const afw_value_object_t
 impl_620_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_621
 };
 
@@ -56362,7 +56362,7 @@ impl_620_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_620_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_650
 };
 
@@ -56498,7 +56498,7 @@ impl_653_property_label = {
 
 static const afw_value_object_t
 impl_653_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_654
 };
 
@@ -56628,7 +56628,7 @@ impl_655_property_label = {
 
 static const afw_value_object_t
 impl_655_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_656
 };
 
@@ -56758,7 +56758,7 @@ impl_657_property_label = {
 
 static const afw_value_object_t
 impl_657_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_658
 };
 
@@ -56888,7 +56888,7 @@ impl_659_property_label = {
 
 static const afw_value_object_t
 impl_659_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_660
 };
 
@@ -57018,7 +57018,7 @@ impl_661_property_label = {
 
 static const afw_value_object_t
 impl_661_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_662
 };
 
@@ -57148,7 +57148,7 @@ impl_663_property_label = {
 
 static const afw_value_object_t
 impl_663_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_664
 };
 
@@ -57272,7 +57272,7 @@ impl_665_property_label = {
 
 static const afw_value_object_t
 impl_665_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_666
 };
 
@@ -57401,7 +57401,7 @@ impl_667_property_label = {
 
 static const afw_value_object_t
 impl_667_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_668
 };
 
@@ -57531,7 +57531,7 @@ impl_669_property_label = {
 
 static const afw_value_object_t
 impl_669_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_670
 };
 
@@ -57661,7 +57661,7 @@ impl_671_property_label = {
 
 static const afw_value_object_t
 impl_671_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_672
 };
 
@@ -57791,7 +57791,7 @@ impl_673_property_label = {
 
 static const afw_value_object_t
 impl_673_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_674
 };
 
@@ -57915,7 +57915,7 @@ impl_675_property_label = {
 
 static const afw_value_object_t
 impl_675_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_676
 };
 
@@ -58038,7 +58038,7 @@ impl_677_property_label = {
 
 static const afw_value_object_t
 impl_677_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_678
 };
 
@@ -58092,7 +58092,7 @@ impl_677 = {
 
 static const afw_value_object_t
 impl_652_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_653
 };
 
@@ -58104,7 +58104,7 @@ impl_652_property_adaptorId = {
 
 static const afw_value_object_t
 impl_652_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_655
 };
 
@@ -58116,7 +58116,7 @@ impl_652_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_652_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_657
 };
 
@@ -58128,7 +58128,7 @@ impl_652_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_652_property_value_mappedObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_659
 };
 
@@ -58140,7 +58140,7 @@ impl_652_property_mappedObjectId = {
 
 static const afw_value_object_t
 impl_652_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_661
 };
 
@@ -58152,7 +58152,7 @@ impl_652_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_652_property_value_mappedPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_663
 };
 
@@ -58164,7 +58164,7 @@ impl_652_property_mappedPropertyName = {
 
 static const afw_value_object_t
 impl_652_property_value_mappedValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_665
 };
 
@@ -58176,7 +58176,7 @@ impl_652_property_mappedValue = {
 
 static const afw_value_object_t
 impl_652_property_value_object = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_667
 };
 
@@ -58188,7 +58188,7 @@ impl_652_property_object = {
 
 static const afw_value_object_t
 impl_652_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_669
 };
 
@@ -58200,7 +58200,7 @@ impl_652_property_objectId = {
 
 static const afw_value_object_t
 impl_652_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_671
 };
 
@@ -58212,7 +58212,7 @@ impl_652_property_objectType = {
 
 static const afw_value_object_t
 impl_652_property_value_propertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_673
 };
 
@@ -58224,7 +58224,7 @@ impl_652_property_propertyName = {
 
 static const afw_value_object_t
 impl_652_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_675
 };
 
@@ -58236,7 +58236,7 @@ impl_652_property_useDefaultProcessing = {
 
 static const afw_value_object_t
 impl_652_property_value_value = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_677
 };
 
@@ -58353,7 +58353,7 @@ impl_651_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_651_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_651_list_collectionURIs
 };
 
@@ -58377,7 +58377,7 @@ impl_651_property_objectType = {
 
 static const afw_value_object_t
 impl_651_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_652
 };
 
@@ -58389,7 +58389,7 @@ impl_651_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_651_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_679
 };
 
@@ -58525,7 +58525,7 @@ impl_682_property_label = {
 
 static const afw_value_object_t
 impl_682_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_683
 };
 
@@ -58655,7 +58655,7 @@ impl_684_property_label = {
 
 static const afw_value_object_t
 impl_684_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_685
 };
 
@@ -58791,7 +58791,7 @@ impl_686_property_label = {
 
 static const afw_value_object_t
 impl_686_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_687
 };
 
@@ -58922,7 +58922,7 @@ impl_688_property_label = {
 
 static const afw_value_object_t
 impl_688_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_689
 };
 
@@ -59052,7 +59052,7 @@ impl_690_property_label = {
 
 static const afw_value_object_t
 impl_690_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_691
 };
 
@@ -59182,7 +59182,7 @@ impl_692_property_label = {
 
 static const afw_value_object_t
 impl_692_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_693
 };
 
@@ -59312,7 +59312,7 @@ impl_694_property_label = {
 
 static const afw_value_object_t
 impl_694_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_695
 };
 
@@ -59436,7 +59436,7 @@ impl_696_property_label = {
 
 static const afw_value_object_t
 impl_696_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_697
 };
 
@@ -59490,7 +59490,7 @@ impl_696 = {
 
 static const afw_value_object_t
 impl_681_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_682
 };
 
@@ -59502,7 +59502,7 @@ impl_681_property_adaptorId = {
 
 static const afw_value_object_t
 impl_681_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_684
 };
 
@@ -59514,7 +59514,7 @@ impl_681_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_681_property_value_mapBackObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_686
 };
 
@@ -59526,7 +59526,7 @@ impl_681_property_mapBackObject = {
 
 static const afw_value_object_t
 impl_681_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_688
 };
 
@@ -59538,7 +59538,7 @@ impl_681_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_681_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_690
 };
 
@@ -59550,7 +59550,7 @@ impl_681_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_681_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_692
 };
 
@@ -59562,7 +59562,7 @@ impl_681_property_objectId = {
 
 static const afw_value_object_t
 impl_681_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_694
 };
 
@@ -59574,7 +59574,7 @@ impl_681_property_objectType = {
 
 static const afw_value_object_t
 impl_681_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_696
 };
 
@@ -59686,7 +59686,7 @@ impl_680_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_680_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_680_list_collectionURIs
 };
 
@@ -59710,7 +59710,7 @@ impl_680_property_objectType = {
 
 static const afw_value_object_t
 impl_680_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_681
 };
 
@@ -59722,7 +59722,7 @@ impl_680_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_680_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_698
 };
 
@@ -59858,7 +59858,7 @@ impl_701_property_label = {
 
 static const afw_value_object_t
 impl_701_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_702
 };
 
@@ -59988,7 +59988,7 @@ impl_703_property_label = {
 
 static const afw_value_object_t
 impl_703_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_704
 };
 
@@ -60118,7 +60118,7 @@ impl_705_property_label = {
 
 static const afw_value_object_t
 impl_705_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_706
 };
 
@@ -60248,7 +60248,7 @@ impl_707_property_label = {
 
 static const afw_value_object_t
 impl_707_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_708
 };
 
@@ -60378,7 +60378,7 @@ impl_709_property_label = {
 
 static const afw_value_object_t
 impl_709_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_710
 };
 
@@ -60508,7 +60508,7 @@ impl_711_property_label = {
 
 static const afw_value_object_t
 impl_711_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_712
 };
 
@@ -60638,7 +60638,7 @@ impl_713_property_label = {
 
 static const afw_value_object_t
 impl_713_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_714
 };
 
@@ -60762,7 +60762,7 @@ impl_715_property_label = {
 
 static const afw_value_object_t
 impl_715_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_716
 };
 
@@ -60891,7 +60891,7 @@ impl_717_property_label = {
 
 static const afw_value_object_t
 impl_717_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_718
 };
 
@@ -61015,7 +61015,7 @@ impl_719_property_label = {
 
 static const afw_value_object_t
 impl_719_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_720
 };
 
@@ -61069,7 +61069,7 @@ impl_719 = {
 
 static const afw_value_object_t
 impl_700_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_701
 };
 
@@ -61081,7 +61081,7 @@ impl_700_property_adaptorId = {
 
 static const afw_value_object_t
 impl_700_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_703
 };
 
@@ -61093,7 +61093,7 @@ impl_700_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_700_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_705
 };
 
@@ -61105,7 +61105,7 @@ impl_700_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_700_property_value_mappedObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_707
 };
 
@@ -61117,7 +61117,7 @@ impl_700_property_mappedObject = {
 
 static const afw_value_object_t
 impl_700_property_value_mappedObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_709
 };
 
@@ -61129,7 +61129,7 @@ impl_700_property_mappedObjectId = {
 
 static const afw_value_object_t
 impl_700_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_711
 };
 
@@ -61141,7 +61141,7 @@ impl_700_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_700_property_value_mappedPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_713
 };
 
@@ -61153,7 +61153,7 @@ impl_700_property_mappedPropertyName = {
 
 static const afw_value_object_t
 impl_700_property_value_mappedValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_715
 };
 
@@ -61165,7 +61165,7 @@ impl_700_property_mappedValue = {
 
 static const afw_value_object_t
 impl_700_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_717
 };
 
@@ -61177,7 +61177,7 @@ impl_700_property_objectType = {
 
 static const afw_value_object_t
 impl_700_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_719
 };
 
@@ -61291,7 +61291,7 @@ impl_699_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_699_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_699_list_collectionURIs
 };
 
@@ -61315,7 +61315,7 @@ impl_699_property_objectType = {
 
 static const afw_value_object_t
 impl_699_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_700
 };
 
@@ -61327,7 +61327,7 @@ impl_699_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_699_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_721
 };
 
@@ -61463,7 +61463,7 @@ impl_724_property_label = {
 
 static const afw_value_object_t
 impl_724_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_725
 };
 
@@ -61593,7 +61593,7 @@ impl_726_property_label = {
 
 static const afw_value_object_t
 impl_726_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_727
 };
 
@@ -61723,7 +61723,7 @@ impl_728_property_label = {
 
 static const afw_value_object_t
 impl_728_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_729
 };
 
@@ -61853,7 +61853,7 @@ impl_730_property_label = {
 
 static const afw_value_object_t
 impl_730_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_731
 };
 
@@ -61983,7 +61983,7 @@ impl_732_property_label = {
 
 static const afw_value_object_t
 impl_732_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_733
 };
 
@@ -62113,7 +62113,7 @@ impl_734_property_label = {
 
 static const afw_value_object_t
 impl_734_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_735
 };
 
@@ -62243,7 +62243,7 @@ impl_736_property_label = {
 
 static const afw_value_object_t
 impl_736_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_737
 };
 
@@ -62367,7 +62367,7 @@ impl_738_property_label = {
 
 static const afw_value_object_t
 impl_738_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_739
 };
 
@@ -62421,7 +62421,7 @@ impl_738 = {
 
 static const afw_value_object_t
 impl_723_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_724
 };
 
@@ -62433,7 +62433,7 @@ impl_723_property_adaptorId = {
 
 static const afw_value_object_t
 impl_723_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_726
 };
 
@@ -62445,7 +62445,7 @@ impl_723_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_723_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_728
 };
 
@@ -62457,7 +62457,7 @@ impl_723_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_723_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_730
 };
 
@@ -62469,7 +62469,7 @@ impl_723_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_723_property_value_modifyEntries = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_732
 };
 
@@ -62481,7 +62481,7 @@ impl_723_property_modifyEntries = {
 
 static const afw_value_object_t
 impl_723_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_734
 };
 
@@ -62493,7 +62493,7 @@ impl_723_property_objectId = {
 
 static const afw_value_object_t
 impl_723_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_736
 };
 
@@ -62505,7 +62505,7 @@ impl_723_property_objectType = {
 
 static const afw_value_object_t
 impl_723_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_738
 };
 
@@ -62617,7 +62617,7 @@ impl_722_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_722_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_722_list_collectionURIs
 };
 
@@ -62641,7 +62641,7 @@ impl_722_property_objectType = {
 
 static const afw_value_object_t
 impl_722_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_723
 };
 
@@ -62653,7 +62653,7 @@ impl_722_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_722_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_740
 };
 
@@ -62789,7 +62789,7 @@ impl_743_property_label = {
 
 static const afw_value_object_t
 impl_743_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_744
 };
 
@@ -62919,7 +62919,7 @@ impl_745_property_label = {
 
 static const afw_value_object_t
 impl_745_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_746
 };
 
@@ -63049,7 +63049,7 @@ impl_747_property_label = {
 
 static const afw_value_object_t
 impl_747_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_748
 };
 
@@ -63179,7 +63179,7 @@ impl_749_property_label = {
 
 static const afw_value_object_t
 impl_749_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_750
 };
 
@@ -63309,7 +63309,7 @@ impl_751_property_label = {
 
 static const afw_value_object_t
 impl_751_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_752
 };
 
@@ -63439,7 +63439,7 @@ impl_753_property_label = {
 
 static const afw_value_object_t
 impl_753_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_754
 };
 
@@ -63569,7 +63569,7 @@ impl_755_property_label = {
 
 static const afw_value_object_t
 impl_755_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_756
 };
 
@@ -63693,7 +63693,7 @@ impl_757_property_label = {
 
 static const afw_value_object_t
 impl_757_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_758
 };
 
@@ -63747,7 +63747,7 @@ impl_757 = {
 
 static const afw_value_object_t
 impl_742_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_743
 };
 
@@ -63759,7 +63759,7 @@ impl_742_property_adaptorId = {
 
 static const afw_value_object_t
 impl_742_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_745
 };
 
@@ -63771,7 +63771,7 @@ impl_742_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_742_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_747
 };
 
@@ -63783,7 +63783,7 @@ impl_742_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_742_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_749
 };
 
@@ -63795,7 +63795,7 @@ impl_742_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_742_property_value_object = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_751
 };
 
@@ -63807,7 +63807,7 @@ impl_742_property_object = {
 
 static const afw_value_object_t
 impl_742_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_753
 };
 
@@ -63819,7 +63819,7 @@ impl_742_property_objectId = {
 
 static const afw_value_object_t
 impl_742_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_755
 };
 
@@ -63831,7 +63831,7 @@ impl_742_property_objectType = {
 
 static const afw_value_object_t
 impl_742_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_757
 };
 
@@ -63943,7 +63943,7 @@ impl_741_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_741_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_741_list_collectionURIs
 };
 
@@ -63967,7 +63967,7 @@ impl_741_property_objectType = {
 
 static const afw_value_object_t
 impl_741_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_742
 };
 
@@ -63979,7 +63979,7 @@ impl_741_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_741_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_759
 };
 
@@ -64115,7 +64115,7 @@ impl_762_property_label = {
 
 static const afw_value_object_t
 impl_762_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_763
 };
 
@@ -64245,7 +64245,7 @@ impl_764_property_label = {
 
 static const afw_value_object_t
 impl_764_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_765
 };
 
@@ -64381,7 +64381,7 @@ impl_766_property_label = {
 
 static const afw_value_object_t
 impl_766_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_767
 };
 
@@ -64512,7 +64512,7 @@ impl_768_property_label = {
 
 static const afw_value_object_t
 impl_768_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_769
 };
 
@@ -64642,7 +64642,7 @@ impl_770_property_label = {
 
 static const afw_value_object_t
 impl_770_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_771
 };
 
@@ -64772,7 +64772,7 @@ impl_772_property_label = {
 
 static const afw_value_object_t
 impl_772_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_773
 };
 
@@ -64908,7 +64908,7 @@ impl_774_property_label = {
 
 static const afw_value_object_t
 impl_774_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_775
 };
 
@@ -65045,7 +65045,7 @@ impl_776_property_label = {
 
 static const afw_value_object_t
 impl_776_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_777
 };
 
@@ -65170,7 +65170,7 @@ impl_778_property_label = {
 
 static const afw_value_object_t
 impl_778_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_779
 };
 
@@ -65224,7 +65224,7 @@ impl_778 = {
 
 static const afw_value_object_t
 impl_761_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_762
 };
 
@@ -65236,7 +65236,7 @@ impl_761_property_adaptorId = {
 
 static const afw_value_object_t
 impl_761_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_764
 };
 
@@ -65248,7 +65248,7 @@ impl_761_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_761_property_value_mapBackObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_766
 };
 
@@ -65260,7 +65260,7 @@ impl_761_property_mapBackObject = {
 
 static const afw_value_object_t
 impl_761_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_768
 };
 
@@ -65272,7 +65272,7 @@ impl_761_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_761_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_770
 };
 
@@ -65284,7 +65284,7 @@ impl_761_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_761_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_772
 };
 
@@ -65296,7 +65296,7 @@ impl_761_property_objectType = {
 
 static const afw_value_object_t
 impl_761_property_value_queryCriteria = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_774
 };
 
@@ -65308,7 +65308,7 @@ impl_761_property_queryCriteria = {
 
 static const afw_value_object_t
 impl_761_property_value_returnObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_776
 };
 
@@ -65320,7 +65320,7 @@ impl_761_property_returnObject = {
 
 static const afw_value_object_t
 impl_761_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_778
 };
 
@@ -65433,7 +65433,7 @@ impl_760_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_760_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_760_list_collectionURIs
 };
 
@@ -65457,7 +65457,7 @@ impl_760_property_objectType = {
 
 static const afw_value_object_t
 impl_760_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_761
 };
 
@@ -65469,7 +65469,7 @@ impl_760_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_760_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_780
 };
 
@@ -65605,7 +65605,7 @@ impl_783_property_label = {
 
 static const afw_value_object_t
 impl_783_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_784
 };
 
@@ -65735,7 +65735,7 @@ impl_785_property_label = {
 
 static const afw_value_object_t
 impl_785_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_786
 };
 
@@ -65865,7 +65865,7 @@ impl_787_property_label = {
 
 static const afw_value_object_t
 impl_787_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_788
 };
 
@@ -65995,7 +65995,7 @@ impl_789_property_label = {
 
 static const afw_value_object_t
 impl_789_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_790
 };
 
@@ -66125,7 +66125,7 @@ impl_791_property_label = {
 
 static const afw_value_object_t
 impl_791_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_792
 };
 
@@ -66255,7 +66255,7 @@ impl_793_property_label = {
 
 static const afw_value_object_t
 impl_793_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_794
 };
 
@@ -66385,7 +66385,7 @@ impl_795_property_label = {
 
 static const afw_value_object_t
 impl_795_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_796
 };
 
@@ -66515,7 +66515,7 @@ impl_797_property_label = {
 
 static const afw_value_object_t
 impl_797_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_798
 };
 
@@ -66639,7 +66639,7 @@ impl_799_property_label = {
 
 static const afw_value_object_t
 impl_799_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_800
 };
 
@@ -66762,7 +66762,7 @@ impl_801_property_label = {
 
 static const afw_value_object_t
 impl_801_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_802
 };
 
@@ -66816,7 +66816,7 @@ impl_801 = {
 
 static const afw_value_object_t
 impl_782_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_783
 };
 
@@ -66828,7 +66828,7 @@ impl_782_property_adaptorId = {
 
 static const afw_value_object_t
 impl_782_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_785
 };
 
@@ -66840,7 +66840,7 @@ impl_782_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_782_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_787
 };
 
@@ -66852,7 +66852,7 @@ impl_782_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_782_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_789
 };
 
@@ -66864,7 +66864,7 @@ impl_782_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_782_property_value_object = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_791
 };
 
@@ -66876,7 +66876,7 @@ impl_782_property_object = {
 
 static const afw_value_object_t
 impl_782_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_793
 };
 
@@ -66888,7 +66888,7 @@ impl_782_property_objectId = {
 
 static const afw_value_object_t
 impl_782_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_795
 };
 
@@ -66900,7 +66900,7 @@ impl_782_property_objectType = {
 
 static const afw_value_object_t
 impl_782_property_value_propertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_797
 };
 
@@ -66912,7 +66912,7 @@ impl_782_property_propertyName = {
 
 static const afw_value_object_t
 impl_782_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_799
 };
 
@@ -66924,7 +66924,7 @@ impl_782_property_useDefaultProcessing = {
 
 static const afw_value_object_t
 impl_782_property_value_value = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_801
 };
 
@@ -67038,7 +67038,7 @@ impl_781_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_781_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_781_list_collectionURIs
 };
 
@@ -67062,7 +67062,7 @@ impl_781_property_objectType = {
 
 static const afw_value_object_t
 impl_781_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_782
 };
 
@@ -67074,7 +67074,7 @@ impl_781_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_781_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_803
 };
 
@@ -67210,7 +67210,7 @@ impl_806_property_label = {
 
 static const afw_value_object_t
 impl_806_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_807
 };
 
@@ -67340,7 +67340,7 @@ impl_808_property_label = {
 
 static const afw_value_object_t
 impl_808_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_809
 };
 
@@ -67470,7 +67470,7 @@ impl_810_property_label = {
 
 static const afw_value_object_t
 impl_810_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_811
 };
 
@@ -67600,7 +67600,7 @@ impl_812_property_label = {
 
 static const afw_value_object_t
 impl_812_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_813
 };
 
@@ -67730,7 +67730,7 @@ impl_814_property_label = {
 
 static const afw_value_object_t
 impl_814_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_815
 };
 
@@ -67854,7 +67854,7 @@ impl_816_property_label = {
 
 static const afw_value_object_t
 impl_816_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_817
 };
 
@@ -67908,7 +67908,7 @@ impl_816 = {
 
 static const afw_value_object_t
 impl_805_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_806
 };
 
@@ -67920,7 +67920,7 @@ impl_805_property_adaptorId = {
 
 static const afw_value_object_t
 impl_805_property_value_adaptorTypeSpecific = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_808
 };
 
@@ -67932,7 +67932,7 @@ impl_805_property_adaptorTypeSpecific = {
 
 static const afw_value_object_t
 impl_805_property_value_mappedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_810
 };
 
@@ -67944,7 +67944,7 @@ impl_805_property_mappedAdaptorId = {
 
 static const afw_value_object_t
 impl_805_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_812
 };
 
@@ -67956,7 +67956,7 @@ impl_805_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_805_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_814
 };
 
@@ -67968,7 +67968,7 @@ impl_805_property_objectType = {
 
 static const afw_value_object_t
 impl_805_property_value_useDefaultProcessing = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_816
 };
 
@@ -68065,7 +68065,7 @@ impl_818 = {
 
 static const afw_value_boolean_t
 impl_804_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -68090,7 +68090,7 @@ impl_804_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_804_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_804_list_collectionURIs
 };
 
@@ -68114,7 +68114,7 @@ impl_804_property_objectType = {
 
 static const afw_value_object_t
 impl_804_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_805
 };
 
@@ -68126,7 +68126,7 @@ impl_804_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_804_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_818
 };
 
@@ -69032,7 +69032,7 @@ impl_830 = {
 
 static const afw_value_object_t
 impl_820_property_value_custom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_821
 };
 
@@ -69044,7 +69044,7 @@ impl_820_property_custom = {
 
 static const afw_value_object_t
 impl_820_property_value_mappedObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_822
 };
 
@@ -69056,7 +69056,7 @@ impl_820_property_mappedObjectType = {
 
 static const afw_value_object_t
 impl_820_property_value_onAddObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_823
 };
 
@@ -69068,7 +69068,7 @@ impl_820_property_onAddObject = {
 
 static const afw_value_object_t
 impl_820_property_value_onDeleteObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_824
 };
 
@@ -69080,7 +69080,7 @@ impl_820_property_onDeleteObject = {
 
 static const afw_value_object_t
 impl_820_property_value_onGetInitialObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_825
 };
 
@@ -69092,7 +69092,7 @@ impl_820_property_onGetInitialObjectId = {
 
 static const afw_value_object_t
 impl_820_property_value_onGetObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_826
 };
 
@@ -69104,7 +69104,7 @@ impl_820_property_onGetObject = {
 
 static const afw_value_object_t
 impl_820_property_value_onModifyObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_827
 };
 
@@ -69116,7 +69116,7 @@ impl_820_property_onModifyObject = {
 
 static const afw_value_object_t
 impl_820_property_value_onReplaceObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_828
 };
 
@@ -69128,7 +69128,7 @@ impl_820_property_onReplaceObject = {
 
 static const afw_value_object_t
 impl_820_property_value_onRetrieveObjects = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_829
 };
 
@@ -69140,7 +69140,7 @@ impl_820_property_onRetrieveObjects = {
 
 static const afw_value_object_t
 impl_820_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_830
 };
 
@@ -69180,7 +69180,7 @@ impl_820_parentPaths_list = {
 
 static const afw_value_array_t
 impl_820_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_820_parentPaths_list
 };
 
@@ -69219,7 +69219,7 @@ impl_820 = {
 
 static const afw_value_boolean_t
 impl_819_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -69244,7 +69244,7 @@ impl_819_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_819_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_819_list_collectionURIs
 };
 
@@ -69268,7 +69268,7 @@ impl_819_property_objectType = {
 
 static const afw_value_object_t
 impl_819_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_820
 };
 
@@ -69395,7 +69395,7 @@ impl_832 = {
 
 static const afw_value_boolean_t
 impl_831_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -69420,7 +69420,7 @@ impl_831_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_831_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_831_list_collectionURIs
 };
 
@@ -69444,7 +69444,7 @@ impl_831_property_objectType = {
 
 static const afw_value_object_t
 impl_831_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_832
 };
 
@@ -69520,7 +69520,7 @@ impl_835_property_dataType = {
 
 static const afw_value_boolean_t
 impl_835_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -70044,7 +70044,7 @@ impl_842_property_dataType = {
 
 static const afw_value_boolean_t
 impl_842_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -70111,7 +70111,7 @@ impl_842 = {
 
 static const afw_value_object_t
 impl_834_property_value_allowRead = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_835
 };
 
@@ -70123,7 +70123,7 @@ impl_834_property_allowRead = {
 
 static const afw_value_object_t
 impl_834_property_value_custom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_836
 };
 
@@ -70135,7 +70135,7 @@ impl_834_property_custom = {
 
 static const afw_value_object_t
 impl_834_property_value_mappedPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_837
 };
 
@@ -70147,7 +70147,7 @@ impl_834_property_mappedPropertyName = {
 
 static const afw_value_object_t
 impl_834_property_value_method = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_838
 };
 
@@ -70159,7 +70159,7 @@ impl_834_property_method = {
 
 static const afw_value_object_t
 impl_834_property_value_onGetInitialValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_839
 };
 
@@ -70171,7 +70171,7 @@ impl_834_property_onGetInitialValue = {
 
 static const afw_value_object_t
 impl_834_property_value_onGetProperty = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_840
 };
 
@@ -70183,7 +70183,7 @@ impl_834_property_onGetProperty = {
 
 static const afw_value_object_t
 impl_834_property_value_onSetProperty = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_841
 };
 
@@ -70195,7 +70195,7 @@ impl_834_property_onSetProperty = {
 
 static const afw_value_object_t
 impl_834_property_value_transitory = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_842
 };
 
@@ -70233,7 +70233,7 @@ impl_834_parentPaths_list = {
 
 static const afw_value_array_t
 impl_834_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_834_parentPaths_list
 };
 
@@ -70285,7 +70285,7 @@ impl_833_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_833_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_833_list_collectionURIs
 };
 
@@ -70309,7 +70309,7 @@ impl_833_property_objectType = {
 
 static const afw_value_object_t
 impl_833_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_834
 };
 
@@ -70435,7 +70435,7 @@ impl_844 = {
 
 static const afw_value_boolean_t
 impl_843_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -70460,7 +70460,7 @@ impl_843_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_843_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_843_list_collectionURIs
 };
 
@@ -70484,7 +70484,7 @@ impl_843_property_objectType = {
 
 static const afw_value_object_t
 impl_843_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_844
 };
 
@@ -70548,7 +70548,7 @@ impl_847;
 
 static const afw_value_boolean_t
 impl_847_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -70713,7 +70713,7 @@ impl_849;
 
 static const afw_value_boolean_t
 impl_849_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -70802,7 +70802,7 @@ impl_850;
 
 static const afw_value_boolean_t
 impl_850_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -70884,7 +70884,7 @@ impl_851;
 
 static const afw_value_boolean_t
 impl_851_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -70896,7 +70896,7 @@ impl_851_property_allowQuery = {
 
 static const afw_value_boolean_t
 impl_851_property_value_allowWrite = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -70938,7 +70938,7 @@ impl_851_property_label = {
 
 static const afw_value_boolean_t
 impl_851_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -70950,7 +70950,7 @@ impl_851_property_required = {
 
 static const afw_value_boolean_t
 impl_851_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -71012,7 +71012,7 @@ impl_852;
 
 static const afw_value_boolean_t
 impl_852_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71094,7 +71094,7 @@ impl_853;
 
 static const afw_value_boolean_t
 impl_853_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71180,7 +71180,7 @@ impl_853 = {
 
 static const afw_value_object_t
 impl_846_property_value_collectionURIs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_847
 };
 
@@ -71192,7 +71192,7 @@ impl_846_property_collectionURIs = {
 
 static const afw_value_object_t
 impl_846_property_value_custom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_848
 };
 
@@ -71204,7 +71204,7 @@ impl_846_property_custom = {
 
 static const afw_value_object_t
 impl_846_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_849
 };
 
@@ -71216,7 +71216,7 @@ impl_846_property_description = {
 
 static const afw_value_object_t
 impl_846_property_value_modelId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_850
 };
 
@@ -71228,7 +71228,7 @@ impl_846_property_modelId = {
 
 static const afw_value_object_t
 impl_846_property_value_objectTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_851
 };
 
@@ -71240,7 +71240,7 @@ impl_846_property_objectTypes = {
 
 static const afw_value_object_t
 impl_846_property_value_originURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_852
 };
 
@@ -71252,7 +71252,7 @@ impl_846_property_originURI = {
 
 static const afw_value_object_t
 impl_846_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_853
 };
 
@@ -71309,7 +71309,7 @@ impl_846 = {
 
 static const afw_value_boolean_t
 impl_845_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71334,7 +71334,7 @@ impl_845_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_845_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_845_list_collectionURIs
 };
 
@@ -71364,7 +71364,7 @@ impl_845_property_objectType = {
 
 static const afw_value_object_t
 impl_845_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_846
 };
 
@@ -71498,7 +71498,7 @@ impl_857;
 
 static const afw_value_boolean_t
 impl_857_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71580,7 +71580,7 @@ impl_858;
 
 static const afw_value_boolean_t
 impl_858_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71662,7 +71662,7 @@ impl_859;
 
 static const afw_value_boolean_t
 impl_859_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71744,7 +71744,7 @@ impl_860;
 
 static const afw_value_boolean_t
 impl_860_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71826,7 +71826,7 @@ impl_861;
 
 static const afw_value_boolean_t
 impl_861_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71908,7 +71908,7 @@ impl_862;
 
 static const afw_value_boolean_t
 impl_862_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -71990,7 +71990,7 @@ impl_863;
 
 static const afw_value_boolean_t
 impl_863_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72072,7 +72072,7 @@ impl_864;
 
 static const afw_value_boolean_t
 impl_864_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72154,7 +72154,7 @@ impl_865;
 
 static const afw_value_boolean_t
 impl_865_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72236,7 +72236,7 @@ impl_866;
 
 static const afw_value_boolean_t
 impl_866_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72318,7 +72318,7 @@ impl_867;
 
 static const afw_value_boolean_t
 impl_867_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72400,7 +72400,7 @@ impl_868;
 
 static const afw_value_boolean_t
 impl_868_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72482,7 +72482,7 @@ impl_869;
 
 static const afw_value_boolean_t
 impl_869_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72564,7 +72564,7 @@ impl_870;
 
 static const afw_value_boolean_t
 impl_870_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72646,7 +72646,7 @@ impl_871;
 
 static const afw_value_boolean_t
 impl_871_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72728,7 +72728,7 @@ impl_872;
 
 static const afw_value_boolean_t
 impl_872_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72810,7 +72810,7 @@ impl_873;
 
 static const afw_value_boolean_t
 impl_873_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72892,7 +72892,7 @@ impl_874;
 
 static const afw_value_boolean_t
 impl_874_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -72974,7 +72974,7 @@ impl_875;
 
 static const afw_value_boolean_t
 impl_875_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73053,7 +73053,7 @@ impl_875 = {
 
 static const afw_value_object_t
 impl_855_property_value_checkRequired = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_856
 };
 
@@ -73065,7 +73065,7 @@ impl_855_property_checkRequired = {
 
 static const afw_value_object_t
 impl_855_property_value_composite = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_857
 };
 
@@ -73077,7 +73077,7 @@ impl_855_property_composite = {
 
 static const afw_value_object_t
 impl_855_property_value_debug = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_858
 };
 
@@ -73089,7 +73089,7 @@ impl_855_property_debug = {
 
 static const afw_value_object_t
 impl_855_property_value_includeDefaultValues = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_859
 };
 
@@ -73101,7 +73101,7 @@ impl_855_property_includeDefaultValues = {
 
 static const afw_value_object_t
 impl_855_property_value_includeDescendentObjectTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_860
 };
 
@@ -73113,7 +73113,7 @@ impl_855_property_includeDescendentObjectTypes = {
 
 static const afw_value_object_t
 impl_855_property_value_inheritedFrom = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_861
 };
 
@@ -73125,7 +73125,7 @@ impl_855_property_inheritedFrom = {
 
 static const afw_value_object_t
 impl_855_property_value_integersAsString = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_862
 };
 
@@ -73137,7 +73137,7 @@ impl_855_property_integersAsString = {
 
 static const afw_value_object_t
 impl_855_property_value_largeIntegersAsString = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_863
 };
 
@@ -73149,7 +73149,7 @@ impl_855_property_largeIntegersAsString = {
 
 static const afw_value_object_t
 impl_855_property_value_metaFull = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_864
 };
 
@@ -73161,7 +73161,7 @@ impl_855_property_metaFull = {
 
 static const afw_value_object_t
 impl_855_property_value_metaLimited = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_865
 };
 
@@ -73173,7 +73173,7 @@ impl_855_property_metaLimited = {
 
 static const afw_value_object_t
 impl_855_property_value_normalize = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_866
 };
 
@@ -73185,7 +73185,7 @@ impl_855_property_normalize = {
 
 static const afw_value_object_t
 impl_855_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_867
 };
 
@@ -73197,7 +73197,7 @@ impl_855_property_objectId = {
 
 static const afw_value_object_t
 impl_855_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_868
 };
 
@@ -73209,7 +73209,7 @@ impl_855_property_objectType = {
 
 static const afw_value_object_t
 impl_855_property_value_objectTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_869
 };
 
@@ -73221,7 +73221,7 @@ impl_855_property_objectTypes = {
 
 static const afw_value_object_t
 impl_855_property_value_path = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_870
 };
 
@@ -73233,7 +73233,7 @@ impl_855_property_path = {
 
 static const afw_value_object_t
 impl_855_property_value_pathEmbedded = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_871
 };
 
@@ -73245,7 +73245,7 @@ impl_855_property_pathEmbedded = {
 
 static const afw_value_object_t
 impl_855_property_value_reconcilable = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_872
 };
 
@@ -73257,7 +73257,7 @@ impl_855_property_reconcilable = {
 
 static const afw_value_object_t
 impl_855_property_value_resolvedParentPaths = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_873
 };
 
@@ -73269,7 +73269,7 @@ impl_855_property_resolvedParentPaths = {
 
 static const afw_value_object_t
 impl_855_property_value_typedValues = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_874
 };
 
@@ -73281,7 +73281,7 @@ impl_855_property_typedValues = {
 
 static const afw_value_object_t
 impl_855_property_value_whitespace = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_875
 };
 
@@ -73351,7 +73351,7 @@ impl_855 = {
 
 static const afw_value_boolean_t
 impl_854_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73376,7 +73376,7 @@ impl_854_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_854_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_854_list_collectionURIs
 };
 
@@ -73400,7 +73400,7 @@ impl_854_property_objectType = {
 
 static const afw_value_object_t
 impl_854_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_855
 };
 
@@ -73464,7 +73464,7 @@ impl_878;
 
 static const afw_value_boolean_t
 impl_878_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73488,7 +73488,7 @@ impl_878_property_dataType = {
 
 static const afw_value_boolean_t
 impl_878_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73559,7 +73559,7 @@ impl_879;
 
 static const afw_value_boolean_t
 impl_879_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73583,7 +73583,7 @@ impl_879_property_dataType = {
 
 static const afw_value_boolean_t
 impl_879_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73654,7 +73654,7 @@ impl_880;
 
 static const afw_value_boolean_t
 impl_880_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73678,7 +73678,7 @@ impl_880_property_dataType = {
 
 static const afw_value_boolean_t
 impl_880_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73749,7 +73749,7 @@ impl_881;
 
 static const afw_value_boolean_t
 impl_881_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73773,7 +73773,7 @@ impl_881_property_dataType = {
 
 static const afw_value_boolean_t
 impl_881_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73844,7 +73844,7 @@ impl_882;
 
 static const afw_value_boolean_t
 impl_882_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -73933,7 +73933,7 @@ impl_883;
 
 static const afw_value_boolean_t
 impl_883_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74022,7 +74022,7 @@ impl_884;
 
 static const afw_value_boolean_t
 impl_884_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74104,7 +74104,7 @@ impl_885;
 
 static const afw_value_boolean_t
 impl_885_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74186,7 +74186,7 @@ impl_886;
 
 static const afw_value_boolean_t
 impl_886_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74268,7 +74268,7 @@ impl_887;
 
 static const afw_value_boolean_t
 impl_887_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74350,7 +74350,7 @@ impl_888;
 
 static const afw_value_boolean_t
 impl_888_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74432,7 +74432,7 @@ impl_889;
 
 static const afw_value_boolean_t
 impl_889_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74521,7 +74521,7 @@ impl_890;
 
 static const afw_value_boolean_t
 impl_890_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74610,7 +74610,7 @@ impl_891;
 
 static const afw_value_boolean_t
 impl_891_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -74841,7 +74841,7 @@ impl_893 = {
 
 static const afw_value_object_t
 impl_877_property_value_allowAdd = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_878
 };
 
@@ -74853,7 +74853,7 @@ impl_877_property_allowAdd = {
 
 static const afw_value_object_t
 impl_877_property_value_allowChange = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_879
 };
 
@@ -74865,7 +74865,7 @@ impl_877_property_allowChange = {
 
 static const afw_value_object_t
 impl_877_property_value_allowDelete = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_880
 };
 
@@ -74877,7 +74877,7 @@ impl_877_property_allowDelete = {
 
 static const afw_value_object_t
 impl_877_property_value_allowEntity = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_881
 };
 
@@ -74889,7 +74889,7 @@ impl_877_property_allowEntity = {
 
 static const afw_value_object_t
 impl_877_property_value_collectionURIs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_882
 };
 
@@ -74901,7 +74901,7 @@ impl_877_property_collectionURIs = {
 
 static const afw_value_object_t
 impl_877_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_883
 };
 
@@ -74913,7 +74913,7 @@ impl_877_property_description = {
 
 static const afw_value_object_t
 impl_877_property_value_descriptionPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_884
 };
 
@@ -74925,7 +74925,7 @@ impl_877_property_descriptionPropertyName = {
 
 static const afw_value_object_t
 impl_877_property_value_label = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_885
 };
 
@@ -74937,7 +74937,7 @@ impl_877_property_label = {
 
 static const afw_value_object_t
 impl_877_property_value_objectIdPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_886
 };
 
@@ -74949,7 +74949,7 @@ impl_877_property_objectIdPropertyName = {
 
 static const afw_value_object_t
 impl_877_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_887
 };
 
@@ -74961,7 +74961,7 @@ impl_877_property_objectType = {
 
 static const afw_value_object_t
 impl_877_property_value_originURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_888
 };
 
@@ -74973,7 +74973,7 @@ impl_877_property_originURI = {
 
 static const afw_value_object_t
 impl_877_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_889
 };
 
@@ -74985,7 +74985,7 @@ impl_877_property_otherProperties = {
 
 static const afw_value_object_t
 impl_877_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_890
 };
 
@@ -74997,7 +74997,7 @@ impl_877_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_877_property_value_referenceURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_891
 };
 
@@ -75009,7 +75009,7 @@ impl_877_property_referenceURI = {
 
 static const afw_value_object_t
 impl_877_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_892
 };
 
@@ -75021,7 +75021,7 @@ impl_877_property_runtime = {
 
 static const afw_value_object_t
 impl_877_property_value_tags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_893
 };
 
@@ -75087,7 +75087,7 @@ impl_877 = {
 
 static const afw_value_boolean_t
 impl_876_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -75112,7 +75112,7 @@ impl_876_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_876_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_876_list_collectionURIs
 };
 
@@ -75148,7 +75148,7 @@ impl_876_property_objectType = {
 
 static const afw_value_object_t
 impl_876_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_877
 };
 
@@ -75263,7 +75263,7 @@ impl_895 = {
 
 static const afw_value_boolean_t
 impl_894_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -75288,7 +75288,7 @@ impl_894_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_894_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_894_list_collectionURIs
 };
 
@@ -75312,7 +75312,7 @@ impl_894_property_objectType = {
 
 static const afw_value_object_t
 impl_894_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_895
 };
 
@@ -75411,7 +75411,7 @@ impl_897 = {
 
 static const afw_value_boolean_t
 impl_896_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -75436,7 +75436,7 @@ impl_896_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_896_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_896_list_collectionURIs
 };
 
@@ -75454,7 +75454,7 @@ impl_896_property_objectType = {
 
 static const afw_value_object_t
 impl_896_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_897
 };
 
@@ -75580,7 +75580,7 @@ impl_899 = {
 
 static const afw_value_boolean_t
 impl_898_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -75605,7 +75605,7 @@ impl_898_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_898_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_898_list_collectionURIs
 };
 
@@ -75629,7 +75629,7 @@ impl_898_property_objectType = {
 
 static const afw_value_object_t
 impl_898_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_899
 };
 
@@ -75711,7 +75711,7 @@ impl_902_property_label = {
 
 static const afw_value_boolean_t
 impl_902_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -75786,7 +75786,7 @@ impl_903_property_label = {
 
 static const afw_value_boolean_t
 impl_903_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -75861,7 +75861,7 @@ impl_904_property_label = {
 
 static const afw_value_boolean_t
 impl_904_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -75936,7 +75936,7 @@ impl_905_property_label = {
 
 static const afw_value_boolean_t
 impl_905_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76011,7 +76011,7 @@ impl_906_property_label = {
 
 static const afw_value_boolean_t
 impl_906_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76086,7 +76086,7 @@ impl_907_property_label = {
 
 static const afw_value_boolean_t
 impl_907_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76161,7 +76161,7 @@ impl_908_property_label = {
 
 static const afw_value_boolean_t
 impl_908_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76236,7 +76236,7 @@ impl_909_property_label = {
 
 static const afw_value_boolean_t
 impl_909_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76311,7 +76311,7 @@ impl_910_property_label = {
 
 static const afw_value_boolean_t
 impl_910_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76427,7 +76427,7 @@ impl_911 = {
 
 static const afw_value_object_t
 impl_901_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_902
 };
 
@@ -76439,7 +76439,7 @@ impl_901_property_brief = {
 
 static const afw_value_object_t
 impl_901_property_value_buildType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_903
 };
 
@@ -76451,7 +76451,7 @@ impl_901_property_buildType = {
 
 static const afw_value_object_t
 impl_901_property_value_buildTypeParameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_904
 };
 
@@ -76463,7 +76463,7 @@ impl_901_property_buildTypeParameters = {
 
 static const afw_value_object_t
 impl_901_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_905
 };
 
@@ -76475,7 +76475,7 @@ impl_901_property_description = {
 
 static const afw_value_object_t
 impl_901_property_value_ignore = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_906
 };
 
@@ -76487,7 +76487,7 @@ impl_901_property_ignore = {
 
 static const afw_value_object_t
 impl_901_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_907
 };
 
@@ -76499,7 +76499,7 @@ impl_901_property_optionalChoiceDefault = {
 
 static const afw_value_object_t
 impl_901_property_value_prefix = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_908
 };
 
@@ -76511,7 +76511,7 @@ impl_901_property_prefix = {
 
 static const afw_value_object_t
 impl_901_property_value_produces = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_909
 };
 
@@ -76523,7 +76523,7 @@ impl_901_property_produces = {
 
 static const afw_value_object_t
 impl_901_property_value_srcdirPath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_910
 };
 
@@ -76535,7 +76535,7 @@ impl_901_property_srcdirPath = {
 
 static const afw_value_object_t
 impl_901_property_value_version = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_911
 };
 
@@ -76595,7 +76595,7 @@ impl_901 = {
 
 static const afw_value_boolean_t
 impl_900_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76607,7 +76607,7 @@ impl_900_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_900_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76619,7 +76619,7 @@ impl_900_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_900_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76631,7 +76631,7 @@ impl_900_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_900_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76656,7 +76656,7 @@ impl_900_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_900_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_900_list_collectionURIs
 };
 
@@ -76680,7 +76680,7 @@ impl_900_property_objectType = {
 
 static const afw_value_object_t
 impl_900_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_901
 };
 
@@ -76810,7 +76810,7 @@ impl_913 = {
 
 static const afw_value_boolean_t
 impl_912_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76822,7 +76822,7 @@ impl_912_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_912_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76834,7 +76834,7 @@ impl_912_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_912_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76846,7 +76846,7 @@ impl_912_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_912_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -76871,7 +76871,7 @@ impl_912_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_912_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_912_list_collectionURIs
 };
 
@@ -76895,7 +76895,7 @@ impl_912_property_objectType = {
 
 static const afw_value_object_t
 impl_912_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_913
 };
 
@@ -76980,7 +76980,7 @@ impl_916_property_label = {
 
 static const afw_value_boolean_t
 impl_916_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77055,7 +77055,7 @@ impl_917_property_label = {
 
 static const afw_value_boolean_t
 impl_917_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77130,7 +77130,7 @@ impl_918_property_label = {
 
 static const afw_value_boolean_t
 impl_918_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77205,7 +77205,7 @@ impl_919_property_label = {
 
 static const afw_value_boolean_t
 impl_919_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77286,7 +77286,7 @@ impl_920_property_label = {
 
 static const afw_value_boolean_t
 impl_920_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77362,7 +77362,7 @@ impl_921_property_label = {
 
 static const afw_value_boolean_t
 impl_921_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77437,7 +77437,7 @@ impl_922_property_label = {
 
 static const afw_value_boolean_t
 impl_922_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77512,7 +77512,7 @@ impl_923_property_label = {
 
 static const afw_value_boolean_t
 impl_923_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -77587,7 +77587,7 @@ impl_924_property_label = {
 
 static const afw_value_boolean_t
 impl_924_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77668,7 +77668,7 @@ impl_925_property_label = {
 
 static const afw_value_boolean_t
 impl_925_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77744,7 +77744,7 @@ impl_926_property_label = {
 
 static const afw_value_boolean_t
 impl_926_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -77819,7 +77819,7 @@ impl_927_property_label = {
 
 static const afw_value_boolean_t
 impl_927_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -77873,7 +77873,7 @@ impl_927 = {
 
 static const afw_value_object_t
 impl_915_property_value_afwPackageId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_916
 };
 
@@ -77885,7 +77885,7 @@ impl_915_property_afwPackageId = {
 
 static const afw_value_object_t
 impl_915_property_value_afwPackageLabel = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_917
 };
 
@@ -77897,7 +77897,7 @@ impl_915_property_afwPackageLabel = {
 
 static const afw_value_object_t
 impl_915_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_918
 };
 
@@ -77909,7 +77909,7 @@ impl_915_property_brief = {
 
 static const afw_value_object_t
 impl_915_property_value_bugReportEmail = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_919
 };
 
@@ -77921,7 +77921,7 @@ impl_915_property_bugReportEmail = {
 
 static const afw_value_object_t
 impl_915_property_value_compileOptions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_920
 };
 
@@ -77933,7 +77933,7 @@ impl_915_property_compileOptions = {
 
 static const afw_value_object_t
 impl_915_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_921
 };
 
@@ -77945,7 +77945,7 @@ impl_915_property_description = {
 
 static const afw_value_object_t
 impl_915_property_value_homePageUrl = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_922
 };
 
@@ -77957,7 +77957,7 @@ impl_915_property_homePageUrl = {
 
 static const afw_value_object_t
 impl_915_property_value_installPackageSubdir = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_923
 };
 
@@ -77969,7 +77969,7 @@ impl_915_property_installPackageSubdir = {
 
 static const afw_value_object_t
 impl_915_property_value_srcdirManifest = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_924
 };
 
@@ -77981,7 +77981,7 @@ impl_915_property_srcdirManifest = {
 
 static const afw_value_object_t
 impl_915_property_value_srcdirs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_925
 };
 
@@ -77993,7 +77993,7 @@ impl_915_property_srcdirs = {
 
 static const afw_value_object_t
 impl_915_property_value_tarballName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_926
 };
 
@@ -78005,7 +78005,7 @@ impl_915_property_tarballName = {
 
 static const afw_value_object_t
 impl_915_property_value_version = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_927
 };
 
@@ -78067,7 +78067,7 @@ impl_915 = {
 
 static const afw_value_boolean_t
 impl_914_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -78079,7 +78079,7 @@ impl_914_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_914_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -78091,7 +78091,7 @@ impl_914_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_914_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -78103,7 +78103,7 @@ impl_914_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_914_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -78128,7 +78128,7 @@ impl_914_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_914_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_914_list_collectionURIs
 };
 
@@ -78152,7 +78152,7 @@ impl_914_property_objectType = {
 
 static const afw_value_object_t
 impl_914_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_915
 };
 
@@ -79672,7 +79672,7 @@ impl_950 = {
 
 static const afw_value_object_t
 impl_929_property_value_authority = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_930
 };
 
@@ -79684,7 +79684,7 @@ impl_929_property_authority = {
 
 static const afw_value_object_t
 impl_929_property_value_fragment = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_931
 };
 
@@ -79696,7 +79696,7 @@ impl_929_property_fragment = {
 
 static const afw_value_object_t
 impl_929_property_value_fragmentTokens = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_932
 };
 
@@ -79708,7 +79708,7 @@ impl_929_property_fragmentTokens = {
 
 static const afw_value_object_t
 impl_929_property_value_host = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_933
 };
 
@@ -79720,7 +79720,7 @@ impl_929_property_host = {
 
 static const afw_value_object_t
 impl_929_property_value_normalizedURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_934
 };
 
@@ -79732,7 +79732,7 @@ impl_929_property_normalizedURI = {
 
 static const afw_value_object_t
 impl_929_property_value_originalAuthority = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_935
 };
 
@@ -79744,7 +79744,7 @@ impl_929_property_originalAuthority = {
 
 static const afw_value_object_t
 impl_929_property_value_originalFragment = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_936
 };
 
@@ -79756,7 +79756,7 @@ impl_929_property_originalFragment = {
 
 static const afw_value_object_t
 impl_929_property_value_originalHierPart = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_937
 };
 
@@ -79768,7 +79768,7 @@ impl_929_property_originalHierPart = {
 
 static const afw_value_object_t
 impl_929_property_value_originalHost = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_938
 };
 
@@ -79780,7 +79780,7 @@ impl_929_property_originalHost = {
 
 static const afw_value_object_t
 impl_929_property_value_originalPath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_939
 };
 
@@ -79792,7 +79792,7 @@ impl_929_property_originalPath = {
 
 static const afw_value_object_t
 impl_929_property_value_originalQuery = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_940
 };
 
@@ -79804,7 +79804,7 @@ impl_929_property_originalQuery = {
 
 static const afw_value_object_t
 impl_929_property_value_originalURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_941
 };
 
@@ -79816,7 +79816,7 @@ impl_929_property_originalURI = {
 
 static const afw_value_object_t
 impl_929_property_value_originalUserinfo = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_942
 };
 
@@ -79828,7 +79828,7 @@ impl_929_property_originalUserinfo = {
 
 static const afw_value_object_t
 impl_929_property_value_path = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_943
 };
 
@@ -79840,7 +79840,7 @@ impl_929_property_path = {
 
 static const afw_value_object_t
 impl_929_property_value_pathTokens = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_944
 };
 
@@ -79852,7 +79852,7 @@ impl_929_property_pathTokens = {
 
 static const afw_value_object_t
 impl_929_property_value_port = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_945
 };
 
@@ -79864,7 +79864,7 @@ impl_929_property_port = {
 
 static const afw_value_object_t
 impl_929_property_value_query = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_946
 };
 
@@ -79876,7 +79876,7 @@ impl_929_property_query = {
 
 static const afw_value_object_t
 impl_929_property_value_queryTokens = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_947
 };
 
@@ -79888,7 +79888,7 @@ impl_929_property_queryTokens = {
 
 static const afw_value_object_t
 impl_929_property_value_scheme = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_948
 };
 
@@ -79900,7 +79900,7 @@ impl_929_property_scheme = {
 
 static const afw_value_object_t
 impl_929_property_value_userinfo = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_949
 };
 
@@ -79912,7 +79912,7 @@ impl_929_property_userinfo = {
 
 static const afw_value_object_t
 impl_929_property_value_valuePath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_950
 };
 
@@ -79983,7 +79983,7 @@ impl_929 = {
 
 static const afw_value_boolean_t
 impl_928_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -79995,7 +79995,7 @@ impl_928_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_928_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80007,7 +80007,7 @@ impl_928_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_928_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80019,7 +80019,7 @@ impl_928_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_928_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80044,7 +80044,7 @@ impl_928_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_928_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_928_list_collectionURIs
 };
 
@@ -80068,7 +80068,7 @@ impl_928_property_objectType = {
 
 static const afw_value_object_t
 impl_928_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_929
 };
 
@@ -80135,7 +80135,7 @@ impl_953;
 
 static const afw_value_boolean_t
 impl_953_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -80171,7 +80171,7 @@ impl_953_property_label = {
 
 static const afw_value_boolean_t
 impl_953_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80260,7 +80260,7 @@ impl_954_property_label = {
 
 static const afw_value_boolean_t
 impl_954_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80319,7 +80319,7 @@ impl_955;
 
 static const afw_value_boolean_t
 impl_955_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -80401,7 +80401,7 @@ impl_956;
 
 static const afw_value_boolean_t
 impl_956_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -80425,7 +80425,7 @@ impl_956_property_dataType = {
 
 static const afw_value_boolean_t
 impl_956_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80548,7 +80548,7 @@ impl_957 = {
 
 static const afw_value_object_t
 impl_952_property_value_dataTypeMethod = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_953
 };
 
@@ -80560,7 +80560,7 @@ impl_952_property_dataTypeMethod = {
 
 static const afw_value_object_t
 impl_952_property_value_errorsThrown = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_954
 };
 
@@ -80572,7 +80572,7 @@ impl_952_property_errorsThrown = {
 
 static const afw_value_object_t
 impl_952_property_value_polymorphicExecuteFunction = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_955
 };
 
@@ -80584,7 +80584,7 @@ impl_952_property_polymorphicExecuteFunction = {
 
 static const afw_value_object_t
 impl_952_property_value_polymorphicExecuteFunctionEvaluatesFirstParameter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_956
 };
 
@@ -80596,7 +80596,7 @@ impl_952_property_polymorphicExecuteFunctionEvaluatesFirstParameter = {
 
 static const afw_value_object_t
 impl_952_property_value_polymorphicOverrides = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_957
 };
 
@@ -80631,7 +80631,7 @@ impl_952_parentPaths_list = {
 
 static const afw_value_array_t
 impl_952_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_952_parentPaths_list
 };
 
@@ -80670,7 +80670,7 @@ impl_952 = {
 
 static const afw_value_boolean_t
 impl_951_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -80695,7 +80695,7 @@ impl_951_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_951_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_951_list_collectionURIs
 };
 
@@ -80719,7 +80719,7 @@ impl_951_property_objectType = {
 
 static const afw_value_object_t
 impl_951_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_952
 };
 
@@ -80832,7 +80832,7 @@ impl_959 = {
 
 static const afw_value_boolean_t
 impl_958_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -80857,7 +80857,7 @@ impl_958_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_958_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_958_list_collectionURIs
 };
 
@@ -80881,7 +80881,7 @@ impl_958_property_objectType = {
 
 static const afw_value_object_t
 impl_958_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_959
 };
 
@@ -80945,7 +80945,7 @@ impl_962;
 
 static const afw_value_boolean_t
 impl_962_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81027,7 +81027,7 @@ impl_963;
 
 static const afw_value_boolean_t
 impl_963_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81109,7 +81109,7 @@ impl_964;
 
 static const afw_value_boolean_t
 impl_964_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81198,7 +81198,7 @@ impl_965;
 
 static const afw_value_boolean_t
 impl_965_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81280,7 +81280,7 @@ impl_966;
 
 static const afw_value_boolean_t
 impl_966_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81362,7 +81362,7 @@ impl_967;
 
 static const afw_value_boolean_t
 impl_967_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81451,7 +81451,7 @@ impl_968;
 
 static const afw_value_boolean_t
 impl_968_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81533,7 +81533,7 @@ impl_969;
 
 static const afw_value_boolean_t
 impl_969_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81569,7 +81569,7 @@ impl_969_property_label = {
 
 static const afw_value_boolean_t
 impl_969_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81625,7 +81625,7 @@ impl_969 = {
 
 static const afw_value_object_t
 impl_961_property_value_advanceCursor = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_962
 };
 
@@ -81637,7 +81637,7 @@ impl_961_property_advanceCursor = {
 
 static const afw_value_object_t
 impl_961_property_value_consumeCursor = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_963
 };
 
@@ -81649,7 +81649,7 @@ impl_961_property_consumeCursor = {
 
 static const afw_value_object_t
 impl_961_property_value_consumeFilter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_964
 };
 
@@ -81661,7 +81661,7 @@ impl_961_property_consumeFilter = {
 
 static const afw_value_object_t
 impl_961_property_value_consumeStartTime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_965
 };
 
@@ -81673,7 +81673,7 @@ impl_961_property_consumeStartTime = {
 
 static const afw_value_object_t
 impl_961_property_value_currentCursor = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_966
 };
 
@@ -81685,7 +81685,7 @@ impl_961_property_currentCursor = {
 
 static const afw_value_object_t
 impl_961_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_967
 };
 
@@ -81697,7 +81697,7 @@ impl_961_property_description = {
 
 static const afw_value_object_t
 impl_961_property_value_lastContactTime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_968
 };
 
@@ -81709,7 +81709,7 @@ impl_961_property_lastContactTime = {
 
 static const afw_value_object_t
 impl_961_property_value_peerId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_969
 };
 
@@ -81767,7 +81767,7 @@ impl_961 = {
 
 static const afw_value_boolean_t
 impl_960_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -81792,7 +81792,7 @@ impl_960_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_960_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_960_list_collectionURIs
 };
 
@@ -81816,7 +81816,7 @@ impl_960_property_objectType = {
 
 static const afw_value_object_t
 impl_960_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_961
 };
 
@@ -81929,7 +81929,7 @@ impl_971 = {
 
 static const afw_value_boolean_t
 impl_970_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -81954,7 +81954,7 @@ impl_970_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_970_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_970_list_collectionURIs
 };
 
@@ -81978,7 +81978,7 @@ impl_970_property_objectType = {
 
 static const afw_value_object_t
 impl_970_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_971
 };
 
@@ -82166,7 +82166,7 @@ impl_975_list_possibleValues = {
 
 static const afw_value_array_t
 impl_975_property_value_possibleValues = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_975_list_possibleValues
 };
 
@@ -82178,7 +82178,7 @@ impl_975_property_possibleValues = {
 
 static const afw_value_boolean_t
 impl_975_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -82372,7 +82372,7 @@ impl_977 = {
 
 static const afw_value_object_t
 impl_973_property_value_filters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_974
 };
 
@@ -82384,7 +82384,7 @@ impl_973_property_filters = {
 
 static const afw_value_object_t
 impl_973_property_value_op = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_975
 };
 
@@ -82396,7 +82396,7 @@ impl_973_property_op = {
 
 static const afw_value_object_t
 impl_973_property_value_property = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_976
 };
 
@@ -82408,7 +82408,7 @@ impl_973_property_property = {
 
 static const afw_value_object_t
 impl_973_property_value_value = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_977
 };
 
@@ -82462,7 +82462,7 @@ impl_973 = {
 
 static const afw_value_boolean_t
 impl_972_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -82474,7 +82474,7 @@ impl_972_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_972_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -82486,7 +82486,7 @@ impl_972_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_972_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -82498,7 +82498,7 @@ impl_972_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_972_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -82523,7 +82523,7 @@ impl_972_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_972_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_972_list_collectionURIs
 };
 
@@ -82547,7 +82547,7 @@ impl_972_property_objectType = {
 
 static const afw_value_object_t
 impl_972_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_973
 };
 
@@ -82614,7 +82614,7 @@ impl_980;
 
 static const afw_value_boolean_t
 impl_980_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -82921,7 +82921,7 @@ impl_983 = {
 
 static const afw_value_object_t
 impl_979_property_value_filter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_980
 };
 
@@ -82933,7 +82933,7 @@ impl_979_property_filter = {
 
 static const afw_value_object_t
 impl_979_property_value_select = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_981
 };
 
@@ -82945,7 +82945,7 @@ impl_979_property_select = {
 
 static const afw_value_object_t
 impl_979_property_value_sort = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_982
 };
 
@@ -82957,7 +82957,7 @@ impl_979_property_sort = {
 
 static const afw_value_object_t
 impl_979_property_value_urlEncodedRQLString = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_983
 };
 
@@ -83011,7 +83011,7 @@ impl_979 = {
 
 static const afw_value_boolean_t
 impl_978_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83023,7 +83023,7 @@ impl_978_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_978_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83035,7 +83035,7 @@ impl_978_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_978_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83047,7 +83047,7 @@ impl_978_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_978_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83072,7 +83072,7 @@ impl_978_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_978_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_978_list_collectionURIs
 };
 
@@ -83096,7 +83096,7 @@ impl_978_property_objectType = {
 
 static const afw_value_object_t
 impl_978_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_979
 };
 
@@ -83270,7 +83270,7 @@ impl_987 = {
 
 static const afw_value_object_t
 impl_986_property_value_subjectCategories = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_987
 };
 
@@ -83321,7 +83321,7 @@ impl_986 = {
 
 static const afw_value_boolean_t
 impl_984_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83333,7 +83333,7 @@ impl_984_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_984_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83345,7 +83345,7 @@ impl_984_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_984_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83357,7 +83357,7 @@ impl_984_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_984_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -83382,7 +83382,7 @@ impl_984_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_984_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_984_list_collectionURIs
 };
 
@@ -83406,7 +83406,7 @@ impl_984_property_objectType = {
 
 static const afw_value_object_t
 impl_984_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_985
 };
 
@@ -83418,7 +83418,7 @@ impl_984_property_otherProperties = {
 
 static const afw_value_object_t
 impl_984_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_986
 };
 
@@ -83534,7 +83534,7 @@ impl_991 = {
 
 static const afw_value_boolean_t
 impl_990_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -83576,7 +83576,7 @@ impl_990_property_label = {
 
 static const afw_value_object_t
 impl_990_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_991
 };
 
@@ -83684,7 +83684,7 @@ impl_993 = {
 
 static const afw_value_boolean_t
 impl_992_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -83720,7 +83720,7 @@ impl_992_property_label = {
 
 static const afw_value_object_t
 impl_992_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_993
 };
 
@@ -83776,7 +83776,7 @@ impl_992 = {
 
 static const afw_value_object_t
 impl_989_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_990
 };
 
@@ -83788,7 +83788,7 @@ impl_989_property_description = {
 
 static const afw_value_object_t
 impl_989_property_value_requestHandlerType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_992
 };
 
@@ -83891,7 +83891,7 @@ impl_995 = {
 
 static const afw_value_boolean_t
 impl_994_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -83903,7 +83903,7 @@ impl_994_property_indirect = {
 
 static const afw_value_object_t
 impl_994_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_995
 };
 
@@ -83962,7 +83962,7 @@ impl_994 = {
 
 static const afw_value_boolean_t
 impl_988_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83974,7 +83974,7 @@ impl_988_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_988_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83986,7 +83986,7 @@ impl_988_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_988_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -83998,7 +83998,7 @@ impl_988_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_988_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -84023,7 +84023,7 @@ impl_988_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_988_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_988_list_collectionURIs
 };
 
@@ -84047,7 +84047,7 @@ impl_988_property_objectType = {
 
 static const afw_value_object_t
 impl_988_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_989
 };
 
@@ -84059,7 +84059,7 @@ impl_988_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_988_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_994
 };
 
@@ -84183,7 +84183,7 @@ impl_998_parentPaths_list = {
 
 static const afw_value_array_t
 impl_998_parentPaths = {
-    &afw_value_evaluated_array_inf,
+    {&afw_value_evaluated_array_inf},
     (const afw_array_t *)&impl_998_parentPaths_list
 };
 
@@ -84222,7 +84222,7 @@ impl_998 = {
 
 static const afw_value_boolean_t
 impl_996_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -84234,7 +84234,7 @@ impl_996_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_996_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -84246,7 +84246,7 @@ impl_996_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_996_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -84258,7 +84258,7 @@ impl_996_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_996_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -84283,7 +84283,7 @@ impl_996_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_996_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_996_list_collectionURIs
 };
 
@@ -84307,7 +84307,7 @@ impl_996_property_objectType = {
 
 static const afw_value_object_t
 impl_996_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_997
 };
 
@@ -84319,7 +84319,7 @@ impl_996_property_otherProperties = {
 
 static const afw_value_object_t
 impl_996_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_998
 };
 
@@ -87222,7 +87222,7 @@ impl_1046 = {
 
 static const afw_value_object_t
 impl_1001_property_value_ACCEPT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1002
 };
 
@@ -87234,7 +87234,7 @@ impl_1001_property_ACCEPT = {
 
 static const afw_value_object_t
 impl_1001_property_value_AUTH_TYPE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1003
 };
 
@@ -87246,7 +87246,7 @@ impl_1001_property_AUTH_TYPE = {
 
 static const afw_value_object_t
 impl_1001_property_value_CONTENT_LENGTH = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1004
 };
 
@@ -87258,7 +87258,7 @@ impl_1001_property_CONTENT_LENGTH = {
 
 static const afw_value_object_t
 impl_1001_property_value_CONTENT_TYPE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1005
 };
 
@@ -87270,7 +87270,7 @@ impl_1001_property_CONTENT_TYPE = {
 
 static const afw_value_object_t
 impl_1001_property_value_DOCUMENT_ROOT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1006
 };
 
@@ -87282,7 +87282,7 @@ impl_1001_property_DOCUMENT_ROOT = {
 
 static const afw_value_object_t
 impl_1001_property_value_FCGI_ROLE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1007
 };
 
@@ -87294,7 +87294,7 @@ impl_1001_property_FCGI_ROLE = {
 
 static const afw_value_object_t
 impl_1001_property_value_GATEWAY_INTERFACE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1008
 };
 
@@ -87306,7 +87306,7 @@ impl_1001_property_GATEWAY_INTERFACE = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTPS = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1009
 };
 
@@ -87318,7 +87318,7 @@ impl_1001_property_HTTPS = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_ACCEPT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1010
 };
 
@@ -87330,7 +87330,7 @@ impl_1001_property_HTTP_ACCEPT = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_ACCEPT_CHARSET = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1011
 };
 
@@ -87342,7 +87342,7 @@ impl_1001_property_HTTP_ACCEPT_CHARSET = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_ACCEPT_ENCODING = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1012
 };
 
@@ -87354,7 +87354,7 @@ impl_1001_property_HTTP_ACCEPT_ENCODING = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_ACCEPT_LANGUAGE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1013
 };
 
@@ -87366,7 +87366,7 @@ impl_1001_property_HTTP_ACCEPT_LANGUAGE = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_COOKIE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1014
 };
 
@@ -87378,7 +87378,7 @@ impl_1001_property_HTTP_COOKIE = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_FROM = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1015
 };
 
@@ -87390,7 +87390,7 @@ impl_1001_property_HTTP_FROM = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_HOST = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1016
 };
 
@@ -87402,7 +87402,7 @@ impl_1001_property_HTTP_HOST = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_REFERER = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1017
 };
 
@@ -87414,7 +87414,7 @@ impl_1001_property_HTTP_REFERER = {
 
 static const afw_value_object_t
 impl_1001_property_value_HTTP_USER_AGENT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1018
 };
 
@@ -87426,7 +87426,7 @@ impl_1001_property_HTTP_USER_AGENT = {
 
 static const afw_value_object_t
 impl_1001_property_value_PATH_INFO = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1019
 };
 
@@ -87438,7 +87438,7 @@ impl_1001_property_PATH_INFO = {
 
 static const afw_value_object_t
 impl_1001_property_value_PATH_TRANSLATED = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1020
 };
 
@@ -87450,7 +87450,7 @@ impl_1001_property_PATH_TRANSLATED = {
 
 static const afw_value_object_t
 impl_1001_property_value_QUERY_STRING = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1021
 };
 
@@ -87462,7 +87462,7 @@ impl_1001_property_QUERY_STRING = {
 
 static const afw_value_object_t
 impl_1001_property_value_REMOTE_ADDR = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1022
 };
 
@@ -87474,7 +87474,7 @@ impl_1001_property_REMOTE_ADDR = {
 
 static const afw_value_object_t
 impl_1001_property_value_REMOTE_HOST = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1023
 };
 
@@ -87486,7 +87486,7 @@ impl_1001_property_REMOTE_HOST = {
 
 static const afw_value_object_t
 impl_1001_property_value_REMOTE_IDENT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1024
 };
 
@@ -87498,7 +87498,7 @@ impl_1001_property_REMOTE_IDENT = {
 
 static const afw_value_object_t
 impl_1001_property_value_REMOTE_PORT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1025
 };
 
@@ -87510,7 +87510,7 @@ impl_1001_property_REMOTE_PORT = {
 
 static const afw_value_object_t
 impl_1001_property_value_REMOTE_USER = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1026
 };
 
@@ -87522,7 +87522,7 @@ impl_1001_property_REMOTE_USER = {
 
 static const afw_value_object_t
 impl_1001_property_value_REQUEST_METHOD = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1027
 };
 
@@ -87534,7 +87534,7 @@ impl_1001_property_REQUEST_METHOD = {
 
 static const afw_value_object_t
 impl_1001_property_value_REQUEST_SCHEME = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1028
 };
 
@@ -87546,7 +87546,7 @@ impl_1001_property_REQUEST_SCHEME = {
 
 static const afw_value_object_t
 impl_1001_property_value_REQUEST_URI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1029
 };
 
@@ -87558,7 +87558,7 @@ impl_1001_property_REQUEST_URI = {
 
 static const afw_value_object_t
 impl_1001_property_value_SCHEME = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1030
 };
 
@@ -87570,7 +87570,7 @@ impl_1001_property_SCHEME = {
 
 static const afw_value_object_t
 impl_1001_property_value_SCRIPT_NAME = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1031
 };
 
@@ -87582,7 +87582,7 @@ impl_1001_property_SCRIPT_NAME = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_ADDR = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1032
 };
 
@@ -87594,7 +87594,7 @@ impl_1001_property_SERVER_ADDR = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_ADMIN = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1033
 };
 
@@ -87606,7 +87606,7 @@ impl_1001_property_SERVER_ADMIN = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_NAME = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1034
 };
 
@@ -87618,7 +87618,7 @@ impl_1001_property_SERVER_NAME = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_PORT = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1035
 };
 
@@ -87630,7 +87630,7 @@ impl_1001_property_SERVER_PORT = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_PROTOCOL = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1036
 };
 
@@ -87642,7 +87642,7 @@ impl_1001_property_SERVER_PROTOCOL = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_SIGNATURE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1037
 };
 
@@ -87654,7 +87654,7 @@ impl_1001_property_SERVER_SIGNATURE = {
 
 static const afw_value_object_t
 impl_1001_property_value_SERVER_SOFTWARE = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1038
 };
 
@@ -87666,7 +87666,7 @@ impl_1001_property_SERVER_SOFTWARE = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_M_SERIAL = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1039
 };
 
@@ -87678,7 +87678,7 @@ impl_1001_property_SSL_CLIENT_M_SERIAL = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_M_VERSION = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1040
 };
 
@@ -87690,7 +87690,7 @@ impl_1001_property_SSL_CLIENT_M_VERSION = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_S_DN = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1041
 };
 
@@ -87702,7 +87702,7 @@ impl_1001_property_SSL_CLIENT_S_DN = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_S_DN_CN = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1042
 };
 
@@ -87714,7 +87714,7 @@ impl_1001_property_SSL_CLIENT_S_DN_CN = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_VERIFY = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1043
 };
 
@@ -87726,7 +87726,7 @@ impl_1001_property_SSL_CLIENT_VERIFY = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_V_END = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1044
 };
 
@@ -87738,7 +87738,7 @@ impl_1001_property_SSL_CLIENT_V_END = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_V_REMAIN = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1045
 };
 
@@ -87750,7 +87750,7 @@ impl_1001_property_SSL_CLIENT_V_REMAIN = {
 
 static const afw_value_object_t
 impl_1001_property_value_SSL_CLIENT_V_START = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1046
 };
 
@@ -87845,7 +87845,7 @@ impl_1001 = {
 
 static const afw_value_boolean_t
 impl_999_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -87870,7 +87870,7 @@ impl_999_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_999_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_999_list_collectionURIs
 };
 
@@ -87894,7 +87894,7 @@ impl_999_property_objectType = {
 
 static const afw_value_object_t
 impl_999_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1000
 };
 
@@ -87906,7 +87906,7 @@ impl_999_property_otherProperties = {
 
 static const afw_value_object_t
 impl_999_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1001
 };
 
@@ -88278,7 +88278,7 @@ impl_1053 = {
 
 static const afw_value_object_t
 impl_1049_property_value_console = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1050
 };
 
@@ -88290,7 +88290,7 @@ impl_1049_property_console = {
 
 static const afw_value_object_t
 impl_1049_property_value_result = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1051
 };
 
@@ -88302,7 +88302,7 @@ impl_1049_property_result = {
 
 static const afw_value_object_t
 impl_1049_property_value_stderr = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1052
 };
 
@@ -88314,7 +88314,7 @@ impl_1049_property_stderr = {
 
 static const afw_value_object_t
 impl_1049_property_value_stdout = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1053
 };
 
@@ -88368,7 +88368,7 @@ impl_1049 = {
 
 static const afw_value_boolean_t
 impl_1047_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -88380,7 +88380,7 @@ impl_1047_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1047_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -88392,7 +88392,7 @@ impl_1047_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1047_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -88404,7 +88404,7 @@ impl_1047_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1047_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -88429,7 +88429,7 @@ impl_1047_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1047_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1047_list_collectionURIs
 };
 
@@ -88453,7 +88453,7 @@ impl_1047_property_objectType = {
 
 static const afw_value_object_t
 impl_1047_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1048
 };
 
@@ -88465,7 +88465,7 @@ impl_1047_property_otherProperties = {
 
 static const afw_value_object_t
 impl_1047_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1049
 };
 
@@ -88926,7 +88926,7 @@ impl_1062;
 
 static const afw_value_boolean_t
 impl_1062_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -89047,7 +89047,7 @@ impl_1063_list_possibleValues = {
 
 static const afw_value_array_t
 impl_1063_property_value_possibleValues = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1063_list_possibleValues
 };
 
@@ -89240,7 +89240,7 @@ impl_1065 = {
 
 static const afw_value_object_t
 impl_1056_property_value_actions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1057
 };
 
@@ -89252,7 +89252,7 @@ impl_1056_property_actions = {
 
 static const afw_value_object_t
 impl_1056_property_value_console = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1058
 };
 
@@ -89264,7 +89264,7 @@ impl_1056_property_console = {
 
 static const afw_value_object_t
 impl_1056_property_value_error = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1059
 };
 
@@ -89276,7 +89276,7 @@ impl_1056_property_error = {
 
 static const afw_value_object_t
 impl_1056_property_value_intermediate = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1060
 };
 
@@ -89288,7 +89288,7 @@ impl_1056_property_intermediate = {
 
 static const afw_value_object_t
 impl_1056_property_value_result = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1061
 };
 
@@ -89300,7 +89300,7 @@ impl_1056_property_result = {
 
 static const afw_value_object_t
 impl_1056_property_value_resultDataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1062
 };
 
@@ -89312,7 +89312,7 @@ impl_1056_property_resultDataType = {
 
 static const afw_value_object_t
 impl_1056_property_value_status = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1063
 };
 
@@ -89324,7 +89324,7 @@ impl_1056_property_status = {
 
 static const afw_value_object_t
 impl_1056_property_value_stderr = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1064
 };
 
@@ -89336,7 +89336,7 @@ impl_1056_property_stderr = {
 
 static const afw_value_object_t
 impl_1056_property_value_stdout = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1065
 };
 
@@ -89395,7 +89395,7 @@ impl_1056 = {
 
 static const afw_value_boolean_t
 impl_1054_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -89407,7 +89407,7 @@ impl_1054_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1054_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -89419,7 +89419,7 @@ impl_1054_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1054_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -89431,7 +89431,7 @@ impl_1054_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1054_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -89456,7 +89456,7 @@ impl_1054_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1054_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1054_list_collectionURIs
 };
 
@@ -89474,7 +89474,7 @@ impl_1054_property_objectType = {
 
 static const afw_value_object_t
 impl_1054_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1055
 };
 
@@ -89486,7 +89486,7 @@ impl_1054_property_otherProperties = {
 
 static const afw_value_object_t
 impl_1054_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1056
 };
 
@@ -89602,7 +89602,7 @@ impl_1067 = {
 
 static const afw_value_boolean_t
 impl_1066_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -89627,7 +89627,7 @@ impl_1066_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1066_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1066_list_collectionURIs
 };
 
@@ -89645,7 +89645,7 @@ impl_1066_property_objectType = {
 
 static const afw_value_object_t
 impl_1066_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1067
 };
 
@@ -89756,7 +89756,7 @@ impl_1071 = {
 
 static const afw_value_boolean_t
 impl_1070_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -89792,7 +89792,7 @@ impl_1070_property_label = {
 
 static const afw_value_object_t
 impl_1070_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1071
 };
 
@@ -89848,7 +89848,7 @@ impl_1070 = {
 
 static const afw_value_object_t
 impl_1069_property_value_key = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1070
 };
 
@@ -89905,7 +89905,7 @@ impl_1073;
 
 static const afw_value_boolean_t
 impl_1073_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -89963,7 +89963,7 @@ impl_1073 = {
 
 static const afw_value_boolean_t
 impl_1072_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -89975,7 +89975,7 @@ impl_1072_property_indirect = {
 
 static const afw_value_object_t
 impl_1072_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1073
 };
 
@@ -90034,7 +90034,7 @@ impl_1072 = {
 
 static const afw_value_boolean_t
 impl_1068_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -90059,7 +90059,7 @@ impl_1068_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1068_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1068_list_collectionURIs
 };
 
@@ -90083,7 +90083,7 @@ impl_1068_property_objectType = {
 
 static const afw_value_object_t
 impl_1068_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1069
 };
 
@@ -90095,7 +90095,7 @@ impl_1068_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1068_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1072
 };
 
@@ -90295,7 +90295,7 @@ impl_1077 = {
 
 static const afw_value_object_t
 impl_1075_property_value_indirectObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1076
 };
 
@@ -90307,7 +90307,7 @@ impl_1075_property_indirectObjectId = {
 
 static const afw_value_object_t
 impl_1075_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1077
 };
 
@@ -90359,7 +90359,7 @@ impl_1075 = {
 
 static const afw_value_boolean_t
 impl_1074_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -90384,7 +90384,7 @@ impl_1074_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1074_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1074_list_collectionURIs
 };
 
@@ -90408,7 +90408,7 @@ impl_1074_property_objectType = {
 
 static const afw_value_object_t
 impl_1074_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1075
 };
 
@@ -90520,7 +90520,7 @@ impl_1081 = {
 
 static const afw_value_boolean_t
 impl_1080_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -90556,7 +90556,7 @@ impl_1080_property_label = {
 
 static const afw_value_object_t
 impl_1080_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1081
 };
 
@@ -90612,7 +90612,7 @@ impl_1080 = {
 
 static const afw_value_object_t
 impl_1079_property_value_key = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1080
 };
 
@@ -90669,7 +90669,7 @@ impl_1083;
 
 static const afw_value_boolean_t
 impl_1083_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -90727,7 +90727,7 @@ impl_1083 = {
 
 static const afw_value_boolean_t
 impl_1082_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -90739,7 +90739,7 @@ impl_1082_property_indirect = {
 
 static const afw_value_object_t
 impl_1082_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1083
 };
 
@@ -90798,7 +90798,7 @@ impl_1082 = {
 
 static const afw_value_boolean_t
 impl_1078_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -90810,7 +90810,7 @@ impl_1078_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1078_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -90822,7 +90822,7 @@ impl_1078_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1078_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -90834,7 +90834,7 @@ impl_1078_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1078_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -90859,7 +90859,7 @@ impl_1078_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1078_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1078_list_collectionURIs
 };
 
@@ -90883,7 +90883,7 @@ impl_1078_property_objectType = {
 
 static const afw_value_object_t
 impl_1078_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1079
 };
 
@@ -90895,7 +90895,7 @@ impl_1078_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1078_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1082
 };
 
@@ -91174,7 +91174,7 @@ impl_1088 = {
 
 static const afw_value_object_t
 impl_1085_property_value_indirect = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1086
 };
 
@@ -91186,7 +91186,7 @@ impl_1085_property_indirect = {
 
 static const afw_value_object_t
 impl_1085_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1087
 };
 
@@ -91198,7 +91198,7 @@ impl_1085_property_labels = {
 
 static const afw_value_object_t
 impl_1085_property_value_typedef = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1088
 };
 
@@ -91251,7 +91251,7 @@ impl_1085 = {
 
 static const afw_value_boolean_t
 impl_1084_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91263,7 +91263,7 @@ impl_1084_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1084_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91275,7 +91275,7 @@ impl_1084_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1084_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91287,7 +91287,7 @@ impl_1084_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1084_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91312,7 +91312,7 @@ impl_1084_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1084_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1084_list_collectionURIs
 };
 
@@ -91336,7 +91336,7 @@ impl_1084_property_objectType = {
 
 static const afw_value_object_t
 impl_1084_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1085
 };
 
@@ -91676,7 +91676,7 @@ impl_1094 = {
 
 static const afw_value_object_t
 impl_1090_property_value_memberName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1091
 };
 
@@ -91688,7 +91688,7 @@ impl_1090_property_memberName = {
 
 static const afw_value_object_t
 impl_1090_property_value_onGetValueCFunctionName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1092
 };
 
@@ -91700,7 +91700,7 @@ impl_1090_property_onGetValueCFunctionName = {
 
 static const afw_value_object_t
 impl_1090_property_value_valueAccessor = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1093
 };
 
@@ -91712,7 +91712,7 @@ impl_1090_property_valueAccessor = {
 
 static const afw_value_object_t
 impl_1090_property_value_zeroOffset = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1094
 };
 
@@ -91766,7 +91766,7 @@ impl_1090 = {
 
 static const afw_value_boolean_t
 impl_1089_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91778,7 +91778,7 @@ impl_1089_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1089_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91790,7 +91790,7 @@ impl_1089_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1089_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91802,7 +91802,7 @@ impl_1089_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1089_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -91827,7 +91827,7 @@ impl_1089_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1089_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1089_list_collectionURIs
 };
 
@@ -91851,7 +91851,7 @@ impl_1089_property_objectType = {
 
 static const afw_value_object_t
 impl_1089_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1090
 };
 
@@ -91966,7 +91966,7 @@ impl_1098 = {
 
 static const afw_value_boolean_t
 impl_1097_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92002,7 +92002,7 @@ impl_1097_property_label = {
 
 static const afw_value_object_t
 impl_1097_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1098
 };
 
@@ -92058,7 +92058,7 @@ impl_1097 = {
 
 static const afw_value_object_t
 impl_1096_property_value_key = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1097
 };
 
@@ -92115,7 +92115,7 @@ impl_1100;
 
 static const afw_value_boolean_t
 impl_1100_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92173,7 +92173,7 @@ impl_1100 = {
 
 static const afw_value_boolean_t
 impl_1099_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92185,7 +92185,7 @@ impl_1099_property_indirect = {
 
 static const afw_value_object_t
 impl_1099_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1100
 };
 
@@ -92244,7 +92244,7 @@ impl_1099 = {
 
 static const afw_value_boolean_t
 impl_1095_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -92256,7 +92256,7 @@ impl_1095_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1095_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -92268,7 +92268,7 @@ impl_1095_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1095_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -92280,7 +92280,7 @@ impl_1095_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1095_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92305,7 +92305,7 @@ impl_1095_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1095_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1095_list_collectionURIs
 };
 
@@ -92329,7 +92329,7 @@ impl_1095_property_objectType = {
 
 static const afw_value_object_t
 impl_1095_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1096
 };
 
@@ -92341,7 +92341,7 @@ impl_1095_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1095_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1099
 };
 
@@ -92464,7 +92464,7 @@ impl_1104 = {
 
 static const afw_value_boolean_t
 impl_1103_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92500,7 +92500,7 @@ impl_1103_property_label = {
 
 static const afw_value_object_t
 impl_1103_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1104
 };
 
@@ -92614,7 +92614,7 @@ impl_1106 = {
 
 static const afw_value_boolean_t
 impl_1105_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92650,7 +92650,7 @@ impl_1105_property_label = {
 
 static const afw_value_object_t
 impl_1105_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1106
 };
 
@@ -92709,7 +92709,7 @@ impl_1107;
 
 static const afw_value_boolean_t
 impl_1107_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92745,7 +92745,7 @@ impl_1107_property_label = {
 
 static const afw_value_boolean_t
 impl_1107_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92757,7 +92757,7 @@ impl_1107_property_required = {
 
 static const afw_value_boolean_t
 impl_1107_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -92865,7 +92865,7 @@ impl_1109 = {
 
 static const afw_value_boolean_t
 impl_1108_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92901,7 +92901,7 @@ impl_1108_property_label = {
 
 static const afw_value_boolean_t
 impl_1108_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -92913,7 +92913,7 @@ impl_1108_property_required = {
 
 static const afw_value_object_t
 impl_1108_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1109
 };
 
@@ -92925,7 +92925,7 @@ impl_1108_property_runtime = {
 
 static const afw_value_boolean_t
 impl_1108_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -93034,7 +93034,7 @@ impl_1111 = {
 
 static const afw_value_boolean_t
 impl_1110_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93070,7 +93070,7 @@ impl_1110_property_label = {
 
 static const afw_value_boolean_t
 impl_1110_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93082,7 +93082,7 @@ impl_1110_property_required = {
 
 static const afw_value_object_t
 impl_1110_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1111
 };
 
@@ -93094,7 +93094,7 @@ impl_1110_property_runtime = {
 
 static const afw_value_boolean_t
 impl_1110_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -93210,7 +93210,7 @@ impl_1113 = {
 
 static const afw_value_boolean_t
 impl_1112_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93246,7 +93246,7 @@ impl_1112_property_label = {
 
 static const afw_value_object_t
 impl_1112_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1113
 };
 
@@ -93360,7 +93360,7 @@ impl_1115 = {
 
 static const afw_value_boolean_t
 impl_1114_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93396,7 +93396,7 @@ impl_1114_property_label = {
 
 static const afw_value_object_t
 impl_1114_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1115
 };
 
@@ -93510,7 +93510,7 @@ impl_1117 = {
 
 static const afw_value_boolean_t
 impl_1116_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93546,7 +93546,7 @@ impl_1116_property_label = {
 
 static const afw_value_object_t
 impl_1116_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1117
 };
 
@@ -93653,7 +93653,7 @@ impl_1119 = {
 
 static const afw_value_boolean_t
 impl_1118_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93689,7 +93689,7 @@ impl_1118_property_label = {
 
 static const afw_value_boolean_t
 impl_1118_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93701,7 +93701,7 @@ impl_1118_property_required = {
 
 static const afw_value_object_t
 impl_1118_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1119
 };
 
@@ -93713,7 +93713,7 @@ impl_1118_property_runtime = {
 
 static const afw_value_boolean_t
 impl_1118_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -93822,7 +93822,7 @@ impl_1121 = {
 
 static const afw_value_boolean_t
 impl_1120_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93858,7 +93858,7 @@ impl_1120_property_label = {
 
 static const afw_value_boolean_t
 impl_1120_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -93870,7 +93870,7 @@ impl_1120_property_required = {
 
 static const afw_value_object_t
 impl_1120_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1121
 };
 
@@ -93882,7 +93882,7 @@ impl_1120_property_runtime = {
 
 static const afw_value_boolean_t
 impl_1120_property_value_unique = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -93940,7 +93940,7 @@ impl_1120 = {
 
 static const afw_value_object_t
 impl_1102_property_value_afwCompiledVersion = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1103
 };
 
@@ -93952,7 +93952,7 @@ impl_1102_property_afwCompiledVersion = {
 
 static const afw_value_object_t
 impl_1102_property_value_afwVersion = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1105
 };
 
@@ -93964,7 +93964,7 @@ impl_1102_property_afwVersion = {
 
 static const afw_value_object_t
 impl_1102_property_value_concurrent = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1107
 };
 
@@ -93976,7 +93976,7 @@ impl_1102_property_concurrent = {
 
 static const afw_value_object_t
 impl_1102_property_value_maxConcurrent = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1108
 };
 
@@ -93988,7 +93988,7 @@ impl_1102_property_maxConcurrent = {
 
 static const afw_value_object_t
 impl_1102_property_value_requestCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1110
 };
 
@@ -94000,7 +94000,7 @@ impl_1102_property_requestCount = {
 
 static const afw_value_object_t
 impl_1102_property_value_serverType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1112
 };
 
@@ -94012,7 +94012,7 @@ impl_1102_property_serverType = {
 
 static const afw_value_object_t
 impl_1102_property_value_serverVersion = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1114
 };
 
@@ -94024,7 +94024,7 @@ impl_1102_property_serverVersion = {
 
 static const afw_value_object_t
 impl_1102_property_value_startTime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1116
 };
 
@@ -94036,7 +94036,7 @@ impl_1102_property_startTime = {
 
 static const afw_value_object_t
 impl_1102_property_value_threadCount = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1118
 };
 
@@ -94048,7 +94048,7 @@ impl_1102_property_threadCount = {
 
 static const afw_value_object_t
 impl_1102_property_value_unhandledErrors = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1120
 };
 
@@ -94159,7 +94159,7 @@ impl_1123 = {
 
 static const afw_value_boolean_t
 impl_1122_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94171,7 +94171,7 @@ impl_1122_property_indirect = {
 
 static const afw_value_object_t
 impl_1122_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1123
 };
 
@@ -94230,7 +94230,7 @@ impl_1122 = {
 
 static const afw_value_boolean_t
 impl_1101_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -94242,7 +94242,7 @@ impl_1101_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1101_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -94254,7 +94254,7 @@ impl_1101_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1101_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -94266,7 +94266,7 @@ impl_1101_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1101_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94291,7 +94291,7 @@ impl_1101_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1101_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1101_list_collectionURIs
 };
 
@@ -94315,7 +94315,7 @@ impl_1101_property_objectType = {
 
 static const afw_value_object_t
 impl_1101_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1102
 };
 
@@ -94327,7 +94327,7 @@ impl_1101_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1101_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1122
 };
 
@@ -94464,7 +94464,7 @@ impl_1127;
 
 static const afw_value_boolean_t
 impl_1127_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94546,7 +94546,7 @@ impl_1128;
 
 static const afw_value_boolean_t
 impl_1128_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94632,7 +94632,7 @@ impl_1128 = {
 
 static const afw_value_object_t
 impl_1125_property_value_conf = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1126
 };
 
@@ -94644,7 +94644,7 @@ impl_1125_property_conf = {
 
 static const afw_value_object_t
 impl_1125_property_value_serviceId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1127
 };
 
@@ -94656,7 +94656,7 @@ impl_1125_property_serviceId = {
 
 static const afw_value_object_t
 impl_1125_property_value_startup = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1128
 };
 
@@ -94709,7 +94709,7 @@ impl_1125 = {
 
 static const afw_value_boolean_t
 impl_1124_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94721,7 +94721,7 @@ impl_1124_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1124_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94733,7 +94733,7 @@ impl_1124_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1124_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94745,7 +94745,7 @@ impl_1124_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1124_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94770,7 +94770,7 @@ impl_1124_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1124_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1124_list_collectionURIs
 };
 
@@ -94800,7 +94800,7 @@ impl_1124_property_objectType = {
 
 static const afw_value_object_t
 impl_1124_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1125
 };
 
@@ -94916,7 +94916,7 @@ impl_1132 = {
 
 static const afw_value_boolean_t
 impl_1131_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -94958,7 +94958,7 @@ impl_1131_property_label = {
 
 static const afw_value_object_t
 impl_1131_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1132
 };
 
@@ -95066,7 +95066,7 @@ impl_1134 = {
 
 static const afw_value_boolean_t
 impl_1133_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95108,7 +95108,7 @@ impl_1133_property_label = {
 
 static const afw_value_object_t
 impl_1133_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1134
 };
 
@@ -95216,7 +95216,7 @@ impl_1136 = {
 
 static const afw_value_boolean_t
 impl_1135_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95252,7 +95252,7 @@ impl_1135_property_label = {
 
 static const afw_value_object_t
 impl_1135_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1136
 };
 
@@ -95359,7 +95359,7 @@ impl_1138 = {
 
 static const afw_value_boolean_t
 impl_1137_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95395,7 +95395,7 @@ impl_1137_property_label = {
 
 static const afw_value_object_t
 impl_1137_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1138
 };
 
@@ -95451,7 +95451,7 @@ impl_1137 = {
 
 static const afw_value_object_t
 impl_1130_property_value_confType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1131
 };
 
@@ -95463,7 +95463,7 @@ impl_1130_property_confType = {
 
 static const afw_value_object_t
 impl_1130_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1133
 };
 
@@ -95475,7 +95475,7 @@ impl_1130_property_description = {
 
 static const afw_value_object_t
 impl_1130_property_value_serviceType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1135
 };
 
@@ -95487,7 +95487,7 @@ impl_1130_property_serviceType = {
 
 static const afw_value_object_t
 impl_1130_property_value_title = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1137
 };
 
@@ -95592,7 +95592,7 @@ impl_1140 = {
 
 static const afw_value_boolean_t
 impl_1139_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95604,7 +95604,7 @@ impl_1139_property_indirect = {
 
 static const afw_value_object_t
 impl_1139_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1140
 };
 
@@ -95663,7 +95663,7 @@ impl_1139 = {
 
 static const afw_value_boolean_t
 impl_1129_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -95675,7 +95675,7 @@ impl_1129_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1129_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -95687,7 +95687,7 @@ impl_1129_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1129_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -95699,7 +95699,7 @@ impl_1129_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1129_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95724,7 +95724,7 @@ impl_1129_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1129_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1129_list_collectionURIs
 };
 
@@ -95748,7 +95748,7 @@ impl_1129_property_objectType = {
 
 static const afw_value_object_t
 impl_1129_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1130
 };
 
@@ -95760,7 +95760,7 @@ impl_1129_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1129_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1139
 };
 
@@ -95828,7 +95828,7 @@ impl_1143;
 
 static const afw_value_boolean_t
 impl_1143_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95903,7 +95903,7 @@ impl_1144;
 
 static const afw_value_boolean_t
 impl_1144_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -95978,7 +95978,7 @@ impl_1145;
 
 static const afw_value_boolean_t
 impl_1145_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96053,7 +96053,7 @@ impl_1146;
 
 static const afw_value_boolean_t
 impl_1146_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96128,7 +96128,7 @@ impl_1147;
 
 static const afw_value_boolean_t
 impl_1147_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96203,7 +96203,7 @@ impl_1148;
 
 static const afw_value_boolean_t
 impl_1148_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96278,7 +96278,7 @@ impl_1149;
 
 static const afw_value_boolean_t
 impl_1149_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96353,7 +96353,7 @@ impl_1150;
 
 static const afw_value_boolean_t
 impl_1150_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96428,7 +96428,7 @@ impl_1151;
 
 static const afw_value_boolean_t
 impl_1151_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96503,7 +96503,7 @@ impl_1152;
 
 static const afw_value_boolean_t
 impl_1152_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96578,7 +96578,7 @@ impl_1153;
 
 static const afw_value_boolean_t
 impl_1153_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96660,7 +96660,7 @@ impl_1154;
 
 static const afw_value_boolean_t
 impl_1154_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96735,7 +96735,7 @@ impl_1155;
 
 static const afw_value_boolean_t
 impl_1155_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96810,7 +96810,7 @@ impl_1156;
 
 static const afw_value_boolean_t
 impl_1156_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96892,7 +96892,7 @@ impl_1157;
 
 static const afw_value_boolean_t
 impl_1157_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -96967,7 +96967,7 @@ impl_1158;
 
 static const afw_value_boolean_t
 impl_1158_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97042,7 +97042,7 @@ impl_1159;
 
 static const afw_value_boolean_t
 impl_1159_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97117,7 +97117,7 @@ impl_1160;
 
 static const afw_value_boolean_t
 impl_1160_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97189,7 +97189,7 @@ impl_1160 = {
 
 static const afw_value_object_t
 impl_1142_property_value_canRestart = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1143
 };
 
@@ -97201,7 +97201,7 @@ impl_1142_property_canRestart = {
 
 static const afw_value_object_t
 impl_1142_property_value_canStart = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1144
 };
 
@@ -97213,7 +97213,7 @@ impl_1142_property_canStart = {
 
 static const afw_value_object_t
 impl_1142_property_value_canStop = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1145
 };
 
@@ -97225,7 +97225,7 @@ impl_1142_property_canStop = {
 
 static const afw_value_object_t
 impl_1142_property_value_confId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1146
 };
 
@@ -97237,7 +97237,7 @@ impl_1142_property_confId = {
 
 static const afw_value_object_t
 impl_1142_property_value_confPropertyObjectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1147
 };
 
@@ -97249,7 +97249,7 @@ impl_1142_property_confPropertyObjectType = {
 
 static const afw_value_object_t
 impl_1142_property_value_confSubtype = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1148
 };
 
@@ -97261,7 +97261,7 @@ impl_1142_property_confSubtype = {
 
 static const afw_value_object_t
 impl_1142_property_value_serviceId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1149
 };
 
@@ -97273,7 +97273,7 @@ impl_1142_property_serviceId = {
 
 static const afw_value_object_t
 impl_1142_property_value_serviceType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1150
 };
 
@@ -97285,7 +97285,7 @@ impl_1142_property_serviceType = {
 
 static const afw_value_object_t
 impl_1142_property_value_sourceLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1151
 };
 
@@ -97297,7 +97297,7 @@ impl_1142_property_sourceLocation = {
 
 static const afw_value_object_t
 impl_1142_property_value_startTime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1152
 };
 
@@ -97309,7 +97309,7 @@ impl_1142_property_startTime = {
 
 static const afw_value_object_t
 impl_1142_property_value_startup = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1153
 };
 
@@ -97321,7 +97321,7 @@ impl_1142_property_startup = {
 
 static const afw_value_object_t
 impl_1142_property_value_startupDescription = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1154
 };
 
@@ -97333,7 +97333,7 @@ impl_1142_property_startupDescription = {
 
 static const afw_value_object_t
 impl_1142_property_value_status = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1155
 };
 
@@ -97345,7 +97345,7 @@ impl_1142_property_status = {
 
 static const afw_value_object_t
 impl_1142_property_value_statusDebug = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1156
 };
 
@@ -97357,7 +97357,7 @@ impl_1142_property_statusDebug = {
 
 static const afw_value_object_t
 impl_1142_property_value_statusDescription = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1157
 };
 
@@ -97369,7 +97369,7 @@ impl_1142_property_statusDescription = {
 
 static const afw_value_object_t
 impl_1142_property_value_statusMessage = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1158
 };
 
@@ -97381,7 +97381,7 @@ impl_1142_property_statusMessage = {
 
 static const afw_value_object_t
 impl_1142_property_value_uriRelated = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1159
 };
 
@@ -97393,7 +97393,7 @@ impl_1142_property_uriRelated = {
 
 static const afw_value_object_t
 impl_1142_property_value_uriServiceConf = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1160
 };
 
@@ -97461,7 +97461,7 @@ impl_1142 = {
 
 static const afw_value_boolean_t
 impl_1141_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -97473,7 +97473,7 @@ impl_1141_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1141_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -97485,7 +97485,7 @@ impl_1141_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1141_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -97497,7 +97497,7 @@ impl_1141_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1141_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97522,7 +97522,7 @@ impl_1141_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1141_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1141_list_collectionURIs
 };
 
@@ -97552,7 +97552,7 @@ impl_1141_property_objectType = {
 
 static const afw_value_object_t
 impl_1141_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1142
 };
 
@@ -97668,7 +97668,7 @@ impl_1164 = {
 
 static const afw_value_boolean_t
 impl_1163_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97704,7 +97704,7 @@ impl_1163_property_label = {
 
 static const afw_value_object_t
 impl_1163_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1164
 };
 
@@ -97760,7 +97760,7 @@ impl_1163 = {
 
 static const afw_value_object_t
 impl_1162_property_value_key = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1163
 };
 
@@ -97817,7 +97817,7 @@ impl_1166;
 
 static const afw_value_boolean_t
 impl_1166_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97875,7 +97875,7 @@ impl_1166 = {
 
 static const afw_value_boolean_t
 impl_1165_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -97887,7 +97887,7 @@ impl_1165_property_indirect = {
 
 static const afw_value_object_t
 impl_1165_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1166
 };
 
@@ -97946,7 +97946,7 @@ impl_1165 = {
 
 static const afw_value_boolean_t
 impl_1161_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -97958,7 +97958,7 @@ impl_1161_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1161_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -97970,7 +97970,7 @@ impl_1161_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1161_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -97982,7 +97982,7 @@ impl_1161_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1161_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -98007,7 +98007,7 @@ impl_1161_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1161_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1161_list_collectionURIs
 };
 
@@ -98031,7 +98031,7 @@ impl_1161_property_objectType = {
 
 static const afw_value_object_t
 impl_1161_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1162
 };
 
@@ -98043,7 +98043,7 @@ impl_1161_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1161_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1165
 };
 
@@ -98146,7 +98146,7 @@ impl_1168 = {
 
 static const afw_value_boolean_t
 impl_1167_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -98171,7 +98171,7 @@ impl_1167_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1167_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1167_list_collectionURIs
 };
 
@@ -98195,7 +98195,7 @@ impl_1167_property_objectType = {
 
 static const afw_value_object_t
 impl_1167_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1168
 };
 
@@ -98259,7 +98259,7 @@ impl_1171;
 
 static const afw_value_boolean_t
 impl_1171_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -98348,7 +98348,7 @@ impl_1172;
 
 static const afw_value_boolean_t
 impl_1172_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -98503,7 +98503,7 @@ impl_1173 = {
 
 static const afw_value_object_t
 impl_1170_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1171
 };
 
@@ -98515,7 +98515,7 @@ impl_1170_property_description = {
 
 static const afw_value_object_t
 impl_1170_property_value_tagId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1172
 };
 
@@ -98527,7 +98527,7 @@ impl_1170_property_tagId = {
 
 static const afw_value_object_t
 impl_1170_property_value_tags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1173
 };
 
@@ -98580,7 +98580,7 @@ impl_1170 = {
 
 static const afw_value_boolean_t
 impl_1169_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -98605,7 +98605,7 @@ impl_1169_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1169_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1169_list_collectionURIs
 };
 
@@ -98635,7 +98635,7 @@ impl_1169_property_objectType = {
 
 static const afw_value_object_t
 impl_1169_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1170
 };
 
@@ -98749,7 +98749,7 @@ impl_1175 = {
 
 static const afw_value_boolean_t
 impl_1174_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -98774,7 +98774,7 @@ impl_1174_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1174_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1174_list_collectionURIs
 };
 
@@ -98798,7 +98798,7 @@ impl_1174_property_objectType = {
 
 static const afw_value_object_t
 impl_1174_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1175
 };
 
@@ -98904,7 +98904,7 @@ impl_1177 = {
 
 static const afw_value_boolean_t
 impl_1176_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -98929,7 +98929,7 @@ impl_1176_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1176_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1176_list_collectionURIs
 };
 
@@ -98953,7 +98953,7 @@ impl_1176_property_objectType = {
 
 static const afw_value_object_t
 impl_1176_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1177
 };
 
@@ -99165,7 +99165,7 @@ impl_1182_property_label = {
 
 static const afw_value_boolean_t
 impl_1182_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -99247,7 +99247,7 @@ impl_1183_property_label = {
 
 static const afw_value_boolean_t
 impl_1183_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -99329,7 +99329,7 @@ impl_1184_property_label = {
 
 static const afw_value_boolean_t
 impl_1184_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -99417,7 +99417,7 @@ impl_1185_property_label = {
 
 static const afw_value_boolean_t
 impl_1185_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -99542,7 +99542,7 @@ impl_1186 = {
 
 static const afw_value_object_t
 impl_1180_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1181
 };
 
@@ -99554,7 +99554,7 @@ impl_1180_property_description = {
 
 static const afw_value_object_t
 impl_1180_property_value_source = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1182
 };
 
@@ -99566,7 +99566,7 @@ impl_1180_property_source = {
 
 static const afw_value_object_t
 impl_1180_property_value_sourceType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1183
 };
 
@@ -99578,7 +99578,7 @@ impl_1180_property_sourceType = {
 
 static const afw_value_object_t
 impl_1180_property_value_testScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1184
 };
 
@@ -99590,7 +99590,7 @@ impl_1180_property_testScript = {
 
 static const afw_value_object_t
 impl_1180_property_value_tests = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1185
 };
 
@@ -99602,7 +99602,7 @@ impl_1180_property_tests = {
 
 static const afw_value_object_t
 impl_1180_property_value_upToTestsUTF8OctetOffsetInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1186
 };
 
@@ -99658,7 +99658,7 @@ impl_1180 = {
 
 static const afw_value_boolean_t
 impl_1178_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -99683,7 +99683,7 @@ impl_1178_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1178_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1178_list_collectionURIs
 };
 
@@ -99707,7 +99707,7 @@ impl_1178_property_objectType = {
 
 static const afw_value_object_t
 impl_1178_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1179
 };
 
@@ -99719,7 +99719,7 @@ impl_1178_property_otherProperties = {
 
 static const afw_value_object_t
 impl_1178_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1180
 };
 
@@ -100070,7 +100070,7 @@ impl_1193_property_label = {
 
 static const afw_value_boolean_t
 impl_1193_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -100428,7 +100428,7 @@ impl_1198_property_label = {
 
 static const afw_value_boolean_t
 impl_1198_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -100717,7 +100717,7 @@ impl_1202_property_label = {
 
 static const afw_value_boolean_t
 impl_1202_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -100930,7 +100930,7 @@ impl_1205_property_label = {
 
 static const afw_value_boolean_t
 impl_1205_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -101288,7 +101288,7 @@ impl_1210_property_label = {
 
 static const afw_value_boolean_t
 impl_1210_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -101577,7 +101577,7 @@ impl_1214_property_label = {
 
 static const afw_value_boolean_t
 impl_1214_property_value_required = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -101632,7 +101632,7 @@ impl_1214 = {
 
 static const afw_value_object_t
 impl_1189_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1190
 };
 
@@ -101644,7 +101644,7 @@ impl_1189_property_description = {
 
 static const afw_value_object_t
 impl_1189_property_value_error = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1191
 };
 
@@ -101656,7 +101656,7 @@ impl_1189_property_error = {
 
 static const afw_value_object_t
 impl_1189_property_value_errorReason = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1192
 };
 
@@ -101668,7 +101668,7 @@ impl_1189_property_errorReason = {
 
 static const afw_value_object_t
 impl_1189_property_value_expect = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1193
 };
 
@@ -101680,7 +101680,7 @@ impl_1189_property_expect = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectCodepointLengthInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1194
 };
 
@@ -101692,7 +101692,7 @@ impl_1189_property_expectCodepointLengthInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectCodepointOffsetInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1195
 };
 
@@ -101704,7 +101704,7 @@ impl_1189_property_expectCodepointOffsetInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectColumnNumberInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1196
 };
 
@@ -101716,7 +101716,7 @@ impl_1189_property_expectColumnNumberInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectLineNumberInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1197
 };
 
@@ -101728,7 +101728,7 @@ impl_1189_property_expectLineNumberInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1198
 };
 
@@ -101740,7 +101740,7 @@ impl_1189_property_expectLocation = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectUTF8OctetLengthInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1199
 };
 
@@ -101752,7 +101752,7 @@ impl_1189_property_expectUTF8OctetLengthInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectUTF8OctetOffsetInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1200
 };
 
@@ -101764,7 +101764,7 @@ impl_1189_property_expectUTF8OctetOffsetInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_expectedError = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1201
 };
 
@@ -101776,7 +101776,7 @@ impl_1189_property_expectedError = {
 
 static const afw_value_object_t
 impl_1189_property_value_passed = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1202
 };
 
@@ -101788,7 +101788,7 @@ impl_1189_property_passed = {
 
 static const afw_value_object_t
 impl_1189_property_value_result = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1203
 };
 
@@ -101800,7 +101800,7 @@ impl_1189_property_result = {
 
 static const afw_value_object_t
 impl_1189_property_value_skip = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1204
 };
 
@@ -101812,7 +101812,7 @@ impl_1189_property_skip = {
 
 static const afw_value_object_t
 impl_1189_property_value_source = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1205
 };
 
@@ -101824,7 +101824,7 @@ impl_1189_property_source = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceCodepointLengthInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1206
 };
 
@@ -101836,7 +101836,7 @@ impl_1189_property_sourceCodepointLengthInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceCodepointOffsetInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1207
 };
 
@@ -101848,7 +101848,7 @@ impl_1189_property_sourceCodepointOffsetInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceColumnNumberInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1208
 };
 
@@ -101860,7 +101860,7 @@ impl_1189_property_sourceColumnNumberInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceLineNumberInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1209
 };
 
@@ -101872,7 +101872,7 @@ impl_1189_property_sourceLineNumberInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceLocation = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1210
 };
 
@@ -101884,7 +101884,7 @@ impl_1189_property_sourceLocation = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1211
 };
 
@@ -101896,7 +101896,7 @@ impl_1189_property_sourceType = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceUTF8OctetLengthInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1212
 };
 
@@ -101908,7 +101908,7 @@ impl_1189_property_sourceUTF8OctetLengthInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_sourceUTF8OctetOffsetInTestScript = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1213
 };
 
@@ -101920,7 +101920,7 @@ impl_1189_property_sourceUTF8OctetOffsetInTestScript = {
 
 static const afw_value_object_t
 impl_1189_property_value_test = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1214
 };
 
@@ -101995,7 +101995,7 @@ impl_1189 = {
 
 static const afw_value_boolean_t
 impl_1187_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -102020,7 +102020,7 @@ impl_1187_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1187_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1187_list_collectionURIs
 };
 
@@ -102044,7 +102044,7 @@ impl_1187_property_objectType = {
 
 static const afw_value_object_t
 impl_1187_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1188
 };
 
@@ -102056,7 +102056,7 @@ impl_1187_property_otherProperties = {
 
 static const afw_value_object_t
 impl_1187_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1189
 };
 
@@ -102169,7 +102169,7 @@ impl_1218 = {
 
 static const afw_value_boolean_t
 impl_1217_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102205,7 +102205,7 @@ impl_1217_property_label = {
 
 static const afw_value_object_t
 impl_1217_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1218
 };
 
@@ -102261,7 +102261,7 @@ impl_1217 = {
 
 static const afw_value_object_t
 impl_1216_property_value_key = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1217
 };
 
@@ -102318,7 +102318,7 @@ impl_1220;
 
 static const afw_value_boolean_t
 impl_1220_property_value_indirectObjectId = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102376,7 +102376,7 @@ impl_1220 = {
 
 static const afw_value_boolean_t
 impl_1219_property_value_indirect = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102388,7 +102388,7 @@ impl_1219_property_indirect = {
 
 static const afw_value_object_t
 impl_1219_property_value_labels = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1220
 };
 
@@ -102447,7 +102447,7 @@ impl_1219 = {
 
 static const afw_value_boolean_t
 impl_1215_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -102459,7 +102459,7 @@ impl_1215_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1215_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -102471,7 +102471,7 @@ impl_1215_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1215_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -102483,7 +102483,7 @@ impl_1215_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1215_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102508,7 +102508,7 @@ impl_1215_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1215_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1215_list_collectionURIs
 };
 
@@ -102532,7 +102532,7 @@ impl_1215_property_objectType = {
 
 static const afw_value_object_t
 impl_1215_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1216
 };
 
@@ -102544,7 +102544,7 @@ impl_1215_property_propertyTypes = {
 
 static const afw_value_object_t
 impl_1215_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1219
 };
 
@@ -102612,7 +102612,7 @@ impl_1223;
 
 static const afw_value_boolean_t
 impl_1223_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102694,7 +102694,7 @@ impl_1224;
 
 static const afw_value_boolean_t
 impl_1224_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102776,7 +102776,7 @@ impl_1225;
 
 static const afw_value_boolean_t
 impl_1225_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102858,7 +102858,7 @@ impl_1226;
 
 static const afw_value_boolean_t
 impl_1226_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -102940,7 +102940,7 @@ impl_1227;
 
 static const afw_value_boolean_t
 impl_1227_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103022,7 +103022,7 @@ impl_1228;
 
 static const afw_value_boolean_t
 impl_1228_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103111,7 +103111,7 @@ impl_1229;
 
 static const afw_value_boolean_t
 impl_1229_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103193,7 +103193,7 @@ impl_1230;
 
 static const afw_value_boolean_t
 impl_1230_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103275,7 +103275,7 @@ impl_1231;
 
 static const afw_value_boolean_t
 impl_1231_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103357,7 +103357,7 @@ impl_1232;
 
 static const afw_value_boolean_t
 impl_1232_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103439,7 +103439,7 @@ impl_1233;
 
 static const afw_value_boolean_t
 impl_1233_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103514,7 +103514,7 @@ impl_1234;
 
 static const afw_value_boolean_t
 impl_1234_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103603,7 +103603,7 @@ impl_1235;
 
 static const afw_value_boolean_t
 impl_1235_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103692,7 +103692,7 @@ impl_1236;
 
 static const afw_value_boolean_t
 impl_1236_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103774,7 +103774,7 @@ impl_1237;
 
 static const afw_value_boolean_t
 impl_1237_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103856,7 +103856,7 @@ impl_1238;
 
 static const afw_value_boolean_t
 impl_1238_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -103938,7 +103938,7 @@ impl_1239;
 
 static const afw_value_boolean_t
 impl_1239_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104013,7 +104013,7 @@ impl_1240;
 
 static const afw_value_boolean_t
 impl_1240_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104095,7 +104095,7 @@ impl_1241;
 
 static const afw_value_boolean_t
 impl_1241_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104170,7 +104170,7 @@ impl_1242;
 
 static const afw_value_boolean_t
 impl_1242_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104252,7 +104252,7 @@ impl_1243;
 
 static const afw_value_boolean_t
 impl_1243_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -104334,7 +104334,7 @@ impl_1244;
 
 static const afw_value_boolean_t
 impl_1244_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104416,7 +104416,7 @@ impl_1245;
 
 static const afw_value_boolean_t
 impl_1245_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104440,7 +104440,7 @@ impl_1245_property_dataType = {
 
 static const afw_value_boolean_t
 impl_1245_property_value_defaultValue = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -104511,7 +104511,7 @@ impl_1246;
 
 static const afw_value_boolean_t
 impl_1246_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104600,7 +104600,7 @@ impl_1247;
 
 static const afw_value_boolean_t
 impl_1247_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104751,7 +104751,7 @@ impl_1249;
 
 static const afw_value_boolean_t
 impl_1249_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104833,7 +104833,7 @@ impl_1250;
 
 static const afw_value_boolean_t
 impl_1250_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104915,7 +104915,7 @@ impl_1251;
 
 static const afw_value_boolean_t
 impl_1251_property_value_allowQuery = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -104927,7 +104927,7 @@ impl_1251_property_allowQuery = {
 
 static const afw_value_boolean_t
 impl_1251_property_value_allowWrite = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -105007,7 +105007,7 @@ impl_1251 = {
 
 static const afw_value_object_t
 impl_1222_property_value_additionalConstraints = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1223
 };
 
@@ -105019,7 +105019,7 @@ impl_1222_property_additionalConstraints = {
 
 static const afw_value_object_t
 impl_1222_property_value_allowQuery = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1224
 };
 
@@ -105031,7 +105031,7 @@ impl_1222_property_allowQuery = {
 
 static const afw_value_object_t
 impl_1222_property_value_allowWrite = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1225
 };
 
@@ -105043,7 +105043,7 @@ impl_1222_property_allowWrite = {
 
 static const afw_value_object_t
 impl_1222_property_value_allowedValues = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1226
 };
 
@@ -105055,7 +105055,7 @@ impl_1222_property_allowedValues = {
 
 static const afw_value_object_t
 impl_1222_property_value_brief = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1227
 };
 
@@ -105067,7 +105067,7 @@ impl_1222_property_brief = {
 
 static const afw_value_object_t
 impl_1222_property_value_collectionURIs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1228
 };
 
@@ -105079,7 +105079,7 @@ impl_1222_property_collectionURIs = {
 
 static const afw_value_object_t
 impl_1222_property_value_contextType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1229
 };
 
@@ -105091,7 +105091,7 @@ impl_1222_property_contextType = {
 
 static const afw_value_object_t
 impl_1222_property_value_dataType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1230
 };
 
@@ -105103,7 +105103,7 @@ impl_1222_property_dataType = {
 
 static const afw_value_object_t
 impl_1222_property_value_dataTypeParameter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1231
 };
 
@@ -105115,7 +105115,7 @@ impl_1222_property_dataTypeParameter = {
 
 static const afw_value_object_t
 impl_1222_property_value_dataTypeParameterFormatted = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1232
 };
 
@@ -105127,7 +105127,7 @@ impl_1222_property_dataTypeParameterFormatted = {
 
 static const afw_value_object_t
 impl_1222_property_value_defaultValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1233
 };
 
@@ -105139,7 +105139,7 @@ impl_1222_property_defaultValue = {
 
 static const afw_value_object_t
 impl_1222_property_value_description = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1234
 };
 
@@ -105151,7 +105151,7 @@ impl_1222_property_description = {
 
 static const afw_value_object_t
 impl_1222_property_value_hints = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1235
 };
 
@@ -105163,7 +105163,7 @@ impl_1222_property_hints = {
 
 static const afw_value_object_t
 impl_1222_property_value_label = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1236
 };
 
@@ -105175,7 +105175,7 @@ impl_1222_property_label = {
 
 static const afw_value_object_t
 impl_1222_property_value_maxLength = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1237
 };
 
@@ -105187,7 +105187,7 @@ impl_1222_property_maxLength = {
 
 static const afw_value_object_t
 impl_1222_property_value_maxNormalLength = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1238
 };
 
@@ -105199,7 +105199,7 @@ impl_1222_property_maxNormalLength = {
 
 static const afw_value_object_t
 impl_1222_property_value_maxValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1239
 };
 
@@ -105211,7 +105211,7 @@ impl_1222_property_maxValue = {
 
 static const afw_value_object_t
 impl_1222_property_value_minLength = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1240
 };
 
@@ -105223,7 +105223,7 @@ impl_1222_property_minLength = {
 
 static const afw_value_object_t
 impl_1222_property_value_minValue = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1241
 };
 
@@ -105235,7 +105235,7 @@ impl_1222_property_minValue = {
 
 static const afw_value_object_t
 impl_1222_property_value_originURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1242
 };
 
@@ -105247,7 +105247,7 @@ impl_1222_property_originURI = {
 
 static const afw_value_object_t
 impl_1222_property_value_possibleValues = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1243
 };
 
@@ -105259,7 +105259,7 @@ impl_1222_property_possibleValues = {
 
 static const afw_value_object_t
 impl_1222_property_value_referenceURI = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1244
 };
 
@@ -105271,7 +105271,7 @@ impl_1222_property_referenceURI = {
 
 static const afw_value_object_t
 impl_1222_property_value_required = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1245
 };
 
@@ -105283,7 +105283,7 @@ impl_1222_property_required = {
 
 static const afw_value_object_t
 impl_1222_property_value_runtime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1246
 };
 
@@ -105295,7 +105295,7 @@ impl_1222_property_runtime = {
 
 static const afw_value_object_t
 impl_1222_property_value_skeleton = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1247
 };
 
@@ -105307,7 +105307,7 @@ impl_1222_property_skeleton = {
 
 static const afw_value_object_t
 impl_1222_property_value_tags = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1248
 };
 
@@ -105319,7 +105319,7 @@ impl_1222_property_tags = {
 
 static const afw_value_object_t
 impl_1222_property_value_testDataParameter = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1249
 };
 
@@ -105331,7 +105331,7 @@ impl_1222_property_testDataParameter = {
 
 static const afw_value_object_t
 impl_1222_property_value_unique = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1250
 };
 
@@ -105343,7 +105343,7 @@ impl_1222_property_unique = {
 
 static const afw_value_object_t
 impl_1222_property_value_valueInfId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1251
 };
 
@@ -105422,7 +105422,7 @@ impl_1222 = {
 
 static const afw_value_boolean_t
 impl_1221_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -105447,7 +105447,7 @@ impl_1221_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1221_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1221_list_collectionURIs
 };
 
@@ -105471,7 +105471,7 @@ impl_1221_property_objectType = {
 
 static const afw_value_object_t
 impl_1221_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1222
 };
 
@@ -106636,7 +106636,7 @@ impl_1269 = {
 
 static const afw_value_object_t
 impl_1253_property_value_adaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1254
 };
 
@@ -106648,7 +106648,7 @@ impl_1253_property_adaptorId = {
 
 static const afw_value_object_t
 impl_1253_property_value_containsUnresolvedSubstitutions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1255
 };
 
@@ -106660,7 +106660,7 @@ impl_1253_property_containsUnresolvedSubstitutions = {
 
 static const afw_value_object_t
 impl_1253_property_value_entityObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1256
 };
 
@@ -106672,7 +106672,7 @@ impl_1253_property_entityObjectId = {
 
 static const afw_value_object_t
 impl_1253_property_value_entityPath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1257
 };
 
@@ -106684,7 +106684,7 @@ impl_1253_property_entityPath = {
 
 static const afw_value_object_t
 impl_1253_property_value_normalizedPath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1258
 };
 
@@ -106696,7 +106696,7 @@ impl_1253_property_normalizedPath = {
 
 static const afw_value_object_t
 impl_1253_property_value_objectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1259
 };
 
@@ -106708,7 +106708,7 @@ impl_1253_property_objectId = {
 
 static const afw_value_object_t
 impl_1253_property_value_objectType = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1260
 };
 
@@ -106720,7 +106720,7 @@ impl_1253_property_objectType = {
 
 static const afw_value_object_t
 impl_1253_property_value_optionsObject = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1261
 };
 
@@ -106732,7 +106732,7 @@ impl_1253_property_optionsObject = {
 
 static const afw_value_object_t
 impl_1253_property_value_originalPath = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1262
 };
 
@@ -106744,7 +106744,7 @@ impl_1253_property_originalPath = {
 
 static const afw_value_object_t
 impl_1253_property_value_propertyNames = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1263
 };
 
@@ -106756,7 +106756,7 @@ impl_1253_property_propertyNames = {
 
 static const afw_value_object_t
 impl_1253_property_value_substitutedAdaptorId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1264
 };
 
@@ -106768,7 +106768,7 @@ impl_1253_property_substitutedAdaptorId = {
 
 static const afw_value_object_t
 impl_1253_property_value_substitutedEntireObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1265
 };
 
@@ -106780,7 +106780,7 @@ impl_1253_property_substitutedEntireObjectId = {
 
 static const afw_value_object_t
 impl_1253_property_value_substitutedEntityObjectId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1266
 };
 
@@ -106792,7 +106792,7 @@ impl_1253_property_substitutedEntityObjectId = {
 
 static const afw_value_object_t
 impl_1253_property_value_substitutedObjectTypeId = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1267
 };
 
@@ -106804,7 +106804,7 @@ impl_1253_property_substitutedObjectTypeId = {
 
 static const afw_value_object_t
 impl_1253_property_value_substitutedPropertyName = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1268
 };
 
@@ -106816,7 +106816,7 @@ impl_1253_property_substitutedPropertyName = {
 
 static const afw_value_object_t
 impl_1253_property_value_substitutionOccurred = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1269
 };
 
@@ -106882,7 +106882,7 @@ impl_1253 = {
 
 static const afw_value_boolean_t
 impl_1252_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -106907,7 +106907,7 @@ impl_1252_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1252_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1252_list_collectionURIs
 };
 
@@ -106931,7 +106931,7 @@ impl_1252_property_objectType = {
 
 static const afw_value_object_t
 impl_1252_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1253
 };
 
@@ -107730,7 +107730,7 @@ impl_1282 = {
 
 static const afw_value_object_t
 impl_1272_property_value_compileDate = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1273
 };
 
@@ -107742,7 +107742,7 @@ impl_1272_property_compileDate = {
 
 static const afw_value_object_t
 impl_1272_property_value_compileTime = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1274
 };
 
@@ -107754,7 +107754,7 @@ impl_1272_property_compileTime = {
 
 static const afw_value_object_t
 impl_1272_property_value_gitBranch = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1275
 };
 
@@ -107766,7 +107766,7 @@ impl_1272_property_gitBranch = {
 
 static const afw_value_object_t
 impl_1272_property_value_gitDescribe = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1276
 };
 
@@ -107778,7 +107778,7 @@ impl_1272_property_gitDescribe = {
 
 static const afw_value_object_t
 impl_1272_property_value_gitSha = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1277
 };
 
@@ -107790,7 +107790,7 @@ impl_1272_property_gitSha = {
 
 static const afw_value_object_t
 impl_1272_property_value_id = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1278
 };
 
@@ -107802,7 +107802,7 @@ impl_1272_property_id = {
 
 static const afw_value_object_t
 impl_1272_property_value_libafwVersion = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1279
 };
 
@@ -107814,7 +107814,7 @@ impl_1272_property_libafwVersion = {
 
 static const afw_value_object_t
 impl_1272_property_value_libafwVersionWithGitInfo = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1280
 };
 
@@ -107826,7 +107826,7 @@ impl_1272_property_libafwVersionWithGitInfo = {
 
 static const afw_value_object_t
 impl_1272_property_value_version = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1281
 };
 
@@ -107838,7 +107838,7 @@ impl_1272_property_version = {
 
 static const afw_value_object_t
 impl_1272_property_value_versionWithGitInfo = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1282
 };
 
@@ -107898,7 +107898,7 @@ impl_1272 = {
 
 static const afw_value_boolean_t
 impl_1270_property_value_allowAdd = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -107910,7 +107910,7 @@ impl_1270_property_allowAdd = {
 
 static const afw_value_boolean_t
 impl_1270_property_value_allowChange = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -107922,7 +107922,7 @@ impl_1270_property_allowChange = {
 
 static const afw_value_boolean_t
 impl_1270_property_value_allowDelete = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     false
 };
 
@@ -107934,7 +107934,7 @@ impl_1270_property_allowDelete = {
 
 static const afw_value_boolean_t
 impl_1270_property_value_allowEntity = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -107959,7 +107959,7 @@ impl_1270_list_collectionURIs = {
 
 static const afw_value_array_t
 impl_1270_property_value_collectionURIs = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1270_list_collectionURIs
 };
 
@@ -107989,7 +107989,7 @@ impl_1270_property_objectType = {
 
 static const afw_value_object_t
 impl_1270_property_value_otherProperties = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1271
 };
 
@@ -108001,7 +108001,7 @@ impl_1270_property_otherProperties = {
 
 static const afw_value_object_t
 impl_1270_property_value_propertyTypes = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1272
 };
 
@@ -108268,7 +108268,7 @@ impl_1287_list_GNU = {
 
 static const afw_value_array_t
 impl_1287_property_value_GNU = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1287_list_GNU
 };
 
@@ -109096,7 +109096,7 @@ impl_1299;
 
 static const afw_value_boolean_t
 impl_1299_property_value_manualMakefile = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -109159,7 +109159,7 @@ impl_1298_property_buildType = {
 
 static const afw_value_object_t
 impl_1298_property_value_buildTypeParameters = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1299
 };
 
@@ -109268,7 +109268,7 @@ impl_1300_property_description = {
 
 static const afw_value_boolean_t
 impl_1300_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -109371,7 +109371,7 @@ impl_1301_property_description = {
 
 static const afw_value_boolean_t
 impl_1301_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -109557,7 +109557,7 @@ impl_1303_property_description = {
 
 static const afw_value_boolean_t
 impl_1303_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -109743,7 +109743,7 @@ impl_1305_property_description = {
 
 static const afw_value_boolean_t
 impl_1305_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -109846,7 +109846,7 @@ impl_1306_property_description = {
 
 static const afw_value_boolean_t
 impl_1306_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -109949,7 +109949,7 @@ impl_1307_property_description = {
 
 static const afw_value_boolean_t
 impl_1307_property_value_optionalChoiceDefault = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -110031,7 +110031,7 @@ impl_1307 = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1289
 };
 
@@ -110043,7 +110043,7 @@ impl_1288_property_afw = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_admin = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1290
 };
 
@@ -110055,7 +110055,7 @@ impl_1288_property_afw_admin = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_bindings = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1291
 };
 
@@ -110067,7 +110067,7 @@ impl_1288_property_afw_bindings = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_client = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1292
 };
 
@@ -110079,7 +110079,7 @@ impl_1288_property_afw_client = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_command = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1293
 };
 
@@ -110091,7 +110091,7 @@ impl_1288_property_afw_command = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_components = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1294
 };
 
@@ -110103,7 +110103,7 @@ impl_1288_property_afw_components = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_components_react_core = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1295
 };
 
@@ -110115,7 +110115,7 @@ impl_1288_property_afw_components_react_core = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_components_react_material = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1296
 };
 
@@ -110127,7 +110127,7 @@ impl_1288_property_afw_components_react_material = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_components_react_monaco = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1297
 };
 
@@ -110139,7 +110139,7 @@ impl_1288_property_afw_components_react_monaco = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_dev = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1298
 };
 
@@ -110151,7 +110151,7 @@ impl_1288_property_afw_dev = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_ldap = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1300
 };
 
@@ -110163,7 +110163,7 @@ impl_1288_property_afw_ldap = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_lmdb = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1301
 };
 
@@ -110175,7 +110175,7 @@ impl_1288_property_afw_lmdb = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_lmdb_bindings = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1302
 };
 
@@ -110187,7 +110187,7 @@ impl_1288_property_afw_lmdb_bindings = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_server_fcgi = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1303
 };
 
@@ -110199,7 +110199,7 @@ impl_1288_property_afw_server_fcgi = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_test = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1304
 };
 
@@ -110211,7 +110211,7 @@ impl_1288_property_afw_test = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_ubjson = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1305
 };
 
@@ -110223,7 +110223,7 @@ impl_1288_property_afw_ubjson = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_vfs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1306
 };
 
@@ -110235,7 +110235,7 @@ impl_1288_property_afw_vfs = {
 
 static const afw_value_object_t
 impl_1288_property_value_afw_yaml = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1307
 };
 
@@ -110327,7 +110327,7 @@ impl_1286_property_bugReportEmail = {
 
 static const afw_value_object_t
 impl_1286_property_value_compileOptions = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1287
 };
 
@@ -110363,7 +110363,7 @@ impl_1286_property_srcdirManifest = {
 
 static const afw_value_object_t
 impl_1286_property_value_srcdirs = {
-    &afw_value_permanent_object_inf,
+    {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_1288
 };
 
@@ -111322,7 +111322,7 @@ impl_1321_list_providesObjects = {
 
 static const afw_value_array_t
 impl_1321_property_value_providesObjects = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1321_list_providesObjects
 };
 
@@ -111342,7 +111342,7 @@ impl_1321_list_registers = {
 
 static const afw_value_array_t
 impl_1321_property_value_registers = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1321_list_registers
 };
 
@@ -111778,7 +111778,7 @@ impl_1328_list_providesObjects = {
 
 static const afw_value_array_t
 impl_1328_property_value_providesObjects = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1328_list_providesObjects
 };
 
@@ -111804,7 +111804,7 @@ impl_1328_list_registers = {
 
 static const afw_value_array_t
 impl_1328_property_value_registers = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1328_list_registers
 };
 
@@ -111911,7 +111911,7 @@ impl_1329_list_providesObjects = {
 
 static const afw_value_array_t
 impl_1329_property_value_providesObjects = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1329_list_providesObjects
 };
 
@@ -111937,7 +111937,7 @@ impl_1329_list_registers = {
 
 static const afw_value_array_t
 impl_1329_property_value_registers = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1329_list_registers
 };
 
@@ -112693,7 +112693,7 @@ impl_1342_list_registers = {
 
 static const afw_value_array_t
 impl_1342_property_value_registers = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1342_list_registers
 };
 
@@ -112900,7 +112900,7 @@ impl_1345_list_providesObjects = {
 
 static const afw_value_array_t
 impl_1345_property_value_providesObjects = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1345_list_providesObjects
 };
 
@@ -112925,7 +112925,7 @@ impl_1345_list_registers = {
 
 static const afw_value_array_t
 impl_1345_property_value_registers = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1345_list_registers
 };
 
@@ -113076,7 +113076,7 @@ impl_1347_list_providesObjects = {
 
 static const afw_value_array_t
 impl_1347_property_value_providesObjects = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1347_list_providesObjects
 };
 
@@ -113102,7 +113102,7 @@ impl_1347_list_registers = {
 
 static const afw_value_array_t
 impl_1347_property_value_registers = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_1347_list_registers
 };
 
@@ -113173,7 +113173,7 @@ impl_1348_property_category = {
 
 static const afw_value_boolean_t
 impl_1348_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -113248,7 +113248,7 @@ impl_1349_property_category = {
 
 static const afw_value_boolean_t
 impl_1349_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -113385,7 +113385,7 @@ impl_1351_property_category = {
 
 static const afw_value_boolean_t
 impl_1351_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -113460,7 +113460,7 @@ impl_1352_property_category = {
 
 static const afw_value_boolean_t
 impl_1352_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -113838,7 +113838,7 @@ impl_1358_property_category = {
 
 static const afw_value_boolean_t
 impl_1358_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -113913,7 +113913,7 @@ impl_1359_property_category = {
 
 static const afw_value_boolean_t
 impl_1359_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -113988,7 +113988,7 @@ impl_1360_property_category = {
 
 static const afw_value_boolean_t
 impl_1360_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114125,7 +114125,7 @@ impl_1362_property_category = {
 
 static const afw_value_boolean_t
 impl_1362_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114200,7 +114200,7 @@ impl_1363_property_category = {
 
 static const afw_value_boolean_t
 impl_1363_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114275,7 +114275,7 @@ impl_1364_property_category = {
 
 static const afw_value_boolean_t
 impl_1364_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114350,7 +114350,7 @@ impl_1365_property_category = {
 
 static const afw_value_boolean_t
 impl_1365_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114487,7 +114487,7 @@ impl_1367_property_category = {
 
 static const afw_value_boolean_t
 impl_1367_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114630,7 +114630,7 @@ impl_1369_property_description = {
 
 static const afw_value_boolean_t
 impl_1369_property_value_intermediateOnly = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114705,7 +114705,7 @@ impl_1370_property_description = {
 
 static const afw_value_boolean_t
 impl_1370_property_value_intermediateOnly = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114780,7 +114780,7 @@ impl_1371_property_description = {
 
 static const afw_value_boolean_t
 impl_1371_property_value_intermediateOnly = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -114911,7 +114911,7 @@ impl_1373_property_category = {
 
 static const afw_value_boolean_t
 impl_1373_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115048,7 +115048,7 @@ impl_1375_property_category = {
 
 static const afw_value_boolean_t
 impl_1375_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115185,7 +115185,7 @@ impl_1377_property_category = {
 
 static const afw_value_boolean_t
 impl_1377_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115508,7 +115508,7 @@ impl_1382_property_category = {
 
 static const afw_value_boolean_t
 impl_1382_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115583,7 +115583,7 @@ impl_1383_property_category = {
 
 static const afw_value_boolean_t
 impl_1383_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115658,7 +115658,7 @@ impl_1384_property_category = {
 
 static const afw_value_boolean_t
 impl_1384_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115733,7 +115733,7 @@ impl_1385_property_category = {
 
 static const afw_value_boolean_t
 impl_1385_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -115808,7 +115808,7 @@ impl_1386_property_category = {
 
 static const afw_value_boolean_t
 impl_1386_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116069,7 +116069,7 @@ impl_1390_property_category = {
 
 static const afw_value_boolean_t
 impl_1390_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116144,7 +116144,7 @@ impl_1391_property_category = {
 
 static const afw_value_boolean_t
 impl_1391_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116219,7 +116219,7 @@ impl_1392_property_category = {
 
 static const afw_value_boolean_t
 impl_1392_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116294,7 +116294,7 @@ impl_1393_property_category = {
 
 static const afw_value_boolean_t
 impl_1393_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116431,7 +116431,7 @@ impl_1395_property_category = {
 
 static const afw_value_boolean_t
 impl_1395_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116506,7 +116506,7 @@ impl_1396_property_category = {
 
 static const afw_value_boolean_t
 impl_1396_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116581,7 +116581,7 @@ impl_1397_property_category = {
 
 static const afw_value_boolean_t
 impl_1397_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116780,7 +116780,7 @@ impl_1400_property_category = {
 
 static const afw_value_boolean_t
 impl_1400_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 
@@ -116979,7 +116979,7 @@ impl_1403_property_category = {
 
 static const afw_value_boolean_t
 impl_1403_property_value_dataTypeCategory = {
-    &afw_value_permanent_boolean_inf,
+    {&afw_value_permanent_boolean_inf},
     true
 };
 

@@ -38,7 +38,12 @@ AFW_BEGIN_DECLARES
 
 /** @brief Struct for assignment target value. */
 struct afw_value_assignment_target_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     const afw_compile_assignment_target_t *assignment_target;
 };
@@ -59,7 +64,12 @@ struct afw_value_assignment_s {
  * This is a symbol table block value.
  */
 struct afw_value_block_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
 
     afw_size_t statement_count;
@@ -201,7 +211,12 @@ struct afw_value_call_args_s {
  * function definition, a script function definition, or a thunk definition.
  */
 struct afw_value_call_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_value_t *function_value;
     afw_value_call_args_t args;
     
@@ -227,7 +242,12 @@ struct afw_value_call_s {
  * function definition, a script function definition, or a thunk definition.
  */
 struct afw_value_call_built_in_function_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_value_function_definition_t *function;
     afw_value_call_args_t args;
   
@@ -253,7 +273,12 @@ struct afw_value_call_built_in_function_s {
  * function definition, a script function definition, or a thunk definition.
  */
 struct afw_value_call_script_function_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_xctx_scope_t *enclosing_lexical_scope;
     afw_value_call_args_t args;
@@ -276,7 +301,12 @@ struct afw_value_call_script_function_s {
  * @brief Struct for call test script value.
  */
 struct afw_value_call_test_script_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     const afw_value_object_t *test_script_object_value;
 };
@@ -288,7 +318,12 @@ struct afw_value_call_test_script_s {
  * This is a closure binding.
  */
 struct afw_value_closure_binding_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_value_script_function_definition_t *script_function_definition;
     const afw_xctx_scope_t *enclosing_lexical_scope;
     afw_size_t reference_count;
@@ -311,7 +346,11 @@ struct afw_value_closure_binding_s {
  * methods for optional_evaluate() and get_data_type().
  */
 struct afw_value_internal_compiled_value_s {
-    const afw_value_inf_t *inf;
+    /** @brief Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
 
     /** @brief Pool containing value. */
     const afw_pool_t *p;
@@ -390,7 +429,12 @@ struct afw_value_internal_compiled_value_s {
 
 /** @brief struct for list expression value. */
 struct afw_value_list_expression_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_value_t *internal;
     const afw_compile_value_contextual_t *contextual;
 };
@@ -399,7 +443,11 @@ struct afw_value_list_expression_s {
 
 /** @brief Struct for function thunk value. */
 struct afw_value_function_thunk_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
 
     /** @brief name. */
     const afw_utf8_t *name;
@@ -421,7 +469,12 @@ struct afw_value_function_thunk_s {
 
 /** @brief struct for object expression value. */
 struct afw_value_object_expression_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_object_t *internal;
     const afw_compile_value_contextual_t *contextual;
 };
@@ -430,7 +483,12 @@ struct afw_value_object_expression_s {
 
 /** @brief Struct for reference_by_key value. */
 struct afw_value_reference_by_key_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     const afw_value_t *aggregate_value; /* Object or list */
     const afw_value_t *key;
@@ -477,7 +535,12 @@ struct afw_value_script_function_parameter_s {
 
 /** @brief Struct for lambda value. */
 struct afw_value_script_function_definition_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
@@ -502,7 +565,12 @@ struct afw_value_script_function_definition_s {
 
 /** @brief Struct for qualified variable reference value. */
 struct afw_value_qualified_variable_reference_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     afw_utf8_t qualifier;
     afw_utf8_t name;
@@ -525,7 +593,12 @@ struct afw_value_qualified_variable_reference_s {
 
 /** @brief Struct for template value. */
 struct afw_value_template_definition_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     afw_size_t count;
     const afw_value_t * const * values;
@@ -535,7 +608,12 @@ struct afw_value_template_definition_s {
 
 /* @brief struct for afw_value_symbol_reference_t */
 struct afw_value_symbol_reference_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
     const afw_compile_value_contextual_t *contextual;
     const afw_value_block_symbol_t *symbol;
     

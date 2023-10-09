@@ -143,7 +143,13 @@ afw_data_type_boolean_to_utf8(afw_boolean_t internal,
 
 /** @brief struct for data type boolean values. */
 struct afw_value_boolean_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_boolean_t value. */
     afw_boolean_t internal;
 };
 

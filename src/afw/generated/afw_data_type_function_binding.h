@@ -143,7 +143,13 @@ afw_data_type_function_to_utf8(const afw_value_t * internal,
 
 /** @brief struct for data type function values. */
 struct afw_value_function_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal const afw_value_t * value. */
     const afw_value_t * internal;
 };
 

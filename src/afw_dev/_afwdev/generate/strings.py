@@ -189,7 +189,7 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
 
                 if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
                     fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'self_v_' + name + ' = {\n')
-                    fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
+                    fd.write('    {&afw_value_permanent_' + dataType + '_inf},\n')
                     fd.write(
                         '    AFW_UTF8_LITERAL(' +
                         get_string_label(options, value, 'Q', dataType=dataType, labelPreference=name) +
@@ -197,7 +197,7 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
                     fd.write('};\n')
                 elif supported_dataTypes[dataType] == '':
                     fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'self_v_' + name + ' = {\n')
-                    fd.write('    &afw_value_permanent_' + dataType + '_inf,\n')
+                    fd.write('    {&afw_value_permanent_' + dataType + '_inf},\n')
                     fd.write('    ' + value + '\n')
                     fd.write('};\n')
                 else:

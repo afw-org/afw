@@ -121,7 +121,7 @@ impl_afw_value_permanent_get_reference(
 
 static const afw_value_string_t
 impl_data_type_integer_id_value = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL("integer")
 };
 
@@ -198,7 +198,7 @@ impl_empty_array_of_integer = {
 /* Value for empty array of integer. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
 impl_value_empty_array_of_integer = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_integer
 };
 

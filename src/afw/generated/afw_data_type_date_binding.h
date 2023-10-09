@@ -143,7 +143,13 @@ afw_data_type_date_to_utf8(const afw_date_t * internal,
 
 /** @brief struct for data type date values. */
 struct afw_value_date_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_date_t value. */
     afw_date_t internal;
 };
 

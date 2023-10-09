@@ -168,7 +168,13 @@ def write_h_section(fd, prefix, obj):
 
     fd.write('\n/** @brief struct for data type ' + id + ' values. */\n')
     fd.write('struct afw_value_' + id + '_s {\n')
-    fd.write('    const afw_value_inf_t *inf;\n')
+    fd.write('    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */\n')
+    fd.write('    union {\n')
+    fd.write('        const afw_value_inf_t *inf;\n')
+    fd.write('        afw_value_t pub;\n')
+    fd.write('    };\n')
+    fd.write('\n')
+    fd.write('    /** @brief  Internal ' + ctype + ' value. */\n')
     fd.write('    ' + ctype + ' internal;\n')
     fd.write('};\n')
 
@@ -624,7 +630,7 @@ def write_c_section(fd, prefix, obj):
 
     fd.write('\nstatic const afw_value_string_t\n')
     fd.write('impl_data_type_' + id + '_id_value = {\n')
-    fd.write('    &afw_value_permanent_string_inf,\n')
+    fd.write('    {&afw_value_permanent_string_inf},\n')
     fd.write('    AFW_UTF8_LITERAL(\"' + id + '\")\n')
     fd.write('};\n')
    
@@ -785,7 +791,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
         fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
         fd.write('impl_value_empty_array_of_' + id + ' = {\n')
-        fd.write('    &afw_value_permanent_array_inf,\n')
+        fd.write('    {&afw_value_permanent_array_inf},\n')
         fd.write('    (const afw_array_t *)&impl_empty_array_of_' + id + '\n')
         fd.write('};\n')
     

@@ -143,7 +143,13 @@ afw_data_type_object_to_utf8(const afw_object_t * internal,
 
 /** @brief struct for data type object values. */
 struct afw_value_object_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal const afw_object_t * value. */
     const afw_object_t * internal;
 };
 

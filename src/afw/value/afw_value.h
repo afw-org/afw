@@ -71,7 +71,11 @@ struct afw_value_info_s {
  * @brief Struct to access internal of all evaluated values.
  */
 struct afw_value_evaluated_s {
-    const afw_value_inf_t *inf;
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
     afw_octet_t internal; /* type specific value */
 };
 
@@ -113,8 +117,12 @@ struct afw_value_function_parameter_s {
 
 /** @brief Struct for function value. */
 struct afw_value_function_definition_s {
-    const afw_value_inf_t *inf;
-
+    /** @brief Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+    
     /** @brief Object representing function. */
     const afw_object_t *object;
 

@@ -143,7 +143,13 @@ afw_data_type_password_to_utf8(const afw_utf8_t * internal,
 
 /** @brief struct for data type password values. */
 struct afw_value_password_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_utf8_t value. */
     afw_utf8_t internal;
 };
 

@@ -68,7 +68,7 @@ impl_afw_value_permanent_get_reference(
 
 static const afw_value_string_t
 impl_data_type_undefined_id_value = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL("undefined")
 };
 

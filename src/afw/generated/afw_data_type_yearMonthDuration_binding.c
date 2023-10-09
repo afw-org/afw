@@ -121,7 +121,7 @@ impl_afw_value_permanent_get_reference(
 
 static const afw_value_string_t
 impl_data_type_yearMonthDuration_id_value = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL("yearMonthDuration")
 };
 
@@ -198,7 +198,7 @@ impl_empty_array_of_yearMonthDuration = {
 /* Value for empty array of yearMonthDuration. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
 impl_value_empty_array_of_yearMonthDuration = {
-    &afw_value_permanent_array_inf,
+    {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_yearMonthDuration
 };
 

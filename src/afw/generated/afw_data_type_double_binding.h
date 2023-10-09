@@ -143,7 +143,13 @@ afw_data_type_double_to_utf8(double internal,
 
 /** @brief struct for data type double values. */
 struct afw_value_double_s {
-    const afw_value_inf_t *inf;
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal double value. */
     double internal;
 };
 

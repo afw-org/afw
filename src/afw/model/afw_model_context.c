@@ -31,7 +31,7 @@
 /* Can be returned by on* to do default processing */
 const afw_value_null_t
 impl_useDefaultProcessing = {
-    &afw_value_evaluated_null_inf
+    {&afw_value_evaluated_null_inf}
 };
 
 

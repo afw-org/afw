@@ -27,96 +27,96 @@
 
 const afw_value_string_t
 afw_command_self_v_METHOD = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_METHOD)
 };
 
 const afw_value_string_t
 afw_command_self_v_SERVER_PROTOCOL = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_SERVER_PROTOCOL)
 };
 
 const afw_value_string_t
 afw_command_self_v_URI = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_URI)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_directive_starts_with = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_directive_starts_with)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_mode_action = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_mode_action)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_mode_action_direct = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_mode_action_direct)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_mode_evaluate = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_mode_evaluate)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_mode_evaluate_direct = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_mode_evaluate_direct)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_mode_http_like = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_mode_http_like)
 };
 
 const afw_value_string_t
 afw_command_self_v_a_local_request_properties = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_a_local_request_properties)
 };
 
 const afw_value_string_t
 afw_command_self_v_afw_command = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_afw_command)
 };
 
 const afw_value_string_t
 afw_command_self_v_afw_command_dash_x = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_afw_command_dash_x)
 };
 
 const afw_value_string_t
 afw_command_self_v_afw_command_interactive = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_afw_command_interactive)
 };
 
 const afw_value_string_t
 afw_command_self_v_afw_command_local_mode = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_afw_command_local_mode)
 };
 
 const afw_value_string_t
 afw_command_self_v_default = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_default)
 };
 
 const afw_value_string_t
 afw_command_self_v_indirect = {
-    &afw_value_permanent_string_inf,
+    {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMMAND_Q_indirect)
 };
