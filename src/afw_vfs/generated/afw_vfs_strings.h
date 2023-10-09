@@ -49,7 +49,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
     (afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
 #define afw_vfs_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
     (&afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.pub)
 
@@ -75,7 +75,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveConf_adaptor_vfs \
     (afw_vfs_self_v__AdaptiveConf_adaptor_vfs.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
 #define afw_vfs_v__AdaptiveConf_adaptor_vfs \
     (&afw_vfs_self_v__AdaptiveConf_adaptor_vfs.pub)
 
@@ -101,7 +101,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveFile_vfs \
     (afw_vfs_self_v__AdaptiveFile_vfs.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveFile_vfs */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveFile_vfs */
 #define afw_vfs_v__AdaptiveFile_vfs \
     (&afw_vfs_self_v__AdaptiveFile_vfs.pub)
 
@@ -127,7 +127,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveFunctionGenerate_ \
     (afw_vfs_self_v__AdaptiveFunctionGenerate_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveFunctionGenerate_ */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveFunctionGenerate_ */
 #define afw_vfs_v__AdaptiveFunctionGenerate_ \
     (&afw_vfs_self_v__AdaptiveFunctionGenerate_.pub)
 
@@ -153,7 +153,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveFunctionParameter_ \
     (afw_vfs_self_v__AdaptiveFunctionParameter_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveFunctionParameter_ */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveFunctionParameter_ */
 #define afw_vfs_v__AdaptiveFunctionParameter_ \
     (&afw_vfs_self_v__AdaptiveFunctionParameter_.pub)
 
@@ -179,7 +179,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveFunction_ \
     (afw_vfs_self_v__AdaptiveFunction_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveFunction_ */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveFunction_ */
 #define afw_vfs_v__AdaptiveFunction_ \
     (&afw_vfs_self_v__AdaptiveFunction_.pub)
 
@@ -205,7 +205,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptiveObjectType_ \
     (afw_vfs_self_v__AdaptiveObjectType_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveObjectType_ */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveObjectType_ */
 #define afw_vfs_v__AdaptiveObjectType_ \
     (&afw_vfs_self_v__AdaptiveObjectType_.pub)
 
@@ -231,7 +231,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__AdaptivePolymorphicFunction_ \
     (afw_vfs_self_v__AdaptivePolymorphicFunction_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptivePolymorphicFunction_ */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptivePolymorphicFunction_ */
 #define afw_vfs_v__AdaptivePolymorphicFunction_ \
     (&afw_vfs_self_v__AdaptivePolymorphicFunction_.pub)
 
@@ -257,7 +257,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z__meta_ \
     (afw_vfs_self_v__meta_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__meta_ */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__meta_ */
 #define afw_vfs_v__meta_ \
     (&afw_vfs_self_v__meta_.pub)
 
@@ -283,7 +283,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_allowAdd \
     (afw_vfs_self_v_allowAdd.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowAdd */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowAdd */
 #define afw_vfs_v_allowAdd \
     (&afw_vfs_self_v_allowAdd.pub)
 
@@ -309,7 +309,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_allowChange \
     (afw_vfs_self_v_allowChange.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowChange */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowChange */
 #define afw_vfs_v_allowChange \
     (&afw_vfs_self_v_allowChange.pub)
 
@@ -335,7 +335,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_allowDelete \
     (afw_vfs_self_v_allowDelete.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowDelete */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowDelete */
 #define afw_vfs_v_allowDelete \
     (&afw_vfs_self_v_allowDelete.pub)
 
@@ -361,7 +361,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_allowEntity \
     (afw_vfs_self_v_allowEntity.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowEntity */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowEntity */
 #define afw_vfs_v_allowEntity \
     (&afw_vfs_self_v_allowEntity.pub)
 
@@ -387,7 +387,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_allowWrite \
     (afw_vfs_self_v_allowWrite.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowWrite */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowWrite */
 #define afw_vfs_v_allowWrite \
     (&afw_vfs_self_v_allowWrite.pub)
 
@@ -413,7 +413,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_anyURI \
     (afw_vfs_self_v_anyURI.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_anyURI */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_anyURI */
 #define afw_vfs_v_anyURI \
     (&afw_vfs_self_v_anyURI.pub)
 
@@ -439,7 +439,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_array \
     (afw_vfs_self_v_array.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_array */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_array */
 #define afw_vfs_v_array \
     (&afw_vfs_self_v_array.pub)
 
@@ -465,7 +465,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_boolean \
     (afw_vfs_self_v_boolean.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_boolean */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_boolean */
 #define afw_vfs_v_boolean \
     (&afw_vfs_self_v_boolean.pub)
 
@@ -491,7 +491,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_brief \
     (afw_vfs_self_v_brief.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_brief */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_brief */
 #define afw_vfs_v_brief \
     (&afw_vfs_self_v_brief.pub)
 
@@ -517,7 +517,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_collectionURIs \
     (afw_vfs_self_v_collectionURIs.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_collectionURIs */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_collectionURIs */
 #define afw_vfs_v_collectionURIs \
     (&afw_vfs_self_v_collectionURIs.pub)
 
@@ -543,7 +543,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_data \
     (afw_vfs_self_v_data.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_data */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_data */
 #define afw_vfs_v_data \
     (&afw_vfs_self_v_data.pub)
 
@@ -569,7 +569,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_dataType \
     (afw_vfs_self_v_dataType.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_dataType */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_dataType */
 #define afw_vfs_v_dataType \
     (&afw_vfs_self_v_dataType.pub)
 
@@ -595,7 +595,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_dataTypeParameter \
     (afw_vfs_self_v_dataTypeParameter.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_dataTypeParameter */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_dataTypeParameter */
 #define afw_vfs_v_dataTypeParameter \
     (&afw_vfs_self_v_dataTypeParameter.pub)
 
@@ -621,7 +621,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_dateTime \
     (afw_vfs_self_v_dateTime.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_dateTime */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_dateTime */
 #define afw_vfs_v_dateTime \
     (&afw_vfs_self_v_dateTime.pub)
 
@@ -647,7 +647,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_default \
     (afw_vfs_self_v_default.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_default */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_default */
 #define afw_vfs_v_default \
     (&afw_vfs_self_v_default.pub)
 
@@ -673,7 +673,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_defaultValue \
     (afw_vfs_self_v_defaultValue.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_defaultValue */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_defaultValue */
 #define afw_vfs_v_defaultValue \
     (&afw_vfs_self_v_defaultValue.pub)
 
@@ -699,7 +699,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_description \
     (afw_vfs_self_v_description.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_description */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_description */
 #define afw_vfs_v_description \
     (&afw_vfs_self_v_description.pub)
 
@@ -725,7 +725,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_includeHidden \
     (afw_vfs_self_v_includeHidden.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_includeHidden */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_includeHidden */
 #define afw_vfs_v_includeHidden \
     (&afw_vfs_self_v_includeHidden.pub)
 
@@ -751,7 +751,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_indirect \
     (afw_vfs_self_v_indirect.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_indirect */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_indirect */
 #define afw_vfs_v_indirect \
     (&afw_vfs_self_v_indirect.pub)
 
@@ -777,7 +777,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_isDirectory \
     (afw_vfs_self_v_isDirectory.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_isDirectory */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_isDirectory */
 #define afw_vfs_v_isDirectory \
     (&afw_vfs_self_v_isDirectory.pub)
 
@@ -803,7 +803,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_label \
     (afw_vfs_self_v_label.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_label */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_label */
 #define afw_vfs_v_label \
     (&afw_vfs_self_v_label.pub)
 
@@ -829,7 +829,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_markExecutable \
     (afw_vfs_self_v_markExecutable.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_markExecutable */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_markExecutable */
 #define afw_vfs_v_markExecutable \
     (&afw_vfs_self_v_markExecutable.pub)
 
@@ -855,7 +855,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_objectType \
     (afw_vfs_self_v_objectType.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_objectType */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_objectType */
 #define afw_vfs_v_objectType \
     (&afw_vfs_self_v_objectType.pub)
 
@@ -881,7 +881,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_otherProperties \
     (afw_vfs_self_v_otherProperties.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_otherProperties */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_otherProperties */
 #define afw_vfs_v_otherProperties \
     (&afw_vfs_self_v_otherProperties.pub)
 
@@ -907,7 +907,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_parentPaths \
     (afw_vfs_self_v_parentPaths.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_parentPaths */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_parentPaths */
 #define afw_vfs_v_parentPaths \
     (&afw_vfs_self_v_parentPaths.pub)
 
@@ -933,7 +933,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_propertyTypes \
     (afw_vfs_self_v_propertyTypes.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_propertyTypes */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_propertyTypes */
 #define afw_vfs_v_propertyTypes \
     (&afw_vfs_self_v_propertyTypes.pub)
 
@@ -959,7 +959,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_recursive \
     (afw_vfs_self_v_recursive.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_recursive */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_recursive */
 #define afw_vfs_v_recursive \
     (&afw_vfs_self_v_recursive.pub)
 
@@ -985,7 +985,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_required \
     (afw_vfs_self_v_required.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_required */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_required */
 #define afw_vfs_v_required \
     (&afw_vfs_self_v_required.pub)
 
@@ -1011,7 +1011,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_string \
     (afw_vfs_self_v_string.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_string */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_string */
 #define afw_vfs_v_string \
     (&afw_vfs_self_v_string.pub)
 
@@ -1037,7 +1037,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_subdirectory \
     (afw_vfs_self_v_subdirectory.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_subdirectory */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_subdirectory */
 #define afw_vfs_v_subdirectory \
     (&afw_vfs_self_v_subdirectory.pub)
 
@@ -1063,7 +1063,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_suffix \
     (afw_vfs_self_v_suffix.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_suffix */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_suffix */
 #define afw_vfs_v_suffix \
     (&afw_vfs_self_v_suffix.pub)
 
@@ -1089,7 +1089,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_timeAccessed \
     (afw_vfs_self_v_timeAccessed.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_timeAccessed */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_timeAccessed */
 #define afw_vfs_v_timeAccessed \
     (&afw_vfs_self_v_timeAccessed.pub)
 
@@ -1115,7 +1115,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_timeCreated \
     (afw_vfs_self_v_timeCreated.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_timeCreated */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_timeCreated */
 #define afw_vfs_v_timeCreated \
     (&afw_vfs_self_v_timeCreated.pub)
 
@@ -1141,7 +1141,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_timeModified \
     (afw_vfs_self_v_timeModified.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_timeModified */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_timeModified */
 #define afw_vfs_v_timeModified \
     (&afw_vfs_self_v_timeModified.pub)
 
@@ -1167,7 +1167,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_vfsMap \
     (afw_vfs_self_v_vfsMap.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_vfsMap */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_vfsMap */
 #define afw_vfs_v_vfsMap \
     (&afw_vfs_self_v_vfsMap.pub)
 
@@ -1193,7 +1193,7 @@ extern const afw_value_string_t \
 #define afw_vfs_z_vfsPath \
     (afw_vfs_self_v_vfsPath.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_vfsPath */
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_vfsPath */
 #define afw_vfs_v_vfsPath \
     (&afw_vfs_self_v_vfsPath.pub)
 

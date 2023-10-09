@@ -49,7 +49,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_Extern \
     (afw_lmdb_self_v_Extern.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_Extern */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_Extern */
 #define afw_lmdb_v_Extern \
     (&afw_lmdb_self_v_Extern.pub)
 
@@ -75,7 +75,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_Index \
     (afw_lmdb_self_v_Index.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_Index */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_Index */
 #define afw_lmdb_v_Index \
     (&afw_lmdb_self_v_Index.pub)
 
@@ -101,7 +101,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_Journal \
     (afw_lmdb_self_v_Journal.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_Journal */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_Journal */
 #define afw_lmdb_v_Journal \
     (&afw_lmdb_self_v_Journal.pub)
 
@@ -127,7 +127,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_Primary \
     (afw_lmdb_self_v_Primary.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_Primary */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_Primary */
 #define afw_lmdb_v_Primary \
     (&afw_lmdb_self_v_Primary.pub)
 
@@ -153,7 +153,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb \
     (afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb */
 #define afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb \
     (&afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb.pub)
 
@@ -179,7 +179,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_information \
     (afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_information */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_information */
 #define afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information \
     (&afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information.pub)
 
@@ -205,7 +205,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic \
     (afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic */
 #define afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic \
     (&afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic.pub)
 
@@ -231,7 +231,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics \
     (afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics */
 #define afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics \
     (&afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics.pub)
 
@@ -257,7 +257,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveAdaptorMetrics_adaptor_lmdb_version \
     (afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_version */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveAdaptorMetrics_adaptor_lmdb_version */
 #define afw_lmdb_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version \
     (&afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version.pub)
 
@@ -283,7 +283,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveCollection_ \
     (afw_lmdb_self_v__AdaptiveCollection_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveCollection_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveCollection_ */
 #define afw_lmdb_v__AdaptiveCollection_ \
     (&afw_lmdb_self_v__AdaptiveCollection_.pub)
 
@@ -309,7 +309,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveConf_adaptor_lmdb \
     (afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb */
 #define afw_lmdb_v__AdaptiveConf_adaptor_lmdb \
     (&afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb.pub)
 
@@ -335,7 +335,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_env \
     (afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_env.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_env */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_env */
 #define afw_lmdb_v__AdaptiveConf_adaptor_lmdb_env \
     (&afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_env.pub)
 
@@ -361,7 +361,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_limits \
     (afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits */
 #define afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits \
     (&afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits.pub)
 
@@ -387,7 +387,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_limits_size \
     (afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_size.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits_size */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits_size */
 #define afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_size \
     (&afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_size.pub)
 
@@ -413,7 +413,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveConf_adaptor_lmdb_limits_time \
     (afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_time.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits_time */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveConf_adaptor_lmdb_limits_time */
 #define afw_lmdb_v__AdaptiveConf_adaptor_lmdb_limits_time \
     (&afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_time.pub)
 
@@ -439,7 +439,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveFunctionCategory_ \
     (afw_lmdb_self_v__AdaptiveFunctionCategory_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveFunctionCategory_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveFunctionCategory_ */
 #define afw_lmdb_v__AdaptiveFunctionCategory_ \
     (&afw_lmdb_self_v__AdaptiveFunctionCategory_.pub)
 
@@ -465,7 +465,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveFunctionGenerate_ \
     (afw_lmdb_self_v__AdaptiveFunctionGenerate_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveFunctionGenerate_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveFunctionGenerate_ */
 #define afw_lmdb_v__AdaptiveFunctionGenerate_ \
     (&afw_lmdb_self_v__AdaptiveFunctionGenerate_.pub)
 
@@ -491,7 +491,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveFunctionParameter_ \
     (afw_lmdb_self_v__AdaptiveFunctionParameter_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveFunctionParameter_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveFunctionParameter_ */
 #define afw_lmdb_v__AdaptiveFunctionParameter_ \
     (&afw_lmdb_self_v__AdaptiveFunctionParameter_.pub)
 
@@ -517,7 +517,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveFunction_ \
     (afw_lmdb_self_v__AdaptiveFunction_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveFunction_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveFunction_ */
 #define afw_lmdb_v__AdaptiveFunction_ \
     (&afw_lmdb_self_v__AdaptiveFunction_.pub)
 
@@ -543,7 +543,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__AdaptiveObjectType_ \
     (afw_lmdb_self_v__AdaptiveObjectType_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__AdaptiveObjectType_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__AdaptiveObjectType_ */
 #define afw_lmdb_v__AdaptiveObjectType_ \
     (&afw_lmdb_self_v__AdaptiveObjectType_.pub)
 
@@ -569,7 +569,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z__meta_ \
     (afw_lmdb_self_v__meta_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q__meta_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q__meta_ */
 #define afw_lmdb_v__meta_ \
     (&afw_lmdb_self_v__meta_.pub)
 
@@ -595,7 +595,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_adaptorId \
     (afw_lmdb_self_v_adaptorId.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_adaptorId */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_adaptorId */
 #define afw_lmdb_v_adaptorId \
     (&afw_lmdb_self_v_adaptorId.pub)
 
@@ -621,7 +621,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_afwCamelCaseFunctionLabel \
     (afw_lmdb_self_v_afwCamelCaseFunctionLabel.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_afwCamelCaseFunctionLabel */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_afwCamelCaseFunctionLabel */
 #define afw_lmdb_v_afwCamelCaseFunctionLabel \
     (&afw_lmdb_self_v_afwCamelCaseFunctionLabel.pub)
 
@@ -647,7 +647,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_afwReaderCheck \
     (afw_lmdb_self_v_afwReaderCheck.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_afwReaderCheck */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_afwReaderCheck */
 #define afw_lmdb_v_afwReaderCheck \
     (&afw_lmdb_self_v_afwReaderCheck.pub)
 
@@ -673,7 +673,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_afwReaderList \
     (afw_lmdb_self_v_afwReaderList.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_afwReaderList */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_afwReaderList */
 #define afw_lmdb_v_afwReaderList \
     (&afw_lmdb_self_v_afwReaderList.pub)
 
@@ -699,7 +699,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_allowEntity \
     (afw_lmdb_self_v_allowEntity.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_allowEntity */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_allowEntity */
 #define afw_lmdb_v_allowEntity \
     (&afw_lmdb_self_v_allowEntity.pub)
 
@@ -725,7 +725,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_allowQuery \
     (afw_lmdb_self_v_allowQuery.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_allowQuery */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_allowQuery */
 #define afw_lmdb_v_allowQuery \
     (&afw_lmdb_self_v_allowQuery.pub)
 
@@ -751,7 +751,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_allowWrite \
     (afw_lmdb_self_v_allowWrite.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_allowWrite */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_allowWrite */
 #define afw_lmdb_v_allowWrite \
     (&afw_lmdb_self_v_allowWrite.pub)
 
@@ -777,7 +777,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_branch_pages \
     (afw_lmdb_self_v_branch_pages.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_branch_pages */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_branch_pages */
 #define afw_lmdb_v_branch_pages \
     (&afw_lmdb_self_v_branch_pages.pub)
 
@@ -803,7 +803,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_brief \
     (afw_lmdb_self_v_brief.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_brief */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_brief */
 #define afw_lmdb_v_brief \
     (&afw_lmdb_self_v_brief.pub)
 
@@ -829,7 +829,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_camelCaseFunctionLabel \
     (afw_lmdb_self_v_camelCaseFunctionLabel.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_camelCaseFunctionLabel */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_camelCaseFunctionLabel */
 #define afw_lmdb_v_camelCaseFunctionLabel \
     (&afw_lmdb_self_v_camelCaseFunctionLabel.pub)
 
@@ -855,7 +855,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_category \
     (afw_lmdb_self_v_category.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_category */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_category */
 #define afw_lmdb_v_category \
     (&afw_lmdb_self_v_category.pub)
 
@@ -881,7 +881,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_collectionURIs \
     (afw_lmdb_self_v_collectionURIs.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_collectionURIs */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_collectionURIs */
 #define afw_lmdb_v_collectionURIs \
     (&afw_lmdb_self_v_collectionURIs.pub)
 
@@ -907,7 +907,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_content_type \
     (afw_lmdb_self_v_content_type.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_content_type */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_content_type */
 #define afw_lmdb_v_content_type \
     (&afw_lmdb_self_v_content_type.pub)
 
@@ -933,7 +933,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_createTimeStamp \
     (afw_lmdb_self_v_createTimeStamp.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_createTimeStamp */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_createTimeStamp */
 #define afw_lmdb_v_createTimeStamp \
     (&afw_lmdb_self_v_createTimeStamp.pub)
 
@@ -959,7 +959,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_dataType \
     (afw_lmdb_self_v_dataType.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_dataType */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_dataType */
 #define afw_lmdb_v_dataType \
     (&afw_lmdb_self_v_dataType.pub)
 
@@ -985,7 +985,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_dataTypeParameter \
     (afw_lmdb_self_v_dataTypeParameter.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_dataTypeParameter */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_dataTypeParameter */
 #define afw_lmdb_v_dataTypeParameter \
     (&afw_lmdb_self_v_dataTypeParameter.pub)
 
@@ -1011,7 +1011,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_default \
     (afw_lmdb_self_v_default.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_default */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_default */
 #define afw_lmdb_v_default \
     (&afw_lmdb_self_v_default.pub)
 
@@ -1037,7 +1037,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_depth \
     (afw_lmdb_self_v_depth.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_depth */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_depth */
 #define afw_lmdb_v_depth \
     (&afw_lmdb_self_v_depth.pub)
 
@@ -1063,7 +1063,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_description \
     (afw_lmdb_self_v_description.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_description */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_description */
 #define afw_lmdb_v_description \
     (&afw_lmdb_self_v_description.pub)
 
@@ -1089,7 +1089,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_entries \
     (afw_lmdb_self_v_entries.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_entries */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_entries */
 #define afw_lmdb_v_entries \
     (&afw_lmdb_self_v_entries.pub)
 
@@ -1115,7 +1115,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_env \
     (afw_lmdb_self_v_env.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_env */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_env */
 #define afw_lmdb_v_env \
     (&afw_lmdb_self_v_env.pub)
 
@@ -1141,7 +1141,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_environment \
     (afw_lmdb_self_v_environment.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_environment */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_environment */
 #define afw_lmdb_v_environment \
     (&afw_lmdb_self_v_environment.pub)
 
@@ -1167,7 +1167,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_equality \
     (afw_lmdb_self_v_equality.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_equality */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_equality */
 #define afw_lmdb_v_equality \
     (&afw_lmdb_self_v_equality.pub)
 
@@ -1193,7 +1193,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_flags \
     (afw_lmdb_self_v_flags.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_flags */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_flags */
 #define afw_lmdb_v_flags \
     (&afw_lmdb_self_v_flags.pub)
 
@@ -1219,7 +1219,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_functionId \
     (afw_lmdb_self_v_functionId.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_functionId */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_functionId */
 #define afw_lmdb_v_functionId \
     (&afw_lmdb_self_v_functionId.pub)
 
@@ -1245,7 +1245,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_functionLabel \
     (afw_lmdb_self_v_functionLabel.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_functionLabel */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_functionLabel */
 #define afw_lmdb_v_functionLabel \
     (&afw_lmdb_self_v_functionLabel.pub)
 
@@ -1271,7 +1271,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_hard \
     (afw_lmdb_self_v_hard.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_hard */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_hard */
 #define afw_lmdb_v_hard \
     (&afw_lmdb_self_v_hard.pub)
 
@@ -1297,7 +1297,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_indexDefinitions \
     (afw_lmdb_self_v_indexDefinitions.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_indexDefinitions */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_indexDefinitions */
 #define afw_lmdb_v_indexDefinitions \
     (&afw_lmdb_self_v_indexDefinitions.pub)
 
@@ -1323,7 +1323,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_indexes \
     (afw_lmdb_self_v_indexes.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_indexes */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_indexes */
 #define afw_lmdb_v_indexes \
     (&afw_lmdb_self_v_indexes.pub)
 
@@ -1349,7 +1349,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_indirect \
     (afw_lmdb_self_v_indirect.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_indirect */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_indirect */
 #define afw_lmdb_v_indirect \
     (&afw_lmdb_self_v_indirect.pub)
 
@@ -1375,7 +1375,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_information \
     (afw_lmdb_self_v_information.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_information */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_information */
 #define afw_lmdb_v_information \
     (&afw_lmdb_self_v_information.pub)
 
@@ -1401,7 +1401,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_integer \
     (afw_lmdb_self_v_integer.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_integer */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_integer */
 #define afw_lmdb_v_integer \
     (&afw_lmdb_self_v_integer.pub)
 
@@ -1427,7 +1427,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_internalConfig \
     (afw_lmdb_self_v_internalConfig.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_internalConfig */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_internalConfig */
 #define afw_lmdb_v_internalConfig \
     (&afw_lmdb_self_v_internalConfig.pub)
 
@@ -1453,7 +1453,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_label \
     (afw_lmdb_self_v_label.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_label */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_label */
 #define afw_lmdb_v_label \
     (&afw_lmdb_self_v_label.pub)
 
@@ -1479,7 +1479,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_last_pgno \
     (afw_lmdb_self_v_last_pgno.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_last_pgno */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_last_pgno */
 #define afw_lmdb_v_last_pgno \
     (&afw_lmdb_self_v_last_pgno.pub)
 
@@ -1505,7 +1505,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_last_txnid \
     (afw_lmdb_self_v_last_txnid.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_last_txnid */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_last_txnid */
 #define afw_lmdb_v_last_txnid \
     (&afw_lmdb_self_v_last_txnid.pub)
 
@@ -1531,7 +1531,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_leaf_pages \
     (afw_lmdb_self_v_leaf_pages.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_leaf_pages */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_leaf_pages */
 #define afw_lmdb_v_leaf_pages \
     (&afw_lmdb_self_v_leaf_pages.pub)
 
@@ -1557,7 +1557,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_limits \
     (afw_lmdb_self_v_limits.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_limits */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_limits */
 #define afw_lmdb_v_limits \
     (&afw_lmdb_self_v_limits.pub)
 
@@ -1583,7 +1583,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_lmdb \
     (afw_lmdb_self_v_lmdb.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_lmdb */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_lmdb */
 #define afw_lmdb_v_lmdb \
     (&afw_lmdb_self_v_lmdb.pub)
 
@@ -1609,7 +1609,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_lmdb_extension \
     (afw_lmdb_self_v_lmdb_extension.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_lmdb_extension */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_lmdb_extension */
 #define afw_lmdb_v_lmdb_extension \
     (&afw_lmdb_self_v_lmdb_extension.pub)
 
@@ -1635,7 +1635,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_major \
     (afw_lmdb_self_v_major.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_major */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_major */
 #define afw_lmdb_v_major \
     (&afw_lmdb_self_v_major.pub)
 
@@ -1661,7 +1661,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_mapaddr \
     (afw_lmdb_self_v_mapaddr.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_mapaddr */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_mapaddr */
 #define afw_lmdb_v_mapaddr \
     (&afw_lmdb_self_v_mapaddr.pub)
 
@@ -1687,7 +1687,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_mapsize \
     (afw_lmdb_self_v_mapsize.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_mapsize */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_mapsize */
 #define afw_lmdb_v_mapsize \
     (&afw_lmdb_self_v_mapsize.pub)
 
@@ -1713,7 +1713,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_maxdbs \
     (afw_lmdb_self_v_maxdbs.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_maxdbs */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_maxdbs */
 #define afw_lmdb_v_maxdbs \
     (&afw_lmdb_self_v_maxdbs.pub)
 
@@ -1739,7 +1739,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_maxreaders \
     (afw_lmdb_self_v_maxreaders.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_maxreaders */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_maxreaders */
 #define afw_lmdb_v_maxreaders \
     (&afw_lmdb_self_v_maxreaders.pub)
 
@@ -1765,7 +1765,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_minor \
     (afw_lmdb_self_v_minor.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_minor */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_minor */
 #define afw_lmdb_v_minor \
     (&afw_lmdb_self_v_minor.pub)
 
@@ -1791,7 +1791,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_mode \
     (afw_lmdb_self_v_mode.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_mode */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_mode */
 #define afw_lmdb_v_mode \
     (&afw_lmdb_self_v_mode.pub)
 
@@ -1817,7 +1817,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_numreaders \
     (afw_lmdb_self_v_numreaders.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_numreaders */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_numreaders */
 #define afw_lmdb_v_numreaders \
     (&afw_lmdb_self_v_numreaders.pub)
 
@@ -1843,7 +1843,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_object \
     (afw_lmdb_self_v_object.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_object */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_object */
 #define afw_lmdb_v_object \
     (&afw_lmdb_self_v_object.pub)
 
@@ -1869,7 +1869,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_objectId \
     (afw_lmdb_self_v_objectId.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_objectId */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_objectId */
 #define afw_lmdb_v_objectId \
     (&afw_lmdb_self_v_objectId.pub)
 
@@ -1895,7 +1895,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_objectType \
     (afw_lmdb_self_v_objectType.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_objectType */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_objectType */
 #define afw_lmdb_v_objectType \
     (&afw_lmdb_self_v_objectType.pub)
 
@@ -1921,7 +1921,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_otherProperties \
     (afw_lmdb_self_v_otherProperties.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_otherProperties */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_otherProperties */
 #define afw_lmdb_v_otherProperties \
     (&afw_lmdb_self_v_otherProperties.pub)
 
@@ -1947,7 +1947,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_overflow_pages \
     (afw_lmdb_self_v_overflow_pages.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_overflow_pages */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_overflow_pages */
 #define afw_lmdb_v_overflow_pages \
     (&afw_lmdb_self_v_overflow_pages.pub)
 
@@ -1973,7 +1973,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_parameters \
     (afw_lmdb_self_v_parameters.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_parameters */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_parameters */
 #define afw_lmdb_v_parameters \
     (&afw_lmdb_self_v_parameters.pub)
 
@@ -1999,7 +1999,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_parentPaths \
     (afw_lmdb_self_v_parentPaths.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_parentPaths */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_parentPaths */
 #define afw_lmdb_v_parentPaths \
     (&afw_lmdb_self_v_parentPaths.pub)
 
@@ -2025,7 +2025,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_patch \
     (afw_lmdb_self_v_patch.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_patch */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_patch */
 #define afw_lmdb_v_patch \
     (&afw_lmdb_self_v_patch.pub)
 
@@ -2051,7 +2051,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_path \
     (afw_lmdb_self_v_path.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_path */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_path */
 #define afw_lmdb_v_path \
     (&afw_lmdb_self_v_path.pub)
 
@@ -2077,7 +2077,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_propertyTypes \
     (afw_lmdb_self_v_propertyTypes.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_propertyTypes */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_propertyTypes */
 #define afw_lmdb_v_propertyTypes \
     (&afw_lmdb_self_v_propertyTypes.pub)
 
@@ -2103,7 +2103,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_psize \
     (afw_lmdb_self_v_psize.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_psize */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_psize */
 #define afw_lmdb_v_psize \
     (&afw_lmdb_self_v_psize.pub)
 
@@ -2129,7 +2129,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_readerCheck \
     (afw_lmdb_self_v_readerCheck.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_readerCheck */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_readerCheck */
 #define afw_lmdb_v_readerCheck \
     (&afw_lmdb_self_v_readerCheck.pub)
 
@@ -2155,7 +2155,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_readerList \
     (afw_lmdb_self_v_readerList.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_readerList */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_readerList */
 #define afw_lmdb_v_readerList \
     (&afw_lmdb_self_v_readerList.pub)
 
@@ -2181,7 +2181,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_reader_check \
     (afw_lmdb_self_v_reader_check.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_reader_check */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_reader_check */
 #define afw_lmdb_v_reader_check \
     (&afw_lmdb_self_v_reader_check.pub)
 
@@ -2207,7 +2207,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_reader_list \
     (afw_lmdb_self_v_reader_list.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_reader_list */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_reader_list */
 #define afw_lmdb_v_reader_list \
     (&afw_lmdb_self_v_reader_list.pub)
 
@@ -2233,7 +2233,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_required \
     (afw_lmdb_self_v_required.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_required */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_required */
 #define afw_lmdb_v_required \
     (&afw_lmdb_self_v_required.pub)
 
@@ -2259,7 +2259,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_returns \
     (afw_lmdb_self_v_returns.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_returns */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_returns */
 #define afw_lmdb_v_returns \
     (&afw_lmdb_self_v_returns.pub)
 
@@ -2285,7 +2285,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_single \
     (afw_lmdb_self_v_single.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_single */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_single */
 #define afw_lmdb_v_single \
     (&afw_lmdb_self_v_single.pub)
 
@@ -2311,7 +2311,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_size \
     (afw_lmdb_self_v_size.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_size */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_size */
 #define afw_lmdb_v_size \
     (&afw_lmdb_self_v_size.pub)
 
@@ -2337,7 +2337,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_soft \
     (afw_lmdb_self_v_soft.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_soft */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_soft */
 #define afw_lmdb_v_soft \
     (&afw_lmdb_self_v_soft.pub)
 
@@ -2363,7 +2363,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_statistics \
     (afw_lmdb_self_v_statistics.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_statistics */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_statistics */
 #define afw_lmdb_v_statistics \
     (&afw_lmdb_self_v_statistics.pub)
 
@@ -2389,7 +2389,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_string \
     (afw_lmdb_self_v_string.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_string */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_string */
 #define afw_lmdb_v_string \
     (&afw_lmdb_self_v_string.pub)
 
@@ -2415,7 +2415,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_time \
     (afw_lmdb_self_v_time.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_time */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_time */
 #define afw_lmdb_v_time \
     (&afw_lmdb_self_v_time.pub)
 
@@ -2441,7 +2441,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_unique \
     (afw_lmdb_self_v_unique.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_unique */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_unique */
 #define afw_lmdb_v_unique \
     (&afw_lmdb_self_v_unique.pub)
 
@@ -2467,7 +2467,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_updateTimeStamp \
     (afw_lmdb_self_v_updateTimeStamp.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_updateTimeStamp */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_updateTimeStamp */
 #define afw_lmdb_v_updateTimeStamp \
     (&afw_lmdb_self_v_updateTimeStamp.pub)
 
@@ -2493,7 +2493,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_version \
     (afw_lmdb_self_v_version.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_version */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_version */
 #define afw_lmdb_v_version \
     (&afw_lmdb_self_v_version.pub)
 
@@ -2519,7 +2519,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_version_string \
     (afw_lmdb_self_v_version_string.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_version_string */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_version_string */
 #define afw_lmdb_v_version_string \
     (&afw_lmdb_self_v_version_string.pub)
 
@@ -2545,7 +2545,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__ \
     (afw_lmdb_self_v_zz__.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__ */
 #define afw_lmdb_v_zz__ \
     (&afw_lmdb_self_v_zz__.pub)
 
@@ -2571,7 +2571,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__Adaptor_Id_ \
     (afw_lmdb_self_v_zz__Adaptor_Id_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Adaptor_Id_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Adaptor_Id_ */
 #define afw_lmdb_v_zz__Adaptor_Id_ \
     (&afw_lmdb_self_v_zz__Adaptor_Id_.pub)
 
@@ -2597,7 +2597,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__Check_for_stale_entries_in_the_reader_lock_table_ \
     (afw_lmdb_self_v_zz__Check_for_stale_entries_in_the_reader_lock_table_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Check_for_stale_entries_in_the_reader_lock_table_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Check_for_stale_entries_in_the_reader_lock_table_ */
 #define afw_lmdb_v_zz__Check_for_stale_entries_in_the_reader_lock_table_ \
     (&afw_lmdb_self_v_zz__Check_for_stale_entries_in_the_reader_lock_table_.pub)
 
@@ -2623,7 +2623,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__Dump_the_entries_in_the_reader_lock_table_ \
     (afw_lmdb_self_v_zz__Dump_the_entries_in_the_reader_lock_table_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Dump_the_entries_in_the_reader_lock_table_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Dump_the_entries_in_the_reader_lock_table_ */
 #define afw_lmdb_v_zz__Dump_the_entries_in_the_reader_lock_table_ \
     (&afw_lmdb_self_v_zz__Dump_the_entries_in_the_reader_lock_table_.pub)
 
@@ -2649,7 +2649,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__Number_of_stale_slots_that_were_cleared_ \
     (afw_lmdb_self_v_zz__Number_of_stale_slots_that_were_cleared_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Number_of_stale_slots_that_were_cleared_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Number_of_stale_slots_that_were_cleared_ */
 #define afw_lmdb_v_zz__Number_of_stale_slots_that_were_cleared_ \
     (&afw_lmdb_self_v_zz__Number_of_stale_slots_that_were_cleared_.pub)
 
@@ -2675,7 +2675,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__Reader_entries_ \
     (afw_lmdb_self_v_zz__Reader_entries_.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__Reader_entries_ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__Reader_entries_ */
 #define afw_lmdb_v_zz__Reader_entries_ \
     (&afw_lmdb_self_v_zz__Reader_entries_.pub)
 
@@ -2701,7 +2701,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz___adaptorId__string___integer \
     (afw_lmdb_self_v_zz___adaptorId__string___integer.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz___adaptorId__string___integer */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz___adaptorId__string___integer */
 #define afw_lmdb_v_zz___adaptorId__string___integer \
     (&afw_lmdb_self_v_zz___adaptorId__string___integer.pub)
 
@@ -2727,7 +2727,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz___adaptorId__string___string \
     (afw_lmdb_self_v_zz___adaptorId__string___string.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz___adaptorId__string___string */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz___adaptorId__string___string */
 #define afw_lmdb_v_zz___adaptorId__string___string \
     (&afw_lmdb_self_v_zz___adaptorId__string___string.pub)
 
@@ -2753,7 +2753,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__function_reader_check_______adaptorId__string____integer__ \
     (afw_lmdb_self_v_zz__function_reader_check_______adaptorId__string____integer__.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__function_reader_check_______adaptorId__string____integer__ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__function_reader_check_______adaptorId__string____integer__ */
 #define afw_lmdb_v_zz__function_reader_check_______adaptorId__string____integer__ \
     (&afw_lmdb_self_v_zz__function_reader_check_______adaptorId__string____integer__.pub)
 
@@ -2779,7 +2779,7 @@ extern const afw_value_string_t \
 #define afw_lmdb_z_zz__function_reader_list_______adaptorId__string____string__ \
     (afw_lmdb_self_v_zz__function_reader_list_______adaptorId__string____string__.internal.s)
 
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__function_reader_list_______adaptorId__string____string__ */
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__function_reader_list_______adaptorId__string____string__ */
 #define afw_lmdb_v_zz__function_reader_list_______adaptorId__string____string__ \
     (&afw_lmdb_self_v_zz__function_reader_list_______adaptorId__string____string__.pub)
 
