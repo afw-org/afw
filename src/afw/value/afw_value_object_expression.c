@@ -48,7 +48,7 @@ afw_value_create_object_expression(
         xctx);
     self->inf = &afw_value_object_expression_inf;
     self->internal = internal;
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 /*

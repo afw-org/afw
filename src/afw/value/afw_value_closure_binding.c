@@ -40,7 +40,7 @@ afw_value_closure_binding_create(
     self->reference_count = 1;
     afw_xctx_scope_get_reference(enclosing_lexical_scope, xctx);
 
-    return (afw_value_t *)self;
+    return &self->pub;
 }
 
 
@@ -70,7 +70,7 @@ impl_afw_value_clone_or_reference(
     afw_xctx_t * xctx)
 {
     self->reference_count++;
-    return (afw_value_t *)self;
+    return &self->pub;
 }
 
 /*
@@ -82,7 +82,7 @@ impl_afw_value_optional_evaluate(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-     return (afw_value_t *)self;
+     return &self->pub;
 }
 
 /*

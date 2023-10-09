@@ -450,7 +450,7 @@ afw_function_execute_pow_double(
         }
     }
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 

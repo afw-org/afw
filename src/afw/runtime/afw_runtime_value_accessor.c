@@ -342,7 +342,7 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
 
     AFW_LOCK_WRITE_END;
 
-    return (const afw_value_t *)result;
+    return result;
 }
 
 

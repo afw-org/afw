@@ -398,7 +398,7 @@ afw_value_internal_get_evaluated_meta_default(
 
     self = afw_value_internal_create_meta_object_self(
         value, p, xctx);
-    return (const afw_value_t *)&self->meta_object_value;
+    return &self->meta_object_value.pub;
 }
 
 
@@ -434,7 +434,7 @@ afw_value_internal_get_evaluated_meta_for_array(
 
     self = afw_value_internal_create_meta_object_self(
         value, p, xctx);
-    return (const afw_value_t *)& self->meta_object_value;
+    return &self->meta_object_value.pub;
 }
 
 
@@ -484,7 +484,7 @@ afw_value_internal_get_evaluated_meta_for_object(
         value, p, xctx);
     self->additional = (((afw_value_object_t *)value)->internal)->
         meta.meta_object;
-    return (const afw_value_t *)& self->meta_object_value;
+    return &self->meta_object_value.pub;
 }
 
 

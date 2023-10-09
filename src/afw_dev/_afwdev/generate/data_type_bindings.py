@@ -872,7 +872,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    if (internal) {\n')
             fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
             fd.write('    }\n')
-        fd.write('    return (const afw_value_t *)v;\n')
+        fd.write('    return &v->pub;\n')
         fd.write('}\n')
 
         fd.write('\n/* Allocate function for managed data type ' + id + ' values. */\n')
@@ -901,7 +901,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    if (internal) {\n')
             fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
             fd.write('    }\n')
-        fd.write('    return (const afw_value_t *)v;\n')
+        fd.write('    return &v->pub;\n')
         fd.write('}\n')
 
         fd.write('\n/* Allocate function for permanent data type ' + id + ' values. */\n')
@@ -930,7 +930,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    if (internal) {\n')
             fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
             fd.write('    }\n')
-        fd.write('    return (const afw_value_t *)v;\n')
+        fd.write('    return &v->pub;\n')
         fd.write('}\n')
 
         fd.write('\n/* Convert data type ' + id + ' string to ' + ctype + ' *. */\n')

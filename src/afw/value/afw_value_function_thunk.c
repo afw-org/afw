@@ -66,7 +66,7 @@ afw_value_function_thunk_create_impl(
         "Thunk " AFW_UTF8_FMT_Q " created at %s",
         AFW_UTF8_FMT_ARG(name), source_z);
 
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 

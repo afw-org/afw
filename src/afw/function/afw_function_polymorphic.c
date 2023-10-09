@@ -1853,7 +1853,7 @@ afw_function_execute_repeat(
         s += value->internal.len;
     }
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -1992,7 +1992,7 @@ afw_function_execute_replace(
     if (remaining.len > 0) {
         memcpy(s, remaining.s, remaining.len);
     }
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -2794,7 +2794,7 @@ afw_function_execute_encode_as_base64Binary(
     result->internal.ptr = (const afw_octet_t *)value->internal.s;
     result->internal.size = value->internal.len;
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -2846,7 +2846,7 @@ afw_function_execute_encode_as_hexBinary(
     result->internal.ptr = (const afw_octet_t *)value->internal.s;
     result->internal.size = value->internal.len;
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 

@@ -66,7 +66,7 @@ afw_function_execute_random_base64Binary(
     apr_generate_random_bytes((unsigned char *)result->internal.ptr,
         result->internal.size);
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -131,7 +131,7 @@ afw_function_execute_random_digits(
         n /= 10;
     }
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -187,7 +187,7 @@ afw_function_execute_random_hexBinary(
     apr_generate_random_bytes((unsigned char *)result->internal.ptr,
         result->internal.size);
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -255,7 +255,7 @@ afw_function_execute_random_integer(
     }
     result->internal = min->internal + (result->internal % range); 
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -335,5 +335,5 @@ afw_function_execute_random_number(
     result = afw_value_allocate_double(x->p, x->xctx);
     result->internal = min + (random / ((afw_double_t)AFW_INTEGER_MAX / range));
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }

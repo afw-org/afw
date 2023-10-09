@@ -275,7 +275,7 @@ afw_value_create_objectPath(const afw_utf8_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type objectPath values. */
@@ -301,7 +301,7 @@ afw_value_create_managed_objectPath(const afw_utf8_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type objectPath values. */
@@ -327,7 +327,7 @@ afw_value_create_permanent_objectPath(const afw_utf8_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type objectPath string to afw_utf8_t *. */

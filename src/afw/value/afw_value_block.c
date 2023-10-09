@@ -183,7 +183,7 @@ afw_value_block_finalize(
     self->statement_count = statement_count;
     self->statements = statements;
 
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 

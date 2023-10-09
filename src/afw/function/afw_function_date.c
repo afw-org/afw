@@ -63,7 +63,7 @@ afw_function_execute_add_yearMonthDuration_date(
     afw_date_add_yearMonthDuration(&result->internal, &arg2->internal,
         x->xctx);
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }
 
 
@@ -116,5 +116,5 @@ afw_function_execute_subtract_yearMonthDuration_date(
     afw_date_subtract_yearMonthDuration(&result->internal, &arg2->internal,
         x->xctx);
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }

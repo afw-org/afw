@@ -78,7 +78,7 @@ afw_value_reference_by_key_create(
     //self->evaluated_data_type = afw_data_type_string;
 
     /* Return adaptive value. */
-    return (afw_value_t *)self;
+    return &self->pub;
 }
 
 

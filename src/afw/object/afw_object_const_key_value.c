@@ -131,7 +131,7 @@ impl_afw_object_get_property(
 
     for (e = self->entry; e < self->entry_end; e++) {
         if (afw_utf8_equal(&e->key, property_name)) {
-            return (const afw_value_t *)&e->value;
+            return &e->value.pub;
         }
     }
 

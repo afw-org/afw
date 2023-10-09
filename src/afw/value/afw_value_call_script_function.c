@@ -86,7 +86,7 @@ afw_value_call_script_function_create(
     //self->evaluated_data_type = afw_data_type_string;
     
 
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 

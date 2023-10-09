@@ -275,7 +275,7 @@ afw_value_create_yearMonthDuration(const afw_yearMonthDuration_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type yearMonthDuration values. */
@@ -301,7 +301,7 @@ afw_value_create_managed_yearMonthDuration(const afw_yearMonthDuration_t * inter
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type yearMonthDuration values. */
@@ -327,7 +327,7 @@ afw_value_create_permanent_yearMonthDuration(const afw_yearMonthDuration_t * int
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type yearMonthDuration string to afw_yearMonthDuration_t *. */

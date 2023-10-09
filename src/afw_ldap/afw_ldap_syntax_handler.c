@@ -919,7 +919,7 @@ impl_syntax_handler_list_string_to_value(
         e->len = s->len;
     }
 
-    return (const afw_value_t *)result;
+    return result;
 }
 
 

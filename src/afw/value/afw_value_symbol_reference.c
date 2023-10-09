@@ -50,7 +50,7 @@ afw_value_symbol_reference_create(
     /** @fixme add optimization. Check type. Maybe replace evaluated_data_type*/
     self->optimized_value = (const afw_value_t *)self;
 
-    return (afw_value_t *)self;
+    return &self->pub;
 }
 
 
@@ -119,7 +119,7 @@ impl_afw_value_get_evaluated_meta(
             (((const afw_value_object_t *)meta->evaluated_value)->
                 internal)->meta.meta_object;
     }
-    return (const afw_value_t *)& meta->meta_object_value;
+    return &meta->meta_object_value.pub;
 }
 
 

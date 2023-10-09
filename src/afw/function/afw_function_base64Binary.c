@@ -63,5 +63,5 @@ afw_function_execute_decode_to_string_base64Binary(
             x->xctx);
     }
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }

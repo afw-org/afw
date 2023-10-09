@@ -62,7 +62,7 @@ afw_value_assignment_target_create(
     self->contextual = contextual;
     self->assignment_target = assignment_target;
 
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 
@@ -82,7 +82,7 @@ impl_afw_value_optional_evaluate(
     if (self->assignment_target->target_type ==
         afw_compile_assignment_target_type_symbol_reference)
     {
-        return (const afw_value_t *)self->assignment_target->symbol_reference;
+        return &self->assignment_target->symbol_reference->pub;
     }
 
     return instance;

@@ -62,7 +62,7 @@ afw_value_qualified_variable_reference_create(
     //self->evaluated_data_type = afw_data_type_string;
     
 
-    return (afw_value_t *)self;
+    return &self->pub;
 }
 
 
@@ -128,7 +128,7 @@ impl_afw_value_get_evaluated_meta(
             (((const afw_value_object_t *)meta->evaluated_value)->
                 internal)->meta.meta_object;
     }
-    return (const afw_value_t *)& meta->meta_object_value;
+    return &meta->meta_object_value.pub;
 }
 
 

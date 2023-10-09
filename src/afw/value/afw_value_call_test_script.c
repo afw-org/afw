@@ -51,7 +51,7 @@ afw_value_call_test_script_create(
         (const afw_value_object_t *)
         afw_value_create_object(test_script, p, xctx);
 
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 

@@ -71,7 +71,7 @@ afw_function_execute_add_entries(
         }
     }
 
-    return (const afw_value_t *)target;
+    return &target->pub;
 }
 
 
@@ -323,7 +323,7 @@ afw_function_execute_join(
             memcpy(c, s->s, s->len);
             c += s->len;
         }
-        return (const afw_value_t *)result;
+        return &result->pub;
     }
 
     /* If len is zero, return empty string. */

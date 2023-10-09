@@ -273,7 +273,7 @@ afw_value_create_integer(afw_integer_t internal,
 
     v = afw_value_allocate_integer(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type integer values. */
@@ -297,7 +297,7 @@ afw_value_create_managed_integer(afw_integer_t internal,
 
     v = afw_value_allocate_managed_integer(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type integer values. */
@@ -321,7 +321,7 @@ afw_value_create_permanent_integer(afw_integer_t internal,
 
     v = afw_value_allocate_permanent_integer(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type integer string to afw_integer_t *. */

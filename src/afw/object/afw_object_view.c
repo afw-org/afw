@@ -179,7 +179,7 @@ impl_shared_string_value(
             value->internal.s, value->internal.len, value);
     }
 
-    return (const afw_value_t *)value;
+    return &value->pub;
 }
 
 
@@ -233,7 +233,7 @@ impl_shared_path_value(
             path->s, path->len, value);
     }
 
-    return (const afw_value_t *)value;
+    return &value->pub;
 }
 
 

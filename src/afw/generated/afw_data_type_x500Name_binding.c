@@ -275,7 +275,7 @@ afw_value_create_x500Name(const afw_utf8_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type x500Name values. */
@@ -301,7 +301,7 @@ afw_value_create_managed_x500Name(const afw_utf8_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type x500Name values. */
@@ -327,7 +327,7 @@ afw_value_create_permanent_x500Name(const afw_utf8_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type x500Name string to afw_utf8_t *. */

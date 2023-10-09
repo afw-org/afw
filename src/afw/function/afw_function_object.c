@@ -83,7 +83,7 @@ afw_function_execute_add_properties(
         }
     }
 
-    return (const afw_value_t *)target;
+    return &target->pub;
 }
 
 

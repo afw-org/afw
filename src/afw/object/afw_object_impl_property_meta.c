@@ -480,7 +480,7 @@ afw_object_impl_internal_get_property_meta(
     self->property_type_object =
         afw_object_meta_get_property_type(instance, property_name, xctx);
 
-    return (const afw_value_t *)& self->meta_object_value;
+    return &self->meta_object_value.pub;
 }
 
 

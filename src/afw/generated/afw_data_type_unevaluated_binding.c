@@ -273,7 +273,7 @@ afw_value_create_unevaluated(const afw_value_t * internal,
 
     v = afw_value_allocate_unevaluated(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type unevaluated values. */
@@ -297,7 +297,7 @@ afw_value_create_managed_unevaluated(const afw_value_t * internal,
 
     v = afw_value_allocate_managed_unevaluated(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type unevaluated values. */
@@ -321,7 +321,7 @@ afw_value_create_permanent_unevaluated(const afw_value_t * internal,
 
     v = afw_value_allocate_permanent_unevaluated(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type unevaluated string to const afw_value_t * *. */

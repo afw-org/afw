@@ -46,7 +46,7 @@ afw_value_create_array_expression(
     self->inf = &afw_value_list_expression_inf;
     self->contextual = contextual;
     self->internal = internal;
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 /*

@@ -320,7 +320,7 @@ afw_value_clone(const afw_value_t *value,
             (void *)&evaluated->internal,
             (const void *)&((const afw_value_evaluated_t *)value)->internal,
             p, xctx);
-        return (const afw_value_t *)evaluated;
+        return &evaluated->pub;
     }
 
     /* If value is not evaluated, evaluate it. */
@@ -510,7 +510,7 @@ afw_value_make_single_string(
     single->inf = &afw_value_evaluated_string_inf;
     single->internal.s = s;
     single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
-    return (const afw_value_t *)single;
+    return &single->pub;
 
 }
 
@@ -531,7 +531,7 @@ afw_value_make_string_copy(
         ? afw_memory_dup(s, single->internal.len, p, xctx)
         : NULL;
 
-    return (const afw_value_t *)single;
+    return &single->pub;
 
 }
 

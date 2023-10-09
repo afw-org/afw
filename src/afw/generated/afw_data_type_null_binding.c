@@ -273,7 +273,7 @@ afw_value_create_null(void * internal,
 
     v = afw_value_allocate_null(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type null values. */
@@ -297,7 +297,7 @@ afw_value_create_managed_null(void * internal,
 
     v = afw_value_allocate_managed_null(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type null values. */
@@ -321,7 +321,7 @@ afw_value_create_permanent_null(void * internal,
 
     v = afw_value_allocate_permanent_null(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type null string to void * *. */

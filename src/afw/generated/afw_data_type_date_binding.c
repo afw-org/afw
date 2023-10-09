@@ -275,7 +275,7 @@ afw_value_create_date(const afw_date_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_date_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type date values. */
@@ -301,7 +301,7 @@ afw_value_create_managed_date(const afw_date_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_date_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type date values. */
@@ -327,7 +327,7 @@ afw_value_create_permanent_date(const afw_date_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_date_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type date string to afw_date_t *. */

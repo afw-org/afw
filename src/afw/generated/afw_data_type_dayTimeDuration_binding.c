@@ -275,7 +275,7 @@ afw_value_create_dayTimeDuration(const afw_dayTimeDuration_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_dayTimeDuration_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type dayTimeDuration values. */
@@ -301,7 +301,7 @@ afw_value_create_managed_dayTimeDuration(const afw_dayTimeDuration_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_dayTimeDuration_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type dayTimeDuration values. */
@@ -327,7 +327,7 @@ afw_value_create_permanent_dayTimeDuration(const afw_dayTimeDuration_t * interna
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_dayTimeDuration_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type dayTimeDuration string to afw_dayTimeDuration_t *. */

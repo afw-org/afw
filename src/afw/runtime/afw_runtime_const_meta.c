@@ -146,7 +146,7 @@ impl_afw_object_get_next_property (
             if (property_name) {
                 *property_name = afw_s_parentPaths;
             }
-            return (const afw_value_t *)self->parent_paths;
+            return &self->parent_paths->pub;
         }
     }
 

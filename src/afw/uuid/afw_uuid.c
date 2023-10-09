@@ -53,7 +53,7 @@ afw_uuid_create_string(
     apr_uuid_get(&uuid);
     apr_uuid_format((char *)string->internal.s, &uuid);
 
-    return (const afw_value_t *)string;
+    return &string->pub;
 }
 
 

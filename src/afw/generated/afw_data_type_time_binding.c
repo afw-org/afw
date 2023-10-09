@@ -275,7 +275,7 @@ afw_value_create_time(const afw_time_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_time_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type time values. */
@@ -301,7 +301,7 @@ afw_value_create_managed_time(const afw_time_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_time_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type time values. */
@@ -327,7 +327,7 @@ afw_value_create_permanent_time(const afw_time_t * internal,
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_time_t));
     }
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type time string to afw_time_t *. */

@@ -273,7 +273,7 @@ afw_value_create_array(const afw_array_t * internal,
 
     v = afw_value_allocate_array(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type array values. */
@@ -297,7 +297,7 @@ afw_value_create_managed_array(const afw_array_t * internal,
 
     v = afw_value_allocate_managed_array(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type array values. */
@@ -321,7 +321,7 @@ afw_value_create_permanent_array(const afw_array_t * internal,
 
     v = afw_value_allocate_permanent_array(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type array string to const afw_array_t * *. */

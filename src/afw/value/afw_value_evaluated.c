@@ -60,5 +60,5 @@ afw_value_evaluated_create(
     result->inf = data_type->evaluated_value_inf;
     memcpy(&result->internal, value, data_type->c_type_size);
 
-    return (const afw_value_t *)result;
+    return &result->pub;
 }

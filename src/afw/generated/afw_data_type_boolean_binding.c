@@ -273,7 +273,7 @@ afw_value_create_boolean(afw_boolean_t internal,
 
     v = afw_value_allocate_boolean(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for managed data type boolean values. */
@@ -297,7 +297,7 @@ afw_value_create_managed_boolean(afw_boolean_t internal,
 
     v = afw_value_allocate_managed_boolean(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Allocate function for permanent data type boolean values. */
@@ -321,7 +321,7 @@ afw_value_create_permanent_boolean(afw_boolean_t internal,
 
     v = afw_value_allocate_permanent_boolean(p, xctx);
     v->internal = internal;
-    return (const afw_value_t *)v;
+    return &v->pub;
 }
 
 /* Convert data type boolean string to afw_boolean_t *. */

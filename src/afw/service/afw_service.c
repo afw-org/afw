@@ -156,7 +156,7 @@ afw_service_startup_as_value(afw_service_startup_t startup)
         i = afw_service_startup_invalid;
     }
 
-    return (const afw_value_t *)&impl_startup_values[i];
+    return &impl_startup_values[i].pub;
 }
 
 
@@ -231,7 +231,7 @@ afw_service_status_as_value(afw_service_status_t status)
         i = afw_service_status_invalid;
     }
 
-    return (const afw_value_t *)&impl_status_values[i];
+    return &impl_status_values[i].pub;
 }
 
 
@@ -261,7 +261,7 @@ afw_service_status_description_as_value(afw_service_status_t status)
         i = afw_service_status_invalid;
     }
 
-    return (const afw_value_t *)&impl_status_descriptions[i];
+    return &impl_status_descriptions[i].pub;
 }
 
 

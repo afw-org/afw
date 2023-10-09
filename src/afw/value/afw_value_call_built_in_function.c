@@ -95,7 +95,7 @@ afw_value_call_built_in_function_create(
         self->evaluated_data_type = function->returns->data_type;
     }
 
-    return (const afw_value_t *)self;
+    return &self->pub;
 }
 
 
