@@ -276,30 +276,6 @@ afw_value_create_null_unmanaged(void * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type null values. */
-AFW_DEFINE(afw_value_null_t *)
-afw_value_allocate_managed_null(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_null_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_null_t),
-        xctx);
-    result->inf = &afw_value_managed_null_inf;
-    return result;
-}
-
-/* Create function for data type null value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_null(void * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_null_t *v;
-
-    v = afw_value_allocate_managed_null(p, xctx);
-    v->internal = internal;
-    return &v->pub;
-}
-
 /* Convert data type null string to void * *. */
 AFW_DEFINE(void)
 afw_data_type_null_to_internal(void * *to_internal,

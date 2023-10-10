@@ -182,26 +182,6 @@ afw_value_create_json_unmanaged(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for managed data type json value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_json_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_json_t *)
-afw_value_allocate_managed_json(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type json value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_json(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
  * @brief Create function for permanent data type json value.
  * @param internal.
  * @param p to use for returned value.

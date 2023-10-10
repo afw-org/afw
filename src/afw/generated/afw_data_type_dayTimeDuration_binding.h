@@ -182,26 +182,6 @@ afw_value_create_dayTimeDuration_unmanaged(const afw_dayTimeDuration_t * interna
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for managed data type dayTimeDuration value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_dayTimeDuration_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_dayTimeDuration_t *)
-afw_value_allocate_managed_dayTimeDuration(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type dayTimeDuration value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_dayTimeDuration(const afw_dayTimeDuration_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
  * @brief Create function for permanent data type dayTimeDuration value.
  * @param internal.
  * @param p to use for returned value.

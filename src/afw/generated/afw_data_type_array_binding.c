@@ -276,30 +276,6 @@ afw_value_create_array_unmanaged(const afw_array_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type array values. */
-AFW_DEFINE(afw_value_array_t *)
-afw_value_allocate_managed_array(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_array_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_array_t),
-        xctx);
-    result->inf = &afw_value_managed_array_inf;
-    return result;
-}
-
-/* Create function for data type array value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_array(const afw_array_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_array_t *v;
-
-    v = afw_value_allocate_managed_array(p, xctx);
-    v->internal = internal;
-    return &v->pub;
-}
-
 /* Convert data type array string to const afw_array_t * *. */
 AFW_DEFINE(void)
 afw_data_type_array_to_internal(const afw_array_t * *to_internal,

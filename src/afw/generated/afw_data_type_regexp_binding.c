@@ -278,32 +278,6 @@ afw_value_create_regexp_unmanaged(const afw_utf8_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type regexp values. */
-AFW_DEFINE(afw_value_regexp_t *)
-afw_value_allocate_managed_regexp(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_regexp_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_regexp_t),
-        xctx);
-    result->inf = &afw_value_managed_regexp_inf;
-    return result;
-}
-
-/* Create function for data type regexp value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_regexp(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_regexp_t *v;
-
-    v = afw_value_allocate_managed_regexp(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type regexp string to afw_utf8_t *. */
 AFW_DEFINE(void)
 afw_data_type_regexp_to_internal(afw_utf8_t *to_internal,

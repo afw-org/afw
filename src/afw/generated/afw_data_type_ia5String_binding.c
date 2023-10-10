@@ -278,32 +278,6 @@ afw_value_create_ia5String_unmanaged(const afw_utf8_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type ia5String values. */
-AFW_DEFINE(afw_value_ia5String_t *)
-afw_value_allocate_managed_ia5String(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_ia5String_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_ia5String_t),
-        xctx);
-    result->inf = &afw_value_managed_ia5String_inf;
-    return result;
-}
-
-/* Create function for data type ia5String value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_ia5String(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_ia5String_t *v;
-
-    v = afw_value_allocate_managed_ia5String(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type ia5String string to afw_utf8_t *. */
 AFW_DEFINE(void)
 afw_data_type_ia5String_to_internal(afw_utf8_t *to_internal,

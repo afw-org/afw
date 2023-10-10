@@ -278,32 +278,6 @@ afw_value_create_time_unmanaged(const afw_time_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type time values. */
-AFW_DEFINE(afw_value_time_t *)
-afw_value_allocate_managed_time(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_time_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_time_t),
-        xctx);
-    result->inf = &afw_value_managed_time_inf;
-    return result;
-}
-
-/* Create function for data type time value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_time(const afw_time_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_time_t *v;
-
-    v = afw_value_allocate_managed_time(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_time_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type time string to afw_time_t *. */
 AFW_DEFINE(void)
 afw_data_type_time_to_internal(afw_time_t *to_internal,

@@ -278,32 +278,6 @@ afw_value_create_string_unmanaged(const afw_utf8_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type string values. */
-AFW_DEFINE(afw_value_string_t *)
-afw_value_allocate_managed_string(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_string_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_string_t),
-        xctx);
-    result->inf = &afw_value_managed_string_inf;
-    return result;
-}
-
-/* Create function for data type string value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_string(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_string_t *v;
-
-    v = afw_value_allocate_managed_string(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type string string to afw_utf8_t *. */
 AFW_DEFINE(void)
 afw_data_type_string_to_internal(afw_utf8_t *to_internal,

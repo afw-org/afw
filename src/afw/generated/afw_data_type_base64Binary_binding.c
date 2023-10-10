@@ -278,32 +278,6 @@ afw_value_create_base64Binary_unmanaged(const afw_memory_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for managed data type base64Binary values. */
-AFW_DEFINE(afw_value_base64Binary_t *)
-afw_value_allocate_managed_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_base64Binary_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_base64Binary_t),
-        xctx);
-    result->inf = &afw_value_managed_base64Binary_inf;
-    return result;
-}
-
-/* Create function for data type base64Binary value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_base64Binary(const afw_memory_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_base64Binary_t *v;
-
-    v = afw_value_allocate_managed_base64Binary(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_memory_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type base64Binary string to afw_memory_t *. */
 AFW_DEFINE(void)
 afw_data_type_base64Binary_to_internal(afw_memory_t *to_internal,

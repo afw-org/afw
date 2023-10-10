@@ -278,32 +278,6 @@ afw_value_create_dayTimeDuration_unmanaged(const afw_dayTimeDuration_t * interna
     return &v->pub;
 }
 
-/* Allocate function for managed data type dayTimeDuration values. */
-AFW_DEFINE(afw_value_dayTimeDuration_t *)
-afw_value_allocate_managed_dayTimeDuration(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_dayTimeDuration_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_dayTimeDuration_t),
-        xctx);
-    result->inf = &afw_value_managed_dayTimeDuration_inf;
-    return result;
-}
-
-/* Create function for data type dayTimeDuration value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_dayTimeDuration(const afw_dayTimeDuration_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_dayTimeDuration_t *v;
-
-    v = afw_value_allocate_managed_dayTimeDuration(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_dayTimeDuration_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type dayTimeDuration string to afw_dayTimeDuration_t *. */
 AFW_DEFINE(void)
 afw_data_type_dayTimeDuration_to_internal(afw_dayTimeDuration_t *to_internal,
