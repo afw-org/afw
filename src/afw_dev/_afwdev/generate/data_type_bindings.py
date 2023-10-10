@@ -1,5 +1,118 @@
 #! /usr/bin/env python3
 
+#
+# FIXME: These comments are a work in progress and don't necessarily represent
+# what this module does.
+#
+# This module generates <dataType> related *.c and *.h files. The files are:
+#
+#   <prefix>_data_type_bindings.c
+#   <prefix>_data_type_bindings.h
+#   <prefix>_data_type_<dataType>_binding.c
+#   <prefix>_data_type_<dataType>_binding.h
+#   <prefix>_data_type_typedefs.h
+#
+# Files <prefix>_data_type_bindings.c, <prefix>_data_type_bindings.h, and
+# <prefix>_data_type_typedefs.h have functions, macros, and typedefs related
+# to all data types. Files <prefix>_data_type_<dataType>_binding.c and
+# <prefix>_data_type_<dataType>_binding.h are produced for each data type.
+#
+# Multiple inf structures are produced for each data type. The inf structures
+# are:
+#
+#   afw_value_<infType>_<dataType>_inf
+#
+# where <infType> is each of these:
+#
+#   <infType> = managed, permanent, slice, unmanaged
+#
+# Note: 'slice' is only produced for data types with cType of 'afw_utf8_t' and
+# 'afw_memory_t'.
+#
+# There are macros produced to check if a value is of a particular data type:
+#
+#   afw_data_type_is_<dataType>()
+#   afw_value_is_<dataType>()
+#   afw_value_is_array_of_<dataType>()
+#
+# The are also a few functions produced that are used as interface
+# "afw_data_type" methods:
+#
+#   afw_data_type_<dataType>_to_internal()
+#   afw_data_type_<dataType>_to_utf8()
+#
+# Plus a function to force a value to be a particular data type:
+#
+#   afw_value_as_<dataType>()
+#
+# There are macros/functions to access properties of objects and elements of
+# arrays a a data type:
+#
+#   afw_object_get_property_as_<dataType>()
+#   afw_object_get_next_property_as_<dataType>()
+#   afw_object_set_property_as_<dataType>()
+#   afw_array_of_<dataType>_get_next()
+#   afw_array_of_<dataType>_add()
+#   afw_array_of_<dataType>_remove()
+#   afw_data_type_<dataType>_direct
+#
+# Functions are generated to alloc and create adaptive values. The
+# afw_value_<dataType>_alloc() and afw_value_<dataType>_create*() functions
+# vary based on the data type's cType.
+#
+# All alloc plus all create functions that do not end with _unmanaged are
+# managed by reference count. Managed valued are created in xctx->p.
+#
+# For create functions that do end with _unmanaged, a pool must be specified.
+# The lifetime of the value is the lifetime of the pool. A call to release for
+# an unmanaged value will not free the value. A call to add_reference() will
+# always return a managed clone of the value.
+#
+# For data types with cType of 'afw_utf8_t' and 'afw_memory_t':
+#
+# // Allocate memory for managed value and data and return pointer to place to
+# // modify (s for afw_utf8_t and ptr for afw_memory_t).
+# value = afw_value_<dataType>_alloc(&internal, size, xctx);
+#
+# // Allocate memory for managed value and clone internal to value's internal.
+# value = afw_value_<dataType>_create(internal, xctx); // Maybe pointer/size???
+#
+# // Allocate memory for unmanaged value with internal specified. No reference
+# // count. Pool determines lifetime.
+# value = afw_value_<dataType>_create_unmanaged(internal, p, xctx);
+#
+# // Allocate memory for managed value. Owner must be managed or permanent.
+# // Reference count of owner is also maintained.
+# value = afw_value_<dataType>_create_slice(addr, size, owner, xctx);
+#
+# For data types with cType of 'const afw_object_t *' and 'const afw_array_t *':
+#
+# // Allocate memory for managed value, create object/array and set in internal
+# // plus return pointer to internal.
+# value = afw_value_<dataType>_alloc(&internal, xctx);
+#
+# // Allocate memory for managed value and set its internal to the one
+# // specified. The p of the internal must be xctx->p or NULL (permanent).
+# value = afw_value_<dataType>_create(internal, xctx);
+#
+# // Allocate memory for unmanaged value and set internal. Lifetime managed by
+# // pool p.
+# value = afw_value_<dataType>_create_unmanaged(internal, p, xctx);
+#
+# For other scalars data types like 'integer':
+#
+# // Allocate memory for managed value and data and return pointer to mutable
+# // internal.
+# value = afw_value_<dataType>_alloc(&internal, xctx);
+#
+# // Allocate memory for managed value and set internal. Lifetime managed by
+# // reference count.
+# value = afw_value_<dataType>_create(internal, xctx);
+#
+# // Allocate memory for value and set internal. Lifetime managed by pool p.
+# value = afw_value_<dataType>_create_unmanaged(internal, p, xctx);
+#
+
 import os
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc
@@ -1372,7 +1485,7 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
 
-    # Generate <prefix>_data_type_<type>.h for each data type
+    # Generate <prefix>_data_type_<dataType>.h for each data type
     for obj in data_type_array:
         id = obj['_meta_']['objectId']
         filename = prefix + 'data_type_' + id + '_binding.h'
