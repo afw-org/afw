@@ -300,30 +300,6 @@ afw_value_create_managed_double(double internal,
     return &v->pub;
 }
 
-/* Allocate function for permanent data type double values. */
-AFW_DEFINE(afw_value_double_t *)
-afw_value_allocate_permanent_double(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_double_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_double_t),
-        xctx);
-    result->inf = &afw_value_permanent_double_inf;
-    return result;
-}
-
-/* Create function for data type double value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_double(double internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_double_t *v;
-
-    v = afw_value_allocate_permanent_double(p, xctx);
-    v->internal = internal;
-    return &v->pub;
-}
-
 /* Convert data type double string to double *. */
 AFW_DEFINE(void)
 afw_data_type_double_to_internal(double *to_internal,

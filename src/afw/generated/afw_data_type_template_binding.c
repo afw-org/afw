@@ -304,32 +304,6 @@ afw_value_create_managed_template(const afw_utf8_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for permanent data type template values. */
-AFW_DEFINE(afw_value_template_t *)
-afw_value_allocate_permanent_template(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_template_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_template_t),
-        xctx);
-    result->inf = &afw_value_permanent_template_inf;
-    return result;
-}
-
-/* Create function for data type template value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_template(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_template_t *v;
-
-    v = afw_value_allocate_permanent_template(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type template string to afw_utf8_t *. */
 AFW_DEFINE(void)
 afw_data_type_template_to_internal(afw_utf8_t *to_internal,

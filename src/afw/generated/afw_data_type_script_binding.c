@@ -304,32 +304,6 @@ afw_value_create_managed_script(const afw_utf8_t * internal,
     return &v->pub;
 }
 
-/* Allocate function for permanent data type script values. */
-AFW_DEFINE(afw_value_script_t *)
-afw_value_allocate_permanent_script(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_script_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_script_t),
-        xctx);
-    result->inf = &afw_value_permanent_script_inf;
-    return result;
-}
-
-/* Create function for data type script value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_script(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_script_t *v;
-
-    v = afw_value_allocate_permanent_script(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
 /* Convert data type script string to afw_utf8_t *. */
 AFW_DEFINE(void)
 afw_data_type_script_to_internal(afw_utf8_t *to_internal,

@@ -202,15 +202,6 @@ afw_value_create_managed_time(const afw_time_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for permanent data type time value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_time_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_time_t *)
-afw_value_allocate_permanent_time(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
  * @brief Create function for permanent data type time value.
  * @param internal.
  * @param p to use for returned value.

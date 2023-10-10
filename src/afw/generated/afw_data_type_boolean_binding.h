@@ -202,15 +202,6 @@ afw_value_create_managed_boolean(afw_boolean_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for permanent data type boolean value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_boolean_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_boolean_t *)
-afw_value_allocate_permanent_boolean(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
  * @brief Create function for permanent data type boolean value.
  * @param internal.
  * @param p to use for returned value.

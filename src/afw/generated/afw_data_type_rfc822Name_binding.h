@@ -202,15 +202,6 @@ afw_value_create_managed_rfc822Name(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for permanent data type rfc822Name value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_rfc822Name_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_rfc822Name_t *)
-afw_value_allocate_permanent_rfc822Name(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
  * @brief Create function for permanent data type rfc822Name value.
  * @param internal.
  * @param p to use for returned value.
