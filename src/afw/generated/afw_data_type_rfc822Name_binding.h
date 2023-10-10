@@ -66,7 +66,7 @@ afw_data_type_rfc822Name;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_rfc822Name_inf;
+afw_value_unmanaged_rfc822Name_inf;
 
 /**
  * @brief Managed evaluated value inf for data type rfc822Name.

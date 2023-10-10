@@ -31,7 +31,7 @@
 /* Can be returned by on* to do default processing */
 const afw_value_null_t
 impl_useDefaultProcessing = {
-    {&afw_value_evaluated_null_inf}
+    {&afw_value_unmanaged_null_inf}
 };
 
 
@@ -660,7 +660,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_adaptorId =
 {
     afw_s_adaptorId,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "Adaptor Id"
 };
@@ -671,7 +671,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_adaptorTypeSpecific =
 {
     afw_s_adaptorTypeSpecific,
-    &afw_value_evaluated_object_inf,
+    &afw_value_unmanaged_object_inf,
     &afw_data_type_object_direct,
     "Adaptor Specific"
 };
@@ -682,7 +682,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_mapBackObject =
 {
     afw_s_mapBackObject,
-    &afw_value_evaluated_function_inf,
+    &afw_value_unmanaged_function_inf,
     &afw_data_type_function_direct,
     "Function to map back an object",
     "object (object object)",
@@ -696,7 +696,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_modifyEntries =
 {
     afw_s_modifyEntries,
-    &afw_value_evaluated_array_inf,
+    &afw_value_unmanaged_array_inf,
     &afw_data_type_array_direct,
     "Modify Entries",
     "of list"
@@ -708,7 +708,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_object =
 {
     afw_s_object,
-    &afw_value_evaluated_object_inf,
+    &afw_value_unmanaged_object_inf,
     &afw_data_type_object_direct,
     "Object",
     "_AdaptiveValueMeta_"
@@ -720,7 +720,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_objectId =
 {
     afw_s_objectId,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "ObjectId"
 };
@@ -731,7 +731,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_objectType =
 {
     afw_s_objectType,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "ObjectType"
 };
@@ -742,7 +742,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_propertyName =
 {
     afw_s_propertyName,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "Property Name"
 };
@@ -753,7 +753,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_returnObject =
 {
     afw_s_returnObject,
-    &afw_value_evaluated_function_inf,
+    &afw_value_unmanaged_function_inf,
     &afw_data_type_function_direct,
     "Function to call to return an object",
     "boolean (object object, boolean mapBack? /* true will mapback object */ )",
@@ -778,7 +778,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedAdaptorId =
 {
     afw_s_mappedAdaptorId,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "Mapped Adaptor Id"
 };
@@ -789,7 +789,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedObject =
 {
     afw_s_mappedObject,
-    &afw_value_evaluated_object_inf,
+    &afw_value_unmanaged_object_inf,
     &afw_data_type_object_direct,
     "Mapped Object"
 };
@@ -800,7 +800,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedObjectId =
 {
     afw_s_mappedObjectId,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "Mapped Object Id"
 };
@@ -811,7 +811,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedObjectType =
 {
     afw_s_mappedObjectType,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "Mapped Object Type"
 };
@@ -822,7 +822,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_mappedPropertyName =
 {
     afw_s_mappedPropertyName,
-    &afw_value_evaluated_string_inf,
+    &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
     "Mapped Property Name"
 };
@@ -844,7 +844,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_queryCriteria =
 {
     afw_s_queryCriteria,
-    &afw_value_evaluated_object_inf,
+    &afw_value_unmanaged_object_inf,
     &afw_data_type_object_direct,
     "Query Criteria",
     "_AdaptiveQueryCriteria_"

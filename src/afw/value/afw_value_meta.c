@@ -376,7 +376,7 @@ afw_value_internal_create_meta_object_self(
     self->pub.p = p;
     self->value = value;
     self->evaluated_value = afw_value_evaluate(value, p, xctx);
-    self->meta_object_value.inf = &afw_value_evaluated_object_inf;
+    self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;

@@ -472,7 +472,7 @@ afw_object_impl_internal_get_property_meta(
     self->owning_object = instance;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
-    self->meta_object_value.inf = &afw_value_evaluated_object_inf;
+    self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
     self->property_value = property_value;
     self->property_value = afw_value_evaluate(property_value, p, xctx);

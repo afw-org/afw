@@ -66,7 +66,7 @@ afw_data_type_dateTime;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_dateTime_inf;
+afw_value_unmanaged_dateTime_inf;
 
 /**
  * @brief Managed evaluated value inf for data type dateTime.

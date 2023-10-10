@@ -176,7 +176,7 @@ afw_runtime_value_accessor_default(
 
     /* If not a NULL, create an appropriate single value. */
     else {
-        result = afw_value_evaluated_create(internal, prop->data_type,
+        result = afw_value_unmanaged_create(internal, prop->data_type,
             p, xctx);
     }
 

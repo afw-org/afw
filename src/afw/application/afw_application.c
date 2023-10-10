@@ -121,7 +121,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_mode, afw_s_runtime,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Authorization Mode",
         "The current authorization mode.",
         NULL, NULL,
@@ -129,7 +129,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_pid, afw_s_runtime,
-        &afw_value_evaluated_integer_inf,
+        &afw_value_unmanaged_integer_inf,
         "Pid",
         "The current processor id.",
         NULL, NULL,
@@ -137,7 +137,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_programName, afw_s_runtime,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Program Name",
         "The current program name.",
         NULL, NULL,
@@ -145,7 +145,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_xctxUUID, afw_s_runtime,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "XCTX UUID",
         "The execution context (xctx) UUID which can normally be considered the UUID of the current request.",
         NULL, NULL,

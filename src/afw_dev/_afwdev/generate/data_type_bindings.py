@@ -204,7 +204,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * The lifetime of the value is the lifetime of its containing pool.\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
-        fd.write('afw_value_evaluated_' + id + '_inf;\n')
+        fd.write('afw_value_unmanaged_' + id + '_inf;\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Managed evaluated value inf for data type ' + id + '.\n')
@@ -683,7 +683,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('/* optional_release is NULL and get_reference returns new reference. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
-        fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_' + id + '_inf\n')
+        fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release NULL\n')
         fd.write('#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference\n')
         fd.write('#define impl_afw_value_create_iterator NULL\n')
@@ -843,7 +843,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    (const afw_value_t *)&impl_value_empty_array_of_' + id +',\n')
 
         # evaluated_value_inf
-        fd.write('    &afw_value_evaluated_' + id + '_inf,\n')
+        fd.write('    &afw_value_unmanaged_' + id + '_inf,\n')
 
     # compile_type
     if obj.get('compileType'):
@@ -967,7 +967,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('\n')
         fd.write('    result = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
         fd.write('        xctx);\n')
-        fd.write('    result->inf = &afw_value_evaluated_' + id + '_inf;\n')
+        fd.write('    result->inf = &afw_value_unmanaged_' + id + '_inf;\n')
         fd.write('    return result;\n')
         fd.write('}\n')
 
@@ -1292,7 +1292,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('    afw_data_type_write_as_expression(\n')
     fd.write('        afw_data_type_' + id + ',\n')
     fd.write('        writer,\n')
-    fd.write('        (const void *)&(((const afw_value_evaluated_t *)instance)->internal),\n')
+    fd.write('        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),\n')
     fd.write('        xctx);\n')
     fd.write('}\n')
     fd.write('\n')
@@ -1541,7 +1541,7 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
 
        
         fd.write('\n/**\n')
-        fd.write(' * @brief Register each ' + prefix + '_value_evaluated_<dataType>_inf.\n')
+        fd.write(' * @brief Register each ' + prefix + '_value_unmanaged_<dataType>_inf.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' */\n')
         fd.write(declare + '(void)\n')
@@ -1598,8 +1598,8 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
                 fd.write('        &afw_value_permanent_' + id + '_inf.rti.implementation_id,\n')
                 fd.write('        NULL,\n')
             else:
-                fd.write('        &afw_value_evaluated_' + id + '_inf.rti.implementation_id,\n')
-                fd.write('        &afw_value_evaluated_' + id + '_inf,\n')
+                fd.write('        &afw_value_unmanaged_' + id + '_inf.rti.implementation_id,\n')
+                fd.write('        &afw_value_unmanaged_' + id + '_inf,\n')
             fd.write('        xctx);\n')
     
         fd.write('\n')

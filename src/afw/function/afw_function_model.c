@@ -17,25 +17,25 @@
 
 static const afw_value_string_t
 impl_value_add_object = {
-    {&afw_value_evaluated_string_inf},
+    {&afw_value_unmanaged_string_inf},
     AFW_UTF8_LITERAL("add_object")
 };
 
 static const afw_value_string_t
 impl_value_delete_object = {
-    {&afw_value_evaluated_string_inf},
+    {&afw_value_unmanaged_string_inf},
     AFW_UTF8_LITERAL("delete_object")
 };
 
 static const afw_value_string_t
 impl_value_modify_object = {
-    {&afw_value_evaluated_string_inf},
+    {&afw_value_unmanaged_string_inf},
     AFW_UTF8_LITERAL("modify_object")
 };
 
 static const afw_value_string_t
 impl_value_replace_object = {
-    {&afw_value_evaluated_string_inf},
+    {&afw_value_unmanaged_string_inf},
     AFW_UTF8_LITERAL("replace_object")
 };
 

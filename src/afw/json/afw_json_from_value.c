@@ -419,7 +419,7 @@ impl_convert_value_to_json(
             else {
                 string = afw_data_type_internal_to_utf8(
                     value_data_type,
-                    &((const afw_value_evaluated_t *)value)->internal,
+                    &((const afw_value_unmanaged_t *)value)->internal,
                     wa->p, wa->xctx);
                 impl_write(wa, string->s, string->len);
             }
@@ -602,7 +602,7 @@ afw_json_utf8_string_create(
     afw_value_string_t value;
     const afw_utf8_t *result;
 
-    value.inf = &afw_value_evaluated_ia5String_inf;
+    value.inf = &afw_value_unmanaged_ia5String_inf;
     afw_memory_copy(&value.internal, string);
 
     result = afw_json_from_value(

@@ -79,7 +79,7 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "template"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_template_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_template_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
 #define impl_afw_value_create_iterator NULL
@@ -177,7 +177,7 @@ afw_data_type_template_direct = {
     sizeof(afw_utf8_t),
     (const afw_array_t *)&impl_empty_array_of_template,
     (const afw_value_t *)&impl_value_empty_array_of_template,
-    &afw_value_evaluated_template_inf,
+    &afw_value_unmanaged_template_inf,
     afw_compile_type_template,
     false,
     true,
@@ -260,7 +260,7 @@ afw_value_allocate_template(const afw_pool_t *p, afw_xctx_t *xctx)
 
     result = afw_pool_calloc(p, sizeof(afw_value_template_t),
         xctx);
-    result->inf = &afw_value_evaluated_template_inf;
+    result->inf = &afw_value_unmanaged_template_inf;
     return result;
 }
 
@@ -494,7 +494,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_template,
         writer,
-        (const void *)&(((const afw_value_evaluated_t *)instance)->internal),
+        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
         xctx);
 }
 

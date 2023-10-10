@@ -17,7 +17,7 @@
 
 static const afw_value_string_t
 impl_value_set_property = {
-    {&afw_value_evaluated_string_inf},
+    {&afw_value_unmanaged_string_inf},
     AFW_UTF8_LITERAL("set_property")
 };
 
@@ -51,7 +51,7 @@ static const afw_boolean_t entry_type_has_value[] = {
 
 /* Array of entry type ids as adaptive string values. */
 static const afw_value_string_t entry_type_value[] = {
-#define XX(id, _) { {&afw_value_evaluated_string_inf}, \
+#define XX(id, _) { {&afw_value_unmanaged_string_inf}, \
     { #id, sizeof(#id) - 1 } },
     AFW_ADAPTOR_MODIFY_ENTRY_TYPE_MAP(XX)
 #undef XX

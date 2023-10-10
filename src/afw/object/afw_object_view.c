@@ -1386,7 +1386,7 @@ afw_object_view_create(
 
     /* If reconcilable option, add reconcilable meta. */
     if (AFW_OBJECT_OPTION_IS(options, reconcilable)) {
-        self_value.inf = &afw_value_evaluated_object_inf;
+        self_value.inf = &afw_value_unmanaged_object_inf;
         self_value.internal = (const afw_object_t *)self;
         reconcilable = afw_json_from_value(
             &self_value.pub,

@@ -66,7 +66,7 @@ afw_data_type_ia5String;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_ia5String_inf;
+afw_value_unmanaged_ia5String_inf;
 
 /**
  * @brief Managed evaluated value inf for data type ia5String.
