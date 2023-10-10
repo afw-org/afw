@@ -162,6 +162,20 @@ AFW_DECLARE(afw_integer_t)
 afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type integer value.
+ * @param internal place to put pointer to internal of value.
+ * @param xctx of caller.
+ * @return Allocated afw_value_t with appropriate inf set.
+ *
+ * This value is allocated in xctx->p. Set *internal to the 
+ * 'afw_integer_t' internal value before using.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_integer(
+    afw_integer_t **internal,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type integer value.
  * @param p to use for returned value.
  * @param xctx of caller.

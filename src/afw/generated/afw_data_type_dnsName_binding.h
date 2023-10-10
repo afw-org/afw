@@ -162,6 +162,22 @@ AFW_DECLARE(const afw_utf8_t *)
 afw_value_as_dnsName(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type dnsName value.
+ * @param s place to put pointer to allocated memory for internal->s.
+ * @param len of memory to allocate for internal->s.
+ * @param xctx of caller.
+ * @return Allocated afw_value_dnsName_t with appropriate inf set.
+ *
+ * This value and memory for the specified len is allocated in xctx->p.
+ * Set *s for the specified len to a valid utf-8 string.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_dnsName(
+    afw_utf8_octet_t **s,
+    afw_size_t len,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type dnsName value.
  * @param p to use for returned value.
  * @param xctx of caller.

@@ -162,6 +162,22 @@ AFW_DECLARE(const afw_memory_t *)
 afw_value_as_hexBinary(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type hexBinary value.
+ * @param ptr place to put pointer to allocated memory for internal->s.
+ * @param size of memory to allocate for internal->s.
+ * @param xctx of caller.
+ * @return Allocated afw_value_t with appropriate inf set.
+ *
+ * This value and memory for the specified size is allocated in xctx->p.
+ * Set *ptr for the specified size to the bytes of the value.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_hexBinary(
+    const afw_byte_t **ptr,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type hexBinary value.
  * @param p to use for returned value.
  * @param xctx of caller.
