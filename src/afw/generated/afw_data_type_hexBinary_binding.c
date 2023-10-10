@@ -271,7 +271,9 @@ afw_value_create_hexBinary_unmanaged(const afw_memory_t * internal,
 {
     afw_value_hexBinary_t *v;
 
-    v = afw_value_allocate_hexBinary(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_hexBinary_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_hexBinary_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_memory_t));
     }

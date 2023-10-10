@@ -271,7 +271,9 @@ afw_value_create_boolean_unmanaged(afw_boolean_t internal,
 {
     afw_value_boolean_t *v;
 
-    v = afw_value_allocate_boolean(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_boolean_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_boolean_inf;
     v->internal = internal;
     return &v->pub;
 }

@@ -271,7 +271,9 @@ afw_value_create_ia5String_unmanaged(const afw_utf8_t * internal,
 {
     afw_value_ia5String_t *v;
 
-    v = afw_value_allocate_ia5String(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_ia5String_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_ia5String_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }

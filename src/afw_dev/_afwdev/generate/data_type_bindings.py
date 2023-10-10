@@ -949,7 +949,9 @@ def write_c_section(fd, prefix, obj):
         fd.write('{\n')
         fd.write('    afw_value_' + id + '_t *v;\n')
         fd.write('\n')
-        fd.write('    v = afw_value_allocate_' + id + '(p, xctx);\n')
+        fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
+        fd.write('        xctx);\n')
+        fd.write('    v->inf = &afw_value_unmanaged_' + id + '_inf;\n')
         if direct_return == True:
             fd.write('    v->internal = internal;\n')
         else:

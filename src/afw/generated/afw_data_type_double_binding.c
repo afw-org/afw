@@ -271,7 +271,9 @@ afw_value_create_double_unmanaged(double internal,
 {
     afw_value_double_t *v;
 
-    v = afw_value_allocate_double(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_double_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_double_inf;
     v->internal = internal;
     return &v->pub;
 }

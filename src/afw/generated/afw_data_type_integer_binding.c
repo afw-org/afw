@@ -271,7 +271,9 @@ afw_value_create_integer_unmanaged(afw_integer_t internal,
 {
     afw_value_integer_t *v;
 
-    v = afw_value_allocate_integer(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_integer_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_integer_inf;
     v->internal = internal;
     return &v->pub;
 }

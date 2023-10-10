@@ -271,7 +271,9 @@ afw_value_create_time_unmanaged(const afw_time_t * internal,
 {
     afw_value_time_t *v;
 
-    v = afw_value_allocate_time(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_time_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_time_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_time_t));
     }

@@ -271,7 +271,9 @@ afw_value_create_function_unmanaged(const afw_value_t * internal,
 {
     afw_value_function_t *v;
 
-    v = afw_value_allocate_function(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_function_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_function_inf;
     v->internal = internal;
     return &v->pub;
 }

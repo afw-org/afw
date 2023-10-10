@@ -271,7 +271,9 @@ afw_value_create_relaxed_json_unmanaged(const afw_utf8_t * internal,
 {
     afw_value_relaxed_json_t *v;
 
-    v = afw_value_allocate_relaxed_json(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_relaxed_json_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_relaxed_json_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }

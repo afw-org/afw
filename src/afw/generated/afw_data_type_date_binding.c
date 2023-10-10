@@ -271,7 +271,9 @@ afw_value_create_date_unmanaged(const afw_date_t * internal,
 {
     afw_value_date_t *v;
 
-    v = afw_value_allocate_date(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_date_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_date_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_date_t));
     }

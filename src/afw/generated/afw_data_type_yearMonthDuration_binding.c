@@ -271,7 +271,9 @@ afw_value_create_yearMonthDuration_unmanaged(const afw_yearMonthDuration_t * int
 {
     afw_value_yearMonthDuration_t *v;
 
-    v = afw_value_allocate_yearMonthDuration(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_yearMonthDuration_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_yearMonthDuration_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
     }

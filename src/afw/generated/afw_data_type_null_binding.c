@@ -271,7 +271,9 @@ afw_value_create_null_unmanaged(void * internal,
 {
     afw_value_null_t *v;
 
-    v = afw_value_allocate_null(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_null_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_null_inf;
     v->internal = internal;
     return &v->pub;
 }

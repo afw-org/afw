@@ -271,7 +271,9 @@ afw_value_create_array_unmanaged(const afw_array_t * internal,
 {
     afw_value_array_t *v;
 
-    v = afw_value_allocate_array(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_array_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_array_inf;
     v->internal = internal;
     return &v->pub;
 }

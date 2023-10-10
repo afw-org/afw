@@ -271,7 +271,9 @@ afw_value_create_objectId_unmanaged(const afw_utf8_t * internal,
 {
     afw_value_objectId_t *v;
 
-    v = afw_value_allocate_objectId(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_objectId_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_objectId_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }

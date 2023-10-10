@@ -271,7 +271,9 @@ afw_value_create_base64Binary_unmanaged(const afw_memory_t * internal,
 {
     afw_value_base64Binary_t *v;
 
-    v = afw_value_allocate_base64Binary(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_base64Binary_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_base64Binary_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_memory_t));
     }

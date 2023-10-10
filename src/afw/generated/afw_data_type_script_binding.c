@@ -271,7 +271,9 @@ afw_value_create_script_unmanaged(const afw_utf8_t * internal,
 {
     afw_value_script_t *v;
 
-    v = afw_value_allocate_script(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_script_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_script_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }

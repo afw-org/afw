@@ -271,7 +271,9 @@ afw_value_create_x500Name_unmanaged(const afw_utf8_t * internal,
 {
     afw_value_x500Name_t *v;
 
-    v = afw_value_allocate_x500Name(p, xctx);
+    v = afw_pool_calloc(p, sizeof(afw_value_x500Name_t),
+        xctx);
+    v->inf = &afw_value_unmanaged_x500Name_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
